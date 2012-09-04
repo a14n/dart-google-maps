@@ -11,72 +11,72 @@ class GMap extends MVCObject {
   GMap(html.Node mapDiv, [MapOptions opts]) : super.newInstance(_TYPE_NAME, [mapDiv, opts]);
   GMap.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  void fitBounds(LatLngBounds bounds) { js.callFunction(this, "fitBounds", [bounds]); }
-  LatLngBounds getBounds() => new LatLngBounds.fromJsRef(js.callFunction(this, "getBounds"));
-  LatLng getCenter() => new LatLng.fromJsRef(js.callFunction(this, "getCenter"));
-  html.Node getDiv() => js.callFunction(this, "getDiv");
-  num getHeading() => js.callFunction(this, "getHeading");
-  MapTypeId getMapTypeId() => MapTypeId.find(js.callFunction(this, "getMapTypeId"));
-  Projection getProjection() => new Projection.fromJsRef(js.callFunction(this, "getProjection"));
-  StreetViewPanorama getStreetView() => new StreetViewPanorama.fromJsRef(js.callFunction(this, "getStreetView"));
-  num getTilt() => js.callFunction(this, "getTilt");
-  num getZoom() => js.callFunction(this, "getZoom");
-  void panBy(num x, num y) { js.callFunction(this, "panBy", [x, y]); }
-  void panTo(LatLng latLng) { js.callFunction(this, "panTo", [latLng]); }
-  void panToBounds(LatLngBounds latLngBounds) { js.callFunction(this, "panToBounds", [latLngBounds]); }
-  void setCenter(LatLng latLng) { js.callFunction(this, "setCenter", [latLng]); }
-  void setHeading(num heading) { js.callFunction(this, "setHeading", [heading]); }
-  void setMapTypeId(MapTypeId mapTypeId) { js.callFunction(this, "setMapTypeId", [mapTypeId]); }
-  void setOptions(MapOptions options) { js.callFunction(this, "setOptions", [options]); }
-  void setStreetView(StreetViewPanorama panorama) { js.callFunction(this, "setStreetView", [panorama]); }
-  void setTilt(num tilt) { js.callFunction(this, "setTilt", [tilt]); }
-  void setZoom(num zoom) { js.callFunction(this, "setZoom", [zoom]); }
+  void fitBounds(LatLngBounds bounds) { callJs("fitBounds", [bounds]); }
+  LatLngBounds getBounds() => new LatLngBounds.fromJsRef(callJs("getBounds"));
+  LatLng getCenter() => new LatLng.fromJsRef(callJs("getCenter"));
+  html.Node getDiv() => callJs("getDiv");
+  num getHeading() => callJs("getHeading");
+  MapTypeId getMapTypeId() => MapTypeId.find(callJs("getMapTypeId"));
+  Projection getProjection() => new Projection.fromJsRef(callJs("getProjection"));
+  StreetViewPanorama getStreetView() => new StreetViewPanorama.fromJsRef(callJs("getStreetView"));
+  num getTilt() => callJs("getTilt");
+  num getZoom() => callJs("getZoom");
+  void panBy(num x, num y) { callJs("panBy", [x, y]); }
+  void panTo(LatLng latLng) { callJs("panTo", [latLng]); }
+  void panToBounds(LatLngBounds latLngBounds) { callJs("panToBounds", [latLngBounds]); }
+  void setCenter(LatLng latLng) { callJs("setCenter", [latLng]); }
+  void setHeading(num heading) { callJs("setHeading", [heading]); }
+  void setMapTypeId(MapTypeId mapTypeId) { callJs("setMapTypeId", [mapTypeId]); }
+  void setOptions(MapOptions options) { callJs("setOptions", [options]); }
+  void setStreetView(StreetViewPanorama panorama) { callJs("setStreetView", [panorama]); }
+  void setTilt(num tilt) { callJs("setTilt", [tilt]); }
+  void setZoom(num zoom) { callJs("setZoom", [zoom]); }
 
-  List<MVCArray<html.Node>> get controls()  {
-                              List<js.JsRef> resultsRefs = js.getProperty(this, "controls");
+  List<MVCArray<html.Node>> get controls() {
+                              List<js.JsRef> resultsRefs = this["controls"];
                               return resultsRefs.map((e) => new MVCArray.fromJsRef(e));
                             }
-                            set controls(List<MVCArray<html.Node>> controls) => js.setProperty(this, "controls", controls);
-  MapTypeRegistry get mapTypes() => new MapTypeRegistry.fromJsRef(js.getProperty(this, "mapTypes"));
-                  set mapTypes(MapTypeRegistry mapTypes) => js.setProperty(this, "mapTypes", mapTypes);
-  MVCArray<MapType> get overlayMapTypes() => new MVCArray.fromJsRef(js.getProperty(this, "overlayMapTypes"), (js.JsRef jsRef) => new MapType.fromJsRef(jsRef));
-                    set overlayMapTypes(MVCArray<MapType> overlayMapTypes) => js.setProperty(this, "overlayMapTypes", overlayMapTypes);
+                            set controls(List<MVCArray<html.Node>> controls) => this["controls"] = controls;
+  MapTypeRegistry get mapTypes() => new MapTypeRegistry.fromJsRef(this["mapTypes"]);
+                  set mapTypes(MapTypeRegistry mapTypes) => this["mapTypes"] = mapTypes;
+  MVCArray<MapType> get overlayMapTypes() => new MVCArray.fromJsRef(this["overlayMapTypes"], (js.JsRef jsRef) => new MapType.fromJsRef(jsRef));
+                    set overlayMapTypes(MVCArray<MapType> overlayMapTypes) => this["overlayMapTypes"] = overlayMapTypes;
 }
 
-class MapOptions extends js.JsAnonymousObject {
-  set backgroundColor(String backgroundColor) => js.setProperty(this, "backgroundColor", backgroundColor);
-  set center(LatLng center) => js.setProperty(this, "center", center);
-  set disableDefaultUI(bool disableDefaultUI) => js.setProperty(this, "disableDefaultUI", disableDefaultUI);
-  set disableDoubleClickZoom(bool disableDoubleClickZoom) => js.setProperty(this, "disableDoubleClickZoom", disableDoubleClickZoom);
-  set draggable(bool draggable) => js.setProperty(this, "draggable", draggable);
-  set draggableCursor(String draggableCursor) => js.setProperty(this, "draggableCursor", draggableCursor);
-  set draggingCursor(String draggingCursor) => js.setProperty(this, "draggingCursor", draggingCursor);
-  set heading(num heading) => js.setProperty(this, "heading", heading);
-  set keyboardShortcuts(bool keyboardShortcuts) => js.setProperty(this, "keyboardShortcuts", keyboardShortcuts);
-  set mapMaker(bool mapMaker) => js.setProperty(this, "mapMaker", mapMaker);
-  set mapTypeControl(bool mapTypeControl) => js.setProperty(this, "mapTypeControl", mapTypeControl);
-  set mapTypeControlOptions(MapTypeControlOptions mapTypeControlOptions) => js.setProperty(this, "mapTypeControlOptions", mapTypeControlOptions);
-  set mapTypeId(MapTypeId mapTypeId) => js.setProperty(this, "mapTypeId", mapTypeId);
-  set maxZoom(num maxZoom) => js.setProperty(this, "maxZoom", maxZoom);
-  set minZoom(num minZoom) => js.setProperty(this, "minZoom", minZoom);
-  set noClear(bool noClear) => js.setProperty(this, "noClear", noClear);
-  set overviewMapControl(bool overviewMapControl) => js.setProperty(this, "overviewMapControl", overviewMapControl);
-  set overviewMapControlOptions(OverviewMapControlOptions overviewMapControlOptions) => js.setProperty(this, "overviewMapControlOptions", overviewMapControlOptions);
-  set panControl(bool panControl) => js.setProperty(this, "panControl", panControl);
-  set panControlOptions(PanControlOptions panControlOptions) => js.setProperty(this, "panControlOptions", panControlOptions);
-  set rotateControl(bool rotateControl) => js.setProperty(this, "rotateControl", rotateControl);
-  set rotateControlOptions(RotateControlOptions rotateControlOptions) => js.setProperty(this, "rotateControlOptions", rotateControlOptions);
-  set scaleControl(bool scaleControl) => js.setProperty(this, "scaleControl", scaleControl);
-  set scaleControlOptions(ScaleControlOptions scaleControlOptions) => js.setProperty(this, "scaleControlOptions", scaleControlOptions);
-  set scrollwheel(bool scrollwheel) => js.setProperty(this, "scrollwheel", scrollwheel);
-  set streetView(StreetViewPanorama streetView) => js.setProperty(this, "streetView", streetView);
-  set streetViewControl(bool streetViewControl) => js.setProperty(this, "streetViewControl", streetViewControl);
-  set streetViewControlOptions(StreetViewControlOptions streetViewControlOptions) => js.setProperty(this, "streetViewControlOptions", streetViewControlOptions);
-  set styles(List<MapTypeStyle> styles) => js.setProperty(this, "styles", styles);
-  set tilt(num tilt) => js.setProperty(this, "tilt", tilt);
-  set zoom(num zoom) => js.setProperty(this, "zoom", zoom);
-  set zoomControl(bool zoomControl) => js.setProperty(this, "zoomControl", zoomControl);
-  set zoomControlOptions(ZoomControlOptions zoomControlOptions) => js.setProperty(this, "zoomControlOptions", zoomControlOptions);
+class MapOptions extends js.JsObject {
+  set backgroundColor(String backgroundColor) => this["backgroundColor"] = backgroundColor;
+  set center(LatLng center) => this["center"] = center;
+  set disableDefaultUI(bool disableDefaultUI) => this["disableDefaultUI"] = disableDefaultUI;
+  set disableDoubleClickZoom(bool disableDoubleClickZoom) => this["disableDoubleClickZoom"] = disableDoubleClickZoom;
+  set draggable(bool draggable) => this["draggable"] = draggable;
+  set draggableCursor(String draggableCursor) => this["draggableCursor"] = draggableCursor;
+  set draggingCursor(String draggingCursor) => this["draggingCursor"] = draggingCursor;
+  set heading(num heading) => this["heading"] = heading;
+  set keyboardShortcuts(bool keyboardShortcuts) => this["keyboardShortcuts"] = keyboardShortcuts;
+  set mapMaker(bool mapMaker) => this["mapMaker"] = mapMaker;
+  set mapTypeControl(bool mapTypeControl) => this["mapTypeControl"] = mapTypeControl;
+  set mapTypeControlOptions(MapTypeControlOptions mapTypeControlOptions) => this["mapTypeControlOptions"] = mapTypeControlOptions;
+  set mapTypeId(MapTypeId mapTypeId) => this["mapTypeId"] = mapTypeId;
+  set maxZoom(num maxZoom) => this["maxZoom"] = maxZoom;
+  set minZoom(num minZoom) => this["minZoom"] = minZoom;
+  set noClear(bool noClear) => this["noClear"] = noClear;
+  set overviewMapControl(bool overviewMapControl) => this["overviewMapControl"] = overviewMapControl;
+  set overviewMapControlOptions(OverviewMapControlOptions overviewMapControlOptions) => this["overviewMapControlOptions"] = overviewMapControlOptions;
+  set panControl(bool panControl) => this["panControl"] = panControl;
+  set panControlOptions(PanControlOptions panControlOptions) => this["panControlOptions"] = panControlOptions;
+  set rotateControl(bool rotateControl) => this["rotateControl"] = rotateControl;
+  set rotateControlOptions(RotateControlOptions rotateControlOptions) => this["rotateControlOptions"] = rotateControlOptions;
+  set scaleControl(bool scaleControl) => this["scaleControl"] = scaleControl;
+  set scaleControlOptions(ScaleControlOptions scaleControlOptions) => this["scaleControlOptions"] = scaleControlOptions;
+  set scrollwheel(bool scrollwheel) => this["scrollwheel"] = scrollwheel;
+  set streetView(StreetViewPanorama streetView) => this["streetView"] = streetView;
+  set streetViewControl(bool streetViewControl) => this["streetViewControl"] = streetViewControl;
+  set streetViewControlOptions(StreetViewControlOptions streetViewControlOptions) => this["streetViewControlOptions"] = streetViewControlOptions;
+  set styles(List<MapTypeStyle> styles) => this["styles"] = styles;
+  set tilt(num tilt) => this["tilt"] = tilt;
+  set zoom(num zoom) => this["zoom"] = zoom;
+  set zoomControl(bool zoomControl) => this["zoomControl"] = zoomControl;
+  set zoomControlOptions(ZoomControlOptions zoomControlOptions) => this["zoomControlOptions"] = zoomControlOptions;
 }
 
 class MapTypeId extends js.JsConst {
@@ -92,10 +92,10 @@ class MapTypeId extends js.JsConst {
   const MapTypeId._(String jsName) : super.fromJsName(jsName);
 }
 
-class MapTypeControlOptions extends js.JsAnonymousObject {
-  set mapTypeIds(List<MapTypeId> mapTypeIds) => js.setProperty(this, "mapTypeIds", mapTypeIds);
-  set position(ControlPosition position) => js.setProperty(this, "position", position);
-  set style(MapTypeControlStyle style) => js.setProperty(this, "style", style);
+class MapTypeControlOptions extends js.JsObject {
+  set mapTypeIds(List<MapTypeId> mapTypeIds) => this["mapTypeIds"] = mapTypeIds;
+  set position(ControlPosition position) => this["position"] = position;
+  set style(MapTypeControlStyle style) => this["style"] = style;
 }
 
 class MapTypeControlStyle extends js.JsConst {
@@ -110,21 +110,21 @@ class MapTypeControlStyle extends js.JsConst {
   const MapTypeControlStyle._(String jsName) : super.fromJsName(jsName);
 }
 
-class OverviewMapControlOptions extends js.JsAnonymousObject {
-  set opened(bool opened) => js.setProperty(this, "opened", opened);
+class OverviewMapControlOptions extends js.JsObject {
+  set opened(bool opened) => this["opened"] = opened;
 }
 
-class PanControlOptions extends js.JsAnonymousObject {
-  set position(ControlPosition position) => js.setProperty(this, "position", position);
+class PanControlOptions extends js.JsObject {
+  set position(ControlPosition position) => this["position"] = position;
 }
 
-class RotateControlOptions extends js.JsAnonymousObject {
-  set position(ControlPosition position) => js.setProperty(this, "position", position);
+class RotateControlOptions extends js.JsObject {
+  set position(ControlPosition position) => this["position"] = position;
 }
 
-class ScaleControlOptions extends js.JsAnonymousObject {
-  set position(ControlPosition position) => js.setProperty(this, "position", position);
-  set style(ScaleControlStyle style) => js.setProperty(this, "style", style);
+class ScaleControlOptions extends js.JsObject {
+  set position(ControlPosition position) => this["position"] = position;
+  set style(ScaleControlStyle style) => this["style"] = style;
 }
 
 class ScaleControlStyle extends js.JsConst {
@@ -137,13 +137,13 @@ class ScaleControlStyle extends js.JsConst {
   const ScaleControlStyle._(String jsName) : super.fromJsName(jsName);
 }
 
-class StreetViewControlOptions extends js.JsAnonymousObject {
-  set position(ControlPosition position) => js.setProperty(this, "position", position);
+class StreetViewControlOptions extends js.JsObject {
+  set position(ControlPosition position) => this["position"] = position;
 }
 
-class ZoomControlOptions extends js.JsAnonymousObject {
-  set position(ControlPosition position) => js.setProperty(this, "position", position);
-  set style(ZoomControlStyle style) => js.setProperty(this, "style", style);
+class ZoomControlOptions extends js.JsObject {
+  set position(ControlPosition position) => this["position"] = position;
+  set style(ZoomControlStyle style) => this["style"] = style;
 }
 
 class ZoomControlStyle extends js.JsConst {
@@ -187,13 +187,13 @@ class Marker extends MVCObject {
 
   Marker([MarkerOptions opts]) : super.newInstance(_TYPE_NAME, [opts]);
   
-  Animation getAnimation() => Animation.find(js.callFunction(this, "getAnimation"));
-  bool getClickable() => js.callFunction(this, "getClickable");
-  String getCursor() => js.callFunction(this, "getCursor");
-  bool getDraggable() => js.callFunction(this, "getDraggable");
-  bool getFlat() => js.callFunction(this, "getFlat");
+  Animation getAnimation() => Animation.find(callJs("getAnimation"));
+  bool getClickable() => callJs("getClickable");
+  String getCursor() => callJs("getCursor");
+  bool getDraggable() => callJs("getDraggable");
+  bool getFlat() => callJs("getFlat");
   Object getIcon() {
-    final result = js.callFunction(this, "getIcon");
+    final result = callJs("getIcon");
     if (result is String) {
       return result;
     } else if (result is js.JsRef) {
@@ -203,7 +203,7 @@ class Marker extends MVCObject {
     }
   }
   Object getMap() {
-    final result = js.callFunction(this, "getMap");
+    final result = callJs("getMap");
     if (js.isInstanceOf(result ,GMap._TYPE_NAME)) {
       return new GMap.fromJsRef(result);
     } else if (js.isInstanceOf(result ,StreetViewPanorama._TYPE_NAME)) {
@@ -212,9 +212,9 @@ class Marker extends MVCObject {
       throw new Exception("Unsupported result");
     }
   }
-  LatLng getPosition() => new LatLng.fromJsRef(js.callFunction(this, "getPosition"));
+  LatLng getPosition() => new LatLng.fromJsRef(callJs("getPosition"));
   Object getShadow() {
-    final result = js.callFunction(this, "getShadow");
+    final result = callJs("getShadow");
     if (result is String) {
       return result;
     } else if (result is js.JsRef) {
@@ -223,77 +223,77 @@ class Marker extends MVCObject {
       throw new Exception("Unsupported result");
     }
   }
-  MarkerShape getShape() => new MarkerShape.fromJsRef(js.callFunction(this, "getShape"));
-  String getTitle() => js.callFunction(this, "getTitle");
-  bool getVisible() => js.callFunction(this, "getVisible");
-  num getZIndex() => js.callFunction(this, "getZIndex");
-  void setAnimation(Animation animation) { js.callFunction(this, "setAnimation", [animation]); }
-  void setClickable(bool flag) { js.callFunction(this, "setClickable", [flag]); }
-  void setCursor(String cursor) { js.callFunction(this, "setCursor", [cursor]); }
-  void setDraggable(bool flag) { js.callFunction(this, "setDraggable", [flag]); }
-  void setFlat(bool flag) { js.callFunction(this, "setFlat", [flag]); }
+  MarkerShape getShape() => new MarkerShape.fromJsRef(callJs("getShape"));
+  String getTitle() => callJs("getTitle");
+  bool getVisible() => callJs("getVisible");
+  num getZIndex() => callJs("getZIndex");
+  void setAnimation(Animation animation) { callJs("setAnimation", [animation]); }
+  void setClickable(bool flag) { callJs("setClickable", [flag]); }
+  void setCursor(String cursor) { callJs("setCursor", [cursor]); }
+  void setDraggable(bool flag) { callJs("setDraggable", [flag]); }
+  void setFlat(bool flag) { callJs("setFlat", [flag]); }
   void setIcon(Object icon) {
     if (icon is String || icon is MarkerImage) {
-      js.callFunction(this, "setIcon", [icon]);
+      callJs("setIcon", [icon]);
     } else {
       throw new IllegalArgumentException(icon);
     }
   }
   void setMap(Object map) { 
     if (map is GMap || map is StreetViewPanorama) {
-      js.callFunction(this, "setMap", [map]);
+      callJs("setMap", [map]);
     } else {
       throw new IllegalArgumentException(map);
     }
   }
-  void setOptions(MarkerOptions options) { js.callFunction(this, "setOptions", [options]); }
-  void setPosition(LatLng latlng) { js.callFunction(this, "setPosition", [latlng]); }
+  void setOptions(MarkerOptions options) { callJs("setOptions", [options]); }
+  void setPosition(LatLng latlng) { callJs("setPosition", [latlng]); }
   void setShadow(Object shadow) { 
     if (shadow is String || shadow is MarkerImage) {
-      js.callFunction(this, "setShadow", [shadow]);
+      callJs("setShadow", [shadow]);
     } else {
       throw new IllegalArgumentException(shadow);
     }
   }
-  void setTitle(String title) { js.callFunction(this, "setTitle", [title]); }
-  void setVisible(bool visible) { js.callFunction(this, "setVisible", [visible]); }
-  void setZIndex(num zIndex) { js.callFunction(this, "setZIndex", [zIndex]); }
+  void setTitle(String title) { callJs("setTitle", [title]); }
+  void setVisible(bool visible) { callJs("setVisible", [visible]); }
+  void setZIndex(num zIndex) { callJs("setZIndex", [zIndex]); }
 }
 
-class MarkerOptions extends js.JsAnonymousObject {
-  set animation(Animation animation) => js.setProperty(this, "animation", animation);
-  set clickable(bool clickable) => js.setProperty(this, "clickable", clickable);
-  set cursor(String cursor) => js.setProperty(this, "cursor", cursor);
-  set draggable(bool draggable) => js.setProperty(this, "draggable", draggable);
-  set flat(bool flat) => js.setProperty(this, "flat", flat);
+class MarkerOptions extends js.JsObject {
+  set animation(Animation animation) => this["animation"] = animation;
+  set clickable(bool clickable) => this["clickable"] = clickable;
+  set cursor(String cursor) => this["cursor"] = cursor;
+  set draggable(bool draggable) => this["draggable"] = draggable;
+  set flat(bool flat) => this["flat"] = flat;
   set icon(Object icon) {
     if (icon is String || icon is MarkerImage || icon is Symbol) {
-      js.setProperty(this, "icon", icon);
+      this["icon"] = icon;
     } else {
       throw new IllegalArgumentException(icon);
     }
   }
   set map(Object map) {
     if (map is GMap || map is StreetViewPanorama) {
-      js.setProperty(this, "map", map);
+      this["map"] = map;
     } else {
       throw new IllegalArgumentException(map);
     }
   }
-  set optimized(bool optimized) => js.setProperty(this, "optimized", optimized);
-  set position(LatLng position) => js.setProperty(this, "position", position);
-  set raiseOnDrag(bool raiseOnDrag) => js.setProperty(this, "raiseOnDrag", raiseOnDrag);
+  set optimized(bool optimized) => this["optimized"] = optimized;
+  set position(LatLng position) => this["position"] = position;
+  set raiseOnDrag(bool raiseOnDrag) => this["raiseOnDrag"] = raiseOnDrag;
   set shadow(Object shadow) {
     if (shadow is String || shadow is MarkerImage || shadow is Symbol) {
-      js.setProperty(this, "shadow", shadow);
+      this["shadow"] = shadow;
     } else {
       throw new IllegalArgumentException(shadow);
     }
   }
-  set shape(MarkerShape shape) => js.setProperty(this, "shape", shape);
-  set title(String title) => js.setProperty(this, "title", title);
-  set visible(bool visible) => js.setProperty(this, "visible", visible);
-  set zIndex(num zIndex) => js.setProperty(this, "zIndex", zIndex);
+  set shape(MarkerShape shape) => this["shape"] = shape;
+  set title(String title) => this["title"] = title;
+  set visible(bool visible) => this["visible"] = visible;
+  set zIndex(num zIndex) => this["zIndex"] = zIndex;
 }
 
 class MarkerImage extends js.JsObject {
@@ -302,37 +302,37 @@ class MarkerImage extends js.JsObject {
   MarkerImage(String url, [Size size, Point origin, Point anchor, Size scaledSize]) : super.newInstance(_TYPE_NAME, [url, size, origin, anchor, scaledSize]);
   MarkerImage.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  Point get anchor() => new Point.fromJsRef(js.getProperty(this, "anchor"));
-        set anchor(Point anchor) => js.setProperty(this, "anchor", anchor);
-  Point get origin() => new Point.fromJsRef(js.getProperty(this, "origin"));
-        set origin(Point origin) => js.setProperty(this, "origin", origin);
-  Size get scaledSize() => new Size.fromJsRef(js.getProperty(this, "scaledSize"));
-       set scaledSize(Size scaledSize) => js.setProperty(this, "scaledSize", scaledSize);
-  Size get size() => new Size.fromJsRef(js.getProperty(this, "size"));
-       set size(Size size) => js.setProperty(this, "size", size);
-  String get url() => js.getProperty(this, "url");
-         set url(String url) => js.setProperty(this, "url", url);
+  Point get anchor() => new Point.fromJsRef(this["anchor"]);
+        set anchor(Point anchor) => this["anchor"] = anchor;
+  Point get origin() => new Point.fromJsRef(this["origin"]);
+        set origin(Point origin) => this["origin"] = origin;
+  Size get scaledSize() => new Size.fromJsRef(this["scaledSize"]);
+       set scaledSize(Size scaledSize) => this["scaledSize"] = scaledSize;
+  Size get size() => new Size.fromJsRef(this["size"]);
+       set size(Size size) => this["size"] = size;
+  String get url() => this["url"];
+         set url(String url) => this["url"] = url;
 }
 
-class MarkerShape extends js.JsAnonymousObject {
+class MarkerShape extends js.JsObject {
   MarkerShape() : super();
   MarkerShape.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  List<num> get coords() => js.getProperty(this, "coords");
-            set coords(List<num> coords) => js.setProperty(this, "coords", coords);
-  String get type() => js.getProperty(this, "type");
-         set type(String type) => js.setProperty(this, "type", type);
+  List<num> get coords() => this["coords"];
+            set coords(List<num> coords) => this["coords"] = coords;
+  String get type() => this["type"];
+         set type(String type) => this["type"] = type;
 }
 
-class Symbol extends js.JsAnonymousObject {
-  Point get anchor() => new Point.fromJsRef(js.getProperty(this, "anchor"));
-        set anchor(Point anchor) => js.setProperty(this, "anchor", anchor);
-  String get fillColor() => js.getProperty(this, "fillColor");
-         set fillColor(String fillColor) => js.setProperty(this, "fillColor", fillColor);
-  num get fillOpacity() => js.getProperty(this, "fillOpacity");
-      set fillOpacity(num fillOpacity) => js.setProperty(this, "fillOpacity", fillOpacity);
+class Symbol extends js.JsObject {
+  Point get anchor() => new Point.fromJsRef(this["anchor"]);
+        set anchor(Point anchor) => this["anchor"] = anchor;
+  String get fillColor() => this["fillColor"];
+         set fillColor(String fillColor) => this["fillColor"] = fillColor;
+  num get fillOpacity() => this["fillOpacity"];
+      set fillOpacity(num fillOpacity) => this["fillOpacity"] = fillOpacity;
   Object get path() {
-           final result = js.getProperty(this, "path");
+           final result = this["path"];
            if (result is String) {
              return result;
            } else if (result is js.JsRef) {
@@ -343,21 +343,21 @@ class Symbol extends js.JsAnonymousObject {
          }
          set path(Object path) {
            if (path is String || path is SymbolPath) {
-             js.setProperty(this, "path", path);
+             this["path"] = path;
            } else {
              throw new IllegalArgumentException(path);
            }
          }
-  num get rotation() => js.getProperty(this, "rotation");
-      set rotation(num rotation) => js.setProperty(this, "rotation", rotation);
-  num get scale() => js.getProperty(this, "scale");
-      set scale(num scale) => js.setProperty(this, "scale", scale);
-  String get strokeColor() => js.getProperty(this, "strokeColor");
-         set strokeColor(String strokeColor) => js.setProperty(this, "strokeColor", strokeColor);
-  num get strokeOpacity() => js.getProperty(this, "strokeOpacity");
-      set strokeOpacity(num strokeOpacity) => js.setProperty(this, "strokeOpacity", strokeOpacity);
-  num get strokeWeight() => js.getProperty(this, "strokeWeight");
-      set strokeWeight(num rotation) => js.setProperty(this, "strokeWeight", strokeWeight);
+  num get rotation() => this["rotation"];
+      set rotation(num rotation) => this["rotation"] = rotation;
+  num get scale() => this["scale"];
+      set scale(num scale) => this["scale"] = scale;
+  String get strokeColor() => this["strokeColor"];
+         set strokeColor(String strokeColor) => this["strokeColor"] = strokeColor;
+  num get strokeOpacity() => this["strokeOpacity"];
+      set strokeOpacity(num strokeOpacity) => this["strokeOpacity"] = strokeOpacity;
+  num get strokeWeight() => this["strokeWeight"];
+      set strokeWeight(num rotation) => this["strokeWeight"] = strokeWeight;
 }
 
 class SymbolPath extends js.JsConst {
@@ -391,49 +391,49 @@ class InfoWindow extends MVCObject {
   InfoWindow([InfoWindowOptions opts]) : super.newInstance(_TYPE_NAME, [opts]);
   InfoWindow.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  void close() { js.callFunction(this, "close"); }
+  void close() { callJs("close"); }
   Object getContent() {
-    final result = js.callFunction(this, "getContent");
+    final result = callJs("getContent");
     if (result is String || result is html.Node) {
       return result;
     } else {
       throw new Exception("Unsupported result");
     }
   }
-  LatLng getPosition() => new LatLng.fromJsRef(js.callFunction(this, "getPosition"));
-  num getZIndex() => js.callFunction(this, "getZIndex");
+  LatLng getPosition() => new LatLng.fromJsRef(callJs("getPosition"));
+  num getZIndex() => callJs("getZIndex");
   void open([Object map, MVCObject anchor]) {
     if (map is GMap || map is StreetViewPanorama) {
-      js.callFunction(this, "open", [map, anchor]);
+      callJs("open", [map, anchor]);
     } else {
       throw new IllegalArgumentException(map);
     }
   }
   void setContent(Object content) {
     if (content is String || content is html.Node) {
-      js.callFunction(this, "setContent", [content]);
+      callJs("setContent", [content]);
     } else {
       throw new IllegalArgumentException(content);
     }
   }
-  void setOptions(InfoWindowOptions options) { js.callFunction(this, "setOptions", [options]); }
-  void setPosition(LatLng position) { js.callFunction(this, "setPosition", [position]); }
-  void setZIndex(num zIndex) { js.callFunction(this, "setZIndex", [zIndex]); }
+  void setOptions(InfoWindowOptions options) { callJs("setOptions", [options]); }
+  void setPosition(LatLng position) { callJs("setPosition", [position]); }
+  void setZIndex(num zIndex) { callJs("setZIndex", [zIndex]); }
 }
 
-class InfoWindowOptions extends js.JsAnonymousObject {
+class InfoWindowOptions extends js.JsObject {
   set content(Object content) {
     if (content is String || content is html.Node) {
-      js.setProperty(this, "content", content);
+      this["content"] = content;
     } else {
       throw new IllegalArgumentException(content);
     }
   }
-  set disableAutoPan(bool disableAutoPan) => js.setProperty(this, "disableAutoPan", disableAutoPan);
-  set maxWidth(num maxWidth) => js.setProperty(this, "maxWidth", maxWidth);
-  set pixelOffset(Size pixelOffset) => js.setProperty(this, "pixelOffset", pixelOffset);
-  set position(LatLng position) => js.setProperty(this, "position", position);
-  set zIndex(num zIndex) => js.setProperty(this, "zIndex", zIndex);
+  set disableAutoPan(bool disableAutoPan) => this["disableAutoPan"] = disableAutoPan;
+  set maxWidth(num maxWidth) => this["maxWidth"] = maxWidth;
+  set pixelOffset(Size pixelOffset) => this["pixelOffset"] = pixelOffset;
+  set position(LatLng position) => this["position"] = position;
+  set zIndex(num zIndex) => this["zIndex"] = zIndex;
 }
 
 class Polyline extends MVCObject {
@@ -442,47 +442,47 @@ class Polyline extends MVCObject {
   Polyline([PolylineOptions opts]) : super.newInstance(_TYPE_NAME, [opts]);
   Polyline.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  bool getEditable() => js.callFunction(this, "getEditable");
-  GMap getMap() => new GMap.fromJsRef(js.callFunction(this, "getMap"));
-  MVCArray<LatLng> getPath() => new MVCArray.fromJsRef(js.callFunction(this, "getPath"), (js.JsRef jsRef) => new LatLng.fromJsRef(jsRef));
-  bool getVisible() => js.callFunction(this, "getVisible");
-  void setEditable(bool editable) { js.callFunction(this, "setEditable", [editable]); }
-  void setMap(GMap map) { js.callFunction(this, "setMap", [map]); }
-  void setOptions(PolylineOptions options) { js.callFunction(this, "setOptions", [options]); }
+  bool getEditable() => callJs("getEditable");
+  GMap getMap() => new GMap.fromJsRef(callJs("getMap"));
+  MVCArray<LatLng> getPath() => new MVCArray.fromJsRef(callJs("getPath"), (js.JsRef jsRef) => new LatLng.fromJsRef(jsRef));
+  bool getVisible() => callJs("getVisible");
+  void setEditable(bool editable) { callJs("setEditable", [editable]); }
+  void setMap(GMap map) { callJs("setMap", [map]); }
+  void setOptions(PolylineOptions options) { callJs("setOptions", [options]); }
   void setPath(Object path) {
     if (path is MVCArray<LatLng> || path is List<LatLng>) {
-      js.callFunction(this, "setPath", [path]);
+      callJs("setPath", [path]);
     } else {
       throw new IllegalArgumentException(path);
     }
   }
-  void setVisible(bool visible) { js.callFunction(this, "setVisible", [visible]); }
+  void setVisible(bool visible) { callJs("setVisible", [visible]); }
 }
 
-class PolylineOptions extends js.JsAnonymousObject {
-  set clickable(bool clickable) => js.setProperty(this, "clickable", clickable);
-  set editable(bool editable) => js.setProperty(this, "editable", editable);
-  set geodesic(bool geodesic) => js.setProperty(this, "geodesic", geodesic);
-  set icons(List<IconSequence> icons) => js.setProperty(this, "icons", icons);
-  set map(GMap map) => js.setProperty(this, "map", map);
+class PolylineOptions extends js.JsObject {
+  set clickable(bool clickable) => this["clickable"] = clickable;
+  set editable(bool editable) => this["editable"] = editable;
+  set geodesic(bool geodesic) => this["geodesic"] = geodesic;
+  set icons(List<IconSequence> icons) => this["icons"] = icons;
+  set map(GMap map) => this["map"] = map;
   set path(Object path) {
     if (path is MVCArray<LatLng> || path is List<LatLng>) {
-      js.setProperty(this, "path", path);
+      this["path"] = path;
     } else {
       throw new IllegalArgumentException(path);
     }
   }
-  set strokeColor(String strokeColor) => js.setProperty(this, "strokeColor", strokeColor);
-  set strokeOpacity(num strokeOpacity) => js.setProperty(this, "strokeOpacity", strokeOpacity);
-  set strokeWeight(num strokeWeight) => js.setProperty(this, "strokeWeight", strokeWeight);
-  set visible(bool visible) => js.setProperty(this, "visible", visible);
-  set zIndex(num zIndex) => js.setProperty(this, "zIndex", zIndex);
+  set strokeColor(String strokeColor) => this["strokeColor"] = strokeColor;
+  set strokeOpacity(num strokeOpacity) => this["strokeOpacity"] = strokeOpacity;
+  set strokeWeight(num strokeWeight) => this["strokeWeight"] = strokeWeight;
+  set visible(bool visible) => this["visible"] = visible;
+  set zIndex(num zIndex) => this["zIndex"] = zIndex;
 }
 
-class IconSequence extends js.JsAnonymousObject {
-  set icon(Symbol icon) => js.setProperty(this, "icon", icon);
-  set offset(String offset) => js.setProperty(this, "offset", offset);
-  set repeat(String repeat) => js.setProperty(this, "repeat", repeat);
+class IconSequence extends js.JsObject {
+  set icon(Symbol icon) => this["icon"] = icon;
+  set offset(String offset) => this["offset"] = offset;
+  set repeat(String repeat) => this["repeat"] = repeat;
 }
 
 class Polygon extends MVCObject {
@@ -491,58 +491,58 @@ class Polygon extends MVCObject {
   Polygon([PolygonOptions opts]) : super.newInstance(_TYPE_NAME, [opts]);
   Polygon.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  bool getEditable() => js.callFunction(this, "getEditable");
-  GMap getMap() => new GMap.fromJsRef(js.callFunction(this, "getMap"));
-  MVCArray<LatLng> getPath() => new MVCArray.fromJsRef(js.callFunction(this, "getPath"), (js.JsRef jsRef) => new LatLng.fromJsRef(jsRef));
-  MVCArray<MVCArray<LatLng>> getPaths() => new MVCArray.fromJsRef(js.callFunction(this, "getPaths"), (js.JsRef jsRef) => new MVCArray.fromJsRef(jsRef, (js.JsRef jsRef) => new LatLng.fromJsRef(jsRef)));
-  bool getVisible() => js.callFunction(this, "getVisible");
-  void setEditable(bool editable) { js.callFunction(this, "setEditable", [editable]); }
-  void setMap(GMap map) { js.callFunction(this, "setMap", [map]); }
-  void setOptions(PolylineOptions options) { js.callFunction(this, "setOptions", [options]); }
+  bool getEditable() => callJs("getEditable");
+  GMap getMap() => new GMap.fromJsRef(callJs("getMap"));
+  MVCArray<LatLng> getPath() => new MVCArray.fromJsRef(callJs("getPath"), (js.JsRef jsRef) => new LatLng.fromJsRef(jsRef));
+  MVCArray<MVCArray<LatLng>> getPaths() => new MVCArray.fromJsRef(callJs("getPaths"), (js.JsRef jsRef) => new MVCArray.fromJsRef(jsRef, (js.JsRef jsRef) => new LatLng.fromJsRef(jsRef)));
+  bool getVisible() => callJs("getVisible");
+  void setEditable(bool editable) { callJs("setEditable", [editable]); }
+  void setMap(GMap map) { callJs("setMap", [map]); }
+  void setOptions(PolylineOptions options) { callJs("setOptions", [options]); }
   void setPath(Object path) {
     if (path is MVCArray<LatLng> || path is List<LatLng>) {
-      js.callFunction(this, "setPath", [path]);
+      callJs("setPath", [path]);
     } else {
       throw new IllegalArgumentException(path);
     }
   }
   void setPaths(Object paths) {
     if (paths is MVCArray<MVCArray<LatLng>> || paths is MVCArray<LatLng> || paths is List<List<LatLng>> || paths is List<LatLng>) {
-      js.callFunction(this, "setPaths", [paths]);
+      callJs("setPaths", [paths]);
     } else {
       throw new IllegalArgumentException(paths);
     }
   }
-  void setVisible(bool visible) { js.callFunction(this, "setVisible", [visible]); }
+  void setVisible(bool visible) { callJs("setVisible", [visible]); }
 }
 
-class PolygonOptions extends js.JsAnonymousObject {
-  set clickable(bool clickable) => js.setProperty(this, "clickable", clickable);
-  set editable(bool editable) => js.setProperty(this, "editable", editable);
-  set fillColor(String fillColor) => js.setProperty(this, "fillColor", fillColor);
-  set fillOpacity(num fillOpacity) => js.setProperty(this, "fillOpacity", fillOpacity);
-  set geodesic(bool geodesic) => js.setProperty(this, "geodesic", geodesic);
-  set map(GMap map) => js.setProperty(this, "map", map);
+class PolygonOptions extends js.JsObject {
+  set clickable(bool clickable) => this["clickable"] = clickable;
+  set editable(bool editable) => this["editable"] = editable;
+  set fillColor(String fillColor) => this["fillColor"] = fillColor;
+  set fillOpacity(num fillOpacity) => this["fillOpacity"] = fillOpacity;
+  set geodesic(bool geodesic) => this["geodesic"] = geodesic;
+  set map(GMap map) => this["map"] = map;
   set paths(Object paths) {
     if (paths is MVCArray<MVCArray<LatLng>> || paths is MVCArray<LatLng> || paths is List<List<LatLng>> || paths is List<LatLng>) {
-      js.setProperty(this, "paths", paths);
+      this["paths"] = paths;
     } else {
       throw new IllegalArgumentException(paths);
     }
   }
-  set strokeColor(String strokeColor) => js.setProperty(this, "strokeColor", strokeColor);
-  set strokeOpacity(num strokeOpacity) => js.setProperty(this, "strokeOpacity", strokeOpacity);
-  set strokeWeight(num strokeWeight) => js.setProperty(this, "strokeWeight", strokeWeight);
-  set visible(bool visible) => js.setProperty(this, "visible", visible);
-  set zIndex(num zIndex) => js.setProperty(this, "zIndex", zIndex);
+  set strokeColor(String strokeColor) => this["strokeColor"] = strokeColor;
+  set strokeOpacity(num strokeOpacity) => this["strokeOpacity"] = strokeOpacity;
+  set strokeWeight(num strokeWeight) => this["strokeWeight"] = strokeWeight;
+  set visible(bool visible) => this["visible"] = visible;
+  set zIndex(num zIndex) => this["zIndex"] = zIndex;
 }
 
 class PolyMouseEvent extends MouseEvent {
   PolyMouseEvent.wrap(NativeEvent e) { jsRef = e.jsRef; }
   
-  num get edge => js.getProperty(this, "edge");
-  num get path => js.getProperty(this, "path");
-  num get vertex => js.getProperty(this, "vertex");
+  num get edge => this["edge"];
+  num get path => this["path"];
+  num get vertex => this["vertex"];
 }
 
 class Rectangle extends MVCObject {
@@ -551,29 +551,29 @@ class Rectangle extends MVCObject {
   Rectangle([RectangleOptions opts]) : super.newInstance(_TYPE_NAME, [opts]);
   Rectangle.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  LatLngBounds getBounds() => new LatLngBounds.fromJsRef(js.callFunction(this, "getBounds"));
-  bool getEditable() => js.callFunction(this, "getEditable");
-  GMap getMap() => new GMap.fromJsRef(js.callFunction(this, "getMap"));
-  bool getVisible() => js.callFunction(this, "getVisible");
-  void setBounds(LatLngBounds bounds) { js.callFunction(this, "setBounds", [bounds]); }
-  void setEditable(bool editable) { js.callFunction(this, "setEditable", [editable]); }
-  void setMap(GMap map) { js.callFunction(this, "setMap", [map]); }
-  void setOptions(RectangleOptions options) { js.callFunction(this, "setOptions", [options]); }
-  void setVisible(bool visible) { js.callFunction(this, "setVisible", [visible]); }
+  LatLngBounds getBounds() => new LatLngBounds.fromJsRef(callJs("getBounds"));
+  bool getEditable() => callJs("getEditable");
+  GMap getMap() => new GMap.fromJsRef(callJs("getMap"));
+  bool getVisible() => callJs("getVisible");
+  void setBounds(LatLngBounds bounds) { callJs("setBounds", [bounds]); }
+  void setEditable(bool editable) { callJs("setEditable", [editable]); }
+  void setMap(GMap map) { callJs("setMap", [map]); }
+  void setOptions(RectangleOptions options) { callJs("setOptions", [options]); }
+  void setVisible(bool visible) { callJs("setVisible", [visible]); }
 }
 
-class RectangleOptions extends js.JsAnonymousObject {
-  set bounds(LatLngBounds bounds) => js.setProperty(this, "bounds", bounds);
-  set clickable(bool clickable) => js.setProperty(this, "clickable", clickable);
-  set editable(bool editable) => js.setProperty(this, "editable", editable);
-  set fillColor(String fillColor) => js.setProperty(this, "fillColor", fillColor);
-  set fillOpacity(num fillOpacity) => js.setProperty(this, "fillOpacity", fillOpacity);
-  set map(GMap map) => js.setProperty(this, "map", map);
-  set strokeColor(String strokeColor) => js.setProperty(this, "strokeColor", strokeColor);
-  set strokeOpacity(num strokeOpacity) => js.setProperty(this, "strokeOpacity", strokeOpacity);
-  set strokeWeight(num strokeWeight) => js.setProperty(this, "strokeWeight", strokeWeight);
-  set visible(bool visible) => js.setProperty(this, "visible", visible);
-  set zIndex(num zIndex) => js.setProperty(this, "zIndex", zIndex);
+class RectangleOptions extends js.JsObject {
+  set bounds(LatLngBounds bounds) => this["bounds"] = bounds;
+  set clickable(bool clickable) => this["clickable"] = clickable;
+  set editable(bool editable) => this["editable"] = editable;
+  set fillColor(String fillColor) => this["fillColor"] = fillColor;
+  set fillOpacity(num fillOpacity) => this["fillOpacity"] = fillOpacity;
+  set map(GMap map) => this["map"] = map;
+  set strokeColor(String strokeColor) => this["strokeColor"] = strokeColor;
+  set strokeOpacity(num strokeOpacity) => this["strokeOpacity"] = strokeOpacity;
+  set strokeWeight(num strokeWeight) => this["strokeWeight"] = strokeWeight;
+  set visible(bool visible) => this["visible"] = visible;
+  set zIndex(num zIndex) => this["zIndex"] = zIndex;
 }
 
 class Circle extends MVCObject {
@@ -582,33 +582,33 @@ class Circle extends MVCObject {
   Circle([CircleOptions opts]) : super.newInstance(_TYPE_NAME, [opts]);
   Circle.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  LatLngBounds getBounds() => new LatLngBounds.fromJsRef(js.callFunction(this, "getBounds"));
-  LatLng getCenter() => new LatLng.fromJsRef(js.callFunction(this, "getCenter"));
-  bool getEditable() => js.callFunction(this, "getEditable");
-  GMap getMap() => new GMap.fromJsRef(js.callFunction(this, "getMap"));
-  num getRadius() => js.callFunction(this, "getRadius");
-  bool getVisible() => js.callFunction(this, "getVisible");
-  void setCenter(LatLng center) { js.callFunction(this, "setCenter", [center]); }
-  void setEditable(bool editable) { js.callFunction(this, "setEditable", [editable]); }
-  void setMap(GMap map) { js.callFunction(this, "setMap", [map]); }
-  void setOptions(CircleOptions options) { js.callFunction(this, "setOptions", [options]); }
-  void setRadius(bool radius) { js.callFunction(this, "setRadius", [radius]); }
-  void setVisible(bool visible) { js.callFunction(this, "setVisible", [visible]); }
+  LatLngBounds getBounds() => new LatLngBounds.fromJsRef(callJs("getBounds"));
+  LatLng getCenter() => new LatLng.fromJsRef(callJs("getCenter"));
+  bool getEditable() => callJs("getEditable");
+  GMap getMap() => new GMap.fromJsRef(callJs("getMap"));
+  num getRadius() => callJs("getRadius");
+  bool getVisible() => callJs("getVisible");
+  void setCenter(LatLng center) { callJs("setCenter", [center]); }
+  void setEditable(bool editable) { callJs("setEditable", [editable]); }
+  void setMap(GMap map) { callJs("setMap", [map]); }
+  void setOptions(CircleOptions options) { callJs("setOptions", [options]); }
+  void setRadius(bool radius) { callJs("setRadius", [radius]); }
+  void setVisible(bool visible) { callJs("setVisible", [visible]); }
 }
 
-class CircleOptions extends js.JsAnonymousObject {
-  set center(LatLng center) => js.setProperty(this, "center", center);
-  set clickable(bool clickable) => js.setProperty(this, "clickable", clickable);
-  set editable(bool editable) => js.setProperty(this, "editable", editable);
-  set fillColor(String fillColor) => js.setProperty(this, "fillColor", fillColor);
-  set fillOpacity(num fillOpacity) => js.setProperty(this, "fillOpacity", fillOpacity);
-  set map(GMap map) => js.setProperty(this, "map", map);
-  set radius(num radius) => js.setProperty(this, "radius", radius);
-  set strokeColor(String strokeColor) => js.setProperty(this, "strokeColor", strokeColor);
-  set strokeOpacity(num strokeOpacity) => js.setProperty(this, "strokeOpacity", strokeOpacity);
-  set strokeWeight(num strokeWeight) => js.setProperty(this, "strokeWeight", strokeWeight);
-  set visible(bool visible) => js.setProperty(this, "visible", visible);
-  set zIndex(num zIndex) => js.setProperty(this, "zIndex", zIndex);
+class CircleOptions extends js.JsObject {
+  set center(LatLng center) => this["center"] = center;
+  set clickable(bool clickable) => this["clickable"] = clickable;
+  set editable(bool editable) => this["editable"] = editable;
+  set fillColor(String fillColor) => this["fillColor"] = fillColor;
+  set fillOpacity(num fillOpacity) => this["fillOpacity"] = fillOpacity;
+  set map(GMap map) => this["map"] = map;
+  set radius(num radius) => this["radius"] = radius;
+  set strokeColor(String strokeColor) => this["strokeColor"] = strokeColor;
+  set strokeOpacity(num strokeOpacity) => this["strokeOpacity"] = strokeOpacity;
+  set strokeWeight(num strokeWeight) => this["strokeWeight"] = strokeWeight;
+  set visible(bool visible) => this["visible"] = visible;
+  set zIndex(num zIndex) => this["zIndex"] = zIndex;
 }
 
 class GroundOverlay extends MVCObject {
@@ -617,18 +617,18 @@ class GroundOverlay extends MVCObject {
   GroundOverlay(String url, LatLngBounds bounds, [GroundOverlayOptions opts]) : super.newInstance(_TYPE_NAME, [url, bounds, opts]);
   GroundOverlay.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  LatLngBounds getBounds() => new LatLngBounds.fromJsRef(js.callFunction(this, "getBounds"));
-  GMap getMap() => new GMap.fromJsRef(js.callFunction(this, "getMap"));
-  num getOpacity() => js.callFunction(this, "getOpacity");
-  String getUrl() => js.callFunction(this, "getUrl");
-  void setMap(GMap map) { js.callFunction(this, "setMap", [map]); }
-  void setOpacity(num opacity) { js.callFunction(this, "setOpacity", [opacity]); }
+  LatLngBounds getBounds() => new LatLngBounds.fromJsRef(callJs("getBounds"));
+  GMap getMap() => new GMap.fromJsRef(callJs("getMap"));
+  num getOpacity() => callJs("getOpacity");
+  String getUrl() => callJs("getUrl");
+  void setMap(GMap map) { callJs("setMap", [map]); }
+  void setOpacity(num opacity) { callJs("setOpacity", [opacity]); }
 }
 
-class GroundOverlayOptions extends js.JsAnonymousObject {
-  set clickable(bool clickable) => js.setProperty(this, "clickable", clickable);
-  set map(GMap map) => js.setProperty(this, "map", map);
-  set opacity(num radius) => js.setProperty(this, "opacity", opacity);
+class GroundOverlayOptions extends js.JsObject {
+  set clickable(bool clickable) => this["clickable"] = clickable;
+  set map(GMap map) => this["map"] = map;
+  set opacity(num radius) => this["opacity"] = opacity;
 }
 
 class OverlayView extends MVCObject {
@@ -637,48 +637,48 @@ class OverlayView extends MVCObject {
   OverlayView() : super.newInstance(_TYPE_NAME);
   OverlayView.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  void draw() { js.callFunction(this, "draw"); }
-  GMap getMap() => new GMap.fromJsRef(js.callFunction(this, "getMap"));
-  MapPanes getPanes() => new MapPanes.fromJsRef(js.callFunction(this, "getPanes"));
-  MapCanvasProjection getProjection() => new MapCanvasProjection.fromJsRef(js.callFunction(this, "getProjection"));
-  void onAdd() { js.callFunction(this, "onAdd"); }
-  void onRemove() { js.callFunction(this, "onRemove"); }
+  void draw() { callJs("draw"); }
+  GMap getMap() => new GMap.fromJsRef(callJs("getMap"));
+  MapPanes getPanes() => new MapPanes.fromJsRef(callJs("getPanes"));
+  MapCanvasProjection getProjection() => new MapCanvasProjection.fromJsRef(callJs("getProjection"));
+  void onAdd() { callJs("onAdd"); }
+  void onRemove() { callJs("onRemove"); }
   void setMap(Object map) { 
     if (map is GMap || map is StreetViewPanorama) {
-      js.callFunction(this, "setMap", [map]);
+      callJs("setMap", [map]);
     } else {
       throw new IllegalArgumentException(map);
     }
   }
 }
 
-class MapPanes extends js.JsAnonymousObject {
+class MapPanes extends js.JsObject {
   MapPanes.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  html.Node get floatPane() => js.getProperty(this, "floatPane");
-            set floatPane(html.Node floatPane) => js.setProperty(this, "floatPane", floatPane);
-  html.Node get floatShadow() => js.getProperty(this, "floatShadow");
-            set floatShadow(html.Node floatShadow) => js.setProperty(this, "floatShadow", floatShadow);
-  html.Node get mapPane() => js.getProperty(this, "mapPane");
-            set mapPane(html.Node mapPane) => js.setProperty(this, "mapPane", mapPane);
-  html.Node get overlayImage() => js.getProperty(this, "overlayImage");
-            set overlayImage(html.Node overlayImage) => js.setProperty(this, "overlayImage", overlayImage);
-  html.Node get overlayLayer() => js.getProperty(this, "overlayLayer");
-            set overlayLayer(html.Node overlayLayer) => js.setProperty(this, "overlayLayer", overlayLayer);
-  html.Node get overlayMouseTarget() => js.getProperty(this, "overlayMouseTarget");
-            set overlayMouseTarget(html.Node overlayMouseTarget) => js.setProperty(this, "overlayMouseTarget", overlayMouseTarget);
-  html.Node get overlayShadow() => js.getProperty(this, "overlayShadow");
-            set overlayShadow(html.Node overlayShadow) => js.setProperty(this, "overlayShadow", overlayShadow);
+  html.Node get floatPane() => this["floatPane"];
+            set floatPane(html.Node floatPane) => this["floatPane"] = floatPane;
+  html.Node get floatShadow() => this["floatShadow"];
+            set floatShadow(html.Node floatShadow) => this["floatShadow"] = floatShadow;
+  html.Node get mapPane() => this["mapPane"];
+            set mapPane(html.Node mapPane) => this["mapPane"] = mapPane;
+  html.Node get overlayImage() => this["overlayImage"];
+            set overlayImage(html.Node overlayImage) => this["overlayImage"] = overlayImage;
+  html.Node get overlayLayer() => this["overlayLayer"];
+            set overlayLayer(html.Node overlayLayer) => this["overlayLayer"] = overlayLayer;
+  html.Node get overlayMouseTarget() => this["overlayMouseTarget"];
+            set overlayMouseTarget(html.Node overlayMouseTarget) => this["overlayMouseTarget"] = overlayMouseTarget;
+  html.Node get overlayShadow() => this["overlayShadow"];
+            set overlayShadow(html.Node overlayShadow) => this["overlayShadow"] = overlayShadow;
 }
 
 class MapCanvasProjection extends MVCObject {
   MapCanvasProjection.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  LatLng fromContainerPixelToLatLng(Point pixel, [bool nowrap]) => new LatLng.fromJsRef(js.callFunction(this, "fromContainerPixelToLatLng", [pixel, nowrap]));
-  LatLng fromDivPixelToLatLng(Point pixel, [bool nowrap]) => new LatLng.fromJsRef(js.callFunction(this, "fromDivPixelToLatLng", [pixel, nowrap]));
-  Point fromLatLngToContainerPixel(LatLng latLng) => new Point.fromJsRef(js.callFunction(this, "fromLatLngToContainerPixel", [latLng]));
-  Point fromLatLngToDivPixel(LatLng latLng) => new Point.fromJsRef(js.callFunction(this, "fromLatLngToDivPixel", [latLng]));
-  num getWorldWidth() => js.callFunction(this, "getWorldWidth");
+  LatLng fromContainerPixelToLatLng(Point pixel, [bool nowrap]) => new LatLng.fromJsRef(callJs("fromContainerPixelToLatLng", [pixel, nowrap]));
+  LatLng fromDivPixelToLatLng(Point pixel, [bool nowrap]) => new LatLng.fromJsRef(callJs("fromDivPixelToLatLng", [pixel, nowrap]));
+  Point fromLatLngToContainerPixel(LatLng latLng) => new Point.fromJsRef(callJs("fromLatLngToContainerPixel", [latLng]));
+  Point fromLatLngToDivPixel(LatLng latLng) => new Point.fromJsRef(callJs("fromLatLngToDivPixel", [latLng]));
+  num getWorldWidth() => callJs("getWorldWidth");
 }
 
 class Geocoder extends js.JsObject {
@@ -691,15 +691,15 @@ class Geocoder extends js.JsObject {
       List<js.JsRef> resultsRefs = args[0];
       callback(resultsRefs.map((e) => new GeocoderResult.fromJsRef(e)), GeocoderStatus.find(args[1]));
     };
-    js.callFunction(this, "geocode", [request, callbackFunction]);
+    callJs("geocode", [request, callbackFunction]);
   }
 }
 
-class GeocoderRequest extends js.JsAnonymousObject {
-  set address(String address) => js.setProperty(this, "address", address);
-  set bounds(LatLngBounds bounds) => js.setProperty(this, "bounds", bounds);
-  set location(LatLng location) => js.setProperty(this, "location", location);
-  set region(String region) => js.setProperty(this, "region", region);
+class GeocoderRequest extends js.JsObject {
+  set address(String address) => this["address"] = address;
+  set bounds(LatLngBounds bounds) => this["bounds"] = bounds;
+  set location(LatLng location) => this["location"] = location;
+  set region(String region) => this["region"] = region;
 }
 
 class GeocoderStatus extends js.JsConst {
@@ -718,36 +718,36 @@ class GeocoderStatus extends js.JsConst {
   const GeocoderStatus._(String jsName) : super.fromJsName(jsName);
 }
 
-class GeocoderResult extends js.JsAnonymousObject {
+class GeocoderResult extends js.JsObject {
   GeocoderResult() : super();
   GeocoderResult.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
   List<GeocoderAddressComponent> get address_components() {
-    List<js.JsRef> resultsRefs = js.getProperty(this, "address_components");
+    List<js.JsRef> resultsRefs = this["address_components"];
     return resultsRefs.map((e) => new GeocoderAddressComponent.fromJsRef(e));
   }
-  String get formatted_address() => js.getProperty(this, "formatted_address");
-  GeocoderGeometry get geometry() => new GeocoderGeometry.fromJsRef(js.getProperty(this, "geometry"));
-  List<String> get types() => js.getProperty(this, "types");
+  String get formatted_address() => this["formatted_address"];
+  GeocoderGeometry get geometry() => new GeocoderGeometry.fromJsRef(this["geometry"]);
+  List<String> get types() => this["types"];
 }
 
-class GeocoderAddressComponent extends js.JsAnonymousObject {
+class GeocoderAddressComponent extends js.JsObject {
   GeocoderAddressComponent() : super();
   GeocoderAddressComponent.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  String get long_name() => js.getProperty(this, "long_name");
-  String get short_name() => js.getProperty(this, "short_name");
-  List<String> get types() => js.getProperty(this, "types");
+  String get long_name() => this["long_name"];
+  String get short_name() => this["short_name"];
+  List<String> get types() => this["types"];
 }
 
-class GeocoderGeometry extends js.JsAnonymousObject {
+class GeocoderGeometry extends js.JsObject {
   GeocoderGeometry() : super();
   GeocoderGeometry.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  LatLngBounds get bounds() => new LatLngBounds.fromJsRef(js.getProperty(this, "bounds"));
-  LatLng get location() => new LatLng.fromJsRef(js.getProperty(this, "location"));
-  GeocoderLocationType get location_type() => GeocoderLocationType.find(js.getProperty(this, "location_type"));
-  LatLngBounds get viewport() => new    LatLngBounds.fromJsRef(js.getProperty(this, "viewport"));
+  LatLngBounds get bounds() => new LatLngBounds.fromJsRef(this["bounds"]);
+  LatLng get location() => new LatLng.fromJsRef(this["location"]);
+  GeocoderLocationType get location_type() => GeocoderLocationType.find(this["location_type"]);
+  LatLngBounds get viewport() => new    LatLngBounds.fromJsRef(this["viewport"]);
 }
 
 class GeocoderLocationType extends js.JsConst {
@@ -769,32 +769,32 @@ class DirectionsRenderer extends MVCObject {
   DirectionsRenderer([DirectionsRendererOptions opts]) : super.newInstance(_TYPE_NAME, [opts]);
   DirectionsRenderer.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  DirectionsResult getDirections() => new DirectionsResult.fromJsRef(js.callFunction(this, "getDirections"));
-  GMap getMap() => new GMap.fromJsRef(js.callFunction(this, "getMap"));
-  html.Node getPanel() => js.callFunction(this, "getPanel");
-  num getRouteIndex() => js.callFunction(this, "getRouteIndex");
-  void setDirections(DirectionsResult directions) { js.callFunction(this, "setDirections", [directions]); }
-  void setMap(GMap map) { js.callFunction(this, "setMap", [map]); }
-  void setOptions(DirectionsRendererOptions options) { js.callFunction(this, "setOptions", [options]); }
-  void setPanel(html.Node panel) { js.callFunction(this, "setPanel", [panel]); }
-  void setRouteIndex(num routeIndex) { js.callFunction(this, "setRouteIndex", [routeIndex]); }
+  DirectionsResult getDirections() => new DirectionsResult.fromJsRef(callJs("getDirections"));
+  GMap getMap() => new GMap.fromJsRef(callJs("getMap"));
+  html.Node getPanel() => callJs("getPanel");
+  num getRouteIndex() => callJs("getRouteIndex");
+  void setDirections(DirectionsResult directions) { callJs("setDirections", [directions]); }
+  void setMap(GMap map) { callJs("setMap", [map]); }
+  void setOptions(DirectionsRendererOptions options) { callJs("setOptions", [options]); }
+  void setPanel(html.Node panel) { callJs("setPanel", [panel]); }
+  void setRouteIndex(num routeIndex) { callJs("setRouteIndex", [routeIndex]); }
 }
 
-class DirectionsRendererOptions extends js.JsAnonymousObject {
-  set directions(DirectionsResult directions) => js.setProperty(this, "directions", directions);
-  set draggable(bool draggable) => js.setProperty(this, "draggable", draggable);
-  set hideRouteList(bool hideRouteList) => js.setProperty(this, "hideRouteList", hideRouteList);
-  set infoWindow(InfoWindow infoWindow) => js.setProperty(this, "infoWindow", infoWindow);
-  set map(GMap map) => js.setProperty(this, "map", map);
-  set markerOptions(MarkerOptions markerOptions) => js.setProperty(this, "markerOptions", markerOptions);
-  set panel(html.Node panel) => js.setProperty(this, "panel", panel);
-  set polylineOptions(PolylineOptions polylineOptions) => js.setProperty(this, "polylineOptions", polylineOptions);
-  set preserveViewport(bool preserveViewport) => js.setProperty(this, "preserveViewport", preserveViewport);
-  set routeIndex(num routeIndex) => js.setProperty(this, "routeIndex", routeIndex);
-  set suppressBicyclingLayer(bool suppressBicyclingLayer) => js.setProperty(this, "suppressBicyclingLayer", suppressBicyclingLayer);
-  set suppressInfoWindows(bool suppressInfoWindows) => js.setProperty(this, "suppressInfoWindows", suppressInfoWindows);
-  set suppressMarkers(bool suppressMarkers) => js.setProperty(this, "suppressMarkers", suppressMarkers);
-  set suppressPolylines(bool suppressPolylines) => js.setProperty(this, "suppressPolylines", suppressPolylines);
+class DirectionsRendererOptions extends js.JsObject {
+  set directions(DirectionsResult directions) => this["directions"] = directions;
+  set draggable(bool draggable) => this["draggable"] = draggable;
+  set hideRouteList(bool hideRouteList) => this["hideRouteList"] = hideRouteList;
+  set infoWindow(InfoWindow infoWindow) => this["infoWindow"] = infoWindow;
+  set map(GMap map) => this["map"] = map;
+  set markerOptions(MarkerOptions markerOptions) => this["markerOptions"] = markerOptions;
+  set panel(html.Node panel) => this["panel"] = panel;
+  set polylineOptions(PolylineOptions polylineOptions) => this["polylineOptions"] = polylineOptions;
+  set preserveViewport(bool preserveViewport) => this["preserveViewport"] = preserveViewport;
+  set routeIndex(num routeIndex) => this["routeIndex"] = routeIndex;
+  set suppressBicyclingLayer(bool suppressBicyclingLayer) => this["suppressBicyclingLayer"] = suppressBicyclingLayer;
+  set suppressInfoWindows(bool suppressInfoWindows) => this["suppressInfoWindows"] = suppressInfoWindows;
+  set suppressMarkers(bool suppressMarkers) => this["suppressMarkers"] = suppressMarkers;
+  set suppressPolylines(bool suppressPolylines) => this["suppressPolylines"] = suppressPolylines;
 }
 
 class DirectionsService extends js.JsObject {
@@ -807,34 +807,34 @@ class DirectionsService extends js.JsObject {
       List<js.JsRef> resultsRefs = args[0];
       callback(resultsRefs.map((e) => new DirectionsResult.fromJsRef(e)), DirectionsStatus.find(args[1]));
     };
-    js.callFunction(this, "route", [request, callbackFunction]);
+    callJs("route", [request, callbackFunction]);
   }
 }
 
-class DirectionsRequest extends js.JsAnonymousObject {
-  set avoidHighways(bool avoidHighways) => js.setProperty(this, "avoidHighways", avoidHighways);
-  set avoidTolls(bool avoidTolls) => js.setProperty(this, "avoidTolls", avoidTolls);
+class DirectionsRequest extends js.JsObject {
+  set avoidHighways(bool avoidHighways) => this["avoidHighways"] = avoidHighways;
+  set avoidTolls(bool avoidTolls) => this["avoidTolls"] = avoidTolls;
   set destination(Object destination) {
     if (destination is String || destination is LatLng) {
-      js.setProperty(this, "destination", destination);
+      this["destination"] = destination;
     } else {
       throw new IllegalArgumentException(destination);
     }
   }
-  set optimizeWaypoints(bool optimizeWaypoints) => js.setProperty(this, "optimizeWaypoints", optimizeWaypoints);
+  set optimizeWaypoints(bool optimizeWaypoints) => this["optimizeWaypoints"] = optimizeWaypoints;
   set origin(Object origin) {
     if (origin is String || origin is LatLng) {
-      js.setProperty(this, "origin", origin);
+      this["origin"] = origin;
     } else {
       throw new IllegalArgumentException(origin);
     }
   }
-  set provideRouteAlternatives(bool provideRouteAlternatives) => js.setProperty(this, "provideRouteAlternatives", provideRouteAlternatives);
-  set region(String region) => js.setProperty(this, "region", region);
-  set transitOptions(TransitOptions transitOptions) => js.setProperty(this, "transitOptions", transitOptions);
-  set travelMode(TravelMode travelMode) => js.setProperty(this, "travelMode", travelMode);
-  set unitSystem(UnitSystem unitSystem) => js.setProperty(this, "unitSystem", unitSystem);
-  set waypoints(List<DirectionsWaypoint> waypoints) => js.setProperty(this, "waypoints", waypoints);
+  set provideRouteAlternatives(bool provideRouteAlternatives) => this["provideRouteAlternatives"] = provideRouteAlternatives;
+  set region(String region) => this["region"] = region;
+  set transitOptions(TransitOptions transitOptions) => this["transitOptions"] = transitOptions;
+  set travelMode(TravelMode travelMode) => this["travelMode"] = travelMode;
+  set unitSystem(UnitSystem unitSystem) => this["unitSystem"] = unitSystem;
+  set waypoints(List<DirectionsWaypoint> waypoints) => this["waypoints"] = waypoints;
 }
 
 class TravelMode extends js.JsConst {
@@ -861,20 +861,20 @@ class UnitSystem extends js.JsConst {
   const UnitSystem._(String jsName) : super.fromJsName(jsName);
 }
 
-class TransitOptions extends js.JsAnonymousObject {
-  set arrivalTime(Date arrivalTime) => js.setProperty(this, "arrivalTime", arrivalTime);
-  set departureTime(Date departureTime) => js.setProperty(this, "departureTime", departureTime);
+class TransitOptions extends js.JsObject {
+  set arrivalTime(Date arrivalTime) => this["arrivalTime"] = arrivalTime;
+  set departureTime(Date departureTime) => this["departureTime"] = departureTime;
 }
 
-class DirectionsWaypoint extends js.JsAnonymousObject {
+class DirectionsWaypoint extends js.JsObject {
   set location(Object location) {
     if (location is String || location is LatLng) {
-      js.setProperty(this, "location", location);
+      this["location"] = location;
     } else {
       throw new IllegalArgumentException(location);
     }
   }
-  set stopover(bool stopover) => js.setProperty(this, "stopover", stopover);
+  set stopover(bool stopover) => this["stopover"] = stopover;
 }
 
 class DirectionsStatus extends js.JsConst {
@@ -894,162 +894,162 @@ class DirectionsStatus extends js.JsConst {
   const DirectionsStatus._(String jsName) : super.fromJsName(jsName);
 }
 
-class DirectionsResult extends js.JsAnonymousObject {
+class DirectionsResult extends js.JsObject {
   DirectionsResult() : super();
   DirectionsResult.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
   List<DirectionsRoute> get routes() {
-    List<js.JsRef> resultsRefs = js.getProperty(this, "routes");
+    List<js.JsRef> resultsRefs = this["routes"];
     return resultsRefs.map((e) => new DirectionsRoute.fromJsRef(e));
   }
 }
 
-class DirectionsRoute extends js.JsAnonymousObject {
+class DirectionsRoute extends js.JsObject {
   DirectionsRoute() : super();
   DirectionsRoute.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  LatLngBounds get bounds() => new LatLngBounds.fromJsRef(js.getProperty(this, "bounds"));
-  String get copyrights() => js.getProperty(this, "copyrights");
+  LatLngBounds get bounds() => new LatLngBounds.fromJsRef(this["bounds"]);
+  String get copyrights() => this["copyrights"];
   List<DirectionsLeg> get legs() {
-    List<js.JsRef> resultsRefs = js.getProperty(this, "legs");
+    List<js.JsRef> resultsRefs = this["legs"];
     return resultsRefs.map((e) => new DirectionsLeg.fromJsRef(e));
   }
   List<LatLng> get overview_path() {
-    List<js.JsRef> resultsRefs = js.getProperty(this, "overview_path");
+    List<js.JsRef> resultsRefs = this["overview_path"];
     return resultsRefs.map((e) => new LatLng.fromJsRef(e));
   }
-  List<String> get warnings() => js.getProperty(this, "warnings");
-  List<num> get waypoint_order() => js.getProperty(this, "waypoint_order");
+  List<String> get warnings() => this["warnings"];
+  List<num> get waypoint_order() => this["waypoint_order"];
 }
 
-class DirectionsLeg extends js.JsAnonymousObject {
+class DirectionsLeg extends js.JsObject {
   DirectionsLeg() : super();
   DirectionsLeg.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
   // TODO test return type
-  Distance get arrival_time() => new Distance.fromJsRef(js.getProperty(this, "arrival_time"));
-  Duration get departure_time() => new Duration.fromJsRef(js.getProperty(this, "departure_time"));
-  Distance get distance() => new Distance.fromJsRef(js.getProperty(this, "distance"));
-  Duration get duration() => new Duration.fromJsRef(js.getProperty(this, "duration"));
-  String get end_address() => js.getProperty(this, "end_address");
-  LatLng get end_location() => new LatLng.fromJsRef(js.getProperty(this, "end_location"));
-  String get start_address() => js.getProperty(this, "start_address");
-  LatLng get start_location() => new LatLng.fromJsRef(js.getProperty(this, "start_location"));
+  Distance get arrival_time() => new Distance.fromJsRef(this["arrival_time"]);
+  Duration get departure_time() => new Duration.fromJsRef(this["departure_time"]);
+  Distance get distance() => new Distance.fromJsRef(this["distance"]);
+  Duration get duration() => new Duration.fromJsRef(this["duration"]);
+  String get end_address() => this["end_address"];
+  LatLng get end_location() => new LatLng.fromJsRef(this["end_location"]);
+  String get start_address() => this["start_address"];
+  LatLng get start_location() => new LatLng.fromJsRef(this["start_location"]);
   List<DirectionsStep> get steps() {
-    List<js.JsRef> resultsRefs = js.getProperty(this, "steps");
+    List<js.JsRef> resultsRefs = this["steps"];
     return resultsRefs.map((e) => new DirectionsStep.fromJsRef(e));
   }
   List<LatLng> get via_waypoints() {
-    List<js.JsRef> resultsRefs = js.getProperty(this, "via_waypoints");
+    List<js.JsRef> resultsRefs = this["via_waypoints"];
     return resultsRefs.map((e) => new LatLng.fromJsRef(e));
   }
 }
 
-class DirectionsStep extends js.JsAnonymousObject {
+class DirectionsStep extends js.JsObject {
   DirectionsStep() : super();
   DirectionsStep.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  Distance get distance() => new Distance.fromJsRef(js.getProperty(this, "distance"));
-  Duration get duration() => new Duration.fromJsRef(js.getProperty(this, "duration"));
-  LatLng get end_location() => new LatLng.fromJsRef(js.getProperty(this, "end_location"));
-  String get instructions() => js.getProperty(this, "instructions");
+  Distance get distance() => new Distance.fromJsRef(this["distance"]);
+  Duration get duration() => new Duration.fromJsRef(this["duration"]);
+  LatLng get end_location() => new LatLng.fromJsRef(this["end_location"]);
+  String get instructions() => this["instructions"];
   List<LatLng> get path() {
-    List<js.JsRef> resultsRefs = js.getProperty(this, "path");
+    List<js.JsRef> resultsRefs = this["path"];
     return resultsRefs.map((e) => new LatLng.fromJsRef(e));
   }
-  LatLng get start_location() => new LatLng.fromJsRef(js.getProperty(this, "start_location"));
+  LatLng get start_location() => new LatLng.fromJsRef(this["start_location"]);
   // TODO check return type
-  DirectionsStep get steps() => new DirectionsStep.fromJsRef(js.getProperty(this, "steps"));
+  DirectionsStep get steps() => new DirectionsStep.fromJsRef(this["steps"]);
 //  List<DirectionsStep> get steps() {
-//    List<js.JsRef> resultsRefs = js.getProperty(this, "steps");
+//    List<js.JsRef> resultsRefs = this["steps"];
 //    return resultsRefs.map((e) => new DirectionsStep.fromJsRef(e));
 //  }
-  TransitDetails get transit() => new TransitDetails.fromJsRef(js.getProperty(this, "transit"));
-  TravelMode get travel_mode() => TravelMode.find(js.getProperty(this, "travel_mode"));
+  TransitDetails get transit() => new TransitDetails.fromJsRef(this["transit"]);
+  TravelMode get travel_mode() => TravelMode.find(this["travel_mode"]);
 }
 
-class Distance extends js.JsAnonymousObject {
+class Distance extends js.JsObject {
   Distance() : super();
   Distance.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  String get text() => js.getProperty(this, "text");
-  num get value() => js.getProperty(this, "value");
+  String get text() => this["text"];
+  num get value() => this["value"];
 }
 
-class Duration extends js.JsAnonymousObject {
+class Duration extends js.JsObject {
   Duration() : super();
   Duration.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  String get text() => js.getProperty(this, "text");
-  num get value() => js.getProperty(this, "value");
+  String get text() => this["text"];
+  num get value() => this["value"];
 }
 
-class Time extends js.JsAnonymousObject {
+class Time extends js.JsObject {
   Time() : super();
   Time.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  String get text() => js.getProperty(this, "text");
-  String get time_zone() => js.getProperty(this, "time_zone");
-  Date get value() => js.getProperty(this, "value");
+  String get text() => this["text"];
+  String get time_zone() => this["time_zone"];
+  Date get value() => this["value"];
 }
 
-class TransitDetails extends js.JsAnonymousObject {
+class TransitDetails extends js.JsObject {
   TransitDetails() : super();
   TransitDetails.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  TransitStop get arrival_stop() => new TransitStop.fromJsRef(js.getProperty(this, "arrival_stop"));
-  Time get arrival_time() => new Time.fromJsRef(js.getProperty(this, "arrival_time"));
-  TransitStop get departure_stop() => new TransitStop.fromJsRef(js.getProperty(this, "departure_stop"));
-  Time get departure_time() => new Time.fromJsRef(js.getProperty(this, "departure_time"));
-  String get headsign() => js.getProperty(this, "headsign");
-  num get headway() => js.getProperty(this, "headway");
-  TransitLine get line() => new TransitLine.fromJsRef(js.getProperty(this, "line"));
-  num get num_stops() => js.getProperty(this, "num_stops");
+  TransitStop get arrival_stop() => new TransitStop.fromJsRef(this["arrival_stop"]);
+  Time get arrival_time() => new Time.fromJsRef(this["arrival_time"]);
+  TransitStop get departure_stop() => new TransitStop.fromJsRef(this["departure_stop"]);
+  Time get departure_time() => new Time.fromJsRef(this["departure_time"]);
+  String get headsign() => this["headsign"];
+  num get headway() => this["headway"];
+  TransitLine get line() => new TransitLine.fromJsRef(this["line"]);
+  num get num_stops() => this["num_stops"];
 }
 
-class TransitStop extends js.JsAnonymousObject {
+class TransitStop extends js.JsObject {
   TransitStop() : super();
   TransitStop.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  LatLng get location() => new LatLng.fromJsRef(js.getProperty(this, "location"));
-  String get name() => js.getProperty(this, "name");
+  LatLng get location() => new LatLng.fromJsRef(this["location"]);
+  String get name() => this["name"];
 }
 
-class TransitLine extends js.JsAnonymousObject {
+class TransitLine extends js.JsObject {
   TransitLine() : super();
   TransitLine.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
   List<TransitAgency> get agencies() {
-    List<js.JsRef> resultsRefs = js.getProperty(this, "agencies");
+    List<js.JsRef> resultsRefs = this["agencies"];
     return resultsRefs.map((e) => new TransitAgency.fromJsRef(e));
   }
-  String get color() => js.getProperty(this, "color");
-  String get icon() => js.getProperty(this, "icon");
-  String get name() => js.getProperty(this, "name");
-  String get short_name() => js.getProperty(this, "short_name");
-  String get text_color() => js.getProperty(this, "text_color");
-  String get url() => js.getProperty(this, "url");
-  TransitVehicle get vehicle() => new TransitVehicle.fromJsRef(js.getProperty(this, "vehicle"));
+  String get color() => this["color"];
+  String get icon() => this["icon"];
+  String get name() => this["name"];
+  String get short_name() => this["short_name"];
+  String get text_color() => this["text_color"];
+  String get url() => this["url"];
+  TransitVehicle get vehicle() => new TransitVehicle.fromJsRef(this["vehicle"]);
 }
 
-class TransitAgency extends js.JsAnonymousObject {
+class TransitAgency extends js.JsObject {
   TransitAgency() : super();
   TransitAgency.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  String get name() => js.getProperty(this, "name");
-  String get phone() => js.getProperty(this, "phone");
-  String get url() => js.getProperty(this, "url");
+  String get name() => this["name"];
+  String get phone() => this["phone"];
+  String get url() => this["url"];
 }
 
-class TransitVehicle extends js.JsAnonymousObject {
+class TransitVehicle extends js.JsObject {
   TransitVehicle() : super();
   TransitVehicle.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  String get icon() => js.getProperty(this, "icon");
-  String get local_icon() => js.getProperty(this, "local_icon");
-  String get name() => js.getProperty(this, "name");
+  String get icon() => this["icon"];
+  String get local_icon() => this["local_icon"];
+  String get name() => this["name"];
   // TODO check type
-  String get type() => js.getProperty(this, "type");
+  String get type() => this["type"];
 }
 
 class ElevationService extends js.JsObject {
@@ -1062,33 +1062,33 @@ class ElevationService extends js.JsObject {
       List<js.JsRef> resultsRefs = args[0];
       callback(resultsRefs.map((e) => new ElevationResult.fromJsRef(e)), ElevationStatus.find(args[1]));
     };
-    js.callFunction(this, "getElevationAlongPath", [request, callbackFunction]);
+    callJs("getElevationAlongPath", [request, callbackFunction]);
   }
   void getElevationForLocations(LocationElevationRequest request, void callback(List<ElevationResult> results, ElevationStatus status)) {
     js.CallbackFunction callbackFunction = Object _(List args) {
       List<js.JsRef> resultsRefs = args[0];
       callback(resultsRefs.map((e) => new ElevationResult.fromJsRef(e)), ElevationStatus.find(args[1]));
     };
-    js.callFunction(this, "getElevationForLocations", [request, callbackFunction]);
+    callJs("getElevationForLocations", [request, callbackFunction]);
   }
 }
 
-class LocationElevationRequest extends js.JsAnonymousObject {
-  set locations(List<LatLng> locations) => js.setProperty(this, "locations", locations);
+class LocationElevationRequest extends js.JsObject {
+  set locations(List<LatLng> locations) => this["locations"] = locations;
 }
 
-class PathElevationRequest extends js.JsAnonymousObject {
-  set path(List<LatLng> path) => js.setProperty(this, "path", path);
-  set samples(num samples) => js.setProperty(this, "samples", samples);
+class PathElevationRequest extends js.JsObject {
+  set path(List<LatLng> path) => this["path"] = path;
+  set samples(num samples) => this["samples"] = samples;
 }
 
-class ElevationResult extends js.JsAnonymousObject {
+class ElevationResult extends js.JsObject {
   ElevationResult() : super();
   ElevationResult.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  num get elevation() => js.getProperty(this, "elevation");
-  LatLng get location() => new LatLng.fromJsRef(js.getProperty(this, "location"));
-  num get resolution() => js.getProperty(this, "resolution");
+  num get elevation() => this["elevation"];
+  LatLng get location() => new LatLng.fromJsRef(this["location"]);
+  num get resolution() => this["resolution"];
 }
 
 class ElevationStatus extends js.JsConst {
@@ -1114,16 +1114,16 @@ class MaxZoomService extends js.JsObject {
     js.CallbackFunction callbackFunction = Object _(List args) {
       callback(new MaxZoomResult.fromJsRef(args[0]));
     };
-    js.callFunction(this, "getMaxZoomAtLatLng", [latlng, callbackFunction]);
+    callJs("getMaxZoomAtLatLng", [latlng, callbackFunction]);
   }
 }
 
-class MaxZoomResult extends js.JsAnonymousObject {
+class MaxZoomResult extends js.JsObject {
   MaxZoomResult() : super();
   MaxZoomResult.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  MaxZoomStatus get status() => MaxZoomStatus.find(js.getProperty(this, "status"));
-  num get zoom() => js.getProperty(this, "zoom");
+  MaxZoomStatus get status() => MaxZoomStatus.find(this["status"]);
+  num get zoom() => this["zoom"];
 }
 
 class MaxZoomStatus extends js.JsConst {
@@ -1146,61 +1146,61 @@ class DistanceMatrixService extends js.JsObject {
     js.CallbackFunction callbackFunction = Object _(List args) {
       callback(new DistanceMatrixResponse.fromJsRef(args[0]), DistanceMatrixStatus.find(args[1]));
     };
-    js.callFunction(this, "getDistanceMatrix", [request, callbackFunction]);
+    callJs("getDistanceMatrix", [request, callbackFunction]);
   }
 }
 
-class DistanceMatrixRequest extends js.JsAnonymousObject {
-  set avoidHighways(bool avoidHighways) => js.setProperty(this, "avoidHighways", avoidHighways);
-  set avoidTolls(bool avoidTolls) => js.setProperty(this, "avoidTolls", avoidTolls);
+class DistanceMatrixRequest extends js.JsObject {
+  set avoidHighways(bool avoidHighways) => this["avoidHighways"] = avoidHighways;
+  set avoidTolls(bool avoidTolls) => this["avoidTolls"] = avoidTolls;
   set destination(Object destination) {
     if (destination is List<String> || destination is List<LatLng>) {
-      js.setProperty(this, "destination", destination);
+      this["destination"] = destination;
     } else {
       throw new IllegalArgumentException(destination);
     }
   }
   set origin(Object origin) {
     if (origin is List<String> || origin is List<LatLng>) {
-      js.setProperty(this, "origin", origin);
+      this["origin"] = origin;
     } else {
       throw new IllegalArgumentException(origin);
     }
   }
-  set region(String region) => js.setProperty(this, "region", region);
-  set travelMode(TravelMode travelMode) => js.setProperty(this, "travelMode", travelMode);
-  set unitSystem(UnitSystem unitSystem) => js.setProperty(this, "unitSystem", unitSystem);
+  set region(String region) => this["region"] = region;
+  set travelMode(TravelMode travelMode) => this["travelMode"] = travelMode;
+  set unitSystem(UnitSystem unitSystem) => this["unitSystem"] = unitSystem;
 }
 
-class DistanceMatrixResponse extends js.JsAnonymousObject {
+class DistanceMatrixResponse extends js.JsObject {
   DistanceMatrixResponse() : super();
   DistanceMatrixResponse.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  List<String> get destinationAddresses() => js.getProperty(this, "destinationAddresses");
-  List<String> get originAddresses() => js.getProperty(this, "originAddresses");
+  List<String> get destinationAddresses() => this["destinationAddresses"];
+  List<String> get originAddresses() => this["originAddresses"];
   List<DistanceMatrixResponseRow> get rows() {
-    List<js.JsRef> resultsRefs = js.getProperty(this, "rows");
+    List<js.JsRef> resultsRefs = this["rows"];
     return resultsRefs.map((e) => new DistanceMatrixResponseRow.fromJsRef(e));
   }
 }
 
-class DistanceMatrixResponseRow extends js.JsAnonymousObject {
+class DistanceMatrixResponseRow extends js.JsObject {
   DistanceMatrixResponseRow() : super();
   DistanceMatrixResponseRow.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
   List<DistanceMatrixResponseElement> get elements() {
-    List<js.JsRef> resultsRefs = js.getProperty(this, "elements");
+    List<js.JsRef> resultsRefs = this["elements"];
     return resultsRefs.map((e) => new DistanceMatrixResponseElement.fromJsRef(e));
   }
 }
 
-class DistanceMatrixResponseElement extends js.JsAnonymousObject {
+class DistanceMatrixResponseElement extends js.JsObject {
   DistanceMatrixResponseElement() : super();
   DistanceMatrixResponseElement.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  Distance get distance() => new Distance.fromJsRef(js.getProperty(this, "distance"));
-  Duration get duration() => new Duration.fromJsRef(js.getProperty(this, "duration"));
-  DistanceMatrixElementStatus get status() => DistanceMatrixElementStatus.find(js.getProperty(this, "status"));
+  Distance get distance() => new Distance.fromJsRef(this["distance"]);
+  Duration get duration() => new Duration.fromJsRef(this["duration"]);
+  DistanceMatrixElementStatus get status() => DistanceMatrixElementStatus.find(this["status"]);
 }
 
 class DistanceMatrixStatus extends js.JsConst {
@@ -1231,27 +1231,27 @@ class DistanceMatrixElementStatus extends js.JsConst {
   const DistanceMatrixElementStatus._(String jsName) : super.fromJsName(jsName);
 }
 
-class MapType extends js.JsAnonymousObject {
+class MapType extends js.JsObject {
   MapType() : super();
   MapType.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  html.Node getTile(Point tileCoord, num zoom, html.Document ownerDocument) => js.callFunction(this, "getTile", [tileCoord, zoom, ownerDocument]);
-  html.Node releaseTile(html.Node tile) => js.callFunction(this, "releaseTile", [tile]);
+  html.Node getTile(Point tileCoord, num zoom, html.Document ownerDocument) => callJs("getTile", [tileCoord, zoom, ownerDocument]);
+  html.Node releaseTile(html.Node tile) => callJs("releaseTile", [tile]);
 
-  String get alt() => js.getProperty(this, "alt");
-         set alt(String alt) => js.setProperty(this, "alt", alt);
-  num get maxZoom() => js.getProperty(this, "maxZoom");
-      set maxZoom(num maxZoom) => js.setProperty(this, "maxZoom", maxZoom);
-  num get minZoom() => js.getProperty(this, "minZoom");
-      set minZoom(num minZoom) => js.setProperty(this, "minZoom", minZoom);
-  String get name() => js.getProperty(this, "name");
-         set name(String name) => js.setProperty(this, "name", name);
-  Projection get projection() => new Projection.fromJsRef(js.getProperty(this, "projection"));
-             set projection(Projection projection) => js.setProperty(this, "projection", projection);
-  num get radius() => js.getProperty(this, "radius");
-      set radius(num radius) => js.setProperty(this, "radius", radius);
-  Size get tileSize() => new Size.fromJsRef(js.getProperty(this, "tileSize"));
-       set tileSize(Size tileSize) => js.setProperty(this, "tileSize", tileSize);
+  String get alt() => this["alt"];
+         set alt(String alt) => this["alt"] = alt;
+  num get maxZoom() => this["maxZoom"];
+      set maxZoom(num maxZoom) => this["maxZoom"] = maxZoom;
+  num get minZoom() => this["minZoom"];
+      set minZoom(num minZoom) => this["minZoom"] = minZoom;
+  String get name() => this["name"];
+         set name(String name) => this["name"] = name;
+  Projection get projection() => new Projection.fromJsRef(this["projection"]);
+             set projection(Projection projection) => this["projection"] = projection;
+  num get radius() => this["radius"];
+      set radius(num radius) => this["radius"] = radius;
+  Size get tileSize() => new Size.fromJsRef(this["tileSize"]);
+       set tileSize(Size tileSize) => this["tileSize"] = tileSize;
 }
 
 class MapTypeRegistry extends MVCObject {
@@ -1260,15 +1260,15 @@ class MapTypeRegistry extends MVCObject {
   MapTypeRegistry() : super.newInstance(_TYPE_NAME);
   MapTypeRegistry.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  void set_(String id, MapType mapType) { js.callFunction(this, "set", [id, mapType]); }
+  void set_(String id, MapType mapType) { callJs("set", [id, mapType]); }
 }
 
-class Projection extends js.JsAnonymousObject {
+class Projection extends js.JsObject {
   Projection() : super();
   Projection.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  Point fromLatLngToPoint(LatLng latLng, [Point point]) => new Point.fromJsRef(js.callFunction(this, "fromLatLngToPoint", [latLng, point]));
-  LatLng fromPointToLatLng(Point pixel, [bool nowrap]) => new LatLng.fromJsRef(js.callFunction(this, "fromPointToLatLng", [pixel, nowrap]));
+  Point fromLatLngToPoint(LatLng latLng, [Point point]) => new Point.fromJsRef(callJs("fromLatLngToPoint", [latLng, point]));
+  LatLng fromPointToLatLng(Point pixel, [bool nowrap]) => new LatLng.fromJsRef(callJs("fromPointToLatLng", [pixel, nowrap]));
 }
 
 class ImageMapType extends MVCObject {
@@ -1277,23 +1277,23 @@ class ImageMapType extends MVCObject {
   ImageMapType(ImageMapTypeOptions opts) : super.newInstance(_TYPE_NAME, [opts]);
   ImageMapType.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  num getOpacity() { js.callFunction(this, "getOpacity"); }
-  void setOpacity(num opacity) { js.callFunction(this, "setOpacity", [opacity]); }
+  num getOpacity() { callJs("getOpacity"); }
+  void setOpacity(num opacity) { callJs("setOpacity", [opacity]); }
 }
 
-class ImageMapTypeOptions extends js.JsAnonymousObject {
-  set alt(String alt) => js.setProperty(this, "alt", alt);
+class ImageMapTypeOptions extends js.JsObject {
+  set alt(String alt) => this["alt"] = alt;
   set getTileUrl(String callback(Point point, num zoomLevel)) {
     js.CallbackFunction callbackFunction = Object _(List args) {
       return callback(new Point.fromJsRef(args[0]), args[1]);
     };
-    js.setProperty(this, "getTileUrl", callbackFunction);
+    this["getTileUrl"] = callbackFunction;
   }
-  set maxZoom(num maxZoom) => js.setProperty(this, "maxZoom", maxZoom);
-  set minZoom(num minZoom) => js.setProperty(this, "minZoom", minZoom);
-  set name(String name) => js.setProperty(this, "name", name);
-  set opacity(num opacity) => js.setProperty(this, "opacity", opacity);
-  set tileSize(Size tileSize) => js.setProperty(this, "tileSize", tileSize);
+  set maxZoom(num maxZoom) => this["maxZoom"] = maxZoom;
+  set minZoom(num minZoom) => this["minZoom"] = minZoom;
+  set name(String name) => this["name"] = name;
+  set opacity(num opacity) => this["opacity"] = opacity;
+  set tileSize(Size tileSize) => this["tileSize"] = tileSize;
 }
 
 class StyledMapType extends js.JsObject {
@@ -1302,17 +1302,17 @@ class StyledMapType extends js.JsObject {
   StyledMapType(List<MapTypeStyle> styles, [StyledMapTypeOptions options]) : super.newInstance(_TYPE_NAME, [styles, options]);
 }
 
-class StyledMapTypeOptions extends js.JsAnonymousObject {
-  set alt(String alt) => js.setProperty(this, "alt", alt);
-  set maxZoom(num maxZoom) => js.setProperty(this, "maxZoom", maxZoom);
-  set minZoom(num minZoom) => js.setProperty(this, "minZoom", minZoom);
-  set name(String name) => js.setProperty(this, "name", name);
+class StyledMapTypeOptions extends js.JsObject {
+  set alt(String alt) => this["alt"] = alt;
+  set maxZoom(num maxZoom) => this["maxZoom"] = maxZoom;
+  set minZoom(num minZoom) => this["minZoom"] = minZoom;
+  set name(String name) => this["name"] = name;
 }
 
-class MapTypeStyle extends js.JsAnonymousObject {
-  set elementType(MapTypeStyleElementType elementType) => js.setProperty(this, "elementType", elementType);
-  set featureType(MapTypeStyleFeatureType featureType) => js.setProperty(this, "featureType", featureType);
-  set stylers(List<MapTypeStyler> stylers) => js.setProperty(this, "stylers", stylers);
+class MapTypeStyle extends js.JsObject {
+  set elementType(MapTypeStyleElementType elementType) => this["elementType"] = elementType;
+  set featureType(MapTypeStyleFeatureType featureType) => this["featureType"] = featureType;
+  set stylers(List<MapTypeStyler> stylers) => this["stylers"] = stylers;
 }
 
 class MapTypeStyleFeatureType extends js.JsConst {
@@ -1367,13 +1367,13 @@ class MapTypeStyleElementType extends js.JsConst {
   const MapTypeStyleElementType._(String jsName) : super.fromJsName(jsName);
 }
 
-class MapTypeStyler extends js.JsAnonymousObject {
-  set gamma(num gamma) => js.setProperty(this, "gamma", gamma);
-  set hue(String hue) => js.setProperty(this, "hue", hue);
-  set invert_lightness(bool invert_lightness) => js.setProperty(this, "invert_lightness", invert_lightness);
-  set lightness(num lightness) => js.setProperty(this, "lightness", lightness);
-  set saturation(num saturation) => js.setProperty(this, "saturation", saturation);
-  set visibility(String visibility) => js.setProperty(this, "visibility", visibility);
+class MapTypeStyler extends js.JsObject {
+  set gamma(num gamma) => this["gamma"] = gamma;
+  set hue(String hue) => this["hue"] = hue;
+  set invert_lightness(bool invert_lightness) => this["invert_lightness"] = invert_lightness;
+  set lightness(num lightness) => this["lightness"] = lightness;
+  set saturation(num saturation) => this["saturation"] = saturation;
+  set visibility(String visibility) => this["visibility"] = visibility;
 }
 
 class BicyclingLayer extends MVCObject {
@@ -1382,8 +1382,8 @@ class BicyclingLayer extends MVCObject {
   BicyclingLayer() : super.newInstance(_TYPE_NAME);
   BicyclingLayer.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  GMap getMap() => new GMap.fromJsRef(js.callFunction(this, "getMap"));
-  void setMap(GMap map) { js.callFunction(this, "setMap", [map]); }
+  GMap getMap() => new GMap.fromJsRef(callJs("getMap"));
+  void setMap(GMap map) { callJs("setMap", [map]); }
 }
 
 class FusionTablesLayer extends MVCObject {
@@ -1392,74 +1392,74 @@ class FusionTablesLayer extends MVCObject {
   FusionTablesLayer(FusionTablesLayerOptions options) : super.newInstance(_TYPE_NAME, [options]);
   FusionTablesLayer.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  GMap getMap() => new GMap.fromJsRef(js.callFunction(this, "getMap"));
-  void setMap(GMap map) { js.callFunction(this, "setMap", [map]); }
-  void setOptions(FusionTablesLayerOptions options) { js.callFunction(this, "setOptions", [options]); }
+  GMap getMap() => new GMap.fromJsRef(callJs("getMap"));
+  void setMap(GMap map) { callJs("setMap", [map]); }
+  void setOptions(FusionTablesLayerOptions options) { callJs("setOptions", [options]); }
 }
 
-class FusionTablesLayerOptions extends js.JsAnonymousObject {
-  set clickable(bool clickable) => js.setProperty(this, "clickable", clickable);
-  set heatmap(FusionTablesHeatmap hueheatmap) => js.setProperty(this, "heatmap", heatmap);
-  set map(GMap map) => js.setProperty(this, "map", map);
-  set query(FusionTablesQuery query) => js.setProperty(this, "query", query);
-  set styles(List<FusionTablesStyle> styles) => js.setProperty(this, "styles", styles);
-  set suppressInfoWindows(bool suppressInfoWindows) => js.setProperty(this, "suppressInfoWindows", suppressInfoWindows);
+class FusionTablesLayerOptions extends js.JsObject {
+  set clickable(bool clickable) => this["clickable"] = clickable;
+  set heatmap(FusionTablesHeatmap hueheatmap) => this["heatmap"] = heatmap;
+  set map(GMap map) => this["map"] = map;
+  set query(FusionTablesQuery query) => this["query"] = query;
+  set styles(List<FusionTablesStyle> styles) => this["styles"] = styles;
+  set suppressInfoWindows(bool suppressInfoWindows) => this["suppressInfoWindows"] = suppressInfoWindows;
 }
 
-class FusionTablesQuery extends js.JsAnonymousObject {
-  set from(String from) => js.setProperty(this, "from", from);
-  set limit(num limit) => js.setProperty(this, "limit", limit);
-  set offset(num offset) => js.setProperty(this, "offset", offset);
-  set orderBy(String orderBy) => js.setProperty(this, "orderBy", orderBy);
-  set select(String select) => js.setProperty(this, "select", select);
-  set where(String where) => js.setProperty(this, "where", where);
+class FusionTablesQuery extends js.JsObject {
+  set from(String from) => this["from"] = from;
+  set limit(num limit) => this["limit"] = limit;
+  set offset(num offset) => this["offset"] = offset;
+  set orderBy(String orderBy) => this["orderBy"] = orderBy;
+  set select(String select) => this["select"] = select;
+  set where(String where) => this["where"] = where;
 }
 
-class FusionTablesStyle extends js.JsAnonymousObject {
-  set markerOptions(FusionTablesMarkerOptions markerOptions) => js.setProperty(this, "markerOptions", markerOptions);
-  set polygonOptions(FusionTablesPolygonOptions polygonOptions) => js.setProperty(this, "polygonOptions", polygonOptions);
-  set polylineOptions(FusionTablesPolylineOptions polylineOptions) => js.setProperty(this, "polylineOptions", polylineOptions);
-  set where(String where) => js.setProperty(this, "where", where);
+class FusionTablesStyle extends js.JsObject {
+  set markerOptions(FusionTablesMarkerOptions markerOptions) => this["markerOptions"] = markerOptions;
+  set polygonOptions(FusionTablesPolygonOptions polygonOptions) => this["polygonOptions"] = polygonOptions;
+  set polylineOptions(FusionTablesPolylineOptions polylineOptions) => this["polylineOptions"] = polylineOptions;
+  set where(String where) => this["where"] = where;
 }
 
-class FusionTablesHeatmap extends js.JsAnonymousObject {
-  set enabled(bool enabled) => js.setProperty(this, "enabled", enabled);
+class FusionTablesHeatmap extends js.JsObject {
+  set enabled(bool enabled) => this["enabled"] = enabled;
 }
 
-class FusionTablesMarkerOptions extends js.JsAnonymousObject {
-  set iconName(String iconName) => js.setProperty(this, "iconName", iconName);
+class FusionTablesMarkerOptions extends js.JsObject {
+  set iconName(String iconName) => this["iconName"] = iconName;
 }
 
-class FusionTablesPolygonOptions extends js.JsAnonymousObject {
-  set fillColor(String fillColor) => js.setProperty(this, "fillColor", fillColor);
-  set fillOpacity(num fillOpacity) => js.setProperty(this, "fillOpacity", fillOpacity);
-  set strokeColor(String strokeColor) => js.setProperty(this, "strokeColor", strokeColor);
-  set strokeOpacity(num strokeOpacity) => js.setProperty(this, "strokeOpacity", strokeOpacity);
-  set strokeWeight(num strokeWeight) => js.setProperty(this, "strokeWeight", strokeWeight);
+class FusionTablesPolygonOptions extends js.JsObject {
+  set fillColor(String fillColor) => this["fillColor"] = fillColor;
+  set fillOpacity(num fillOpacity) => this["fillOpacity"] = fillOpacity;
+  set strokeColor(String strokeColor) => this["strokeColor"] = strokeColor;
+  set strokeOpacity(num strokeOpacity) => this["strokeOpacity"] = strokeOpacity;
+  set strokeWeight(num strokeWeight) => this["strokeWeight"] = strokeWeight;
 }
 
-class FusionTablesPolylineOptions extends js.JsAnonymousObject {
-  set strokeColor(String strokeColor) => js.setProperty(this, "strokeColor", strokeColor);
-  set strokeOpacity(num strokeOpacity) => js.setProperty(this, "strokeOpacity", strokeOpacity);
-  set strokeWeight(num strokeWeight) => js.setProperty(this, "strokeWeight", strokeWeight);
+class FusionTablesPolylineOptions extends js.JsObject {
+  set strokeColor(String strokeColor) => this["strokeColor"] = strokeColor;
+  set strokeOpacity(num strokeOpacity) => this["strokeOpacity"] = strokeOpacity;
+  set strokeWeight(num strokeWeight) => this["strokeWeight"] = strokeWeight;
 }
 
 class FusionTablesMouseEvent extends NativeEvent {
   FusionTablesMouseEvent();
   FusionTablesMouseEvent.wrap(NativeEvent e) { jsRef = e.jsRef; }
   
-  String get infoWindowHtml => js.getProperty(this, "infoWindowHtml");
-  LatLng get latLng => new LatLng.fromJsRef(js.getProperty(this, "latLng"));
-  Size get pixelOffset => new Size.fromJsRef(js.getProperty(this, "pixelOffset"));
+  String get infoWindowHtml => this["infoWindowHtml"];
+  LatLng get latLng => new LatLng.fromJsRef(this["latLng"]);
+  Size get pixelOffset => new Size.fromJsRef(this["pixelOffset"]);
   // TODO improve return type ( should be Map<String, FusionTablesCell> )
-  js.JsRef get row => js.getProperty(this, "row");
+  js.JsRef get row => this["row"];
 }
 
-class FusionTablesCell extends js.JsAnonymousObject {
-  String get columnName() => js.getProperty(this, "columnName");
-         set columnName(String columnName) => js.setProperty(this, "columnName", columnName);
-  String get value() => js.getProperty(this, "value");
-         set value(String value) => js.setProperty(this, "value", value);
+class FusionTablesCell extends js.JsObject {
+  String get columnName() => this["columnName"];
+         set columnName(String columnName) => this["columnName"] = columnName;
+  String get value() => this["value"];
+         set value(String value) => this["value"] = value;
 }
 
 class KmlLayer extends MVCObject {
@@ -1468,28 +1468,28 @@ class KmlLayer extends MVCObject {
   KmlLayer(String url, [KmlLayerOptions options]) : super.newInstance(_TYPE_NAME, [url, options]);
   KmlLayer.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  LatLngBounds getDefaultViewport() => new LatLngBounds.fromJsRef(js.callFunction(this, "getDefaultViewport"));
-  GMap getMap() => new GMap.fromJsRef(js.callFunction(this, "getMap"));
-  KmlLayerMetadata getMetadata() => new KmlLayerMetadata.fromJsRef(js.callFunction(this, "getMetadata"));
-  KmlLayerStatus getStatus() => KmlLayerStatus.find(js.callFunction(this, "getStatus"));
-  String getUrl() => js.callFunction(this, "getUrl");
-  void setMap(GMap map) { js.callFunction(this, "setMap", [map]); }
+  LatLngBounds getDefaultViewport() => new LatLngBounds.fromJsRef(callJs("getDefaultViewport"));
+  GMap getMap() => new GMap.fromJsRef(callJs("getMap"));
+  KmlLayerMetadata getMetadata() => new KmlLayerMetadata.fromJsRef(callJs("getMetadata"));
+  KmlLayerStatus getStatus() => KmlLayerStatus.find(callJs("getStatus"));
+  String getUrl() => callJs("getUrl");
+  void setMap(GMap map) { callJs("setMap", [map]); }
 }
 
-class KmlLayerOptions extends js.JsAnonymousObject {
-  set clickable(bool clickable) => js.setProperty(this, "clickable", clickable);
-  set map(GMap map) => js.setProperty(this, "map", map);
-  set preserveViewport(bool preserveViewport) => js.setProperty(this, "preserveViewport", preserveViewport);
-  set suppressInfoWindows(bool suppressInfoWindows) => js.setProperty(this, "suppressInfoWindows", suppressInfoWindows);
+class KmlLayerOptions extends js.JsObject {
+  set clickable(bool clickable) => this["clickable"] = clickable;
+  set map(GMap map) => this["map"] = map;
+  set preserveViewport(bool preserveViewport) => this["preserveViewport"] = preserveViewport;
+  set suppressInfoWindows(bool suppressInfoWindows) => this["suppressInfoWindows"] = suppressInfoWindows;
 }
 
-class KmlLayerMetadata extends js.JsAnonymousObject {
+class KmlLayerMetadata extends js.JsObject {
   KmlLayerMetadata.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  KmlAuthor get author() => new KmlAuthor.fromJsRef(js.getProperty(this, "author"));
-  String get description() => js.getProperty(this, "description");
-  String get name() => js.getProperty(this, "name");
-  String get snippet() => js.getProperty(this, "snippet");
+  KmlAuthor get author() => new KmlAuthor.fromJsRef(this["author"]);
+  String get description() => this["description"];
+  String get name() => this["name"];
+  String get snippet() => this["snippet"];
 }
 
 class KmlLayerStatus extends js.JsConst {
@@ -1514,28 +1514,28 @@ class KmlMouseEvent extends NativeEvent {
   KmlMouseEvent();
   KmlMouseEvent.wrap(NativeEvent e) { jsRef = e.jsRef; }
   
-  KmlFeatureData get featureData => new KmlFeatureData.fromJsRef(js.getProperty(this, "featureData"));
-  LatLng get latLng => new LatLng.fromJsRef(js.getProperty(this, "latLng"));
-  Size get pixelOffset => new Size.fromJsRef(js.getProperty(this, "pixelOffset"));
+  KmlFeatureData get featureData => new KmlFeatureData.fromJsRef(this["featureData"]);
+  LatLng get latLng => new LatLng.fromJsRef(this["latLng"]);
+  Size get pixelOffset => new Size.fromJsRef(this["pixelOffset"]);
 }
 
-class KmlFeatureData extends js.JsAnonymousObject {
+class KmlFeatureData extends js.JsObject {
   KmlFeatureData.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  KmlAuthor get author => new KmlAuthor.fromJsRef(js.getProperty(this, "author"));
-  String get description => js.getProperty(this, "description");
-  String get id => js.getProperty(this, "id");
-  String get infoWindowHtml => js.getProperty(this, "infoWindowHtml");
-  String get name => js.getProperty(this, "name");
-  String get snippet => js.getProperty(this, "snippet");
+  KmlAuthor get author => new KmlAuthor.fromJsRef(this["author"]);
+  String get description => this["description"];
+  String get id => this["id"];
+  String get infoWindowHtml => this["infoWindowHtml"];
+  String get name => this["name"];
+  String get snippet => this["snippet"];
 }
 
-class KmlAuthor extends js.JsAnonymousObject {
+class KmlAuthor extends js.JsObject {
   KmlAuthor.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  String get email => js.getProperty(this, "email");
-  String get name => js.getProperty(this, "name");
-  String get uri => js.getProperty(this, "uri");
+  String get email => this["email"];
+  String get name => this["name"];
+  String get uri => this["uri"];
 }
 
 class TrafficLayer extends MVCObject {
@@ -1544,8 +1544,8 @@ class TrafficLayer extends MVCObject {
   TrafficLayer() : super.newInstance(_TYPE_NAME);
   TrafficLayer.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  GMap getMap() => new GMap.fromJsRef(js.callFunction(this, "getMap"));
-  void setMap(GMap map) { js.callFunction(this, "setMap", [map]); }
+  GMap getMap() => new GMap.fromJsRef(callJs("getMap"));
+  void setMap(GMap map) { callJs("setMap", [map]); }
 }
 
 class TransitLayer extends MVCObject {
@@ -1554,8 +1554,8 @@ class TransitLayer extends MVCObject {
   TransitLayer() : super.newInstance(_TYPE_NAME);
   TransitLayer.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  GMap getMap() => new GMap.fromJsRef(js.callFunction(this, "getMap"));
-  void setMap(GMap map) { js.callFunction(this, "setMap", [map]); }
+  GMap getMap() => new GMap.fromJsRef(callJs("getMap"));
+  void setMap(GMap map) { callJs("setMap", [map]); }
 }
 
 class StreetViewPanorama extends MVCObject {
@@ -1565,102 +1565,102 @@ class StreetViewPanorama extends MVCObject {
   StreetViewPanorama.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
   List<StreetViewLink> getLinks() {
-    List<js.JsRef> resultsRefs = js.callFunction(this, "getLinks");
+    List<js.JsRef> resultsRefs = callJs("getLinks");
     return resultsRefs.map((e) => new StreetViewLink.fromJsRef(e));
   }
-  String getPano() => js.callFunction(this, "getPano");
-  LatLng getPosition() => new LatLng.fromJsRef(js.callFunction(this, "getPosition"));
-  StreetViewPov getPov() => new StreetViewPov.fromJsRef(js.callFunction(this, "getPov"));
-  bool getVisible() => js.callFunction(this, "getVisible");
+  String getPano() => callJs("getPano");
+  LatLng getPosition() => new LatLng.fromJsRef(callJs("getPosition"));
+  StreetViewPov getPov() => new StreetViewPov.fromJsRef(callJs("getPov"));
+  bool getVisible() => callJs("getVisible");
   void registerPanoProvider(StreetViewPanoramaData provider(String pano)) {
     js.CallbackFunction callbackFunction = Object _(List args) {
       return provider(args[0]);
     };
-    js.callFunction(this, "registerPanoProvider", [callbackFunction]);
+    callJs("registerPanoProvider", [callbackFunction]);
   }
-  void setPano(String pano) { js.callFunction(this, "setPano", [pano]); }
-  void setPosition(LatLng latLng) { js.callFunction(this, "setPosition", [latLng]); }
-  void setPov(StreetViewPov pov) { js.callFunction(this, "setPov", [pov]); }
-  void setVisible(bool flag) { js.callFunction(this, "setVisible", [flag]); }
+  void setPano(String pano) { callJs("setPano", [pano]); }
+  void setPosition(LatLng latLng) { callJs("setPosition", [latLng]); }
+  void setPov(StreetViewPov pov) { callJs("setPov", [pov]); }
+  void setVisible(bool flag) { callJs("setVisible", [flag]); }
 
   List<MVCArray<html.Node>> get controls()  {
-                              List<js.JsRef> resultsRefs = js.getProperty(this, "controls");
+                              List<js.JsRef> resultsRefs = this["controls"];
                               return resultsRefs.map((e) => new MVCArray.fromJsRef(e));
                             }
-                            set controls(List<MVCArray<html.Node>> controls) => js.setProperty(this, "controls", controls);
+                            set controls(List<MVCArray<html.Node>> controls) => this["controls"] = controls;
 }
 
-class StreetViewPanoramaOptions extends js.JsAnonymousObject {
-  set addressControl(bool addressControl) => js.setProperty(this, "addressControl", addressControl);
-  set addressControlOptions(StreetViewAddressControlOptions addressControlOptions) => js.setProperty(this, "addressControlOptions", addressControlOptions);
-  set clickToGo(bool clickToGo) => js.setProperty(this, "clickToGo", clickToGo);
-  set disableDoubleClickZoom(bool disableDoubleClickZoom) => js.setProperty(this, "disableDoubleClickZoom", disableDoubleClickZoom);
-  set enableCloseButton(bool enableCloseButton) => js.setProperty(this, "enableCloseButton", enableCloseButton);
-  set imageDateControl(bool imageDateControl) => js.setProperty(this, "imageDateControl", imageDateControl);
-  set linksControl(bool linksControl) => js.setProperty(this, "linksControl", linksControl);
-  set panControl(bool panControl) => js.setProperty(this, "panControl", panControl);
-  set panControlOptions(PanControlOptions panControlOptions) => js.setProperty(this, "panControlOptions", panControlOptions);
-  set pano(String pano) => js.setProperty(this, "pano", pano);
+class StreetViewPanoramaOptions extends js.JsObject {
+  set addressControl(bool addressControl) => this["addressControl"] = addressControl;
+  set addressControlOptions(StreetViewAddressControlOptions addressControlOptions) => this["addressControlOptions"] = addressControlOptions;
+  set clickToGo(bool clickToGo) => this["clickToGo"] = clickToGo;
+  set disableDoubleClickZoom(bool disableDoubleClickZoom) => this["disableDoubleClickZoom"] = disableDoubleClickZoom;
+  set enableCloseButton(bool enableCloseButton) => this["enableCloseButton"] = enableCloseButton;
+  set imageDateControl(bool imageDateControl) => this["imageDateControl"] = imageDateControl;
+  set linksControl(bool linksControl) => this["linksControl"] = linksControl;
+  set panControl(bool panControl) => this["panControl"] = panControl;
+  set panControlOptions(PanControlOptions panControlOptions) => this["panControlOptions"] = panControlOptions;
+  set pano(String pano) => this["pano"] = pano;
   set panoProvider(StreetViewPanoramaData provider(String pano)) {
     js.CallbackFunction callbackFunction = Object _(List args) {
       return provider(args[0]);
     };
-    js.setProperty(this, "panoProvider", callbackFunction);
+    this["panoProvider"] = callbackFunction;
   }
-  set position(LatLng position) => js.setProperty(this, "position", position);
-  set pov(StreetViewPov pov) => js.setProperty(this, "pov", pov);
-  set scrollwheel(bool scrollwheel) => js.setProperty(this, "scrollwheel", scrollwheel);
-  set visible(bool visible) => js.setProperty(this, "visible", visible);
-  set zoomControl(bool zoomControl) => js.setProperty(this, "zoomControl", zoomControl);
-  set zoomControlOptions(ZoomControlOptions zoomControlOptions) => js.setProperty(this, "zoomControlOptions", zoomControlOptions);
+  set position(LatLng position) => this["position"] = position;
+  set pov(StreetViewPov pov) => this["pov"] = pov;
+  set scrollwheel(bool scrollwheel) => this["scrollwheel"] = scrollwheel;
+  set visible(bool visible) => this["visible"] = visible;
+  set zoomControl(bool zoomControl) => this["zoomControl"] = zoomControl;
+  set zoomControlOptions(ZoomControlOptions zoomControlOptions) => this["zoomControlOptions"] = zoomControlOptions;
 }
 
-class StreetViewAddressControlOptions extends js.JsAnonymousObject {
-  set position(ControlPosition position) => js.setProperty(this, "position", position);
+class StreetViewAddressControlOptions extends js.JsObject {
+  set position(ControlPosition position) => this["position"] = position;
 }
 
-class StreetViewLink extends js.JsAnonymousObject {
+class StreetViewLink extends js.JsObject {
   StreetViewLink.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  String get description => js.getProperty(this, "description");
-         set description(String description) => js.setProperty(this, "description", description);
-  num get heading => js.getProperty(this, "heading");
-      set heading(num heading) => js.setProperty(this, "heading", heading);
-  String get pano => js.getProperty(this, "pano");
-         set pano(String pano) => js.setProperty(this, "pano", pano);
+  String get description => this["description"];
+         set description(String description) => this["description"] = description;
+  num get heading => this["heading"];
+      set heading(num heading) => this["heading"] = heading;
+  String get pano => this["pano"];
+         set pano(String pano) => this["pano"] = pano;
 }
 
-class StreetViewPov extends js.JsAnonymousObject {
+class StreetViewPov extends js.JsObject {
   StreetViewPov.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  num get heading => js.getProperty(this, "heading");
-  num get pitch => js.getProperty(this, "pitch");
-  num get zoom => js.getProperty(this, "zoom");
+  num get heading => this["heading"];
+  num get pitch => this["pitch"];
+  num get zoom => this["zoom"];
 }
 
-class StreetViewPanoramaData extends js.JsAnonymousObject {
+class StreetViewPanoramaData extends js.JsObject {
   StreetViewPanoramaData() : super();
   StreetViewPanoramaData.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
   
-  set copyright(String copyright) => js.setProperty(this, "copyright", copyright);
-  set imageDate(String imageDate) => js.setProperty(this, "imageDate", imageDate);
-  set links(List<StreetViewLink> links) => js.setProperty(this, "links", links);
-  set location(StreetViewLocation location) => js.setProperty(this, "location", location);
-  set tiles(StreetViewTileData tiles) => js.setProperty(this, "tiles", tiles);
+  set copyright(String copyright) => this["copyright"] = copyright;
+  set imageDate(String imageDate) => this["imageDate"] = imageDate;
+  set links(List<StreetViewLink> links) => this["links"] = links;
+  set location(StreetViewLocation location) => this["location"] = location;
+  set tiles(StreetViewTileData tiles) => this["tiles"] = tiles;
 }
 
-class StreetViewLocation extends js.JsAnonymousObject {
-  set description(String description) => js.setProperty(this, "description", description);
-  set latLng(LatLng latLng) => js.setProperty(this, "latLng", latLng);
-  set pano(String pano) => js.setProperty(this, "pano", pano);
+class StreetViewLocation extends js.JsObject {
+  set description(String description) => this["description"] = description;
+  set latLng(LatLng latLng) => this["latLng"] = latLng;
+  set pano(String pano) => this["pano"] = pano;
 }
 
-class StreetViewTileData extends js.JsAnonymousObject {
-  String getTileUrl(String pano, num tileZoom, num tileX, num tileY) => js.callFunction(this, "getTileUrl", [pano, tileZoom, tileX, tileY]);
+class StreetViewTileData extends js.JsObject {
+  String getTileUrl(String pano, num tileZoom, num tileX, num tileY) => callJs("getTileUrl", [pano, tileZoom, tileX, tileY]);
 
-  set centerHeading(num centerHeading) => js.setProperty(this, "centerHeading", centerHeading);
-  set tileSize(Size tileSize) => js.setProperty(this, "tileSize", tileSize);
-  set worldSize(Size worldSize) => js.setProperty(this, "worldSize", worldSize);
+  set centerHeading(num centerHeading) => this["centerHeading"] = centerHeading;
+  set tileSize(Size tileSize) => this["tileSize"] = tileSize;
+  set worldSize(Size worldSize) => this["worldSize"] = worldSize;
 }
 
 class StreetViewService extends js.JsObject {
@@ -1672,13 +1672,13 @@ class StreetViewService extends js.JsObject {
     js.CallbackFunction callbackFunction = Object _(List args) {
       callback(new StreetViewPanoramaData.fromJsRef(args[0]), StreetViewStatus.find(args[1]));
     };
-    js.callFunction(this, "getPanoramaById", [pano, callbackFunction]);
+    callJs("getPanoramaById", [pano, callbackFunction]);
   }
   void getPanoramaByLocation(LatLng latlng, num radius, void callback(StreetViewPanoramaData streetViewPanoramaData, StreetViewStatus streetViewStatus)) {
     js.CallbackFunction callbackFunction = Object _(List args) {
       callback(new StreetViewPanoramaData.fromJsRef(args[0]), StreetViewStatus.find(args[1]));
     };
-    js.callFunction(this, "getPanoramaByLocation", [latlng, radius, callbackFunction]);
+    callJs("getPanoramaByLocation", [latlng, radius, callbackFunction]);
   }
 }
 
@@ -1762,7 +1762,7 @@ class MouseEvent extends NativeEvent {
   MouseEvent();
   MouseEvent.wrap(NativeEvent e) { jsRef = e.jsRef; }
   
-  LatLng get latLng => new LatLng.fromJsRef(js.getProperty(this, "latLng"));
+  LatLng get latLng => new LatLng.fromJsRef(this["latLng"]);
 }
 
 class LatLng extends js.JsObject {
@@ -1771,11 +1771,11 @@ class LatLng extends js.JsObject {
   LatLng(num lat, num lng, [bool noWrap]) : super.newInstance(_TYPE_NAME, [lat, lng, noWrap]);
   LatLng.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  bool equals(LatLng other) => js.callFunction(this, "equals", [other]);
-  num lat() => js.callFunction(this, "lat");
-  num lng() => js.callFunction(this, "lng");
-  String toString() => js.callFunction(this, "toString");
-  String toUrlValue([num precision]) => js.callFunction(this, "toUrlValue", [precision]);
+  bool equals(LatLng other) => callJs("equals", [other]);
+  num lat() => callJs("lat");
+  num lng() => callJs("lng");
+  String toString() => callJs("toString");
+  String toUrlValue([num precision]) => callJs("toUrlValue", [precision]);
 }
 
 class LatLngBounds extends js.JsObject {
@@ -1784,18 +1784,18 @@ class LatLngBounds extends js.JsObject {
   LatLngBounds([LatLng sw, LatLng ne]) : super.newInstance(_TYPE_NAME, [sw, ne]);
   LatLngBounds.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  bool contains(LatLng latLng) => js.callFunction(this, "contains", [latLng]);
-  bool equals(LatLngBounds other) => js.callFunction(this, "equals", [other]);
-  LatLngBounds extend(LatLng point) => new LatLngBounds.fromJsRef(js.callFunction(this, "extend", [point]));
-  LatLng getCenter() => new LatLng.fromJsRef(js.callFunction(this, "getCenter"));
-  LatLng getNorthEast() => new LatLng.fromJsRef(js.callFunction(this, "getNorthEast"));
-  LatLng getSouthWest() => new LatLng.fromJsRef(js.callFunction(this, "getSouthWest"));
-  bool intersects(LatLngBounds other) => js.callFunction(this, "intersects", [other]);
-  bool isEmpty() => js.callFunction(this, "isEmpty");
-  LatLng toSpan() => new LatLng.fromJsRef(js.callFunction(this, "toSpan"));
-  String toString() => js.callFunction(this, "toString");
-  String toUrlValue([num precision]) => js.callFunction(this, "toUrlValue", [precision]);
-  bool union(LatLngBounds other) => js.callFunction(this, "union", [other]);
+  bool contains(LatLng latLng) => callJs("contains", [latLng]);
+  bool equals(LatLngBounds other) => callJs("equals", [other]);
+  LatLngBounds extend(LatLng point) => new LatLngBounds.fromJsRef(callJs("extend", [point]));
+  LatLng getCenter() => new LatLng.fromJsRef(callJs("getCenter"));
+  LatLng getNorthEast() => new LatLng.fromJsRef(callJs("getNorthEast"));
+  LatLng getSouthWest() => new LatLng.fromJsRef(callJs("getSouthWest"));
+  bool intersects(LatLngBounds other) => callJs("intersects", [other]);
+  bool isEmpty() => callJs("isEmpty");
+  LatLng toSpan() => new LatLng.fromJsRef(callJs("toSpan"));
+  String toString() => callJs("toString");
+  String toUrlValue([num precision]) => callJs("toUrlValue", [precision]);
+  bool union(LatLngBounds other) => callJs("union", [other]);
 }
 
 class Point extends js.JsObject {
@@ -1804,13 +1804,13 @@ class Point extends js.JsObject {
   Point(num x, num y) : super.newInstance(_TYPE_NAME, [x, y]);
   Point.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  bool equals(Point other) => js.callFunction(this, "equals", [other]);
-  String toString() => js.callFunction(this, "toString");
+  bool equals(Point other) => callJs("equals", [other]);
+  String toString() => callJs("toString");
 
-  num get x => js.getProperty(this, "x");
-      set x(num x) => js.setProperty(this, "x", x);
-  num get y => js.getProperty(this, "y");
-      set y(num y) => js.setProperty(this, "y", y);
+  num get x => this["x"];
+      set x(num x) => this["x"] = x;
+  num get y => this["y"];
+      set y(num y) => this["y"] = y;
 }
 
 class Size extends js.JsObject {
@@ -1819,13 +1819,13 @@ class Size extends js.JsObject {
   Size(num width, num height, [String widthUnit, String heightUnit]) : super.newInstance(_TYPE_NAME, [width, height, widthUnit, heightUnit]);
   Size.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  bool equals(Size other) => js.callFunction(this, "equals", [other]);
-  String toString() => js.callFunction(this, "toString");
+  bool equals(Size other) => callJs("equals", [other]);
+  String toString() => callJs("toString");
 
-  num get height => js.getProperty(this, "height");
-      set height(num height) => js.setProperty(this, "height", height);
-  num get width => js.getProperty(this, "width");
-      set width(num width) => js.setProperty(this, "width", width);
+  num get height => this["height"];
+      set height(num height) => this["height"] = height;
+  num get width => this["width"];
+      set width(num width) => this["width"] = width;
 }
 
 class MVCObject extends js.JsObject {
@@ -1835,20 +1835,20 @@ class MVCObject extends js.JsObject {
   MVCObject.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
   MVCObject.newInstance(String objectName, [List args]) : super.newInstance(objectName, args);
 
-  void bindTo(String key, MVCObject target, [String targetKey, bool noNotify]) { js.callFunction(this, "bindTo", [key, target, targetKey, noNotify]); }
-  void changed(String key) { js.callFunction(this, "changed", [key]); }
-  Object get_(String key) => js.callFunction(this, "get", [key]);
-  void notify(String key) { js.callFunction(this, "notify", [key]); }
-  void set_(String key, Object value) { js.callFunction(this, "set", [key, value]); }
+  void bindTo(String key, MVCObject target, [String targetKey, bool noNotify]) { callJs("bindTo", [key, target, targetKey, noNotify]); }
+  void changed(String key) { callJs("changed", [key]); }
+  Object get_(String key) => callJs("get", [key]);
+  void notify(String key) { callJs("notify", [key]); }
+  void set_(String key, Object value) { callJs("set", [key, value]); }
   void setValues(Map<String, Object> values) {
-    final valuesJs = new js.JsAnonymousObject();
+    final valuesJs = new js.JsObject();
     values.forEach((String key, Object value) {
-      js.setProperty(this, key, value);
+      this[key] = value;
     });
-    js.callFunction(this, "setValues", [valuesJs]);
+    callJs("setValues", [valuesJs]);
   }
-  void unbind(String key) { js.callFunction(this, "unbind", [key]); }
-  void unbindAll() { js.callFunction(this, "unbindAll"); }
+  void unbind(String key) { callJs("unbind", [key]); }
+  void unbindAll() { callJs("unbindAll"); }
 }
 
 typedef Object JsRefWrapper(js.JsRef jsRef);
@@ -1863,24 +1863,24 @@ class MVCArray<E> extends MVCObject {
     _jsRefWrapper = jsRefWrapper; 
   }
 
-  void clear() { js.callFunction(this, "clear"); }
+  void clear() { callJs("clear"); }
   void forEach(void callback(E o, num index)) {
     js.CallbackFunction callbackFunction = Object _(List args) {
       callback(_mayWrap(args[0]), args[1]);
     };
-    js.callFunction(this, "forEach", [callbackFunction]);
+    callJs("forEach", [callbackFunction]);
   }
   List<E> getArray() {
-    final List result = js.callFunction(this, "getArray");
+    final List result = callJs("getArray");
     return result.map(_mayWrap);
   }
-  E getAt(num i) => _mayWrap(js.callFunction(this, "getAt", [i]));
-  num getLength() => js.callFunction(this, "getLength");
-  void insertAt(num i, E elem) { js.callFunction(this, "insertAt", [i, elem]); }
-  E pop() => _mayWrap(js.callFunction(this, "pop"));
-  num push(E elem) => js.callFunction(this, "push", [elem]);
-  E removeAt(num i) => _mayWrap(js.callFunction(this, "removeAt", [i]));
-  void setAt(num i, E elem) { js.callFunction(this, "setAt", [i, elem]); }
+  E getAt(num i) => _mayWrap(callJs("getAt", [i]));
+  num getLength() => callJs("getLength");
+  void insertAt(num i, E elem) { callJs("insertAt", [i, elem]); }
+  E pop() => _mayWrap(callJs("pop"));
+  num push(E elem) => callJs("push", [elem]);
+  E removeAt(num i) => _mayWrap(callJs("removeAt", [i]));
+  void setAt(num i, E elem) { callJs("setAt", [i, elem]); }
 
   E _mayWrap(Object o) {
     if (_jsRefWrapper !== null && o is js.JsRef) {

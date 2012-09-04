@@ -23,17 +23,14 @@ interface IsJsObject {
 class JsObject implements IsJsObject {
   JsRef jsRef;
 
-  JsObject();
+  JsObject() { this.jsRef = newInstance("Object"); }
   JsObject.fromJsRef(this.jsRef);
   JsObject.newInstance(String objectName, [List args]) { jsRef = newInstance(objectName, args); }
-}
 
-/// Wrapper to anonymous JS object
-class JsAnonymousObject extends JsObject {
-  static JsRef newObjectRef() => newInstance("Object");
+  Object operator [](String name) => getProperty(this, name);
+  void operator []=(String name, Object value) { setProperty(this, name, value); }
 
-  JsAnonymousObject() : super.fromJsRef(newObjectRef());
-  JsAnonymousObject.fromJsRef(JsRef jsRef) : super.fromJsRef(jsRef);
+  Object callJs(String name, [List args]) => callFunction(this, name, args);
 }
 
 typedef Object CallbackFunction(List args);
