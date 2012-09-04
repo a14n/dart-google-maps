@@ -32,15 +32,20 @@ class GMap extends MVCObject {
   void setTilt(num tilt) { callJs("setTilt", [tilt]); }
   void setZoom(num zoom) { callJs("setZoom", [zoom]); }
 
-  List<MVCArray<html.Node>> get controls() {
-                              List<js.JsRef> resultsRefs = this["controls"];
-                              return resultsRefs.map((e) => new MVCArray.fromJsRef(e));
-                            }
-                            set controls(List<MVCArray<html.Node>> controls) => this["controls"] = controls;
+  Controls get controls() => new Controls.fromJsRef(js.getPropertyRef(this, "controls"));
+           set controls(Controls controls) => this["controls"] = controls;
   MapTypeRegistry get mapTypes() => new MapTypeRegistry.fromJsRef(this["mapTypes"]);
                   set mapTypes(MapTypeRegistry mapTypes) => this["mapTypes"] = mapTypes;
   MVCArray<MapType> get overlayMapTypes() => new MVCArray.fromJsRef(this["overlayMapTypes"], (js.JsRef jsRef) => new MapType.fromJsRef(jsRef));
                     set overlayMapTypes(MVCArray<MapType> overlayMapTypes) => this["overlayMapTypes"] = overlayMapTypes;
+}
+
+class Controls extends js.JsObject {
+  Controls() : super.newInstance("Array");
+  Controls.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+
+  MVCArray<html.Node> getNodes(ControlPosition controlPosition) => new MVCArray.fromJsRef(this[controlPosition.value.toString()]);
+  void setNodes(ControlPosition controlPosition, MVCArray<html.Node> nodes) { this[controlPosition.value.toString()] = nodes; }
 }
 
 class MapOptions extends js.JsObject {
@@ -1583,11 +1588,8 @@ class StreetViewPanorama extends MVCObject {
   void setPov(StreetViewPov pov) { callJs("setPov", [pov]); }
   void setVisible(bool flag) { callJs("setVisible", [flag]); }
 
-  List<MVCArray<html.Node>> get controls()  {
-                              List<js.JsRef> resultsRefs = this["controls"];
-                              return resultsRefs.map((e) => new MVCArray.fromJsRef(e));
-                            }
-                            set controls(List<MVCArray<html.Node>> controls) => this["controls"] = controls;
+  Controls get controls() => new Controls.fromJsRef(js.getPropertyRef(this, "controls"));
+  set controls(Controls controls) => this["controls"] = controls;
 }
 
 class StreetViewPanoramaOptions extends js.JsObject {
