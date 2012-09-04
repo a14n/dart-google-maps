@@ -31,6 +31,7 @@ class JsObject implements IsJsObject {
   void operator []=(String name, Object value) { setProperty(this, name, value); }
 
   Object callJs(String name, [List args]) => callFunction(this, name, args);
+  JsRef getJsRef(String name) => getPropertyRef(this, name);
 }
 
 typedef Object CallbackFunction(List args);
@@ -39,22 +40,8 @@ typedef Object CallbackFunction(List args);
 // constant/enum handling
 //-----------------------
 
-Map<Hashable, JsRef> _constantRefs;
-JsRef getConstRef(IsJsConst isJsConst) {
-  if (_constantRefs === null){
-    _constantRefs = new Map();
-  }
-  if (!_constantRefs.containsKey(isJsConst)){
-    _constantRefs[isJsConst] = getRef(isJsConst.jsName);
-  }
-  return _constantRefs[isJsConst];
-}
-
-interface IsJsConst extends IsJsObject, Hashable {
-  String get jsName();
-}
-
-class JsConst implements IsJsConst{
+class JsConst implements IsJsObject, Hashable {
+  static Map<Hashable, JsRef> _constRefs;
   static Object findIn(Object o, List elements) {
     final matchingElements = elements.filter((e){ return areEquals(e, o); });
     if (matchingElements.length === 1) {
@@ -65,10 +52,21 @@ class JsConst implements IsJsConst{
   }
 
   final String jsName;
+
   const JsConst.fromJsName(String this.jsName);
-  
-  JsRef get jsRef() => getConstRef(this);
-  int hashCode() => jsName.hashCode();  
+
+  int hashCode() => jsName.hashCode();
+
+  JsRef get jsRef()  {
+    if (_constRefs === null){
+      _constRefs = new Map();
+    }
+    if (!_constRefs.containsKey(this)){
+      _constRefs[this] = getPropertyRef(null, jsName);
+    }
+    return _constRefs[this];
+  }
+  Object get value() => getProperty(null, jsName);
 }
 
 
@@ -256,13 +254,12 @@ void _ensureRegistered() {
     var jsId      = query.jsId;
     var name      = query.name;
     var args      = deserialize(query.arguments || null);
+    var returnRef = query.returnRef;
 
     // evaluate
     var result = null;
     if (type === "new") {
       result = createNew(name, args);      
-    } else if (type === "ref") {
-      result = getObject(name);      
     } else if (type === "function") {
       if (jsId !== null) {
         var obj = _objects[jsId];
@@ -271,13 +268,17 @@ void _ensureRegistered() {
       } else {
         var functionObject = getObject(name);
         result = functionObject.apply(null, args);
-      }      
+      }
     } else if (type === "set") {
       var obj = _objects[jsId];
       obj[name] = args[0];
     } else if (type === "get") {
-      var obj = _objects[jsId];
-      result = obj[name];
+      if (jsId !== null) {
+        var obj = _objects[jsId];
+        result = obj[name];
+      } else {
+        result = getObject(name);
+      }
     } else if (type === "areEquals") {
       var o1 = args[0];
       var o2 = args[1];
@@ -290,7 +291,7 @@ void _ensureRegistered() {
 
     // prepare answer
     var answer;
-    if (type === "ref") {
+    if (returnRef) {
       answer = { type: "jsObject", value: addJsObject(result) };
     } else {
       answer = serialize(result);
@@ -333,13 +334,6 @@ JsRef newInstance(String name, [List args]) {
   });
 }
 
-JsRef getRef(String name) {
-  return _call(void _(Map jsQuery) {
-    jsQuery["type"] = "ref";
-    jsQuery["name"] = name;
-  });
-}
-
 Object callFunction(IsJsObject isJsObject, String name, [List args]) {
   return _call(void _(jsQuery) {
     jsQuery["type"] = "function";
@@ -358,12 +352,21 @@ void setProperty(IsJsObject isJsObject, String name, Object value) {
   });
 }
 
-Object getProperty(IsJsObject isJsObject, String name) {
+Object _getProperty(IsJsObject isJsObject, String name, bool returnRef) {
   return _call(void _(jsQuery) {
-    jsQuery["type"] = "get";
-    jsQuery["jsId"] = isJsObject.jsRef._jsId;
-    jsQuery["name"] = name;
+    jsQuery["type"]      = "get";
+    jsQuery["jsId"]      = isJsObject!=null ? isJsObject.jsRef._jsId : null;
+    jsQuery["name"]      = name;
+    jsQuery["returnRef"] = returnRef;
   });
+}
+
+Object getProperty(IsJsObject isJsObject, String name) {
+  return _getProperty(isJsObject, name, false);
+}
+
+JsRef getPropertyRef(IsJsObject isJsObject, String name) {
+  return _getProperty(isJsObject, name, true);
 }
 
 bool areEquals(Object o1, Object o2) {
