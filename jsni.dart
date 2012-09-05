@@ -183,7 +183,19 @@ void _ensureRegistered() {
     } else if (o.type === "jsObject") {
       return _objects[o.value];
     } else if (o.type === "DomElement") {
-      return document.getElementById(o.value);
+      var result = document.getElementById(o.value);
+      if (!o.attached) {
+        // element wasn't attached, we detach it
+        var top = result;
+        while (top.parentNode !== document.documentElement) {
+          top = top.parentNode;
+        }
+        document.documentElement.removeChild(top);
+      }
+      if (o.idGenerated) {
+        result.id = null;
+      }
+      return result;
     } else if (o.type === "callback") {
       return function() {
         var params = [];
@@ -223,10 +235,24 @@ void _ensureRegistered() {
       }
       return { type: "list", value: list };
     } else if (isElement(o)) {
-      if (o.id === null || o.id.length === 0) {
+      var idGenerated = o.id === null || o.id.length === 0;
+      if (idGenerated) {
         o.id = "tmp-js-to-dart-" + _tmpDomId++;
       }
-      return { type: "DomElement", value: o.id };
+      var attached = document.documentElement.contains(o);
+      if(!attached){
+        // hack : o must be attached to dom to be retrieve in dart part.
+        // Attach top parent of "o". We do attach top parent to avoid loose of parent when appending o directly to document
+        var top = o;
+        while (top.parent != null) {
+          top = top.parent;
+        }
+        document.documentElement.appendChild(top);
+      }
+      return { "type" : "DomElement", 
+               "value" : o.id, 
+               "attached" : attached, 
+               "idGenerated" : idGenerated }; 
     } else {
       return { type: "jsObject", value: addJsObject(o) };
     }
@@ -383,42 +409,53 @@ bool isInstanceOf(Object o1, String type) {
   });
 }
 
-Object _serialize(Object element) {
-  if (element === null) {
-    return { "type" : "null", "value" : element };
-  } else if (element is num) {
-    return { "type" : "number", "value" : element };
-  } else if (element is String) {
-    return { "type" : "string", "value" : element };
-  } else if (element is bool) {
-    return { "type" : "boolean", "value" : element };
-  } else if (element is Date) {
-    return { "type" : "date", "value" : element.millisecondsSinceEpoch };
-  } else if (element is List) {
-    return { "type" : "list", "value" : element.map(_serialize) };
-  } else if (element is IsJsObject) {
-    return { "type" : "jsObject", "value" : element.jsRef._jsId };
-  } else if (element is JsRef) {
-    return { "type" : "jsObject", "value" : element._jsId };
-  } else if (element is Element) {
-    if(!document.documentElement.contains(element)){
-      print("dom element will not be visible if it is not attached to document");
+Object _serialize(Object o) {
+  if (o === null) {
+    return { "type" : "null", "value" : o };
+  } else if (o is num) {
+    return { "type" : "number", "value" : o };
+  } else if (o is String) {
+    return { "type" : "string", "value" : o };
+  } else if (o is bool) {
+    return { "type" : "boolean", "value" : o };
+  } else if (o is Date) {
+    return { "type" : "date", "value" : o.millisecondsSinceEpoch };
+  } else if (o is List) {
+    return { "type" : "list", "value" : o.map(_serialize) };
+  } else if (o is IsJsObject) {
+    return { "type" : "jsObject", "value" : o.jsRef._jsId };
+  } else if (o is JsRef) {
+    return { "type" : "jsObject", "value" : o._jsId };
+  } else if (o is Element) {
+    final idGenerated = o.id === null || o.id.isEmpty();
+    if (idGenerated) {
+      o.id = "tmp-dart-to-js-${_tmpDomId++}";
     }
-    if (element.id === null || element.id.isEmpty()) {
-      element.id = "dart-to-js-${_tmpDomId++}";
+    final attached = document.documentElement.contains(o);
+    if(!attached){
+      // hack : element must be attached to dom to be retrieve in js part.
+      // Attach top parent of "o". We do attach top parent to avoid loose of parent when appending o directly to document
+      var top = o;
+      while (top.parent != null) {
+        top = top.parent;
+      }
+      document.documentElement.elements.add(top);
     }
-    return { "type" : "DomElement", "value" : element.id };
-  } else if (element is CallbackFunction) {
+    return { "type" : "DomElement", 
+             "value" : o.id, 
+             "attached" : attached, 
+             "idGenerated" : idGenerated };
+  } else if (o is CallbackFunction) {
     final callbackId = _callbackId++;
-    _callbacks[callbackId] = new _Callback(callbackId, element);
+    _callbacks[callbackId] = new _Callback(callbackId, o);
     return { "type" : "callback", "value" : callbackId };
   } else {
     throw new UnsupportedOperationException("type is not supported");
   }
 }
-Object _deserialize(Map answer) {
-  final String type = answer["type"];
-  final value = answer["value"];
+Object _deserialize(Map o) {
+  final String type = o["type"];
+  final value = o["value"];
   if (type == "null") {
     return null;
   } else if (type == "number") {
@@ -434,6 +471,21 @@ Object _deserialize(Map answer) {
   } else if (type == "jsObject") {
     return new JsRef._(value);
   } else if (type == "DomElement") {
+    final result = document.$dom_getElementById(value);
+    if (!o["attached"]) {
+      // o wasn't attached, we detach it
+      var top = result;
+      while (top.parent !== document.documentElement) {
+        top = top.parent;
+      }
+      document.documentElement.$dom_removeChild(top);
+    }
+    if (o["idGenerated"]) {
+      result.id = null;
+    }
+    return result;
+    
+    
     return document.$dom_getElementById(value);
   } else {
     throw new UnsupportedOperationException("type is not supported");
