@@ -1315,61 +1315,118 @@ class StyledMapTypeOptions extends js.JsObject {
 }
 
 class MapTypeStyle extends js.JsObject {
-  set elementType(MapTypeStyleElementType elementType) => this["elementType"] = elementType;
-  set featureType(MapTypeStyleFeatureType featureType) => this["featureType"] = featureType;
+  set elementType(MapTypeStyleElementType elementType) => this["elementType"] = elementType.value;
+  set featureType(MapTypeStyleFeatureType featureType) => this["featureType"] = featureType.value;
   set stylers(List<MapTypeStyler> stylers) => this["stylers"] = stylers;
 }
 
-class MapTypeStyleFeatureType extends js.JsConst {
-  static const String _TYPE_NAME = "google.maps.MapTypeStyleFeatureType";
+class MapTypeStyleFeatureType {
+  static const MapTypeStyleFeatureType ADMINISTRATIVE = const MapTypeStyleFeatureType._("administrative");
+  static const MapTypeStyleFeatureType ADMINISTRATIVE_COUNTRY = const MapTypeStyleFeatureType._("administrative.country");
+  static const MapTypeStyleFeatureType ADMINISTRATIVE_LAND_PARCEL = const MapTypeStyleFeatureType._("administrative.land_parcel");
+  static const MapTypeStyleFeatureType ADMINISTRATIVE_LOCALITY = const MapTypeStyleFeatureType._("administrative.locality");
+  static const MapTypeStyleFeatureType ADMINISTRATIVE_NEIGHBORHOOD = const MapTypeStyleFeatureType._("administrative.neighborhood");
+  static const MapTypeStyleFeatureType ADMINISTRATIVE_PROVINCE = const MapTypeStyleFeatureType._("administrative.province");
+  static const MapTypeStyleFeatureType ALL = const MapTypeStyleFeatureType._("all");
+  static const MapTypeStyleFeatureType LANDSCAPE = const MapTypeStyleFeatureType._("landscape");
+  static const MapTypeStyleFeatureType LANDSCAPE_MAN_MADE = const MapTypeStyleFeatureType._("landscape.man_made");
+  static const MapTypeStyleFeatureType LANDSCAPE_NATURAL = const MapTypeStyleFeatureType._("landscape.natural");
+  static const MapTypeStyleFeatureType POI = const MapTypeStyleFeatureType._("poi");
+  static const MapTypeStyleFeatureType POI_ATTRACTION = const MapTypeStyleFeatureType._("poi.attraction");
+  static const MapTypeStyleFeatureType POI_BUSINESS = const MapTypeStyleFeatureType._("poi.business");
+  static const MapTypeStyleFeatureType POI_GOVERNMENT = const MapTypeStyleFeatureType._("poi.government");
+  static const MapTypeStyleFeatureType POI_MEDICAL = const MapTypeStyleFeatureType._("poi.medical");
+  static const MapTypeStyleFeatureType POI_PARK = const MapTypeStyleFeatureType._("poi.park");
+  static const MapTypeStyleFeatureType POI_PLACE_OF_WORSHIP = const MapTypeStyleFeatureType._("poi.place_of_worship");
+  static const MapTypeStyleFeatureType POI_SCHOOL = const MapTypeStyleFeatureType._("poi.school");
+  static const MapTypeStyleFeatureType POI_SPORTS_COMPLEX = const MapTypeStyleFeatureType._("poi.sports_complex");
+  static const MapTypeStyleFeatureType ROAD = const MapTypeStyleFeatureType._("road");
+  static const MapTypeStyleFeatureType ROAD_ARTERIAL = const MapTypeStyleFeatureType._("road.arterial");
+  static const MapTypeStyleFeatureType ROAD_HIGHWAY = const MapTypeStyleFeatureType._("road.highway");
+  static const MapTypeStyleFeatureType ROAD_HIGHWAY_CONTROLLED_ACCESS = const MapTypeStyleFeatureType._("road.highway.controlled_access");
+  static const MapTypeStyleFeatureType ROAD_LOCAL = const MapTypeStyleFeatureType._("road.local");
+  static const MapTypeStyleFeatureType TRANSIT = const MapTypeStyleFeatureType._("transit");
+  static const MapTypeStyleFeatureType TRANSIT_LINE = const MapTypeStyleFeatureType._("transit.line");
+  static const MapTypeStyleFeatureType TRANSIT_STATION = const MapTypeStyleFeatureType._("transit.station");
+  static const MapTypeStyleFeatureType TRANSIT_STATION_AIRPORT = const MapTypeStyleFeatureType._("transit.station.airport");
+  static const MapTypeStyleFeatureType TRANSIT_STATION_BUS = const MapTypeStyleFeatureType._("transit.station.bus");
+  static const MapTypeStyleFeatureType TRANSIT_STATION_RAIL = const MapTypeStyleFeatureType._("transit.station.rail");
+  static const MapTypeStyleFeatureType WATER = const MapTypeStyleFeatureType._("water");
 
-  static const MapTypeStyleFeatureType ADMINISTRATIVE = const MapTypeStyleFeatureType._("${_TYPE_NAME}.administrative");
-  static const MapTypeStyleFeatureType ADMINISTRATIVE_COUNTRY = const MapTypeStyleFeatureType._("${_TYPE_NAME}.administrative.country");
-  static const MapTypeStyleFeatureType ADMINISTRATIVE_LAND_PARCEL = const MapTypeStyleFeatureType._("${_TYPE_NAME}.administrative.land_parcel");
-  static const MapTypeStyleFeatureType ADMINISTRATIVE_LOCALITY = const MapTypeStyleFeatureType._("${_TYPE_NAME}.administrative.locality");
-  static const MapTypeStyleFeatureType ADMINISTRATIVE_NEIGHBORHOOD = const MapTypeStyleFeatureType._("${_TYPE_NAME}.administrative.neighborhood");
-  static const MapTypeStyleFeatureType ADMINISTRATIVE_PROVINCE = const MapTypeStyleFeatureType._("${_TYPE_NAME}.administrative.province");
-  static const MapTypeStyleFeatureType ALL = const MapTypeStyleFeatureType._("${_TYPE_NAME}.all");
-  static const MapTypeStyleFeatureType LANDSCAPE = const MapTypeStyleFeatureType._("${_TYPE_NAME}.landscape");
-  static const MapTypeStyleFeatureType LANDSCAPE_MAN_MADE = const MapTypeStyleFeatureType._("${_TYPE_NAME}.landscape.man_made");
-  static const MapTypeStyleFeatureType LANDSCAPE_NATURAL = const MapTypeStyleFeatureType._("${_TYPE_NAME}.landscape.natural");
-  static const MapTypeStyleFeatureType POI = const MapTypeStyleFeatureType._("${_TYPE_NAME}.poi");
-  static const MapTypeStyleFeatureType POI_ATTRACTION = const MapTypeStyleFeatureType._("${_TYPE_NAME}.poi.attraction");
-  static const MapTypeStyleFeatureType POI_BUSINESS = const MapTypeStyleFeatureType._("${_TYPE_NAME}.poi.business");
-  static const MapTypeStyleFeatureType POI_GOVERNMENT = const MapTypeStyleFeatureType._("${_TYPE_NAME}.poi.government");
-  static const MapTypeStyleFeatureType POI_MEDICAL = const MapTypeStyleFeatureType._("${_TYPE_NAME}.poi.medical");
-  static const MapTypeStyleFeatureType POI_PARK = const MapTypeStyleFeatureType._("${_TYPE_NAME}.poi.park");
-  static const MapTypeStyleFeatureType POI_PLACE_OF_WORSHIP = const MapTypeStyleFeatureType._("${_TYPE_NAME}.poi.place_of_worship");
-  static const MapTypeStyleFeatureType POI_SCHOOL = const MapTypeStyleFeatureType._("${_TYPE_NAME}.poi.school");
-  static const MapTypeStyleFeatureType POI_SPORTS_COMPLEX = const MapTypeStyleFeatureType._("${_TYPE_NAME}.poi.sports_complex");
-  static const MapTypeStyleFeatureType ROAD = const MapTypeStyleFeatureType._("${_TYPE_NAME}.road");
-  static const MapTypeStyleFeatureType ROAD_ARTERIAL = const MapTypeStyleFeatureType._("${_TYPE_NAME}.road.arterial");
-  static const MapTypeStyleFeatureType ROAD_HIGHWAY = const MapTypeStyleFeatureType._("${_TYPE_NAME}.road.highway");
-  static const MapTypeStyleFeatureType ROAD_HIGHWAY_CONTROLLED_ACCESS = const MapTypeStyleFeatureType._("${_TYPE_NAME}.road.highway.controlled_access");
-  static const MapTypeStyleFeatureType ROAD_LOCAL = const MapTypeStyleFeatureType._("${_TYPE_NAME}.road.local");
-  static const MapTypeStyleFeatureType TRANSIT = const MapTypeStyleFeatureType._("${_TYPE_NAME}.transit");
-  static const MapTypeStyleFeatureType TRANSIT_LINE = const MapTypeStyleFeatureType._("${_TYPE_NAME}.transit.line");
-  static const MapTypeStyleFeatureType TRANSIT_STATION = const MapTypeStyleFeatureType._("${_TYPE_NAME}.transit.station");
-  static const MapTypeStyleFeatureType TRANSIT_STATION_AIRPORT = const MapTypeStyleFeatureType._("${_TYPE_NAME}.transit.station.airport");
-  static const MapTypeStyleFeatureType TRANSIT_STATION_BUS = const MapTypeStyleFeatureType._("${_TYPE_NAME}.transit.station.bus");
-  static const MapTypeStyleFeatureType TRANSIT_STATION_RAIL = const MapTypeStyleFeatureType._("${_TYPE_NAME}.transit.station.rail");
-  static const MapTypeStyleFeatureType WATER = const MapTypeStyleFeatureType._("${_TYPE_NAME}.water");
+  final String value;
 
-  static MapTypeStyleFeatureType find(Object o) { return js.JsConst.findIn(o, [ADMINISTRATIVE, ADMINISTRATIVE_COUNTRY, ADMINISTRATIVE_LAND_PARCEL, ADMINISTRATIVE_LOCALITY, ADMINISTRATIVE_NEIGHBORHOOD, ADMINISTRATIVE_PROVINCE, ALL, LANDSCAPE, LANDSCAPE_MAN_MADE, LANDSCAPE_NATURAL, POI, POI_ATTRACTION, POI_BUSINESS, POI_GOVERNMENT, POI_MEDICAL, POI_PARK, POI_PLACE_OF_WORSHIP, POI_SCHOOL, POI_SPORTS_COMPLEX, ROAD, ROAD_ARTERIAL, ROAD_HIGHWAY, ROAD_HIGHWAY_CONTROLLED_ACCESS, ROAD_LOCAL, TRANSIT, TRANSIT_LINE, TRANSIT_STATION, TRANSIT_STATION_AIRPORT, TRANSIT_STATION_BUS, TRANSIT_STATION_RAIL, WATER]); }
-
-  const MapTypeStyleFeatureType._(String jsName) : super.fromJsName(jsName);
+  const MapTypeStyleFeatureType._(String this.value);
 }
 
-class MapTypeStyleElementType extends js.JsConst {
+class MapTypeStyleElementType {
+  static const MapTypeStyleElementType ALL = const MapTypeStyleElementType._("all");
+  static const MapTypeStyleElementType GEOMETRY = const MapTypeStyleElementType._("geometry");
+  static const MapTypeStyleElementType LABELS = const MapTypeStyleElementType._("labels");
+
+  final String value;
+
+  const MapTypeStyleElementType._(String this.value);
+}
+
+// this class should have been used but "google.maps.MapTypeStyleFeatureType" and "google.maps.MapTypeStyleElementType" objects does not exist as describe in doc
+class _MapTypeStyle extends js.JsObject {
+  set elementType(_MapTypeStyleElementType elementType) => this["elementType"] = elementType;
+  set featureType(_MapTypeStyleFeatureType featureType) => this["featureType"] = featureType;
+  set stylers(List<MapTypeStyler> stylers) => this["stylers"] = stylers;
+}
+
+// this class should have been used but "google.maps.MapTypeStyleFeatureType" object does not exist as describe in doc
+class _MapTypeStyleFeatureType extends js.JsConst {
+  static const String _TYPE_NAME = "google.maps.MapTypeStyleFeatureType";
+
+  static const _MapTypeStyleFeatureType ADMINISTRATIVE = const _MapTypeStyleFeatureType._("${_TYPE_NAME}.administrative");
+  static const _MapTypeStyleFeatureType ADMINISTRATIVE_COUNTRY = const _MapTypeStyleFeatureType._("${_TYPE_NAME}.administrative.country");
+  static const _MapTypeStyleFeatureType ADMINISTRATIVE_LAND_PARCEL = const _MapTypeStyleFeatureType._("${_TYPE_NAME}.administrative.land_parcel");
+  static const _MapTypeStyleFeatureType ADMINISTRATIVE_LOCALITY = const _MapTypeStyleFeatureType._("${_TYPE_NAME}.administrative.locality");
+  static const _MapTypeStyleFeatureType ADMINISTRATIVE_NEIGHBORHOOD = const _MapTypeStyleFeatureType._("${_TYPE_NAME}.administrative.neighborhood");
+  static const _MapTypeStyleFeatureType ADMINISTRATIVE_PROVINCE = const _MapTypeStyleFeatureType._("${_TYPE_NAME}.administrative.province");
+  static const _MapTypeStyleFeatureType ALL = const _MapTypeStyleFeatureType._("${_TYPE_NAME}.all");
+  static const _MapTypeStyleFeatureType LANDSCAPE = const _MapTypeStyleFeatureType._("${_TYPE_NAME}.landscape");
+  static const _MapTypeStyleFeatureType LANDSCAPE_MAN_MADE = const _MapTypeStyleFeatureType._("${_TYPE_NAME}.landscape.man_made");
+  static const _MapTypeStyleFeatureType LANDSCAPE_NATURAL = const _MapTypeStyleFeatureType._("${_TYPE_NAME}.landscape.natural");
+  static const _MapTypeStyleFeatureType POI = const _MapTypeStyleFeatureType._("${_TYPE_NAME}.poi");
+  static const _MapTypeStyleFeatureType POI_ATTRACTION = const _MapTypeStyleFeatureType._("${_TYPE_NAME}.poi.attraction");
+  static const _MapTypeStyleFeatureType POI_BUSINESS = const _MapTypeStyleFeatureType._("${_TYPE_NAME}.poi.business");
+  static const _MapTypeStyleFeatureType POI_GOVERNMENT = const _MapTypeStyleFeatureType._("${_TYPE_NAME}.poi.government");
+  static const _MapTypeStyleFeatureType POI_MEDICAL = const _MapTypeStyleFeatureType._("${_TYPE_NAME}.poi.medical");
+  static const _MapTypeStyleFeatureType POI_PARK = const _MapTypeStyleFeatureType._("${_TYPE_NAME}.poi.park");
+  static const _MapTypeStyleFeatureType POI_PLACE_OF_WORSHIP = const _MapTypeStyleFeatureType._("${_TYPE_NAME}.poi.place_of_worship");
+  static const _MapTypeStyleFeatureType POI_SCHOOL = const _MapTypeStyleFeatureType._("${_TYPE_NAME}.poi.school");
+  static const _MapTypeStyleFeatureType POI_SPORTS_COMPLEX = const _MapTypeStyleFeatureType._("${_TYPE_NAME}.poi.sports_complex");
+  static const _MapTypeStyleFeatureType ROAD = const _MapTypeStyleFeatureType._("${_TYPE_NAME}.road");
+  static const _MapTypeStyleFeatureType ROAD_ARTERIAL = const _MapTypeStyleFeatureType._("${_TYPE_NAME}.road.arterial");
+  static const _MapTypeStyleFeatureType ROAD_HIGHWAY = const _MapTypeStyleFeatureType._("${_TYPE_NAME}.road.highway");
+  static const _MapTypeStyleFeatureType ROAD_HIGHWAY_CONTROLLED_ACCESS = const _MapTypeStyleFeatureType._("${_TYPE_NAME}.road.highway.controlled_access");
+  static const _MapTypeStyleFeatureType ROAD_LOCAL = const _MapTypeStyleFeatureType._("${_TYPE_NAME}.road.local");
+  static const _MapTypeStyleFeatureType TRANSIT = const _MapTypeStyleFeatureType._("${_TYPE_NAME}.transit");
+  static const _MapTypeStyleFeatureType TRANSIT_LINE = const _MapTypeStyleFeatureType._("${_TYPE_NAME}.transit.line");
+  static const _MapTypeStyleFeatureType TRANSIT_STATION = const _MapTypeStyleFeatureType._("${_TYPE_NAME}.transit.station");
+  static const _MapTypeStyleFeatureType TRANSIT_STATION_AIRPORT = const _MapTypeStyleFeatureType._("${_TYPE_NAME}.transit.station.airport");
+  static const _MapTypeStyleFeatureType TRANSIT_STATION_BUS = const _MapTypeStyleFeatureType._("${_TYPE_NAME}.transit.station.bus");
+  static const _MapTypeStyleFeatureType TRANSIT_STATION_RAIL = const _MapTypeStyleFeatureType._("${_TYPE_NAME}.transit.station.rail");
+  static const _MapTypeStyleFeatureType WATER = const _MapTypeStyleFeatureType._("${_TYPE_NAME}.water");
+
+  static _MapTypeStyleFeatureType find(Object o) { return js.JsConst.findIn(o, [ADMINISTRATIVE, ADMINISTRATIVE_COUNTRY, ADMINISTRATIVE_LAND_PARCEL, ADMINISTRATIVE_LOCALITY, ADMINISTRATIVE_NEIGHBORHOOD, ADMINISTRATIVE_PROVINCE, ALL, LANDSCAPE, LANDSCAPE_MAN_MADE, LANDSCAPE_NATURAL, POI, POI_ATTRACTION, POI_BUSINESS, POI_GOVERNMENT, POI_MEDICAL, POI_PARK, POI_PLACE_OF_WORSHIP, POI_SCHOOL, POI_SPORTS_COMPLEX, ROAD, ROAD_ARTERIAL, ROAD_HIGHWAY, ROAD_HIGHWAY_CONTROLLED_ACCESS, ROAD_LOCAL, TRANSIT, TRANSIT_LINE, TRANSIT_STATION, TRANSIT_STATION_AIRPORT, TRANSIT_STATION_BUS, TRANSIT_STATION_RAIL, WATER]); }
+
+  const _MapTypeStyleFeatureType._(String jsName) : super.fromJsName(jsName);
+}
+
+// this class should have been used but "google.maps.MapTypeStyleElementType" object does not exist as describe in doc
+class _MapTypeStyleElementType extends js.JsConst {
   static const String _TYPE_NAME = "google.maps.MapTypeStyleElementType";
 
-  static const MapTypeStyleElementType ALL = const MapTypeStyleElementType._("${_TYPE_NAME}.all");
-  static const MapTypeStyleElementType GEOMETRY = const MapTypeStyleElementType._("${_TYPE_NAME}.geometry");
-  static const MapTypeStyleElementType LABELS = const MapTypeStyleElementType._("${_TYPE_NAME}.labels");
+  static const _MapTypeStyleElementType ALL = const _MapTypeStyleElementType._("${_TYPE_NAME}.all");
+  static const _MapTypeStyleElementType GEOMETRY = const _MapTypeStyleElementType._("${_TYPE_NAME}.geometry");
+  static const _MapTypeStyleElementType LABELS = const _MapTypeStyleElementType._("${_TYPE_NAME}.labels");
 
-  static MapTypeStyleElementType find(Object o) { return js.JsConst.findIn(o, [ALL, GEOMETRY, LABELS]); }
+  static _MapTypeStyleElementType find(Object o) { return js.JsConst.findIn(o, [ALL, GEOMETRY, LABELS]); }
 
-  const MapTypeStyleElementType._(String jsName) : super.fromJsName(jsName);
+  const _MapTypeStyleElementType._(String jsName) : super.fromJsName(jsName);
 }
 
 class MapTypeStyler extends js.JsObject {
