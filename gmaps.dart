@@ -16,7 +16,15 @@ class GMap extends MVCObject {
   LatLng getCenter() => new LatLng.fromJsRef(callJs("getCenter"));
   html.Node getDiv() => callJs("getDiv");
   num getHeading() => callJs("getHeading");
-  MapTypeId getMapTypeId() => MapTypeId.find(callJs("getMapTypeId"));
+  Object getMapTypeId() {
+    final result = callJs("getMapTypeId");
+    final mapTypeId = MapTypeId.find(result);
+    if ( mapTypeId !== null ) {
+      return mapTypeId;
+    } else {
+      return result;
+    }
+  }
   Projection getProjection() => new Projection.fromJsRef(callJs("getProjection"));
   StreetViewPanorama getStreetView() => new StreetViewPanorama.fromJsRef(callJs("getStreetView"));
   num getTilt() => callJs("getTilt");
@@ -26,7 +34,13 @@ class GMap extends MVCObject {
   void panToBounds(LatLngBounds latLngBounds) { callJs("panToBounds", [latLngBounds]); }
   void setCenter(LatLng latLng) { callJs("setCenter", [latLng]); }
   void setHeading(num heading) { callJs("setHeading", [heading]); }
-  void setMapTypeId(MapTypeId mapTypeId) { callJs("setMapTypeId", [mapTypeId]); }
+  void setMapTypeId(Object mapTypeId) {
+    if (mapTypeId is String || mapTypeId is MapTypeId) {
+      callJs("setMapTypeId", [mapTypeId]);
+    } else {
+      throw new IllegalArgumentException(mapTypeId);
+    }
+  }
   void setOptions(MapOptions options) { callJs("setOptions", [options]); }
   void setStreetView(StreetViewPanorama panorama) { callJs("setStreetView", [panorama]); }
   void setTilt(num tilt) { callJs("setTilt", [tilt]); }
@@ -98,7 +112,12 @@ class MapTypeId extends js.JsConst {
 }
 
 class MapTypeControlOptions extends js.JsObject {
-  set mapTypeIds(List<MapTypeId> mapTypeIds) => this["mapTypeIds"] = mapTypeIds;
+  set mapTypeIds(List<Object> mapTypeIds) {
+    if (!mapTypeIds.filter((e)=> !(e is String || e is MapTypeId)).isEmpty()) {
+      throw new IllegalArgumentException("some elements are not String or MapTypeId");
+    }
+    this["mapTypeIds"] = mapTypeIds;
+  }
   set position(ControlPosition position) => this["position"] = position;
   set style(MapTypeControlStyle style) => this["style"] = style;
 }
@@ -1239,6 +1258,7 @@ class DistanceMatrixElementStatus extends js.JsConst {
 class MapType extends js.JsObject {
   MapType() : super();
   MapType.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  MapType.newInstance(String objectName, [List args]) : super.newInstance(objectName, args);
 
   html.Node getTile(Point tileCoord, num zoom, html.Document ownerDocument) => callJs("getTile", [tileCoord, zoom, ownerDocument]);
   html.Node releaseTile(html.Node tile) => callJs("releaseTile", [tile]);
@@ -1276,7 +1296,7 @@ class Projection extends js.JsObject {
   LatLng fromPointToLatLng(Point pixel, [bool nowrap]) => new LatLng.fromJsRef(callJs("fromPointToLatLng", [pixel, nowrap]));
 }
 
-class ImageMapType extends MVCObject {
+class ImageMapType extends MapType {
   static const String _TYPE_NAME = "google.maps.ImageMapType";
 
   ImageMapType(ImageMapTypeOptions opts) : super.newInstance(_TYPE_NAME, [opts]);
@@ -1301,7 +1321,7 @@ class ImageMapTypeOptions extends js.JsObject {
   set tileSize(Size tileSize) => this["tileSize"] = tileSize;
 }
 
-class StyledMapType extends js.JsObject {
+class StyledMapType extends MapType {
   static const String _TYPE_NAME = "google.maps.StyledMapType";
 
   StyledMapType(List<MapTypeStyle> styles, [StyledMapTypeOptions options]) : super.newInstance(_TYPE_NAME, [styles, options]);
