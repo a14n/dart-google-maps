@@ -1435,7 +1435,17 @@ class MapTypeStyler extends js.JsObject {
   set invert_lightness(bool invert_lightness) => this["invert_lightness"] = invert_lightness;
   set lightness(num lightness) => this["lightness"] = lightness;
   set saturation(num saturation) => this["saturation"] = saturation;
-  set visibility(String visibility) => this["visibility"] = visibility;
+  set visibility(MapTypeStylerVisibility visibility) => this["visibility"] = visibility.value;
+}
+
+class MapTypeStylerVisibility {
+  static const MapTypeStylerVisibility ON = const MapTypeStylerVisibility._("on");
+  static const MapTypeStylerVisibility OFF = const MapTypeStylerVisibility._("off");
+  static const MapTypeStylerVisibility SIMPLIFED = const MapTypeStylerVisibility._("simplifed");
+
+  final String value;
+
+  const MapTypeStylerVisibility._(String this.value);
 }
 
 class BicyclingLayer extends MVCObject {
