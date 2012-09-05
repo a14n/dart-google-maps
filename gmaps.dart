@@ -264,7 +264,7 @@ class Marker extends MVCObject {
     }
   }
   void setMap(Object map) { 
-    if (map is GMap || map is StreetViewPanorama) {
+    if (map === null || map is GMap || map is StreetViewPanorama) {
       callJs("setMap", [map]);
     } else {
       throw new IllegalArgumentException(map);
@@ -668,7 +668,7 @@ class OverlayView extends MVCObject {
   void onAdd() { callJs("onAdd"); }
   void onRemove() { callJs("onRemove"); }
   void setMap(Object map) { 
-    if (map is GMap || map is StreetViewPanorama) {
+    if (map === null || map is GMap || map is StreetViewPanorama) {
       callJs("setMap", [map]);
     } else {
       throw new IllegalArgumentException(map);
