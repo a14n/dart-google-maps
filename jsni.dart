@@ -193,7 +193,7 @@ void _ensureRegistered() {
         document.documentElement.removeChild(top);
       }
       if (o.idGenerated) {
-        result.id = null;
+        result.id = "";
       }
       return result;
     } else if (o.type === "callback") {
@@ -489,7 +489,7 @@ Object _deserialize(Map o) {
       document.documentElement.$dom_removeChild(top);
     }
     if (o["idGenerated"]) {
-      result.id = null;
+      result.id = "";
     }
     return result;
     
