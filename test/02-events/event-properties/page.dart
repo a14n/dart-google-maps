@@ -4,18 +4,20 @@
 
 void main() {
   var myLatLng = new gmaps.LatLng(-25.363882, 131.044922);
-  final mapOptions = new gmaps.MapOptions();
-  mapOptions.zoom = 4;
-  mapOptions.center = myLatLng;
-  mapOptions.mapTypeId = gmaps.MapTypeId.ROADMAP;
+  final mapOptions = new gmaps.MapOptions()
+    ..zoom = 4
+    ..center = myLatLng
+    ..mapTypeId = gmaps.MapTypeId.ROADMAP
+  ;
 
   final map = new gmaps.GMap(query("#map_canvas"), mapOptions);
 
-  final infowindowOptions = new gmaps.InfoWindowOptions();
-  infowindowOptions.content = "Change the zoom level";
-  infowindowOptions.position = myLatLng;
-  final infowindow = new gmaps.InfoWindow(infowindowOptions);
+  final infowindow = new gmaps.InfoWindow(new gmaps.InfoWindowOptions()
+    ..content = "Change the zoom level"
+    ..position = myLatLng
+  );
   infowindow.open(map);
+
   gmaps.Events.addListener(map, 'zoom_changed', (e) {
     var zoomLevel = map.getZoom();
     map.setCenter(myLatLng);

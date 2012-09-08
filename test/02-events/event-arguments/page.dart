@@ -2,10 +2,11 @@
 #import('../../../gmaps.dart', prefix:'gmaps');
 
 void main() {
-  final mapOptions = new gmaps.MapOptions();
-  mapOptions.zoom = 4;
-  mapOptions.center = new gmaps.LatLng(-25.363882,131.044922);
-  mapOptions.mapTypeId = gmaps.MapTypeId.ROADMAP;
+  final mapOptions = new gmaps.MapOptions()
+    ..zoom = 4
+    ..center = new gmaps.LatLng(-25.363882,131.044922)
+    ..mapTypeId = gmaps.MapTypeId.ROADMAP
+  ;
   final map = new gmaps.GMap(query("#map_canvas"), mapOptions);
 
   gmaps.Events.addListener(map, 'click', (e) {
@@ -14,11 +15,11 @@ void main() {
   });
 }
 
-void placeMarker(gmaps.LatLng location, gmaps.GMap map) {
-  final markerOptions = new gmaps.MarkerOptions();
-  markerOptions.position = location;
-  markerOptions.map = map;
-  var marker = new gmaps.Marker(markerOptions);
+void placeMarker(gmaps.LatLng position, gmaps.GMap map) {
+  var marker = new gmaps.Marker(new gmaps.MarkerOptions()
+    ..position = position
+    ..map = map
+  );
 
-  map.setCenter(location);
+  map.panTo(position);
 }
