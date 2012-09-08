@@ -43,7 +43,7 @@ typedef Object CallbackFunction(List args);
 class JsConst implements IsJsObject, Hashable {
   static Map<Hashable, JsRef> _constRefs;
   static Object findIn(Object o, List elements) {
-    final matchingElements = elements.filter((e){ return areEquals(e, o); });
+    final matchingElements = elements.filter((e) => areEquals(e, o));
     if (matchingElements.length === 1) {
       return matchingElements.iterator().next();
     } else {
@@ -220,6 +220,8 @@ void _ensureRegistered() {
   var serialize = function(o) {
     if (o === null) {
       return { type: "null", value: null };
+    } else if (typeof(o) === "undefined") {
+      return { type: "undefined", value: null };
     } else if (typeof(o) === "number") {
       return { type: "number", value: o };
     } else if (typeof(o) === "string") {
@@ -296,8 +298,12 @@ void _ensureRegistered() {
         result = functionObject.apply(null, args);
       }
     } else if (type === "set") {
-      var obj = _objects[jsId];
-      obj[name] = args[0];
+      if (jsId !== null) {
+        var obj = _objects[jsId];
+        obj[name] = args[0];
+      } else {
+        window[name] = args[0];
+      }
     } else if (type === "get") {
       if (jsId !== null) {
         var obj = _objects[jsId];
@@ -372,7 +378,7 @@ Object callFunction(IsJsObject isJsObject, String name, [List args]) {
 void setProperty(IsJsObject isJsObject, String name, Object value) {
   _call(void _(jsQuery) {
     jsQuery["type"] = "set";
-    jsQuery["jsId"] = isJsObject.jsRef._jsId;
+    jsQuery["jsId"] = isJsObject!=null ? isJsObject.jsRef._jsId : null;
     jsQuery["name"] = name;
     jsQuery["arguments"] = _serialize([value]);
   });
@@ -457,6 +463,8 @@ Object _deserialize(Map o) {
   final String type = o["type"];
   final value = o["value"];
   if (type == "null") {
+    return null;
+  } else if (type == "undefined") {
     return null;
   } else if (type == "number") {
     return value;
