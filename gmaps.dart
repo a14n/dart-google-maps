@@ -3,6 +3,21 @@
 #import('dart:html', prefix:'html');
 #import('jsni.dart', prefix:'js');
 
+class Constant<T> {
+  static findIn(Object value, List<Constant> elements) {
+    final matchingElements = elements.filter((e) => e.value == value);
+    if (matchingElements.length === 1) {
+      return matchingElements.iterator().next();
+    } else {
+      return null;
+    }
+  }
+
+  final T value;
+
+  const Constant.fromValue(T this.value);
+}
+
 // start GMaps wrapping
 
 class GMap extends MVCObject {
@@ -344,8 +359,18 @@ class MarkerShape extends js.JsObject {
 
   List<num> get coords() => this["coords"];
             set coords(List<num> coords) => this["coords"] = coords;
-  String get type() => this["type"];
-         set type(String type) => this["type"] = type;
+  MarkerShapeType get type() => MarkerShapeType.find(this["type"]);
+                  set type(MarkerShapeType type) => this["type"] = type.value;
+}
+
+class MarkerShapeType extends Constant<String> {
+  static const MarkerShapeType CIRCLE = const MarkerShapeType._("circle");
+  static const MarkerShapeType POLY = const MarkerShapeType._("poly");
+  static const MarkerShapeType RECT = const MarkerShapeType._("rect");
+  
+  static MarkerShapeType find(String value) => findIn(value, [CIRCLE, POLY, RECT]);
+
+  const MarkerShapeType._(String value) : super.fromValue(value);
 }
 
 class Symbol extends js.JsObject {
@@ -453,11 +478,16 @@ class InfoWindowOptions extends js.JsObject {
       throw new IllegalArgumentException(content);
     }
   }
-  set disableAutoPan(bool disableAutoPan) => this["disableAutoPan"] = disableAutoPan;
-  set maxWidth(num maxWidth) => this["maxWidth"] = maxWidth;
-  set pixelOffset(Size pixelOffset) => this["pixelOffset"] = pixelOffset;
-  set position(LatLng position) => this["position"] = position;
-  set zIndex(num zIndex) => this["zIndex"] = zIndex;
+  bool get disableAutoPan => this["disableAutoPan"];
+       set disableAutoPan(bool disableAutoPan) => this["disableAutoPan"] = disableAutoPan;
+  num get maxWidth => this["maxWidth"];
+      set maxWidth(num maxWidth) => this["maxWidth"] = maxWidth;
+  Size get pixelOffset => new Size.fromJsRef(this["pixelOffset"]);
+       set pixelOffset(Size pixelOffset) => this["pixelOffset"] = pixelOffset;
+  LatLng get position => new LatLng.fromJsRef(this["position"]);
+         set position(LatLng position) => this["position"] = position;
+  num get zIndex => this["zIndex"];
+      set zIndex(num zIndex) => this["zIndex"] = zIndex;
 }
 
 class Polyline extends MVCObject {
@@ -1340,7 +1370,7 @@ class MapTypeStyle extends js.JsObject {
   set stylers(List<MapTypeStyler> stylers) => this["stylers"] = stylers;
 }
 
-class MapTypeStyleFeatureType {
+class MapTypeStyleFeatureType extends Constant<String> {
   static const MapTypeStyleFeatureType ADMINISTRATIVE = const MapTypeStyleFeatureType._("administrative");
   static const MapTypeStyleFeatureType ADMINISTRATIVE_COUNTRY = const MapTypeStyleFeatureType._("administrative.country");
   static const MapTypeStyleFeatureType ADMINISTRATIVE_LAND_PARCEL = const MapTypeStyleFeatureType._("administrative.land_parcel");
@@ -1373,19 +1403,19 @@ class MapTypeStyleFeatureType {
   static const MapTypeStyleFeatureType TRANSIT_STATION_RAIL = const MapTypeStyleFeatureType._("transit.station.rail");
   static const MapTypeStyleFeatureType WATER = const MapTypeStyleFeatureType._("water");
 
-  final String value;
+  static MapTypeStyleFeatureType find(String value) => findIn(value, [ADMINISTRATIVE, ADMINISTRATIVE_COUNTRY, ADMINISTRATIVE_LAND_PARCEL, ADMINISTRATIVE_LOCALITY, ADMINISTRATIVE_NEIGHBORHOOD, ADMINISTRATIVE_PROVINCE, ALL, LANDSCAPE, LANDSCAPE_MAN_MADE, LANDSCAPE_NATURAL, POI, POI_ATTRACTION, POI_BUSINESS, POI_GOVERNMENT, POI_MEDICAL, POI_PARK, POI_PLACE_OF_WORSHIP, POI_SCHOOL, POI_SPORTS_COMPLEX, ROAD, ROAD_ARTERIAL, ROAD_HIGHWAY, ROAD_HIGHWAY_CONTROLLED_ACCESS, ROAD_LOCAL, TRANSIT, TRANSIT_LINE, TRANSIT_STATION, TRANSIT_STATION_AIRPORT, TRANSIT_STATION_BUS, TRANSIT_STATION_RAIL, WATER]);
 
-  const MapTypeStyleFeatureType._(String this.value);
+  const MapTypeStyleFeatureType._(String value) : super.fromValue(value);
 }
 
-class MapTypeStyleElementType {
+class MapTypeStyleElementType extends Constant<String> {
   static const MapTypeStyleElementType ALL = const MapTypeStyleElementType._("all");
   static const MapTypeStyleElementType GEOMETRY = const MapTypeStyleElementType._("geometry");
   static const MapTypeStyleElementType LABELS = const MapTypeStyleElementType._("labels");
 
-  final String value;
+  static MapTypeStyleElementType find(String value) => findIn(value, [ALL, GEOMETRY, LABELS]);
 
-  const MapTypeStyleElementType._(String this.value);
+  const MapTypeStyleElementType._(String value) : super.fromValue(value);
 }
 
 // this class should have been used but "google.maps.MapTypeStyleFeatureType" and "google.maps.MapTypeStyleElementType" objects does not exist as describe in doc
@@ -1458,14 +1488,14 @@ class MapTypeStyler extends js.JsObject {
   set visibility(MapTypeStylerVisibility visibility) => this["visibility"] = visibility.value;
 }
 
-class MapTypeStylerVisibility {
+class MapTypeStylerVisibility extends Constant<String> {
   static const MapTypeStylerVisibility ON = const MapTypeStylerVisibility._("on");
   static const MapTypeStylerVisibility OFF = const MapTypeStylerVisibility._("off");
   static const MapTypeStylerVisibility SIMPLIFED = const MapTypeStylerVisibility._("simplifed");
 
-  final String value;
+  static MapTypeStylerVisibility find(String value) => findIn(value, [ON, OFF, SIMPLIFED]);
 
-  const MapTypeStylerVisibility._(String this.value);
+  const MapTypeStylerVisibility._(String value) : super.fromValue(value);
 }
 
 class BicyclingLayer extends MVCObject {
