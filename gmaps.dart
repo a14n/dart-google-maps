@@ -3,8 +3,8 @@
 #import('dart:html', prefix:'html');
 #import('jsni.dart', prefix:'js');
 
-class Constant<T> {
-  static findIn(Object value, List<Constant> elements) {
+class _Constant<T> {
+  static findIn(Object value, List<_Constant> elements) {
     final matchingElements = elements.filter((e) => e.value == value);
     if (matchingElements.length === 1) {
       return matchingElements.iterator().next();
@@ -15,7 +15,11 @@ class Constant<T> {
 
   final T value;
 
-  const Constant.fromValue(T this.value);
+  const _Constant.fromValue(T this.value);
+}
+
+Object _transformIfNotNull(Object nullable, Object transform(Object)) {
+  return nullable === null ? null : transform(nullable);
 }
 
 // start GMaps wrapping
@@ -363,7 +367,7 @@ class MarkerShape extends js.JsObject {
                   set type(MarkerShapeType type) => this["type"] = type.value;
 }
 
-class MarkerShapeType extends Constant<String> {
+class MarkerShapeType extends _Constant<String> {
   static const MarkerShapeType CIRCLE = const MarkerShapeType._("circle");
   static const MarkerShapeType POLY = const MarkerShapeType._("poly");
   static const MarkerShapeType RECT = const MarkerShapeType._("rect");
@@ -497,7 +501,7 @@ class Polyline extends MVCObject {
   Polyline.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
   bool getEditable() => callJs("getEditable");
-  GMap getMap() => new GMap.fromJsRef(callJs("getMap"));
+  GMap getMap() => _transformIfNotNull(callJs("getMap"), (e) => new GMap.fromJsRef(e));
   MVCArray<LatLng> getPath() => new MVCArray.fromJsRef(callJs("getPath"), (js.JsRef jsRef) => new LatLng.fromJsRef(jsRef));
   bool getVisible() => callJs("getVisible");
   void setEditable(bool editable) { callJs("setEditable", [editable]); }
@@ -546,7 +550,7 @@ class Polygon extends MVCObject {
   Polygon.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
   bool getEditable() => callJs("getEditable");
-  GMap getMap() => new GMap.fromJsRef(callJs("getMap"));
+  GMap getMap() => _transformIfNotNull(callJs("getMap"), (e) => new GMap.fromJsRef(e));
   MVCArray<LatLng> getPath() => new MVCArray.fromJsRef(callJs("getPath"), (js.JsRef jsRef) => new LatLng.fromJsRef(jsRef));
   MVCArray<MVCArray<LatLng>> getPaths() => new MVCArray.fromJsRef(callJs("getPaths"), (js.JsRef jsRef) => new MVCArray.fromJsRef(jsRef, (js.JsRef jsRef) => new LatLng.fromJsRef(jsRef)));
   bool getVisible() => callJs("getVisible");
@@ -607,7 +611,7 @@ class Rectangle extends MVCObject {
 
   LatLngBounds getBounds() => new LatLngBounds.fromJsRef(callJs("getBounds"));
   bool getEditable() => callJs("getEditable");
-  GMap getMap() => new GMap.fromJsRef(callJs("getMap"));
+  GMap getMap() => _transformIfNotNull(callJs("getMap"), (e) => new GMap.fromJsRef(e));
   bool getVisible() => callJs("getVisible");
   void setBounds(LatLngBounds bounds) { callJs("setBounds", [bounds]); }
   void setEditable(bool editable) { callJs("setEditable", [editable]); }
@@ -639,7 +643,7 @@ class Circle extends MVCObject {
   LatLngBounds getBounds() => new LatLngBounds.fromJsRef(callJs("getBounds"));
   LatLng getCenter() => new LatLng.fromJsRef(callJs("getCenter"));
   bool getEditable() => callJs("getEditable");
-  GMap getMap() => new GMap.fromJsRef(callJs("getMap"));
+  GMap getMap() => _transformIfNotNull(callJs("getMap"), (e) => new GMap.fromJsRef(e));
   num getRadius() => callJs("getRadius");
   bool getVisible() => callJs("getVisible");
   void setCenter(LatLng center) { callJs("setCenter", [center]); }
@@ -672,7 +676,7 @@ class GroundOverlay extends MVCObject {
   GroundOverlay.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
   LatLngBounds getBounds() => new LatLngBounds.fromJsRef(callJs("getBounds"));
-  GMap getMap() => new GMap.fromJsRef(callJs("getMap"));
+  GMap getMap() => _transformIfNotNull(callJs("getMap"), (e) => new GMap.fromJsRef(e));
   num getOpacity() => callJs("getOpacity");
   String getUrl() => callJs("getUrl");
   void setMap(GMap map) { callJs("setMap", [map]); }
@@ -692,7 +696,7 @@ class OverlayView extends MVCObject {
   OverlayView.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
   void draw() { callJs("draw"); }
-  GMap getMap() => new GMap.fromJsRef(callJs("getMap"));
+  GMap getMap() => _transformIfNotNull(callJs("getMap"), (e) => new GMap.fromJsRef(e));
   MapPanes getPanes() => new MapPanes.fromJsRef(callJs("getPanes"));
   MapCanvasProjection getProjection() => new MapCanvasProjection.fromJsRef(callJs("getProjection"));
   void onAdd() { callJs("onAdd"); }
@@ -824,7 +828,7 @@ class DirectionsRenderer extends MVCObject {
   DirectionsRenderer.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
   DirectionsResult getDirections() => new DirectionsResult.fromJsRef(callJs("getDirections"));
-  GMap getMap() => new GMap.fromJsRef(callJs("getMap"));
+  GMap getMap() => _transformIfNotNull(callJs("getMap"), (e) => new GMap.fromJsRef(e));
   html.Node getPanel() => callJs("getPanel");
   num getRouteIndex() => callJs("getRouteIndex");
   void setDirections(DirectionsResult directions) { callJs("setDirections", [directions]); }
@@ -1370,7 +1374,7 @@ class MapTypeStyle extends js.JsObject {
   set stylers(List<MapTypeStyler> stylers) => this["stylers"] = stylers;
 }
 
-class MapTypeStyleFeatureType extends Constant<String> {
+class MapTypeStyleFeatureType extends _Constant<String> {
   static const MapTypeStyleFeatureType ADMINISTRATIVE = const MapTypeStyleFeatureType._("administrative");
   static const MapTypeStyleFeatureType ADMINISTRATIVE_COUNTRY = const MapTypeStyleFeatureType._("administrative.country");
   static const MapTypeStyleFeatureType ADMINISTRATIVE_LAND_PARCEL = const MapTypeStyleFeatureType._("administrative.land_parcel");
@@ -1408,7 +1412,7 @@ class MapTypeStyleFeatureType extends Constant<String> {
   const MapTypeStyleFeatureType._(String value) : super.fromValue(value);
 }
 
-class MapTypeStyleElementType extends Constant<String> {
+class MapTypeStyleElementType extends _Constant<String> {
   static const MapTypeStyleElementType ALL = const MapTypeStyleElementType._("all");
   static const MapTypeStyleElementType GEOMETRY = const MapTypeStyleElementType._("geometry");
   static const MapTypeStyleElementType LABELS = const MapTypeStyleElementType._("labels");
@@ -1488,7 +1492,7 @@ class MapTypeStyler extends js.JsObject {
   set visibility(MapTypeStylerVisibility visibility) => this["visibility"] = visibility.value;
 }
 
-class MapTypeStylerVisibility extends Constant<String> {
+class MapTypeStylerVisibility extends _Constant<String> {
   static const MapTypeStylerVisibility ON = const MapTypeStylerVisibility._("on");
   static const MapTypeStylerVisibility OFF = const MapTypeStylerVisibility._("off");
   static const MapTypeStylerVisibility SIMPLIFED = const MapTypeStylerVisibility._("simplifed");
@@ -1504,7 +1508,7 @@ class BicyclingLayer extends MVCObject {
   BicyclingLayer() : super.newInstance(_TYPE_NAME);
   BicyclingLayer.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  GMap getMap() => new GMap.fromJsRef(callJs("getMap"));
+  GMap getMap() => _transformIfNotNull(callJs("getMap"), (e) => new GMap.fromJsRef(e));
   void setMap(GMap map) { callJs("setMap", [map]); }
 }
 
@@ -1514,7 +1518,7 @@ class FusionTablesLayer extends MVCObject {
   FusionTablesLayer(FusionTablesLayerOptions options) : super.newInstance(_TYPE_NAME, [options]);
   FusionTablesLayer.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  GMap getMap() => new GMap.fromJsRef(callJs("getMap"));
+  GMap getMap() => _transformIfNotNull(callJs("getMap"), (e) => new GMap.fromJsRef(e));
   void setMap(GMap map) { callJs("setMap", [map]); }
   void setOptions(FusionTablesLayerOptions options) { callJs("setOptions", [options]); }
 }
@@ -1591,7 +1595,7 @@ class KmlLayer extends MVCObject {
   KmlLayer.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
   LatLngBounds getDefaultViewport() => new LatLngBounds.fromJsRef(callJs("getDefaultViewport"));
-  GMap getMap() => new GMap.fromJsRef(callJs("getMap"));
+  GMap getMap() => _transformIfNotNull(callJs("getMap"), (e) => new GMap.fromJsRef(e));
   KmlLayerMetadata getMetadata() => new KmlLayerMetadata.fromJsRef(callJs("getMetadata"));
   KmlLayerStatus getStatus() => KmlLayerStatus.find(callJs("getStatus"));
   String getUrl() => callJs("getUrl");
@@ -1666,7 +1670,7 @@ class TrafficLayer extends MVCObject {
   TrafficLayer() : super.newInstance(_TYPE_NAME);
   TrafficLayer.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  GMap getMap() => new GMap.fromJsRef(callJs("getMap"));
+  GMap getMap() => _transformIfNotNull(callJs("getMap"), (e) => new GMap.fromJsRef(e));
   void setMap(GMap map) { callJs("setMap", [map]); }
 }
 
@@ -1676,7 +1680,7 @@ class TransitLayer extends MVCObject {
   TransitLayer() : super.newInstance(_TYPE_NAME);
   TransitLayer.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  GMap getMap() => new GMap.fromJsRef(callJs("getMap"));
+  GMap getMap() => _transformIfNotNull(callJs("getMap"), (e) => new GMap.fromJsRef(e));
   void setMap(GMap map) { callJs("setMap", [map]); }
 }
 
