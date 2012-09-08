@@ -3,11 +3,12 @@
 #import('../../../gmaps.dart', prefix:'gmaps');
 
 void main() {
-  final mapOptions = new gmaps.MapOptions();
-  mapOptions.zoom = 4;
-  mapOptions.center = new gmaps.LatLng(-33, 151);
-  mapOptions.disableDefaultUI = true;
-  mapOptions.mapTypeId = gmaps.MapTypeId.ROADMAP;
+  final mapOptions = new gmaps.MapOptions()
+    ..zoom = 4
+    ..center = new gmaps.LatLng(-33, 151)
+    ..disableDefaultUI = true
+    ..mapTypeId = gmaps.MapTypeId.ROADMAP
+  ;
 
   final map = new gmaps.GMap(query("#map_canvas"), mapOptions);
 }

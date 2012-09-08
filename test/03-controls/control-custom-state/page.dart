@@ -22,39 +22,47 @@ class HomeControl {
 
     // Set CSS for the control border
     final goHomeUI = new DivElement();
-    goHomeUI.style.backgroundColor = 'white';
-    goHomeUI.style.borderStyle = 'solid';
-    goHomeUI.style.borderWidth = '2px';
-    goHomeUI.style.cursor = 'pointer';
-    goHomeUI.style.textAlign = 'center';
+    goHomeUI.style
+      ..backgroundColor = 'white'
+      ..borderStyle = 'solid'
+      ..borderWidth = '2px'
+      ..cursor = 'pointer'
+      ..textAlign = 'center'
+      ;
     goHomeUI.title = 'Click to set the map to Home';
     controlDiv.elements.add(goHomeUI);
 
     // Set CSS for the control interior
     final goHomeText = new DivElement();
-    goHomeText.style.fontFamily = 'Arial,sans-serif';
-    goHomeText.style.fontSize = '12px';
-    goHomeText.style.paddingLeft = '4px';
-    goHomeText.style.paddingRight = '4px';
+    goHomeText.style
+      ..fontFamily = 'Arial,sans-serif'
+      ..fontSize = '12px'
+      ..paddingLeft = '4px'
+      ..paddingRight = '4px'
+      ;
     goHomeText.innerHTML = '<b>Home</b>';
     goHomeUI.elements.add(goHomeText);
 
     // Set CSS for the setHome control border
     final setHomeUI = new DivElement();
-    setHomeUI.style.backgroundColor = 'white';
-    setHomeUI.style.borderStyle = 'solid';
-    setHomeUI.style.borderWidth = '2px';
-    setHomeUI.style.cursor = 'pointer';
-    setHomeUI.style.textAlign = 'center';
+    setHomeUI.style
+      ..backgroundColor = 'white'
+      ..borderStyle = 'solid'
+      ..borderWidth = '2px'
+      ..cursor = 'pointer'
+      ..textAlign = 'center'
+      ;
     setHomeUI.title = 'Click to set Home to the current center';
     controlDiv.elements.add(setHomeUI);
 
     // Set CSS for the control interior
     final setHomeText = new DivElement();
-    setHomeText.style.fontFamily = 'Arial,sans-serif';
-    setHomeText.style.fontSize = '12px';
-    setHomeText.style.paddingLeft = '4px';
-    setHomeText.style.paddingRight = '4px';
+    setHomeText.style
+      ..fontFamily = 'Arial,sans-serif'
+      ..fontSize = '12px'
+      ..paddingLeft = '4px'
+      ..paddingRight = '4px'
+      ;
     setHomeText.innerHTML = '<b>Set Home</b>';
     setHomeUI.elements.add(setHomeText);
 
@@ -76,10 +84,11 @@ void main() {
   chicago = new gmaps.LatLng(41.850033, -87.6500523);
 
   final mapDiv = query("#map_canvas");
-  final mapOptions = new gmaps.MapOptions();
-  mapOptions.zoom = 12;
-  mapOptions.center = chicago;
-  mapOptions.mapTypeId = gmaps.MapTypeId.ROADMAP;
+  final mapOptions = new gmaps.MapOptions()
+    ..zoom = 12
+    ..center = chicago
+    ..mapTypeId = gmaps.MapTypeId.ROADMAP
+    ;
   map = new gmaps.GMap(mapDiv, mapOptions);
 
   // Create the DIV to hold the control and
