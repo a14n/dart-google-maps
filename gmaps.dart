@@ -538,6 +538,9 @@ class PolylineOptions extends js.JsObject {
 }
 
 class IconSequence extends js.JsObject {
+  IconSequence() : super();
+  IconSequence.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+
   set icon(Symbol icon) => this["icon"] = icon;
   set offset(String offset) => this["offset"] = offset;
   set repeat(String repeat) => this["repeat"] = repeat;
