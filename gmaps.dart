@@ -1510,7 +1510,7 @@ class FusionTablesLayer extends MVCObject {
 
 class FusionTablesLayerOptions extends js.JsObject {
   set clickable(bool clickable) => this["clickable"] = clickable;
-  set heatmap(FusionTablesHeatmap hueheatmap) => this["heatmap"] = heatmap;
+  set heatmap(FusionTablesHeatmap heatmap) => this["heatmap"] = heatmap;
   set map(GMap map) => this["map"] = map;
   set query(FusionTablesQuery query) => this["query"] = query;
   set styles(List<FusionTablesStyle> styles) => this["styles"] = styles;
