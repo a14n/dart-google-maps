@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Google Maps JavaScript API v3 Example: Panoramio Layer</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <link href="https://google-developers.appspot.com/maps/documentation/javascript/examples/default.css" rel="stylesheet">
+    <style>
+      #photo-panel {
+        background: #fff;
+        padding: 5px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        width: 300px;
+        max-height: 300px;
+        font-size: 14px;
+        font-family: Arial;
+        border: 1px solid #ccc;
+        box-shadow: -2px 2px 2px rgba(33, 33, 33, 0.4);
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <ul id="photo-panel">
+      <li><strong>Photos clicked</strong></li>
+    </ul>
+    <div id="map_canvas"></div>
+
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=panoramio"></script>
+    <script type="application/dart" src="page.dart"></script>
+    <script src="http://dart.googlecode.com/svn/branches/bleeding_edge/dart/client/dart.js"></script>
+  </body>
+</html>
