@@ -76,7 +76,13 @@ class MapOptions extends js.JsObject {
   set mapMaker(bool mapMaker) => this["mapMaker"] = mapMaker;
   set mapTypeControl(bool mapTypeControl) => this["mapTypeControl"] = mapTypeControl;
   set mapTypeControlOptions(MapTypeControlOptions mapTypeControlOptions) => this["mapTypeControlOptions"] = mapTypeControlOptions;
-  set mapTypeId(MapTypeId mapTypeId) => this["mapTypeId"] = mapTypeId;
+  set mapTypeId(Object mapTypeId) {
+    if (mapTypeId is String || mapTypeId is MapTypeId) {
+      this["mapTypeId"] = mapTypeId;
+    } else {
+      throw new IllegalArgumentException(mapTypeId);
+    }
+  }
   set maxZoom(num maxZoom) => this["maxZoom"] = maxZoom;
   set minZoom(num minZoom) => this["minZoom"] = minZoom;
   set noClear(bool noClear) => this["noClear"] = noClear;
