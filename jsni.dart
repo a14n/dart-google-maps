@@ -31,6 +31,7 @@ class JsObject implements IsJsObject {
   void operator []=(String name, Object value) { setProperty(this, name, value); }
 
   Object callJs(String name, [List args]) => callFunction(this, name, args);
+  JsRef callJsForRef(String name, [List args]) =>  callFunctionForRef(this, name, args);
   JsRef getJsRef(String name) => getPropertyRef(this, name);
 }
 
@@ -107,12 +108,14 @@ void _ensureRegistered() {
   // register for callback
   window.on['callback_for_dart'].add((TextEvent event) {
     final query = JSON.parse(event.data);
+    // print("query : $query");
     final callbackQueryId = query["callbackQueryId"];
     final callbackId = query["callbackId"];
     final callback = _callbacks[callbackId];
     final params = query["params"];
     final args = params.map(_deserialize);
     final result = callback._callbackFunction(args);
+    // print("result : $result");
     
     final answer = new Map();
     answer["callbackQueryId"] = callbackQueryId;
@@ -182,6 +185,8 @@ void _ensureRegistered() {
       return result;
     } else if (o.type === "jsObject") {
       return _objects[o.value];
+    } else if (o.type === "document") {
+      return document;
     } else if (o.type === "DomElement") {
       var result = document.getElementById(o.value);
       if (!o.attached) {
@@ -236,6 +241,8 @@ void _ensureRegistered() {
         list.push(serialize(o[i]));
       }
       return { type: "list", value: list };
+    } else if (o === document) {
+      return { type: "document", value: null };
     } else if (isElement(o)) {
       var idGenerated = o.id === null || o.id.length === 0;
       if (idGenerated) {
@@ -366,13 +373,20 @@ JsRef newInstance(String name, [List args]) {
   });
 }
 
-Object callFunction(IsJsObject isJsObject, String name, [List args]) {
+Object _callFunction(IsJsObject isJsObject, String name, bool returnRef, [List args]) {
   return _call(void _(jsQuery) {
     jsQuery["type"] = "function";
     jsQuery["jsId"] = isJsObject!=null ? isJsObject.jsRef._jsId : null;
     jsQuery["name"] = name;
     jsQuery["arguments"] = _serialize(args != null ? args : []);
+    jsQuery["returnRef"] = returnRef;
   });
+}
+Object callFunction(IsJsObject isJsObject, String name, [List args]) {
+  return _callFunction(isJsObject, name, false, args);
+}
+Object callFunctionForRef(IsJsObject isJsObject, String name, [List args]) {
+  return _callFunction(isJsObject, name, true, args);
 }
 
 void setProperty(IsJsObject isJsObject, String name, Object value) {
@@ -432,6 +446,8 @@ Object _serialize(Object o) {
     return { "type" : "jsObject", "value" : o.jsRef._jsId };
   } else if (o is JsRef) {
     return { "type" : "jsObject", "value" : o._jsId };
+  } else if (o === document) {
+    return { "type" : "document", "value" : null };
   } else if (o is Element) {
     final idGenerated = o.id === null || o.id.isEmpty();
     if (idGenerated) {
@@ -476,8 +492,8 @@ Object _deserialize(Map o) {
     return new Date.fromMillisecondsSinceEpoch(value);
   } else if (type == "list") {
     return value.map(_deserialize);
-  } else if (type == "jsObject") {
-    return new JsRef._(value);
+  } else if (type == "document") {
+    return document;
   } else if (type == "DomElement") {
     final result = document.$dom_getElementById(value);
     if (!o["attached"]) {
@@ -495,6 +511,8 @@ Object _deserialize(Map o) {
     
     
     return document.$dom_getElementById(value);
+  } else if (type == "jsObject") {
+    return new JsRef._(value);
   } else {
     throw new UnsupportedOperationException("type is not supported");
   }
