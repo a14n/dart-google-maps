@@ -1486,9 +1486,9 @@ class MapTypeStyler extends js.JsObject {
 class MapTypeStylerVisibility extends _Constant<String> {
   static const MapTypeStylerVisibility ON = const MapTypeStylerVisibility._("on");
   static const MapTypeStylerVisibility OFF = const MapTypeStylerVisibility._("off");
-  static const MapTypeStylerVisibility SIMPLIFED = const MapTypeStylerVisibility._("simplifed");
+  static const MapTypeStylerVisibility SIMPLIFIED = const MapTypeStylerVisibility._("simplified");
 
-  static MapTypeStylerVisibility find(String value) => findIn(value, [ON, OFF, SIMPLIFED]);
+  static MapTypeStylerVisibility find(String value) => findIn(value, [ON, OFF, SIMPLIFIED]);
 
   const MapTypeStylerVisibility._(String value) : super.fromValue(value);
 }
