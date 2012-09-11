@@ -81,8 +81,8 @@ class WeatherMouseEvent extends NativeEvent {
 class WeatherFeature extends js.JsObject {
   WeatherFeature.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  WeatherConditions get current() => new WeatherConditions.fromJsRef(this["current"]);
-  List<WeatherForecast> get forecast() {
+  WeatherConditions get current => new WeatherConditions.fromJsRef(this["current"]);
+  List<WeatherForecast> get forecast {
     List<js.JsRef> resultsRefs = this["forecast"];
     return resultsRefs.map((e) => new WeatherForecast.fromJsRef(e));
   }

@@ -47,11 +47,11 @@ class GMap extends MVCObject {
   void setTilt(num tilt) { callJs("setTilt", [tilt]); }
   void setZoom(num zoom) { callJs("setZoom", [zoom]); }
 
-  Controls get controls() => new Controls.fromJsRef(js.getPropertyRef(this, "controls"));
+  Controls get controls => new Controls.fromJsRef(js.getPropertyRef(this, "controls"));
            set controls(Controls controls) => this["controls"] = controls;
-  MapTypeRegistry get mapTypes() => new MapTypeRegistry.fromJsRef(this["mapTypes"]);
+  MapTypeRegistry get mapTypes => new MapTypeRegistry.fromJsRef(this["mapTypes"]);
                   set mapTypes(MapTypeRegistry mapTypes) => this["mapTypes"] = mapTypes;
-  MVCArray<MapType> get overlayMapTypes() => new MVCArray.fromJsRef(this["overlayMapTypes"], (js.JsRef jsRef) => new MapType.fromJsRef(jsRef));
+  MVCArray<MapType> get overlayMapTypes => new MVCArray.fromJsRef(this["overlayMapTypes"], (js.JsRef jsRef) => new MapType.fromJsRef(jsRef));
                     set overlayMapTypes(MVCArray<MapType> overlayMapTypes) => this["overlayMapTypes"] = overlayMapTypes;
 }
 
@@ -333,15 +333,15 @@ class MarkerImage extends js.JsObject {
   MarkerImage(String url, [Size size, Point origin, Point anchor, Size scaledSize]) : super.newInstance(TYPE_NAME, [url, size, origin, anchor, scaledSize]);
   MarkerImage.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  Point get anchor() => new Point.fromJsRef(this["anchor"]);
+  Point get anchor => new Point.fromJsRef(this["anchor"]);
         set anchor(Point anchor) => this["anchor"] = anchor;
-  Point get origin() => new Point.fromJsRef(this["origin"]);
+  Point get origin => new Point.fromJsRef(this["origin"]);
         set origin(Point origin) => this["origin"] = origin;
-  Size get scaledSize() => new Size.fromJsRef(this["scaledSize"]);
+  Size get scaledSize => new Size.fromJsRef(this["scaledSize"]);
        set scaledSize(Size scaledSize) => this["scaledSize"] = scaledSize;
-  Size get size() => new Size.fromJsRef(this["size"]);
+  Size get size => new Size.fromJsRef(this["size"]);
        set size(Size size) => this["size"] = size;
-  String get url() => this["url"];
+  String get url => this["url"];
          set url(String url) => this["url"] = url;
 }
 
@@ -349,9 +349,9 @@ class MarkerShape extends js.JsObject {
   MarkerShape() : super();
   MarkerShape.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  List<num> get coords() => this["coords"];
+  List<num> get coords => this["coords"];
             set coords(List<num> coords) => this["coords"] = coords;
-  MarkerShapeType get type() => MarkerShapeType.find(this["type"]);
+  MarkerShapeType get type => MarkerShapeType.find(this["type"]);
                   set type(MarkerShapeType type) => this["type"] = type.value;
 }
 
@@ -366,13 +366,13 @@ class MarkerShapeType extends _Constant<String> {
 }
 
 class Symbol extends js.JsObject {
-  Point get anchor() => new Point.fromJsRef(this["anchor"]);
+  Point get anchor => new Point.fromJsRef(this["anchor"]);
         set anchor(Point anchor) => this["anchor"] = anchor;
-  String get fillColor() => this["fillColor"];
+  String get fillColor => this["fillColor"];
          set fillColor(String fillColor) => this["fillColor"] = fillColor;
-  num get fillOpacity() => this["fillOpacity"];
+  num get fillOpacity => this["fillOpacity"];
       set fillOpacity(num fillOpacity) => this["fillOpacity"] = fillOpacity;
-  Object get path() {
+  Object get path {
            final result = this["path"];
            if (result is String) {
              return result;
@@ -389,15 +389,15 @@ class Symbol extends js.JsObject {
              throw new IllegalArgumentException(path);
            }
          }
-  num get rotation() => this["rotation"];
+  num get rotation => this["rotation"];
       set rotation(num rotation) => this["rotation"] = rotation;
-  num get scale() => this["scale"];
+  num get scale => this["scale"];
       set scale(num scale) => this["scale"] = scale;
-  String get strokeColor() => this["strokeColor"];
+  String get strokeColor => this["strokeColor"];
          set strokeColor(String strokeColor) => this["strokeColor"] = strokeColor;
-  num get strokeOpacity() => this["strokeOpacity"];
+  num get strokeOpacity => this["strokeOpacity"];
       set strokeOpacity(num strokeOpacity) => this["strokeOpacity"] = strokeOpacity;
-  num get strokeWeight() => this["strokeWeight"];
+  num get strokeWeight => this["strokeWeight"];
       set strokeWeight(num rotation) => this["strokeWeight"] = strokeWeight;
 }
 
@@ -704,19 +704,19 @@ class OverlayView extends MVCObject {
 class MapPanes extends js.JsObject {
   MapPanes.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  html.Node get floatPane() => this["floatPane"];
+  html.Node get floatPane => this["floatPane"];
             set floatPane(html.Node floatPane) => this["floatPane"] = floatPane;
-  html.Node get floatShadow() => this["floatShadow"];
+  html.Node get floatShadow => this["floatShadow"];
             set floatShadow(html.Node floatShadow) => this["floatShadow"] = floatShadow;
-  html.Node get mapPane() => this["mapPane"];
+  html.Node get mapPane => this["mapPane"];
             set mapPane(html.Node mapPane) => this["mapPane"] = mapPane;
-  html.Node get overlayImage() => this["overlayImage"];
+  html.Node get overlayImage => this["overlayImage"];
             set overlayImage(html.Node overlayImage) => this["overlayImage"] = overlayImage;
-  html.Node get overlayLayer() => this["overlayLayer"];
+  html.Node get overlayLayer => this["overlayLayer"];
             set overlayLayer(html.Node overlayLayer) => this["overlayLayer"] = overlayLayer;
-  html.Node get overlayMouseTarget() => this["overlayMouseTarget"];
+  html.Node get overlayMouseTarget => this["overlayMouseTarget"];
             set overlayMouseTarget(html.Node overlayMouseTarget) => this["overlayMouseTarget"] = overlayMouseTarget;
-  html.Node get overlayShadow() => this["overlayShadow"];
+  html.Node get overlayShadow => this["overlayShadow"];
             set overlayShadow(html.Node overlayShadow) => this["overlayShadow"] = overlayShadow;
 }
 
@@ -771,32 +771,32 @@ class GeocoderResult extends js.JsObject {
   GeocoderResult() : super();
   GeocoderResult.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  List<GeocoderAddressComponent> get address_components() {
+  List<GeocoderAddressComponent> get address_components {
     List<js.JsRef> resultsRefs = this["address_components"];
     return resultsRefs.map((e) => new GeocoderAddressComponent.fromJsRef(e));
   }
-  String get formatted_address() => this["formatted_address"];
-  GeocoderGeometry get geometry() => new GeocoderGeometry.fromJsRef(this["geometry"]);
-  List<String> get types() => this["types"];
+  String get formatted_address => this["formatted_address"];
+  GeocoderGeometry get geometry => new GeocoderGeometry.fromJsRef(this["geometry"]);
+  List<String> get types => this["types"];
 }
 
 class GeocoderAddressComponent extends js.JsObject {
   GeocoderAddressComponent() : super();
   GeocoderAddressComponent.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  String get long_name() => this["long_name"];
-  String get short_name() => this["short_name"];
-  List<String> get types() => this["types"];
+  String get long_name => this["long_name"];
+  String get short_name => this["short_name"];
+  List<String> get types => this["types"];
 }
 
 class GeocoderGeometry extends js.JsObject {
   GeocoderGeometry() : super();
   GeocoderGeometry.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  LatLngBounds get bounds() => new LatLngBounds.fromJsRef(this["bounds"]);
-  LatLng get location() => new LatLng.fromJsRef(this["location"]);
-  GeocoderLocationType get location_type() => GeocoderLocationType.find(this["location_type"]);
-  LatLngBounds get viewport() => new    LatLngBounds.fromJsRef(this["viewport"]);
+  LatLngBounds get bounds => new LatLngBounds.fromJsRef(this["bounds"]);
+  LatLng get location => new LatLng.fromJsRef(this["location"]);
+  GeocoderLocationType get location_type => GeocoderLocationType.find(this["location_type"]);
+  LatLngBounds get viewport => new    LatLngBounds.fromJsRef(this["viewport"]);
 }
 
 class GeocoderLocationType extends js.JsConst {
@@ -947,7 +947,7 @@ class DirectionsResult extends js.JsObject {
   DirectionsResult() : super();
   DirectionsResult.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  List<DirectionsRoute> get routes() {
+  List<DirectionsRoute> get routes {
     List<js.JsRef> resultsRefs = this["routes"];
     return resultsRefs.map((e) => new DirectionsRoute.fromJsRef(e));
   }
@@ -957,18 +957,18 @@ class DirectionsRoute extends js.JsObject {
   DirectionsRoute() : super();
   DirectionsRoute.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  LatLngBounds get bounds() => new LatLngBounds.fromJsRef(this["bounds"]);
-  String get copyrights() => this["copyrights"];
-  List<DirectionsLeg> get legs() {
+  LatLngBounds get bounds => new LatLngBounds.fromJsRef(this["bounds"]);
+  String get copyrights => this["copyrights"];
+  List<DirectionsLeg> get legs {
     List<js.JsRef> resultsRefs = this["legs"];
     return resultsRefs.map((e) => new DirectionsLeg.fromJsRef(e));
   }
-  List<LatLng> get overview_path() {
+  List<LatLng> get overview_path {
     List<js.JsRef> resultsRefs = this["overview_path"];
     return resultsRefs.map((e) => new LatLng.fromJsRef(e));
   }
-  List<String> get warnings() => this["warnings"];
-  List<num> get waypoint_order() => this["waypoint_order"];
+  List<String> get warnings => this["warnings"];
+  List<num> get waypoint_order => this["waypoint_order"];
 }
 
 class DirectionsLeg extends js.JsObject {
@@ -976,19 +976,19 @@ class DirectionsLeg extends js.JsObject {
   DirectionsLeg.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
   // TODO test return type
-  Distance get arrival_time() => new Distance.fromJsRef(this["arrival_time"]);
-  GDuration get departure_time() => new GDuration.fromJsRef(this["departure_time"]);
-  Distance get distance() => new Distance.fromJsRef(this["distance"]);
-  GDuration get duration() => new GDuration.fromJsRef(this["duration"]);
-  String get end_address() => this["end_address"];
-  LatLng get end_location() => new LatLng.fromJsRef(this["end_location"]);
-  String get start_address() => this["start_address"];
-  LatLng get start_location() => new LatLng.fromJsRef(this["start_location"]);
-  List<DirectionsStep> get steps() {
+  Distance get arrival_time => new Distance.fromJsRef(this["arrival_time"]);
+  GDuration get departure_time => new GDuration.fromJsRef(this["departure_time"]);
+  Distance get distance => new Distance.fromJsRef(this["distance"]);
+  GDuration get duration => new GDuration.fromJsRef(this["duration"]);
+  String get end_address => this["end_address"];
+  LatLng get end_location => new LatLng.fromJsRef(this["end_location"]);
+  String get start_address => this["start_address"];
+  LatLng get start_location => new LatLng.fromJsRef(this["start_location"]);
+  List<DirectionsStep> get steps {
     List<js.JsRef> resultsRefs = this["steps"];
     return resultsRefs.map((e) => new DirectionsStep.fromJsRef(e));
   }
-  List<LatLng> get via_waypoints() {
+  List<LatLng> get via_waypoints {
     List<js.JsRef> resultsRefs = this["via_waypoints"];
     return resultsRefs.map((e) => new LatLng.fromJsRef(e));
   }
@@ -998,107 +998,107 @@ class DirectionsStep extends js.JsObject {
   DirectionsStep() : super();
   DirectionsStep.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  Distance get distance() => new Distance.fromJsRef(this["distance"]);
-  GDuration get duration() => new GDuration.fromJsRef(this["duration"]);
-  LatLng get end_location() => new LatLng.fromJsRef(this["end_location"]);
-  String get instructions() => this["instructions"];
-  List<LatLng> get path() {
+  Distance get distance => new Distance.fromJsRef(this["distance"]);
+  GDuration get duration => new GDuration.fromJsRef(this["duration"]);
+  LatLng get end_location => new LatLng.fromJsRef(this["end_location"]);
+  String get instructions => this["instructions"];
+  List<LatLng> get path {
     List<js.JsRef> resultsRefs = this["path"];
     return resultsRefs.map((e) => new LatLng.fromJsRef(e));
   }
-  LatLng get start_location() => new LatLng.fromJsRef(this["start_location"]);
+  LatLng get start_location => new LatLng.fromJsRef(this["start_location"]);
   // TODO check return type
-  DirectionsStep get steps() => new DirectionsStep.fromJsRef(this["steps"]);
+  DirectionsStep get steps => new DirectionsStep.fromJsRef(this["steps"]);
 //  List<DirectionsStep> get steps() {
 //    List<js.JsRef> resultsRefs = this["steps"];
 //    return resultsRefs.map((e) => new DirectionsStep.fromJsRef(e));
 //  }
-  TransitDetails get transit() => new TransitDetails.fromJsRef(this["transit"]);
-  TravelMode get travel_mode() => TravelMode.find(this["travel_mode"]);
+  TransitDetails get transit => new TransitDetails.fromJsRef(this["transit"]);
+  TravelMode get travel_mode => TravelMode.find(this["travel_mode"]);
 }
 
 class Distance extends js.JsObject {
   Distance() : super();
   Distance.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  String get text() => this["text"];
-  num get value() => this["value"];
+  String get text => this["text"];
+  num get value => this["value"];
 }
 
 class GDuration extends js.JsObject {
   GDuration() : super();
   GDuration.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  String get text() => this["text"];
-  num get value() => this["value"];
+  String get text => this["text"];
+  num get value => this["value"];
 }
 
 class Time extends js.JsObject {
   Time() : super();
   Time.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  String get text() => this["text"];
-  String get time_zone() => this["time_zone"];
-  Date get value() => this["value"];
+  String get text => this["text"];
+  String get time_zone => this["time_zone"];
+  Date get value => this["value"];
 }
 
 class TransitDetails extends js.JsObject {
   TransitDetails() : super();
   TransitDetails.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  TransitStop get arrival_stop() => new TransitStop.fromJsRef(this["arrival_stop"]);
-  Time get arrival_time() => new Time.fromJsRef(this["arrival_time"]);
-  TransitStop get departure_stop() => new TransitStop.fromJsRef(this["departure_stop"]);
-  Time get departure_time() => new Time.fromJsRef(this["departure_time"]);
-  String get headsign() => this["headsign"];
-  num get headway() => this["headway"];
-  TransitLine get line() => new TransitLine.fromJsRef(this["line"]);
-  num get num_stops() => this["num_stops"];
+  TransitStop get arrival_stop => new TransitStop.fromJsRef(this["arrival_stop"]);
+  Time get arrival_time => new Time.fromJsRef(this["arrival_time"]);
+  TransitStop get departure_stop => new TransitStop.fromJsRef(this["departure_stop"]);
+  Time get departure_time => new Time.fromJsRef(this["departure_time"]);
+  String get headsign => this["headsign"];
+  num get headway => this["headway"];
+  TransitLine get line => new TransitLine.fromJsRef(this["line"]);
+  num get num_stops => this["num_stops"];
 }
 
 class TransitStop extends js.JsObject {
   TransitStop() : super();
   TransitStop.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  LatLng get location() => new LatLng.fromJsRef(this["location"]);
-  String get name() => this["name"];
+  LatLng get location => new LatLng.fromJsRef(this["location"]);
+  String get name => this["name"];
 }
 
 class TransitLine extends js.JsObject {
   TransitLine() : super();
   TransitLine.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  List<TransitAgency> get agencies() {
+  List<TransitAgency> get agencies {
     List<js.JsRef> resultsRefs = this["agencies"];
     return resultsRefs.map((e) => new TransitAgency.fromJsRef(e));
   }
-  String get color() => this["color"];
-  String get icon() => this["icon"];
-  String get name() => this["name"];
-  String get short_name() => this["short_name"];
-  String get text_color() => this["text_color"];
-  String get url() => this["url"];
-  TransitVehicle get vehicle() => new TransitVehicle.fromJsRef(this["vehicle"]);
+  String get color => this["color"];
+  String get icon => this["icon"];
+  String get name => this["name"];
+  String get short_name => this["short_name"];
+  String get text_color => this["text_color"];
+  String get url => this["url"];
+  TransitVehicle get vehicle => new TransitVehicle.fromJsRef(this["vehicle"]);
 }
 
 class TransitAgency extends js.JsObject {
   TransitAgency() : super();
   TransitAgency.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  String get name() => this["name"];
-  String get phone() => this["phone"];
-  String get url() => this["url"];
+  String get name => this["name"];
+  String get phone => this["phone"];
+  String get url => this["url"];
 }
 
 class TransitVehicle extends js.JsObject {
   TransitVehicle() : super();
   TransitVehicle.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  String get icon() => this["icon"];
-  String get local_icon() => this["local_icon"];
-  String get name() => this["name"];
+  String get icon => this["icon"];
+  String get local_icon => this["local_icon"];
+  String get name => this["name"];
   // TODO check type
-  String get type() => this["type"];
+  String get type => this["type"];
 }
 
 class ElevationService extends js.JsObject {
@@ -1135,9 +1135,9 @@ class ElevationResult extends js.JsObject {
   ElevationResult() : super();
   ElevationResult.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  num get elevation() => this["elevation"];
-  LatLng get location() => new LatLng.fromJsRef(this["location"]);
-  num get resolution() => this["resolution"];
+  num get elevation => this["elevation"];
+  LatLng get location => new LatLng.fromJsRef(this["location"]);
+  num get resolution => this["resolution"];
 }
 
 class ElevationStatus extends js.JsConst {
@@ -1171,8 +1171,8 @@ class MaxZoomResult extends js.JsObject {
   MaxZoomResult() : super();
   MaxZoomResult.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  MaxZoomStatus get status() => MaxZoomStatus.find(this["status"]);
-  num get zoom() => this["zoom"];
+  MaxZoomStatus get status => MaxZoomStatus.find(this["status"]);
+  num get zoom => this["zoom"];
 }
 
 class MaxZoomStatus extends js.JsConst {
@@ -1225,9 +1225,9 @@ class DistanceMatrixResponse extends js.JsObject {
   DistanceMatrixResponse() : super();
   DistanceMatrixResponse.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  List<String> get destinationAddresses() => this["destinationAddresses"];
-  List<String> get originAddresses() => this["originAddresses"];
-  List<DistanceMatrixResponseRow> get rows() {
+  List<String> get destinationAddresses => this["destinationAddresses"];
+  List<String> get originAddresses => this["originAddresses"];
+  List<DistanceMatrixResponseRow> get rows {
     List<js.JsRef> resultsRefs = this["rows"];
     return resultsRefs.map((e) => new DistanceMatrixResponseRow.fromJsRef(e));
   }
@@ -1237,7 +1237,7 @@ class DistanceMatrixResponseRow extends js.JsObject {
   DistanceMatrixResponseRow() : super();
   DistanceMatrixResponseRow.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  List<DistanceMatrixResponseElement> get elements() {
+  List<DistanceMatrixResponseElement> get elements {
     List<js.JsRef> resultsRefs = this["elements"];
     return resultsRefs.map((e) => new DistanceMatrixResponseElement.fromJsRef(e));
   }
@@ -1247,9 +1247,9 @@ class DistanceMatrixResponseElement extends js.JsObject {
   DistanceMatrixResponseElement() : super();
   DistanceMatrixResponseElement.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  Distance get distance() => new Distance.fromJsRef(this["distance"]);
-  GDuration get duration() => new GDuration.fromJsRef(this["duration"]);
-  DistanceMatrixElementStatus get status() => DistanceMatrixElementStatus.find(this["status"]);
+  Distance get distance => new Distance.fromJsRef(this["distance"]);
+  GDuration get duration => new GDuration.fromJsRef(this["duration"]);
+  DistanceMatrixElementStatus get status => DistanceMatrixElementStatus.find(this["status"]);
 }
 
 class DistanceMatrixStatus extends js.JsConst {
@@ -1288,19 +1288,19 @@ class MapType extends js.JsObject {
   html.Node getTile(Point tileCoord, num zoom, html.Document ownerDocument) => callJs("getTile", [tileCoord, zoom, ownerDocument]);
   html.Node releaseTile(html.Node tile) => callJs("releaseTile", [tile]);
 
-  String get alt() => this["alt"];
+  String get alt => this["alt"];
          set alt(String alt) => this["alt"] = alt;
-  num get maxZoom() => this["maxZoom"];
+  num get maxZoom => this["maxZoom"];
       set maxZoom(num maxZoom) => this["maxZoom"] = maxZoom;
-  num get minZoom() => this["minZoom"];
+  num get minZoom => this["minZoom"];
       set minZoom(num minZoom) => this["minZoom"] = minZoom;
-  String get name() => this["name"];
+  String get name => this["name"];
          set name(String name) => this["name"] = name;
-  Projection get projection() => new Projection.fromJsRef(this["projection"]);
+  Projection get projection => new Projection.fromJsRef(this["projection"]);
              set projection(Projection projection) => this["projection"] = projection;
-  num get radius() => this["radius"];
+  num get radius => this["radius"];
       set radius(num radius) => this["radius"] = radius;
-  Size get tileSize() => new Size.fromJsRef(this["tileSize"]);
+  Size get tileSize => new Size.fromJsRef(this["tileSize"]);
        set tileSize(Size tileSize) => this["tileSize"] = tileSize;
 }
 
@@ -1573,9 +1573,9 @@ class FusionTablesMouseEvent extends NativeEvent {
 }
 
 class FusionTablesCell extends js.JsObject {
-  String get columnName() => this["columnName"];
+  String get columnName => this["columnName"];
          set columnName(String columnName) => this["columnName"] = columnName;
-  String get value() => this["value"];
+  String get value => this["value"];
          set value(String value) => this["value"] = value;
 }
 
@@ -1603,10 +1603,10 @@ class KmlLayerOptions extends js.JsObject {
 class KmlLayerMetadata extends js.JsObject {
   KmlLayerMetadata.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  KmlAuthor get author() => new KmlAuthor.fromJsRef(this["author"]);
-  String get description() => this["description"];
-  String get name() => this["name"];
-  String get snippet() => this["snippet"];
+  KmlAuthor get author => new KmlAuthor.fromJsRef(this["author"]);
+  String get description => this["description"];
+  String get name => this["name"];
+  String get snippet => this["snippet"];
 }
 
 class KmlLayerStatus extends js.JsConst {
@@ -1700,7 +1700,7 @@ class StreetViewPanorama extends MVCObject {
   void setPov(StreetViewPov pov) { callJs("setPov", [pov]); }
   void setVisible(bool flag) { callJs("setVisible", [flag]); }
 
-  Controls get controls() => new Controls.fromJsRef(js.getPropertyRef(this, "controls"));
+  Controls get controls => new Controls.fromJsRef(js.getPropertyRef(this, "controls"));
   set controls(Controls controls) => this["controls"] = controls;
 }
 

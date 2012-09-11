@@ -16,7 +16,7 @@ class JsRef {
 
 /// Represent a dart Object that wrap a js element
 interface IsJsObject {
-  JsRef get jsRef();
+  JsRef get jsRef;
 }
 
 /// Default implementation of IsJsObject
@@ -58,7 +58,7 @@ class JsConst implements IsJsObject, Hashable {
 
   int hashCode() => jsName.hashCode();
 
-  JsRef get jsRef()  {
+  JsRef get jsRef  {
     if (_constRefs === null){
       _constRefs = new Map();
     }
@@ -67,7 +67,7 @@ class JsConst implements IsJsObject, Hashable {
     }
     return _constRefs[this];
   }
-  Object get value() => getProperty(null, jsName);
+  Object get value => getProperty(null, jsName);
 }
 
 
