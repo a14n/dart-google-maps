@@ -11,7 +11,7 @@ void main() {
   final map = new gmaps.GMap(query("#map_canvas"), mapOptions);
 
   final nyLayer = new gmaps.KmlLayer(
-      'http://www.searcharoo.net/SearchKml/newyork.kml', 
+      'http://www.searcharoo.net/SearchKml/newyork.kml',
       new gmaps.KmlLayerOptions()
         ..suppressInfoWindows = true
         ..map = map

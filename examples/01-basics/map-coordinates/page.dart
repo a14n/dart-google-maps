@@ -29,9 +29,9 @@ class MercatorProjection {
   gmaps.Point fromLatLngToPoint(gmaps.LatLng latLng, [gmaps.Point opt_point]) {
     final point = opt_point === null ? new gmaps.Point(0, 0) : opt_point;
     final origin = _pixelOrigin;
-  
+
     point.x = origin.x + latLng.lng() * _pixelsPerLonDegree;
-  
+
     // NOTE(appleton): Truncating to 0.9999 effectively limits latitude to
     // 89.189.  This is about a third of a tile past the edge of the world
     // tile.

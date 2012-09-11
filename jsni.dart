@@ -10,7 +10,7 @@
 /// Reference to a js element
 class JsRef {
   int _jsId;
-  
+
   JsRef._(this._jsId);
 }
 
@@ -98,13 +98,13 @@ void _ensureRegistered() {
   // initialize globals
   _results = new Map();
   _callbacks = new Map();
-  
+
   // register to answer
   window.on['answer_of_dart_to_js'].add((TextEvent event) {
     final answer = JSON.parse(event.data);
     _results[answer["queryId"]] = answer;
   }, false);
-  
+
   // register for callback
   window.on['callback_for_dart'].add((TextEvent event) {
     final query = JSON.parse(event.data);
@@ -116,7 +116,7 @@ void _ensureRegistered() {
     final args = params.map(_deserialize);
     final result = callback._callbackFunction(args);
     // print("result : $result");
-    
+
     final answer = new Map();
     answer["callbackQueryId"] = callbackQueryId;
     answer["result"] = _serialize(result);
@@ -127,7 +127,7 @@ void _ensureRegistered() {
     eventToSend.initTextEvent("answer_of_callback_for_dart", false, false, window, JSON.stringify(answer));
     window.$dom_dispatchEvent(eventToSend);
   }, false);
-  
+
   // add js bridge
   final script = new ScriptElement();
   script.type = 'text/javascript';
@@ -258,10 +258,10 @@ void _ensureRegistered() {
         }
         document.documentElement.appendChild(top);
       }
-      return { "type" : "DomElement", 
-               "value" : o.id, 
-               "attached" : attached, 
-               "idGenerated" : idGenerated }; 
+      return { "type" : "DomElement",
+               "value" : o.id,
+               "attached" : attached,
+               "idGenerated" : idGenerated };
     } else {
       return { type: "jsObject", value: addJsObject(o) };
     }
@@ -294,7 +294,7 @@ void _ensureRegistered() {
     // evaluate
     var result = null;
     if (type === "new") {
-      result = createNew(name, args);      
+      result = createNew(name, args);
     } else if (type === "function") {
       if (jsId !== null) {
         var obj = _objects[jsId];
@@ -463,9 +463,9 @@ Object _serialize(Object o) {
       }
       document.documentElement.elements.add(top);
     }
-    return { "type" : "DomElement", 
-             "value" : o.id, 
-             "attached" : attached, 
+    return { "type" : "DomElement",
+             "value" : o.id,
+             "attached" : attached,
              "idGenerated" : idGenerated };
   } else if (o is CallbackFunction) {
     final callbackId = _callbackId++;
@@ -508,8 +508,8 @@ Object _deserialize(Map o) {
       result.id = "";
     }
     return result;
-    
-    
+
+
     return document.$dom_getElementById(value);
   } else if (type == "jsObject") {
     return new JsRef._(value);

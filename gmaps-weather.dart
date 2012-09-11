@@ -71,7 +71,7 @@ class LabelColor extends js.JsConst {
 class WeatherMouseEvent extends NativeEvent {
   WeatherMouseEvent();
   WeatherMouseEvent.wrap(NativeEvent e) { jsRef = e.jsRef; }
-  
+
   WeatherFeature get featureDetails => new WeatherFeature.fromJsRef(this["featureDetails"]);
   String get infoWindowHtml => this["infoWindowHtml"];
   LatLng get latLng => new LatLng.fromJsRef(this["latLng"]);
@@ -80,7 +80,7 @@ class WeatherMouseEvent extends NativeEvent {
 
 class WeatherFeature extends js.JsObject {
   WeatherFeature.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
-  
+
   WeatherConditions get current() => new WeatherConditions.fromJsRef(this["current"]);
   List<WeatherForecast> get forecast() {
     List<js.JsRef> resultsRefs = this["forecast"];
@@ -93,7 +93,7 @@ class WeatherFeature extends js.JsObject {
 
 class WeatherConditions extends js.JsObject {
   WeatherConditions.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
-  
+
   String get day => this["day"];
   String get description => this["description"];
   num get high => this["high"];
@@ -107,7 +107,7 @@ class WeatherConditions extends js.JsObject {
 
 class WeatherForecast extends js.JsObject {
   WeatherForecast.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
-  
+
   String get day => this["day"];
   String get description => this["description"];
   num get high => this["high"];

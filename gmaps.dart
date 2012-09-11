@@ -217,7 +217,7 @@ class Marker extends MVCObject {
   // static const num MAX_ZINDEX = js.callFunction(null, "${TYPE_NAME}.MAX_ZINDEX");
 
   Marker([MarkerOptions opts]) : super.newInstance(TYPE_NAME, [opts]);
-  
+
   Animation getAnimation() => Animation.find(callJs("getAnimation"));
   bool getClickable() => callJs("getClickable");
   String getCursor() => callJs("getCursor");
@@ -270,7 +270,7 @@ class Marker extends MVCObject {
       throw new IllegalArgumentException(icon);
     }
   }
-  void setMap(Object map) { 
+  void setMap(Object map) {
     if (map === null || map is GMap || map is StreetViewPanorama) {
       callJs("setMap", [map]);
     } else {
@@ -279,7 +279,7 @@ class Marker extends MVCObject {
   }
   void setOptions(MarkerOptions options) { callJs("setOptions", [options]); }
   void setPosition(LatLng latlng) { callJs("setPosition", [latlng]); }
-  void setShadow(Object shadow) { 
+  void setShadow(Object shadow) {
     if (shadow is String || shadow is MarkerImage) {
       callJs("setShadow", [shadow]);
     } else {
@@ -359,7 +359,7 @@ class MarkerShapeType extends _Constant<String> {
   static const MarkerShapeType CIRCLE = const MarkerShapeType._("circle");
   static const MarkerShapeType POLY = const MarkerShapeType._("poly");
   static const MarkerShapeType RECT = const MarkerShapeType._("rect");
-  
+
   static MarkerShapeType find(String value) => findIn(value, [CIRCLE, POLY, RECT]);
 
   const MarkerShapeType._(String value) : super.fromValue(value);
@@ -588,7 +588,7 @@ class PolygonOptions extends js.JsObject {
 
 class PolyMouseEvent extends MouseEvent {
   PolyMouseEvent.wrap(NativeEvent e) { jsRef = e.jsRef; }
-  
+
   num get edge => this["edge"];
   num get path => this["path"];
   num get vertex => this["vertex"];
@@ -692,7 +692,7 @@ class OverlayView extends MVCObject {
   MapCanvasProjection getProjection() => new MapCanvasProjection.fromJsRef(callJs("getProjection"));
   void onAdd() { callJs("onAdd"); }
   void onRemove() { callJs("onRemove"); }
-  void setMap(Object map) { 
+  void setMap(Object map) {
     if (map === null || map is GMap || map is StreetViewPanorama) {
       callJs("setMap", [map]);
     } else {
@@ -1564,7 +1564,7 @@ class FusionTablesPolylineOptions extends js.JsObject {
 class FusionTablesMouseEvent extends NativeEvent {
   FusionTablesMouseEvent();
   FusionTablesMouseEvent.wrap(NativeEvent e) { jsRef = e.jsRef; }
-  
+
   String get infoWindowHtml => this["infoWindowHtml"];
   LatLng get latLng => new LatLng.fromJsRef(this["latLng"]);
   Size get pixelOffset => new Size.fromJsRef(this["pixelOffset"]);
@@ -1630,7 +1630,7 @@ class KmlLayerStatus extends js.JsConst {
 class KmlMouseEvent extends NativeEvent {
   KmlMouseEvent();
   KmlMouseEvent.wrap(NativeEvent e) { jsRef = e.jsRef; }
-  
+
   KmlFeatureData get featureData => new KmlFeatureData.fromJsRef(this["featureData"]);
   LatLng get latLng => new LatLng.fromJsRef(this["latLng"]);
   Size get pixelOffset => new Size.fromJsRef(this["pixelOffset"]);
@@ -1755,7 +1755,7 @@ class StreetViewPov extends js.JsObject {
 class StreetViewPanoramaData extends js.JsObject {
   StreetViewPanoramaData() : super();
   StreetViewPanoramaData.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
-  
+
   set copyright(String copyright) => this["copyright"] = copyright;
   set imageDate(String imageDate) => this["imageDate"] = imageDate;
   set links(List<StreetViewLink> links) => this["links"] = links;
@@ -1875,7 +1875,7 @@ class Events {
 class MouseEvent extends NativeEvent {
   MouseEvent();
   MouseEvent.wrap(NativeEvent e) { jsRef = e.jsRef; }
-  
+
   LatLng get latLng => new LatLng.fromJsRef(this["latLng"]);
 }
 
@@ -1971,10 +1971,10 @@ class MVCArray<E> extends MVCObject {
   JsRefWrapper _jsRefWrapper;
 
   MVCArray([List<E> array, JsRefWrapper jsRefWrapper]) : super.newInstance("google.maps.MVCArray", [array]) {
-    _jsRefWrapper = jsRefWrapper; 
+    _jsRefWrapper = jsRefWrapper;
   }
   MVCArray.fromJsRef(js.JsRef jsRef, [JsRefWrapper jsRefWrapper]) : super.fromJsRef(jsRef) {
-    _jsRefWrapper = jsRefWrapper; 
+    _jsRefWrapper = jsRefWrapper;
   }
 
   void clear() { callJs("clear"); }

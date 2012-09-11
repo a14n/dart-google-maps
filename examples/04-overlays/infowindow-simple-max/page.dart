@@ -15,7 +15,7 @@ void main() {
       '</div>'
       '<h1 id="firstHeading" class="firstHeading">Uluru</h1>'
       '<div id="bodyContent">'
-      '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' 
+      '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large '
       'sandstone rock formation in the southern part of the '
       'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '
       'south west of the nearest large town, Alice Springs; 450&#160;km '

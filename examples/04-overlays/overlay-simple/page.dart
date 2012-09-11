@@ -27,9 +27,9 @@ class USGSOverlay extends gmaps.OverlayView {
   gmaps.LatLngBounds _bounds;
   String _image;
   gmaps.GMap _map;
-  
+
   DivElement _div;
-  
+
   USGSOverlay(gmaps.LatLngBounds bounds, String image, gmaps.GMap map) : super() {
     this["onAdd"] = (List args) => _onAdd();
     this["draw"] = (List args) => _draw();
@@ -49,7 +49,7 @@ class USGSOverlay extends gmaps.OverlayView {
     // Explicitly call setMap on this overlay
     setMap(map);
   }
-  
+
   void _onAdd() {
 
     // Note: an overlay's receipt of add() indicates that

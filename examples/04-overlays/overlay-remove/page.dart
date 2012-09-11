@@ -19,7 +19,7 @@ void main() {
     final me = new gmaps.MouseEvent.wrap(e);
     addMarker(me.latLng);
   });
-  
+
   query("#clearOverlays").on.click.add((e) => clearOverlays());
   query("#showOverlays").on.click.add((e) => showOverlays());
   query("#deleteOverlays").on.click.add((e) => deleteOverlays());

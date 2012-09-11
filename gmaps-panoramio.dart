@@ -29,7 +29,7 @@ class PanoramioLayerOptions extends js.JsObject {
 
 class PanoramioFeature extends js.JsObject {
   PanoramioFeature.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
-  
+
   String get author => this["author"];
   String get photoId => this["photoId"];
   String get title => this["title"];
@@ -40,7 +40,7 @@ class PanoramioFeature extends js.JsObject {
 class PanoramioMouseEvent extends NativeEvent {
   PanoramioMouseEvent();
   PanoramioMouseEvent.wrap(NativeEvent e) { jsRef = e.jsRef; }
-  
+
   PanoramioFeature get featureDetails => new PanoramioFeature.fromJsRef(this["featureDetails"]);
   String get infoWindowHtml => this["infoWindowHtml"];
   LatLng get latLng => new LatLng.fromJsRef(this["latLng"]);

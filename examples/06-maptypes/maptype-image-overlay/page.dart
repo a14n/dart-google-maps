@@ -11,7 +11,7 @@ void main() {
     ;
 
   final map = new gmaps.GMap(query('#map-canvas'), mapOptions);
-  
+
 
   final bounds = new Map<int, List<List<int>>>();
   bounds[17] = [[20969, 20970], [50657, 50658]];

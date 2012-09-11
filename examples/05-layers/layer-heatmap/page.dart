@@ -516,7 +516,7 @@ void initTaxiData() {
 
 void main() {
   initTaxiData();
-  
+
   final chicago = new gmaps.LatLng(41.875696,-87.624207);
   final mapOptions = new gmaps.MapOptions()
     ..zoom = 13

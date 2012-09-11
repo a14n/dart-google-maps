@@ -30,7 +30,7 @@ void main() {
     ]
     ..map = map
   );
-  
+
   animateCircle();
 }
 

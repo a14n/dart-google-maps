@@ -21,7 +21,7 @@ void main() {
   // Photograph courtesy of the U.S. Geological Survey
   final srcImage = '${IMAGE_URL}/images/talkeetna.png';
   overlay = new USGSOverlay(bounds, srcImage, map);
-  
+
   query("#toggle").on.click.add((e) => overlay.toggle());
   query("#toggleDOM").on.click.add((e) => overlay.toggleDOM());
 }
@@ -30,9 +30,9 @@ class USGSOverlay extends gmaps.OverlayView {
   gmaps.LatLngBounds _bounds;
   String _image;
   gmaps.GMap _map;
-  
+
   DivElement _div;
-  
+
   USGSOverlay(gmaps.LatLngBounds bounds, String image, gmaps.GMap map) : super() {
     this["onAdd"] = (List args) => _onAdd();
     this["draw"] = (List args) => _draw();
@@ -52,7 +52,7 @@ class USGSOverlay extends gmaps.OverlayView {
     // Explicitly call setMap on this overlay
     setMap(map);
   }
-  
+
   void _onAdd() {
 
     // Note: an overlay's receipt of add() indicates that
@@ -124,7 +124,7 @@ class USGSOverlay extends gmaps.OverlayView {
       _div.style.visibility = 'visible';
     }
   }
-  
+
   void toggle() {
     if (_div !== null) {
       if (_div.style.visibility == 'hidden') {

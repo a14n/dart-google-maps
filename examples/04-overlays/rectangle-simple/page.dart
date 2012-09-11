@@ -3,7 +3,7 @@
 
 void main() {
   final coachella = new gmaps.LatLng(33.6803003, -116.173894);
-  
+
   final mapOptions = new gmaps.MapOptions()
     ..zoom = 11
     ..center = coachella

@@ -16,7 +16,7 @@ class HomeControl {
     // Setting padding to 5 px will offset the control
     // from the edge of the map
     controlDiv.style.padding = '5px';
-  
+
     // Set CSS for the control border
     final controlUI = new DivElement();
     controlUI.style
@@ -28,7 +28,7 @@ class HomeControl {
       ;
     controlUI.title = 'Click to set the map to Home';
     controlDiv.elements.add(controlUI);
-  
+
     // Set CSS for the control interior
     final controlText = new DivElement();
     controlText.style
@@ -39,7 +39,7 @@ class HomeControl {
       ;
     controlText.innerHTML = '<b>Home</b>';
     controlUI.elements.add(controlText);
-  
+
     // Setup the click event listeners: simply set the map to
     // Chicago
     gmaps.Events.addDomListener(controlUI, 'click', (e) {

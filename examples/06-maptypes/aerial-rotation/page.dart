@@ -13,7 +13,7 @@ void main() {
     ;
   map = new gmaps.GMap(query("#map_canvas"), mapOptions);
   map.setTilt(45);
-  
+
   query("#autoRotate").on.click.add((e)=>autoRotate());
 }
 

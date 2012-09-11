@@ -9,7 +9,7 @@ void main() {
     ;
 
   final map = new gmaps.GMap(query("#map_canvas"), mapOptions);
-  
+
   final marker = new gmaps.Marker(new gmaps.MarkerOptions()
     ..position = map.getCenter()
     ..map = map

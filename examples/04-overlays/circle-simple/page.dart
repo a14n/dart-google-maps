@@ -16,7 +16,7 @@ void main() {
                            "center" : new gmaps.LatLng(34.052234, -118.243684),
                            "population" : 3844829
   };
-  
+
   final mapOptions = new gmaps.MapOptions()
     ..zoom = 4
     ..center = new gmaps.LatLng(37.09024, -95.712891)

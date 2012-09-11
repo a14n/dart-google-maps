@@ -53,26 +53,26 @@ class GallPetersProjection extends gmaps.Projection {
   gmaps.Point _fromLatLngToPoint(gmaps.LatLng latLng, [gmaps.Point point]) {
     final origin = this._worldOrigin;
     final x = origin.x + this._worldCoordinatePerLonDegree * latLng.lng();
-  
+
     // Note that latitude is measured from the world coordinate origin
     // at the top left of the map.
     final latRadians = degreesToRadians(latLng.lat());
     final y = origin.y - this._worldCoordinateLatRange * Math.sin(latRadians);
-  
+
     return new gmaps.Point(x, y);
   }
 
   gmaps.LatLng _fromPointToLatLng(gmaps.Point point, [bool nowrap]) {
     var y = point.y;
     var x = point.x;
-  
+
     if (y < 0) {
       y = 0;
     }
     if (y >= GALL_PETERS_RANGE_Y) {
       y = GALL_PETERS_RANGE_Y;
     }
-  
+
     final origin = this._worldOrigin;
     final lng = (x - origin.x) / this._worldCoordinatePerLonDegree;
     final latRadians = Math.asin((origin.y - y) / this._worldCoordinateLatRange);
@@ -93,7 +93,7 @@ void main() {
 
   var locationArray = [chicago,anchorage,mexico,equator,london,johannesburg,kinshasa,sydney];
   var locationNameArray = ['Chicago','Anchorage','Mexico City','The Equator','London','Johannesburg','Kinshasa','Sydney'];
-  
+
   var gallPetersMapType = new gmaps.ImageMapType(new gmaps.ImageMapTypeOptions()
     ..getTileUrl = (gmaps.Point coord, num zoom) {
       var numTiles = 1 << zoom;
