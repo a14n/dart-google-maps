@@ -851,10 +851,9 @@ class DirectionsService extends js.JsObject {
 
   DirectionsService() : super.newInstance(TYPE_NAME);
 
-  void route(DirectionsRequest request, void callback(List<DirectionsResult> results, DirectionsStatus status)) {
+  void route(DirectionsRequest request, void callback(DirectionsResult results, DirectionsStatus status)) {
     js.CallbackFunction callbackFunction = Object _(List args) {
-      List<js.JsRef> resultsRefs = args[0];
-      callback(resultsRefs.map((e) => new DirectionsResult.fromJsRef(e)), DirectionsStatus.find(args[1]));
+      callback(new DirectionsResult.fromJsRef(args[0]), DirectionsStatus.find(args[1]));
     };
     callJs("route", [request, callbackFunction]);
   }
