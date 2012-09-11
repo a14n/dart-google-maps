@@ -1201,18 +1201,18 @@ class DistanceMatrixService extends js.JsObject {
 class DistanceMatrixRequest extends js.JsObject {
   set avoidHighways(bool avoidHighways) => this["avoidHighways"] = avoidHighways;
   set avoidTolls(bool avoidTolls) => this["avoidTolls"] = avoidTolls;
-  set destination(Object destination) {
-    if (destination is List<String> || destination is List<LatLng>) {
-      this["destination"] = destination;
+  set destinations(Object destinations) {
+    if (destinations is List<String> || destinations is List<LatLng>) {
+      this["destinations"] = destinations;
     } else {
-      throw new IllegalArgumentException(destination);
+      throw new IllegalArgumentException(destinations);
     }
   }
-  set origin(Object origin) {
-    if (origin is List<String> || origin is List<LatLng>) {
-      this["origin"] = origin;
+  set origins(Object origins) {
+    if (origins is List<String> || origins is List<LatLng>) {
+      this["origins"] = origins;
     } else {
-      throw new IllegalArgumentException(origin);
+      throw new IllegalArgumentException(origins);
     }
   }
   set region(String region) => this["region"] = region;
