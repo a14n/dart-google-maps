@@ -1744,31 +1744,52 @@ class StreetViewLink extends js.JsObject {
 }
 
 class StreetViewPov extends js.JsObject {
+  StreetViewPov() : super();
   StreetViewPov.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
   num get heading => this["heading"];
+      set heading(num heading) => this["heading"] = heading;
   num get pitch => this["pitch"];
+      set pitch(num pitch) => this["pitch"] = pitch;
   num get zoom => this["zoom"];
+      set zoom(num zoom) => this["zoom"] = zoom;
 }
 
 class StreetViewPanoramaData extends js.JsObject {
   StreetViewPanoramaData() : super();
   StreetViewPanoramaData.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  set copyright(String copyright) => this["copyright"] = copyright;
-  set imageDate(String imageDate) => this["imageDate"] = imageDate;
-  set links(List<StreetViewLink> links) => this["links"] = links;
-  set location(StreetViewLocation location) => this["location"] = location;
-  set tiles(StreetViewTileData tiles) => this["tiles"] = tiles;
+  String get copyright => this["copyright"];
+         set copyright(String copyright) => this["copyright"] = copyright;
+  String get imageDate => this["imageDate"];
+         set imageDate(String imageDate) => this["imageDate"] = imageDate;
+  List<StreetViewLink> get links {
+                         List<js.JsRef> resultsRefs = this["links"];
+                         return resultsRefs.map((e) => new StreetViewLink.fromJsRef(e));
+                       }
+                       set links(List<StreetViewLink> links) => this["links"] = links;
+  StreetViewLocation get location => new StreetViewLocation.fromJsRef(this["location"]);
+                     set location(StreetViewLocation location) => this["location"] = location;
+  StreetViewTileData get tiles => new StreetViewTileData.fromJsRef(this["tiles"]);
+                     set tiles(StreetViewTileData tiles) => this["tiles"] = tiles;
 }
 
 class StreetViewLocation extends js.JsObject {
-  set description(String description) => this["description"] = description;
-  set latLng(LatLng latLng) => this["latLng"] = latLng;
-  set pano(String pano) => this["pano"] = pano;
+  StreetViewLocation() : super();
+  StreetViewLocation.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+
+  String get description => this["description"];
+         set description(String description) => this["description"] = description;
+  LatLng get latLng => new LatLng.fromJsRef(this["latLng"]);
+         set latLng(LatLng latLng) => this["latLng"] = latLng;
+  String get pano => this["pano"];
+         set pano(String pano) => this["pano"] = pano;
 }
 
 class StreetViewTileData extends js.JsObject {
+  StreetViewTileData() : super();
+  StreetViewTileData.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+
   String getTileUrl(String pano, num tileZoom, num tileX, num tileY) => callJs("getTileUrl", [pano, tileZoom, tileX, tileY]);
 
   set centerHeading(num centerHeading) => this["centerHeading"] = centerHeading;
