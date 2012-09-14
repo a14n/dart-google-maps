@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Google Maps JavaScript API v3 Example: Elevation Along Paths</title>
+    <link href="https://google-developers.appspot.com/maps/documentation/javascript/examples/default.css" rel="stylesheet">
+  </head>
+  <body>
+    <div>
+      <div id="map_canvas" style="position:relative;width:640px; height:400px; border: 1px solid black;"></div>
+      <div id="elevation_chart" style="width:640px; height:200px; "></div>
+    </div>
+
+    <script src="https://www.google.com/jsapi"></script>
+    <script>
+      // Load the Visualization API and the columnchart package.
+      google.load('visualization', '1', {packages: ['columnchart']});
+    </script>
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script type="application/dart" src="page.dart"></script>
+    <script src="http://dart.googlecode.com/svn/branches/bleeding_edge/dart/client/dart.js"></script>
+  </body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Google Maps API v3 Example: Distance Matrix</title>
+    <style>
+      body {
+        margin: 20px;
+        font-family: courier, sans-serif;
+        font-size: 12px;
+      }
+      #map {
+        height: 480px;
+        width: 640px;
+        border: solid thin #333;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="inputs">
+      <pre class="prettyprint">
+var origin1 = new google.maps.LatLng(55.930385, -3.118425);
+var origin2 = 'Greenwich, England';
+var destinationA = 'Stockholm, Sweden';
+var destinationB = new google.maps.LatLng(50.087692, 14.421150);
+      </pre>
+      <p><button type="button" id="calculateDistances">Calculate
+        distances</button></p>
+    </div>
+    <div id="outputDiv"></div>
+    <div id="map"></div>
+
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script type="application/dart" src="page.dart"></script>
+    <script src="http://dart.googlecode.com/svn/branches/bleeding_edge/dart/client/dart.js"></script>
+  </body>
+</html>
