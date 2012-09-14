@@ -140,6 +140,15 @@ class JsConst implements JsObject, Hashable {
   JsRef getJsRef(String name) => new JsObject.fromJsRef(jsRef).getJsRef(name);
 }
 
+//
+JsObject _window;
+JsObject getWindow() {
+  if(_window === null){
+    _window = new JsObject.fromJsRef(getPropertyRef(null, null));
+  }
+  return _window;
+}
+
 
 //--------------------------
 // js <-> dart communication
@@ -385,8 +394,10 @@ void _ensureRegistered() {
       if (jsId !== null) {
         var obj = _objects[jsId];
         result = obj[name];
-      } else {
+      } else if (name !== null) {
         result = getObject(name);
+      } else {
+        result = window;
       }
     } else if (type === "areEquals") {
       var o1 = args[0];
