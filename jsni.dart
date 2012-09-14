@@ -27,12 +27,80 @@ class JsObject implements IsJsObject {
   JsObject.fromJsRef(this.jsRef);
   JsObject.newInstance(String objectName, [List args]) { jsRef = newInstance(objectName, args); }
 
-  Object operator [](String name) => getProperty(this, name);
-  void operator []=(String name, Object value) { setProperty(this, name, value); }
+  // Object instead of String to support List
+  Object operator [](Object name) => getProperty(this, name.toString());
+  void operator []=(Object name, Object value) { setProperty(this, name.toString(), value); }
 
   Object callJs(String name, [List args]) => callFunction(this, name, args);
   JsRef callJsForRef(String name, [List args]) =>  callFunctionForRef(this, name, args);
   JsRef getJsRef(String name) => getPropertyRef(this, name);
+}
+
+typedef Object Instanciator(JsRef);
+
+class JsIterator<E> extends JsObject implements Iterator<E> {
+  Instanciator instanciator;
+  int current = 0;
+
+  JsIterator.fromJsRef(JsRef jsRef, Instanciator this.instanciator) : super.fromJsRef(jsRef);
+
+  // Iterator
+  E next() => instanciator(getJsRef((current++).toString())) as E;
+  bool hasNext() => current < this["length"];
+}
+
+class JsList<E> extends JsObject implements List<E> {
+  Instanciator instanciator;
+
+  JsList.fromJsRef(JsRef jsRef, Instanciator this.instanciator) : super.fromJsRef(jsRef);
+
+  // Iterable
+  JsIterator<E> iterator() => new JsIterator.fromJsRef(jsRef, instanciator);
+
+  // Collection
+  void forEach(void f(E element)) => (getObject(this) as List).forEach(f);
+  Collection map(f(E element)) => (getObject(this) as List).map(f);
+  Dynamic reduce(Dynamic initialValue, Dynamic combine(Dynamic previousValue, E element)) => (getObject(this) as List).reduce(initialValue, combine);
+  Collection<E> filter(bool f(E element)) => (getObject(this) as List).filter(f);
+  bool every(bool f(E element)) => (getObject(this) as List).every(f);
+  bool some(bool f(E element)) => (getObject(this) as List).some(f);
+  bool isEmpty() => (getObject(this) as List).isEmpty();
+  int get length => (getObject(this) as List).length;
+
+  // List
+  E operator [](int index) => instanciator(getJsRef(index.toString())) as E;
+  // void operator []=(int index, E value);
+  void set length(int newLength) => null;
+  void add(E value) { callJs("push", [value]); }
+  void addLast(E value) { callJs("push", [value]); }
+  void addAll(Collection<E> collection) { collection.forEach(add); }
+  void sort(int compare(E a, E b)) {
+    final sortedList = (getObject(this) as List)
+      ..sort(compare);
+    this.clear();
+    this.addAll(sortedList);
+  }
+  int indexOf(E element, [int start]) => (getObject(this) as List).indexOf(element, start);
+  int lastIndexOf(E element, [int start]) => (getObject(this) as List).lastIndexOf(element, start);
+  void clear() { callJs("splice", [0, length]); }
+  E removeLast() => callJs("pop");
+  E last() => (getObject(this) as List).last();
+  List<E> getRange(int start, int length) => (getObject(this) as List).getRange(start, length);
+  void setRange(int start, int length, List<E> from, [int startFrom=0]) {
+    final args = [start, 0];
+    for(int i = startFrom; i < length; i++) {
+      args.add(from[i]);
+    }
+    callJs("splice", args);
+  }
+  void removeRange(int start, int length) { callJs("splice", [start, length]); }
+  void insertRange(int start, int length, [E initialValue]) {
+    final args = [start, 0];
+    for(int i = 0; i < length; i++) {
+      args.add(initialValue);
+    }
+    callJs("splice", args);
+  }
 }
 
 typedef Object CallbackFunction(List args);
@@ -326,6 +394,9 @@ void _ensureRegistered() {
       var o1 = args[0];
       var o2 = getObject(args[1]);
       result = o1 instanceof o2;
+    } else if (type === "getObject") {
+      var obj = _objects[jsId];
+      result = obj;
     }
 
     // prepare answer
@@ -429,9 +500,20 @@ bool isInstanceOf(Object o1, String type) {
   });
 }
 
+Object getObject(IsJsObject isJsObject) {
+  return _call(void _(jsQuery) {
+    jsQuery["type"] = "getObject";
+    jsQuery["jsId"] = isJsObject.jsRef._jsId;
+  });
+}
+
 Object _serialize(Object o) {
   if (o === null) {
     return { "type" : "null", "value" : o };
+  } else if (o is IsJsObject) {
+    return { "type" : "jsObject", "value" : o.jsRef._jsId };
+  } else if (o is JsRef) {
+    return { "type" : "jsObject", "value" : o._jsId };
   } else if (o is num) {
     return { "type" : "number", "value" : o };
   } else if (o is String) {
@@ -442,10 +524,6 @@ Object _serialize(Object o) {
     return { "type" : "date", "value" : o.millisecondsSinceEpoch };
   } else if (o is List) {
     return { "type" : "list", "value" : o.map(_serialize) };
-  } else if (o is IsJsObject) {
-    return { "type" : "jsObject", "value" : o.jsRef._jsId };
-  } else if (o is JsRef) {
-    return { "type" : "jsObject", "value" : o._jsId };
   } else if (o === document) {
     return { "type" : "document", "value" : null };
   } else if (o is Element) {

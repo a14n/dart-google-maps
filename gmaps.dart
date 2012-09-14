@@ -349,7 +349,7 @@ class MarkerShape extends js.JsObject {
   MarkerShape() : super();
   MarkerShape.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  List<num> get coords => this["coords"];
+  List<num> get coords => new js.JsList<num>.fromJsRef(getJsRef("coords"), (e) => js.getObject(new js.JsObject.fromJsRef(e)));
             set coords(List<num> coords) => this["coords"] = coords;
   MarkerShapeType get type => MarkerShapeType.find(this["type"]);
                   set type(MarkerShapeType type) => this["type"] = type.value;
@@ -771,13 +771,10 @@ class GeocoderResult extends js.JsObject {
   GeocoderResult() : super();
   GeocoderResult.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  List<GeocoderAddressComponent> get address_components {
-    List<js.JsRef> resultsRefs = this["address_components"];
-    return resultsRefs.map((e) => new GeocoderAddressComponent.fromJsRef(e));
-  }
+  List<GeocoderAddressComponent> get address_components => new js.JsList<GeocoderAddressComponent>.fromJsRef(getJsRef("address_components"), (e) => new GeocoderAddressComponent.fromJsRef(e));
   String get formatted_address => this["formatted_address"];
   GeocoderGeometry get geometry => new GeocoderGeometry.fromJsRef(this["geometry"]);
-  List<String> get types => this["types"];
+  List<String> get types => new js.JsList<String>.fromJsRef(getJsRef("types"), (e) => js.getObject(new js.JsObject.fromJsRef(e)));
 }
 
 class GeocoderAddressComponent extends js.JsObject {
@@ -786,7 +783,7 @@ class GeocoderAddressComponent extends js.JsObject {
 
   String get long_name => this["long_name"];
   String get short_name => this["short_name"];
-  List<String> get types => this["types"];
+  List<String> get types => new js.JsList<String>.fromJsRef(getJsRef("types"), (e) => js.getObject(new js.JsObject.fromJsRef(e)));
 }
 
 class GeocoderGeometry extends js.JsObject {
@@ -946,10 +943,7 @@ class DirectionsResult extends js.JsObject {
   DirectionsResult() : super();
   DirectionsResult.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  List<DirectionsRoute> get routes {
-    List<js.JsRef> resultsRefs = this["routes"];
-    return resultsRefs.map((e) => new DirectionsRoute.fromJsRef(e));
-  }
+  List<DirectionsRoute> get routes => new js.JsList<DirectionsRoute>.fromJsRef(getJsRef("routes"), (e) => new DirectionsRoute.fromJsRef(e));
 }
 
 class DirectionsRoute extends js.JsObject {
@@ -958,16 +952,10 @@ class DirectionsRoute extends js.JsObject {
 
   LatLngBounds get bounds => new LatLngBounds.fromJsRef(this["bounds"]);
   String get copyrights => this["copyrights"];
-  List<DirectionsLeg> get legs {
-    List<js.JsRef> resultsRefs = this["legs"];
-    return resultsRefs.map((e) => new DirectionsLeg.fromJsRef(e));
-  }
-  List<LatLng> get overview_path {
-    List<js.JsRef> resultsRefs = this["overview_path"];
-    return resultsRefs.map((e) => new LatLng.fromJsRef(e));
-  }
-  List<String> get warnings => this["warnings"];
-  List<num> get waypoint_order => this["waypoint_order"];
+  List<DirectionsLeg> get legs => new js.JsList<DirectionsLeg>.fromJsRef(getJsRef("legs"), (e) => new DirectionsLeg.fromJsRef(e));
+  List<LatLng> get overview_path => new js.JsList<LatLng>.fromJsRef(getJsRef("overview_path"), (e) => new LatLng.fromJsRef(e));
+  List<String> get warnings => new js.JsList<String>.fromJsRef(getJsRef("warnings"), (e) => js.getObject(new js.JsObject.fromJsRef(e)));
+  List<num> get waypoint_order => new js.JsList<num>.fromJsRef(getJsRef("waypoint_order"), (e) => js.getObject(new js.JsObject.fromJsRef(e)));
 }
 
 class DirectionsLeg extends js.JsObject {
@@ -983,14 +971,8 @@ class DirectionsLeg extends js.JsObject {
   LatLng get end_location => new LatLng.fromJsRef(this["end_location"]);
   String get start_address => this["start_address"];
   LatLng get start_location => new LatLng.fromJsRef(this["start_location"]);
-  List<DirectionsStep> get steps {
-    List<js.JsRef> resultsRefs = this["steps"];
-    return resultsRefs.map((e) => new DirectionsStep.fromJsRef(e));
-  }
-  List<LatLng> get via_waypoints {
-    List<js.JsRef> resultsRefs = this["via_waypoints"];
-    return resultsRefs.map((e) => new LatLng.fromJsRef(e));
-  }
+  List<DirectionsStep> get steps => new js.JsList<DirectionsStep>.fromJsRef(getJsRef("steps"), (e) => new DirectionsStep.fromJsRef(e));
+  List<LatLng> get via_waypoints => new js.JsList<LatLng>.fromJsRef(getJsRef("via_waypoints"), (e) => new LatLng.fromJsRef(e));
 }
 
 class DirectionsStep extends js.JsObject {
@@ -1001,17 +983,11 @@ class DirectionsStep extends js.JsObject {
   GDuration get duration => new GDuration.fromJsRef(this["duration"]);
   LatLng get end_location => new LatLng.fromJsRef(this["end_location"]);
   String get instructions => this["instructions"];
-  List<LatLng> get path {
-    List<js.JsRef> resultsRefs = this["path"];
-    return resultsRefs.map((e) => new LatLng.fromJsRef(e));
-  }
+  List<LatLng> get path => new js.JsList<LatLng>.fromJsRef(getJsRef("path"), (e) => new LatLng.fromJsRef(e));
   LatLng get start_location => new LatLng.fromJsRef(this["start_location"]);
   // TODO check return type
   DirectionsStep get steps => new DirectionsStep.fromJsRef(this["steps"]);
-//  List<DirectionsStep> get steps() {
-//    List<js.JsRef> resultsRefs = this["steps"];
-//    return resultsRefs.map((e) => new DirectionsStep.fromJsRef(e));
-//  }
+//  List<DirectionsStep> get steps => new js.JsList<DirectionsStep>.fromJsRef(getJsRef("steps"), (e) => new DirectionsStep.fromJsRef(e));
   TransitDetails get transit => new TransitDetails.fromJsRef(this["transit"]);
   TravelMode get travel_mode => TravelMode.find(this["travel_mode"]);
 }
@@ -1067,10 +1043,7 @@ class TransitLine extends js.JsObject {
   TransitLine() : super();
   TransitLine.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  List<TransitAgency> get agencies {
-    List<js.JsRef> resultsRefs = this["agencies"];
-    return resultsRefs.map((e) => new TransitAgency.fromJsRef(e));
-  }
+  List<TransitAgency> get agencies => new js.JsList<TransitAgency>.fromJsRef(getJsRef("agencies"), (e) => new TransitAgency.fromJsRef(e));
   String get color => this["color"];
   String get icon => this["icon"];
   String get name => this["name"];
@@ -1224,22 +1197,16 @@ class DistanceMatrixResponse extends js.JsObject {
   DistanceMatrixResponse() : super();
   DistanceMatrixResponse.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  List<String> get destinationAddresses => this["destinationAddresses"];
-  List<String> get originAddresses => this["originAddresses"];
-  List<DistanceMatrixResponseRow> get rows {
-    List<js.JsRef> resultsRefs = this["rows"];
-    return resultsRefs.map((e) => new DistanceMatrixResponseRow.fromJsRef(e));
-  }
+  List<String> get destinationAddresses => new js.JsList<String>.fromJsRef(getJsRef("destinationAddresses"), (e) => js.getObject(new js.JsObject.fromJsRef(e)));
+  List<String> get originAddresses => new js.JsList<String>.fromJsRef(getJsRef("originAddresses"), (e) => js.getObject(new js.JsObject.fromJsRef(e)));
+  List<DistanceMatrixResponseRow> get rows => new js.JsList<DistanceMatrixResponseRow>.fromJsRef(getJsRef("rows"), (e) => new DistanceMatrixResponseRow.fromJsRef(e));
 }
 
 class DistanceMatrixResponseRow extends js.JsObject {
   DistanceMatrixResponseRow() : super();
   DistanceMatrixResponseRow.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  List<DistanceMatrixResponseElement> get elements {
-    List<js.JsRef> resultsRefs = this["elements"];
-    return resultsRefs.map((e) => new DistanceMatrixResponseElement.fromJsRef(e));
-  }
+  List<DistanceMatrixResponseElement> get elements => new js.JsList<DistanceMatrixResponseElement>.fromJsRef(getJsRef("elements"), (e) => new DistanceMatrixResponseElement.fromJsRef(e));
 }
 
 class DistanceMatrixResponseElement extends js.JsObject {
@@ -1680,10 +1647,7 @@ class StreetViewPanorama extends MVCObject {
   StreetViewPanorama(html.Node container, [StreetViewPanoramaOptions opts]) : super.newInstance(TYPE_NAME, [container, opts]);
   StreetViewPanorama.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  List<StreetViewLink> getLinks() {
-    List<js.JsRef> resultsRefs = callJs("getLinks");
-    return resultsRefs.map((e) => new StreetViewLink.fromJsRef(e));
-  }
+  List<StreetViewLink> getLinks() => new js.JsList<StreetViewLink>.fromJsRef(callJsForRef("getLinks"), (e) => new StreetViewLink.fromJsRef(e));
   String getPano() => callJs("getPano");
   LatLng getPosition() => new LatLng.fromJsRef(callJs("getPosition"));
   StreetViewPov getPov() => new StreetViewPov.fromJsRef(callJs("getPov"));
@@ -1733,6 +1697,7 @@ class StreetViewAddressControlOptions extends js.JsObject {
 }
 
 class StreetViewLink extends js.JsObject {
+  StreetViewLink() : super();
   StreetViewLink.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
   String get description => this["description"];
@@ -1763,10 +1728,7 @@ class StreetViewPanoramaData extends js.JsObject {
          set copyright(String copyright) => this["copyright"] = copyright;
   String get imageDate => this["imageDate"];
          set imageDate(String imageDate) => this["imageDate"] = imageDate;
-  List<StreetViewLink> get links {
-                         List<js.JsRef> resultsRefs = this["links"];
-                         return resultsRefs.map((e) => new StreetViewLink.fromJsRef(e));
-                       }
+  List<StreetViewLink> get links => new js.JsList<StreetViewLink>.fromJsRef(getJsRef("links"), (e) => new StreetViewLink.fromJsRef(e));
                        set links(List<StreetViewLink> links) => this["links"] = links;
   StreetViewLocation get location => new StreetViewLocation.fromJsRef(this["location"]);
                      set location(StreetViewLocation location) => this["location"] = location;
@@ -2004,10 +1966,7 @@ class MVCArray<E> extends MVCObject {
     };
     callJs("forEach", [callbackFunction]);
   }
-  List<E> getArray() {
-    final List result = callJs("getArray");
-    return result.map(_mayWrap);
-  }
+  List<E> getArray() => new js.JsList<E>.fromJsRef(callJsForRef("getArray"), _mayWrap);
   E getAt(num i) => _mayWrap(callJs("getAt", [i]));
   num getLength() => callJs("getLength");
   void insertAt(num i, E elem) { callJs("insertAt", [i, elem]); }
