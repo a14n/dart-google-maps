@@ -47,7 +47,7 @@ class GMap extends MVCObject {
   void setTilt(num tilt) { callJs("setTilt", [tilt]); }
   void setZoom(num zoom) { callJs("setZoom", [zoom]); }
 
-  Controls get controls => new Controls.fromJsRef(js.getPropertyRef(this, "controls"));
+  Controls get controls => new Controls.fromJsRef(getJsRef("controls"));
            set controls(Controls controls) => this["controls"] = controls;
   MapTypeRegistry get mapTypes => new MapTypeRegistry.fromJsRef(this["mapTypes"]);
                   set mapTypes(MapTypeRegistry mapTypes) => this["mapTypes"] = mapTypes;
@@ -1663,7 +1663,7 @@ class StreetViewPanorama extends MVCObject {
   void setPov(StreetViewPov pov) { callJs("setPov", [pov]); }
   void setVisible(bool flag) { callJs("setVisible", [flag]); }
 
-  Controls get controls => new Controls.fromJsRef(js.getPropertyRef(this, "controls"));
+  Controls get controls => new Controls.fromJsRef(getJsRef("controls"));
   set controls(Controls controls) => this["controls"] = controls;
 }
 
