@@ -15,12 +15,7 @@ class JsRef {
 }
 
 /// Represent a dart Object that wrap a js element
-interface IsJsObject {
-  JsRef get jsRef;
-}
-
-/// Default implementation of IsJsObject
-class JsObject implements IsJsObject {
+class JsObject {
   JsRef jsRef;
 
   JsObject() { this.jsRef = newInstance("Object"); }
@@ -109,7 +104,7 @@ typedef Object CallbackFunction(List args);
 // constant/enum handling
 //-----------------------
 
-class JsConst implements IsJsObject, Hashable {
+class JsConst implements JsObject, Hashable {
   static Map<Hashable, JsRef> _constRefs;
   static Object findIn(Object o, List elements) {
     final matchingElements = elements.filter((e) => areEquals(e, o));
@@ -136,6 +131,13 @@ class JsConst implements IsJsObject, Hashable {
     return _constRefs[this];
   }
   Object get value => getProperty(null, jsName);
+
+  // implementation of JsObject methods
+  Object operator [](Object name) => new JsObject.fromJsRef(jsRef)[name];
+  void operator []=(Object name, Object value) { new JsObject.fromJsRef(jsRef)[name] = value; }
+  Object callJs(String name, [List args]) => new JsObject.fromJsRef(jsRef).callJs(name, args);
+  JsRef callJsForRef(String name, [List args]) => new JsObject.fromJsRef(jsRef).callJsForRef(name, args);
+  JsRef getJsRef(String name) => new JsObject.fromJsRef(jsRef).getJsRef(name);
 }
 
 
@@ -444,46 +446,46 @@ JsRef newInstance(String name, [List args]) {
   });
 }
 
-Object _callFunction(IsJsObject isJsObject, String name, bool returnRef, [List args]) {
+Object _callFunction(JsObject jsObject, String name, bool returnRef, [List args]) {
   return _call(void _(jsQuery) {
     jsQuery["type"] = "function";
-    jsQuery["jsId"] = isJsObject!=null ? isJsObject.jsRef._jsId : null;
+    jsQuery["jsId"] = jsObject!=null ? jsObject.jsRef._jsId : null;
     jsQuery["name"] = name;
     jsQuery["arguments"] = _serialize(args != null ? args : []);
     jsQuery["returnRef"] = returnRef;
   });
 }
-Object callFunction(IsJsObject isJsObject, String name, [List args]) {
-  return _callFunction(isJsObject, name, false, args);
+Object callFunction(JsObject jsObject, String name, [List args]) {
+  return _callFunction(jsObject, name, false, args);
 }
-Object callFunctionForRef(IsJsObject isJsObject, String name, [List args]) {
-  return _callFunction(isJsObject, name, true, args);
+Object callFunctionForRef(JsObject jsObject, String name, [List args]) {
+  return _callFunction(jsObject, name, true, args);
 }
 
-void setProperty(IsJsObject isJsObject, String name, Object value) {
+void setProperty(JsObject jsObject, String name, Object value) {
   _call(void _(jsQuery) {
     jsQuery["type"] = "set";
-    jsQuery["jsId"] = isJsObject!=null ? isJsObject.jsRef._jsId : null;
+    jsQuery["jsId"] = jsObject!=null ? jsObject.jsRef._jsId : null;
     jsQuery["name"] = name;
     jsQuery["arguments"] = _serialize([value]);
   });
 }
 
-Object _getProperty(IsJsObject isJsObject, String name, bool returnRef) {
+Object _getProperty(JsObject jsObject, String name, bool returnRef) {
   return _call(void _(jsQuery) {
     jsQuery["type"]      = "get";
-    jsQuery["jsId"]      = isJsObject!=null ? isJsObject.jsRef._jsId : null;
+    jsQuery["jsId"]      = jsObject!=null ? jsObject.jsRef._jsId : null;
     jsQuery["name"]      = name;
     jsQuery["returnRef"] = returnRef;
   });
 }
 
-Object getProperty(IsJsObject isJsObject, String name) {
-  return _getProperty(isJsObject, name, false);
+Object getProperty(JsObject jsObject, String name) {
+  return _getProperty(jsObject, name, false);
 }
 
-JsRef getPropertyRef(IsJsObject isJsObject, String name) {
-  return _getProperty(isJsObject, name, true);
+JsRef getPropertyRef(JsObject jsObject, String name) {
+  return _getProperty(jsObject, name, true);
 }
 
 bool areEquals(Object o1, Object o2) {
@@ -500,17 +502,17 @@ bool isInstanceOf(Object o1, String type) {
   });
 }
 
-Object getObject(IsJsObject isJsObject) {
+Object getObject(JsObject jsObject) {
   return _call(void _(jsQuery) {
     jsQuery["type"] = "getObject";
-    jsQuery["jsId"] = isJsObject.jsRef._jsId;
+    jsQuery["jsId"] = jsObject.jsRef._jsId;
   });
 }
 
 Object _serialize(Object o) {
   if (o === null) {
     return { "type" : "null", "value" : o };
-  } else if (o is IsJsObject) {
+  } else if (o is JsObject) {
     return { "type" : "jsObject", "value" : o.jsRef._jsId };
   } else if (o is JsRef) {
     return { "type" : "jsObject", "value" : o._jsId };

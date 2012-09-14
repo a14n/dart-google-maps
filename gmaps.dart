@@ -1822,7 +1822,7 @@ class Events {
     };
     return new MapsEventListener.fromJsRef(js.callFunction(null, "${TYPE_NAME}.addDomListenerOnce", [instance, eventName, callback, capture]));
   }
-  static MapsEventListener addListener(js.IsJsObject instance, String eventName, void handler(NativeEvent e)) {
+  static MapsEventListener addListener(js.JsObject instance, String eventName, void handler(NativeEvent e)) {
     js.CallbackFunction callback = Object _(List args) {
       if (args.length === 1) {
         handler(new NativeEvent.fromJsRef(args[0]));
@@ -1832,7 +1832,7 @@ class Events {
     };
     return new MapsEventListener.fromJsRef(js.callFunction(null, "${TYPE_NAME}.addListener", [instance, eventName, callback]));
   }
-  static MapsEventListener addListenerOnce(js.IsJsObject instance, String eventName, void handler(NativeEvent e)) {
+  static MapsEventListener addListenerOnce(js.JsObject instance, String eventName, void handler(NativeEvent e)) {
     js.CallbackFunction callback = Object _(List args) {
       if (args.length === 1) {
         handler(new NativeEvent.fromJsRef(args[0]));
@@ -1842,10 +1842,10 @@ class Events {
     };
     return new MapsEventListener.fromJsRef(js.callFunction(null, "${TYPE_NAME}.addListenerOnce", [instance, eventName, callback]));
   }
-  static void clearInstanceListeners(js.IsJsObject instance) { js.callFunction(null, "${TYPE_NAME}.clearInstanceListeners", [instance]); }
-  static void clearListeners(js.IsJsObject instance, String eventName) { js.callFunction(null, "${TYPE_NAME}.clearListeners", [instance, eventName]); }
+  static void clearInstanceListeners(js.JsObject instance) { js.callFunction(null, "${TYPE_NAME}.clearInstanceListeners", [instance]); }
+  static void clearListeners(js.JsObject instance, String eventName) { js.callFunction(null, "${TYPE_NAME}.clearListeners", [instance, eventName]); }
   static void removeListener(MapsEventListener listener) { js.callFunction(null, "${TYPE_NAME}.removeListener", [listener]); }
-  static void trigger(js.IsJsObject instance, String eventName, List<Object> args) {
+  static void trigger(js.JsObject instance, String eventName, List<Object> args) {
     final parameters = new List<Object>();
     parameters.add(instance);
     parameters.add(eventName);
