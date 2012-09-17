@@ -467,8 +467,13 @@ Object _call(void f(Map jsQuery)) {
 
   // get response
   final result = _results.remove(jsQueryId);
-  // print("result : $result");
-  return _deserialize(result);
+  if (result === null) {
+    print("something strange appends : no response was received from js side");
+    return null;
+  } else {
+    // print("result : $result");
+    return _deserialize(result);
+  }
 }
 
 JsRef newInstance(String name, [List args]) {
