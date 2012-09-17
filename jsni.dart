@@ -43,7 +43,10 @@ class JsOperations {
   Object callJs(String name, [List args]) => callFunction(jsRef, name, args);
   JsRef callJsForRef(String name, [List args]) =>  callFunctionForRef(jsRef, name, args);
   JsRef getJsRef(String name) => getPropertyRef(jsRef, name);
+  Object get value => getObject(jsRef);
 }
+
+JsOperations $(JsRef jsRef) => new JsOperations(jsRef);
 
 /// Represent a dart Object that wrap a js element
 class JsObject {
@@ -59,15 +62,16 @@ class JsObject {
 typedef Object Instanciator(JsRef);
 
 class JsIterator<E> implements Iterator<E> {
-  JsList<E> jsList;
+  Iterator<E> iterator;
   Instanciator instanciator;
-  int current = 0;
 
-  JsIterator.fromJsRef(JsList<E> this.jsList, Instanciator this.instanciator);
+  JsIterator.fromJsRef(JsList<E> jsList, Instanciator this.instanciator) {
+    iterator = (jsList.$.value as List<E>).iterator();
+  }
 
   // Iterator
-  E next() => instanciator(jsList.$.getJsRef((current++).toString())) as E;
-  bool hasNext() => current < jsList.$["length"];
+  E next() => instanciator(iterator.next()) as E;
+  bool hasNext() => iterator.hasNext();
 }
 
 class JsList<E> extends JsObject implements List<E> {
@@ -79,48 +83,48 @@ class JsList<E> extends JsObject implements List<E> {
   JsIterator<E> iterator() => new JsIterator.fromJsRef(this, instanciator);
 
   // Collection
-  void forEach(void f(E element)) => (getObject(jsRef) as List).forEach(f);
-  Collection map(f(E element)) => (getObject(jsRef) as List).map(f);
-  Dynamic reduce(Dynamic initialValue, Dynamic combine(Dynamic previousValue, E element)) => (getObject(jsRef) as List).reduce(initialValue, combine);
-  Collection<E> filter(bool f(E element)) => (getObject(jsRef) as List).filter(f);
-  bool every(bool f(E element)) => (getObject(jsRef) as List).every(f);
-  bool some(bool f(E element)) => (getObject(jsRef) as List).some(f);
-  bool isEmpty() => (getObject(jsRef) as List).isEmpty();
-  int get length => (getObject(jsRef) as List).length;
+  void forEach(void f(E element)) => (this.$.value as List).forEach(f);
+  Collection map(f(E element)) => (this.$.value as List).map(f);
+  Dynamic reduce(Dynamic initialValue, Dynamic combine(Dynamic previousValue, E element)) => (this.$.value as List).reduce(initialValue, combine);
+  Collection<E> filter(bool f(E element)) => (this.$.value as List).filter(f);
+  bool every(bool f(E element)) => (this.$.value as List).every(f);
+  bool some(bool f(E element)) => (this.$.value as List).some(f);
+  bool isEmpty() => (this.$.value as List).isEmpty();
+  int get length => (this.$.value as List).length;
 
   // List
-  E operator [](int index) => instanciator($.getJsRef(index.toString())) as E;
-  void operator []=(int index, E value) { $[index.toString()] = value; }
+  E operator [](int index) => instanciator(this.$.getJsRef(index.toString())) as E;
+  void operator []=(int index, E value) { this.$[index.toString()] = value; }
   void set length(int newLength) => null;
-  void add(E value) { $.callJs("push", [value]); }
-  void addLast(E value) { $.callJs("push", [value]); }
+  void add(E value) { this.$.callJs("push", [value]); }
+  void addLast(E value) { this.$.callJs("push", [value]); }
   void addAll(Collection<E> collection) { collection.forEach(add); }
   void sort(int compare(E a, E b)) {
-    final sortedList = (getObject(jsRef) as List)
+    final sortedList = (this.$.value as List)
       ..sort(compare);
     this.clear();
     this.addAll(sortedList);
   }
-  int indexOf(E element, [int start]) => (getObject(jsRef) as List).indexOf(element, start);
-  int lastIndexOf(E element, [int start]) => (getObject(jsRef) as List).lastIndexOf(element, start);
-  void clear() { $.callJs("splice", [0, length]); }
-  E removeLast() => $.callJs("pop");
-  E last() => (getObject(jsRef) as List).last();
-  List<E> getRange(int start, int length) => (getObject(jsRef) as List).getRange(start, length);
+  int indexOf(E element, [int start]) => (this.$.value as List).indexOf(element, start);
+  int lastIndexOf(E element, [int start]) => (this.$.value as List).lastIndexOf(element, start);
+  void clear() { this.$.callJs("splice", [0, length]); }
+  E removeLast() => this.$.callJs("pop");
+  E last() => (this.$.value as List).last();
+  List<E> getRange(int start, int length) => (this.$.value as List).getRange(start, length);
   void setRange(int start, int length, List<E> from, [int startFrom=0]) {
     final args = [start, 0];
     for(int i = startFrom; i < length; i++) {
       args.add(from[i]);
     }
-    $.callJs("splice", args);
+    this.$.callJs("splice", args);
   }
-  void removeRange(int start, int length) { $.callJs("splice", [start, length]); }
+  void removeRange(int start, int length) { this.$.callJs("splice", [start, length]); }
   void insertRange(int start, int length, [E initialValue]) {
     final args = [start, 0];
     for(int i = 0; i < length; i++) {
       args.add(initialValue);
     }
-    $.callJs("splice", args);
+    this.$.callJs("splice", args);
   }
 }
 

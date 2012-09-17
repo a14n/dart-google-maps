@@ -349,7 +349,7 @@ class MarkerShape extends js.JsObject {
   MarkerShape() : super();
   MarkerShape.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  List<num> get coords => new js.JsList<num>.fromJsRef($.getJsRef("coords"), (e) => js.getObject(e));
+  List<num> get coords => new js.JsList<num>.fromJsRef($.getJsRef("coords"), (e) => js.$(e).value);
             set coords(List<num> coords) => $["coords"] = coords;
   MarkerShapeType get type => MarkerShapeType.find($["type"]);
                   set type(MarkerShapeType type) => $["type"] = type.value;
@@ -774,7 +774,7 @@ class GeocoderResult extends js.JsObject {
   List<GeocoderAddressComponent> get address_components => new js.JsList<GeocoderAddressComponent>.fromJsRef($.getJsRef("address_components"), (e) => new GeocoderAddressComponent.fromJsRef(e));
   String get formatted_address => $["formatted_address"];
   GeocoderGeometry get geometry => new GeocoderGeometry.fromJsRef($["geometry"]);
-  List<String> get types => new js.JsList<String>.fromJsRef($.getJsRef("types"), (e) => js.getObject(e));
+  List<String> get types => new js.JsList<String>.fromJsRef($.getJsRef("types"), (e) => js.$(e).value);
 }
 
 class GeocoderAddressComponent extends js.JsObject {
@@ -783,7 +783,7 @@ class GeocoderAddressComponent extends js.JsObject {
 
   String get long_name => $["long_name"];
   String get short_name => $["short_name"];
-  List<String> get types => new js.JsList<String>.fromJsRef($.getJsRef("types"), (e) => js.getObject(e));
+  List<String> get types => new js.JsList<String>.fromJsRef($.getJsRef("types"), (e) => js.$(e).value);
 }
 
 class GeocoderGeometry extends js.JsObject {
@@ -954,8 +954,8 @@ class DirectionsRoute extends js.JsObject {
   String get copyrights => $["copyrights"];
   List<DirectionsLeg> get legs => new js.JsList<DirectionsLeg>.fromJsRef($.getJsRef("legs"), (e) => new DirectionsLeg.fromJsRef(e));
   List<LatLng> get overview_path => new js.JsList<LatLng>.fromJsRef($.getJsRef("overview_path"), (e) => new LatLng.fromJsRef(e));
-  List<String> get warnings => new js.JsList<String>.fromJsRef($.getJsRef("warnings"), (e) => js.getObject(e));
-  List<num> get waypoint_order => new js.JsList<num>.fromJsRef($.getJsRef("waypoint_order"), (e) => js.getObject(e));
+  List<String> get warnings => new js.JsList<String>.fromJsRef($.getJsRef("warnings"), (e) => js.$(e).value);
+  List<num> get waypoint_order => new js.JsList<num>.fromJsRef($.getJsRef("waypoint_order"), (e) => js.$(e).value);
 }
 
 class DirectionsLeg extends js.JsObject {
@@ -1197,8 +1197,8 @@ class DistanceMatrixResponse extends js.JsObject {
   DistanceMatrixResponse() : super();
   DistanceMatrixResponse.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  List<String> get destinationAddresses => new js.JsList<String>.fromJsRef($.getJsRef("destinationAddresses"), (e) => js.getObject(e));
-  List<String> get originAddresses => new js.JsList<String>.fromJsRef($.getJsRef("originAddresses"), (e) => js.getObject(e));
+  List<String> get destinationAddresses => new js.JsList<String>.fromJsRef($.getJsRef("destinationAddresses"), (e) => js.$(e).value);
+  List<String> get originAddresses => new js.JsList<String>.fromJsRef($.getJsRef("originAddresses"), (e) => js.$(e).value);
   List<DistanceMatrixResponseRow> get rows => new js.JsList<DistanceMatrixResponseRow>.fromJsRef($.getJsRef("rows"), (e) => new DistanceMatrixResponseRow.fromJsRef(e));
 }
 
