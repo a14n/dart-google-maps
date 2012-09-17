@@ -15,11 +15,11 @@ void main() {
   final map = new gmaps.GMap(query("#map_canvas"), mapOptions);
   directionsDisplay.setMap(map);
   directionsDisplay.setPanel(query('#directions-panel'));
-  
+
   final control = query('#control');
   control.style.display = 'block';
   map.controls.getNodes(gmaps.ControlPosition.TOP_CENTER).push(control);
-  
+
   query('#start').on.change.add((e) => calcRoute());
   query('#end').on.change.add((e) => calcRoute());
 }

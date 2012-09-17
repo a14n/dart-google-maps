@@ -11,7 +11,7 @@ void main() {
   directionsService = new gmaps.DirectionsService();
   haight = new gmaps.LatLng(37.7699298, -122.4469157);
   oceanBeach = new gmaps.LatLng(37.7683909618184, -122.51089453697205);
-  
+
   directionsDisplay = new gmaps.DirectionsRenderer();
   final mapOptions = new gmaps.MapOptions()
     ..zoom = 14
@@ -20,7 +20,7 @@ void main() {
     ;
   map = new gmaps.GMap(query("#map_canvas"), mapOptions);
   directionsDisplay.setMap(map);
-  
+
   query('#mode').on.change.add((e) => calcRoute());
 }
 

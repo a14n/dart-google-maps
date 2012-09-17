@@ -57,7 +57,7 @@ void main() {
     ..zoom = 1
     ..pitch = 0
   );
-  
+
   query("#toggleStreetView").on.click.add((e) => toggleStreetView());
 }
 

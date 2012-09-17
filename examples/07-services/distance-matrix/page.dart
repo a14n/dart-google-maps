@@ -19,7 +19,7 @@ void main() {
   markersArray = [];
   origin1 = new gmaps.LatLng(55.930385, -3.118425);
   destinationB = new gmaps.LatLng(50.087692, 14.421150);
-  
+
   final mapOptions = new gmaps.MapOptions()
     ..center = new gmaps.LatLng(55.53, 9.4)
     ..zoom = 10

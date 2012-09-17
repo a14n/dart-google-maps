@@ -16,7 +16,7 @@ void main() {
     ;
   map = new gmaps.GMap(query("#map_canvas"), mapOptions);
   directionsDisplay.setMap(map);
-  
+
   query('#calcRoute').on.click.add((e) => calcRoute());
 }
 

@@ -17,7 +17,7 @@ void main() {
     ..mapTypeId = gmaps.MapTypeId.ROADMAP
     ;
   map = new gmaps.GMap(query("#map_canvas"), mapOptions);
-  
+
   query("#codeLatLng").on.click.add((e) => codeLatLng());
 }
 

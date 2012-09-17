@@ -35,7 +35,7 @@ gmaps.LatLng badwater;
 
 void main() {
   var infowindow = new gmaps.InfoWindow();
-  
+
   // The following path marks a general path from Mt.
   // Whitney, the highest point in the continental United
   // States to Badwater, Death Vallet, the lowest point.
@@ -45,7 +45,7 @@ void main() {
   beattyjunction = new gmaps.LatLng(36.588056, -116.943056);
   panamintsprings = new gmaps.LatLng(36.339722, -117.467778);
   badwater = new gmaps.LatLng(36.23998, -116.83171);
-  
+
   final mapOptions = new gmaps.MapOptions()
     ..zoom = 8
     ..center = lonepine

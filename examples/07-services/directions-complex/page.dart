@@ -21,7 +21,7 @@ void main() {
     ..center = manhattan
     ;
   map = new gmaps.GMap(query("#map_canvas"), mapOptions);
-  
+
   // Create a renderer for directions and bind it to the map.
   final rendererOptions = new gmaps.DirectionsRendererOptions()
     ..map = map
@@ -30,7 +30,7 @@ void main() {
 
   // Instantiate an info window to hold step text.
   stepDisplay = new gmaps.InfoWindow();
-  
+
   query('#start').on.change.add((e) => calcRoute());
   query('#end').on.change.add((e) => calcRoute());
 }

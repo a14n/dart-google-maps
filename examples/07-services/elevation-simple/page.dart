@@ -9,7 +9,7 @@ gmaps.LatLng denali;
 void main() {
   infowindow = new gmaps.InfoWindow();
   denali = new gmaps.LatLng(63.3333333, -150.5);
-  
+
   final mapOptions = new gmaps.MapOptions()
     ..zoom = 8
     ..center = denali

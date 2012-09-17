@@ -13,7 +13,7 @@ void main() {
     ..mapTypeId = gmaps.MapTypeId.ROADMAP
     ;
   map = new gmaps.GMap(query("#map_canvas"), mapOptions);
-  
+
   query("#codeAddress").on.click.add((e)=>codeAddress());
 }
 
