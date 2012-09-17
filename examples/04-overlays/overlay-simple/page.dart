@@ -31,9 +31,9 @@ class USGSOverlay extends gmaps.OverlayView {
   DivElement _div;
 
   USGSOverlay(gmaps.LatLngBounds bounds, String image, gmaps.GMap map) : super() {
-    this["onAdd"] = (List args) => _onAdd();
-    this["draw"] = (List args) => _draw();
-    this["onRemove"] = (List args) => _onRemove();
+    $["onAdd"] = (List args) => _onAdd();
+    $["draw"] = (List args) => _draw();
+    $["onRemove"] = (List args) => _onRemove();
 
     // Now initialize all properties.
     _bounds = bounds;

@@ -8,10 +8,41 @@
 //-------------------------
 
 /// Reference to a js element
-class JsRef {
+class JsRef implements Hashable {
   int _jsId;
 
   JsRef._(this._jsId);
+
+  int hashCode() => _jsId.hashCode();
+}
+
+class JsOperations {
+  static Map<JsRef, JsOperations> _cache;
+
+  JsRef jsRef;
+
+  factory JsOperations(JsRef jsRef) {
+    if (_cache == null) {
+      _cache = new Map<JsRef, JsOperations>();
+    }
+
+    if (_cache.containsKey(jsRef)) {
+      return _cache[jsRef];
+    } else {
+      final instance = new JsOperations._(jsRef);
+      _cache[jsRef] = instance;
+      return instance;
+    }
+  }
+
+  JsOperations._(JsRef this.jsRef);
+
+  Object operator [](String name) => getProperty(jsRef, name.toString());
+  void operator []=(String name, Object value) { setProperty(jsRef, name.toString(), value); }
+
+  Object callJs(String name, [List args]) => callFunction(jsRef, name, args);
+  JsRef callJsForRef(String name, [List args]) =>  callFunctionForRef(jsRef, name, args);
+  JsRef getJsRef(String name) => getPropertyRef(jsRef, name);
 }
 
 /// Represent a dart Object that wrap a js element
@@ -19,29 +50,24 @@ class JsObject {
   JsRef jsRef;
 
   JsObject() { this.jsRef = newInstance("Object"); }
-  JsObject.fromJsRef(this.jsRef);
+  JsObject.fromJsRef(JsRef this.jsRef);
   JsObject.newInstance(String objectName, [List args]) { jsRef = newInstance(objectName, args); }
 
-  // Object instead of String to support List
-  Object operator [](Object name) => getProperty(this, name.toString());
-  void operator []=(Object name, Object value) { setProperty(this, name.toString(), value); }
-
-  Object callJs(String name, [List args]) => callFunction(this, name, args);
-  JsRef callJsForRef(String name, [List args]) =>  callFunctionForRef(this, name, args);
-  JsRef getJsRef(String name) => getPropertyRef(this, name);
+  JsOperations get $ => new JsOperations(jsRef);
 }
 
 typedef Object Instanciator(JsRef);
 
-class JsIterator<E> extends JsObject implements Iterator<E> {
+class JsIterator<E> implements Iterator<E> {
+  JsList<E> jsList;
   Instanciator instanciator;
   int current = 0;
 
-  JsIterator.fromJsRef(JsRef jsRef, Instanciator this.instanciator) : super.fromJsRef(jsRef);
+  JsIterator.fromJsRef(JsList<E> this.jsList, Instanciator this.instanciator);
 
   // Iterator
-  E next() => instanciator(getJsRef((current++).toString())) as E;
-  bool hasNext() => current < this["length"];
+  E next() => instanciator(jsList.$.getJsRef((current++).toString())) as E;
+  bool hasNext() => current < jsList.$["length"];
 }
 
 class JsList<E> extends JsObject implements List<E> {
@@ -50,51 +76,51 @@ class JsList<E> extends JsObject implements List<E> {
   JsList.fromJsRef(JsRef jsRef, Instanciator this.instanciator) : super.fromJsRef(jsRef);
 
   // Iterable
-  JsIterator<E> iterator() => new JsIterator.fromJsRef(jsRef, instanciator);
+  JsIterator<E> iterator() => new JsIterator.fromJsRef(this, instanciator);
 
   // Collection
-  void forEach(void f(E element)) => (getObject(this) as List).forEach(f);
-  Collection map(f(E element)) => (getObject(this) as List).map(f);
-  Dynamic reduce(Dynamic initialValue, Dynamic combine(Dynamic previousValue, E element)) => (getObject(this) as List).reduce(initialValue, combine);
-  Collection<E> filter(bool f(E element)) => (getObject(this) as List).filter(f);
-  bool every(bool f(E element)) => (getObject(this) as List).every(f);
-  bool some(bool f(E element)) => (getObject(this) as List).some(f);
-  bool isEmpty() => (getObject(this) as List).isEmpty();
-  int get length => (getObject(this) as List).length;
+  void forEach(void f(E element)) => (getObject(jsRef) as List).forEach(f);
+  Collection map(f(E element)) => (getObject(jsRef) as List).map(f);
+  Dynamic reduce(Dynamic initialValue, Dynamic combine(Dynamic previousValue, E element)) => (getObject(jsRef) as List).reduce(initialValue, combine);
+  Collection<E> filter(bool f(E element)) => (getObject(jsRef) as List).filter(f);
+  bool every(bool f(E element)) => (getObject(jsRef) as List).every(f);
+  bool some(bool f(E element)) => (getObject(jsRef) as List).some(f);
+  bool isEmpty() => (getObject(jsRef) as List).isEmpty();
+  int get length => (getObject(jsRef) as List).length;
 
   // List
-  E operator [](int index) => instanciator(getJsRef(index.toString())) as E;
-  // void operator []=(int index, E value);
+  E operator [](int index) => instanciator($.getJsRef(index.toString())) as E;
+  void operator []=(int index, E value) { $[index.toString()] = value; }
   void set length(int newLength) => null;
-  void add(E value) { callJs("push", [value]); }
-  void addLast(E value) { callJs("push", [value]); }
+  void add(E value) { $.callJs("push", [value]); }
+  void addLast(E value) { $.callJs("push", [value]); }
   void addAll(Collection<E> collection) { collection.forEach(add); }
   void sort(int compare(E a, E b)) {
-    final sortedList = (getObject(this) as List)
+    final sortedList = (getObject(jsRef) as List)
       ..sort(compare);
     this.clear();
     this.addAll(sortedList);
   }
-  int indexOf(E element, [int start]) => (getObject(this) as List).indexOf(element, start);
-  int lastIndexOf(E element, [int start]) => (getObject(this) as List).lastIndexOf(element, start);
-  void clear() { callJs("splice", [0, length]); }
-  E removeLast() => callJs("pop");
-  E last() => (getObject(this) as List).last();
-  List<E> getRange(int start, int length) => (getObject(this) as List).getRange(start, length);
+  int indexOf(E element, [int start]) => (getObject(jsRef) as List).indexOf(element, start);
+  int lastIndexOf(E element, [int start]) => (getObject(jsRef) as List).lastIndexOf(element, start);
+  void clear() { $.callJs("splice", [0, length]); }
+  E removeLast() => $.callJs("pop");
+  E last() => (getObject(jsRef) as List).last();
+  List<E> getRange(int start, int length) => (getObject(jsRef) as List).getRange(start, length);
   void setRange(int start, int length, List<E> from, [int startFrom=0]) {
     final args = [start, 0];
     for(int i = startFrom; i < length; i++) {
       args.add(from[i]);
     }
-    callJs("splice", args);
+    $.callJs("splice", args);
   }
-  void removeRange(int start, int length) { callJs("splice", [start, length]); }
+  void removeRange(int start, int length) { $.callJs("splice", [start, length]); }
   void insertRange(int start, int length, [E initialValue]) {
     final args = [start, 0];
     for(int i = 0; i < length; i++) {
       args.add(initialValue);
     }
-    callJs("splice", args);
+    $.callJs("splice", args);
   }
 }
 
@@ -123,7 +149,7 @@ class JsConst implements JsObject, Hashable {
 
   JsRef get jsRef  {
     if (_constRefs === null){
-      _constRefs = new Map();
+      _constRefs = new Map<Hashable, JsRef>();
     }
     if (!_constRefs.containsKey(this)){
       _constRefs[this] = getPropertyRef(null, jsName);
@@ -133,11 +159,7 @@ class JsConst implements JsObject, Hashable {
   Object get value => getProperty(null, jsName);
 
   // implementation of JsObject methods
-  Object operator [](Object name) => new JsObject.fromJsRef(jsRef)[name];
-  void operator []=(Object name, Object value) { new JsObject.fromJsRef(jsRef)[name] = value; }
-  Object callJs(String name, [List args]) => new JsObject.fromJsRef(jsRef).callJs(name, args);
-  JsRef callJsForRef(String name, [List args]) => new JsObject.fromJsRef(jsRef).callJsForRef(name, args);
-  JsRef getJsRef(String name) => new JsObject.fromJsRef(jsRef).getJsRef(name);
+  JsOperations get $ => new JsOperations(jsRef);
 }
 
 //
@@ -457,46 +479,46 @@ JsRef newInstance(String name, [List args]) {
   });
 }
 
-Object _callFunction(JsObject jsObject, String name, bool returnRef, [List args]) {
+Object _callFunction(JsRef jsRef, String name, bool returnRef, [List args]) {
   return _call(void _(jsQuery) {
     jsQuery["type"] = "function";
-    jsQuery["jsId"] = jsObject!=null ? jsObject.jsRef._jsId : null;
+    jsQuery["jsId"] = jsRef != null ? jsRef._jsId : null;
     jsQuery["name"] = name;
     jsQuery["arguments"] = _serialize(args != null ? args : []);
     jsQuery["returnRef"] = returnRef;
   });
 }
-Object callFunction(JsObject jsObject, String name, [List args]) {
-  return _callFunction(jsObject, name, false, args);
+Object callFunction(JsRef jsRef, String name, [List args]) {
+  return _callFunction(jsRef, name, false, args);
 }
-Object callFunctionForRef(JsObject jsObject, String name, [List args]) {
-  return _callFunction(jsObject, name, true, args);
+Object callFunctionForRef(JsRef jsRef, String name, [List args]) {
+  return _callFunction(jsRef, name, true, args);
 }
 
-void setProperty(JsObject jsObject, String name, Object value) {
+void setProperty(JsRef jsRef, String name, Object value) {
   _call(void _(jsQuery) {
     jsQuery["type"] = "set";
-    jsQuery["jsId"] = jsObject!=null ? jsObject.jsRef._jsId : null;
+    jsQuery["jsId"] = jsRef != null ? jsRef._jsId : null;
     jsQuery["name"] = name;
     jsQuery["arguments"] = _serialize([value]);
   });
 }
 
-Object _getProperty(JsObject jsObject, String name, bool returnRef) {
+Object _getProperty(JsRef jsRef, String name, bool returnRef) {
   return _call(void _(jsQuery) {
     jsQuery["type"]      = "get";
-    jsQuery["jsId"]      = jsObject!=null ? jsObject.jsRef._jsId : null;
+    jsQuery["jsId"]      = jsRef != null ? jsRef._jsId : null;
     jsQuery["name"]      = name;
     jsQuery["returnRef"] = returnRef;
   });
 }
 
-Object getProperty(JsObject jsObject, String name) {
-  return _getProperty(jsObject, name, false);
+Object getProperty(JsRef jsRef, String name) {
+  return _getProperty(jsRef, name, false);
 }
 
-JsRef getPropertyRef(JsObject jsObject, String name) {
-  return _getProperty(jsObject, name, true);
+JsRef getPropertyRef(JsRef jsRef, String name) {
+  return _getProperty(jsRef, name, true);
 }
 
 bool areEquals(Object o1, Object o2) {
@@ -513,10 +535,10 @@ bool isInstanceOf(Object o1, String type) {
   });
 }
 
-Object getObject(JsObject jsObject) {
+Object getObject(JsRef jsRef) {
   return _call(void _(jsQuery) {
     jsQuery["type"] = "getObject";
-    jsQuery["jsId"] = jsObject.jsRef._jsId;
+    jsQuery["jsId"] = jsRef._jsId;
   });
 }
 

@@ -6,7 +6,7 @@ class CoordMapType extends gmaps.MapType {
   CoordMapType() : super() {
     this.tileSize = new gmaps.Size(256,256);
     this.maxZoom = 19;
-    this["getTile"] = (List args) {
+    $["getTile"] = (List args) {
       if (args[2] == document) {
         return _getTile(new gmaps.Point.fromJsRef(args[0]), args[1], args[2]);
       } else {
@@ -35,18 +35,18 @@ class CoordMapType extends gmaps.MapType {
   }
 
   js.JsObject _getTileForOtherDocument(gmaps.Point coord, num zoom, js.JsObject ownerDocument) {
-    final div = new js.JsObject.fromJsRef(ownerDocument.callJsForRef("createElement", ["div"]))
-      ..["innerHTML"] = coord.toString()
+    final div = new js.JsObject.fromJsRef(ownerDocument.$.callJsForRef("createElement", ["div"]))
+      ..$["innerHTML"] = coord.toString()
       ;
-    final style = new js.JsObject.fromJsRef(div["style"]);
+    final style = new js.JsObject.fromJsRef(div.$["style"]);
     style
-      ..["width"] = '${tileSize.width}px'
-      ..["height"] = '${tileSize.height}px'
-      ..["fontSize"] = '10'
-      ..["borderStyle"] = 'solid'
-      ..["borderWidth"] = '1px'
-      ..["borderColor"] = '#AAAAAA'
-      ..["backgroundColor"] = '#E5E3DF'
+      ..$["width"] = '${tileSize.width}px'
+      ..$["height"] = '${tileSize.height}px'
+      ..$["fontSize"] = '10'
+      ..$["borderStyle"] = 'solid'
+      ..$["borderWidth"] = '1px'
+      ..$["borderColor"] = '#AAAAAA'
+      ..$["backgroundColor"] = '#E5E3DF'
       ;
     return div;
   }

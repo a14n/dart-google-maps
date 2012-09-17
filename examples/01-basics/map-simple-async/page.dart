@@ -12,7 +12,7 @@ void initialize() {
 }
 
 void main() {
-  js.getWindow()["initialize"] = (List) { initialize(); };
+  js.getWindow().$["initialize"] = (List) { initialize(); };
 
   final script = new ScriptElement()
     ..type = 'text/javascript'

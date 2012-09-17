@@ -34,14 +34,14 @@ class GallPetersProjection extends gmaps.Projection {
 
   GallPetersProjection() : super() {
     _worldOrigin = new gmaps.Point(GALL_PETERS_RANGE_X * 400 / 800, GALL_PETERS_RANGE_Y / 2);
-    this["fromLatLngToPoint"] = (List args) {
+    $["fromLatLngToPoint"] = (List args) {
       if (args.length == 2 && args[1] !== null) {
         return _fromLatLngToPoint(new gmaps.LatLng.fromJsRef(args[0]), new gmaps.Point.fromJsRef(args[1]));
       } else {
         return _fromLatLngToPoint(new gmaps.LatLng.fromJsRef(args[0]));
       }
     };
-    this["fromPointToLatLng"] = (List args) {
+    $["fromPointToLatLng"] = (List args) {
       if (args.length == 2 && args[1] !== null) {
         return _fromPointToLatLng(new gmaps.Point.fromJsRef(args[0]), args[1]);
       } else {

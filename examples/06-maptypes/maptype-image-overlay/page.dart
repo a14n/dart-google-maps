@@ -21,7 +21,7 @@ void main() {
 
   final imageMapType = new gmaps.ImageMapType(new gmaps.ImageMapTypeOptions()
     ..tileSize = new gmaps.Size(256, 256)
-    ..["getTileUrl"] = (List args) {
+    ..$["getTileUrl"] = (List args) {
       final coord = new gmaps.Point.fromJsRef(args[0]);
       final num zoom = args[1];
       if (zoom < 17 || zoom > 20 ||

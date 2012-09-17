@@ -8,9 +8,9 @@ void main() {
     ..maxZoom = 9
     ..minZoom = 0
     // TODO undocumented
-    ..["radius"] = 1738000
+    ..$["radius"] = 1738000
     ..name = 'Moon'
-    ..["getTileUrl"] = (List args) {
+    ..$["getTileUrl"] = (List args) {
       final coord = new gmaps.Point.fromJsRef(args[0]);
       final num zoom = args[1];
       final normalizedCoord = getNormalizedCoord(coord, zoom);

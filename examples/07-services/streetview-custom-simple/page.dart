@@ -43,7 +43,7 @@ gmaps.StreetViewPanoramaData getCustomPanorama(String pano) { // TODO bad parame
         // The heading in degrees at the origin of the panorama
         // tile set.
         ..centerHeading = 105
-        ..["getTileUrl"] = (List args) => getCustomPanoramaTileUrl(args[0], args[1], args[2], args[3])
+        ..$["getTileUrl"] = (List args) => getCustomPanoramaTileUrl(args[0], args[1], args[2], args[3])
       )
       ;
   }

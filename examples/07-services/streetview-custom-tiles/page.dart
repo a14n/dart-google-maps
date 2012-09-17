@@ -25,7 +25,7 @@ void main() {
     ..visible = true
     ..panoProvider =  getCustomPanorama
     ;
-  panorama.callJs("setOptions", [panoOptions]); //TODO undocumented method
+  panorama.$.callJs("setOptions", [panoOptions]); //TODO undocumented method
 
   // Create a StreetViewService object.
   final streetviewService = new gmaps.StreetViewService();
@@ -65,7 +65,7 @@ gmaps.StreetViewPanoramaData getCustomPanorama(String pano) {
           ..worldSize = new gmaps.Size(2048, 1024)
           // The heading at the origin of the panorama tile set.
           ..centerHeading = 105
-          ..["getTileUrl"] = (List args) => getCustomPanoramaTileUrl(args[0], args[1], args[2], args[3])
+          ..$["getTileUrl"] = (List args) => getCustomPanoramaTileUrl(args[0], args[1], args[2], args[3])
         )
         ;
     default:

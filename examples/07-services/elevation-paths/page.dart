@@ -7,7 +7,7 @@ class ColumnChart extends js.JsObject {
 
   ColumnChart(Node div) : super.newInstance(TYPE_NAME, [div]);
 
-  void draw(DataTable data, [js.JsObject options]) { this.callJs("draw", [data, options]); }
+  void draw(DataTable data, [js.JsObject options]) { $.callJs("draw", [data, options]); }
 }
 
 class DataTable extends js.JsObject {
@@ -15,8 +15,8 @@ class DataTable extends js.JsObject {
 
   DataTable() : super.newInstance(TYPE_NAME);
 
-  void addColumn(String type, [String label, String id]) { this.callJs("addColumn", [type, label, id]); }
-  void addRow([List<Object> cellArray]) { this.callJs("addRow", [cellArray]); }
+  void addColumn(String type, [String label, String id]) { $.callJs("addColumn", [type, label, id]); }
+  void addRow([List<Object> cellArray]) { $.callJs("addRow", [cellArray]); }
 }
 
 gmaps.ElevationService elevator;
@@ -93,7 +93,7 @@ void plotElevation(List<gmaps.ElevationResult> results, gmaps.ElevationStatus st
     final pathOptions = new gmaps.PolylineOptions()
       ..path = elevationPath
       ..strokeColor = '#0000CC'
-      ..["opacity"] = 0.4  // TODO not in doc
+      ..$["opacity"] = 0.4  // TODO not in doc
       ..map = map
       ;
     final polyline = new gmaps.Polyline(pathOptions);
@@ -112,10 +112,10 @@ void plotElevation(List<gmaps.ElevationResult> results, gmaps.ElevationStatus st
     // Draw the chart using the data within its DIV.
     query('#elevation_chart').style.display = 'block';
     chart.draw(data, new js.JsObject()
-      ..["width"] = 640
-      ..["height"] = 200
-      ..["legend"] = 'none'
-      ..["titleY"] = 'Elevation (m)'
+      ..$["width"] = 640
+      ..$["height"] = 200
+      ..$["legend"] = 'none'
+      ..$["titleY"] = 'Elevation (m)'
     );
   }
 }

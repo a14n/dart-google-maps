@@ -8,22 +8,22 @@ class PhotoWidget extends js.JsObject {
 
   PhotoWidget(DivElement div, PhotoRequestOptions photoRequestOptions, PhotoWidgetOptions photoWidgetOptions) : super.newInstance(TYPE_NAME, [div, photoRequestOptions, photoWidgetOptions]);
 
-  void setRequest(PhotoRequestOptions photoRequestOptions) { callJs("setRequest", [photoRequestOptions]); }
-  void setPosition(num position) { callJs("setPosition", [position]); }
+  void setRequest(PhotoRequestOptions photoRequestOptions) { $.callJs("setRequest", [photoRequestOptions]); }
+  void setPosition(num position) { $.callJs("setPosition", [position]); }
 }
 
 class PhotoWidgetOptions extends js.JsObject {
-  set width(num width) => this["width"] = width;
-  set height(num height) => this["height"] = height;
+  set width(num width) => $["width"] = width;
+  set height(num height) => $["height"] = height;
 }
 
 class PhotoRequestOptions extends js.JsObject {
-  set ids(List<PhotoRequestOptionsId> ids) => this["ids"] = ids;
+  set ids(List<PhotoRequestOptionsId> ids) => $["ids"] = ids;
 }
 
 class PhotoRequestOptionsId extends js.JsObject {
-  set photoId(String photoId) => this["photoId"] = photoId;
-  set userId(String userId) => this["userId"] = userId;
+  set photoId(String photoId) => $["photoId"] = photoId;
+  set userId(String userId) => $["userId"] = userId;
 }
 
 void main() {

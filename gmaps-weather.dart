@@ -10,8 +10,8 @@ class CloudLayer extends MVCObject {
   CloudLayer() : super.newInstance(_TYPE_NAME);
   CloudLayer.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  GMap getMap() => _transformIfNotNull(callJs("getMap"), (e) => new GMap.fromJsRef(e));
-  void setMap(GMap map) { callJs("setMap", [map]); }
+  GMap getMap() => _transformIfNotNull($.callJs("getMap"), (e) => new GMap.fromJsRef(e));
+  void setMap(GMap map) { $.callJs("setMap", [map]); }
 }
 
 class WeatherLayer extends MVCObject {
@@ -20,18 +20,18 @@ class WeatherLayer extends MVCObject {
   WeatherLayer([WeatherLayerOptions opts]) : super.newInstance(_TYPE_NAME, [opts]);
   WeatherLayer.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  GMap getMap() => _transformIfNotNull(callJs("getMap"), (e) => new GMap.fromJsRef(e));
-  void setMap(GMap map) { callJs("setMap", [map]); }
-  void setOptions(WeatherLayerOptions options) { callJs("setOptions", [options]); }
+  GMap getMap() => _transformIfNotNull($.callJs("getMap"), (e) => new GMap.fromJsRef(e));
+  void setMap(GMap map) { $.callJs("setMap", [map]); }
+  void setOptions(WeatherLayerOptions options) { $.callJs("setOptions", [options]); }
 }
 
 class WeatherLayerOptions extends js.JsObject {
-  set clickable(bool clickable) => this["clickable"] = clickable;
-  set labelColor(LabelColor labelColor) => this["labelColor"] = labelColor;
-  set map(GMap map) => this["map"] = map;
-  set suppressInfoWindows(bool suppressInfoWindows) => this["suppressInfoWindows"] = suppressInfoWindows;
-  set temperatureUnits(TemperatureUnit temperatureUnits) => this["temperatureUnits"] = temperatureUnits;
-  set windSpeedUnits(WindSpeedUnit windSpeedUnits) => this["windSpeedUnits"] = windSpeedUnits;
+  set clickable(bool clickable) => $["clickable"] = clickable;
+  set labelColor(LabelColor labelColor) => $["labelColor"] = labelColor;
+  set map(GMap map) => $["map"] = map;
+  set suppressInfoWindows(bool suppressInfoWindows) => $["suppressInfoWindows"] = suppressInfoWindows;
+  set temperatureUnits(TemperatureUnit temperatureUnits) => $["temperatureUnits"] = temperatureUnits;
+  set windSpeedUnits(WindSpeedUnit windSpeedUnits) => $["windSpeedUnits"] = windSpeedUnits;
 }
 
 class TemperatureUnit extends js.JsConst {
@@ -72,45 +72,45 @@ class WeatherMouseEvent extends NativeEvent {
   WeatherMouseEvent();
   WeatherMouseEvent.wrap(NativeEvent e) { jsRef = e.jsRef; }
 
-  WeatherFeature get featureDetails => new WeatherFeature.fromJsRef(this["featureDetails"]);
-  String get infoWindowHtml => this["infoWindowHtml"];
-  LatLng get latLng => new LatLng.fromJsRef(this["latLng"]);
-  Size get pixelOffset => new Size.fromJsRef(this["pixelOffset"]);
+  WeatherFeature get featureDetails => new WeatherFeature.fromJsRef($["featureDetails"]);
+  String get infoWindowHtml => $["infoWindowHtml"];
+  LatLng get latLng => new LatLng.fromJsRef($["latLng"]);
+  Size get pixelOffset => new Size.fromJsRef($["pixelOffset"]);
 }
 
 class WeatherFeature extends js.JsObject {
   WeatherFeature.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  WeatherConditions get current => new WeatherConditions.fromJsRef(this["current"]);
+  WeatherConditions get current => new WeatherConditions.fromJsRef($["current"]);
   List<WeatherForecast> get forecast {
-    List<js.JsRef> resultsRefs = this["forecast"];
+    List<js.JsRef> resultsRefs = $["forecast"];
     return resultsRefs.map((e) => new WeatherForecast.fromJsRef(e));
   }
-  String get location => this["location"];
-  TemperatureUnit get temperatureUnit => TemperatureUnit.find(this["temperatureUnit"]);
-  WindSpeedUnit get windSpeedUnit => WindSpeedUnit.find(this["windSpeedUnit"]);
+  String get location => $["location"];
+  TemperatureUnit get temperatureUnit => TemperatureUnit.find($["temperatureUnit"]);
+  WindSpeedUnit get windSpeedUnit => WindSpeedUnit.find($["windSpeedUnit"]);
 }
 
 class WeatherConditions extends js.JsObject {
   WeatherConditions.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  String get day => this["day"];
-  String get description => this["description"];
-  num get high => this["high"];
-  num get humidity => this["humidity"];
-  num get low => this["low"];
-  String get shortDay => this["shortDay"];
-  num get temperature => this["temperature"];
-  String get windDirection => this["windDirection"];
-  num get windSpeed => this["windSpeed"];
+  String get day => $["day"];
+  String get description => $["description"];
+  num get high => $["high"];
+  num get humidity => $["humidity"];
+  num get low => $["low"];
+  String get shortDay => $["shortDay"];
+  num get temperature => $["temperature"];
+  String get windDirection => $["windDirection"];
+  num get windSpeed => $["windSpeed"];
 }
 
 class WeatherForecast extends js.JsObject {
   WeatherForecast.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  String get day => this["day"];
-  String get description => this["description"];
-  num get high => this["high"];
-  num get low => this["low"];
-  String get shortDay => this["shortDay"];
+  String get day => $["day"];
+  String get description => $["description"];
+  num get high => $["high"];
+  num get low => $["low"];
+  String get shortDay => $["shortDay"];
 }

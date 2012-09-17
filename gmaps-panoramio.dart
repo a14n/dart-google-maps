@@ -10,39 +10,39 @@ class PanoramioLayer extends MVCObject {
   PanoramioLayer([PanoramioLayerOptions opts]) : super.newInstance(TYPE_NAME, [opts]);
   PanoramioLayer.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  GMap getMap() => _transformIfNotNull(callJs("getMap"), (e) => new GMap.fromJsRef(e));
-  String getTag() => callJs("getTag");
-  String getUserId() => callJs("getUserId");
-  void setMap(GMap map) { callJs("setMap", [map]); }
-  void setOptions(PanoramioLayerOptions options) { callJs("setOptions", [options]); }
-  void setTag(String tag) { callJs("setTag", [tag]); }
-  void setUserId(String userId) { callJs("setUserId", [userId]); }
+  GMap getMap() => _transformIfNotNull($.callJs("getMap"), (e) => new GMap.fromJsRef(e));
+  String getTag() => $.callJs("getTag");
+  String getUserId() => $.callJs("getUserId");
+  void setMap(GMap map) { $.callJs("setMap", [map]); }
+  void setOptions(PanoramioLayerOptions options) { $.callJs("setOptions", [options]); }
+  void setTag(String tag) { $.callJs("setTag", [tag]); }
+  void setUserId(String userId) { $.callJs("setUserId", [userId]); }
 }
 
 class PanoramioLayerOptions extends js.JsObject {
-  set clickable(bool clickable) => this["clickable"] = clickable;
-  set map(GMap map) => this["map"] = map;
-  set suppressInfoWindows(bool suppressInfoWindows) => this["suppressInfoWindows"] = suppressInfoWindows;
-  set tag(String tag) => this["tag"] = tag;
-  set userId(String userId) => this["userId"] = userId;
+  set clickable(bool clickable) => $["clickable"] = clickable;
+  set map(GMap map) => $["map"] = map;
+  set suppressInfoWindows(bool suppressInfoWindows) => $["suppressInfoWindows"] = suppressInfoWindows;
+  set tag(String tag) => $["tag"] = tag;
+  set userId(String userId) => $["userId"] = userId;
 }
 
 class PanoramioFeature extends js.JsObject {
   PanoramioFeature.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  String get author => this["author"];
-  String get photoId => this["photoId"];
-  String get title => this["title"];
-  String get url => this["url"];
-  String get userId => this["userId"];
+  String get author => $["author"];
+  String get photoId => $["photoId"];
+  String get title => $["title"];
+  String get url => $["url"];
+  String get userId => $["userId"];
 }
 
 class PanoramioMouseEvent extends NativeEvent {
   PanoramioMouseEvent();
   PanoramioMouseEvent.wrap(NativeEvent e) { jsRef = e.jsRef; }
 
-  PanoramioFeature get featureDetails => new PanoramioFeature.fromJsRef(this["featureDetails"]);
-  String get infoWindowHtml => this["infoWindowHtml"];
-  LatLng get latLng => new LatLng.fromJsRef(this["latLng"]);
-  Size get pixelOffset => new Size.fromJsRef(this["pixelOffset"]);
+  PanoramioFeature get featureDetails => new PanoramioFeature.fromJsRef($["featureDetails"]);
+  String get infoWindowHtml => $["infoWindowHtml"];
+  LatLng get latLng => new LatLng.fromJsRef($["latLng"]);
+  Size get pixelOffset => new Size.fromJsRef($["pixelOffset"]);
 }

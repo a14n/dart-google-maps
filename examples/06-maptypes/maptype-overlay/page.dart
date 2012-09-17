@@ -5,9 +5,10 @@
 class CoordMapType extends gmaps.MapType {
   CoordMapType(gmaps.Size tileSize) : super() {
     this.tileSize = tileSize;
-    this["getTile"] = (List args) {
+    $["getTile"] = (List args) {
       if (args[2] == document) {
         return _getTile(new gmaps.Point.fromJsRef(args[0]), args[1], args[2]);
+        // return _getTileForOtherDocument(new gmaps.Point.fromJsRef(args[0]), args[1], new js.JsObject.fromJsRef(js.getWindow().$.getJsRef("document")));
       } else {
         // TODO find a workaround to retrieve ownerDocument as Document ?
         return _getTileForOtherDocument(new gmaps.Point.fromJsRef(args[0]), args[1], new js.JsObject.fromJsRef(args[2]));
@@ -31,17 +32,17 @@ class CoordMapType extends gmaps.MapType {
   }
 
   js.JsObject _getTileForOtherDocument(gmaps.Point coord, num zoom, js.JsObject ownerDocument) {
-    final div = new js.JsObject.fromJsRef(ownerDocument.callJsForRef("createElement", ["div"]))
-      ..["innerHTML"] = coord.toString()
+    final div = new js.JsObject.fromJsRef(ownerDocument.$.callJsForRef("createElement", ["div"]))
+      ..$["innerHTML"] = coord.toString()
       ;
-    final style = new js.JsObject.fromJsRef(div["style"]);
+    final style = new js.JsObject.fromJsRef(div.$["style"]);
     style
-      ..["width"] = '${tileSize.width}px'
-      ..["height"] = '${tileSize.height}px'
-      ..["fontSize"] = '10'
-      ..["borderStyle"] = 'solid'
-      ..["borderWidth"] = '1px'
-      ..["borderColor"] = '#AAAAAA'
+      ..$["width"] = '${tileSize.width}px'
+      ..$["height"] = '${tileSize.height}px'
+      ..$["fontSize"] = '10'
+      ..$["borderStyle"] = 'solid'
+      ..$["borderWidth"] = '1px'
+      ..$["borderColor"] = '#AAAAAA'
       ;
     return div;
   }
