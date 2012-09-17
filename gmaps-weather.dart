@@ -10,8 +10,8 @@ class CloudLayer extends MVCObject {
   CloudLayer() : super.newInstance(_TYPE_NAME);
   CloudLayer.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  GMap getMap() => _transformIfNotNull($.callJs("getMap"), (e) => new GMap.fromJsRef(e));
-  void setMap(GMap map) { $.callJs("setMap", [map]); }
+  GMap getMap() => _transformIfNotNull($.call("getMap"), (e) => new GMap.fromJsRef(e));
+  void setMap(GMap map) { $.call("setMap", [map]); }
 }
 
 class WeatherLayer extends MVCObject {
@@ -20,9 +20,9 @@ class WeatherLayer extends MVCObject {
   WeatherLayer([WeatherLayerOptions opts]) : super.newInstance(_TYPE_NAME, [opts]);
   WeatherLayer.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  GMap getMap() => _transformIfNotNull($.callJs("getMap"), (e) => new GMap.fromJsRef(e));
-  void setMap(GMap map) { $.callJs("setMap", [map]); }
-  void setOptions(WeatherLayerOptions options) { $.callJs("setOptions", [options]); }
+  GMap getMap() => _transformIfNotNull($.call("getMap"), (e) => new GMap.fromJsRef(e));
+  void setMap(GMap map) { $.call("setMap", [map]); }
+  void setOptions(WeatherLayerOptions options) { $.call("setOptions", [options]); }
 }
 
 class WeatherLayerOptions extends js.JsObject {

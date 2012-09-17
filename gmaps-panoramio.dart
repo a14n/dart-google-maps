@@ -10,13 +10,13 @@ class PanoramioLayer extends MVCObject {
   PanoramioLayer([PanoramioLayerOptions opts]) : super.newInstance(TYPE_NAME, [opts]);
   PanoramioLayer.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  GMap getMap() => _transformIfNotNull($.callJs("getMap"), (e) => new GMap.fromJsRef(e));
-  String getTag() => $.callJs("getTag");
-  String getUserId() => $.callJs("getUserId");
-  void setMap(GMap map) { $.callJs("setMap", [map]); }
-  void setOptions(PanoramioLayerOptions options) { $.callJs("setOptions", [options]); }
-  void setTag(String tag) { $.callJs("setTag", [tag]); }
-  void setUserId(String userId) { $.callJs("setUserId", [userId]); }
+  GMap getMap() => _transformIfNotNull($.call("getMap"), (e) => new GMap.fromJsRef(e));
+  String getTag() => $.call("getTag");
+  String getUserId() => $.call("getUserId");
+  void setMap(GMap map) { $.call("setMap", [map]); }
+  void setOptions(PanoramioLayerOptions options) { $.call("setOptions", [options]); }
+  void setTag(String tag) { $.call("setTag", [tag]); }
+  void setUserId(String userId) { $.call("setUserId", [userId]); }
 }
 
 class PanoramioLayerOptions extends js.JsObject {

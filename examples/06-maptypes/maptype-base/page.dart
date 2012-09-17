@@ -35,7 +35,7 @@ class CoordMapType extends gmaps.MapType {
   }
 
   js.JsObject _getTileForOtherDocument(gmaps.Point coord, num zoom, js.JsObject ownerDocument) {
-    final div = new js.JsObject.fromJsRef(ownerDocument.$.callJsForRef("createElement", ["div"]))
+    final div = new js.JsObject.fromJsRef(ownerDocument.$.callForJsRef("createElement", ["div"]))
       ..$["innerHTML"] = coord.toString()
       ;
     final style = new js.JsObject.fromJsRef(div.$["style"]);

@@ -25,7 +25,7 @@ void main() {
     ..visible = true
     ..panoProvider =  getCustomPanorama
     ;
-  panorama.$.callJs("setOptions", [panoOptions]); //TODO undocumented method
+  panorama.$.call("setOptions", [panoOptions]); //TODO undocumented method
 
   // Create a StreetViewService object.
   final streetviewService = new gmaps.StreetViewService();

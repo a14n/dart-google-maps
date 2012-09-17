@@ -37,24 +37,25 @@ class JsOperations {
 
   JsOperations._(JsRef this.jsRef);
 
-  Object operator [](String name) => getProperty(jsRef, name.toString());
-  void operator []=(String name, Object value) { setProperty(jsRef, name.toString(), value); }
+  Object operator [](String propertyName) => _getProperty(jsRef, propertyName.toString(), false);
+  void operator []=(String propertName, Object value) { setProperty(jsRef, propertName.toString(), value); }
 
-  Object callJs(String name, [List args]) => callFunction(jsRef, name, args);
-  JsRef callJsForRef(String name, [List args]) =>  callFunctionForRef(jsRef, name, args);
-  JsRef getJsRef(String name) => getPropertyRef(jsRef, name);
-  Object get value => getObject(jsRef);
+  JsRef callForJsRef(String functionName, [List args]) =>  _callFunction(jsRef, functionName, args, true);
+  Object call(String functionName, [List args]) => _callFunction(jsRef, functionName, args, false);
+  JsRef getPropertyAsJsRef(String propertName) => _getProperty(jsRef, propertName, true);
+
+  Object get value => _getValue(jsRef);
 }
 
-JsOperations $(JsRef jsRef) => new JsOperations(jsRef);
+JsOperations $$(JsRef jsRef) => new JsOperations(jsRef);
 
 /// Represent a dart Object that wrap a js element
 class JsObject {
   JsRef jsRef;
 
-  JsObject() { this.jsRef = newInstance("Object"); }
+  JsObject() { this.jsRef = _newInstance("Object"); }
   JsObject.fromJsRef(JsRef this.jsRef);
-  JsObject.newInstance(String objectName, [List args]) { jsRef = newInstance(objectName, args); }
+  JsObject.newInstance(String objectName, [List args]) { jsRef = _newInstance(objectName, args); }
 
   JsOperations get $ => new JsOperations(jsRef);
 }
@@ -93,11 +94,11 @@ class JsList<E> extends JsObject implements List<E> {
   int get length => (this.$.value as List).length;
 
   // List
-  E operator [](int index) => instanciator(this.$.getJsRef(index.toString())) as E;
+  E operator [](int index) => instanciator(this.$.getPropertyAsJsRef(index.toString())) as E;
   void operator []=(int index, E value) { this.$[index.toString()] = value; }
   void set length(int newLength) => null;
-  void add(E value) { this.$.callJs("push", [value]); }
-  void addLast(E value) { this.$.callJs("push", [value]); }
+  void add(E value) { this.$.call("push", [value]); }
+  void addLast(E value) { this.$.call("push", [value]); }
   void addAll(Collection<E> collection) { collection.forEach(add); }
   void sort(int compare(E a, E b)) {
     final sortedList = (this.$.value as List)
@@ -107,8 +108,8 @@ class JsList<E> extends JsObject implements List<E> {
   }
   int indexOf(E element, [int start]) => (this.$.value as List).indexOf(element, start);
   int lastIndexOf(E element, [int start]) => (this.$.value as List).lastIndexOf(element, start);
-  void clear() { this.$.callJs("splice", [0, length]); }
-  E removeLast() => this.$.callJs("pop");
+  void clear() { this.$.call("splice", [0, length]); }
+  E removeLast() => this.$.call("pop");
   E last() => (this.$.value as List).last();
   List<E> getRange(int start, int length) => (this.$.value as List).getRange(start, length);
   void setRange(int start, int length, List<E> from, [int startFrom=0]) {
@@ -116,15 +117,15 @@ class JsList<E> extends JsObject implements List<E> {
     for(int i = startFrom; i < length; i++) {
       args.add(from[i]);
     }
-    this.$.callJs("splice", args);
+    this.$.call("splice", args);
   }
-  void removeRange(int start, int length) { this.$.callJs("splice", [start, length]); }
+  void removeRange(int start, int length) { this.$.call("splice", [start, length]); }
   void insertRange(int start, int length, [E initialValue]) {
     final args = [start, 0];
     for(int i = 0; i < length; i++) {
       args.add(initialValue);
     }
-    this.$.callJs("splice", args);
+    this.$.call("splice", args);
   }
 }
 
@@ -137,7 +138,7 @@ typedef Object CallbackFunction(List args);
 class JsConst implements JsObject, Hashable {
   static Map<Hashable, JsRef> _constRefs;
   static Object findIn(Object o, List elements) {
-    final matchingElements = elements.filter((e) => areEquals(e, o));
+    final matchingElements = elements.filter((e) => _areEquals(e, o));
     if (matchingElements.length === 1) {
       return matchingElements.iterator().next();
     } else {
@@ -156,11 +157,10 @@ class JsConst implements JsObject, Hashable {
       _constRefs = new Map<Hashable, JsRef>();
     }
     if (!_constRefs.containsKey(this)){
-      _constRefs[this] = getPropertyRef(null, jsName);
+      _constRefs[this] = getWindow().$.getPropertyAsJsRef(jsName);
     }
     return _constRefs[this];
   }
-  Object get value => getProperty(null, jsName);
 
   // implementation of JsObject methods
   JsOperations get $ => new JsOperations(jsRef);
@@ -170,7 +170,7 @@ class JsConst implements JsObject, Hashable {
 JsObject _window;
 JsObject getWindow() {
   if(_window === null){
-    _window = new JsObject.fromJsRef(getPropertyRef(null, null));
+    _window = new JsObject.fromJsRef(_getWindowRef());
   }
   return _window;
 }
@@ -250,7 +250,7 @@ void _ensureRegistered() {
   };
 
   var createNew = function (functionName, args) {
-    var functionObject = getObject(functionName);
+    var functionObject = getObject(window, functionName);
     return createNewWithFunctionObject(functionObject, args);
   };
   var createNewWithFunctionObject = function(functionObject, args) {
@@ -260,8 +260,7 @@ void _ensureRegistered() {
     functionObject.apply(instance,args);
     return instance;
   };
-  var getObject = function(name){
-    var currentObject = window;
+  var getObject = function(currentObject, name) {
     var properties = name.split(".");
     for (var i = 0; i < properties.length; i++) {
         currentObject = currentObject[properties[i]];
@@ -403,10 +402,10 @@ void _ensureRegistered() {
     } else if (type === "function") {
       if (jsId !== null) {
         var obj = _objects[jsId];
-        var functionObject = obj[name];
+        var functionObject = getObject(obj, name);
         result = functionObject.apply(obj, args);
       } else {
-        var functionObject = getObject(name);
+        var functionObject = getObject(window, name);
         result = functionObject.apply(null, args);
       }
     } else if (type === "set") {
@@ -419,9 +418,9 @@ void _ensureRegistered() {
     } else if (type === "get") {
       if (jsId !== null) {
         var obj = _objects[jsId];
-        result = obj[name];
+        result = getObject(obj, name);
       } else if (name !== null) {
-        result = getObject(name);
+        result = getObject(window, name);
       } else {
         result = window;
       }
@@ -431,11 +430,13 @@ void _ensureRegistered() {
       result = o1 === o2;
     } else if (type === "isInstanceOf") {
       var o1 = args[0];
-      var o2 = getObject(args[1]);
+      var o2 = getObject(window, args[1]);
       result = o1 instanceof o2;
-    } else if (type === "getObject") {
+    } else if (type === "getValue") {
       var obj = _objects[jsId];
       result = obj;
+    } else if (type === "getWindowRef") {
+      result = window;
     }
 
     // prepare answer
@@ -480,7 +481,7 @@ Object _call(void f(Map jsQuery)) {
   }
 }
 
-JsRef newInstance(String name, [List args]) {
+JsRef _newInstance(String name, [List args]) {
   return _call(void _(Map jsQuery) {
     jsQuery["type"] = "new";
     jsQuery["name"] = name;
@@ -488,7 +489,7 @@ JsRef newInstance(String name, [List args]) {
   });
 }
 
-Object _callFunction(JsRef jsRef, String name, bool returnRef, [List args]) {
+Object _callFunction(JsRef jsRef, String name, List args, bool returnRef) {
   return _call(void _(jsQuery) {
     jsQuery["type"] = "function";
     jsQuery["jsId"] = jsRef != null ? jsRef._jsId : null;
@@ -496,12 +497,6 @@ Object _callFunction(JsRef jsRef, String name, bool returnRef, [List args]) {
     jsQuery["arguments"] = _serialize(args != null ? args : []);
     jsQuery["returnRef"] = returnRef;
   });
-}
-Object callFunction(JsRef jsRef, String name, [List args]) {
-  return _callFunction(jsRef, name, false, args);
-}
-Object callFunctionForRef(JsRef jsRef, String name, [List args]) {
-  return _callFunction(jsRef, name, true, args);
 }
 
 void setProperty(JsRef jsRef, String name, Object value) {
@@ -522,15 +517,7 @@ Object _getProperty(JsRef jsRef, String name, bool returnRef) {
   });
 }
 
-Object getProperty(JsRef jsRef, String name) {
-  return _getProperty(jsRef, name, false);
-}
-
-JsRef getPropertyRef(JsRef jsRef, String name) {
-  return _getProperty(jsRef, name, true);
-}
-
-bool areEquals(Object o1, Object o2) {
+bool _areEquals(Object o1, Object o2) {
   return _call(void _(jsQuery) {
     jsQuery["type"] = "areEquals";
     jsQuery["arguments"] = _serialize([o1, o2]);
@@ -544,10 +531,16 @@ bool isInstanceOf(Object o1, String type) {
   });
 }
 
-Object getObject(JsRef jsRef) {
+Object _getValue(JsRef jsRef) {
   return _call(void _(jsQuery) {
-    jsQuery["type"] = "getObject";
+    jsQuery["type"] = "getValue";
     jsQuery["jsId"] = jsRef._jsId;
+  });
+}
+
+JsRef _getWindowRef() {
+  return _call(void _(jsQuery) {
+    jsQuery["type"] = "getWindowRef";
   });
 }
 

@@ -8,8 +8,8 @@ class PhotoWidget extends js.JsObject {
 
   PhotoWidget(DivElement div, PhotoRequestOptions photoRequestOptions, PhotoWidgetOptions photoWidgetOptions) : super.newInstance(TYPE_NAME, [div, photoRequestOptions, photoWidgetOptions]);
 
-  void setRequest(PhotoRequestOptions photoRequestOptions) { $.callJs("setRequest", [photoRequestOptions]); }
-  void setPosition(num position) { $.callJs("setPosition", [position]); }
+  void setRequest(PhotoRequestOptions photoRequestOptions) { $.call("setRequest", [photoRequestOptions]); }
+  void setPosition(num position) { $.call("setPosition", [position]); }
 }
 
 class PhotoWidgetOptions extends js.JsObject {

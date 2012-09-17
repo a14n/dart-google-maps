@@ -7,7 +7,7 @@ class ColumnChart extends js.JsObject {
 
   ColumnChart(Node div) : super.newInstance(TYPE_NAME, [div]);
 
-  void draw(DataTable data, [js.JsObject options]) { $.callJs("draw", [data, options]); }
+  void draw(DataTable data, [js.JsObject options]) { $.call("draw", [data, options]); }
 }
 
 class DataTable extends js.JsObject {
@@ -15,8 +15,8 @@ class DataTable extends js.JsObject {
 
   DataTable() : super.newInstance(TYPE_NAME);
 
-  void addColumn(String type, [String label, String id]) { $.callJs("addColumn", [type, label, id]); }
-  void addRow([List<Object> cellArray]) { $.callJs("addRow", [cellArray]); }
+  void addColumn(String type, [String label, String id]) { $.call("addColumn", [type, label, id]); }
+  void addRow([List<Object> cellArray]) { $.call("addRow", [cellArray]); }
 }
 
 gmaps.ElevationService elevator;

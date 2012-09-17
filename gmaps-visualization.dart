@@ -10,7 +10,7 @@ class HeatmapLayer extends MVCObject {
   HeatmapLayer([HeatmapLayerOptions opts]) : super.newInstance(_TYPE_NAME, [opts]);
   HeatmapLayer.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  MVCArray<Object> getData() => new MVCArray.fromJsRef($.callJs("getData"), (js.JsRef jsRef) {
+  MVCArray<Object> getData() => new MVCArray.fromJsRef($.call("getData"), (js.JsRef jsRef) {
     if (js.isInstanceOf(jsRef, LatLng.TYPE_NAME)) {
       return new LatLng.fromJsRef(jsRef);
     } else if (js.isInstanceOf(jsRef, "Object")) {
@@ -19,7 +19,7 @@ class HeatmapLayer extends MVCObject {
       throw new Exception("Unsupported result");
     }
   });
-  GMap getMap() => _transformIfNotNull($.callJs("getMap"), (e) => new GMap.fromJsRef(e));
+  GMap getMap() => _transformIfNotNull($.call("getMap"), (e) => new GMap.fromJsRef(e));
   void setData(Object data) {
     List list;
     if (data is MVCArray) {
@@ -33,10 +33,10 @@ class HeatmapLayer extends MVCObject {
     if (!list.filter((e)=> !(e is LatLng || e is WeightedLocation)).isEmpty()) {
       throw new IllegalArgumentException("some elements are not String or MapTypeId");
     }
-    $.callJs("setData", [data]);
+    $.call("setData", [data]);
   }
-  void setMap(GMap map) { $.callJs("setMap", [map]); }
-  void setOptions(HeatmapLayerOptions options) { $.callJs("setOptions", [options]); }
+  void setMap(GMap map) { $.call("setMap", [map]); }
+  void setOptions(HeatmapLayerOptions options) { $.call("setOptions", [options]); }
 }
 
 class HeatmapLayerOptions extends js.JsObject {

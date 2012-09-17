@@ -12,13 +12,13 @@ class GMap extends MVCObject {
   GMap(html.Node mapDiv, [MapOptions opts]) : super.newInstance(TYPE_NAME, [mapDiv, opts]);
   GMap.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  void fitBounds(LatLngBounds bounds) { $.callJs("fitBounds", [bounds]); }
-  LatLngBounds getBounds() => new LatLngBounds.fromJsRef($.callJs("getBounds"));
-  LatLng getCenter() => new LatLng.fromJsRef($.callJs("getCenter"));
-  html.Node getDiv() => $.callJs("getDiv");
-  num getHeading() => $.callJs("getHeading");
+  void fitBounds(LatLngBounds bounds) { $.call("fitBounds", [bounds]); }
+  LatLngBounds getBounds() => new LatLngBounds.fromJsRef($.call("getBounds"));
+  LatLng getCenter() => new LatLng.fromJsRef($.call("getCenter"));
+  html.Node getDiv() => $.call("getDiv");
+  num getHeading() => $.call("getHeading");
   Object getMapTypeId() {
-    final result = $.callJs("getMapTypeId");
+    final result = $.call("getMapTypeId");
     final mapTypeId = MapTypeId.find(result);
     if ( mapTypeId !== null ) {
       return mapTypeId;
@@ -26,28 +26,28 @@ class GMap extends MVCObject {
       return result;
     }
   }
-  Projection getProjection() => new Projection.fromJsRef($.callJs("getProjection"));
-  StreetViewPanorama getStreetView() => new StreetViewPanorama.fromJsRef($.callJs("getStreetView"));
-  num getTilt() => $.callJs("getTilt");
-  num getZoom() => $.callJs("getZoom");
-  void panBy(num x, num y) { $.callJs("panBy", [x, y]); }
-  void panTo(LatLng latLng) { $.callJs("panTo", [latLng]); }
-  void panToBounds(LatLngBounds latLngBounds) { $.callJs("panToBounds", [latLngBounds]); }
-  void setCenter(LatLng latLng) { $.callJs("setCenter", [latLng]); }
-  void setHeading(num heading) { $.callJs("setHeading", [heading]); }
+  Projection getProjection() => new Projection.fromJsRef($.call("getProjection"));
+  StreetViewPanorama getStreetView() => new StreetViewPanorama.fromJsRef($.call("getStreetView"));
+  num getTilt() => $.call("getTilt");
+  num getZoom() => $.call("getZoom");
+  void panBy(num x, num y) { $.call("panBy", [x, y]); }
+  void panTo(LatLng latLng) { $.call("panTo", [latLng]); }
+  void panToBounds(LatLngBounds latLngBounds) { $.call("panToBounds", [latLngBounds]); }
+  void setCenter(LatLng latLng) { $.call("setCenter", [latLng]); }
+  void setHeading(num heading) { $.call("setHeading", [heading]); }
   void setMapTypeId(Object mapTypeId) {
     if (mapTypeId is String || mapTypeId is MapTypeId) {
-      $.callJs("setMapTypeId", [mapTypeId]);
+      $.call("setMapTypeId", [mapTypeId]);
     } else {
       throw new IllegalArgumentException(mapTypeId);
     }
   }
-  void setOptions(MapOptions options) { $.callJs("setOptions", [options]); }
-  void setStreetView(StreetViewPanorama panorama) { $.callJs("setStreetView", [panorama]); }
-  void setTilt(num tilt) { $.callJs("setTilt", [tilt]); }
-  void setZoom(num zoom) { $.callJs("setZoom", [zoom]); }
+  void setOptions(MapOptions options) { $.call("setOptions", [options]); }
+  void setStreetView(StreetViewPanorama panorama) { $.call("setStreetView", [panorama]); }
+  void setTilt(num tilt) { $.call("setTilt", [tilt]); }
+  void setZoom(num zoom) { $.call("setZoom", [zoom]); }
 
-  Controls get controls => new Controls.fromJsRef($.getJsRef("controls"));
+  Controls get controls => new Controls.fromJsRef($.getPropertyAsJsRef("controls"));
            set controls(Controls controls) => $["controls"] = controls;
   MapTypeRegistry get mapTypes => new MapTypeRegistry.fromJsRef($["mapTypes"]);
                   set mapTypes(MapTypeRegistry mapTypes) => $["mapTypes"] = mapTypes;
@@ -59,8 +59,8 @@ class Controls extends js.JsObject {
   Controls() : super.newInstance("Array");
   Controls.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  MVCArray<html.Node> getNodes(ControlPosition controlPosition) => new MVCArray.fromJsRef($[controlPosition.value.toString()]);
-  void setNodes(ControlPosition controlPosition, MVCArray<html.Node> nodes) { $[controlPosition.value.toString()] = nodes; }
+  MVCArray<html.Node> getNodes(ControlPosition controlPosition) => new MVCArray.fromJsRef($[controlPosition.$.value.toString()]);
+  void setNodes(ControlPosition controlPosition, MVCArray<html.Node> nodes) { $[controlPosition.$.value.toString()] = nodes; }
 }
 
 class MapOptions extends js.JsObject {
@@ -214,17 +214,17 @@ class Marker extends MVCObject {
   static const String TYPE_NAME = "google.maps.Marker";
 
   // TODO
-  // static const num MAX_ZINDEX = js.callFunction(null, "${TYPE_NAME}.MAX_ZINDEX");
+  // static const num MAX_ZINDEX = js.getWindow().$.call("${TYPE_NAME}.MAX_ZINDEX");
 
   Marker([MarkerOptions opts]) : super.newInstance(TYPE_NAME, [opts]);
 
-  Animation getAnimation() => Animation.find($.callJs("getAnimation"));
-  bool getClickable() => $.callJs("getClickable");
-  String getCursor() => $.callJs("getCursor");
-  bool getDraggable() => $.callJs("getDraggable");
-  bool getFlat() => $.callJs("getFlat");
+  Animation getAnimation() => Animation.find($.call("getAnimation"));
+  bool getClickable() => $.call("getClickable");
+  String getCursor() => $.call("getCursor");
+  bool getDraggable() => $.call("getDraggable");
+  bool getFlat() => $.call("getFlat");
   Object getIcon() {
-    final result = $.callJs("getIcon");
+    final result = $.call("getIcon");
     if (result is String) {
       return result;
     } else if (result is js.JsRef) {
@@ -234,7 +234,7 @@ class Marker extends MVCObject {
     }
   }
   Object getMap() {
-    final result = $.callJs("getMap");
+    final result = $.call("getMap");
     if (js.isInstanceOf(result ,GMap.TYPE_NAME)) {
       return new GMap.fromJsRef(result);
     } else if (js.isInstanceOf(result ,StreetViewPanorama.TYPE_NAME)) {
@@ -243,9 +243,9 @@ class Marker extends MVCObject {
       throw new Exception("Unsupported result");
     }
   }
-  LatLng getPosition() => new LatLng.fromJsRef($.callJs("getPosition"));
+  LatLng getPosition() => new LatLng.fromJsRef($.call("getPosition"));
   Object getShadow() {
-    final result = $.callJs("getShadow");
+    final result = $.call("getShadow");
     if (result is String) {
       return result;
     } else if (result is js.JsRef) {
@@ -254,41 +254,41 @@ class Marker extends MVCObject {
       throw new Exception("Unsupported result");
     }
   }
-  MarkerShape getShape() => new MarkerShape.fromJsRef($.callJs("getShape"));
-  String getTitle() => $.callJs("getTitle");
-  bool getVisible() => $.callJs("getVisible");
-  num getZIndex() => $.callJs("getZIndex");
-  void setAnimation(Animation animation) { $.callJs("setAnimation", [animation]); }
-  void setClickable(bool flag) { $.callJs("setClickable", [flag]); }
-  void setCursor(String cursor) { $.callJs("setCursor", [cursor]); }
-  void setDraggable(bool flag) { $.callJs("setDraggable", [flag]); }
-  void setFlat(bool flag) { $.callJs("setFlat", [flag]); }
+  MarkerShape getShape() => new MarkerShape.fromJsRef($.call("getShape"));
+  String getTitle() => $.call("getTitle");
+  bool getVisible() => $.call("getVisible");
+  num getZIndex() => $.call("getZIndex");
+  void setAnimation(Animation animation) { $.call("setAnimation", [animation]); }
+  void setClickable(bool flag) { $.call("setClickable", [flag]); }
+  void setCursor(String cursor) { $.call("setCursor", [cursor]); }
+  void setDraggable(bool flag) { $.call("setDraggable", [flag]); }
+  void setFlat(bool flag) { $.call("setFlat", [flag]); }
   void setIcon(Object icon) {
     if (icon is String || icon is MarkerImage) {
-      $.callJs("setIcon", [icon]);
+      $.call("setIcon", [icon]);
     } else {
       throw new IllegalArgumentException(icon);
     }
   }
   void setMap(Object map) {
     if (map === null || map is GMap || map is StreetViewPanorama) {
-      $.callJs("setMap", [map]);
+      $.call("setMap", [map]);
     } else {
       throw new IllegalArgumentException(map);
     }
   }
-  void setOptions(MarkerOptions options) { $.callJs("setOptions", [options]); }
-  void setPosition(LatLng latlng) { $.callJs("setPosition", [latlng]); }
+  void setOptions(MarkerOptions options) { $.call("setOptions", [options]); }
+  void setPosition(LatLng latlng) { $.call("setPosition", [latlng]); }
   void setShadow(Object shadow) {
     if (shadow is String || shadow is MarkerImage) {
-      $.callJs("setShadow", [shadow]);
+      $.call("setShadow", [shadow]);
     } else {
       throw new IllegalArgumentException(shadow);
     }
   }
-  void setTitle(String title) { $.callJs("setTitle", [title]); }
-  void setVisible(bool visible) { $.callJs("setVisible", [visible]); }
-  void setZIndex(num zIndex) { $.callJs("setZIndex", [zIndex]); }
+  void setTitle(String title) { $.call("setTitle", [title]); }
+  void setVisible(bool visible) { $.call("setVisible", [visible]); }
+  void setZIndex(num zIndex) { $.call("setZIndex", [zIndex]); }
 }
 
 class MarkerOptions extends js.JsObject {
@@ -349,7 +349,7 @@ class MarkerShape extends js.JsObject {
   MarkerShape() : super();
   MarkerShape.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  List<num> get coords => new js.JsList<num>.fromJsRef($.getJsRef("coords"), (e) => js.$(e).value);
+  List<num> get coords => new js.JsList<num>.fromJsRef($.getPropertyAsJsRef("coords"), (e) => js.$$(e).value);
             set coords(List<num> coords) => $["coords"] = coords;
   MarkerShapeType get type => MarkerShapeType.find($["type"]);
                   set type(MarkerShapeType type) => $["type"] = type.value;
@@ -432,34 +432,34 @@ class InfoWindow extends MVCObject {
   InfoWindow([InfoWindowOptions opts]) : super.newInstance(TYPE_NAME, [opts]);
   InfoWindow.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  void close() { $.callJs("close"); }
+  void close() { $.call("close"); }
   Object getContent() {
-    final result = $.callJs("getContent");
+    final result = $.call("getContent");
     if (result is String || result is html.Node) {
       return result;
     } else {
       throw new Exception("Unsupported result");
     }
   }
-  LatLng getPosition() => new LatLng.fromJsRef($.callJs("getPosition"));
-  num getZIndex() => $.callJs("getZIndex");
+  LatLng getPosition() => new LatLng.fromJsRef($.call("getPosition"));
+  num getZIndex() => $.call("getZIndex");
   void open([Object map, MVCObject anchor]) {
     if (map is GMap || map is StreetViewPanorama) {
-      $.callJs("open", [map, anchor]);
+      $.call("open", [map, anchor]);
     } else {
       throw new IllegalArgumentException(map);
     }
   }
   void setContent(Object content) {
     if (content is String || content is html.Node) {
-      $.callJs("setContent", [content]);
+      $.call("setContent", [content]);
     } else {
       throw new IllegalArgumentException(content);
     }
   }
-  void setOptions(InfoWindowOptions options) { $.callJs("setOptions", [options]); }
-  void setPosition(LatLng position) { $.callJs("setPosition", [position]); }
-  void setZIndex(num zIndex) { $.callJs("setZIndex", [zIndex]); }
+  void setOptions(InfoWindowOptions options) { $.call("setOptions", [options]); }
+  void setPosition(LatLng position) { $.call("setPosition", [position]); }
+  void setZIndex(num zIndex) { $.call("setZIndex", [zIndex]); }
 }
 
 class InfoWindowOptions extends js.JsObject {
@@ -488,21 +488,21 @@ class Polyline extends MVCObject {
   Polyline([PolylineOptions opts]) : super.newInstance(TYPE_NAME, [opts]);
   Polyline.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  bool getEditable() => $.callJs("getEditable");
-  GMap getMap() => _transformIfNotNull($.callJs("getMap"), (e) => new GMap.fromJsRef(e));
-  MVCArray<LatLng> getPath() => new MVCArray.fromJsRef($.callJs("getPath"), (js.JsRef jsRef) => new LatLng.fromJsRef(jsRef));
-  bool getVisible() => $.callJs("getVisible");
-  void setEditable(bool editable) { $.callJs("setEditable", [editable]); }
-  void setMap(GMap map) { $.callJs("setMap", [map]); }
-  void setOptions(PolylineOptions options) { $.callJs("setOptions", [options]); }
+  bool getEditable() => $.call("getEditable");
+  GMap getMap() => _transformIfNotNull($.call("getMap"), (e) => new GMap.fromJsRef(e));
+  MVCArray<LatLng> getPath() => new MVCArray.fromJsRef($.call("getPath"), (js.JsRef jsRef) => new LatLng.fromJsRef(jsRef));
+  bool getVisible() => $.call("getVisible");
+  void setEditable(bool editable) { $.call("setEditable", [editable]); }
+  void setMap(GMap map) { $.call("setMap", [map]); }
+  void setOptions(PolylineOptions options) { $.call("setOptions", [options]); }
   void setPath(Object path) {
     if (path is MVCArray<LatLng> || path is List<LatLng>) {
-      $.callJs("setPath", [path]);
+      $.call("setPath", [path]);
     } else {
       throw new IllegalArgumentException(path);
     }
   }
-  void setVisible(bool visible) { $.callJs("setVisible", [visible]); }
+  void setVisible(bool visible) { $.call("setVisible", [visible]); }
 }
 
 class PolylineOptions extends js.JsObject {
@@ -540,29 +540,29 @@ class Polygon extends MVCObject {
   Polygon([PolygonOptions opts]) : super.newInstance(TYPE_NAME, [opts]);
   Polygon.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  bool getEditable() => $.callJs("getEditable");
-  GMap getMap() => _transformIfNotNull($.callJs("getMap"), (e) => new GMap.fromJsRef(e));
-  MVCArray<LatLng> getPath() => new MVCArray.fromJsRef($.callJs("getPath"), (js.JsRef jsRef) => new LatLng.fromJsRef(jsRef));
-  MVCArray<MVCArray<LatLng>> getPaths() => new MVCArray.fromJsRef($.callJs("getPaths"), (js.JsRef jsRef) => new MVCArray.fromJsRef(jsRef, (js.JsRef jsRef) => new LatLng.fromJsRef(jsRef)));
-  bool getVisible() => $.callJs("getVisible");
-  void setEditable(bool editable) { $.callJs("setEditable", [editable]); }
-  void setMap(GMap map) { $.callJs("setMap", [map]); }
-  void setOptions(PolylineOptions options) { $.callJs("setOptions", [options]); }
+  bool getEditable() => $.call("getEditable");
+  GMap getMap() => _transformIfNotNull($.call("getMap"), (e) => new GMap.fromJsRef(e));
+  MVCArray<LatLng> getPath() => new MVCArray.fromJsRef($.call("getPath"), (js.JsRef jsRef) => new LatLng.fromJsRef(jsRef));
+  MVCArray<MVCArray<LatLng>> getPaths() => new MVCArray.fromJsRef($.call("getPaths"), (js.JsRef jsRef) => new MVCArray.fromJsRef(jsRef, (js.JsRef jsRef) => new LatLng.fromJsRef(jsRef)));
+  bool getVisible() => $.call("getVisible");
+  void setEditable(bool editable) { $.call("setEditable", [editable]); }
+  void setMap(GMap map) { $.call("setMap", [map]); }
+  void setOptions(PolylineOptions options) { $.call("setOptions", [options]); }
   void setPath(Object path) {
     if (path is MVCArray<LatLng> || path is List<LatLng>) {
-      $.callJs("setPath", [path]);
+      $.call("setPath", [path]);
     } else {
       throw new IllegalArgumentException(path);
     }
   }
   void setPaths(Object paths) {
     if (paths is MVCArray<MVCArray<LatLng>> || paths is MVCArray<LatLng> || paths is List<List<LatLng>> || paths is List<LatLng>) {
-      $.callJs("setPaths", [paths]);
+      $.call("setPaths", [paths]);
     } else {
       throw new IllegalArgumentException(paths);
     }
   }
-  void setVisible(bool visible) { $.callJs("setVisible", [visible]); }
+  void setVisible(bool visible) { $.call("setVisible", [visible]); }
 }
 
 class PolygonOptions extends js.JsObject {
@@ -600,15 +600,15 @@ class Rectangle extends MVCObject {
   Rectangle([RectangleOptions opts]) : super.newInstance(TYPE_NAME, [opts]);
   Rectangle.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  LatLngBounds getBounds() => new LatLngBounds.fromJsRef($.callJs("getBounds"));
-  bool getEditable() => $.callJs("getEditable");
-  GMap getMap() => _transformIfNotNull($.callJs("getMap"), (e) => new GMap.fromJsRef(e));
-  bool getVisible() => $.callJs("getVisible");
-  void setBounds(LatLngBounds bounds) { $.callJs("setBounds", [bounds]); }
-  void setEditable(bool editable) { $.callJs("setEditable", [editable]); }
-  void setMap(GMap map) { $.callJs("setMap", [map]); }
-  void setOptions(RectangleOptions options) { $.callJs("setOptions", [options]); }
-  void setVisible(bool visible) { $.callJs("setVisible", [visible]); }
+  LatLngBounds getBounds() => new LatLngBounds.fromJsRef($.call("getBounds"));
+  bool getEditable() => $.call("getEditable");
+  GMap getMap() => _transformIfNotNull($.call("getMap"), (e) => new GMap.fromJsRef(e));
+  bool getVisible() => $.call("getVisible");
+  void setBounds(LatLngBounds bounds) { $.call("setBounds", [bounds]); }
+  void setEditable(bool editable) { $.call("setEditable", [editable]); }
+  void setMap(GMap map) { $.call("setMap", [map]); }
+  void setOptions(RectangleOptions options) { $.call("setOptions", [options]); }
+  void setVisible(bool visible) { $.call("setVisible", [visible]); }
 }
 
 class RectangleOptions extends js.JsObject {
@@ -631,18 +631,18 @@ class Circle extends MVCObject {
   Circle([CircleOptions opts]) : super.newInstance(TYPE_NAME, [opts]);
   Circle.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  LatLngBounds getBounds() => new LatLngBounds.fromJsRef($.callJs("getBounds"));
-  LatLng getCenter() => new LatLng.fromJsRef($.callJs("getCenter"));
-  bool getEditable() => $.callJs("getEditable");
-  GMap getMap() => _transformIfNotNull($.callJs("getMap"), (e) => new GMap.fromJsRef(e));
-  num getRadius() => $.callJs("getRadius");
-  bool getVisible() => $.callJs("getVisible");
-  void setCenter(LatLng center) { $.callJs("setCenter", [center]); }
-  void setEditable(bool editable) { $.callJs("setEditable", [editable]); }
-  void setMap(GMap map) { $.callJs("setMap", [map]); }
-  void setOptions(CircleOptions options) { $.callJs("setOptions", [options]); }
-  void setRadius(bool radius) { $.callJs("setRadius", [radius]); }
-  void setVisible(bool visible) { $.callJs("setVisible", [visible]); }
+  LatLngBounds getBounds() => new LatLngBounds.fromJsRef($.call("getBounds"));
+  LatLng getCenter() => new LatLng.fromJsRef($.call("getCenter"));
+  bool getEditable() => $.call("getEditable");
+  GMap getMap() => _transformIfNotNull($.call("getMap"), (e) => new GMap.fromJsRef(e));
+  num getRadius() => $.call("getRadius");
+  bool getVisible() => $.call("getVisible");
+  void setCenter(LatLng center) { $.call("setCenter", [center]); }
+  void setEditable(bool editable) { $.call("setEditable", [editable]); }
+  void setMap(GMap map) { $.call("setMap", [map]); }
+  void setOptions(CircleOptions options) { $.call("setOptions", [options]); }
+  void setRadius(bool radius) { $.call("setRadius", [radius]); }
+  void setVisible(bool visible) { $.call("setVisible", [visible]); }
 }
 
 class CircleOptions extends js.JsObject {
@@ -666,12 +666,12 @@ class GroundOverlay extends MVCObject {
   GroundOverlay(String url, LatLngBounds bounds, [GroundOverlayOptions opts]) : super.newInstance(TYPE_NAME, [url, bounds, opts]);
   GroundOverlay.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  LatLngBounds getBounds() => new LatLngBounds.fromJsRef($.callJs("getBounds"));
-  GMap getMap() => _transformIfNotNull($.callJs("getMap"), (e) => new GMap.fromJsRef(e));
-  num getOpacity() => $.callJs("getOpacity");
-  String getUrl() => $.callJs("getUrl");
-  void setMap(GMap map) { $.callJs("setMap", [map]); }
-  void setOpacity(num opacity) { $.callJs("setOpacity", [opacity]); }
+  LatLngBounds getBounds() => new LatLngBounds.fromJsRef($.call("getBounds"));
+  GMap getMap() => _transformIfNotNull($.call("getMap"), (e) => new GMap.fromJsRef(e));
+  num getOpacity() => $.call("getOpacity");
+  String getUrl() => $.call("getUrl");
+  void setMap(GMap map) { $.call("setMap", [map]); }
+  void setOpacity(num opacity) { $.call("setOpacity", [opacity]); }
 }
 
 class GroundOverlayOptions extends js.JsObject {
@@ -686,15 +686,15 @@ class OverlayView extends MVCObject {
   OverlayView() : super.newInstance(TYPE_NAME);
   OverlayView.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  void draw() { $.callJs("draw"); }
-  GMap getMap() => _transformIfNotNull($.callJs("getMap"), (e) => new GMap.fromJsRef(e));
-  MapPanes getPanes() => new MapPanes.fromJsRef($.callJs("getPanes"));
-  MapCanvasProjection getProjection() => new MapCanvasProjection.fromJsRef($.callJs("getProjection"));
-  void onAdd() { $.callJs("onAdd"); }
-  void onRemove() { $.callJs("onRemove"); }
+  void draw() { $.call("draw"); }
+  GMap getMap() => _transformIfNotNull($.call("getMap"), (e) => new GMap.fromJsRef(e));
+  MapPanes getPanes() => new MapPanes.fromJsRef($.call("getPanes"));
+  MapCanvasProjection getProjection() => new MapCanvasProjection.fromJsRef($.call("getProjection"));
+  void onAdd() { $.call("onAdd"); }
+  void onRemove() { $.call("onRemove"); }
   void setMap(Object map) {
     if (map === null || map is GMap || map is StreetViewPanorama) {
-      $.callJs("setMap", [map]);
+      $.call("setMap", [map]);
     } else {
       throw new IllegalArgumentException(map);
     }
@@ -723,11 +723,11 @@ class MapPanes extends js.JsObject {
 class MapCanvasProjection extends MVCObject {
   MapCanvasProjection.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  LatLng fromContainerPixelToLatLng(Point pixel, [bool nowrap]) => new LatLng.fromJsRef($.callJs("fromContainerPixelToLatLng", [pixel, nowrap]));
-  LatLng fromDivPixelToLatLng(Point pixel, [bool nowrap]) => new LatLng.fromJsRef($.callJs("fromDivPixelToLatLng", [pixel, nowrap]));
-  Point fromLatLngToContainerPixel(LatLng latLng) => new Point.fromJsRef($.callJs("fromLatLngToContainerPixel", [latLng]));
-  Point fromLatLngToDivPixel(LatLng latLng) => new Point.fromJsRef($.callJs("fromLatLngToDivPixel", [latLng]));
-  num getWorldWidth() => $.callJs("getWorldWidth");
+  LatLng fromContainerPixelToLatLng(Point pixel, [bool nowrap]) => new LatLng.fromJsRef($.call("fromContainerPixelToLatLng", [pixel, nowrap]));
+  LatLng fromDivPixelToLatLng(Point pixel, [bool nowrap]) => new LatLng.fromJsRef($.call("fromDivPixelToLatLng", [pixel, nowrap]));
+  Point fromLatLngToContainerPixel(LatLng latLng) => new Point.fromJsRef($.call("fromLatLngToContainerPixel", [latLng]));
+  Point fromLatLngToDivPixel(LatLng latLng) => new Point.fromJsRef($.call("fromLatLngToDivPixel", [latLng]));
+  num getWorldWidth() => $.call("getWorldWidth");
 }
 
 class Geocoder extends js.JsObject {
@@ -740,7 +740,7 @@ class Geocoder extends js.JsObject {
       List<js.JsRef> resultsRefs = args[0];
       callback(resultsRefs.map((e) => new GeocoderResult.fromJsRef(e)), GeocoderStatus.find(args[1]));
     };
-    $.callJs("geocode", [request, callbackFunction]);
+    $.call("geocode", [request, callbackFunction]);
   }
 }
 
@@ -771,10 +771,10 @@ class GeocoderResult extends js.JsObject {
   GeocoderResult() : super();
   GeocoderResult.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  List<GeocoderAddressComponent> get address_components => new js.JsList<GeocoderAddressComponent>.fromJsRef($.getJsRef("address_components"), (e) => new GeocoderAddressComponent.fromJsRef(e));
+  List<GeocoderAddressComponent> get address_components => new js.JsList<GeocoderAddressComponent>.fromJsRef($.getPropertyAsJsRef("address_components"), (e) => new GeocoderAddressComponent.fromJsRef(e));
   String get formatted_address => $["formatted_address"];
   GeocoderGeometry get geometry => new GeocoderGeometry.fromJsRef($["geometry"]);
-  List<String> get types => new js.JsList<String>.fromJsRef($.getJsRef("types"), (e) => js.$(e).value);
+  List<String> get types => new js.JsList<String>.fromJsRef($.getPropertyAsJsRef("types"), (e) => js.$$(e).value);
 }
 
 class GeocoderAddressComponent extends js.JsObject {
@@ -783,7 +783,7 @@ class GeocoderAddressComponent extends js.JsObject {
 
   String get long_name => $["long_name"];
   String get short_name => $["short_name"];
-  List<String> get types => new js.JsList<String>.fromJsRef($.getJsRef("types"), (e) => js.$(e).value);
+  List<String> get types => new js.JsList<String>.fromJsRef($.getPropertyAsJsRef("types"), (e) => js.$$(e).value);
 }
 
 class GeocoderGeometry extends js.JsObject {
@@ -815,15 +815,15 @@ class DirectionsRenderer extends MVCObject {
   DirectionsRenderer([DirectionsRendererOptions opts]) : super.newInstance(TYPE_NAME, [opts]);
   DirectionsRenderer.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  DirectionsResult getDirections() => new DirectionsResult.fromJsRef($.callJs("getDirections"));
-  GMap getMap() => _transformIfNotNull($.callJs("getMap"), (e) => new GMap.fromJsRef(e));
-  html.Node getPanel() => $.callJs("getPanel");
-  num getRouteIndex() => $.callJs("getRouteIndex");
-  void setDirections(DirectionsResult directions) { $.callJs("setDirections", [directions]); }
-  void setMap(GMap map) { $.callJs("setMap", [map]); }
-  void setOptions(DirectionsRendererOptions options) { $.callJs("setOptions", [options]); }
-  void setPanel(html.Node panel) { $.callJs("setPanel", [panel]); }
-  void setRouteIndex(num routeIndex) { $.callJs("setRouteIndex", [routeIndex]); }
+  DirectionsResult getDirections() => new DirectionsResult.fromJsRef($.call("getDirections"));
+  GMap getMap() => _transformIfNotNull($.call("getMap"), (e) => new GMap.fromJsRef(e));
+  html.Node getPanel() => $.call("getPanel");
+  num getRouteIndex() => $.call("getRouteIndex");
+  void setDirections(DirectionsResult directions) { $.call("setDirections", [directions]); }
+  void setMap(GMap map) { $.call("setMap", [map]); }
+  void setOptions(DirectionsRendererOptions options) { $.call("setOptions", [options]); }
+  void setPanel(html.Node panel) { $.call("setPanel", [panel]); }
+  void setRouteIndex(num routeIndex) { $.call("setRouteIndex", [routeIndex]); }
 }
 
 class DirectionsRendererOptions extends js.JsObject {
@@ -852,7 +852,7 @@ class DirectionsService extends js.JsObject {
     js.CallbackFunction callbackFunction = Object _(List args) {
       callback(new DirectionsResult.fromJsRef(args[0]), DirectionsStatus.find(args[1]));
     };
-    $.callJs("route", [request, callbackFunction]);
+    $.call("route", [request, callbackFunction]);
   }
 }
 
@@ -943,7 +943,7 @@ class DirectionsResult extends js.JsObject {
   DirectionsResult() : super();
   DirectionsResult.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  List<DirectionsRoute> get routes => new js.JsList<DirectionsRoute>.fromJsRef($.getJsRef("routes"), (e) => new DirectionsRoute.fromJsRef(e));
+  List<DirectionsRoute> get routes => new js.JsList<DirectionsRoute>.fromJsRef($.getPropertyAsJsRef("routes"), (e) => new DirectionsRoute.fromJsRef(e));
 }
 
 class DirectionsRoute extends js.JsObject {
@@ -952,10 +952,10 @@ class DirectionsRoute extends js.JsObject {
 
   LatLngBounds get bounds => new LatLngBounds.fromJsRef($["bounds"]);
   String get copyrights => $["copyrights"];
-  List<DirectionsLeg> get legs => new js.JsList<DirectionsLeg>.fromJsRef($.getJsRef("legs"), (e) => new DirectionsLeg.fromJsRef(e));
-  List<LatLng> get overview_path => new js.JsList<LatLng>.fromJsRef($.getJsRef("overview_path"), (e) => new LatLng.fromJsRef(e));
-  List<String> get warnings => new js.JsList<String>.fromJsRef($.getJsRef("warnings"), (e) => js.$(e).value);
-  List<num> get waypoint_order => new js.JsList<num>.fromJsRef($.getJsRef("waypoint_order"), (e) => js.$(e).value);
+  List<DirectionsLeg> get legs => new js.JsList<DirectionsLeg>.fromJsRef($.getPropertyAsJsRef("legs"), (e) => new DirectionsLeg.fromJsRef(e));
+  List<LatLng> get overview_path => new js.JsList<LatLng>.fromJsRef($.getPropertyAsJsRef("overview_path"), (e) => new LatLng.fromJsRef(e));
+  List<String> get warnings => new js.JsList<String>.fromJsRef($.getPropertyAsJsRef("warnings"), (e) => js.$$(e).value);
+  List<num> get waypoint_order => new js.JsList<num>.fromJsRef($.getPropertyAsJsRef("waypoint_order"), (e) => js.$$(e).value);
 }
 
 class DirectionsLeg extends js.JsObject {
@@ -971,8 +971,8 @@ class DirectionsLeg extends js.JsObject {
   LatLng get end_location => new LatLng.fromJsRef($["end_location"]);
   String get start_address => $["start_address"];
   LatLng get start_location => new LatLng.fromJsRef($["start_location"]);
-  List<DirectionsStep> get steps => new js.JsList<DirectionsStep>.fromJsRef($.getJsRef("steps"), (e) => new DirectionsStep.fromJsRef(e));
-  List<LatLng> get via_waypoints => new js.JsList<LatLng>.fromJsRef($.getJsRef("via_waypoints"), (e) => new LatLng.fromJsRef(e));
+  List<DirectionsStep> get steps => new js.JsList<DirectionsStep>.fromJsRef($.getPropertyAsJsRef("steps"), (e) => new DirectionsStep.fromJsRef(e));
+  List<LatLng> get via_waypoints => new js.JsList<LatLng>.fromJsRef($.getPropertyAsJsRef("via_waypoints"), (e) => new LatLng.fromJsRef(e));
 }
 
 class DirectionsStep extends js.JsObject {
@@ -983,7 +983,7 @@ class DirectionsStep extends js.JsObject {
   GDuration get duration => new GDuration.fromJsRef($["duration"]);
   LatLng get end_location => new LatLng.fromJsRef($["end_location"]);
   String get instructions => $["instructions"];
-  List<LatLng> get path => new js.JsList<LatLng>.fromJsRef($.getJsRef("path"), (e) => new LatLng.fromJsRef(e));
+  List<LatLng> get path => new js.JsList<LatLng>.fromJsRef($.getPropertyAsJsRef("path"), (e) => new LatLng.fromJsRef(e));
   LatLng get start_location => new LatLng.fromJsRef($["start_location"]);
   // TODO check return type
   DirectionsStep get steps => new DirectionsStep.fromJsRef($["steps"]);
@@ -1043,7 +1043,7 @@ class TransitLine extends js.JsObject {
   TransitLine() : super();
   TransitLine.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  List<TransitAgency> get agencies => new js.JsList<TransitAgency>.fromJsRef($.getJsRef("agencies"), (e) => new TransitAgency.fromJsRef(e));
+  List<TransitAgency> get agencies => new js.JsList<TransitAgency>.fromJsRef($.getPropertyAsJsRef("agencies"), (e) => new TransitAgency.fromJsRef(e));
   String get color => $["color"];
   String get icon => $["icon"];
   String get name => $["name"];
@@ -1083,14 +1083,14 @@ class ElevationService extends js.JsObject {
       List<js.JsRef> resultsRefs = args[0];
       callback(resultsRefs.map((e) => new ElevationResult.fromJsRef(e)), ElevationStatus.find(args[1]));
     };
-    $.callJs("getElevationAlongPath", [request, callbackFunction]);
+    $.call("getElevationAlongPath", [request, callbackFunction]);
   }
   void getElevationForLocations(LocationElevationRequest request, void callback(List<ElevationResult> results, ElevationStatus status)) {
     js.CallbackFunction callbackFunction = Object _(List args) {
       List<js.JsRef> resultsRefs = args[0];
       callback(resultsRefs.map((e) => new ElevationResult.fromJsRef(e)), ElevationStatus.find(args[1]));
     };
-    $.callJs("getElevationForLocations", [request, callbackFunction]);
+    $.call("getElevationForLocations", [request, callbackFunction]);
   }
 }
 
@@ -1135,7 +1135,7 @@ class MaxZoomService extends js.JsObject {
     js.CallbackFunction callbackFunction = Object _(List args) {
       callback(new MaxZoomResult.fromJsRef(args[0]));
     };
-    $.callJs("getMaxZoomAtLatLng", [latlng, callbackFunction]);
+    $.call("getMaxZoomAtLatLng", [latlng, callbackFunction]);
   }
 }
 
@@ -1167,7 +1167,7 @@ class DistanceMatrixService extends js.JsObject {
     js.CallbackFunction callbackFunction = Object _(List args) {
       callback(new DistanceMatrixResponse.fromJsRef(args[0]), DistanceMatrixStatus.find(args[1]));
     };
-    $.callJs("getDistanceMatrix", [request, callbackFunction]);
+    $.call("getDistanceMatrix", [request, callbackFunction]);
   }
 }
 
@@ -1197,16 +1197,16 @@ class DistanceMatrixResponse extends js.JsObject {
   DistanceMatrixResponse() : super();
   DistanceMatrixResponse.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  List<String> get destinationAddresses => new js.JsList<String>.fromJsRef($.getJsRef("destinationAddresses"), (e) => js.$(e).value);
-  List<String> get originAddresses => new js.JsList<String>.fromJsRef($.getJsRef("originAddresses"), (e) => js.$(e).value);
-  List<DistanceMatrixResponseRow> get rows => new js.JsList<DistanceMatrixResponseRow>.fromJsRef($.getJsRef("rows"), (e) => new DistanceMatrixResponseRow.fromJsRef(e));
+  List<String> get destinationAddresses => new js.JsList<String>.fromJsRef($.getPropertyAsJsRef("destinationAddresses"), (e) => js.$$(e).value);
+  List<String> get originAddresses => new js.JsList<String>.fromJsRef($.getPropertyAsJsRef("originAddresses"), (e) => js.$$(e).value);
+  List<DistanceMatrixResponseRow> get rows => new js.JsList<DistanceMatrixResponseRow>.fromJsRef($.getPropertyAsJsRef("rows"), (e) => new DistanceMatrixResponseRow.fromJsRef(e));
 }
 
 class DistanceMatrixResponseRow extends js.JsObject {
   DistanceMatrixResponseRow() : super();
   DistanceMatrixResponseRow.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  List<DistanceMatrixResponseElement> get elements => new js.JsList<DistanceMatrixResponseElement>.fromJsRef($.getJsRef("elements"), (e) => new DistanceMatrixResponseElement.fromJsRef(e));
+  List<DistanceMatrixResponseElement> get elements => new js.JsList<DistanceMatrixResponseElement>.fromJsRef($.getPropertyAsJsRef("elements"), (e) => new DistanceMatrixResponseElement.fromJsRef(e));
 }
 
 class DistanceMatrixResponseElement extends js.JsObject {
@@ -1251,8 +1251,8 @@ class MapType extends js.JsObject {
   MapType.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
   MapType.newInstance(String objectName, [List args]) : super.newInstance(objectName, args);
 
-  html.Node getTile(Point tileCoord, num zoom, html.Document ownerDocument) => $.callJs("getTile", [tileCoord, zoom, ownerDocument]);
-  html.Node releaseTile(html.Node tile) => $.callJs("releaseTile", [tile]);
+  html.Node getTile(Point tileCoord, num zoom, html.Document ownerDocument) => $.call("getTile", [tileCoord, zoom, ownerDocument]);
+  html.Node releaseTile(html.Node tile) => $.call("releaseTile", [tile]);
 
   String get alt => $["alt"];
          set alt(String alt) => $["alt"] = alt;
@@ -1276,15 +1276,15 @@ class MapTypeRegistry extends MVCObject {
   MapTypeRegistry() : super.newInstance(TYPE_NAME);
   MapTypeRegistry.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  void set_(String id, MapType mapType) { $.callJs("set", [id, mapType]); }
+  void set_(String id, MapType mapType) { $.call("set", [id, mapType]); }
 }
 
 class Projection extends js.JsObject {
   Projection() : super();
   Projection.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  Point fromLatLngToPoint(LatLng latLng, [Point point]) => new Point.fromJsRef($.callJs("fromLatLngToPoint", [latLng, point]));
-  LatLng fromPointToLatLng(Point pixel, [bool nowrap]) => new LatLng.fromJsRef($.callJs("fromPointToLatLng", [pixel, nowrap]));
+  Point fromLatLngToPoint(LatLng latLng, [Point point]) => new Point.fromJsRef($.call("fromLatLngToPoint", [latLng, point]));
+  LatLng fromPointToLatLng(Point pixel, [bool nowrap]) => new LatLng.fromJsRef($.call("fromPointToLatLng", [pixel, nowrap]));
 }
 
 class ImageMapType extends MapType {
@@ -1293,8 +1293,8 @@ class ImageMapType extends MapType {
   ImageMapType(ImageMapTypeOptions opts) : super.newInstance(TYPE_NAME, [opts]);
   ImageMapType.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  num getOpacity() { $.callJs("getOpacity"); }
-  void setOpacity(num opacity) { $.callJs("setOpacity", [opacity]); }
+  num getOpacity() { $.call("getOpacity"); }
+  void setOpacity(num opacity) { $.call("setOpacity", [opacity]); }
 }
 
 class ImageMapTypeOptions extends js.JsObject {
@@ -1465,8 +1465,8 @@ class BicyclingLayer extends MVCObject {
   BicyclingLayer() : super.newInstance(TYPE_NAME);
   BicyclingLayer.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  GMap getMap() => _transformIfNotNull($.callJs("getMap"), (e) => new GMap.fromJsRef(e));
-  void setMap(GMap map) { $.callJs("setMap", [map]); }
+  GMap getMap() => _transformIfNotNull($.call("getMap"), (e) => new GMap.fromJsRef(e));
+  void setMap(GMap map) { $.call("setMap", [map]); }
 }
 
 class FusionTablesLayer extends MVCObject {
@@ -1475,9 +1475,9 @@ class FusionTablesLayer extends MVCObject {
   FusionTablesLayer(FusionTablesLayerOptions options) : super.newInstance(TYPE_NAME, [options]);
   FusionTablesLayer.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  GMap getMap() => _transformIfNotNull($.callJs("getMap"), (e) => new GMap.fromJsRef(e));
-  void setMap(GMap map) { $.callJs("setMap", [map]); }
-  void setOptions(FusionTablesLayerOptions options) { $.callJs("setOptions", [options]); }
+  GMap getMap() => _transformIfNotNull($.call("getMap"), (e) => new GMap.fromJsRef(e));
+  void setMap(GMap map) { $.call("setMap", [map]); }
+  void setOptions(FusionTablesLayerOptions options) { $.call("setOptions", [options]); }
 }
 
 class FusionTablesLayerOptions extends js.JsObject {
@@ -1551,12 +1551,12 @@ class KmlLayer extends MVCObject {
   KmlLayer(String url, [KmlLayerOptions options]) : super.newInstance(TYPE_NAME, [url, options]);
   KmlLayer.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  LatLngBounds getDefaultViewport() => new LatLngBounds.fromJsRef($.callJs("getDefaultViewport"));
-  GMap getMap() => _transformIfNotNull($.callJs("getMap"), (e) => new GMap.fromJsRef(e));
-  KmlLayerMetadata getMetadata() => new KmlLayerMetadata.fromJsRef($.callJs("getMetadata"));
-  KmlLayerStatus getStatus() => KmlLayerStatus.find($.callJs("getStatus"));
-  String getUrl() => $.callJs("getUrl");
-  void setMap(GMap map) { $.callJs("setMap", [map]); }
+  LatLngBounds getDefaultViewport() => new LatLngBounds.fromJsRef($.call("getDefaultViewport"));
+  GMap getMap() => _transformIfNotNull($.call("getMap"), (e) => new GMap.fromJsRef(e));
+  KmlLayerMetadata getMetadata() => new KmlLayerMetadata.fromJsRef($.call("getMetadata"));
+  KmlLayerStatus getStatus() => KmlLayerStatus.find($.call("getStatus"));
+  String getUrl() => $.call("getUrl");
+  void setMap(GMap map) { $.call("setMap", [map]); }
 }
 
 class KmlLayerOptions extends js.JsObject {
@@ -1627,8 +1627,8 @@ class TrafficLayer extends MVCObject {
   TrafficLayer() : super.newInstance(TYPE_NAME);
   TrafficLayer.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  GMap getMap() => _transformIfNotNull($.callJs("getMap"), (e) => new GMap.fromJsRef(e));
-  void setMap(GMap map) { $.callJs("setMap", [map]); }
+  GMap getMap() => _transformIfNotNull($.call("getMap"), (e) => new GMap.fromJsRef(e));
+  void setMap(GMap map) { $.call("setMap", [map]); }
 }
 
 class TransitLayer extends MVCObject {
@@ -1637,8 +1637,8 @@ class TransitLayer extends MVCObject {
   TransitLayer() : super.newInstance(TYPE_NAME);
   TransitLayer.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  GMap getMap() => _transformIfNotNull($.callJs("getMap"), (e) => new GMap.fromJsRef(e));
-  void setMap(GMap map) { $.callJs("setMap", [map]); }
+  GMap getMap() => _transformIfNotNull($.call("getMap"), (e) => new GMap.fromJsRef(e));
+  void setMap(GMap map) { $.call("setMap", [map]); }
 }
 
 class StreetViewPanorama extends MVCObject {
@@ -1647,23 +1647,23 @@ class StreetViewPanorama extends MVCObject {
   StreetViewPanorama(html.Node container, [StreetViewPanoramaOptions opts]) : super.newInstance(TYPE_NAME, [container, opts]);
   StreetViewPanorama.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  List<StreetViewLink> getLinks() => new js.JsList<StreetViewLink>.fromJsRef($.callJsForRef("getLinks"), (e) => new StreetViewLink.fromJsRef(e));
-  String getPano() => $.callJs("getPano");
-  LatLng getPosition() => new LatLng.fromJsRef($.callJs("getPosition"));
-  StreetViewPov getPov() => new StreetViewPov.fromJsRef($.callJs("getPov"));
-  bool getVisible() => $.callJs("getVisible");
+  List<StreetViewLink> getLinks() => new js.JsList<StreetViewLink>.fromJsRef($.callForJsRef("getLinks"), (e) => new StreetViewLink.fromJsRef(e));
+  String getPano() => $.call("getPano");
+  LatLng getPosition() => new LatLng.fromJsRef($.call("getPosition"));
+  StreetViewPov getPov() => new StreetViewPov.fromJsRef($.call("getPov"));
+  bool getVisible() => $.call("getVisible");
   void registerPanoProvider(StreetViewPanoramaData provider(String pano)) {
     js.CallbackFunction callbackFunction = Object _(List args) {
       return provider(args[0]);
     };
-    $.callJs("registerPanoProvider", [callbackFunction]);
+    $.call("registerPanoProvider", [callbackFunction]);
   }
-  void setPano(String pano) { $.callJs("setPano", [pano]); }
-  void setPosition(LatLng latLng) { $.callJs("setPosition", [latLng]); }
-  void setPov(StreetViewPov pov) { $.callJs("setPov", [pov]); }
-  void setVisible(bool flag) { $.callJs("setVisible", [flag]); }
+  void setPano(String pano) { $.call("setPano", [pano]); }
+  void setPosition(LatLng latLng) { $.call("setPosition", [latLng]); }
+  void setPov(StreetViewPov pov) { $.call("setPov", [pov]); }
+  void setVisible(bool flag) { $.call("setVisible", [flag]); }
 
-  Controls get controls => new Controls.fromJsRef($.getJsRef("controls"));
+  Controls get controls => new Controls.fromJsRef($.getPropertyAsJsRef("controls"));
   set controls(Controls controls) => $["controls"] = controls;
 }
 
@@ -1728,7 +1728,7 @@ class StreetViewPanoramaData extends js.JsObject {
          set copyright(String copyright) => $["copyright"] = copyright;
   String get imageDate => $["imageDate"];
          set imageDate(String imageDate) => $["imageDate"] = imageDate;
-  List<StreetViewLink> get links => new js.JsList<StreetViewLink>.fromJsRef($.getJsRef("links"), (e) => new StreetViewLink.fromJsRef(e));
+  List<StreetViewLink> get links => new js.JsList<StreetViewLink>.fromJsRef($.getPropertyAsJsRef("links"), (e) => new StreetViewLink.fromJsRef(e));
                        set links(List<StreetViewLink> links) => $["links"] = links;
   StreetViewLocation get location => new StreetViewLocation.fromJsRef($["location"]);
                      set location(StreetViewLocation location) => $["location"] = location;
@@ -1752,7 +1752,7 @@ class StreetViewTileData extends js.JsObject {
   StreetViewTileData() : super();
   StreetViewTileData.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  String getTileUrl(String pano, num tileZoom, num tileX, num tileY) => $.callJs("getTileUrl", [pano, tileZoom, tileX, tileY]);
+  String getTileUrl(String pano, num tileZoom, num tileX, num tileY) => $.call("getTileUrl", [pano, tileZoom, tileX, tileY]);
 
   set centerHeading(num centerHeading) => $["centerHeading"] = centerHeading;
   set tileSize(Size tileSize) => $["tileSize"] = tileSize;
@@ -1768,13 +1768,13 @@ class StreetViewService extends js.JsObject {
     js.CallbackFunction callbackFunction = Object _(List args) {
       callback(new StreetViewPanoramaData.fromJsRef(args[0]), StreetViewStatus.find(args[1]));
     };
-    $.callJs("getPanoramaById", [pano, callbackFunction]);
+    $.call("getPanoramaById", [pano, callbackFunction]);
   }
   void getPanoramaByLocation(LatLng latlng, num radius, void callback(StreetViewPanoramaData streetViewPanoramaData, StreetViewStatus streetViewStatus)) {
     js.CallbackFunction callbackFunction = Object _(List args) {
       callback(new StreetViewPanoramaData.fromJsRef(args[0]), StreetViewStatus.find(args[1]));
     };
-    $.callJs("getPanoramaByLocation", [latlng, radius, callbackFunction]);
+    $.call("getPanoramaByLocation", [latlng, radius, callbackFunction]);
   }
 }
 
@@ -1810,7 +1810,7 @@ class Events {
         handler(null);
       }
     };
-    return new MapsEventListener.fromJsRef(js.callFunction(null, "${TYPE_NAME}.addDomListener", [instance, eventName, callback, capture]));
+    return new MapsEventListener.fromJsRef(js.getWindow().$.call("${TYPE_NAME}.addDomListener", [instance, eventName, callback, capture]));
   }
   static MapsEventListener addDomListenerOnce(Object instance, String eventName, void handler(NativeEvent e), [bool capture]) {
     js.CallbackFunction callback = Object _(List args) {
@@ -1820,7 +1820,7 @@ class Events {
         handler(null);
       }
     };
-    return new MapsEventListener.fromJsRef(js.callFunction(null, "${TYPE_NAME}.addDomListenerOnce", [instance, eventName, callback, capture]));
+    return new MapsEventListener.fromJsRef(js.getWindow().$.call("${TYPE_NAME}.addDomListenerOnce", [instance, eventName, callback, capture]));
   }
   static MapsEventListener addListener(js.JsObject instance, String eventName, void handler(NativeEvent e)) {
     js.CallbackFunction callback = Object _(List args) {
@@ -1830,7 +1830,7 @@ class Events {
         handler(null);
       }
     };
-    return new MapsEventListener.fromJsRef(js.callFunction(null, "${TYPE_NAME}.addListener", [instance, eventName, callback]));
+    return new MapsEventListener.fromJsRef(js.getWindow().$.call("${TYPE_NAME}.addListener", [instance, eventName, callback]));
   }
   static MapsEventListener addListenerOnce(js.JsObject instance, String eventName, void handler(NativeEvent e)) {
     js.CallbackFunction callback = Object _(List args) {
@@ -1840,17 +1840,17 @@ class Events {
         handler(null);
       }
     };
-    return new MapsEventListener.fromJsRef(js.callFunction(null, "${TYPE_NAME}.addListenerOnce", [instance, eventName, callback]));
+    return new MapsEventListener.fromJsRef(js.getWindow().$.call("${TYPE_NAME}.addListenerOnce", [instance, eventName, callback]));
   }
-  static void clearInstanceListeners(js.JsObject instance) { js.callFunction(null, "${TYPE_NAME}.clearInstanceListeners", [instance]); }
-  static void clearListeners(js.JsObject instance, String eventName) { js.callFunction(null, "${TYPE_NAME}.clearListeners", [instance, eventName]); }
-  static void removeListener(MapsEventListener listener) { js.callFunction(null, "${TYPE_NAME}.removeListener", [listener]); }
+  static void clearInstanceListeners(js.JsObject instance) { js.getWindow().$.call("${TYPE_NAME}.clearInstanceListeners", [instance]); }
+  static void clearListeners(js.JsObject instance, String eventName) { js.getWindow().$.call("${TYPE_NAME}.clearListeners", [instance, eventName]); }
+  static void removeListener(MapsEventListener listener) { js.getWindow().$.call("${TYPE_NAME}.removeListener", [listener]); }
   static void trigger(js.JsObject instance, String eventName, List<Object> args) {
     final parameters = new List<Object>();
     parameters.add(instance);
     parameters.add(eventName);
     parameters.addAll(args);
-    js.callFunction(null, "${TYPE_NAME}.trigger", parameters);
+    js.getWindow().$.call("${TYPE_NAME}.trigger", parameters);
   }
 }
 
@@ -1867,11 +1867,11 @@ class LatLng extends js.JsObject {
   LatLng(num lat, num lng, [bool noWrap]) : super.newInstance(TYPE_NAME, [lat, lng, noWrap]);
   LatLng.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  bool equals(LatLng other) => $.callJs("equals", [other]);
-  num lat() => $.callJs("lat");
-  num lng() => $.callJs("lng");
-  String toString() => $.callJs("toString");
-  String toUrlValue([num precision]) => $.callJs("toUrlValue", [precision]);
+  bool equals(LatLng other) => $.call("equals", [other]);
+  num lat() => $.call("lat");
+  num lng() => $.call("lng");
+  String toString() => $.call("toString");
+  String toUrlValue([num precision]) => $.call("toUrlValue", [precision]);
 }
 
 class LatLngBounds extends js.JsObject {
@@ -1880,18 +1880,18 @@ class LatLngBounds extends js.JsObject {
   LatLngBounds([LatLng sw, LatLng ne]) : super.newInstance(TYPE_NAME, [sw, ne]);
   LatLngBounds.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  bool contains(LatLng latLng) => $.callJs("contains", [latLng]);
-  bool equals(LatLngBounds other) => $.callJs("equals", [other]);
-  LatLngBounds extend(LatLng point) => new LatLngBounds.fromJsRef($.callJs("extend", [point]));
-  LatLng getCenter() => new LatLng.fromJsRef($.callJs("getCenter"));
-  LatLng getNorthEast() => new LatLng.fromJsRef($.callJs("getNorthEast"));
-  LatLng getSouthWest() => new LatLng.fromJsRef($.callJs("getSouthWest"));
-  bool intersects(LatLngBounds other) => $.callJs("intersects", [other]);
-  bool isEmpty() => $.callJs("isEmpty");
-  LatLng toSpan() => new LatLng.fromJsRef($.callJs("toSpan"));
-  String toString() => $.callJs("toString");
-  String toUrlValue([num precision]) => $.callJs("toUrlValue", [precision]);
-  bool union(LatLngBounds other) => $.callJs("union", [other]);
+  bool contains(LatLng latLng) => $.call("contains", [latLng]);
+  bool equals(LatLngBounds other) => $.call("equals", [other]);
+  LatLngBounds extend(LatLng point) => new LatLngBounds.fromJsRef($.call("extend", [point]));
+  LatLng getCenter() => new LatLng.fromJsRef($.call("getCenter"));
+  LatLng getNorthEast() => new LatLng.fromJsRef($.call("getNorthEast"));
+  LatLng getSouthWest() => new LatLng.fromJsRef($.call("getSouthWest"));
+  bool intersects(LatLngBounds other) => $.call("intersects", [other]);
+  bool isEmpty() => $.call("isEmpty");
+  LatLng toSpan() => new LatLng.fromJsRef($.call("toSpan"));
+  String toString() => $.call("toString");
+  String toUrlValue([num precision]) => $.call("toUrlValue", [precision]);
+  bool union(LatLngBounds other) => $.call("union", [other]);
 }
 
 class Point extends js.JsObject {
@@ -1900,8 +1900,8 @@ class Point extends js.JsObject {
   Point(num x, num y) : super.newInstance(TYPE_NAME, [x, y]);
   Point.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  bool equals(Point other) => $.callJs("equals", [other]);
-  String toString() => $.callJs("toString");
+  bool equals(Point other) => $.call("equals", [other]);
+  String toString() => $.call("toString");
 
   num get x => $["x"];
       set x(num x) => $["x"] = x;
@@ -1915,8 +1915,8 @@ class Size extends js.JsObject {
   Size(num width, num height, [String widthUnit, String heightUnit]) : super.newInstance(TYPE_NAME, [width, height, widthUnit, heightUnit]);
   Size.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  bool equals(Size other) => $.callJs("equals", [other]);
-  String toString() => $.callJs("toString");
+  bool equals(Size other) => $.call("equals", [other]);
+  String toString() => $.call("toString");
 
   num get height => $["height"];
       set height(num height) => $["height"] = height;
@@ -1931,20 +1931,20 @@ class MVCObject extends js.JsObject {
   MVCObject.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
   MVCObject.newInstance(String objectName, [List args]) : super.newInstance(objectName, args);
 
-  void bindTo(String key, MVCObject target, [String targetKey, bool noNotify]) { $.callJs("bindTo", [key, target, targetKey, noNotify]); }
-  void changed(String key) { $.callJs("changed", [key]); }
-  Object get_(String key) => $.callJs("get", [key]);
-  void notify(String key) { $.callJs("notify", [key]); }
-  void set_(String key, Object value) { $.callJs("set", [key, value]); }
+  void bindTo(String key, MVCObject target, [String targetKey, bool noNotify]) { $.call("bindTo", [key, target, targetKey, noNotify]); }
+  void changed(String key) { $.call("changed", [key]); }
+  Object get_(String key) => $.call("get", [key]);
+  void notify(String key) { $.call("notify", [key]); }
+  void set_(String key, Object value) { $.call("set", [key, value]); }
   void setValues(Map<String, Object> values) {
     final valuesJs = new js.JsObject();
     values.forEach((String key, Object value) {
       $[key] = value;
     });
-    $.callJs("setValues", [valuesJs]);
+    $.call("setValues", [valuesJs]);
   }
-  void unbind(String key) { $.callJs("unbind", [key]); }
-  void unbindAll() { $.callJs("unbindAll"); }
+  void unbind(String key) { $.call("unbind", [key]); }
+  void unbindAll() { $.call("unbindAll"); }
 }
 
 typedef Object JsRefWrapper(js.JsRef jsRef);
@@ -1959,21 +1959,21 @@ class MVCArray<E> extends MVCObject {
     _jsRefWrapper = jsRefWrapper;
   }
 
-  void clear() { $.callJs("clear"); }
+  void clear() { $.call("clear"); }
   void forEach(void callback(E o, num index)) {
     js.CallbackFunction callbackFunction = Object _(List args) {
       callback(_mayWrap(args[0]), args[1]);
     };
-    $.callJs("forEach", [callbackFunction]);
+    $.call("forEach", [callbackFunction]);
   }
-  List<E> getArray() => new js.JsList<E>.fromJsRef($.callJsForRef("getArray"), _mayWrap);
-  E getAt(num i) => _mayWrap($.callJs("getAt", [i]));
-  num getLength() => $.callJs("getLength");
-  void insertAt(num i, E elem) { $.callJs("insertAt", [i, elem]); }
-  E pop() => _mayWrap($.callJs("pop"));
-  num push(E elem) => $.callJs("push", [elem]);
-  E removeAt(num i) => _mayWrap($.callJs("removeAt", [i]));
-  void setAt(num i, E elem) { $.callJs("setAt", [i, elem]); }
+  List<E> getArray() => new js.JsList<E>.fromJsRef($.callForJsRef("getArray"), _mayWrap);
+  E getAt(num i) => _mayWrap($.call("getAt", [i]));
+  num getLength() => $.call("getLength");
+  void insertAt(num i, E elem) { $.call("insertAt", [i, elem]); }
+  E pop() => _mayWrap($.call("pop"));
+  num push(E elem) => $.call("push", [elem]);
+  E removeAt(num i) => _mayWrap($.call("removeAt", [i]));
+  void setAt(num i, E elem) { $.call("setAt", [i, elem]); }
 
   E _mayWrap(Object o) {
     if (_jsRefWrapper !== null && o is js.JsRef) {
