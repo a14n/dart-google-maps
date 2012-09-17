@@ -63,16 +63,15 @@ class JsObject {
 typedef Object Instanciator(JsRef);
 
 class JsIterator<E> implements Iterator<E> {
-  Iterator<E> iterator;
+  JsList<E> jsList;
   Instanciator instanciator;
+  int current = 0;
 
-  JsIterator.fromJsRef(JsList<E> jsList, Instanciator this.instanciator) {
-    iterator = (jsList.$.value as List<E>).iterator();
-  }
+  JsIterator.fromJsRef(JsList<E> this.jsList, Instanciator this.instanciator);
 
   // Iterator
-  E next() => instanciator(iterator.next()) as E;
-  bool hasNext() => iterator.hasNext();
+  E next() => instanciator(jsList.$.getPropertyAsJsRef((current++).toString())) as E;
+  bool hasNext() => current < jsList.$["length"];
 }
 
 class JsList<E> extends JsObject implements List<E> {
@@ -80,6 +79,9 @@ class JsList<E> extends JsObject implements List<E> {
 
   JsList.fromJsRef(JsRef jsRef, Instanciator this.instanciator) : super.fromJsRef(jsRef);
 
+  // Object
+  String toString() => (this.$.value as List).toString();
+  
   // Iterable
   JsIterator<E> iterator() => new JsIterator.fromJsRef(this, instanciator);
 
