@@ -217,6 +217,7 @@ class Marker extends MVCObject {
   // static const num MAX_ZINDEX = js.getWindow().$.call("${TYPE_NAME}.MAX_ZINDEX");
 
   Marker([MarkerOptions opts]) : super.newInstance(TYPE_NAME, [opts]);
+  Marker.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
   Animation getAnimation() => Animation.find($.call("getAnimation"));
   bool getClickable() => $.call("getClickable");
