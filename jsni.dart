@@ -58,6 +58,10 @@ class JsObject {
   JsObject.newInstance(String objectName, [List args]) { jsRef = _newInstance(objectName, args); }
 
   JsOperations get $ => new JsOperations(jsRef);
+
+  bool operator ==(Object other) {
+    return _areEquals(this, other);
+  }
 }
 
 typedef Object Instanciator(JsRef);
@@ -81,7 +85,7 @@ class JsList<E> extends JsObject implements List<E> {
 
   // Object
   String toString() => (this.$.value as List).toString();
-  
+
   // Iterable
   JsIterator<E> iterator() => new JsIterator.fromJsRef(this, instanciator);
 
@@ -137,10 +141,10 @@ typedef Object CallbackFunction(List args);
 // constant/enum handling
 //-----------------------
 
-class JsConst implements JsObject, Hashable {
-  static Map<Hashable, JsRef> _constRefs;
-  static Object findIn(Object o, List elements) {
-    final matchingElements = elements.filter((e) => _areEquals(e, o));
+class JsConst implements JsObject {
+  static Map<String, JsRef> _constRefs;
+  static Object findIn(Object o, List<JsConst> elements) {
+    final matchingElements = elements.filter((e) => (e == o));
     if (matchingElements.length === 1) {
       return matchingElements.iterator().next();
     } else {
@@ -152,20 +156,21 @@ class JsConst implements JsObject, Hashable {
 
   const JsConst.fromJsName(String this.jsName);
 
-  int hashCode() => jsName.hashCode();
-
   JsRef get jsRef  {
     if (_constRefs === null){
-      _constRefs = new Map<Hashable, JsRef>();
+      _constRefs = new Map<String, JsRef>();
     }
-    if (!_constRefs.containsKey(this)){
-      _constRefs[this] = getWindow().$.getPropertyAsJsRef(jsName);
+    if (!_constRefs.containsKey(jsName)){
+      _constRefs[jsName] = getWindow().$.getPropertyAsJsRef(jsName);
     }
-    return _constRefs[this];
+    return _constRefs[jsName];
   }
 
   // implementation of JsObject methods
   JsOperations get $ => new JsOperations(jsRef);
+  bool operator ==(Object other) {
+    return _areEquals(this, other);
+  }
 }
 
 //
