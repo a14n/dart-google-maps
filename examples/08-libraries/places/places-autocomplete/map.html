@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Google Maps JavaScript API v3 Example: Places Autocomplete</title>
+    <link href="https://google-developers.appspot.com/maps/documentation/javascript/examples/default.css" rel="stylesheet">
+    <style>
+      body {
+        font-family: sans-serif;
+        font-size: 14px;
+      }
+      #map_canvas {
+        height: 400px;
+        width: 600px;
+        margin-top: 0.6em;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <input id="searchTextField" type="text" size="50">
+      <input type="radio" name="type" id="changetype-all" checked="checked">
+      <label for="changetype-all">All</label>
+
+      <input type="radio" name="type" id="changetype-establishment">
+      <label for="changetype-establishment">Establishments</label>
+
+      <input type="radio" name="type" id="changetype-geocode">
+      <label for="changetype-geocode">Geocodes</lable>
+    </div>
+    <div id="map_canvas"></div>
+
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
+    <script type="application/dart" src="page.dart"></script>
+    <script src="http://dart.googlecode.com/svn/branches/bleeding_edge/dart/client/dart.js"></script>
+  </body>
+</html>

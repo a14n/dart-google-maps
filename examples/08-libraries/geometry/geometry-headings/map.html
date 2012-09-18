@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Google Maps JavaScript API v3 Example: Geometry Headings</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <link href="https://google-developers.appspot.com/maps/documentation/javascript/examples/default.css" rel="stylesheet">
+    <style>
+      #info {
+        background: #fff;
+        padding: 5px;
+        font-size: 14px;
+        font-family: arial;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map_canvas"></div>
+    <div id="info">
+      Origin: <input type="text" readonly id="origin">
+      Destination: <input type="text" readonly id="destination">
+      Heading: <input type="text" readonly id="heading"> degrees
+    </div>
+
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=geometry"></script>
+    <script type="application/dart" src="page.dart"></script>
+    <script src="http://dart.googlecode.com/svn/branches/bleeding_edge/dart/client/dart.js"></script>
+  </body>
+</html>

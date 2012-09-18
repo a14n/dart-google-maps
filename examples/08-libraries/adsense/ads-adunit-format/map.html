@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Google Maps JavaScript API v3 Example: Map Ads Unit</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <link href="https://google-developers.appspot.com/maps/documentation/javascript/examples/default.css" rel="stylesheet">
+  </head>
+  <body>
+    <div>
+      <div style="padding:20px; display: inline-block;">
+        <label for="format">Format:</label>
+        <select id="format">
+          <option value="LEADERBOARD">Leaderboard</option>
+          <option value="BANNER">Banner</option>
+          <option value="HALF_BANNER" selected="selected">Half Banner</option>
+          <option value="SKYSCRAPER">Skyscraper</option>
+          <option value="WIDE_SKYSCRAPER">Wide Skyscraper</option>
+          <option value="VERTICAL_BANNER">Vertical Banner</option>
+          <option value="BUTTON">Button</option>
+          <option value="SMALL_SQUARE">Small Square</option>
+          <option value="SQUARE">Square</option>
+          <option value="SMALL_RECTANGLE">Small Rectangle</option>
+          <option value="MEDIUM_RECTANGLE">Medium Rectangle</option>
+          <option value="LARGE_RECTANGLE">Large Rectangle</option>
+          <option value="SMALL_VERTICAL_LINK_UNIT">Small Vertical Link Unit</option>
+          <option value="MEDIUM_VERTICAL_LINK_UNIT">Medium Vertical Link Unit</option>
+          <option value="LARGE_VERTICAL_LINK_UNIT">Large Vertical Link Unit</option>
+          <option value="X_LARGE_VERTICAL_LINK_UNIT">Extra Large Vertical Link Unit</option>
+          <option value="SMALL_HORIZONTAL_LINK_UNIT">Small Horizontal Link Unit</option>
+          <option value="LARGE_HORIZONTAL_LINK_UNIT">Large Horizontal Link Unit</option>
+        </select>
+      </div>
+      <div style="padding:20px; display: inline-block;">
+        <label for="style">Style:</label>
+        <select id="style">
+          <option value="default" selected>Maps API default</option>
+          <option value="modern">Modern</option>
+          <option value="plain">Plain</option>
+          <option value="kennedy">Kennedy</option>
+          <option value="monochrome">Monochrome</option>
+          <option value="barbecue">Barbecue</option>
+          <option value="flamingo">Flamingo</option>
+          <option value="miami">Miami</option>
+          <option value="shamrock">Shamrock</option>
+        </select>
+      </div>
+      <div style="padding:20px; display: inline-block;">
+        <label for="position">Position:</label>
+        <select id="position">
+          <option value="TOP_CENTER" selected="selected">Top Center</option>
+          <option value="TOP_LEFT">Top Left</option>
+          <option value="TOP_RIGHT">Top Right</option>
+          <option value="RIGHT_TOP">Right Top</option>
+          <option value="LEFT_TOP">Left Top</option>
+          <option value="RIGHT_CENTER">Right Center</option>
+          <option value="LEFT_CENTER">Left Center</option>
+          <option value="BOTTOM_CENTER">Bottom</option>
+          <option value="BOTTOM_LEFT">Bottom Left</option>
+          <option value="BOTTOM_RIGHT">Bottom Right</option>
+          <option value="LEFT_BOTTOM">Left Bottom</option>
+          <option value="RIGHT_BOTTOM">Right Bottom</option>
+        </select>
+      </div>
+    </div>
+    <div id="map_canvas"></div>
+
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=adsense"></script>
+    <script type="application/dart" src="page.dart"></script>
+    <script src="http://dart.googlecode.com/svn/branches/bleeding_edge/dart/client/dart.js"></script>
+  </body>
+</html>
