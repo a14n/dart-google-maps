@@ -1,6 +1,6 @@
 #import('dart:html');
-#import('../../../../lib/gmaps.dart', prefix:'gmaps');
-#import('../../../../lib/gmaps-geometry.dart', prefix:'gmaps_geo');
+#import('package:dart_google_maps/gmaps.dart', prefix:'gmaps');
+#import('package:dart_google_maps/gmaps-geometry.dart', prefix:'gmaps_geo');
 
 gmaps.Polyline poly;
 

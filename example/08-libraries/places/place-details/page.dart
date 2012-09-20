@@ -1,6 +1,6 @@
 #import('dart:html');
-#import('../../../../lib/gmaps.dart', prefix:'gmaps');
-#import('../../../../lib/gmaps-places.dart', prefix:'gmaps_places');
+#import('package:dart_google_maps/gmaps.dart', prefix:'gmaps');
+#import('package:dart_google_maps/gmaps-places.dart', prefix:'gmaps_places');
 
 void main() {
   final mapOptions = new gmaps.MapOptions()

@@ -1,6 +1,6 @@
 #import('dart:html');
-#import('../../../lib/gmaps.dart', prefix:'gmaps');
-#import('../../../lib/gmaps-visualization.dart', prefix:'gmaps_visu');
+#import('package:dart_google_maps/gmaps.dart', prefix:'gmaps');
+#import('package:dart_google_maps/gmaps-visualization.dart', prefix:'gmaps_visu');
 
 // Adding 500 Data Points
 gmaps.GMap map;

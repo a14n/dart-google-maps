@@ -1,5 +1,5 @@
 #import('dart:html');
-#import('../../../lib/gmaps.dart', prefix:'gmaps');
+#import('package:dart_google_maps/gmaps.dart', prefix:'gmaps');
 
 void main() {
   final fenway = new gmaps.LatLng(42.345573,-71.098326);

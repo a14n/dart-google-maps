@@ -1,5 +1,5 @@
 #import('dart:html');
-#import('../../../lib/gmaps.dart', prefix:'gmaps');
+#import('package:dart_google_maps/gmaps.dart', prefix:'gmaps');
 
 void main() {
   final myLatlng = new gmaps.LatLng(40.65, -73.95);

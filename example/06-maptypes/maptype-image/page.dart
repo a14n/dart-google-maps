@@ -1,6 +1,6 @@
 #import('dart:html');
 #import('dart:math', prefix:'Math');
-#import('../../../lib/gmaps.dart', prefix:'gmaps');
+#import('package:dart_google_maps/gmaps.dart', prefix:'gmaps');
 
 void main() {
   final moonTypeOptions = new gmaps.ImageMapTypeOptions()

@@ -1,5 +1,5 @@
 #import('dart:html');
-#import('../../../lib/gmaps.dart', prefix:'gmaps');
+#import('package:dart_google_maps/gmaps.dart', prefix:'gmaps');
 
 void main() {
   final coachella = new gmaps.LatLng(33.6803003, -116.173894);

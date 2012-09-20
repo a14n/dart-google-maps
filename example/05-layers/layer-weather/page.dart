@@ -1,6 +1,6 @@
 #import('dart:html');
-#import('../../../lib/gmaps.dart', prefix:'gmaps');
-#import('../../../lib/gmaps-weather.dart', prefix:'gmaps_weather');
+#import('package:dart_google_maps/gmaps.dart', prefix:'gmaps');
+#import('package:dart_google_maps/gmaps-weather.dart', prefix:'gmaps_weather');
 
 void main() {
   final mapOptions = new gmaps.MapOptions()

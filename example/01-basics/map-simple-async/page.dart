@@ -1,6 +1,6 @@
 #import('dart:html');
-#import('../../../lib/gmaps.dart', prefix:'gmaps');
-#import('../../../lib/jsni.dart', prefix:'js');
+#import('package:dart_google_maps/gmaps.dart', prefix:'gmaps');
+#import('package:dart_google_maps/jsni.dart', prefix:'js');
 
 void initialize() {
   final mapOptions = new gmaps.MapOptions()

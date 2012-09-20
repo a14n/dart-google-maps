@@ -1,7 +1,7 @@
 #import('dart:html');
-#import('../../../../lib/jsni.dart', prefix:'js');
-#import('../../../../lib/gmaps.dart', prefix:'gmaps');
-#import('../../../../lib/gmaps-adsense.dart', prefix:'gmaps_ads');
+#import('package:dart_google_maps/jsni.dart', prefix:'js');
+#import('package:dart_google_maps/gmaps.dart', prefix:'gmaps');
+#import('package:dart_google_maps/gmaps-adsense.dart', prefix:'gmaps_ads');
 
 var SAMPLE_AD_STYLES = {
   'default': {

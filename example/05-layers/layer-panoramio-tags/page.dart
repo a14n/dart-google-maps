@@ -1,6 +1,6 @@
 #import('dart:html');
-#import('../../../lib/gmaps.dart', prefix:'gmaps');
-#import('../../../lib/gmaps-panoramio.dart', prefix:'gmaps_panoramio');
+#import('package:dart_google_maps/gmaps.dart', prefix:'gmaps');
+#import('package:dart_google_maps/gmaps-panoramio.dart', prefix:'gmaps_panoramio');
 
 void main() {
   final mapOptions = new gmaps.MapOptions()

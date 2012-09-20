@@ -1,5 +1,5 @@
 #import('dart:html');
-#import('../../../lib/gmaps.dart', prefix:'gmaps');
+#import('package:dart_google_maps/gmaps.dart', prefix:'gmaps');
 
 void main() {
   final chicago = new gmaps.LatLng(41.948766, -87.691497);

@@ -1,7 +1,7 @@
 #import('dart:html');
-#import('../../../lib/jsni.dart', prefix:'js');
-#import('../../../lib/gmaps.dart', prefix:'gmaps');
-#import('../../../lib/gmaps-panoramio.dart', prefix:'gmaps_panoramio');
+#import('package:dart_google_maps/jsni.dart', prefix:'js');
+#import('package:dart_google_maps/gmaps.dart', prefix:'gmaps');
+#import('package:dart_google_maps/gmaps-panoramio.dart', prefix:'gmaps_panoramio');
 
 class PhotoWidget extends js.JsObject {
   static const String TYPE_NAME = "panoramio.PhotoWidget";

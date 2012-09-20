@@ -1,6 +1,6 @@
 #import('dart:html');
-#import('../../../../lib/gmaps.dart', prefix:'gmaps');
-#import('../../../../lib/gmaps-adsense.dart', prefix:'gmaps_ads');
+#import('package:dart_google_maps/gmaps.dart', prefix:'gmaps');
+#import('package:dart_google_maps/gmaps-adsense.dart', prefix:'gmaps_ads');
 
 void main() {
   final mapOptions = new gmaps.MapOptions()

@@ -1,6 +1,6 @@
 #import('dart:html');
-#import('../../../lib/jsni.dart', prefix:'js');
-#import('../../../lib/gmaps.dart', prefix:'gmaps');
+#import('package:dart_google_maps/jsni.dart', prefix:'js');
+#import('package:dart_google_maps/gmaps.dart', prefix:'gmaps');
 
 class CoordMapType extends gmaps.MapType {
   CoordMapType(gmaps.Size tileSize) : super() {

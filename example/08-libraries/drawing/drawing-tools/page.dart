@@ -1,6 +1,6 @@
 #import('dart:html');
-#import('../../../../lib/gmaps.dart', prefix:'gmaps');
-#import('../../../../lib/gmaps-drawing.dart', prefix:'gmaps_draw');
+#import('package:dart_google_maps/gmaps.dart', prefix:'gmaps');
+#import('package:dart_google_maps/gmaps-drawing.dart', prefix:'gmaps_draw');
 
 const IMAGE_URL = "https://google-developers.appspot.com/maps/documentation/javascript/examples";
 
