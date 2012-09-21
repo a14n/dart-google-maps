@@ -43,6 +43,7 @@ class JsOperations {
   JsRef callForJsRef(String functionName, [List args]) =>  _callFunction(jsRef, functionName, args, true);
   Object call(String functionName, [List args]) => _callFunction(jsRef, functionName, args, false);
   JsRef getPropertyAsJsRef(String propertName) => _getProperty(jsRef, propertName, true);
+  void free() => _free(jsRef);
 
   Object get value => _getValue(jsRef);
 }
@@ -380,9 +381,15 @@ void _ensureRegistered() {
 
   var addJsObject = function(o) {
     var jsId = _jsId++;
+    // console.log(Object.keys(_objects).length);
     _objects[jsId] = o;
     return jsId;
   };
+
+  var freeJsObject = function(jsId) {
+    delete _objects[jsId];
+    // console.log(Object.keys(_objects).length);
+  }
 
   window.addEventListener('answer_of_callback_for_dart', function(e){
     var query = JSON.parse(e.data);
@@ -444,6 +451,8 @@ void _ensureRegistered() {
       result = obj;
     } else if (type === "getWindowRef") {
       result = window;
+    } else if (type === "free") {
+      freeJsObject(jsId);
     }
 
     // prepare answer
@@ -548,6 +557,13 @@ Object _getValue(JsRef jsRef) {
 JsRef _getWindowRef() {
   return _call(void _(jsQuery) {
     jsQuery["type"] = "getWindowRef";
+  });
+}
+
+JsRef _free(JsRef jsRef) {
+  return _call(void _(jsQuery) {
+    jsQuery["type"] = "free";
+    jsQuery["jsId"] = jsRef._jsId;
   });
 }
 
