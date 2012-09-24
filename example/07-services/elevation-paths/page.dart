@@ -22,30 +22,20 @@ class DataTable extends js.JsObject {
 gmaps.ElevationService elevator;
 gmaps.GMap map;
 ColumnChart chart;
+final infowindow = new gmaps.InfoWindow();
+gmaps.Polyline polyline;
 
 // The following path marks a general path from Mt.
 // Whitney, the highest point in the continental United
 // States to Badwater, Death Vallet, the lowest point.
-gmaps.LatLng whitney;
-gmaps.LatLng lonepine;
-gmaps.LatLng owenslake;
-gmaps.LatLng beattyjunction;
-gmaps.LatLng panamintsprings;
-gmaps.LatLng badwater;
+final whitney = new gmaps.LatLng(36.578581, -118.291994);
+final lonepine = new gmaps.LatLng(36.606111, -118.062778);
+final owenslake = new gmaps.LatLng(36.433269, -117.950916);
+final beattyjunction = new gmaps.LatLng(36.588056, -116.943056);
+final panamintsprings = new gmaps.LatLng(36.339722, -117.467778);
+final badwater = new gmaps.LatLng(36.23998, -116.83171);
 
 void main() {
-  var infowindow = new gmaps.InfoWindow();
-
-  // The following path marks a general path from Mt.
-  // Whitney, the highest point in the continental United
-  // States to Badwater, Death Vallet, the lowest point.
-  whitney = new gmaps.LatLng(36.578581, -118.291994);
-  lonepine = new gmaps.LatLng(36.606111, -118.062778);
-  owenslake = new gmaps.LatLng(36.433269, -117.950916);
-  beattyjunction = new gmaps.LatLng(36.588056, -116.943056);
-  panamintsprings = new gmaps.LatLng(36.339722, -117.467778);
-  badwater = new gmaps.LatLng(36.23998, -116.83171);
-
   final mapOptions = new gmaps.MapOptions()
     ..zoom = 8
     ..center = lonepine
@@ -96,7 +86,7 @@ void plotElevation(List<gmaps.ElevationResult> results, gmaps.ElevationStatus st
       ..$["opacity"] = 0.4  // TODO not in doc
       ..map = map
       ;
-    final polyline = new gmaps.Polyline(pathOptions);
+    polyline = new gmaps.Polyline(pathOptions);
 
     // Extract the data from which to populate the chart.
     // Because the samples are equidistant, the 'Sample'

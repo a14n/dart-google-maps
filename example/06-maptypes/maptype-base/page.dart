@@ -53,13 +53,10 @@ class CoordMapType extends gmaps.MapType {
 }
 
 gmaps.GMap map;
-gmaps.LatLng chicago;
-CoordMapType coordinateMapType;
+final chicago = new gmaps.LatLng(41.850033,-87.6500523);
+final coordinateMapType = new CoordMapType();
 
 void main() {
-  chicago = new gmaps.LatLng(41.850033,-87.6500523);
-  coordinateMapType = new CoordMapType();
-
   final mapOptions = new gmaps.MapOptions()
     ..zoom = 10
     ..center = chicago

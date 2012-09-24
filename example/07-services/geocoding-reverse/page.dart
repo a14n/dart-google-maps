@@ -4,11 +4,10 @@
 
 gmaps.Geocoder geocoder;
 gmaps.GMap map;
-gmaps.InfoWindow infowindow;
+final infowindow = new gmaps.InfoWindow();
 gmaps.Marker marker;
 
 void main() {
-  infowindow = new gmaps.InfoWindow();
   geocoder = new gmaps.Geocoder();
   final latlng = new gmaps.LatLng(40.730885,-73.997383);
   final mapOptions = new gmaps.MapOptions()

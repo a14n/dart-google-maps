@@ -5,16 +5,16 @@ void main() {
   // Create an object containing LatLng, population.
   final citymap = {};
   citymap['chicago'] = {
-                        "center" : new gmaps.LatLng(41.878113, -87.629798),
-                        "population" : 2842518
+    "center" : new gmaps.LatLng(41.878113, -87.629798),
+    "population" : 2842518
   };
   citymap['newyork'] = {
-                        "center" : new gmaps.LatLng(40.714352, -74.005973),
-                        "population" : 8143197
+    "center" : new gmaps.LatLng(40.714352, -74.005973),
+    "population" : 8143197
   };
   citymap['losangeles'] = {
-                           "center" : new gmaps.LatLng(34.052234, -118.243684),
-                           "population" : 3844829
+    "center" : new gmaps.LatLng(34.052234, -118.243684),
+    "population" : 3844829
   };
 
   final mapOptions = new gmaps.MapOptions()

@@ -4,6 +4,18 @@
 
 const IMAGE_URL = "https://google-developers.appspot.com/maps/documentation/javascript/examples";
 
+final chicago = new gmaps.LatLng(41.850033, -87.6500523);
+final anchorage = new gmaps.LatLng(61.2180556, -149.9002778);
+final mexico = new gmaps.LatLng(19.4270499, -99.1275711);
+final equator = new gmaps.LatLng(0,0);
+final london = new gmaps.LatLng(51.5001524, -0.1262362);
+final johannesburg = new gmaps.LatLng(-26.201452, 28.045488);
+final kinshasa = new gmaps.LatLng(-4.325, 15.322222);
+final sydney = new gmaps.LatLng( -33.867139, 151.207114);
+
+final locationArray = [chicago,anchorage,mexico,equator,london,johannesburg,kinshasa,sydney];
+final locationNameArray = ['Chicago','Anchorage','Mexico City','The Equator','London','Johannesburg','Kinshasa','Sydney'];
+
 // Note: this value is exact as the map projects a full 360 degrees of longitude
 const GALL_PETERS_RANGE_X = 800;
 
@@ -23,7 +35,7 @@ num radiansToDegrees(num rad) {
 class GallPetersProjection extends gmaps.Projection {
 
   // Using the base map tile, denote the lat/lon of the equatorial origin.
-  gmaps.Point _worldOrigin;
+  final _worldOrigin = new gmaps.Point(GALL_PETERS_RANGE_X * 400 / 800, GALL_PETERS_RANGE_Y / 2);
 
   // This projection has equidistant meridians, so each longitude degree is a linear
   // mapping.
@@ -33,7 +45,6 @@ class GallPetersProjection extends gmaps.Projection {
   const _worldCoordinateLatRange = GALL_PETERS_RANGE_Y / 2;
 
   GallPetersProjection() : super() {
-    _worldOrigin = new gmaps.Point(GALL_PETERS_RANGE_X * 400 / 800, GALL_PETERS_RANGE_Y / 2);
     $["fromLatLngToPoint"] = (List args) {
       if (args.length == 2 && args[1] !== null) {
         return _fromLatLngToPoint(new gmaps.LatLng.fromJsRef(args[0]), new gmaps.Point.fromJsRef(args[1]));
@@ -82,21 +93,9 @@ class GallPetersProjection extends gmaps.Projection {
 }
 
 void main() {
-  var chicago = new gmaps.LatLng(41.850033, -87.6500523);
-  var anchorage = new gmaps.LatLng(61.2180556, -149.9002778);
-  var mexico = new gmaps.LatLng(19.4270499, -99.1275711);
-  var equator = new gmaps.LatLng(0,0);
-  var london = new gmaps.LatLng(51.5001524, -0.1262362);
-  var johannesburg = new gmaps.LatLng(-26.201452, 28.045488);
-  var kinshasa = new gmaps.LatLng(-4.325, 15.322222);
-  var sydney = new gmaps.LatLng( -33.867139, 151.207114);
-
-  var locationArray = [chicago,anchorage,mexico,equator,london,johannesburg,kinshasa,sydney];
-  var locationNameArray = ['Chicago','Anchorage','Mexico City','The Equator','London','Johannesburg','Kinshasa','Sydney'];
-
-  var gallPetersMapType = new gmaps.ImageMapType(new gmaps.ImageMapTypeOptions()
+  final gallPetersMapType = new gmaps.ImageMapType(new gmaps.ImageMapTypeOptions()
     ..getTileUrl = (gmaps.Point coord, num zoom) {
-      var numTiles = 1 << zoom;
+      final numTiles = 1 << zoom;
 
       // Don't wrap tiles vertically.
       if (coord.y < 0 || coord.y >= numTiles) {
@@ -120,7 +119,7 @@ void main() {
 
   gallPetersMapType.projection = new GallPetersProjection();
 
-  var mapOptions = new gmaps.MapOptions()
+  final mapOptions = new gmaps.MapOptions()
     ..zoom = 0
     ..center = new gmaps.LatLng(0,0)
     ..mapTypeControlOptions = (new gmaps.MapTypeControlOptions()

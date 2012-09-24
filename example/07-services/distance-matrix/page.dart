@@ -3,23 +3,18 @@
 
 gmaps.GMap map;
 gmaps.Geocoder geocoder;
-gmaps.LatLngBounds bounds;
-List<gmaps.Marker> markersArray;
+final bounds = new gmaps.LatLngBounds();
+final markersArray = new List<gmaps.Marker>();
 
-gmaps.LatLng origin1;
+final origin1 = new gmaps.LatLng(55.930385, -3.118425);
 const origin2 = 'Greenwich, England';
 const destinationA = 'Stockholm, Sweden';
-gmaps.LatLng destinationB;
+final destinationB = new gmaps.LatLng(50.087692, 14.421150);
 
 const destinationIcon = 'https://chart.googleapis.com/chart?chst=d_map_pin_letter&chld=D|FF0000|000000';
 const originIcon = 'https://chart.googleapis.com/chart?chst=d_map_pin_letter&chld=O|FFFF00|000000';
 
 void main() {
-  bounds = new gmaps.LatLngBounds();
-  markersArray = [];
-  origin1 = new gmaps.LatLng(55.930385, -3.118425);
-  destinationB = new gmaps.LatLng(50.087692, 14.421150);
-
   final mapOptions = new gmaps.MapOptions()
     ..center = new gmaps.LatLng(55.53, 9.4)
     ..zoom = 10

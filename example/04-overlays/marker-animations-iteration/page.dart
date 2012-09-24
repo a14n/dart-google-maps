@@ -1,24 +1,20 @@
 #import('dart:html');
 #import('package:dart_google_maps/gmaps.dart', prefix:'gmaps');
 
-gmaps.LatLng berlin;
-List<gmaps.LatLng> neighborhoods;
+final berlin = new gmaps.LatLng(52.520816, 13.410186);
+final neighborhoods = [
+  new gmaps.LatLng(52.511467, 13.447179),
+  new gmaps.LatLng(52.549061, 13.422975),
+  new gmaps.LatLng(52.497622, 13.396110),
+  new gmaps.LatLng(52.517683, 13.394393)
+];
 
-List<gmaps.Marker> markers;
+final markers = new List<gmaps.Marker>();
 int iterator = 0;
 
 gmaps.GMap map;
 
 void main() {
-  berlin = new gmaps.LatLng(52.520816, 13.410186);
-  neighborhoods = [
-                   new gmaps.LatLng(52.511467, 13.447179),
-                   new gmaps.LatLng(52.549061, 13.422975),
-                   new gmaps.LatLng(52.497622, 13.396110),
-                   new gmaps.LatLng(52.517683, 13.394393)
-                   ];
-  markers = new List<gmaps.Marker>();
-
   final mapOptions = new gmaps.MapOptions()
     ..zoom = 12
     ..mapTypeId = gmaps.MapTypeId.ROADMAP

@@ -1,17 +1,13 @@
 #import('dart:html');
 #import('package:dart_google_maps/gmaps.dart', prefix:'gmaps');
 
-gmaps.DirectionsService directionsService;
 gmaps.DirectionsRenderer directionsDisplay;
+final directionsService = new gmaps.DirectionsService();
 gmaps.GMap map;
-gmaps.LatLng haight;
-gmaps.LatLng oceanBeach;
+final haight = new gmaps.LatLng(37.7699298, -122.4469157);
+final oceanBeach = new gmaps.LatLng(37.7683909618184, -122.51089453697205);
 
 void main() {
-  directionsService = new gmaps.DirectionsService();
-  haight = new gmaps.LatLng(37.7699298, -122.4469157);
-  oceanBeach = new gmaps.LatLng(37.7683909618184, -122.51089453697205);
-
   directionsDisplay = new gmaps.DirectionsRenderer();
   final mapOptions = new gmaps.MapOptions()
     ..zoom = 14

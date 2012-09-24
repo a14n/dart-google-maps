@@ -3,16 +3,12 @@
 
 gmaps.GMap map;
 gmaps.StreetViewPanorama panorama;
-gmaps.LatLng astorPlace;
-gmaps.LatLng busStop;
-gmaps.LatLng cafe;
-gmaps.LatLng bank;
+final astorPlace = new gmaps.LatLng(40.729884, -73.990988);
+final busStop = new gmaps.LatLng(40.729559678851025, -73.99074196815491);
+final cafe = new gmaps.LatLng(40.730031233910694, -73.99142861366272);
+final bank = new gmaps.LatLng(40.72968163306612, -73.9911389350891);
 
 void main() {
-  astorPlace = new gmaps.LatLng(40.729884, -73.990988);
-  busStop = new gmaps.LatLng(40.729559678851025, -73.99074196815491);
-  cafe = new gmaps.LatLng(40.730031233910694, -73.99142861366272);
-  bank = new gmaps.LatLng(40.72968163306612, -73.9911389350891);
 
   // Set up the map
   final mapOptions = new gmaps.MapOptions()

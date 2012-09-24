@@ -3,7 +3,7 @@
 #import('package:dart_google_maps/gmaps.dart', prefix:'gmaps');
 #import('package:dart_google_maps/gmaps-adsense.dart', prefix:'gmaps_ads');
 
-var SAMPLE_AD_STYLES = {
+final SAMPLE_AD_STYLES = {
   'default': {
     'color_bg': '#c4d4f3',
     'color_border': '#e5ecf9',
@@ -98,7 +98,7 @@ void main() {
 
   SelectElement format = query('#format');
   gmaps.Events.addDomListener(format, 'change', (e) {
-    final adFormatJsRef = js.getWindow().$.getPropertyAsJsRef('${gmaps_ads.AdFormat.TYPE_NAME}.${format.value}');
+    final adFormatJsRef = js.jsWindow.$.getPropertyAsJsRef('${gmaps_ads.AdFormat.TYPE_NAME}.${format.value}');
     adUnit.setFormat(gmaps_ads.AdFormat.find(adFormatJsRef));
   });
 
@@ -117,7 +117,7 @@ void main() {
 
   SelectElement position = query('#position');
   gmaps.Events.addDomListener(position, 'change', (e) {
-    final controlPositionJsRef = js.getWindow().$.getPropertyAsJsRef('${gmaps.ControlPosition.TYPE_NAME}.${position.value}');
+    final controlPositionJsRef = js.jsWindow.$.getPropertyAsJsRef('${gmaps.ControlPosition.TYPE_NAME}.${position.value}');
     adUnit.setPosition(gmaps.ControlPosition.find(controlPositionJsRef));
   });
 }

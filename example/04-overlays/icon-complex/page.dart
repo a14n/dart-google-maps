@@ -8,17 +8,15 @@ const IMAGE_URL = "https://google-developers.appspot.com/maps/documentation/java
  * the order in which these markers should display on top of each
  * other.
  */
-var beaches;
+final beaches = [
+  ['Bondi Beach', -33.890542, 151.274856, 4],
+  ['Coogee Beach', -33.923036, 151.259052, 5],
+  ['Cronulla Beach', -34.028249, 151.157507, 3],
+  ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
+  ['Maroubra Beach', -33.950198, 151.259302, 1]
+];
 
 void main() {
-  beaches = [
-             ['Bondi Beach', -33.890542, 151.274856, 4],
-             ['Coogee Beach', -33.923036, 151.259052, 5],
-             ['Cronulla Beach', -34.028249, 151.157507, 3],
-             ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
-             ['Maroubra Beach', -33.950198, 151.259302, 1]
-             ];
-
   final mapOptions = new gmaps.MapOptions()
     ..zoom = 10
     ..center = new gmaps.LatLng(-33.9, 151.2)

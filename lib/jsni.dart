@@ -17,15 +17,11 @@ class JsRef implements Hashable {
 }
 
 class JsOperations {
-  static Map<JsRef, JsOperations> _cache;
+  static Map<JsRef, JsOperations> _cache = new Map<JsRef, JsOperations>();
 
   JsRef jsRef;
 
   factory JsOperations(JsRef jsRef) {
-    if (_cache == null) {
-      _cache = new Map<JsRef, JsOperations>();
-    }
-
     if (_cache.containsKey(jsRef)) {
       return _cache[jsRef];
     } else {
@@ -143,7 +139,7 @@ typedef Object CallbackFunction(List args);
 //-----------------------
 
 class JsConst implements JsObject {
-  static Map<String, JsRef> _constRefs;
+  static final _constRefs = new Map<String, JsRef>();
   static Object findIn(Object o, List<JsConst> elements) {
     final matchingElements = elements.filter((e) => (e == o));
     if (matchingElements.length === 1) {
@@ -158,11 +154,8 @@ class JsConst implements JsObject {
   const JsConst.fromJsName(String this.jsName);
 
   JsRef get jsRef  {
-    if (_constRefs === null){
-      _constRefs = new Map<String, JsRef>();
-    }
     if (!_constRefs.containsKey(jsName)){
-      _constRefs[jsName] = getWindow().$.getPropertyAsJsRef(jsName);
+      _constRefs[jsName] = jsWindow.$.getPropertyAsJsRef(jsName);
     }
     return _constRefs[jsName];
   }
@@ -175,14 +168,7 @@ class JsConst implements JsObject {
 }
 
 //
-JsObject _window;
-JsObject getWindow() {
-  if(_window === null){
-    _window = new JsObject.fromJsRef(_getWindowRef());
-  }
-  return _window;
-}
-
+final jsWindow = new JsObject.fromJsRef(_getWindowRef());
 
 //--------------------------
 // js <-> dart communication
@@ -197,20 +183,16 @@ class _Callback {
 bool _registered = false;
 int _tmpDomId = 1;
 int _jsQueryId = 1;
-Map<int, Object> _results;
+final _results = new Map<int, Object>();
 
 int _callbackId = 1;
-Map<int, _Callback> _callbacks;
+final _callbacks = new Map<int, _Callback>();
 
 void _ensureRegistered() {
   if (_registered) {
     return;
   }
   _registered = true;
-
-  // initialize globals
-  _results = new Map();
-  _callbacks = new Map();
 
   // register to answer
   window.on['answer_of_dart_to_js'].add((TextEvent event) {

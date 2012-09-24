@@ -8,7 +8,7 @@ class CoordMapType extends gmaps.MapType {
     $["getTile"] = (List args) {
       if (args[2] == document) {
         return _getTile(new gmaps.Point.fromJsRef(args[0]), args[1], args[2]);
-        // return _getTileForOtherDocument(new gmaps.Point.fromJsRef(args[0]), args[1], new js.JsObject.fromJsRef(js.getWindow().$.getJsRef("document")));
+        // return _getTileForOtherDocument(new gmaps.Point.fromJsRef(args[0]), args[1], new js.JsObject.fromJsRef(js.jsWindow.$.getJsRef("document")));
       } else {
         // TODO find a workaround to retrieve ownerDocument as Document ?
         return _getTileForOtherDocument(new gmaps.Point.fromJsRef(args[0]), args[1], new js.JsObject.fromJsRef(args[2]));

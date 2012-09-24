@@ -2,15 +2,12 @@
 #import('package:dart_google_maps/gmaps.dart', prefix:'gmaps');
 
 gmaps.GMap map;
-gmaps.LatLng berkeley;
-gmaps.StreetViewService sv;
+final berkeley = new gmaps.LatLng(37.869085,-122.254775);
+final sv = new gmaps.StreetViewService();
 
 gmaps.StreetViewPanorama panorama;
 
 void main() {
-  berkeley = new gmaps.LatLng(37.869085,-122.254775);
-  sv = new gmaps.StreetViewService();
-
   panorama = new gmaps.StreetViewPanorama(query('#pano'));
 
   // Set up the map

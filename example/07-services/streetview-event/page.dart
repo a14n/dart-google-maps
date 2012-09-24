@@ -1,11 +1,9 @@
 #import('dart:html');
 #import('package:dart_google_maps/gmaps.dart', prefix:'gmaps');
 
-gmaps.LatLng cafe;
+final cafe = new gmaps.LatLng(37.869085,-122.254775);
 
 void main() {
-  cafe = new gmaps.LatLng(37.869085,-122.254775);
-
   final panoramaOptions = new gmaps.StreetViewPanoramaOptions()
     ..position = cafe
     ..pov = (new gmaps.StreetViewPov()

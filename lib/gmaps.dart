@@ -213,8 +213,7 @@ class ControlPosition extends js.JsConst {
 class Marker extends MVCObject {
   static const String TYPE_NAME = "google.maps.Marker";
 
-  // TODO
-  // static const num MAX_ZINDEX = js.getWindow().$.call("${TYPE_NAME}.MAX_ZINDEX");
+  static final num MAX_ZINDEX = js.Window.$.call("${TYPE_NAME}.MAX_ZINDEX");
 
   Marker([MarkerOptions opts]) : super.newInstance(TYPE_NAME, [opts]);
   Marker.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
@@ -1811,7 +1810,7 @@ class Events {
         handler(null);
       }
     };
-    return new MapsEventListener.fromJsRef(js.getWindow().$.call("${TYPE_NAME}.addDomListener", [instance, eventName, callback, capture]));
+    return new MapsEventListener.fromJsRef(js.jsWindow.$.call("${TYPE_NAME}.addDomListener", [instance, eventName, callback, capture]));
   }
   static MapsEventListener addDomListenerOnce(Object instance, String eventName, void handler(NativeEvent e), [bool capture]) {
     js.CallbackFunction callback = Object _(List args) {
@@ -1821,7 +1820,7 @@ class Events {
         handler(null);
       }
     };
-    return new MapsEventListener.fromJsRef(js.getWindow().$.call("${TYPE_NAME}.addDomListenerOnce", [instance, eventName, callback, capture]));
+    return new MapsEventListener.fromJsRef(js.jsWindow.$.call("${TYPE_NAME}.addDomListenerOnce", [instance, eventName, callback, capture]));
   }
   static MapsEventListener addListener(js.JsObject instance, String eventName, void handler(NativeEvent e)) {
     js.CallbackFunction callback = Object _(List args) {
@@ -1831,7 +1830,7 @@ class Events {
         handler(null);
       }
     };
-    return new MapsEventListener.fromJsRef(js.getWindow().$.call("${TYPE_NAME}.addListener", [instance, eventName, callback]));
+    return new MapsEventListener.fromJsRef(js.jsWindow.$.call("${TYPE_NAME}.addListener", [instance, eventName, callback]));
   }
   static MapsEventListener addListenerOnce(js.JsObject instance, String eventName, void handler(NativeEvent e)) {
     js.CallbackFunction callback = Object _(List args) {
@@ -1841,17 +1840,17 @@ class Events {
         handler(null);
       }
     };
-    return new MapsEventListener.fromJsRef(js.getWindow().$.call("${TYPE_NAME}.addListenerOnce", [instance, eventName, callback]));
+    return new MapsEventListener.fromJsRef(js.jsWindow.$.call("${TYPE_NAME}.addListenerOnce", [instance, eventName, callback]));
   }
-  static void clearInstanceListeners(js.JsObject instance) { js.getWindow().$.call("${TYPE_NAME}.clearInstanceListeners", [instance]); }
-  static void clearListeners(js.JsObject instance, String eventName) { js.getWindow().$.call("${TYPE_NAME}.clearListeners", [instance, eventName]); }
-  static void removeListener(MapsEventListener listener) { js.getWindow().$.call("${TYPE_NAME}.removeListener", [listener]); }
+  static void clearInstanceListeners(js.JsObject instance) { js.jsWindow.$.call("${TYPE_NAME}.clearInstanceListeners", [instance]); }
+  static void clearListeners(js.JsObject instance, String eventName) { js.jsWindow.$.call("${TYPE_NAME}.clearListeners", [instance, eventName]); }
+  static void removeListener(MapsEventListener listener) { js.jsWindow.$.call("${TYPE_NAME}.removeListener", [listener]); }
   static void trigger(js.JsObject instance, String eventName, List<Object> args) {
     final parameters = new List<Object>();
     parameters.add(instance);
     parameters.add(eventName);
     parameters.addAll(args);
-    js.getWindow().$.call("${TYPE_NAME}.trigger", parameters);
+    js.jsWindow.$.call("${TYPE_NAME}.trigger", parameters);
   }
 }
 

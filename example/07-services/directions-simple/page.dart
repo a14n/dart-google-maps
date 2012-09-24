@@ -1,12 +1,11 @@
 #import('dart:html');
 #import('package:dart_google_maps/gmaps.dart', prefix:'gmaps');
 
-gmaps.DirectionsService directionsService;
 gmaps.DirectionsRenderer directionsDisplay;
+final directionsService = new gmaps.DirectionsService();
 gmaps.GMap map;
 
 void main() {
-  directionsService = new gmaps.DirectionsService();
   directionsDisplay = new gmaps.DirectionsRenderer();
   final chicago = new gmaps.LatLng(41.850033, -87.6500523);
   final mapOptions = new gmaps.MapOptions()

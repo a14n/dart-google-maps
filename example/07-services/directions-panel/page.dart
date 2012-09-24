@@ -2,10 +2,9 @@
 #import('package:dart_google_maps/gmaps.dart', prefix:'gmaps');
 
 gmaps.DirectionsRenderer directionsDisplay;
-gmaps.DirectionsService directionsService;
+final directionsService = new gmaps.DirectionsService();
 
 void main() {
-  directionsService = new gmaps.DirectionsService();
   directionsDisplay = new gmaps.DirectionsRenderer();
   final mapOptions = new gmaps.MapOptions()
     ..zoom = 7

@@ -2,10 +2,9 @@
 #import('dart:math', prefix:'Math');
 #import('package:dart_google_maps/gmaps.dart', prefix:'gmaps');
 
-const TILE_SIZE = 256;
-
 gmaps.GMap map;
-gmaps.LatLng chicago;
+const TILE_SIZE = 256;
+final chicago = new gmaps.LatLng(41.850033,-87.6500523);
 
 num bound(num value, num opt_min, num opt_max) {
   if (opt_min != null) value = Math.max(value, opt_min);
@@ -74,8 +73,6 @@ String createInfoWindowContent() {
 }
 
 void main() {
-  chicago = new gmaps.LatLng(41.850033,-87.6500523);
-
   final mapOptions = new gmaps.MapOptions()
     ..zoom = 0
     ..center = chicago

@@ -1,20 +1,16 @@
 #import('dart:html');
 #import('package:dart_google_maps/gmaps.dart', prefix:'gmaps');
 
-gmaps.DirectionsRendererOptions rendererOptions;
-gmaps.DirectionsService directionsService;
-gmaps.DirectionsRenderer directionsDisplay;
+final rendererOptions = new gmaps.DirectionsRendererOptions()
+  ..draggable = true
+  ;
+final directionsDisplay = new gmaps.DirectionsRenderer(rendererOptions);
+final directionsService = new gmaps.DirectionsService();
 gmaps.GMap map;
-gmaps.LatLng australia;
+
+final australia = new gmaps.LatLng(-25.274398, 133.775136);
 
 void main() {
-  rendererOptions = new gmaps.DirectionsRendererOptions()
-    ..draggable = true
-    ;
-  directionsDisplay = new gmaps.DirectionsRenderer(rendererOptions);
-  directionsService = new gmaps.DirectionsService();
-  australia = new gmaps.LatLng(-25.274398, 133.775136);
-
   final mapOptions = new gmaps.MapOptions()
     ..zoom = 7
     ..mapTypeId = gmaps.MapTypeId.ROADMAP

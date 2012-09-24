@@ -5,11 +5,9 @@ gmaps.GMap map;
 gmaps.DirectionsRenderer directionsDisplay;
 gmaps.DirectionsService directionsService;
 gmaps.InfoWindow stepDisplay;
-List<gmaps.Marker> markerArray;
+final markerArray = new List<gmaps.Marker>();
 
 void main() {
-  markerArray = [];
-
   // Instantiate a directions service.
   directionsService = new gmaps.DirectionsService();
 

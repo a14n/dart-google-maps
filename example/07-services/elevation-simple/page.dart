@@ -3,13 +3,10 @@
 
 var elevator;
 var map;
-gmaps.InfoWindow infowindow;
-gmaps.LatLng denali;
+final infowindow = new gmaps.InfoWindow();
+final denali = new gmaps.LatLng(63.3333333, -150.5);
 
 void main() {
-  infowindow = new gmaps.InfoWindow();
-  denali = new gmaps.LatLng(63.3333333, -150.5);
-
   final mapOptions = new gmaps.MapOptions()
     ..zoom = 8
     ..center = denali

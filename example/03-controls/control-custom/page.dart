@@ -3,7 +3,7 @@
 #import('package:dart_google_maps/gmaps.dart', prefix:'gmaps');
 
 gmaps.GMap map;
-gmaps.LatLng chicago;
+final chicago = new gmaps.LatLng(41.850033, -87.6500523);
 
 /**
  * The HomeControl adds a control to the map that simply
@@ -49,8 +49,6 @@ class HomeControl {
 }
 
 void main() {
-  chicago = new gmaps.LatLng(41.850033, -87.6500523);
-
   final mapDiv = query("#map_canvas");
   final mapOptions = new gmaps.MapOptions()
     ..zoom = 12
