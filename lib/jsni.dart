@@ -8,35 +8,21 @@
 //-------------------------
 
 /// Reference to a js element
-class JsRef implements Hashable {
+class JsRef {
   int _jsId;
 
-  JsRef._(this._jsId);
-
-  int hashCode() => _jsId.hashCode();
+  JsRef._(int this._jsId);
 }
 
 class JsOperations {
-  static Map<JsRef, JsOperations> _cache = new Map<JsRef, JsOperations>();
-
   JsRef jsRef;
-
-  factory JsOperations(JsRef jsRef) {
-    if (_cache.containsKey(jsRef)) {
-      return _cache[jsRef];
-    } else {
-      final instance = new JsOperations._(jsRef);
-      _cache[jsRef] = instance;
-      return instance;
-    }
-  }
 
   JsOperations._(JsRef this.jsRef);
 
   Object operator [](String propertyName) => _getProperty(jsRef, propertyName.toString(), false);
   void operator []=(String propertName, Object value) { setProperty(jsRef, propertName.toString(), value); }
 
-  JsRef callForJsRef(String functionName, [List args]) =>  _callFunction(jsRef, functionName, args, true);
+  JsRef callForJsRef(String functionName, [List args]) => _callFunction(jsRef, functionName, args, true);
   Object call(String functionName, [List args]) => _callFunction(jsRef, functionName, args, false);
   JsRef getPropertyAsJsRef(String propertName) => _getProperty(jsRef, propertName, true);
   void free() => _free(jsRef);
@@ -49,12 +35,13 @@ JsOperations $$(JsRef jsRef) => new JsOperations(jsRef);
 /// Represent a dart Object that wrap a js element
 class JsObject {
   JsRef jsRef;
+  JsOperations _jsOperations;
 
-  JsObject() { this.jsRef = _newInstance("Object"); }
-  JsObject.fromJsRef(JsRef this.jsRef);
-  JsObject.newInstance(String objectName, [List args]) { jsRef = _newInstance(objectName, args); }
+  JsObject() : this.fromJsRef(_newInstance("Object"));
+  JsObject.fromJsRef(JsRef this.jsRef) { _jsOperations = new JsOperations._(jsRef); }
+  JsObject.newInstance(String objectName, [List args]) : this.fromJsRef(_newInstance(objectName, args));
 
-  JsOperations get $ => new JsOperations(jsRef);
+  JsOperations get $ => _jsOperations;
 
   bool operator ==(Object other) {
     return _areEquals(this, other);
