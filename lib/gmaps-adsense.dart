@@ -31,23 +31,23 @@ class AdUnitOptions extends js.JsObject {
   set publisherId(String publisherId) => $["publisherId"] = publisherId;
 }
 
-class AdFormat extends js.JsConst {
+class AdFormat extends js.JsObject {
   static const String TYPE_NAME = "google.maps.adsense.AdFormat";
 
-  static const AdFormat BANNER = const AdFormat._("${TYPE_NAME}.BANNER");
-  static const AdFormat BUTTON = const AdFormat._("${TYPE_NAME}.BUTTON");
-  static const AdFormat HALF_BANNER = const AdFormat._("${TYPE_NAME}.HALF_BANNER");
-  static const AdFormat LARGE_RECTANGLE = const AdFormat._("${TYPE_NAME}.LARGE_RECTANGLE");
-  static const AdFormat LEADERBOARD = const AdFormat._("${TYPE_NAME}.LEADERBOARD");
-  static const AdFormat MEDIUM_RECTANGLE = const AdFormat._("${TYPE_NAME}.MEDIUM_RECTANGLE");
-  static const AdFormat SKYSCRAPER = const AdFormat._("${TYPE_NAME}.SKYSCRAPER");
-  static const AdFormat SMALL_RECTANGLE = const AdFormat._("${TYPE_NAME}.SMALL_RECTANGLE");
-  static const AdFormat SMALL_SQUARE = const AdFormat._("${TYPE_NAME}.SMALL_SQUARE");
-  static const AdFormat SQUARE = const AdFormat._("${TYPE_NAME}.SQUARE");
-  static const AdFormat VERTICAL_BANNER = const AdFormat._("${TYPE_NAME}.VERTICAL_BANNER");
-  static const AdFormat WIDE_SKYSCRAPER = const AdFormat._("${TYPE_NAME}.WIDE_SKYSCRAPER");
+  static final AdFormat BANNER= new AdFormat._("${TYPE_NAME}.BANNER");
+  static final AdFormat BUTTON= new AdFormat._("${TYPE_NAME}.BUTTON");
+  static final AdFormat HALF_BANNER= new AdFormat._("${TYPE_NAME}.HALF_BANNER");
+  static final AdFormat LARGE_RECTANGLE= new AdFormat._("${TYPE_NAME}.LARGE_RECTANGLE");
+  static final AdFormat LEADERBOARD= new AdFormat._("${TYPE_NAME}.LEADERBOARD");
+  static final AdFormat MEDIUM_RECTANGLE= new AdFormat._("${TYPE_NAME}.MEDIUM_RECTANGLE");
+  static final AdFormat SKYSCRAPER= new AdFormat._("${TYPE_NAME}.SKYSCRAPER");
+  static final AdFormat SMALL_RECTANGLE= new AdFormat._("${TYPE_NAME}.SMALL_RECTANGLE");
+  static final AdFormat SMALL_SQUARE= new AdFormat._("${TYPE_NAME}.SMALL_SQUARE");
+  static final AdFormat SQUARE= new AdFormat._("${TYPE_NAME}.SQUARE");
+  static final AdFormat VERTICAL_BANNER= new AdFormat._("${TYPE_NAME}.VERTICAL_BANNER");
+  static final AdFormat WIDE_SKYSCRAPER= new AdFormat._("${TYPE_NAME}.WIDE_SKYSCRAPER");
 
-  static AdFormat find(Object o) { return js.JsConst.findIn(o, [BANNER, BUTTON, HALF_BANNER, LARGE_RECTANGLE, LEADERBOARD, MEDIUM_RECTANGLE, SKYSCRAPER, SMALL_RECTANGLE, SMALL_SQUARE, SQUARE, VERTICAL_BANNER, WIDE_SKYSCRAPER]); }
+  static AdFormat find(Object o) { return findIn(o, [BANNER, BUTTON, HALF_BANNER, LARGE_RECTANGLE, LEADERBOARD, MEDIUM_RECTANGLE, SKYSCRAPER, SMALL_RECTANGLE, SMALL_SQUARE, SQUARE, VERTICAL_BANNER, WIDE_SKYSCRAPER]); }
 
-  const AdFormat._(String jsName) : super.fromJsName(jsName);
+  AdFormat._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
 }

@@ -115,30 +115,30 @@ class PlacesService extends js.JsObject {
   }
 }
 
-class PlacesServiceStatus extends js.JsConst {
+class PlacesServiceStatus extends js.JsObject {
   static const String TYPE_NAME = "google.maps.places.PlacesServiceStatus";
 
-  static const PlacesServiceStatus INVALID_REQUEST = const PlacesServiceStatus._("${TYPE_NAME}.INVALID_REQUEST");
-  static const PlacesServiceStatus OK = const PlacesServiceStatus._("${TYPE_NAME}.OK");
-  static const PlacesServiceStatus OVER_QUERY_LIMIT = const PlacesServiceStatus._("${TYPE_NAME}.OVER_QUERY_LIMIT");
-  static const PlacesServiceStatus REQUEST_DENIED = const PlacesServiceStatus._("${TYPE_NAME}.REQUEST_DENIED");
-  static const PlacesServiceStatus UNKNOWN_ERROR = const PlacesServiceStatus._("${TYPE_NAME}.UNKNOWN_ERROR");
-  static const PlacesServiceStatus ZERO_RESULTS = const PlacesServiceStatus._("${TYPE_NAME}.ZERO_RESULTS");
+  static final PlacesServiceStatus INVALID_REQUEST= new PlacesServiceStatus._("${TYPE_NAME}.INVALID_REQUEST");
+  static final PlacesServiceStatus OK= new PlacesServiceStatus._("${TYPE_NAME}.OK");
+  static final PlacesServiceStatus OVER_QUERY_LIMIT= new PlacesServiceStatus._("${TYPE_NAME}.OVER_QUERY_LIMIT");
+  static final PlacesServiceStatus REQUEST_DENIED= new PlacesServiceStatus._("${TYPE_NAME}.REQUEST_DENIED");
+  static final PlacesServiceStatus UNKNOWN_ERROR= new PlacesServiceStatus._("${TYPE_NAME}.UNKNOWN_ERROR");
+  static final PlacesServiceStatus ZERO_RESULTS= new PlacesServiceStatus._("${TYPE_NAME}.ZERO_RESULTS");
 
-  static PlacesServiceStatus find(Object o) { return js.JsConst.findIn(o, [INVALID_REQUEST, OK, OVER_QUERY_LIMIT, REQUEST_DENIED, UNKNOWN_ERROR, ZERO_RESULTS]); }
+  static PlacesServiceStatus find(Object o) { return findIn(o, [INVALID_REQUEST, OK, OVER_QUERY_LIMIT, REQUEST_DENIED, UNKNOWN_ERROR, ZERO_RESULTS]); }
 
-  const PlacesServiceStatus._(String jsName) : super.fromJsName(jsName);
+  PlacesServiceStatus._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
 }
 
-class RankBy extends js.JsConst {
+class RankBy extends js.JsObject {
   static const String TYPE_NAME = "google.maps.places.RankBy";
 
-  static const RankBy DISTANCE = const RankBy._("${TYPE_NAME}.DISTANCE");
-  static const RankBy PROMINENCE = const RankBy._("${TYPE_NAME}.PROMINENCE");
+  static final RankBy DISTANCE= new RankBy._("${TYPE_NAME}.DISTANCE");
+  static final RankBy PROMINENCE= new RankBy._("${TYPE_NAME}.PROMINENCE");
 
-  static RankBy find(Object o) { return js.JsConst.findIn(o, [DISTANCE, PROMINENCE]); }
+  static RankBy find(Object o) { return findIn(o, [DISTANCE, PROMINENCE]); }
 
-  const RankBy._(String jsName) : super.fromJsName(jsName);
+  RankBy._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
 }
 
 class TextSearchRequest extends js.JsObject {

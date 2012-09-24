@@ -58,16 +58,16 @@ class OverlayCompleteEvent extends NativeEvent {
   OverlayType get type => OverlayType.find($.getPropertyAsJsRef("type"));
 }
 
-class OverlayType extends js.JsConst {
+class OverlayType extends js.JsObject {
   static const String TYPE_NAME = "google.maps.drawing.OverlayType";
 
-  static const OverlayType CIRCLE = const OverlayType._("${TYPE_NAME}.CIRCLE");
-  static const OverlayType MARKER = const OverlayType._("${TYPE_NAME}.MARKER");
-  static const OverlayType POLYGON = const OverlayType._("${TYPE_NAME}.POLYGON");
-  static const OverlayType POLYLINE = const OverlayType._("${TYPE_NAME}.POLYLINE");
-  static const OverlayType RECTANGLE = const OverlayType._("${TYPE_NAME}.RECTANGLE");
+  static final OverlayType CIRCLE= new OverlayType._("${TYPE_NAME}.CIRCLE");
+  static final OverlayType MARKER= new OverlayType._("${TYPE_NAME}.MARKER");
+  static final OverlayType POLYGON= new OverlayType._("${TYPE_NAME}.POLYGON");
+  static final OverlayType POLYLINE= new OverlayType._("${TYPE_NAME}.POLYLINE");
+  static final OverlayType RECTANGLE= new OverlayType._("${TYPE_NAME}.RECTANGLE");
 
-  static OverlayType find(Object o) { return js.JsConst.findIn(o, [CIRCLE, MARKER, POLYGON, POLYLINE, RECTANGLE]); }
+  static OverlayType find(Object o) { return findIn(o, [CIRCLE, MARKER, POLYGON, POLYLINE, RECTANGLE]); }
 
-  const OverlayType._(String jsName) : super.fromJsName(jsName);
+  OverlayType._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
 }

@@ -105,17 +105,17 @@ class MapOptions extends js.JsObject {
   set zoomControlOptions(ZoomControlOptions zoomControlOptions) => $["zoomControlOptions"] = zoomControlOptions;
 }
 
-class MapTypeId extends js.JsConst {
+class MapTypeId extends js.JsObject {
   static const String TYPE_NAME = "google.maps.MapTypeId";
 
-  static const MapTypeId HYBRID = const MapTypeId._("${TYPE_NAME}.HYBRID");
-  static const MapTypeId ROADMAP = const MapTypeId._("${TYPE_NAME}.ROADMAP");
-  static const MapTypeId SATELLITE = const MapTypeId._("${TYPE_NAME}.SATELLITE");
-  static const MapTypeId TERRAIN = const MapTypeId._("${TYPE_NAME}.TERRAIN");
+  static final MapTypeId HYBRID = new MapTypeId._("${TYPE_NAME}.HYBRID");
+  static final MapTypeId ROADMAP = new MapTypeId._("${TYPE_NAME}.ROADMAP");
+  static final MapTypeId SATELLITE = new MapTypeId._("${TYPE_NAME}.SATELLITE");
+  static final MapTypeId TERRAIN = new MapTypeId._("${TYPE_NAME}.TERRAIN");
 
-  static MapTypeId find(Object o) { return js.JsConst.findIn(o, [HYBRID, ROADMAP, SATELLITE, TERRAIN]); }
+  static MapTypeId find(Object o) { return findIn(o, [HYBRID, ROADMAP, SATELLITE, TERRAIN]); }
 
-  const MapTypeId._(String jsName) : super.fromJsName(jsName);
+  MapTypeId._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
 }
 
 class MapTypeControlOptions extends js.JsObject {
@@ -129,16 +129,16 @@ class MapTypeControlOptions extends js.JsObject {
   set style(MapTypeControlStyle style) => $["style"] = style;
 }
 
-class MapTypeControlStyle extends js.JsConst {
+class MapTypeControlStyle extends js.JsObject {
   static const String TYPE_NAME = "google.maps.MapTypeControlStyle";
 
-  static const MapTypeControlStyle DEFAULT = const MapTypeControlStyle._("${TYPE_NAME}.DEFAULT");
-  static const MapTypeControlStyle DROPDOWN_MENU = const MapTypeControlStyle._("${TYPE_NAME}.DROPDOWN_MENU");
-  static const MapTypeControlStyle HORIZONTAL_BAR = const MapTypeControlStyle._("${TYPE_NAME}.HORIZONTAL_BAR");
+  static final MapTypeControlStyle DEFAULT = new MapTypeControlStyle._("${TYPE_NAME}.DEFAULT");
+  static final MapTypeControlStyle DROPDOWN_MENU = new MapTypeControlStyle._("${TYPE_NAME}.DROPDOWN_MENU");
+  static final MapTypeControlStyle HORIZONTAL_BAR = new MapTypeControlStyle._("${TYPE_NAME}.HORIZONTAL_BAR");
 
-  static MapTypeControlStyle find(Object o) { return js.JsConst.findIn(o, [DEFAULT, DROPDOWN_MENU, HORIZONTAL_BAR]); }
+  static MapTypeControlStyle find(Object o) { return findIn(o, [DEFAULT, DROPDOWN_MENU, HORIZONTAL_BAR]); }
 
-  const MapTypeControlStyle._(String jsName) : super.fromJsName(jsName);
+  MapTypeControlStyle._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
 }
 
 class OverviewMapControlOptions extends js.JsObject {
@@ -158,14 +158,14 @@ class ScaleControlOptions extends js.JsObject {
   set style(ScaleControlStyle style) => $["style"] = style;
 }
 
-class ScaleControlStyle extends js.JsConst {
+class ScaleControlStyle extends js.JsObject {
   static const String TYPE_NAME = "google.maps.ScaleControlStyle";
 
-  static const ScaleControlStyle DEFAULT = const ScaleControlStyle._("${TYPE_NAME}.DEFAULT");
+  static final ScaleControlStyle DEFAULT = new ScaleControlStyle._("${TYPE_NAME}.DEFAULT");
 
-  static ScaleControlStyle find(Object o) { return js.JsConst.findIn(o, [DEFAULT]); }
+  static ScaleControlStyle find(Object o) { return findIn(o, [DEFAULT]); }
 
-  const ScaleControlStyle._(String jsName) : super.fromJsName(jsName);
+  ScaleControlStyle._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
 }
 
 class StreetViewControlOptions extends js.JsObject {
@@ -177,37 +177,37 @@ class ZoomControlOptions extends js.JsObject {
   set style(ZoomControlStyle style) => $["style"] = style;
 }
 
-class ZoomControlStyle extends js.JsConst {
+class ZoomControlStyle extends js.JsObject {
   static const String TYPE_NAME = "google.maps.ZoomControlStyle";
 
-  static const ZoomControlStyle DEFAULT = const ZoomControlStyle._("${TYPE_NAME}.DEFAULT");
-  static const ZoomControlStyle LARGE = const ZoomControlStyle._("${TYPE_NAME}.LARGE");
-  static const ZoomControlStyle SMALL = const ZoomControlStyle._("${TYPE_NAME}.SMALL");
+  static final ZoomControlStyle DEFAULT = new ZoomControlStyle._("${TYPE_NAME}.DEFAULT");
+  static final ZoomControlStyle LARGE = new ZoomControlStyle._("${TYPE_NAME}.LARGE");
+  static final ZoomControlStyle SMALL = new ZoomControlStyle._("${TYPE_NAME}.SMALL");
 
-  static ZoomControlStyle find(Object o) { return js.JsConst.findIn(o, [DEFAULT, LARGE, SMALL]); }
+  static ZoomControlStyle find(Object o) { return findIn(o, [DEFAULT, LARGE, SMALL]); }
 
-  const ZoomControlStyle._(String jsName) : super.fromJsName(jsName);
+  ZoomControlStyle._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
 }
 
-class ControlPosition extends js.JsConst {
+class ControlPosition extends js.JsObject {
   static const String TYPE_NAME = "google.maps.ControlPosition";
 
-  static const ControlPosition BOTTOM_CENTER = const ControlPosition._("${TYPE_NAME}.BOTTOM_CENTER");
-  static const ControlPosition BOTTOM_LEFT = const ControlPosition._("${TYPE_NAME}.BOTTOM_LEFT");
-  static const ControlPosition BOTTOM_RIGHT = const ControlPosition._("${TYPE_NAME}.BOTTOM_RIGHT");
-  static const ControlPosition LEFT_BOTTOM = const ControlPosition._("${TYPE_NAME}.LEFT_BOTTOM");
-  static const ControlPosition LEFT_CENTER = const ControlPosition._("${TYPE_NAME}.LEFT_CENTER");
-  static const ControlPosition LEFT_TOP = const ControlPosition._("${TYPE_NAME}.LEFT_TOP");
-  static const ControlPosition RIGHT_BOTTOM = const ControlPosition._("${TYPE_NAME}.RIGHT_BOTTOM");
-  static const ControlPosition RIGHT_CENTER = const ControlPosition._("${TYPE_NAME}.RIGHT_CENTER");
-  static const ControlPosition RIGHT_TOP = const ControlPosition._("${TYPE_NAME}.RIGHT_TOP");
-  static const ControlPosition TOP_CENTER = const ControlPosition._("${TYPE_NAME}.TOP_CENTER");
-  static const ControlPosition TOP_LEFT = const ControlPosition._("${TYPE_NAME}.TOP_LEFT");
-  static const ControlPosition TOP_RIGHT = const ControlPosition._("${TYPE_NAME}.TOP_RIGHT");
+  static final ControlPosition BOTTOM_CENTER = new ControlPosition._("${TYPE_NAME}.BOTTOM_CENTER");
+  static final ControlPosition BOTTOM_LEFT = new ControlPosition._("${TYPE_NAME}.BOTTOM_LEFT");
+  static final ControlPosition BOTTOM_RIGHT = new ControlPosition._("${TYPE_NAME}.BOTTOM_RIGHT");
+  static final ControlPosition LEFT_BOTTOM = new ControlPosition._("${TYPE_NAME}.LEFT_BOTTOM");
+  static final ControlPosition LEFT_CENTER = new ControlPosition._("${TYPE_NAME}.LEFT_CENTER");
+  static final ControlPosition LEFT_TOP = new ControlPosition._("${TYPE_NAME}.LEFT_TOP");
+  static final ControlPosition RIGHT_BOTTOM = new ControlPosition._("${TYPE_NAME}.RIGHT_BOTTOM");
+  static final ControlPosition RIGHT_CENTER = new ControlPosition._("${TYPE_NAME}.RIGHT_CENTER");
+  static final ControlPosition RIGHT_TOP = new ControlPosition._("${TYPE_NAME}.RIGHT_TOP");
+  static final ControlPosition TOP_CENTER = new ControlPosition._("${TYPE_NAME}.TOP_CENTER");
+  static final ControlPosition TOP_LEFT = new ControlPosition._("${TYPE_NAME}.TOP_LEFT");
+  static final ControlPosition TOP_RIGHT = new ControlPosition._("${TYPE_NAME}.TOP_RIGHT");
 
-  static ControlPosition find(Object o) { return js.JsConst.findIn(o, [BOTTOM_CENTER, BOTTOM_LEFT, BOTTOM_RIGHT, LEFT_BOTTOM, LEFT_CENTER, LEFT_TOP, RIGHT_BOTTOM, RIGHT_CENTER, RIGHT_TOP, TOP_CENTER, TOP_LEFT, TOP_RIGHT]); }
+  static ControlPosition find(Object o) { return findIn(o, [BOTTOM_CENTER, BOTTOM_LEFT, BOTTOM_RIGHT, LEFT_BOTTOM, LEFT_CENTER, LEFT_TOP, RIGHT_BOTTOM, RIGHT_CENTER, RIGHT_TOP, TOP_CENTER, TOP_LEFT, TOP_RIGHT]); }
 
-  const ControlPosition._(String jsName) : super.fromJsName(jsName);
+  ControlPosition._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
 }
 
 class Marker extends MVCObject {
@@ -355,14 +355,16 @@ class MarkerShape extends js.JsObject {
                   set type(MarkerShapeType type) => $["type"] = type.value;
 }
 
-class MarkerShapeType extends _Constant<String> {
-  static const MarkerShapeType CIRCLE = const MarkerShapeType._("circle");
-  static const MarkerShapeType POLY = const MarkerShapeType._("poly");
-  static const MarkerShapeType RECT = const MarkerShapeType._("rect");
+class MarkerShapeType {
+  static final MarkerShapeType CIRCLE = new MarkerShapeType._("circle");
+  static final MarkerShapeType POLY = new MarkerShapeType._("poly");
+  static final MarkerShapeType RECT = new MarkerShapeType._("rect");
 
-  static MarkerShapeType find(String value) => findIn(value, [CIRCLE, POLY, RECT]);
+  static MarkerShapeType find(String value) => findIn(value, [CIRCLE, POLY, RECT], (e) => e.value);
 
-  const MarkerShapeType._(String value) : super.fromValue(value);
+  String value;
+
+  MarkerShapeType._(String this.value);
 }
 
 class Symbol extends js.JsObject {
@@ -401,29 +403,29 @@ class Symbol extends js.JsObject {
       set strokeWeight(num rotation) => $["strokeWeight"] = strokeWeight;
 }
 
-class SymbolPath extends js.JsConst {
+class SymbolPath extends js.JsObject {
   static const String TYPE_NAME = "google.maps.SymbolPath";
 
-  static const SymbolPath BACKWARD_CLOSED_ARROW = const SymbolPath._("${TYPE_NAME}.BACKWARD_CLOSED_ARROW");
-  static const SymbolPath BACKWARD_OPEN_ARROW = const SymbolPath._("${TYPE_NAME}.BACKWARD_OPEN_ARROW");
-  static const SymbolPath CIRCLE = const SymbolPath._("${TYPE_NAME}.CIRCLE");
-  static const SymbolPath FORWARD_CLOSED_ARROW = const SymbolPath._("${TYPE_NAME}.FORWARD_CLOSED_ARROW");
-  static const SymbolPath FORWARD_OPEN_ARROW = const SymbolPath._("${TYPE_NAME}.FORWARD_OPEN_ARROW");
+  static final SymbolPath BACKWARD_CLOSED_ARROW = new SymbolPath._("${TYPE_NAME}.BACKWARD_CLOSED_ARROW");
+  static final SymbolPath BACKWARD_OPEN_ARROW = new SymbolPath._("${TYPE_NAME}.BACKWARD_OPEN_ARROW");
+  static final SymbolPath CIRCLE = new SymbolPath._("${TYPE_NAME}.CIRCLE");
+  static final SymbolPath FORWARD_CLOSED_ARROW = new SymbolPath._("${TYPE_NAME}.FORWARD_CLOSED_ARROW");
+  static final SymbolPath FORWARD_OPEN_ARROW = new SymbolPath._("${TYPE_NAME}.FORWARD_OPEN_ARROW");
 
-  static SymbolPath find(Object o) { return js.JsConst.findIn(o, [BACKWARD_CLOSED_ARROW, BACKWARD_OPEN_ARROW, CIRCLE, FORWARD_CLOSED_ARROW, FORWARD_OPEN_ARROW]); }
+  static SymbolPath find(Object o) { return findIn(o, [BACKWARD_CLOSED_ARROW, BACKWARD_OPEN_ARROW, CIRCLE, FORWARD_CLOSED_ARROW, FORWARD_OPEN_ARROW]); }
 
-  const SymbolPath._(String jsName) : super.fromJsName(jsName);
+  SymbolPath._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
 }
 
-class Animation extends js.JsConst {
+class Animation extends js.JsObject {
   static const String TYPE_NAME = "google.maps.Animation";
 
-  static const Animation BOUNCE = const Animation._("${TYPE_NAME}.BOUNCE");
-  static const Animation DROP = const Animation._("${TYPE_NAME}.DROP");
+  static final Animation BOUNCE = new Animation._("${TYPE_NAME}.BOUNCE");
+  static final Animation DROP = new Animation._("${TYPE_NAME}.DROP");
 
-  static Animation find(Object o) { return js.JsConst.findIn(o, [BOUNCE, DROP]); }
+  static Animation find(Object o) { return findIn(o, [BOUNCE, DROP]); }
 
-  const Animation._(String jsName) : super.fromJsName(jsName);
+  Animation._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
 }
 
 class InfoWindow extends MVCObject {
@@ -751,20 +753,20 @@ class GeocoderRequest extends js.JsObject {
   set region(String region) => $["region"] = region;
 }
 
-class GeocoderStatus extends js.JsConst {
+class GeocoderStatus extends js.JsObject {
   static const String TYPE_NAME = "google.maps.GeocoderStatus";
 
-  static const GeocoderStatus ERROR = const GeocoderStatus._("${TYPE_NAME}.ERROR");
-  static const GeocoderStatus INVALID_REQUEST = const GeocoderStatus._("${TYPE_NAME}.INVALID_REQUEST");
-  static const GeocoderStatus OK = const GeocoderStatus._("${TYPE_NAME}.OK");
-  static const GeocoderStatus OVER_QUERY_LIMIT = const GeocoderStatus._("${TYPE_NAME}.OVER_QUERY_LIMIT");
-  static const GeocoderStatus REQUEST_DENIED = const GeocoderStatus._("${TYPE_NAME}.REQUEST_DENIED");
-  static const GeocoderStatus UNKNOWN_ERROR = const GeocoderStatus._("${TYPE_NAME}.UNKNOWN_ERROR");
-  static const GeocoderStatus ZERO_RESULTS = const GeocoderStatus._("${TYPE_NAME}.ZERO_RESULTS");
+  static final GeocoderStatus ERROR = new GeocoderStatus._("${TYPE_NAME}.ERROR");
+  static final GeocoderStatus INVALID_REQUEST = new GeocoderStatus._("${TYPE_NAME}.INVALID_REQUEST");
+  static final GeocoderStatus OK = new GeocoderStatus._("${TYPE_NAME}.OK");
+  static final GeocoderStatus OVER_QUERY_LIMIT = new GeocoderStatus._("${TYPE_NAME}.OVER_QUERY_LIMIT");
+  static final GeocoderStatus REQUEST_DENIED = new GeocoderStatus._("${TYPE_NAME}.REQUEST_DENIED");
+  static final GeocoderStatus UNKNOWN_ERROR = new GeocoderStatus._("${TYPE_NAME}.UNKNOWN_ERROR");
+  static final GeocoderStatus ZERO_RESULTS = new GeocoderStatus._("${TYPE_NAME}.ZERO_RESULTS");
 
-  static GeocoderStatus find(Object o) { return js.JsConst.findIn(o, [ERROR, INVALID_REQUEST, OK, OVER_QUERY_LIMIT, REQUEST_DENIED, UNKNOWN_ERROR, ZERO_RESULTS]); }
+  static GeocoderStatus find(Object o) { return findIn(o, [ERROR, INVALID_REQUEST, OK, OVER_QUERY_LIMIT, REQUEST_DENIED, UNKNOWN_ERROR, ZERO_RESULTS]); }
 
-  const GeocoderStatus._(String jsName) : super.fromJsName(jsName);
+  GeocoderStatus._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
 }
 
 class GeocoderResult extends js.JsObject {
@@ -796,17 +798,17 @@ class GeocoderGeometry extends js.JsObject {
   LatLngBounds get viewport => new    LatLngBounds.fromJsRef($["viewport"]);
 }
 
-class GeocoderLocationType extends js.JsConst {
+class GeocoderLocationType extends js.JsObject {
   static const String TYPE_NAME = "google.maps.GeocoderLocationType";
 
-  static const GeocoderLocationType APPROXIMATE = const GeocoderLocationType._("${TYPE_NAME}.APPROXIMATE");
-  static const GeocoderLocationType GEOMETRIC_CENTER = const GeocoderLocationType._("${TYPE_NAME}.GEOMETRIC_CENTER");
-  static const GeocoderLocationType RANGE_INTERPOLATED = const GeocoderLocationType._("${TYPE_NAME}.RANGE_INTERPOLATED");
-  static const GeocoderLocationType ROOFTOP = const GeocoderLocationType._("${TYPE_NAME}.ROOFTOP");
+  static final GeocoderLocationType APPROXIMATE = new GeocoderLocationType._("${TYPE_NAME}.APPROXIMATE");
+  static final GeocoderLocationType GEOMETRIC_CENTER = new GeocoderLocationType._("${TYPE_NAME}.GEOMETRIC_CENTER");
+  static final GeocoderLocationType RANGE_INTERPOLATED = new GeocoderLocationType._("${TYPE_NAME}.RANGE_INTERPOLATED");
+  static final GeocoderLocationType ROOFTOP = new GeocoderLocationType._("${TYPE_NAME}.ROOFTOP");
 
-  static GeocoderLocationType find(Object o) { return js.JsConst.findIn(o, [APPROXIMATE, GEOMETRIC_CENTER, RANGE_INTERPOLATED, ROOFTOP]); }
+  static GeocoderLocationType find(Object o) { return findIn(o, [APPROXIMATE, GEOMETRIC_CENTER, RANGE_INTERPOLATED, ROOFTOP]); }
 
-  const GeocoderLocationType._(String jsName) : super.fromJsName(jsName);
+  GeocoderLocationType._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
 }
 
 class DirectionsRenderer extends MVCObject {
@@ -882,28 +884,28 @@ class DirectionsRequest extends js.JsObject {
   set waypoints(List<DirectionsWaypoint> waypoints) => $["waypoints"] = waypoints;
 }
 
-class TravelMode extends js.JsConst {
+class TravelMode extends js.JsObject {
   static const String TYPE_NAME = "google.maps.TravelMode";
 
-  static const TravelMode BICYCLING = const TravelMode._("${TYPE_NAME}.BICYCLING");
-  static const TravelMode DRIVING = const TravelMode._("${TYPE_NAME}.DRIVING");
-  static const TravelMode TRANSIT = const TravelMode._("${TYPE_NAME}.TRANSIT");
-  static const TravelMode WALKING = const TravelMode._("${TYPE_NAME}.WALKING");
+  static final TravelMode BICYCLING = new TravelMode._("${TYPE_NAME}.BICYCLING");
+  static final TravelMode DRIVING = new TravelMode._("${TYPE_NAME}.DRIVING");
+  static final TravelMode TRANSIT = new TravelMode._("${TYPE_NAME}.TRANSIT");
+  static final TravelMode WALKING = new TravelMode._("${TYPE_NAME}.WALKING");
 
-  static TravelMode find(Object o) { return js.JsConst.findIn(o, [BICYCLING, DRIVING, TRANSIT, WALKING]); }
+  static TravelMode find(Object o) { return findIn(o, [BICYCLING, DRIVING, TRANSIT, WALKING]); }
 
-  const TravelMode._(String jsName) : super.fromJsName(jsName);
+  TravelMode._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
 }
 
-class UnitSystem extends js.JsConst {
+class UnitSystem extends js.JsObject {
   static const String TYPE_NAME = "google.maps.UnitSystem";
 
-  static const UnitSystem IMPERIAL = const UnitSystem._("${TYPE_NAME}.IMPERIAL");
-  static const UnitSystem METRIC = const UnitSystem._("${TYPE_NAME}.METRIC");
+  static final UnitSystem IMPERIAL = new UnitSystem._("${TYPE_NAME}.IMPERIAL");
+  static final UnitSystem METRIC = new UnitSystem._("${TYPE_NAME}.METRIC");
 
-  static UnitSystem find(Object o) { return js.JsConst.findIn(o, [IMPERIAL, METRIC]); }
+  static UnitSystem find(Object o) { return findIn(o, [IMPERIAL, METRIC]); }
 
-  const UnitSystem._(String jsName) : super.fromJsName(jsName);
+  UnitSystem._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
 }
 
 class TransitOptions extends js.JsObject {
@@ -922,21 +924,21 @@ class DirectionsWaypoint extends js.JsObject {
   set stopover(bool stopover) => $["stopover"] = stopover;
 }
 
-class DirectionsStatus extends js.JsConst {
+class DirectionsStatus extends js.JsObject {
   static const String TYPE_NAME = "google.maps.DirectionsStatus";
 
-  static const DirectionsStatus INVALID_REQUEST = const DirectionsStatus._("${TYPE_NAME}.INVALID_REQUEST");
-  static const DirectionsStatus MAX_WAYPOINTS_EXCEEDED = const DirectionsStatus._("${TYPE_NAME}.MAX_WAYPOINTS_EXCEEDED");
-  static const DirectionsStatus NOT_FOUND = const DirectionsStatus._("${TYPE_NAME}.NOT_FOUND");
-  static const DirectionsStatus OK = const DirectionsStatus._("${TYPE_NAME}.OK");
-  static const DirectionsStatus OVER_QUERY_LIMIT = const DirectionsStatus._("${TYPE_NAME}.OVER_QUERY_LIMIT");
-  static const DirectionsStatus REQUEST_DENIED = const DirectionsStatus._("${TYPE_NAME}.REQUEST_DENIED");
-  static const DirectionsStatus UNKNOWN_ERROR = const DirectionsStatus._("${TYPE_NAME}.UNKNOWN_ERROR");
-  static const DirectionsStatus ZERO_RESULTS = const DirectionsStatus._("${TYPE_NAME}.ZERO_RESULTS");
+  static final DirectionsStatus INVALID_REQUEST = new DirectionsStatus._("${TYPE_NAME}.INVALID_REQUEST");
+  static final DirectionsStatus MAX_WAYPOINTS_EXCEEDED = new DirectionsStatus._("${TYPE_NAME}.MAX_WAYPOINTS_EXCEEDED");
+  static final DirectionsStatus NOT_FOUND = new DirectionsStatus._("${TYPE_NAME}.NOT_FOUND");
+  static final DirectionsStatus OK = new DirectionsStatus._("${TYPE_NAME}.OK");
+  static final DirectionsStatus OVER_QUERY_LIMIT = new DirectionsStatus._("${TYPE_NAME}.OVER_QUERY_LIMIT");
+  static final DirectionsStatus REQUEST_DENIED = new DirectionsStatus._("${TYPE_NAME}.REQUEST_DENIED");
+  static final DirectionsStatus UNKNOWN_ERROR = new DirectionsStatus._("${TYPE_NAME}.UNKNOWN_ERROR");
+  static final DirectionsStatus ZERO_RESULTS = new DirectionsStatus._("${TYPE_NAME}.ZERO_RESULTS");
 
-  static DirectionsStatus find(Object o) { return js.JsConst.findIn(o, [INVALID_REQUEST, MAX_WAYPOINTS_EXCEEDED, NOT_FOUND, OK, OVER_QUERY_LIMIT, REQUEST_DENIED, UNKNOWN_ERROR, ZERO_RESULTS]); }
+  static DirectionsStatus find(Object o) { return findIn(o, [INVALID_REQUEST, MAX_WAYPOINTS_EXCEEDED, NOT_FOUND, OK, OVER_QUERY_LIMIT, REQUEST_DENIED, UNKNOWN_ERROR, ZERO_RESULTS]); }
 
-  const DirectionsStatus._(String jsName) : super.fromJsName(jsName);
+  DirectionsStatus._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
 }
 
 class DirectionsResult extends js.JsObject {
@@ -1112,18 +1114,18 @@ class ElevationResult extends js.JsObject {
   num get resolution => $["resolution"];
 }
 
-class ElevationStatus extends js.JsConst {
+class ElevationStatus extends js.JsObject {
   static const String TYPE_NAME = "google.maps.ElevationStatus";
 
-  static const ElevationStatus INVALID_REQUEST = const ElevationStatus._("${TYPE_NAME}.INVALID_REQUEST");
-  static const ElevationStatus OK = const ElevationStatus._("${TYPE_NAME}.OK");
-  static const ElevationStatus OVER_QUERY_LIMIT = const ElevationStatus._("${TYPE_NAME}.OVER_QUERY_LIMIT");
-  static const ElevationStatus REQUEST_DENIED = const ElevationStatus._("${TYPE_NAME}.REQUEST_DENIED");
-  static const ElevationStatus UNKNOWN_ERROR = const ElevationStatus._("${TYPE_NAME}.UNKNOWN_ERROR");
+  static final ElevationStatus INVALID_REQUEST = new ElevationStatus._("${TYPE_NAME}.INVALID_REQUEST");
+  static final ElevationStatus OK = new ElevationStatus._("${TYPE_NAME}.OK");
+  static final ElevationStatus OVER_QUERY_LIMIT = new ElevationStatus._("${TYPE_NAME}.OVER_QUERY_LIMIT");
+  static final ElevationStatus REQUEST_DENIED = new ElevationStatus._("${TYPE_NAME}.REQUEST_DENIED");
+  static final ElevationStatus UNKNOWN_ERROR = new ElevationStatus._("${TYPE_NAME}.UNKNOWN_ERROR");
 
-  static ElevationStatus find(Object o) { return js.JsConst.findIn(o, [INVALID_REQUEST, OK, OVER_QUERY_LIMIT, REQUEST_DENIED, UNKNOWN_ERROR]); }
+  static ElevationStatus find(Object o) { return findIn(o, [INVALID_REQUEST, OK, OVER_QUERY_LIMIT, REQUEST_DENIED, UNKNOWN_ERROR]); }
 
-  const ElevationStatus._(String jsName) : super.fromJsName(jsName);
+  ElevationStatus._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
 }
 
 class MaxZoomService extends js.JsObject {
@@ -1147,15 +1149,15 @@ class MaxZoomResult extends js.JsObject {
   num get zoom => $["zoom"];
 }
 
-class MaxZoomStatus extends js.JsConst {
+class MaxZoomStatus extends js.JsObject {
   static const String TYPE_NAME = "google.maps.MaxZoomStatus";
 
-  static const MaxZoomStatus ERROR = const MaxZoomStatus._("${TYPE_NAME}.ERROR");
-  static const MaxZoomStatus OK = const MaxZoomStatus._("${TYPE_NAME}.OK");
+  static final MaxZoomStatus ERROR = new MaxZoomStatus._("${TYPE_NAME}.ERROR");
+  static final MaxZoomStatus OK = new MaxZoomStatus._("${TYPE_NAME}.OK");
 
-  static MaxZoomStatus find(Object o) { return js.JsConst.findIn(o, [ERROR, OK]); }
+  static MaxZoomStatus find(Object o) { return findIn(o, [ERROR, OK]); }
 
-  const MaxZoomStatus._(String jsName) : super.fromJsName(jsName);
+  MaxZoomStatus._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
 }
 
 class DistanceMatrixService extends js.JsObject {
@@ -1218,32 +1220,32 @@ class DistanceMatrixResponseElement extends js.JsObject {
   DistanceMatrixElementStatus get status => DistanceMatrixElementStatus.find($["status"]);
 }
 
-class DistanceMatrixStatus extends js.JsConst {
+class DistanceMatrixStatus extends js.JsObject {
   static const String TYPE_NAME = "google.maps.DistanceMatrixStatus";
 
-  static const DistanceMatrixStatus INVALID_REQUEST = const DistanceMatrixStatus._("${TYPE_NAME}.INVALID_REQUEST");
-  static const DistanceMatrixStatus MAX_DIMENSIONS_EXCEEDED = const DistanceMatrixStatus._("${TYPE_NAME}.MAX_DIMENSIONS_EXCEEDED");
-  static const DistanceMatrixStatus MAX_ELEMENTS_EXCEEDED = const DistanceMatrixStatus._("${TYPE_NAME}.MAX_ELEMENTS_EXCEEDED");
-  static const DistanceMatrixStatus OK = const DistanceMatrixStatus._("${TYPE_NAME}.OK");
-  static const DistanceMatrixStatus OVER_QUERY_LIMIT = const DistanceMatrixStatus._("${TYPE_NAME}.OVER_QUERY_LIMIT");
-  static const DistanceMatrixStatus REQUEST_DENIED = const DistanceMatrixStatus._("${TYPE_NAME}.REQUEST_DENIED");
-  static const DistanceMatrixStatus UNKNOWN_ERROR = const DistanceMatrixStatus._("${TYPE_NAME}.UNKNOWN_ERROR");
+  static final DistanceMatrixStatus INVALID_REQUEST = new DistanceMatrixStatus._("${TYPE_NAME}.INVALID_REQUEST");
+  static final DistanceMatrixStatus MAX_DIMENSIONS_EXCEEDED = new DistanceMatrixStatus._("${TYPE_NAME}.MAX_DIMENSIONS_EXCEEDED");
+  static final DistanceMatrixStatus MAX_ELEMENTS_EXCEEDED = new DistanceMatrixStatus._("${TYPE_NAME}.MAX_ELEMENTS_EXCEEDED");
+  static final DistanceMatrixStatus OK = new DistanceMatrixStatus._("${TYPE_NAME}.OK");
+  static final DistanceMatrixStatus OVER_QUERY_LIMIT = new DistanceMatrixStatus._("${TYPE_NAME}.OVER_QUERY_LIMIT");
+  static final DistanceMatrixStatus REQUEST_DENIED = new DistanceMatrixStatus._("${TYPE_NAME}.REQUEST_DENIED");
+  static final DistanceMatrixStatus UNKNOWN_ERROR = new DistanceMatrixStatus._("${TYPE_NAME}.UNKNOWN_ERROR");
 
-  static DistanceMatrixStatus find(Object o) { return js.JsConst.findIn(o, [INVALID_REQUEST, MAX_DIMENSIONS_EXCEEDED, MAX_ELEMENTS_EXCEEDED, OK, OVER_QUERY_LIMIT, REQUEST_DENIED, UNKNOWN_ERROR]); }
+  static DistanceMatrixStatus find(Object o) { return findIn(o, [INVALID_REQUEST, MAX_DIMENSIONS_EXCEEDED, MAX_ELEMENTS_EXCEEDED, OK, OVER_QUERY_LIMIT, REQUEST_DENIED, UNKNOWN_ERROR]); }
 
-  const DistanceMatrixStatus._(String jsName) : super.fromJsName(jsName);
+  DistanceMatrixStatus._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
 }
 
-class DistanceMatrixElementStatus extends js.JsConst {
+class DistanceMatrixElementStatus extends js.JsObject {
   static const String TYPE_NAME = "google.maps.DistanceMatrixElementStatus";
 
-  static const DistanceMatrixElementStatus NOT_FOUND = const DistanceMatrixElementStatus._("${TYPE_NAME}.NOT_FOUND");
-  static const DistanceMatrixElementStatus OK = const DistanceMatrixElementStatus._("${TYPE_NAME}.OK");
-  static const DistanceMatrixElementStatus ZERO_RESULTS = const DistanceMatrixElementStatus._("${TYPE_NAME}.ZERO_RESULTS");
+  static final DistanceMatrixElementStatus NOT_FOUND = new DistanceMatrixElementStatus._("${TYPE_NAME}.NOT_FOUND");
+  static final DistanceMatrixElementStatus OK = new DistanceMatrixElementStatus._("${TYPE_NAME}.OK");
+  static final DistanceMatrixElementStatus ZERO_RESULTS = new DistanceMatrixElementStatus._("${TYPE_NAME}.ZERO_RESULTS");
 
-  static DistanceMatrixElementStatus find(Object o) { return js.JsConst.findIn(o, [NOT_FOUND, OK, ZERO_RESULTS]); }
+  static DistanceMatrixElementStatus find(Object o) { return findIn(o, [NOT_FOUND, OK, ZERO_RESULTS]); }
 
-  const DistanceMatrixElementStatus._(String jsName) : super.fromJsName(jsName);
+  DistanceMatrixElementStatus._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
 }
 
 class MapType extends js.JsObject {
@@ -1331,52 +1333,56 @@ class MapTypeStyle extends js.JsObject {
   set stylers(List<MapTypeStyler> stylers) => $["stylers"] = stylers;
 }
 
-class MapTypeStyleFeatureType extends _Constant<String> {
-  static const MapTypeStyleFeatureType ADMINISTRATIVE = const MapTypeStyleFeatureType._("administrative");
-  static const MapTypeStyleFeatureType ADMINISTRATIVE_COUNTRY = const MapTypeStyleFeatureType._("administrative.country");
-  static const MapTypeStyleFeatureType ADMINISTRATIVE_LAND_PARCEL = const MapTypeStyleFeatureType._("administrative.land_parcel");
-  static const MapTypeStyleFeatureType ADMINISTRATIVE_LOCALITY = const MapTypeStyleFeatureType._("administrative.locality");
-  static const MapTypeStyleFeatureType ADMINISTRATIVE_NEIGHBORHOOD = const MapTypeStyleFeatureType._("administrative.neighborhood");
-  static const MapTypeStyleFeatureType ADMINISTRATIVE_PROVINCE = const MapTypeStyleFeatureType._("administrative.province");
-  static const MapTypeStyleFeatureType ALL = const MapTypeStyleFeatureType._("all");
-  static const MapTypeStyleFeatureType LANDSCAPE = const MapTypeStyleFeatureType._("landscape");
-  static const MapTypeStyleFeatureType LANDSCAPE_MAN_MADE = const MapTypeStyleFeatureType._("landscape.man_made");
-  static const MapTypeStyleFeatureType LANDSCAPE_NATURAL = const MapTypeStyleFeatureType._("landscape.natural");
-  static const MapTypeStyleFeatureType POI = const MapTypeStyleFeatureType._("poi");
-  static const MapTypeStyleFeatureType POI_ATTRACTION = const MapTypeStyleFeatureType._("poi.attraction");
-  static const MapTypeStyleFeatureType POI_BUSINESS = const MapTypeStyleFeatureType._("poi.business");
-  static const MapTypeStyleFeatureType POI_GOVERNMENT = const MapTypeStyleFeatureType._("poi.government");
-  static const MapTypeStyleFeatureType POI_MEDICAL = const MapTypeStyleFeatureType._("poi.medical");
-  static const MapTypeStyleFeatureType POI_PARK = const MapTypeStyleFeatureType._("poi.park");
-  static const MapTypeStyleFeatureType POI_PLACE_OF_WORSHIP = const MapTypeStyleFeatureType._("poi.place_of_worship");
-  static const MapTypeStyleFeatureType POI_SCHOOL = const MapTypeStyleFeatureType._("poi.school");
-  static const MapTypeStyleFeatureType POI_SPORTS_COMPLEX = const MapTypeStyleFeatureType._("poi.sports_complex");
-  static const MapTypeStyleFeatureType ROAD = const MapTypeStyleFeatureType._("road");
-  static const MapTypeStyleFeatureType ROAD_ARTERIAL = const MapTypeStyleFeatureType._("road.arterial");
-  static const MapTypeStyleFeatureType ROAD_HIGHWAY = const MapTypeStyleFeatureType._("road.highway");
-  static const MapTypeStyleFeatureType ROAD_HIGHWAY_CONTROLLED_ACCESS = const MapTypeStyleFeatureType._("road.highway.controlled_access");
-  static const MapTypeStyleFeatureType ROAD_LOCAL = const MapTypeStyleFeatureType._("road.local");
-  static const MapTypeStyleFeatureType TRANSIT = const MapTypeStyleFeatureType._("transit");
-  static const MapTypeStyleFeatureType TRANSIT_LINE = const MapTypeStyleFeatureType._("transit.line");
-  static const MapTypeStyleFeatureType TRANSIT_STATION = const MapTypeStyleFeatureType._("transit.station");
-  static const MapTypeStyleFeatureType TRANSIT_STATION_AIRPORT = const MapTypeStyleFeatureType._("transit.station.airport");
-  static const MapTypeStyleFeatureType TRANSIT_STATION_BUS = const MapTypeStyleFeatureType._("transit.station.bus");
-  static const MapTypeStyleFeatureType TRANSIT_STATION_RAIL = const MapTypeStyleFeatureType._("transit.station.rail");
-  static const MapTypeStyleFeatureType WATER = const MapTypeStyleFeatureType._("water");
+class MapTypeStyleFeatureType {
+  static final MapTypeStyleFeatureType ADMINISTRATIVE = new MapTypeStyleFeatureType._("administrative");
+  static final MapTypeStyleFeatureType ADMINISTRATIVE_COUNTRY = new MapTypeStyleFeatureType._("administrative.country");
+  static final MapTypeStyleFeatureType ADMINISTRATIVE_LAND_PARCEL = new MapTypeStyleFeatureType._("administrative.land_parcel");
+  static final MapTypeStyleFeatureType ADMINISTRATIVE_LOCALITY = new MapTypeStyleFeatureType._("administrative.locality");
+  static final MapTypeStyleFeatureType ADMINISTRATIVE_NEIGHBORHOOD = new MapTypeStyleFeatureType._("administrative.neighborhood");
+  static final MapTypeStyleFeatureType ADMINISTRATIVE_PROVINCE = new MapTypeStyleFeatureType._("administrative.province");
+  static final MapTypeStyleFeatureType ALL = new MapTypeStyleFeatureType._("all");
+  static final MapTypeStyleFeatureType LANDSCAPE = new MapTypeStyleFeatureType._("landscape");
+  static final MapTypeStyleFeatureType LANDSCAPE_MAN_MADE = new MapTypeStyleFeatureType._("landscape.man_made");
+  static final MapTypeStyleFeatureType LANDSCAPE_NATURAL = new MapTypeStyleFeatureType._("landscape.natural");
+  static final MapTypeStyleFeatureType POI = new MapTypeStyleFeatureType._("poi");
+  static final MapTypeStyleFeatureType POI_ATTRACTION = new MapTypeStyleFeatureType._("poi.attraction");
+  static final MapTypeStyleFeatureType POI_BUSINESS = new MapTypeStyleFeatureType._("poi.business");
+  static final MapTypeStyleFeatureType POI_GOVERNMENT = new MapTypeStyleFeatureType._("poi.government");
+  static final MapTypeStyleFeatureType POI_MEDICAL = new MapTypeStyleFeatureType._("poi.medical");
+  static final MapTypeStyleFeatureType POI_PARK = new MapTypeStyleFeatureType._("poi.park");
+  static final MapTypeStyleFeatureType POI_PLACE_OF_WORSHIP = new MapTypeStyleFeatureType._("poi.place_of_worship");
+  static final MapTypeStyleFeatureType POI_SCHOOL = new MapTypeStyleFeatureType._("poi.school");
+  static final MapTypeStyleFeatureType POI_SPORTS_COMPLEX = new MapTypeStyleFeatureType._("poi.sports_complex");
+  static final MapTypeStyleFeatureType ROAD = new MapTypeStyleFeatureType._("road");
+  static final MapTypeStyleFeatureType ROAD_ARTERIAL = new MapTypeStyleFeatureType._("road.arterial");
+  static final MapTypeStyleFeatureType ROAD_HIGHWAY = new MapTypeStyleFeatureType._("road.highway");
+  static final MapTypeStyleFeatureType ROAD_HIGHWAY_CONTROLLED_ACCESS = new MapTypeStyleFeatureType._("road.highway.controlled_access");
+  static final MapTypeStyleFeatureType ROAD_LOCAL = new MapTypeStyleFeatureType._("road.local");
+  static final MapTypeStyleFeatureType TRANSIT = new MapTypeStyleFeatureType._("transit");
+  static final MapTypeStyleFeatureType TRANSIT_LINE = new MapTypeStyleFeatureType._("transit.line");
+  static final MapTypeStyleFeatureType TRANSIT_STATION = new MapTypeStyleFeatureType._("transit.station");
+  static final MapTypeStyleFeatureType TRANSIT_STATION_AIRPORT = new MapTypeStyleFeatureType._("transit.station.airport");
+  static final MapTypeStyleFeatureType TRANSIT_STATION_BUS = new MapTypeStyleFeatureType._("transit.station.bus");
+  static final MapTypeStyleFeatureType TRANSIT_STATION_RAIL = new MapTypeStyleFeatureType._("transit.station.rail");
+  static final MapTypeStyleFeatureType WATER = new MapTypeStyleFeatureType._("water");
 
-  static MapTypeStyleFeatureType find(String value) => findIn(value, [ADMINISTRATIVE, ADMINISTRATIVE_COUNTRY, ADMINISTRATIVE_LAND_PARCEL, ADMINISTRATIVE_LOCALITY, ADMINISTRATIVE_NEIGHBORHOOD, ADMINISTRATIVE_PROVINCE, ALL, LANDSCAPE, LANDSCAPE_MAN_MADE, LANDSCAPE_NATURAL, POI, POI_ATTRACTION, POI_BUSINESS, POI_GOVERNMENT, POI_MEDICAL, POI_PARK, POI_PLACE_OF_WORSHIP, POI_SCHOOL, POI_SPORTS_COMPLEX, ROAD, ROAD_ARTERIAL, ROAD_HIGHWAY, ROAD_HIGHWAY_CONTROLLED_ACCESS, ROAD_LOCAL, TRANSIT, TRANSIT_LINE, TRANSIT_STATION, TRANSIT_STATION_AIRPORT, TRANSIT_STATION_BUS, TRANSIT_STATION_RAIL, WATER]);
+  static MapTypeStyleFeatureType find(String value) => findIn(value, [ADMINISTRATIVE, ADMINISTRATIVE_COUNTRY, ADMINISTRATIVE_LAND_PARCEL, ADMINISTRATIVE_LOCALITY, ADMINISTRATIVE_NEIGHBORHOOD, ADMINISTRATIVE_PROVINCE, ALL, LANDSCAPE, LANDSCAPE_MAN_MADE, LANDSCAPE_NATURAL, POI, POI_ATTRACTION, POI_BUSINESS, POI_GOVERNMENT, POI_MEDICAL, POI_PARK, POI_PLACE_OF_WORSHIP, POI_SCHOOL, POI_SPORTS_COMPLEX, ROAD, ROAD_ARTERIAL, ROAD_HIGHWAY, ROAD_HIGHWAY_CONTROLLED_ACCESS, ROAD_LOCAL, TRANSIT, TRANSIT_LINE, TRANSIT_STATION, TRANSIT_STATION_AIRPORT, TRANSIT_STATION_BUS, TRANSIT_STATION_RAIL, WATER], (e) => e.value);
 
-  const MapTypeStyleFeatureType._(String value) : super.fromValue(value);
+  String value;
+
+  MapTypeStyleFeatureType._(String this.value);
 }
 
-class MapTypeStyleElementType extends _Constant<String> {
-  static const MapTypeStyleElementType ALL = const MapTypeStyleElementType._("all");
-  static const MapTypeStyleElementType GEOMETRY = const MapTypeStyleElementType._("geometry");
-  static const MapTypeStyleElementType LABELS = const MapTypeStyleElementType._("labels");
+class MapTypeStyleElementType {
+  static final MapTypeStyleElementType ALL = new MapTypeStyleElementType._("all");
+  static final MapTypeStyleElementType GEOMETRY = new MapTypeStyleElementType._("geometry");
+  static final MapTypeStyleElementType LABELS = new MapTypeStyleElementType._("labels");
 
-  static MapTypeStyleElementType find(String value) => findIn(value, [ALL, GEOMETRY, LABELS]);
+  static MapTypeStyleElementType find(String value) => findIn(value, [ALL, GEOMETRY, LABELS], (e) => e.value);
 
-  const MapTypeStyleElementType._(String value) : super.fromValue(value);
+  String value;
+
+  MapTypeStyleElementType._(String this.value);
 }
 
 // this class should have been used but "google.maps.MapTypeStyleFeatureType" and "google.maps.MapTypeStyleElementType" objects does not exist as describe in doc
@@ -1387,57 +1393,57 @@ class _MapTypeStyle extends js.JsObject {
 }
 
 // this class should have been used but "google.maps.MapTypeStyleFeatureType" object does not exist as describe in doc
-class _MapTypeStyleFeatureType extends js.JsConst {
+class _MapTypeStyleFeatureType extends js.JsObject {
   static const String TYPE_NAME = "google.maps.MapTypeStyleFeatureType";
 
-  static const _MapTypeStyleFeatureType ADMINISTRATIVE = const _MapTypeStyleFeatureType._("${TYPE_NAME}.administrative");
-  static const _MapTypeStyleFeatureType ADMINISTRATIVE_COUNTRY = const _MapTypeStyleFeatureType._("${TYPE_NAME}.administrative.country");
-  static const _MapTypeStyleFeatureType ADMINISTRATIVE_LAND_PARCEL = const _MapTypeStyleFeatureType._("${TYPE_NAME}.administrative.land_parcel");
-  static const _MapTypeStyleFeatureType ADMINISTRATIVE_LOCALITY = const _MapTypeStyleFeatureType._("${TYPE_NAME}.administrative.locality");
-  static const _MapTypeStyleFeatureType ADMINISTRATIVE_NEIGHBORHOOD = const _MapTypeStyleFeatureType._("${TYPE_NAME}.administrative.neighborhood");
-  static const _MapTypeStyleFeatureType ADMINISTRATIVE_PROVINCE = const _MapTypeStyleFeatureType._("${TYPE_NAME}.administrative.province");
-  static const _MapTypeStyleFeatureType ALL = const _MapTypeStyleFeatureType._("${TYPE_NAME}.all");
-  static const _MapTypeStyleFeatureType LANDSCAPE = const _MapTypeStyleFeatureType._("${TYPE_NAME}.landscape");
-  static const _MapTypeStyleFeatureType LANDSCAPE_MAN_MADE = const _MapTypeStyleFeatureType._("${TYPE_NAME}.landscape.man_made");
-  static const _MapTypeStyleFeatureType LANDSCAPE_NATURAL = const _MapTypeStyleFeatureType._("${TYPE_NAME}.landscape.natural");
-  static const _MapTypeStyleFeatureType POI = const _MapTypeStyleFeatureType._("${TYPE_NAME}.poi");
-  static const _MapTypeStyleFeatureType POI_ATTRACTION = const _MapTypeStyleFeatureType._("${TYPE_NAME}.poi.attraction");
-  static const _MapTypeStyleFeatureType POI_BUSINESS = const _MapTypeStyleFeatureType._("${TYPE_NAME}.poi.business");
-  static const _MapTypeStyleFeatureType POI_GOVERNMENT = const _MapTypeStyleFeatureType._("${TYPE_NAME}.poi.government");
-  static const _MapTypeStyleFeatureType POI_MEDICAL = const _MapTypeStyleFeatureType._("${TYPE_NAME}.poi.medical");
-  static const _MapTypeStyleFeatureType POI_PARK = const _MapTypeStyleFeatureType._("${TYPE_NAME}.poi.park");
-  static const _MapTypeStyleFeatureType POI_PLACE_OF_WORSHIP = const _MapTypeStyleFeatureType._("${TYPE_NAME}.poi.place_of_worship");
-  static const _MapTypeStyleFeatureType POI_SCHOOL = const _MapTypeStyleFeatureType._("${TYPE_NAME}.poi.school");
-  static const _MapTypeStyleFeatureType POI_SPORTS_COMPLEX = const _MapTypeStyleFeatureType._("${TYPE_NAME}.poi.sports_complex");
-  static const _MapTypeStyleFeatureType ROAD = const _MapTypeStyleFeatureType._("${TYPE_NAME}.road");
-  static const _MapTypeStyleFeatureType ROAD_ARTERIAL = const _MapTypeStyleFeatureType._("${TYPE_NAME}.road.arterial");
-  static const _MapTypeStyleFeatureType ROAD_HIGHWAY = const _MapTypeStyleFeatureType._("${TYPE_NAME}.road.highway");
-  static const _MapTypeStyleFeatureType ROAD_HIGHWAY_CONTROLLED_ACCESS = const _MapTypeStyleFeatureType._("${TYPE_NAME}.road.highway.controlled_access");
-  static const _MapTypeStyleFeatureType ROAD_LOCAL = const _MapTypeStyleFeatureType._("${TYPE_NAME}.road.local");
-  static const _MapTypeStyleFeatureType TRANSIT = const _MapTypeStyleFeatureType._("${TYPE_NAME}.transit");
-  static const _MapTypeStyleFeatureType TRANSIT_LINE = const _MapTypeStyleFeatureType._("${TYPE_NAME}.transit.line");
-  static const _MapTypeStyleFeatureType TRANSIT_STATION = const _MapTypeStyleFeatureType._("${TYPE_NAME}.transit.station");
-  static const _MapTypeStyleFeatureType TRANSIT_STATION_AIRPORT = const _MapTypeStyleFeatureType._("${TYPE_NAME}.transit.station.airport");
-  static const _MapTypeStyleFeatureType TRANSIT_STATION_BUS = const _MapTypeStyleFeatureType._("${TYPE_NAME}.transit.station.bus");
-  static const _MapTypeStyleFeatureType TRANSIT_STATION_RAIL = const _MapTypeStyleFeatureType._("${TYPE_NAME}.transit.station.rail");
-  static const _MapTypeStyleFeatureType WATER = const _MapTypeStyleFeatureType._("${TYPE_NAME}.water");
+  static final _MapTypeStyleFeatureType ADMINISTRATIVE = new _MapTypeStyleFeatureType._("${TYPE_NAME}.administrative");
+  static final _MapTypeStyleFeatureType ADMINISTRATIVE_COUNTRY = new _MapTypeStyleFeatureType._("${TYPE_NAME}.administrative.country");
+  static final _MapTypeStyleFeatureType ADMINISTRATIVE_LAND_PARCEL = new _MapTypeStyleFeatureType._("${TYPE_NAME}.administrative.land_parcel");
+  static final _MapTypeStyleFeatureType ADMINISTRATIVE_LOCALITY = new _MapTypeStyleFeatureType._("${TYPE_NAME}.administrative.locality");
+  static final _MapTypeStyleFeatureType ADMINISTRATIVE_NEIGHBORHOOD = new _MapTypeStyleFeatureType._("${TYPE_NAME}.administrative.neighborhood");
+  static final _MapTypeStyleFeatureType ADMINISTRATIVE_PROVINCE = new _MapTypeStyleFeatureType._("${TYPE_NAME}.administrative.province");
+  static final _MapTypeStyleFeatureType ALL = new _MapTypeStyleFeatureType._("${TYPE_NAME}.all");
+  static final _MapTypeStyleFeatureType LANDSCAPE = new _MapTypeStyleFeatureType._("${TYPE_NAME}.landscape");
+  static final _MapTypeStyleFeatureType LANDSCAPE_MAN_MADE = new _MapTypeStyleFeatureType._("${TYPE_NAME}.landscape.man_made");
+  static final _MapTypeStyleFeatureType LANDSCAPE_NATURAL = new _MapTypeStyleFeatureType._("${TYPE_NAME}.landscape.natural");
+  static final _MapTypeStyleFeatureType POI = new _MapTypeStyleFeatureType._("${TYPE_NAME}.poi");
+  static final _MapTypeStyleFeatureType POI_ATTRACTION = new _MapTypeStyleFeatureType._("${TYPE_NAME}.poi.attraction");
+  static final _MapTypeStyleFeatureType POI_BUSINESS = new _MapTypeStyleFeatureType._("${TYPE_NAME}.poi.business");
+  static final _MapTypeStyleFeatureType POI_GOVERNMENT = new _MapTypeStyleFeatureType._("${TYPE_NAME}.poi.government");
+  static final _MapTypeStyleFeatureType POI_MEDICAL = new _MapTypeStyleFeatureType._("${TYPE_NAME}.poi.medical");
+  static final _MapTypeStyleFeatureType POI_PARK = new _MapTypeStyleFeatureType._("${TYPE_NAME}.poi.park");
+  static final _MapTypeStyleFeatureType POI_PLACE_OF_WORSHIP = new _MapTypeStyleFeatureType._("${TYPE_NAME}.poi.place_of_worship");
+  static final _MapTypeStyleFeatureType POI_SCHOOL = new _MapTypeStyleFeatureType._("${TYPE_NAME}.poi.school");
+  static final _MapTypeStyleFeatureType POI_SPORTS_COMPLEX = new _MapTypeStyleFeatureType._("${TYPE_NAME}.poi.sports_complex");
+  static final _MapTypeStyleFeatureType ROAD = new _MapTypeStyleFeatureType._("${TYPE_NAME}.road");
+  static final _MapTypeStyleFeatureType ROAD_ARTERIAL = new _MapTypeStyleFeatureType._("${TYPE_NAME}.road.arterial");
+  static final _MapTypeStyleFeatureType ROAD_HIGHWAY = new _MapTypeStyleFeatureType._("${TYPE_NAME}.road.highway");
+  static final _MapTypeStyleFeatureType ROAD_HIGHWAY_CONTROLLED_ACCESS = new _MapTypeStyleFeatureType._("${TYPE_NAME}.road.highway.controlled_access");
+  static final _MapTypeStyleFeatureType ROAD_LOCAL = new _MapTypeStyleFeatureType._("${TYPE_NAME}.road.local");
+  static final _MapTypeStyleFeatureType TRANSIT = new _MapTypeStyleFeatureType._("${TYPE_NAME}.transit");
+  static final _MapTypeStyleFeatureType TRANSIT_LINE = new _MapTypeStyleFeatureType._("${TYPE_NAME}.transit.line");
+  static final _MapTypeStyleFeatureType TRANSIT_STATION = new _MapTypeStyleFeatureType._("${TYPE_NAME}.transit.station");
+  static final _MapTypeStyleFeatureType TRANSIT_STATION_AIRPORT = new _MapTypeStyleFeatureType._("${TYPE_NAME}.transit.station.airport");
+  static final _MapTypeStyleFeatureType TRANSIT_STATION_BUS = new _MapTypeStyleFeatureType._("${TYPE_NAME}.transit.station.bus");
+  static final _MapTypeStyleFeatureType TRANSIT_STATION_RAIL = new _MapTypeStyleFeatureType._("${TYPE_NAME}.transit.station.rail");
+  static final _MapTypeStyleFeatureType WATER = new _MapTypeStyleFeatureType._("${TYPE_NAME}.water");
 
-  static _MapTypeStyleFeatureType find(Object o) { return js.JsConst.findIn(o, [ADMINISTRATIVE, ADMINISTRATIVE_COUNTRY, ADMINISTRATIVE_LAND_PARCEL, ADMINISTRATIVE_LOCALITY, ADMINISTRATIVE_NEIGHBORHOOD, ADMINISTRATIVE_PROVINCE, ALL, LANDSCAPE, LANDSCAPE_MAN_MADE, LANDSCAPE_NATURAL, POI, POI_ATTRACTION, POI_BUSINESS, POI_GOVERNMENT, POI_MEDICAL, POI_PARK, POI_PLACE_OF_WORSHIP, POI_SCHOOL, POI_SPORTS_COMPLEX, ROAD, ROAD_ARTERIAL, ROAD_HIGHWAY, ROAD_HIGHWAY_CONTROLLED_ACCESS, ROAD_LOCAL, TRANSIT, TRANSIT_LINE, TRANSIT_STATION, TRANSIT_STATION_AIRPORT, TRANSIT_STATION_BUS, TRANSIT_STATION_RAIL, WATER]); }
+  static _MapTypeStyleFeatureType find(Object o) { return findIn(o, [ADMINISTRATIVE, ADMINISTRATIVE_COUNTRY, ADMINISTRATIVE_LAND_PARCEL, ADMINISTRATIVE_LOCALITY, ADMINISTRATIVE_NEIGHBORHOOD, ADMINISTRATIVE_PROVINCE, ALL, LANDSCAPE, LANDSCAPE_MAN_MADE, LANDSCAPE_NATURAL, POI, POI_ATTRACTION, POI_BUSINESS, POI_GOVERNMENT, POI_MEDICAL, POI_PARK, POI_PLACE_OF_WORSHIP, POI_SCHOOL, POI_SPORTS_COMPLEX, ROAD, ROAD_ARTERIAL, ROAD_HIGHWAY, ROAD_HIGHWAY_CONTROLLED_ACCESS, ROAD_LOCAL, TRANSIT, TRANSIT_LINE, TRANSIT_STATION, TRANSIT_STATION_AIRPORT, TRANSIT_STATION_BUS, TRANSIT_STATION_RAIL, WATER]); }
 
-  const _MapTypeStyleFeatureType._(String jsName) : super.fromJsName(jsName);
+  _MapTypeStyleFeatureType._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
 }
 
 // this class should have been used but "google.maps.MapTypeStyleElementType" object does not exist as describe in doc
-class _MapTypeStyleElementType extends js.JsConst {
+class _MapTypeStyleElementType extends js.JsObject {
   static const String TYPE_NAME = "google.maps.MapTypeStyleElementType";
 
-  static const _MapTypeStyleElementType ALL = const _MapTypeStyleElementType._("${TYPE_NAME}.all");
-  static const _MapTypeStyleElementType GEOMETRY = const _MapTypeStyleElementType._("${TYPE_NAME}.geometry");
-  static const _MapTypeStyleElementType LABELS = const _MapTypeStyleElementType._("${TYPE_NAME}.labels");
+  static final _MapTypeStyleElementType ALL = new _MapTypeStyleElementType._("${TYPE_NAME}.all");
+  static final _MapTypeStyleElementType GEOMETRY = new _MapTypeStyleElementType._("${TYPE_NAME}.geometry");
+  static final _MapTypeStyleElementType LABELS = new _MapTypeStyleElementType._("${TYPE_NAME}.labels");
 
-  static _MapTypeStyleElementType find(Object o) { return js.JsConst.findIn(o, [ALL, GEOMETRY, LABELS]); }
+  static _MapTypeStyleElementType find(Object o) { return findIn(o, [ALL, GEOMETRY, LABELS]); }
 
-  const _MapTypeStyleElementType._(String jsName) : super.fromJsName(jsName);
+  _MapTypeStyleElementType._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
 }
 
 class MapTypeStyler extends js.JsObject {
@@ -1449,14 +1455,16 @@ class MapTypeStyler extends js.JsObject {
   set visibility(MapTypeStylerVisibility visibility) => $["visibility"] = visibility.value;
 }
 
-class MapTypeStylerVisibility extends _Constant<String> {
-  static const MapTypeStylerVisibility ON = const MapTypeStylerVisibility._("on");
-  static const MapTypeStylerVisibility OFF = const MapTypeStylerVisibility._("off");
-  static const MapTypeStylerVisibility SIMPLIFIED = const MapTypeStylerVisibility._("simplified");
+class MapTypeStylerVisibility {
+  static final MapTypeStylerVisibility ON = new MapTypeStylerVisibility._("on");
+  static final MapTypeStylerVisibility OFF = new MapTypeStylerVisibility._("off");
+  static final MapTypeStylerVisibility SIMPLIFIED = new MapTypeStylerVisibility._("simplified");
 
-  static MapTypeStylerVisibility find(String value) => findIn(value, [ON, OFF, SIMPLIFIED]);
+  static MapTypeStylerVisibility find(String value) => findIn(value, [ON, OFF, SIMPLIFIED], (e) => e.value);
 
-  const MapTypeStylerVisibility._(String value) : super.fromValue(value);
+  String value;
+
+  MapTypeStylerVisibility._(String this.value);
 }
 
 class BicyclingLayer extends MVCObject {
@@ -1575,22 +1583,22 @@ class KmlLayerMetadata extends js.JsObject {
   String get snippet => $["snippet"];
 }
 
-class KmlLayerStatus extends js.JsConst {
+class KmlLayerStatus extends js.JsObject {
   static const String TYPE_NAME = "google.maps.KmlLayerStatus";
 
-  static const KmlLayerStatus DOCUMENT_NOT_FOUND = const KmlLayerStatus._("${TYPE_NAME}.DOCUMENT_NOT_FOUND");
-  static const KmlLayerStatus DOCUMENT_TOO_LARGE = const KmlLayerStatus._("${TYPE_NAME}.DOCUMENT_TOO_LARGE");
-  static const KmlLayerStatus FETCH_ERROR = const KmlLayerStatus._("${TYPE_NAME}.FETCH_ERROR");
-  static const KmlLayerStatus INVALID_DOCUMENT = const KmlLayerStatus._("${TYPE_NAME}.INVALID_DOCUMENT");
-  static const KmlLayerStatus INVALID_REQUEST = const KmlLayerStatus._("${TYPE_NAME}.INVALID_REQUEST");
-  static const KmlLayerStatus LIMITS_EXCEEDED = const KmlLayerStatus._("${TYPE_NAME}.LIMITS_EXCEEDED");
-  static const KmlLayerStatus OK = const KmlLayerStatus._("${TYPE_NAME}.OK");
-  static const KmlLayerStatus TIMED_OUT = const KmlLayerStatus._("${TYPE_NAME}.TIMED_OUT");
-  static const KmlLayerStatus UNKNOWN = const KmlLayerStatus._("${TYPE_NAME}.UNKNOWN");
+  static final KmlLayerStatus DOCUMENT_NOT_FOUND = new KmlLayerStatus._("${TYPE_NAME}.DOCUMENT_NOT_FOUND");
+  static final KmlLayerStatus DOCUMENT_TOO_LARGE = new KmlLayerStatus._("${TYPE_NAME}.DOCUMENT_TOO_LARGE");
+  static final KmlLayerStatus FETCH_ERROR = new KmlLayerStatus._("${TYPE_NAME}.FETCH_ERROR");
+  static final KmlLayerStatus INVALID_DOCUMENT = new KmlLayerStatus._("${TYPE_NAME}.INVALID_DOCUMENT");
+  static final KmlLayerStatus INVALID_REQUEST = new KmlLayerStatus._("${TYPE_NAME}.INVALID_REQUEST");
+  static final KmlLayerStatus LIMITS_EXCEEDED = new KmlLayerStatus._("${TYPE_NAME}.LIMITS_EXCEEDED");
+  static final KmlLayerStatus OK = new KmlLayerStatus._("${TYPE_NAME}.OK");
+  static final KmlLayerStatus TIMED_OUT = new KmlLayerStatus._("${TYPE_NAME}.TIMED_OUT");
+  static final KmlLayerStatus UNKNOWN = new KmlLayerStatus._("${TYPE_NAME}.UNKNOWN");
 
-  static KmlLayerStatus find(Object o) { return js.JsConst.findIn(o, [DOCUMENT_NOT_FOUND, DOCUMENT_TOO_LARGE, FETCH_ERROR, INVALID_DOCUMENT, INVALID_REQUEST, LIMITS_EXCEEDED, OK, TIMED_OUT, UNKNOWN]); }
+  static KmlLayerStatus find(Object o) { return findIn(o, [DOCUMENT_NOT_FOUND, DOCUMENT_TOO_LARGE, FETCH_ERROR, INVALID_DOCUMENT, INVALID_REQUEST, LIMITS_EXCEEDED, OK, TIMED_OUT, UNKNOWN]); }
 
-  const KmlLayerStatus._(String jsName) : super.fromJsName(jsName);
+  KmlLayerStatus._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
 }
 
 class KmlMouseEvent extends NativeEvent {
@@ -1778,16 +1786,16 @@ class StreetViewService extends js.JsObject {
   }
 }
 
-class StreetViewStatus extends js.JsConst {
+class StreetViewStatus extends js.JsObject {
   static const String TYPE_NAME = "google.maps.StreetViewStatus";
 
-  static const StreetViewStatus OK = const StreetViewStatus._("${TYPE_NAME}.OK");
-  static const StreetViewStatus UNKNOWN_ERROR = const StreetViewStatus._("${TYPE_NAME}.UNKNOWN_ERROR");
-  static const StreetViewStatus ZERO_RESULTS = const StreetViewStatus._("${TYPE_NAME}.ZERO_RESULTS");
+  static final StreetViewStatus OK = new StreetViewStatus._("${TYPE_NAME}.OK");
+  static final StreetViewStatus UNKNOWN_ERROR = new StreetViewStatus._("${TYPE_NAME}.UNKNOWN_ERROR");
+  static final StreetViewStatus ZERO_RESULTS = new StreetViewStatus._("${TYPE_NAME}.ZERO_RESULTS");
 
-  static StreetViewStatus find(Object o) { return js.JsConst.findIn(o, [OK, UNKNOWN_ERROR, ZERO_RESULTS]); }
+  static StreetViewStatus find(Object o) { return findIn(o, [OK, UNKNOWN_ERROR, ZERO_RESULTS]); }
 
-  const StreetViewStatus._(String jsName) : super.fromJsName(jsName);
+  StreetViewStatus._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
 }
 
 class MapsEventListener extends js.JsObject {

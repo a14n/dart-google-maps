@@ -134,39 +134,6 @@ class JsList<E> extends JsObject implements List<E> {
 
 typedef Object CallbackFunction(List args);
 
-//-----------------------
-// constant/enum handling
-//-----------------------
-
-class JsConst implements JsObject {
-  static final _constRefs = new Map<String, JsRef>();
-  static Object findIn(Object o, List<JsConst> elements) {
-    final matchingElements = elements.filter((e) => (e == o));
-    if (matchingElements.length === 1) {
-      return matchingElements.iterator().next();
-    } else {
-      return null;
-    }
-  }
-
-  final String jsName;
-
-  const JsConst.fromJsName(String this.jsName);
-
-  JsRef get jsRef  {
-    if (!_constRefs.containsKey(jsName)){
-      _constRefs[jsName] = jsWindow.$.getPropertyAsJsRef(jsName);
-    }
-    return _constRefs[jsName];
-  }
-
-  // implementation of JsObject methods
-  JsOperations get $ => new JsOperations(jsRef);
-  bool operator ==(Object other) {
-    return _areEquals(this, other);
-  }
-}
-
 //
 final jsWindow = new JsObject.fromJsRef(_getWindowRef());
 
