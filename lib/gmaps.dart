@@ -113,7 +113,9 @@ class MapTypeId extends js.JsObject {
   static final MapTypeId SATELLITE = new MapTypeId._("${TYPE_NAME}.SATELLITE");
   static final MapTypeId TERRAIN = new MapTypeId._("${TYPE_NAME}.TERRAIN");
 
-  static MapTypeId find(Object o) { return findIn(o, [HYBRID, ROADMAP, SATELLITE, TERRAIN]); }
+  static final _INSTANCES = [HYBRID, ROADMAP, SATELLITE, TERRAIN];
+
+  static MapTypeId find(Object o) { return findIn(o, _INSTANCES); }
 
   MapTypeId._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
 }
@@ -136,7 +138,9 @@ class MapTypeControlStyle extends js.JsObject {
   static final MapTypeControlStyle DROPDOWN_MENU = new MapTypeControlStyle._("${TYPE_NAME}.DROPDOWN_MENU");
   static final MapTypeControlStyle HORIZONTAL_BAR = new MapTypeControlStyle._("${TYPE_NAME}.HORIZONTAL_BAR");
 
-  static MapTypeControlStyle find(Object o) { return findIn(o, [DEFAULT, DROPDOWN_MENU, HORIZONTAL_BAR]); }
+  static final _INSTANCES = [DEFAULT, DROPDOWN_MENU, HORIZONTAL_BAR];
+
+  static MapTypeControlStyle find(Object o) { return findIn(o, _INSTANCES); }
 
   MapTypeControlStyle._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
 }
@@ -163,7 +167,9 @@ class ScaleControlStyle extends js.JsObject {
 
   static final ScaleControlStyle DEFAULT = new ScaleControlStyle._("${TYPE_NAME}.DEFAULT");
 
-  static ScaleControlStyle find(Object o) { return findIn(o, [DEFAULT]); }
+  static final _INSTANCES = [DEFAULT];
+
+  static ScaleControlStyle find(Object o) { return findIn(o, _INSTANCES); }
 
   ScaleControlStyle._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
 }
@@ -184,7 +190,9 @@ class ZoomControlStyle extends js.JsObject {
   static final ZoomControlStyle LARGE = new ZoomControlStyle._("${TYPE_NAME}.LARGE");
   static final ZoomControlStyle SMALL = new ZoomControlStyle._("${TYPE_NAME}.SMALL");
 
-  static ZoomControlStyle find(Object o) { return findIn(o, [DEFAULT, LARGE, SMALL]); }
+  static final _INSTANCES = [DEFAULT, LARGE, SMALL];
+
+  static ZoomControlStyle find(Object o) { return findIn(o, _INSTANCES); }
 
   ZoomControlStyle._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
 }
@@ -205,7 +213,9 @@ class ControlPosition extends js.JsObject {
   static final ControlPosition TOP_LEFT = new ControlPosition._("${TYPE_NAME}.TOP_LEFT");
   static final ControlPosition TOP_RIGHT = new ControlPosition._("${TYPE_NAME}.TOP_RIGHT");
 
-  static ControlPosition find(Object o) { return findIn(o, [BOTTOM_CENTER, BOTTOM_LEFT, BOTTOM_RIGHT, LEFT_BOTTOM, LEFT_CENTER, LEFT_TOP, RIGHT_BOTTOM, RIGHT_CENTER, RIGHT_TOP, TOP_CENTER, TOP_LEFT, TOP_RIGHT]); }
+  static final _INSTANCES = [BOTTOM_CENTER, BOTTOM_LEFT, BOTTOM_RIGHT, LEFT_BOTTOM, LEFT_CENTER, LEFT_TOP, RIGHT_BOTTOM, RIGHT_CENTER, RIGHT_TOP, TOP_CENTER, TOP_LEFT, TOP_RIGHT];
+
+  static ControlPosition find(Object o) { return findIn(o, _INSTANCES); }
 
   ControlPosition._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
 }
@@ -360,7 +370,9 @@ class MarkerShapeType {
   static final MarkerShapeType POLY = new MarkerShapeType._("poly");
   static final MarkerShapeType RECT = new MarkerShapeType._("rect");
 
-  static MarkerShapeType find(String value) => findIn(value, [CIRCLE, POLY, RECT], (e) => e.value);
+  static final _INSTANCES = [CIRCLE, POLY, RECT];
+
+  static MarkerShapeType find(String value) => findIn(value, _INSTANCES, (e) => e.value);
 
   String value;
 
@@ -412,7 +424,9 @@ class SymbolPath extends js.JsObject {
   static final SymbolPath FORWARD_CLOSED_ARROW = new SymbolPath._("${TYPE_NAME}.FORWARD_CLOSED_ARROW");
   static final SymbolPath FORWARD_OPEN_ARROW = new SymbolPath._("${TYPE_NAME}.FORWARD_OPEN_ARROW");
 
-  static SymbolPath find(Object o) { return findIn(o, [BACKWARD_CLOSED_ARROW, BACKWARD_OPEN_ARROW, CIRCLE, FORWARD_CLOSED_ARROW, FORWARD_OPEN_ARROW]); }
+  static final _INSTANCES = [BACKWARD_CLOSED_ARROW, BACKWARD_OPEN_ARROW, CIRCLE, FORWARD_CLOSED_ARROW, FORWARD_OPEN_ARROW];
+
+  static SymbolPath find(Object o) { return findIn(o, _INSTANCES); }
 
   SymbolPath._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
 }
@@ -423,7 +437,9 @@ class Animation extends js.JsObject {
   static final Animation BOUNCE = new Animation._("${TYPE_NAME}.BOUNCE");
   static final Animation DROP = new Animation._("${TYPE_NAME}.DROP");
 
-  static Animation find(Object o) { return findIn(o, [BOUNCE, DROP]); }
+  static final _INSTANCES = [BOUNCE, DROP];
+
+  static Animation find(Object o) { return findIn(o, _INSTANCES); }
 
   Animation._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
 }
@@ -764,7 +780,9 @@ class GeocoderStatus extends js.JsObject {
   static final GeocoderStatus UNKNOWN_ERROR = new GeocoderStatus._("${TYPE_NAME}.UNKNOWN_ERROR");
   static final GeocoderStatus ZERO_RESULTS = new GeocoderStatus._("${TYPE_NAME}.ZERO_RESULTS");
 
-  static GeocoderStatus find(Object o) { return findIn(o, [ERROR, INVALID_REQUEST, OK, OVER_QUERY_LIMIT, REQUEST_DENIED, UNKNOWN_ERROR, ZERO_RESULTS]); }
+  static final _INSTANCES = [ERROR, INVALID_REQUEST, OK, OVER_QUERY_LIMIT, REQUEST_DENIED, UNKNOWN_ERROR, ZERO_RESULTS];
+
+  static GeocoderStatus find(Object o) { return findIn(o, _INSTANCES); }
 
   GeocoderStatus._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
 }
@@ -806,7 +824,9 @@ class GeocoderLocationType extends js.JsObject {
   static final GeocoderLocationType RANGE_INTERPOLATED = new GeocoderLocationType._("${TYPE_NAME}.RANGE_INTERPOLATED");
   static final GeocoderLocationType ROOFTOP = new GeocoderLocationType._("${TYPE_NAME}.ROOFTOP");
 
-  static GeocoderLocationType find(Object o) { return findIn(o, [APPROXIMATE, GEOMETRIC_CENTER, RANGE_INTERPOLATED, ROOFTOP]); }
+  static final _INSTANCES = [APPROXIMATE, GEOMETRIC_CENTER, RANGE_INTERPOLATED, ROOFTOP];
+
+  static GeocoderLocationType find(Object o) { return findIn(o, _INSTANCES); }
 
   GeocoderLocationType._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
 }
@@ -892,7 +912,9 @@ class TravelMode extends js.JsObject {
   static final TravelMode TRANSIT = new TravelMode._("${TYPE_NAME}.TRANSIT");
   static final TravelMode WALKING = new TravelMode._("${TYPE_NAME}.WALKING");
 
-  static TravelMode find(Object o) { return findIn(o, [BICYCLING, DRIVING, TRANSIT, WALKING]); }
+  static final _INSTANCES = [BICYCLING, DRIVING, TRANSIT, WALKING];
+
+  static TravelMode find(Object o) { return findIn(o, _INSTANCES); }
 
   TravelMode._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
 }
@@ -903,7 +925,9 @@ class UnitSystem extends js.JsObject {
   static final UnitSystem IMPERIAL = new UnitSystem._("${TYPE_NAME}.IMPERIAL");
   static final UnitSystem METRIC = new UnitSystem._("${TYPE_NAME}.METRIC");
 
-  static UnitSystem find(Object o) { return findIn(o, [IMPERIAL, METRIC]); }
+  static final _INSTANCES = [IMPERIAL, METRIC];
+
+  static UnitSystem find(Object o) { return findIn(o, _INSTANCES); }
 
   UnitSystem._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
 }
@@ -936,7 +960,9 @@ class DirectionsStatus extends js.JsObject {
   static final DirectionsStatus UNKNOWN_ERROR = new DirectionsStatus._("${TYPE_NAME}.UNKNOWN_ERROR");
   static final DirectionsStatus ZERO_RESULTS = new DirectionsStatus._("${TYPE_NAME}.ZERO_RESULTS");
 
-  static DirectionsStatus find(Object o) { return findIn(o, [INVALID_REQUEST, MAX_WAYPOINTS_EXCEEDED, NOT_FOUND, OK, OVER_QUERY_LIMIT, REQUEST_DENIED, UNKNOWN_ERROR, ZERO_RESULTS]); }
+  static final _INSTANCES = [INVALID_REQUEST, MAX_WAYPOINTS_EXCEEDED, NOT_FOUND, OK, OVER_QUERY_LIMIT, REQUEST_DENIED, UNKNOWN_ERROR, ZERO_RESULTS];
+
+  static DirectionsStatus find(Object o) { return findIn(o, _INSTANCES); }
 
   DirectionsStatus._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
 }
@@ -1123,7 +1149,9 @@ class ElevationStatus extends js.JsObject {
   static final ElevationStatus REQUEST_DENIED = new ElevationStatus._("${TYPE_NAME}.REQUEST_DENIED");
   static final ElevationStatus UNKNOWN_ERROR = new ElevationStatus._("${TYPE_NAME}.UNKNOWN_ERROR");
 
-  static ElevationStatus find(Object o) { return findIn(o, [INVALID_REQUEST, OK, OVER_QUERY_LIMIT, REQUEST_DENIED, UNKNOWN_ERROR]); }
+  static final _INSTANCES = [INVALID_REQUEST, OK, OVER_QUERY_LIMIT, REQUEST_DENIED, UNKNOWN_ERROR];
+
+  static ElevationStatus find(Object o) { return findIn(o, _INSTANCES); }
 
   ElevationStatus._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
 }
@@ -1155,7 +1183,9 @@ class MaxZoomStatus extends js.JsObject {
   static final MaxZoomStatus ERROR = new MaxZoomStatus._("${TYPE_NAME}.ERROR");
   static final MaxZoomStatus OK = new MaxZoomStatus._("${TYPE_NAME}.OK");
 
-  static MaxZoomStatus find(Object o) { return findIn(o, [ERROR, OK]); }
+  static final _INSTANCES = [ERROR, OK];
+
+  static MaxZoomStatus find(Object o) { return findIn(o, _INSTANCES); }
 
   MaxZoomStatus._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
 }
@@ -1231,7 +1261,9 @@ class DistanceMatrixStatus extends js.JsObject {
   static final DistanceMatrixStatus REQUEST_DENIED = new DistanceMatrixStatus._("${TYPE_NAME}.REQUEST_DENIED");
   static final DistanceMatrixStatus UNKNOWN_ERROR = new DistanceMatrixStatus._("${TYPE_NAME}.UNKNOWN_ERROR");
 
-  static DistanceMatrixStatus find(Object o) { return findIn(o, [INVALID_REQUEST, MAX_DIMENSIONS_EXCEEDED, MAX_ELEMENTS_EXCEEDED, OK, OVER_QUERY_LIMIT, REQUEST_DENIED, UNKNOWN_ERROR]); }
+  static final _INSTANCES = [INVALID_REQUEST, MAX_DIMENSIONS_EXCEEDED, MAX_ELEMENTS_EXCEEDED, OK, OVER_QUERY_LIMIT, REQUEST_DENIED, UNKNOWN_ERROR];
+
+  static DistanceMatrixStatus find(Object o) { return findIn(o, _INSTANCES); }
 
   DistanceMatrixStatus._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
 }
@@ -1243,7 +1275,9 @@ class DistanceMatrixElementStatus extends js.JsObject {
   static final DistanceMatrixElementStatus OK = new DistanceMatrixElementStatus._("${TYPE_NAME}.OK");
   static final DistanceMatrixElementStatus ZERO_RESULTS = new DistanceMatrixElementStatus._("${TYPE_NAME}.ZERO_RESULTS");
 
-  static DistanceMatrixElementStatus find(Object o) { return findIn(o, [NOT_FOUND, OK, ZERO_RESULTS]); }
+  static final _INSTANCES = [NOT_FOUND, OK, ZERO_RESULTS];
+
+  static DistanceMatrixElementStatus find(Object o) { return findIn(o, _INSTANCES); }
 
   DistanceMatrixElementStatus._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
 }
@@ -1366,7 +1400,9 @@ class MapTypeStyleFeatureType {
   static final MapTypeStyleFeatureType TRANSIT_STATION_RAIL = new MapTypeStyleFeatureType._("transit.station.rail");
   static final MapTypeStyleFeatureType WATER = new MapTypeStyleFeatureType._("water");
 
-  static MapTypeStyleFeatureType find(String value) => findIn(value, [ADMINISTRATIVE, ADMINISTRATIVE_COUNTRY, ADMINISTRATIVE_LAND_PARCEL, ADMINISTRATIVE_LOCALITY, ADMINISTRATIVE_NEIGHBORHOOD, ADMINISTRATIVE_PROVINCE, ALL, LANDSCAPE, LANDSCAPE_MAN_MADE, LANDSCAPE_NATURAL, POI, POI_ATTRACTION, POI_BUSINESS, POI_GOVERNMENT, POI_MEDICAL, POI_PARK, POI_PLACE_OF_WORSHIP, POI_SCHOOL, POI_SPORTS_COMPLEX, ROAD, ROAD_ARTERIAL, ROAD_HIGHWAY, ROAD_HIGHWAY_CONTROLLED_ACCESS, ROAD_LOCAL, TRANSIT, TRANSIT_LINE, TRANSIT_STATION, TRANSIT_STATION_AIRPORT, TRANSIT_STATION_BUS, TRANSIT_STATION_RAIL, WATER], (e) => e.value);
+  static final _INSTANCES = [ADMINISTRATIVE, ADMINISTRATIVE_COUNTRY, ADMINISTRATIVE_LAND_PARCEL, ADMINISTRATIVE_LOCALITY, ADMINISTRATIVE_NEIGHBORHOOD, ADMINISTRATIVE_PROVINCE, ALL, LANDSCAPE, LANDSCAPE_MAN_MADE, LANDSCAPE_NATURAL, POI, POI_ATTRACTION, POI_BUSINESS, POI_GOVERNMENT, POI_MEDICAL, POI_PARK, POI_PLACE_OF_WORSHIP, POI_SCHOOL, POI_SPORTS_COMPLEX, ROAD, ROAD_ARTERIAL, ROAD_HIGHWAY, ROAD_HIGHWAY_CONTROLLED_ACCESS, ROAD_LOCAL, TRANSIT, TRANSIT_LINE, TRANSIT_STATION, TRANSIT_STATION_AIRPORT, TRANSIT_STATION_BUS, TRANSIT_STATION_RAIL, WATER];
+
+  static MapTypeStyleFeatureType find(String value) => findIn(value, _INSTANCES, (e) => e.value);
 
   String value;
 
@@ -1378,7 +1414,9 @@ class MapTypeStyleElementType {
   static final MapTypeStyleElementType GEOMETRY = new MapTypeStyleElementType._("geometry");
   static final MapTypeStyleElementType LABELS = new MapTypeStyleElementType._("labels");
 
-  static MapTypeStyleElementType find(String value) => findIn(value, [ALL, GEOMETRY, LABELS], (e) => e.value);
+  static final _INSTANCES = [ALL, GEOMETRY, LABELS];
+
+  static MapTypeStyleElementType find(String value) => findIn(value, _INSTANCES, (e) => e.value);
 
   String value;
 
@@ -1428,7 +1466,9 @@ class _MapTypeStyleFeatureType extends js.JsObject {
   static final _MapTypeStyleFeatureType TRANSIT_STATION_RAIL = new _MapTypeStyleFeatureType._("${TYPE_NAME}.transit.station.rail");
   static final _MapTypeStyleFeatureType WATER = new _MapTypeStyleFeatureType._("${TYPE_NAME}.water");
 
-  static _MapTypeStyleFeatureType find(Object o) { return findIn(o, [ADMINISTRATIVE, ADMINISTRATIVE_COUNTRY, ADMINISTRATIVE_LAND_PARCEL, ADMINISTRATIVE_LOCALITY, ADMINISTRATIVE_NEIGHBORHOOD, ADMINISTRATIVE_PROVINCE, ALL, LANDSCAPE, LANDSCAPE_MAN_MADE, LANDSCAPE_NATURAL, POI, POI_ATTRACTION, POI_BUSINESS, POI_GOVERNMENT, POI_MEDICAL, POI_PARK, POI_PLACE_OF_WORSHIP, POI_SCHOOL, POI_SPORTS_COMPLEX, ROAD, ROAD_ARTERIAL, ROAD_HIGHWAY, ROAD_HIGHWAY_CONTROLLED_ACCESS, ROAD_LOCAL, TRANSIT, TRANSIT_LINE, TRANSIT_STATION, TRANSIT_STATION_AIRPORT, TRANSIT_STATION_BUS, TRANSIT_STATION_RAIL, WATER]); }
+  static final _INSTANCES = [ADMINISTRATIVE, ADMINISTRATIVE_COUNTRY, ADMINISTRATIVE_LAND_PARCEL, ADMINISTRATIVE_LOCALITY, ADMINISTRATIVE_NEIGHBORHOOD, ADMINISTRATIVE_PROVINCE, ALL, LANDSCAPE, LANDSCAPE_MAN_MADE, LANDSCAPE_NATURAL, POI, POI_ATTRACTION, POI_BUSINESS, POI_GOVERNMENT, POI_MEDICAL, POI_PARK, POI_PLACE_OF_WORSHIP, POI_SCHOOL, POI_SPORTS_COMPLEX, ROAD, ROAD_ARTERIAL, ROAD_HIGHWAY, ROAD_HIGHWAY_CONTROLLED_ACCESS, ROAD_LOCAL, TRANSIT, TRANSIT_LINE, TRANSIT_STATION, TRANSIT_STATION_AIRPORT, TRANSIT_STATION_BUS, TRANSIT_STATION_RAIL, WATER];
+
+  static _MapTypeStyleFeatureType find(Object o) { return findIn(o, _INSTANCES); }
 
   _MapTypeStyleFeatureType._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
 }
@@ -1441,7 +1481,9 @@ class _MapTypeStyleElementType extends js.JsObject {
   static final _MapTypeStyleElementType GEOMETRY = new _MapTypeStyleElementType._("${TYPE_NAME}.geometry");
   static final _MapTypeStyleElementType LABELS = new _MapTypeStyleElementType._("${TYPE_NAME}.labels");
 
-  static _MapTypeStyleElementType find(Object o) { return findIn(o, [ALL, GEOMETRY, LABELS]); }
+  static final _INSTANCES = [ALL, GEOMETRY, LABELS];
+
+  static _MapTypeStyleElementType find(Object o) { return findIn(o, _INSTANCES); }
 
   _MapTypeStyleElementType._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
 }
@@ -1460,7 +1502,9 @@ class MapTypeStylerVisibility {
   static final MapTypeStylerVisibility OFF = new MapTypeStylerVisibility._("off");
   static final MapTypeStylerVisibility SIMPLIFIED = new MapTypeStylerVisibility._("simplified");
 
-  static MapTypeStylerVisibility find(String value) => findIn(value, [ON, OFF, SIMPLIFIED], (e) => e.value);
+  static final _INSTANCES = [ON, OFF, SIMPLIFIED];
+
+  static MapTypeStylerVisibility find(String value) => findIn(value, _INSTANCES, (e) => e.value);
 
   String value;
 
@@ -1596,7 +1640,9 @@ class KmlLayerStatus extends js.JsObject {
   static final KmlLayerStatus TIMED_OUT = new KmlLayerStatus._("${TYPE_NAME}.TIMED_OUT");
   static final KmlLayerStatus UNKNOWN = new KmlLayerStatus._("${TYPE_NAME}.UNKNOWN");
 
-  static KmlLayerStatus find(Object o) { return findIn(o, [DOCUMENT_NOT_FOUND, DOCUMENT_TOO_LARGE, FETCH_ERROR, INVALID_DOCUMENT, INVALID_REQUEST, LIMITS_EXCEEDED, OK, TIMED_OUT, UNKNOWN]); }
+  static final _INSTANCES = [DOCUMENT_NOT_FOUND, DOCUMENT_TOO_LARGE, FETCH_ERROR, INVALID_DOCUMENT, INVALID_REQUEST, LIMITS_EXCEEDED, OK, TIMED_OUT, UNKNOWN];
+
+  static KmlLayerStatus find(Object o) { return findIn(o, _INSTANCES); }
 
   KmlLayerStatus._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
 }
@@ -1793,7 +1839,9 @@ class StreetViewStatus extends js.JsObject {
   static final StreetViewStatus UNKNOWN_ERROR = new StreetViewStatus._("${TYPE_NAME}.UNKNOWN_ERROR");
   static final StreetViewStatus ZERO_RESULTS = new StreetViewStatus._("${TYPE_NAME}.ZERO_RESULTS");
 
-  static StreetViewStatus find(Object o) { return findIn(o, [OK, UNKNOWN_ERROR, ZERO_RESULTS]); }
+  static final _INSTANCES = [OK, UNKNOWN_ERROR, ZERO_RESULTS];
+
+  static StreetViewStatus find(Object o) { return findIn(o, _INSTANCES); }
 
   StreetViewStatus._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
 }

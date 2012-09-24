@@ -47,7 +47,9 @@ class AdFormat extends js.JsObject {
   static final AdFormat VERTICAL_BANNER= new AdFormat._("${TYPE_NAME}.VERTICAL_BANNER");
   static final AdFormat WIDE_SKYSCRAPER= new AdFormat._("${TYPE_NAME}.WIDE_SKYSCRAPER");
 
-  static AdFormat find(Object o) { return findIn(o, [BANNER, BUTTON, HALF_BANNER, LARGE_RECTANGLE, LEADERBOARD, MEDIUM_RECTANGLE, SKYSCRAPER, SMALL_RECTANGLE, SMALL_SQUARE, SQUARE, VERTICAL_BANNER, WIDE_SKYSCRAPER]); }
+  static final _INSTANCES = [BANNER, BUTTON, HALF_BANNER, LARGE_RECTANGLE, LEADERBOARD, MEDIUM_RECTANGLE, SKYSCRAPER, SMALL_RECTANGLE, SMALL_SQUARE, SQUARE, VERTICAL_BANNER, WIDE_SKYSCRAPER];
+
+  static AdFormat find(Object o) { return findIn(o, _INSTANCES); }
 
   AdFormat._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
 }

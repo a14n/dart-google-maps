@@ -37,10 +37,12 @@ class WeatherLayerOptions extends js.JsObject {
 class TemperatureUnit extends js.JsObject {
   static const String TYPE_NAME = "google.maps.weather.TemperatureUnit";
 
-  static finalTemperatureUnit CELSIUS= new TemperatureUnit._("${TYPE_NAME}.CELSIUS");
-  static finalTemperatureUnit FAHRENHEIT= new TemperatureUnit._("${TYPE_NAME}.FAHRENHEIT");
+  static final TemperatureUnit CELSIUS = new TemperatureUnit._("${TYPE_NAME}.CELSIUS");
+  static final TemperatureUnit FAHRENHEIT = new TemperatureUnit._("${TYPE_NAME}.FAHRENHEIT");
 
-  static TemperatureUnit find(Object o) { return findIn(o, [CELSIUS, FAHRENHEIT]); }
+  static final _INSTANCES = [CELSIUS, FAHRENHEIT];
+
+  static TemperatureUnit find(Object o) { return findIn(o, _INSTANCES); }
 
   TemperatureUnit._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
 }
@@ -48,11 +50,13 @@ class TemperatureUnit extends js.JsObject {
 class WindSpeedUnit extends js.JsObject {
   static const String TYPE_NAME = "google.maps.weather.WindSpeedUnit";
 
-  static finalWindSpeedUnit KILOMETERS_PER_HOUR= new WindSpeedUnit._("${TYPE_NAME}.KILOMETERS_PER_HOUR");
-  static finalWindSpeedUnit METERS_PER_SECOND= new WindSpeedUnit._("${TYPE_NAME}.METERS_PER_SECOND");
-  static finalWindSpeedUnit MILES_PER_HOUR= new WindSpeedUnit._("${TYPE_NAME}.MILES_PER_HOUR");
+  static final WindSpeedUnit KILOMETERS_PER_HOUR = new WindSpeedUnit._("${TYPE_NAME}.KILOMETERS_PER_HOUR");
+  static final WindSpeedUnit METERS_PER_SECOND = new WindSpeedUnit._("${TYPE_NAME}.METERS_PER_SECOND");
+  static final WindSpeedUnit MILES_PER_HOUR = new WindSpeedUnit._("${TYPE_NAME}.MILES_PER_HOUR");
 
-  static WindSpeedUnit find(Object o) { return findIn(o, [KILOMETERS_PER_HOUR, METERS_PER_SECOND, MILES_PER_HOUR]); }
+  static final _INSTANCES = [KILOMETERS_PER_HOUR, METERS_PER_SECOND, MILES_PER_HOUR];
+
+  static WindSpeedUnit find(Object o) { return findIn(o, _INSTANCES); }
 
   WindSpeedUnit._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
 }
@@ -60,10 +64,12 @@ class WindSpeedUnit extends js.JsObject {
 class LabelColor extends js.JsObject {
   static const String TYPE_NAME = "google.maps.weather.LabelColor";
 
-  static finalLabelColor BLACK= new LabelColor._("${TYPE_NAME}.BLACK");
-  static finalLabelColor WHITE= new LabelColor._("${TYPE_NAME}.WHITE");
+  static final LabelColor BLACK = new LabelColor._("${TYPE_NAME}.BLACK");
+  static final LabelColor WHITE = new LabelColor._("${TYPE_NAME}.WHITE");
 
-  static LabelColor find(Object o) { return findIn(o, [BLACK, WHITE]); }
+  static final _INSTANCES = [BLACK, WHITE];
+
+  static LabelColor find(Object o) { return findIn(o, _INSTANCES); }
 
   LabelColor._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
 }

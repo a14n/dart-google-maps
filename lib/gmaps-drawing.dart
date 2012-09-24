@@ -67,7 +67,9 @@ class OverlayType extends js.JsObject {
   static final OverlayType POLYLINE= new OverlayType._("${TYPE_NAME}.POLYLINE");
   static final OverlayType RECTANGLE= new OverlayType._("${TYPE_NAME}.RECTANGLE");
 
-  static OverlayType find(Object o) { return findIn(o, [CIRCLE, MARKER, POLYGON, POLYLINE, RECTANGLE]); }
+  static final _INSTANCES = [CIRCLE, MARKER, POLYGON, POLYLINE, RECTANGLE];
+
+  static OverlayType find(Object o) { return findIn(o, _INSTANCES); }
 
   OverlayType._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
 }

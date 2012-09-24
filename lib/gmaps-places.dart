@@ -125,7 +125,9 @@ class PlacesServiceStatus extends js.JsObject {
   static final PlacesServiceStatus UNKNOWN_ERROR= new PlacesServiceStatus._("${TYPE_NAME}.UNKNOWN_ERROR");
   static final PlacesServiceStatus ZERO_RESULTS= new PlacesServiceStatus._("${TYPE_NAME}.ZERO_RESULTS");
 
-  static PlacesServiceStatus find(Object o) { return findIn(o, [INVALID_REQUEST, OK, OVER_QUERY_LIMIT, REQUEST_DENIED, UNKNOWN_ERROR, ZERO_RESULTS]); }
+  static final _INSTANCES = [INVALID_REQUEST, OK, OVER_QUERY_LIMIT, REQUEST_DENIED, UNKNOWN_ERROR, ZERO_RESULTS];
+
+  static PlacesServiceStatus find(Object o) { return findIn(o, _INSTANCES); }
 
   PlacesServiceStatus._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
 }
@@ -136,7 +138,9 @@ class RankBy extends js.JsObject {
   static final RankBy DISTANCE= new RankBy._("${TYPE_NAME}.DISTANCE");
   static final RankBy PROMINENCE= new RankBy._("${TYPE_NAME}.PROMINENCE");
 
-  static RankBy find(Object o) { return findIn(o, [DISTANCE, PROMINENCE]); }
+  static final _INSTANCES = [DISTANCE, PROMINENCE];
+
+  static RankBy find(Object o) { return findIn(o, _INSTANCES); }
 
   RankBy._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
 }
