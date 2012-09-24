@@ -5,7 +5,7 @@
 #source('utils.dart');
 
 class Encoding {
-  static const String TYPE_NAME = "google.maps.geometry.encoding";
+  static const TYPE_NAME = "google.maps.geometry.encoding";
 
   static List<LatLng> decodePath(String encodedPath) => new js.JsList<LatLng>.fromJsRef(js.jsWindow.$.callForJsRef("${TYPE_NAME}.decodePath", [encodedPath]), (e) => new LatLng.fromJsRef(e));
   static String encodePath(Object path) {
@@ -18,7 +18,7 @@ class Encoding {
 }
 
 class Spherical {
-  static const String TYPE_NAME = "google.maps.geometry.spherical";
+  static const TYPE_NAME = "google.maps.geometry.spherical";
 
   static num computeArea(Object path, [num radius]) {
     if (path is MVCArray<LatLng> || path is List<LatLng>) {
@@ -48,7 +48,7 @@ class Spherical {
 }
 
 class Poly {
-  static const String TYPE_NAME = "google.maps.geometry.poly";
+  static const TYPE_NAME = "google.maps.geometry.poly";
 
   static bool containsLocation(LatLng point, Polygon polygon) => js.jsWindow.$.call("${TYPE_NAME}.containsLocation", [point, polygon]);
   static bool isLocationOnEdge(LatLng point, Object poly, [num tolerance]) {

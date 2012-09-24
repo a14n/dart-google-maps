@@ -5,7 +5,7 @@
 #source('utils.dart');
 
 class HeatmapLayer extends MVCObject {
-  static const String _TYPE_NAME = "google.maps.visualization.HeatmapLayer";
+  static const _TYPE_NAME = "google.maps.visualization.HeatmapLayer";
 
   HeatmapLayer([HeatmapLayerOptions opts]) : super.newInstance(_TYPE_NAME, [opts]);
   HeatmapLayer.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);

@@ -6,7 +6,7 @@
 #source('utils.dart');
 
 class DrawingManager extends MVCObject {
-  static const String _TYPE_NAME = "google.maps.drawing.DrawingManager";
+  static const _TYPE_NAME = "google.maps.drawing.DrawingManager";
 
   DrawingManager([DrawingManagerOptions opts]) : super.newInstance(_TYPE_NAME, [opts]);
   DrawingManager.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
@@ -59,13 +59,13 @@ class OverlayCompleteEvent extends NativeEvent {
 }
 
 class OverlayType extends js.JsObject {
-  static const String TYPE_NAME = "google.maps.drawing.OverlayType";
+  static const TYPE_NAME = "google.maps.drawing.OverlayType";
 
-  static final OverlayType CIRCLE= new OverlayType._("${TYPE_NAME}.CIRCLE");
-  static final OverlayType MARKER= new OverlayType._("${TYPE_NAME}.MARKER");
-  static final OverlayType POLYGON= new OverlayType._("${TYPE_NAME}.POLYGON");
-  static final OverlayType POLYLINE= new OverlayType._("${TYPE_NAME}.POLYLINE");
-  static final OverlayType RECTANGLE= new OverlayType._("${TYPE_NAME}.RECTANGLE");
+  static final CIRCLE= new OverlayType._("${TYPE_NAME}.CIRCLE");
+  static final MARKER= new OverlayType._("${TYPE_NAME}.MARKER");
+  static final POLYGON= new OverlayType._("${TYPE_NAME}.POLYGON");
+  static final POLYLINE= new OverlayType._("${TYPE_NAME}.POLYLINE");
+  static final RECTANGLE= new OverlayType._("${TYPE_NAME}.RECTANGLE");
 
   static final _INSTANCES = [CIRCLE, MARKER, POLYGON, POLYLINE, RECTANGLE];
 

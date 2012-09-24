@@ -32,20 +32,20 @@ class AdUnitOptions extends js.JsObject {
 }
 
 class AdFormat extends js.JsObject {
-  static const String TYPE_NAME = "google.maps.adsense.AdFormat";
+  static const TYPE_NAME = "google.maps.adsense.AdFormat";
 
-  static final AdFormat BANNER= new AdFormat._("${TYPE_NAME}.BANNER");
-  static final AdFormat BUTTON= new AdFormat._("${TYPE_NAME}.BUTTON");
-  static final AdFormat HALF_BANNER= new AdFormat._("${TYPE_NAME}.HALF_BANNER");
-  static final AdFormat LARGE_RECTANGLE= new AdFormat._("${TYPE_NAME}.LARGE_RECTANGLE");
-  static final AdFormat LEADERBOARD= new AdFormat._("${TYPE_NAME}.LEADERBOARD");
-  static final AdFormat MEDIUM_RECTANGLE= new AdFormat._("${TYPE_NAME}.MEDIUM_RECTANGLE");
-  static final AdFormat SKYSCRAPER= new AdFormat._("${TYPE_NAME}.SKYSCRAPER");
-  static final AdFormat SMALL_RECTANGLE= new AdFormat._("${TYPE_NAME}.SMALL_RECTANGLE");
-  static final AdFormat SMALL_SQUARE= new AdFormat._("${TYPE_NAME}.SMALL_SQUARE");
-  static final AdFormat SQUARE= new AdFormat._("${TYPE_NAME}.SQUARE");
-  static final AdFormat VERTICAL_BANNER= new AdFormat._("${TYPE_NAME}.VERTICAL_BANNER");
-  static final AdFormat WIDE_SKYSCRAPER= new AdFormat._("${TYPE_NAME}.WIDE_SKYSCRAPER");
+  static final BANNER = new AdFormat._("${TYPE_NAME}.BANNER");
+  static final BUTTON = new AdFormat._("${TYPE_NAME}.BUTTON");
+  static final HALF_BANNER = new AdFormat._("${TYPE_NAME}.HALF_BANNER");
+  static final LARGE_RECTANGLE = new AdFormat._("${TYPE_NAME}.LARGE_RECTANGLE");
+  static final LEADERBOARD = new AdFormat._("${TYPE_NAME}.LEADERBOARD");
+  static final MEDIUM_RECTANGLE = new AdFormat._("${TYPE_NAME}.MEDIUM_RECTANGLE");
+  static final SKYSCRAPER = new AdFormat._("${TYPE_NAME}.SKYSCRAPER");
+  static final SMALL_RECTANGLE = new AdFormat._("${TYPE_NAME}.SMALL_RECTANGLE");
+  static final SMALL_SQUARE = new AdFormat._("${TYPE_NAME}.SMALL_SQUARE");
+  static final SQUARE = new AdFormat._("${TYPE_NAME}.SQUARE");
+  static final VERTICAL_BANNER = new AdFormat._("${TYPE_NAME}.VERTICAL_BANNER");
+  static final WIDE_SKYSCRAPER = new AdFormat._("${TYPE_NAME}.WIDE_SKYSCRAPER");
 
   static final _INSTANCES = [BANNER, BUTTON, HALF_BANNER, LARGE_RECTANGLE, LEADERBOARD, MEDIUM_RECTANGLE, SKYSCRAPER, SMALL_RECTANGLE, SMALL_SQUARE, SQUARE, VERTICAL_BANNER, WIDE_SKYSCRAPER];
 

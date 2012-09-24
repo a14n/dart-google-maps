@@ -5,7 +5,7 @@
 #source('utils.dart');
 
 class PanoramioLayer extends MVCObject {
-  static const String TYPE_NAME = "google.maps.panoramio.PanoramioLayer";
+  static const TYPE_NAME = "google.maps.panoramio.PanoramioLayer";
 
   PanoramioLayer([PanoramioLayerOptions opts]) : super.newInstance(TYPE_NAME, [opts]);
   PanoramioLayer.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);

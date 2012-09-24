@@ -48,11 +48,11 @@ class TemperatureUnit extends js.JsObject {
 }
 
 class WindSpeedUnit extends js.JsObject {
-  static const String TYPE_NAME = "google.maps.weather.WindSpeedUnit";
+  static const TYPE_NAME = "google.maps.weather.WindSpeedUnit";
 
-  static final WindSpeedUnit KILOMETERS_PER_HOUR = new WindSpeedUnit._("${TYPE_NAME}.KILOMETERS_PER_HOUR");
-  static final WindSpeedUnit METERS_PER_SECOND = new WindSpeedUnit._("${TYPE_NAME}.METERS_PER_SECOND");
-  static final WindSpeedUnit MILES_PER_HOUR = new WindSpeedUnit._("${TYPE_NAME}.MILES_PER_HOUR");
+  static final KILOMETERS_PER_HOUR = new WindSpeedUnit._("${TYPE_NAME}.KILOMETERS_PER_HOUR");
+  static final METERS_PER_SECOND = new WindSpeedUnit._("${TYPE_NAME}.METERS_PER_SECOND");
+  static final MILES_PER_HOUR = new WindSpeedUnit._("${TYPE_NAME}.MILES_PER_HOUR");
 
   static final _INSTANCES = [KILOMETERS_PER_HOUR, METERS_PER_SECOND, MILES_PER_HOUR];
 
@@ -62,10 +62,10 @@ class WindSpeedUnit extends js.JsObject {
 }
 
 class LabelColor extends js.JsObject {
-  static const String TYPE_NAME = "google.maps.weather.LabelColor";
+  static const TYPE_NAME = "google.maps.weather.LabelColor";
 
-  static final LabelColor BLACK = new LabelColor._("${TYPE_NAME}.BLACK");
-  static final LabelColor WHITE = new LabelColor._("${TYPE_NAME}.WHITE");
+  static final BLACK = new LabelColor._("${TYPE_NAME}.BLACK");
+  static final WHITE = new LabelColor._("${TYPE_NAME}.WHITE");
 
   static final _INSTANCES = [BLACK, WHITE];
 

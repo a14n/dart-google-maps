@@ -6,7 +6,7 @@
 #source('utils.dart');
 
 class Autocomplete extends MVCObject {
-  static const String _TYPE_NAME = "google.maps.places.Autocomplete";
+  static const _TYPE_NAME = "google.maps.places.Autocomplete";
 
   Autocomplete(html.InputElement inputField, [AutocompleteOptions opts]) : super.newInstance(_TYPE_NAME, [inputField, opts]);
   Autocomplete.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
@@ -85,7 +85,7 @@ class PlaceSearchPagination extends js.JsObject {
 }
 
 class PlacesService extends js.JsObject {
-  static const String TYPE_NAME = "google.maps.places.PlacesService";
+  static const TYPE_NAME = "google.maps.places.PlacesService";
 
   PlacesService(Object attrContainer) : super.newInstance(TYPE_NAME, [attrContainer]) {
     if (!(attrContainer is html.DivElement || attrContainer is GMap)) {
@@ -116,14 +116,14 @@ class PlacesService extends js.JsObject {
 }
 
 class PlacesServiceStatus extends js.JsObject {
-  static const String TYPE_NAME = "google.maps.places.PlacesServiceStatus";
+  static const TYPE_NAME = "google.maps.places.PlacesServiceStatus";
 
-  static final PlacesServiceStatus INVALID_REQUEST= new PlacesServiceStatus._("${TYPE_NAME}.INVALID_REQUEST");
-  static final PlacesServiceStatus OK= new PlacesServiceStatus._("${TYPE_NAME}.OK");
-  static final PlacesServiceStatus OVER_QUERY_LIMIT= new PlacesServiceStatus._("${TYPE_NAME}.OVER_QUERY_LIMIT");
-  static final PlacesServiceStatus REQUEST_DENIED= new PlacesServiceStatus._("${TYPE_NAME}.REQUEST_DENIED");
-  static final PlacesServiceStatus UNKNOWN_ERROR= new PlacesServiceStatus._("${TYPE_NAME}.UNKNOWN_ERROR");
-  static final PlacesServiceStatus ZERO_RESULTS= new PlacesServiceStatus._("${TYPE_NAME}.ZERO_RESULTS");
+  static final INVALID_REQUEST= new PlacesServiceStatus._("${TYPE_NAME}.INVALID_REQUEST");
+  static final OK= new PlacesServiceStatus._("${TYPE_NAME}.OK");
+  static final OVER_QUERY_LIMIT= new PlacesServiceStatus._("${TYPE_NAME}.OVER_QUERY_LIMIT");
+  static final REQUEST_DENIED= new PlacesServiceStatus._("${TYPE_NAME}.REQUEST_DENIED");
+  static final UNKNOWN_ERROR= new PlacesServiceStatus._("${TYPE_NAME}.UNKNOWN_ERROR");
+  static final ZERO_RESULTS= new PlacesServiceStatus._("${TYPE_NAME}.ZERO_RESULTS");
 
   static final _INSTANCES = [INVALID_REQUEST, OK, OVER_QUERY_LIMIT, REQUEST_DENIED, UNKNOWN_ERROR, ZERO_RESULTS];
 
@@ -133,10 +133,10 @@ class PlacesServiceStatus extends js.JsObject {
 }
 
 class RankBy extends js.JsObject {
-  static const String TYPE_NAME = "google.maps.places.RankBy";
+  static const TYPE_NAME = "google.maps.places.RankBy";
 
-  static final RankBy DISTANCE= new RankBy._("${TYPE_NAME}.DISTANCE");
-  static final RankBy PROMINENCE= new RankBy._("${TYPE_NAME}.PROMINENCE");
+  static final DISTANCE= new RankBy._("${TYPE_NAME}.DISTANCE");
+  static final PROMINENCE= new RankBy._("${TYPE_NAME}.PROMINENCE");
 
   static final _INSTANCES = [DISTANCE, PROMINENCE];
 
