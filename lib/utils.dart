@@ -6,7 +6,3 @@ Object findIn(Object o, List<Object> elements, [Object transform(Object)]) {
     return null;
   }
 }
-
-Object _transformIfNotNull(Object nullable, Object transform(Object)) {
-  return nullable === null ? null : transform(nullable);
-}
