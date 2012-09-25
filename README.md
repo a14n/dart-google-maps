@@ -4,15 +4,13 @@ Dart Google Maps
 This project is a library to use [Google Maps JavaScript API v3](https://developers.google.com/maps/documentation/javascript/) from `dart` scripts.
 
 ## Usage ##
-**WARNING** : `Pub` seems to failed downloading the library when defined as dependency. As workaround, you have to download `lib` to use it.
-
 To use this library in your code :
 * add a dependency in your `pubspec.yaml` :
 
 ```yaml
 dependencies:
   dart_google_maps:
-    git: git://github.com/a14n/dart_google_maps.git
+    git: https://github.com/a14n/dart-google-maps.git
 ```
 
 * add import in your `dart` code :
