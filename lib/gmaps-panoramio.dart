@@ -10,7 +10,7 @@ class PanoramioLayer extends MVCObject {
   PanoramioLayer([PanoramioLayerOptions opts]) : super.newInstance(TYPE_NAME, [opts]);
   PanoramioLayer.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  GMap getMap() => _transformIfNotNull($.call("getMap"), (e) => new GMap.fromJsRef(e));
+  GMap getMap() => $.call("getMap", [], GMap.INSTANCIATOR);
   String getTag() => $.call("getTag");
   String getUserId() => $.call("getUserId");
   void setMap(GMap map) { $.call("setMap", [map]); }
@@ -39,10 +39,10 @@ class PanoramioFeature extends js.JsObject {
 
 class PanoramioMouseEvent extends NativeEvent {
   PanoramioMouseEvent();
-  PanoramioMouseEvent.wrap(NativeEvent e) { jsRef = e.jsRef; }
+  PanoramioMouseEvent.wrap(NativeEvent e) : super.fromJsRef(e.jsRef);
 
   PanoramioFeature get featureDetails => new PanoramioFeature.fromJsRef($["featureDetails"]);
   String get infoWindowHtml => $["infoWindowHtml"];
-  LatLng get latLng => new LatLng.fromJsRef($["latLng"]);
-  Size get pixelOffset => new Size.fromJsRef($["pixelOffset"]);
+  LatLng get latLng => $.getProperty("latLng", LatLng.INSTANCIATOR);
+  Size get pixelOffset => $.getProperty("pixelOffset", Size.INSTANCIATOR);
 }

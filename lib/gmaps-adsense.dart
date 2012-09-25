@@ -13,9 +13,9 @@ class AdUnit extends MVCObject {
 
   String getChannelNumber() => $.call("getChannelNumber");
   html.Node getContainer() => $.call("getContainer");
-  AdFormat getFormat() => AdFormat.find($.call("getFormat"));
-  GMap getMap() => _transformIfNotNull($.call("getMap"), (e) => new GMap.fromJsRef(e));
-  ControlPosition getPosition() => ControlPosition.find($.call("getPosition"));
+  AdFormat getFormat() => $.call("getFormat", [], AdFormat.INSTANCIATOR);
+  GMap getMap() => $.call("getMap", [], GMap.INSTANCIATOR);
+  ControlPosition getPosition() => $.call("getPosition", [], ControlPosition.INSTANCIATOR);
   String getPublisherId() => $.call("getPublisherId");
   void setChannelNumber(String channelNumber) { $.call("setChannelNumber", [channelNumber]); }
   void setFormat(AdFormat format) { $.call("setFormat", [format]); }
@@ -33,6 +33,7 @@ class AdUnitOptions extends js.JsObject {
 
 class AdFormat extends js.JsObject {
   static const TYPE_NAME = "google.maps.adsense.AdFormat";
+  static final INSTANCIATOR = (js.JsRef jsRef) => find(jsRef);
 
   static final BANNER = new AdFormat._("${TYPE_NAME}.BANNER");
   static final BUTTON = new AdFormat._("${TYPE_NAME}.BUTTON");

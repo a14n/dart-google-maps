@@ -11,8 +11,8 @@ class DrawingManager extends MVCObject {
   DrawingManager([DrawingManagerOptions opts]) : super.newInstance(_TYPE_NAME, [opts]);
   DrawingManager.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  OverlayType getDrawingMode() => OverlayType.find($.callForJsRef("getDrawingMode"));
-  GMap getMap() => _transformIfNotNull($.call("getMap"), (e) => new GMap.fromJsRef(e));
+  OverlayType getDrawingMode() => $.call("getDrawingMode", [], OverlayType.INSTANCIATOR);
+  GMap getMap() => $.call("getMap", [], GMap.INSTANCIATOR);
   void setDrawingMode(OverlayType drawingMode) { $.call("setDrawingMode", [drawingMode]); }
   void setMap(GMap map) { $.call("setMap", [map]); }
   void setOptions(DrawingManagerOptions options) { $.call("setOptions", [options]); }
@@ -55,11 +55,12 @@ class OverlayCompleteEvent extends NativeEvent {
       throw new Exception("Unsupported result");
     }
   }
-  OverlayType get type => OverlayType.find($.getPropertyAsJsRef("type"));
+  OverlayType get type => $.getProperty("type", OverlayType.INSTANCIATOR);
 }
 
 class OverlayType extends js.JsObject {
   static const TYPE_NAME = "google.maps.drawing.OverlayType";
+  static final INSTANCIATOR = (js.JsRef jsRef) => find(jsRef);
 
   static final CIRCLE= new OverlayType._("${TYPE_NAME}.CIRCLE");
   static final MARKER= new OverlayType._("${TYPE_NAME}.MARKER");

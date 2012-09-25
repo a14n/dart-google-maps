@@ -10,7 +10,7 @@ class CloudLayer extends MVCObject {
   CloudLayer() : super.newInstance(_TYPE_NAME);
   CloudLayer.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  GMap getMap() => _transformIfNotNull($.call("getMap"), (e) => new GMap.fromJsRef(e));
+  GMap getMap() => $.call("getMap", [], GMap.INSTANCIATOR);
   void setMap(GMap map) { $.call("setMap", [map]); }
 }
 
@@ -20,7 +20,7 @@ class WeatherLayer extends MVCObject {
   WeatherLayer([WeatherLayerOptions opts]) : super.newInstance(_TYPE_NAME, [opts]);
   WeatherLayer.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  GMap getMap() => _transformIfNotNull($.call("getMap"), (e) => new GMap.fromJsRef(e));
+  GMap getMap() => $.call("getMap", [], GMap.INSTANCIATOR);
   void setMap(GMap map) { $.call("setMap", [map]); }
   void setOptions(WeatherLayerOptions options) { $.call("setOptions", [options]); }
 }
@@ -36,6 +36,7 @@ class WeatherLayerOptions extends js.JsObject {
 
 class TemperatureUnit extends js.JsObject {
   static const String TYPE_NAME = "google.maps.weather.TemperatureUnit";
+  static final INSTANCIATOR = (js.JsRef jsRef) => find(jsRef);
 
   static final TemperatureUnit CELSIUS = new TemperatureUnit._("${TYPE_NAME}.CELSIUS");
   static final TemperatureUnit FAHRENHEIT = new TemperatureUnit._("${TYPE_NAME}.FAHRENHEIT");
@@ -49,6 +50,7 @@ class TemperatureUnit extends js.JsObject {
 
 class WindSpeedUnit extends js.JsObject {
   static const TYPE_NAME = "google.maps.weather.WindSpeedUnit";
+  static final INSTANCIATOR = (js.JsRef jsRef) => find(jsRef);
 
   static final KILOMETERS_PER_HOUR = new WindSpeedUnit._("${TYPE_NAME}.KILOMETERS_PER_HOUR");
   static final METERS_PER_SECOND = new WindSpeedUnit._("${TYPE_NAME}.METERS_PER_SECOND");
@@ -78,26 +80,27 @@ class WeatherMouseEvent extends NativeEvent {
   WeatherMouseEvent();
   WeatherMouseEvent.wrap(NativeEvent e) { jsRef = e.jsRef; }
 
-  WeatherFeature get featureDetails => new WeatherFeature.fromJsRef($["featureDetails"]);
+  WeatherFeature get featureDetails => $.getProperty("featureDetails", WeatherFeature.INSTANCIATOR);
   String get infoWindowHtml => $["infoWindowHtml"];
-  LatLng get latLng => new LatLng.fromJsRef($["latLng"]);
-  Size get pixelOffset => new Size.fromJsRef($["pixelOffset"]);
+  LatLng get latLng => $.getProperty("latLng", LatLng.INSTANCIATOR);
+  Size get pixelOffset => $.getProperty("pixelOffset", Size.INSTANCIATOR);
 }
 
 class WeatherFeature extends js.JsObject {
+  static final INSTANCIATOR = (js.JsRef jsRef) => new WeatherFeature.fromJsRef(jsRef);
+
   WeatherFeature.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  WeatherConditions get current => new WeatherConditions.fromJsRef($["current"]);
-  List<WeatherForecast> get forecast {
-    List<js.JsRef> resultsRefs = $["forecast"];
-    return resultsRefs.map((e) => new WeatherForecast.fromJsRef(e));
-  }
+  WeatherConditions get current => $.getProperty("current", WeatherConditions.INSTANCIATOR);
+  List<WeatherForecast> get forecast => $.getProperty("forecast", (js.JsRef jsRef) => new js.JsList<WeatherForecast>.fromJsRef(jsRef, WeatherForecast.INSTANCIATOR));
   String get location => $["location"];
-  TemperatureUnit get temperatureUnit => TemperatureUnit.find($["temperatureUnit"]);
-  WindSpeedUnit get windSpeedUnit => WindSpeedUnit.find($["windSpeedUnit"]);
+  TemperatureUnit get temperatureUnit => $.getProperty("temperatureUnit", TemperatureUnit.INSTANCIATOR);
+  WindSpeedUnit get windSpeedUnit => $.getProperty("windSpeedUnit", WindSpeedUnit.INSTANCIATOR);
 }
 
 class WeatherConditions extends js.JsObject {
+  static final INSTANCIATOR = (js.JsRef jsRef) => new WeatherConditions.fromJsRef(jsRef);
+
   WeatherConditions.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
   String get day => $["day"];
@@ -112,6 +115,8 @@ class WeatherConditions extends js.JsObject {
 }
 
 class WeatherForecast extends js.JsObject {
+  static final INSTANCIATOR = (js.JsRef jsRef) => new WeatherForecast.fromJsRef(jsRef);
+
   WeatherForecast.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
   String get day => $["day"];

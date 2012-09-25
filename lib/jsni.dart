@@ -7,6 +7,9 @@
 // basic types for wrapping
 //-------------------------
 
+
+typedef Object Instanciator(JsRef);
+
 /// Reference to a js element
 class JsRef {
   int _jsId;
@@ -19,18 +22,27 @@ class JsOperations {
 
   JsOperations._(JsRef this.jsRef);
 
-  Object operator [](String propertyName) => _getProperty(jsRef, propertyName.toString(), false);
-  void operator []=(String propertName, Object value) { setProperty(jsRef, propertName.toString(), value); }
+  Object operator [](String propertyName) => getProperty(propertyName);
+  void operator []=(String propertyName, Object value) { setProperty(jsRef, propertyName, value); }
 
   JsRef callForJsRef(String functionName, [List args]) => _callFunction(jsRef, functionName, args, true);
-  Object call(String functionName, [List args]) => _callFunction(jsRef, functionName, args, false);
-  JsRef getPropertyAsJsRef(String propertName) => _getProperty(jsRef, propertName, true);
+  Object call(String functionName, [List args, Instanciator onNotNull]) => _transformIfNotNull(_callFunction(jsRef, functionName, args, onNotNull != null), onNotNull);
+  JsRef getPropertyAsJsRef(String name) => _getProperty(jsRef, name, true);
+  Object getProperty(String name, [Instanciator onNotNull]) => _transformIfNotNull(_getProperty(jsRef, name, onNotNull != null), onNotNull);
   void free() => _free(jsRef);
 
   Object get value => _getValue(jsRef);
+
+  Object _transformIfNotNull(Object o, Instanciator onNotNull) {
+    if (onNotNull != null && o != null) {
+      return onNotNull(o);
+    } else {
+      return o;
+    }
+  }
 }
 
-JsOperations $$(JsRef jsRef) => new JsOperations(jsRef);
+JsOperations $$(JsRef jsRef) => new JsOperations._(jsRef);
 
 /// Represent a dart Object that wrap a js element
 class JsObject {
@@ -48,8 +60,6 @@ class JsObject {
   }
 }
 
-typedef Object Instanciator(JsRef);
-
 class JsIterator<E> implements Iterator<E> {
   JsList<E> jsList;
   Instanciator instanciator;
@@ -58,7 +68,7 @@ class JsIterator<E> implements Iterator<E> {
   JsIterator.fromJsRef(JsList<E> this.jsList, Instanciator this.instanciator);
 
   // Iterator
-  E next() => instanciator(jsList.$.getPropertyAsJsRef((current++).toString())) as E;
+  E next() => jsList.$.getProperty((current++).toString(), instanciator);
   bool hasNext() => current < jsList.$["length"];
 }
 
@@ -84,7 +94,7 @@ class JsList<E> extends JsObject implements List<E> {
   int get length => (this.$.value as List).length;
 
   // List
-  E operator [](int index) => instanciator(this.$.getPropertyAsJsRef(index.toString())) as E;
+  E operator [](int index) => this.$.getProperty(index.toString(), instanciator);
   void operator []=(int index, E value) { this.$[index.toString()] = value; }
   void set length(int newLength) => null;
   void add(E value) { this.$.call("push", [value]); }
@@ -99,7 +109,7 @@ class JsList<E> extends JsObject implements List<E> {
   int indexOf(E element, [int start]) => (this.$.value as List).indexOf(element, start);
   int lastIndexOf(E element, [int start]) => (this.$.value as List).lastIndexOf(element, start);
   void clear() { this.$.call("splice", [0, length]); }
-  E removeLast() => this.$.call("pop");
+  E removeLast() => this.$.call("pop", instanciator);
   E last() => (this.$.value as List).last();
   List<E> getRange(int start, int length) => (this.$.value as List).getRange(start, length);
   void setRange(int start, int length, List<E> from, [int startFrom=0]) {
@@ -180,7 +190,7 @@ void _ensureRegistered() {
   // add js bridge
   final script = new ScriptElement();
   script.type = 'text/javascript';
-  script.innerHTML = '''
+  script.innerHTML = r'''
 (function(){
   var _jsId = 0;
   var _tmpDomId = 0;
@@ -391,9 +401,11 @@ void _ensureRegistered() {
       freeJsObject(jsId);
     }
 
+    // console.log(result);
+
     // prepare answer
     var answer;
-    if (returnRef) {
+    if (result !== null && typeof(result) !== "undefined" && returnRef) {
       answer = { type: "jsObject", value: addJsObject(result) };
     } else {
       answer = serialize(result);

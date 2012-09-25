@@ -11,8 +11,8 @@ class Autocomplete extends MVCObject {
   Autocomplete(html.InputElement inputField, [AutocompleteOptions opts]) : super.newInstance(_TYPE_NAME, [inputField, opts]);
   Autocomplete.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  LatLngBounds getBounds() => new LatLngBounds.fromJsRef($.callForJsRef("getBounds"));
-  PlaceResult getPlace() => new PlaceResult.fromJsRef($.callForJsRef("getPlace"));
+  LatLngBounds getBounds() => $.call("getBounds", [], LatLngBounds.INSTANCIATOR);
+  PlaceResult getPlace() => $.call("getPlace", [], PlaceResult.INSTANCIATOR);
   void setBounds(LatLngBounds bounds) { $.call("setBounds", [bounds]); }
   void setComponentRestrictions(ComponentRestrictions restrictions) { $.call("setComponentRestrictions", [restrictions]); }
   void setTypes(List<String> types) { $.call("setTypes", [types]); }
@@ -35,31 +35,35 @@ class PlaceDetailsRequest extends js.JsObject {
 }
 
 class PlaceGeometry extends js.JsObject {
+  static final INSTANCIATOR = (js.JsRef jsRef) => new PlaceGeometry.fromJsRef(jsRef);
+
   PlaceGeometry() : super();
   PlaceGeometry.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  LatLng get location => new LatLng.fromJsRef($.getPropertyAsJsRef("location"));
+  LatLng get location => $.getProperty("location", LatLng.INSTANCIATOR);
          set location(LatLng location) => $["location"] = location;
-  LatLngBounds get viewport => new LatLngBounds.fromJsRef($.getPropertyAsJsRef("viewport"));
+  LatLngBounds get viewport => $.getProperty("viewport", LatLngBounds.INSTANCIATOR);
                set viewport(LatLngBounds viewport) => $["viewport"] = viewport;
 }
 
 class PlaceResult extends js.JsObject {
+  static final INSTANCIATOR = (js.JsRef jsRef) => new PlaceResult.fromJsRef(jsRef);
+
   PlaceResult() : super();
   PlaceResult.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  List<GeocoderAddressComponent> get address_components =>  new js.JsList<GeocoderAddressComponent>.fromJsRef($.getPropertyAsJsRef("address_components"), (e) => new GeocoderAddressComponent.fromJsRef(e));
+  List<GeocoderAddressComponent> get address_components => $.getProperty("address_components", (js.JsRef jsRef) => new js.JsList<GeocoderAddressComponent>.fromJsRef(jsRef, GeocoderAddressComponent.INSTANCIATOR));
   String get formatted_address => $["formatted_address"];
   String get formatted_phone_number => $["formatted_phone_number"];
-  PlaceGeometry get geometry => new PlaceGeometry.fromJsRef($.getPropertyAsJsRef("geometry"));
-  List<String> get html_attributions =>  new js.JsList<String>.fromJsRef($.getPropertyAsJsRef("html_attributions"), (e) => js.$$(e).value);
+  PlaceGeometry get geometry => $.getProperty("geometry", PlaceGeometry.INSTANCIATOR);
+  List<String> get html_attributions => $.getProperty("html_attributions", (js.JsRef jsRef) => new js.JsList<String>.fromJsRef(jsRef, (e) => js.$$(e).value));
   String get icon => $["icon"];
   String get id => $["id"];
   String get international_phone_number => $["international_phone_number"];
   String get name => $["name"];
   num get rating => $["rating"];
   String get reference => $["reference"];
-  List<String> get types =>  new js.JsList<String>.fromJsRef($.getPropertyAsJsRef("types"), (e) => js.$$(e).value);
+  List<String> get types => $.getProperty("types", (js.JsRef jsRef) => new js.JsList<String>.fromJsRef(jsRef, (e) => js.$$(e).value));
   String get url => $["url"];
   String get vicinity => $["vicinity"];
   String get website => $["website"];

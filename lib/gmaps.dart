@@ -8,13 +8,14 @@
 
 class GMap extends MVCObject {
   static const TYPE_NAME = "google.maps.Map";
+  static final INSTANCIATOR = (js.JsRef jsRef) => new GMap.fromJsRef(jsRef);
 
   GMap(html.Node mapDiv, [MapOptions opts]) : super.newInstance(TYPE_NAME, [mapDiv, opts]);
   GMap.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
   void fitBounds(LatLngBounds bounds) { $.call("fitBounds", [bounds]); }
-  LatLngBounds getBounds() => new LatLngBounds.fromJsRef($.call("getBounds"));
-  LatLng getCenter() => new LatLng.fromJsRef($.call("getCenter"));
+  LatLngBounds getBounds() => $.call("getBounds", [], LatLngBounds.INSTANCIATOR);
+  LatLng getCenter() => $.call("getCenter", [], LatLng.INSTANCIATOR);
   html.Node getDiv() => $.call("getDiv");
   num getHeading() => $.call("getHeading");
   Object getMapTypeId() {
@@ -26,8 +27,8 @@ class GMap extends MVCObject {
       return result;
     }
   }
-  Projection getProjection() => new Projection.fromJsRef($.call("getProjection"));
-  StreetViewPanorama getStreetView() => new StreetViewPanorama.fromJsRef($.call("getStreetView"));
+  Projection getProjection() => $.call("getProjection", [], Projection.INSTANCIATOR);
+  StreetViewPanorama getStreetView() => $.call("getStreetView", [], StreetViewPanorama.INSTANCIATOR);
   num getTilt() => $.call("getTilt");
   num getZoom() => $.call("getZoom");
   void panBy(num x, num y) { $.call("panBy", [x, y]); }
@@ -47,19 +48,21 @@ class GMap extends MVCObject {
   void setTilt(num tilt) { $.call("setTilt", [tilt]); }
   void setZoom(num zoom) { $.call("setZoom", [zoom]); }
 
-  Controls get controls => new Controls.fromJsRef($.getPropertyAsJsRef("controls"));
+  Controls get controls => $.getProperty("controls", Controls.INSTANCIATOR);
            set controls(Controls controls) => $["controls"] = controls;
-  MapTypeRegistry get mapTypes => new MapTypeRegistry.fromJsRef($["mapTypes"]);
+  MapTypeRegistry get mapTypes => $.getProperty("mapTypes", MapTypeRegistry.INSTANCIATOR);
                   set mapTypes(MapTypeRegistry mapTypes) => $["mapTypes"] = mapTypes;
-  MVCArray<MapType> get overlayMapTypes => new MVCArray.fromJsRef($["overlayMapTypes"], (js.JsRef jsRef) => new MapType.fromJsRef(jsRef));
+  MVCArray<MapType> get overlayMapTypes => $.getProperty("overlayMapTypes", (js.JsRef jsRef) => new MVCArray.fromJsRef(jsRef, (js.JsRef jsRef) => new MapType.fromJsRef(jsRef)));
                     set overlayMapTypes(MVCArray<MapType> overlayMapTypes) => $["overlayMapTypes"] = overlayMapTypes;
 }
 
 class Controls extends js.JsObject {
+  static final INSTANCIATOR = (js.JsRef jsRef) => new Controls.fromJsRef(jsRef);
+
   Controls() : super.newInstance("Array");
   Controls.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  MVCArray<html.Node> getNodes(ControlPosition controlPosition) => new MVCArray.fromJsRef($[controlPosition.$.value.toString()]);
+  MVCArray<html.Node> getNodes(ControlPosition controlPosition) => $.getProperty(controlPosition.$.value.toString(), (js.JsRef jsRef) => new MVCArray.fromJsRef(jsRef));
   void setNodes(ControlPosition controlPosition, MVCArray<html.Node> nodes) { $[controlPosition.$.value.toString()] = nodes; }
 }
 
@@ -199,6 +202,7 @@ class ZoomControlStyle extends js.JsObject {
 
 class ControlPosition extends js.JsObject {
   static const TYPE_NAME = "google.maps.ControlPosition";
+  static final INSTANCIATOR = (js.JsRef jsRef) => find(jsRef);
 
   static final BOTTOM_CENTER = new ControlPosition._("${TYPE_NAME}.BOTTOM_CENTER");
   static final BOTTOM_LEFT = new ControlPosition._("${TYPE_NAME}.BOTTOM_LEFT");
@@ -228,14 +232,16 @@ class Marker extends MVCObject {
   Marker([MarkerOptions opts]) : super.newInstance(TYPE_NAME, [opts]);
   Marker.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  Animation getAnimation() => Animation.find($.call("getAnimation"));
+  Animation getAnimation() => $.call("getAnimation", [], Animation.INSTANCIATOR);
   bool getClickable() => $.call("getClickable");
   String getCursor() => $.call("getCursor");
   bool getDraggable() => $.call("getDraggable");
   bool getFlat() => $.call("getFlat");
   Object getIcon() {
     final result = $.call("getIcon");
-    if (result is String) {
+    if (result == null) {
+      return result;
+    } else if (result is String) {
       return result;
     } else if (result is js.JsRef) {
       return new MarkerImage.fromJsRef(result);
@@ -245,7 +251,9 @@ class Marker extends MVCObject {
   }
   Object getMap() {
     final result = $.call("getMap");
-    if (js.isInstanceOf(result ,GMap.TYPE_NAME)) {
+    if (result == null) {
+      return result;
+    } else if (js.isInstanceOf(result ,GMap.TYPE_NAME)) {
       return new GMap.fromJsRef(result);
     } else if (js.isInstanceOf(result ,StreetViewPanorama.TYPE_NAME)) {
       return new StreetViewPanorama.fromJsRef(result);
@@ -253,10 +261,12 @@ class Marker extends MVCObject {
       throw new Exception("Unsupported result");
     }
   }
-  LatLng getPosition() => new LatLng.fromJsRef($.call("getPosition"));
+  LatLng getPosition() => $.call("getPosition", [], LatLng.INSTANCIATOR);
   Object getShadow() {
     final result = $.call("getShadow");
-    if (result is String) {
+    if (result == null) {
+      return result;
+    } else if (result is String) {
       return result;
     } else if (result is js.JsRef) {
       return new MarkerImage.fromJsRef(result);
@@ -264,7 +274,7 @@ class Marker extends MVCObject {
       throw new Exception("Unsupported result");
     }
   }
-  MarkerShape getShape() => new MarkerShape.fromJsRef($.call("getShape"));
+  MarkerShape getShape() => $.call("getShape", [], MarkerShape.INSTANCIATOR);
   String getTitle() => $.call("getTitle");
   bool getVisible() => $.call("getVisible");
   num getZIndex() => $.call("getZIndex");
@@ -274,7 +284,7 @@ class Marker extends MVCObject {
   void setDraggable(bool flag) { $.call("setDraggable", [flag]); }
   void setFlat(bool flag) { $.call("setFlat", [flag]); }
   void setIcon(Object icon) {
-    if (icon is String || icon is MarkerImage) {
+    if (icon === null || icon is String || icon is MarkerImage) {
       $.call("setIcon", [icon]);
     } else {
       throw new IllegalArgumentException(icon);
@@ -343,29 +353,33 @@ class MarkerImage extends js.JsObject {
   MarkerImage(String url, [Size size, Point origin, Point anchor, Size scaledSize]) : super.newInstance(TYPE_NAME, [url, size, origin, anchor, scaledSize]);
   MarkerImage.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  Point get anchor => new Point.fromJsRef($["anchor"]);
+  Point get anchor => $.getProperty("anchor", Point.INSTANCIATOR);
         set anchor(Point anchor) => $["anchor"] = anchor;
-  Point get origin => new Point.fromJsRef($["origin"]);
+  Point get origin => $.getProperty("origin", Point.INSTANCIATOR);
         set origin(Point origin) => $["origin"] = origin;
-  Size get scaledSize => new Size.fromJsRef($["scaledSize"]);
+  Size get scaledSize => $.getProperty("scaledSize", Size.INSTANCIATOR);
        set scaledSize(Size scaledSize) => $["scaledSize"] = scaledSize;
-  Size get size => new Size.fromJsRef($["size"]);
+  Size get size => $.getProperty("size", Size.INSTANCIATOR);
        set size(Size size) => $["size"] = size;
   String get url => $["url"];
          set url(String url) => $["url"] = url;
 }
 
 class MarkerShape extends js.JsObject {
+  static final INSTANCIATOR = (js.JsRef jsRef) => new MarkerShape.fromJsRef(jsRef);
+
   MarkerShape() : super();
   MarkerShape.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  List<num> get coords => new js.JsList<num>.fromJsRef($.getPropertyAsJsRef("coords"), (e) => js.$$(e).value);
+  List<num> get coords => $.getProperty("coords", (js.JsRef jsRef) => new js.JsList<num>.fromJsRef(jsRef, (e) => js.$$(e).value));
             set coords(List<num> coords) => $["coords"] = coords;
-  MarkerShapeType get type => MarkerShapeType.find($["type"]);
+  MarkerShapeType get type => $.getProperty("type", MarkerShapeType.INSTANCIATOR);
                   set type(MarkerShapeType type) => $["type"] = type.value;
 }
 
 class MarkerShapeType {
+  static final INSTANCIATOR = (js.JsRef jsRef) => find(new js.$$(jsRef).value);
+
   static final CIRCLE = new MarkerShapeType._("circle");
   static final POLY = new MarkerShapeType._("poly");
   static final RECT = new MarkerShapeType._("rect");
@@ -380,7 +394,7 @@ class MarkerShapeType {
 }
 
 class Symbol extends js.JsObject {
-  Point get anchor => new Point.fromJsRef($["anchor"]);
+  Point get anchor => $.getProperty("anchor", Point.INSTANCIATOR);
         set anchor(Point anchor) => $["anchor"] = anchor;
   String get fillColor => $["fillColor"];
          set fillColor(String fillColor) => $["fillColor"] = fillColor;
@@ -433,6 +447,7 @@ class SymbolPath extends js.JsObject {
 
 class Animation extends js.JsObject {
   static const TYPE_NAME = "google.maps.Animation";
+  static final INSTANCIATOR = (js.JsRef jsRef) => find(jsRef);
 
   static final BOUNCE = new Animation._("${TYPE_NAME}.BOUNCE");
   static final DROP = new Animation._("${TYPE_NAME}.DROP");
@@ -459,7 +474,7 @@ class InfoWindow extends MVCObject {
       throw new Exception("Unsupported result");
     }
   }
-  LatLng getPosition() => new LatLng.fromJsRef($.call("getPosition"));
+  LatLng getPosition() => $.call("getPosition", LatLng.INSTANCIATOR);
   num getZIndex() => $.call("getZIndex");
   void open([Object map, MVCObject anchor]) {
     if (map is GMap || map is StreetViewPanorama) {
@@ -492,9 +507,9 @@ class InfoWindowOptions extends js.JsObject {
        set disableAutoPan(bool disableAutoPan) => $["disableAutoPan"] = disableAutoPan;
   num get maxWidth => $["maxWidth"];
       set maxWidth(num maxWidth) => $["maxWidth"] = maxWidth;
-  Size get pixelOffset => new Size.fromJsRef($["pixelOffset"]);
+  Size get pixelOffset => $.getProperty("pixelOffset", Size.INSTANCIATOR);
        set pixelOffset(Size pixelOffset) => $["pixelOffset"] = pixelOffset;
-  LatLng get position => new LatLng.fromJsRef($["position"]);
+  LatLng get position => $.getProperty("position", LatLng.INSTANCIATOR);
          set position(LatLng position) => $["position"] = position;
   num get zIndex => $["zIndex"];
       set zIndex(num zIndex) => $["zIndex"] = zIndex;
@@ -507,8 +522,8 @@ class Polyline extends MVCObject {
   Polyline.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
   bool getEditable() => $.call("getEditable");
-  GMap getMap() => _transformIfNotNull($.call("getMap"), (e) => new GMap.fromJsRef(e));
-  MVCArray<LatLng> getPath() => new MVCArray.fromJsRef($.call("getPath"), (js.JsRef jsRef) => new LatLng.fromJsRef(jsRef));
+  GMap getMap() => $.call("getMap", [], GMap.INSTANCIATOR);
+  MVCArray<LatLng> getPath() => $.call("getPath", [], (js.JsRef jsRef) => new MVCArray.fromJsRef(jsRef, (js.JsRef jsRef) => new LatLng.fromJsRef(jsRef)));
   bool getVisible() => $.call("getVisible");
   void setEditable(bool editable) { $.call("setEditable", [editable]); }
   void setMap(GMap map) { $.call("setMap", [map]); }
@@ -559,9 +574,9 @@ class Polygon extends MVCObject {
   Polygon.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
   bool getEditable() => $.call("getEditable");
-  GMap getMap() => _transformIfNotNull($.call("getMap"), (e) => new GMap.fromJsRef(e));
-  MVCArray<LatLng> getPath() => new MVCArray.fromJsRef($.call("getPath"), (js.JsRef jsRef) => new LatLng.fromJsRef(jsRef));
-  MVCArray<MVCArray<LatLng>> getPaths() => new MVCArray.fromJsRef($.call("getPaths"), (js.JsRef jsRef) => new MVCArray.fromJsRef(jsRef, (js.JsRef jsRef) => new LatLng.fromJsRef(jsRef)));
+  GMap getMap() => $.call("getMap", [], GMap.INSTANCIATOR);
+  MVCArray<LatLng> getPath() => $.call("getPath", [], (js.JsRef jsRef) => new MVCArray.fromJsRef(jsRef, (js.JsRef jsRef) => new LatLng.fromJsRef(jsRef)));
+  MVCArray<MVCArray<LatLng>> getPaths() => $.call("getPaths", [], (js.JsRef jsRef) => new MVCArray.fromJsRef(jsRef, (js.JsRef jsRef) => new MVCArray.fromJsRef(jsRef, (js.JsRef jsRef) => new LatLng.fromJsRef(jsRef))));
   bool getVisible() => $.call("getVisible");
   void setEditable(bool editable) { $.call("setEditable", [editable]); }
   void setMap(GMap map) { $.call("setMap", [map]); }
@@ -618,9 +633,9 @@ class Rectangle extends MVCObject {
   Rectangle([RectangleOptions opts]) : super.newInstance(TYPE_NAME, [opts]);
   Rectangle.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  LatLngBounds getBounds() => new LatLngBounds.fromJsRef($.call("getBounds"));
+  LatLngBounds getBounds() => $.call("getBounds", [], LatLngBounds.INSTANCIATOR);
   bool getEditable() => $.call("getEditable");
-  GMap getMap() => _transformIfNotNull($.call("getMap"), (e) => new GMap.fromJsRef(e));
+  GMap getMap() => $.call("getMap", [], GMap.INSTANCIATOR);
   bool getVisible() => $.call("getVisible");
   void setBounds(LatLngBounds bounds) { $.call("setBounds", [bounds]); }
   void setEditable(bool editable) { $.call("setEditable", [editable]); }
@@ -649,10 +664,10 @@ class Circle extends MVCObject {
   Circle([CircleOptions opts]) : super.newInstance(TYPE_NAME, [opts]);
   Circle.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  LatLngBounds getBounds() => new LatLngBounds.fromJsRef($.call("getBounds"));
-  LatLng getCenter() => new LatLng.fromJsRef($.call("getCenter"));
+  LatLngBounds getBounds() => $.call("getBounds", [], LatLngBounds.INSTANCIATOR);
+  LatLng getCenter() => $.call("getCenter", [], LatLng.INSTANCIATOR);
   bool getEditable() => $.call("getEditable");
-  GMap getMap() => _transformIfNotNull($.call("getMap"), (e) => new GMap.fromJsRef(e));
+  GMap getMap() => $.call("getMap", [], GMap.INSTANCIATOR);
   num getRadius() => $.call("getRadius");
   bool getVisible() => $.call("getVisible");
   void setCenter(LatLng center) { $.call("setCenter", [center]); }
@@ -684,8 +699,8 @@ class GroundOverlay extends MVCObject {
   GroundOverlay(String url, LatLngBounds bounds, [GroundOverlayOptions opts]) : super.newInstance(TYPE_NAME, [url, bounds, opts]);
   GroundOverlay.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  LatLngBounds getBounds() => new LatLngBounds.fromJsRef($.call("getBounds"));
-  GMap getMap() => _transformIfNotNull($.call("getMap"), (e) => new GMap.fromJsRef(e));
+  LatLngBounds getBounds() => $.call("getBounds", [], LatLngBounds.INSTANCIATOR);
+  GMap getMap() => $.call("getMap", [], GMap.INSTANCIATOR);
   num getOpacity() => $.call("getOpacity");
   String getUrl() => $.call("getUrl");
   void setMap(GMap map) { $.call("setMap", [map]); }
@@ -705,9 +720,9 @@ class OverlayView extends MVCObject {
   OverlayView.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
   void draw() { $.call("draw"); }
-  GMap getMap() => _transformIfNotNull($.call("getMap"), (e) => new GMap.fromJsRef(e));
-  MapPanes getPanes() => new MapPanes.fromJsRef($.call("getPanes"));
-  MapCanvasProjection getProjection() => new MapCanvasProjection.fromJsRef($.call("getProjection"));
+  GMap getMap() => $.call("getMap", [], GMap.INSTANCIATOR);
+  MapPanes getPanes() => $.call("getPanes", [], MapPanes.INSTANCIATOR);
+  MapCanvasProjection getProjection() => $.call("getProjection", [], MapCanvasProjection.INSTANCIATOR);
   void onAdd() { $.call("onAdd"); }
   void onRemove() { $.call("onRemove"); }
   void setMap(Object map) {
@@ -720,6 +735,8 @@ class OverlayView extends MVCObject {
 }
 
 class MapPanes extends js.JsObject {
+  static final INSTANCIATOR = (js.JsRef jsRef) => new MapPanes.fromJsRef(jsRef);
+
   MapPanes.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
   html.Node get floatPane => $["floatPane"];
@@ -739,12 +756,14 @@ class MapPanes extends js.JsObject {
 }
 
 class MapCanvasProjection extends MVCObject {
+  static final INSTANCIATOR = (js.JsRef jsRef) => new MapCanvasProjection.fromJsRef(jsRef);
+
   MapCanvasProjection.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  LatLng fromContainerPixelToLatLng(Point pixel, [bool nowrap]) => new LatLng.fromJsRef($.call("fromContainerPixelToLatLng", [pixel, nowrap]));
-  LatLng fromDivPixelToLatLng(Point pixel, [bool nowrap]) => new LatLng.fromJsRef($.call("fromDivPixelToLatLng", [pixel, nowrap]));
-  Point fromLatLngToContainerPixel(LatLng latLng) => new Point.fromJsRef($.call("fromLatLngToContainerPixel", [latLng]));
-  Point fromLatLngToDivPixel(LatLng latLng) => new Point.fromJsRef($.call("fromLatLngToDivPixel", [latLng]));
+  LatLng fromContainerPixelToLatLng(Point pixel, [bool nowrap]) => $.call("fromContainerPixelToLatLng", [pixel, nowrap], LatLng.INSTANCIATOR);
+  LatLng fromDivPixelToLatLng(Point pixel, [bool nowrap]) => $.call("fromDivPixelToLatLng", [pixel, nowrap], LatLng.INSTANCIATOR);
+  Point fromLatLngToContainerPixel(LatLng latLng) => $.call("fromLatLngToContainerPixel", [latLng], Point.INSTANCIATOR);
+  Point fromLatLngToDivPixel(LatLng latLng) => $.call("fromLatLngToDivPixel", [latLng], Point.INSTANCIATOR);
   num getWorldWidth() => $.call("getWorldWidth");
 }
 
@@ -791,33 +810,38 @@ class GeocoderResult extends js.JsObject {
   GeocoderResult() : super();
   GeocoderResult.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  List<GeocoderAddressComponent> get address_components => new js.JsList<GeocoderAddressComponent>.fromJsRef($.getPropertyAsJsRef("address_components"), (e) => new GeocoderAddressComponent.fromJsRef(e));
+  List<GeocoderAddressComponent> get address_components => $.getProperty("address_components", (js.JsRef jsRef) => new js.JsList<GeocoderAddressComponent>.fromJsRef(jsRef, GeocoderAddressComponent.INSTANCIATOR));
   String get formatted_address => $["formatted_address"];
-  GeocoderGeometry get geometry => new GeocoderGeometry.fromJsRef($["geometry"]);
-  List<String> get types => new js.JsList<String>.fromJsRef($.getPropertyAsJsRef("types"), (e) => js.$$(e).value);
+  GeocoderGeometry get geometry => $.getProperty("geometry", GeocoderGeometry.INSTANCIATOR);
+  List<String> get types => $.getProperty("types", (js.JsRef jsRef) => new js.JsList<String>.fromJsRef(jsRef, (e) => js.$$(e).value));
 }
 
 class GeocoderAddressComponent extends js.JsObject {
+  static final INSTANCIATOR = (js.JsRef jsRef) => new GeocoderAddressComponent.fromJsRef(jsRef);
+
   GeocoderAddressComponent() : super();
   GeocoderAddressComponent.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
   String get long_name => $["long_name"];
   String get short_name => $["short_name"];
-  List<String> get types => new js.JsList<String>.fromJsRef($.getPropertyAsJsRef("types"), (e) => js.$$(e).value);
+  List<String> get types => $.getProperty("types", (js.JsRef jsRef) => new js.JsList<String>.fromJsRef(jsRef, (e) => js.$$(e).value));
 }
 
 class GeocoderGeometry extends js.JsObject {
+  static final INSTANCIATOR = (js.JsRef jsRef) => new GeocoderGeometry.fromJsRef(jsRef);
+
   GeocoderGeometry() : super();
   GeocoderGeometry.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  LatLngBounds get bounds => new LatLngBounds.fromJsRef($["bounds"]);
-  LatLng get location => new LatLng.fromJsRef($["location"]);
-  GeocoderLocationType get location_type => GeocoderLocationType.find($["location_type"]);
-  LatLngBounds get viewport => new    LatLngBounds.fromJsRef($["viewport"]);
+  LatLngBounds get bounds => $.getProperty("bounds", LatLngBounds.INSTANCIATOR);
+  LatLng get location => $.getProperty("location", LatLng.INSTANCIATOR);
+  GeocoderLocationType get location_type => $.getProperty("location_type", GeocoderLocationType.INSTANCIATOR);
+  LatLngBounds get viewport => $.getProperty("viewport", LatLngBounds.INSTANCIATOR);
 }
 
 class GeocoderLocationType extends js.JsObject {
   static const TYPE_NAME = "google.maps.GeocoderLocationType";
+  static final INSTANCIATOR = (js.JsRef jsRef) => find(jsRef);
 
   static final APPROXIMATE = new GeocoderLocationType._("${TYPE_NAME}.APPROXIMATE");
   static final GEOMETRIC_CENTER = new GeocoderLocationType._("${TYPE_NAME}.GEOMETRIC_CENTER");
@@ -837,8 +861,8 @@ class DirectionsRenderer extends MVCObject {
   DirectionsRenderer([DirectionsRendererOptions opts]) : super.newInstance(TYPE_NAME, [opts]);
   DirectionsRenderer.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  DirectionsResult getDirections() => new DirectionsResult.fromJsRef($.call("getDirections"));
-  GMap getMap() => _transformIfNotNull($.call("getMap"), (e) => new GMap.fromJsRef(e));
+  DirectionsResult getDirections() => $.call("getDirections", [], DirectionsResult.INSTANCIATOR);
+  GMap getMap() => $.call("getMap", [], GMap.INSTANCIATOR);
   html.Node getPanel() => $.call("getPanel");
   num getRouteIndex() => $.call("getRouteIndex");
   void setDirections(DirectionsResult directions) { $.call("setDirections", [directions]); }
@@ -906,6 +930,7 @@ class DirectionsRequest extends js.JsObject {
 
 class TravelMode extends js.JsObject {
   static const TYPE_NAME = "google.maps.TravelMode";
+  static final INSTANCIATOR = (js.JsRef jsRef) => find(jsRef);
 
   static final BICYCLING = new TravelMode._("${TYPE_NAME}.BICYCLING");
   static final DRIVING = new TravelMode._("${TYPE_NAME}.DRIVING");
@@ -968,59 +993,69 @@ class DirectionsStatus extends js.JsObject {
 }
 
 class DirectionsResult extends js.JsObject {
+  static final INSTANCIATOR = (js.JsRef jsRef) => new DirectionsResult.fromJsRef(jsRef);
+
   DirectionsResult() : super();
   DirectionsResult.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  List<DirectionsRoute> get routes => new js.JsList<DirectionsRoute>.fromJsRef($.getPropertyAsJsRef("routes"), (e) => new DirectionsRoute.fromJsRef(e));
+  List<DirectionsRoute> get routes => $.getProperty("routes", (js.JsRef jsRef) => new js.JsList<DirectionsRoute>.fromJsRef(jsRef, DirectionsRoute.INSTANCIATOR));
 }
 
 class DirectionsRoute extends js.JsObject {
+  static final INSTANCIATOR = (js.JsRef jsRef) => new DirectionsRoute.fromJsRef(jsRef);
+
   DirectionsRoute() : super();
   DirectionsRoute.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
   LatLngBounds get bounds => new LatLngBounds.fromJsRef($["bounds"]);
   String get copyrights => $["copyrights"];
-  List<DirectionsLeg> get legs => new js.JsList<DirectionsLeg>.fromJsRef($.getPropertyAsJsRef("legs"), (e) => new DirectionsLeg.fromJsRef(e));
-  List<LatLng> get overview_path => new js.JsList<LatLng>.fromJsRef($.getPropertyAsJsRef("overview_path"), (e) => new LatLng.fromJsRef(e));
-  List<String> get warnings => new js.JsList<String>.fromJsRef($.getPropertyAsJsRef("warnings"), (e) => js.$$(e).value);
-  List<num> get waypoint_order => new js.JsList<num>.fromJsRef($.getPropertyAsJsRef("waypoint_order"), (e) => js.$$(e).value);
+  List<DirectionsLeg> get legs => $.getProperty("legs", (js.JsRef jsRef) => new js.JsList<DirectionsLeg>.fromJsRef(jsRef, DirectionsLeg.INSTANCIATOR));
+  List<LatLng> get overview_path => $.getProperty("overview_path", (js.JsRef jsRef) => new js.JsList<LatLng>.fromJsRef(jsRef, LatLng.INSTANCIATOR));
+  List<String> get warnings => $.getProperty("warnings", (js.JsRef jsRef) => new js.JsList<String>.fromJsRef(jsRef, (e) => js.$$(e).value));
+  List<num> get waypoint_order => $.getProperty("waypoint_order", (js.JsRef jsRef) => new js.JsList<num>.fromJsRef(jsRef, (e) => js.$$(e).value));
 }
 
 class DirectionsLeg extends js.JsObject {
+  static final INSTANCIATOR = (js.JsRef jsRef) => new DirectionsLeg.fromJsRef(jsRef);
+
   DirectionsLeg() : super();
   DirectionsLeg.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
   // TODO test return type
-  Distance get arrival_time => new Distance.fromJsRef($["arrival_time"]);
-  GDuration get departure_time => new GDuration.fromJsRef($["departure_time"]);
-  Distance get distance => new Distance.fromJsRef($["distance"]);
-  GDuration get duration => new GDuration.fromJsRef($["duration"]);
+  Distance get arrival_time => $.getProperty("arrival_time", Distance.INSTANCIATOR);
+  GDuration get departure_time => $.getProperty("departure_time", GDuration.INSTANCIATOR);
+  Distance get distance => $.getProperty("distance", Distance.INSTANCIATOR);
+  GDuration get duration => $.getProperty("duration", GDuration.INSTANCIATOR);
   String get end_address => $["end_address"];
-  LatLng get end_location => new LatLng.fromJsRef($["end_location"]);
+  LatLng get end_location => $.getProperty("end_location", LatLng.INSTANCIATOR);
   String get start_address => $["start_address"];
-  LatLng get start_location => new LatLng.fromJsRef($["start_location"]);
-  List<DirectionsStep> get steps => new js.JsList<DirectionsStep>.fromJsRef($.getPropertyAsJsRef("steps"), (e) => new DirectionsStep.fromJsRef(e));
-  List<LatLng> get via_waypoints => new js.JsList<LatLng>.fromJsRef($.getPropertyAsJsRef("via_waypoints"), (e) => new LatLng.fromJsRef(e));
+  LatLng get start_location => $.getProperty("start_location", LatLng.INSTANCIATOR);
+  List<DirectionsStep> get steps => $.getProperty("steps", (js.JsRef jsRef) => new js.JsList<DirectionsStep>.fromJsRef(jsRef, DirectionsStep.INSTANCIATOR));
+  List<LatLng> get via_waypoints => $.getProperty("via_waypoints", (js.JsRef jsRef) => new js.JsList<LatLng>.fromJsRef(jsRef, LatLng.INSTANCIATOR));
 }
 
 class DirectionsStep extends js.JsObject {
+  static final INSTANCIATOR = (js.JsRef jsRef) => new DirectionsStep.fromJsRef(jsRef);
+
   DirectionsStep() : super();
   DirectionsStep.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  Distance get distance => new Distance.fromJsRef($["distance"]);
-  GDuration get duration => new GDuration.fromJsRef($["duration"]);
-  LatLng get end_location => new LatLng.fromJsRef($["end_location"]);
+  Distance get distance => $.getProperty("distance", Distance.INSTANCIATOR);
+  GDuration get duration => $.getProperty("duration", GDuration.INSTANCIATOR);
+  LatLng get end_location => $.getProperty("end_location", LatLng.INSTANCIATOR);
   String get instructions => $["instructions"];
-  List<LatLng> get path => new js.JsList<LatLng>.fromJsRef($.getPropertyAsJsRef("path"), (e) => new LatLng.fromJsRef(e));
-  LatLng get start_location => new LatLng.fromJsRef($["start_location"]);
+  List<LatLng> get path => $.getProperty("path", (js.JsRef jsRef) => new js.JsList<LatLng>.fromJsRef(jsRef, LatLng.INSTANCIATOR));
+  LatLng get start_location => $.getProperty("start_location", LatLng.INSTANCIATOR);
   // TODO check return type
-  DirectionsStep get steps => new DirectionsStep.fromJsRef($["steps"]);
+  DirectionsStep get steps => $.getProperty("steps", DirectionsStep.INSTANCIATOR);
 //  List<DirectionsStep> get steps => new js.JsList<DirectionsStep>.fromJsRef($.getJsRef("steps"), (e) => new DirectionsStep.fromJsRef(e));
-  TransitDetails get transit => new TransitDetails.fromJsRef($["transit"]);
-  TravelMode get travel_mode => TravelMode.find($["travel_mode"]);
+  TransitDetails get transit => $.getProperty("transit", TransitDetails.INSTANCIATOR);
+  TravelMode get travel_mode => $.getProperty("travel_mode", TravelMode.INSTANCIATOR);
 }
 
 class Distance extends js.JsObject {
+  static final INSTANCIATOR = (js.JsRef jsRef) => new Distance.fromJsRef(jsRef);
+
   Distance() : super();
   Distance.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
@@ -1029,6 +1064,8 @@ class Distance extends js.JsObject {
 }
 
 class GDuration extends js.JsObject {
+  static final INSTANCIATOR = (js.JsRef jsRef) => new GDuration.fromJsRef(jsRef);
+
   GDuration() : super();
   GDuration.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
@@ -1037,6 +1074,8 @@ class GDuration extends js.JsObject {
 }
 
 class Time extends js.JsObject {
+  static final INSTANCIATOR = (js.JsRef jsRef) => new Time.fromJsRef(jsRef);
+
   Time() : super();
   Time.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
@@ -1046,42 +1085,50 @@ class Time extends js.JsObject {
 }
 
 class TransitDetails extends js.JsObject {
+  static final INSTANCIATOR = (js.JsRef jsRef) => new TransitDetails.fromJsRef(jsRef);
+
   TransitDetails() : super();
   TransitDetails.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  TransitStop get arrival_stop => new TransitStop.fromJsRef($["arrival_stop"]);
-  Time get arrival_time => new Time.fromJsRef($["arrival_time"]);
-  TransitStop get departure_stop => new TransitStop.fromJsRef($["departure_stop"]);
-  Time get departure_time => new Time.fromJsRef($["departure_time"]);
+  TransitStop get arrival_stop => $.getProperty("arrival_stop", TransitStop.INSTANCIATOR);
+  Time get arrival_time => $.getProperty("arrival_time", Time.INSTANCIATOR);
+  TransitStop get departure_stop => $.getProperty("departure_stop", TransitStop.INSTANCIATOR);
+  Time get departure_time => $.getProperty("departure_time", Time.INSTANCIATOR);
   String get headsign => $["headsign"];
   num get headway => $["headway"];
-  TransitLine get line => new TransitLine.fromJsRef($["line"]);
+  TransitLine get line => $.getProperty("line", TransitLine.INSTANCIATOR);
   num get num_stops => $["num_stops"];
 }
 
 class TransitStop extends js.JsObject {
+  static final INSTANCIATOR = (js.JsRef jsRef) => new TransitStop.fromJsRef(jsRef);
+
   TransitStop() : super();
   TransitStop.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  LatLng get location => new LatLng.fromJsRef($["location"]);
+  LatLng get location => $.getProperty("location", LatLng.INSTANCIATOR);
   String get name => $["name"];
 }
 
 class TransitLine extends js.JsObject {
+  static final INSTANCIATOR = (js.JsRef jsRef) => new TransitLine.fromJsRef(jsRef);
+
   TransitLine() : super();
   TransitLine.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  List<TransitAgency> get agencies => new js.JsList<TransitAgency>.fromJsRef($.getPropertyAsJsRef("agencies"), (e) => new TransitAgency.fromJsRef(e));
+  List<TransitAgency> get agencies => $.getProperty("agencies", (js.JsRef jsRef) => new js.JsList<TransitAgency>.fromJsRef(jsRef, TransitAgency.INSTANCIATOR));
   String get color => $["color"];
   String get icon => $["icon"];
   String get name => $["name"];
   String get short_name => $["short_name"];
   String get text_color => $["text_color"];
   String get url => $["url"];
-  TransitVehicle get vehicle => new TransitVehicle.fromJsRef($["vehicle"]);
+  TransitVehicle get vehicle => $.getProperty("vehicle", TransitVehicle.INSTANCIATOR);
 }
 
 class TransitAgency extends js.JsObject {
+  static final INSTANCIATOR = (js.JsRef jsRef) => new TransitAgency.fromJsRef(jsRef);
+
   TransitAgency() : super();
   TransitAgency.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
@@ -1091,6 +1138,8 @@ class TransitAgency extends js.JsObject {
 }
 
 class TransitVehicle extends js.JsObject {
+  static final INSTANCIATOR = (js.JsRef jsRef) => new TransitVehicle.fromJsRef(jsRef);
+
   TransitVehicle() : super();
   TransitVehicle.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
@@ -1136,7 +1185,7 @@ class ElevationResult extends js.JsObject {
   ElevationResult.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
   num get elevation => $["elevation"];
-  LatLng get location => new LatLng.fromJsRef($["location"]);
+  LatLng get location => $.getProperty("location", LatLng.INSTANCIATOR);
   num get resolution => $["resolution"];
 }
 
@@ -1173,12 +1222,13 @@ class MaxZoomResult extends js.JsObject {
   MaxZoomResult() : super();
   MaxZoomResult.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  MaxZoomStatus get status => MaxZoomStatus.find($["status"]);
+  MaxZoomStatus get status => $.getProperty("status", MaxZoomStatus.INSTANCIATOR);
   num get zoom => $["zoom"];
 }
 
 class MaxZoomStatus extends js.JsObject {
   static const TYPE_NAME = "google.maps.MaxZoomStatus";
+  static final INSTANCIATOR = (js.JsRef jsRef) => find(jsRef);
 
   static final ERROR = new MaxZoomStatus._("${TYPE_NAME}.ERROR");
   static final OK = new MaxZoomStatus._("${TYPE_NAME}.OK");
@@ -1229,25 +1279,29 @@ class DistanceMatrixResponse extends js.JsObject {
   DistanceMatrixResponse() : super();
   DistanceMatrixResponse.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  List<String> get destinationAddresses => new js.JsList<String>.fromJsRef($.getPropertyAsJsRef("destinationAddresses"), (e) => js.$$(e).value);
-  List<String> get originAddresses => new js.JsList<String>.fromJsRef($.getPropertyAsJsRef("originAddresses"), (e) => js.$$(e).value);
-  List<DistanceMatrixResponseRow> get rows => new js.JsList<DistanceMatrixResponseRow>.fromJsRef($.getPropertyAsJsRef("rows"), (e) => new DistanceMatrixResponseRow.fromJsRef(e));
+  List<String> get destinationAddresses => $.getProperty("destinationAddresses", (js.JsRef jsRef) => new js.JsList<String>.fromJsRef(jsRef, (e) => js.$$(e).value));
+  List<String> get originAddresses => $.getProperty("originAddresses", (js.JsRef jsRef) => new js.JsList<String>.fromJsRef(jsRef, (e) => js.$$(e).value));
+  List<DistanceMatrixResponseRow> get rows => $.getProperty("rows", (js.JsRef jsRef) => new js.JsList<DistanceMatrixResponseRow>.fromJsRef(jsRef, DistanceMatrixResponseRow.INSTANCIATOR));
 }
 
 class DistanceMatrixResponseRow extends js.JsObject {
+  static final INSTANCIATOR = (js.JsRef jsRef) => new DistanceMatrixResponseRow.fromJsRef(jsRef);
+
   DistanceMatrixResponseRow() : super();
   DistanceMatrixResponseRow.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  List<DistanceMatrixResponseElement> get elements => new js.JsList<DistanceMatrixResponseElement>.fromJsRef($.getPropertyAsJsRef("elements"), (e) => new DistanceMatrixResponseElement.fromJsRef(e));
+  List<DistanceMatrixResponseElement> get elements => $.getProperty("elements", (js.JsRef jsRef) => new js.JsList<DistanceMatrixResponseElement>.fromJsRef(jsRef, DistanceMatrixResponseElement.INSTANCIATOR));
 }
 
 class DistanceMatrixResponseElement extends js.JsObject {
+  static final INSTANCIATOR = (js.JsRef jsRef) => new DistanceMatrixResponseElement.fromJsRef(jsRef);
+
   DistanceMatrixResponseElement() : super();
   DistanceMatrixResponseElement.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  Distance get distance => new Distance.fromJsRef($["distance"]);
-  GDuration get duration => new GDuration.fromJsRef($["duration"]);
-  DistanceMatrixElementStatus get status => DistanceMatrixElementStatus.find($["status"]);
+  Distance get distance => $.getProperty("distance", Distance.INSTANCIATOR);
+  GDuration get duration => $.getProperty("duration", GDuration.INSTANCIATOR);
+  DistanceMatrixElementStatus get status => $.getProperty("status", DistanceMatrixElementStatus.INSTANCIATOR);
 }
 
 class DistanceMatrixStatus extends js.JsObject {
@@ -1270,6 +1324,7 @@ class DistanceMatrixStatus extends js.JsObject {
 
 class DistanceMatrixElementStatus extends js.JsObject {
   static const TYPE_NAME = "google.maps.DistanceMatrixElementStatus";
+  static final INSTANCIATOR = (js.JsRef jsRef) => find(jsRef);
 
   static final NOT_FOUND = new DistanceMatrixElementStatus._("${TYPE_NAME}.NOT_FOUND");
   static final OK = new DistanceMatrixElementStatus._("${TYPE_NAME}.OK");
@@ -1298,16 +1353,17 @@ class MapType extends js.JsObject {
       set minZoom(num minZoom) => $["minZoom"] = minZoom;
   String get name => $["name"];
          set name(String name) => $["name"] = name;
-  Projection get projection => new Projection.fromJsRef($["projection"]);
+  Projection get projection => $.getProperty("projection", Projection.INSTANCIATOR);
              set projection(Projection projection) => $["projection"] = projection;
   num get radius => $["radius"];
       set radius(num radius) => $["radius"] = radius;
-  Size get tileSize => new Size.fromJsRef($["tileSize"]);
+  Size get tileSize => $.getProperty("tileSize", Size.INSTANCIATOR);
        set tileSize(Size tileSize) => $["tileSize"] = tileSize;
 }
 
 class MapTypeRegistry extends MVCObject {
   static const TYPE_NAME = "google.maps.MapTypeRegistry";
+  static final INSTANCIATOR = (js.JsRef jsRef) => new MapTypeRegistry.fromJsRef(jsRef);
 
   MapTypeRegistry() : super.newInstance(TYPE_NAME);
   MapTypeRegistry.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
@@ -1316,11 +1372,13 @@ class MapTypeRegistry extends MVCObject {
 }
 
 class Projection extends js.JsObject {
+  static final INSTANCIATOR = (js.JsRef jsRef) => new Projection.fromJsRef(jsRef);
+
   Projection() : super();
   Projection.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  Point fromLatLngToPoint(LatLng latLng, [Point point]) => new Point.fromJsRef($.call("fromLatLngToPoint", [latLng, point]));
-  LatLng fromPointToLatLng(Point pixel, [bool nowrap]) => new LatLng.fromJsRef($.call("fromPointToLatLng", [pixel, nowrap]));
+  Point fromLatLngToPoint(LatLng latLng, [Point point]) => $.call("fromLatLngToPoint", [latLng, point], Point.INSTANCIATOR);
+  LatLng fromPointToLatLng(Point pixel, [bool nowrap]) => $.call("fromPointToLatLng", [pixel, nowrap], LatLng.INSTANCIATOR);
 }
 
 class ImageMapType extends MapType {
@@ -1517,7 +1575,7 @@ class BicyclingLayer extends MVCObject {
   BicyclingLayer() : super.newInstance(TYPE_NAME);
   BicyclingLayer.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  GMap getMap() => _transformIfNotNull($.call("getMap"), (e) => new GMap.fromJsRef(e));
+  GMap getMap() => $.call("getMap", [], GMap.INSTANCIATOR);
   void setMap(GMap map) { $.call("setMap", [map]); }
 }
 
@@ -1527,7 +1585,7 @@ class FusionTablesLayer extends MVCObject {
   FusionTablesLayer(FusionTablesLayerOptions options) : super.newInstance(TYPE_NAME, [options]);
   FusionTablesLayer.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  GMap getMap() => _transformIfNotNull($.call("getMap"), (e) => new GMap.fromJsRef(e));
+  GMap getMap() => $.call("getMap", [], GMap.INSTANCIATOR);
   void setMap(GMap map) { $.call("setMap", [map]); }
   void setOptions(FusionTablesLayerOptions options) { $.call("setOptions", [options]); }
 }
@@ -1581,11 +1639,11 @@ class FusionTablesPolylineOptions extends js.JsObject {
 
 class FusionTablesMouseEvent extends NativeEvent {
   FusionTablesMouseEvent();
-  FusionTablesMouseEvent.wrap(NativeEvent e) { jsRef = e.jsRef; }
+  FusionTablesMouseEvent.wrap(NativeEvent e) : super.fromJsRef(e.jsRef);
 
   String get infoWindowHtml => $["infoWindowHtml"];
-  LatLng get latLng => new LatLng.fromJsRef($["latLng"]);
-  Size get pixelOffset => new Size.fromJsRef($["pixelOffset"]);
+  LatLng get latLng => $.getProperty("latLng", LatLng.INSTANCIATOR);
+  Size get pixelOffset => $.getProperty("pixelOffset", Size.INSTANCIATOR);
   // TODO improve return type ( should be Map<String, FusionTablesCell> )
   js.JsRef get row => $["row"];
 }
@@ -1603,10 +1661,10 @@ class KmlLayer extends MVCObject {
   KmlLayer(String url, [KmlLayerOptions options]) : super.newInstance(TYPE_NAME, [url, options]);
   KmlLayer.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  LatLngBounds getDefaultViewport() => new LatLngBounds.fromJsRef($.call("getDefaultViewport"));
-  GMap getMap() => _transformIfNotNull($.call("getMap"), (e) => new GMap.fromJsRef(e));
-  KmlLayerMetadata getMetadata() => new KmlLayerMetadata.fromJsRef($.call("getMetadata"));
-  KmlLayerStatus getStatus() => KmlLayerStatus.find($.call("getStatus"));
+  LatLngBounds getDefaultViewport() => $.call("getDefaultViewport", [], LatLngBounds.INSTANCIATOR);
+  GMap getMap() => $.call("getMap", [], GMap.INSTANCIATOR);
+  KmlLayerMetadata getMetadata() => $.call("getMetadata", [], KmlLayerMetadata.INSTANCIATOR);
+  KmlLayerStatus getStatus() => $.call("getStatus", [], KmlLayerStatus.INSTANCIATOR);
   String getUrl() => $.call("getUrl");
   void setMap(GMap map) { $.call("setMap", [map]); }
 }
@@ -1619,9 +1677,11 @@ class KmlLayerOptions extends js.JsObject {
 }
 
 class KmlLayerMetadata extends js.JsObject {
+  static final INSTANCIATOR = (js.JsRef jsRef) => new KmlLayerMetadata.fromJsRef(jsRef);
+
   KmlLayerMetadata.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  KmlAuthor get author => new KmlAuthor.fromJsRef($["author"]);
+  KmlAuthor get author => $.getProperty("author", KmlAuthor.INSTANCIATOR);
   String get description => $["description"];
   String get name => $["name"];
   String get snippet => $["snippet"];
@@ -1629,6 +1689,7 @@ class KmlLayerMetadata extends js.JsObject {
 
 class KmlLayerStatus extends js.JsObject {
   static const TYPE_NAME = "google.maps.KmlLayerStatus";
+  static final INSTANCIATOR = (js.JsRef jsRef) => find(jsRef);
 
   static final DOCUMENT_NOT_FOUND = new KmlLayerStatus._("${TYPE_NAME}.DOCUMENT_NOT_FOUND");
   static final DOCUMENT_TOO_LARGE = new KmlLayerStatus._("${TYPE_NAME}.DOCUMENT_TOO_LARGE");
@@ -1649,17 +1710,19 @@ class KmlLayerStatus extends js.JsObject {
 
 class KmlMouseEvent extends NativeEvent {
   KmlMouseEvent();
-  KmlMouseEvent.wrap(NativeEvent e) { jsRef = e.jsRef; }
+  KmlMouseEvent.wrap(NativeEvent e) : super.fromJsRef(e.jsRef);
 
-  KmlFeatureData get featureData => new KmlFeatureData.fromJsRef($["featureData"]);
-  LatLng get latLng => new LatLng.fromJsRef($["latLng"]);
-  Size get pixelOffset => new Size.fromJsRef($["pixelOffset"]);
+  KmlFeatureData get featureData => $.getProperty("featureData", KmlFeatureData.INSTANCIATOR);
+  LatLng get latLng => $.getProperty("latLng", LatLng.INSTANCIATOR);
+  Size get pixelOffset => $.getProperty("pixelOffset", Size.INSTANCIATOR);
 }
 
 class KmlFeatureData extends js.JsObject {
+  static final INSTANCIATOR = (js.JsRef jsRef) => new KmlFeatureData.fromJsRef(jsRef);
+
   KmlFeatureData.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  KmlAuthor get author => new KmlAuthor.fromJsRef($["author"]);
+  KmlAuthor get author => $.getProperty("author", KmlAuthor.INSTANCIATOR);
   String get description => $["description"];
   String get id => $["id"];
   String get infoWindowHtml => $["infoWindowHtml"];
@@ -1668,6 +1731,8 @@ class KmlFeatureData extends js.JsObject {
 }
 
 class KmlAuthor extends js.JsObject {
+  static final INSTANCIATOR = (js.JsRef jsRef) => new KmlAuthor.fromJsRef(jsRef);
+
   KmlAuthor.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
   String get email => $["email"];
@@ -1681,7 +1746,7 @@ class TrafficLayer extends MVCObject {
   TrafficLayer() : super.newInstance(TYPE_NAME);
   TrafficLayer.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  GMap getMap() => _transformIfNotNull($.call("getMap"), (e) => new GMap.fromJsRef(e));
+  GMap getMap() => $.call("getMap", [], GMap.INSTANCIATOR);
   void setMap(GMap map) { $.call("setMap", [map]); }
 }
 
@@ -1691,20 +1756,21 @@ class TransitLayer extends MVCObject {
   TransitLayer() : super.newInstance(TYPE_NAME);
   TransitLayer.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  GMap getMap() => _transformIfNotNull($.call("getMap"), (e) => new GMap.fromJsRef(e));
+  GMap getMap() => $.call("getMap", [], GMap.INSTANCIATOR);
   void setMap(GMap map) { $.call("setMap", [map]); }
 }
 
 class StreetViewPanorama extends MVCObject {
   static const TYPE_NAME = "google.maps.StreetViewPanorama";
+  static final INSTANCIATOR = (js.JsRef jsRef) => new StreetViewPanorama.fromJsRef(jsRef);
 
   StreetViewPanorama(html.Node container, [StreetViewPanoramaOptions opts]) : super.newInstance(TYPE_NAME, [container, opts]);
   StreetViewPanorama.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  List<StreetViewLink> getLinks() => new js.JsList<StreetViewLink>.fromJsRef($.callForJsRef("getLinks"), (e) => new StreetViewLink.fromJsRef(e));
+  List<StreetViewLink> getLinks() => $.call("getLinks", [], (js.JsRef jsRef) => new js.JsList<StreetViewLink>.fromJsRef(jsRef, StreetViewLink.INSTANCIATOR));
   String getPano() => $.call("getPano");
-  LatLng getPosition() => new LatLng.fromJsRef($.call("getPosition"));
-  StreetViewPov getPov() => new StreetViewPov.fromJsRef($.call("getPov"));
+  LatLng getPosition() => $.call("getPosition", [], LatLng.INSTANCIATOR);
+  StreetViewPov getPov() => $.call("getPov", [], StreetViewPov.INSTANCIATOR);
   bool getVisible() => $.call("getVisible");
   void registerPanoProvider(StreetViewPanoramaData provider(String pano)) {
     js.CallbackFunction callbackFunction = Object _(List args) {
@@ -1717,8 +1783,8 @@ class StreetViewPanorama extends MVCObject {
   void setPov(StreetViewPov pov) { $.call("setPov", [pov]); }
   void setVisible(bool flag) { $.call("setVisible", [flag]); }
 
-  Controls get controls => new Controls.fromJsRef($.getPropertyAsJsRef("controls"));
-  set controls(Controls controls) => $["controls"] = controls;
+  Controls get controls => $.getProperty("controls", Controls.INSTANCIATOR);
+           set controls(Controls controls) => $["controls"] = controls;
 }
 
 class StreetViewPanoramaOptions extends js.JsObject {
@@ -1751,6 +1817,8 @@ class StreetViewAddressControlOptions extends js.JsObject {
 }
 
 class StreetViewLink extends js.JsObject {
+  static final INSTANCIATOR = (js.JsRef jsRef) => new StreetViewLink.fromJsRef(jsRef);
+
   StreetViewLink() : super();
   StreetViewLink.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
@@ -1763,6 +1831,8 @@ class StreetViewLink extends js.JsObject {
 }
 
 class StreetViewPov extends js.JsObject {
+  static final INSTANCIATOR = (js.JsRef jsRef) => new StreetViewPov.fromJsRef(jsRef);
+
   StreetViewPov() : super();
   StreetViewPov.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
@@ -1782,21 +1852,23 @@ class StreetViewPanoramaData extends js.JsObject {
          set copyright(String copyright) => $["copyright"] = copyright;
   String get imageDate => $["imageDate"];
          set imageDate(String imageDate) => $["imageDate"] = imageDate;
-  List<StreetViewLink> get links => new js.JsList<StreetViewLink>.fromJsRef($.getPropertyAsJsRef("links"), (e) => new StreetViewLink.fromJsRef(e));
+  List<StreetViewLink> get links => $.getProperty("links", (js.JsRef jsRef) => new js.JsList<StreetViewLink>.fromJsRef(jsRef, StreetViewLink.INSTANCIATOR));
                        set links(List<StreetViewLink> links) => $["links"] = links;
-  StreetViewLocation get location => new StreetViewLocation.fromJsRef($["location"]);
+  StreetViewLocation get location => $.getProperty("location", StreetViewLocation.INSTANCIATOR);
                      set location(StreetViewLocation location) => $["location"] = location;
-  StreetViewTileData get tiles => new StreetViewTileData.fromJsRef($["tiles"]);
+  StreetViewTileData get tiles => $.getProperty("tiles", StreetViewTileData.INSTANCIATOR);
                      set tiles(StreetViewTileData tiles) => $["tiles"] = tiles;
 }
 
 class StreetViewLocation extends js.JsObject {
+  static final INSTANCIATOR = (js.JsRef jsRef) => new StreetViewLocation.fromJsRef(jsRef);
+
   StreetViewLocation() : super();
   StreetViewLocation.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
   String get description => $["description"];
          set description(String description) => $["description"] = description;
-  LatLng get latLng => new LatLng.fromJsRef($["latLng"]);
+  LatLng get latLng => $.getProperty("latLng", LatLng.INSTANCIATOR);
          set latLng(LatLng latLng) => $["latLng"] = latLng;
   String get pano => $["pano"];
          set pano(String pano) => $["pano"] = pano;
@@ -1912,13 +1984,14 @@ class Events {
 
 class MouseEvent extends NativeEvent {
   MouseEvent();
-  MouseEvent.wrap(NativeEvent e) { jsRef = e.jsRef; }
+  MouseEvent.wrap(NativeEvent e) : super.fromJsRef(e.jsRef);
 
-  LatLng get latLng => new LatLng.fromJsRef($["latLng"]);
+  LatLng get latLng => $.getProperty("latLng", LatLng.INSTANCIATOR);
 }
 
 class LatLng extends js.JsObject {
   static const TYPE_NAME = "google.maps.LatLng";
+  static final INSTANCIATOR = (js.JsRef jsRef) => new LatLng.fromJsRef(jsRef);
 
   LatLng(num lat, num lng, [bool noWrap]) : super.newInstance(TYPE_NAME, [lat, lng, noWrap]);
   LatLng.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
@@ -1932,19 +2005,20 @@ class LatLng extends js.JsObject {
 
 class LatLngBounds extends js.JsObject {
   static const TYPE_NAME = "google.maps.LatLngBounds";
+  static final INSTANCIATOR = (js.JsRef jsRef) => new LatLngBounds.fromJsRef(jsRef);
 
   LatLngBounds([LatLng sw, LatLng ne]) : super.newInstance(TYPE_NAME, [sw, ne]);
   LatLngBounds.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
   bool contains(LatLng latLng) => $.call("contains", [latLng]);
   bool equals(LatLngBounds other) => $.call("equals", [other]);
-  LatLngBounds extend(LatLng point) => new LatLngBounds.fromJsRef($.call("extend", [point]));
-  LatLng getCenter() => new LatLng.fromJsRef($.call("getCenter"));
-  LatLng getNorthEast() => new LatLng.fromJsRef($.call("getNorthEast"));
-  LatLng getSouthWest() => new LatLng.fromJsRef($.call("getSouthWest"));
+  LatLngBounds extend(LatLng point) => $.call("extend", [point], LatLngBounds.INSTANCIATOR);
+  LatLng getCenter() => $.call("getCenter", [], LatLng.INSTANCIATOR);
+  LatLng getNorthEast() => $.call("getNorthEast", [], LatLng.INSTANCIATOR);
+  LatLng getSouthWest() => $.call("getSouthWest", [], LatLng.INSTANCIATOR);
   bool intersects(LatLngBounds other) => $.call("intersects", [other]);
   bool isEmpty() => $.call("isEmpty");
-  LatLng toSpan() => new LatLng.fromJsRef($.call("toSpan"));
+  LatLng toSpan() => $.call("toSpan", [], LatLng.INSTANCIATOR);
   String toString() => $.call("toString");
   String toUrlValue([num precision]) => $.call("toUrlValue", [precision]);
   bool union(LatLngBounds other) => $.call("union", [other]);
@@ -1952,6 +2026,7 @@ class LatLngBounds extends js.JsObject {
 
 class Point extends js.JsObject {
   static const TYPE_NAME = "google.maps.Point";
+  static final INSTANCIATOR = (js.JsRef jsRef) => new Point.fromJsRef(jsRef);
 
   Point(num x, num y) : super.newInstance(TYPE_NAME, [x, y]);
   Point.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
@@ -1967,6 +2042,7 @@ class Point extends js.JsObject {
 
 class Size extends js.JsObject {
   static const TYPE_NAME = "google.maps.Size";
+  static final INSTANCIATOR = (js.JsRef jsRef) => new Size.fromJsRef(jsRef);
 
   Size(num width, num height, [String widthUnit, String heightUnit]) : super.newInstance(TYPE_NAME, [width, height, widthUnit, heightUnit]);
   Size.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
@@ -2003,6 +2079,7 @@ class MVCObject extends js.JsObject {
   void unbindAll() { $.call("unbindAll"); }
 }
 
+// TODO replace with js.Instanciator
 typedef Object JsRefWrapper(js.JsRef jsRef);
 
 class MVCArray<E> extends MVCObject {
@@ -2022,7 +2099,7 @@ class MVCArray<E> extends MVCObject {
     };
     $.call("forEach", [callbackFunction]);
   }
-  List<E> getArray() => new js.JsList<E>.fromJsRef($.callForJsRef("getArray"), _mayWrap);
+  List<E> getArray() => $.call("getArray", [], (js.JsRef jsRef) => new js.JsList<E>.fromJsRef(jsRef, _mayWrap));
   E getAt(num i) => _mayWrap($.call("getAt", [i]));
   num getLength() => $.call("getLength");
   void insertAt(num i, E elem) { $.call("insertAt", [i, elem]); }
@@ -2032,7 +2109,7 @@ class MVCArray<E> extends MVCObject {
   void setAt(num i, E elem) { $.call("setAt", [i, elem]); }
 
   E _mayWrap(Object o) {
-    if (_jsRefWrapper !== null && o is js.JsRef) {
+    if (_jsRefWrapper !== null && o != null && o is js.JsRef) {
       return _jsRefWrapper(o);
     }
     return o;

@@ -10,7 +10,7 @@ class HeatmapLayer extends MVCObject {
   HeatmapLayer([HeatmapLayerOptions opts]) : super.newInstance(_TYPE_NAME, [opts]);
   HeatmapLayer.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  MVCArray<Object> getData() => new MVCArray.fromJsRef($.call("getData"), (js.JsRef jsRef) {
+  MVCArray<Object> getData() => $.call("getData", [], (js.JsRef jsRef) => new MVCArray.fromJsRef(jsRef, (js.JsRef jsRef) {
     if (js.isInstanceOf(jsRef, LatLng.TYPE_NAME)) {
       return new LatLng.fromJsRef(jsRef);
     } else if (js.isInstanceOf(jsRef, "Object")) {
@@ -18,8 +18,8 @@ class HeatmapLayer extends MVCObject {
     } else {
       throw new Exception("Unsupported result");
     }
-  });
-  GMap getMap() => _transformIfNotNull($.call("getMap"), (e) => new GMap.fromJsRef(e));
+  }));
+  GMap getMap() => $.call("getMap", [], GMap.INSTANCIATOR);
   void setData(Object data) {
     List list;
     if (data is MVCArray) {
@@ -53,7 +53,7 @@ class WeightedLocation extends js.JsObject {
   WeightedLocation() : super();
   WeightedLocation.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  LatLng get location => new LatLng.fromJsRef($["location"]);
+  LatLng get location => $.getProperty("location", LatLng.INSTANCIATOR);
          set location(LatLng location) => $["location"] = location;
   num get weight => $["weight"];
       set weight(num weight) => $["weight"] = weight;

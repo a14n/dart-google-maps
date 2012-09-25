@@ -7,7 +7,7 @@
 class Encoding {
   static const TYPE_NAME = "google.maps.geometry.encoding";
 
-  static List<LatLng> decodePath(String encodedPath) => new js.JsList<LatLng>.fromJsRef(js.jsWindow.$.callForJsRef("${TYPE_NAME}.decodePath", [encodedPath]), (e) => new LatLng.fromJsRef(e));
+  static List<LatLng> decodePath(String encodedPath) => js.jsWindow.$.call("${TYPE_NAME}.decodePath", [encodedPath], (js.JsRef jsRef) => new js.JsList<LatLng>.fromJsRef(jsRef, LatLng.INSTANCIATOR));
   static String encodePath(Object path) {
     if (path is MVCArray<LatLng> || path is List<LatLng>) {
       return js.jsWindow.$.call("${TYPE_NAME}.encodePath", [path]);
@@ -36,7 +36,7 @@ class Spherical {
       throw new IllegalArgumentException(path);
     }
   }
-  static LatLng computeOffset(LatLng from, num distance, num heading, [num radius]) => new LatLng.fromJsRef(js.jsWindow.$.callForJsRef("${TYPE_NAME}.computeOffset", [from, distance, heading, radius]));
+  static LatLng computeOffset(LatLng from, num distance, num heading, [num radius]) => js.jsWindow.$.call("${TYPE_NAME}.computeOffset", [from, distance, heading, radius], LatLng.INSTANCIATOR);
   static num computeSignedArea(Object loop, [num radius]) {
     if (loop is MVCArray<LatLng> || loop is List<LatLng>) {
       return js.jsWindow.$.call("${TYPE_NAME}.computeSignedArea", [loop, radius]);
@@ -44,7 +44,7 @@ class Spherical {
       throw new IllegalArgumentException(loop);
     }
   }
-  static LatLng interpolate(LatLng from, LatLng to, num fraction) => new LatLng.fromJsRef(js.jsWindow.$.callForJsRef("${TYPE_NAME}.interpolate", [from, to, fraction]));
+  static LatLng interpolate(LatLng from, LatLng to, num fraction) => js.jsWindow.$.call("${TYPE_NAME}.interpolate", [from, to, fraction], LatLng.INSTANCIATOR);
 }
 
 class Poly {
