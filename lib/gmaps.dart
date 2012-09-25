@@ -202,7 +202,6 @@ class ZoomControlStyle extends js.JsObject {
 
 class ControlPosition extends js.JsObject {
   static const TYPE_NAME = "google.maps.ControlPosition";
-  static final INSTANCIATOR = (js.JsRef jsRef) => find(jsRef);
 
   static final BOTTOM_CENTER = new ControlPosition._("${TYPE_NAME}.BOTTOM_CENTER");
   static final BOTTOM_LEFT = new ControlPosition._("${TYPE_NAME}.BOTTOM_LEFT");
@@ -232,7 +231,7 @@ class Marker extends MVCObject {
   Marker([MarkerOptions opts]) : super.newInstance(TYPE_NAME, [opts]);
   Marker.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  Animation getAnimation() => $.call("getAnimation", [], Animation.INSTANCIATOR);
+  Animation getAnimation() => $.call("getAnimation", [], Animation.find);
   bool getClickable() => $.call("getClickable");
   String getCursor() => $.call("getCursor");
   bool getDraggable() => $.call("getDraggable");
@@ -447,7 +446,6 @@ class SymbolPath extends js.JsObject {
 
 class Animation extends js.JsObject {
   static const TYPE_NAME = "google.maps.Animation";
-  static final INSTANCIATOR = (js.JsRef jsRef) => find(jsRef);
 
   static final BOUNCE = new Animation._("${TYPE_NAME}.BOUNCE");
   static final DROP = new Animation._("${TYPE_NAME}.DROP");
@@ -835,13 +833,12 @@ class GeocoderGeometry extends js.JsObject {
 
   LatLngBounds get bounds => $.getProperty("bounds", LatLngBounds.INSTANCIATOR);
   LatLng get location => $.getProperty("location", LatLng.INSTANCIATOR);
-  GeocoderLocationType get location_type => $.getProperty("location_type", GeocoderLocationType.INSTANCIATOR);
+  GeocoderLocationType get location_type => $.getProperty("location_type", GeocoderLocationType.find);
   LatLngBounds get viewport => $.getProperty("viewport", LatLngBounds.INSTANCIATOR);
 }
 
 class GeocoderLocationType extends js.JsObject {
   static const TYPE_NAME = "google.maps.GeocoderLocationType";
-  static final INSTANCIATOR = (js.JsRef jsRef) => find(jsRef);
 
   static final APPROXIMATE = new GeocoderLocationType._("${TYPE_NAME}.APPROXIMATE");
   static final GEOMETRIC_CENTER = new GeocoderLocationType._("${TYPE_NAME}.GEOMETRIC_CENTER");
@@ -930,7 +927,6 @@ class DirectionsRequest extends js.JsObject {
 
 class TravelMode extends js.JsObject {
   static const TYPE_NAME = "google.maps.TravelMode";
-  static final INSTANCIATOR = (js.JsRef jsRef) => find(jsRef);
 
   static final BICYCLING = new TravelMode._("${TYPE_NAME}.BICYCLING");
   static final DRIVING = new TravelMode._("${TYPE_NAME}.DRIVING");
@@ -1050,7 +1046,7 @@ class DirectionsStep extends js.JsObject {
   DirectionsStep get steps => $.getProperty("steps", DirectionsStep.INSTANCIATOR);
 //  List<DirectionsStep> get steps => new js.JsList<DirectionsStep>.fromJsRef($.getJsRef("steps"), (e) => new DirectionsStep.fromJsRef(e));
   TransitDetails get transit => $.getProperty("transit", TransitDetails.INSTANCIATOR);
-  TravelMode get travel_mode => $.getProperty("travel_mode", TravelMode.INSTANCIATOR);
+  TravelMode get travel_mode => $.getProperty("travel_mode", TravelMode.find);
 }
 
 class Distance extends js.JsObject {
@@ -1222,13 +1218,12 @@ class MaxZoomResult extends js.JsObject {
   MaxZoomResult() : super();
   MaxZoomResult.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 
-  MaxZoomStatus get status => $.getProperty("status", MaxZoomStatus.INSTANCIATOR);
+  MaxZoomStatus get status => $.getProperty("status", MaxZoomStatus.find);
   num get zoom => $["zoom"];
 }
 
 class MaxZoomStatus extends js.JsObject {
   static const TYPE_NAME = "google.maps.MaxZoomStatus";
-  static final INSTANCIATOR = (js.JsRef jsRef) => find(jsRef);
 
   static final ERROR = new MaxZoomStatus._("${TYPE_NAME}.ERROR");
   static final OK = new MaxZoomStatus._("${TYPE_NAME}.OK");
@@ -1301,7 +1296,7 @@ class DistanceMatrixResponseElement extends js.JsObject {
 
   Distance get distance => $.getProperty("distance", Distance.INSTANCIATOR);
   GDuration get duration => $.getProperty("duration", GDuration.INSTANCIATOR);
-  DistanceMatrixElementStatus get status => $.getProperty("status", DistanceMatrixElementStatus.INSTANCIATOR);
+  DistanceMatrixElementStatus get status => $.getProperty("status", DistanceMatrixElementStatus.find);
 }
 
 class DistanceMatrixStatus extends js.JsObject {
@@ -1324,7 +1319,6 @@ class DistanceMatrixStatus extends js.JsObject {
 
 class DistanceMatrixElementStatus extends js.JsObject {
   static const TYPE_NAME = "google.maps.DistanceMatrixElementStatus";
-  static final INSTANCIATOR = (js.JsRef jsRef) => find(jsRef);
 
   static final NOT_FOUND = new DistanceMatrixElementStatus._("${TYPE_NAME}.NOT_FOUND");
   static final OK = new DistanceMatrixElementStatus._("${TYPE_NAME}.OK");
@@ -1664,7 +1658,7 @@ class KmlLayer extends MVCObject {
   LatLngBounds getDefaultViewport() => $.call("getDefaultViewport", [], LatLngBounds.INSTANCIATOR);
   GMap getMap() => $.call("getMap", [], GMap.INSTANCIATOR);
   KmlLayerMetadata getMetadata() => $.call("getMetadata", [], KmlLayerMetadata.INSTANCIATOR);
-  KmlLayerStatus getStatus() => $.call("getStatus", [], KmlLayerStatus.INSTANCIATOR);
+  KmlLayerStatus getStatus() => $.call("getStatus", [], KmlLayerStatus.find);
   String getUrl() => $.call("getUrl");
   void setMap(GMap map) { $.call("setMap", [map]); }
 }
@@ -1689,7 +1683,6 @@ class KmlLayerMetadata extends js.JsObject {
 
 class KmlLayerStatus extends js.JsObject {
   static const TYPE_NAME = "google.maps.KmlLayerStatus";
-  static final INSTANCIATOR = (js.JsRef jsRef) => find(jsRef);
 
   static final DOCUMENT_NOT_FOUND = new KmlLayerStatus._("${TYPE_NAME}.DOCUMENT_NOT_FOUND");
   static final DOCUMENT_TOO_LARGE = new KmlLayerStatus._("${TYPE_NAME}.DOCUMENT_TOO_LARGE");

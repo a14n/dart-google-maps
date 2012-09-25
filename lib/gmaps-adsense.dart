@@ -15,7 +15,7 @@ class AdUnit extends MVCObject {
   html.Node getContainer() => $.call("getContainer");
   AdFormat getFormat() => $.call("getFormat", [], AdFormat.INSTANCIATOR);
   GMap getMap() => $.call("getMap", [], GMap.INSTANCIATOR);
-  ControlPosition getPosition() => $.call("getPosition", [], ControlPosition.INSTANCIATOR);
+  ControlPosition getPosition() => $.call("getPosition", [], ControlPosition.find);
   String getPublisherId() => $.call("getPublisherId");
   void setChannelNumber(String channelNumber) { $.call("setChannelNumber", [channelNumber]); }
   void setFormat(AdFormat format) { $.call("setFormat", [format]); }
