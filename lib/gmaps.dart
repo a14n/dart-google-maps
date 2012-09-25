@@ -226,7 +226,7 @@ class ControlPosition extends js.JsObject {
 class Marker extends MVCObject {
   static const TYPE_NAME = "google.maps.Marker";
 
-  static final num MAX_ZINDEX = js.Window.$.call("${TYPE_NAME}.MAX_ZINDEX");
+  static final num MAX_ZINDEX = js.jsWindow.$["${TYPE_NAME}.MAX_ZINDEX"];
 
   Marker([MarkerOptions opts]) : super.newInstance(TYPE_NAME, [opts]);
   Marker.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
@@ -377,7 +377,7 @@ class MarkerShape extends js.JsObject {
 }
 
 class MarkerShapeType {
-  static final INSTANCIATOR = (js.JsRef jsRef) => find(new js.$$(jsRef).value);
+  static final INSTANCIATOR = (js.JsRef jsRef) => find(js.$$(jsRef).value);
 
   static final CIRCLE = new MarkerShapeType._("circle");
   static final POLY = new MarkerShapeType._("poly");
@@ -1868,6 +1868,8 @@ class StreetViewLocation extends js.JsObject {
 }
 
 class StreetViewTileData extends js.JsObject {
+  static final INSTANCIATOR = (js.JsRef jsRef) => new StreetViewTileData.fromJsRef(jsRef);
+
   StreetViewTileData() : super();
   StreetViewTileData.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
 

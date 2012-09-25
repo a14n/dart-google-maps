@@ -7,8 +7,15 @@
 // basic types for wrapping
 //-------------------------
 
-
 typedef Object Instanciator(JsRef);
+
+Object _transformIfNotNull(Object o, Instanciator onNotNull) {
+  if (onNotNull != null && o != null) {
+    return onNotNull(o);
+  } else {
+    return o;
+  }
+}
 
 /// Reference to a js element
 class JsRef {
@@ -29,17 +36,9 @@ class JsOperations {
   Object call(String functionName, [List args, Instanciator onNotNull]) => _transformIfNotNull(_callFunction(jsRef, functionName, args, onNotNull != null), onNotNull);
   JsRef getPropertyAsJsRef(String name) => _getProperty(jsRef, name, true);
   Object getProperty(String name, [Instanciator onNotNull]) => _transformIfNotNull(_getProperty(jsRef, name, onNotNull != null), onNotNull);
-  void free() => _free(jsRef);
+  void free() { _free(jsRef); }
 
   Object get value => _getValue(jsRef);
-
-  Object _transformIfNotNull(Object o, Instanciator onNotNull) {
-    if (onNotNull != null && o != null) {
-      return onNotNull(o);
-    } else {
-      return o;
-    }
-  }
 }
 
 JsOperations $$(JsRef jsRef) => new JsOperations._(jsRef);
@@ -109,7 +108,8 @@ class JsList<E> extends JsObject implements List<E> {
   int indexOf(E element, [int start]) => (this.$.value as List).indexOf(element, start);
   int lastIndexOf(E element, [int start]) => (this.$.value as List).lastIndexOf(element, start);
   void clear() { this.$.call("splice", [0, length]); }
-  E removeLast() => this.$.call("pop", instanciator);
+  E removeAt(int index) => _transformIfNotNull((this.$.callForJsRef("splice", [index, 1]) as List)[0], instanciator);
+  E removeLast() => this.$.call("pop", [], instanciator);
   E last() => (this.$.value as List).last();
   List<E> getRange(int start, int length) => (this.$.value as List).getRange(start, length);
   void setRange(int start, int length, List<E> from, [int startFrom=0]) {
