@@ -48,8 +48,5 @@ Examples found at https://google-developers.appspot.com/maps/documentation/javas
 * Compilation to `javascript` via `dart2js` does not work (yet?) because of a limitation in `dart2js` : `Internal error: visitIs for typedefs not implemented`
 * All javascript objects used from dart are retain in a Map. This can cause memory leak if a lot of javascript object is use on dart side.
 
-## troubleshooting ##
-* When opening this project in Dart Editor (b.12440), editor gets angry on examples unless a `package-root` is specified in Preferences pointing to `./packages`
-
 ## License ##
 Apache 2.0
