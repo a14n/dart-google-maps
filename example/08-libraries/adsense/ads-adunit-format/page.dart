@@ -1,5 +1,6 @@
 #import('dart:html');
-#import('package:dart_google_maps/jsni.dart', prefix:'js');
+#import('package:js/js.dart', prefix:'js');
+#import('package:dart_google_maps/jswrap.dart', prefix:'jsw');
 #import('package:dart_google_maps/gmaps.dart', prefix:'gmaps');
 #import('package:dart_google_maps/gmaps-adsense.dart', prefix:'gmaps_ads');
 
@@ -70,54 +71,59 @@ final SAMPLE_AD_STYLES = {
 };
 
 void main() {
-  final mapOptions = new gmaps.MapOptions()
-    ..center = new gmaps.LatLng(36.5987, -121.8950)
-    ..zoom = 12
-    ..mapTypeId = gmaps.MapTypeId.ROADMAP
-    ;
-  final map = new gmaps.GMap(query("#map_canvas"), mapOptions);
-
-
-  final adUnitDiv = new DivElement();
-
-  // Note: replace the publisher ID noted here with your own
-  // publisher ID.
-  final adUnitOptions = new gmaps_ads.AdUnitOptions()
-    ..format = gmaps_ads.AdFormat.HALF_BANNER
-    ..position = gmaps.ControlPosition.TOP_CENTER
-    ..$["backgroundColor"] = '#c4d4f3'
-    ..$["borderColor"] = '#e5ecf9'
-    ..$["titleColor"] = '#0000cc'
-    ..$["textColor"] = '#000000'
-    ..$["urlColor"] = '#009900'
-    ..publisherId = 'ca-google-maps_apidocs'
-    ..map = map
-    ..$["visible"] = true
-    ;
-  final adUnit = new gmaps_ads.AdUnit(adUnitDiv, adUnitOptions);
-
-  SelectElement format = query('#format');
-  gmaps.Events.addDomListener(format, 'change', (e) {
-    final adFormatJsRef = js.jsWindow.$.getPropertyAsJsRef('${gmaps_ads.AdFormat.TYPE_NAME}.${format.value}');
-    adUnit.setFormat(gmaps_ads.AdFormat.find(adFormatJsRef));
-  });
-
-  SelectElement style = query('#style');
-  gmaps.Events.addDomListener(style, 'change', (e) {
-    final adStyle = SAMPLE_AD_STYLES[style.value];
-    // TODO undocumented or undefined functions
-    adUnit.$
-      //..call("setBackgroundColor", [adStyle['color_bg']])
-      //..call("setBorderColor", [adStyle['color_border']])
-      //..call("setTitleColor", [adStyle['color_link']])
-      //..call("setTextColor", [adStyle['color_text']])
-      //..call("setUrlColor", [adStyle['color_url']])
+  js.scoped(() {
+    final mapOptions = new gmaps.MapOptions()
+      ..center = new gmaps.LatLng(36.5987, -121.8950)
+      ..zoom = 12
+      ..mapTypeId = gmaps.MapTypeId.ROADMAP
       ;
-  });
+    final map = new gmaps.GMap(query("#map_canvas"), mapOptions);
 
-  SelectElement position = query('#position');
-  gmaps.Events.addDomListener(position, 'change', (e) {
-    final controlPositionJsRef = js.jsWindow.$.getPropertyAsJsRef('${gmaps.ControlPosition.TYPE_NAME}.${position.value}');
-    adUnit.setPosition(gmaps.ControlPosition.find(controlPositionJsRef));
+
+    final adUnitDiv = new DivElement();
+
+    // Note: replace the publisher ID noted here with your own
+    // publisher ID.
+    final adUnitOptions = new gmaps_ads.AdUnitOptions()
+      ..format = gmaps_ads.AdFormat.HALF_BANNER
+      ..position = gmaps.ControlPosition.TOP_CENTER
+      ..$["backgroundColor"] = '#c4d4f3'
+      ..$["borderColor"] = '#e5ecf9'
+      ..$["titleColor"] = '#0000cc'
+      ..$["textColor"] = '#000000'
+      ..$["urlColor"] = '#009900'
+      ..publisherId = 'ca-google-maps_apidocs'
+      ..map = map
+      ..$["visible"] = true
+      ;
+    final adUnit = new gmaps_ads.AdUnit(adUnitDiv, adUnitOptions);
+
+    final SelectElement format = query('#format');
+    jsw.retainAll([adUnit]);
+    gmaps.Events.addDomListener(format, 'change', (e) {
+      final adsFormat = new jsw.IsJsProxy.fromJsProxy(gmaps.maps.adsense.AdFormat).$.getProperty(format.value);
+      adUnit.setFormat(gmaps_ads.AdFormat.find(adsFormat));
+    });
+
+    final SelectElement style = query('#style');
+    jsw.retainAll([adUnit]);
+    gmaps.Events.addDomListener(style, 'change', (e) {
+      final adStyle = SAMPLE_AD_STYLES[style.value];
+      // TODO undocumented or undefined functions
+      adUnit.$
+        //..call("setBackgroundColor", [adStyle['color_bg']])
+        //..call("setBorderColor", [adStyle['color_border']])
+        //..call("setTitleColor", [adStyle['color_link']])
+        //..call("setTextColor", [adStyle['color_text']])
+        //..call("setUrlColor", [adStyle['color_url']])
+        ;
+    });
+
+    final SelectElement position = query('#position');
+    jsw.retainAll([adUnit]);
+    gmaps.Events.addDomListener(position, 'change', (e) {
+      final adsPosition = new jsw.IsJsProxy.fromJsProxy(gmaps.maps.ControlPosition).$.getProperty(position.value);
+      adUnit.setPosition(gmaps.ControlPosition.find(adsPosition));
+    });
   });
 }

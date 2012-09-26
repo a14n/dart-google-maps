@@ -1,4 +1,6 @@
 #import('dart:html');
+#import('package:js/js.dart', prefix:'js');
+#import('package:dart_google_maps/jswrap.dart', prefix:'jsw');
 #import('package:dart_google_maps/gmaps.dart', prefix:'gmaps');
 
 const IMAGE_URL = "https://google-developers.appspot.com/maps/documentation/javascript/examples";
@@ -17,22 +19,24 @@ final beaches = [
 ];
 
 void main() {
-  final mapOptions = new gmaps.MapOptions()
-    ..zoom = 10
-    ..center = new gmaps.LatLng(-33.9, 151.2)
-    ..mapTypeId = gmaps.MapTypeId.ROADMAP
-    ;
-  final map = new gmaps.GMap(query("#map_canvas"), mapOptions);
+  js.scoped(() {
+    final mapOptions = new gmaps.MapOptions()
+      ..zoom = 10
+      ..center = new gmaps.LatLng(-33.9, 151.2)
+      ..mapTypeId = gmaps.MapTypeId.ROADMAP
+      ;
+    final map = new gmaps.GMap(query("#map_canvas"), mapOptions);
 
-  setMarkers(map, beaches);
+    setMarkers(map, beaches);
 
-  final image = 'https://google-developers.appspot.com/maps/documentation/javascript/examples/images/beachflag.png';
-  final myLatLng = new gmaps.LatLng(-33.890542, 151.274856);
-  final beachMarker = new gmaps.Marker(new gmaps.MarkerOptions()
-    ..position = myLatLng
-    ..map = map
-    ..icon = image
-  );
+    final image = 'https://google-developers.appspot.com/maps/documentation/javascript/examples/images/beachflag.png';
+    final myLatLng = new gmaps.LatLng(-33.890542, 151.274856);
+    final beachMarker = new gmaps.Marker(new gmaps.MarkerOptions()
+      ..position = myLatLng
+      ..map = map
+      ..icon = image
+    );
+  });
 }
 
 void setMarkers(gmaps.GMap map, List locations) {
@@ -56,7 +60,7 @@ void setMarkers(gmaps.GMap map, List locations) {
       // The shadow image is larger in the horizontal dimension
       // while the position and offset are the same as for the main image.
       new gmaps.Size(37, 32),
-      new gmaps.Point(0,0),
+      new gmaps.Point(0, 0),
       new gmaps.Point(0, 32));
   // Shapes define the clickable region of the icon.
   // The type defines an HTML &lt;area&gt; element 'poly' which

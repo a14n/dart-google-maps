@@ -1,35 +1,41 @@
 #import('dart:html');
+#import('package:js/js.dart', prefix:'js');
+#import('package:dart_google_maps/jswrap.dart', prefix:'jsw');
 #import('package:dart_google_maps/gmaps.dart', prefix:'gmaps');
 
 gmaps.DirectionsRenderer directionsDisplay;
-final directionsService = new gmaps.DirectionsService();
+final gmaps.DirectionsService directionsService = jsw.retain(new gmaps.DirectionsService());
 gmaps.GMap map;
-final haight = new gmaps.LatLng(37.7699298, -122.4469157);
-final oceanBeach = new gmaps.LatLng(37.7683909618184, -122.51089453697205);
+final gmaps.LatLng haight = jsw.retain(new gmaps.LatLng(37.7699298, -122.4469157));
+final gmaps.LatLng oceanBeach = jsw.retain(new gmaps.LatLng(37.7683909618184, -122.51089453697205));
 
 void main() {
-  directionsDisplay = new gmaps.DirectionsRenderer();
-  final mapOptions = new gmaps.MapOptions()
-    ..zoom = 14
-    ..mapTypeId = gmaps.MapTypeId.ROADMAP
-    ..center = haight
-    ;
-  map = new gmaps.GMap(query("#map_canvas"), mapOptions);
-  directionsDisplay.setMap(map);
+  js.scoped(() {
+    directionsDisplay = jsw.retain(new gmaps.DirectionsRenderer());
+    final mapOptions = new gmaps.MapOptions()
+      ..zoom = 14
+      ..mapTypeId = gmaps.MapTypeId.ROADMAP
+      ..center = haight
+      ;
+    map = new gmaps.GMap(query("#map_canvas"), mapOptions);
+    directionsDisplay.setMap(map);
 
-  query('#mode').on.change.add((e) => calcRoute());
+    query('#mode').on.change.add((e) => calcRoute());
+  });
 }
 
 void calcRoute() {
-  final selectedMode = (query('#mode') as SelectElement).value;
-  final request = new gmaps.DirectionsRequest()
-    ..origin = haight
-    ..destination = oceanBeach
-    ..travelMode = gmaps.TravelMode.find(selectedMode)
-    ;
-  directionsService.route(request, (gmaps.DirectionsResult response, gmaps.DirectionsStatus status) {
-    if (status == gmaps.DirectionsStatus.OK) {
-      directionsDisplay.setDirections(response);
-    }
+  js.scoped(() {
+    final selectedMode = (query('#mode') as SelectElement).value;
+    final request = new gmaps.DirectionsRequest()
+      ..origin = haight
+      ..destination = oceanBeach
+      ..travelMode = gmaps.TravelMode.find(selectedMode)
+      ;
+    directionsService.route(request, (gmaps.DirectionsResult response, gmaps.DirectionsStatus status) {
+      if (status == gmaps.DirectionsStatus.OK) {
+        directionsDisplay.setDirections(response);
+      }
+    });
   });
 }

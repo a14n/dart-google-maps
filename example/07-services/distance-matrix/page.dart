@@ -1,41 +1,47 @@
 #import('dart:html');
+#import('package:js/js.dart', prefix:'js');
+#import('package:dart_google_maps/jswrap.dart', prefix:'jsw');
 #import('package:dart_google_maps/gmaps.dart', prefix:'gmaps');
 
 gmaps.GMap map;
 gmaps.Geocoder geocoder;
-final bounds = new gmaps.LatLngBounds();
+final gmaps.LatLngBounds bounds = jsw.retain(new gmaps.LatLngBounds());
 final markersArray = new List<gmaps.Marker>();
 
-final origin1 = new gmaps.LatLng(55.930385, -3.118425);
+final gmaps.LatLng origin1 = jsw.retain(new gmaps.LatLng(55.930385, -3.118425));
 const origin2 = 'Greenwich, England';
 const destinationA = 'Stockholm, Sweden';
-final destinationB = new gmaps.LatLng(50.087692, 14.421150);
+final gmaps.LatLng destinationB = jsw.retain(new gmaps.LatLng(50.087692, 14.421150));
 
 const destinationIcon = 'https://chart.googleapis.com/chart?chst=d_map_pin_letter&chld=D|FF0000|000000';
 const originIcon = 'https://chart.googleapis.com/chart?chst=d_map_pin_letter&chld=O|FFFF00|000000';
 
 void main() {
-  final mapOptions = new gmaps.MapOptions()
-    ..center = new gmaps.LatLng(55.53, 9.4)
-    ..zoom = 10
-    ..mapTypeId = gmaps.MapTypeId.ROADMAP
-    ;
-  map = new gmaps.GMap(query("#map"), mapOptions);
-  geocoder = new gmaps.Geocoder();
+  js.scoped(() {
+    final mapOptions = new gmaps.MapOptions()
+      ..center = new gmaps.LatLng(55.53, 9.4)
+      ..zoom = 10
+      ..mapTypeId = gmaps.MapTypeId.ROADMAP
+      ;
+    map = jsw.retain(new gmaps.GMap(query("#map"), mapOptions));
+    geocoder = jsw.retain(new gmaps.Geocoder());
 
-  query('#calculateDistances').on.click.add((e) => calculateDistances());
+    query('#calculateDistances').on.click.add((e) => calculateDistances());
+  });
 }
 
 void calculateDistances() {
-  final service = new gmaps.DistanceMatrixService();
-  service.getDistanceMatrix((new gmaps.DistanceMatrixRequest()
-    ..origins = [origin1, origin2]
-    ..destinations = [destinationA, destinationB]
-    ..travelMode = gmaps.TravelMode.DRIVING
-    ..unitSystem = gmaps.UnitSystem.METRIC
-    ..avoidHighways = false
-    ..avoidTolls = false
-    ), callback);
+  js.scoped(() {
+    final service = new gmaps.DistanceMatrixService();
+    service.getDistanceMatrix((new gmaps.DistanceMatrixRequest()
+      ..origins = [origin1, origin2]
+      ..destinations = [destinationA, destinationB]
+      ..travelMode = gmaps.TravelMode.DRIVING
+      ..unitSystem = gmaps.UnitSystem.METRIC
+      ..avoidHighways = false
+      ..avoidTolls = false
+      ), callback);
+  });
 }
 
 void callback(gmaps.DistanceMatrixResponse response, gmaps.DistanceMatrixStatus status) {

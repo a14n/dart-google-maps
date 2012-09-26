@@ -1,21 +1,24 @@
 #library('gmaps-visualization');
 
-#import('jsni.dart', prefix:'js');
+#import('package:js/js.dart', prefix:'js');
+#import('jswrap.dart', prefix:'jsw');
 #import('gmaps.dart');
-#source('utils.dart');
 
 class HeatmapLayer extends MVCObject {
-  static const _TYPE_NAME = "google.maps.visualization.HeatmapLayer";
+  HeatmapLayer([HeatmapLayerOptions opts]) : super.newInstance(maps.visualization.HeatmapLayer, [opts]);
+  HeatmapLayer.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  HeatmapLayer([HeatmapLayerOptions opts]) : super.newInstance(_TYPE_NAME, [opts]);
-  HeatmapLayer.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
-
-  MVCArray<Object> getData() => $.call("getData", [], (js.JsRef jsRef) => new MVCArray.fromJsRef(jsRef, (js.JsRef jsRef) {
-    if (js.isInstanceOf(jsRef, LatLng.TYPE_NAME)) {
-      return new LatLng.fromJsRef(jsRef);
-    } else if (js.isInstanceOf(jsRef, "Object")) {
-      return new WeightedLocation.fromJsRef(jsRef);
+  MVCArray<Object> getData() => $.call("getData", [], (js.Proxy jsProxy) => new MVCArray.fromJsProxy(jsProxy, (js.Proxy jsProxy) {
+    if (jsProxy == null) {
+      return jsProxy;
     } else {
+      try {
+        // TODO replace with js instanceOf
+        jsProxy.weight; // valid if WeightedLocation
+        return new WeightedLocation.fromJsProxy(jsProxy);
+      } on NoSuchMethodError catch (e) {
+        return new LatLng.fromJsProxy(jsProxy);
+      }
       throw new Exception("Unsupported result");
     }
   }));
@@ -27,11 +30,11 @@ class HeatmapLayer extends MVCObject {
     } else if (data is List) {
       list = data;
     }
-    if (data !== null && list === null) {
+    if (data !== null && list == null) {
       throw new IllegalArgumentException(data);
     }
     if (!list.filter((e)=> !(e is LatLng || e is WeightedLocation)).isEmpty()) {
-      throw new IllegalArgumentException("some elements are not String or MapTypeId");
+      throw new IllegalArgumentException("some elements are not LatLng or WeightedLocation");
     }
     $.call("setData", [data]);
   }
@@ -39,7 +42,7 @@ class HeatmapLayer extends MVCObject {
   void setOptions(HeatmapLayerOptions options) { $.call("setOptions", [options]); }
 }
 
-class HeatmapLayerOptions extends js.JsObject {
+class HeatmapLayerOptions extends jsw.IsJsProxy {
   set data(MVCArray<LatLng> data) => $["data"] = data;
   set dissipating(bool dissipating) => $["dissipating"] = dissipating;
   set gradient(List<String> gradient) => $["gradient"] = gradient;
@@ -49,9 +52,9 @@ class HeatmapLayerOptions extends js.JsObject {
   set radius(num radius) => $["radius"] = radius;
 }
 
-class WeightedLocation extends js.JsObject {
+class WeightedLocation extends jsw.IsJsProxy {
   WeightedLocation() : super();
-  WeightedLocation.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  WeightedLocation.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   LatLng get location => $.getProperty("location", LatLng.INSTANCIATOR);
          set location(LatLng location) => $["location"] = location;

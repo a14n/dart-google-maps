@@ -1,31 +1,27 @@
 #library('gmaps-weather');
 
-#import('jsni.dart', prefix:'js');
+#import('package:js/js.dart', prefix:'js');
+#import('jswrap.dart', prefix:'jsw');
 #import('gmaps.dart');
-#source('utils.dart');
 
 class CloudLayer extends MVCObject {
-  static const String _TYPE_NAME = "google.maps.weather.CloudLayer";
-
-  CloudLayer() : super.newInstance(_TYPE_NAME);
-  CloudLayer.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  CloudLayer() : super.newInstance(maps.weather.CloudLayer);
+  CloudLayer.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   GMap getMap() => $.call("getMap", [], GMap.INSTANCIATOR);
   void setMap(GMap map) { $.call("setMap", [map]); }
 }
 
 class WeatherLayer extends MVCObject {
-  static const String _TYPE_NAME = "google.maps.weather.WeatherLayer";
-
-  WeatherLayer([WeatherLayerOptions opts]) : super.newInstance(_TYPE_NAME, [opts]);
-  WeatherLayer.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  WeatherLayer([WeatherLayerOptions opts]) : super.newInstance(maps.weather.WeatherLayer, [opts]);
+  WeatherLayer.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   GMap getMap() => $.call("getMap", [], GMap.INSTANCIATOR);
   void setMap(GMap map) { $.call("setMap", [map]); }
   void setOptions(WeatherLayerOptions options) { $.call("setOptions", [options]); }
 }
 
-class WeatherLayerOptions extends js.JsObject {
+class WeatherLayerOptions extends jsw.IsJsProxy {
   set clickable(bool clickable) => $["clickable"] = clickable;
   set labelColor(LabelColor labelColor) => $["labelColor"] = labelColor;
   set map(GMap map) => $["map"] = map;
@@ -34,51 +30,49 @@ class WeatherLayerOptions extends js.JsObject {
   set windSpeedUnits(WindSpeedUnit windSpeedUnits) => $["windSpeedUnits"] = windSpeedUnits;
 }
 
-class TemperatureUnit extends js.JsObject {
-  static const String TYPE_NAME = "google.maps.weather.TemperatureUnit";
-  static final INSTANCIATOR = (js.JsRef jsRef) => find(jsRef);
-
-  static final TemperatureUnit CELSIUS = new TemperatureUnit._("${TYPE_NAME}.CELSIUS");
-  static final TemperatureUnit FAHRENHEIT = new TemperatureUnit._("${TYPE_NAME}.FAHRENHEIT");
+class TemperatureUnit extends jsw.IsEnum<String> {
+  static final CELSIUS = new TemperatureUnit._(maps.weather.TemperatureUnit.CELSIUS);
+  static final FAHRENHEIT = new TemperatureUnit._(maps.weather.TemperatureUnit.FAHRENHEIT);
 
   static final _INSTANCES = [CELSIUS, FAHRENHEIT];
 
-  static TemperatureUnit find(Object o) { return findIn(o, _INSTANCES); }
+  static TemperatureUnit find(Object o) => findIn(_INSTANCES, o);
 
-  TemperatureUnit._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
+  TemperatureUnit._(String value) : super(value);
+
+  bool operator ==(Object other) => value == (other is TemperatureUnit ? (other as TemperatureUnit).value : other);
 }
 
-class WindSpeedUnit extends js.JsObject {
-  static const TYPE_NAME = "google.maps.weather.WindSpeedUnit";
-  static final INSTANCIATOR = (js.JsRef jsRef) => find(jsRef);
-
-  static final KILOMETERS_PER_HOUR = new WindSpeedUnit._("${TYPE_NAME}.KILOMETERS_PER_HOUR");
-  static final METERS_PER_SECOND = new WindSpeedUnit._("${TYPE_NAME}.METERS_PER_SECOND");
-  static final MILES_PER_HOUR = new WindSpeedUnit._("${TYPE_NAME}.MILES_PER_HOUR");
+class WindSpeedUnit extends jsw.IsEnum<String> {
+  static final KILOMETERS_PER_HOUR = new WindSpeedUnit._(maps.weather.WindSpeedUnit.KILOMETERS_PER_HOUR);
+  static final METERS_PER_SECOND = new WindSpeedUnit._(maps.weather.WindSpeedUnit.METERS_PER_SECOND);
+  static final MILES_PER_HOUR = new WindSpeedUnit._(maps.weather.WindSpeedUnit.MILES_PER_HOUR);
 
   static final _INSTANCES = [KILOMETERS_PER_HOUR, METERS_PER_SECOND, MILES_PER_HOUR];
 
-  static WindSpeedUnit find(Object o) { return findIn(o, _INSTANCES); }
+  static WindSpeedUnit find(Object o) => findIn(_INSTANCES, o);
 
-  WindSpeedUnit._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
+  WindSpeedUnit._(String value) : super(value);
+
+  bool operator ==(Object other) => value == (other is WindSpeedUnit ? (other as WindSpeedUnit).value : other);
 }
 
-class LabelColor extends js.JsObject {
-  static const TYPE_NAME = "google.maps.weather.LabelColor";
-
-  static final BLACK = new LabelColor._("${TYPE_NAME}.BLACK");
-  static final WHITE = new LabelColor._("${TYPE_NAME}.WHITE");
+class LabelColor extends jsw.IsEnum<String> {
+  static final BLACK = new LabelColor._(maps.weather.LabelColor.BLACK);
+  static final WHITE = new LabelColor._(maps.weather.LabelColor.WHITE);
 
   static final _INSTANCES = [BLACK, WHITE];
 
-  static LabelColor find(Object o) { return findIn(o, _INSTANCES); }
+  static LabelColor find(Object o) => findIn(_INSTANCES, o);
 
-  LabelColor._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
+  LabelColor._(String value) : super(value);
+
+  bool operator ==(Object other) => value == (other is LabelColor ? (other as LabelColor).value : other);
 }
 
 class WeatherMouseEvent extends NativeEvent {
   WeatherMouseEvent();
-  WeatherMouseEvent.wrap(NativeEvent e) { jsRef = e.jsRef; }
+  WeatherMouseEvent.wrap(NativeEvent e) : super.fromIsJsProxy(e);
 
   WeatherFeature get featureDetails => $.getProperty("featureDetails", WeatherFeature.INSTANCIATOR);
   String get infoWindowHtml => $["infoWindowHtml"];
@@ -86,22 +80,22 @@ class WeatherMouseEvent extends NativeEvent {
   Size get pixelOffset => $.getProperty("pixelOffset", Size.INSTANCIATOR);
 }
 
-class WeatherFeature extends js.JsObject {
-  static final INSTANCIATOR = (js.JsRef jsRef) => new WeatherFeature.fromJsRef(jsRef);
+class WeatherFeature extends jsw.IsJsProxy {
+  static final INSTANCIATOR = (js.Proxy jsProxy) => new WeatherFeature.fromJsProxy(jsProxy);
 
-  WeatherFeature.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  WeatherFeature.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   WeatherConditions get current => $.getProperty("current", WeatherConditions.INSTANCIATOR);
-  List<WeatherForecast> get forecast => $.getProperty("forecast", (js.JsRef jsRef) => new js.JsList<WeatherForecast>.fromJsRef(jsRef, WeatherForecast.INSTANCIATOR));
+  List<WeatherForecast> get forecast => $.getProperty("forecast", (js.Proxy jsProxy) => new js.JsList<WeatherForecast>.fromJsProxy(jsProxy, WeatherForecast.INSTANCIATOR));
   String get location => $["location"];
-  TemperatureUnit get temperatureUnit => $.getProperty("temperatureUnit", TemperatureUnit.INSTANCIATOR);
-  WindSpeedUnit get windSpeedUnit => $.getProperty("windSpeedUnit", WindSpeedUnit.INSTANCIATOR);
+  TemperatureUnit get temperatureUnit => $.getProperty("temperatureUnit", TemperatureUnit.find);
+  WindSpeedUnit get windSpeedUnit => $.getProperty("windSpeedUnit", WindSpeedUnit.find);
 }
 
-class WeatherConditions extends js.JsObject {
-  static final INSTANCIATOR = (js.JsRef jsRef) => new WeatherConditions.fromJsRef(jsRef);
+class WeatherConditions extends jsw.IsJsProxy {
+  static final INSTANCIATOR = (js.Proxy jsProxy) => new WeatherConditions.fromJsProxy(jsProxy);
 
-  WeatherConditions.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  WeatherConditions.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   String get day => $["day"];
   String get description => $["description"];
@@ -114,10 +108,10 @@ class WeatherConditions extends js.JsObject {
   num get windSpeed => $["windSpeed"];
 }
 
-class WeatherForecast extends js.JsObject {
-  static final INSTANCIATOR = (js.JsRef jsRef) => new WeatherForecast.fromJsRef(jsRef);
+class WeatherForecast extends jsw.IsJsProxy {
+  static final INSTANCIATOR = (js.Proxy jsProxy) => new WeatherForecast.fromJsProxy(jsProxy);
 
-  WeatherForecast.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  WeatherForecast.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   String get day => $["day"];
   String get description => $["description"];

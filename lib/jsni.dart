@@ -2,6 +2,7 @@
 
 #import('dart:html');
 #import('dart:json');
+#import('package:js/js.dart', prefix:'js');
 
 //-------------------------
 // basic types for wrapping

@@ -1,19 +1,16 @@
 #import('dart:html');
-#import('package:dart_google_maps/jsni.dart', prefix:'js');
+#import('package:js/js.dart', prefix:'js');
+#import('package:dart_google_maps/jswrap.dart', prefix:'jsw');
 #import('package:dart_google_maps/gmaps.dart', prefix:'gmaps');
 
-class ColumnChart extends js.JsObject {
-  static const String TYPE_NAME = "google.visualization.ColumnChart";
+class ColumnChart extends jsw.IsJsProxy {
+  ColumnChart(Node div) : super.newInstance(js.context.google.visualization.ColumnChart, [div]);
 
-  ColumnChart(Node div) : super.newInstance(TYPE_NAME, [div]);
-
-  void draw(DataTable data, [js.JsObject options]) { $.call("draw", [data, options]); }
+  void draw(DataTable data, [jsw.IsJsProxy options]) { $.call("draw", [data, options]); }
 }
 
-class DataTable extends js.JsObject {
-  static const String TYPE_NAME = "google.visualization.DataTable";
-
-  DataTable() : super.newInstance(TYPE_NAME);
+class DataTable extends jsw.IsJsProxy {
+  DataTable() : super.newInstance(js.context.google.visualization.DataTable);
 
   void addColumn(String type, [String label, String id]) { $.call("addColumn", [type, label, id]); }
   void addRow([List<Object> cellArray]) { $.call("addRow", [cellArray]); }
@@ -22,38 +19,40 @@ class DataTable extends js.JsObject {
 gmaps.ElevationService elevator;
 gmaps.GMap map;
 ColumnChart chart;
-final infowindow = new gmaps.InfoWindow();
+final gmaps.InfoWindow infowindow = jsw.retain(new gmaps.InfoWindow());
 gmaps.Polyline polyline;
 
 // The following path marks a general path from Mt.
 // Whitney, the highest point in the continental United
 // States to Badwater, Death Vallet, the lowest point.
-final whitney = new gmaps.LatLng(36.578581, -118.291994);
-final lonepine = new gmaps.LatLng(36.606111, -118.062778);
-final owenslake = new gmaps.LatLng(36.433269, -117.950916);
-final beattyjunction = new gmaps.LatLng(36.588056, -116.943056);
-final panamintsprings = new gmaps.LatLng(36.339722, -117.467778);
-final badwater = new gmaps.LatLng(36.23998, -116.83171);
+final gmaps.LatLng whitney = jsw.retain(new gmaps.LatLng(36.578581, -118.291994));
+final gmaps.LatLng lonepine = jsw.retain(new gmaps.LatLng(36.606111, -118.062778));
+final gmaps.LatLng owenslake = jsw.retain(new gmaps.LatLng(36.433269, -117.950916));
+final gmaps.LatLng beattyjunction = jsw.retain(new gmaps.LatLng(36.588056, -116.943056));
+final gmaps.LatLng panamintsprings = jsw.retain(new gmaps.LatLng(36.339722, -117.467778));
+final gmaps.LatLng badwater = jsw.retain(new gmaps.LatLng(36.23998, -116.83171));
 
 void main() {
-  final mapOptions = new gmaps.MapOptions()
-    ..zoom = 8
-    ..center = lonepine
-    ..mapTypeId = gmaps.MapTypeId.TERRAIN
-    ;
-  map = new gmaps.GMap(query('#map_canvas'), mapOptions);
+  js.scoped(() {
+    final mapOptions = new gmaps.MapOptions()
+      ..zoom = 8
+      ..center = lonepine
+      ..mapTypeId = gmaps.MapTypeId.TERRAIN
+      ;
+    map = jsw.retain(new gmaps.GMap(query('#map_canvas'), mapOptions));
 
-  // Create an ElevationService.
-  elevator = new gmaps.ElevationService();
+    // Create an ElevationService.
+    elevator = jsw.retain(new gmaps.ElevationService());
 
-  // Draw the path, using the Visualization API and the Elevation service.
-  drawPath();
+    // Draw the path, using the Visualization API and the Elevation service.
+    drawPath();
+  });
 }
 
 void drawPath() {
 
   // Create a new chart in the elevation_chart DIV.
-  chart = new ColumnChart(query('#elevation_chart'));
+  chart = jsw.retain(new ColumnChart(query('#elevation_chart')));
 
   final path = [ whitney, lonepine, owenslake, panamintsprings, beattyjunction, badwater];
 
@@ -86,7 +85,7 @@ void plotElevation(List<gmaps.ElevationResult> results, gmaps.ElevationStatus st
       ..$["opacity"] = 0.4  // TODO not in doc
       ..map = map
       ;
-    polyline = new gmaps.Polyline(pathOptions);
+    polyline = jsw.retain(new gmaps.Polyline(pathOptions));
 
     // Extract the data from which to populate the chart.
     // Because the samples are equidistant, the 'Sample'
@@ -101,7 +100,7 @@ void plotElevation(List<gmaps.ElevationResult> results, gmaps.ElevationStatus st
 
     // Draw the chart using the data within its DIV.
     query('#elevation_chart').style.display = 'block';
-    chart.draw(data, new js.JsObject()
+    chart.draw(data, new jsw.IsJsProxy()
       ..$["width"] = 640
       ..$["height"] = 200
       ..$["legend"] = 'none'

@@ -1,17 +1,19 @@
 #import('dart:html');
 #import('dart:math', prefix:'Math');
+#import('package:js/js.dart', prefix:'js');
+#import('package:dart_google_maps/jswrap.dart', prefix:'jsw');
 #import('package:dart_google_maps/gmaps.dart', prefix:'gmaps');
 
 const IMAGE_URL = "https://google-developers.appspot.com/maps/documentation/javascript/examples";
 
-final chicago = new gmaps.LatLng(41.850033, -87.6500523);
-final anchorage = new gmaps.LatLng(61.2180556, -149.9002778);
-final mexico = new gmaps.LatLng(19.4270499, -99.1275711);
-final equator = new gmaps.LatLng(0,0);
-final london = new gmaps.LatLng(51.5001524, -0.1262362);
-final johannesburg = new gmaps.LatLng(-26.201452, 28.045488);
-final kinshasa = new gmaps.LatLng(-4.325, 15.322222);
-final sydney = new gmaps.LatLng( -33.867139, 151.207114);
+final gmaps.LatLng chicago = jsw.retain(new gmaps.LatLng(41.850033, -87.6500523));
+final gmaps.LatLng anchorage = jsw.retain(new gmaps.LatLng(61.2180556, -149.9002778));
+final gmaps.LatLng mexico = jsw.retain(new gmaps.LatLng(19.4270499, -99.1275711));
+final gmaps.LatLng equator = jsw.retain(new gmaps.LatLng(0,0));
+final gmaps.LatLng london = jsw.retain(new gmaps.LatLng(51.5001524, -0.1262362));
+final gmaps.LatLng johannesburg = jsw.retain(new gmaps.LatLng(-26.201452, 28.045488));
+final gmaps.LatLng kinshasa = jsw.retain(new gmaps.LatLng(-4.325, 15.322222));
+final gmaps.LatLng sydney = jsw.retain(new gmaps.LatLng( -33.867139, 151.207114));
 
 final locationArray = [chicago,anchorage,mexico,equator,london,johannesburg,kinshasa,sydney];
 final locationNameArray = ['Chicago','Anchorage','Mexico City','The Equator','London','Johannesburg','Kinshasa','Sydney'];
@@ -35,7 +37,7 @@ num radiansToDegrees(num rad) {
 class GallPetersProjection extends gmaps.Projection {
 
   // Using the base map tile, denote the lat/lon of the equatorial origin.
-  final _worldOrigin = new gmaps.Point(GALL_PETERS_RANGE_X * 400 / 800, GALL_PETERS_RANGE_Y / 2);
+  final gmaps.Point _worldOrigin = jsw.retain(new gmaps.Point(GALL_PETERS_RANGE_X * 400 / 800, GALL_PETERS_RANGE_Y / 2));
 
   // This projection has equidistant meridians, so each longitude degree is a linear
   // mapping.
@@ -44,21 +46,22 @@ class GallPetersProjection extends gmaps.Projection {
   // This constant merely reflects that latitudes vary from +90 to -90 degrees.
   const _worldCoordinateLatRange = GALL_PETERS_RANGE_Y / 2;
 
+  // TODO make a constructor with optionals
   GallPetersProjection() : super() {
-    $["fromLatLngToPoint"] = (List args) {
-      if (args.length == 2 && args[1] !== null) {
-        return _fromLatLngToPoint(new gmaps.LatLng.fromJsRef(args[0]), new gmaps.Point.fromJsRef(args[1]));
+    $["fromLatLngToPoint"] = new jsw.Callback.many((js.Proxy latLng, [js.Proxy point]) {
+      if (?point) {
+        return _fromLatLngToPoint(new gmaps.LatLng.fromJsProxy(latLng), new gmaps.Point.fromJsProxy(point));
       } else {
-        return _fromLatLngToPoint(new gmaps.LatLng.fromJsRef(args[0]));
+        return _fromLatLngToPoint(new gmaps.LatLng.fromJsProxy(latLng));
       }
-    };
-    $["fromPointToLatLng"] = (List args) {
-      if (args.length == 2 && args[1] !== null) {
-        return _fromPointToLatLng(new gmaps.Point.fromJsRef(args[0]), args[1]);
+    });
+    $["fromPointToLatLng"] = new jsw.Callback.many((js.Proxy pixel, [bool nowrap]) {
+      if (?nowrap) {
+        return _fromPointToLatLng(new gmaps.Point.fromJsProxy(pixel), nowrap);
       } else {
-        return _fromPointToLatLng(new gmaps.Point.fromJsRef(args[0]));
+        return _fromPointToLatLng(new gmaps.Point.fromJsProxy(pixel));
       }
-    };
+    });
   }
 
   gmaps.Point _fromLatLngToPoint(gmaps.LatLng latLng, [gmaps.Point point]) {
@@ -93,54 +96,56 @@ class GallPetersProjection extends gmaps.Projection {
 }
 
 void main() {
-  final gallPetersMapType = new gmaps.ImageMapType(new gmaps.ImageMapTypeOptions()
-    ..getTileUrl = (gmaps.Point coord, num zoom) {
-      final numTiles = 1 << zoom;
+  js.scoped(() {
+    final gallPetersMapType = new gmaps.ImageMapType(new gmaps.ImageMapTypeOptions()
+      ..getTileUrl = (gmaps.Point coord, num zoom) {
+        final numTiles = 1 << zoom;
 
-      // Don't wrap tiles vertically.
-      if (coord.y < 0 || coord.y >= numTiles) {
-        return null;
+        // Don't wrap tiles vertically.
+        if (coord.y < 0 || coord.y >= numTiles) {
+          return null;
+        }
+
+        // Wrap tiles horizontally.
+        var x = ((coord.x % numTiles) + numTiles) % numTiles;
+
+        // For simplicity, we use a tileset consisting of 1 tile at zoom level 0
+        // and 4 tiles at zoom level 1. Note that we set the base URL to a relative
+        // directory.
+        return '${IMAGE_URL}/images/gall-peters_${zoom}_${x}_${coord.y}.png';
       }
-
-      // Wrap tiles horizontally.
-      var x = ((coord.x % numTiles) + numTiles) % numTiles;
-
-      // For simplicity, we use a tileset consisting of 1 tile at zoom level 0
-      // and 4 tiles at zoom level 1. Note that we set the base URL to a relative
-      // directory.
-      return '${IMAGE_URL}/images/gall-peters_${zoom}_${x}_${coord.y}.png';
-    }
-    ..tileSize = new gmaps.Size(800, 512)
-    //..isPng = true
-    ..minZoom = 0
-    ..maxZoom = 1
-    ..name = 'Gall-Peters'
-  );
-
-  gallPetersMapType.projection = new GallPetersProjection();
-
-  final mapOptions = new gmaps.MapOptions()
-    ..zoom = 0
-    ..center = new gmaps.LatLng(0,0)
-    ..mapTypeControlOptions = (new gmaps.MapTypeControlOptions()
-      ..mapTypeIds = [gmaps.MapTypeId.ROADMAP, 'gallPetersMap']
-    )
-  ;
-  final gallPetersMap = new gmaps.GMap(query('#gallPetersMap'), mapOptions);
-
-  gallPetersMap.mapTypes.set_('gallPetersMap', gallPetersMapType);
-  gallPetersMap.setMapTypeId('gallPetersMap');
-
-  for (var i = 0; i < locationArray.length; i++) {
-    new gmaps.Marker(new gmaps.MarkerOptions()
-      ..position = locationArray[i]
-      ..map = gallPetersMap
-      ..title = locationNameArray[i]
+      ..tileSize = new gmaps.Size(800, 512)
+      //..isPng = true
+      ..minZoom = 0
+      ..maxZoom = 1
+      ..name = 'Gall-Peters'
     );
-  }
 
-  gmaps.Events.addListener(gallPetersMap, 'click', function(event) {
-    final me = new gmaps.MouseEvent.wrap(event);
-    window.alert('Point.X.Y: ${me.latLng}');
+    gallPetersMapType.projection = jsw.retain(new GallPetersProjection());
+
+    final mapOptions = new gmaps.MapOptions()
+      ..zoom = 0
+      ..center = new gmaps.LatLng(0,0)
+      ..mapTypeControlOptions = (new gmaps.MapTypeControlOptions()
+        ..mapTypeIds = [gmaps.MapTypeId.ROADMAP, 'gallPetersMap']
+      )
+    ;
+    final gallPetersMap = new gmaps.GMap(query('#gallPetersMap'), mapOptions);
+
+    gallPetersMap.mapTypes.set_('gallPetersMap', gallPetersMapType);
+    gallPetersMap.setMapTypeId('gallPetersMap');
+
+    for (var i = 0; i < locationArray.length; i++) {
+      new gmaps.Marker(new gmaps.MarkerOptions()
+        ..position = locationArray[i]
+        ..map = gallPetersMap
+        ..title = locationNameArray[i]
+      );
+    }
+
+    gmaps.Events.addListener(gallPetersMap, 'click', (event) {
+      final me = new gmaps.MouseEvent.wrap(event);
+      window.alert('Point.X.Y: ${me.latLng}');
+    });
   });
 }

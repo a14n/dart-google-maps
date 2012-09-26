@@ -1,4 +1,6 @@
 #import('dart:html');
+#import('package:js/js.dart', prefix:'js');
+#import('package:dart_google_maps/jswrap.dart', prefix:'jsw');
 #import('package:dart_google_maps/gmaps.dart', prefix:'gmaps');
 #import('package:dart_google_maps/gmaps-visualization.dart', prefix:'gmaps_visu');
 
@@ -511,62 +513,72 @@ final taxiData = [
 ];
 
 void main() {
-  final chicago = new gmaps.LatLng(41.875696,-87.624207);
-  final mapOptions = new gmaps.MapOptions()
-    ..zoom = 13
-    ..center = new gmaps.LatLng(37.774546, -122.433523)
-    ..mapTypeId = gmaps.MapTypeId.SATELLITE
-    ;
-  map = new gmaps.GMap(query("#map_canvas"), mapOptions);
+  js.scoped(() {
+    final chicago = new gmaps.LatLng(41.875696,-87.624207);
+    final mapOptions = new gmaps.MapOptions()
+      ..zoom = 13
+      ..center = new gmaps.LatLng(37.774546, -122.433523)
+      ..mapTypeId = gmaps.MapTypeId.SATELLITE
+      ;
+    map = jsw.retain(new gmaps.GMap(query("#map_canvas"), mapOptions));
 
-  pointArray = new gmaps.MVCArray(taxiData);
+    pointArray = jsw.retain(new gmaps.MVCArray(taxiData));
 
-  heatmap = new gmaps_visu.HeatmapLayer(new gmaps_visu.HeatmapLayerOptions()
-    ..data = pointArray
-  );
+    heatmap = jsw.retain(new gmaps_visu.HeatmapLayer(new gmaps_visu.HeatmapLayerOptions()
+      ..data = pointArray
+    ));
 
-  heatmap.setMap(map);
+    heatmap.setMap(map);
 
-  query("#toggleHeatmap").on.click.add((e){toggleHeatmap();});
-  query("#changeGradient").on.click.add((e){changeGradient();});
-  query("#changeRadius").on.click.add((e){changeRadius();});
-  query("#changeOpacity").on.click.add((e){changeOpacity();});
+    query("#toggleHeatmap").on.click.add((e){toggleHeatmap();});
+    query("#changeGradient").on.click.add((e){changeGradient();});
+    query("#changeRadius").on.click.add((e){changeRadius();});
+    query("#changeOpacity").on.click.add((e){changeOpacity();});
+  });
 }
 
 void toggleHeatmap() {
-  heatmap.setMap(heatmap.getMap() !== null ? null : map);
+  js.scoped(() {
+    heatmap.setMap(heatmap.getMap() !== null ? null : map);
+  });
 }
 
 void changeGradient() {
-  final gradient = [
-                  'rgba(0, 255, 255, 0)',
-                  'rgba(0, 255, 255, 1)',
-                  'rgba(0, 191, 255, 1)',
-                  'rgba(0, 127, 255, 1)',
-                  'rgba(0, 63, 255, 1)',
-                  'rgba(0, 0, 255, 1)',
-                  'rgba(0, 0, 223, 1)',
-                  'rgba(0, 0, 191, 1)',
-                  'rgba(0, 0, 159, 1)',
-                  'rgba(0, 0, 127, 1)',
-                  'rgba(63, 0, 91, 1)',
-                  'rgba(127, 0, 63, 1)',
-                  'rgba(191, 0, 31, 1)',
-                  'rgba(255, 0, 0, 1)'
-                  ];
-  heatmap.setOptions(new gmaps_visu.HeatmapLayerOptions()
-    ..gradient = heatmap.get_('gradient') !== null ? null : gradient
-  );
+  js.scoped(() {
+    final gradient = [
+      'rgba(0, 255, 255, 0)',
+      'rgba(0, 255, 255, 1)',
+      'rgba(0, 191, 255, 1)',
+      'rgba(0, 127, 255, 1)',
+      'rgba(0, 63, 255, 1)',
+      'rgba(0, 0, 255, 1)',
+      'rgba(0, 0, 223, 1)',
+      'rgba(0, 0, 191, 1)',
+      'rgba(0, 0, 159, 1)',
+      'rgba(0, 0, 127, 1)',
+      'rgba(63, 0, 91, 1)',
+      'rgba(127, 0, 63, 1)',
+      'rgba(191, 0, 31, 1)',
+      'rgba(255, 0, 0, 1)'
+    ];
+    heatmap.setOptions(new gmaps_visu.HeatmapLayerOptions()
+      ..gradient = heatmap.get_('gradient') !== null ? null : gradient
+    );
+  });
 }
 
 void changeRadius() {
-  heatmap.setOptions(new gmaps_visu.HeatmapLayerOptions()
-    ..radius = heatmap.get_('radius') !== null ? null : 20
-  );
+  js.scoped(() {
+    heatmap.setOptions(new gmaps_visu.HeatmapLayerOptions()
+      ..radius = heatmap.get_('radius') !== null ? null : 20
+    );
+  });
 }
 
 void changeOpacity() {
-  heatmap.setOptions(new gmaps_visu.HeatmapLayerOptions()
-    ..opacity = heatmap.get_('opacity') !== null ? null : 0.2
-  );
+  js.scoped(() {
+    heatmap.setOptions(new gmaps_visu.HeatmapLayerOptions()
+      ..opacity = heatmap.get_('opacity') !== null ? null : 0.2
+    );
+  });
 }

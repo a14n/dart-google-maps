@@ -1,10 +1,12 @@
 #import('dart:html');
 #import('dart:math', prefix:'Math');
+#import('package:js/js.dart', prefix:'js');
+#import('package:dart_google_maps/jswrap.dart', prefix:'jsw');
 #import('package:dart_google_maps/gmaps.dart', prefix:'gmaps');
 
 gmaps.GMap map;
 const TILE_SIZE = 256;
-final chicago = new gmaps.LatLng(41.850033,-87.6500523);
+final gmaps.LatLng chicago = jsw.retain(new gmaps.LatLng(41.850033,-87.6500523));
 
 num bound(num value, num opt_min, num opt_max) {
   if (opt_min != null) value = Math.max(value, opt_min);
@@ -21,9 +23,9 @@ num radiansToDegrees(num rad) {
 }
 
 class MercatorProjection {
-  gmaps.Point _pixelOrigin = new gmaps.Point(TILE_SIZE / 2, TILE_SIZE / 2);
-  num _pixelsPerLonDegree = TILE_SIZE / 360;
-  num _pixelsPerLonRadian = TILE_SIZE / (2 * Math.PI);
+  final gmaps.Point _pixelOrigin = new gmaps.Point(TILE_SIZE / 2, TILE_SIZE / 2);
+  const _pixelsPerLonDegree = TILE_SIZE / 360;
+  const _pixelsPerLonRadian = TILE_SIZE / (2 * Math.PI);
 
   gmaps.Point fromLatLngToPoint(gmaps.LatLng latLng, [gmaps.Point opt_point]) {
     final point = opt_point === null ? new gmaps.Point(0, 0) : opt_point;
@@ -73,21 +75,23 @@ String createInfoWindowContent() {
 }
 
 void main() {
-  final mapOptions = new gmaps.MapOptions()
-    ..zoom = 0
-    ..center = chicago
-    ..mapTypeId = gmaps.MapTypeId.ROADMAP
-    ;
-  map = new gmaps.GMap(query("#map_canvas"), mapOptions);
+  js.scoped((){
+    final mapOptions = new gmaps.MapOptions()
+      ..zoom = 0
+      ..center = chicago
+      ..mapTypeId = gmaps.MapTypeId.ROADMAP
+      ;
+    map = jsw.retain(new gmaps.GMap(query("#map_canvas"), mapOptions));
 
-  final coordInfoWindow = new gmaps.InfoWindow()
-    ..setContent(createInfoWindowContent())
-    ..setPosition(chicago)
-    ..open(map)
-    ;
+    final gmaps.InfoWindow coordInfoWindow = jsw.retain(new gmaps.InfoWindow()
+      ..setContent(createInfoWindowContent())
+      ..setPosition(chicago)
+      ..open(map)
+    );
 
-  gmaps.Events.addListener(map, 'zoom_changed', (e) {
-    coordInfoWindow.setContent(createInfoWindowContent());
-    coordInfoWindow.open(map);
+    gmaps.Events.addListener(map, 'zoom_changed', (e) {
+      coordInfoWindow.setContent(createInfoWindowContent());
+      coordInfoWindow.open(map);
+    });
   });
 }

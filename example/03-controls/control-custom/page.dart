@@ -1,9 +1,11 @@
 #import('dart:html');
 #import('dart:math');
+#import('package:js/js.dart', prefix:'js');
+#import('package:dart_google_maps/jswrap.dart', prefix:'jsw');
 #import('package:dart_google_maps/gmaps.dart', prefix:'gmaps');
 
 gmaps.GMap map;
-final chicago = new gmaps.LatLng(41.850033, -87.6500523);
+final gmaps.LatLng chicago = jsw.retain(new gmaps.LatLng(41.850033, -87.6500523));
 
 /**
  * The HomeControl adds a control to the map that simply
@@ -42,6 +44,7 @@ class HomeControl {
 
     // Setup the click event listeners: simply set the map to
     // Chicago
+    jsw.retain(map);
     gmaps.Events.addDomListener(controlUI, 'click', (e) {
       map.setCenter(chicago);
     });
@@ -49,20 +52,22 @@ class HomeControl {
 }
 
 void main() {
-  final mapDiv = query("#map_canvas");
-  final mapOptions = new gmaps.MapOptions()
-    ..zoom = 12
-    ..center = chicago
-    ..mapTypeId = gmaps.MapTypeId.ROADMAP
-    ;
-  map = new gmaps.GMap(mapDiv, mapOptions);
+  js.scoped(() {
+    final mapDiv = query("#map_canvas");
+    final mapOptions = new gmaps.MapOptions()
+      ..zoom = 12
+      ..center = chicago
+      ..mapTypeId = gmaps.MapTypeId.ROADMAP
+      ;
+    map = jsw.retain(new gmaps.GMap(mapDiv, mapOptions));
 
-  // Create the DIV to hold the control and
-  // call the HomeControl() constructor passing
-  // in this DIV.
-  var homeControlDiv = new DivElement();
-  var homeControl = new HomeControl(homeControlDiv, map);
+    // Create the DIV to hold the control and
+    // call the HomeControl() constructor passing
+    // in this DIV.
+    var homeControlDiv = new DivElement();
+    var homeControl = new HomeControl(homeControlDiv, map);
 
-  homeControlDiv.attributes["index"] = 1.toString();
-  map.controls.getNodes(gmaps.ControlPosition.TOP_RIGHT).push(homeControlDiv);
+    homeControlDiv.attributes["index"] = 1.toString();
+    map.controls.getNodes(gmaps.ControlPosition.TOP_RIGHT).push(homeControlDiv);
+  });
 }

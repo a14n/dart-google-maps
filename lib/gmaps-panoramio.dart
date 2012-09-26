@@ -1,14 +1,12 @@
 #library('gmaps-panoramio');
 
-#import('jsni.dart', prefix:'js');
+#import('package:js/js.dart', prefix:'js');
+#import('jswrap.dart', prefix:'jsw');
 #import('gmaps.dart');
-#source('utils.dart');
 
 class PanoramioLayer extends MVCObject {
-  static const TYPE_NAME = "google.maps.panoramio.PanoramioLayer";
-
-  PanoramioLayer([PanoramioLayerOptions opts]) : super.newInstance(TYPE_NAME, [opts]);
-  PanoramioLayer.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  PanoramioLayer([PanoramioLayerOptions opts]) : super.newInstance(maps.panoramio.PanoramioLayer, [opts]);
+  PanoramioLayer.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   GMap getMap() => $.call("getMap", [], GMap.INSTANCIATOR);
   String getTag() => $.call("getTag");
@@ -19,7 +17,7 @@ class PanoramioLayer extends MVCObject {
   void setUserId(String userId) { $.call("setUserId", [userId]); }
 }
 
-class PanoramioLayerOptions extends js.JsObject {
+class PanoramioLayerOptions extends jsw.IsJsProxy {
   set clickable(bool clickable) => $["clickable"] = clickable;
   set map(GMap map) => $["map"] = map;
   set suppressInfoWindows(bool suppressInfoWindows) => $["suppressInfoWindows"] = suppressInfoWindows;
@@ -27,8 +25,8 @@ class PanoramioLayerOptions extends js.JsObject {
   set userId(String userId) => $["userId"] = userId;
 }
 
-class PanoramioFeature extends js.JsObject {
-  PanoramioFeature.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+class PanoramioFeature extends jsw.IsJsProxy {
+  PanoramioFeature.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   String get author => $["author"];
   String get photoId => $["photoId"];
@@ -39,9 +37,9 @@ class PanoramioFeature extends js.JsObject {
 
 class PanoramioMouseEvent extends NativeEvent {
   PanoramioMouseEvent();
-  PanoramioMouseEvent.wrap(NativeEvent e) : super.fromJsRef(e.jsRef);
+  PanoramioMouseEvent.wrap(NativeEvent e) : super.fromIsJsProxy(e);
 
-  PanoramioFeature get featureDetails => new PanoramioFeature.fromJsRef($["featureDetails"]);
+  PanoramioFeature get featureDetails => new PanoramioFeature.fromJsProxy($["featureDetails"]);
   String get infoWindowHtml => $["infoWindowHtml"];
   LatLng get latLng => $.getProperty("latLng", LatLng.INSTANCIATOR);
   Size get pixelOffset => $.getProperty("pixelOffset", Size.INSTANCIATOR);

@@ -1,17 +1,31 @@
 #library('gmaps');
 
 #import('dart:html', prefix:'html');
-#import('jsni.dart', prefix:'js');
-#source('utils.dart');
+#import('package:js/js.dart', prefix:'js');
+#import('jswrap.dart', prefix:'jsw');
+
+// utility to get js.Proxy even if out of scope
+Dynamic findIn(List elements, Object o) => elements.filter((e) => e == o).reduce(null, (previousValue, e) => (previousValue != null ? previousValue : e));
+
+// js.Proxy for "google.maps"
+final maps = js.retain(js.context.google.maps);
 
 // start GMaps wrapping
 
 class GMap extends MVCObject {
-  static const TYPE_NAME = "google.maps.Map";
-  static final INSTANCIATOR = (js.JsRef jsRef) => new GMap.fromJsRef(jsRef);
+  static final INSTANCIATOR = (js.Proxy jsProxy) => new GMap.fromJsProxy(jsProxy);
+  static bool isInstance(js.Proxy jsProxy) {
+    // TODO replace with js instanceOf
+    try {
+      jsProxy.getDiv; // valid if GMap
+      return true;
+    } on NoSuchMethodError catch (e) {
+      return false;
+    }
+  }
 
-  GMap(html.Node mapDiv, [MapOptions opts]) : super.newInstance(TYPE_NAME, [mapDiv, opts]);
-  GMap.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  GMap(html.Node mapDiv, [MapOptions opts]) : super.newInstance(maps.Map, [mapDiv, opts]);
+  GMap.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   void fitBounds(LatLngBounds bounds) { $.call("fitBounds", [bounds]); }
   LatLngBounds getBounds() => $.call("getBounds", [], LatLngBounds.INSTANCIATOR);
@@ -52,21 +66,21 @@ class GMap extends MVCObject {
            set controls(Controls controls) => $["controls"] = controls;
   MapTypeRegistry get mapTypes => $.getProperty("mapTypes", MapTypeRegistry.INSTANCIATOR);
                   set mapTypes(MapTypeRegistry mapTypes) => $["mapTypes"] = mapTypes;
-  MVCArray<MapType> get overlayMapTypes => $.getProperty("overlayMapTypes", (js.JsRef jsRef) => new MVCArray.fromJsRef(jsRef, (js.JsRef jsRef) => new MapType.fromJsRef(jsRef)));
+  MVCArray<MapType> get overlayMapTypes => $.getProperty("overlayMapTypes", (js.Proxy jsProxy) => new MVCArray.fromJsProxy(jsProxy, (js.Proxy jsProxy) => new MapType.fromJsProxy(jsProxy)));
                     set overlayMapTypes(MVCArray<MapType> overlayMapTypes) => $["overlayMapTypes"] = overlayMapTypes;
 }
 
-class Controls extends js.JsObject {
-  static final INSTANCIATOR = (js.JsRef jsRef) => new Controls.fromJsRef(jsRef);
+class Controls extends jsw.IsJsProxy {
+  static final INSTANCIATOR = (js.Proxy jsProxy) => new Controls.fromJsProxy(jsProxy);
 
-  Controls() : super.newInstance("Array");
-  Controls.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  Controls() : super.fromJsProxy(js.array([]));
+  Controls.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  MVCArray<html.Node> getNodes(ControlPosition controlPosition) => $.getProperty(controlPosition.$.value.toString(), (js.JsRef jsRef) => new MVCArray.fromJsRef(jsRef));
-  void setNodes(ControlPosition controlPosition, MVCArray<html.Node> nodes) { $[controlPosition.$.value.toString()] = nodes; }
+  MVCArray<html.Node> getNodes(ControlPosition controlPosition) => $.getProperty(controlPosition.value.toString(), (js.Proxy jsProxy) => new MVCArray.fromJsProxy(jsProxy));
+  void setNodes(ControlPosition controlPosition, MVCArray<html.Node> nodes) { $[controlPosition.value.toString()] = nodes; }
 }
 
-class MapOptions extends js.JsObject {
+class MapOptions extends jsw.IsJsProxy {
   set backgroundColor(String backgroundColor) => $["backgroundColor"] = backgroundColor;
   set center(LatLng center) => $["center"] = center;
   set disableDefaultUI(bool disableDefaultUI) => $["disableDefaultUI"] = disableDefaultUI;
@@ -108,24 +122,24 @@ class MapOptions extends js.JsObject {
   set zoomControlOptions(ZoomControlOptions zoomControlOptions) => $["zoomControlOptions"] = zoomControlOptions;
 }
 
-class MapTypeId extends js.JsObject {
-  static const TYPE_NAME = "google.maps.MapTypeId";
-
-  static final HYBRID = new MapTypeId._("${TYPE_NAME}.HYBRID");
-  static final ROADMAP = new MapTypeId._("${TYPE_NAME}.ROADMAP");
-  static final SATELLITE = new MapTypeId._("${TYPE_NAME}.SATELLITE");
-  static final TERRAIN = new MapTypeId._("${TYPE_NAME}.TERRAIN");
+class MapTypeId extends jsw.IsEnum<String> {
+  static final HYBRID = new MapTypeId._(maps.MapTypeId.HYBRID);
+  static final ROADMAP = new MapTypeId._(maps.MapTypeId.ROADMAP);
+  static final SATELLITE = new MapTypeId._(maps.MapTypeId.SATELLITE);
+  static final TERRAIN = new MapTypeId._(maps.MapTypeId.TERRAIN);
 
   static final _INSTANCES = [HYBRID, ROADMAP, SATELLITE, TERRAIN];
 
-  static MapTypeId find(Object o) { return findIn(o, _INSTANCES); }
+  static MapTypeId find(Object o) => findIn(_INSTANCES, o);
 
-  MapTypeId._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
+  MapTypeId._(String value) : super(value);
+
+  bool operator ==(Object other) => value == (other is MapTypeId ? (other as MapTypeId).value : other);
 }
 
-class MapTypeControlOptions extends js.JsObject {
+class MapTypeControlOptions extends jsw.IsJsProxy {
   set mapTypeIds(List<Object> mapTypeIds) {
-    if (!mapTypeIds.filter((e)=> !(e is String || e is MapTypeId)).isEmpty()) {
+    if (!mapTypeIds.filter((e) => !(e is String || e is MapTypeId)).isEmpty()) {
       throw new IllegalArgumentException("some elements are not String or MapTypeId");
     }
     $["mapTypeIds"] = mapTypeIds;
@@ -134,102 +148,110 @@ class MapTypeControlOptions extends js.JsObject {
   set style(MapTypeControlStyle style) => $["style"] = style;
 }
 
-class MapTypeControlStyle extends js.JsObject {
-  static const TYPE_NAME = "google.maps.MapTypeControlStyle";
-
-  static final DEFAULT = new MapTypeControlStyle._("${TYPE_NAME}.DEFAULT");
-  static final DROPDOWN_MENU = new MapTypeControlStyle._("${TYPE_NAME}.DROPDOWN_MENU");
-  static final HORIZONTAL_BAR = new MapTypeControlStyle._("${TYPE_NAME}.HORIZONTAL_BAR");
+class MapTypeControlStyle extends jsw.IsEnum<int> {
+  static final DEFAULT = new MapTypeControlStyle._(maps.MapTypeControlStyle.DEFAULT);
+  static final DROPDOWN_MENU = new MapTypeControlStyle._(maps.MapTypeControlStyle.DROPDOWN_MENU);
+  static final HORIZONTAL_BAR = new MapTypeControlStyle._(maps.MapTypeControlStyle.HORIZONTAL_BAR);
 
   static final _INSTANCES = [DEFAULT, DROPDOWN_MENU, HORIZONTAL_BAR];
 
-  static MapTypeControlStyle find(Object o) { return findIn(o, _INSTANCES); }
+  static MapTypeControlStyle find(Object o) => findIn(_INSTANCES, o);
 
-  MapTypeControlStyle._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
+  MapTypeControlStyle._(int value) : super(value);
+
+  bool operator ==(Object other) => value == (other is MapTypeControlStyle ? (other as MapTypeControlStyle).value : other);
 }
 
-class OverviewMapControlOptions extends js.JsObject {
+class OverviewMapControlOptions extends jsw.IsJsProxy {
   set opened(bool opened) => $["opened"] = opened;
 }
 
-class PanControlOptions extends js.JsObject {
+class PanControlOptions extends jsw.IsJsProxy {
   set position(ControlPosition position) => $["position"] = position;
 }
 
-class RotateControlOptions extends js.JsObject {
+class RotateControlOptions extends jsw.IsJsProxy {
   set position(ControlPosition position) => $["position"] = position;
 }
 
-class ScaleControlOptions extends js.JsObject {
+class ScaleControlOptions extends jsw.IsJsProxy {
   set position(ControlPosition position) => $["position"] = position;
   set style(ScaleControlStyle style) => $["style"] = style;
 }
 
-class ScaleControlStyle extends js.JsObject {
-  static const TYPE_NAME = "google.maps.ScaleControlStyle";
-
-  static final DEFAULT = new ScaleControlStyle._("${TYPE_NAME}.DEFAULT");
+class ScaleControlStyle extends jsw.IsEnum<String> {
+  static final DEFAULT = new ScaleControlStyle._(maps.ScaleControlStyle.DEFAULT);
 
   static final _INSTANCES = [DEFAULT];
 
-  static ScaleControlStyle find(Object o) { return findIn(o, _INSTANCES); }
+  static ScaleControlStyle find(Object o) => findIn(_INSTANCES, o);
 
-  ScaleControlStyle._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
+  ScaleControlStyle._(String value) : super(value);
+
+  bool operator ==(Object other) => value == (other is ScaleControlStyle ? (other as ScaleControlStyle).value : other);
 }
 
-class StreetViewControlOptions extends js.JsObject {
+class StreetViewControlOptions extends jsw.IsJsProxy {
   set position(ControlPosition position) => $["position"] = position;
 }
 
-class ZoomControlOptions extends js.JsObject {
+class ZoomControlOptions extends jsw.IsJsProxy {
   set position(ControlPosition position) => $["position"] = position;
   set style(ZoomControlStyle style) => $["style"] = style;
 }
 
-class ZoomControlStyle extends js.JsObject {
-  static const TYPE_NAME = "google.maps.ZoomControlStyle";
-
-  static final DEFAULT = new ZoomControlStyle._("${TYPE_NAME}.DEFAULT");
-  static final LARGE = new ZoomControlStyle._("${TYPE_NAME}.LARGE");
-  static final SMALL = new ZoomControlStyle._("${TYPE_NAME}.SMALL");
+class ZoomControlStyle extends jsw.IsEnum<int> {
+  static final DEFAULT = new ZoomControlStyle._(maps.ZoomControlStyle.DEFAULT);
+  static final LARGE = new ZoomControlStyle._(maps.ZoomControlStyle.LARGE);
+  static final SMALL = new ZoomControlStyle._(maps.ZoomControlStyle.SMALL);
 
   static final _INSTANCES = [DEFAULT, LARGE, SMALL];
 
-  static ZoomControlStyle find(Object o) { return findIn(o, _INSTANCES); }
+  static ZoomControlStyle find(Object o) => findIn(_INSTANCES, o);
 
-  ZoomControlStyle._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
+  ZoomControlStyle._(int value) : super(value);
+
+  bool operator ==(Object other) => value == (other is ZoomControlStyle ? (other as ZoomControlStyle).value : other);
 }
 
-class ControlPosition extends js.JsObject {
-  static const TYPE_NAME = "google.maps.ControlPosition";
-
-  static final BOTTOM_CENTER = new ControlPosition._("${TYPE_NAME}.BOTTOM_CENTER");
-  static final BOTTOM_LEFT = new ControlPosition._("${TYPE_NAME}.BOTTOM_LEFT");
-  static final BOTTOM_RIGHT = new ControlPosition._("${TYPE_NAME}.BOTTOM_RIGHT");
-  static final LEFT_BOTTOM = new ControlPosition._("${TYPE_NAME}.LEFT_BOTTOM");
-  static final LEFT_CENTER = new ControlPosition._("${TYPE_NAME}.LEFT_CENTER");
-  static final LEFT_TOP = new ControlPosition._("${TYPE_NAME}.LEFT_TOP");
-  static final RIGHT_BOTTOM = new ControlPosition._("${TYPE_NAME}.RIGHT_BOTTOM");
-  static final RIGHT_CENTER = new ControlPosition._("${TYPE_NAME}.RIGHT_CENTER");
-  static final RIGHT_TOP = new ControlPosition._("${TYPE_NAME}.RIGHT_TOP");
-  static final TOP_CENTER = new ControlPosition._("${TYPE_NAME}.TOP_CENTER");
-  static final TOP_LEFT = new ControlPosition._("${TYPE_NAME}.TOP_LEFT");
-  static final TOP_RIGHT = new ControlPosition._("${TYPE_NAME}.TOP_RIGHT");
+class ControlPosition extends jsw.IsEnum<int> {
+  static final BOTTOM_CENTER = new ControlPosition._(maps.ControlPosition.BOTTOM_CENTER);
+  static final BOTTOM_LEFT = new ControlPosition._(maps.ControlPosition.BOTTOM_LEFT);
+  static final BOTTOM_RIGHT = new ControlPosition._(maps.ControlPosition.BOTTOM_RIGHT);
+  static final LEFT_BOTTOM = new ControlPosition._(maps.ControlPosition.LEFT_BOTTOM);
+  static final LEFT_CENTER = new ControlPosition._(maps.ControlPosition.LEFT_CENTER);
+  static final LEFT_TOP = new ControlPosition._(maps.ControlPosition.LEFT_TOP);
+  static final RIGHT_BOTTOM = new ControlPosition._(maps.ControlPosition.RIGHT_BOTTOM);
+  static final RIGHT_CENTER = new ControlPosition._(maps.ControlPosition.RIGHT_CENTER);
+  static final RIGHT_TOP = new ControlPosition._(maps.ControlPosition.RIGHT_TOP);
+  static final TOP_CENTER = new ControlPosition._(maps.ControlPosition.TOP_CENTER);
+  static final TOP_LEFT = new ControlPosition._(maps.ControlPosition.TOP_LEFT);
+  static final TOP_RIGHT = new ControlPosition._(maps.ControlPosition.TOP_RIGHT);
 
   static final _INSTANCES = [BOTTOM_CENTER, BOTTOM_LEFT, BOTTOM_RIGHT, LEFT_BOTTOM, LEFT_CENTER, LEFT_TOP, RIGHT_BOTTOM, RIGHT_CENTER, RIGHT_TOP, TOP_CENTER, TOP_LEFT, TOP_RIGHT];
 
-  static ControlPosition find(Object o) { return findIn(o, _INSTANCES); }
+  static ControlPosition find(Object o) => findIn(_INSTANCES, o);
 
-  ControlPosition._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
+  ControlPosition._(int value) : super(value);
+
+  bool operator ==(Object other) => value == (other is ControlPosition ? (other as ControlPosition).value : other);
 }
 
 class Marker extends MVCObject {
-  static const TYPE_NAME = "google.maps.Marker";
+  static final num MAX_ZINDEX = maps.Marker.MAX_ZINDEX;
+  static bool isInstance(js.Proxy jsProxy) {
+    // TODO replace with js instanceOf
+    try {
+      jsProxy.getIcon;
+      jsProxy.getPosition;
+      return true;
+    } on NoSuchMethodError catch (e) {
+      return false;
+    }
+  }
 
-  static final num MAX_ZINDEX = js.jsWindow.$["${TYPE_NAME}.MAX_ZINDEX"];
-
-  Marker([MarkerOptions opts]) : super.newInstance(TYPE_NAME, [opts]);
-  Marker.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  Marker([MarkerOptions opts]) : super.newInstance(maps.Marker, [opts]);
+  Marker.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   Animation getAnimation() => $.call("getAnimation", [], Animation.find);
   bool getClickable() => $.call("getClickable");
@@ -242,8 +264,8 @@ class Marker extends MVCObject {
       return result;
     } else if (result is String) {
       return result;
-    } else if (result is js.JsRef) {
-      return new MarkerImage.fromJsRef(result);
+    } else if (result is js.Proxy) {
+      return new MarkerImage.fromJsProxy(result);
     } else {
       throw new Exception("Unsupported result");
     }
@@ -252,12 +274,10 @@ class Marker extends MVCObject {
     final result = $.call("getMap");
     if (result == null) {
       return result;
-    } else if (js.isInstanceOf(result ,GMap.TYPE_NAME)) {
-      return new GMap.fromJsRef(result);
-    } else if (js.isInstanceOf(result ,StreetViewPanorama.TYPE_NAME)) {
-      return new StreetViewPanorama.fromJsRef(result);
+    } else if (GMap.isInstance(result)){
+      return new GMap.fromJsProxy(result);
     } else {
-      throw new Exception("Unsupported result");
+      return new StreetViewPanorama.fromJsProxy(result);
     }
   }
   LatLng getPosition() => $.call("getPosition", [], LatLng.INSTANCIATOR);
@@ -267,8 +287,8 @@ class Marker extends MVCObject {
       return result;
     } else if (result is String) {
       return result;
-    } else if (result is js.JsRef) {
-      return new MarkerImage.fromJsRef(result);
+    } else if (result is js.Proxy) {
+      return new MarkerImage.fromJsProxy(result);
     } else {
       throw new Exception("Unsupported result");
     }
@@ -310,7 +330,7 @@ class Marker extends MVCObject {
   void setZIndex(num zIndex) { $.call("setZIndex", [zIndex]); }
 }
 
-class MarkerOptions extends js.JsObject {
+class MarkerOptions extends jsw.IsJsProxy {
   set animation(Animation animation) => $["animation"] = animation;
   set clickable(bool clickable) => $["clickable"] = clickable;
   set cursor(String cursor) => $["cursor"] = cursor;
@@ -346,11 +366,9 @@ class MarkerOptions extends js.JsObject {
   set zIndex(num zIndex) => $["zIndex"] = zIndex;
 }
 
-class MarkerImage extends js.JsObject {
-  static const TYPE_NAME = "google.maps.MarkerImage";
-
-  MarkerImage(String url, [Size size, Point origin, Point anchor, Size scaledSize]) : super.newInstance(TYPE_NAME, [url, size, origin, anchor, scaledSize]);
-  MarkerImage.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+class MarkerImage extends jsw.IsJsProxy {
+  MarkerImage(String url, [Size size, Point origin, Point anchor, Size scaledSize]) : super.newInstance(maps.MarkerImage, [url, size, origin, anchor, scaledSize]);
+  MarkerImage.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   Point get anchor => $.getProperty("anchor", Point.INSTANCIATOR);
         set anchor(Point anchor) => $["anchor"] = anchor;
@@ -364,35 +382,33 @@ class MarkerImage extends js.JsObject {
          set url(String url) => $["url"] = url;
 }
 
-class MarkerShape extends js.JsObject {
-  static final INSTANCIATOR = (js.JsRef jsRef) => new MarkerShape.fromJsRef(jsRef);
+class MarkerShape extends jsw.IsJsProxy {
+  static final INSTANCIATOR = (js.Proxy jsProxy) => new MarkerShape.fromJsProxy(jsProxy);
 
   MarkerShape() : super();
-  MarkerShape.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  MarkerShape.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  List<num> get coords => $.getProperty("coords", (js.JsRef jsRef) => new js.JsList<num>.fromJsRef(jsRef, (e) => js.$$(e).value));
+  List<num> get coords => $.getProperty("coords", (js.Proxy jsProxy) => new jsw.JsList<num>.fromJsProxy(jsProxy, null));
             set coords(List<num> coords) => $["coords"] = coords;
-  MarkerShapeType get type => $.getProperty("type", MarkerShapeType.INSTANCIATOR);
+  MarkerShapeType get type => MarkerShapeType.find($["type"]);
                   set type(MarkerShapeType type) => $["type"] = type.value;
 }
 
-class MarkerShapeType {
-  static final INSTANCIATOR = (js.JsRef jsRef) => find(js.$$(jsRef).value);
-
+class MarkerShapeType extends jsw.IsEnum<String> {
   static final CIRCLE = new MarkerShapeType._("circle");
   static final POLY = new MarkerShapeType._("poly");
   static final RECT = new MarkerShapeType._("rect");
 
   static final _INSTANCES = [CIRCLE, POLY, RECT];
 
-  static MarkerShapeType find(String value) => findIn(value, _INSTANCES, (e) => e.value);
+  static MarkerShapeType find(Object o) => findIn(_INSTANCES, o);
 
-  String value;
+  MarkerShapeType._(String value) : super(value);
 
-  MarkerShapeType._(String this.value);
+  bool operator ==(Object other) => value == (other is MarkerShapeType ? (other as MarkerShapeType).value : other);
 }
 
-class Symbol extends js.JsObject {
+class Symbol extends jsw.IsJsProxy {
   Point get anchor => $.getProperty("anchor", Point.INSTANCIATOR);
         set anchor(Point anchor) => $["anchor"] = anchor;
   String get fillColor => $["fillColor"];
@@ -403,7 +419,7 @@ class Symbol extends js.JsObject {
            final result = $["path"];
            if (result is String) {
              return result;
-           } else if (result is js.JsRef) {
+           } else if (result is js.Proxy) {
              return SymbolPath.find(result);
            } else {
              throw new Exception("Unsupported result");
@@ -428,40 +444,38 @@ class Symbol extends js.JsObject {
       set strokeWeight(num rotation) => $["strokeWeight"] = strokeWeight;
 }
 
-class SymbolPath extends js.JsObject {
-  static const TYPE_NAME = "google.maps.SymbolPath";
-
-  static final BACKWARD_CLOSED_ARROW = new SymbolPath._("${TYPE_NAME}.BACKWARD_CLOSED_ARROW");
-  static final BACKWARD_OPEN_ARROW = new SymbolPath._("${TYPE_NAME}.BACKWARD_OPEN_ARROW");
-  static final CIRCLE = new SymbolPath._("${TYPE_NAME}.CIRCLE");
-  static final FORWARD_CLOSED_ARROW = new SymbolPath._("${TYPE_NAME}.FORWARD_CLOSED_ARROW");
-  static final FORWARD_OPEN_ARROW = new SymbolPath._("${TYPE_NAME}.FORWARD_OPEN_ARROW");
+class SymbolPath extends jsw.IsEnum<int> {
+  static final BACKWARD_CLOSED_ARROW = new SymbolPath._(maps.SymbolPath.BACKWARD_CLOSED_ARROW);
+  static final BACKWARD_OPEN_ARROW = new SymbolPath._(maps.SymbolPath.BACKWARD_OPEN_ARROW);
+  static final CIRCLE = new SymbolPath._(maps.SymbolPath.CIRCLE);
+  static final FORWARD_CLOSED_ARROW = new SymbolPath._(maps.SymbolPath.FORWARD_CLOSED_ARROW);
+  static final FORWARD_OPEN_ARROW = new SymbolPath._(maps.SymbolPath.FORWARD_OPEN_ARROW);
 
   static final _INSTANCES = [BACKWARD_CLOSED_ARROW, BACKWARD_OPEN_ARROW, CIRCLE, FORWARD_CLOSED_ARROW, FORWARD_OPEN_ARROW];
 
-  static SymbolPath find(Object o) { return findIn(o, _INSTANCES); }
+  static SymbolPath find(Object o) => findIn(_INSTANCES, o);
 
-  SymbolPath._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
+  SymbolPath._(int value) : super(value);
+
+  bool operator ==(Object other) => value == (other is SymbolPath ? (other as SymbolPath).value : other);
 }
 
-class Animation extends js.JsObject {
-  static const TYPE_NAME = "google.maps.Animation";
-
-  static final BOUNCE = new Animation._("${TYPE_NAME}.BOUNCE");
-  static final DROP = new Animation._("${TYPE_NAME}.DROP");
+class Animation extends jsw.IsEnum<int> {
+  static final BOUNCE = new Animation._(maps.Animation.BOUNCE);
+  static final DROP = new Animation._(maps.Animation.DROP);
 
   static final _INSTANCES = [BOUNCE, DROP];
 
-  static Animation find(Object o) { return findIn(o, _INSTANCES); }
+  static Animation find(Object o) => findIn(_INSTANCES, o);
 
-  Animation._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
+  Animation._(int value) : super(value);
+
+  bool operator ==(Object other) => value == (other is Animation ? (other as Animation).value : other);
 }
 
 class InfoWindow extends MVCObject {
-  static const TYPE_NAME = "google.maps.InfoWindow";
-
-  InfoWindow([InfoWindowOptions opts]) : super.newInstance(TYPE_NAME, [opts]);
-  InfoWindow.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  InfoWindow([InfoWindowOptions opts]) : super.newInstance(maps.InfoWindow, [opts]);
+  InfoWindow.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   void close() { $.call("close"); }
   Object getContent() {
@@ -493,7 +507,7 @@ class InfoWindow extends MVCObject {
   void setZIndex(num zIndex) { $.call("setZIndex", [zIndex]); }
 }
 
-class InfoWindowOptions extends js.JsObject {
+class InfoWindowOptions extends jsw.IsJsProxy {
   set content(Object content) {
     if (content is String || content is html.Node) {
       $["content"] = content;
@@ -514,14 +528,22 @@ class InfoWindowOptions extends js.JsObject {
 }
 
 class Polyline extends MVCObject {
-  static const TYPE_NAME = "google.maps.Polyline";
+  static bool isInstance(js.Proxy jsProxy) {
+    // TODO replace with js instanceOf
+    try {
+      jsProxy.getPath;
+      return true;
+    } on NoSuchMethodError catch (e) {
+      return false;
+    }
+  }
 
-  Polyline([PolylineOptions opts]) : super.newInstance(TYPE_NAME, [opts]);
-  Polyline.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  Polyline([PolylineOptions opts]) : super.newInstance(maps.Polyline, [opts]);
+  Polyline.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   bool getEditable() => $.call("getEditable");
   GMap getMap() => $.call("getMap", [], GMap.INSTANCIATOR);
-  MVCArray<LatLng> getPath() => $.call("getPath", [], (js.JsRef jsRef) => new MVCArray.fromJsRef(jsRef, (js.JsRef jsRef) => new LatLng.fromJsRef(jsRef)));
+  MVCArray<LatLng> getPath() => $.call("getPath", [], (js.Proxy jsProxy) => new MVCArray.fromJsProxy(jsProxy, (js.Proxy jsProxy) => new LatLng.fromJsProxy(jsProxy)));
   bool getVisible() => $.call("getVisible");
   void setEditable(bool editable) { $.call("setEditable", [editable]); }
   void setMap(GMap map) { $.call("setMap", [map]); }
@@ -536,7 +558,7 @@ class Polyline extends MVCObject {
   void setVisible(bool visible) { $.call("setVisible", [visible]); }
 }
 
-class PolylineOptions extends js.JsObject {
+class PolylineOptions extends jsw.IsJsProxy {
   set clickable(bool clickable) => $["clickable"] = clickable;
   set editable(bool editable) => $["editable"] = editable;
   set geodesic(bool geodesic) => $["geodesic"] = geodesic;
@@ -556,9 +578,9 @@ class PolylineOptions extends js.JsObject {
   set zIndex(num zIndex) => $["zIndex"] = zIndex;
 }
 
-class IconSequence extends js.JsObject {
+class IconSequence extends jsw.IsJsProxy {
   IconSequence() : super();
-  IconSequence.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  IconSequence.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   set icon(Symbol icon) => $["icon"] = icon;
   set offset(String offset) => $["offset"] = offset;
@@ -566,15 +588,23 @@ class IconSequence extends js.JsObject {
 }
 
 class Polygon extends MVCObject {
-  static const TYPE_NAME = "google.maps.Polygon";
+  static bool isInstance(js.Proxy jsProxy) {
+    // TODO replace with js instanceOf
+    try {
+      jsProxy.getPaths;
+      return true;
+    } on NoSuchMethodError catch (e) {
+      return false;
+    }
+  }
 
-  Polygon([PolygonOptions opts]) : super.newInstance(TYPE_NAME, [opts]);
-  Polygon.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  Polygon([PolygonOptions opts]) : super.newInstance(maps.Polygon, [opts]);
+  Polygon.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   bool getEditable() => $.call("getEditable");
   GMap getMap() => $.call("getMap", [], GMap.INSTANCIATOR);
-  MVCArray<LatLng> getPath() => $.call("getPath", [], (js.JsRef jsRef) => new MVCArray.fromJsRef(jsRef, (js.JsRef jsRef) => new LatLng.fromJsRef(jsRef)));
-  MVCArray<MVCArray<LatLng>> getPaths() => $.call("getPaths", [], (js.JsRef jsRef) => new MVCArray.fromJsRef(jsRef, (js.JsRef jsRef) => new MVCArray.fromJsRef(jsRef, (js.JsRef jsRef) => new LatLng.fromJsRef(jsRef))));
+  MVCArray<LatLng> getPath() => $.call("getPath", [], (js.Proxy jsProxy) => new MVCArray.fromJsProxy(jsProxy, (js.Proxy jsProxy) => new LatLng.fromJsProxy(jsProxy)));
+  MVCArray<MVCArray<LatLng>> getPaths() => $.call("getPaths", [], (js.Proxy jsProxy) => new MVCArray.fromJsProxy(jsProxy, (js.Proxy jsProxy) => new MVCArray.fromJsProxy(jsProxy, (js.Proxy jsProxy) => new LatLng.fromJsProxy(jsProxy))));
   bool getVisible() => $.call("getVisible");
   void setEditable(bool editable) { $.call("setEditable", [editable]); }
   void setMap(GMap map) { $.call("setMap", [map]); }
@@ -596,7 +626,7 @@ class Polygon extends MVCObject {
   void setVisible(bool visible) { $.call("setVisible", [visible]); }
 }
 
-class PolygonOptions extends js.JsObject {
+class PolygonOptions extends jsw.IsJsProxy {
   set clickable(bool clickable) => $["clickable"] = clickable;
   set editable(bool editable) => $["editable"] = editable;
   set fillColor(String fillColor) => $["fillColor"] = fillColor;
@@ -618,7 +648,7 @@ class PolygonOptions extends js.JsObject {
 }
 
 class PolyMouseEvent extends MouseEvent {
-  PolyMouseEvent.wrap(NativeEvent e) { jsRef = e.jsRef; }
+  PolyMouseEvent.wrap(NativeEvent e) : super.wrap(e);
 
   num get edge => $["edge"];
   num get path => $["path"];
@@ -626,10 +656,18 @@ class PolyMouseEvent extends MouseEvent {
 }
 
 class Rectangle extends MVCObject {
-  static const TYPE_NAME = "google.maps.Rectangle";
+  static bool isInstance(js.Proxy jsProxy) {
+    // TODO replace with js instanceOf
+    try {
+      jsProxy.getBounds;
+      return true;
+    } on NoSuchMethodError catch (e) {
+      return false;
+    }
+  }
 
-  Rectangle([RectangleOptions opts]) : super.newInstance(TYPE_NAME, [opts]);
-  Rectangle.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  Rectangle([RectangleOptions opts]) : super.newInstance(maps.Rectangle, [opts]);
+  Rectangle.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   LatLngBounds getBounds() => $.call("getBounds", [], LatLngBounds.INSTANCIATOR);
   bool getEditable() => $.call("getEditable");
@@ -642,7 +680,7 @@ class Rectangle extends MVCObject {
   void setVisible(bool visible) { $.call("setVisible", [visible]); }
 }
 
-class RectangleOptions extends js.JsObject {
+class RectangleOptions extends jsw.IsJsProxy {
   set bounds(LatLngBounds bounds) => $["bounds"] = bounds;
   set clickable(bool clickable) => $["clickable"] = clickable;
   set editable(bool editable) => $["editable"] = editable;
@@ -657,10 +695,19 @@ class RectangleOptions extends js.JsObject {
 }
 
 class Circle extends MVCObject {
-  static const TYPE_NAME = "google.maps.Circle";
+  static bool isInstance(js.Proxy jsProxy) {
+    // TODO replace with js instanceOf
+    try {
+      jsProxy.getCenter;
+      jsProxy.getRadius;
+      return true;
+    } on NoSuchMethodError catch (e) {
+      return false;
+    }
+  }
 
-  Circle([CircleOptions opts]) : super.newInstance(TYPE_NAME, [opts]);
-  Circle.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  Circle([CircleOptions opts]) : super.newInstance(maps.Circle, [opts]);
+  Circle.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   LatLngBounds getBounds() => $.call("getBounds", [], LatLngBounds.INSTANCIATOR);
   LatLng getCenter() => $.call("getCenter", [], LatLng.INSTANCIATOR);
@@ -676,7 +723,7 @@ class Circle extends MVCObject {
   void setVisible(bool visible) { $.call("setVisible", [visible]); }
 }
 
-class CircleOptions extends js.JsObject {
+class CircleOptions extends jsw.IsJsProxy {
   set center(LatLng center) => $["center"] = center;
   set clickable(bool clickable) => $["clickable"] = clickable;
   set editable(bool editable) => $["editable"] = editable;
@@ -692,10 +739,8 @@ class CircleOptions extends js.JsObject {
 }
 
 class GroundOverlay extends MVCObject {
-  static const TYPE_NAME = "google.maps.GroundOverlay";
-
-  GroundOverlay(String url, LatLngBounds bounds, [GroundOverlayOptions opts]) : super.newInstance(TYPE_NAME, [url, bounds, opts]);
-  GroundOverlay.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  GroundOverlay(String url, LatLngBounds bounds, [GroundOverlayOptions opts]) : super.newInstance(maps.GroundOverlay, [url, bounds, opts]);
+  GroundOverlay.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   LatLngBounds getBounds() => $.call("getBounds", [], LatLngBounds.INSTANCIATOR);
   GMap getMap() => $.call("getMap", [], GMap.INSTANCIATOR);
@@ -705,17 +750,15 @@ class GroundOverlay extends MVCObject {
   void setOpacity(num opacity) { $.call("setOpacity", [opacity]); }
 }
 
-class GroundOverlayOptions extends js.JsObject {
+class GroundOverlayOptions extends jsw.IsJsProxy {
   set clickable(bool clickable) => $["clickable"] = clickable;
   set map(GMap map) => $["map"] = map;
   set opacity(num radius) => $["opacity"] = opacity;
 }
 
 class OverlayView extends MVCObject {
-  static const TYPE_NAME = "google.maps.OverlayView";
-
-  OverlayView() : super.newInstance(TYPE_NAME);
-  OverlayView.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  OverlayView() : super.newInstance(maps.OverlayView);
+  OverlayView.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   void draw() { $.call("draw"); }
   GMap getMap() => $.call("getMap", [], GMap.INSTANCIATOR);
@@ -732,10 +775,10 @@ class OverlayView extends MVCObject {
   }
 }
 
-class MapPanes extends js.JsObject {
-  static final INSTANCIATOR = (js.JsRef jsRef) => new MapPanes.fromJsRef(jsRef);
+class MapPanes extends jsw.IsJsProxy {
+  static final INSTANCIATOR = (js.Proxy jsProxy) => new MapPanes.fromJsProxy(jsProxy);
 
-  MapPanes.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  MapPanes.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   html.Node get floatPane => $["floatPane"];
             set floatPane(html.Node floatPane) => $["floatPane"] = floatPane;
@@ -754,9 +797,9 @@ class MapPanes extends js.JsObject {
 }
 
 class MapCanvasProjection extends MVCObject {
-  static final INSTANCIATOR = (js.JsRef jsRef) => new MapCanvasProjection.fromJsRef(jsRef);
+  static final INSTANCIATOR = (js.Proxy jsProxy) => new MapCanvasProjection.fromJsProxy(jsProxy);
 
-  MapCanvasProjection.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  MapCanvasProjection.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   LatLng fromContainerPixelToLatLng(Point pixel, [bool nowrap]) => $.call("fromContainerPixelToLatLng", [pixel, nowrap], LatLng.INSTANCIATOR);
   LatLng fromDivPixelToLatLng(Point pixel, [bool nowrap]) => $.call("fromDivPixelToLatLng", [pixel, nowrap], LatLng.INSTANCIATOR);
@@ -765,71 +808,65 @@ class MapCanvasProjection extends MVCObject {
   num getWorldWidth() => $.call("getWorldWidth");
 }
 
-class Geocoder extends js.JsObject {
-  static const TYPE_NAME = "google.maps.Geocoder";
-
-  Geocoder() : super.newInstance(TYPE_NAME);
+class Geocoder extends jsw.IsJsProxy {
+  Geocoder() : super.newInstance(maps.Geocoder);
 
   void geocode(GeocoderRequest request, void callback(List<GeocoderResult> results, GeocoderStatus status)) {
-    js.CallbackFunction callbackFunction = Object _(List args) {
-      List<js.JsRef> resultsRefs = args[0];
-      callback(resultsRefs.map((e) => new GeocoderResult.fromJsRef(e)), GeocoderStatus.find(args[1]));
-    };
-    $.call("geocode", [request, callbackFunction]);
+    $.call("geocode", [request, new jsw.Callback.once((results, status) => callback(new jsw.JsList<GeocoderResult>.fromJsProxy(results, (e) => new GeocoderResult.fromJsProxy(e)), GeocoderStatus.find(status)))]);
   }
 }
 
-class GeocoderRequest extends js.JsObject {
+class GeocoderRequest extends jsw.IsJsProxy {
   set address(String address) => $["address"] = address;
   set bounds(LatLngBounds bounds) => $["bounds"] = bounds;
   set location(LatLng location) => $["location"] = location;
   set region(String region) => $["region"] = region;
 }
 
-class GeocoderStatus extends js.JsObject {
-  static const TYPE_NAME = "google.maps.GeocoderStatus";
-
-  static final ERROR = new GeocoderStatus._("${TYPE_NAME}.ERROR");
-  static final INVALID_REQUEST = new GeocoderStatus._("${TYPE_NAME}.INVALID_REQUEST");
-  static final OK = new GeocoderStatus._("${TYPE_NAME}.OK");
-  static final OVER_QUERY_LIMIT = new GeocoderStatus._("${TYPE_NAME}.OVER_QUERY_LIMIT");
-  static final REQUEST_DENIED = new GeocoderStatus._("${TYPE_NAME}.REQUEST_DENIED");
-  static final UNKNOWN_ERROR = new GeocoderStatus._("${TYPE_NAME}.UNKNOWN_ERROR");
-  static final ZERO_RESULTS = new GeocoderStatus._("${TYPE_NAME}.ZERO_RESULTS");
+class GeocoderStatus extends jsw.IsEnum<String> {
+  static final ERROR = new GeocoderStatus._(maps.GeocoderStatus.ERROR);
+  static final INVALID_REQUEST = new GeocoderStatus._(maps.GeocoderStatus.INVALID_REQUEST);
+  static final OK = new GeocoderStatus._(maps.GeocoderStatus.OK);
+  static final OVER_QUERY_LIMIT = new GeocoderStatus._(maps.GeocoderStatus.OVER_QUERY_LIMIT);
+  static final REQUEST_DENIED = new GeocoderStatus._(maps.GeocoderStatus.REQUEST_DENIED);
+  static final UNKNOWN_ERROR = new GeocoderStatus._(maps.GeocoderStatus.UNKNOWN_ERROR);
+  static final ZERO_RESULTS = new GeocoderStatus._(maps.GeocoderStatus.ZERO_RESULTS);
 
   static final _INSTANCES = [ERROR, INVALID_REQUEST, OK, OVER_QUERY_LIMIT, REQUEST_DENIED, UNKNOWN_ERROR, ZERO_RESULTS];
 
-  static GeocoderStatus find(Object o) { return findIn(o, _INSTANCES); }
+  static GeocoderStatus find(Object o) => findIn(_INSTANCES, o);
 
-  GeocoderStatus._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
+  GeocoderStatus._(String value) : super(value);
+
+  bool operator ==(Object other) => value == (other is GeocoderStatus ? (other as GeocoderStatus).value : other);
 }
 
-class GeocoderResult extends js.JsObject {
+class GeocoderResult extends jsw.IsJsProxy {
   GeocoderResult() : super();
-  GeocoderResult.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  GeocoderResult.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  List<GeocoderAddressComponent> get address_components => $.getProperty("address_components", (js.JsRef jsRef) => new js.JsList<GeocoderAddressComponent>.fromJsRef(jsRef, GeocoderAddressComponent.INSTANCIATOR));
+  List<GeocoderAddressComponent> get address_components => $.getProperty("address_components", (js.Proxy jsProxy) => new jsw.JsList<GeocoderAddressComponent>.fromJsProxy(jsProxy, GeocoderAddressComponent.INSTANCIATOR));
   String get formatted_address => $["formatted_address"];
   GeocoderGeometry get geometry => $.getProperty("geometry", GeocoderGeometry.INSTANCIATOR);
-  List<String> get types => $.getProperty("types", (js.JsRef jsRef) => new js.JsList<String>.fromJsRef(jsRef, (e) => js.$$(e).value));
+  List<String> get types => $.getProperty("types", (js.Proxy jsProxy) => new jsw.JsList<String>.fromJsProxy(jsProxy, null));
 }
 
-class GeocoderAddressComponent extends js.JsObject {
-  static final INSTANCIATOR = (js.JsRef jsRef) => new GeocoderAddressComponent.fromJsRef(jsRef);
+class GeocoderAddressComponent extends jsw.IsJsProxy {
+  static final INSTANCIATOR = (js.Proxy jsProxy) => new GeocoderAddressComponent.fromJsProxy(jsProxy);
 
   GeocoderAddressComponent() : super();
-  GeocoderAddressComponent.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  GeocoderAddressComponent.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   String get long_name => $["long_name"];
   String get short_name => $["short_name"];
-  List<String> get types => $.getProperty("types", (js.JsRef jsRef) => new js.JsList<String>.fromJsRef(jsRef, (e) => js.$$(e).value));
+  List<String> get types => $.getProperty("types", (js.Proxy jsProxy) => new jsw.JsList<String>.fromJsProxy(jsProxy, null));
 }
 
-class GeocoderGeometry extends js.JsObject {
-  static final INSTANCIATOR = (js.JsRef jsRef) => new GeocoderGeometry.fromJsRef(jsRef);
+class GeocoderGeometry extends jsw.IsJsProxy {
+  static final INSTANCIATOR = (js.Proxy jsProxy) => new GeocoderGeometry.fromJsProxy(jsProxy);
 
   GeocoderGeometry() : super();
-  GeocoderGeometry.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  GeocoderGeometry.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   LatLngBounds get bounds => $.getProperty("bounds", LatLngBounds.INSTANCIATOR);
   LatLng get location => $.getProperty("location", LatLng.INSTANCIATOR);
@@ -837,26 +874,24 @@ class GeocoderGeometry extends js.JsObject {
   LatLngBounds get viewport => $.getProperty("viewport", LatLngBounds.INSTANCIATOR);
 }
 
-class GeocoderLocationType extends js.JsObject {
-  static const TYPE_NAME = "google.maps.GeocoderLocationType";
-
-  static final APPROXIMATE = new GeocoderLocationType._("${TYPE_NAME}.APPROXIMATE");
-  static final GEOMETRIC_CENTER = new GeocoderLocationType._("${TYPE_NAME}.GEOMETRIC_CENTER");
-  static final RANGE_INTERPOLATED = new GeocoderLocationType._("${TYPE_NAME}.RANGE_INTERPOLATED");
-  static final ROOFTOP = new GeocoderLocationType._("${TYPE_NAME}.ROOFTOP");
+class GeocoderLocationType extends jsw.IsEnum<String> {
+  static final APPROXIMATE = new GeocoderLocationType._(maps.GeocoderLocationType.APPROXIMATE);
+  static final GEOMETRIC_CENTER = new GeocoderLocationType._(maps.GeocoderLocationType.GEOMETRIC_CENTER);
+  static final RANGE_INTERPOLATED = new GeocoderLocationType._(maps.GeocoderLocationType.RANGE_INTERPOLATED);
+  static final ROOFTOP = new GeocoderLocationType._(maps.GeocoderLocationType.ROOFTOP);
 
   static final _INSTANCES = [APPROXIMATE, GEOMETRIC_CENTER, RANGE_INTERPOLATED, ROOFTOP];
 
-  static GeocoderLocationType find(Object o) { return findIn(o, _INSTANCES); }
+  static GeocoderLocationType find(Object o) => findIn(_INSTANCES, o);
 
-  GeocoderLocationType._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
+  GeocoderLocationType._(String value) : super(value);
+
+  bool operator ==(Object other) => value == (other is GeocoderLocationType ? (other as GeocoderLocationType).value : other);
 }
 
 class DirectionsRenderer extends MVCObject {
-  static const TYPE_NAME = "google.maps.DirectionsRenderer";
-
-  DirectionsRenderer([DirectionsRendererOptions opts]) : super.newInstance(TYPE_NAME, [opts]);
-  DirectionsRenderer.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  DirectionsRenderer([DirectionsRendererOptions opts]) : super.newInstance(maps.DirectionsRenderer, [opts]);
+  DirectionsRenderer.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   DirectionsResult getDirections() => $.call("getDirections", [], DirectionsResult.INSTANCIATOR);
   GMap getMap() => $.call("getMap", [], GMap.INSTANCIATOR);
@@ -869,7 +904,7 @@ class DirectionsRenderer extends MVCObject {
   void setRouteIndex(num routeIndex) { $.call("setRouteIndex", [routeIndex]); }
 }
 
-class DirectionsRendererOptions extends js.JsObject {
+class DirectionsRendererOptions extends jsw.IsJsProxy {
   set directions(DirectionsResult directions) => $["directions"] = directions;
   set draggable(bool draggable) => $["draggable"] = draggable;
   set hideRouteList(bool hideRouteList) => $["hideRouteList"] = hideRouteList;
@@ -886,20 +921,15 @@ class DirectionsRendererOptions extends js.JsObject {
   set suppressPolylines(bool suppressPolylines) => $["suppressPolylines"] = suppressPolylines;
 }
 
-class DirectionsService extends js.JsObject {
-  static const TYPE_NAME = "google.maps.DirectionsService";
-
-  DirectionsService() : super.newInstance(TYPE_NAME);
+class DirectionsService extends jsw.IsJsProxy {
+  DirectionsService() : super.newInstance(maps.DirectionsService);
 
   void route(DirectionsRequest request, void callback(DirectionsResult results, DirectionsStatus status)) {
-    js.CallbackFunction callbackFunction = Object _(List args) {
-      callback(new DirectionsResult.fromJsRef(args[0]), DirectionsStatus.find(args[1]));
-    };
-    $.call("route", [request, callbackFunction]);
+    $.call("route", [request, new jsw.Callback.once((results, status) => callback(new DirectionsResult.fromJsProxy(results), DirectionsStatus.find(status)))]);
   }
 }
 
-class DirectionsRequest extends js.JsObject {
+class DirectionsRequest extends jsw.IsJsProxy {
   set avoidHighways(bool avoidHighways) => $["avoidHighways"] = avoidHighways;
   set avoidTolls(bool avoidTolls) => $["avoidTolls"] = avoidTolls;
   set destination(Object destination) {
@@ -925,40 +955,40 @@ class DirectionsRequest extends js.JsObject {
   set waypoints(List<DirectionsWaypoint> waypoints) => $["waypoints"] = waypoints;
 }
 
-class TravelMode extends js.JsObject {
-  static const TYPE_NAME = "google.maps.TravelMode";
-
-  static final BICYCLING = new TravelMode._("${TYPE_NAME}.BICYCLING");
-  static final DRIVING = new TravelMode._("${TYPE_NAME}.DRIVING");
-  static final TRANSIT = new TravelMode._("${TYPE_NAME}.TRANSIT");
-  static final WALKING = new TravelMode._("${TYPE_NAME}.WALKING");
+class TravelMode extends jsw.IsEnum<String> {
+  static final BICYCLING = new TravelMode._(maps.TravelMode.BICYCLING);
+  static final DRIVING = new TravelMode._(maps.TravelMode.DRIVING);
+  static final TRANSIT = new TravelMode._(maps.TravelMode.TRANSIT);
+  static final WALKING = new TravelMode._(maps.TravelMode.WALKING);
 
   static final _INSTANCES = [BICYCLING, DRIVING, TRANSIT, WALKING];
 
-  static TravelMode find(Object o) { return findIn(o, _INSTANCES); }
+  static TravelMode find(Object o) => findIn(_INSTANCES, o);
 
-  TravelMode._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
+  TravelMode._(String value) : super(value);
+
+  bool operator ==(Object other) => value == (other is TravelMode ? (other as TravelMode).value : other);
 }
 
-class UnitSystem extends js.JsObject {
-  static const TYPE_NAME = "google.maps.UnitSystem";
-
-  static final IMPERIAL = new UnitSystem._("${TYPE_NAME}.IMPERIAL");
-  static final METRIC = new UnitSystem._("${TYPE_NAME}.METRIC");
+class UnitSystem extends jsw.IsEnum<int> {
+  static final IMPERIAL = new UnitSystem._(maps.UnitSystem.IMPERIAL);
+  static final METRIC = new UnitSystem._(maps.UnitSystem.METRIC);
 
   static final _INSTANCES = [IMPERIAL, METRIC];
 
-  static UnitSystem find(Object o) { return findIn(o, _INSTANCES); }
+  static UnitSystem find(Object o) => findIn(_INSTANCES, o);
 
-  UnitSystem._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
+  UnitSystem._(int value) : super(value);
+
+  bool operator ==(Object other) => value == (other is UnitSystem ? (other as UnitSystem).value : other);
 }
 
-class TransitOptions extends js.JsObject {
+class TransitOptions extends jsw.IsJsProxy {
   set arrivalTime(Date arrivalTime) => $["arrivalTime"] = arrivalTime;
   set departureTime(Date departureTime) => $["departureTime"] = departureTime;
 }
 
-class DirectionsWaypoint extends js.JsObject {
+class DirectionsWaypoint extends jsw.IsJsProxy {
   set location(Object location) {
     if (location is String || location is LatLng) {
       $["location"] = location;
@@ -969,53 +999,53 @@ class DirectionsWaypoint extends js.JsObject {
   set stopover(bool stopover) => $["stopover"] = stopover;
 }
 
-class DirectionsStatus extends js.JsObject {
-  static const TYPE_NAME = "google.maps.DirectionsStatus";
-
-  static final INVALID_REQUEST = new DirectionsStatus._("${TYPE_NAME}.INVALID_REQUEST");
-  static final MAX_WAYPOINTS_EXCEEDED = new DirectionsStatus._("${TYPE_NAME}.MAX_WAYPOINTS_EXCEEDED");
-  static final NOT_FOUND = new DirectionsStatus._("${TYPE_NAME}.NOT_FOUND");
-  static final OK = new DirectionsStatus._("${TYPE_NAME}.OK");
-  static final OVER_QUERY_LIMIT = new DirectionsStatus._("${TYPE_NAME}.OVER_QUERY_LIMIT");
-  static final REQUEST_DENIED = new DirectionsStatus._("${TYPE_NAME}.REQUEST_DENIED");
-  static final UNKNOWN_ERROR = new DirectionsStatus._("${TYPE_NAME}.UNKNOWN_ERROR");
-  static final ZERO_RESULTS = new DirectionsStatus._("${TYPE_NAME}.ZERO_RESULTS");
+class DirectionsStatus extends jsw.IsEnum<String> {
+  static final INVALID_REQUEST = new DirectionsStatus._(maps.DirectionsStatus.INVALID_REQUEST);
+  static final MAX_WAYPOINTS_EXCEEDED = new DirectionsStatus._(maps.DirectionsStatus.MAX_WAYPOINTS_EXCEEDED);
+  static final NOT_FOUND = new DirectionsStatus._(maps.DirectionsStatus.NOT_FOUND);
+  static final OK = new DirectionsStatus._(maps.DirectionsStatus.OK);
+  static final OVER_QUERY_LIMIT = new DirectionsStatus._(maps.DirectionsStatus.OVER_QUERY_LIMIT);
+  static final REQUEST_DENIED = new DirectionsStatus._(maps.DirectionsStatus.REQUEST_DENIED);
+  static final UNKNOWN_ERROR = new DirectionsStatus._(maps.DirectionsStatus.UNKNOWN_ERROR);
+  static final ZERO_RESULTS = new DirectionsStatus._(maps.DirectionsStatus.ZERO_RESULTS);
 
   static final _INSTANCES = [INVALID_REQUEST, MAX_WAYPOINTS_EXCEEDED, NOT_FOUND, OK, OVER_QUERY_LIMIT, REQUEST_DENIED, UNKNOWN_ERROR, ZERO_RESULTS];
 
-  static DirectionsStatus find(Object o) { return findIn(o, _INSTANCES); }
+  static DirectionsStatus find(Object o) => findIn(_INSTANCES, o);
 
-  DirectionsStatus._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
+  DirectionsStatus._(String value) : super(value);
+
+  bool operator ==(Object other) => value == (other is DirectionsStatus ? (other as DirectionsStatus).value : other);
 }
 
-class DirectionsResult extends js.JsObject {
-  static final INSTANCIATOR = (js.JsRef jsRef) => new DirectionsResult.fromJsRef(jsRef);
+class DirectionsResult extends jsw.IsJsProxy {
+  static final INSTANCIATOR = (js.Proxy jsProxy) => new DirectionsResult.fromJsProxy(jsProxy);
 
   DirectionsResult() : super();
-  DirectionsResult.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  DirectionsResult.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  List<DirectionsRoute> get routes => $.getProperty("routes", (js.JsRef jsRef) => new js.JsList<DirectionsRoute>.fromJsRef(jsRef, DirectionsRoute.INSTANCIATOR));
+  List<DirectionsRoute> get routes => $.getProperty("routes", (js.Proxy jsProxy) => new jsw.JsList<DirectionsRoute>.fromJsProxy(jsProxy, DirectionsRoute.INSTANCIATOR));
 }
 
-class DirectionsRoute extends js.JsObject {
-  static final INSTANCIATOR = (js.JsRef jsRef) => new DirectionsRoute.fromJsRef(jsRef);
+class DirectionsRoute extends jsw.IsJsProxy {
+  static final INSTANCIATOR = (js.Proxy jsProxy) => new DirectionsRoute.fromJsProxy(jsProxy);
 
   DirectionsRoute() : super();
-  DirectionsRoute.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  DirectionsRoute.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  LatLngBounds get bounds => new LatLngBounds.fromJsRef($["bounds"]);
+  LatLngBounds get bounds => new LatLngBounds.fromJsProxy($["bounds"]);
   String get copyrights => $["copyrights"];
-  List<DirectionsLeg> get legs => $.getProperty("legs", (js.JsRef jsRef) => new js.JsList<DirectionsLeg>.fromJsRef(jsRef, DirectionsLeg.INSTANCIATOR));
-  List<LatLng> get overview_path => $.getProperty("overview_path", (js.JsRef jsRef) => new js.JsList<LatLng>.fromJsRef(jsRef, LatLng.INSTANCIATOR));
-  List<String> get warnings => $.getProperty("warnings", (js.JsRef jsRef) => new js.JsList<String>.fromJsRef(jsRef, (e) => js.$$(e).value));
-  List<num> get waypoint_order => $.getProperty("waypoint_order", (js.JsRef jsRef) => new js.JsList<num>.fromJsRef(jsRef, (e) => js.$$(e).value));
+  List<DirectionsLeg> get legs => $.getProperty("legs", (js.Proxy jsProxy) => new jsw.JsList<DirectionsLeg>.fromJsProxy(jsProxy, DirectionsLeg.INSTANCIATOR));
+  List<LatLng> get overview_path => $.getProperty("overview_path", (js.Proxy jsProxy) => new jsw.JsList<LatLng>.fromJsProxy(jsProxy, LatLng.INSTANCIATOR));
+  List<String> get warnings => $.getProperty("warnings", (js.Proxy jsProxy) => new jsw.JsList<String>.fromJsProxy(jsProxy, null));
+  List<num> get waypoint_order => $.getProperty("waypoint_order", (js.Proxy jsProxy) => new jsw.JsList<num>.fromJsProxy(jsProxy, null));
 }
 
-class DirectionsLeg extends js.JsObject {
-  static final INSTANCIATOR = (js.JsRef jsRef) => new DirectionsLeg.fromJsRef(jsRef);
+class DirectionsLeg extends jsw.IsJsProxy {
+  static final INSTANCIATOR = (js.Proxy jsProxy) => new DirectionsLeg.fromJsProxy(jsProxy);
 
   DirectionsLeg() : super();
-  DirectionsLeg.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  DirectionsLeg.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   // TODO test return type
   Distance get arrival_time => $.getProperty("arrival_time", Distance.INSTANCIATOR);
@@ -1026,65 +1056,65 @@ class DirectionsLeg extends js.JsObject {
   LatLng get end_location => $.getProperty("end_location", LatLng.INSTANCIATOR);
   String get start_address => $["start_address"];
   LatLng get start_location => $.getProperty("start_location", LatLng.INSTANCIATOR);
-  List<DirectionsStep> get steps => $.getProperty("steps", (js.JsRef jsRef) => new js.JsList<DirectionsStep>.fromJsRef(jsRef, DirectionsStep.INSTANCIATOR));
-  List<LatLng> get via_waypoints => $.getProperty("via_waypoints", (js.JsRef jsRef) => new js.JsList<LatLng>.fromJsRef(jsRef, LatLng.INSTANCIATOR));
+  List<DirectionsStep> get steps => $.getProperty("steps", (js.Proxy jsProxy) => new jsw.JsList<DirectionsStep>.fromJsProxy(jsProxy, DirectionsStep.INSTANCIATOR));
+  List<LatLng> get via_waypoints => $.getProperty("via_waypoints", (js.Proxy jsProxy) => new jsw.JsList<LatLng>.fromJsProxy(jsProxy, LatLng.INSTANCIATOR));
 }
 
-class DirectionsStep extends js.JsObject {
-  static final INSTANCIATOR = (js.JsRef jsRef) => new DirectionsStep.fromJsRef(jsRef);
+class DirectionsStep extends jsw.IsJsProxy {
+  static final INSTANCIATOR = (js.Proxy jsProxy) => new DirectionsStep.fromJsProxy(jsProxy);
 
   DirectionsStep() : super();
-  DirectionsStep.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  DirectionsStep.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   Distance get distance => $.getProperty("distance", Distance.INSTANCIATOR);
   GDuration get duration => $.getProperty("duration", GDuration.INSTANCIATOR);
   LatLng get end_location => $.getProperty("end_location", LatLng.INSTANCIATOR);
   String get instructions => $["instructions"];
-  List<LatLng> get path => $.getProperty("path", (js.JsRef jsRef) => new js.JsList<LatLng>.fromJsRef(jsRef, LatLng.INSTANCIATOR));
+  List<LatLng> get path => $.getProperty("path", (js.Proxy jsProxy) => new jsw.JsList<LatLng>.fromJsProxy(jsProxy, LatLng.INSTANCIATOR));
   LatLng get start_location => $.getProperty("start_location", LatLng.INSTANCIATOR);
   // TODO check return type
   DirectionsStep get steps => $.getProperty("steps", DirectionsStep.INSTANCIATOR);
-//  List<DirectionsStep> get steps => new js.JsList<DirectionsStep>.fromJsRef($.getJsRef("steps"), (e) => new DirectionsStep.fromJsRef(e));
+//  List<DirectionsStep> get steps => new js.JsList<DirectionsStep>.fromJsProxy($.getJsRef("steps"), (e) => new DirectionsStep.fromJsProxy(e));
   TransitDetails get transit => $.getProperty("transit", TransitDetails.INSTANCIATOR);
   TravelMode get travel_mode => $.getProperty("travel_mode", TravelMode.find);
 }
 
-class Distance extends js.JsObject {
-  static final INSTANCIATOR = (js.JsRef jsRef) => new Distance.fromJsRef(jsRef);
+class Distance extends jsw.IsJsProxy {
+  static final INSTANCIATOR = (js.Proxy jsProxy) => new Distance.fromJsProxy(jsProxy);
 
   Distance() : super();
-  Distance.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  Distance.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   String get text => $["text"];
   num get value => $["value"];
 }
 
-class GDuration extends js.JsObject {
-  static final INSTANCIATOR = (js.JsRef jsRef) => new GDuration.fromJsRef(jsRef);
+class GDuration extends jsw.IsJsProxy {
+  static final INSTANCIATOR = (js.Proxy jsProxy) => new GDuration.fromJsProxy(jsProxy);
 
   GDuration() : super();
-  GDuration.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  GDuration.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   String get text => $["text"];
   num get value => $["value"];
 }
 
-class Time extends js.JsObject {
-  static final INSTANCIATOR = (js.JsRef jsRef) => new Time.fromJsRef(jsRef);
+class Time extends jsw.IsJsProxy {
+  static final INSTANCIATOR = (js.Proxy jsProxy) => new Time.fromJsProxy(jsProxy);
 
   Time() : super();
-  Time.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  Time.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   String get text => $["text"];
   String get time_zone => $["time_zone"];
   Date get value => $["value"];
 }
 
-class TransitDetails extends js.JsObject {
-  static final INSTANCIATOR = (js.JsRef jsRef) => new TransitDetails.fromJsRef(jsRef);
+class TransitDetails extends jsw.IsJsProxy {
+  static final INSTANCIATOR = (js.Proxy jsProxy) => new TransitDetails.fromJsProxy(jsProxy);
 
   TransitDetails() : super();
-  TransitDetails.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  TransitDetails.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   TransitStop get arrival_stop => $.getProperty("arrival_stop", TransitStop.INSTANCIATOR);
   Time get arrival_time => $.getProperty("arrival_time", Time.INSTANCIATOR);
@@ -1096,23 +1126,23 @@ class TransitDetails extends js.JsObject {
   num get num_stops => $["num_stops"];
 }
 
-class TransitStop extends js.JsObject {
-  static final INSTANCIATOR = (js.JsRef jsRef) => new TransitStop.fromJsRef(jsRef);
+class TransitStop extends jsw.IsJsProxy {
+  static final INSTANCIATOR = (js.Proxy jsProxy) => new TransitStop.fromJsProxy(jsProxy);
 
   TransitStop() : super();
-  TransitStop.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  TransitStop.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   LatLng get location => $.getProperty("location", LatLng.INSTANCIATOR);
   String get name => $["name"];
 }
 
-class TransitLine extends js.JsObject {
-  static final INSTANCIATOR = (js.JsRef jsRef) => new TransitLine.fromJsRef(jsRef);
+class TransitLine extends jsw.IsJsProxy {
+  static final INSTANCIATOR = (js.Proxy jsProxy) => new TransitLine.fromJsProxy(jsProxy);
 
   TransitLine() : super();
-  TransitLine.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  TransitLine.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  List<TransitAgency> get agencies => $.getProperty("agencies", (js.JsRef jsRef) => new js.JsList<TransitAgency>.fromJsRef(jsRef, TransitAgency.INSTANCIATOR));
+  List<TransitAgency> get agencies => $.getProperty("agencies", (js.Proxy jsProxy) => new jsw.JsList<TransitAgency>.fromJsProxy(jsProxy, TransitAgency.INSTANCIATOR));
   String get color => $["color"];
   String get icon => $["icon"];
   String get name => $["name"];
@@ -1122,22 +1152,22 @@ class TransitLine extends js.JsObject {
   TransitVehicle get vehicle => $.getProperty("vehicle", TransitVehicle.INSTANCIATOR);
 }
 
-class TransitAgency extends js.JsObject {
-  static final INSTANCIATOR = (js.JsRef jsRef) => new TransitAgency.fromJsRef(jsRef);
+class TransitAgency extends jsw.IsJsProxy {
+  static final INSTANCIATOR = (js.Proxy jsProxy) => new TransitAgency.fromJsProxy(jsProxy);
 
   TransitAgency() : super();
-  TransitAgency.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  TransitAgency.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   String get name => $["name"];
   String get phone => $["phone"];
   String get url => $["url"];
 }
 
-class TransitVehicle extends js.JsObject {
-  static final INSTANCIATOR = (js.JsRef jsRef) => new TransitVehicle.fromJsRef(jsRef);
+class TransitVehicle extends jsw.IsJsProxy {
+  static final INSTANCIATOR = (js.Proxy jsProxy) => new TransitVehicle.fromJsProxy(jsProxy);
 
   TransitVehicle() : super();
-  TransitVehicle.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  TransitVehicle.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   String get icon => $["icon"];
   String get local_icon => $["local_icon"];
@@ -1146,109 +1176,89 @@ class TransitVehicle extends js.JsObject {
   String get type => $["type"];
 }
 
-class ElevationService extends js.JsObject {
-  static const TYPE_NAME = "google.maps.ElevationService";
-
-  ElevationService() : super.newInstance(TYPE_NAME);
+class ElevationService extends jsw.IsJsProxy {
+  ElevationService() : super.newInstance(maps.ElevationService);
 
   void getElevationAlongPath(PathElevationRequest request, void callback(List<ElevationResult> results, ElevationStatus status)) {
-    js.CallbackFunction callbackFunction = Object _(List args) {
-      List<js.JsRef> resultsRefs = args[0];
-      callback(resultsRefs.map((e) => new ElevationResult.fromJsRef(e)), ElevationStatus.find(args[1]));
-    };
-    $.call("getElevationAlongPath", [request, callbackFunction]);
+    $.call("getElevationAlongPath", [request, new jsw.Callback.once((results, status) => callback(new jsw.JsList<ElevationResult>.fromJsProxy(results, (e) => new ElevationResult.fromJsProxy(e)), ElevationStatus.find(status)))]);
   }
   void getElevationForLocations(LocationElevationRequest request, void callback(List<ElevationResult> results, ElevationStatus status)) {
-    js.CallbackFunction callbackFunction = Object _(List args) {
-      List<js.JsRef> resultsRefs = args[0];
-      callback(resultsRefs.map((e) => new ElevationResult.fromJsRef(e)), ElevationStatus.find(args[1]));
-    };
-    $.call("getElevationForLocations", [request, callbackFunction]);
+    $.call("getElevationForLocations", [request, new jsw.Callback.once((results, status) => callback(new jsw.JsList<ElevationResult>.fromJsProxy(results, (e) => new ElevationResult.fromJsProxy(e)), ElevationStatus.find(status)))]);
   }
 }
 
-class LocationElevationRequest extends js.JsObject {
+class LocationElevationRequest extends jsw.IsJsProxy {
   set locations(List<LatLng> locations) => $["locations"] = locations;
 }
 
-class PathElevationRequest extends js.JsObject {
+class PathElevationRequest extends jsw.IsJsProxy {
   set path(List<LatLng> path) => $["path"] = path;
   set samples(num samples) => $["samples"] = samples;
 }
 
-class ElevationResult extends js.JsObject {
+class ElevationResult extends jsw.IsJsProxy {
   ElevationResult() : super();
-  ElevationResult.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  ElevationResult.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   num get elevation => $["elevation"];
   LatLng get location => $.getProperty("location", LatLng.INSTANCIATOR);
   num get resolution => $["resolution"];
 }
 
-class ElevationStatus extends js.JsObject {
-  static const TYPE_NAME = "google.maps.ElevationStatus";
-
-  static final INVALID_REQUEST = new ElevationStatus._("${TYPE_NAME}.INVALID_REQUEST");
-  static final OK = new ElevationStatus._("${TYPE_NAME}.OK");
-  static final OVER_QUERY_LIMIT = new ElevationStatus._("${TYPE_NAME}.OVER_QUERY_LIMIT");
-  static final REQUEST_DENIED = new ElevationStatus._("${TYPE_NAME}.REQUEST_DENIED");
-  static final UNKNOWN_ERROR = new ElevationStatus._("${TYPE_NAME}.UNKNOWN_ERROR");
+class ElevationStatus extends jsw.IsEnum<String> {
+  static final INVALID_REQUEST = new ElevationStatus._(maps.ElevationStatus.INVALID_REQUEST);
+  static final OK = new ElevationStatus._(maps.ElevationStatus.OK);
+  static final OVER_QUERY_LIMIT = new ElevationStatus._(maps.ElevationStatus.OVER_QUERY_LIMIT);
+  static final REQUEST_DENIED = new ElevationStatus._(maps.ElevationStatus.REQUEST_DENIED);
+  static final UNKNOWN_ERROR = new ElevationStatus._(maps.ElevationStatus.UNKNOWN_ERROR);
 
   static final _INSTANCES = [INVALID_REQUEST, OK, OVER_QUERY_LIMIT, REQUEST_DENIED, UNKNOWN_ERROR];
 
-  static ElevationStatus find(Object o) { return findIn(o, _INSTANCES); }
+  static ElevationStatus find(Object o) => findIn(_INSTANCES, o);
 
-  ElevationStatus._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
+  ElevationStatus._(String value) : super(value);
+
+  bool operator ==(Object other) => value == (other is ElevationStatus ? (other as ElevationStatus).value : other);
 }
 
-class MaxZoomService extends js.JsObject {
-  static const TYPE_NAME = "google.maps.MaxZoomService";
-
-  MaxZoomService() : super.newInstance(TYPE_NAME);
+class MaxZoomService extends jsw.IsJsProxy {
+  MaxZoomService() : super.newInstance(maps.MaxZoomService);
 
   void getMaxZoomAtLatLng(LatLng latlng, void callback(MaxZoomResult result)) {
-    js.CallbackFunction callbackFunction = Object _(List args) {
-      callback(new MaxZoomResult.fromJsRef(args[0]));
-    };
-    $.call("getMaxZoomAtLatLng", [latlng, callbackFunction]);
+    $.call("getMaxZoomAtLatLng", [latlng, new jsw.Callback.once((result) => callback(new MaxZoomResult.fromJsProxy(result)))]);
   }
 }
 
-class MaxZoomResult extends js.JsObject {
+class MaxZoomResult extends jsw.IsJsProxy {
   MaxZoomResult() : super();
-  MaxZoomResult.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  MaxZoomResult.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   MaxZoomStatus get status => $.getProperty("status", MaxZoomStatus.find);
   num get zoom => $["zoom"];
 }
 
-class MaxZoomStatus extends js.JsObject {
-  static const TYPE_NAME = "google.maps.MaxZoomStatus";
-
-  static final ERROR = new MaxZoomStatus._("${TYPE_NAME}.ERROR");
-  static final OK = new MaxZoomStatus._("${TYPE_NAME}.OK");
+class MaxZoomStatus extends jsw.IsEnum<String> {
+  static final ERROR = new MaxZoomStatus._(maps.MaxZoomStatus.ERROR);
+  static final OK = new MaxZoomStatus._(maps.MaxZoomStatus.OK);
 
   static final _INSTANCES = [ERROR, OK];
 
-  static MaxZoomStatus find(Object o) { return findIn(o, _INSTANCES); }
+  static MaxZoomStatus find(Object o) => findIn(_INSTANCES, o);
 
-  MaxZoomStatus._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
+  MaxZoomStatus._(String value) : super(value);
+
+  bool operator ==(Object other) => value == (other is MaxZoomStatus ? (other as MaxZoomStatus).value : other);
 }
 
-class DistanceMatrixService extends js.JsObject {
-  static const TYPE_NAME = "google.maps.DistanceMatrixService";
-
-  DistanceMatrixService() : super.newInstance(TYPE_NAME);
+class DistanceMatrixService extends jsw.IsJsProxy {
+  DistanceMatrixService() : super.newInstance(maps.DistanceMatrixService);
 
   void getDistanceMatrix(DistanceMatrixRequest request, void callback(DistanceMatrixResponse response, DistanceMatrixStatus status)) {
-    js.CallbackFunction callbackFunction = Object _(List args) {
-      callback(new DistanceMatrixResponse.fromJsRef(args[0]), DistanceMatrixStatus.find(args[1]));
-    };
-    $.call("getDistanceMatrix", [request, callbackFunction]);
+    $.call("getDistanceMatrix", [request, new jsw.Callback.once((response, status) => callback(new DistanceMatrixResponse.fromJsProxy(response), DistanceMatrixStatus.find(status)))]);
   }
 }
 
-class DistanceMatrixRequest extends js.JsObject {
+class DistanceMatrixRequest extends jsw.IsJsProxy {
   set avoidHighways(bool avoidHighways) => $["avoidHighways"] = avoidHighways;
   set avoidTolls(bool avoidTolls) => $["avoidTolls"] = avoidTolls;
   set destinations(Object destinations) {
@@ -1270,71 +1280,71 @@ class DistanceMatrixRequest extends js.JsObject {
   set unitSystem(UnitSystem unitSystem) => $["unitSystem"] = unitSystem;
 }
 
-class DistanceMatrixResponse extends js.JsObject {
+class DistanceMatrixResponse extends jsw.IsJsProxy {
   DistanceMatrixResponse() : super();
-  DistanceMatrixResponse.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  DistanceMatrixResponse.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  List<String> get destinationAddresses => $.getProperty("destinationAddresses", (js.JsRef jsRef) => new js.JsList<String>.fromJsRef(jsRef, (e) => js.$$(e).value));
-  List<String> get originAddresses => $.getProperty("originAddresses", (js.JsRef jsRef) => new js.JsList<String>.fromJsRef(jsRef, (e) => js.$$(e).value));
-  List<DistanceMatrixResponseRow> get rows => $.getProperty("rows", (js.JsRef jsRef) => new js.JsList<DistanceMatrixResponseRow>.fromJsRef(jsRef, DistanceMatrixResponseRow.INSTANCIATOR));
+  List<String> get destinationAddresses => $.getProperty("destinationAddresses", (js.Proxy jsProxy) => new jsw.JsList<String>.fromJsProxy(jsProxy, null));
+  List<String> get originAddresses => $.getProperty("originAddresses", (js.Proxy jsProxy) => new jsw.JsList<String>.fromJsProxy(jsProxy, null));
+  List<DistanceMatrixResponseRow> get rows => $.getProperty("rows", (js.Proxy jsProxy) => new jsw.JsList<DistanceMatrixResponseRow>.fromJsProxy(jsProxy, DistanceMatrixResponseRow.INSTANCIATOR));
 }
 
-class DistanceMatrixResponseRow extends js.JsObject {
-  static final INSTANCIATOR = (js.JsRef jsRef) => new DistanceMatrixResponseRow.fromJsRef(jsRef);
+class DistanceMatrixResponseRow extends jsw.IsJsProxy {
+  static final INSTANCIATOR = (js.Proxy jsProxy) => new DistanceMatrixResponseRow.fromJsProxy(jsProxy);
 
   DistanceMatrixResponseRow() : super();
-  DistanceMatrixResponseRow.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  DistanceMatrixResponseRow.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  List<DistanceMatrixResponseElement> get elements => $.getProperty("elements", (js.JsRef jsRef) => new js.JsList<DistanceMatrixResponseElement>.fromJsRef(jsRef, DistanceMatrixResponseElement.INSTANCIATOR));
+  List<DistanceMatrixResponseElement> get elements => $.getProperty("elements", (js.Proxy jsProxy) => new jsw.JsList<DistanceMatrixResponseElement>.fromJsProxy(jsProxy, DistanceMatrixResponseElement.INSTANCIATOR));
 }
 
-class DistanceMatrixResponseElement extends js.JsObject {
-  static final INSTANCIATOR = (js.JsRef jsRef) => new DistanceMatrixResponseElement.fromJsRef(jsRef);
+class DistanceMatrixResponseElement extends jsw.IsJsProxy {
+  static final INSTANCIATOR = (js.Proxy jsProxy) => new DistanceMatrixResponseElement.fromJsProxy(jsProxy);
 
   DistanceMatrixResponseElement() : super();
-  DistanceMatrixResponseElement.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  DistanceMatrixResponseElement.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   Distance get distance => $.getProperty("distance", Distance.INSTANCIATOR);
   GDuration get duration => $.getProperty("duration", GDuration.INSTANCIATOR);
   DistanceMatrixElementStatus get status => $.getProperty("status", DistanceMatrixElementStatus.find);
 }
 
-class DistanceMatrixStatus extends js.JsObject {
-  static const TYPE_NAME = "google.maps.DistanceMatrixStatus";
-
-  static final INVALID_REQUEST = new DistanceMatrixStatus._("${TYPE_NAME}.INVALID_REQUEST");
-  static final MAX_DIMENSIONS_EXCEEDED = new DistanceMatrixStatus._("${TYPE_NAME}.MAX_DIMENSIONS_EXCEEDED");
-  static final MAX_ELEMENTS_EXCEEDED = new DistanceMatrixStatus._("${TYPE_NAME}.MAX_ELEMENTS_EXCEEDED");
-  static final OK = new DistanceMatrixStatus._("${TYPE_NAME}.OK");
-  static final OVER_QUERY_LIMIT = new DistanceMatrixStatus._("${TYPE_NAME}.OVER_QUERY_LIMIT");
-  static final REQUEST_DENIED = new DistanceMatrixStatus._("${TYPE_NAME}.REQUEST_DENIED");
-  static final UNKNOWN_ERROR = new DistanceMatrixStatus._("${TYPE_NAME}.UNKNOWN_ERROR");
+class DistanceMatrixStatus extends jsw.IsEnum<String> {
+  static final INVALID_REQUEST = new DistanceMatrixStatus._(maps.DistanceMatrixStatus.INVALID_REQUEST);
+  static final MAX_DIMENSIONS_EXCEEDED = new DistanceMatrixStatus._(maps.DistanceMatrixStatus.MAX_DIMENSIONS_EXCEEDED);
+  static final MAX_ELEMENTS_EXCEEDED = new DistanceMatrixStatus._(maps.DistanceMatrixStatus.MAX_ELEMENTS_EXCEEDED);
+  static final OK = new DistanceMatrixStatus._(maps.DistanceMatrixStatus.OK);
+  static final OVER_QUERY_LIMIT = new DistanceMatrixStatus._(maps.DistanceMatrixStatus.OVER_QUERY_LIMIT);
+  static final REQUEST_DENIED = new DistanceMatrixStatus._(maps.DistanceMatrixStatus.REQUEST_DENIED);
+  static final UNKNOWN_ERROR = new DistanceMatrixStatus._(maps.DistanceMatrixStatus.UNKNOWN_ERROR);
 
   static final _INSTANCES = [INVALID_REQUEST, MAX_DIMENSIONS_EXCEEDED, MAX_ELEMENTS_EXCEEDED, OK, OVER_QUERY_LIMIT, REQUEST_DENIED, UNKNOWN_ERROR];
 
-  static DistanceMatrixStatus find(Object o) { return findIn(o, _INSTANCES); }
+  static DistanceMatrixStatus find(Object o) => findIn(_INSTANCES, o);
 
-  DistanceMatrixStatus._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
+  DistanceMatrixStatus._(String value) : super(value);
+
+  bool operator ==(Object other) => value == (other is DistanceMatrixStatus ? (other as DistanceMatrixStatus).value : other);
 }
 
-class DistanceMatrixElementStatus extends js.JsObject {
-  static const TYPE_NAME = "google.maps.DistanceMatrixElementStatus";
-
-  static final NOT_FOUND = new DistanceMatrixElementStatus._("${TYPE_NAME}.NOT_FOUND");
-  static final OK = new DistanceMatrixElementStatus._("${TYPE_NAME}.OK");
-  static final ZERO_RESULTS = new DistanceMatrixElementStatus._("${TYPE_NAME}.ZERO_RESULTS");
+class DistanceMatrixElementStatus extends jsw.IsEnum<String> {
+  static final NOT_FOUND = new DistanceMatrixElementStatus._(maps.DistanceMatrixElementStatus.NOT_FOUND);
+  static final OK = new DistanceMatrixElementStatus._(maps.DistanceMatrixElementStatus.OK);
+  static final ZERO_RESULTS = new DistanceMatrixElementStatus._(maps.DistanceMatrixElementStatus.ZERO_RESULTS);
 
   static final _INSTANCES = [NOT_FOUND, OK, ZERO_RESULTS];
 
-  static DistanceMatrixElementStatus find(Object o) { return findIn(o, _INSTANCES); }
+  static DistanceMatrixElementStatus find(Object o) => findIn(_INSTANCES, o);
 
-  DistanceMatrixElementStatus._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
+  DistanceMatrixElementStatus._(String value) : super(value);
+
+  bool operator ==(Object other) => value == (other is DistanceMatrixElementStatus ? (other as DistanceMatrixElementStatus).value : other);
 }
 
-class MapType extends js.JsObject {
+class MapType extends jsw.IsJsProxy {
   MapType() : super();
-  MapType.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
-  MapType.newInstance(String objectName, [List args]) : super.newInstance(objectName, args);
+  MapType.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  MapType.newInstance(objectName, [List args]) : super.newInstance(objectName, args);
 
   html.Node getTile(Point tileCoord, num zoom, html.Document ownerDocument) => $.call("getTile", [tileCoord, zoom, ownerDocument]);
   html.Node releaseTile(html.Node tile) => $.call("releaseTile", [tile]);
@@ -1356,43 +1366,36 @@ class MapType extends js.JsObject {
 }
 
 class MapTypeRegistry extends MVCObject {
-  static const TYPE_NAME = "google.maps.MapTypeRegistry";
-  static final INSTANCIATOR = (js.JsRef jsRef) => new MapTypeRegistry.fromJsRef(jsRef);
+  static final INSTANCIATOR = (js.Proxy jsProxy) => new MapTypeRegistry.fromJsProxy(jsProxy);
 
-  MapTypeRegistry() : super.newInstance(TYPE_NAME);
-  MapTypeRegistry.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  MapTypeRegistry() : super.newInstance(maps.MapTypeRegistry);
+  MapTypeRegistry.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   void set_(String id, MapType mapType) { $.call("set", [id, mapType]); }
 }
 
-class Projection extends js.JsObject {
-  static final INSTANCIATOR = (js.JsRef jsRef) => new Projection.fromJsRef(jsRef);
+class Projection extends jsw.IsJsProxy {
+  static final INSTANCIATOR = (js.Proxy jsProxy) => new Projection.fromJsProxy(jsProxy);
 
   Projection() : super();
-  Projection.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  Projection.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   Point fromLatLngToPoint(LatLng latLng, [Point point]) => $.call("fromLatLngToPoint", [latLng, point], Point.INSTANCIATOR);
   LatLng fromPointToLatLng(Point pixel, [bool nowrap]) => $.call("fromPointToLatLng", [pixel, nowrap], LatLng.INSTANCIATOR);
 }
 
 class ImageMapType extends MapType {
-  static const TYPE_NAME = "google.maps.ImageMapType";
-
-  ImageMapType(ImageMapTypeOptions opts) : super.newInstance(TYPE_NAME, [opts]);
-  ImageMapType.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  ImageMapType(ImageMapTypeOptions opts) : super.newInstance(maps.ImageMapType, [opts]);
+  ImageMapType.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   num getOpacity() { $.call("getOpacity"); }
   void setOpacity(num opacity) { $.call("setOpacity", [opacity]); }
 }
 
-class ImageMapTypeOptions extends js.JsObject {
+class ImageMapTypeOptions extends jsw.IsJsProxy {
   set alt(String alt) => $["alt"] = alt;
-  set getTileUrl(String callback(Point point, num zoomLevel)) {
-    js.CallbackFunction callbackFunction = Object _(List args) {
-      return callback(new Point.fromJsRef(args[0]), args[1]);
-    };
-    $["getTileUrl"] = callbackFunction;
-  }
+  // TODO report wtf arg
+  set getTileUrl(String callback(Point point, num zoomLevel)) => $["getTileUrl"] = new jsw.Callback.many((js.Proxy point, num zoomLevel, [Object wtf]) => callback(new Point.fromJsProxy(point), zoomLevel));
   set maxZoom(num maxZoom) => $["maxZoom"] = maxZoom;
   set minZoom(num minZoom) => $["minZoom"] = minZoom;
   set name(String name) => $["name"] = name;
@@ -1401,25 +1404,23 @@ class ImageMapTypeOptions extends js.JsObject {
 }
 
 class StyledMapType extends MapType {
-  static const TYPE_NAME = "google.maps.StyledMapType";
-
-  StyledMapType(List<MapTypeStyle> styles, [StyledMapTypeOptions options]) : super.newInstance(TYPE_NAME, [styles, options]);
+  StyledMapType(List<MapTypeStyle> styles, [StyledMapTypeOptions options]) : super.newInstance(maps.StyledMapType, [styles, options]);
 }
 
-class StyledMapTypeOptions extends js.JsObject {
+class StyledMapTypeOptions extends jsw.IsJsProxy {
   set alt(String alt) => $["alt"] = alt;
   set maxZoom(num maxZoom) => $["maxZoom"] = maxZoom;
   set minZoom(num minZoom) => $["minZoom"] = minZoom;
   set name(String name) => $["name"] = name;
 }
 
-class MapTypeStyle extends js.JsObject {
+class MapTypeStyle extends jsw.IsJsProxy {
   set elementType(MapTypeStyleElementType elementType) => $["elementType"] = elementType.value;
   set featureType(MapTypeStyleFeatureType featureType) => $["featureType"] = featureType.value;
   set stylers(List<MapTypeStyler> stylers) => $["stylers"] = stylers;
 }
 
-class MapTypeStyleFeatureType {
+class MapTypeStyleFeatureType extends jsw.IsEnum<String> {
   static final ADMINISTRATIVE = new MapTypeStyleFeatureType._("administrative");
   static final ADMINISTRATIVE_COUNTRY = new MapTypeStyleFeatureType._("administrative.country");
   static final ADMINISTRATIVE_LAND_PARCEL = new MapTypeStyleFeatureType._("administrative.land_parcel");
@@ -1454,93 +1455,28 @@ class MapTypeStyleFeatureType {
 
   static final _INSTANCES = [ADMINISTRATIVE, ADMINISTRATIVE_COUNTRY, ADMINISTRATIVE_LAND_PARCEL, ADMINISTRATIVE_LOCALITY, ADMINISTRATIVE_NEIGHBORHOOD, ADMINISTRATIVE_PROVINCE, ALL, LANDSCAPE, LANDSCAPE_MAN_MADE, LANDSCAPE_NATURAL, POI, POI_ATTRACTION, POI_BUSINESS, POI_GOVERNMENT, POI_MEDICAL, POI_PARK, POI_PLACE_OF_WORSHIP, POI_SCHOOL, POI_SPORTS_COMPLEX, ROAD, ROAD_ARTERIAL, ROAD_HIGHWAY, ROAD_HIGHWAY_CONTROLLED_ACCESS, ROAD_LOCAL, TRANSIT, TRANSIT_LINE, TRANSIT_STATION, TRANSIT_STATION_AIRPORT, TRANSIT_STATION_BUS, TRANSIT_STATION_RAIL, WATER];
 
-  static MapTypeStyleFeatureType find(String value) => findIn(value, _INSTANCES, (e) => e.value);
+  static MapTypeStyleFeatureType find(Object o) => findIn(_INSTANCES, o);
 
-  String value;
+  MapTypeStyleFeatureType._(String value) : super(value);
 
-  MapTypeStyleFeatureType._(String this.value);
+  bool operator ==(Object other) => value == (other is MapTypeStyleFeatureType ? (other as MapTypeStyleFeatureType).value : other);
 }
 
-class MapTypeStyleElementType {
+class MapTypeStyleElementType extends jsw.IsEnum<String> {
   static final ALL = new MapTypeStyleElementType._("all");
   static final GEOMETRY = new MapTypeStyleElementType._("geometry");
   static final LABELS = new MapTypeStyleElementType._("labels");
 
   static final _INSTANCES = [ALL, GEOMETRY, LABELS];
 
-  static MapTypeStyleElementType find(String value) => findIn(value, _INSTANCES, (e) => e.value);
+  static MapTypeStyleElementType find(Object o) => findIn(_INSTANCES, o);
 
-  String value;
+  MapTypeStyleElementType._(String value) : super(value);
 
-  MapTypeStyleElementType._(String this.value);
+  bool operator ==(Object other) => value == (other is MapTypeStyleElementType ? (other as MapTypeStyleElementType).value : other);
 }
 
-// this class should have been used but "google.maps.MapTypeStyleFeatureType" and "google.maps.MapTypeStyleElementType" objects does not exist as describe in doc
-class _MapTypeStyle extends js.JsObject {
-  set elementType(_MapTypeStyleElementType elementType) => $["elementType"] = elementType;
-  set featureType(_MapTypeStyleFeatureType featureType) => $["featureType"] = featureType;
-  set stylers(List<MapTypeStyler> stylers) => $["stylers"] = stylers;
-}
-
-// this class should have been used but "google.maps.MapTypeStyleFeatureType" object does not exist as describe in doc
-class _MapTypeStyleFeatureType extends js.JsObject {
-  static const TYPE_NAME = "google.maps.MapTypeStyleFeatureType";
-
-  static final ADMINISTRATIVE = new _MapTypeStyleFeatureType._("${TYPE_NAME}.administrative");
-  static final ADMINISTRATIVE_COUNTRY = new _MapTypeStyleFeatureType._("${TYPE_NAME}.administrative.country");
-  static final ADMINISTRATIVE_LAND_PARCEL = new _MapTypeStyleFeatureType._("${TYPE_NAME}.administrative.land_parcel");
-  static final ADMINISTRATIVE_LOCALITY = new _MapTypeStyleFeatureType._("${TYPE_NAME}.administrative.locality");
-  static final ADMINISTRATIVE_NEIGHBORHOOD = new _MapTypeStyleFeatureType._("${TYPE_NAME}.administrative.neighborhood");
-  static final ADMINISTRATIVE_PROVINCE = new _MapTypeStyleFeatureType._("${TYPE_NAME}.administrative.province");
-  static final ALL = new _MapTypeStyleFeatureType._("${TYPE_NAME}.all");
-  static final LANDSCAPE = new _MapTypeStyleFeatureType._("${TYPE_NAME}.landscape");
-  static final LANDSCAPE_MAN_MADE = new _MapTypeStyleFeatureType._("${TYPE_NAME}.landscape.man_made");
-  static final LANDSCAPE_NATURAL = new _MapTypeStyleFeatureType._("${TYPE_NAME}.landscape.natural");
-  static final POI = new _MapTypeStyleFeatureType._("${TYPE_NAME}.poi");
-  static final POI_ATTRACTION = new _MapTypeStyleFeatureType._("${TYPE_NAME}.poi.attraction");
-  static final POI_BUSINESS = new _MapTypeStyleFeatureType._("${TYPE_NAME}.poi.business");
-  static final POI_GOVERNMENT = new _MapTypeStyleFeatureType._("${TYPE_NAME}.poi.government");
-  static final POI_MEDICAL = new _MapTypeStyleFeatureType._("${TYPE_NAME}.poi.medical");
-  static final POI_PARK = new _MapTypeStyleFeatureType._("${TYPE_NAME}.poi.park");
-  static final POI_PLACE_OF_WORSHIP = new _MapTypeStyleFeatureType._("${TYPE_NAME}.poi.place_of_worship");
-  static final POI_SCHOOL = new _MapTypeStyleFeatureType._("${TYPE_NAME}.poi.school");
-  static final POI_SPORTS_COMPLEX = new _MapTypeStyleFeatureType._("${TYPE_NAME}.poi.sports_complex");
-  static final ROAD = new _MapTypeStyleFeatureType._("${TYPE_NAME}.road");
-  static final ROAD_ARTERIAL = new _MapTypeStyleFeatureType._("${TYPE_NAME}.road.arterial");
-  static final ROAD_HIGHWAY = new _MapTypeStyleFeatureType._("${TYPE_NAME}.road.highway");
-  static final ROAD_HIGHWAY_CONTROLLED_ACCESS = new _MapTypeStyleFeatureType._("${TYPE_NAME}.road.highway.controlled_access");
-  static final ROAD_LOCAL = new _MapTypeStyleFeatureType._("${TYPE_NAME}.road.local");
-  static final TRANSIT = new _MapTypeStyleFeatureType._("${TYPE_NAME}.transit");
-  static final TRANSIT_LINE = new _MapTypeStyleFeatureType._("${TYPE_NAME}.transit.line");
-  static final TRANSIT_STATION = new _MapTypeStyleFeatureType._("${TYPE_NAME}.transit.station");
-  static final TRANSIT_STATION_AIRPORT = new _MapTypeStyleFeatureType._("${TYPE_NAME}.transit.station.airport");
-  static final TRANSIT_STATION_BUS = new _MapTypeStyleFeatureType._("${TYPE_NAME}.transit.station.bus");
-  static final TRANSIT_STATION_RAIL = new _MapTypeStyleFeatureType._("${TYPE_NAME}.transit.station.rail");
-  static final WATER = new _MapTypeStyleFeatureType._("${TYPE_NAME}.water");
-
-  static final _INSTANCES = [ADMINISTRATIVE, ADMINISTRATIVE_COUNTRY, ADMINISTRATIVE_LAND_PARCEL, ADMINISTRATIVE_LOCALITY, ADMINISTRATIVE_NEIGHBORHOOD, ADMINISTRATIVE_PROVINCE, ALL, LANDSCAPE, LANDSCAPE_MAN_MADE, LANDSCAPE_NATURAL, POI, POI_ATTRACTION, POI_BUSINESS, POI_GOVERNMENT, POI_MEDICAL, POI_PARK, POI_PLACE_OF_WORSHIP, POI_SCHOOL, POI_SPORTS_COMPLEX, ROAD, ROAD_ARTERIAL, ROAD_HIGHWAY, ROAD_HIGHWAY_CONTROLLED_ACCESS, ROAD_LOCAL, TRANSIT, TRANSIT_LINE, TRANSIT_STATION, TRANSIT_STATION_AIRPORT, TRANSIT_STATION_BUS, TRANSIT_STATION_RAIL, WATER];
-
-  static _MapTypeStyleFeatureType find(Object o) { return findIn(o, _INSTANCES); }
-
-  _MapTypeStyleFeatureType._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
-}
-
-// this class should have been used but "google.maps.MapTypeStyleElementType" object does not exist as describe in doc
-class _MapTypeStyleElementType extends js.JsObject {
-  static const TYPE_NAME = "google.maps.MapTypeStyleElementType";
-
-  static final ALL = new _MapTypeStyleElementType._("${TYPE_NAME}.all");
-  static final GEOMETRY = new _MapTypeStyleElementType._("${TYPE_NAME}.geometry");
-  static final LABELS = new _MapTypeStyleElementType._("${TYPE_NAME}.labels");
-
-  static final _INSTANCES = [ALL, GEOMETRY, LABELS];
-
-  static _MapTypeStyleElementType find(Object o) { return findIn(o, _INSTANCES); }
-
-  _MapTypeStyleElementType._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
-}
-
-class MapTypeStyler extends js.JsObject {
+class MapTypeStyler extends jsw.IsJsProxy {
   set gamma(num gamma) => $["gamma"] = gamma;
   set hue(String hue) => $["hue"] = hue;
   set invert_lightness(bool invert_lightness) => $["invert_lightness"] = invert_lightness;
@@ -1549,42 +1485,38 @@ class MapTypeStyler extends js.JsObject {
   set visibility(MapTypeStylerVisibility visibility) => $["visibility"] = visibility.value;
 }
 
-class MapTypeStylerVisibility {
+class MapTypeStylerVisibility extends jsw.IsEnum<String> {
   static final ON = new MapTypeStylerVisibility._("on");
   static final OFF = new MapTypeStylerVisibility._("off");
   static final SIMPLIFIED = new MapTypeStylerVisibility._("simplified");
 
   static final _INSTANCES = [ON, OFF, SIMPLIFIED];
 
-  static MapTypeStylerVisibility find(String value) => findIn(value, _INSTANCES, (e) => e.value);
+  static MapTypeStylerVisibility find(Object o) => findIn(_INSTANCES, o);
 
-  String value;
+  MapTypeStylerVisibility._(String value) : super(value);
 
-  MapTypeStylerVisibility._(String this.value);
+  bool operator ==(Object other) => value == (other is MapTypeStylerVisibility ? (other as MapTypeStylerVisibility).value : other);
 }
 
 class BicyclingLayer extends MVCObject {
-  static const TYPE_NAME = "google.maps.BicyclingLayer";
-
-  BicyclingLayer() : super.newInstance(TYPE_NAME);
-  BicyclingLayer.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  BicyclingLayer() : super.newInstance(maps.BicyclingLayer);
+  BicyclingLayer.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   GMap getMap() => $.call("getMap", [], GMap.INSTANCIATOR);
   void setMap(GMap map) { $.call("setMap", [map]); }
 }
 
 class FusionTablesLayer extends MVCObject {
-  static const TYPE_NAME = "google.maps.FusionTablesLayer";
-
-  FusionTablesLayer(FusionTablesLayerOptions options) : super.newInstance(TYPE_NAME, [options]);
-  FusionTablesLayer.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  FusionTablesLayer(FusionTablesLayerOptions options) : super.newInstance(maps.FusionTablesLayer, [options]);
+  FusionTablesLayer.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   GMap getMap() => $.call("getMap", [], GMap.INSTANCIATOR);
   void setMap(GMap map) { $.call("setMap", [map]); }
   void setOptions(FusionTablesLayerOptions options) { $.call("setOptions", [options]); }
 }
 
-class FusionTablesLayerOptions extends js.JsObject {
+class FusionTablesLayerOptions extends jsw.IsJsProxy {
   set clickable(bool clickable) => $["clickable"] = clickable;
   set heatmap(FusionTablesHeatmap heatmap) => $["heatmap"] = heatmap;
   set map(GMap map) => $["map"] = map;
@@ -1593,7 +1525,7 @@ class FusionTablesLayerOptions extends js.JsObject {
   set suppressInfoWindows(bool suppressInfoWindows) => $["suppressInfoWindows"] = suppressInfoWindows;
 }
 
-class FusionTablesQuery extends js.JsObject {
+class FusionTablesQuery extends jsw.IsJsProxy {
   set from(String from) => $["from"] = from;
   set limit(num limit) => $["limit"] = limit;
   set offset(num offset) => $["offset"] = offset;
@@ -1602,22 +1534,22 @@ class FusionTablesQuery extends js.JsObject {
   set where(String where) => $["where"] = where;
 }
 
-class FusionTablesStyle extends js.JsObject {
+class FusionTablesStyle extends jsw.IsJsProxy {
   set markerOptions(FusionTablesMarkerOptions markerOptions) => $["markerOptions"] = markerOptions;
   set polygonOptions(FusionTablesPolygonOptions polygonOptions) => $["polygonOptions"] = polygonOptions;
   set polylineOptions(FusionTablesPolylineOptions polylineOptions) => $["polylineOptions"] = polylineOptions;
   set where(String where) => $["where"] = where;
 }
 
-class FusionTablesHeatmap extends js.JsObject {
+class FusionTablesHeatmap extends jsw.IsJsProxy {
   set enabled(bool enabled) => $["enabled"] = enabled;
 }
 
-class FusionTablesMarkerOptions extends js.JsObject {
+class FusionTablesMarkerOptions extends jsw.IsJsProxy {
   set iconName(String iconName) => $["iconName"] = iconName;
 }
 
-class FusionTablesPolygonOptions extends js.JsObject {
+class FusionTablesPolygonOptions extends jsw.IsJsProxy {
   set fillColor(String fillColor) => $["fillColor"] = fillColor;
   set fillOpacity(num fillOpacity) => $["fillOpacity"] = fillOpacity;
   set strokeColor(String strokeColor) => $["strokeColor"] = strokeColor;
@@ -1625,7 +1557,7 @@ class FusionTablesPolygonOptions extends js.JsObject {
   set strokeWeight(num strokeWeight) => $["strokeWeight"] = strokeWeight;
 }
 
-class FusionTablesPolylineOptions extends js.JsObject {
+class FusionTablesPolylineOptions extends jsw.IsJsProxy {
   set strokeColor(String strokeColor) => $["strokeColor"] = strokeColor;
   set strokeOpacity(num strokeOpacity) => $["strokeOpacity"] = strokeOpacity;
   set strokeWeight(num strokeWeight) => $["strokeWeight"] = strokeWeight;
@@ -1633,16 +1565,16 @@ class FusionTablesPolylineOptions extends js.JsObject {
 
 class FusionTablesMouseEvent extends NativeEvent {
   FusionTablesMouseEvent();
-  FusionTablesMouseEvent.wrap(NativeEvent e) : super.fromJsRef(e.jsRef);
+  FusionTablesMouseEvent.wrap(NativeEvent e) : super.fromIsJsProxy(e);
 
   String get infoWindowHtml => $["infoWindowHtml"];
   LatLng get latLng => $.getProperty("latLng", LatLng.INSTANCIATOR);
   Size get pixelOffset => $.getProperty("pixelOffset", Size.INSTANCIATOR);
   // TODO improve return type ( should be Map<String, FusionTablesCell> )
-  js.JsRef get row => $["row"];
+  js.Proxy get row => $["row"];
 }
 
-class FusionTablesCell extends js.JsObject {
+class FusionTablesCell extends jsw.IsJsProxy {
   String get columnName => $["columnName"];
          set columnName(String columnName) => $["columnName"] = columnName;
   String get value => $["value"];
@@ -1650,10 +1582,8 @@ class FusionTablesCell extends js.JsObject {
 }
 
 class KmlLayer extends MVCObject {
-  static const TYPE_NAME = "google.maps.KmlLayer";
-
-  KmlLayer(String url, [KmlLayerOptions options]) : super.newInstance(TYPE_NAME, [url, options]);
-  KmlLayer.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  KmlLayer(String url, [KmlLayerOptions options]) : super.newInstance(maps.KmlLayer, [url, options]);
+  KmlLayer.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   LatLngBounds getDefaultViewport() => $.call("getDefaultViewport", [], LatLngBounds.INSTANCIATOR);
   GMap getMap() => $.call("getMap", [], GMap.INSTANCIATOR);
@@ -1663,17 +1593,17 @@ class KmlLayer extends MVCObject {
   void setMap(GMap map) { $.call("setMap", [map]); }
 }
 
-class KmlLayerOptions extends js.JsObject {
+class KmlLayerOptions extends jsw.IsJsProxy {
   set clickable(bool clickable) => $["clickable"] = clickable;
   set map(GMap map) => $["map"] = map;
   set preserveViewport(bool preserveViewport) => $["preserveViewport"] = preserveViewport;
   set suppressInfoWindows(bool suppressInfoWindows) => $["suppressInfoWindows"] = suppressInfoWindows;
 }
 
-class KmlLayerMetadata extends js.JsObject {
-  static final INSTANCIATOR = (js.JsRef jsRef) => new KmlLayerMetadata.fromJsRef(jsRef);
+class KmlLayerMetadata extends jsw.IsJsProxy {
+  static final INSTANCIATOR = (js.Proxy jsProxy) => new KmlLayerMetadata.fromJsProxy(jsProxy);
 
-  KmlLayerMetadata.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  KmlLayerMetadata.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   KmlAuthor get author => $.getProperty("author", KmlAuthor.INSTANCIATOR);
   String get description => $["description"];
@@ -1681,39 +1611,39 @@ class KmlLayerMetadata extends js.JsObject {
   String get snippet => $["snippet"];
 }
 
-class KmlLayerStatus extends js.JsObject {
-  static const TYPE_NAME = "google.maps.KmlLayerStatus";
-
-  static final DOCUMENT_NOT_FOUND = new KmlLayerStatus._("${TYPE_NAME}.DOCUMENT_NOT_FOUND");
-  static final DOCUMENT_TOO_LARGE = new KmlLayerStatus._("${TYPE_NAME}.DOCUMENT_TOO_LARGE");
-  static final FETCH_ERROR = new KmlLayerStatus._("${TYPE_NAME}.FETCH_ERROR");
-  static final INVALID_DOCUMENT = new KmlLayerStatus._("${TYPE_NAME}.INVALID_DOCUMENT");
-  static final INVALID_REQUEST = new KmlLayerStatus._("${TYPE_NAME}.INVALID_REQUEST");
-  static final LIMITS_EXCEEDED = new KmlLayerStatus._("${TYPE_NAME}.LIMITS_EXCEEDED");
-  static final OK = new KmlLayerStatus._("${TYPE_NAME}.OK");
-  static final TIMED_OUT = new KmlLayerStatus._("${TYPE_NAME}.TIMED_OUT");
-  static final UNKNOWN = new KmlLayerStatus._("${TYPE_NAME}.UNKNOWN");
+class KmlLayerStatus extends jsw.IsEnum<String> {
+  static final DOCUMENT_NOT_FOUND = new KmlLayerStatus._(maps.KmlLayerStatus.DOCUMENT_NOT_FOUND);
+  static final DOCUMENT_TOO_LARGE = new KmlLayerStatus._(maps.KmlLayerStatus.DOCUMENT_TOO_LARGE);
+  static final FETCH_ERROR = new KmlLayerStatus._(maps.KmlLayerStatus.FETCH_ERROR);
+  static final INVALID_DOCUMENT = new KmlLayerStatus._(maps.KmlLayerStatus.INVALID_DOCUMENT);
+  static final INVALID_REQUEST = new KmlLayerStatus._(maps.KmlLayerStatus.INVALID_REQUEST);
+  static final LIMITS_EXCEEDED = new KmlLayerStatus._(maps.KmlLayerStatus.LIMITS_EXCEEDED);
+  static final OK = new KmlLayerStatus._(maps.KmlLayerStatus.OK);
+  static final TIMED_OUT = new KmlLayerStatus._(maps.KmlLayerStatus.TIMED_OUT);
+  static final UNKNOWN = new KmlLayerStatus._(maps.KmlLayerStatus.UNKNOWN);
 
   static final _INSTANCES = [DOCUMENT_NOT_FOUND, DOCUMENT_TOO_LARGE, FETCH_ERROR, INVALID_DOCUMENT, INVALID_REQUEST, LIMITS_EXCEEDED, OK, TIMED_OUT, UNKNOWN];
 
-  static KmlLayerStatus find(Object o) { return findIn(o, _INSTANCES); }
+  static KmlLayerStatus find(Object o) => findIn(_INSTANCES, o);
 
-  KmlLayerStatus._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
+  KmlLayerStatus._(String value) : super(value);
+
+  bool operator ==(Object other) => value == (other is KmlLayerStatus ? (other as KmlLayerStatus).value : other);
 }
 
 class KmlMouseEvent extends NativeEvent {
   KmlMouseEvent();
-  KmlMouseEvent.wrap(NativeEvent e) : super.fromJsRef(e.jsRef);
+  KmlMouseEvent.wrap(NativeEvent e) : super.fromIsJsProxy(e);
 
   KmlFeatureData get featureData => $.getProperty("featureData", KmlFeatureData.INSTANCIATOR);
   LatLng get latLng => $.getProperty("latLng", LatLng.INSTANCIATOR);
   Size get pixelOffset => $.getProperty("pixelOffset", Size.INSTANCIATOR);
 }
 
-class KmlFeatureData extends js.JsObject {
-  static final INSTANCIATOR = (js.JsRef jsRef) => new KmlFeatureData.fromJsRef(jsRef);
+class KmlFeatureData extends jsw.IsJsProxy {
+  static final INSTANCIATOR = (js.Proxy jsProxy) => new KmlFeatureData.fromJsProxy(jsProxy);
 
-  KmlFeatureData.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  KmlFeatureData.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   KmlAuthor get author => $.getProperty("author", KmlAuthor.INSTANCIATOR);
   String get description => $["description"];
@@ -1723,10 +1653,10 @@ class KmlFeatureData extends js.JsObject {
   String get snippet => $["snippet"];
 }
 
-class KmlAuthor extends js.JsObject {
-  static final INSTANCIATOR = (js.JsRef jsRef) => new KmlAuthor.fromJsRef(jsRef);
+class KmlAuthor extends jsw.IsJsProxy {
+  static final INSTANCIATOR = (js.Proxy jsProxy) => new KmlAuthor.fromJsProxy(jsProxy);
 
-  KmlAuthor.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  KmlAuthor.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   String get email => $["email"];
   String get name => $["name"];
@@ -1734,42 +1664,34 @@ class KmlAuthor extends js.JsObject {
 }
 
 class TrafficLayer extends MVCObject {
-  static const TYPE_NAME = "google.maps.TrafficLayer";
-
-  TrafficLayer() : super.newInstance(TYPE_NAME);
-  TrafficLayer.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  TrafficLayer() : super.newInstance(maps.TrafficLayer);
+  TrafficLayer.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   GMap getMap() => $.call("getMap", [], GMap.INSTANCIATOR);
   void setMap(GMap map) { $.call("setMap", [map]); }
 }
 
 class TransitLayer extends MVCObject {
-  static const TYPE_NAME = "google.maps.TransitLayer";
-
-  TransitLayer() : super.newInstance(TYPE_NAME);
-  TransitLayer.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  TransitLayer() : super.newInstance(maps.TransitLayer);
+  TransitLayer.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   GMap getMap() => $.call("getMap", [], GMap.INSTANCIATOR);
   void setMap(GMap map) { $.call("setMap", [map]); }
 }
 
 class StreetViewPanorama extends MVCObject {
-  static const TYPE_NAME = "google.maps.StreetViewPanorama";
-  static final INSTANCIATOR = (js.JsRef jsRef) => new StreetViewPanorama.fromJsRef(jsRef);
+  static final INSTANCIATOR = (js.Proxy jsProxy) => new StreetViewPanorama.fromJsProxy(jsProxy);
 
-  StreetViewPanorama(html.Node container, [StreetViewPanoramaOptions opts]) : super.newInstance(TYPE_NAME, [container, opts]);
-  StreetViewPanorama.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  StreetViewPanorama(html.Node container, [StreetViewPanoramaOptions opts]) : super.newInstance(maps.StreetViewPanorama, [container, opts]);
+  StreetViewPanorama.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  List<StreetViewLink> getLinks() => $.call("getLinks", [], (js.JsRef jsRef) => new js.JsList<StreetViewLink>.fromJsRef(jsRef, StreetViewLink.INSTANCIATOR));
+  List<StreetViewLink> getLinks() => $.call("getLinks", [], (js.Proxy jsProxy) => new jsw.JsList<StreetViewLink>.fromJsProxy(jsProxy, StreetViewLink.INSTANCIATOR));
   String getPano() => $.call("getPano");
   LatLng getPosition() => $.call("getPosition", [], LatLng.INSTANCIATOR);
   StreetViewPov getPov() => $.call("getPov", [], StreetViewPov.INSTANCIATOR);
   bool getVisible() => $.call("getVisible");
   void registerPanoProvider(StreetViewPanoramaData provider(String pano)) {
-    js.CallbackFunction callbackFunction = Object _(List args) {
-      return provider(args[0]);
-    };
-    $.call("registerPanoProvider", [callbackFunction]);
+    $.call("registerPanoProvider", [new jsw.Callback.many(provider)]);
   }
   void setPano(String pano) { $.call("setPano", [pano]); }
   void setPosition(LatLng latLng) { $.call("setPosition", [latLng]); }
@@ -1780,7 +1702,7 @@ class StreetViewPanorama extends MVCObject {
            set controls(Controls controls) => $["controls"] = controls;
 }
 
-class StreetViewPanoramaOptions extends js.JsObject {
+class StreetViewPanoramaOptions extends jsw.IsJsProxy {
   set addressControl(bool addressControl) => $["addressControl"] = addressControl;
   set addressControlOptions(StreetViewAddressControlOptions addressControlOptions) => $["addressControlOptions"] = addressControlOptions;
   set clickToGo(bool clickToGo) => $["clickToGo"] = clickToGo;
@@ -1791,12 +1713,7 @@ class StreetViewPanoramaOptions extends js.JsObject {
   set panControl(bool panControl) => $["panControl"] = panControl;
   set panControlOptions(PanControlOptions panControlOptions) => $["panControlOptions"] = panControlOptions;
   set pano(String pano) => $["pano"] = pano;
-  set panoProvider(StreetViewPanoramaData provider(String pano)) {
-    js.CallbackFunction callbackFunction = Object _(List args) {
-      return provider(args[0]);
-    };
-    $["panoProvider"] = callbackFunction;
-  }
+  set panoProvider(StreetViewPanoramaData provider(String pano)) => $["panoProvider"] = new jsw.Callback.many(provider);
   set position(LatLng position) => $["position"] = position;
   set pov(StreetViewPov pov) => $["pov"] = pov;
   set scrollwheel(bool scrollwheel) => $["scrollwheel"] = scrollwheel;
@@ -1805,15 +1722,15 @@ class StreetViewPanoramaOptions extends js.JsObject {
   set zoomControlOptions(ZoomControlOptions zoomControlOptions) => $["zoomControlOptions"] = zoomControlOptions;
 }
 
-class StreetViewAddressControlOptions extends js.JsObject {
+class StreetViewAddressControlOptions extends jsw.IsJsProxy {
   set position(ControlPosition position) => $["position"] = position;
 }
 
-class StreetViewLink extends js.JsObject {
-  static final INSTANCIATOR = (js.JsRef jsRef) => new StreetViewLink.fromJsRef(jsRef);
+class StreetViewLink extends jsw.IsJsProxy {
+  static final INSTANCIATOR = (js.Proxy jsProxy) => new StreetViewLink.fromJsProxy(jsProxy);
 
   StreetViewLink() : super();
-  StreetViewLink.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  StreetViewLink.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   String get description => $["description"];
          set description(String description) => $["description"] = description;
@@ -1823,11 +1740,11 @@ class StreetViewLink extends js.JsObject {
          set pano(String pano) => $["pano"] = pano;
 }
 
-class StreetViewPov extends js.JsObject {
-  static final INSTANCIATOR = (js.JsRef jsRef) => new StreetViewPov.fromJsRef(jsRef);
+class StreetViewPov extends jsw.IsJsProxy {
+  static final INSTANCIATOR = (js.Proxy jsProxy) => new StreetViewPov.fromJsProxy(jsProxy);
 
   StreetViewPov() : super();
-  StreetViewPov.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  StreetViewPov.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   num get heading => $["heading"];
       set heading(num heading) => $["heading"] = heading;
@@ -1837,15 +1754,15 @@ class StreetViewPov extends js.JsObject {
       set zoom(num zoom) => $["zoom"] = zoom;
 }
 
-class StreetViewPanoramaData extends js.JsObject {
+class StreetViewPanoramaData extends jsw.IsJsProxy {
   StreetViewPanoramaData() : super();
-  StreetViewPanoramaData.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  StreetViewPanoramaData.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   String get copyright => $["copyright"];
          set copyright(String copyright) => $["copyright"] = copyright;
   String get imageDate => $["imageDate"];
          set imageDate(String imageDate) => $["imageDate"] = imageDate;
-  List<StreetViewLink> get links => $.getProperty("links", (js.JsRef jsRef) => new js.JsList<StreetViewLink>.fromJsRef(jsRef, StreetViewLink.INSTANCIATOR));
+  List<StreetViewLink> get links => $.getProperty("links", (js.Proxy jsProxy) => new jsw.JsList<StreetViewLink>.fromJsProxy(jsProxy, StreetViewLink.INSTANCIATOR));
                        set links(List<StreetViewLink> links) => $["links"] = links;
   StreetViewLocation get location => $.getProperty("location", StreetViewLocation.INSTANCIATOR);
                      set location(StreetViewLocation location) => $["location"] = location;
@@ -1853,11 +1770,11 @@ class StreetViewPanoramaData extends js.JsObject {
                      set tiles(StreetViewTileData tiles) => $["tiles"] = tiles;
 }
 
-class StreetViewLocation extends js.JsObject {
-  static final INSTANCIATOR = (js.JsRef jsRef) => new StreetViewLocation.fromJsRef(jsRef);
+class StreetViewLocation extends jsw.IsJsProxy {
+  static final INSTANCIATOR = (js.Proxy jsProxy) => new StreetViewLocation.fromJsProxy(jsProxy);
 
   StreetViewLocation() : super();
-  StreetViewLocation.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  StreetViewLocation.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   String get description => $["description"];
          set description(String description) => $["description"] = description;
@@ -1867,11 +1784,11 @@ class StreetViewLocation extends js.JsObject {
          set pano(String pano) => $["pano"] = pano;
 }
 
-class StreetViewTileData extends js.JsObject {
-  static final INSTANCIATOR = (js.JsRef jsRef) => new StreetViewTileData.fromJsRef(jsRef);
+class StreetViewTileData extends jsw.IsJsProxy {
+  static final INSTANCIATOR = (js.Proxy jsProxy) => new StreetViewTileData.fromJsProxy(jsProxy);
 
   StreetViewTileData() : super();
-  StreetViewTileData.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  StreetViewTileData.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   String getTileUrl(String pano, num tileZoom, num tileX, num tileY) => $.call("getTileUrl", [pano, tileZoom, tileX, tileY]);
 
@@ -1880,116 +1797,93 @@ class StreetViewTileData extends js.JsObject {
   set worldSize(Size worldSize) => $["worldSize"] = worldSize;
 }
 
-class StreetViewService extends js.JsObject {
-  static const TYPE_NAME = "google.maps.StreetViewService";
-
-  StreetViewService() : super.newInstance(TYPE_NAME);
+class StreetViewService extends jsw.IsJsProxy {
+  StreetViewService() : super.newInstance(maps.StreetViewService);
 
   void getPanoramaById(String pano, void callback(StreetViewPanoramaData streetViewPanoramaData, StreetViewStatus streetViewStatus)) {
-    js.CallbackFunction callbackFunction = Object _(List args) {
-      callback(new StreetViewPanoramaData.fromJsRef(args[0]), StreetViewStatus.find(args[1]));
-    };
-    $.call("getPanoramaById", [pano, callbackFunction]);
+    $.call("getPanoramaById", [pano, new jsw.Callback.once((streetViewPanoramaData, streetViewStatus) => callback(new StreetViewPanoramaData.fromJsProxy(streetViewPanoramaData), StreetViewStatus.find(streetViewStatus)))]);
   }
   void getPanoramaByLocation(LatLng latlng, num radius, void callback(StreetViewPanoramaData streetViewPanoramaData, StreetViewStatus streetViewStatus)) {
-    js.CallbackFunction callbackFunction = Object _(List args) {
-      callback(new StreetViewPanoramaData.fromJsRef(args[0]), StreetViewStatus.find(args[1]));
-    };
-    $.call("getPanoramaByLocation", [latlng, radius, callbackFunction]);
+    $.call("getPanoramaByLocation", [latlng, radius, new jsw.Callback.once((streetViewPanoramaData, streetViewStatus) => callback(new StreetViewPanoramaData.fromJsProxy(streetViewPanoramaData), StreetViewStatus.find(streetViewStatus)))]);
   }
 }
 
-class StreetViewStatus extends js.JsObject {
-  static const TYPE_NAME = "google.maps.StreetViewStatus";
-
-  static final OK = new StreetViewStatus._("${TYPE_NAME}.OK");
-  static final UNKNOWN_ERROR = new StreetViewStatus._("${TYPE_NAME}.UNKNOWN_ERROR");
-  static final ZERO_RESULTS = new StreetViewStatus._("${TYPE_NAME}.ZERO_RESULTS");
+class StreetViewStatus extends jsw.IsEnum<String> {
+  static final OK = new StreetViewStatus._(maps.StreetViewStatus.OK);
+  static final UNKNOWN_ERROR = new StreetViewStatus._(maps.StreetViewStatus.UNKNOWN_ERROR);
+  static final ZERO_RESULTS = new StreetViewStatus._(maps.StreetViewStatus.ZERO_RESULTS);
 
   static final _INSTANCES = [OK, UNKNOWN_ERROR, ZERO_RESULTS];
 
-  static StreetViewStatus find(Object o) { return findIn(o, _INSTANCES); }
+  static StreetViewStatus find(Object o) => findIn(_INSTANCES, o);
 
-  StreetViewStatus._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
+  StreetViewStatus._(String value) : super(value);
+
+  bool operator ==(Object other) => value == (other is StreetViewStatus ? (other as StreetViewStatus).value : other);
 }
 
-class MapsEventListener extends js.JsObject {
-  MapsEventListener.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+typedef void OnRelease();
+class MapsEventListener extends jsw.IsJsProxy {
+  final OnRelease onRelease;
+  MapsEventListener.fromJsProxy(js.Proxy jsProxy, [OnRelease this.onRelease]) : super.fromJsProxy(jsProxy);
 }
 
-class NativeEvent extends js.JsObject {
+class NativeEvent extends jsw.IsJsProxy {
   NativeEvent() : super();
-  NativeEvent.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  NativeEvent.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  NativeEvent.fromIsJsProxy(jsw.IsJsProxy isJsProxy) : super.fromIsJsProxy(isJsProxy);
 }
 
 class Events {
-  static const TYPE_NAME = "google.maps.event";
-
   static MapsEventListener addDomListener(Object instance, String eventName, void handler(NativeEvent e), [bool capture]) {
-    js.CallbackFunction callback = Object _(List args) {
-      if (args.length === 1) {
-        handler(new NativeEvent.fromJsRef(args[0]));
-      } else {
-        handler(null);
-      }
-    };
-    return new MapsEventListener.fromJsRef(js.jsWindow.$.call("${TYPE_NAME}.addDomListener", [instance, eventName, callback, capture]));
+    final callback = new jsw.Callback.many(([arg1]) => handler(?arg1 ? new NativeEvent.fromJsProxy(arg1) : null ));
+    final instanciator = (js.Proxy jsProxy) => new MapsEventListener.fromJsProxy(jsProxy, () => callback.dispose());
+    return new jsw.IsJsProxy.fromJsProxy(maps.event).$.call("addDomListener", [instance, eventName, callback, capture], instanciator);
   }
   static MapsEventListener addDomListenerOnce(Object instance, String eventName, void handler(NativeEvent e), [bool capture]) {
-    js.CallbackFunction callback = Object _(List args) {
-      if (args.length === 1) {
-        handler(new NativeEvent.fromJsRef(args[0]));
-      } else {
-        handler(null);
-      }
-    };
-    return new MapsEventListener.fromJsRef(js.jsWindow.$.call("${TYPE_NAME}.addDomListenerOnce", [instance, eventName, callback, capture]));
+    final callback = new jsw.Callback.once(([arg1]) => handler(?arg1 ? new NativeEvent.fromJsProxy(arg1) : null ));
+    final instanciator = (js.Proxy jsProxy) => new MapsEventListener.fromJsProxy(jsProxy);
+    return new jsw.IsJsProxy.fromJsProxy(maps.event).$.call("addDomListenerOnce", [instance, eventName, callback, capture], instanciator);
   }
-  static MapsEventListener addListener(js.JsObject instance, String eventName, void handler(NativeEvent e)) {
-    js.CallbackFunction callback = Object _(List args) {
-      if (args.length === 1) {
-        handler(new NativeEvent.fromJsRef(args[0]));
-      } else {
-        handler(null);
-      }
-    };
-    return new MapsEventListener.fromJsRef(js.jsWindow.$.call("${TYPE_NAME}.addListener", [instance, eventName, callback]));
+  static MapsEventListener addListener(jsw.IsJsProxy instance, String eventName, void handler(NativeEvent e)) {
+    final callback = new jsw.Callback.many(([arg1]) => handler(?arg1 ? new NativeEvent.fromJsProxy(arg1) : null ));
+    final instanciator = (js.Proxy jsProxy) => new MapsEventListener.fromJsProxy(jsProxy, () => callback.dispose());
+    return new jsw.IsJsProxy.fromJsProxy(maps.event).$.call("addListener", [instance, eventName, callback], instanciator);
   }
-  static MapsEventListener addListenerOnce(js.JsObject instance, String eventName, void handler(NativeEvent e)) {
-    js.CallbackFunction callback = Object _(List args) {
-      if (args.length === 1) {
-        handler(new NativeEvent.fromJsRef(args[0]));
-      } else {
-        handler(null);
-      }
-    };
-    return new MapsEventListener.fromJsRef(js.jsWindow.$.call("${TYPE_NAME}.addListenerOnce", [instance, eventName, callback]));
+  static MapsEventListener addListenerOnce(jsw.IsJsProxy instance, String eventName, void handler(NativeEvent e)) {
+    final callback = new jsw.Callback.once(([arg1]) => handler(?arg1 ? new NativeEvent.fromJsProxy(arg1) : null ));
+    final instanciator = (js.Proxy jsProxy) => new MapsEventListener.fromJsProxy(jsProxy);
+    return new jsw.IsJsProxy.fromJsProxy(maps.event).$.call("addListenerOnce", [instance, eventName, callback], instanciator);
   }
-  static void clearInstanceListeners(js.JsObject instance) { js.jsWindow.$.call("${TYPE_NAME}.clearInstanceListeners", [instance]); }
-  static void clearListeners(js.JsObject instance, String eventName) { js.jsWindow.$.call("${TYPE_NAME}.clearListeners", [instance, eventName]); }
-  static void removeListener(MapsEventListener listener) { js.jsWindow.$.call("${TYPE_NAME}.removeListener", [listener]); }
-  static void trigger(js.JsObject instance, String eventName, List<Object> args) {
+  static void clearInstanceListeners(jsw.IsJsProxy instance) { new jsw.IsJsProxy.fromJsProxy(maps.event).$.call("clearInstanceListeners", [instance]); }
+  static void clearListeners(jsw.IsJsProxy instance, String eventName) { new jsw.IsJsProxy.fromJsProxy(maps.event).$.call("clearListeners", [instance, eventName]); }
+  static void removeListener(MapsEventListener listener) {
+    if (listener.onRelease != null) {
+      listener.onRelease();
+    }
+    new jsw.IsJsProxy.fromJsProxy(maps.event).$.call("removeListener", [listener]);
+  }
+  static void trigger(jsw.IsJsProxy instance, String eventName, List<Object> args) {
     final parameters = new List<Object>();
     parameters.add(instance);
     parameters.add(eventName);
     parameters.addAll(args);
-    js.jsWindow.$.call("${TYPE_NAME}.trigger", parameters);
+    new jsw.IsJsProxy.fromJsProxy(maps.event).$.call("trigger", parameters);
   }
 }
 
 class MouseEvent extends NativeEvent {
   MouseEvent();
-  MouseEvent.wrap(NativeEvent e) : super.fromJsRef(e.jsRef);
+  MouseEvent.wrap(NativeEvent e) : super.fromIsJsProxy(e);
 
   LatLng get latLng => $.getProperty("latLng", LatLng.INSTANCIATOR);
 }
 
-class LatLng extends js.JsObject {
-  static const TYPE_NAME = "google.maps.LatLng";
-  static final INSTANCIATOR = (js.JsRef jsRef) => new LatLng.fromJsRef(jsRef);
+class LatLng extends jsw.IsJsProxy {
+  static final INSTANCIATOR = (js.Proxy jsProxy) => new LatLng.fromJsProxy(jsProxy);
 
-  LatLng(num lat, num lng, [bool noWrap]) : super.newInstance(TYPE_NAME, [lat, lng, noWrap]);
-  LatLng.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  LatLng(num lat, num lng, [bool noWrap]) : super.newInstance(maps.LatLng, [lat, lng, noWrap]);
+  LatLng.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   bool equals(LatLng other) => $.call("equals", [other]);
   num lat() => $.call("lat");
@@ -1998,12 +1892,11 @@ class LatLng extends js.JsObject {
   String toUrlValue([num precision]) => $.call("toUrlValue", [precision]);
 }
 
-class LatLngBounds extends js.JsObject {
-  static const TYPE_NAME = "google.maps.LatLngBounds";
-  static final INSTANCIATOR = (js.JsRef jsRef) => new LatLngBounds.fromJsRef(jsRef);
+class LatLngBounds extends jsw.IsJsProxy {
+  static final INSTANCIATOR = (js.Proxy jsProxy) => new LatLngBounds.fromJsProxy(jsProxy);
 
-  LatLngBounds([LatLng sw, LatLng ne]) : super.newInstance(TYPE_NAME, [sw, ne]);
-  LatLngBounds.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  LatLngBounds([LatLng sw, LatLng ne]) : super.newInstance(maps.LatLngBounds, [sw, ne]);
+  LatLngBounds.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   bool contains(LatLng latLng) => $.call("contains", [latLng]);
   bool equals(LatLngBounds other) => $.call("equals", [other]);
@@ -2019,12 +1912,11 @@ class LatLngBounds extends js.JsObject {
   bool union(LatLngBounds other) => $.call("union", [other]);
 }
 
-class Point extends js.JsObject {
-  static const TYPE_NAME = "google.maps.Point";
-  static final INSTANCIATOR = (js.JsRef jsRef) => new Point.fromJsRef(jsRef);
+class Point extends jsw.IsJsProxy {
+  static final INSTANCIATOR = (js.Proxy jsProxy) => new Point.fromJsProxy(jsProxy);
 
-  Point(num x, num y) : super.newInstance(TYPE_NAME, [x, y]);
-  Point.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  Point(num x, num y) : super.newInstance(maps.Point, [x, y]);
+  Point.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   bool equals(Point other) => $.call("equals", [other]);
   String toString() => $.call("toString");
@@ -2035,12 +1927,11 @@ class Point extends js.JsObject {
       set y(num y) => $["y"] = y;
 }
 
-class Size extends js.JsObject {
-  static const TYPE_NAME = "google.maps.Size";
-  static final INSTANCIATOR = (js.JsRef jsRef) => new Size.fromJsRef(jsRef);
+class Size extends jsw.IsJsProxy {
+  static final INSTANCIATOR = (js.Proxy jsProxy) => new Size.fromJsProxy(jsProxy);
 
-  Size(num width, num height, [String widthUnit, String heightUnit]) : super.newInstance(TYPE_NAME, [width, height, widthUnit, heightUnit]);
-  Size.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  Size(num width, num height, [String widthUnit, String heightUnit]) : super.newInstance(maps.Size, [width, height, widthUnit, heightUnit]);
+  Size.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   bool equals(Size other) => $.call("equals", [other]);
   String toString() => $.call("toString");
@@ -2051,20 +1942,19 @@ class Size extends js.JsObject {
       set width(num width) => $["width"] = width;
 }
 
-class MVCObject extends js.JsObject {
-  static const TYPE_NAME = "google.maps.MVCObject";
-
-  MVCObject() : super.newInstance(TYPE_NAME);
-  MVCObject.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
-  MVCObject.newInstance(String objectName, [List args]) : super.newInstance(objectName, args);
+class MVCObject extends jsw.IsJsProxy {
+  MVCObject() : super.newInstance(maps.MVCObject);
+  MVCObject.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  MVCObject.newInstance(objectName, [List args]) : super.newInstance(objectName, args);
 
   void bindTo(String key, MVCObject target, [String targetKey, bool noNotify]) { $.call("bindTo", [key, target, targetKey, noNotify]); }
   void changed(String key) { $.call("changed", [key]); }
+  // TODO replace with get()
   Object get_(String key) => $.call("get", [key]);
   void notify(String key) { $.call("notify", [key]); }
   void set_(String key, Object value) { $.call("set", [key, value]); }
   void setValues(Map<String, Object> values) {
-    final valuesJs = new js.JsObject();
+    final valuesJs = new jsw.IsJsProxy();
     values.forEach((String key, Object value) {
       $[key] = value;
     });
@@ -2075,26 +1965,23 @@ class MVCObject extends js.JsObject {
 }
 
 // TODO replace with js.Instanciator
-typedef Object JsRefWrapper(js.JsRef jsRef);
+typedef Object JsProxyWrapper(js.Proxy jsProxy);
 
 class MVCArray<E> extends MVCObject {
-  JsRefWrapper _jsRefWrapper;
+  JsProxyWrapper _jsProxyWrapper;
 
-  MVCArray([List<E> array, JsRefWrapper jsRefWrapper]) : super.newInstance("google.maps.MVCArray", [array]) {
-    _jsRefWrapper = jsRefWrapper;
+  MVCArray([List<E> array, JsProxyWrapper jsProxyWrapper]) : super.newInstance(maps.MVCArray, [array]) {
+    _jsProxyWrapper = jsProxyWrapper;
   }
-  MVCArray.fromJsRef(js.JsRef jsRef, [JsRefWrapper jsRefWrapper]) : super.fromJsRef(jsRef) {
-    _jsRefWrapper = jsRefWrapper;
+  MVCArray.fromJsProxy(js.Proxy jsProxy, [JsProxyWrapper jsProxyWrapper]) : super.fromJsProxy(jsProxy) {
+    _jsProxyWrapper = jsProxyWrapper;
   }
 
   void clear() { $.call("clear"); }
   void forEach(void callback(E o, num index)) {
-    js.CallbackFunction callbackFunction = Object _(List args) {
-      callback(_mayWrap(args[0]), args[1]);
-    };
-    $.call("forEach", [callbackFunction]);
+    $.call("forEach", [new jsw.Callback.once((o, index) => callback(_mayWrap(o), index))]);
   }
-  List<E> getArray() => $.call("getArray", [], (js.JsRef jsRef) => new js.JsList<E>.fromJsRef(jsRef, _mayWrap));
+  List<E> getArray() => $.call("getArray", [], (js.Proxy jsProxy) => new jsw.JsList<E>.fromJsProxy(jsProxy, _mayWrap));
   E getAt(num i) => _mayWrap($.call("getAt", [i]));
   num getLength() => $.call("getLength");
   void insertAt(num i, E elem) { $.call("insertAt", [i, elem]); }
@@ -2104,8 +1991,8 @@ class MVCArray<E> extends MVCObject {
   void setAt(num i, E elem) { $.call("setAt", [i, elem]); }
 
   E _mayWrap(Object o) {
-    if (_jsRefWrapper !== null && o != null && o is js.JsRef) {
-      return _jsRefWrapper(o);
+    if (_jsProxyWrapper !== null && o != null && o is js.Proxy) {
+      return _jsProxyWrapper(o);
     }
     return o;
   }

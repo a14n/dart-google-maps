@@ -1,17 +1,22 @@
 #import('dart:html');
+#import('package:js/js.dart', prefix:'js');
+#import('package:dart_google_maps/jswrap.dart', prefix:'jsw');
 #import('package:dart_google_maps/gmaps.dart', prefix:'gmaps');
 
 void main() {
-  final mapOptions = new gmaps.MapOptions()
-    ..zoom = 4
-    ..center = new gmaps.LatLng(-25.363882,131.044922)
-    ..mapTypeId = gmaps.MapTypeId.ROADMAP
-  ;
-  final map = new gmaps.GMap(query("#map_canvas"), mapOptions);
+  js.scoped(() {
+    final mapOptions = new gmaps.MapOptions()
+      ..zoom = 4
+      ..center = new gmaps.LatLng(-25.363882,131.044922)
+      ..mapTypeId = gmaps.MapTypeId.ROADMAP
+    ;
+    final map = new gmaps.GMap(query("#map_canvas"), mapOptions);
 
-  gmaps.Events.addListener(map, 'click', (e) {
-    final me = new gmaps.MouseEvent.wrap(e);
-    placeMarker(me.latLng, map);
+    jsw.retain(map);
+    gmaps.Events.addListener(map, 'click', (e) {
+      final me = new gmaps.MouseEvent.wrap(e);
+      placeMarker(me.latLng, map);
+    });
   });
 }
 

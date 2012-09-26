@@ -1,30 +1,34 @@
 #import('dart:html');
+#import('package:js/js.dart', prefix:'js');
+#import('package:dart_google_maps/jswrap.dart', prefix:'jsw');
 #import('package:dart_google_maps/gmaps.dart', prefix:'gmaps');
 
-final rendererOptions = new gmaps.DirectionsRendererOptions()
+final gmaps.DirectionsRendererOptions rendererOptions = jsw.retain(new gmaps.DirectionsRendererOptions()
   ..draggable = true
-  ;
-final directionsDisplay = new gmaps.DirectionsRenderer(rendererOptions);
-final directionsService = new gmaps.DirectionsService();
+);
+final gmaps.DirectionsRenderer directionsDisplay = jsw.retain(new gmaps.DirectionsRenderer(rendererOptions));
+final gmaps.DirectionsService directionsService = jsw.retain(new gmaps.DirectionsService());
 gmaps.GMap map;
 
-final australia = new gmaps.LatLng(-25.274398, 133.775136);
+final gmaps.LatLng australia = jsw.retain(new gmaps.LatLng(-25.274398, 133.775136));
 
 void main() {
-  final mapOptions = new gmaps.MapOptions()
-    ..zoom = 7
-    ..mapTypeId = gmaps.MapTypeId.ROADMAP
-    ..center = australia
-    ;
-  map = new gmaps.GMap(query("#map_canvas"), mapOptions);
-  directionsDisplay.setMap(map);
-  directionsDisplay.setPanel(query('#directionsPanel'));
+  js.scoped(() {
+    final mapOptions = new gmaps.MapOptions()
+      ..zoom = 7
+      ..mapTypeId = gmaps.MapTypeId.ROADMAP
+      ..center = australia
+      ;
+    map = jsw.retain(new gmaps.GMap(query("#map_canvas"), mapOptions));
+    directionsDisplay.setMap(map);
+    directionsDisplay.setPanel(query('#directionsPanel'));
 
-  gmaps.Events.addListener(directionsDisplay, 'directions_changed', (e) {
-    computeTotalDistance(directionsDisplay.getDirections());
+    gmaps.Events.addListener(directionsDisplay, 'directions_changed', (e) {
+      computeTotalDistance(directionsDisplay.getDirections());
+    });
+
+    calcRoute();
   });
-
-  calcRoute();
 }
 
 void calcRoute() {

@@ -1,4 +1,6 @@
 #import('dart:html');
+#import('package:js/js.dart', prefix:'js');
+#import('package:dart_google_maps/jswrap.dart', prefix:'jsw');
 #import('package:dart_google_maps/gmaps.dart', prefix:'gmaps');
 #import('package:dart_google_maps/gmaps-places.dart', prefix:'gmaps_places');
 
@@ -6,25 +8,27 @@ gmaps.GMap map;
 gmaps.InfoWindow infowindow;
 
 void main() {
-  final pyrmont = new gmaps.LatLng(-33.8665433, 151.1956316);
+  js.scoped(() {
+    final pyrmont = new gmaps.LatLng(-33.8665433, 151.1956316);
 
-  map = new gmaps.GMap(query("#map"), new gmaps.MapOptions()
-    ..mapTypeId = gmaps.MapTypeId.ROADMAP
-    ..center = pyrmont
-    ..zoom = 15
-  );
+    map = jsw.retain(new gmaps.GMap(query("#map"), new gmaps.MapOptions()
+      ..mapTypeId = gmaps.MapTypeId.ROADMAP
+      ..center = pyrmont
+      ..zoom = 15
+    ));
 
 
-  final request = new gmaps_places.PlaceSearchRequest()
-    ..location = pyrmont
-    ..radius = 500
-    ..types = ['store']
-    ;
+    final request = new gmaps_places.PlaceSearchRequest()
+      ..location = pyrmont
+      ..radius = 500
+      ..types = ['store']
+      ;
 
-  infowindow = new gmaps.InfoWindow();
-  final service = new gmaps_places.PlacesService(map);
-  // TODO search not documented
-  service.nearbySearch(request, callback);
+    infowindow = jsw.retain(new gmaps.InfoWindow());
+    final service = new gmaps_places.PlacesService(map);
+    // TODO search not documented
+    service.nearbySearch(request, callback);
+  });
 }
 
 void callback(List<gmaps_places.PlaceResult> results, gmaps_places.PlacesServiceStatus status, gmaps_places.PlaceSearchPagination pagination) {
@@ -42,6 +46,7 @@ void createMarker(gmaps_places.PlaceResult place) {
     ..position = place.geometry.location
   );
 
+  jsw.retainAll([marker, place]);
   gmaps.Events.addListener(marker, 'click', (e) {
     infowindow.setContent(place.name);
     infowindow.open(map, marker);

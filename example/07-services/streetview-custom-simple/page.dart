@@ -1,19 +1,23 @@
 #import('dart:html');
+#import('package:js/js.dart', prefix:'js');
+#import('package:dart_google_maps/jswrap.dart', prefix:'jsw');
 #import('package:dart_google_maps/gmaps.dart', prefix:'gmaps');
 
 const IMAGE_URL = "https://google-developers.appspot.com/maps/documentation/javascript/examples";
 
 void main() {
-  // Set up Street View and initially set it visible. Register the
-  // custom panorama provider function. Set the StreetView to display
-  // the custom panorama 'reception' which we check for below.
-  final panoOptions = new gmaps.StreetViewPanoramaOptions()
-    ..pano = 'reception'
-    ..visible = true
-    ..panoProvider = getCustomPanorama
-    ;
+  js.scoped(() {
+    // Set up Street View and initially set it visible. Register the
+    // custom panorama provider function. Set the StreetView to display
+    // the custom panorama 'reception' which we check for below.
+    final panoOptions = new gmaps.StreetViewPanoramaOptions()
+      ..pano = 'reception'
+      ..visible = true
+      ..panoProvider = getCustomPanorama
+      ;
 
-  final panorama = new gmaps.StreetViewPanorama(query('#pano_canvas'), panoOptions);
+    final panorama = new gmaps.StreetViewPanorama(query('#pano_canvas'), panoOptions);
+  });
 }
 
 // Return a pano image given the panoID.
@@ -28,7 +32,7 @@ String getCustomPanoramaTileUrl(String pano, num tileZoom, num tileX, num tileY)
 // the passed pano IDs.
 gmaps.StreetViewPanoramaData getCustomPanorama(String pano) { // TODO bad parameters
   if (pano == 'reception') {
-    return new gmaps.StreetViewPanoramaData()
+    return jsw.retain(new gmaps.StreetViewPanoramaData()
       ..location = (new gmaps.StreetViewLocation()
         ..pano = 'reception'
         ..description = 'Google Sydney - Reception'
@@ -43,8 +47,8 @@ gmaps.StreetViewPanoramaData getCustomPanorama(String pano) { // TODO bad parame
         // The heading in degrees at the origin of the panorama
         // tile set.
         ..centerHeading = 105
-        ..$["getTileUrl"] = (List args) => getCustomPanoramaTileUrl(args[0], args[1], args[2], args[3])
+        ..$["getTileUrl"] = new jsw.Callback.many(getCustomPanoramaTileUrl)
       )
-      ;
+    );
   }
 }

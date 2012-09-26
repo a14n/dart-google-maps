@@ -1,15 +1,13 @@
 #library('gmaps-places');
 
 #import('dart:html', prefix:'html');
-#import('jsni.dart', prefix:'js');
+#import('package:js/js.dart', prefix:'js');
+#import('jswrap.dart', prefix:'jsw');
 #import('gmaps.dart');
-#source('utils.dart');
 
 class Autocomplete extends MVCObject {
-  static const _TYPE_NAME = "google.maps.places.Autocomplete";
-
-  Autocomplete(html.InputElement inputField, [AutocompleteOptions opts]) : super.newInstance(_TYPE_NAME, [inputField, opts]);
-  Autocomplete.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  Autocomplete(html.InputElement inputField, [AutocompleteOptions opts]) : super.newInstance(maps.places.Autocomplete, [inputField, opts]);
+  Autocomplete.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   LatLngBounds getBounds() => $.call("getBounds", [], LatLngBounds.INSTANCIATOR);
   PlaceResult getPlace() => $.call("getPlace", [], PlaceResult.INSTANCIATOR);
@@ -18,27 +16,27 @@ class Autocomplete extends MVCObject {
   void setTypes(List<String> types) { $.call("setTypes", [types]); }
 }
 
-class AutocompleteOptions extends js.JsObject {
+class AutocompleteOptions extends jsw.IsJsProxy {
   set bounds(LatLngBounds bounds) => $["bounds"] = bounds;
   set componentRestrictions(ComponentRestrictions componentRestrictions) => $["componentRestrictions"] = componentRestrictions;
   set types(List<String> types) => $["types"] = types;
 }
 
-class ComponentRestrictions extends js.JsObject {
+class ComponentRestrictions extends jsw.IsJsProxy {
   String get country => $["country"];
          set country(String country) => $["country"] = country;
 }
 
-class PlaceDetailsRequest extends js.JsObject {
+class PlaceDetailsRequest extends jsw.IsJsProxy {
   String get reference => $["reference"];
          set reference(String reference) => $["reference"] = reference;
 }
 
-class PlaceGeometry extends js.JsObject {
-  static final INSTANCIATOR = (js.JsRef jsRef) => new PlaceGeometry.fromJsRef(jsRef);
+class PlaceGeometry extends jsw.IsJsProxy {
+  static final INSTANCIATOR = (js.Proxy jsProxy) => new PlaceGeometry.fromJsProxy(jsProxy);
 
   PlaceGeometry() : super();
-  PlaceGeometry.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  PlaceGeometry.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   LatLng get location => $.getProperty("location", LatLng.INSTANCIATOR);
          set location(LatLng location) => $["location"] = location;
@@ -46,30 +44,30 @@ class PlaceGeometry extends js.JsObject {
                set viewport(LatLngBounds viewport) => $["viewport"] = viewport;
 }
 
-class PlaceResult extends js.JsObject {
-  static final INSTANCIATOR = (js.JsRef jsRef) => new PlaceResult.fromJsRef(jsRef);
+class PlaceResult extends jsw.IsJsProxy {
+  static final INSTANCIATOR = (js.Proxy jsProxy) => new PlaceResult.fromJsProxy(jsProxy);
 
   PlaceResult() : super();
-  PlaceResult.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  PlaceResult.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  List<GeocoderAddressComponent> get address_components => $.getProperty("address_components", (js.JsRef jsRef) => new js.JsList<GeocoderAddressComponent>.fromJsRef(jsRef, GeocoderAddressComponent.INSTANCIATOR));
+  List<GeocoderAddressComponent> get address_components => $.getProperty("address_components", (js.Proxy jsProxy) => new jsw.JsList<GeocoderAddressComponent>.fromJsProxy(jsProxy, GeocoderAddressComponent.INSTANCIATOR));
   String get formatted_address => $["formatted_address"];
   String get formatted_phone_number => $["formatted_phone_number"];
   PlaceGeometry get geometry => $.getProperty("geometry", PlaceGeometry.INSTANCIATOR);
-  List<String> get html_attributions => $.getProperty("html_attributions", (js.JsRef jsRef) => new js.JsList<String>.fromJsRef(jsRef, (e) => js.$$(e).value));
+  List<String> get html_attributions => $.getProperty("html_attributions", (js.Proxy jsProxy) => new jsw.JsList<String>.fromJsProxy(jsProxy, null));
   String get icon => $["icon"];
   String get id => $["id"];
   String get international_phone_number => $["international_phone_number"];
   String get name => $["name"];
   num get rating => $["rating"];
   String get reference => $["reference"];
-  List<String> get types => $.getProperty("types", (js.JsRef jsRef) => new js.JsList<String>.fromJsRef(jsRef, (e) => js.$$(e).value));
+  List<String> get types => $.getProperty("types", (js.Proxy jsProxy) => new jsw.JsList<String>.fromJsProxy(jsProxy, null));
   String get url => $["url"];
   String get vicinity => $["vicinity"];
   String get website => $["website"];
 }
 
-class PlaceSearchRequest extends js.JsObject {
+class PlaceSearchRequest extends jsw.IsJsProxy {
   set bounds(LatLngBounds bounds) => $["bounds"] = bounds;
   set keyword(String keyword) => $["keyword"] = keyword;
   set location(LatLng location) => $["location"] = location;
@@ -79,77 +77,64 @@ class PlaceSearchRequest extends js.JsObject {
   set types(List<String> types) => $["types"] = types;
 }
 
-class PlaceSearchPagination extends js.JsObject {
+class PlaceSearchPagination extends jsw.IsJsProxy {
   PlaceSearchPagination() : super();
-  PlaceSearchPagination.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  PlaceSearchPagination.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   void nextPage() { $.call("nextPage"); }
 
   bool get hasNextPage => $["hasNextPage"];
 }
 
-class PlacesService extends js.JsObject {
-  static const TYPE_NAME = "google.maps.places.PlacesService";
-
-  PlacesService(Object attrContainer) : super.newInstance(TYPE_NAME, [attrContainer]) {
+class PlacesService extends jsw.IsJsProxy {
+  PlacesService(Object attrContainer) : super.newInstance(maps.places.PlacesService, [attrContainer]) {
     if (!(attrContainer is html.DivElement || attrContainer is GMap)) {
       throw new IllegalArgumentException(attrContainer);
     }
   }
 
   void getDetails(PlaceDetailsRequest request, void callback(PlaceResult results, PlacesServiceStatus status)) {
-    js.CallbackFunction callbackFunction = Object _(List args) {
-      callback(new PlaceResult.fromJsRef(args[0]), PlacesServiceStatus.find(args[1]));
-    };
-    $.call("getDetails", [request, callbackFunction]);
+    $.call("getDetails", [request, new jsw.Callback.once((result, status) => callback(new PlaceResult.fromJsProxy(result), PlacesServiceStatus.find(status)))]);
   }
   void nearbySearch(PlaceSearchRequest request, void callback(List<PlaceResult> results, PlacesServiceStatus status, PlaceSearchPagination pagination)) {
-    js.CallbackFunction callbackFunction = Object _(List args) {
-      List<js.JsRef> resultsRefs = args[0];
-      callback(resultsRefs.map((e) => new PlaceResult.fromJsRef(e)), PlacesServiceStatus.find(args[1]), new PlaceSearchPagination.fromJsRef(args[2]));
-    };
-    $.call("nearbySearch", [request, callbackFunction]);
+    $.call("nearbySearch", [request, new jsw.Callback.once((results, status, pagination) => callback(new jsw.JsList<PlaceResult>.fromJsProxy(results, (e) => new PlaceResult.fromJsProxy(e)), PlacesServiceStatus.find(status), new PlaceSearchPagination.fromJsProxy(pagination)))]);
   }
   void textSearch(TextSearchRequest request, void callback(List<PlaceResult> results, PlacesServiceStatus status)) {
-    js.CallbackFunction callbackFunction = Object _(List args) {
-      List<js.JsRef> resultsRefs = args[0];
-      callback(resultsRefs.map((e) => new PlaceResult.fromJsRef(e)), PlacesServiceStatus.find(args[1]));
-    };
-    $.call("textSearch", [request, callbackFunction]);
+    $.call("textSearch", [request, new jsw.Callback.once((results, status) => callback(new jsw.JsList<PlaceResult>.fromJsProxy(results, (e) => new PlaceResult.fromJsProxy(e)), PlacesServiceStatus.find(status)))]);
   }
 }
 
-class PlacesServiceStatus extends js.JsObject {
-  static const TYPE_NAME = "google.maps.places.PlacesServiceStatus";
-
-  static final INVALID_REQUEST= new PlacesServiceStatus._("${TYPE_NAME}.INVALID_REQUEST");
-  static final OK= new PlacesServiceStatus._("${TYPE_NAME}.OK");
-  static final OVER_QUERY_LIMIT= new PlacesServiceStatus._("${TYPE_NAME}.OVER_QUERY_LIMIT");
-  static final REQUEST_DENIED= new PlacesServiceStatus._("${TYPE_NAME}.REQUEST_DENIED");
-  static final UNKNOWN_ERROR= new PlacesServiceStatus._("${TYPE_NAME}.UNKNOWN_ERROR");
-  static final ZERO_RESULTS= new PlacesServiceStatus._("${TYPE_NAME}.ZERO_RESULTS");
+class PlacesServiceStatus extends jsw.IsEnum<String> {
+  static final INVALID_REQUEST= new PlacesServiceStatus._(maps.places.PlacesServiceStatus.INVALID_REQUEST);
+  static final OK= new PlacesServiceStatus._(maps.places.PlacesServiceStatus.OK);
+  static final OVER_QUERY_LIMIT= new PlacesServiceStatus._(maps.places.PlacesServiceStatus.OVER_QUERY_LIMIT);
+  static final REQUEST_DENIED= new PlacesServiceStatus._(maps.places.PlacesServiceStatus.REQUEST_DENIED);
+  static final UNKNOWN_ERROR= new PlacesServiceStatus._(maps.places.PlacesServiceStatus.UNKNOWN_ERROR);
+  static final ZERO_RESULTS= new PlacesServiceStatus._(maps.places.PlacesServiceStatus.ZERO_RESULTS);
 
   static final _INSTANCES = [INVALID_REQUEST, OK, OVER_QUERY_LIMIT, REQUEST_DENIED, UNKNOWN_ERROR, ZERO_RESULTS];
 
-  static PlacesServiceStatus find(Object o) { return findIn(o, _INSTANCES); }
+  static PlacesServiceStatus find(Object o) => findIn(_INSTANCES, o);
 
-  PlacesServiceStatus._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
+  PlacesServiceStatus._(String value) : super(value);
+
+  bool operator ==(Object other) => value == (other is PlacesServiceStatus ? (other as PlacesServiceStatus).value : other);
 }
 
-class RankBy extends js.JsObject {
-  static const TYPE_NAME = "google.maps.places.RankBy";
-
-  static final DISTANCE= new RankBy._("${TYPE_NAME}.DISTANCE");
-  static final PROMINENCE= new RankBy._("${TYPE_NAME}.PROMINENCE");
+class RankBy extends jsw.IsEnum<String> {
+  static final DISTANCE= new RankBy._(maps.places.RankBy.DISTANCE);
+  static final PROMINENCE= new RankBy._(maps.places.RankBy.PROMINENCE);
 
   static final _INSTANCES = [DISTANCE, PROMINENCE];
 
-  static RankBy find(Object o) { return findIn(o, _INSTANCES); }
+  static RankBy find(Object o) => findIn(_INSTANCES, o);
 
-  RankBy._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
+  RankBy._(String value) : super(value);
+
+  bool operator ==(Object other) => value == (other is RankBy ? (other as RankBy).value : other);
 }
 
-class TextSearchRequest extends js.JsObject {
+class TextSearchRequest extends jsw.IsJsProxy {
   set bounds(LatLngBounds bounds) => $["bounds"] = bounds;
   set location(LatLng location) => $["location"] = location;
   set query(String query) => $["query"] = query;

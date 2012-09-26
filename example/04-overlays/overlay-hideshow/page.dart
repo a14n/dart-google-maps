@@ -1,29 +1,33 @@
 #import('dart:html');
+#import('package:js/js.dart', prefix:'js');
+#import('package:dart_google_maps/jswrap.dart', prefix:'jsw');
 #import('package:dart_google_maps/gmaps.dart', prefix:'gmaps');
 
 const IMAGE_URL = "https://google-developers.appspot.com/maps/documentation/javascript/examples";
 
-var overlay;
+USGSOverlay overlay;
 
 void main() {
-  final myLatLng = new gmaps.LatLng(62.323907, -150.109291);
-  final mapOptions = new gmaps.MapOptions()
-    ..zoom = 11
-    ..center = myLatLng
-    ..mapTypeId = gmaps.MapTypeId.SATELLITE
-    ;
-  final map = new gmaps.GMap(query("#map_canvas"), mapOptions);
+  js.scoped(() {
+    final myLatLng = new gmaps.LatLng(62.323907, -150.109291);
+    final mapOptions = new gmaps.MapOptions()
+      ..zoom = 11
+      ..center = myLatLng
+      ..mapTypeId = gmaps.MapTypeId.SATELLITE
+      ;
+    final map = new gmaps.GMap(query("#map_canvas"), mapOptions);
 
-  final swBound = new gmaps.LatLng(62.281819, -150.287132);
-  final neBound = new gmaps.LatLng(62.400471, -150.005608);
-  final bounds = new gmaps.LatLngBounds(swBound, neBound);
+    final swBound = new gmaps.LatLng(62.281819, -150.287132);
+    final neBound = new gmaps.LatLng(62.400471, -150.005608);
+    final bounds = new gmaps.LatLngBounds(swBound, neBound);
 
-  // Photograph courtesy of the U.S. Geological Survey
-  final srcImage = '${IMAGE_URL}/images/talkeetna.png';
-  overlay = new USGSOverlay(bounds, srcImage, map);
+    // Photograph courtesy of the U.S. Geological Survey
+    final srcImage = '${IMAGE_URL}/images/talkeetna.png';
+    overlay = jsw.retain(new USGSOverlay(bounds, srcImage, map));
 
-  query("#toggle").on.click.add((e) => overlay.toggle());
-  query("#toggleDOM").on.click.add((e) => overlay.toggleDOM());
+    query("#toggle").on.click.add((e) => overlay.toggle());
+    query("#toggleDOM").on.click.add((e) => overlay.toggleDOM());
+  });
 }
 
 class USGSOverlay extends gmaps.OverlayView {
@@ -34,14 +38,14 @@ class USGSOverlay extends gmaps.OverlayView {
   DivElement _div;
 
   USGSOverlay(gmaps.LatLngBounds bounds, String image, gmaps.GMap map) : super() {
-    $["onAdd"] = (List args) => _onAdd();
-    $["draw"] = (List args) => _draw();
-    $["onRemove"] = (List args) => _onRemove();
+    $["onAdd"] = new jsw.Callback.many(_onAdd);
+    $["draw"] = new jsw.Callback.many(_draw);
+    $["onRemove"] = new jsw.Callback.many(_onRemove);
 
     // Now initialize all properties.
-    _bounds = bounds;
+    _bounds = jsw.retain(bounds);
     _image = image;
-    _map = map;
+    _map = jsw.retain(map);
 
     // We define a property to hold the image's
     // div. We'll actually create this div
@@ -136,10 +140,12 @@ class USGSOverlay extends gmaps.OverlayView {
   }
 
   void toggleDOM() {
-    if (getMap() !== null) {
-      setMap(null);
-    } else {
-      setMap(_map);
-    }
+    js.scoped(() {
+      if (getMap() !== null) {
+        setMap(null);
+      } else {
+        setMap(_map);
+      }
+    });
   }
 }

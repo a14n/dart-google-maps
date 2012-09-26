@@ -1,9 +1,11 @@
 #import('dart:html');
 #import('dart:math');
+#import('package:js/js.dart', prefix:'js');
+#import('package:dart_google_maps/jswrap.dart', prefix:'jsw');
 #import('package:dart_google_maps/gmaps.dart', prefix:'gmaps');
 
 gmaps.GMap map;
-final chicago = new gmaps.LatLng(41.850033, -87.6500523);
+final gmaps.LatLng chicago = jsw.retain(new gmaps.LatLng(41.850033, -87.6500523));
 
 /**
  * The HomeControl adds a control to the map that
@@ -13,7 +15,7 @@ class HomeControl {
   gmaps.LatLng _home;
 
   HomeControl(Element controlDiv, gmaps.GMap map, gmaps.LatLng home) {
-    this._home = home;
+    this._home = jsw.retain(home);
 
     // Set CSS styles for the DIV containing the control
     // Setting padding to 5 px will offset the control
@@ -68,33 +70,38 @@ class HomeControl {
 
     // Setup the click event listener for Home:
     // simply set the map to the control's current home property.
+    jsw.retainAll([map]);
     gmaps.Events.addDomListener(goHomeUI, 'click', (e) {
       map.setCenter(_home);
     });
 
     // Setup the click event listener for Set Home:
     // Set the control's home to the current Map center.
+    jsw.retainAll([map]);
     gmaps.Events.addDomListener(setHomeUI, 'click', (e) {
-      _home = map.getCenter();
+      jsw.release(_home);
+      _home = jsw.retain(map.getCenter());
     });
   }
 }
 
 void main() {
-  final mapDiv = query("#map_canvas");
-  final mapOptions = new gmaps.MapOptions()
-    ..zoom = 12
-    ..center = chicago
-    ..mapTypeId = gmaps.MapTypeId.ROADMAP
-    ;
-  map = new gmaps.GMap(mapDiv, mapOptions);
+  js.scoped(() {
+    final mapDiv = query("#map_canvas");
+    final mapOptions = new gmaps.MapOptions()
+      ..zoom = 12
+      ..center = chicago
+      ..mapTypeId = gmaps.MapTypeId.ROADMAP
+      ;
+    map = jsw.retain(new gmaps.GMap(mapDiv, mapOptions));
 
-  // Create the DIV to hold the control and
-  // call the HomeControl() constructor passing
-  // in this DIV.
-  var homeControlDiv = new DivElement();
-  var homeControl = new HomeControl(homeControlDiv, map, chicago);
+    // Create the DIV to hold the control and
+    // call the HomeControl() constructor passing
+    // in this DIV.
+    var homeControlDiv = new DivElement();
+    var homeControl = new HomeControl(homeControlDiv, map, chicago);
 
-  homeControlDiv.attributes["index"] = 1.toString();
-  map.controls.getNodes(gmaps.ControlPosition.TOP_RIGHT).push(homeControlDiv);
+    homeControlDiv.attributes["index"] = 1.toString();
+    map.controls.getNodes(gmaps.ControlPosition.TOP_RIGHT).push(homeControlDiv);
+  });
 }

@@ -1,24 +1,24 @@
 #import('dart:html');
-#import('package:dart_google_maps/jsni.dart', prefix:'js');
+#import('package:js/js.dart', prefix:'js');
+#import('package:dart_google_maps/jswrap.dart', prefix:'jsw');
 #import('package:dart_google_maps/gmaps.dart', prefix:'gmaps');
 
 class CoordMapType extends gmaps.MapType {
   CoordMapType() : super() {
-    this.tileSize = new gmaps.Size(256,256);
+    this.tileSize = jsw.retain(new gmaps.Size(256,256));
     this.maxZoom = 19;
-    $["getTile"] = (List args) {
-      if (args[2] == document) {
-        return _getTile(new gmaps.Point.fromJsRef(args[0]), args[1], args[2]);
+    $["getTile"] = new jsw.Callback.many((js.Proxy tileCoord, num zoom, js.Proxy ownerDocument) {
+      if (ownerDocument.createElement("div") is js.Proxy) {
+        return _getTileFromOtherDocument(new gmaps.Point.fromJsProxy(tileCoord), zoom, new jsw.IsJsProxy.fromJsProxy(ownerDocument));
       } else {
-        // TODO find a workaround to retrieve ownerDocument as Document ?
-        return _getTileForOtherDocument(new gmaps.Point.fromJsRef(args[0]), args[1], new js.JsObject.fromJsRef(args[2]));
+        return _getTile(new gmaps.Point.fromJsProxy(tileCoord), zoom);
       }
-    };
+    });
     this.name = 'Tile #s';
     this.alt = 'Tile Coordinate Map Type';
   }
 
-  DivElement _getTile(gmaps.Point coord, num zoom, Document ownerDocument) {
+  DivElement _getTile(gmaps.Point coord, num zoom) {
     final div = new DivElement()
       ..innerHTML = coord.toString()
       ;
@@ -34,11 +34,11 @@ class CoordMapType extends gmaps.MapType {
     return div;
   }
 
-  js.JsObject _getTileForOtherDocument(gmaps.Point coord, num zoom, js.JsObject ownerDocument) {
-    final div = new js.JsObject.fromJsRef(ownerDocument.$.callForJsRef("createElement", ["div"]))
+  js.Proxy _getTileFromOtherDocument(gmaps.Point coord, num zoom, jsw.IsJsProxy ownerDocument) {
+    final div = new jsw.IsJsProxy.fromJsProxy(ownerDocument.$.call("createElement", ["div"]))
       ..$["innerHTML"] = coord.toString()
       ;
-    final style = new js.JsObject.fromJsRef(div.$["style"]);
+    final style = new jsw.IsJsProxy.fromJsProxy(div.$["style"]);
     style
       ..$["width"] = '${tileSize.width}px'
       ..$["height"] = '${tileSize.height}px'
@@ -53,29 +53,31 @@ class CoordMapType extends gmaps.MapType {
 }
 
 gmaps.GMap map;
-final chicago = new gmaps.LatLng(41.850033,-87.6500523);
-final coordinateMapType = new CoordMapType();
+final gmaps.LatLng chicago = jsw.retain(new gmaps.LatLng(41.850033,-87.6500523));
+final CoordMapType coordinateMapType = jsw.retain(new CoordMapType());
 
 void main() {
-  final mapOptions = new gmaps.MapOptions()
-    ..zoom = 10
-    ..center = chicago
-    ..streetViewControl = false
-    ..mapTypeId = "coordinate"
-    ..mapTypeControlOptions = (new gmaps.MapTypeControlOptions()
-      ..mapTypeIds = ['coordinate', gmaps.MapTypeId.ROADMAP]
-      ..style = gmaps.MapTypeControlStyle.DROPDOWN_MENU
-    )
-    ;
-  map = new gmaps.GMap(query("#map_canvas"), mapOptions);
+  js.scoped(() {
+    final mapOptions = new gmaps.MapOptions()
+      ..zoom = 10
+      ..center = chicago
+      ..streetViewControl = false
+      ..mapTypeId = "coordinate"
+      ..mapTypeControlOptions = (new gmaps.MapTypeControlOptions()
+        ..mapTypeIds = ['coordinate', gmaps.MapTypeId.ROADMAP]
+        ..style = gmaps.MapTypeControlStyle.DROPDOWN_MENU
+      )
+      ;
+    map = jsw.retain(new gmaps.GMap(query("#map_canvas"), mapOptions));
 
-  gmaps.Events.addListener(map, 'maptypeid_changed', (e) {
-    final showStreetViewControl = map.getMapTypeId() != 'coordinate';
-    map.setOptions(new gmaps.MapOptions()
-      ..streetViewControl = showStreetViewControl
-    );
+    gmaps.Events.addListener(map, 'maptypeid_changed', (e) {
+      final showStreetViewControl = map.getMapTypeId() != 'coordinate';
+      map.setOptions(new gmaps.MapOptions()
+        ..streetViewControl = showStreetViewControl
+      );
+    });
+
+    // Now attach the coordinate map type to the map's registry
+    map.mapTypes.set_('coordinate', coordinateMapType);
   });
-
-  // Now attach the coordinate map type to the map's registry
-  map.mapTypes.set_('coordinate', coordinateMapType);
 }

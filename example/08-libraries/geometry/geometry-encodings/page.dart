@@ -1,28 +1,32 @@
 #import('dart:html');
+#import('package:js/js.dart', prefix:'js');
+#import('package:dart_google_maps/jswrap.dart', prefix:'jsw');
 #import('package:dart_google_maps/gmaps.dart', prefix:'gmaps');
 #import('package:dart_google_maps/gmaps-geometry.dart', prefix:'gmaps_geo');
 
 gmaps.Polyline poly;
 
 void main() {
-  final mapOptions = new gmaps.MapOptions()
-    ..zoom = 14
-    ..center = new gmaps.LatLng(34.3664951, -89.5192484)
-    ..mapTypeId = gmaps.MapTypeId.ROADMAP
-    ;
+  js.scoped(() {
+    final mapOptions = new gmaps.MapOptions()
+      ..zoom = 14
+      ..center = new gmaps.LatLng(34.3664951, -89.5192484)
+      ..mapTypeId = gmaps.MapTypeId.ROADMAP
+      ;
 
-  final map = new gmaps.GMap(query("#map_canvas"), mapOptions);
+    final map = new gmaps.GMap(query("#map_canvas"), mapOptions);
 
-  final polyOptions = new gmaps.PolylineOptions()
-    ..strokeColor = '#000000'
-    ..strokeOpacity = 1.0
-    ..strokeWeight = 3
-    ..map = map
-    ;
-  poly = new gmaps.Polyline(polyOptions);
+    final polyOptions = new gmaps.PolylineOptions()
+      ..strokeColor = '#000000'
+      ..strokeOpacity = 1.0
+      ..strokeWeight = 3
+      ..map = map
+      ;
+    poly = jsw.retain(new gmaps.Polyline(polyOptions));
 
-  // Add a listener for the click event
-  gmaps.Events.addListener(map, 'click', addLatLng);
+    // Add a listener for the click event
+    gmaps.Events.addListener(map, 'click', addLatLng);
+  });
 }
 
 /**

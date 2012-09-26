@@ -1,15 +1,12 @@
 #library('gmaps-drawing');
 
-#import('dart:html', prefix:'html');
-#import('jsni.dart', prefix:'js');
+#import('package:js/js.dart', prefix:'js');
+#import('jswrap.dart', prefix:'jsw');
 #import('gmaps.dart');
-#source('utils.dart');
 
 class DrawingManager extends MVCObject {
-  static const _TYPE_NAME = "google.maps.drawing.DrawingManager";
-
-  DrawingManager([DrawingManagerOptions opts]) : super.newInstance(_TYPE_NAME, [opts]);
-  DrawingManager.fromJsRef(js.JsRef jsRef) : super.fromJsRef(jsRef);
+  DrawingManager([DrawingManagerOptions opts]) : super.newInstance(maps.drawing.DrawingManager, [opts]);
+  DrawingManager.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   OverlayType getDrawingMode() => $.call("getDrawingMode", [], OverlayType.INSTANCIATOR);
   GMap getMap() => $.call("getMap", [], GMap.INSTANCIATOR);
@@ -18,7 +15,7 @@ class DrawingManager extends MVCObject {
   void setOptions(DrawingManagerOptions options) { $.call("setOptions", [options]); }
 }
 
-class DrawingManagerOptions extends js.JsObject {
+class DrawingManagerOptions extends jsw.IsJsProxy {
   set circleOptions(CircleOptions circleOptions) => $["circleOptions"] = circleOptions;
   set drawingControl(bool drawingControl) => $["drawingControl"] = drawingControl;
   set drawingControlOptions(DrawingControlOptions drawingControlOptions) => $["drawingControlOptions"] = drawingControlOptions;
@@ -30,7 +27,7 @@ class DrawingManagerOptions extends js.JsObject {
   set rectangleOptions(RectangleOptions rectangleOptions) => $["rectangleOptions"] = rectangleOptions;
 }
 
-class DrawingControlOptions extends js.JsObject {
+class DrawingControlOptions extends jsw.IsJsProxy {
   set drawingModes(List<OverlayType> drawingModes) => $["drawingModes"] = drawingModes;
   set position(ControlPosition position) => $["position"] = position;
 }
@@ -39,18 +36,20 @@ class OverlayCompleteEvent extends NativeEvent {
   OverlayCompleteEvent();
   OverlayCompleteEvent.wrap(NativeEvent e) { jsRef = e.jsRef; }
 
-  js.JsObject get overlay {
-    final jsRef = $.getPropertyAsJsRef("overlay");
-    if (js.isInstanceOf(jsRef, Marker.TYPE_NAME)) {
-      return new Marker.fromJsRef(jsRef);
-    } else if (js.isInstanceOf(jsRef, Polygon.TYPE_NAME)) {
-      return new Polygon.fromJsRef(jsRef);
-    } else if (js.isInstanceOf(jsRef, Polyline.TYPE_NAME)) {
-      return new Polyline.fromJsRef(jsRef);
-    } else if (js.isInstanceOf(jsRef, Rectangle.TYPE_NAME)) {
-      return new Rectangle.fromJsRef(jsRef);
-    } else if (js.isInstanceOf(jsRef, Circle.TYPE_NAME)) {
-      return new Circle.fromJsRef(jsRef);
+  jsw.IsJsProxy get overlay {
+    final jsProxy = $["overlay"];
+    if (jsProxy == null) {
+      return jsProxy;
+    } else if (Marker.isInstance(jsProxy)) {
+      return new Marker.fromJsProxy(jsProxy);
+    } else if (Polygon.isInstance(jsProxy)) {
+      return new Polygon.fromJsProxy(jsProxy);
+    } else if (Polyline.isInstance(jsProxy)) {
+      return new Polyline.fromJsProxy(jsProxy);
+    } else if (Rectangle.isInstance(jsProxy)) {
+      return new Rectangle.fromJsProxy(jsProxy);
+    } else if (Circle.isInstance(jsProxy)) {
+      return new Circle.fromJsProxy(jsProxy);
     } else {
       throw new Exception("Unsupported result");
     }
@@ -58,19 +57,18 @@ class OverlayCompleteEvent extends NativeEvent {
   OverlayType get type => $.getProperty("type", OverlayType.INSTANCIATOR);
 }
 
-class OverlayType extends js.JsObject {
-  static const TYPE_NAME = "google.maps.drawing.OverlayType";
-  static final INSTANCIATOR = (js.JsRef jsRef) => find(jsRef);
-
-  static final CIRCLE= new OverlayType._("${TYPE_NAME}.CIRCLE");
-  static final MARKER= new OverlayType._("${TYPE_NAME}.MARKER");
-  static final POLYGON= new OverlayType._("${TYPE_NAME}.POLYGON");
-  static final POLYLINE= new OverlayType._("${TYPE_NAME}.POLYLINE");
-  static final RECTANGLE= new OverlayType._("${TYPE_NAME}.RECTANGLE");
+class OverlayType extends jsw.IsEnum<String> {
+  static final CIRCLE= new OverlayType._(maps.drawing.OverlayType.CIRCLE);
+  static final MARKER= new OverlayType._(maps.drawing.OverlayType.MARKER);
+  static final POLYGON= new OverlayType._(maps.drawing.OverlayType.POLYGON);
+  static final POLYLINE= new OverlayType._(maps.drawing.OverlayType.POLYLINE);
+  static final RECTANGLE= new OverlayType._(maps.drawing.OverlayType.RECTANGLE);
 
   static final _INSTANCES = [CIRCLE, MARKER, POLYGON, POLYLINE, RECTANGLE];
 
-  static OverlayType find(Object o) { return findIn(o, _INSTANCES); }
+  static OverlayType find(Object o) => findIn(_INSTANCES, o);
 
-  OverlayType._(String jsName) : super.fromJsRef(js.jsWindow.$.getPropertyAsJsRef(jsName));
+  OverlayType._(String value) : super(value);
+
+  bool operator ==(Object other) => value == (other is OverlayType ? (other as OverlayType).value : other);
 }
