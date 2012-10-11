@@ -14,15 +14,7 @@ final maps = js.retain(js.context.google.maps);
 
 class GMap extends MVCObject {
   static final INSTANCIATOR = (js.Proxy jsProxy) => new GMap.fromJsProxy(jsProxy);
-  static bool isInstance(js.Proxy jsProxy) {
-    // TODO replace with js instanceOf
-    try {
-      jsProxy.getDiv; // valid if GMap
-      return true;
-    } on NoSuchMethodError catch (e) {
-      return false;
-    }
-  }
+  static bool isInstance(js.Proxy jsProxy) => js.isInstanceOf(jsProxy, maps.Map);
 
   GMap(html.Node mapDiv, [MapOptions opts]) : super.newInstance(maps.Map, [mapDiv, opts]);
   GMap.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
@@ -239,16 +231,7 @@ class ControlPosition extends jsw.IsEnum<int> {
 
 class Marker extends MVCObject {
   static final num MAX_ZINDEX = maps.Marker.MAX_ZINDEX;
-  static bool isInstance(js.Proxy jsProxy) {
-    // TODO replace with js instanceOf
-    try {
-      jsProxy.getIcon;
-      jsProxy.getPosition;
-      return true;
-    } on NoSuchMethodError catch (e) {
-      return false;
-    }
-  }
+  static bool isInstance(js.Proxy jsProxy) => js.isInstanceOf(jsProxy, maps.Marker);
 
   Marker([MarkerOptions opts]) : super.newInstance(maps.Marker, [opts]);
   Marker.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
@@ -274,10 +257,12 @@ class Marker extends MVCObject {
     final result = $.call("getMap");
     if (result == null) {
       return result;
-    } else if (GMap.isInstance(result)){
+    } else if (GMap.isInstance(result)) {
       return new GMap.fromJsProxy(result);
-    } else {
+    } else if (StreetViewPanorama.isInstance(result)) {
       return new StreetViewPanorama.fromJsProxy(result);
+    } else {
+      throw new Exception("Unsupported result");
     }
   }
   LatLng getPosition() => $.call("getPosition", [], LatLng.INSTANCIATOR);
@@ -528,15 +513,7 @@ class InfoWindowOptions extends jsw.IsJsProxy {
 }
 
 class Polyline extends MVCObject {
-  static bool isInstance(js.Proxy jsProxy) {
-    // TODO replace with js instanceOf
-    try {
-      jsProxy.getPath;
-      return true;
-    } on NoSuchMethodError catch (e) {
-      return false;
-    }
-  }
+  static bool isInstance(js.Proxy jsProxy) => js.isInstanceOf(jsProxy, maps.Polyline);
 
   Polyline([PolylineOptions opts]) : super.newInstance(maps.Polyline, [opts]);
   Polyline.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
@@ -588,15 +565,7 @@ class IconSequence extends jsw.IsJsProxy {
 }
 
 class Polygon extends MVCObject {
-  static bool isInstance(js.Proxy jsProxy) {
-    // TODO replace with js instanceOf
-    try {
-      jsProxy.getPaths;
-      return true;
-    } on NoSuchMethodError catch (e) {
-      return false;
-    }
-  }
+  static bool isInstance(js.Proxy jsProxy) => js.isInstanceOf(jsProxy, maps.Polygon);
 
   Polygon([PolygonOptions opts]) : super.newInstance(maps.Polygon, [opts]);
   Polygon.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
@@ -656,15 +625,7 @@ class PolyMouseEvent extends MouseEvent {
 }
 
 class Rectangle extends MVCObject {
-  static bool isInstance(js.Proxy jsProxy) {
-    // TODO replace with js instanceOf
-    try {
-      jsProxy.getBounds;
-      return true;
-    } on NoSuchMethodError catch (e) {
-      return false;
-    }
-  }
+  static bool isInstance(js.Proxy jsProxy) => js.isInstanceOf(jsProxy, maps.Rectangle);
 
   Rectangle([RectangleOptions opts]) : super.newInstance(maps.Rectangle, [opts]);
   Rectangle.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
@@ -695,16 +656,7 @@ class RectangleOptions extends jsw.IsJsProxy {
 }
 
 class Circle extends MVCObject {
-  static bool isInstance(js.Proxy jsProxy) {
-    // TODO replace with js instanceOf
-    try {
-      jsProxy.getCenter;
-      jsProxy.getRadius;
-      return true;
-    } on NoSuchMethodError catch (e) {
-      return false;
-    }
-  }
+  static bool isInstance(js.Proxy jsProxy) => js.isInstanceOf(jsProxy, maps.Circle);
 
   Circle([CircleOptions opts]) : super.newInstance(maps.Circle, [opts]);
   Circle.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
@@ -1681,6 +1633,7 @@ class TransitLayer extends MVCObject {
 
 class StreetViewPanorama extends MVCObject {
   static final INSTANCIATOR = (js.Proxy jsProxy) => new StreetViewPanorama.fromJsProxy(jsProxy);
+  static bool isInstance(js.Proxy jsProxy) => js.isInstanceOf(jsProxy, maps.StreetViewPanorama);
 
   StreetViewPanorama(html.Node container, [StreetViewPanoramaOptions opts]) : super.newInstance(maps.StreetViewPanorama, [container, opts]);
   StreetViewPanorama.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
