@@ -6,7 +6,7 @@
 gmaps.GMap map;
 
 void main() {
-  js.scoped((){
+  js.scoped(() {
     final mapOptions = new gmaps.MapOptions()
       ..zoom = 6
       ..mapTypeId = gmaps.MapTypeId.ROADMAP
@@ -16,16 +16,18 @@ void main() {
     // Try HTML5 geolocation
     if (window.navigator.geolocation !== null) {
       window.navigator.geolocation.getCurrentPosition((position) {
-        final pos = new gmaps.LatLng(position.coords.latitude,
-            position.coords.longitude);
+        js.scoped(() {
+          final pos = new gmaps.LatLng(position.coords.latitude,
+              position.coords.longitude);
 
-        final infowindow = new gmaps.InfoWindow(new gmaps.InfoWindowOptions()
-          ..position = pos
-          ..content = 'Location found using HTML5.'
-        );
-        infowindow.open(map);
+          final infowindow = new gmaps.InfoWindow(new gmaps.InfoWindowOptions()
+            ..position = pos
+            ..content = 'Location found using HTML5.'
+          );
+          infowindow.open(map);
 
-        map.setCenter(pos);
+          map.setCenter(pos);
+        });
       }, (error) {
         handleNoGeolocation(true);
       });
