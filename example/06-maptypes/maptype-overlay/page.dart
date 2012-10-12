@@ -19,7 +19,6 @@ class CoordMapType extends gmaps.MapType {
     final div = new DivElement()
       ..innerHTML = coord.toString()
       ;
-    print('---------${tileSize.width}');
     div.style
       ..width = '${tileSize.width}px'
       ..height = '${tileSize.height}px'

@@ -22,7 +22,7 @@ class JsOperations {
 
   Object operator [](String propertyName) => getProperty(propertyName);
   // TODO add operator []=(key, value) => .. to Proxy
-  void operator []=(String propertyName, Object value) { print('${propertyName}:${value}:${_serialize(value)}'); _proxy.noSuchMethod('set:${propertyName}', [_serialize(value)]); }
+  void operator []=(String propertyName, Object value) { _proxy.noSuchMethod('set:${propertyName}', [_serialize(value)]); }
 
   Object call(String functionName, [List args, Instanciator onNotNull]) => _transformIfNotNull(_proxy.noSuchMethod(functionName, args != null ? args.map(_serialize) : []), onNotNull);
   Object getProperty(String name, [Instanciator onNotNull]) => _transformIfNotNull(_proxy[name], onNotNull);
