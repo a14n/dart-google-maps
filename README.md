@@ -2,7 +2,7 @@ Dart Google Maps
 ================
 
 This project is a library to use [Google Maps JavaScript API v3](https://developers.google.com/maps/documentation/javascript/) from `dart` scripts.
-It is using [JS Interop library](https://github.com/dart-lang/js-interop) and its scoped approch to prevent memory leaks. Basically, all operation have to be done inside a *scope*. You can have a look at [Js Interop documentation](http://dart-lang.github.com/js-interop/docs/js.html) for more informations.
+It uses [JS Interop library](https://github.com/dart-lang/js-interop) and its scoped approch to prevent memory leaks. Basically, all operation have to be done inside a *scope*. You can have a look at [Js Interop documentation](http://dart-lang.github.com/js-interop/docs/js.html) for more informations.
 
 ## Usage ##
 To use this library in your code :
