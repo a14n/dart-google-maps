@@ -2,9 +2,9 @@
 
 #import('package:js/js.dart', prefix:'js');
 
-typedef Object Instanciator(js.Proxy proxy);
+typedef Object Transformater(Object proxy);
 
-Object _transformIfNotNull(Object o, Instanciator onNotNull) {
+Object _transformIfNotNull(Object o, Transformater onNotNull) {
   if (onNotNull != null && o != null) {
     return onNotNull(o);
   } else {
@@ -24,8 +24,8 @@ class JsOperations {
   // TODO add operator []=(key, value) => .. to Proxy
   void operator []=(String propertyName, Object value) { _proxy.noSuchMethod('set:${propertyName}', [_serialize(value)]); }
 
-  Object call(String functionName, [List args, Instanciator onNotNull]) => _transformIfNotNull(_proxy.noSuchMethod(functionName, args != null ? args.map(_serialize) : []), onNotNull);
-  Object getProperty(String name, [Instanciator onNotNull]) => _transformIfNotNull(_proxy[name], onNotNull);
+  Object call(String functionName, [List args, Transformater onNotNull]) => _transformIfNotNull(_proxy.noSuchMethod(functionName, args != null ? args.map(_serialize) : []), onNotNull);
+  Object getProperty(String name, [Transformater onNotNull]) => _transformIfNotNull(_proxy[name], onNotNull);
 }
 
 /// Base class of object that wraps jsProxy
@@ -57,10 +57,10 @@ void release(IsJsProxy isJsProxy) {
 
 class JsIterator<E> implements Iterator<E> {
   JsList<E> jsList;
-  Instanciator instanciator;
+  Transformater instanciator;
   int current = 0;
 
-  JsIterator._(JsList<E> this.jsList, Instanciator this.instanciator);
+  JsIterator._(JsList<E> this.jsList, Transformater this.instanciator);
 
   // Iterator
   E next() => jsList.$.getProperty((current++).toString(), instanciator);
@@ -68,9 +68,9 @@ class JsIterator<E> implements Iterator<E> {
 }
 
 class JsList<E> extends IsJsProxy implements List<E> {
-  Instanciator instanciator;
+  Transformater instanciator;
 
-  JsList.fromJsProxy(js.Proxy proxy, Instanciator this.instanciator) : super.fromJsProxy(proxy);
+  JsList.fromJsProxy(js.Proxy proxy, Transformater this.instanciator) : super.fromJsProxy(proxy);
 
   // Object
   String toString() => _asList().toString();

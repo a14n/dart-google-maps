@@ -1917,17 +1917,14 @@ class MVCObject extends jsw.IsJsProxy {
   void unbindAll() { $.call("unbindAll"); }
 }
 
-// TODO replace with js.Instanciator
-typedef Object JsProxyWrapper(js.Proxy jsProxy);
-
 class MVCArray<E> extends MVCObject {
-  JsProxyWrapper _jsProxyWrapper;
+  jsw.Transformater _tranform;
 
-  MVCArray([List<E> array, JsProxyWrapper jsProxyWrapper]) : super.newInstance(maps.MVCArray, [array]) {
-    _jsProxyWrapper = jsProxyWrapper;
+  MVCArray([List<E> array, jsw.Transformater transform]) : super.newInstance(maps.MVCArray, [array]) {
+    _tranform = transform;
   }
-  MVCArray.fromJsProxy(js.Proxy jsProxy, [JsProxyWrapper jsProxyWrapper]) : super.fromJsProxy(jsProxy) {
-    _jsProxyWrapper = jsProxyWrapper;
+  MVCArray.fromJsProxy(js.Proxy jsProxy, [jsw.Transformater transform]) : super.fromJsProxy(jsProxy) {
+    _tranform = transform;
   }
 
   void clear() { $.call("clear"); }
@@ -1944,8 +1941,8 @@ class MVCArray<E> extends MVCObject {
   void setAt(num i, E elem) { $.call("setAt", [i, elem]); }
 
   E _mayWrap(Object o) {
-    if (_jsProxyWrapper !== null && o != null && o is js.Proxy) {
-      return _jsProxyWrapper(o);
+    if (_tranform !== null && o != null && o is js.Proxy) {
+      return _tranform(o);
     }
     return o;
   }
