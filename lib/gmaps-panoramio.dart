@@ -8,39 +8,40 @@ class PanoramioLayer extends MVCObject {
   PanoramioLayer([PanoramioLayerOptions opts]) : super.newInstance(maps.panoramio.PanoramioLayer, [opts]);
   PanoramioLayer.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  GMap getMap() => $.call("getMap", [], GMap.INSTANCIATOR);
-  String getTag() => $.call("getTag");
-  String getUserId() => $.call("getUserId");
-  void setMap(GMap map) { $.call("setMap", [map]); }
-  void setOptions(PanoramioLayerOptions options) { $.call("setOptions", [options]); }
-  void setTag(String tag) { $.call("setTag", [tag]); }
-  void setUserId(String userId) { $.call("setUserId", [userId]); }
+  GMap getMap() => $.getMap().map(GMap.INSTANCIATOR).value;
+  String getTag() => $.getTag().value;
+  String getUserId() => $.getUserId().value;
+  void setMap(GMap map) { $.setMap(map); }
+  void setOptions(PanoramioLayerOptions options) { $.setOptions(options); }
+  void setTag(String tag) { $.setTag(tag); }
+  void setUserId(String userId) { $.setUserId(userId); }
 }
 
 class PanoramioLayerOptions extends jsw.IsJsProxy {
-  set clickable(bool clickable) => $["clickable"] = clickable;
-  set map(GMap map) => $["map"] = map;
-  set suppressInfoWindows(bool suppressInfoWindows) => $["suppressInfoWindows"] = suppressInfoWindows;
-  set tag(String tag) => $["tag"] = tag;
-  set userId(String userId) => $["userId"] = userId;
+  set clickable(bool clickable) => $.clickable = clickable;
+  set map(GMap map) => $.map = map;
+  set suppressInfoWindows(bool suppressInfoWindows) => $.suppressInfoWindows = suppressInfoWindows;
+  set tag(String tag) => $.tag = tag;
+  set userId(String userId) => $.userId = userId;
 }
 
 class PanoramioFeature extends jsw.IsJsProxy {
+  static final INSTANCIATOR = (js.Proxy jsProxy) => new PanoramioFeature.fromJsProxy(jsProxy);
   PanoramioFeature.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  String get author => $["author"];
-  String get photoId => $["photoId"];
-  String get title => $["title"];
-  String get url => $["url"];
-  String get userId => $["userId"];
+  String get author => $.author.value;
+  String get photoId => $.photoId.value;
+  String get title => $.title.value;
+  String get url => $.url.value;
+  String get userId => $.userId.value;
 }
 
 class PanoramioMouseEvent extends NativeEvent {
   PanoramioMouseEvent();
   PanoramioMouseEvent.wrap(NativeEvent e) : super.fromIsJsProxy(e);
 
-  PanoramioFeature get featureDetails => new PanoramioFeature.fromJsProxy($["featureDetails"]);
-  String get infoWindowHtml => $["infoWindowHtml"];
-  LatLng get latLng => $.getProperty("latLng", LatLng.INSTANCIATOR);
-  Size get pixelOffset => $.getProperty("pixelOffset", Size.INSTANCIATOR);
+  PanoramioFeature get featureDetails => $.featureDetails.map(PanoramioFeature.INSTANCIATOR).value;
+  String get infoWindowHtml => $.infoWindowHtml.value;
+  LatLng get latLng => $.latLng.map(LatLng.INSTANCIATOR).value;
+  Size get pixelOffset => $.pixelOffset.map(Size.INSTANCIATOR).value;
 }

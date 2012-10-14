@@ -1,6 +1,7 @@
 #library("jswrap");
 
 #import('package:js/js.dart', prefix:'js');
+#import("optional.dart");
 
 typedef Object Transformater(Object proxy);
 
@@ -20,12 +21,11 @@ class JsOperations {
 
   JsOperations._(js.Proxy this._proxy);
 
-  Object operator [](String propertyName) => getProperty(propertyName);
-  // TODO add operator []=(key, value) => .. to Proxy
-  void operator []=(String propertyName, Object value) { _proxy.noSuchMethod('set:${propertyName}', [_serialize(value)]); }
-
-  Object call(String functionName, [List args, Transformater onNotNull]) => _transformIfNotNull(_proxy.noSuchMethod(functionName, args != null ? args.map(_serialize) : []), onNotNull);
-  Object getProperty(String name, [Transformater onNotNull]) => _transformIfNotNull(_proxy[name], onNotNull);
+  noSuchMethod(method, args) {
+    final jsResult = _proxy.noSuchMethod(method, args.map(_serialize));
+    // print("${method}(${args}) => ${jsResult}");
+    return asOption(jsResult);
+  }
 }
 
 /// Base class of object that wraps jsProxy
@@ -63,8 +63,8 @@ class JsIterator<E> implements Iterator<E> {
   JsIterator._(JsList<E> this.jsList, Transformater this.instanciator);
 
   // Iterator
-  E next() => jsList.$.getProperty((current++).toString(), instanciator);
-  bool hasNext() => current < jsList.$["length"];
+  E next() => jsList.$[current++].map(instanciator != null ? instanciator : (e) => e).value;
+  bool hasNext() => current < jsList.$.length.value;
 }
 
 class JsList<E> extends IsJsProxy implements List<E> {
@@ -86,14 +86,14 @@ class JsList<E> extends IsJsProxy implements List<E> {
   bool every(bool f(E element)) => _asList().every(f);
   bool some(bool f(E element)) => _asList().some(f);
   bool isEmpty() => _asList().isEmpty();
-  int get length => $["length"];
+  int get length => $.length.value;
 
   // List
-  E operator [](int index) => $.getProperty(index.toString(), instanciator);
-  void operator []=(int index, E value) { $[index.toString()] = value; }
-  void set length(int newLength) => null;
-  void add(E value) { $.call("push", [value]); }
-  void addLast(E value) { $.call("push", [value]); }
+  E operator [](int index) => $[index].map(instanciator != null ? instanciator : (e) => e).value;
+  void operator []=(int index, E value) { $[index] = value; }
+  void set length(int newLength) => null; // TODO respect contract of List#set:length
+  void add(E value) { $.push(value); }
+  void addLast(E value) { $.push.(value); }
   void addAll(Collection<E> collection) { collection.forEach(add); }
   void sort(int compare(E a, E b)) {
     final sortedList = _asList()..sort(compare);
@@ -102,25 +102,25 @@ class JsList<E> extends IsJsProxy implements List<E> {
   }
   int indexOf(E element, [int start = 0]) => _asList().indexOf(element, start);
   int lastIndexOf(E element, [int start]) => _asList().lastIndexOf(element, start);
-  void clear() { $.call("splice", [0, length]); }
-  E removeAt(int index) => ($.call("splice", [index, 1], (proxy) => new JsList.fromJsProxy(proxy, instanciator)) as JsList<E>)[0];
-  E removeLast() => this.$.call("pop", [], instanciator);
-  E last() => $[(length - 1).toString()];
+  void clear() { $.splice(0, length); }
+  E removeAt(int index) => ($.splice(index, 1).map((proxy) => new JsList.fromJsProxy(proxy, instanciator)).value as JsList<E>)[0];
+  E removeLast() => this.$.pop().map(instanciator != null ? instanciator : (e) => e).value;
+  E last() => $[length - 1];
   List<E> getRange(int start, int length) => _asList().getRange(start, length);
   void setRange(int start, int length, List<E> from, [int startFrom=0]) {
     final args = [start, 0];
     for(int i = startFrom; i < length; i++) {
       args.add(from[i]);
     }
-    this.$.call("splice", args);
+    this.$.noSuchMethod("splice", args);
   }
-  void removeRange(int start, int length) { this.$.call("splice", [start, length]); }
+  void removeRange(int start, int length) { this.$.splice(start, length); }
   void insertRange(int start, int length, [E initialValue]) {
     final args = [start, 0];
     for (int i = 0; i < length; i++) {
       args.add(initialValue);
     }
-    this.$.call("splice", args);
+    this.$.noSuchMethod("splice", args);
   }
 
   List<E> _asList() {

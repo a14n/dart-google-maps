@@ -47,7 +47,7 @@ gmaps.StreetViewPanoramaData getCustomPanorama(String pano) { // TODO bad parame
         // The heading in degrees at the origin of the panorama
         // tile set.
         ..centerHeading = 105
-        ..$["getTileUrl"] = new jsw.Callback.many(getCustomPanoramaTileUrl)
+        ..$.getTileUrl = new jsw.Callback.many(getCustomPanoramaTileUrl)
       )
     );
   }

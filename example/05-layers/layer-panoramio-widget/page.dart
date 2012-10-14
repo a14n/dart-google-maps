@@ -7,22 +7,22 @@
 class PhotoWidget extends jsw.IsJsProxy {
   PhotoWidget(DivElement div, PhotoRequestOptions photoRequestOptions, PhotoWidgetOptions photoWidgetOptions) : super.newInstance(js.context.panoramio.PhotoWidget, [div, photoRequestOptions, photoWidgetOptions]);
 
-  void setRequest(PhotoRequestOptions photoRequestOptions) { $.call("setRequest", [photoRequestOptions]); }
-  void setPosition(num position) { $.call("setPosition", [position]); }
+  void setRequest(PhotoRequestOptions photoRequestOptions) { $.setRequest(photoRequestOptions); }
+  void setPosition(num position) { $.setPosition(position); }
 }
 
 class PhotoWidgetOptions extends jsw.IsJsProxy {
-  set width(num width) => $["width"] = width;
-  set height(num height) => $["height"] = height;
+  set width(num width) => $.width = width;
+  set height(num height) => $.height = height;
 }
 
 class PhotoRequestOptions extends jsw.IsJsProxy {
-  set ids(List<PhotoRequestOptionsId> ids) => $["ids"] = ids;
+  set ids(List<PhotoRequestOptionsId> ids) => $.ids = ids;
 }
 
 class PhotoRequestOptionsId extends jsw.IsJsProxy {
-  set photoId(String photoId) => $["photoId"] = photoId;
-  set userId(String userId) => $["userId"] = userId;
+  set photoId(String photoId) => $.photoId = photoId;
+  set userId(String userId) => $.userId = userId;
 }
 
 void main() {

@@ -1,5 +1,6 @@
 #import('dart:html');
 #import('package:js/js.dart', prefix:'js');
+#import('package:dart_google_maps/optional.dart');
 #import('package:dart_google_maps/jswrap.dart', prefix:'jsw');
 #import('package:dart_google_maps/gmaps.dart', prefix:'gmaps');
 #import('package:dart_google_maps/gmaps-adsense.dart', prefix:'gmaps_ads');
@@ -87,21 +88,21 @@ void main() {
     final adUnitOptions = new gmaps_ads.AdUnitOptions()
       ..format = gmaps_ads.AdFormat.HALF_BANNER
       ..position = gmaps.ControlPosition.TOP_CENTER
-      ..$["backgroundColor"] = '#c4d4f3'
-      ..$["borderColor"] = '#e5ecf9'
-      ..$["titleColor"] = '#0000cc'
-      ..$["textColor"] = '#000000'
-      ..$["urlColor"] = '#009900'
+      ..$.backgroundColor = '#c4d4f3'
+      ..$.borderColor = '#e5ecf9'
+      ..$.titleColor = '#0000cc'
+      ..$.textColor = '#000000'
+      ..$.urlColor = '#009900'
       ..publisherId = 'ca-google-maps_apidocs'
       ..map = map
-      ..$["visible"] = true
+      ..$.visible = true
       ;
     final adUnit = new gmaps_ads.AdUnit(adUnitDiv, adUnitOptions);
 
     final SelectElement format = query('#format');
     jsw.retainAll([adUnit]);
     gmaps.Events.addDomListener(format, 'change', (e) {
-      final adsFormat = new jsw.IsJsProxy.fromJsProxy(gmaps.maps.adsense.AdFormat).$.getProperty(format.value);
+      final adsFormat = (new jsw.IsJsProxy.fromJsProxy(gmaps.maps.adsense.AdFormat).$[format.value] as Option<String>).value;
       adUnit.setFormat(gmaps_ads.AdFormat.find(adsFormat));
     });
 
@@ -122,7 +123,7 @@ void main() {
     final SelectElement position = query('#position');
     jsw.retainAll([adUnit]);
     gmaps.Events.addDomListener(position, 'change', (e) {
-      final adsPosition = new jsw.IsJsProxy.fromJsProxy(gmaps.maps.ControlPosition).$.getProperty(position.value);
+      final adsPosition = (new jsw.IsJsProxy.fromJsProxy(gmaps.maps.ControlPosition).$[position.value] as Option<int>).value;
       adUnit.setPosition(gmaps.ControlPosition.find(adsPosition));
     });
   });

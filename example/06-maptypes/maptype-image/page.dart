@@ -9,7 +9,7 @@ final moonTypeOptions = jsw.retain(new gmaps.ImageMapTypeOptions()
   ..maxZoom = 9
   ..minZoom = 0
   // TODO undocumented
-  ..$["radius"] = 1738000
+  ..$.radius = 1738000
   ..name = 'Moon'
   ..getTileUrl = (gmaps.Point point, num zoomLevel) {
     final normalizedCoord = getNormalizedCoord(point, zoomLevel);

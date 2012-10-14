@@ -6,14 +6,14 @@
 class ColumnChart extends jsw.IsJsProxy {
   ColumnChart(Node div) : super.newInstance(js.context.google.visualization.ColumnChart, [div]);
 
-  void draw(DataTable data, [jsw.IsJsProxy options]) { $.call("draw", [data, options]); }
+  void draw(DataTable data, [jsw.IsJsProxy options]) { $.draw(data, options); }
 }
 
 class DataTable extends jsw.IsJsProxy {
   DataTable() : super.newInstance(js.context.google.visualization.DataTable);
 
-  void addColumn(String type, [String label, String id]) { $.call("addColumn", [type, label, id]); }
-  void addRow([List<Object> cellArray]) { $.call("addRow", [cellArray]); }
+  void addColumn(String type, [String label, String id]) { $.addColumn(type, label, id); }
+  void addRow([List<Object> cellArray]) { $.addRow(cellArray); }
 }
 
 gmaps.ElevationService elevator;
@@ -82,7 +82,7 @@ void plotElevation(List<gmaps.ElevationResult> results, gmaps.ElevationStatus st
     final pathOptions = new gmaps.PolylineOptions()
       ..path = elevationPath
       ..strokeColor = '#0000CC'
-      ..$["opacity"] = 0.4  // TODO not in doc
+      ..$.opacity = 0.4  // TODO not in doc
       ..map = map
       ;
     polyline = jsw.retain(new gmaps.Polyline(pathOptions));
@@ -101,10 +101,10 @@ void plotElevation(List<gmaps.ElevationResult> results, gmaps.ElevationStatus st
     // Draw the chart using the data within its DIV.
     query('#elevation_chart').style.display = 'block';
     chart.draw(data, new jsw.IsJsProxy()
-      ..$["width"] = 640
-      ..$["height"] = 200
-      ..$["legend"] = 'none'
-      ..$["titleY"] = 'Elevation (m)'
+      ..$.width = 640
+      ..$.height = 200
+      ..$.legend = 'none'
+      ..$.titleY = 'Elevation (m)'
     );
   }
 }

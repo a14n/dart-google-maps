@@ -35,9 +35,9 @@ class USGSOverlay extends gmaps.OverlayView {
   DivElement _div;
 
   USGSOverlay(gmaps.LatLngBounds bounds, String image, gmaps.GMap map) : super() {
-    $["onAdd"] = new jsw.Callback.many(_onAdd);
-    $["draw"] = new jsw.Callback.many(_draw);
-    $["onRemove"] = new jsw.Callback.many(_onRemove);
+    $.onAdd = new jsw.Callback.many(_onAdd);
+    $.draw = new jsw.Callback.many(_draw);
+    $.onRemove = new jsw.Callback.many(_onRemove);
 
     // Now initialize all properties.
     _bounds = jsw.retain(bounds);

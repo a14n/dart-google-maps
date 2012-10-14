@@ -8,38 +8,37 @@ class DrawingManager extends MVCObject {
   DrawingManager([DrawingManagerOptions opts]) : super.newInstance(maps.drawing.DrawingManager, [opts]);
   DrawingManager.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  OverlayType getDrawingMode() => $.call("getDrawingMode", [], OverlayType.INSTANCIATOR);
-  GMap getMap() => $.call("getMap", [], GMap.INSTANCIATOR);
-  void setDrawingMode(OverlayType drawingMode) { $.call("setDrawingMode", [drawingMode]); }
-  void setMap(GMap map) { $.call("setMap", [map]); }
-  void setOptions(DrawingManagerOptions options) { $.call("setOptions", [options]); }
+  OverlayType getDrawingMode() => $.getDrawingMode().map(OverlayType.INSTANCIATOR).value;
+  GMap getMap() => $.getMap().map(GMap.INSTANCIATOR).value;
+  void setDrawingMode(OverlayType drawingMode) { $.setDrawingMode(drawingMode); }
+  void setMap(GMap map) { $.setMap(map); }
+  void setOptions(DrawingManagerOptions options) { $.setOptions(options); }
 }
 
 class DrawingManagerOptions extends jsw.IsJsProxy {
-  set circleOptions(CircleOptions circleOptions) => $["circleOptions"] = circleOptions;
-  set drawingControl(bool drawingControl) => $["drawingControl"] = drawingControl;
-  set drawingControlOptions(DrawingControlOptions drawingControlOptions) => $["drawingControlOptions"] = drawingControlOptions;
-  set drawingMode(OverlayType drawingMode) => $["drawingMode"] = drawingMode;
-  set map(GMap map) => $["map"] = map;
-  set markerOptions(MarkerOptions markerOptions) => $["markerOptions"] = markerOptions;
-  set polygonOptions(PolygonOptions polygonOptions) => $["polygonOptions"] = polygonOptions;
-  set polylineOptions(PolylineOptions polylineOptions) => $["polylineOptions"] = polylineOptions;
-  set rectangleOptions(RectangleOptions rectangleOptions) => $["rectangleOptions"] = rectangleOptions;
+  set circleOptions(CircleOptions circleOptions) => $.circleOptions = circleOptions;
+  set drawingControl(bool drawingControl) => $.drawingControl = drawingControl;
+  set drawingControlOptions(DrawingControlOptions drawingControlOptions) => $.drawingControlOptions = drawingControlOptions;
+  set drawingMode(OverlayType drawingMode) => $.drawingMode = drawingMode;
+  set map(GMap map) => $.map = map;
+  set markerOptions(MarkerOptions markerOptions) => $.markerOptions = markerOptions;
+  set polygonOptions(PolygonOptions polygonOptions) => $.polygonOptions = polygonOptions;
+  set polylineOptions(PolylineOptions polylineOptions) => $.polylineOptions = polylineOptions;
+  set rectangleOptions(RectangleOptions rectangleOptions) => $.rectangleOptions = rectangleOptions;
 }
 
 class DrawingControlOptions extends jsw.IsJsProxy {
-  set drawingModes(List<OverlayType> drawingModes) => $["drawingModes"] = drawingModes;
-  set position(ControlPosition position) => $["position"] = position;
+  set drawingModes(List<OverlayType> drawingModes) => $.drawingModes = drawingModes;
+  set position(ControlPosition position) => $.position = position;
 }
 
 class OverlayCompleteEvent extends NativeEvent {
   OverlayCompleteEvent();
   OverlayCompleteEvent.wrap(NativeEvent e) { jsRef = e.jsRef; }
 
-  jsw.IsJsProxy get overlay {
-    final jsProxy = $["overlay"];
+  jsw.IsJsProxy get overlay => $.overlay.map((jsProxy) {
     if (jsProxy == null) {
-      return jsProxy;
+      return null;
     } else if (Marker.isInstance(jsProxy)) {
       return new Marker.fromJsProxy(jsProxy);
     } else if (Polygon.isInstance(jsProxy)) {
@@ -53,8 +52,8 @@ class OverlayCompleteEvent extends NativeEvent {
     } else {
       throw new Exception("Unsupported result");
     }
-  }
-  OverlayType get type => $.getProperty("type", OverlayType.INSTANCIATOR);
+  }).value;
+  OverlayType get type => $.type.map(OverlayType.INSTANCIATOR).value;
 }
 
 class OverlayType extends jsw.IsEnum<String> {

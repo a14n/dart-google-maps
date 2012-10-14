@@ -48,14 +48,14 @@ class GallPetersProjection extends gmaps.Projection {
 
   // TODO make a constructor with optionals
   GallPetersProjection() : super() {
-    $["fromLatLngToPoint"] = new jsw.Callback.many((js.Proxy latLng, [js.Proxy point]) {
+    $.fromLatLngToPoint = new jsw.Callback.many((js.Proxy latLng, [js.Proxy point]) {
       if (?point) {
         return _fromLatLngToPoint(new gmaps.LatLng.fromJsProxy(latLng), new gmaps.Point.fromJsProxy(point));
       } else {
         return _fromLatLngToPoint(new gmaps.LatLng.fromJsProxy(latLng));
       }
     });
-    $["fromPointToLatLng"] = new jsw.Callback.many((js.Proxy pixel, [bool nowrap]) {
+    $.fromPointToLatLng = new jsw.Callback.many((js.Proxy pixel, [bool nowrap]) {
       if (?nowrap) {
         return _fromPointToLatLng(new gmaps.Point.fromJsProxy(pixel), nowrap);
       } else {

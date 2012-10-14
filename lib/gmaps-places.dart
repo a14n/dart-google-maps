@@ -9,27 +9,27 @@ class Autocomplete extends MVCObject {
   Autocomplete(html.InputElement inputField, [AutocompleteOptions opts]) : super.newInstance(maps.places.Autocomplete, [inputField, opts]);
   Autocomplete.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  LatLngBounds getBounds() => $.call("getBounds", [], LatLngBounds.INSTANCIATOR);
-  PlaceResult getPlace() => $.call("getPlace", [], PlaceResult.INSTANCIATOR);
-  void setBounds(LatLngBounds bounds) { $.call("setBounds", [bounds]); }
-  void setComponentRestrictions(ComponentRestrictions restrictions) { $.call("setComponentRestrictions", [restrictions]); }
-  void setTypes(List<String> types) { $.call("setTypes", [types]); }
+  LatLngBounds getBounds() => $.getBounds().map(LatLngBounds.INSTANCIATOR).value;
+  PlaceResult getPlace() => $.getPlace().map(PlaceResult.INSTANCIATOR).value;
+  void setBounds(LatLngBounds bounds) { $.setBounds(bounds); }
+  void setComponentRestrictions(ComponentRestrictions restrictions) { $.setComponentRestrictions(restrictions); }
+  void setTypes(List<String> types) { $.setTypes(types); }
 }
 
 class AutocompleteOptions extends jsw.IsJsProxy {
-  set bounds(LatLngBounds bounds) => $["bounds"] = bounds;
-  set componentRestrictions(ComponentRestrictions componentRestrictions) => $["componentRestrictions"] = componentRestrictions;
-  set types(List<String> types) => $["types"] = types;
+  set bounds(LatLngBounds bounds) => $.bounds = bounds;
+  set componentRestrictions(ComponentRestrictions componentRestrictions) => $.componentRestrictions = componentRestrictions;
+  set types(List<String> types) => $.types = types;
 }
 
 class ComponentRestrictions extends jsw.IsJsProxy {
-  String get country => $["country"];
-         set country(String country) => $["country"] = country;
+  String get country => $.country.value;
+         set country(String country) => $.country = country;
 }
 
 class PlaceDetailsRequest extends jsw.IsJsProxy {
-  String get reference => $["reference"];
-         set reference(String reference) => $["reference"] = reference;
+  String get reference => $.reference.value;
+         set reference(String reference) => $.reference = reference;
 }
 
 class PlaceGeometry extends jsw.IsJsProxy {
@@ -38,10 +38,10 @@ class PlaceGeometry extends jsw.IsJsProxy {
   PlaceGeometry() : super();
   PlaceGeometry.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  LatLng get location => $.getProperty("location", LatLng.INSTANCIATOR);
-         set location(LatLng location) => $["location"] = location;
-  LatLngBounds get viewport => $.getProperty("viewport", LatLngBounds.INSTANCIATOR);
-               set viewport(LatLngBounds viewport) => $["viewport"] = viewport;
+  LatLng get location => $.location.map(LatLng.INSTANCIATOR).value;
+         set location(LatLng location) => $.location = location;
+  LatLngBounds get viewport => $.viewport.map(LatLngBounds.INSTANCIATOR).value;
+               set viewport(LatLngBounds viewport) => $.viewport = viewport;
 }
 
 class PlaceResult extends jsw.IsJsProxy {
@@ -50,40 +50,40 @@ class PlaceResult extends jsw.IsJsProxy {
   PlaceResult() : super();
   PlaceResult.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  List<GeocoderAddressComponent> get address_components => $.getProperty("address_components", (js.Proxy jsProxy) => new jsw.JsList<GeocoderAddressComponent>.fromJsProxy(jsProxy, GeocoderAddressComponent.INSTANCIATOR));
-  String get formatted_address => $["formatted_address"];
-  String get formatted_phone_number => $["formatted_phone_number"];
-  PlaceGeometry get geometry => $.getProperty("geometry", PlaceGeometry.INSTANCIATOR);
-  List<String> get html_attributions => $.getProperty("html_attributions", (js.Proxy jsProxy) => new jsw.JsList<String>.fromJsProxy(jsProxy, null));
-  String get icon => $["icon"];
-  String get id => $["id"];
-  String get international_phone_number => $["international_phone_number"];
-  String get name => $["name"];
-  num get rating => $["rating"];
-  String get reference => $["reference"];
-  List<String> get types => $.getProperty("types", (js.Proxy jsProxy) => new jsw.JsList<String>.fromJsProxy(jsProxy, null));
-  String get url => $["url"];
-  String get vicinity => $["vicinity"];
-  String get website => $["website"];
+  List<GeocoderAddressComponent> get address_components => $.address_components.map((js.Proxy jsProxy) => new jsw.JsList<GeocoderAddressComponent>.fromJsProxy(jsProxy, GeocoderAddressComponent.INSTANCIATOR)).value;
+  String get formatted_address => $.formatted_address.value;
+  String get formatted_phone_number => $.formatted_phone_number.value;
+  PlaceGeometry get geometry => $.geometry.map(PlaceGeometry.INSTANCIATOR).value;
+  List<String> get html_attributions => $.html_attributions.map((js.Proxy jsProxy) => new jsw.JsList<String>.fromJsProxy(jsProxy, null)).value;
+  String get icon => $.icon.value;
+  String get id => $.id.value;
+  String get international_phone_number => $.international_phone_number.value;
+  String get name => $.name.value;
+  num get rating => $.rating.value;
+  String get reference => $.reference.value;
+  List<String> get types => $.types.map((js.Proxy jsProxy) => new jsw.JsList<String>.fromJsProxy(jsProxy, null)).value;
+  String get url => $.url.value;
+  String get vicinity => $.vicinity.value;
+  String get website => $.website.value;
 }
 
 class PlaceSearchRequest extends jsw.IsJsProxy {
-  set bounds(LatLngBounds bounds) => $["bounds"] = bounds;
-  set keyword(String keyword) => $["keyword"] = keyword;
-  set location(LatLng location) => $["location"] = location;
-  set name(String name) => $["name"] = name;
-  set radius(num radius) => $["radius"] = radius;
-  set rankBy(RankBy rankBy) => $["rankBy"] = rankBy;
-  set types(List<String> types) => $["types"] = types;
+  set bounds(LatLngBounds bounds) => $.bounds = bounds;
+  set keyword(String keyword) => $.keyword = keyword;
+  set location(LatLng location) => $.location = location;
+  set name(String name) => $.name = name;
+  set radius(num radius) => $.radius = radius;
+  set rankBy(RankBy rankBy) => $.rankBy = rankBy;
+  set types(List<String> types) => $.types = types;
 }
 
 class PlaceSearchPagination extends jsw.IsJsProxy {
   PlaceSearchPagination() : super();
   PlaceSearchPagination.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  void nextPage() { $.call("nextPage"); }
+  void nextPage() { $.nextPage(); }
 
-  bool get hasNextPage => $["hasNextPage"];
+  bool get hasNextPage => $.hasNextPage.value;
 }
 
 class PlacesService extends jsw.IsJsProxy {
@@ -94,13 +94,13 @@ class PlacesService extends jsw.IsJsProxy {
   }
 
   void getDetails(PlaceDetailsRequest request, void callback(PlaceResult results, PlacesServiceStatus status)) {
-    $.call("getDetails", [request, new jsw.Callback.once((result, status) => callback(new PlaceResult.fromJsProxy(result), PlacesServiceStatus.find(status)))]);
+    $.getDetails(request, new jsw.Callback.once((result, status) => callback(new PlaceResult.fromJsProxy(result), PlacesServiceStatus.find(status))));
   }
   void nearbySearch(PlaceSearchRequest request, void callback(List<PlaceResult> results, PlacesServiceStatus status, PlaceSearchPagination pagination)) {
-    $.call("nearbySearch", [request, new jsw.Callback.once((results, status, pagination) => callback(new jsw.JsList<PlaceResult>.fromJsProxy(results, (e) => new PlaceResult.fromJsProxy(e)), PlacesServiceStatus.find(status), new PlaceSearchPagination.fromJsProxy(pagination)))]);
+    $.nearbySearch(request, new jsw.Callback.once((results, status, pagination) => callback(new jsw.JsList<PlaceResult>.fromJsProxy(results, (e) => new PlaceResult.fromJsProxy(e)), PlacesServiceStatus.find(status), new PlaceSearchPagination.fromJsProxy(pagination))));
   }
   void textSearch(TextSearchRequest request, void callback(List<PlaceResult> results, PlacesServiceStatus status)) {
-    $.call("textSearch", [request, new jsw.Callback.once((results, status) => callback(new jsw.JsList<PlaceResult>.fromJsProxy(results, (e) => new PlaceResult.fromJsProxy(e)), PlacesServiceStatus.find(status)))]);
+    $.textSearch(request, new jsw.Callback.once((results, status) => callback(new jsw.JsList<PlaceResult>.fromJsProxy(results, (e) => new PlaceResult.fromJsProxy(e)), PlacesServiceStatus.find(status))));
   }
 }
 
@@ -135,8 +135,8 @@ class RankBy extends jsw.IsEnum<String> {
 }
 
 class TextSearchRequest extends jsw.IsJsProxy {
-  set bounds(LatLngBounds bounds) => $["bounds"] = bounds;
-  set location(LatLng location) => $["location"] = location;
-  set query(String query) => $["query"] = query;
-  set radius(num radius) => $["radius"] = radius;
+  set bounds(LatLngBounds bounds) => $.bounds = bounds;
+  set location(LatLng location) => $.location = location;
+  set query(String query) => $.query = query;
+  set radius(num radius) => $.radius = radius;
 }

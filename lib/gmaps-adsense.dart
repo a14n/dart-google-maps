@@ -9,24 +9,24 @@ class AdUnit extends MVCObject {
   AdUnit(html.Node container, AdUnitOptions opts) : super.newInstance(maps.adsense.AdUnit, [container, opts]);
   AdUnit.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  String getChannelNumber() => $.call("getChannelNumber");
-  html.Node getContainer() => $.call("getContainer");
-  AdFormat getFormat() => $.call("getFormat", [], AdFormat.INSTANCIATOR);
-  GMap getMap() => $.call("getMap", [], GMap.INSTANCIATOR);
-  ControlPosition getPosition() => $.call("getPosition", [], ControlPosition.find);
-  String getPublisherId() => $.call("getPublisherId");
-  void setChannelNumber(String channelNumber) { $.call("setChannelNumber", [channelNumber]); }
-  void setFormat(AdFormat format) { $.call("setFormat", [format]); }
-  void setMap(GMap map) { $.call("setMap", [map]); }
-  void setPosition(ControlPosition position) { $.call("setPosition", [position]); }
+  String getChannelNumber() => $.getChannelNumber().value;
+  html.Node getContainer() => $getContainer().value;
+  AdFormat getFormat() => $.getFormat().map(AdFormat.INSTANCIATOR).value;
+  GMap getMap() => $.getMap().map(GMap.INSTANCIATOR).value;
+  ControlPosition getPosition() => $.getPosition().map(ControlPosition.find).value;
+  String getPublisherId() => $.getPublisherId().value;
+  void setChannelNumber(String channelNumber) { $.setChannelNumber(channelNumber); }
+  void setFormat(AdFormat format) { $.setFormat(format); }
+  void setMap(GMap map) { $.setMap(map); }
+  void setPosition(ControlPosition position) { $.setPosition(position); }
 }
 
 class AdUnitOptions extends jsw.IsJsProxy {
-  set channelNumber(String channelNumber) => $["channelNumber"] = channelNumber;
-  set format(AdFormat format) => $["format"] = format;
-  set map(GMap map) => $["map"] = map;
-  set position(ControlPosition position) => $["position"] = position;
-  set publisherId(String publisherId) => $["publisherId"] = publisherId;
+  set channelNumber(String channelNumber) => $.channelNumber = channelNumber;
+  set format(AdFormat format) => $.format = format;
+  set map(GMap map) => $.map = map;
+  set position(ControlPosition position) => $.position = position;
+  set publisherId(String publisherId) => $.publisherId = publisherId;
 }
 
 class AdFormat extends jsw.IsEnum<String> {

@@ -8,7 +8,7 @@ class HeatmapLayer extends MVCObject {
   HeatmapLayer([HeatmapLayerOptions opts]) : super.newInstance(maps.visualization.HeatmapLayer, [opts]);
   HeatmapLayer.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  MVCArray<Object> getData() => $.call("getData", [], (js.Proxy jsProxy) => new MVCArray.fromJsProxy(jsProxy, (js.Proxy jsProxy) {
+  MVCArray<Object> getData() => $.getData().map((js.Proxy jsProxy) => new MVCArray.fromJsProxy(jsProxy, (js.Proxy jsProxy) {
     if (jsProxy == null) {
       return jsProxy;
     } else {
@@ -21,8 +21,8 @@ class HeatmapLayer extends MVCObject {
       }
       throw new Exception("Unsupported result");
     }
-  }));
-  GMap getMap() => $.call("getMap", [], GMap.INSTANCIATOR);
+  })).value;
+  GMap getMap() => $.getMap().map(GMap.INSTANCIATOR).value;
   void setData(Object data) {
     List list;
     if (data is MVCArray) {
@@ -36,28 +36,28 @@ class HeatmapLayer extends MVCObject {
     if (!list.filter((e)=> !(e is LatLng || e is WeightedLocation)).isEmpty()) {
       throw new IllegalArgumentException("some elements are not LatLng or WeightedLocation");
     }
-    $.call("setData", [data]);
+    $.setData(data);
   }
-  void setMap(GMap map) { $.call("setMap", [map]); }
-  void setOptions(HeatmapLayerOptions options) { $.call("setOptions", [options]); }
+  void setMap(GMap map) { $.setMap(map); }
+  void setOptions(HeatmapLayerOptions options) { $.setOptions(options); }
 }
 
 class HeatmapLayerOptions extends jsw.IsJsProxy {
-  set data(MVCArray<LatLng> data) => $["data"] = data;
-  set dissipating(bool dissipating) => $["dissipating"] = dissipating;
-  set gradient(List<String> gradient) => $["gradient"] = gradient;
-  set map(GMap map) => $["map"] = map;
-  set maxIntensity(num maxIntensity) => $["maxIntensity"] = maxIntensity;
-  set opacity(num opacity) => $["opacity"] = opacity;
-  set radius(num radius) => $["radius"] = radius;
+  set data(MVCArray<LatLng> data) => $.data = data;
+  set dissipating(bool dissipating) => $.dissipating = dissipating;
+  set gradient(List<String> gradient) => $.gradient = gradient;
+  set map(GMap map) => $.map = map;
+  set maxIntensity(num maxIntensity) => $.maxIntensity = maxIntensity;
+  set opacity(num opacity) => $.opacity = opacity;
+  set radius(num radius) => $.radius = radius;
 }
 
 class WeightedLocation extends jsw.IsJsProxy {
   WeightedLocation() : super();
   WeightedLocation.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  LatLng get location => $.getProperty("location", LatLng.INSTANCIATOR);
-         set location(LatLng location) => $["location"] = location;
-  num get weight => $["weight"];
-      set weight(num weight) => $["weight"] = weight;
+  LatLng get location => $.location.map(LatLng.INSTANCIATOR).value;
+         set location(LatLng location) => $.location = location;
+  num get weight => $.weight.value;
+      set weight(num weight) => $.weight = weight;
 }

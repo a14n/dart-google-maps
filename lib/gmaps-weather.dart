@@ -8,26 +8,26 @@ class CloudLayer extends MVCObject {
   CloudLayer() : super.newInstance(maps.weather.CloudLayer);
   CloudLayer.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  GMap getMap() => $.call("getMap", [], GMap.INSTANCIATOR);
-  void setMap(GMap map) { $.call("setMap", [map]); }
+  GMap getMap() => $.getMap().map(GMap.INSTANCIATOR).value;
+  void setMap(GMap map) { $.setMap(map); }
 }
 
 class WeatherLayer extends MVCObject {
   WeatherLayer([WeatherLayerOptions opts]) : super.newInstance(maps.weather.WeatherLayer, [opts]);
   WeatherLayer.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  GMap getMap() => $.call("getMap", [], GMap.INSTANCIATOR);
-  void setMap(GMap map) { $.call("setMap", [map]); }
-  void setOptions(WeatherLayerOptions options) { $.call("setOptions", [options]); }
+  GMap getMap() => $.getMap().map(GMap.INSTANCIATOR).value;
+  void setMap(GMap map) { $.setMap(map); }
+  void setOptions(WeatherLayerOptions options) { $.setOptions(options); }
 }
 
 class WeatherLayerOptions extends jsw.IsJsProxy {
-  set clickable(bool clickable) => $["clickable"] = clickable;
-  set labelColor(LabelColor labelColor) => $["labelColor"] = labelColor;
-  set map(GMap map) => $["map"] = map;
-  set suppressInfoWindows(bool suppressInfoWindows) => $["suppressInfoWindows"] = suppressInfoWindows;
-  set temperatureUnits(TemperatureUnit temperatureUnits) => $["temperatureUnits"] = temperatureUnits;
-  set windSpeedUnits(WindSpeedUnit windSpeedUnits) => $["windSpeedUnits"] = windSpeedUnits;
+  set clickable(bool clickable) => $.clickable = clickable;
+  set labelColor(LabelColor labelColor) => $.labelColor = labelColor;
+  set map(GMap map) => $.map = map;
+  set suppressInfoWindows(bool suppressInfoWindows) => $.suppressInfoWindows = suppressInfoWindows;
+  set temperatureUnits(TemperatureUnit temperatureUnits) => $.temperatureUnits = temperatureUnits;
+  set windSpeedUnits(WindSpeedUnit windSpeedUnits) => $.windSpeedUnits = windSpeedUnits;
 }
 
 class TemperatureUnit extends jsw.IsEnum<String> {
@@ -85,11 +85,11 @@ class WeatherFeature extends jsw.IsJsProxy {
 
   WeatherFeature.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  WeatherConditions get current => $.getProperty("current", WeatherConditions.INSTANCIATOR);
-  List<WeatherForecast> get forecast => $.getProperty("forecast", (js.Proxy jsProxy) => new js.JsList<WeatherForecast>.fromJsProxy(jsProxy, WeatherForecast.INSTANCIATOR));
-  String get location => $["location"];
-  TemperatureUnit get temperatureUnit => $.getProperty("temperatureUnit", TemperatureUnit.find);
-  WindSpeedUnit get windSpeedUnit => $.getProperty("windSpeedUnit", WindSpeedUnit.find);
+  WeatherConditions get current => $.current.map(WeatherConditions.INSTANCIATOR).value;
+  List<WeatherForecast> get forecast => $.forecast.map((js.Proxy jsProxy) => new js.JsList<WeatherForecast>.fromJsProxy(jsProxy, WeatherForecast.INSTANCIATOR)).value;
+  String get location => $.location.value;
+  TemperatureUnit get temperatureUnit => $.temperatureUnit.map(TemperatureUnit.find).value;
+  WindSpeedUnit get windSpeedUnit => $.windSpeedUnit.map(WindSpeedUnit.find).value;
 }
 
 class WeatherConditions extends jsw.IsJsProxy {
@@ -97,15 +97,15 @@ class WeatherConditions extends jsw.IsJsProxy {
 
   WeatherConditions.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  String get day => $["day"];
-  String get description => $["description"];
-  num get high => $["high"];
-  num get humidity => $["humidity"];
-  num get low => $["low"];
-  String get shortDay => $["shortDay"];
-  num get temperature => $["temperature"];
-  String get windDirection => $["windDirection"];
-  num get windSpeed => $["windSpeed"];
+  String get day => $.day.value;
+  String get description => $.description.value;
+  num get high => $.high.value;
+  num get humidity => $.humidity.value;
+  num get low => $.low.value;
+  String get shortDay => $.shortDay.value;
+  num get temperature => $.temperature.value;
+  String get windDirection => $.windDirection.value;
+  num get windSpeed => $.windSpeed.value;
 }
 
 class WeatherForecast extends jsw.IsJsProxy {
@@ -113,9 +113,9 @@ class WeatherForecast extends jsw.IsJsProxy {
 
   WeatherForecast.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  String get day => $["day"];
-  String get description => $["description"];
-  num get high => $["high"];
-  num get low => $["low"];
-  String get shortDay => $["shortDay"];
+  String get day => $.day.value;
+  String get description => $.description.value;
+  num get high => $.high.value;
+  num get low => $.low.value;
+  String get shortDay => $.shortDay.value;
 }

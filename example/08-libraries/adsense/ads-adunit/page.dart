@@ -23,7 +23,7 @@ void main() {
       ..position = gmaps.ControlPosition.TOP_CENTER
       ..publisherId = 'ca-google-maps_apidocs'
       ..map = map
-      ..$["visible"] = true
+      ..$.visible = true
       ;
     final adUnit = new gmaps_ads.AdUnit(adUnitDiv, adUnitOptions);
   });

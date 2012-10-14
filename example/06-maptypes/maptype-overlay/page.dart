@@ -6,7 +6,7 @@
 class CoordMapType extends gmaps.MapType {
   CoordMapType(gmaps.Size tileSize) : super() {
     this.tileSize = jsw.retain(tileSize);
-    $["getTile"] = new jsw.Callback.many((js.Proxy tileCoord, num zoom, js.Proxy ownerDocument) {
+    $.getTile = new jsw.Callback.many((js.Proxy tileCoord, num zoom, js.Proxy ownerDocument) {
       if (ownerDocument.createElement("div") is js.Proxy) {
         return _getTileFromOtherDocument(new gmaps.Point.fromJsProxy(tileCoord), zoom, new jsw.IsJsProxy.fromJsProxy(ownerDocument));
       } else {
@@ -31,17 +31,17 @@ class CoordMapType extends gmaps.MapType {
   }
 
   js.Proxy _getTileFromOtherDocument(gmaps.Point coord, num zoom, jsw.IsJsProxy ownerDocument) {
-    final div = new jsw.IsJsProxy.fromJsProxy(ownerDocument.$.call("createElement", ["div"]))
-      ..$["innerHTML"] = coord.toString()
+    final div = new jsw.IsJsProxy.fromJsProxy(ownerDocument.$.createElement("div"))
+      ..$.innerHTML = coord.toString()
       ;
-    final style = new jsw.IsJsProxy.fromJsProxy(div.$["style"]);
+    final style = new jsw.IsJsProxy.fromJsProxy(div.$.style);
     style
-      ..$["width"] = '${tileSize.width}px'
-      ..$["height"] = '${tileSize.height}px'
-      ..$["fontSize"] = '10'
-      ..$["borderStyle"] = 'solid'
-      ..$["borderWidth"] = '1px'
-      ..$["borderColor"] = '#AAAAAA'
+      ..$.width = '${tileSize.width}px'
+      ..$.height = '${tileSize.height}px'
+      ..$.fontSize = '10'
+      ..$.borderStyle = 'solid'
+      ..$.borderWidth = '1px'
+      ..$.borderColor = '#AAAAAA'
       ;
     return div;
   }
