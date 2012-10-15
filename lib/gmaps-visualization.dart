@@ -11,15 +11,10 @@ class HeatmapLayer extends MVCObject {
   MVCArray<Object> getData() => $.getData().map((js.Proxy jsProxy) => new MVCArray.fromJsProxy(jsProxy, (js.Proxy jsProxy) {
     if (jsProxy == null) {
       return jsProxy;
+    } else if (js.instanceof(jsProxy, maps.LatLng)) {
+      return new LatLng.fromJsProxy(jsProxy);
     } else {
-      try {
-        // TODO replace with js instanceOf
-        jsProxy.weight; // valid if WeightedLocation
-        return new WeightedLocation.fromJsProxy(jsProxy);
-      } on NoSuchMethodError catch (e) {
-        return new LatLng.fromJsProxy(jsProxy);
-      }
-      throw new Exception("Unsupported result");
+      return new WeightedLocation.fromJsProxy(jsProxy);
     }
   })).value;
   GMap getMap() => $.getMap().map(GMap.INSTANCIATOR).value;
