@@ -562,7 +562,7 @@ void changeGradient() {
       'rgba(255, 0, 0, 1)'
     ];
     heatmap.setOptions(new gmaps_visu.HeatmapLayerOptions()
-      ..gradient = heatmap.get_('gradient') !== null ? null : gradient
+      ..gradient = heatmap.get('gradient') !== null ? null : gradient
     );
   });
 }
@@ -570,7 +570,7 @@ void changeGradient() {
 void changeRadius() {
   js.scoped(() {
     heatmap.setOptions(new gmaps_visu.HeatmapLayerOptions()
-      ..radius = heatmap.get_('radius') !== null ? null : 20
+      ..radius = heatmap.get('radius') !== null ? null : 20
     );
   });
 }
@@ -578,7 +578,7 @@ void changeRadius() {
 void changeOpacity() {
   js.scoped(() {
     heatmap.setOptions(new gmaps_visu.HeatmapLayerOptions()
-      ..opacity = heatmap.get_('opacity') !== null ? null : 0.2
+      ..opacity = heatmap.get('opacity') !== null ? null : 0.2
     );
   });
 }

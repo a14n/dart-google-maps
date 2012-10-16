@@ -1903,8 +1903,7 @@ class MVCObject extends jsw.IsJsProxy {
 
   void bindTo(String key, MVCObject target, [String targetKey, bool noNotify]) { $.bindTo(key, target, targetKey, noNotify); }
   void changed(String key) { $.changed(key); }
-  // TODO replace with get()
-  Object get_(String key) => $.get(key).value;
+  Object get(String key) => $.get(key).value;
   void notify(String key) { $.notify(key); }
   void set_(String key, Object value) { $.set(key, value); }
   void setValues(Map<String, Object> values) {

@@ -43,7 +43,7 @@ void animateCircle() {
     js.scoped(() {
       count = (count + 1) % 200;
 
-      final icons = new jsw.JsList.fromJsProxy(line.get_('icons'), (e) => new gmaps.IconSequence.fromJsProxy(e));
+      final icons = new jsw.JsList.fromJsProxy(line.get('icons'), (e) => new gmaps.IconSequence.fromJsProxy(e));
       icons[0].offset = '${count / 2}%';
       line.set_('icons', icons);
     });
