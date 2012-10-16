@@ -36,7 +36,7 @@ void main() {
       ;
 
     final map = new gmaps.GMap(query('#map_canvas'), mapOptions);
-    map.mapTypes.set_('moon', moonMapType);
+    map.mapTypes.set('moon', moonMapType);
     map.setMapTypeId('moon');
   });
 }

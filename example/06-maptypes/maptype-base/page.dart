@@ -78,6 +78,6 @@ void main() {
     });
 
     // Now attach the coordinate map type to the map's registry
-    map.mapTypes.set_('coordinate', coordinateMapType);
+    map.mapTypes.set('coordinate', coordinateMapType);
   });
 }

@@ -45,7 +45,7 @@ void animateCircle() {
 
       final icons = new jsw.JsList.fromJsProxy(line.get('icons'), (e) => new gmaps.IconSequence.fromJsProxy(e));
       icons[0].offset = '${count / 2}%';
-      line.set_('icons', icons);
+      line.set('icons', icons);
     });
   }, 20);
 }

@@ -45,7 +45,7 @@ void main() {
     final map = new gmaps.GMap(query("#map_canvas"), mapOptions);
 
     // Associate the styled map with the MapTypeId and set it to display.
-    map.mapTypes.set_('map_style', styledMapType);
+    map.mapTypes.set('map_style', styledMapType);
     map.setMapTypeId('map_style');
   });
 }

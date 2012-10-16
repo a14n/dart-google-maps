@@ -132,7 +132,7 @@ void main() {
     ;
     final gallPetersMap = new gmaps.GMap(query('#gallPetersMap'), mapOptions);
 
-    gallPetersMap.mapTypes.set_('gallPetersMap', gallPetersMapType);
+    gallPetersMap.mapTypes.set('gallPetersMap', gallPetersMapType);
     gallPetersMap.setMapTypeId('gallPetersMap');
 
     for (var i = 0; i < locationArray.length; i++) {

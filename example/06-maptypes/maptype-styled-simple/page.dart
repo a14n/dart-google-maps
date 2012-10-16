@@ -44,6 +44,6 @@ void main() {
 
     final jayzMapType = new gmaps.StyledMapType(stylez, styledMapOptions);
 
-    map.mapTypes.set_(MY_MAPTYPE_ID, jayzMapType);
+    map.mapTypes.set(MY_MAPTYPE_ID, jayzMapType);
   });
 }

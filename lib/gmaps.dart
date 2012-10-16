@@ -1323,7 +1323,7 @@ class MapTypeRegistry extends MVCObject {
   MapTypeRegistry() : super.newInstance(maps.MapTypeRegistry);
   MapTypeRegistry.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  void set_(String id, MapType mapType) { $.set(id, mapType); }
+  void set(String id, MapType mapType) { $.set(id, mapType); }
 }
 
 class Projection extends jsw.IsJsProxy {
@@ -1905,7 +1905,7 @@ class MVCObject extends jsw.IsJsProxy {
   void changed(String key) { $.changed(key); }
   Object get(String key) => $.get(key).value;
   void notify(String key) { $.notify(key); }
-  void set_(String key, Object value) { $.set(key, value); }
+  void set(String key, Object value) { $.set(key, value); }
   void setValues(Map<String, Object> values) {
     final valuesJs = new jsw.IsJsProxy();
     values.forEach((String key, Object value) {
