@@ -91,10 +91,19 @@ class JsList<E> extends IsJsProxy implements List<E> {
   // List
   E operator [](int index) => $[index].map(instanciator != null ? instanciator : (e) => e).value;
   void operator []=(int index, E value) { $[index] = value; }
-  void set length(int newLength) => null; // TODO respect contract of List#set:length
+  void set length(int newLength) {
+    final length = length;
+    if (length < newLength) {
+      final nulls = new List<E>(newLength - length);
+      addAll(nulls);
+    }
+    if (length > newLength) {
+      throw new UnsupportedOperationException("New length has to be greater than actual length");
+    }
+  }
   void add(E value) { $.push(value); }
   void addLast(E value) { $.push.(value); }
-  void addAll(Collection<E> collection) { collection.forEach(add); }
+  void addAll(Collection<E> collection) { setRange(length, collection.length, collection); }
   void sort(int compare(E a, E b)) {
     final sortedList = _asList()..sort(compare);
     clear();

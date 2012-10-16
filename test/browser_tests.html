@@ -1,0 +1,28 @@
+<!-- Copyright (c) 2012, the Dart project authors.  Please see the AUTHORS file
+     for details. All rights reserved. Use of this source code is governed by a
+     BSD-style license that can be found in the LICENSE file. -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dart JavaScript Interop Tests</title>
+  <style type="text/css">
+    .unittest-table { font-family: monospace; border: 1px; }
+    .unittest-pass { background: #6b3;}
+    .unittest-fail { background: #d55;}
+    .unittest-error { background: #a11;}
+    .unittest-xml-log {opacity:0; color: white;}
+    .test-area { display: none; }
+    body { overflow: visible; }
+  </style>
+  <!-- This script comes from running "pub install" in the root folder. -->
+  <!-- disabled because of http://dartbug.com/4943
+  <script type="text/javascript" src="../packages/unittest/test_controller.js">
+  </script>
+  -->
+</head>
+<body>
+  <h1>Loading and running tests</h1>
+  <script type="application/dart" src="browser_tests.dart"></script>
+  <script src="https://dart.googlecode.com/svn/branches/bleeding_edge/dart/client/dart.js"></script>
+</body>
+</html>
