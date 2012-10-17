@@ -48,7 +48,7 @@ void attachSecretMessage(gmaps.Marker marker, num number) {
     ..content = message[number]
   );
   jsw.retainAll([infowindow, marker.getMap(), marker]);
-  gmaps.Events.addListener(marker, 'click', (e) {
+  marker.on.click.add((e) {
     infowindow.open(marker.getMap(), marker);
   });
 }

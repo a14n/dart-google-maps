@@ -70,7 +70,7 @@ void main() {
       ;
     map = jsw.retain(new gmaps.GMap(query("#map_canvas"), mapOptions));
 
-    gmaps.Events.addListener(map, 'maptypeid_changed', (e) {
+    map.on.maptypeidChanged.add(() {
       final showStreetViewControl = map.getMapTypeId() != 'coordinate';
       map.setOptions(new gmaps.MapOptions()
         ..streetViewControl = showStreetViewControl

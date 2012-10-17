@@ -143,9 +143,8 @@ void main() {
       );
     }
 
-    gmaps.Events.addListener(gallPetersMap, 'click', (event) {
-      final me = new gmaps.MouseEvent.wrap(event);
-      window.alert('Point.X.Y: ${me.latLng}');
+    gallPetersMap.on.click.add((e) {
+      window.alert('Point.X.Y: ${e.latLng}');
     });
   });
 }

@@ -42,7 +42,7 @@ void main() {
         // We'll monitor the links_changed event to check if the current
         // pano is either a custom pano or our entry pano.
         jsw.retain(result);
-        gmaps.Events.addListener(panorama, 'links_changed', (e) {
+        panorama.on.linksChanged.add(() {
           return createCustomLinks(result.location.pano);
         });
       }

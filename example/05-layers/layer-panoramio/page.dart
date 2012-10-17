@@ -19,12 +19,11 @@ void main() {
     final photoPanel = query('#photo-panel');
     map.controls.getNodes(gmaps.ControlPosition.RIGHT_TOP).push(photoPanel);
 
-    gmaps.Events.addListener(panoramioLayer, 'click', (e) {
-      final photo = new gmaps_panoramio.PanoramioMouseEvent.wrap(e);
+    panoramioLayer.on.click.add((e) {
       final li = new LIElement();
       final link = new AnchorElement();
-      link.innerHTML = '${photo.featureDetails.title}: ${photo.featureDetails.author}';
-      link.href = photo.featureDetails.url;
+      link.innerHTML = '${e.featureDetails.title}: ${e.featureDetails.author}';
+      link.href = e.featureDetails.url;
       li.elements.add(link);
       photoPanel.elements.add(li);
       photoPanel.style.display = 'block';

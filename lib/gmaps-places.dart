@@ -14,6 +14,16 @@ class Autocomplete extends MVCObject {
   void setBounds(LatLngBounds bounds) { $.setBounds(bounds); }
   void setComponentRestrictions(ComponentRestrictions restrictions) { $.setComponentRestrictions(restrictions); }
   void setTypes(List<String> types) { $.setTypes(types); }
+
+  AutocompleteEvents get on => new AutocompleteEvents._(this);
+}
+
+class AutocompleteEvents {
+  final Autocomplete _autocomplete;
+
+  AutocompleteEvents._(Autocomplete this._autocomplete);
+
+  NoArgsEventListenerAdder get placeChanged => new NoArgsEventListenerAdder(_autocomplete, "place_changed");
 }
 
 class AutocompleteOptions extends jsw.IsJsProxy {

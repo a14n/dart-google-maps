@@ -38,8 +38,8 @@ void main() {
     final bounds = new gmaps.LatLngBounds(marker1.getPosition(), marker2.getPosition());
     map.fitBounds(bounds);
 
-    gmaps.Events.addListener(marker1, 'position_changed', (e) => update());
-    gmaps.Events.addListener(marker2, 'position_changed', (e) => update());
+    marker1.on.positionChanged.add(() => update());
+    marker2.on.positionChanged.add(() => update());
 
     final polyOptions = new gmaps.PolylineOptions()
       ..strokeColor = '#FF0000'

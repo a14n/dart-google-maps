@@ -29,7 +29,7 @@ void main() {
           ..position = place.geometry.location
         );
         jsw.retainAll([marker, place]);
-        gmaps.Events.addListener(marker, 'click', (e) {
+        marker.on.click.add((e) {
           infowindow.setContent(place.name);
           infowindow.open(map, marker);
         });

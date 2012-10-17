@@ -24,9 +24,8 @@ void main() {
 
     // getPanoramaByLocation will return the nearest pano when the
     // given radius is 50 meters or less.
-    gmaps.Events.addListener(map, 'click', (e) {
-      final me = new gmaps.MouseEvent.wrap(e);
-      sv.getPanoramaByLocation(me.latLng, 50, processSVData);
+    map.on.click.add((e) {
+      sv.getPanoramaByLocation(e.latLng, 50, processSVData);
     });
   });
 }
@@ -48,7 +47,7 @@ void processSVData(gmaps.StreetViewPanoramaData data, gmaps.StreetViewStatus sta
     panorama.setVisible(true);
 
     jsw.retainAll([data]);
-    gmaps.Events.addListener(marker, 'click', (e) {
+    marker.on.click.add((e) {
       final markerPanoID = data.location.pano;
       // Set the Pano to use the passed panoID
       panorama.setPano(markerPanoID);

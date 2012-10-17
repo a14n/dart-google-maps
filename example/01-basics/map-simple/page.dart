@@ -10,5 +10,6 @@ void main() {
       ..mapTypeId = gmaps.MapTypeId.ROADMAP
       ;
     final map = new gmaps.GMap(query("#map_canvas"), mapOptions);
+    map.on.click.add((e) {print(e.latLng);});
   });
 }

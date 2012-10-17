@@ -25,7 +25,7 @@ void main() {
     poly.setMap(map);
 
     // Add a listener for the click event
-    gmaps.Events.addListener(map, 'click', addLatLng);
+    map.on.click.add(addLatLng);
   });
 }
 
@@ -33,18 +33,16 @@ void main() {
  * Handles click events on a map, and adds a new point to the Polyline.
  * @param {MouseEvent} mouseEvent
  */
-void addLatLng(gmaps.NativeEvent event) {
-  final me = new gmaps.MouseEvent.wrap(event);
-
+void addLatLng(gmaps.MouseEvent e) {
   final path = poly.getPath();
 
   // Because path is an MVCArray, we can simply append a new coordinate
   // and it will automatically appear
-  path.push(me.latLng);
+  path.push(e.latLng);
 
   // Add a new marker at the new plotted point on the polyline.
   var marker = new gmaps.Marker(new gmaps.MarkerOptions()
-    ..position = me.latLng
+    ..position = e.latLng
     ..title = '#${path.getLength()}'
     ..map = map
   );

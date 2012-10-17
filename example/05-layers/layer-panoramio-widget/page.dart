@@ -58,17 +58,16 @@ void main() {
     panoramioLayer.setMap(map);
 
     jsw.retainAll([photoWidget, infoWindow, map]);
-    gmaps.Events.addListener(panoramioLayer, 'click', (e) {
-      final photo = new gmaps_panoramio.PanoramioMouseEvent.wrap(e);
+    panoramioLayer.on.click.add((e) {
       final photoRequestOptions = new PhotoRequestOptions()
         ..ids = [new PhotoRequestOptionsId()
-          ..photoId = photo.featureDetails.photoId
-          ..userId = photo.featureDetails.userId
+          ..photoId = e.featureDetails.photoId
+          ..userId = e.featureDetails.userId
         ]
         ;
       photoWidget.setRequest(photoRequestOptions);
       photoWidget.setPosition(0);
-      infoWindow.setPosition(photo.latLng);
+      infoWindow.setPosition(e.latLng);
       infoWindow.open(map);
       infoWindow.setContent(photoDiv);
     });

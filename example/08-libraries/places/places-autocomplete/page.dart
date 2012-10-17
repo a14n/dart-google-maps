@@ -24,7 +24,7 @@ void main() {
     );
 
     jsw.retainAll([map, marker, infowindow, autocomplete]);
-    gmaps.Events.addListener(autocomplete, 'place_changed', (e) {
+    autocomplete.on.placeChanged.add(() {
       infowindow.close();
       final place = autocomplete.getPlace();
 

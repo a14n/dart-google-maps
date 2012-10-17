@@ -25,7 +25,7 @@ void main() {
     poly = jsw.retain(new gmaps.Polyline(polyOptions));
 
     // Add a listener for the click event
-    gmaps.Events.addListener(map, 'click', addLatLng);
+    map.on.click.add(addLatLng);
   });
 }
 
@@ -33,12 +33,11 @@ void main() {
  * Handles click events on a map, and adds a new point to the Polyline.
  * Updates the encoding text area with the path's encoded values.
  */
-void addLatLng(gmaps.NativeEvent e) {
-  final me = new gmaps.MouseEvent.wrap(e);
+void addLatLng(gmaps.MouseEvent e) {
   final path = poly.getPath();
   // Because path is an MVCArray, we can simply append a new coordinate
   // and it will automatically appear
-  path.push(me.latLng);
+  path.push(e.latLng);
 
   // Update the text field to display the polyline encodings
   final encodeString = gmaps_geo.Encoding.encodePath(path);

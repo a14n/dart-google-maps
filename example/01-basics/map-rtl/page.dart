@@ -21,7 +21,7 @@ void main() {
     infowindow.setContent('<b>القاهرة</b>');
 
     jsw.retainAll([infowindow, map, marker]);
-    gmaps.Events.addListener(marker, 'click', (e) {
+    marker.on.click.add((e) {
       infowindow.open(map, marker);
     });
   });

@@ -60,6 +60,33 @@ class GMap extends MVCObject {
                   set mapTypes(MapTypeRegistry mapTypes) => $.mapTypes = mapTypes;
   MVCArray<MapType> get overlayMapTypes => $.overlayMapTypes.map((js.Proxy jsProxy) => new MVCArray.fromJsProxy(jsProxy, (js.Proxy jsProxy) => new MapType.fromJsProxy(jsProxy))).value;
                     set overlayMapTypes(MVCArray<MapType> overlayMapTypes) => $.overlayMapTypes = overlayMapTypes;
+  GMapEvents get on => new GMapEvents._(this);
+}
+
+class GMapEvents {
+  final GMap _gmap;
+
+  GMapEvents._(GMap this._gmap);
+
+  NoArgsEventListenerAdder get boundsChanged => new NoArgsEventListenerAdder(_gmap, "bounds_changed");
+  NoArgsEventListenerAdder get centerChanged => new NoArgsEventListenerAdder(_gmap, "center_changed");
+  MouseEventListenerAdder get click => new MouseEventListenerAdder(_gmap, "click");
+  MouseEventListenerAdder get dblclick => new MouseEventListenerAdder(_gmap, "dblclick");
+  NoArgsEventListenerAdder get drag => new NoArgsEventListenerAdder(_gmap, "drag");
+  NoArgsEventListenerAdder get dragend => new NoArgsEventListenerAdder(_gmap, "dragend");
+  NoArgsEventListenerAdder get dragstart => new NoArgsEventListenerAdder(_gmap, "dragstart");
+  NoArgsEventListenerAdder get headingChanged => new NoArgsEventListenerAdder(_gmap, "heading_changed");
+  NoArgsEventListenerAdder get idle => new NoArgsEventListenerAdder(_gmap, "idle");
+  NoArgsEventListenerAdder get maptypeidChanged => new NoArgsEventListenerAdder(_gmap, "maptypeid_changed");
+  MouseEventListenerAdder get mousemove => new MouseEventListenerAdder(_gmap, "mousemove");
+  MouseEventListenerAdder get mouseout => new MouseEventListenerAdder(_gmap, "mouseout");
+  MouseEventListenerAdder get mouseover => new MouseEventListenerAdder(_gmap, "mouseover");
+  NoArgsEventListenerAdder get projectionChanged => new NoArgsEventListenerAdder(_gmap, "projection_changed");
+  NoArgsEventListenerAdder get resize => new NoArgsEventListenerAdder(_gmap, "resize");
+  MouseEventListenerAdder get rightclick => new MouseEventListenerAdder(_gmap, "rightclick");
+  NoArgsEventListenerAdder get tilesloaded => new NoArgsEventListenerAdder(_gmap, "tilesloaded");
+  NoArgsEventListenerAdder get tiltChanged => new NoArgsEventListenerAdder(_gmap, "tilt_changed");
+  NoArgsEventListenerAdder get zoomChanged => new NoArgsEventListenerAdder(_gmap, "zoom_changed");
 }
 
 class Controls extends jsw.IsJsProxy {
@@ -313,7 +340,39 @@ class Marker extends MVCObject {
   void setTitle(String title) { $.setTitle(title); }
   void setVisible(bool visible) { $.setVisible(visible); }
   void setZIndex(num zIndex) { $.setZIndex(zIndex); }
+
+  MarkerEvents get on => new MarkerEvents._(this);
 }
+
+class MarkerEvents {
+  final Marker _marker;
+
+  MarkerEvents._(Marker this._marker);
+
+  NoArgsEventListenerAdder get animationChanged => new NoArgsEventListenerAdder(_marker, "animation_changed");
+  MouseEventListenerAdder get click => new MouseEventListenerAdder(_marker, "click");
+  NoArgsEventListenerAdder get clickableChanged => new NoArgsEventListenerAdder(_marker, "clickable_changed");
+  NoArgsEventListenerAdder get cursorChanged => new NoArgsEventListenerAdder(_marker, "cursor_changed");
+  MouseEventListenerAdder get dblclick => new MouseEventListenerAdder(_marker, "dblclick");
+  MouseEventListenerAdder get drag => new MouseEventListenerAdder(_marker, "drag");
+  MouseEventListenerAdder get dragend => new MouseEventListenerAdder(_marker, "dragend");
+  NoArgsEventListenerAdder get draggableChanged => new NoArgsEventListenerAdder(_marker, "draggable_changed");
+  MouseEventListenerAdder get dragstart => new MouseEventListenerAdder(_marker, "dragstart");
+  NoArgsEventListenerAdder get flatChanged => new NoArgsEventListenerAdder(_marker, "flat_changed");
+  NoArgsEventListenerAdder get iconChanged => new NoArgsEventListenerAdder(_marker, "icon_changed");
+  MouseEventListenerAdder get mousedown => new MouseEventListenerAdder(_marker, "mousedown");
+  MouseEventListenerAdder get mouseout => new MouseEventListenerAdder(_marker, "mouseout");
+  MouseEventListenerAdder get mouseover => new MouseEventListenerAdder(_marker, "mouseover");
+  MouseEventListenerAdder get mouseup => new MouseEventListenerAdder(_marker, "mouseup");
+  NoArgsEventListenerAdder get positionChanged => new NoArgsEventListenerAdder(_marker, "position_changed");
+  MouseEventListenerAdder get rightclick => new MouseEventListenerAdder(_marker, "rightclick");
+  NoArgsEventListenerAdder get shadowChanged => new NoArgsEventListenerAdder(_marker, "shadow_changed");
+  NoArgsEventListenerAdder get shapeChanged => new NoArgsEventListenerAdder(_marker, "shape_changed");
+  NoArgsEventListenerAdder get titleChanged => new NoArgsEventListenerAdder(_marker, "title_changed");
+  NoArgsEventListenerAdder get visibleChanged => new NoArgsEventListenerAdder(_marker, "visible_changed");
+  NoArgsEventListenerAdder get zindexChanged => new NoArgsEventListenerAdder(_marker, "zindex_changed");
+}
+
 
 class MarkerOptions extends jsw.IsJsProxy {
   set animation(Animation animation) => $.animation = animation;
@@ -490,6 +549,20 @@ class InfoWindow extends MVCObject {
   void setOptions(InfoWindowOptions options) { $.setOptions(options); }
   void setPosition(LatLng position) { $.setPosition(position); }
   void setZIndex(num zIndex) { $.setZIndex(zIndex); }
+
+  InfoWindowEvents get on => new InfoWindowEvents._(this);
+}
+
+class InfoWindowEvents {
+  final InfoWindow _infoWindow;
+
+  InfoWindowEvents._(InfoWindow this._infoWindow);
+
+  NoArgsEventListenerAdder get closeclick => new NoArgsEventListenerAdder(_infoWindow, "closeclick");
+  NoArgsEventListenerAdder get contentChanged => new NoArgsEventListenerAdder(_infoWindow, "content_changed");
+  NoArgsEventListenerAdder get domready => new NoArgsEventListenerAdder(_infoWindow, "domready");
+  NoArgsEventListenerAdder get positionChanged => new NoArgsEventListenerAdder(_infoWindow, "position_changed");
+  NoArgsEventListenerAdder get zindexChanged => new NoArgsEventListenerAdder(_infoWindow, "zindex_changed");
 }
 
 class InfoWindowOptions extends jsw.IsJsProxy {
@@ -533,6 +606,23 @@ class Polyline extends MVCObject {
     }
   }
   void setVisible(bool visible) { $.setVisible(visible); }
+
+  PolylineEvents get on => new PolylineEvents._(this);
+}
+
+class PolylineEvents {
+  final Polyline _polyline;
+
+  PolylineEvents._(Polyline this._polyline);
+
+  PolyMouseEventListenerAdder get click => new PolyMouseEventListenerAdder(_polyline, "click");
+  PolyMouseEventListenerAdder get dblclick => new PolyMouseEventListenerAdder(_polyline, "dblclick");
+  PolyMouseEventListenerAdder get mousedown => new PolyMouseEventListenerAdder(_polyline, "mousedown");
+  PolyMouseEventListenerAdder get mousemove => new PolyMouseEventListenerAdder(_polyline, "mousemove");
+  PolyMouseEventListenerAdder get mouseout => new PolyMouseEventListenerAdder(_polyline, "mouseout");
+  PolyMouseEventListenerAdder get mouseover => new PolyMouseEventListenerAdder(_polyline, "mouseover");
+  PolyMouseEventListenerAdder get mouseup => new PolyMouseEventListenerAdder(_polyline, "mouseup");
+  PolyMouseEventListenerAdder get rightclick => new PolyMouseEventListenerAdder(_polyline, "rightclick");
 }
 
 class PolylineOptions extends jsw.IsJsProxy {
@@ -593,6 +683,23 @@ class Polygon extends MVCObject {
     }
   }
   void setVisible(bool visible) { $.setVisible(visible); }
+
+  PolygonEvents get on => new PolygonEvents._(this);
+}
+
+class PolygonEvents {
+  final Polygon _polygon;
+
+  PolygonEvents._(Polygon this._polygon);
+
+  PolyMouseEventListenerAdder get click => new PolyMouseEventListenerAdder(_polygon, "click");
+  PolyMouseEventListenerAdder get dblclick => new PolyMouseEventListenerAdder(_polygon, "dblclick");
+  PolyMouseEventListenerAdder get mousedown => new PolyMouseEventListenerAdder(_polygon, "mousedown");
+  PolyMouseEventListenerAdder get mousemove => new PolyMouseEventListenerAdder(_polygon, "mousemove");
+  PolyMouseEventListenerAdder get mouseout => new PolyMouseEventListenerAdder(_polygon, "mouseout");
+  PolyMouseEventListenerAdder get mouseover => new PolyMouseEventListenerAdder(_polygon, "mouseover");
+  PolyMouseEventListenerAdder get mouseup => new PolyMouseEventListenerAdder(_polygon, "mouseup");
+  PolyMouseEventListenerAdder get rightclick => new PolyMouseEventListenerAdder(_polygon, "rightclick");
 }
 
 class PolygonOptions extends jsw.IsJsProxy {
@@ -639,6 +746,24 @@ class Rectangle extends MVCObject {
   void setMap(GMap map) { $.setMap(map); }
   void setOptions(RectangleOptions options) { $.setOptions(options); }
   void setVisible(bool visible) { $.setVisible(visible); }
+
+  RectangleEvents get on => new RectangleEvents._(this);
+}
+
+class RectangleEvents {
+  final Rectangle _rectangle;
+
+  RectangleEvents._(Rectangle this._rectangle);
+
+  NoArgsEventListenerAdder get boundsChanged => new NoArgsEventListenerAdder(_rectangle, "bounds_changed");
+  MouseEventListenerAdder get click => new MouseEventListenerAdder(_rectangle, "click");
+  MouseEventListenerAdder get dblclick => new MouseEventListenerAdder(_rectangle, "dblclick");
+  MouseEventListenerAdder get mousedown => new MouseEventListenerAdder(_rectangle, "mousedown");
+  MouseEventListenerAdder get mousemove => new MouseEventListenerAdder(_rectangle, "mousemove");
+  MouseEventListenerAdder get mouseout => new MouseEventListenerAdder(_rectangle, "mouseout");
+  MouseEventListenerAdder get mouseover => new MouseEventListenerAdder(_rectangle, "mouseover");
+  MouseEventListenerAdder get mouseup => new MouseEventListenerAdder(_rectangle, "mouseup");
+  MouseEventListenerAdder get rightclick => new MouseEventListenerAdder(_rectangle, "rightclick");
 }
 
 class RectangleOptions extends jsw.IsJsProxy {
@@ -673,6 +798,25 @@ class Circle extends MVCObject {
   void setOptions(CircleOptions options) { $.setOptions(options); }
   void setRadius(bool radius) { $.setRadius(radius); }
   void setVisible(bool visible) { $.setVisible(visible); }
+
+  CircleEvents get on => new CircleEvents._(this);
+}
+
+class CircleEvents {
+  final Circle _circle;
+
+  CircleEvents._(Circle this._circle);
+
+  NoArgsEventListenerAdder get centerChanged => new NoArgsEventListenerAdder(_circle, "center_changed");
+  MouseEventListenerAdder get click => new MouseEventListenerAdder(_circle, "click");
+  MouseEventListenerAdder get dblclick => new MouseEventListenerAdder(_circle, "dblclick");
+  MouseEventListenerAdder get mousedown => new MouseEventListenerAdder(_circle, "mousedown");
+  MouseEventListenerAdder get mousemove => new MouseEventListenerAdder(_circle, "mousemove");
+  MouseEventListenerAdder get mouseout => new MouseEventListenerAdder(_circle, "mouseout");
+  MouseEventListenerAdder get mouseover => new MouseEventListenerAdder(_circle, "mouseover");
+  MouseEventListenerAdder get mouseup => new MouseEventListenerAdder(_circle, "mouseup");
+  NoArgsEventListenerAdder get radiusChanged => new NoArgsEventListenerAdder(_circle, "radius_changed");
+  MouseEventListenerAdder get rightclick => new MouseEventListenerAdder(_circle, "rightclick");
 }
 
 class CircleOptions extends jsw.IsJsProxy {
@@ -700,6 +844,17 @@ class GroundOverlay extends MVCObject {
   String getUrl() => $.getUrl().value;
   void setMap(GMap map) { $.setMap(map); }
   void setOpacity(num opacity) { $.setOpacity(opacity); }
+
+  GroundOverlayEvents get on => new GroundOverlayEvents._(this);
+}
+
+class GroundOverlayEvents {
+  final GroundOverlay _groundOverlay;
+
+  GroundOverlayEvents._(GroundOverlay this._groundOverlay);
+
+  MouseEventListenerAdder get click => new MouseEventListenerAdder(_groundOverlay, "click");
+  MouseEventListenerAdder get dblclick => new MouseEventListenerAdder(_groundOverlay, "dblclick");
 }
 
 class GroundOverlayOptions extends jsw.IsJsProxy {
@@ -854,6 +1009,16 @@ class DirectionsRenderer extends MVCObject {
   void setOptions(DirectionsRendererOptions options) { $.setOptions(options); }
   void setPanel(html.Node panel) { $.setPanel(panel); }
   void setRouteIndex(num routeIndex) { $.setRouteIndex(routeIndex); }
+
+  DirectionsRendererEvents get on => new DirectionsRendererEvents._(this);
+}
+
+class DirectionsRendererEvents {
+  final DirectionsRenderer _directionsRenderer;
+
+  DirectionsRendererEvents._(DirectionsRenderer this._directionsRenderer);
+
+  NoArgsEventListenerAdder get directionsChanged => new NoArgsEventListenerAdder(_directionsRenderer, "directions_changed");
 }
 
 class DirectionsRendererOptions extends jsw.IsJsProxy {
@@ -1342,6 +1507,16 @@ class ImageMapType extends MapType {
 
   num getOpacity() { $.getOpacity().value; }
   void setOpacity(num opacity) { $.setOpacity(opacity); }
+
+  ImageMapTypeEvents get on => new ImageMapTypeEvents._(this);
+}
+
+class ImageMapTypeEvents {
+  final ImageMapType _imageMapType;
+
+  ImageMapTypeEvents._(ImageMapType this._imageMapType);
+
+  NoArgsEventListenerAdder get tilesloaded => new NoArgsEventListenerAdder(_imageMapType, "tilesloaded");
 }
 
 class ImageMapTypeOptions extends jsw.IsJsProxy {
@@ -1466,6 +1641,16 @@ class FusionTablesLayer extends MVCObject {
   GMap getMap() => $.getMap().map(GMap.INSTANCIATOR).value;
   void setMap(GMap map) { $.setMap(map); }
   void setOptions(FusionTablesLayerOptions options) { $.setOptions(options); }
+
+  FusionTablesLayerEvents get on => new FusionTablesLayerEvents._(this);
+}
+
+class FusionTablesLayerEvents {
+  final FusionTablesLayer _fusionTablesLayer;
+
+  FusionTablesLayerEvents._(FusionTablesLayer this._fusionTablesLayer);
+
+  FusionTablesMouseEventListenerAdder get click => new FusionTablesMouseEventListenerAdder(_fusionTablesLayer, "click");
 }
 
 class FusionTablesLayerOptions extends jsw.IsJsProxy {
@@ -1543,6 +1728,18 @@ class KmlLayer extends MVCObject {
   KmlLayerStatus getStatus() => $.getStatus().map(KmlLayerStatus.find).value;
   String getUrl() => $.getUrl().value;
   void setMap(GMap map) { $.setMap(map); }
+
+  KmlLayerEvents get on => new KmlLayerEvents._(this);
+}
+
+class KmlLayerEvents {
+  final KmlLayer _kmlLayer;
+
+  KmlLayerEvents._(KmlLayer this._kmlLayer);
+
+  KmlMouseEventListenerAdder get click => new KmlMouseEventListenerAdder(_kmlLayer, "click");
+  NoArgsEventListenerAdder get defaultviewportChanged => new NoArgsEventListenerAdder(_kmlLayer, "defaultviewport_changed");
+  NoArgsEventListenerAdder get statusChanged => new NoArgsEventListenerAdder(_kmlLayer, "status_changed");
 }
 
 class KmlLayerOptions extends jsw.IsJsProxy {
@@ -1653,6 +1850,22 @@ class StreetViewPanorama extends MVCObject {
 
   Controls get controls => $.controls.map(Controls.INSTANCIATOR).value;
            set controls(Controls controls) => $.controls = controls;
+
+  StreetViewPanoramaEvents get on => new StreetViewPanoramaEvents._(this);
+}
+
+class StreetViewPanoramaEvents {
+  final StreetViewPanorama _streetViewPanorama;
+
+  StreetViewPanoramaEvents._(StreetViewPanorama this._streetViewPanorama);
+
+  NativeEventListenerAdder get closeclick => new NativeEventListenerAdder(_streetViewPanorama, "closeclick");
+  NoArgsEventListenerAdder get linksChanged => new NoArgsEventListenerAdder(_streetViewPanorama, "links_changed");
+  NoArgsEventListenerAdder get panoChanged => new NoArgsEventListenerAdder(_streetViewPanorama, "pano_changed");
+  NoArgsEventListenerAdder get positionChanged => new NoArgsEventListenerAdder(_streetViewPanorama, "position_changed");
+  NoArgsEventListenerAdder get povChanged => new NoArgsEventListenerAdder(_streetViewPanorama, "pov_changed");
+  NoArgsEventListenerAdder get resize => new NoArgsEventListenerAdder(_streetViewPanorama, "resize");
+  NoArgsEventListenerAdder get visibleChanged => new NoArgsEventListenerAdder(_streetViewPanorama, "visible_changed");
 }
 
 class StreetViewPanoramaOptions extends jsw.IsJsProxy {
@@ -1788,23 +2001,23 @@ class NativeEvent extends jsw.IsJsProxy {
 }
 
 class Events {
-  static MapsEventListener addDomListener(Object instance, String eventName, void handler(NativeEvent e), [bool capture]) {
-    final callback = new jsw.Callback.many(([arg1]) => handler(?arg1 ? new NativeEvent.fromJsProxy(arg1) : null ));
+  static MapsEventListener addDomListener(Object instance, String eventName, handler(NativeEvent e), [bool capture]) {
+    final callback = new jsw.Callback.many(([arg1]) => handler(?arg1 ? new NativeEvent.fromJsProxy(arg1) : null));
     final instanciator = (js.Proxy jsProxy) => new MapsEventListener.fromJsProxy(jsProxy, () => callback.dispose());
     return new jsw.IsJsProxy.fromJsProxy(maps.event).$.addDomListener(instance, eventName, callback, capture).map(instanciator).value;
   }
-  static MapsEventListener addDomListenerOnce(Object instance, String eventName, void handler(NativeEvent e), [bool capture]) {
-    final callback = new jsw.Callback.once(([arg1]) => handler(?arg1 ? new NativeEvent.fromJsProxy(arg1) : null ));
+  static MapsEventListener addDomListenerOnce(Object instance, String eventName, handler(NativeEvent e), [bool capture]) {
+    final callback = new jsw.Callback.once(([arg1]) => handler(?arg1 ? new NativeEvent.fromJsProxy(arg1) : null));
     final instanciator = (js.Proxy jsProxy) => new MapsEventListener.fromJsProxy(jsProxy);
     return new jsw.IsJsProxy.fromJsProxy(maps.event).$.addDomListenerOnce(instance, eventName, callback, capture).map(instanciator).value;
   }
-  static MapsEventListener addListener(jsw.IsJsProxy instance, String eventName, void handler(NativeEvent e)) {
-    final callback = new jsw.Callback.many(([arg1]) => handler(?arg1 ? new NativeEvent.fromJsProxy(arg1) : null ));
+  static MapsEventListener addListener(jsw.IsJsProxy instance, String eventName, handler(NativeEvent e)) {
+    final callback = new jsw.Callback.many(([arg1]) => handler(?arg1 ? new NativeEvent.fromJsProxy(arg1) : null));
     final instanciator = (js.Proxy jsProxy) => new MapsEventListener.fromJsProxy(jsProxy, () => callback.dispose());
     return new jsw.IsJsProxy.fromJsProxy(maps.event).$.addListener(instance, eventName, callback).map(instanciator).value;
   }
-  static MapsEventListener addListenerOnce(jsw.IsJsProxy instance, String eventName, void handler(NativeEvent e)) {
-    final callback = new jsw.Callback.once(([arg1]) => handler(?arg1 ? new NativeEvent.fromJsProxy(arg1) : null ));
+  static MapsEventListener addListenerOnce(jsw.IsJsProxy instance, String eventName, handler(NativeEvent e)) {
+    final callback = new jsw.Callback.once(([arg1]) => handler(?arg1 ? new NativeEvent.fromJsProxy(arg1) : null));
     final instanciator = (js.Proxy jsProxy) => new MapsEventListener.fromJsProxy(jsProxy);
     return new jsw.IsJsProxy.fromJsProxy(maps.event).$.addListenerOnce(instance, eventName, callback).map(instanciator).value;
   }
@@ -1946,6 +2159,64 @@ class MVCArray<E> extends MVCObject {
     }
     return o;
   }
+
+  // TODO handle events on this Object ; need to deeply refactor Events...
 }
 
+class NativeEventListenerAdder {
+  final jsw.IsJsProxy _instance;
+  final String _eventName;
+
+  NativeEventListenerAdder(jsw.IsJsProxy this._instance, String this._eventName);
+
+  void add(handler(NativeEvent e)) { Events.addListener(_instance, _eventName, handler); }
+  MapsEventListenerRegistration addTemporary(handler(NativeEvent e)) => new MapsEventListenerRegistration._(jsw.retain(Events.addListener(_instance, _eventName, handler)));
+}
+
+class MapsEventListenerRegistration {
+  final MapsEventListener _mapsEventListener;
+  MapsEventListenerRegistration._(MapsEventListener this._mapsEventListener);
+
+  void removeListener() {
+    js.scoped(() {
+      Events.removeListener(_mapsEventListener);
+      jsw.release(_mapsEventListener);
+    });
+  }
+}
+
+class NoArgsEventListenerAdder extends NativeEventListenerAdder {
+  NoArgsEventListenerAdder(jsw.IsJsProxy _instance, String _eventName) : super(_instance, _eventName);
+
+  void add(void handler()) => super.add((e) => handler());
+  MapsEventListenerRegistration addTemporary(void handler()) => super.addTemporary((e) => handler());
+}
+
+class MouseEventListenerAdder extends NativeEventListenerAdder {
+  MouseEventListenerAdder(jsw.IsJsProxy _instance, String _eventName) : super(_instance, _eventName);
+
+  void add(void handler(MouseEvent e)) { super.add((e) => handler(new MouseEvent.wrap(e))); }
+  MapsEventListenerRegistration addTemporary(void handler(MouseEvent e)) => super.addTemporary((e) => handler(new MouseEvent.wrap(e)));
+}
+
+class PolyMouseEventListenerAdder extends NativeEventListenerAdder {
+  PolyMouseEventListenerAdder(jsw.IsJsProxy _instance, String _eventName) : super(_instance, _eventName);
+
+  void add(void handler(PolyMouseEvent e)) { super.add((e) => handler(new PolyMouseEvent.wrap(e))); }
+  MapsEventListenerRegistration addTemporary(void handler(PolyMouseEvent e)) => super.addTemporary((e) => handler(new PolyMouseEvent.wrap(e)));
+}
+
+class FusionTablesMouseEventListenerAdder extends NativeEventListenerAdder {
+  FusionTablesMouseEventListenerAdder(jsw.IsJsProxy _instance, String _eventName) : super(_instance, _eventName);
+
+  void add(void handler(FusionTablesMouseEvent e)) { super.add((e) => handler(new FusionTablesMouseEvent.wrap(e))); }
+  MapsEventListenerRegistration addTemporary(void handler(FusionTablesMouseEvent e)) => super.addTemporary((e) => handler(new FusionTablesMouseEvent.wrap(e)));
+}
+
+class KmlMouseEventListenerAdder extends NativeEventListenerAdder {
+  KmlMouseEventListenerAdder(jsw.IsJsProxy _instance, String _eventName) : super(_instance, _eventName);
+
+  void add(void handler(KmlMouseEvent e)) { super.add((e) => handler(new KmlMouseEvent.wrap(e))); }
+  MapsEventListenerRegistration addTemporary(void handler(KmlMouseEvent e)) => super.addTemporary((e) => handler(new KmlMouseEvent.wrap(e)));
+}
 

@@ -17,7 +17,7 @@ void main() {
     final rectangle = new gmaps.Rectangle();
 
     jsw.retainAll([map, rectangle]);
-    gmaps.Events.addListener(map, "zoom_changed", (e){
+    map.on.zoomChanged.add(() {
       // Get the current bounds, which reflect the bounds before the zoom.
       final rectOptions = new gmaps.RectangleOptions()
         ..strokeColor = '#FF0000'

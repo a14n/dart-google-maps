@@ -23,7 +23,7 @@ void main() {
     directionsDisplay.setMap(map);
     directionsDisplay.setPanel(query('#directionsPanel'));
 
-    gmaps.Events.addListener(directionsDisplay, 'directions_changed', (e) {
+    directionsDisplay.on.directionsChanged.add(() {
       computeTotalDistance(directionsDisplay.getDirections());
     });
 

@@ -23,7 +23,7 @@ void main() {
       ..animation = gmaps.Animation.DROP
       ..position = parliament
     ));
-    gmaps.Events.addListener(marker, 'click', (e) => toggleBounce());
+    marker.on.click.add((e) => toggleBounce());
   });
 }
 

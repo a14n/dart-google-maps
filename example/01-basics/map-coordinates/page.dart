@@ -89,7 +89,7 @@ void main() {
       ..open(map)
     );
 
-    gmaps.Events.addListener(map, 'zoom_changed', (e) {
+    map.on.zoomChanged.add(() {
       coordInfoWindow.setContent(createInfoWindowContent());
       coordInfoWindow.open(map);
     });

@@ -45,8 +45,8 @@ void main() {
       ..title = 'Uluru (Ayers Rock)'
     );
     jsw.retainAll([infowindow, map, marker]);
-    gmaps.Events.addListener(marker, 'click', (e) {
-      infowindow.open(map,marker);
+    marker.on.click.add((e) {
+      infowindow.open(map, marker);
     });
   });
 }

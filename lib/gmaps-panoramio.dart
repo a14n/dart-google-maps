@@ -15,6 +15,16 @@ class PanoramioLayer extends MVCObject {
   void setOptions(PanoramioLayerOptions options) { $.setOptions(options); }
   void setTag(String tag) { $.setTag(tag); }
   void setUserId(String userId) { $.setUserId(userId); }
+
+  PanoramioLayerEvents get on => new PanoramioLayerEvents._(this);
+}
+
+class PanoramioLayerEvents {
+  final PanoramioLayer _panoramioLayer;
+
+  PanoramioLayerEvents._(PanoramioLayer this._panoramioLayer);
+
+  PanoramioMouseEventListenerAdder get click => new PanoramioMouseEventListenerAdder(_panoramioLayer, "click");
 }
 
 class PanoramioLayerOptions extends jsw.IsJsProxy {
@@ -44,4 +54,11 @@ class PanoramioMouseEvent extends NativeEvent {
   String get infoWindowHtml => $.infoWindowHtml.value;
   LatLng get latLng => $.latLng.map(LatLng.INSTANCIATOR).value;
   Size get pixelOffset => $.pixelOffset.map(Size.INSTANCIATOR).value;
+}
+
+class PanoramioMouseEventListenerAdder extends NativeEventListenerAdder {
+  PanoramioMouseEventListenerAdder(jsw.IsJsProxy _instance, String _eventName) : super(_instance, _eventName);
+
+  void add(void handler(PanoramioMouseEvent e)) { super.add((e) => handler(new PanoramioMouseEvent.wrap(e))); }
+  MapsEventListenerRegistration addTemporary(void handler(PanoramioMouseEvent e)) => super.addTemporary((e) => handler(new PanoramioMouseEvent.wrap(e)));
 }

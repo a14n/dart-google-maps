@@ -22,7 +22,7 @@ void main() {
     infowindow.open(map);
 
     jsw.retainAll([map, myLatLng, infowindow]);
-    gmaps.Events.addListener(map, 'zoom_changed', (e) {
+    map.on.zoomChanged.add(() {
       var zoomLevel = map.getZoom();
       map.setCenter(myLatLng);
       infowindow.setContent("Zoom: $zoomLevel");

@@ -17,21 +17,20 @@ void main() {
 
     maxZoomService = jsw.retain(new gmaps.MaxZoomService());
 
-    gmaps.Events.addListener(map, 'click', showMaxZoom);
+    map.on.click.add(showMaxZoom);
   });
 }
 
-void showMaxZoom(gmaps.NativeEvent e) {
-  final me = new gmaps.MouseEvent.wrap(e);
-  jsw.retain(me);
-  maxZoomService.getMaxZoomAtLatLng(me.latLng, (response) {
+void showMaxZoom(gmaps.MouseEvent e) {
+  jsw.retain(e);
+  maxZoomService.getMaxZoomAtLatLng(e.latLng, (response) {
     if (response.status != gmaps.MaxZoomStatus.OK) {
       window.alert('Error in MaxZoomService');
       return;
     } else {
       window.alert('The maximum zoom at this location is: ${response.zoom}');
     }
-    map.panTo(me.latLng);
-    jsw.release(me);
+    map.panTo(e.latLng);
+    jsw.release(e);
   });
 }

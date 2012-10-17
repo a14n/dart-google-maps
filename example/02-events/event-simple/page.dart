@@ -20,7 +20,7 @@ void main() {
     );
 
     jsw.retainAll([map, marker]);
-    gmaps.Events.addListener(map, 'center_changed', (e) {
+    map.on.centerChanged.add(() {
       // 3 seconds after the center of the map has changed, pan back to the marker.
       window.setTimeout(() {
         js.scoped(() {
@@ -30,7 +30,7 @@ void main() {
     });
 
     jsw.retainAll([map, marker]);
-    gmaps.Events.addListener(marker, 'click', (e) {
+    marker.on.click.add((e) {
       map.setZoom(8);
       map.setCenter(marker.getPosition());
     });

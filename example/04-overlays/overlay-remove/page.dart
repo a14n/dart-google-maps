@@ -18,9 +18,8 @@ void main() {
       ;
     map = jsw.retain(new gmaps.GMap(query("#map-canvas"), mapOptions));
 
-    gmaps.Events.addListener(map, 'click', (e) {
-      final me = new gmaps.MouseEvent.wrap(e);
-      addMarker(me.latLng);
+    map.on.click.add((e) {
+      addMarker(e.latLng);
     });
 
     query("#clearOverlays").on.click.add((e) => clearOverlays());

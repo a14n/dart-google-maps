@@ -21,18 +21,16 @@ void main() {
     elevator = jsw.retain(new gmaps.ElevationService());
 
     // Add a listener for the click event and call getElevation on that location
-    gmaps.Events.addListener(map, 'click', getElevation);
+    map.on.click.add(getElevation);
   });
 }
 
 
-void getElevation(gmaps.NativeEvent e) {
-  final me = new gmaps.MouseEvent.wrap(e);
-
+void getElevation(gmaps.MouseEvent e) {
   final locations = new List<gmaps.LatLng>();
 
   // Retrieve the clicked location and push it on the array
-  final gmaps.LatLng clickedLocation = jsw.retain(me.latLng);
+  final gmaps.LatLng clickedLocation = jsw.retain(e.latLng);
   locations.add(clickedLocation);
 
   // Create a LocationElevationRequest object using the array's one value

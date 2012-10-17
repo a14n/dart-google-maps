@@ -13,9 +13,8 @@ void main() {
     final map = new gmaps.GMap(query("#map_canvas"), mapOptions);
 
     jsw.retain(map);
-    gmaps.Events.addListener(map, 'click', (e) {
-      final me = new gmaps.MouseEvent.wrap(e);
-      placeMarker(me.latLng, map);
+    map.on.click.add((e) {
+      placeMarker(e.latLng, map);
     });
   });
 }

@@ -47,7 +47,7 @@ void createMarker(gmaps_places.PlaceResult place) {
   );
 
   jsw.retainAll([marker, place]);
-  gmaps.Events.addListener(marker, 'click', (e) {
+  marker.on.click.add((e) {
     infowindow.setContent(place.name);
     infowindow.open(map, marker);
   });

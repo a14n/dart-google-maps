@@ -13,6 +13,15 @@ class DrawingManager extends MVCObject {
   void setDrawingMode(OverlayType drawingMode) { $.setDrawingMode(drawingMode); }
   void setMap(GMap map) { $.setMap(map); }
   void setOptions(DrawingManagerOptions options) { $.setOptions(options); }
+
+  DrawingManagerEvents get on => new DrawingManagerEvents._(this);
+}
+
+// TODO handle events
+class DrawingManagerEvents {
+  final DrawingManager _drawingManager;
+
+  DrawingManagerEvents._(DrawingManager this._drawingManager);
 }
 
 class DrawingManagerOptions extends jsw.IsJsProxy {

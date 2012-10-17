@@ -19,13 +19,13 @@ void main() {
     final panorama = new gmaps.StreetViewPanorama(query('#pano'), panoramaOptions);
 
     jsw.retainAll([panorama]);
-    gmaps.Events.addListener(panorama, 'pano_changed', (e) {
+    panorama.on.panoChanged.add(() {
       final panoCell = query('#pano_cell');
       panoCell.innerHTML = panorama.getPano();
     });
 
     jsw.retainAll([panorama]);
-    gmaps.Events.addListener(panorama, 'links_changed', (e) {
+    panorama.on.linksChanged.add(() {
       final linksTable = query('#links_table');
       linksTable.elements.clear();
       final links =  panorama.getLinks();
@@ -42,13 +42,13 @@ void main() {
     });
 
     jsw.retainAll([panorama]);
-    gmaps.Events.addListener(panorama, 'position_changed', (e) {
+    panorama.on.positionChanged.add(() {
       final positionCell = query('#position_cell');
       positionCell.innerHTML = '${panorama.getPosition()}';
     });
 
     jsw.retainAll([panorama]);
-    gmaps.Events.addListener(panorama, 'pov_changed', (e) {
+    panorama.on.povChanged.add(() {
       final headingCell = query('#heading_cell');
       final pitchCell = query('#pitch_cell');
       headingCell.innerHTML = '${panorama.getPov().heading}';

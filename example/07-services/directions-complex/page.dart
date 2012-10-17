@@ -88,7 +88,7 @@ void showSteps(gmaps.DirectionsResult directionResult) {
 }
 
 void attachInstructionText(gmaps.Marker marker, String text) {
-  gmaps.Events.addListener(marker, 'click', (e) {
+  marker.on.click.add((e) {
     // Open an info window when the marker is clicked on,
     // containing the text of the step.
     stepDisplay.setContent(text);

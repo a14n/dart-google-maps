@@ -20,9 +20,8 @@ void main() {
           ..map = map
         );
 
-    gmaps.Events.addListener(nyLayer, 'click', (e) {
-      final kmlEvent = new gmaps.KmlMouseEvent.wrap(e);
-      final text = kmlEvent.featureData.description;
+    nyLayer.on.click.add((e) {
+      final text = e.featureData.description;
       showInContentWindow(text);
     });
   });

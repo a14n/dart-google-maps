@@ -19,6 +19,16 @@ class WeatherLayer extends MVCObject {
   GMap getMap() => $.getMap().map(GMap.INSTANCIATOR).value;
   void setMap(GMap map) { $.setMap(map); }
   void setOptions(WeatherLayerOptions options) { $.setOptions(options); }
+
+  WeatherLayerEvents get on => new WeatherLayerEvents._(this);
+}
+
+class WeatherLayerEvents {
+  final WeatherLayer _weatherLayer;
+
+  WeatherLayerEvents._(WeatherLayer this._weatherLayer);
+
+  WeatherMouseEventListenerAdder get click => new WeatherMouseEventListenerAdder(_weatherLayer, "click");
 }
 
 class WeatherLayerOptions extends jsw.IsJsProxy {
@@ -118,4 +128,11 @@ class WeatherForecast extends jsw.IsJsProxy {
   num get high => $.high.value;
   num get low => $.low.value;
   String get shortDay => $.shortDay.value;
+}
+
+class WeatherMouseEventListenerAdder extends NativeEventListenerAdder {
+  WeatherMouseEventListenerAdder(jsw.IsJsProxy _instance, String _eventName) : super(_instance, _eventName);
+
+  void add(void handler(WeatherMouseEvent e)) { super.add((e) => handler(new WeatherMouseEvent.wrap(e))); }
+  MapsEventListenerRegistration addTemporary(void handler(WeatherMouseEvent e)) => super.addTemporary((e) => handler(new WeatherMouseEvent.wrap(e)));
 }
