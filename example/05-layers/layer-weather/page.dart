@@ -16,9 +16,9 @@ void main() {
     final weatherLayer = new gmaps_weather.WeatherLayer(new gmaps_weather.WeatherLayerOptions()
       ..temperatureUnits = gmaps_weather.TemperatureUnit.FAHRENHEIT
     );
-    weatherLayer.setMap(map);
+    weatherLayer.map = map;
 
     final cloudLayer = new gmaps_weather.CloudLayer();
-    cloudLayer.setMap(map);
+    cloudLayer.map = map;
   });
 }

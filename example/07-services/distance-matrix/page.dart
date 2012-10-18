@@ -92,6 +92,6 @@ void addMarker(String location, bool isDestination) {
 }
 
 void deleteOverlays() {
-  markersArray.forEach((marker) => marker.setMap(null));
+  markersArray.forEach((marker) => marker.map = null);
   markersArray.clear();
 }

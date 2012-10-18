@@ -35,7 +35,7 @@ void main() {
       ..position = new gmaps.LatLng(48.8566140, 2.35222190)
     ));
 
-    final bounds = new gmaps.LatLngBounds(marker1.getPosition(), marker2.getPosition());
+    final bounds = new gmaps.LatLngBounds(marker1.position, marker2.position);
     map.fitBounds(bounds);
 
     marker1.on.positionChanged.add(() => update());
@@ -63,9 +63,9 @@ void main() {
 }
 
 void update() {
-  final path = [marker1.getPosition(), marker2.getPosition()];
-  poly.setPath(path);
-  geodesicPoly.setPath(path);
+  final path = [marker1.position, marker2.position];
+  poly.path = path;
+  geodesicPoly.path = path;
   final heading = gmaps_geo.Spherical.computeHeading(path[0], path[1]);
   (query('#heading') as InputElement).value = heading.toString();
   (query('#origin') as InputElement).value = path[0].toString();

@@ -26,13 +26,13 @@ void main() {
     jsw.retainAll([map, marker, infowindow, autocomplete]);
     autocomplete.on.placeChanged.add(() {
       infowindow.close();
-      final place = autocomplete.getPlace();
+      final place = autocomplete.place;
 
       if (place.geometry.viewport != null) {
         map.fitBounds(place.geometry.viewport);
       } else {
-        map.setCenter(place.geometry.location);
-        map.setZoom(17);  // Why 17? Because it looks good.
+        map.center = place.geometry.location;
+        map.zoom = 17;  // Why 17? Because it looks good.
       }
 
       final image = new gmaps.MarkerImage(
@@ -41,8 +41,8 @@ void main() {
           new gmaps.Point(0, 0),
           new gmaps.Point(17, 34),
           new gmaps.Size(35, 35));
-      marker.setIcon(image);
-      marker.setPosition(place.geometry.location);
+      marker.icon = image;
+      marker.position = place.geometry.location;
 
       String address = '';
       if (place.address_components != null) {
@@ -53,7 +53,7 @@ void main() {
         ], ' ');
       }
 
-      infowindow.setContent('<div><strong>${place.name}</strong><br>${address}');
+      infowindow.content = '<div><strong>${place.name}</strong><br>${address}';
       infowindow.open(map, marker);
     });
 
@@ -62,7 +62,7 @@ void main() {
     void setupClickListener(id, types) {
       final radioButton = query('#${id}');
       gmaps.Events.addDomListener(radioButton, 'click', (e) {
-        autocomplete.setTypes(types);
+        autocomplete.types = types;
       });
     }
 

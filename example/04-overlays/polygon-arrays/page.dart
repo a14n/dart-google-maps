@@ -32,7 +32,7 @@ void main() {
       ..fillOpacity = 0.35
     ));
 
-    bermudaTriangle.setMap(map);
+    bermudaTriangle.map = map;
 
     // Add a listener for the click event
     bermudaTriangle.on.click.add(showArrays);
@@ -44,23 +44,23 @@ void main() {
 void showArrays(gmaps.MouseEvent e) {
   // Since this Polygon only has one path, we can call getPath()
   // to return the MVCArray of LatLngs
-  final vertices = bermudaTriangle.getPath();
+  final vertices = bermudaTriangle.path;
 
   final contentString = new StringBuffer()
     ..add('<b>Bermuda Triangle Polygon</b><br>')
-    ..add('Clicked Location: <br>${e.latLng.lat()},${e.latLng.lng()}<br>')
+    ..add('Clicked Location: <br>${e.latLng.lat},${e.latLng.lng}<br>')
     ;
 
   // Iterate over the vertices.
-  for (var i =0; i < vertices.getLength(); i++) {
+  for (var i =0; i < vertices.length; i++) {
     var xy = vertices.getAt(i);
-    contentString.add('<br>Coordinate: ${i}<br>${xy.lat()},${xy.lng()}');
+    contentString.add('<br>Coordinate: ${i}<br>${xy.lat},${xy.lng}');
   }
 
   // Replace our Info Window's content and position
   infoWindow
-    ..setContent(contentString.toString())
-    ..setPosition(e.latLng)
+    ..content = contentString.toString()
+    ..position = e.latLng
     ..open(map)
     ;
 }

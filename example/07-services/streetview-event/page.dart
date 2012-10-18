@@ -21,14 +21,14 @@ void main() {
     jsw.retainAll([panorama]);
     panorama.on.panoChanged.add(() {
       final panoCell = query('#pano_cell');
-      panoCell.innerHTML = panorama.getPano();
+      panoCell.innerHTML = panorama.pano;
     });
 
     jsw.retainAll([panorama]);
     panorama.on.linksChanged.add(() {
       final linksTable = query('#links_table');
       linksTable.elements.clear();
-      final links =  panorama.getLinks();
+      final links =  panorama.links;
       for (int i = 0; i < links.length; i++) {
         final row = new TableRowElement();
         linksTable.elements.add(row);
@@ -44,15 +44,15 @@ void main() {
     jsw.retainAll([panorama]);
     panorama.on.positionChanged.add(() {
       final positionCell = query('#position_cell');
-      positionCell.innerHTML = '${panorama.getPosition()}';
+      positionCell.innerHTML = '${panorama.position}';
     });
 
     jsw.retainAll([panorama]);
     panorama.on.povChanged.add(() {
       final headingCell = query('#heading_cell');
       final pitchCell = query('#pitch_cell');
-      headingCell.innerHTML = '${panorama.getPov().heading}';
-      pitchCell.innerHTML = '${panorama.getPov().pitch}';
+      headingCell.innerHTML = '${panorama.pov.heading}';
+      pitchCell.innerHTML = '${panorama.pov.pitch}';
     });
   });
 }

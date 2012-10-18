@@ -28,9 +28,9 @@ void main() {
 }
 
 void toggleBounce() {
-  if (marker.getAnimation() != null) {
-    marker.setAnimation(null);
+  if (marker.animation != null) {
+    marker.animation = null;
   } else {
-    marker.setAnimation(gmaps.Animation.BOUNCE);
+    marker.animation = gmaps.Animation.BOUNCE;
   }
 }

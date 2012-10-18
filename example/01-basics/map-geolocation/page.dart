@@ -26,7 +26,7 @@ void main() {
           );
           infowindow.open(map);
 
-          map.setCenter(pos);
+          map.center = pos;
         });
       }, (error) {
         handleNoGeolocation(true);
@@ -54,6 +54,6 @@ void handleNoGeolocation(bool errorFlag) {
 
     final infowindow = new gmaps.InfoWindow(options);
     infowindow.open(map);
-    map.setCenter(options.position);
+    map.center = options.position;
   });
 }

@@ -35,6 +35,6 @@ void main() {
         )
       ]
     );
-    layer.setMap(map);
+    layer.map = map;
   });
 }

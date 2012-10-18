@@ -40,7 +40,7 @@ void main() {
 void calcRoute() {
   js.scoped(() {
     // First, remove any existing markers from the map.
-    markerArray.forEach((marker) => marker.setMap(null));
+    markerArray.forEach((marker) => marker.map = null);
     markerArray.forEach(jsw.release);
 
     // Now, clear the array itself.
@@ -62,7 +62,7 @@ void calcRoute() {
       if (status == gmaps.DirectionsStatus.OK) {
         final warnings = query('#warnings_panel');
         warnings.innerHTML = '<b>${response.routes[0].warnings}</b>';
-        directionsDisplay.setDirections(response);
+        directionsDisplay.directions = response;
         showSteps(response);
       }
     });
@@ -91,7 +91,7 @@ void attachInstructionText(gmaps.Marker marker, String text) {
   marker.on.click.add((e) {
     // Open an info window when the marker is clicked on,
     // containing the text of the step.
-    stepDisplay.setContent(text);
+    stepDisplay.content = text;
     stepDisplay.open(map, marker);
   });
 }

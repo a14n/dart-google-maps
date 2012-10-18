@@ -21,6 +21,6 @@ void main() {
       )
       ;
     final panorama = new gmaps.StreetViewPanorama(query('#pano'),panoramaOptions);
-    map.setStreetView(panorama);
+    map.streetView = panorama;
   });
 }

@@ -46,7 +46,7 @@ class HomeControl {
     // Chicago
     jsw.retain(map);
     gmaps.Events.addDomListener(controlUI, 'click', (e) {
-      map.setCenter(chicago);
+      map.center = chicago;
     });
   }
 }

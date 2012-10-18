@@ -14,6 +14,6 @@ void main() {
     final map = new gmaps.GMap(query("#map_canvas"), mapOptions);
 
     final ctaLayer = new gmaps.KmlLayer('http://gmaps-samples.googlecode.com/svn/trunk/ggeoxml/cta.kml');
-    ctaLayer.setMap(map);
+    ctaLayer.map = map;
   });
 }

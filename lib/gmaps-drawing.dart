@@ -8,11 +8,11 @@ class DrawingManager extends MVCObject {
   DrawingManager([DrawingManagerOptions opts]) : super.newInstance(maps.drawing.DrawingManager, [opts]);
   DrawingManager.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  OverlayType getDrawingMode() => $.getDrawingMode().map(OverlayType.INSTANCIATOR).value;
-  GMap getMap() => $.getMap().map(GMap.INSTANCIATOR).value;
-  void setDrawingMode(OverlayType drawingMode) { $.setDrawingMode(drawingMode); }
-  void setMap(GMap map) { $.setMap(map); }
-  void setOptions(DrawingManagerOptions options) { $.setOptions(options); }
+  OverlayType get drawingMode => $.getDrawingMode().map(OverlayType.INSTANCIATOR).value;
+  GMap get map => $.getMap().map(GMap.INSTANCIATOR).value;
+  set drawingMode(OverlayType drawingMode) => $.setDrawingMode(drawingMode);
+  set map(GMap map) => $.setMap(map);
+  set options(DrawingManagerOptions options) => $.setOptions(options);
 
   DrawingManagerEvents get on => new DrawingManagerEvents._(this);
 }

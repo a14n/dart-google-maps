@@ -14,7 +14,7 @@ void main() {
     final map = new gmaps.GMap(query("#map_canvas"), mapOptions);
 
     final panoramioLayer = new gmaps_panoramio.PanoramioLayer();
-    panoramioLayer.setMap(map);
+    panoramioLayer.map = map;
 
     final photoPanel = query('#photo-panel');
     map.controls.getNodes(gmaps.ControlPosition.RIGHT_TOP).push(photoPanel);

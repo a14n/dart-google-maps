@@ -71,10 +71,10 @@ void main() {
     map = jsw.retain(new gmaps.GMap(query("#map_canvas"), mapOptions));
 
     map.on.maptypeidChanged.add(() {
-      final showStreetViewControl = map.getMapTypeId() != 'coordinate';
-      map.setOptions(new gmaps.MapOptions()
+      final showStreetViewControl = map.mapTypeId != 'coordinate';
+      map.options = new gmaps.MapOptions()
         ..streetViewControl = showStreetViewControl
-      );
+      ;
     });
 
     // Now attach the coordinate map type to the map's registry

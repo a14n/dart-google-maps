@@ -66,11 +66,11 @@ class GallPetersProjection extends gmaps.Projection {
 
   gmaps.Point _fromLatLngToPoint(gmaps.LatLng latLng, [gmaps.Point point]) {
     final origin = this._worldOrigin;
-    final x = origin.x + this._worldCoordinatePerLonDegree * latLng.lng();
+    final x = origin.x + this._worldCoordinatePerLonDegree * latLng.lng;
 
     // Note that latitude is measured from the world coordinate origin
     // at the top left of the map.
-    final latRadians = degreesToRadians(latLng.lat());
+    final latRadians = degreesToRadians(latLng.lat);
     final y = origin.y - this._worldCoordinateLatRange * Math.sin(latRadians);
 
     return new gmaps.Point(x, y);
@@ -133,7 +133,7 @@ void main() {
     final gallPetersMap = new gmaps.GMap(query('#gallPetersMap'), mapOptions);
 
     gallPetersMap.mapTypes.set('gallPetersMap', gallPetersMapType);
-    gallPetersMap.setMapTypeId('gallPetersMap');
+    gallPetersMap.mapTypeId = 'gallPetersMap';
 
     for (var i = 0; i < locationArray.length; i++) {
       new gmaps.Marker(new gmaps.MarkerOptions()

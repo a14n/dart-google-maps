@@ -17,7 +17,7 @@ void main() {
       ..center = chicago
       ;
     map = jsw.retain(new gmaps.GMap(query("#map_canvas"), mapOptions));
-    directionsDisplay.setMap(map);
+    directionsDisplay.map = map;
 
     query('#start').on.change.add((e) => calcRoute());
     query('#end').on.change.add((e) => calcRoute());
@@ -35,7 +35,7 @@ void calcRoute() {
       ;
     directionsService.route(request, (gmaps.DirectionsResult response, gmaps.DirectionsStatus status) {
       if (status == gmaps.DirectionsStatus.OK) {
-        directionsDisplay.setDirections(response);
+        directionsDisplay.directions = response;
       }
     });
   });

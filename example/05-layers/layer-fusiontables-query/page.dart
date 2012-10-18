@@ -19,6 +19,6 @@ void main() {
         ..where = 'ridership > 5000'
       )
     );
-    layer.setMap(map);
+    layer.map = map;
   });
 }

@@ -41,7 +41,7 @@ void addMarker(gmaps.LatLng location) {
 // Sets the map on all markers in the array.
 void setAllMap(gmaps.GMap map) {
   for (final marker in markers) {
-    marker.setMap(map);
+    marker.map = map;
   }
 }
 

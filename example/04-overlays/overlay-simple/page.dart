@@ -51,7 +51,7 @@ class USGSOverlay extends gmaps.OverlayView {
     _div = null;
 
     // Explicitly call setMap on this overlay
-    setMap(map);
+    this.map = map;
   }
 
   void _onAdd() {
@@ -84,7 +84,6 @@ class USGSOverlay extends gmaps.OverlayView {
 
     // We add an overlay to a map via one of the map's panes.
     // We'll add this overlay to the overlayImage pane.
-    final panes = getPanes();
     (panes.overlayImage as Element).elements.add(_div);
   }
 
@@ -92,13 +91,13 @@ class USGSOverlay extends gmaps.OverlayView {
     // Size and position the overlay. We use a southwest and northeast
     // position of the overlay to peg it to the correct position and size.
     // We need to retrieve the projection from this overlay to do this.
-    final overlayProjection = this.getProjection();
+    final overlayProjection = this.projection;
 
     // Retrieve the southwest and northeast coordinates of this overlay
     // in latlngs and convert them to pixels coordinates.
     // We'll use these coordinates to resize the DIV.
-    final sw = overlayProjection.fromLatLngToDivPixel(_bounds.getSouthWest());
-    final ne = overlayProjection.fromLatLngToDivPixel(_bounds.getNorthEast());
+    final sw = overlayProjection.fromLatLngToDivPixel(_bounds.southWest);
+    final ne = overlayProjection.fromLatLngToDivPixel(_bounds.northEast);
 
     // Resize the image's DIV to fit the indicated dimensions.
     final div = _div;

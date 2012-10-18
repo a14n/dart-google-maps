@@ -20,6 +20,6 @@ void main() {
         ..enabled = true
       )
     );
-    layer.setMap(map);
+    layer.map = map;
   });
 }

@@ -8,7 +8,7 @@ class HeatmapLayer extends MVCObject {
   HeatmapLayer([HeatmapLayerOptions opts]) : super.newInstance(maps.visualization.HeatmapLayer, [opts]);
   HeatmapLayer.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  MVCArray<Object> getData() => $.getData().map((js.Proxy jsProxy) => new MVCArray.fromJsProxy(jsProxy, (js.Proxy jsProxy) {
+  MVCArray<Object> get data => $.getData().map((js.Proxy jsProxy) => new MVCArray.fromJsProxy(jsProxy, (js.Proxy jsProxy) {
     if (jsProxy == null) {
       return jsProxy;
     } else if (js.instanceof(jsProxy, maps.LatLng)) {
@@ -17,8 +17,8 @@ class HeatmapLayer extends MVCObject {
       return new WeightedLocation.fromJsProxy(jsProxy);
     }
   })).value;
-  GMap getMap() => $.getMap().map(GMap.INSTANCIATOR).value;
-  void setData(Object data) {
+  GMap get map => $.getMap().map(GMap.INSTANCIATOR).value;
+  set data(Object data) {
     List list;
     if (data is MVCArray) {
       list = data.getArray();
@@ -33,8 +33,8 @@ class HeatmapLayer extends MVCObject {
     }
     $.setData(data);
   }
-  void setMap(GMap map) { $.setMap(map); }
-  void setOptions(HeatmapLayerOptions options) { $.setOptions(options); }
+  set map(GMap map) => $.setMap(map);
+  set options(HeatmapLayerOptions options) => $.setOptions(options);
 }
 
 class HeatmapLayerOptions extends jsw.IsJsProxy {
@@ -52,7 +52,7 @@ class WeightedLocation extends jsw.IsJsProxy {
   WeightedLocation.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   LatLng get location => $.location.map(LatLng.INSTANCIATOR).value;
-         set location(LatLng location) => $.location = location;
+  set location(LatLng location) => $.location = location;
   num get weight => $.weight.value;
-      set weight(num weight) => $.weight = weight;
+  set weight(num weight) => $.weight = weight;
 }

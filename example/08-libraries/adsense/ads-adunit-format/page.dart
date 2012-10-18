@@ -103,7 +103,7 @@ void main() {
     jsw.retainAll([adUnit]);
     gmaps.Events.addDomListener(format, 'change', (e) {
       final adsFormat = (new jsw.IsJsProxy.fromJsProxy(gmaps.maps.adsense.AdFormat).$[format.value] as Option<String>).value;
-      adUnit.setFormat(gmaps_ads.AdFormat.find(adsFormat));
+      adUnit.format = gmaps_ads.AdFormat.find(adsFormat);
     });
 
     final SelectElement style = query('#style');
@@ -124,7 +124,7 @@ void main() {
     jsw.retainAll([adUnit]);
     gmaps.Events.addDomListener(position, 'change', (e) {
       final adsPosition = (new jsw.IsJsProxy.fromJsProxy(gmaps.maps.ControlPosition).$[position.value] as Option<int>).value;
-      adUnit.setPosition(gmaps.ControlPosition.find(adsPosition));
+      adUnit.position = gmaps.ControlPosition.find(adsPosition);
     });
   });
 }

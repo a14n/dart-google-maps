@@ -72,7 +72,7 @@ class HomeControl {
     // simply set the map to the control's current home property.
     jsw.retainAll([map]);
     gmaps.Events.addDomListener(goHomeUI, 'click', (e) {
-      map.setCenter(_home);
+      map.center = _home;
     });
 
     // Setup the click event listener for Set Home:
@@ -80,7 +80,7 @@ class HomeControl {
     jsw.retainAll([map]);
     gmaps.Events.addDomListener(setHomeUI, 'click', (e) {
       jsw.release(_home);
-      _home = jsw.retain(map.getCenter());
+      _home = jsw.retain(map.center);
     });
   }
 }

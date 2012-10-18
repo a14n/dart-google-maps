@@ -15,6 +15,6 @@ void main() {
       )
       ;
     final myPano = new gmaps.StreetViewPanorama(query('#pano'),panoramaOptions);
-    myPano.setVisible(true);
+    myPano.visible = true;
   });
 }

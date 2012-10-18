@@ -11,6 +11,6 @@ void main() {
       ..mapTypeId = gmaps.MapTypeId.SATELLITE
       ;
     final map = new gmaps.GMap(query("#map_canvas"), mapOptions);
-    map.setTilt(45);
+    map.tilt = 45;
   });
 }

@@ -26,6 +26,6 @@ void main() {
       ..strokeWeight = 2
     );
 
-    flightPath.setMap(map);
+    flightPath.map = map;
   });
 }

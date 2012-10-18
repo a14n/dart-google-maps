@@ -38,25 +38,25 @@ void processSVData(gmaps.StreetViewPanoramaData data, gmaps.StreetViewStatus sta
       ..title = data.location.description
     );
 
-    panorama.setPano(data.location.pano);
-    panorama.setPov(new gmaps.StreetViewPov()
+    panorama.pano = data.location.pano;
+    panorama.pov = new gmaps.StreetViewPov()
       ..heading = 270
       ..pitch = 0
       ..zoom = 1
-    );
-    panorama.setVisible(true);
+    ;
+    panorama.visible = true;
 
     jsw.retainAll([data]);
     marker.on.click.add((e) {
       final markerPanoID = data.location.pano;
       // Set the Pano to use the passed panoID
-      panorama.setPano(markerPanoID);
-      panorama.setPov(new gmaps.StreetViewPov()
+      panorama.pano = markerPanoID;
+      panorama.pov = new gmaps.StreetViewPov()
         ..heading = 270
         ..pitch = 0
         ..zoom = 1
-      );
-      panorama.setVisible(true);
+      ;
+      panorama.visible = true;
     });
   } else {
     window.alert('Street View data not found for this location.');

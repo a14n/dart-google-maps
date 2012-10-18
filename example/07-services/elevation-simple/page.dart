@@ -46,8 +46,8 @@ void getElevation(gmaps.MouseEvent e) {
       if (!results.isEmpty()) {
 
         // Open an info window indicating the elevation at the clicked position
-        infowindow.setContent('The elevation at this point <br>is ${results[0].elevation} meters.');
-        infowindow.setPosition(clickedLocation);
+        infowindow.content = 'The elevation at this point <br>is ${results[0].elevation} meters.';
+        infowindow.position = clickedLocation;
         jsw.release(clickedLocation);
         infowindow.open(map);
       } else {

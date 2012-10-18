@@ -22,7 +22,7 @@ void main() {
       ..strokeWeight = 3
       ;
     poly = jsw.retain(new gmaps.Polyline(polyOptions));
-    poly.setMap(map);
+    poly.map = map;
 
     // Add a listener for the click event
     map.on.click.add(addLatLng);
@@ -34,7 +34,7 @@ void main() {
  * @param {MouseEvent} mouseEvent
  */
 void addLatLng(gmaps.MouseEvent e) {
-  final path = poly.getPath();
+  final path = poly.path;
 
   // Because path is an MVCArray, we can simply append a new coordinate
   // and it will automatically appear
@@ -43,7 +43,7 @@ void addLatLng(gmaps.MouseEvent e) {
   // Add a new marker at the new plotted point on the polyline.
   var marker = new gmaps.Marker(new gmaps.MarkerOptions()
     ..position = e.latLng
-    ..title = '#${path.getLength()}'
+    ..title = '#${path.length}'
     ..map = map
   );
 }

@@ -23,9 +23,9 @@ void main() {
 
     jsw.retainAll([map, myLatLng, infowindow]);
     map.on.zoomChanged.add(() {
-      var zoomLevel = map.getZoom();
-      map.setCenter(myLatLng);
-      infowindow.setContent("Zoom: $zoomLevel");
+      var zoomLevel = map.zoom;
+      map.center = myLatLng;
+      infowindow.content = "Zoom: $zoomLevel";
     });
   });
 }

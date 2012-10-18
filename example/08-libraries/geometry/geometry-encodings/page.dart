@@ -34,7 +34,7 @@ void main() {
  * Updates the encoding text area with the path's encoded values.
  */
 void addLatLng(gmaps.MouseEvent e) {
-  final path = poly.getPath();
+  final path = poly.path;
   // Because path is an MVCArray, we can simply append a new coordinate
   // and it will automatically appear
   path.push(e.latLng);

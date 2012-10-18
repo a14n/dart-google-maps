@@ -18,6 +18,6 @@ void main() {
         ..from = '1mZ53Z70NsChnBMm-qEYmSDOvLXgrreLTkQUvvg'
       )
     );
-    layer.setMap(map);
+    layer.map = map;
   });
 }

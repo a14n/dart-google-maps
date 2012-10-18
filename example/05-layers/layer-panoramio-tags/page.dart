@@ -14,14 +14,14 @@ void main() {
     final map = new gmaps.GMap(query("#map_canvas"), mapOptions);
 
     final panoramioLayer = new gmaps_panoramio.PanoramioLayer();
-    panoramioLayer.setMap(map);
+    panoramioLayer.map = map;
 
     final tag = query('#tag') as InputElement;
     final button = query('#filter-button');
 
     jsw.retain(panoramioLayer);
     gmaps.Events.addDomListener(button, 'click', (e) {
-      panoramioLayer.setTag(tag.value);
+      panoramioLayer.tag = tag.value;
     });
 
     map.controls.getNodes(gmaps.ControlPosition.TOP_CENTER).push(query('#filter'));

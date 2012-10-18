@@ -20,11 +20,11 @@ void main() {
       ..center = australia
       ;
     map = jsw.retain(new gmaps.GMap(query("#map_canvas"), mapOptions));
-    directionsDisplay.setMap(map);
-    directionsDisplay.setPanel(query('#directionsPanel'));
+    directionsDisplay.map = map;
+    directionsDisplay.panel = query('#directionsPanel');
 
     directionsDisplay.on.directionsChanged.add(() {
-      computeTotalDistance(directionsDisplay.getDirections());
+      computeTotalDistance(directionsDisplay.directions);
     });
 
     calcRoute();
@@ -43,7 +43,7 @@ void calcRoute() {
     ;
   directionsService.route(request, (gmaps.DirectionsResult response, gmaps.DirectionsStatus status) {
     if (status == gmaps.DirectionsStatus.OK) {
-      directionsDisplay.setDirections(response);
+      directionsDisplay.directions = response;
     }
   });
 }

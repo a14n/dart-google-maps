@@ -48,13 +48,13 @@ void main() {
 
     // We get the map's default panorama and set up some defaults.
     // Note that we don't yet set it visible.
-    panorama = jsw.retain(map.getStreetView());
-    panorama.setPosition(astorPlace);
-    panorama.setPov(new gmaps.StreetViewPov()
+    panorama = jsw.retain(map.streetView);
+    panorama.position = astorPlace;
+    panorama.pov = new gmaps.StreetViewPov()
       ..heading = 265
       ..zoom = 1
       ..pitch = 0
-    );
+    ;
 
     query("#toggleStreetView").on.click.add((e) => toggleStreetView());
   });
@@ -62,11 +62,11 @@ void main() {
 
 void toggleStreetView() {
   js.scoped(() {
-    var toggle = panorama.getVisible();
+    var toggle = panorama.visible;
     if (toggle == false) {
-      panorama.setVisible(true);
+      panorama.visible = true;
     } else {
-      panorama.setVisible(false);
+      panorama.visible = false;
     }
   });
 }

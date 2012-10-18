@@ -37,13 +37,13 @@ void codeLatLng() {
     geocoder.geocode(request, (List<gmaps.GeocoderResult> results, gmaps.GeocoderStatus status) {
       if (status == gmaps.GeocoderStatus.OK) {
         if (results[1] !== null) {
-          map.setZoom(11);
+          map.zoom = 11;
           final marker = new gmaps.Marker(new gmaps.MarkerOptions()
             ..position = latlng
             ..map = map
           );
           jsw.release(latlng);
-          infowindow.setContent(results[1].formatted_address);
+          infowindow.content = results[1].formatted_address;
           infowindow.open(map, marker);
         } else {
           window.alert('No results found');

@@ -28,6 +28,6 @@ void main() {
       ..fillOpacity = 0.35
     );
 
-    bermudaTriangle.setMap(map);
+    bermudaTriangle.map = map;
   });
 }

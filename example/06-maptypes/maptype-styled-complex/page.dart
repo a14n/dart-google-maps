@@ -84,6 +84,6 @@ void main() {
     final usRoadMapType = new gmaps.StyledMapType(roadAtlasStyles, styledMapOptions);
 
     map.mapTypes.set('usroadatlas', usRoadMapType);
-    map.setMapTypeId('usroadatlas');
+    map.mapTypeId = 'usroadatlas';
   });
 }

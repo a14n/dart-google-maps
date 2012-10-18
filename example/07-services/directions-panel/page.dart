@@ -15,8 +15,8 @@ void main() {
       ..center = new gmaps.LatLng(41.850033, -87.6500523)
       ;
     final map = new gmaps.GMap(query("#map_canvas"), mapOptions);
-    directionsDisplay.setMap(map);
-    directionsDisplay.setPanel(query('#directions-panel'));
+    directionsDisplay.map = map;
+    directionsDisplay.panel = query('#directions-panel');
 
     final control = query('#control');
     control.style.display = 'block';
@@ -38,7 +38,7 @@ void calcRoute() {
       ;
     directionsService.route(request, (gmaps.DirectionsResult response, gmaps.DirectionsStatus status) {
       if (status == gmaps.DirectionsStatus.OK) {
-        directionsDisplay.setDirections(response);
+        directionsDisplay.directions = response;
       }
     });
   });

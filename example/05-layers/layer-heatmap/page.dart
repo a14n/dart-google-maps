@@ -528,7 +528,7 @@ void main() {
       ..data = pointArray
     ));
 
-    heatmap.setMap(map);
+    heatmap.map = map;
 
     query("#toggleHeatmap").on.click.add((e){toggleHeatmap();});
     query("#changeGradient").on.click.add((e){changeGradient();});
@@ -539,7 +539,7 @@ void main() {
 
 void toggleHeatmap() {
   js.scoped(() {
-    heatmap.setMap(heatmap.getMap() !== null ? null : map);
+    heatmap.map = heatmap.map !== null ? null : map;
   });
 }
 
@@ -561,24 +561,24 @@ void changeGradient() {
       'rgba(191, 0, 31, 1)',
       'rgba(255, 0, 0, 1)'
     ];
-    heatmap.setOptions(new gmaps_visu.HeatmapLayerOptions()
+    heatmap.options = new gmaps_visu.HeatmapLayerOptions()
       ..gradient = heatmap.get('gradient') !== null ? null : gradient
-    );
+    ;
   });
 }
 
 void changeRadius() {
   js.scoped(() {
-    heatmap.setOptions(new gmaps_visu.HeatmapLayerOptions()
+    heatmap.options = new gmaps_visu.HeatmapLayerOptions()
       ..radius = heatmap.get('radius') !== null ? null : 20
-    );
+    ;
   });
 }
 
 void changeOpacity() {
   js.scoped(() {
-    heatmap.setOptions(new gmaps_visu.HeatmapLayerOptions()
+    heatmap.options = new gmaps_visu.HeatmapLayerOptions()
       ..opacity = heatmap.get('opacity') !== null ? null : 0.2
-    );
+    ;
   });
 }

@@ -22,6 +22,6 @@ void main() {
       ..editable = true
     );
 
-    rectangle.setMap(map);
+    rectangle.map = map;
   });
 }

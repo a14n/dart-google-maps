@@ -14,6 +14,6 @@ void main() {
     final map = new gmaps.GMap(query("#map_canvas"), mapOptions);
 
     final transitLayer = new gmaps.TransitLayer();
-    transitLayer.setMap(map);
+    transitLayer.map = map;
   });
 }

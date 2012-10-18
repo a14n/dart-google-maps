@@ -8,17 +8,17 @@ class CloudLayer extends MVCObject {
   CloudLayer() : super.newInstance(maps.weather.CloudLayer);
   CloudLayer.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  GMap getMap() => $.getMap().map(GMap.INSTANCIATOR).value;
-  void setMap(GMap map) { $.setMap(map); }
+  GMap get map => $.getMap().map(GMap.INSTANCIATOR).value;
+  set map(GMap map) => $.setMap(map);
 }
 
 class WeatherLayer extends MVCObject {
   WeatherLayer([WeatherLayerOptions opts]) : super.newInstance(maps.weather.WeatherLayer, [opts]);
   WeatherLayer.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  GMap getMap() => $.getMap().map(GMap.INSTANCIATOR).value;
-  void setMap(GMap map) { $.setMap(map); }
-  void setOptions(WeatherLayerOptions options) { $.setOptions(options); }
+  GMap get map => $.getMap().map(GMap.INSTANCIATOR).value;
+  set map(GMap map) => $.setMap(map);
+  set options(WeatherLayerOptions options) => $.setOptions(options);
 
   WeatherLayerEvents get on => new WeatherLayerEvents._(this);
 }

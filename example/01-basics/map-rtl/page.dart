@@ -15,10 +15,10 @@ void main() {
 
     final marker = new gmaps.Marker(new gmaps.MarkerOptions()
       ..map = map
-      ..position = map.getCenter()
+      ..position = map.center
     );
     final gmaps.InfoWindow infowindow = new gmaps.InfoWindow();
-    infowindow.setContent('<b>القاهرة</b>');
+    infowindow.content = '<b>القاهرة</b>';
 
     jsw.retainAll([infowindow, map, marker]);
     marker.on.click.add((e) {

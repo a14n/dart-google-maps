@@ -19,12 +19,14 @@ class GMap extends MVCObject {
   GMap(html.Node mapDiv, [MapOptions opts]) : super.newInstance(maps.Map, [mapDiv, opts]);
   GMap.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
+  // js methods
+
   void fitBounds(LatLngBounds bounds) { $.fitBounds(bounds); }
-  LatLngBounds getBounds() => $.getBounds().map(LatLngBounds.INSTANCIATOR).value;
-  LatLng getCenter() => $.getCenter().map(LatLng.INSTANCIATOR).value;
-  html.Node getDiv() => $.getDiv().value;
-  num getHeading() => $.getHeading().value;
-  Object getMapTypeId() {
+  LatLngBounds get bounds => $.getBounds().map(LatLngBounds.INSTANCIATOR).value;
+  LatLng get center => $.getCenter().map(LatLng.INSTANCIATOR).value;
+  html.Node get div => $.getDiv().value;
+  num get heading => $.getHeading().value;
+  Object get mapTypeId {
     final result = $.getMapTypeId().value;
     final mapTypeId = MapTypeId.find(result);
     if ( mapTypeId !== null ) {
@@ -33,33 +35,38 @@ class GMap extends MVCObject {
       return result;
     }
   }
-  Projection getProjection() => $.getProjection().map(Projection.INSTANCIATOR).value;
-  StreetViewPanorama getStreetView() => $.getStreetView().map(StreetViewPanorama.INSTANCIATOR).value;
-  num getTilt() => $.getTilt().value;
-  num getZoom() => $.getZoom().value;
+  Projection get projection => $.getProjection().map(Projection.INSTANCIATOR).value;
+  StreetViewPanorama get streetView => $.getStreetView().map(StreetViewPanorama.INSTANCIATOR).value;
+  num get tilt => $.getTilt().value;
+  num get zoom => $.getZoom().value;
   void panBy(num x, num y) { $.panBy(x, y); }
   void panTo(LatLng latLng) { $.panTo(latLng); }
   void panToBounds(LatLngBounds latLngBounds) { $.panToBounds(latLngBounds); }
-  void setCenter(LatLng latLng) { $.setCenter(latLng); }
-  void setHeading(num heading) { $.setHeading(heading); }
-  void setMapTypeId(Object mapTypeId) {
+  set center(LatLng latLng) => $.setCenter(latLng);
+  set heading(num heading) => $.setHeading(heading);
+  set mapTypeId(Object mapTypeId) {
     if (mapTypeId is String || mapTypeId is MapTypeId) {
       $.setMapTypeId(mapTypeId);
     } else {
       throw new IllegalArgumentException(mapTypeId);
     }
   }
-  void setOptions(MapOptions options) { $.setOptions(options); }
-  void setStreetView(StreetViewPanorama panorama) { $.setStreetView(panorama); }
-  void setTilt(num tilt) { $.setTilt(tilt); }
-  void setZoom(num zoom) { $.setZoom(zoom); }
+  set options(MapOptions options) => $.setOptions(options);
+  set streetView(StreetViewPanorama panorama) => $.setStreetView(panorama);
+  set tilt(num tilt) => $.setTilt(tilt);
+  set zoom(num zoom) => $.setZoom(zoom);
+
+  // js properties
 
   Controls get controls => $.controls.map(Controls.INSTANCIATOR).value;
-           set controls(Controls controls) => $.controls = controls;
+  set controls(Controls controls) => $.controls = controls;
   MapTypeRegistry get mapTypes => $.mapTypes.map(MapTypeRegistry.INSTANCIATOR).value;
-                  set mapTypes(MapTypeRegistry mapTypes) => $.mapTypes = mapTypes;
+  set mapTypes(MapTypeRegistry mapTypes) => $.mapTypes = mapTypes;
   MVCArray<MapType> get overlayMapTypes => $.overlayMapTypes.map((js.Proxy jsProxy) => new MVCArray.fromJsProxy(jsProxy, (js.Proxy jsProxy) => new MapType.fromJsProxy(jsProxy))).value;
-                    set overlayMapTypes(MVCArray<MapType> overlayMapTypes) => $.overlayMapTypes = overlayMapTypes;
+  set overlayMapTypes(MVCArray<MapType> overlayMapTypes) => $.overlayMapTypes = overlayMapTypes;
+
+  // js events
+
   GMapEvents get on => new GMapEvents._(this);
 }
 
@@ -263,12 +270,14 @@ class Marker extends MVCObject {
   Marker([MarkerOptions opts]) : super.newInstance(maps.Marker, [opts]);
   Marker.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  Animation getAnimation() => $.getAnimation().map(Animation.find).value;
-  bool getClickable() => $.getClickable().value;
-  String getCursor() => $.getCursor().value;
-  bool getDraggable() => $.getDraggable().value;
-  bool getFlat() => $.getFlat().value;
-  Object getIcon() {
+  // js methods
+
+  Animation get animation => $.getAnimation().map(Animation.find).value;
+  bool get clickable => $.getClickable().value;
+  String get cursor => $.getCursor().value;
+  bool get draggable => $.getDraggable().value;
+  bool get flat => $.getFlat().value;
+  Object get icon {
     final result = $.getIcon().value;
     if (result == null) {
       return result;
@@ -280,7 +289,7 @@ class Marker extends MVCObject {
       throw new Exception("Unsupported result");
     }
   }
-  Object getMap() {
+  Object get map {
     final result = $.getMap().value;
     if (result == null) {
       return result;
@@ -292,8 +301,8 @@ class Marker extends MVCObject {
       throw new Exception("Unsupported result");
     }
   }
-  LatLng getPosition() => $.getPosition().map(LatLng.INSTANCIATOR).value;
-  Object getShadow() {
+  LatLng get position => $.getPosition().map(LatLng.INSTANCIATOR).value;
+  Object get shadow {
     final result = $.getShadow().value;
     if (result == null) {
       return result;
@@ -305,41 +314,43 @@ class Marker extends MVCObject {
       throw new Exception("Unsupported result");
     }
   }
-  MarkerShape getShape() => $.getShape().map(MarkerShape.INSTANCIATOR).value;
-  String getTitle() => $.getTitle().value;
-  bool getVisible() => $.getVisible().value;
-  num getZIndex() => $.getZIndex().value;
-  void setAnimation(Animation animation) { $.setAnimation(animation); }
-  void setClickable(bool clickable) { $.setClickable(clickable); }
-  void setCursor(String cursor) { $.setCursor(cursor); }
-  void setDraggable(bool draggable) { $.setDraggable(draggable); }
-  void setFlat(bool flag) { $.setFlat(flag); }
-  void setIcon(Object icon) {
+  MarkerShape get shape => $.getShape().map(MarkerShape.INSTANCIATOR).value;
+  String get title => $.getTitle().value;
+  bool get visible => $.getVisible().value;
+  num get zIndex => $.getZIndex().value;
+  set animation(Animation animation) => $.setAnimation(animation);
+  set clickable(bool clickable) => $.setClickable(clickable);
+  set cursor(String cursor) => $.setCursor(cursor);
+  set draggable(bool draggable) => $.setDraggable(draggable);
+  set flat(bool flag) => $.setFlat(flag);
+  set icon(Object icon) {
     if (icon === null || icon is String || icon is MarkerImage) {
       $.setIcon(icon);
     } else {
       throw new IllegalArgumentException(icon);
     }
   }
-  void setMap(Object map) {
+  set map(Object map) {
     if (map === null || map is GMap || map is StreetViewPanorama) {
       $.setMap(map);
     } else {
       throw new IllegalArgumentException(map);
     }
   }
-  void setOptions(MarkerOptions options) { $.setOptions(options); }
-  void setPosition(LatLng latlng) { $.setPosition(latlng); }
-  void setShadow(Object shadow) {
+  set options(MarkerOptions options) => $.setOptions(options);
+  set position(LatLng latlng) => $.setPosition(latlng);
+  set shadow(Object shadow) {
     if (shadow is String || shadow is MarkerImage) {
       $.setShadow(shadow);
     } else {
       throw new IllegalArgumentException(shadow);
     }
   }
-  void setTitle(String title) { $.setTitle(title); }
-  void setVisible(bool visible) { $.setVisible(visible); }
-  void setZIndex(num zIndex) { $.setZIndex(zIndex); }
+  set title(String title) => $.setTitle(title);
+  set visible(bool visible) => $.setVisible(visible);
+  set zIndex(num zIndex) => $.setZIndex(zIndex);
+
+  // js events
 
   MarkerEvents get on => new MarkerEvents._(this);
 }
@@ -415,15 +426,15 @@ class MarkerImage extends jsw.IsJsProxy {
   MarkerImage.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   Point get anchor => $.anchor.map(Point.INSTANCIATOR).value;
-        set anchor(Point anchor) => $.anchor = anchor;
+  set anchor(Point anchor) => $.anchor = anchor;
   Point get origin => $.origin.map(Point.INSTANCIATOR).value;
-        set origin(Point origin) => $.origin = origin;
+  set origin(Point origin) => $.origin = origin;
   Size get scaledSize => $.scaledSize.map(Size.INSTANCIATOR).value;
-       set scaledSize(Size scaledSize) => $.scaledSize = scaledSize;
+  set scaledSize(Size scaledSize) => $.scaledSize = scaledSize;
   Size get size => $.size.map(Size.INSTANCIATOR).value;
-       set size(Size size) => $.size = size;
+  set size(Size size) => $.size = size;
   String get url => $.url.value;
-         set url(String url) => $.url = url;
+  set url(String url) => $.url = url;
 }
 
 class MarkerShape extends jsw.IsJsProxy {
@@ -433,9 +444,9 @@ class MarkerShape extends jsw.IsJsProxy {
   MarkerShape.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   List<num> get coords => $.coords.map((js.Proxy jsProxy) => new jsw.JsList<num>.fromJsProxy(jsProxy, null)).value;
-            set coords(List<num> coords) => $.coords = coords;
+  set coords(List<num> coords) => $.coords = coords;
   MarkerShapeType get type => MarkerShapeType.find($.type.value);
-                  set type(MarkerShapeType type) => $.type = type.value;
+  set type(MarkerShapeType type) => $.type = type.value;
 }
 
 class MarkerShapeType extends jsw.IsEnum<String> {
@@ -454,38 +465,38 @@ class MarkerShapeType extends jsw.IsEnum<String> {
 
 class Symbol extends jsw.IsJsProxy {
   Point get anchor => $.anchor.map(Point.INSTANCIATOR).value;
-        set anchor(Point anchor) => $.anchor = anchor;
+  set anchor(Point anchor) => $.anchor = anchor;
   String get fillColor => $.fillColor.value;
-         set fillColor(String fillColor) => $.fillColor = fillColor;
+  set fillColor(String fillColor) => $.fillColor = fillColor;
   num get fillOpacity => $.fillOpacity.value;
-      set fillOpacity(num fillOpacity) => $.fillOpacity = fillOpacity;
+  set fillOpacity(num fillOpacity) => $.fillOpacity = fillOpacity;
   Object get path {
-           final result = $.path.value;
-           if (result is String) {
-             return result;
-           } else if (result is js.Proxy) {
-             return SymbolPath.find(result);
-           } else {
-             throw new Exception("Unsupported result");
-           }
-         }
-         set path(Object path) {
-           if (path is String || path is SymbolPath) {
-             $.path = path;
-           } else {
-             throw new IllegalArgumentException(path);
-           }
-         }
+    final result = $.path.value;
+    if (result is String) {
+      return result;
+    } else if (result is js.Proxy) {
+      return SymbolPath.find(result);
+    } else {
+      throw new Exception("Unsupported result");
+    }
+  }
+  set path(Object path) {
+    if (path is String || path is SymbolPath) {
+      $.path = path;
+    } else {
+      throw new IllegalArgumentException(path);
+    }
+  }
   num get rotation => $.rotation.value;
-      set rotation(num rotation) => $.rotation = rotation;
+  set rotation(num rotation) => $.rotation = rotation;
   num get scale => $.scale.value;
-      set scale(num scale) => $.scale = scale;
+  set scale(num scale) => $.scale = scale;
   String get strokeColor => $.strokeColor.value;
-         set strokeColor(String strokeColor) => $.strokeColor = strokeColor;
+  set strokeColor(String strokeColor) => $.strokeColor = strokeColor;
   num get strokeOpacity => $.strokeOpacity.value;
-      set strokeOpacity(num strokeOpacity) => $.strokeOpacity = strokeOpacity;
+  set strokeOpacity(num strokeOpacity) => $.strokeOpacity = strokeOpacity;
   num get strokeWeight => $.strokeWeight.value;
-      set strokeWeight(num rotation) => $.strokeWeight = strokeWeight;
+  set strokeWeight(num strokeWeight) => $.strokeWeight = strokeWeight;
 }
 
 class SymbolPath extends jsw.IsEnum<int> {
@@ -522,7 +533,7 @@ class InfoWindow extends MVCObject {
   InfoWindow.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   void close() { $.close(); }
-  Object getContent() {
+  Object get content() {
     final result = $.getContent().value;
     if (result is String || result is html.Node) {
       return result;
@@ -530,8 +541,8 @@ class InfoWindow extends MVCObject {
       throw new Exception("Unsupported result");
     }
   }
-  LatLng getPosition() => $.getPosition().map(LatLng.INSTANCIATOR).value;
-  num getZIndex() => $.getZIndex().value;
+  LatLng get position => $.getPosition().map(LatLng.INSTANCIATOR).value;
+  num get zIndex => $.getZIndex().value;
   void open([Object map, MVCObject anchor]) {
     if (map is GMap || map is StreetViewPanorama) {
       $.open(map, anchor);
@@ -539,16 +550,16 @@ class InfoWindow extends MVCObject {
       throw new IllegalArgumentException(map);
     }
   }
-  void setContent(Object content) {
+  set content(Object content) {
     if (content is String || content is html.Node) {
       $.setContent(content);
     } else {
       throw new IllegalArgumentException(content);
     }
   }
-  void setOptions(InfoWindowOptions options) { $.setOptions(options); }
-  void setPosition(LatLng position) { $.setPosition(position); }
-  void setZIndex(num zIndex) { $.setZIndex(zIndex); }
+  set options(InfoWindowOptions options) => $.setOptions(options);
+  set position(LatLng position) => $.setPosition(position);
+  set zIndex(num zIndex) => $.setZIndex(zIndex);
 
   InfoWindowEvents get on => new InfoWindowEvents._(this);
 }
@@ -574,15 +585,15 @@ class InfoWindowOptions extends jsw.IsJsProxy {
     }
   }
   bool get disableAutoPan => $.disableAutoPan.value;
-       set disableAutoPan(bool disableAutoPan) => $.disableAutoPan = disableAutoPan;
+  set disableAutoPan(bool disableAutoPan) => $.disableAutoPan = disableAutoPan;
   num get maxWidth => $.maxWidth.value;
-      set maxWidth(num maxWidth) => $.maxWidth = maxWidth;
+  set maxWidth(num maxWidth) => $.maxWidth = maxWidth;
   Size get pixelOffset => $.pixelOffset.map(Size.INSTANCIATOR).value;
-       set pixelOffset(Size pixelOffset) => $.pixelOffset = pixelOffset;
+  set pixelOffset(Size pixelOffset) => $.pixelOffset = pixelOffset;
   LatLng get position => $.position.map(LatLng.INSTANCIATOR).value;
-         set position(LatLng position) => $.position = position;
+  set position(LatLng position) => $.position = position;
   num get zIndex => $.zIndex.value;
-      set zIndex(num zIndex) => $.zIndex = zIndex;
+  set zIndex(num zIndex) => $.zIndex = zIndex;
 }
 
 class Polyline extends MVCObject {
@@ -591,21 +602,21 @@ class Polyline extends MVCObject {
   Polyline([PolylineOptions opts]) : super.newInstance(maps.Polyline, [opts]);
   Polyline.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  bool getEditable() => $.getEditable().value;
-  GMap getMap() => $.getMap().map(GMap.INSTANCIATOR).value;
-  MVCArray<LatLng> getPath() => $.getPath().map((js.Proxy jsProxy) => new MVCArray.fromJsProxy(jsProxy, (js.Proxy jsProxy) => new LatLng.fromJsProxy(jsProxy))).value;
-  bool getVisible() => $.getVisible().value;
-  void setEditable(bool editable) { $.setEditable(editable); }
-  void setMap(GMap map) { $.setMap(map); }
-  void setOptions(PolylineOptions options) { $.setOptions(options); }
-  void setPath(Object path) {
+  bool get editable=> $.getEditable().value;
+  GMap get map => $.getMap().map(GMap.INSTANCIATOR).value;
+  MVCArray<LatLng> get path => $.getPath().map((js.Proxy jsProxy) => new MVCArray.fromJsProxy(jsProxy, (js.Proxy jsProxy) => new LatLng.fromJsProxy(jsProxy))).value;
+  bool get visible => $.getVisible().value;
+  set editable(bool editable) => $.setEditable(editable);
+  set map(GMap map) => $.setMap(map);
+  set options(PolylineOptions options) => $.setOptions(options);
+  set path(Object path) {
     if (path is MVCArray<LatLng> || path is List<LatLng>) {
       $.setPath(path);
     } else {
       throw new IllegalArgumentException(path);
     }
   }
-  void setVisible(bool visible) { $.setVisible(visible); }
+  set visible(bool visible) => $.setVisible(visible);
 
   PolylineEvents get on => new PolylineEvents._(this);
 }
@@ -660,29 +671,29 @@ class Polygon extends MVCObject {
   Polygon([PolygonOptions opts]) : super.newInstance(maps.Polygon, [opts]);
   Polygon.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  bool getEditable() => $.getEditable().value;
-  GMap getMap() => $.getMap().map(GMap.INSTANCIATOR).value;
-  MVCArray<LatLng> getPath() => $.getPath().map((js.Proxy jsProxy) => new MVCArray.fromJsProxy(jsProxy, (js.Proxy jsProxy) => new LatLng.fromJsProxy(jsProxy))).value;
-  MVCArray<MVCArray<LatLng>> getPaths() => $.getPaths().map((js.Proxy jsProxy) => new MVCArray.fromJsProxy(jsProxy, (js.Proxy jsProxy) => new MVCArray.fromJsProxy(jsProxy, (js.Proxy jsProxy) => new LatLng.fromJsProxy(jsProxy)))).value;
-  bool getVisible() => $.getVisible().value;
-  void setEditable(bool editable) { $.setEditable(editable); }
-  void setMap(GMap map) { $.setMap(map); }
-  void setOptions(PolylineOptions options) { $.setOptions(options); }
-  void setPath(Object path) {
+  bool get editable => $.getEditable().value;
+  GMap get map => $.getMap().map(GMap.INSTANCIATOR).value;
+  MVCArray<LatLng> get path => $.getPath().map((js.Proxy jsProxy) => new MVCArray.fromJsProxy(jsProxy, (js.Proxy jsProxy) => new LatLng.fromJsProxy(jsProxy))).value;
+  MVCArray<MVCArray<LatLng>> get paths => $.getPaths().map((js.Proxy jsProxy) => new MVCArray.fromJsProxy(jsProxy, (js.Proxy jsProxy) => new MVCArray.fromJsProxy(jsProxy, (js.Proxy jsProxy) => new LatLng.fromJsProxy(jsProxy)))).value;
+  bool get visible => $.getVisible().value;
+  set editable(bool editable) => $.setEditable(editable);
+  set map(GMap map) => $.setMap(map);
+  set options(PolylineOptions options) => $.setOptions(options);
+  set path(Object path) {
     if (path is MVCArray<LatLng> || path is List<LatLng>) {
       $.setPath(path);
     } else {
       throw new IllegalArgumentException(path);
     }
   }
-  void setPaths(Object paths) {
+  set paths(Object paths) {
     if (paths is MVCArray<MVCArray<LatLng>> || paths is MVCArray<LatLng> || paths is List<List<LatLng>> || paths is List<LatLng>) {
       $.setPaths(paths);
     } else {
       throw new IllegalArgumentException(paths);
     }
   }
-  void setVisible(bool visible) { $.setVisible(visible); }
+  set visible(bool visible) => $.setVisible(visible);
 
   PolygonEvents get on => new PolygonEvents._(this);
 }
@@ -737,15 +748,15 @@ class Rectangle extends MVCObject {
   Rectangle([RectangleOptions opts]) : super.newInstance(maps.Rectangle, [opts]);
   Rectangle.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  LatLngBounds getBounds() => $.getBounds().map(LatLngBounds.INSTANCIATOR).value;
-  bool getEditable() => $.getEditable().value;
-  GMap getMap() => $.getMap().map(GMap.INSTANCIATOR).value;
-  bool getVisible() => $.getVisible().value;
-  void setBounds(LatLngBounds bounds) { $.setBounds(bounds); }
-  void setEditable(bool editable) { $.setEditable(editable); }
-  void setMap(GMap map) { $.setMap(map); }
-  void setOptions(RectangleOptions options) { $.setOptions(options); }
-  void setVisible(bool visible) { $.setVisible(visible); }
+  LatLngBounds get bounds => $.getBounds().map(LatLngBounds.INSTANCIATOR).value;
+  bool get editable => $.getEditable().value;
+  GMap get map => $.getMap().map(GMap.INSTANCIATOR).value;
+  bool get visible => $.getVisible().value;
+  set bounds(LatLngBounds bounds) => $.setBounds(bounds);
+  set editable(bool editable) => $.setEditable(editable);
+  set map(GMap map) => $.setMap(map);
+  set options(RectangleOptions options) => $.setOptions(options);
+  set visible(bool visible) => $.setVisible(visible);
 
   RectangleEvents get on => new RectangleEvents._(this);
 }
@@ -786,18 +797,18 @@ class Circle extends MVCObject {
   Circle([CircleOptions opts]) : super.newInstance(maps.Circle, [opts]);
   Circle.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  LatLngBounds getBounds() => $.getBounds().map(LatLngBounds.INSTANCIATOR).value;
-  LatLng getCenter() => $.getCenter().map(LatLng.INSTANCIATOR).value;
-  bool getEditable() => $.getEditable().value;
-  GMap getMap() => $.getMap().map(GMap.INSTANCIATOR).value;
-  num getRadius() => $.getRadius().value;
-  bool getVisible() => $.getVisible().value;
-  void setCenter(LatLng center) { $.setCenter(center); }
-  void setEditable(bool editable) { $.setEditable(editable); }
-  void setMap(GMap map) { $.setMap(map); }
-  void setOptions(CircleOptions options) { $.setOptions(options); }
-  void setRadius(bool radius) { $.setRadius(radius); }
-  void setVisible(bool visible) { $.setVisible(visible); }
+  LatLngBounds get bounds => $.getBounds().map(LatLngBounds.INSTANCIATOR).value;
+  LatLng get center => $.getCenter().map(LatLng.INSTANCIATOR).value;
+  bool get editable => $.getEditable().value;
+  GMap get map => $.getMap().map(GMap.INSTANCIATOR).value;
+  num get radius => $.getRadius().value;
+  bool get visible => $.getVisible().value;
+  set center(LatLng center) => $.setCenter(center);
+  set editable(bool editable) => $.setEditable(editable);
+  set map(GMap map) => $.setMap(map);
+  set options(CircleOptions options) => $.setOptions(options);
+  set radius(bool radius) => $.setRadius(radius);
+  set visible(bool visible) => $.setVisible(visible);
 
   CircleEvents get on => new CircleEvents._(this);
 }
@@ -838,12 +849,12 @@ class GroundOverlay extends MVCObject {
   GroundOverlay(String url, LatLngBounds bounds, [GroundOverlayOptions opts]) : super.newInstance(maps.GroundOverlay, [url, bounds, opts]);
   GroundOverlay.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  LatLngBounds getBounds() => $.getBounds().map(LatLngBounds.INSTANCIATOR).value;
-  GMap getMap() => $.getMap().map(GMap.INSTANCIATOR).value;
-  num getOpacity() => $.getOpacity().value;
-  String getUrl() => $.getUrl().value;
-  void setMap(GMap map) { $.setMap(map); }
-  void setOpacity(num opacity) { $.setOpacity(opacity); }
+  LatLngBounds get bounds => $.getBounds().map(LatLngBounds.INSTANCIATOR).value;
+  GMap get map => $.getMap().map(GMap.INSTANCIATOR).value;
+  num get opacity => $.getOpacity().value;
+  String get url => $.getUrl().value;
+  set map(GMap map) => $.setMap(map);
+  set opacity(num opacity) => $.setOpacity(opacity);
 
   GroundOverlayEvents get on => new GroundOverlayEvents._(this);
 }
@@ -868,12 +879,12 @@ class OverlayView extends MVCObject {
   OverlayView.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   void draw() { $.draw(); }
-  GMap getMap() => $.getMap().map(GMap.INSTANCIATOR).value;
-  MapPanes getPanes() => $.getPanes().map(MapPanes.INSTANCIATOR).value;
-  MapCanvasProjection getProjection() => $.getProjection().map(MapCanvasProjection.INSTANCIATOR).value;
+  GMap get map => $.getMap().map(GMap.INSTANCIATOR).value;
+  MapPanes get panes => $.getPanes().map(MapPanes.INSTANCIATOR).value;
+  MapCanvasProjection get projection => $.getProjection().map(MapCanvasProjection.INSTANCIATOR).value;
   void onAdd() { $.onAdd(); }
   void onRemove() { $.onRemove(); }
-  void setMap(Object map) {
+  set map(Object map) {
     if (map === null || map is GMap || map is StreetViewPanorama) {
       $.setMap(map);
     } else {
@@ -888,19 +899,19 @@ class MapPanes extends jsw.IsJsProxy {
   MapPanes.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   html.Node get floatPane => $.floatPane.value;
-            set floatPane(html.Node floatPane) => $.floatPane = floatPane;
+  set floatPane(html.Node floatPane) => $.floatPane = floatPane;
   html.Node get floatShadow => $.floatShadow.value;
-            set floatShadow(html.Node floatShadow) => $.floatShadow = floatShadow;
+  set floatShadow(html.Node floatShadow) => $.floatShadow = floatShadow;
   html.Node get mapPane => $.mapPane.value;
-            set mapPane(html.Node mapPane) => $.mapPane = mapPane;
+  set mapPane(html.Node mapPane) => $.mapPane = mapPane;
   html.Node get overlayImage => $.overlayImage.value;
-            set overlayImage(html.Node overlayImage) => $.overlayImage = overlayImage;
+  set overlayImage(html.Node overlayImage) => $.overlayImage = overlayImage;
   html.Node get overlayLayer => $.overlayLayer.value;
-            set overlayLayer(html.Node overlayLayer) => $.overlayLayer = overlayLayer;
+  set overlayLayer(html.Node overlayLayer) => $.overlayLayer = overlayLayer;
   html.Node get overlayMouseTarget => $.overlayMouseTarget.value;
-            set overlayMouseTarget(html.Node overlayMouseTarget) => $.overlayMouseTarget = overlayMouseTarget;
+  set overlayMouseTarget(html.Node overlayMouseTarget) => $.overlayMouseTarget = overlayMouseTarget;
   html.Node get overlayShadow => $.overlayShadow.value;
-            set overlayShadow(html.Node overlayShadow) => $.overlayShadow = overlayShadow;
+  set overlayShadow(html.Node overlayShadow) => $.overlayShadow = overlayShadow;
 }
 
 class MapCanvasProjection extends MVCObject {
@@ -912,7 +923,7 @@ class MapCanvasProjection extends MVCObject {
   LatLng fromDivPixelToLatLng(Point pixel, [bool nowrap]) => $.fromDivPixelToLatLng(pixel, nowrap).map(LatLng.INSTANCIATOR).value;
   Point fromLatLngToContainerPixel(LatLng latLng) => $.fromLatLngToContainerPixel(latLng).map(Point.INSTANCIATOR).value;
   Point fromLatLngToDivPixel(LatLng latLng) => $.fromLatLngToDivPixel(latLng).map(Point.INSTANCIATOR).value;
-  num getWorldWidth() => $.getWorldWidth().value;
+  num get worldWidth => $.getWorldWidth().value;
 }
 
 class Geocoder extends jsw.IsJsProxy {
@@ -1000,15 +1011,15 @@ class DirectionsRenderer extends MVCObject {
   DirectionsRenderer([DirectionsRendererOptions opts]) : super.newInstance(maps.DirectionsRenderer, [opts]);
   DirectionsRenderer.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  DirectionsResult getDirections() => $.getDirections().map(DirectionsResult.INSTANCIATOR).value;
-  GMap getMap() => $.getMap().map(GMap.INSTANCIATOR).value;
-  html.Node getPanel() => $.getPanel().value;
-  num getRouteIndex() => $.getRouteIndex().value;
-  void setDirections(DirectionsResult directions) { $.setDirections(directions); }
-  void setMap(GMap map) { $.setMap(map); }
-  void setOptions(DirectionsRendererOptions options) { $.setOptions(options); }
-  void setPanel(html.Node panel) { $.setPanel(panel); }
-  void setRouteIndex(num routeIndex) { $.setRouteIndex(routeIndex); }
+  DirectionsResult get directions => $.getDirections().map(DirectionsResult.INSTANCIATOR).value;
+  GMap get map => $.getMap().map(GMap.INSTANCIATOR).value;
+  html.Node get panel => $.getPanel().value;
+  num get routeIndex => $.getRouteIndex().value;
+  set directions(DirectionsResult directions) => $.setDirections(directions);
+  set map(GMap map) => $.setMap(map);
+  set options(DirectionsRendererOptions options) => $.setOptions(options);
+  set panel(html.Node panel) => $.setPanel(panel);
+  set routeIndex(num routeIndex) => $.setRouteIndex(routeIndex);
 
   DirectionsRendererEvents get on => new DirectionsRendererEvents._(this);
 }
@@ -1467,19 +1478,19 @@ class MapType extends jsw.IsJsProxy {
   html.Node releaseTile(html.Node tile) => $.releaseTile(tile).value;
 
   String get alt => $.alt.value;
-         set alt(String alt) => $.alt = alt;
+  set alt(String alt) => $.alt = alt;
   num get maxZoom => $.maxZoom.value;
-      set maxZoom(num maxZoom) => $.maxZoom = maxZoom;
+  set maxZoom(num maxZoom) => $.maxZoom = maxZoom;
   num get minZoom => $.minZoom.value;
-      set minZoom(num minZoom) => $.minZoom = minZoom;
+  set minZoom(num minZoom) => $.minZoom = minZoom;
   String get name => $.name.value;
-         set name(String name) => $.name = name;
+  set name(String name) => $.name = name;
   Projection get projection => $.projection.map(Projection.INSTANCIATOR).value;
-             set projection(Projection projection) => $.projection = projection;
+  set projection(Projection projection) => $.projection = projection;
   num get radius => $.radius.value;
-      set radius(num radius) => $.radius = radius;
+  set radius(num radius) => $.radius = radius;
   Size get tileSize => $.tileSize.map(Size.INSTANCIATOR).value;
-       set tileSize(Size tileSize) => $.tileSize = tileSize;
+  set tileSize(Size tileSize) => $.tileSize = tileSize;
 }
 
 class MapTypeRegistry extends MVCObject {
@@ -1505,8 +1516,8 @@ class ImageMapType extends MapType {
   ImageMapType(ImageMapTypeOptions opts) : super.newInstance(maps.ImageMapType, [opts]);
   ImageMapType.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  num getOpacity() { $.getOpacity().value; }
-  void setOpacity(num opacity) { $.setOpacity(opacity); }
+  num get opacity => $.getOpacity().value;
+  set opacity(num opacity) => $.setOpacity(opacity);
 
   ImageMapTypeEvents get on => new ImageMapTypeEvents._(this);
 }
@@ -1630,17 +1641,17 @@ class BicyclingLayer extends MVCObject {
   BicyclingLayer() : super.newInstance(maps.BicyclingLayer);
   BicyclingLayer.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  GMap getMap() => $.getMap().map(GMap.INSTANCIATOR).value;
-  void setMap(GMap map) { $.setMap(map); }
+  GMap get map => $.getMap().map(GMap.INSTANCIATOR).value;
+  set map(GMap map) => $.setMap(map);
 }
 
 class FusionTablesLayer extends MVCObject {
   FusionTablesLayer(FusionTablesLayerOptions options) : super.newInstance(maps.FusionTablesLayer, [options]);
   FusionTablesLayer.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  GMap getMap() => $.getMap().map(GMap.INSTANCIATOR).value;
-  void setMap(GMap map) { $.setMap(map); }
-  void setOptions(FusionTablesLayerOptions options) { $.setOptions(options); }
+  GMap get map => $.getMap().map(GMap.INSTANCIATOR).value;
+  set map(GMap map) => $.setMap(map);
+  set options(FusionTablesLayerOptions options) => $.setOptions(options);
 
   FusionTablesLayerEvents get on => new FusionTablesLayerEvents._(this);
 }
@@ -1713,21 +1724,21 @@ class FusionTablesMouseEvent extends NativeEvent {
 
 class FusionTablesCell extends jsw.IsJsProxy {
   String get columnName => $.columnName.value;
-         set columnName(String columnName) => $.columnName = columnName;
+  set columnName(String columnName) => $.columnName = columnName;
   String get value => $.value.value;
-         set value(String value) => $.value = value;
+  set value(String value) => $.value = value;
 }
 
 class KmlLayer extends MVCObject {
   KmlLayer(String url, [KmlLayerOptions options]) : super.newInstance(maps.KmlLayer, [url, options]);
   KmlLayer.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  LatLngBounds getDefaultViewport() => $.getDefaultViewport().map(LatLngBounds.INSTANCIATOR).value;
-  GMap getMap() => $.getMap().map(GMap.INSTANCIATOR).value;
-  KmlLayerMetadata getMetadata() => $.getMetadata().map(KmlLayerMetadata.INSTANCIATOR).value;
-  KmlLayerStatus getStatus() => $.getStatus().map(KmlLayerStatus.find).value;
-  String getUrl() => $.getUrl().value;
-  void setMap(GMap map) { $.setMap(map); }
+  LatLngBounds get defaultViewport => $.getDefaultViewport().map(LatLngBounds.INSTANCIATOR).value;
+  GMap get map => $.getMap().map(GMap.INSTANCIATOR).value;
+  KmlLayerMetadata get metadata => $.getMetadata().map(KmlLayerMetadata.INSTANCIATOR).value;
+  KmlLayerStatus get status => $.getStatus().map(KmlLayerStatus.find).value;
+  String get url => $.getUrl().value;
+  set map(GMap map) => $.setMap(map);
 
   KmlLayerEvents get on => new KmlLayerEvents._(this);
 }
@@ -1816,16 +1827,16 @@ class TrafficLayer extends MVCObject {
   TrafficLayer() : super.newInstance(maps.TrafficLayer);
   TrafficLayer.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  GMap getMap() => $.getMap().map(GMap.INSTANCIATOR).value;
-  void setMap(GMap map) { $.setMap(map); }
+  GMap get map => $.getMap().map(GMap.INSTANCIATOR).value;
+  set map(GMap map) => $.setMap(map);
 }
 
 class TransitLayer extends MVCObject {
   TransitLayer() : super.newInstance(maps.TransitLayer);
   TransitLayer.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  GMap getMap() => $.getMap().map(GMap.INSTANCIATOR).value;
-  void setMap(GMap map) { $.setMap(map); }
+  GMap get map => $.getMap().map(GMap.INSTANCIATOR).value;
+  set map(GMap map) => $.setMap(map);
 }
 
 class StreetViewPanorama extends MVCObject {
@@ -1835,21 +1846,21 @@ class StreetViewPanorama extends MVCObject {
   StreetViewPanorama(html.Node container, [StreetViewPanoramaOptions opts]) : super.newInstance(maps.StreetViewPanorama, [container, opts]);
   StreetViewPanorama.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  List<StreetViewLink> getLinks() => $.getLinks().map((js.Proxy jsProxy) => new jsw.JsList<StreetViewLink>.fromJsProxy(jsProxy, StreetViewLink.INSTANCIATOR)).value;
-  String getPano() => $.getPano().value;
-  LatLng getPosition() => $.getPosition().map(LatLng.INSTANCIATOR).value;
-  StreetViewPov getPov() => $.getPov().map(StreetViewPov.INSTANCIATOR).value;
-  bool getVisible() => $.getVisible().value;
+  List<StreetViewLink> get links => $.getLinks().map((js.Proxy jsProxy) => new jsw.JsList<StreetViewLink>.fromJsProxy(jsProxy, StreetViewLink.INSTANCIATOR)).value;
+  String get pano => $.getPano().value;
+  LatLng get position => $.getPosition().map(LatLng.INSTANCIATOR).value;
+  StreetViewPov get pov => $.getPov().map(StreetViewPov.INSTANCIATOR).value;
+  bool get visible => $.getVisible().value;
   void registerPanoProvider(StreetViewPanoramaData provider(String pano)) {
     $.registerPanoProvider(new jsw.Callback.many(provider));
   }
-  void setPano(String pano) { $.setPano(pano); }
-  void setPosition(LatLng latLng) { $.setPosition(latLng); }
-  void setPov(StreetViewPov pov) { $.setPov(pov); }
-  void setVisible(bool flag) { $.setVisible(flag); }
+  set pano(String pano) => $.setPano(pano);
+  set position(LatLng latLng) => $.setPosition(latLng);
+  set pov(StreetViewPov pov) => $.setPov(pov);
+  set visible(bool flag) => $.setVisible(flag);
 
   Controls get controls => $.controls.map(Controls.INSTANCIATOR).value;
-           set controls(Controls controls) => $.controls = controls;
+  set controls(Controls controls) => $.controls = controls;
 
   StreetViewPanoramaEvents get on => new StreetViewPanoramaEvents._(this);
 }
@@ -1899,11 +1910,11 @@ class StreetViewLink extends jsw.IsJsProxy {
   StreetViewLink.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   String get description => $.description.value;
-         set description(String description) => $.description = description;
+  set description(String description) => $.description = description;
   num get heading => $.heading.value;
-      set heading(num heading) => $.heading = heading;
+  set heading(num heading) => $.heading = heading;
   String get pano => $.pano.value;
-         set pano(String pano) => $.pano = pano;
+  set pano(String pano) => $.pano = pano;
 }
 
 class StreetViewPov extends jsw.IsJsProxy {
@@ -1913,11 +1924,11 @@ class StreetViewPov extends jsw.IsJsProxy {
   StreetViewPov.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   num get heading => $.heading.value;
-      set heading(num heading) => $.heading = heading;
+  set heading(num heading) => $.heading = heading;
   num get pitch => $.pitch.value;
-      set pitch(num pitch) => $.pitch = pitch;
+  set pitch(num pitch) => $.pitch = pitch;
   num get zoom => $.zoom.value;
-      set zoom(num zoom) => $.zoom = zoom;
+  set zoom(num zoom) => $.zoom = zoom;
 }
 
 class StreetViewPanoramaData extends jsw.IsJsProxy {
@@ -1925,15 +1936,15 @@ class StreetViewPanoramaData extends jsw.IsJsProxy {
   StreetViewPanoramaData.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   String get copyright => $.copyright.value;
-         set copyright(String copyright) => $.copyright = copyright;
+  set copyright(String copyright) => $.copyright = copyright;
   String get imageDate => $.imageDate.value;
-         set imageDate(String imageDate) => $.imageDate = imageDate;
+  set imageDate(String imageDate) => $.imageDate = imageDate;
   List<StreetViewLink> get links => $.links.map((js.Proxy jsProxy) => new jsw.JsList<StreetViewLink>.fromJsProxy(jsProxy, StreetViewLink.INSTANCIATOR)).value;
-                       set links(List<StreetViewLink> links) => $.links = links;
+  set links(List<StreetViewLink> links) => $.links = links;
   StreetViewLocation get location => $.location.map(StreetViewLocation.INSTANCIATOR).value;
-                     set location(StreetViewLocation location) => $.location = location;
+  set location(StreetViewLocation location) => $.location = location;
   StreetViewTileData get tiles => $.tiles.map(StreetViewTileData.INSTANCIATOR).value;
-                     set tiles(StreetViewTileData tiles) => $.tiles = tiles;
+  set tiles(StreetViewTileData tiles) => $.tiles = tiles;
 }
 
 class StreetViewLocation extends jsw.IsJsProxy {
@@ -1943,11 +1954,11 @@ class StreetViewLocation extends jsw.IsJsProxy {
   StreetViewLocation.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   String get description => $.description.value;
-         set description(String description) => $.description = description;
+  set description(String description) => $.description = description;
   LatLng get latLng => $.latLng.map(LatLng.INSTANCIATOR).value;
-         set latLng(LatLng latLng) => $.latLng = latLng;
+  set latLng(LatLng latLng) => $.latLng = latLng;
   String get pano => $.pano.value;
-         set pano(String pano) => $.pano = pano;
+  set pano(String pano) => $.pano = pano;
 }
 
 class StreetViewTileData extends jsw.IsJsProxy {
@@ -2053,8 +2064,8 @@ class LatLng extends jsw.IsJsProxy {
 
   // TODO test if .equals is call on js side
   bool equals(LatLng other) => $.equals(other).value;
-  num lat() => $.lat().value;
-  num lng() => $.lng().value;
+  num get lat => $.lat().value;
+  num get lng => $.lng().value;
   String toString() => $.noSuchMethod("toString", []).value;
   String toUrlValue([num precision]) => $.toUrlValue(precision).value;
 }
@@ -2068,9 +2079,9 @@ class LatLngBounds extends jsw.IsJsProxy {
   bool contains(LatLng latLng) => $.contains(latLng).value;
   bool equals(LatLngBounds other) => $.equals(other).value;
   LatLngBounds extend(LatLng point) => $.extend(point).map(LatLngBounds.INSTANCIATOR).value;
-  LatLng getCenter() => $.getCenter().map(LatLng.INSTANCIATOR).value;
-  LatLng getNorthEast() => $.getNorthEast().map(LatLng.INSTANCIATOR).value;
-  LatLng getSouthWest() => $.getSouthWest().map(LatLng.INSTANCIATOR).value;
+  LatLng get center => $.getCenter().map(LatLng.INSTANCIATOR).value;
+  LatLng get northEast => $.getNorthEast().map(LatLng.INSTANCIATOR).value;
+  LatLng get southWest => $.getSouthWest().map(LatLng.INSTANCIATOR).value;
   bool intersects(LatLngBounds other) => $.intersects(other).value;
   bool isEmpty() => $.isEmpty().value;
   LatLng toSpan() => $.toSpan().map(LatLng.INSTANCIATOR).value;
@@ -2089,9 +2100,9 @@ class Point extends jsw.IsJsProxy {
   String toString() => $.noSuchMethod("toString", []).value;
 
   num get x => $.x.value;
-      set x(num x) => $.x = x;
+  set x(num x) => $.x = x;
   num get y => $.y.value;
-      set y(num y) => $.y = y;
+  set y(num y) => $.y = y;
 }
 
 class Size extends jsw.IsJsProxy {
@@ -2104,9 +2115,9 @@ class Size extends jsw.IsJsProxy {
   String toString() => $.noSuchMethod("toString", []).value;
 
   num get height => $.height.value;
-      set height(num height) => $.height = height;
+  set height(num height) => $.height = height;
   num get width => $.width.value;
-      set width(num width) => $.width = width;
+  set width(num width) => $.width = width;
 }
 
 class MVCObject extends jsw.IsJsProxy {
@@ -2119,7 +2130,7 @@ class MVCObject extends jsw.IsJsProxy {
   Object get(String key) => $.get(key).value;
   void notify(String key) { $.notify(key); }
   void set(String key, Object value) { $.set(key, value); }
-  void setValues(Map<String, Object> values) {
+  set values(Map<String, Object> values) {
     final valuesJs = new jsw.IsJsProxy();
     values.forEach((String key, Object value) {
       $[key] = value;
@@ -2146,7 +2157,7 @@ class MVCArray<E> extends MVCObject {
   }
   List<E> getArray() => $.getArray().map((js.Proxy jsProxy) => new jsw.JsList<E>.fromJsProxy(jsProxy, _mayWrap)).value;
   E getAt(num i) => _mayWrap($.getAt(i).value);
-  num getLength() => $.getLength().value;
+  num get length => $.getLength().value;
   void insertAt(num i, E elem) { $.insertAt(i, elem); }
   E pop() => _mayWrap($.pop().value);
   num push(E elem) => $.push(elem).value;

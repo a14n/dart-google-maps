@@ -8,13 +8,13 @@ class PanoramioLayer extends MVCObject {
   PanoramioLayer([PanoramioLayerOptions opts]) : super.newInstance(maps.panoramio.PanoramioLayer, [opts]);
   PanoramioLayer.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  GMap getMap() => $.getMap().map(GMap.INSTANCIATOR).value;
-  String getTag() => $.getTag().value;
-  String getUserId() => $.getUserId().value;
-  void setMap(GMap map) { $.setMap(map); }
-  void setOptions(PanoramioLayerOptions options) { $.setOptions(options); }
-  void setTag(String tag) { $.setTag(tag); }
-  void setUserId(String userId) { $.setUserId(userId); }
+  GMap get map() => $.getMap().map(GMap.INSTANCIATOR).value;
+  String get tag() => $.getTag().value;
+  String get userId() => $.getUserId().value;
+  set map(GMap map) => $.setMap(map);
+  set options(PanoramioLayerOptions options) => $.setOptions(options);
+  set tag(String tag) => $.setTag(tag);
+  set userId(String userId) => $.setUserId(userId);
 
   PanoramioLayerEvents get on => new PanoramioLayerEvents._(this);
 }

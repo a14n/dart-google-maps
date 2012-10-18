@@ -31,12 +31,12 @@ class MercatorProjection {
     final point = opt_point === null ? new gmaps.Point(0, 0) : opt_point;
     final origin = _pixelOrigin;
 
-    point.x = origin.x + latLng.lng() * _pixelsPerLonDegree;
+    point.x = origin.x + latLng.lng * _pixelsPerLonDegree;
 
     // NOTE(appleton): Truncating to 0.9999 effectively limits latitude to
     // 89.189.  This is about a third of a tile past the edge of the world
     // tile.
-    var siny = bound(Math.sin(degreesToRadians(latLng.lat())), -0.9999,
+    var siny = bound(Math.sin(degreesToRadians(latLng.lat)), -0.9999,
         0.9999);
     point.y = origin.y + 0.5 * Math.log((1 + siny) / (1 - siny)) *
         -_pixelsPerLonRadian;
@@ -55,7 +55,7 @@ class MercatorProjection {
 }
 
 String createInfoWindowContent() {
-  final numTiles = 1 << map.getZoom();
+  final numTiles = 1 << map.zoom;
   final projection = new MercatorProjection();
   final worldCoordinate = projection.fromLatLngToPoint(chicago);
   final pixelCoordinate = new gmaps.Point(
@@ -67,10 +67,10 @@ String createInfoWindowContent() {
 
   return Strings.join([
     'Chicago, IL',
-    'LatLng: ${chicago.lat()} , ${chicago.lng()}',
+    'LatLng: ${chicago.lat} , ${chicago.lng}',
     'World Coordinate: ${worldCoordinate.x} , ${worldCoordinate.y}',
     'Pixel Coordinate: ${pixelCoordinate.x.floor()} , ${pixelCoordinate.y.floor()}',
-    'Tile Coordinate: ${tileCoordinate.x} , ${tileCoordinate.y} at Zoom Level: ${map.getZoom()}'
+    'Tile Coordinate: ${tileCoordinate.x} , ${tileCoordinate.y} at Zoom Level: ${map.zoom}'
   ], '<br>');
 }
 
@@ -84,13 +84,13 @@ void main() {
     map = jsw.retain(new gmaps.GMap(query("#map_canvas"), mapOptions));
 
     final gmaps.InfoWindow coordInfoWindow = jsw.retain(new gmaps.InfoWindow()
-      ..setContent(createInfoWindowContent())
-      ..setPosition(chicago)
+      ..content = createInfoWindowContent()
+      ..position = chicago
       ..open(map)
     );
 
     map.on.zoomChanged.add(() {
-      coordInfoWindow.setContent(createInfoWindowContent());
+      coordInfoWindow.content = createInfoWindowContent();
       coordInfoWindow.open(map);
     });
   });

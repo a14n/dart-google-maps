@@ -21,20 +21,20 @@ void main() {
     final bounds = new gmaps.LatLngBounds(southWest,northEast);
     map.fitBounds(bounds);
 
-    final lngSpan = northEast.lng() - southWest.lng();
-    final latSpan = northEast.lat() - southWest.lat();
+    final lngSpan = northEast.lng - southWest.lng;
+    final latSpan = northEast.lat - southWest.lat;
 
     final random = new Math.Random();
     for (var i = 0; i < 5; i++) {
       final position = new gmaps.LatLng(
-        southWest.lat() + latSpan * random.nextDouble(),
-        southWest.lng() + lngSpan * random.nextDouble());
+        southWest.lat + latSpan * random.nextDouble(),
+        southWest.lng + lngSpan * random.nextDouble());
       final marker = new gmaps.Marker(new gmaps.MarkerOptions()
         ..position = position
         ..map = map
       );
 
-      marker.setTitle((i + 1).toString());
+      marker.title = (i + 1).toString();
       attachSecretMessage(marker, i);
     }
   });
@@ -47,8 +47,8 @@ void attachSecretMessage(gmaps.Marker marker, num number) {
   final infowindow = new gmaps.InfoWindow(new gmaps.InfoWindowOptions()
     ..content = message[number]
   );
-  jsw.retainAll([infowindow, marker.getMap(), marker]);
+  jsw.retainAll([infowindow, marker.map, marker]);
   marker.on.click.add((e) {
-    infowindow.open(marker.getMap(), marker);
+    infowindow.open(marker.map, marker);
   });
 }

@@ -20,7 +20,7 @@ void main() {
       ;
     final map = new gmaps.GMap(query('#map_canvas'), mapOptions);
 
-    panorama = jsw.retain(map.getStreetView());
+    panorama = jsw.retain(map.streetView);
     // Set up Street View and initially set it visible. Register the
     // custom panorama provider function.
     final panoOptions = new gmaps.StreetViewPanoramaOptions()
@@ -82,8 +82,8 @@ gmaps.StreetViewPanoramaData getCustomPanorama(String pano) {
 }
 
 void createCustomLinks(String entryPanoId) {
-  final links = panorama.getLinks();
-  final panoId = panorama.getPano();
+  final links = panorama.links;
+  final panoId = panorama.pano;
 
   switch(panoId) {
     case entryPanoId:

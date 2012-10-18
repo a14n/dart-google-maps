@@ -20,6 +20,6 @@ void main() {
     final oldmap = new gmaps.GroundOverlay(
         'https://www.lib.utexas.edu/maps/historical/newark_nj_1922.jpg',
         imageBounds);
-    oldmap.setMap(map);
+    oldmap.map = map;
   });
 }

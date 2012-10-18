@@ -14,7 +14,7 @@ void main() {
     final map = new gmaps.GMap(query("#map_canvas"), mapOptions);
 
     final marker = new gmaps.Marker(new gmaps.MarkerOptions()
-      ..position = map.getCenter()
+      ..position = map.center
       ..map = map
       ..title = "Click to zoom"
     );
@@ -24,15 +24,15 @@ void main() {
       // 3 seconds after the center of the map has changed, pan back to the marker.
       window.setTimeout(() {
         js.scoped(() {
-          map.panTo(marker.getPosition());
+          map.panTo(marker.position);
         });
       }, 3000);
     });
 
     jsw.retainAll([map, marker]);
     marker.on.click.add((e) {
-      map.setZoom(8);
-      map.setCenter(marker.getPosition());
+      map.zoom = 8;
+      map.center = marker.position;
     });
   });
 }

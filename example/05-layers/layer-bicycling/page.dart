@@ -14,6 +14,6 @@ void main() {
     final map = new gmaps.GMap(query("#map_canvas"), mapOptions);
 
     final bikeLayer = new gmaps.BicyclingLayer();
-    bikeLayer.setMap(map);
+    bikeLayer.map = map;
   });
 }

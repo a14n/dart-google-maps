@@ -55,7 +55,7 @@ void main() {
       ..suppressInfoWindows = true
     );
 
-    panoramioLayer.setMap(map);
+    panoramioLayer.map = map;
 
     jsw.retainAll([photoWidget, infoWindow, map]);
     panoramioLayer.on.click.add((e) {
@@ -67,9 +67,9 @@ void main() {
         ;
       photoWidget.setRequest(photoRequestOptions);
       photoWidget.setPosition(0);
-      infoWindow.setPosition(e.latLng);
+      infoWindow.position = e.latLng;
       infoWindow.open(map);
-      infoWindow.setContent(photoDiv);
+      infoWindow.content = photoDiv;
     });
   });
 }

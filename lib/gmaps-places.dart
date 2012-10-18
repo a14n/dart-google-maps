@@ -9,11 +9,11 @@ class Autocomplete extends MVCObject {
   Autocomplete(html.InputElement inputField, [AutocompleteOptions opts]) : super.newInstance(maps.places.Autocomplete, [inputField, opts]);
   Autocomplete.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  LatLngBounds getBounds() => $.getBounds().map(LatLngBounds.INSTANCIATOR).value;
-  PlaceResult getPlace() => $.getPlace().map(PlaceResult.INSTANCIATOR).value;
-  void setBounds(LatLngBounds bounds) { $.setBounds(bounds); }
-  void setComponentRestrictions(ComponentRestrictions restrictions) { $.setComponentRestrictions(restrictions); }
-  void setTypes(List<String> types) { $.setTypes(types); }
+  LatLngBounds get bounds => $.getBounds().map(LatLngBounds.INSTANCIATOR).value;
+  PlaceResult get place => $.getPlace().map(PlaceResult.INSTANCIATOR).value;
+  set bounds(LatLngBounds bounds) => $.setBounds(bounds);
+  set componentRestrictions(ComponentRestrictions restrictions) => $.setComponentRestrictions(restrictions);
+  set types(List<String> types) => $.setTypes(types);
 
   AutocompleteEvents get on => new AutocompleteEvents._(this);
 }
@@ -34,12 +34,12 @@ class AutocompleteOptions extends jsw.IsJsProxy {
 
 class ComponentRestrictions extends jsw.IsJsProxy {
   String get country => $.country.value;
-         set country(String country) => $.country = country;
+  set country(String country) => $.country = country;
 }
 
 class PlaceDetailsRequest extends jsw.IsJsProxy {
   String get reference => $.reference.value;
-         set reference(String reference) => $.reference = reference;
+  set reference(String reference) => $.reference = reference;
 }
 
 class PlaceGeometry extends jsw.IsJsProxy {
@@ -49,9 +49,9 @@ class PlaceGeometry extends jsw.IsJsProxy {
   PlaceGeometry.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   LatLng get location => $.location.map(LatLng.INSTANCIATOR).value;
-         set location(LatLng location) => $.location = location;
+  set location(LatLng location) => $.location = location;
   LatLngBounds get viewport => $.viewport.map(LatLngBounds.INSTANCIATOR).value;
-               set viewport(LatLngBounds viewport) => $.viewport = viewport;
+  set viewport(LatLngBounds viewport) => $.viewport = viewport;
 }
 
 class PlaceResult extends jsw.IsJsProxy {

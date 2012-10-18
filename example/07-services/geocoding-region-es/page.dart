@@ -25,7 +25,7 @@ void codeAddress() {
     ;
   geocoder.geocode(request, (List<gmaps.GeocoderResult> results, gmaps.GeocoderStatus status) {
     if (status == gmaps.GeocoderStatus.OK) {
-      map.setCenter(results[0].geometry.location);
+      map.center = results[0].geometry.location;
       final marker = new gmaps.Marker(new gmaps.MarkerOptions()
         ..map = map
         ..position = results[0].geometry.location

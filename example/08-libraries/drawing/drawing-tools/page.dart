@@ -37,6 +37,6 @@ void main() {
         ..zIndex = 1
       )
     );
-    drawingManager.setMap(map);
+    drawingManager.map = map;
   });
 }

@@ -14,6 +14,6 @@ void main() {
     final map = new gmaps.GMap(query("#map_canvas"), mapOptions);
 
     final trafficLayer = new gmaps.TrafficLayer();
-    trafficLayer.setMap(map);
+    trafficLayer.map = map;
   });
 }

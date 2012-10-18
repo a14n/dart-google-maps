@@ -14,6 +14,6 @@ void main() {
     final map = new gmaps.GMap(query("#map_canvas"), mapOptions);
 
     final georssLayer = new gmaps.KmlLayer('http://api.flickr.com/services/feeds/geo/?g=322338@N20&lang=en-us&format=feed-georss');
-    georssLayer.setMap(map);
+    georssLayer.map = map;
   });
 }

@@ -15,7 +15,7 @@ void main() {
       ..tilt = 45
       ;
     map = jsw.retain(new gmaps.GMap(query("#map_canvas"), mapOptions));
-    map.setTilt(45);
+    map.tilt = 45;
 
     query("#autoRotate").on.click.add((e) => autoRotate());
   });
@@ -23,16 +23,16 @@ void main() {
 
 void rotate90() {
   js.scoped(() {
-    final headingMap = map.getHeading();
+    final headingMap = map.heading;
     final heading = headingMap !== null ? headingMap : 0;
-    map.setHeading(heading + 90);
+    map.heading = heading + 90;
   });
 }
 
 void autoRotate() {
   js.scoped(() {
     // Determine if we're showing aerial imagery
-    if (map.getTilt() != 0) {
+    if (map.tilt != 0) {
       window.setInterval(rotate90, 3000);
     }
   });

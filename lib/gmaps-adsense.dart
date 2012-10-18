@@ -9,16 +9,16 @@ class AdUnit extends MVCObject {
   AdUnit(html.Node container, AdUnitOptions opts) : super.newInstance(maps.adsense.AdUnit, [container, opts]);
   AdUnit.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  String getChannelNumber() => $.getChannelNumber().value;
-  html.Node getContainer() => $getContainer().value;
-  AdFormat getFormat() => $.getFormat().map(AdFormat.INSTANCIATOR).value;
-  GMap getMap() => $.getMap().map(GMap.INSTANCIATOR).value;
-  ControlPosition getPosition() => $.getPosition().map(ControlPosition.find).value;
-  String getPublisherId() => $.getPublisherId().value;
-  void setChannelNumber(String channelNumber) { $.setChannelNumber(channelNumber); }
-  void setFormat(AdFormat format) { $.setFormat(format); }
-  void setMap(GMap map) { $.setMap(map); }
-  void setPosition(ControlPosition position) { $.setPosition(position); }
+  String get channelNumber => $.getChannelNumber().value;
+  html.Node get container => $getContainer().value;
+  AdFormat get format => $.getFormat().map(AdFormat.INSTANCIATOR).value;
+  GMap get map => $.getMap().map(GMap.INSTANCIATOR).value;
+  ControlPosition get position => $.getPosition().map(ControlPosition.find).value;
+  String get publisherId => $.getPublisherId().value;
+  set channelNumber(String channelNumber) => $.setChannelNumber(channelNumber);
+  set format(AdFormat format) => $.setFormat(format);
+  set map(GMap map) => $.setMap(map);
+  set position(ControlPosition position) => $.setPosition(position);
 }
 
 class AdUnitOptions extends jsw.IsJsProxy {

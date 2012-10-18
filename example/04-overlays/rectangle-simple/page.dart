@@ -26,9 +26,9 @@ void main() {
         ..fillColor = '#FF0000'
         ..fillOpacity = 0.35
         ..map = map
-        ..bounds = map.getBounds()
+        ..bounds = map.bounds
         ;
-      rectangle.setOptions(rectOptions);
+      rectangle.options = rectOptions;
     });
   });
 }
