@@ -9,7 +9,7 @@
 #import('package:unittest/html_config.dart');
 
 #import('package:js/js.dart', prefix: 'js');
-#import('package:dart_google_maps/jswrap.dart');
+#import('package:google_maps/jswrap.dart');
 
 injectSource(code) {
   final script = new ScriptElement();

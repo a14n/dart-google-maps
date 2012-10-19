@@ -10,14 +10,14 @@ To use this library in your code :
 
 ```yaml
 dependencies:
-  dart_google_maps:
+  google_maps:
     git: https://github.com/a14n/dart-google-maps.git
 ```
 
 * add import in your `dart` code :
 
 ```dart
-#import('package:dart_google_maps/gmaps.dart');
+#import('package:google_maps/gmaps.dart');
 ```
 
 * Include the Maps API JavaScript using a `script` tag.
@@ -32,8 +32,8 @@ To use one or more Google Maps Library :
 * add import in your `dart` code :
 
 ```dart
-#import('package:dart_google_maps/gmaps-LIBRARY1.dart');
-#import('package:dart_google_maps/gmaps-LIBRARY2.dart');
+#import('package:google_maps/gmaps-LIBRARY1.dart');
+#import('package:google_maps/gmaps-LIBRARY2.dart');
 ```
 
 * Include the Maps API JavaScript using a `script` tag.

@@ -1,8 +1,8 @@
 #import('dart:html');
 #import('dart:math', prefix:'Math');
 #import('package:js/js.dart', prefix:'js');
-#import('package:dart_google_maps/jswrap.dart', prefix:'jsw');
-#import('package:dart_google_maps/gmaps.dart', prefix:'gmaps');
+#import('package:google_maps/jswrap.dart', prefix:'jsw');
+#import('package:google_maps/gmaps.dart', prefix:'gmaps');
 
 const IMAGE_URL = "https://google-developers.appspot.com/maps/documentation/javascript/examples";
 

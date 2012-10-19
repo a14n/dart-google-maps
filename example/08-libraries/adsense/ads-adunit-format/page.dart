@@ -1,9 +1,9 @@
 #import('dart:html');
 #import('package:js/js.dart', prefix:'js');
-#import('package:dart_google_maps/optional.dart');
-#import('package:dart_google_maps/jswrap.dart', prefix:'jsw');
-#import('package:dart_google_maps/gmaps.dart', prefix:'gmaps');
-#import('package:dart_google_maps/gmaps-adsense.dart', prefix:'gmaps_ads');
+#import('package:google_maps/optional.dart');
+#import('package:google_maps/jswrap.dart', prefix:'jsw');
+#import('package:google_maps/gmaps.dart', prefix:'gmaps');
+#import('package:google_maps/gmaps-adsense.dart', prefix:'gmaps_ads');
 
 final SAMPLE_AD_STYLES = {
   'default': {
