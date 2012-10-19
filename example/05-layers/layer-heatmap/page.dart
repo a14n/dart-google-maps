@@ -1,8 +1,8 @@
-#import('dart:html');
-#import('package:js/js.dart', prefix:'js');
-#import('package:google_maps/jswrap.dart', prefix:'jsw');
-#import('package:google_maps/gmaps.dart', prefix:'gmaps');
-#import('package:google_maps/gmaps-visualization.dart', prefix:'gmaps_visu');
+import 'dart:html';
+import 'package:js/js.dart' as js;
+import 'package:google_maps/jswrap.dart' as jsw;
+import 'package:google_maps/gmaps.dart' as gmaps;
+import 'package:google_maps/gmaps_visualization.dart' as gmaps_visu;
 
 // Adding 500 Data Points
 gmaps.GMap map;

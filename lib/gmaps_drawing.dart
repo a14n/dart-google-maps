@@ -1,8 +1,8 @@
-#library('gmaps-drawing');
+library gmaps_drawing;
 
-#import('package:js/js.dart', prefix:'js');
-#import('jswrap.dart', prefix:'jsw');
-#import('gmaps.dart');
+import 'package:js/js.dart' as js;
+import 'jswrap.dart' as jsw;
+import 'gmaps.dart';
 
 class DrawingManager extends MVCObject {
   DrawingManager([DrawingManagerOptions opts]) : super.newInstance(maps.drawing.DrawingManager, [opts]);

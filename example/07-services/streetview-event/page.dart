@@ -1,7 +1,7 @@
-#import('dart:html');
-#import('package:js/js.dart', prefix:'js');
-#import('package:google_maps/jswrap.dart', prefix:'jsw');
-#import('package:google_maps/gmaps.dart', prefix:'gmaps');
+import 'dart:html';
+import 'package:js/js.dart' as js;
+import 'package:google_maps/jswrap.dart' as jsw;
+import 'package:google_maps/gmaps.dart' as gmaps;
 
 final gmaps.LatLng cafe = jsw.retain(new gmaps.LatLng(37.869085,-122.254775));
 

@@ -1,7 +1,7 @@
-#library("jswrap");
+library jswrap;
 
-#import('package:js/js.dart', prefix:'js');
-#import("optional.dart");
+import 'package:js/js.dart' as js;
+import 'optional.dart';
 
 typedef Object Transformater(Object proxy);
 
@@ -41,15 +41,16 @@ class IsJsProxy {
   JsOperations get $ => _jsOperations;
 }
 
-/// retain IsJsProxy
+/// retain [isJsProxy]
 IsJsProxy retain(IsJsProxy isJsProxy) {
   js.retain(isJsProxy._proxy);
   return isJsProxy;
 }
+/// retain all elements in [isJsProxyList]
 void retainAll(List<IsJsProxy> isJsProxyList) {
   isJsProxyList.forEach(retain);
 }
-/// release IsJsProxy
+/// release [isJsProxy]
 void release(IsJsProxy isJsProxy) {
   js.release(isJsProxy._proxy);
 }

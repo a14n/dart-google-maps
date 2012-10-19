@@ -1,7 +1,7 @@
-#import('dart:html');
-#import('package:js/js.dart', prefix:'js');
-#import('package:google_maps/jswrap.dart', prefix:'jsw');
-#import('package:google_maps/gmaps.dart', prefix:'gmaps');
+import 'dart:html';
+import 'package:js/js.dart' as js;
+import 'package:google_maps/jswrap.dart' as jsw;
+import 'package:google_maps/gmaps.dart' as gmaps;
 
 final gmaps.LatLng stockholm = jsw.retain(new gmaps.LatLng(59.32522, 18.07002));
 final gmaps.LatLng parliament = jsw.retain(new gmaps.LatLng(59.327383, 18.06747));

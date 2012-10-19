@@ -1,8 +1,8 @@
-#library('gmaps');
+library gmaps;
 
-#import('dart:html', prefix:'html');
-#import('package:js/js.dart', prefix:'js');
-#import('jswrap.dart', prefix:'jsw');
+import 'dart:html' as html;
+import 'package:js/js.dart' as js;
+import 'jswrap.dart' as jsw;
 
 // utility to get js.Proxy even if out of scope
 Dynamic findIn(List elements, Object o) => elements.filter((e) => e == o).reduce(null, (previousValue, e) => (previousValue != null ? previousValue : e));

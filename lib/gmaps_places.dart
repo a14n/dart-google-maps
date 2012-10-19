@@ -1,9 +1,9 @@
-#library('gmaps-places');
+library gmaps_places;
 
-#import('dart:html', prefix:'html');
-#import('package:js/js.dart', prefix:'js');
-#import('jswrap.dart', prefix:'jsw');
-#import('gmaps.dart');
+import 'dart:html' as html;
+import 'package:js/js.dart' as js;
+import 'jswrap.dart' as jsw;
+import 'gmaps.dart';
 
 class Autocomplete extends MVCObject {
   Autocomplete(html.InputElement inputField, [AutocompleteOptions opts]) : super.newInstance(maps.places.Autocomplete, [inputField, opts]);

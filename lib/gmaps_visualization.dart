@@ -1,8 +1,8 @@
-#library('gmaps-visualization');
+library gmaps_visualization;
 
-#import('package:js/js.dart', prefix:'js');
-#import('jswrap.dart', prefix:'jsw');
-#import('gmaps.dart');
+import 'package:js/js.dart' as js;
+import 'jswrap.dart' as jsw;
+import 'gmaps.dart';
 
 class HeatmapLayer extends MVCObject {
   HeatmapLayer([HeatmapLayerOptions opts]) : super.newInstance(maps.visualization.HeatmapLayer, [opts]);

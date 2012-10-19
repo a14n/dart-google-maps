@@ -1,6 +1,6 @@
-#import('dart:html');
-#import('package:js/js.dart', prefix:'js');
-#import('package:google_maps/gmaps.dart', prefix:'gmaps');
+import 'dart:html';
+import 'package:js/js.dart' as js;
+import 'package:google_maps/gmaps.dart' as gmaps;
 
 void main() {
   js.scoped((){
