@@ -1,8 +1,8 @@
 import 'dart:html';
 import 'package:js/js.dart' as js;
 import 'package:google_maps/jswrap.dart' as jsw;
-import 'package:google_maps/gmaps.dart' as gmaps;
-import 'package:google_maps/gmaps_panoramio.dart' as gmaps_panoramio;
+import 'package:google_maps/gmaps.dart';
+import 'package:google_maps/gmaps_panoramio.dart';
 
 class PhotoWidget extends jsw.IsJsProxy {
   PhotoWidget(DivElement div, PhotoRequestOptions photoRequestOptions, PhotoWidgetOptions photoWidgetOptions) : super.newInstance(js.context.panoramio.PhotoWidget, [div, photoRequestOptions, photoWidgetOptions]);
@@ -42,16 +42,16 @@ void main() {
     // don't yet have a photo to populate it.
     final photoWidget = new PhotoWidget(photoDiv, null, photoWidgetOptions);
 
-    final monoLake = new gmaps.LatLng(37.973432, -119.093170);
-    final mapOptions = new gmaps.MapOptions()
+    final monoLake = new LatLng(37.973432, -119.093170);
+    final mapOptions = new MapOptions()
       ..zoom = 11
       ..center = monoLake
-      ..mapTypeId = gmaps.MapTypeId.ROADMAP
+      ..mapTypeId = MapTypeId.ROADMAP
       ;
-    final map = new gmaps.GMap(query("#map_canvas"), mapOptions);
+    final map = new GMap(query("#map_canvas"), mapOptions);
 
-    final infoWindow = new gmaps.InfoWindow();
-    final panoramioLayer = new gmaps_panoramio.PanoramioLayer(new gmaps_panoramio.PanoramioLayerOptions()
+    final infoWindow = new InfoWindow();
+    final panoramioLayer = new PanoramioLayer(new PanoramioLayerOptions()
       ..suppressInfoWindows = true
     );
 

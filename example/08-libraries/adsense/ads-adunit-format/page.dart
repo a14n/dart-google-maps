@@ -1,9 +1,9 @@
-import 'dart:html';
+import 'dart:html' hide Events;
 import 'package:js/js.dart' as js;
 import 'package:google_maps/optional.dart';
 import 'package:google_maps/jswrap.dart' as jsw;
-import 'package:google_maps/gmaps.dart' as gmaps;
-import 'package:google_maps/gmaps_adsense.dart' as gmaps_ads;
+import 'package:google_maps/gmaps.dart';
+import 'package:google_maps/gmaps_adsense.dart';
 
 final SAMPLE_AD_STYLES = {
   'default': {
@@ -73,21 +73,21 @@ final SAMPLE_AD_STYLES = {
 
 void main() {
   js.scoped(() {
-    final mapOptions = new gmaps.MapOptions()
-      ..center = new gmaps.LatLng(36.5987, -121.8950)
+    final mapOptions = new MapOptions()
+      ..center = new LatLng(36.5987, -121.8950)
       ..zoom = 12
-      ..mapTypeId = gmaps.MapTypeId.ROADMAP
+      ..mapTypeId = MapTypeId.ROADMAP
       ;
-    final map = new gmaps.GMap(query("#map_canvas"), mapOptions);
+    final map = new GMap(query("#map_canvas"), mapOptions);
 
 
     final adUnitDiv = new DivElement();
 
     // Note: replace the publisher ID noted here with your own
     // publisher ID.
-    final adUnitOptions = new gmaps_ads.AdUnitOptions()
-      ..format = gmaps_ads.AdFormat.HALF_BANNER
-      ..position = gmaps.ControlPosition.TOP_CENTER
+    final adUnitOptions = new AdUnitOptions()
+      ..format = AdFormat.HALF_BANNER
+      ..position = ControlPosition.TOP_CENTER
       ..$.backgroundColor = '#c4d4f3'
       ..$.borderColor = '#e5ecf9'
       ..$.titleColor = '#0000cc'
@@ -97,18 +97,18 @@ void main() {
       ..map = map
       ..$.visible = true
       ;
-    final adUnit = new gmaps_ads.AdUnit(adUnitDiv, adUnitOptions);
+    final adUnit = new AdUnit(adUnitDiv, adUnitOptions);
 
     final SelectElement format = query('#format');
     jsw.retainAll([adUnit]);
-    gmaps.Events.addDomListener(format, 'change', (e) {
-      final adsFormat = (new jsw.IsJsProxy.fromJsProxy(gmaps.maps.adsense.AdFormat).$[format.value] as Option<String>).value;
-      adUnit.format = gmaps_ads.AdFormat.find(adsFormat);
+    Events.addDomListener(format, 'change', (e) {
+      final adsFormat = (new jsw.IsJsProxy.fromJsProxy(maps.adsense.AdFormat).$[format.value] as Option<String>).value;
+      adUnit.format = AdFormat.find(adsFormat);
     });
 
     final SelectElement style = query('#style');
     jsw.retainAll([adUnit]);
-    gmaps.Events.addDomListener(style, 'change', (e) {
+    Events.addDomListener(style, 'change', (e) {
       final adStyle = SAMPLE_AD_STYLES[style.value];
       // TODO undocumented or undefined functions
       adUnit.$
@@ -122,9 +122,9 @@ void main() {
 
     final SelectElement position = query('#position');
     jsw.retainAll([adUnit]);
-    gmaps.Events.addDomListener(position, 'change', (e) {
-      final adsPosition = (new jsw.IsJsProxy.fromJsProxy(gmaps.maps.ControlPosition).$[position.value] as Option<int>).value;
-      adUnit.position = gmaps.ControlPosition.find(adsPosition);
+    Events.addDomListener(position, 'change', (e) {
+      final adsPosition = (new jsw.IsJsProxy.fromJsProxy(maps.ControlPosition).$[position.value] as Option<int>).value;
+      adUnit.position = ControlPosition.find(adsPosition);
     });
   });
 }

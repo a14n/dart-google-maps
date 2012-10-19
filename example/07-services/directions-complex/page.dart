@@ -1,36 +1,36 @@
 import 'dart:html';
 import 'package:js/js.dart' as js;
 import 'package:google_maps/jswrap.dart' as jsw;
-import 'package:google_maps/gmaps.dart' as gmaps;
+import 'package:google_maps/gmaps.dart';
 
-gmaps.GMap map;
-gmaps.DirectionsRenderer directionsDisplay;
-gmaps.DirectionsService directionsService;
-gmaps.InfoWindow stepDisplay;
-final markerArray = new List<gmaps.Marker>();
+GMap map;
+DirectionsRenderer directionsDisplay;
+DirectionsService directionsService;
+InfoWindow stepDisplay;
+final markerArray = new List<Marker>();
 
 void main() {
   js.scoped(() {
     // Instantiate a directions service.
-    directionsService = jsw.retain(new gmaps.DirectionsService());
+    directionsService = jsw.retain(new DirectionsService());
 
     // Create a map and center it on Manhattan.
-    final manhattan = new gmaps.LatLng(40.7711329, -73.9741874);
-    final mapOptions = new gmaps.MapOptions()
+    final manhattan = new LatLng(40.7711329, -73.9741874);
+    final mapOptions = new MapOptions()
       ..zoom = 13
-      ..mapTypeId = gmaps.MapTypeId.ROADMAP
+      ..mapTypeId = MapTypeId.ROADMAP
       ..center = manhattan
       ;
-    map = jsw.retain(new gmaps.GMap(query("#map_canvas"), mapOptions));
+    map = jsw.retain(new GMap(query("#map_canvas"), mapOptions));
 
     // Create a renderer for directions and bind it to the map.
-    final rendererOptions = new gmaps.DirectionsRendererOptions()
+    final rendererOptions = new DirectionsRendererOptions()
       ..map = map
       ;
-    directionsDisplay = jsw.retain(new gmaps.DirectionsRenderer(rendererOptions));
+    directionsDisplay = jsw.retain(new DirectionsRenderer(rendererOptions));
 
     // Instantiate an info window to hold step text.
-    stepDisplay = jsw.retain(new gmaps.InfoWindow());
+    stepDisplay = jsw.retain(new InfoWindow());
 
     query('#start').on.change.add((e) => calcRoute());
     query('#end').on.change.add((e) => calcRoute());
@@ -50,16 +50,16 @@ void calcRoute() {
     // a DirectionsRequest using WALKING directions.
     final start = (query('#start') as SelectElement).value;
     final end = (query('#end') as SelectElement).value;
-    final request = new gmaps.DirectionsRequest()
+    final request = new DirectionsRequest()
       ..origin = start
       ..destination = end
-      ..travelMode = gmaps.TravelMode.WALKING // TODO bad object in example DirectionsTravelMode
+      ..travelMode = TravelMode.WALKING // TODO bad object in example DirectionsTravelMode
       ;
 
     // Route the directions and pass the response to a
     // function to create markers for each step.
-    directionsService.route(request, (gmaps.DirectionsResult response, gmaps.DirectionsStatus status) {
-      if (status == gmaps.DirectionsStatus.OK) {
+    directionsService.route(request, (DirectionsResult response, DirectionsStatus status) {
+      if (status == DirectionsStatus.OK) {
         final warnings = query('#warnings_panel');
         warnings.innerHTML = '<b>${response.routes[0].warnings}</b>';
         directionsDisplay.directions = response;
@@ -69,7 +69,7 @@ void calcRoute() {
   });
 }
 
-void showSteps(gmaps.DirectionsResult directionResult) {
+void showSteps(DirectionsResult directionResult) {
   // For each step, place a marker, and add the text to the marker's
   // info window. Also attach the marker to an array so we
   // can keep track of it and remove it when calculating new
@@ -77,7 +77,7 @@ void showSteps(gmaps.DirectionsResult directionResult) {
   final myRoute = directionResult.routes[0].legs[0];
 
   for(final step in myRoute.steps) {
-    final marker = new gmaps.Marker(new gmaps.MarkerOptions()
+    final marker = new Marker(new MarkerOptions()
       ..position = step.start_location // TODO bad attribut in example "start_point"
       ..map = map
     );
@@ -87,7 +87,7 @@ void showSteps(gmaps.DirectionsResult directionResult) {
   }
 }
 
-void attachInstructionText(gmaps.Marker marker, String text) {
+void attachInstructionText(Marker marker, String text) {
   marker.on.click.add((e) {
     // Open an info window when the marker is clicked on,
     // containing the text of the step.

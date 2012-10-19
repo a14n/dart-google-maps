@@ -1,19 +1,19 @@
 import 'dart:html';
 import 'package:js/js.dart' as js;
 import 'package:google_maps/jswrap.dart' as jsw;
-import 'package:google_maps/gmaps.dart' as gmaps;
+import 'package:google_maps/gmaps.dart';
 
 void main() {
   js.scoped(() {
-    final myLatlng = new gmaps.LatLng(34.04924594193164, -118.24104309082031);
-    final mapOptions = new gmaps.MapOptions()
+    final myLatlng = new LatLng(34.04924594193164, -118.24104309082031);
+    final mapOptions = new MapOptions()
       ..zoom = 13
       ..center = myLatlng
-      ..mapTypeId = gmaps.MapTypeId.ROADMAP
+      ..mapTypeId = MapTypeId.ROADMAP
       ;
-    final map = new gmaps.GMap(query("#map_canvas"), mapOptions);
+    final map = new GMap(query("#map_canvas"), mapOptions);
 
-    final trafficLayer = new gmaps.TrafficLayer();
+    final trafficLayer = new TrafficLayer();
     trafficLayer.map = map;
   });
 }

@@ -1,26 +1,26 @@
 import 'dart:html';
 import 'package:js/js.dart' as js;
 import 'package:google_maps/jswrap.dart' as jsw;
-import 'package:google_maps/gmaps.dart' as gmaps;
+import 'package:google_maps/gmaps.dart';
 
 void main() {
   js.scoped(() {
-    final fenway = new gmaps.LatLng(42.345573,-71.098326);
-    final mapOptions = new gmaps.MapOptions()
+    final fenway = new LatLng(42.345573,-71.098326);
+    final mapOptions = new MapOptions()
       ..center = fenway
       ..zoom = 14
-      ..mapTypeId = gmaps.MapTypeId.ROADMAP
+      ..mapTypeId = MapTypeId.ROADMAP
       ;
-    final map = new gmaps.GMap(query('#map_canvas'), mapOptions);
-    final panoramaOptions = new gmaps.StreetViewPanoramaOptions()
+    final map = new GMap(query('#map_canvas'), mapOptions);
+    final panoramaOptions = new StreetViewPanoramaOptions()
       ..position = fenway
-      ..pov = (new gmaps.StreetViewPov()
+      ..pov = (new StreetViewPov()
         ..heading = 34
         ..pitch = 10
         ..zoom = 1
       )
       ;
-    final panorama = new gmaps.StreetViewPanorama(query('#pano'),panoramaOptions);
+    final panorama = new StreetViewPanorama(query('#pano'),panoramaOptions);
     map.streetView = panorama;
   });
 }

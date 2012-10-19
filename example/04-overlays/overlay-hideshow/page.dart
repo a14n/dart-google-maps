@@ -1,7 +1,7 @@
 import 'dart:html';
 import 'package:js/js.dart' as js;
 import 'package:google_maps/jswrap.dart' as jsw;
-import 'package:google_maps/gmaps.dart' as gmaps;
+import 'package:google_maps/gmaps.dart';
 
 const IMAGE_URL = "https://google-developers.appspot.com/maps/documentation/javascript/examples";
 
@@ -9,17 +9,17 @@ USGSOverlay overlay;
 
 void main() {
   js.scoped(() {
-    final myLatLng = new gmaps.LatLng(62.323907, -150.109291);
-    final mapOptions = new gmaps.MapOptions()
+    final myLatLng = new LatLng(62.323907, -150.109291);
+    final mapOptions = new MapOptions()
       ..zoom = 11
       ..center = myLatLng
-      ..mapTypeId = gmaps.MapTypeId.SATELLITE
+      ..mapTypeId = MapTypeId.SATELLITE
       ;
-    final map = new gmaps.GMap(query("#map_canvas"), mapOptions);
+    final map = new GMap(query("#map_canvas"), mapOptions);
 
-    final swBound = new gmaps.LatLng(62.281819, -150.287132);
-    final neBound = new gmaps.LatLng(62.400471, -150.005608);
-    final bounds = new gmaps.LatLngBounds(swBound, neBound);
+    final swBound = new LatLng(62.281819, -150.287132);
+    final neBound = new LatLng(62.400471, -150.005608);
+    final bounds = new LatLngBounds(swBound, neBound);
 
     // Photograph courtesy of the U.S. Geological Survey
     final srcImage = '${IMAGE_URL}/images/talkeetna.png';
@@ -30,14 +30,14 @@ void main() {
   });
 }
 
-class USGSOverlay extends gmaps.OverlayView {
-  gmaps.LatLngBounds _bounds;
+class USGSOverlay extends OverlayView {
+  LatLngBounds _bounds;
   String _image;
-  gmaps.GMap _map;
+  GMap _map;
 
   DivElement _div;
 
-  USGSOverlay(gmaps.LatLngBounds bounds, String image, gmaps.GMap map) : super() {
+  USGSOverlay(LatLngBounds bounds, String image, GMap map) : super() {
     $.onAdd = new jsw.Callback.many(_onAdd);
     $.draw = new jsw.Callback.many(_draw);
     $.onRemove = new jsw.Callback.many(_onRemove);

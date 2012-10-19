@@ -1,7 +1,7 @@
 import 'dart:html';
 import 'package:js/js.dart' as js;
 import 'package:google_maps/jswrap.dart' as jsw;
-import 'package:google_maps/gmaps.dart' as gmaps;
+import 'package:google_maps/gmaps.dart';
 
 class ColumnChart extends jsw.IsJsProxy {
   ColumnChart(Node div) : super.newInstance(js.context.google.visualization.ColumnChart, [div]);
@@ -16,33 +16,33 @@ class DataTable extends jsw.IsJsProxy {
   void addRow([List<Object> cellArray]) { $.addRow(cellArray); }
 }
 
-gmaps.ElevationService elevator;
-gmaps.GMap map;
+ElevationService elevator;
+GMap map;
 ColumnChart chart;
-final gmaps.InfoWindow infowindow = jsw.retain(new gmaps.InfoWindow());
-gmaps.Polyline polyline;
+final InfoWindow infowindow = jsw.retain(new InfoWindow());
+Polyline polyline;
 
 // The following path marks a general path from Mt.
 // Whitney, the highest point in the continental United
 // States to Badwater, Death Vallet, the lowest point.
-final gmaps.LatLng whitney = jsw.retain(new gmaps.LatLng(36.578581, -118.291994));
-final gmaps.LatLng lonepine = jsw.retain(new gmaps.LatLng(36.606111, -118.062778));
-final gmaps.LatLng owenslake = jsw.retain(new gmaps.LatLng(36.433269, -117.950916));
-final gmaps.LatLng beattyjunction = jsw.retain(new gmaps.LatLng(36.588056, -116.943056));
-final gmaps.LatLng panamintsprings = jsw.retain(new gmaps.LatLng(36.339722, -117.467778));
-final gmaps.LatLng badwater = jsw.retain(new gmaps.LatLng(36.23998, -116.83171));
+final LatLng whitney = jsw.retain(new LatLng(36.578581, -118.291994));
+final LatLng lonepine = jsw.retain(new LatLng(36.606111, -118.062778));
+final LatLng owenslake = jsw.retain(new LatLng(36.433269, -117.950916));
+final LatLng beattyjunction = jsw.retain(new LatLng(36.588056, -116.943056));
+final LatLng panamintsprings = jsw.retain(new LatLng(36.339722, -117.467778));
+final LatLng badwater = jsw.retain(new LatLng(36.23998, -116.83171));
 
 void main() {
   js.scoped(() {
-    final mapOptions = new gmaps.MapOptions()
+    final mapOptions = new MapOptions()
       ..zoom = 8
       ..center = lonepine
-      ..mapTypeId = gmaps.MapTypeId.TERRAIN
+      ..mapTypeId = MapTypeId.TERRAIN
       ;
-    map = jsw.retain(new gmaps.GMap(query('#map_canvas'), mapOptions));
+    map = jsw.retain(new GMap(query('#map_canvas'), mapOptions));
 
     // Create an ElevationService.
-    elevator = jsw.retain(new gmaps.ElevationService());
+    elevator = jsw.retain(new ElevationService());
 
     // Draw the path, using the Visualization API and the Elevation service.
     drawPath();
@@ -58,7 +58,7 @@ void drawPath() {
 
   // Create a PathElevationRequest object using this array.
   // Ask for 256 samples along that path.
-  final pathRequest = new gmaps.PathElevationRequest()
+  final pathRequest = new PathElevationRequest()
     ..path = path
     ..samples = 256
     ;
@@ -69,8 +69,8 @@ void drawPath() {
 
 // Takes an array of ElevationResult objects, draws the path on the map
 // and plots the elevation profile on a Visualization API ColumnChart.
-void plotElevation(List<gmaps.ElevationResult> results, gmaps.ElevationStatus status) {
-  if (status == gmaps.ElevationStatus.OK) {
+void plotElevation(List<ElevationResult> results, ElevationStatus status) {
+  if (status == ElevationStatus.OK) {
     // Extract the elevation samples from the returned results
     // and store them in an array of LatLngs.
     final elevationPath = [];
@@ -79,13 +79,13 @@ void plotElevation(List<gmaps.ElevationResult> results, gmaps.ElevationStatus st
     }
 
     // Display a polyline of the elevation path.
-    final pathOptions = new gmaps.PolylineOptions()
+    final pathOptions = new PolylineOptions()
       ..path = elevationPath
       ..strokeColor = '#0000CC'
       ..$.opacity = 0.4  // TODO not in doc
       ..map = map
       ;
-    polyline = jsw.retain(new gmaps.Polyline(pathOptions));
+    polyline = jsw.retain(new Polyline(pathOptions));
 
     // Extract the data from which to populate the chart.
     // Because the samples are equidistant, the 'Sample'

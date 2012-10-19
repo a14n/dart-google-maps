@@ -1,12 +1,12 @@
-import 'dart:html';
+import 'dart:html' hide Point;
 import 'dart:math' as Math;
 import 'package:js/js.dart' as js;
 import 'package:google_maps/jswrap.dart' as jsw;
-import 'package:google_maps/gmaps.dart' as gmaps;
+import 'package:google_maps/gmaps.dart';
 
-gmaps.GMap map;
+GMap map;
 const TILE_SIZE = 256;
-final gmaps.LatLng chicago = jsw.retain(new gmaps.LatLng(41.850033,-87.6500523));
+final LatLng chicago = jsw.retain(new LatLng(41.850033,-87.6500523));
 
 num bound(num value, num opt_min, num opt_max) {
   if (opt_min != null) value = Math.max(value, opt_min);
@@ -23,12 +23,12 @@ num radiansToDegrees(num rad) {
 }
 
 class MercatorProjection {
-  final gmaps.Point _pixelOrigin = new gmaps.Point(TILE_SIZE / 2, TILE_SIZE / 2);
+  final _pixelOrigin = new Point(TILE_SIZE / 2, TILE_SIZE / 2);
   const _pixelsPerLonDegree = TILE_SIZE / 360;
   const _pixelsPerLonRadian = TILE_SIZE / (2 * Math.PI);
 
-  gmaps.Point fromLatLngToPoint(gmaps.LatLng latLng, [gmaps.Point opt_point]) {
-    final point = opt_point === null ? new gmaps.Point(0, 0) : opt_point;
+  Point fromLatLngToPoint(LatLng latLng, [Point opt_point]) {
+    final point = opt_point === null ? new Point(0, 0) : opt_point;
     final origin = _pixelOrigin;
 
     point.x = origin.x + latLng.lng * _pixelsPerLonDegree;
@@ -43,14 +43,14 @@ class MercatorProjection {
     return point;
   }
 
-  gmaps.LatLng fromPointToLatLng(gmaps.Point point) {
+  LatLng fromPointToLatLng(Point point) {
     var me = this;
     var origin = me._pixelOrigin;
     var lng = (point.x - origin.x) / me._pixelsPerLonDegree;
     var latRadians = (point.y - origin.y) / -me._pixelsPerLonRadian;
     var lat = radiansToDegrees(2 * Math.atan(Math.exp(latRadians)) -
         Math.PI / 2);
-    return new gmaps.LatLng(lat, lng);
+    return new LatLng(lat, lng);
   }
 }
 
@@ -58,10 +58,10 @@ String createInfoWindowContent() {
   final numTiles = 1 << map.zoom;
   final projection = new MercatorProjection();
   final worldCoordinate = projection.fromLatLngToPoint(chicago);
-  final pixelCoordinate = new gmaps.Point(
+  final pixelCoordinate = new Point(
       worldCoordinate.x * numTiles,
       worldCoordinate.y * numTiles);
-  final tileCoordinate = new gmaps.Point(
+  final tileCoordinate = new Point(
       (pixelCoordinate.x / TILE_SIZE).floor(),
       (pixelCoordinate.y / TILE_SIZE).floor());
 
@@ -76,14 +76,14 @@ String createInfoWindowContent() {
 
 void main() {
   js.scoped((){
-    final mapOptions = new gmaps.MapOptions()
+    final mapOptions = new MapOptions()
       ..zoom = 0
       ..center = chicago
-      ..mapTypeId = gmaps.MapTypeId.ROADMAP
+      ..mapTypeId = MapTypeId.ROADMAP
       ;
-    map = jsw.retain(new gmaps.GMap(query("#map_canvas"), mapOptions));
+    map = jsw.retain(new GMap(query("#map_canvas"), mapOptions));
 
-    final gmaps.InfoWindow coordInfoWindow = jsw.retain(new gmaps.InfoWindow()
+    final InfoWindow coordInfoWindow = jsw.retain(new InfoWindow()
       ..content = createInfoWindowContent()
       ..position = chicago
       ..open(map)

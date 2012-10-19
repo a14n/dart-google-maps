@@ -1,36 +1,36 @@
 import 'dart:html';
 import 'package:js/js.dart' as js;
 import 'package:google_maps/jswrap.dart' as jsw;
-import 'package:google_maps/gmaps.dart' as gmaps;
+import 'package:google_maps/gmaps.dart';
 
 void main() {
   js.scoped(() {
-    final australia = new gmaps.LatLng(-25, 133);
-    final map = new gmaps.GMap(query("#map_canvas"), new gmaps.MapOptions()
+    final australia = new LatLng(-25, 133);
+    final map = new GMap(query("#map_canvas"), new MapOptions()
       ..center = australia
       ..zoom = 4
-      ..mapTypeId = gmaps.MapTypeId.ROADMAP
+      ..mapTypeId = MapTypeId.ROADMAP
     );
 
-    final layer = new gmaps.FusionTablesLayer(new gmaps.FusionTablesLayerOptions()
-      ..query = (new gmaps.FusionTablesQuery()
+    final layer = new FusionTablesLayer(new FusionTablesLayerOptions()
+      ..query = (new FusionTablesQuery()
         ..select = 'geometry'
         ..from = '1ertEwm-1bMBhpEwHhtNYT47HQ9k2ki_6sRa-UQ'
       )
       ..styles = [
-        new gmaps.FusionTablesStyle()
-          ..polygonOptions = (new gmaps.FusionTablesPolygonOptions()
+        new FusionTablesStyle()
+          ..polygonOptions = (new FusionTablesPolygonOptions()
             ..fillColor = '#00FF00'
             ..fillOpacity = 0.3
           )
-        , new gmaps.FusionTablesStyle()
+        , new FusionTablesStyle()
           ..where = 'birds > 300'
-          ..polygonOptions = (new gmaps.FusionTablesPolygonOptions()
+          ..polygonOptions = (new FusionTablesPolygonOptions()
             ..fillColor = '#0000FF'
           )
-        , new gmaps.FusionTablesStyle()
+        , new FusionTablesStyle()
           ..where = 'population > 5'
-          ..polygonOptions = (new gmaps.FusionTablesPolygonOptions()
+          ..polygonOptions = (new FusionTablesPolygonOptions()
             ..fillOpacity = 1.0
         )
       ]

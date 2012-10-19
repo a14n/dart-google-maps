@@ -1,47 +1,47 @@
 import 'dart:html';
 import 'package:js/js.dart' as js;
 import 'package:google_maps/jswrap.dart' as jsw;
-import 'package:google_maps/gmaps.dart' as gmaps;
-import 'package:google_maps/gmaps_places.dart' as gmaps_places;
+import 'package:google_maps/gmaps.dart';
+import 'package:google_maps/gmaps_places.dart';
 
-gmaps.GMap map;
-gmaps.InfoWindow infowindow;
+GMap map;
+InfoWindow infowindow;
 
 void main() {
   js.scoped(() {
-    final pyrmont = new gmaps.LatLng(-33.8665433, 151.1956316);
+    final pyrmont = new LatLng(-33.8665433, 151.1956316);
 
-    map = jsw.retain(new gmaps.GMap(query("#map"), new gmaps.MapOptions()
-      ..mapTypeId = gmaps.MapTypeId.ROADMAP
+    map = jsw.retain(new GMap(query("#map"), new MapOptions()
+      ..mapTypeId = MapTypeId.ROADMAP
       ..center = pyrmont
       ..zoom = 15
     ));
 
 
-    final request = new gmaps_places.PlaceSearchRequest()
+    final request = new PlaceSearchRequest()
       ..location = pyrmont
       ..radius = 500
       ..types = ['store']
       ;
 
-    infowindow = jsw.retain(new gmaps.InfoWindow());
-    final service = new gmaps_places.PlacesService(map);
+    infowindow = jsw.retain(new InfoWindow());
+    final service = new PlacesService(map);
     // TODO search not documented
     service.nearbySearch(request, callback);
   });
 }
 
-void callback(List<gmaps_places.PlaceResult> results, gmaps_places.PlacesServiceStatus status, gmaps_places.PlaceSearchPagination pagination) {
-  if (status == gmaps_places.PlacesServiceStatus.OK) {
+void callback(List<PlaceResult> results, PlacesServiceStatus status, PlaceSearchPagination pagination) {
+  if (status == PlacesServiceStatus.OK) {
     for (var i = 0; i < results.length; i++) {
       createMarker(results[i]);
     }
   }
 }
 
-void createMarker(gmaps_places.PlaceResult place) {
+void createMarker(PlaceResult place) {
   final placeLoc = place.geometry.location;
-  final marker = new gmaps.Marker(new gmaps.MarkerOptions()
+  final marker = new Marker(new MarkerOptions()
     ..map = map
     ..position = place.geometry.location
   );

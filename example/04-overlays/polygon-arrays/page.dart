@@ -1,29 +1,29 @@
-import 'dart:html';
+import 'dart:html' hide MouseEvent;
 import 'package:js/js.dart' as js;
 import 'package:google_maps/jswrap.dart' as jsw;
-import 'package:google_maps/gmaps.dart' as gmaps;
+import 'package:google_maps/gmaps.dart';
 
-gmaps.GMap map;
-gmaps.InfoWindow infoWindow;
-gmaps.Polygon bermudaTriangle;
+GMap map;
+InfoWindow infoWindow;
+Polygon bermudaTriangle;
 
 void main() {
   js.scoped(() {
-    final myLatLng = new gmaps.LatLng(24.886436490787712, -70.2685546875);
-    final mapOptions = new gmaps.MapOptions()
+    final myLatLng = new LatLng(24.886436490787712, -70.2685546875);
+    final mapOptions = new MapOptions()
       ..zoom = 5
       ..center = myLatLng
-      ..mapTypeId = gmaps.MapTypeId.TERRAIN
+      ..mapTypeId = MapTypeId.TERRAIN
       ;
-    map = jsw.retain(new gmaps.GMap(query("#map_canvas"), mapOptions));
+    map = jsw.retain(new GMap(query("#map_canvas"), mapOptions));
 
     final triangleCoords = [
-                          new gmaps.LatLng(25.774252, -80.190262),
-                          new gmaps.LatLng(18.466465, -66.118292),
-                          new gmaps.LatLng(32.321384, -64.75737)
+                          new LatLng(25.774252, -80.190262),
+                          new LatLng(18.466465, -66.118292),
+                          new LatLng(32.321384, -64.75737)
                           ];
 
-    bermudaTriangle = jsw.retain(new gmaps.Polygon(new gmaps.PolygonOptions()
+    bermudaTriangle = jsw.retain(new Polygon(new PolygonOptions()
       ..paths = triangleCoords
       ..strokeColor = '#FF0000'
       ..strokeOpacity = 0.8
@@ -37,11 +37,11 @@ void main() {
     // Add a listener for the click event
     bermudaTriangle.on.click.add(showArrays);
 
-    infoWindow = jsw.retain(new gmaps.InfoWindow());
+    infoWindow = jsw.retain(new InfoWindow());
   });
 }
 
-void showArrays(gmaps.MouseEvent e) {
+void showArrays(MouseEvent e) {
   // Since this Polygon only has one path, we can call getPath()
   // to return the MVCArray of LatLngs
   final vertices = bermudaTriangle.path;

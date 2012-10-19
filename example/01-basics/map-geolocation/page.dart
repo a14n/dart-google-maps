@@ -1,26 +1,26 @@
 import 'dart:html';
 import 'package:js/js.dart' as js;
 import 'package:google_maps/jswrap.dart' as jsw;
-import 'package:google_maps/gmaps.dart' as gmaps;
+import 'package:google_maps/gmaps.dart';
 
-gmaps.GMap map;
+GMap map;
 
 void main() {
   js.scoped(() {
-    final mapOptions = new gmaps.MapOptions()
+    final mapOptions = new MapOptions()
       ..zoom = 6
-      ..mapTypeId = gmaps.MapTypeId.ROADMAP
+      ..mapTypeId = MapTypeId.ROADMAP
       ;
-    map = jsw.retain(new gmaps.GMap(query("#map_canvas"), mapOptions));
+    map = jsw.retain(new GMap(query("#map_canvas"), mapOptions));
 
     // Try HTML5 geolocation
     if (window.navigator.geolocation !== null) {
       window.navigator.geolocation.getCurrentPosition((position) {
         js.scoped(() {
-          final pos = new gmaps.LatLng(position.coords.latitude,
+          final pos = new LatLng(position.coords.latitude,
               position.coords.longitude);
 
-          final infowindow = new gmaps.InfoWindow(new gmaps.InfoWindowOptions()
+          final infowindow = new InfoWindow(new InfoWindowOptions()
             ..position = pos
             ..content = 'Location found using HTML5.'
           );
@@ -47,12 +47,12 @@ void handleNoGeolocation(bool errorFlag) {
       content = 'Error: Your browser doesn\'t support geolocation.';
     }
 
-    final options = new gmaps.InfoWindowOptions()
-      ..position = new gmaps.LatLng(60, 105)
+    final options = new InfoWindowOptions()
+      ..position = new LatLng(60, 105)
       ..content = content
       ;
 
-    final infowindow = new gmaps.InfoWindow(options);
+    final infowindow = new InfoWindow(options);
     infowindow.open(map);
     map.center = options.position;
   });

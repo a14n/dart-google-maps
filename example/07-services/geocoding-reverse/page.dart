@@ -2,23 +2,23 @@ import 'dart:html';
 import 'dart:math';
 import 'package:js/js.dart' as js;
 import 'package:google_maps/jswrap.dart' as jsw;
-import 'package:google_maps/gmaps.dart' as gmaps;
+import 'package:google_maps/gmaps.dart';
 
-gmaps.Geocoder geocoder;
-gmaps.GMap map;
-final gmaps.InfoWindow infowindow = jsw.retain(new gmaps.InfoWindow());
-gmaps.Marker marker;
+Geocoder geocoder;
+GMap map;
+final InfoWindow infowindow = jsw.retain(new InfoWindow());
+Marker marker;
 
 void main() {
   js.scoped(() {
-    geocoder = jsw.retain(new gmaps.Geocoder());
-    final latlng = new gmaps.LatLng(40.730885,-73.997383);
-    final mapOptions = new gmaps.MapOptions()
+    geocoder = jsw.retain(new Geocoder());
+    final latlng = new LatLng(40.730885,-73.997383);
+    final mapOptions = new MapOptions()
       ..zoom = 8
       ..center = latlng
-      ..mapTypeId = gmaps.MapTypeId.ROADMAP
+      ..mapTypeId = MapTypeId.ROADMAP
       ;
-    map = jsw.retain(new gmaps.GMap(query("#map_canvas"), mapOptions));
+    map = jsw.retain(new GMap(query("#map_canvas"), mapOptions));
 
     query("#codeLatLng").on.click.add((e) => codeLatLng());
   });
@@ -30,15 +30,15 @@ void codeLatLng() {
     final latlngStr = input.split(',');
     final lat = parseDouble(latlngStr[0]);
     final lng = parseDouble(latlngStr[1]);
-    final gmaps.LatLng latlng = jsw.retain(new gmaps.LatLng(lat, lng));
-    final request = new gmaps.GeocoderRequest()
+    final LatLng latlng = jsw.retain(new LatLng(lat, lng));
+    final request = new GeocoderRequest()
       ..location = latlng  // TODO bad variable "latlng" in example code
       ;
-    geocoder.geocode(request, (List<gmaps.GeocoderResult> results, gmaps.GeocoderStatus status) {
-      if (status == gmaps.GeocoderStatus.OK) {
+    geocoder.geocode(request, (List<GeocoderResult> results, GeocoderStatus status) {
+      if (status == GeocoderStatus.OK) {
         if (results[1] !== null) {
           map.zoom = 11;
-          final marker = new gmaps.Marker(new gmaps.MarkerOptions()
+          final marker = new Marker(new MarkerOptions()
             ..position = latlng
             ..map = map
           );

@@ -1,17 +1,17 @@
-import 'dart:html';
+import 'dart:html' hide Point;
 import 'dart:math' as Math;
 import 'package:js/js.dart' as js;
 import 'package:google_maps/jswrap.dart' as jsw;
-import 'package:google_maps/gmaps.dart' as gmaps;
+import 'package:google_maps/gmaps.dart';
 
-final moonTypeOptions = jsw.retain(new gmaps.ImageMapTypeOptions()
-  ..tileSize = new gmaps.Size(256, 256)
+final moonTypeOptions = jsw.retain(new ImageMapTypeOptions()
+  ..tileSize = new Size(256, 256)
   ..maxZoom = 9
   ..minZoom = 0
   // TODO undocumented
   ..$.radius = 1738000
   ..name = 'Moon'
-  ..getTileUrl = (gmaps.Point point, num zoomLevel) {
+  ..getTileUrl = (Point point, num zoomLevel) {
     final normalizedCoord = getNormalizedCoord(point, zoomLevel);
     if (normalizedCoord === null) {
       return null;
@@ -21,21 +21,21 @@ final moonTypeOptions = jsw.retain(new gmaps.ImageMapTypeOptions()
   }
   );
 
-final moonMapType = new gmaps.ImageMapType(moonTypeOptions);
+final moonMapType = new ImageMapType(moonTypeOptions);
 
 void main() {
   js.scoped(() {
-    final myLatlng = new gmaps.LatLng(0, 0);
-    final mapOptions = new gmaps.MapOptions()
+    final myLatlng = new LatLng(0, 0);
+    final mapOptions = new MapOptions()
       ..center = myLatlng
       ..zoom = 1
       ..streetViewControl = false
-      ..mapTypeControlOptions = (new gmaps.MapTypeControlOptions()
+      ..mapTypeControlOptions = (new MapTypeControlOptions()
         ..mapTypeIds = ['moon']
       )
       ;
 
-    final map = new gmaps.GMap(query('#map_canvas'), mapOptions);
+    final map = new GMap(query('#map_canvas'), mapOptions);
     map.mapTypes.set('moon', moonMapType);
     map.mapTypeId = 'moon';
   });
@@ -43,7 +43,7 @@ void main() {
 
 // Normalizes the coords that tiles repeat across the x axis (horizontally)
 // like the standard Google map tiles.
-gmaps.Point getNormalizedCoord(gmaps.Point coord, num zoom) {
+Point getNormalizedCoord(Point coord, num zoom) {
   final y = coord.y;
   var x = coord.x;
 
@@ -61,5 +61,5 @@ gmaps.Point getNormalizedCoord(gmaps.Point coord, num zoom) {
     x = (x % tileRange + tileRange) % tileRange;
   }
 
-  return new gmaps.Point(x, y);
+  return new Point(x, y);
 }

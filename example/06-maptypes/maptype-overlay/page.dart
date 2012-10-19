@@ -1,21 +1,21 @@
-import 'dart:html';
+import 'dart:html' hide Point;
 import 'package:js/js.dart' as js;
 import 'package:google_maps/jswrap.dart' as jsw;
-import 'package:google_maps/gmaps.dart' as gmaps;
+import 'package:google_maps/gmaps.dart';
 
-class CoordMapType extends gmaps.MapType {
-  CoordMapType(gmaps.Size tileSize) : super() {
+class CoordMapType extends MapType {
+  CoordMapType(Size tileSize) : super() {
     this.tileSize = jsw.retain(tileSize);
     $.getTile = new jsw.Callback.many((js.Proxy tileCoord, num zoom, js.Proxy ownerDocument) {
       if (ownerDocument.createElement("div") is js.Proxy) {
-        return _getTileFromOtherDocument(new gmaps.Point.fromJsProxy(tileCoord), zoom, new jsw.IsJsProxy.fromJsProxy(ownerDocument));
+        return _getTileFromOtherDocument(new Point.fromJsProxy(tileCoord), zoom, new jsw.IsJsProxy.fromJsProxy(ownerDocument));
       } else {
-        return _getTile(new gmaps.Point.fromJsProxy(tileCoord), zoom);
+        return _getTile(new Point.fromJsProxy(tileCoord), zoom);
       }
     });
   }
 
-  DivElement _getTile(gmaps.Point coord, num zoom) {
+  DivElement _getTile(Point coord, num zoom) {
     final div = new DivElement()
       ..innerHTML = coord.toString()
       ;
@@ -30,7 +30,7 @@ class CoordMapType extends gmaps.MapType {
     return div;
   }
 
-  js.Proxy _getTileFromOtherDocument(gmaps.Point coord, num zoom, jsw.IsJsProxy ownerDocument) {
+  js.Proxy _getTileFromOtherDocument(Point coord, num zoom, jsw.IsJsProxy ownerDocument) {
     final div = new jsw.IsJsProxy.fromJsProxy(ownerDocument.$.createElement("div"))
       ..$.innerHTML = coord.toString()
       ;
@@ -47,23 +47,23 @@ class CoordMapType extends gmaps.MapType {
   }
 }
 
-gmaps.GMap map;
-gmaps.LatLng chicago;
+GMap map;
+LatLng chicago;
 
 void main() {
   js.scoped(() {
-    chicago = jsw.retain(new gmaps.LatLng(41.850033,-87.6500523));
+    chicago = jsw.retain(new LatLng(41.850033,-87.6500523));
 
-    final mapOptions = new gmaps.MapOptions()
+    final mapOptions = new MapOptions()
       ..zoom = 10
       ..center = chicago
-      ..mapTypeId = gmaps.MapTypeId.ROADMAP
+      ..mapTypeId = MapTypeId.ROADMAP
       ;
-    map = jsw.retain(new gmaps.GMap(query("#map_canvas"), mapOptions));
+    map = jsw.retain(new GMap(query("#map_canvas"), mapOptions));
 
     // Insert this overlay map type as the first overlay map type at
     // position 0. Note that all overlay map types appear on top of
     // their parent base map.
-    map.overlayMapTypes.insertAt(0, jsw.retain(new CoordMapType(new gmaps.Size(256, 256))));
+    map.overlayMapTypes.insertAt(0, jsw.retain(new CoordMapType(new Size(256, 256))));
   });
 }

@@ -1,22 +1,22 @@
 import 'dart:html';
 import 'package:js/js.dart' as js;
 import 'package:google_maps/jswrap.dart' as jsw;
-import 'package:google_maps/gmaps.dart' as gmaps;
+import 'package:google_maps/gmaps.dart';
 
-final gmaps.LatLng cafe = jsw.retain(new gmaps.LatLng(37.869085,-122.254775));
+final LatLng cafe = jsw.retain(new LatLng(37.869085,-122.254775));
 
 void main() {
   js.scoped(() {
-    final panoramaOptions = new gmaps.StreetViewPanoramaOptions()
+    final panoramaOptions = new StreetViewPanoramaOptions()
       ..position = cafe
-      ..pov = (new gmaps.StreetViewPov()
+      ..pov = (new StreetViewPov()
         ..heading = 270
         ..pitch = 0
         ..zoom = 1
       )
       ..visible = true
       ;
-    final panorama = new gmaps.StreetViewPanorama(query('#pano'), panoramaOptions);
+    final panorama = new StreetViewPanorama(query('#pano'), panoramaOptions);
 
     jsw.retainAll([panorama]);
     panorama.on.panoChanged.add(() {

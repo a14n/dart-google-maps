@@ -1,21 +1,21 @@
 import 'dart:html';
 import 'package:js/js.dart' as js;
 import 'package:google_maps/jswrap.dart' as jsw;
-import 'package:google_maps/gmaps.dart' as gmaps;
+import 'package:google_maps/gmaps.dart';
 
 void main() {
   js.scoped(() {
-    final myLatlng = new gmaps.LatLng(40.65, -73.95);
-    final mapOptions = new gmaps.MapOptions()
+    final myLatlng = new LatLng(40.65, -73.95);
+    final mapOptions = new MapOptions()
       ..zoom = 12
       ..center = myLatlng
-      ..mapTypeId = gmaps.MapTypeId.ROADMAP
+      ..mapTypeId = MapTypeId.ROADMAP
       ;
-    final map = new gmaps.GMap(query("#map_canvas"), mapOptions);
+    final map = new GMap(query("#map_canvas"), mapOptions);
 
-    final nyLayer = new gmaps.KmlLayer(
+    final nyLayer = new KmlLayer(
         'http://www.searcharoo.net/SearchKml/newyork.kml',
-        new gmaps.KmlLayerOptions()
+        new KmlLayerOptions()
           ..suppressInfoWindows = true
           ..map = map
         );

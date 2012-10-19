@@ -1,19 +1,19 @@
 import 'dart:html';
 import 'package:js/js.dart' as js;
 import 'package:google_maps/jswrap.dart' as jsw;
-import 'package:google_maps/gmaps.dart' as gmaps;
+import 'package:google_maps/gmaps.dart';
 
 void main() {
   js.scoped(() {
-    final myLatlng = new gmaps.LatLng(-25.363882,131.044922);
-    final mapOptions = new gmaps.MapOptions()
+    final myLatlng = new LatLng(-25.363882,131.044922);
+    final mapOptions = new MapOptions()
       ..zoom = 4
       ..center = myLatlng
-      ..mapTypeId = gmaps.MapTypeId.ROADMAP
+      ..mapTypeId = MapTypeId.ROADMAP
       ;
-    final map = new gmaps.GMap(query("#map_canvas"), mapOptions);
+    final map = new GMap(query("#map_canvas"), mapOptions);
 
-    final marker = new gmaps.Marker(new gmaps.MarkerOptions()
+    final marker = new Marker(new MarkerOptions()
       ..position = myLatlng
       ..map = map
       ..title = "Hello World!"

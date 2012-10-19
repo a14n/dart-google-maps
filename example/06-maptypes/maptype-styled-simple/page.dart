@@ -1,48 +1,48 @@
 import 'dart:html';
 import 'package:js/js.dart' as js;
 import 'package:google_maps/jswrap.dart' as jsw;
-import 'package:google_maps/gmaps.dart' as gmaps;
+import 'package:google_maps/gmaps.dart';
 
 const MY_MAPTYPE_ID = 'hiphop';
 
 void main() {
   js.scoped(() {
-    final brooklyn = new gmaps.LatLng(40.6743890, -73.9455);
+    final brooklyn = new LatLng(40.6743890, -73.9455);
 
     var stylez = [
-      new gmaps.MapTypeStyle()
-        ..featureType = gmaps.MapTypeStyleFeatureType.ROAD
-        ..elementType = gmaps.MapTypeStyleElementType.GEOMETRY
+      new MapTypeStyle()
+        ..featureType = MapTypeStyleFeatureType.ROAD
+        ..elementType = MapTypeStyleElementType.GEOMETRY
         ..stylers = [
-          new gmaps.MapTypeStyler()..hue = "-45", // TODO report error of value
-          new gmaps.MapTypeStyler()..saturation = 100
+          new MapTypeStyler()..hue = "-45", // TODO report error of value
+          new MapTypeStyler()..saturation = 100
         ],
-      new gmaps.MapTypeStyle()
-        ..featureType = gmaps.MapTypeStyleFeatureType.LANDSCAPE
-        ..elementType = gmaps.MapTypeStyleElementType.GEOMETRY
+      new MapTypeStyle()
+        ..featureType = MapTypeStyleFeatureType.LANDSCAPE
+        ..elementType = MapTypeStyleElementType.GEOMETRY
         ..stylers = [
-          new gmaps.MapTypeStyler()..hue = '#000000',
-          new gmaps.MapTypeStyler()..saturation = 75,
-          new gmaps.MapTypeStyler()..lightness = -100
+          new MapTypeStyler()..hue = '#000000',
+          new MapTypeStyler()..saturation = 75,
+          new MapTypeStyler()..lightness = -100
         ]
     ];
 
-    final mapOptions = new gmaps.MapOptions()
+    final mapOptions = new MapOptions()
       ..zoom = 12
       ..center = brooklyn
-      ..mapTypeControlOptions = (new gmaps.MapTypeControlOptions()
-        ..mapTypeIds = [gmaps.MapTypeId.ROADMAP, MY_MAPTYPE_ID]
+      ..mapTypeControlOptions = (new MapTypeControlOptions()
+        ..mapTypeIds = [MapTypeId.ROADMAP, MY_MAPTYPE_ID]
       )
       ..mapTypeId = MY_MAPTYPE_ID
       ;
 
-    final map = new gmaps.GMap(query('#map_canvas'), mapOptions);
+    final map = new GMap(query('#map_canvas'), mapOptions);
 
-    final styledMapOptions = new gmaps.StyledMapTypeOptions()
+    final styledMapOptions = new StyledMapTypeOptions()
       ..name = 'Hip-Hop'
       ;
 
-    final jayzMapType = new gmaps.StyledMapType(stylez, styledMapOptions);
+    final jayzMapType = new StyledMapType(stylez, styledMapOptions);
 
     map.mapTypes.set(MY_MAPTYPE_ID, jayzMapType);
   });

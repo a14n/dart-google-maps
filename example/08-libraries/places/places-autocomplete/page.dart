@@ -1,25 +1,25 @@
-import 'dart:html';
+import 'dart:html' hide Point, Events;
 import 'package:js/js.dart' as js;
 import 'package:google_maps/jswrap.dart' as jsw;
-import 'package:google_maps/gmaps.dart' as gmaps;
-import 'package:google_maps/gmaps_places.dart' as gmaps_places;
+import 'package:google_maps/gmaps.dart';
+import 'package:google_maps/gmaps_places.dart';
 
 void main() {
   js.scoped(() {
-    final mapOptions = new gmaps.MapOptions()
-      ..center = new gmaps.LatLng(-33.8688, 151.2195)
+    final mapOptions = new MapOptions()
+      ..center = new LatLng(-33.8688, 151.2195)
       ..zoom = 13
-      ..mapTypeId = gmaps.MapTypeId.ROADMAP
+      ..mapTypeId = MapTypeId.ROADMAP
       ;
-    final map = new gmaps.GMap(query("#map_canvas"), mapOptions);
+    final map = new GMap(query("#map_canvas"), mapOptions);
 
     final input = query('#searchTextField') as InputElement;
-    final autocomplete = new gmaps_places.Autocomplete(input);
+    final autocomplete = new Autocomplete(input);
 
     autocomplete.bindTo('bounds', map);
 
-    final infowindow = new gmaps.InfoWindow();
-    final marker = new gmaps.Marker(new gmaps.MarkerOptions()
+    final infowindow = new InfoWindow();
+    final marker = new Marker(new MarkerOptions()
       ..map = map
     );
 
@@ -35,12 +35,12 @@ void main() {
         map.zoom = 17;  // Why 17? Because it looks good.
       }
 
-      final image = new gmaps.MarkerImage(
+      final image = new MarkerImage(
           place.icon,
-          new gmaps.Size(71, 71),
-          new gmaps.Point(0, 0),
-          new gmaps.Point(17, 34),
-          new gmaps.Size(35, 35));
+          new Size(71, 71),
+          new Point(0, 0),
+          new Point(17, 34),
+          new Size(35, 35));
       marker.icon = image;
       marker.position = place.geometry.location;
 
@@ -61,7 +61,7 @@ void main() {
     // Autocomplete.
     void setupClickListener(id, types) {
       final radioButton = query('#${id}');
-      gmaps.Events.addDomListener(radioButton, 'click', (e) {
+      Events.addDomListener(radioButton, 'click', (e) {
         autocomplete.types = types;
       });
     }

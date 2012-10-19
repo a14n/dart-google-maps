@@ -1,30 +1,30 @@
 import 'dart:html';
 import 'package:js/js.dart' as js;
 import 'package:google_maps/jswrap.dart' as jsw;
-import 'package:google_maps/gmaps.dart' as gmaps;
-import 'package:google_maps/gmaps_adsense.dart' as gmaps_ads;
+import 'package:google_maps/gmaps.dart';
+import 'package:google_maps/gmaps_adsense.dart';
 
 void main() {
   js.scoped(() {
-    final mapOptions = new gmaps.MapOptions()
-      ..center = new gmaps.LatLng(36.5987, -121.8950)
+    final mapOptions = new MapOptions()
+      ..center = new LatLng(36.5987, -121.8950)
       ..zoom = 12
-      ..mapTypeId = gmaps.MapTypeId.ROADMAP
+      ..mapTypeId = MapTypeId.ROADMAP
       ;
-    final map = new gmaps.GMap(query("#map_canvas"), mapOptions);
+    final map = new GMap(query("#map_canvas"), mapOptions);
 
 
     final adUnitDiv = new DivElement();
 
     // Note: replace the publisher ID noted here with your own
     // publisher ID.
-    final adUnitOptions = new gmaps_ads.AdUnitOptions()
-      ..format = gmaps_ads.AdFormat.HALF_BANNER
-      ..position = gmaps.ControlPosition.TOP_CENTER
+    final adUnitOptions = new AdUnitOptions()
+      ..format = AdFormat.HALF_BANNER
+      ..position = ControlPosition.TOP_CENTER
       ..publisherId = 'ca-google-maps_apidocs'
       ..map = map
       ..$.visible = true
       ;
-    final adUnit = new gmaps_ads.AdUnit(adUnitDiv, adUnitOptions);
+    final adUnit = new AdUnit(adUnitDiv, adUnitOptions);
   });
 }

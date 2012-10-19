@@ -1,35 +1,35 @@
 import 'dart:html';
 import 'package:js/js.dart' as js;
 import 'package:google_maps/jswrap.dart' as jsw;
-import 'package:google_maps/gmaps.dart' as gmaps;
+import 'package:google_maps/gmaps.dart';
 
 void main() {
   js.scoped(() {
-    final mapOptions = new gmaps.MapOptions()
+    final mapOptions = new MapOptions()
       ..zoom = 12
-      ..center = new gmaps.LatLng(40.6743890, -73.9455)
-      ..mapTypeId = gmaps.MapTypeId.ROADMAP
+      ..center = new LatLng(40.6743890, -73.9455)
+      ..mapTypeId = MapTypeId.ROADMAP
       ..styles = [
-        new gmaps.MapTypeStyle()
-          ..featureType = gmaps.MapTypeStyleFeatureType.ALL
+        new MapTypeStyle()
+          ..featureType = MapTypeStyleFeatureType.ALL
           ..stylers = [
-            new gmaps.MapTypeStyler()..saturation = -80
+            new MapTypeStyler()..saturation = -80
           ],
-        new gmaps.MapTypeStyle()
-          ..featureType = gmaps.MapTypeStyleFeatureType.ROAD_ARTERIAL
-          ..elementType = gmaps.MapTypeStyleElementType.GEOMETRY
+        new MapTypeStyle()
+          ..featureType = MapTypeStyleFeatureType.ROAD_ARTERIAL
+          ..elementType = MapTypeStyleElementType.GEOMETRY
           ..stylers = [
-            new gmaps.MapTypeStyler()..hue = "#00ffee",
-            new gmaps.MapTypeStyler()..saturation = 50
+            new MapTypeStyler()..hue = "#00ffee",
+            new MapTypeStyler()..saturation = 50
           ],
-        new gmaps.MapTypeStyle()
-          ..featureType = gmaps.MapTypeStyleFeatureType.POI_BUSINESS
-          ..elementType = gmaps.MapTypeStyleElementType.LABELS
+        new MapTypeStyle()
+          ..featureType = MapTypeStyleFeatureType.POI_BUSINESS
+          ..elementType = MapTypeStyleElementType.LABELS
           ..stylers = [
-            new gmaps.MapTypeStyler()..visibility = gmaps.MapTypeStylerVisibility.OFF
+            new MapTypeStyler()..visibility = MapTypeStylerVisibility.OFF
           ]
       ]
       ;
-    final map = new gmaps.GMap(query("#map_canvas"), mapOptions);
+    final map = new GMap(query("#map_canvas"), mapOptions);
   });
 }

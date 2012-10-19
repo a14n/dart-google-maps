@@ -1,20 +1,20 @@
 import 'dart:html';
 import 'package:js/js.dart' as js;
 import 'package:google_maps/jswrap.dart' as jsw;
-import 'package:google_maps/gmaps.dart' as gmaps;
+import 'package:google_maps/gmaps.dart';
 
-gmaps.GMap map;
+GMap map;
 
 void main() {
   js.scoped(() {
-    final mapOptions = new gmaps.MapOptions()
-      ..center = new gmaps.LatLng(45.518970, -122.672899)
+    final mapOptions = new MapOptions()
+      ..center = new LatLng(45.518970, -122.672899)
       ..zoom = 18
-      ..mapTypeId = gmaps.MapTypeId.SATELLITE
+      ..mapTypeId = MapTypeId.SATELLITE
       ..heading = 90
       ..tilt = 45
       ;
-    map = jsw.retain(new gmaps.GMap(query("#map_canvas"), mapOptions));
+    map = jsw.retain(new GMap(query("#map_canvas"), mapOptions));
     map.tilt = 45;
 
     query("#autoRotate").on.click.add((e) => autoRotate());

@@ -1,29 +1,29 @@
 import 'dart:html';
 import 'package:js/js.dart' as js;
 import 'package:google_maps/jswrap.dart' as jsw;
-import 'package:google_maps/gmaps.dart' as gmaps;
+import 'package:google_maps/gmaps.dart';
 
 const IMAGE_URL = "https://google-developers.appspot.com/maps/documentation/javascript/examples";
 
-gmaps.StreetViewPanorama panorama;
+StreetViewPanorama panorama;
 
 void main() {
   js.scoped(() {
     // The latlng of the entry point to the Google office on the road.
-    final sydneyOffice = new gmaps.LatLng(-33.867386, 151.195767);
+    final sydneyOffice = new LatLng(-33.867386, 151.195767);
 
     // Set up the map and enable the Street View control.
-    final mapOptions = new gmaps.MapOptions()
+    final mapOptions = new MapOptions()
       ..center = sydneyOffice
       ..zoom = 16
-      ..mapTypeId = gmaps.MapTypeId.ROADMAP
+      ..mapTypeId = MapTypeId.ROADMAP
       ;
-    final map = new gmaps.GMap(query('#map_canvas'), mapOptions);
+    final map = new GMap(query('#map_canvas'), mapOptions);
 
     panorama = jsw.retain(map.streetView);
     // Set up Street View and initially set it visible. Register the
     // custom panorama provider function.
-    final panoOptions = new gmaps.StreetViewPanoramaOptions()
+    final panoOptions = new StreetViewPanoramaOptions()
       ..position = sydneyOffice
       ..visible = true
       ..panoProvider =  getCustomPanorama
@@ -31,14 +31,14 @@ void main() {
     panorama.$.setOptions(panoOptions); //TODO undocumented method
 
     // Create a StreetViewService object.
-    final streetviewService = new gmaps.StreetViewService();
+    final streetviewService = new StreetViewService();
 
     // Compute the nearest panorama to the Google Sydney office
     // using the service and store that pano ID.
     final radius = 50;
     jsw.retain(sydneyOffice);
-    streetviewService.getPanoramaByLocation(sydneyOffice, radius, (gmaps.StreetViewPanoramaData result, gmaps.StreetViewStatus status) {
-      if (status == gmaps.StreetViewStatus.OK) {
+    streetviewService.getPanoramaByLocation(sydneyOffice, radius, (StreetViewPanoramaData result, StreetViewStatus status) {
+      if (status == StreetViewStatus.OK) {
         // We'll monitor the links_changed event to check if the current
         // pano is either a custom pano or our entry pano.
         jsw.retain(result);
@@ -55,22 +55,22 @@ String getCustomPanoramaTileUrl(pano, zoom, tileX, tileY) {
   return '${IMAGE_URL}/images/panoReception1024-${zoom}-${tileX}-${tileY}.jpg';
 }
 
-gmaps.StreetViewPanoramaData getCustomPanorama(String pano) {
+StreetViewPanoramaData getCustomPanorama(String pano) {
   switch(pano) {
     case 'reception':
-      return jsw.retain(new gmaps.StreetViewPanoramaData()
-        ..location = (new gmaps.StreetViewLocation()
+      return jsw.retain(new StreetViewPanoramaData()
+        ..location = (new StreetViewLocation()
           ..pano = 'reception'
           ..description = 'Google Sydney - Reception'
-          ..latLng = new gmaps.LatLng(-33.86684, 151.19583)
+          ..latLng = new LatLng(-33.86684, 151.19583)
         )
         ..links = []
         // The text for the copyright control.
         ..copyright = 'Imagery (c) 2010 Google'
         // The definition of the tiles for this panorama.
-        ..tiles = (new gmaps.StreetViewTileData()
-          ..tileSize = new gmaps.Size(1024, 512)
-          ..worldSize = new gmaps.Size(2048, 1024)
+        ..tiles = (new StreetViewTileData()
+          ..tileSize = new Size(1024, 512)
+          ..worldSize = new Size(2048, 1024)
           // The heading at the origin of the panorama tile set.
           ..centerHeading = 105
           ..$.getTileUrl = new jsw.Callback.many(getCustomPanoramaTileUrl)
@@ -89,7 +89,7 @@ void createCustomLinks(String entryPanoId) {
     case entryPanoId:
       // Adding a link in the view from the entrance of the building to
       // reception.
-      links.add(new gmaps.StreetViewLink()
+      links.add(new StreetViewLink()
         ..heading = 25
         ..description = 'Google Sydney'
         ..pano = 'reception'
@@ -99,7 +99,7 @@ void createCustomLinks(String entryPanoId) {
       // Adding a link in the view from the entrance of the office
       // with an arrow pointing at 100 degrees, with a text of 'Exit'
       // and loading the street entrance of the building pano on click.
-      links.add(new gmaps.StreetViewLink()
+      links.add(new StreetViewLink()
         ..heading = 195
         ..description = 'Exit'
         ..pano = entryPanoId

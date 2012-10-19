@@ -1,22 +1,22 @@
 import 'dart:html';
 import 'package:js/js.dart' as js;
 import 'package:google_maps/jswrap.dart' as jsw;
-import 'package:google_maps/gmaps.dart' as gmaps;
+import 'package:google_maps/gmaps.dart';
 
 const IMAGE_URL = "https://google-developers.appspot.com/maps/documentation/javascript/examples";
 
 void main() {
   js.scoped(() {
-    final mapOptions = new gmaps.MapOptions()
+    final mapOptions = new MapOptions()
       ..zoom = 4
-      ..center = new gmaps.LatLng(-33, 151)
-      ..mapTypeId = gmaps.MapTypeId.ROADMAP
+      ..center = new LatLng(-33, 151)
+      ..mapTypeId = MapTypeId.ROADMAP
       ;
-    final map = new gmaps.GMap(query("#map_canvas"), mapOptions);
+    final map = new GMap(query("#map_canvas"), mapOptions);
 
     final image = '${IMAGE_URL}/images/beachflag.png';
-    final myLatLng = new gmaps.LatLng(-33.890542, 151.274856);
-    final beachMarker = new gmaps.Marker(new gmaps.MarkerOptions()
+    final myLatLng = new LatLng(-33.890542, 151.274856);
+    final beachMarker = new Marker(new MarkerOptions()
       ..position = myLatLng
       ..map = map
       ..icon = image

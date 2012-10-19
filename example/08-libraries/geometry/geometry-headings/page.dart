@@ -1,62 +1,62 @@
 import 'dart:html';
 import 'package:js/js.dart' as js;
 import 'package:google_maps/jswrap.dart' as jsw;
-import 'package:google_maps/gmaps.dart' as gmaps;
-import 'package:google_maps/gmaps_geometry.dart' as gmaps_geo;
+import 'package:google_maps/gmaps.dart';
+import 'package:google_maps/gmaps_geometry.dart';
 
-gmaps.Polyline poly;
-gmaps.Polyline geodesicPoly;
-gmaps.Marker marker1;
-gmaps.Marker marker2;
+Polyline poly;
+Polyline geodesicPoly;
+Marker marker1;
+Marker marker2;
 
 void main() {
   js.scoped(() {
-    final mapOptions = new gmaps.MapOptions()
-      ..center = new gmaps.LatLng(34, -40.605)
+    final mapOptions = new MapOptions()
+      ..center = new LatLng(34, -40.605)
       ..zoom = 4
-      ..mapTypeId = gmaps.MapTypeId.ROADMAP
+      ..mapTypeId = MapTypeId.ROADMAP
       ;
 
-    final map = new gmaps.GMap(query("#map_canvas"), mapOptions);
+    final map = new GMap(query("#map_canvas"), mapOptions);
 
     // TODO ControlPosition.TOP does not exists
-    map.controls.getNodes(gmaps.ControlPosition.TOP_CENTER).push(query('#info'));
+    map.controls.getNodes(ControlPosition.TOP_CENTER).push(query('#info'));
 
 
-    marker1 = jsw.retain(new gmaps.Marker(new gmaps.MarkerOptions()
+    marker1 = jsw.retain(new Marker(new MarkerOptions()
       ..map = map
       ..draggable = true
-      ..position = new gmaps.LatLng(40.71435280, -74.0059731)
+      ..position = new LatLng(40.71435280, -74.0059731)
     ));
 
-    marker2 = jsw.retain(new gmaps.Marker(new gmaps.MarkerOptions()
+    marker2 = jsw.retain(new Marker(new MarkerOptions()
       ..map = map
       ..draggable = true
-      ..position = new gmaps.LatLng(48.8566140, 2.35222190)
+      ..position = new LatLng(48.8566140, 2.35222190)
     ));
 
-    final bounds = new gmaps.LatLngBounds(marker1.position, marker2.position);
+    final bounds = new LatLngBounds(marker1.position, marker2.position);
     map.fitBounds(bounds);
 
     marker1.on.positionChanged.add(() => update());
     marker2.on.positionChanged.add(() => update());
 
-    final polyOptions = new gmaps.PolylineOptions()
+    final polyOptions = new PolylineOptions()
       ..strokeColor = '#FF0000'
       ..strokeOpacity = 1.0
       ..strokeWeight = 3
       ..map = map
       ;
-    poly = jsw.retain(new gmaps.Polyline(polyOptions));
+    poly = jsw.retain(new Polyline(polyOptions));
 
-    final geodesicOptions = new gmaps.PolylineOptions()
+    final geodesicOptions = new PolylineOptions()
       ..strokeColor = '#CC0099'
       ..strokeOpacity = 1.0
       .. strokeWeight = 3
       ..geodesic = true
       ..map = map
       ;
-    geodesicPoly = jsw.retain(new gmaps.Polyline(geodesicOptions));
+    geodesicPoly = jsw.retain(new Polyline(geodesicOptions));
 
     update();
   });
@@ -66,7 +66,7 @@ void update() {
   final path = [marker1.position, marker2.position];
   poly.path = path;
   geodesicPoly.path = path;
-  final heading = gmaps_geo.Spherical.computeHeading(path[0], path[1]);
+  final heading = Spherical.computeHeading(path[0], path[1]);
   (query('#heading') as InputElement).value = heading.toString();
   (query('#origin') as InputElement).value = path[0].toString();
   (query('#destination') as InputElement).value = path[1].toString();

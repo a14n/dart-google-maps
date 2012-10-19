@@ -1,32 +1,32 @@
 import 'dart:html';
 import 'package:js/js.dart' as js;
 import 'package:google_maps/jswrap.dart' as jsw;
-import 'package:google_maps/gmaps.dart' as gmaps;
+import 'package:google_maps/gmaps.dart';
 
-gmaps.Polyline line;
+Polyline line;
 
 void main() {
   js.scoped(() {
-    final mapOptions = new gmaps.MapOptions()
-      ..center = new gmaps.LatLng(20.291, 153.027)
+    final mapOptions = new MapOptions()
+      ..center = new LatLng(20.291, 153.027)
       ..zoom = 6
-      ..mapTypeId = gmaps.MapTypeId.ROADMAP
+      ..mapTypeId = MapTypeId.ROADMAP
       ;
-    final map = new gmaps.GMap(query("#map_canvas"), mapOptions);
+    final map = new GMap(query("#map_canvas"), mapOptions);
 
     final lineCoordinates = [
-      new gmaps.LatLng(22.291, 153.027),
-      new gmaps.LatLng(18.291, 153.027)
+      new LatLng(22.291, 153.027),
+      new LatLng(18.291, 153.027)
     ];
-    final lineSymbol = new gmaps.Symbol()
-      ..path = gmaps.SymbolPath.CIRCLE
+    final lineSymbol = new Symbol()
+      ..path = SymbolPath.CIRCLE
       ..scale = 8
       ..strokeColor = '#393'
       ;
 
-    line = jsw.retain(new gmaps.Polyline(new gmaps.PolylineOptions()
+    line = jsw.retain(new Polyline(new PolylineOptions()
       ..path = lineCoordinates
-      ..icons = [new gmaps.IconSequence()
+      ..icons = [new IconSequence()
         ..icon = lineSymbol
         ..offset = '100%'
       ]
@@ -43,7 +43,7 @@ void animateCircle() {
     js.scoped(() {
       count = (count + 1) % 200;
 
-      final icons = new jsw.JsList.fromJsProxy(line.get('icons'), (e) => new gmaps.IconSequence.fromJsProxy(e));
+      final icons = new jsw.JsList.fromJsProxy(line.get('icons'), (e) => new IconSequence.fromJsProxy(e));
       icons[0].offset = '${count / 2}%';
       line.set('icons', icons);
     });

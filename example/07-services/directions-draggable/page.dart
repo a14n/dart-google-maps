@@ -1,25 +1,25 @@
 import 'dart:html';
 import 'package:js/js.dart' as js;
 import 'package:google_maps/jswrap.dart' as jsw;
-import 'package:google_maps/gmaps.dart' as gmaps;
+import 'package:google_maps/gmaps.dart';
 
-final gmaps.DirectionsRendererOptions rendererOptions = jsw.retain(new gmaps.DirectionsRendererOptions()
+final DirectionsRendererOptions rendererOptions = jsw.retain(new DirectionsRendererOptions()
   ..draggable = true
 );
-final gmaps.DirectionsRenderer directionsDisplay = jsw.retain(new gmaps.DirectionsRenderer(rendererOptions));
-final gmaps.DirectionsService directionsService = jsw.retain(new gmaps.DirectionsService());
-gmaps.GMap map;
+final DirectionsRenderer directionsDisplay = jsw.retain(new DirectionsRenderer(rendererOptions));
+final DirectionsService directionsService = jsw.retain(new DirectionsService());
+GMap map;
 
-final gmaps.LatLng australia = jsw.retain(new gmaps.LatLng(-25.274398, 133.775136));
+final LatLng australia = jsw.retain(new LatLng(-25.274398, 133.775136));
 
 void main() {
   js.scoped(() {
-    final mapOptions = new gmaps.MapOptions()
+    final mapOptions = new MapOptions()
       ..zoom = 7
-      ..mapTypeId = gmaps.MapTypeId.ROADMAP
+      ..mapTypeId = MapTypeId.ROADMAP
       ..center = australia
       ;
-    map = jsw.retain(new gmaps.GMap(query("#map_canvas"), mapOptions));
+    map = jsw.retain(new GMap(query("#map_canvas"), mapOptions));
     directionsDisplay.map = map;
     directionsDisplay.panel = query('#directionsPanel');
 
@@ -32,23 +32,23 @@ void main() {
 }
 
 void calcRoute() {
-  final request = new gmaps.DirectionsRequest()
+  final request = new DirectionsRequest()
     ..origin = 'Sydney, NSW'
     ..destination = 'Sydney, NSW'
     ..waypoints = [
-      new gmaps.DirectionsWaypoint()..location = 'Bourke, NSW',
-      new gmaps.DirectionsWaypoint()..location = 'Broken Hill, NSW'
+      new DirectionsWaypoint()..location = 'Bourke, NSW',
+      new DirectionsWaypoint()..location = 'Broken Hill, NSW'
     ]
-    ..travelMode = gmaps.TravelMode.DRIVING // TODO bad object in example DirectionsTravelMode
+    ..travelMode = TravelMode.DRIVING // TODO bad object in example DirectionsTravelMode
     ;
-  directionsService.route(request, (gmaps.DirectionsResult response, gmaps.DirectionsStatus status) {
-    if (status == gmaps.DirectionsStatus.OK) {
+  directionsService.route(request, (DirectionsResult response, DirectionsStatus status) {
+    if (status == DirectionsStatus.OK) {
       directionsDisplay.directions = response;
     }
   });
 }
 
-void computeTotalDistance(gmaps.DirectionsResult result) {
+void computeTotalDistance(DirectionsResult result) {
   num total = 0;
   final myroute = result.routes[0];
   for (int i = 0; i < myroute.legs.length; i++) {

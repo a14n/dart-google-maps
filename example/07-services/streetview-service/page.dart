@@ -1,26 +1,26 @@
 import 'dart:html';
 import 'package:js/js.dart' as js;
 import 'package:google_maps/jswrap.dart' as jsw;
-import 'package:google_maps/gmaps.dart' as gmaps;
+import 'package:google_maps/gmaps.dart';
 
-gmaps.GMap map;
-final gmaps.LatLng berkeley = jsw.retain(new gmaps.LatLng(37.869085,-122.254775));
-final gmaps.StreetViewService sv = jsw.retain(new gmaps.StreetViewService());
+GMap map;
+final LatLng berkeley = jsw.retain(new LatLng(37.869085,-122.254775));
+final StreetViewService sv = jsw.retain(new StreetViewService());
 
-gmaps.StreetViewPanorama panorama;
+StreetViewPanorama panorama;
 
 void main() {
   js.scoped(() {
-    panorama = jsw.retain(new gmaps.StreetViewPanorama(query('#pano')));
+    panorama = jsw.retain(new StreetViewPanorama(query('#pano')));
 
     // Set up the map
-    final mapOptions = new gmaps.MapOptions()
+    final mapOptions = new MapOptions()
       ..center = berkeley
       ..zoom = 16
-      ..mapTypeId = gmaps.MapTypeId.ROADMAP
+      ..mapTypeId = MapTypeId.ROADMAP
       ..streetViewControl = false
       ;
-    map = jsw.retain(new gmaps.GMap(query('#map_canvas'), mapOptions));
+    map = jsw.retain(new GMap(query('#map_canvas'), mapOptions));
 
     // getPanoramaByLocation will return the nearest pano when the
     // given radius is 50 meters or less.
@@ -30,16 +30,16 @@ void main() {
   });
 }
 
-void processSVData(gmaps.StreetViewPanoramaData data, gmaps.StreetViewStatus status) {
-  if (status == gmaps.StreetViewStatus.OK) {
-    final marker = new gmaps.Marker(new gmaps.MarkerOptions()
+void processSVData(StreetViewPanoramaData data, StreetViewStatus status) {
+  if (status == StreetViewStatus.OK) {
+    final marker = new Marker(new MarkerOptions()
       ..position = data.location.latLng
       ..map = map
       ..title = data.location.description
     );
 
     panorama.pano = data.location.pano;
-    panorama.pov = new gmaps.StreetViewPov()
+    panorama.pov = new StreetViewPov()
       ..heading = 270
       ..pitch = 0
       ..zoom = 1
@@ -51,7 +51,7 @@ void processSVData(gmaps.StreetViewPanoramaData data, gmaps.StreetViewStatus sta
       final markerPanoID = data.location.pano;
       // Set the Pano to use the passed panoID
       panorama.pano = markerPanoID;
-      panorama.pov = new gmaps.StreetViewPov()
+      panorama.pov = new StreetViewPov()
         ..heading = 270
         ..pitch = 0
         ..zoom = 1

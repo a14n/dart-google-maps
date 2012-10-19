@@ -1,29 +1,29 @@
-import 'dart:html';
+import 'dart:html' hide Events;
 import 'package:js/js.dart' as js;
 import 'package:google_maps/jswrap.dart' as jsw;
-import 'package:google_maps/gmaps.dart' as gmaps;
-import 'package:google_maps/gmaps_panoramio.dart' as gmaps_panoramio;
+import 'package:google_maps/gmaps.dart';
+import 'package:google_maps/gmaps_panoramio.dart';
 
 void main() {
   js.scoped(() {
-    final mapOptions = new gmaps.MapOptions()
+    final mapOptions = new MapOptions()
       ..zoom = 15
-      ..center = new gmaps.LatLng(40.693134, -74.031028)
-      ..mapTypeId = gmaps.MapTypeId.ROADMAP
+      ..center = new LatLng(40.693134, -74.031028)
+      ..mapTypeId = MapTypeId.ROADMAP
       ;
-    final map = new gmaps.GMap(query("#map_canvas"), mapOptions);
+    final map = new GMap(query("#map_canvas"), mapOptions);
 
-    final panoramioLayer = new gmaps_panoramio.PanoramioLayer();
+    final panoramioLayer = new PanoramioLayer();
     panoramioLayer.map = map;
 
     final tag = query('#tag') as InputElement;
     final button = query('#filter-button');
 
     jsw.retain(panoramioLayer);
-    gmaps.Events.addDomListener(button, 'click', (e) {
+    Events.addDomListener(button, 'click', (e) {
       panoramioLayer.tag = tag.value;
     });
 
-    map.controls.getNodes(gmaps.ControlPosition.TOP_CENTER).push(query('#filter'));
+    map.controls.getNodes(ControlPosition.TOP_CENTER).push(query('#filter'));
   });
 }

@@ -1,11 +1,11 @@
-import 'dart:html';
+import 'dart:html' hide Events;
 import 'dart:math';
 import 'package:js/js.dart' as js;
 import 'package:google_maps/jswrap.dart' as jsw;
-import 'package:google_maps/gmaps.dart' as gmaps;
+import 'package:google_maps/gmaps.dart';
 
-gmaps.GMap map;
-final gmaps.LatLng chicago = jsw.retain(new gmaps.LatLng(41.850033, -87.6500523));
+GMap map;
+final LatLng chicago = jsw.retain(new LatLng(41.850033, -87.6500523));
 
 /**
  * The HomeControl adds a control to the map that simply
@@ -13,7 +13,7 @@ final gmaps.LatLng chicago = jsw.retain(new gmaps.LatLng(41.850033, -87.6500523)
  * the control DIV as an argument.
  */
 class HomeControl {
-  HomeControl(Element controlDiv, gmaps.GMap map) {
+  HomeControl(Element controlDiv, GMap map) {
     // Set CSS styles for the DIV containing the control
     // Setting padding to 5 px will offset the control
     // from the edge of the map
@@ -45,7 +45,7 @@ class HomeControl {
     // Setup the click event listeners: simply set the map to
     // Chicago
     jsw.retain(map);
-    gmaps.Events.addDomListener(controlUI, 'click', (e) {
+    Events.addDomListener(controlUI, 'click', (e) {
       map.center = chicago;
     });
   }
@@ -54,12 +54,12 @@ class HomeControl {
 void main() {
   js.scoped(() {
     final mapDiv = query("#map_canvas");
-    final mapOptions = new gmaps.MapOptions()
+    final mapOptions = new MapOptions()
       ..zoom = 12
       ..center = chicago
-      ..mapTypeId = gmaps.MapTypeId.ROADMAP
+      ..mapTypeId = MapTypeId.ROADMAP
       ;
-    map = jsw.retain(new gmaps.GMap(mapDiv, mapOptions));
+    map = jsw.retain(new GMap(mapDiv, mapOptions));
 
     // Create the DIV to hold the control and
     // call the HomeControl() constructor passing
@@ -68,6 +68,6 @@ void main() {
     var homeControl = new HomeControl(homeControlDiv, map);
 
     homeControlDiv.attributes["index"] = 1.toString();
-    map.controls.getNodes(gmaps.ControlPosition.TOP_RIGHT).push(homeControlDiv);
+    map.controls.getNodes(ControlPosition.TOP_RIGHT).push(homeControlDiv);
   });
 }

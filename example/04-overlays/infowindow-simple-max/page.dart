@@ -1,17 +1,17 @@
 import 'dart:html';
 import 'package:js/js.dart' as js;
 import 'package:google_maps/jswrap.dart' as jsw;
-import 'package:google_maps/gmaps.dart' as gmaps;
+import 'package:google_maps/gmaps.dart';
 
 void main() {
   js.scoped(() {
-    var myLatlng = new gmaps.LatLng(-25.363882,131.044922);
-    final mapOptions = new gmaps.MapOptions()
+    var myLatlng = new LatLng(-25.363882,131.044922);
+    final mapOptions = new MapOptions()
       ..zoom = 4
       ..center = myLatlng
-      ..mapTypeId = gmaps.MapTypeId.ROADMAP
+      ..mapTypeId = MapTypeId.ROADMAP
       ;
-    final map = new gmaps.GMap(query("#map_canvas"), mapOptions);
+    final map = new GMap(query("#map_canvas"), mapOptions);
 
     final contentString = '<div id="content">'
         '<div id="siteNotice">'
@@ -34,12 +34,12 @@ void main() {
         '</div>'
         '</div>';
 
-    final infowindow = new gmaps.InfoWindow(new gmaps.InfoWindowOptions()
+    final infowindow = new InfoWindow(new InfoWindowOptions()
       ..content = contentString
       ..maxWidth = 200
     );
 
-    final marker = new gmaps.Marker(new gmaps.MarkerOptions()
+    final marker = new Marker(new MarkerOptions()
       ..position = myLatlng
       ..map = map
       ..title = 'Uluru (Ayers Rock)'

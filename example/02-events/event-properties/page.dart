@@ -2,20 +2,20 @@ import 'dart:html';
 import 'dart:math';
 import 'package:js/js.dart' as js;
 import 'package:google_maps/jswrap.dart' as jsw;
-import 'package:google_maps/gmaps.dart' as gmaps;
+import 'package:google_maps/gmaps.dart';
 
 void main() {
   js.scoped(() {
-    var myLatLng = new gmaps.LatLng(-25.363882, 131.044922);
-    final mapOptions = new gmaps.MapOptions()
+    var myLatLng = new LatLng(-25.363882, 131.044922);
+    final mapOptions = new MapOptions()
       ..zoom = 4
       ..center = myLatLng
-      ..mapTypeId = gmaps.MapTypeId.ROADMAP
+      ..mapTypeId = MapTypeId.ROADMAP
     ;
 
-    final map = new gmaps.GMap(query("#map_canvas"), mapOptions);
+    final map = new GMap(query("#map_canvas"), mapOptions);
 
-    final infowindow = new gmaps.InfoWindow(new gmaps.InfoWindowOptions()
+    final infowindow = new InfoWindow(new InfoWindowOptions()
       ..content = "Change the zoom level"
       ..position = myLatLng
     );

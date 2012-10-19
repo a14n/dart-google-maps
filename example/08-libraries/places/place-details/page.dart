@@ -1,30 +1,30 @@
 import 'dart:html';
 import 'package:js/js.dart' as js;
 import 'package:google_maps/jswrap.dart' as jsw;
-import 'package:google_maps/gmaps.dart' as gmaps;
-import 'package:google_maps/gmaps_places.dart' as gmaps_places;
+import 'package:google_maps/gmaps.dart';
+import 'package:google_maps/gmaps_places.dart';
 
 void main() {
   js.scoped(() {
-    final mapOptions = new gmaps.MapOptions()
-      ..mapTypeId = gmaps.MapTypeId.ROADMAP
-      ..center = new gmaps.LatLng(-33.8665433, 151.1956316)
+    final mapOptions = new MapOptions()
+      ..mapTypeId = MapTypeId.ROADMAP
+      ..center = new LatLng(-33.8665433, 151.1956316)
       ..zoom = 15
       ;
-    final map = new gmaps.GMap(query("#map_canvas"), mapOptions);
+    final map = new GMap(query("#map_canvas"), mapOptions);
 
 
-    final request = new gmaps_places.PlaceDetailsRequest()
+    final request = new PlaceDetailsRequest()
       ..reference = 'CnRkAAAAGnBVNFDeQoOQHzgdOpOqJNV7K9-c5IQrWFUYD9TNhUmz5-aHhfqyKH0zmAcUlkqVCrpaKcV8ZjGQKzB6GXxtzUYcP-muHafGsmW-1CwjTPBCmK43AZpAwW0FRtQDQADj3H2bzwwHVIXlQAiccm7r4xIQmjt_Oqm2FejWpBxLWs3L_RoUbharABi5FMnKnzmRL2TGju6UA4k'
       ;
 
-    final infowindow = new gmaps.InfoWindow();
-    final service = new gmaps_places.PlacesService(map);
+    final infowindow = new InfoWindow();
+    final service = new PlacesService(map);
 
     jsw.retainAll([map, infowindow]);
     service.getDetails(request, (place, status) {
-      if (status == gmaps_places.PlacesServiceStatus.OK) {
-        final marker = new gmaps.Marker(new gmaps.MarkerOptions()
+      if (status == PlacesServiceStatus.OK) {
+        final marker = new Marker(new MarkerOptions()
           ..map = map
           ..position = place.geometry.location
         );

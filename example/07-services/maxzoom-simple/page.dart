@@ -1,30 +1,30 @@
-import 'dart:html';
+import 'dart:html' hide MouseEvent;
 import 'package:js/js.dart' as js;
 import 'package:google_maps/jswrap.dart' as jsw;
-import 'package:google_maps/gmaps.dart' as gmaps;
+import 'package:google_maps/gmaps.dart';
 
-gmaps.GMap map;
-gmaps.MaxZoomService maxZoomService;
+GMap map;
+MaxZoomService maxZoomService;
 
 void main() {
   js.scoped(() {
-    final mapOptions = new gmaps.MapOptions()
+    final mapOptions = new MapOptions()
       ..zoom = 11
-      ..center = new gmaps.LatLng(35.6894875, 139.6917064)
-      ..mapTypeId = gmaps.MapTypeId.HYBRID
+      ..center = new LatLng(35.6894875, 139.6917064)
+      ..mapTypeId = MapTypeId.HYBRID
       ;
-    map = jsw.retain(new gmaps.GMap(query("#map_canvas"), mapOptions));
+    map = jsw.retain(new GMap(query("#map_canvas"), mapOptions));
 
-    maxZoomService = jsw.retain(new gmaps.MaxZoomService());
+    maxZoomService = jsw.retain(new MaxZoomService());
 
     map.on.click.add(showMaxZoom);
   });
 }
 
-void showMaxZoom(gmaps.MouseEvent e) {
+void showMaxZoom(MouseEvent e) {
   jsw.retain(e);
   maxZoomService.getMaxZoomAtLatLng(e.latLng, (response) {
-    if (response.status != gmaps.MaxZoomStatus.OK) {
+    if (response.status != MaxZoomStatus.OK) {
       window.alert('Error in MaxZoomService');
       return;
     } else {

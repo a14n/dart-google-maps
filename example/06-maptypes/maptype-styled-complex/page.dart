@@ -1,87 +1,87 @@
 import 'dart:html';
 import 'package:js/js.dart' as js;
 import 'package:google_maps/jswrap.dart' as jsw;
-import 'package:google_maps/gmaps.dart' as gmaps;
+import 'package:google_maps/gmaps.dart';
 
 void main() {
   js.scoped(() {
-    final chicago = new gmaps.LatLng(41.850033, -87.650052);
+    final chicago = new LatLng(41.850033, -87.650052);
 
     var roadAtlasStyles = [
-      new gmaps.MapTypeStyle()
-        ..featureType = gmaps.MapTypeStyleFeatureType.ROAD_HIGHWAY
-        ..elementType = gmaps.MapTypeStyleElementType.GEOMETRY
+      new MapTypeStyle()
+        ..featureType = MapTypeStyleFeatureType.ROAD_HIGHWAY
+        ..elementType = MapTypeStyleElementType.GEOMETRY
         ..stylers = [
-          new gmaps.MapTypeStyler()..hue = "#ff0022",
-          new gmaps.MapTypeStyler()..saturation = 60,
-          new gmaps.MapTypeStyler()..lightness = -20
+          new MapTypeStyler()..hue = "#ff0022",
+          new MapTypeStyler()..saturation = 60,
+          new MapTypeStyler()..lightness = -20
         ],
-      new gmaps.MapTypeStyle()
-        ..featureType = gmaps.MapTypeStyleFeatureType.ROAD_ARTERIAL
-        ..elementType = gmaps.MapTypeStyleElementType.ALL
+      new MapTypeStyle()
+        ..featureType = MapTypeStyleFeatureType.ROAD_ARTERIAL
+        ..elementType = MapTypeStyleElementType.ALL
         ..stylers = [
-          new gmaps.MapTypeStyler()..hue = "#2200ff",
-          new gmaps.MapTypeStyler()..lightness = -40,
-          new gmaps.MapTypeStyler()..visibility = gmaps.MapTypeStylerVisibility.SIMPLIFIED,
-          new gmaps.MapTypeStyler()..saturation = 30
+          new MapTypeStyler()..hue = "#2200ff",
+          new MapTypeStyler()..lightness = -40,
+          new MapTypeStyler()..visibility = MapTypeStylerVisibility.SIMPLIFIED,
+          new MapTypeStyler()..saturation = 30
         ],
-      new gmaps.MapTypeStyle()
-        ..featureType = gmaps.MapTypeStyleFeatureType.ROAD_LOCAL
-        ..elementType = gmaps.MapTypeStyleElementType.ALL
+      new MapTypeStyle()
+        ..featureType = MapTypeStyleFeatureType.ROAD_LOCAL
+        ..elementType = MapTypeStyleElementType.ALL
         ..stylers = [
-          new gmaps.MapTypeStyler()..hue = "#f6ff00",
-          new gmaps.MapTypeStyler()..saturation = 50,
-          new gmaps.MapTypeStyler()..gamma = 0.7,
-          new gmaps.MapTypeStyler()..visibility = gmaps.MapTypeStylerVisibility.SIMPLIFIED
+          new MapTypeStyler()..hue = "#f6ff00",
+          new MapTypeStyler()..saturation = 50,
+          new MapTypeStyler()..gamma = 0.7,
+          new MapTypeStyler()..visibility = MapTypeStylerVisibility.SIMPLIFIED
         ],
-      new gmaps.MapTypeStyle()
-        ..featureType = gmaps.MapTypeStyleFeatureType.WATER
-        ..elementType = gmaps.MapTypeStyleElementType.GEOMETRY
+      new MapTypeStyle()
+        ..featureType = MapTypeStyleFeatureType.WATER
+        ..elementType = MapTypeStyleElementType.GEOMETRY
         ..stylers = [
-          new gmaps.MapTypeStyler()..saturation = 40,
-          new gmaps.MapTypeStyler()..lightness = 40
+          new MapTypeStyler()..saturation = 40,
+          new MapTypeStyler()..lightness = 40
         ],
-      new gmaps.MapTypeStyle()
-        ..featureType = gmaps.MapTypeStyleFeatureType.ROAD_HIGHWAY
-        ..elementType = gmaps.MapTypeStyleElementType.LABELS
+      new MapTypeStyle()
+        ..featureType = MapTypeStyleFeatureType.ROAD_HIGHWAY
+        ..elementType = MapTypeStyleElementType.LABELS
         ..stylers = [
-          new gmaps.MapTypeStyler()..visibility = gmaps.MapTypeStylerVisibility.ON,
-          new gmaps.MapTypeStyler()..saturation = 98
+          new MapTypeStyler()..visibility = MapTypeStylerVisibility.ON,
+          new MapTypeStyler()..saturation = 98
         ],
-      new gmaps.MapTypeStyle()
-        ..featureType = gmaps.MapTypeStyleFeatureType.ADMINISTRATIVE_LOCALITY
-        ..elementType = gmaps.MapTypeStyleElementType.LABELS
+      new MapTypeStyle()
+        ..featureType = MapTypeStyleFeatureType.ADMINISTRATIVE_LOCALITY
+        ..elementType = MapTypeStyleElementType.LABELS
         ..stylers = [
-          new gmaps.MapTypeStyler()..hue = "#0022ff",
-          new gmaps.MapTypeStyler()..saturation = 50,
-          new gmaps.MapTypeStyler()..lightness = -10,
-          new gmaps.MapTypeStyler()..gamma = 0.90
+          new MapTypeStyler()..hue = "#0022ff",
+          new MapTypeStyler()..saturation = 50,
+          new MapTypeStyler()..lightness = -10,
+          new MapTypeStyler()..gamma = 0.90
         ],
-      new gmaps.MapTypeStyle()
-        ..featureType = gmaps.MapTypeStyleFeatureType.TRANSIT_LINE
-        ..elementType = gmaps.MapTypeStyleElementType.GEOMETRY
+      new MapTypeStyle()
+        ..featureType = MapTypeStyleFeatureType.TRANSIT_LINE
+        ..elementType = MapTypeStyleElementType.GEOMETRY
         ..stylers = [
-          new gmaps.MapTypeStyler()..hue = '#ff0000',
-          new gmaps.MapTypeStyler()..visibility = gmaps.MapTypeStylerVisibility.ON,
-          new gmaps.MapTypeStyler()..lightness = -70
+          new MapTypeStyler()..hue = '#ff0000',
+          new MapTypeStyler()..visibility = MapTypeStylerVisibility.ON,
+          new MapTypeStyler()..lightness = -70
         ]
     ];
 
-    final mapOptions = new gmaps.MapOptions()
+    final mapOptions = new MapOptions()
       ..zoom = 12
       ..center = chicago
-      ..mapTypeControlOptions = (new gmaps.MapTypeControlOptions()
-        ..mapTypeIds = [gmaps.MapTypeId.ROADMAP, 'usroadatlas']
+      ..mapTypeControlOptions = (new MapTypeControlOptions()
+        ..mapTypeIds = [MapTypeId.ROADMAP, 'usroadatlas']
       )
       ;
 
-    final map = new gmaps.GMap(query('#map_canvas'), mapOptions);
+    final map = new GMap(query('#map_canvas'), mapOptions);
 
-    final styledMapOptions = new gmaps.StyledMapTypeOptions()
+    final styledMapOptions = new StyledMapTypeOptions()
       ..name = 'US Road Atlas'
       ;
 
-    final usRoadMapType = new gmaps.StyledMapType(roadAtlasStyles, styledMapOptions);
+    final usRoadMapType = new StyledMapType(roadAtlasStyles, styledMapOptions);
 
     map.mapTypes.set('usroadatlas', usRoadMapType);
     map.mapTypeId = 'usroadatlas';

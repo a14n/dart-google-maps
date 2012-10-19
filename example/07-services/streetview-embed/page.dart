@@ -1,20 +1,20 @@
 import 'dart:html';
 import 'package:js/js.dart' as js;
 import 'package:google_maps/jswrap.dart' as jsw;
-import 'package:google_maps/gmaps.dart' as gmaps;
+import 'package:google_maps/gmaps.dart';
 
 void main() {
   js.scoped(() {
-    final bryantPark = new gmaps.LatLng(37.869260, -122.254811);
-    final panoramaOptions = new gmaps.StreetViewPanoramaOptions()
+    final bryantPark = new LatLng(37.869260, -122.254811);
+    final panoramaOptions = new StreetViewPanoramaOptions()
       ..position = bryantPark
-      ..pov = (new gmaps.StreetViewPov()
+      ..pov = (new StreetViewPov()
         ..heading = 165
         ..pitch = 0
         ..zoom = 1
       )
       ;
-    final myPano = new gmaps.StreetViewPanorama(query('#pano'),panoramaOptions);
+    final myPano = new StreetViewPanorama(query('#pano'),panoramaOptions);
     myPano.visible = true;
   });
 }

@@ -1,23 +1,23 @@
 import 'dart:html';
 import 'package:js/js.dart' as js;
 import 'package:google_maps/jswrap.dart' as jsw;
-import 'package:google_maps/gmaps.dart' as gmaps;
+import 'package:google_maps/gmaps.dart';
 
 void main() {
   js.scoped(() {
-    final mapOptions = new gmaps.MapOptions()
+    final mapOptions = new MapOptions()
       ..scaleControl = true
-      ..center = new gmaps.LatLng(30.064742, 31.249509)
+      ..center = new LatLng(30.064742, 31.249509)
       ..zoom = 10
-      ..mapTypeId = gmaps.MapTypeId.ROADMAP
+      ..mapTypeId = MapTypeId.ROADMAP
       ;
-    final map = new gmaps.GMap(query("#map_canvas"), mapOptions);
+    final map = new GMap(query("#map_canvas"), mapOptions);
 
-    final marker = new gmaps.Marker(new gmaps.MarkerOptions()
+    final marker = new Marker(new MarkerOptions()
       ..map = map
       ..position = map.center
     );
-    final gmaps.InfoWindow infowindow = new gmaps.InfoWindow();
+    final InfoWindow infowindow = new InfoWindow();
     infowindow.content = '<b>القاهرة</b>';
 
     jsw.retainAll([infowindow, map, marker]);

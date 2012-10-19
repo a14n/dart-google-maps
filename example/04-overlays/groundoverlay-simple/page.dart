@@ -1,23 +1,23 @@
 import 'dart:html';
 import 'package:js/js.dart' as js;
 import 'package:google_maps/jswrap.dart' as jsw;
-import 'package:google_maps/gmaps.dart' as gmaps;
+import 'package:google_maps/gmaps.dart';
 
 void main() {
   js.scoped(() {
-    final newark = new gmaps.LatLng(40.740, -74.18);
-    final imageBounds = new gmaps.LatLngBounds(
-        new gmaps.LatLng(40.712216,-74.22655),
-        new gmaps.LatLng(40.773941,-74.12544));
+    final newark = new LatLng(40.740, -74.18);
+    final imageBounds = new LatLngBounds(
+        new LatLng(40.712216,-74.22655),
+        new LatLng(40.773941,-74.12544));
 
-    final mapOptions = new gmaps.MapOptions()
+    final mapOptions = new MapOptions()
       ..zoom = 13
       ..center = newark
-      ..mapTypeId = gmaps.MapTypeId.ROADMAP
+      ..mapTypeId = MapTypeId.ROADMAP
       ;
-    final map = new gmaps.GMap(query("#map_canvas"), mapOptions);
+    final map = new GMap(query("#map_canvas"), mapOptions);
 
-    final oldmap = new gmaps.GroundOverlay(
+    final oldmap = new GroundOverlay(
         'https://www.lib.utexas.edu/maps/historical/newark_nj_1922.jpg',
         imageBounds);
     oldmap.map = map;

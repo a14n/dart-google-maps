@@ -1,7 +1,7 @@
-import 'dart:html';
+import 'dart:html' hide Point;
 import 'package:js/js.dart' as js;
 import 'package:google_maps/jswrap.dart' as jsw;
-import 'package:google_maps/gmaps.dart' as gmaps;
+import 'package:google_maps/gmaps.dart';
 
 const IMAGE_URL = "https://google-developers.appspot.com/maps/documentation/javascript/examples";
 
@@ -20,18 +20,18 @@ final beaches = [
 
 void main() {
   js.scoped(() {
-    final mapOptions = new gmaps.MapOptions()
+    final mapOptions = new MapOptions()
       ..zoom = 10
-      ..center = new gmaps.LatLng(-33.9, 151.2)
-      ..mapTypeId = gmaps.MapTypeId.ROADMAP
+      ..center = new LatLng(-33.9, 151.2)
+      ..mapTypeId = MapTypeId.ROADMAP
       ;
-    final map = new gmaps.GMap(query("#map_canvas"), mapOptions);
+    final map = new GMap(query("#map_canvas"), mapOptions);
 
     setMarkers(map, beaches);
 
     final image = 'https://google-developers.appspot.com/maps/documentation/javascript/examples/images/beachflag.png';
-    final myLatLng = new gmaps.LatLng(-33.890542, 151.274856);
-    final beachMarker = new gmaps.Marker(new gmaps.MarkerOptions()
+    final myLatLng = new LatLng(-33.890542, 151.274856);
+    final beachMarker = new Marker(new MarkerOptions()
       ..position = myLatLng
       ..map = map
       ..icon = image
@@ -39,7 +39,7 @@ void main() {
   });
 }
 
-void setMarkers(gmaps.GMap map, List locations) {
+void setMarkers(GMap map, List locations) {
   // Add markers to the map
 
   // Marker sizes are expressed as a Size of X,Y
@@ -49,31 +49,31 @@ void setMarkers(gmaps.GMap map, List locations) {
   // Origins, anchor positions and coordinates of the marker
   // increase in the X direction to the right and in
   // the Y direction down.
-  final image = new gmaps.MarkerImage('${IMAGE_URL}/images/beachflag.png',
+  final image = new MarkerImage('${IMAGE_URL}/images/beachflag.png',
       // This marker is 20 pixels wide by 32 pixels tall.
-      new gmaps.Size(20, 32),
+      new Size(20, 32),
       // The origin for this image is 0,0.
-      new gmaps.Point(0,0),
+      new Point(0,0),
       // The anchor for this image is the base of the flagpole at 0,32.
-      new gmaps.Point(0, 32));
-  final shadow = new gmaps.MarkerImage('${IMAGE_URL}/images/beachflag_shadow.png',
+      new Point(0, 32));
+  final shadow = new MarkerImage('${IMAGE_URL}/images/beachflag_shadow.png',
       // The shadow image is larger in the horizontal dimension
       // while the position and offset are the same as for the main image.
-      new gmaps.Size(37, 32),
-      new gmaps.Point(0, 0),
-      new gmaps.Point(0, 32));
+      new Size(37, 32),
+      new Point(0, 0),
+      new Point(0, 32));
   // Shapes define the clickable region of the icon.
   // The type defines an HTML &lt;area&gt; element 'poly' which
   // traces out a polygon as a series of X,Y points. The final
   // coordinate closes the poly by connecting to the first
   // coordinate.
-  final shape = new gmaps.MarkerShape()
+  final shape = new MarkerShape()
     ..coords = [1, 1, 1, 20, 18, 20, 18 , 1]
-    ..type = gmaps.MarkerShapeType.POLY
+    ..type = MarkerShapeType.POLY
     ;
   for (final beach in locations) {
-    var myLatLng = new gmaps.LatLng(beach[1], beach[2]);
-    var marker = new gmaps.Marker(new gmaps.MarkerOptions()
+    var myLatLng = new LatLng(beach[1], beach[2]);
+    var marker = new Marker(new MarkerOptions()
       ..position = myLatLng
       ..map = map
       ..shadow = shadow

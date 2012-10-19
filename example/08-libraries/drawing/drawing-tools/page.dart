@@ -1,34 +1,34 @@
 import 'dart:html';
 import 'package:js/js.dart' as js;
 import 'package:google_maps/jswrap.dart' as jsw;
-import 'package:google_maps/gmaps.dart' as gmaps;
-import 'package:google_maps/gmaps_drawing.dart' as gmaps_draw;
+import 'package:google_maps/gmaps.dart';
+import 'package:google_maps/gmaps_drawing.dart';
 
 const IMAGE_URL = "https://google-developers.appspot.com/maps/documentation/javascript/examples";
 
 void main() {
   js.scoped(() {
-    final mapOptions = new gmaps.MapOptions()
-      ..center = new gmaps.LatLng(-34.397, 150.644)
+    final mapOptions = new MapOptions()
+      ..center = new LatLng(-34.397, 150.644)
       ..zoom = 8
-      ..mapTypeId = gmaps.MapTypeId.ROADMAP
+      ..mapTypeId = MapTypeId.ROADMAP
       ;
-    final map = new gmaps.GMap(query("#map_canvas"), mapOptions);
+    final map = new GMap(query("#map_canvas"), mapOptions);
 
-    final drawingManager = new gmaps_draw.DrawingManager(new gmaps_draw.DrawingManagerOptions()
-      ..drawingMode = gmaps_draw.OverlayType.MARKER
+    final drawingManager = new DrawingManager(new DrawingManagerOptions()
+      ..drawingMode = OverlayType.MARKER
       ..drawingControl = true
-      ..drawingControlOptions = (new gmaps_draw.DrawingControlOptions()
-        ..position = gmaps.ControlPosition.TOP_CENTER
+      ..drawingControlOptions = (new DrawingControlOptions()
+        ..position = ControlPosition.TOP_CENTER
         ..drawingModes = [
-          gmaps_draw.OverlayType.MARKER,
-          gmaps_draw.OverlayType.CIRCLE
+          OverlayType.MARKER,
+          OverlayType.CIRCLE
         ]
       )
-      ..markerOptions = (new gmaps.MarkerOptions()
+      ..markerOptions = (new MarkerOptions()
         ..icon = '${IMAGE_URL}/images/beachflag.png'
       )
-      ..circleOptions = (new gmaps.CircleOptions()
+      ..circleOptions = (new CircleOptions()
         ..fillColor = '#ffff00'
         ..fillOpacity = 1
         ..strokeWeight = 5

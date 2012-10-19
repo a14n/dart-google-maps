@@ -1,22 +1,22 @@
 import 'dart:html';
 import 'package:js/js.dart' as js;
 import 'package:google_maps/jswrap.dart' as jsw;
-import 'package:google_maps/gmaps.dart' as gmaps;
+import 'package:google_maps/gmaps.dart';
 
-gmaps.DirectionsRenderer directionsDisplay;
-final gmaps.DirectionsService directionsService = jsw.retain(new gmaps.DirectionsService());
-gmaps.GMap map;
+DirectionsRenderer directionsDisplay;
+final DirectionsService directionsService = jsw.retain(new DirectionsService());
+GMap map;
 
 void main() {
   js.scoped(() {
-    directionsDisplay = jsw.retain(new gmaps.DirectionsRenderer());
-    final chicago = new gmaps.LatLng(41.850033, -87.6500523);
-    final mapOptions = new gmaps.MapOptions()
+    directionsDisplay = jsw.retain(new DirectionsRenderer());
+    final chicago = new LatLng(41.850033, -87.6500523);
+    final mapOptions = new MapOptions()
       ..zoom = 7
-      ..mapTypeId = gmaps.MapTypeId.ROADMAP
+      ..mapTypeId = MapTypeId.ROADMAP
       ..center = chicago
       ;
-    map = jsw.retain(new gmaps.GMap(query("#map_canvas"), mapOptions));
+    map = jsw.retain(new GMap(query("#map_canvas"), mapOptions));
     directionsDisplay.map = map;
 
     query('#start').on.change.add((e) => calcRoute());
@@ -28,13 +28,13 @@ void calcRoute() {
   js.scoped(() {
     final start = (query('#start') as SelectElement).value;
     final end = (query('#end') as SelectElement).value;
-    final request = new gmaps.DirectionsRequest()
+    final request = new DirectionsRequest()
       ..origin = start
       ..destination = end
-      ..travelMode = gmaps.TravelMode.DRIVING // TODO bad object in example DirectionsTravelMode
+      ..travelMode = TravelMode.DRIVING // TODO bad object in example DirectionsTravelMode
       ;
-    directionsService.route(request, (gmaps.DirectionsResult response, gmaps.DirectionsStatus status) {
-      if (status == gmaps.DirectionsStatus.OK) {
+    directionsService.route(request, (DirectionsResult response, DirectionsStatus status) {
+      if (status == DirectionsStatus.OK) {
         directionsDisplay.directions = response;
       }
     });

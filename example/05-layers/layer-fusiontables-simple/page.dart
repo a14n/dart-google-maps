@@ -1,19 +1,19 @@
 import 'dart:html';
 import 'package:js/js.dart' as js;
 import 'package:google_maps/jswrap.dart' as jsw;
-import 'package:google_maps/gmaps.dart' as gmaps;
+import 'package:google_maps/gmaps.dart';
 
 void main() {
   js.scoped(() {
-    final chicago = new gmaps.LatLng(41.850033, -87.6500523);
-    final map = new gmaps.GMap(query("#map_canvas"), new gmaps.MapOptions()
+    final chicago = new LatLng(41.850033, -87.6500523);
+    final map = new GMap(query("#map_canvas"), new MapOptions()
       ..center = chicago
       ..zoom = 11
-      ..mapTypeId = gmaps.MapTypeId.ROADMAP
+      ..mapTypeId = MapTypeId.ROADMAP
     );
 
-    final layer = new gmaps.FusionTablesLayer(new gmaps.FusionTablesLayerOptions()
-      ..query = (new gmaps.FusionTablesQuery()
+    final layer = new FusionTablesLayer(new FusionTablesLayerOptions()
+      ..query = (new FusionTablesQuery()
         ..select = '\'Geocodable address\''
         ..from = '1mZ53Z70NsChnBMm-qEYmSDOvLXgrreLTkQUvvg'
       )

@@ -1,20 +1,20 @@
-import 'dart:html';
+import 'dart:html' hide Events;
 import 'dart:math';
 import 'package:js/js.dart' as js;
 import 'package:google_maps/jswrap.dart' as jsw;
-import 'package:google_maps/gmaps.dart' as gmaps;
+import 'package:google_maps/gmaps.dart';
 
-gmaps.GMap map;
-final gmaps.LatLng chicago = jsw.retain(new gmaps.LatLng(41.850033, -87.6500523));
+GMap map;
+final LatLng chicago = jsw.retain(new LatLng(41.850033, -87.6500523));
 
 /**
  * The HomeControl adds a control to the map that
  * returns the user to the control's defined home.
  */
 class HomeControl {
-  gmaps.LatLng _home;
+  LatLng _home;
 
-  HomeControl(Element controlDiv, gmaps.GMap map, gmaps.LatLng home) {
+  HomeControl(Element controlDiv, GMap map, LatLng home) {
     this._home = jsw.retain(home);
 
     // Set CSS styles for the DIV containing the control
@@ -71,14 +71,14 @@ class HomeControl {
     // Setup the click event listener for Home:
     // simply set the map to the control's current home property.
     jsw.retainAll([map]);
-    gmaps.Events.addDomListener(goHomeUI, 'click', (e) {
+    Events.addDomListener(goHomeUI, 'click', (e) {
       map.center = _home;
     });
 
     // Setup the click event listener for Set Home:
     // Set the control's home to the current Map center.
     jsw.retainAll([map]);
-    gmaps.Events.addDomListener(setHomeUI, 'click', (e) {
+    Events.addDomListener(setHomeUI, 'click', (e) {
       jsw.release(_home);
       _home = jsw.retain(map.center);
     });
@@ -88,12 +88,12 @@ class HomeControl {
 void main() {
   js.scoped(() {
     final mapDiv = query("#map_canvas");
-    final mapOptions = new gmaps.MapOptions()
+    final mapOptions = new MapOptions()
       ..zoom = 12
       ..center = chicago
-      ..mapTypeId = gmaps.MapTypeId.ROADMAP
+      ..mapTypeId = MapTypeId.ROADMAP
       ;
-    map = jsw.retain(new gmaps.GMap(mapDiv, mapOptions));
+    map = jsw.retain(new GMap(mapDiv, mapOptions));
 
     // Create the DIV to hold the control and
     // call the HomeControl() constructor passing
@@ -102,6 +102,6 @@ void main() {
     var homeControl = new HomeControl(homeControlDiv, map, chicago);
 
     homeControlDiv.attributes["index"] = 1.toString();
-    map.controls.getNodes(gmaps.ControlPosition.TOP_RIGHT).push(homeControlDiv);
+    map.controls.getNodes(ControlPosition.TOP_RIGHT).push(homeControlDiv);
   });
 }

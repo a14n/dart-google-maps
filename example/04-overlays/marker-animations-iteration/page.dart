@@ -1,28 +1,28 @@
-import 'dart:html';
+import 'dart:html' hide Animation;
 import 'package:js/js.dart' as js;
 import 'package:google_maps/jswrap.dart' as jsw;
-import 'package:google_maps/gmaps.dart' as gmaps;
+import 'package:google_maps/gmaps.dart';
 
-final berlin = jsw.retain(new gmaps.LatLng(52.520816, 13.410186));
-final List<gmaps.LatLng> neighborhoods = [
-  jsw.retain(new gmaps.LatLng(52.511467, 13.447179)),
-  jsw.retain(new gmaps.LatLng(52.549061, 13.422975)),
-  jsw.retain(new gmaps.LatLng(52.497622, 13.396110)),
-  jsw.retain(new gmaps.LatLng(52.517683, 13.394393))
+final berlin = jsw.retain(new LatLng(52.520816, 13.410186));
+final List<LatLng> neighborhoods = [
+  jsw.retain(new LatLng(52.511467, 13.447179)),
+  jsw.retain(new LatLng(52.549061, 13.422975)),
+  jsw.retain(new LatLng(52.497622, 13.396110)),
+  jsw.retain(new LatLng(52.517683, 13.394393))
 ];
 
-final markers = new List<gmaps.Marker>();
+final markers = new List<Marker>();
 int iterator = 0;
 
-gmaps.GMap map;
+GMap map;
 
 void main() {
   js.scoped(() {
-    final mapOptions = new gmaps.MapOptions()
+    final mapOptions = new MapOptions()
       ..zoom = 12
-      ..mapTypeId = gmaps.MapTypeId.ROADMAP
+      ..mapTypeId = MapTypeId.ROADMAP
       ..center = berlin;
-    map = jsw.retain(new gmaps.GMap(query("#map_canvas"), mapOptions));
+    map = jsw.retain(new GMap(query("#map_canvas"), mapOptions));
 
     query("#drop").on.click.add(drop);
   });
@@ -38,11 +38,11 @@ void drop(e) {
 
 void addMarker() {
   js.scoped(() {
-    markers.add(new gmaps.Marker(new gmaps.MarkerOptions()
+    markers.add(new Marker(new MarkerOptions()
       ..position = neighborhoods[iterator % neighborhoods.length]
       ..map = map
       ..draggable = false
-      ..animation = gmaps.Animation.DROP
+      ..animation = Animation.DROP
     ));
     iterator++;
   });

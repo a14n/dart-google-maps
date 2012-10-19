@@ -1,22 +1,22 @@
 import 'dart:html';
 import 'package:js/js.dart' as js;
 import 'package:google_maps/jswrap.dart' as jsw;
-import 'package:google_maps/gmaps.dart' as gmaps;
+import 'package:google_maps/gmaps.dart';
 
-gmaps.GMap map;
-List<gmaps.Marker> markers;
+GMap map;
+List<Marker> markers;
 
 void main() {
   js.scoped(() {
-    markers = new List<gmaps.Marker>();
+    markers = new List<Marker>();
 
-    final haightAshbury = new gmaps.LatLng(37.7699298, -122.4469157);
-    final mapOptions = new gmaps.MapOptions()
+    final haightAshbury = new LatLng(37.7699298, -122.4469157);
+    final mapOptions = new MapOptions()
       ..zoom = 12
       ..center = haightAshbury
-      ..mapTypeId = gmaps.MapTypeId.TERRAIN
+      ..mapTypeId = MapTypeId.TERRAIN
       ;
-    map = jsw.retain(new gmaps.GMap(query("#map-canvas"), mapOptions));
+    map = jsw.retain(new GMap(query("#map-canvas"), mapOptions));
 
     map.on.click.add((e) {
       addMarker(e.latLng);
@@ -29,8 +29,8 @@ void main() {
 }
 
 // Add a marker to the map and push to the array.
-void addMarker(gmaps.LatLng location) {
-  final marker = new gmaps.Marker(new gmaps.MarkerOptions()
+void addMarker(LatLng location) {
+  final marker = new Marker(new MarkerOptions()
     ..position = location
     ..map = map
   );
@@ -39,7 +39,7 @@ void addMarker(gmaps.LatLng location) {
 }
 
 // Sets the map on all markers in the array.
-void setAllMap(gmaps.GMap map) {
+void setAllMap(GMap map) {
   for (final marker in markers) {
     marker.map = map;
   }

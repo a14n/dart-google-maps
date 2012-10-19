@@ -1,19 +1,19 @@
 import 'dart:html';
 import 'package:js/js.dart' as js;
 import 'package:google_maps/jswrap.dart' as jsw;
-import 'package:google_maps/gmaps.dart' as gmaps;
+import 'package:google_maps/gmaps.dart';
 
 void main() {
   js.scoped(() {
-    final chicago = new gmaps.LatLng(41.875696,-87.624207);
-    final mapOptions = new gmaps.MapOptions()
+    final chicago = new LatLng(41.875696,-87.624207);
+    final mapOptions = new MapOptions()
       ..zoom = 11
       ..center = chicago
-      ..mapTypeId = gmaps.MapTypeId.ROADMAP
+      ..mapTypeId = MapTypeId.ROADMAP
       ;
-    final map = new gmaps.GMap(query("#map_canvas"), mapOptions);
+    final map = new GMap(query("#map_canvas"), mapOptions);
 
-    final ctaLayer = new gmaps.KmlLayer('http://gmaps-samples.googlecode.com/svn/trunk/ggeoxml/cta.kml');
+    final ctaLayer = new KmlLayer('http://gmaps-samples.googlecode.com/svn/trunk/ggeoxml/cta.kml');
     ctaLayer.map = map;
   });
 }

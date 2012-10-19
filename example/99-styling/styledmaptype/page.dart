@@ -1,48 +1,48 @@
 import 'dart:html';
 import 'package:js/js.dart' as js;
 import 'package:google_maps/jswrap.dart' as jsw;
-import 'package:google_maps/gmaps.dart' as gmaps;
+import 'package:google_maps/gmaps.dart';
 
 void main() {
   js.scoped(() {
     final styles = [
-      new gmaps.MapTypeStyle()
+      new MapTypeStyle()
         ..stylers = [
-          new gmaps.MapTypeStyler()..hue = "#00ffe6",
-          new gmaps.MapTypeStyler()..saturation = -20
+          new MapTypeStyler()..hue = "#00ffe6",
+          new MapTypeStyler()..saturation = -20
         ],
-      new gmaps.MapTypeStyle()
-        ..featureType = gmaps.MapTypeStyleFeatureType.ROAD
-        ..elementType = gmaps.MapTypeStyleElementType.GEOMETRY
+      new MapTypeStyle()
+        ..featureType = MapTypeStyleFeatureType.ROAD
+        ..elementType = MapTypeStyleElementType.GEOMETRY
         ..stylers = [
-          new gmaps.MapTypeStyler()..lightness = 100,
-          new gmaps.MapTypeStyler()..visibility = gmaps.MapTypeStylerVisibility.SIMPLIFIED
+          new MapTypeStyler()..lightness = 100,
+          new MapTypeStyler()..visibility = MapTypeStylerVisibility.SIMPLIFIED
         ],
-      new gmaps.MapTypeStyle()
-        ..featureType = gmaps.MapTypeStyleFeatureType.ROAD
-        ..elementType = gmaps.MapTypeStyleElementType.LABELS
+      new MapTypeStyle()
+        ..featureType = MapTypeStyleFeatureType.ROAD
+        ..elementType = MapTypeStyleElementType.LABELS
         ..stylers = [
-          new gmaps.MapTypeStyler()..visibility = gmaps.MapTypeStylerVisibility.OFF
+          new MapTypeStyler()..visibility = MapTypeStylerVisibility.OFF
         ]
     ];
 
     // Create a new StyledMapType object, passing it the array of styles,
     // as well as the name to be displayed on the map type control.
-    final styledMapTypeOptions = new gmaps.StyledMapTypeOptions();
+    final styledMapTypeOptions = new StyledMapTypeOptions();
     styledMapTypeOptions.name = "Styled Map";
-    final styledMapType = new gmaps.StyledMapType(styles, styledMapTypeOptions);
+    final styledMapType = new StyledMapType(styles, styledMapTypeOptions);
 
-    final mapOptions = new gmaps.MapOptions()
+    final mapOptions = new MapOptions()
       ..zoom = 11
-      ..center = new gmaps.LatLng(55.6468, 37.581)
-      ..mapTypeControlOptions = (new gmaps.MapTypeControlOptions()
+      ..center = new LatLng(55.6468, 37.581)
+      ..mapTypeControlOptions = (new MapTypeControlOptions()
         ..mapTypeIds = [
-          gmaps.MapTypeId.ROADMAP,
+          MapTypeId.ROADMAP,
           'map_style'
         ]
       )
       ;
-    final map = new gmaps.GMap(query("#map_canvas"), mapOptions);
+    final map = new GMap(query("#map_canvas"), mapOptions);
 
     // Associate the styled map with the MapTypeId and set it to display.
     map.mapTypes.set('map_style', styledMapType);
