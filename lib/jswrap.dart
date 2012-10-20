@@ -68,26 +68,42 @@ class JsIterator<E> implements Iterator<E> {
   bool hasNext() => current < jsList.$.length.value;
 }
 
-class JsList<E> extends IsJsProxy implements List<E> {
+class JsIterable<E> extends IsJsProxy implements Iterable<E> {
   Transformater instanciator;
 
-  JsList.fromJsProxy(js.Proxy proxy, Transformater this.instanciator) : super.fromJsProxy(proxy);
+  JsIterable.fromJsProxy(js.Proxy proxy, Transformater this.instanciator) : super.fromJsProxy(proxy);
 
-  // Object
-  String toString() => _asList().toString();
+  JsIterator<E> iterator() => new JsIterator._(this, instanciator);
+}
 
-  // Iterable
+class JsCollection<E> extends JsIterable<E> implements Collection<E> {
+  JsCollection.fromJsProxy(js.Proxy proxy, Transformater instanciator) : super.fromJsProxy(proxy, instanciator);
+
   JsIterator<E> iterator() => new JsIterator._(this, instanciator);
 
-  // Collection
   void forEach(void f(E element)) => _asList().forEach(f);
   Collection map(f(E element)) => _asList().map(f);
   Dynamic reduce(Dynamic initialValue, Dynamic combine(Dynamic previousValue, E element)) => _asList().reduce(initialValue, combine);
   Collection<E> filter(bool f(E element)) => _asList().filter(f);
   bool every(bool f(E element)) => _asList().every(f);
   bool some(bool f(E element)) => _asList().some(f);
-  bool isEmpty() => _asList().isEmpty();
+  bool isEmpty() => length == 0;
   int get length => $.length.value;
+
+  List<E> _asList() {
+    final list = new List<E>();
+    for (int i = 0; i < length; i++) {
+      list.add(this[i]);
+    }
+    return list;
+  }
+}
+
+class JsList<E> extends JsCollection<E> implements List<E> {
+  JsList.fromJsProxy(js.Proxy proxy, Transformater instanciator) : super.fromJsProxy(proxy, instanciator);
+
+  // Object
+  String toString() => _asList().toString();
 
   // List
   E operator [](int index) => $[index].map(instanciator != null ? instanciator : (e) => e).value;
@@ -131,14 +147,6 @@ class JsList<E> extends IsJsProxy implements List<E> {
       args.add(initialValue);
     }
     this.$.noSuchMethod("splice", args);
-  }
-
-  List<E> _asList() {
-    final list = new List<E>();
-    for (int i = 0; i < length; i++) {
-      list.add(this[i]);
-    }
-    return list;
   }
 }
 
