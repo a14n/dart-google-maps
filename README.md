@@ -10,8 +10,7 @@ To use this library in your code :
 
 ```yaml
 dependencies:
-  google_maps:
-    git: https://github.com/a14n/dart-google-maps.git
+  google_maps: 1.0.0
 ```
 
 * add import in your `dart` code :
