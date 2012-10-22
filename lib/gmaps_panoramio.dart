@@ -46,9 +46,9 @@ class PanoramioFeature extends jsw.IsJsProxy {
   String get userId => $.userId.value;
 }
 
-class PanoramioMouseEvent extends NativeEvent {
+class PanoramioMouseEvent extends jsw.IsJsProxy {
   PanoramioMouseEvent();
-  PanoramioMouseEvent.wrap(NativeEvent e) : super.fromIsJsProxy(e);
+  PanoramioMouseEvent.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   PanoramioFeature get featureDetails => $.featureDetails.map(PanoramioFeature.INSTANCIATOR).value;
   String get infoWindowHtml => $.infoWindowHtml.value;
@@ -56,9 +56,9 @@ class PanoramioMouseEvent extends NativeEvent {
   Size get pixelOffset => $.pixelOffset.map(Size.INSTANCIATOR).value;
 }
 
-class PanoramioMouseEventListenerAdder extends NativeEventListenerAdder {
+class PanoramioMouseEventListenerAdder extends EventListenerAdder {
   PanoramioMouseEventListenerAdder(jsw.IsJsProxy _instance, String _eventName) : super(_instance, _eventName);
 
-  void add(void handler(PanoramioMouseEvent e)) { super.add((e) => handler(new PanoramioMouseEvent.wrap(e))); }
-  MapsEventListenerRegistration addTemporary(void handler(PanoramioMouseEvent e)) => super.addTemporary((e) => handler(new PanoramioMouseEvent.wrap(e)));
+  void add(void handler(PanoramioMouseEvent e)) { super.add((e) => handler(e.map((e) => new PanoramioMouseEvent.fromJsProxy(e)).value)); }
+  MapsEventListenerRegistration addTemporary(void handler(PanoramioMouseEvent e)) => super.addTemporary((e) => handler(e.map((e) => new PanoramioMouseEvent.fromJsProxy(e)).value));
 }

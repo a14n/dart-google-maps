@@ -80,9 +80,9 @@ class LabelColor extends jsw.IsEnum<String> {
   bool operator ==(Object other) => value == (other is LabelColor ? (other as LabelColor).value : other);
 }
 
-class WeatherMouseEvent extends NativeEvent {
+class WeatherMouseEvent extends jsw.IsJsProxy {
   WeatherMouseEvent();
-  WeatherMouseEvent.wrap(NativeEvent e) : super.fromIsJsProxy(e);
+  WeatherMouseEvent.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   WeatherFeature get featureDetails => $.getProperty("featureDetails", WeatherFeature.INSTANCIATOR);
   String get infoWindowHtml => $["infoWindowHtml"];
@@ -130,9 +130,9 @@ class WeatherForecast extends jsw.IsJsProxy {
   String get shortDay => $.shortDay.value;
 }
 
-class WeatherMouseEventListenerAdder extends NativeEventListenerAdder {
+class WeatherMouseEventListenerAdder extends EventListenerAdder {
   WeatherMouseEventListenerAdder(jsw.IsJsProxy _instance, String _eventName) : super(_instance, _eventName);
 
-  void add(void handler(WeatherMouseEvent e)) { super.add((e) => handler(new WeatherMouseEvent.wrap(e))); }
-  MapsEventListenerRegistration addTemporary(void handler(WeatherMouseEvent e)) => super.addTemporary((e) => handler(new WeatherMouseEvent.wrap(e)));
+  void add(void handler(WeatherMouseEvent e)) { super.add((e) => handler(e.map((e) => new WeatherMouseEvent.fromJsProxy(e)).value)); }
+  MapsEventListenerRegistration addTemporary(void handler(WeatherMouseEvent e)) => super.addTemporary((e) => handler(e.map((e) => new WeatherMouseEvent.fromJsProxy(e)).value));
 }

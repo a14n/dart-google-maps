@@ -2,6 +2,7 @@ library gmaps_places;
 
 import 'dart:html' as html;
 import 'package:js/js.dart' as js;
+import 'optional.dart';
 import 'jswrap.dart' as jsw;
 import 'gmaps.dart';
 
@@ -88,6 +89,8 @@ class PlaceSearchRequest extends jsw.IsJsProxy {
 }
 
 class PlaceSearchPagination extends jsw.IsJsProxy {
+  static final INSTANCIATOR = (js.Proxy jsProxy) => new PlaceSearchPagination.fromJsProxy(jsProxy);
+
   PlaceSearchPagination() : super();
   PlaceSearchPagination.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
@@ -104,13 +107,13 @@ class PlacesService extends jsw.IsJsProxy {
   }
 
   void getDetails(PlaceDetailsRequest request, void callback(PlaceResult results, PlacesServiceStatus status)) {
-    $.getDetails(request, new jsw.Callback.once((result, status) => callback(new PlaceResult.fromJsProxy(result), PlacesServiceStatus.find(status))));
+    $.getDetails(request, new jsw.Callback.once((Option<js.Proxy> result, Option<js.Proxy> status) => callback(result.map(PlaceResult.INSTANCIATOR).value, status.map(PlacesServiceStatus.find).value)));
   }
   void nearbySearch(PlaceSearchRequest request, void callback(List<PlaceResult> results, PlacesServiceStatus status, PlaceSearchPagination pagination)) {
-    $.nearbySearch(request, new jsw.Callback.once((results, status, pagination) => callback(new jsw.JsList<PlaceResult>.fromJsProxy(results, (e) => new PlaceResult.fromJsProxy(e)), PlacesServiceStatus.find(status), new PlaceSearchPagination.fromJsProxy(pagination))));
+    $.nearbySearch(request, new jsw.Callback.once((Option<js.Proxy> results, Option<js.Proxy> status, Option<js.Proxy> pagination) => callback(results.map((e) => new jsw.JsList<PlaceResult>.fromJsProxy(e, (e) => new PlaceResult.fromJsProxy(e))).value, status.map(PlacesServiceStatus.find).value, pagination.map(PlaceSearchPagination.INSTANCIATOR).value)));
   }
   void textSearch(TextSearchRequest request, void callback(List<PlaceResult> results, PlacesServiceStatus status)) {
-    $.textSearch(request, new jsw.Callback.once((results, status) => callback(new jsw.JsList<PlaceResult>.fromJsProxy(results, (e) => new PlaceResult.fromJsProxy(e)), PlacesServiceStatus.find(status))));
+    $.textSearch(request, new jsw.Callback.once((Option<js.Proxy> results, Option<js.Proxy> status) => callback(results.map((e) => new jsw.JsList<PlaceResult>.fromJsProxy(e, (e) => new PlaceResult.fromJsProxy(e))).value, status.map(PlacesServiceStatus.find).value)));
   }
 }
 

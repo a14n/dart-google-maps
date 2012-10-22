@@ -1,5 +1,6 @@
 import 'dart:html' hide Point;
 import 'package:js/js.dart' as js;
+import 'package:google_maps/optional.dart';
 import 'package:google_maps/jswrap.dart' as jsw;
 import 'package:google_maps/gmaps.dart';
 
@@ -7,11 +8,11 @@ class CoordMapType extends MapType {
   CoordMapType() : super() {
     this.tileSize = jsw.retain(new Size(256,256));
     this.maxZoom = 19;
-    $.getTile = new jsw.Callback.many((js.Proxy tileCoord, num zoom, js.Proxy ownerDocument) {
-      if (ownerDocument.createElement("div") is js.Proxy) {
-        return _getTileFromOtherDocument(new Point.fromJsProxy(tileCoord), zoom, new jsw.IsJsProxy.fromJsProxy(ownerDocument));
+    $.getTile = new jsw.Callback.many((Option<js.Proxy> tileCoord, Option<num> zoom, Option<js.Proxy> ownerDocument) {
+      if (ownerDocument.value.createElement("div") is js.Proxy) {
+        return _getTileFromOtherDocument(tileCoord.map(Point.INSTANCIATOR).value, zoom.value, ownerDocument.map((e) => new jsw.IsJsProxy.fromJsProxy(e)).value);
       } else {
-        return _getTile(new Point.fromJsProxy(tileCoord), zoom);
+        return _getTile(tileCoord.map(Point.INSTANCIATOR).value, zoom.value);
       }
     });
     this.name = 'Tile #s';

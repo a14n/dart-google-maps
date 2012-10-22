@@ -17,11 +17,17 @@ class DrawingManager extends MVCObject {
   DrawingManagerEvents get on => new DrawingManagerEvents._(this);
 }
 
-// TODO handle events
 class DrawingManagerEvents {
   final DrawingManager _drawingManager;
 
   DrawingManagerEvents._(DrawingManager this._drawingManager);
+
+  CircleCompleteEventListenerAdder get circleComplete => new FusionTablesMouseEventListenerAdder(_drawingManager, "circlecomplete");
+  MarkerCompleteEventListenerAdder get markerComplete => new FusionTablesMouseEventListenerAdder(_drawingManager, "markercomplete");
+  OverlayCompleteEventListenerAdder get overlayComplete => new FusionTablesMouseEventListenerAdder(_drawingManager, "overlaycomplete");
+  PolygonCompleteEventListenerAdder get polygonComplete => new FusionTablesMouseEventListenerAdder(_drawingManager, "polygoncomplete");
+  PolylineCompleteEventListenerAdder get polylineComplete => new FusionTablesMouseEventListenerAdder(_drawingManager, "polylinecomplete");
+  RectangleCompleteEventListenerAdder get rectangleComplete => new FusionTablesMouseEventListenerAdder(_drawingManager, "rectanglecomplete");
 }
 
 class DrawingManagerOptions extends jsw.IsJsProxy {
@@ -41,9 +47,9 @@ class DrawingControlOptions extends jsw.IsJsProxy {
   set position(ControlPosition position) => $.position = position;
 }
 
-class OverlayCompleteEvent extends NativeEvent {
+class OverlayCompleteEvent extends jsw.IsJsProxy {
   OverlayCompleteEvent();
-  OverlayCompleteEvent.wrap(NativeEvent e) { jsRef = e.jsRef; }
+  OverlayCompleteEvent.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   jsw.IsJsProxy get overlay => $.overlay.map((jsProxy) {
     if (jsProxy == null) {
@@ -80,3 +86,46 @@ class OverlayType extends jsw.IsEnum<String> {
 
   bool operator ==(Object other) => value == (other is OverlayType ? (other as OverlayType).value : other);
 }
+
+class CircleCompleteEventListenerAdder extends EventListenerAdder {
+  CircleCompleteEventListenerAdder(jsw.IsJsProxy _instance, String _eventName) : super(_instance, _eventName);
+
+  void add(void handler(Circle circle)) { super.add((e) => handler(e.map((e) => Circle.fromJsProxy(e)).value)); }
+  MapsEventListenerRegistration addTemporary(void handler(Circle circle)) => super.addTemporary((e) => handler(e.map((e) => Circle.fromJsProxy(e)).value));
+}
+
+class MarkerCompleteEventListenerAdder extends EventListenerAdder {
+  MarkerCompleteEventListenerAdder(jsw.IsJsProxy _instance, String _eventName) : super(_instance, _eventName);
+
+  void add(void handler(Marker marker)) { super.add((e) => handler(e.map((e) => new Marker.fromJsProxy(e)).value)); }
+  MapsEventListenerRegistration addTemporary(void handler(Marker marker)) => super.addTemporary((e) => handler(e.map((e) => new Marker.fromJsProxy(e)).value));
+}
+
+class OverlayCompleteEventListenerAdder extends EventListenerAdder {
+  OverlayCompleteEventListenerAdder(jsw.IsJsProxy _instance, String _eventName) : super(_instance, _eventName);
+
+  void add(void handler(OverlayCompleteEvent e)) { super.add((e) => handler(e.map((e) => new OverlayCompleteEvent.fromJsProxy(e)).value)); }
+  MapsEventListenerRegistration addTemporary(void handler(OverlayCompleteEvent e)) => super.addTemporary((e) => handler(e.map((e) => new OverlayCompleteEvent.fromJsProxy(e)).value));
+}
+
+class PolygonCompleteEventListenerAdder extends EventListenerAdder {
+  PolygonCompleteEventListenerAdder(jsw.IsJsProxy _instance, String _eventName) : super(_instance, _eventName);
+
+  void add(void handler(Polygon polygon)) { super.add((e) => handler(e.map((e) => new Polygon.fromJsProxy(e)).value)); }
+  MapsEventListenerRegistration addTemporary(void handler(Polygon polygon)) => super.addTemporary((e) => handler(e.map((e) => new Polygon.fromJsProxy(e)).value));
+}
+
+class PolylineCompleteEventListenerAdder extends EventListenerAdder {
+  PolylineCompleteEventListenerAdder(jsw.IsJsProxy _instance, String _eventName) : super(_instance, _eventName);
+
+  void add(void handler(Polyline polyline)) { super.add((e) => handler(e.map((e) => new Polyline.fromJsProxy(e)).value)); }
+  MapsEventListenerRegistration addTemporary(void handler(Polyline polyline)) => super.addTemporary((e) => handler(e.map((e) => new Polyline.fromJsProxy(e)).value));
+}
+
+class RectangleCompleteEventListenerAdder extends EventListenerAdder {
+  RectangleCompleteEventListenerAdder(jsw.IsJsProxy _instance, String _eventName) : super(_instance, _eventName);
+
+  void add(void handler(Rectangle rectangle)) { super.add((e) => handler(e.map((e) => new Rectangle.fromJsProxy(e)).value)); }
+  MapsEventListenerRegistration addTemporary(void handler(Rectangle rectangle)) => super.addTemporary((e) => handler(e.map((e) => new Rectangle.fromJsProxy(e)).value));
+}
+

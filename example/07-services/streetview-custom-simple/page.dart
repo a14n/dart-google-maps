@@ -1,5 +1,6 @@
 import 'dart:html';
 import 'package:js/js.dart' as js;
+import 'package:google_maps/optional.dart';
 import 'package:google_maps/jswrap.dart' as jsw;
 import 'package:google_maps/gmaps.dart';
 
@@ -47,7 +48,7 @@ StreetViewPanoramaData getCustomPanorama(String pano) { // TODO bad parameters
         // The heading in degrees at the origin of the panorama
         // tile set.
         ..centerHeading = 105
-        ..$.getTileUrl = new jsw.Callback.many(getCustomPanoramaTileUrl)
+        ..$.getTileUrl = new jsw.Callback.many((Option<String> pano, Option<num> tileZoom, Option<num> tileX, Option<num> tileY) => getCustomPanoramaTileUrl(pano.value, tileZoom.value, tileX.value, tileY.value))
       )
     );
   }

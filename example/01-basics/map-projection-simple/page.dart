@@ -1,6 +1,7 @@
 import 'dart:html' hide Point;
 import 'dart:math' as Math;
 import 'package:js/js.dart' as js;
+import 'package:google_maps/optional.dart';
 import 'package:google_maps/jswrap.dart' as jsw;
 import 'package:google_maps/gmaps.dart';
 
@@ -48,18 +49,18 @@ class GallPetersProjection extends Projection {
 
   // TODO make a constructor with optionals
   GallPetersProjection() : super() {
-    $.fromLatLngToPoint = new jsw.Callback.many((js.Proxy latLng, [js.Proxy point]) {
+    $.fromLatLngToPoint = new jsw.Callback.many((Option<js.Proxy> latLng, [Option<js.Proxy> point]) {
       if (?point) {
-        return _fromLatLngToPoint(new LatLng.fromJsProxy(latLng), new Point.fromJsProxy(point));
+        return _fromLatLngToPoint(latLng.map((e) => new LatLng.fromJsProxy(e)).value, point.map((e) => new Point.fromJsProxy(e)).value);
       } else {
-        return _fromLatLngToPoint(new LatLng.fromJsProxy(latLng));
+        return _fromLatLngToPoint(latLng.map((e) => new LatLng.fromJsProxy(e)).value);
       }
     });
-    $.fromPointToLatLng = new jsw.Callback.many((js.Proxy pixel, [bool nowrap]) {
+    $.fromPointToLatLng = new jsw.Callback.many((Option<js.Proxy> pixel, [Option<bool> nowrap]) {
       if (?nowrap) {
-        return _fromPointToLatLng(new Point.fromJsProxy(pixel), nowrap);
+        return _fromPointToLatLng(pixel.map((e) => new Point.fromJsProxy(e)).value, nowrap.value);
       } else {
-        return _fromPointToLatLng(new Point.fromJsProxy(pixel));
+        return _fromPointToLatLng(pixel.map((e) => new Point.fromJsProxy(e)).value);
       }
     });
   }

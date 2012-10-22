@@ -2,6 +2,7 @@ library gmaps;
 
 import 'dart:html' as html;
 import 'package:js/js.dart' as js;
+import 'optional.dart';
 import 'jswrap.dart' as jsw;
 
 // utility to get js.Proxy even if out of scope
@@ -735,7 +736,7 @@ class PolygonOptions extends jsw.IsJsProxy {
 }
 
 class PolyMouseEvent extends MouseEvent {
-  PolyMouseEvent.wrap(NativeEvent e) : super.wrap(e);
+  PolyMouseEvent.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   num get edge => $.edge.value;
   num get path => $.path.value;
@@ -930,7 +931,7 @@ class Geocoder extends jsw.IsJsProxy {
   Geocoder() : super.newInstance(maps.Geocoder);
 
   void geocode(GeocoderRequest request, void callback(List<GeocoderResult> results, GeocoderStatus status)) {
-    $.geocode(request, new jsw.Callback.once((results, status) => callback(new jsw.JsList<GeocoderResult>.fromJsProxy(results, (e) => new GeocoderResult.fromJsProxy(e)), GeocoderStatus.find(status))));
+    $.geocode(request, new jsw.Callback.once((Option<js.Proxy> results, Option<js.Proxy> status) => callback(results.map((e) => new jsw.JsList<GeocoderResult>.fromJsProxy(e, (e) => new GeocoderResult.fromJsProxy(e))).value, status.map(GeocoderStatus.find).value)));
   }
 }
 
@@ -1053,7 +1054,7 @@ class DirectionsService extends jsw.IsJsProxy {
   DirectionsService() : super.newInstance(maps.DirectionsService);
 
   void route(DirectionsRequest request, void callback(DirectionsResult results, DirectionsStatus status)) {
-    $.route(request, new jsw.Callback.once((results, status) => callback(new DirectionsResult.fromJsProxy(results), DirectionsStatus.find(status))));
+    $.route(request, new jsw.Callback.once((Option<js.Proxy> results, Option<js.Proxy> status) => callback(results.map(DirectionsResult.INSTANCIATOR).value, status.map(DirectionsStatus.find).value)));
   }
 }
 
@@ -1308,10 +1309,10 @@ class ElevationService extends jsw.IsJsProxy {
   ElevationService() : super.newInstance(maps.ElevationService);
 
   void getElevationAlongPath(PathElevationRequest request, void callback(List<ElevationResult> results, ElevationStatus status)) {
-    $.getElevationAlongPath(request, new jsw.Callback.once((results, status) => callback(new jsw.JsList<ElevationResult>.fromJsProxy(results, (e) => new ElevationResult.fromJsProxy(e)), ElevationStatus.find(status))));
+    $.getElevationAlongPath(request, new jsw.Callback.once((Option<js.proxy> results, Option<js.proxy> status) => callback(results.map((e) => new jsw.JsList<ElevationResult>.fromJsProxy(e, (e) => new ElevationResult.fromJsProxy(e))).value, status.map(ElevationStatus.find).value)));
   }
   void getElevationForLocations(LocationElevationRequest request, void callback(List<ElevationResult> results, ElevationStatus status)) {
-    $.getElevationForLocations(request, new jsw.Callback.once((results, status) => callback(new jsw.JsList<ElevationResult>.fromJsProxy(results, (e) => new ElevationResult.fromJsProxy(e)), ElevationStatus.find(status))));
+    $.getElevationForLocations(request, new jsw.Callback.once((Option<js.proxy> results, Option<js.proxy> status) => callback(results.map((e) => new jsw.JsList<ElevationResult>.fromJsProxy(e, (e) => new ElevationResult.fromJsProxy(e))).value, status.map(ElevationStatus.find).value)));
   }
 }
 
@@ -1353,11 +1354,13 @@ class MaxZoomService extends jsw.IsJsProxy {
   MaxZoomService() : super.newInstance(maps.MaxZoomService);
 
   void getMaxZoomAtLatLng(LatLng latlng, void callback(MaxZoomResult result)) {
-    $.getMaxZoomAtLatLng(latlng, new jsw.Callback.once((result) => callback(new MaxZoomResult.fromJsProxy(result))));
+    $.getMaxZoomAtLatLng(latlng, new jsw.Callback.once((Option<js.Proxy> result) => callback(result.map(MaxZoomResult.INSTANCIATOR).value)));
   }
 }
 
 class MaxZoomResult extends jsw.IsJsProxy {
+  static final INSTANCIATOR = (js.Proxy jsProxy) => new MaxZoomResult.fromJsProxy(jsProxy);
+
   MaxZoomResult() : super();
   MaxZoomResult.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
@@ -1382,7 +1385,7 @@ class DistanceMatrixService extends jsw.IsJsProxy {
   DistanceMatrixService() : super.newInstance(maps.DistanceMatrixService);
 
   void getDistanceMatrix(DistanceMatrixRequest request, void callback(DistanceMatrixResponse response, DistanceMatrixStatus status)) {
-    $.getDistanceMatrix(request, new jsw.Callback.once((response, status) => callback(new DistanceMatrixResponse.fromJsProxy(response), DistanceMatrixStatus.find(status))));
+    $.getDistanceMatrix(request, new jsw.Callback.once((Option<js.Proxy> response, Option<js.Proxy> status) => callback(response.map(DistanceMatrixResponse.INSTANCIATOR).value, status.map(DistanceMatrixStatus.find).value)));
   }
 }
 
@@ -1409,6 +1412,8 @@ class DistanceMatrixRequest extends jsw.IsJsProxy {
 }
 
 class DistanceMatrixResponse extends jsw.IsJsProxy {
+  static final INSTANCIATOR = (js.Proxy jsProxy) => new DistanceMatrixResponse.fromJsProxy(jsProxy);
+
   DistanceMatrixResponse() : super();
   DistanceMatrixResponse.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
@@ -1533,7 +1538,7 @@ class ImageMapTypeEvents {
 class ImageMapTypeOptions extends jsw.IsJsProxy {
   set alt(String alt) => $.alt = alt;
   // TODO report wtf arg
-  set getTileUrl(String callback(Point point, num zoomLevel)) => $.getTileUrl = new jsw.Callback.many((js.Proxy point, num zoomLevel, [Object wtf]) => callback(new Point.fromJsProxy(point), zoomLevel));
+  set getTileUrl(String callback(Point point, num zoomLevel)) => $.getTileUrl = new jsw.Callback.many((Option<js.Proxy> point, Option<num> zoomLevel, [Option<Object> wtf]) => callback(point.map(Point.INSTANCIATOR).value, zoomLevel.value));
   set maxZoom(num maxZoom) => $.maxZoom = maxZoom;
   set minZoom(num minZoom) => $.minZoom = minZoom;
   set name(String name) => $.name = name;
@@ -1711,9 +1716,9 @@ class FusionTablesPolylineOptions extends jsw.IsJsProxy {
   set strokeWeight(num strokeWeight) => $.strokeWeight = strokeWeight;
 }
 
-class FusionTablesMouseEvent extends NativeEvent {
+class FusionTablesMouseEvent extends jsw.IsJsProxy {
   FusionTablesMouseEvent();
-  FusionTablesMouseEvent.wrap(NativeEvent e) : super.fromIsJsProxy(e);
+  FusionTablesMouseEvent.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   String get infoWindowHtml => $.infoWindowHtml.value;
   LatLng get latLng => $.latLng.map(LatLng.INSTANCIATOR).value;
@@ -1791,9 +1796,9 @@ class KmlLayerStatus extends jsw.IsEnum<String> {
   bool operator ==(Object other) => value == (other is KmlLayerStatus ? (other as KmlLayerStatus).value : other);
 }
 
-class KmlMouseEvent extends NativeEvent {
+class KmlMouseEvent extends jsw.IsJsProxy {
   KmlMouseEvent();
-  KmlMouseEvent.wrap(NativeEvent e) : super.fromIsJsProxy(e);
+  KmlMouseEvent.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   KmlFeatureData get featureData => $.featureData.map(KmlFeatureData.INSTANCIATOR).value;
   LatLng get latLng => $.latLng.map(LatLng.INSTANCIATOR).value;
@@ -1852,7 +1857,7 @@ class StreetViewPanorama extends MVCObject {
   StreetViewPov get pov => $.getPov().map(StreetViewPov.INSTANCIATOR).value;
   bool get visible => $.getVisible().value;
   void registerPanoProvider(StreetViewPanoramaData provider(String pano)) {
-    $.registerPanoProvider(new jsw.Callback.many(provider));
+    $.registerPanoProvider(new jsw.Callback.many((Option<String> pano) => provider(pano.value)));
   }
   set pano(String pano) => $.setPano(pano);
   set position(LatLng latLng) => $.setPosition(latLng);
@@ -1890,7 +1895,7 @@ class StreetViewPanoramaOptions extends jsw.IsJsProxy {
   set panControl(bool panControl) => $.panControl = panControl;
   set panControlOptions(PanControlOptions panControlOptions) => $.panControlOptions = panControlOptions;
   set pano(String pano) => $.pano = pano;
-  set panoProvider(StreetViewPanoramaData provider(String pano)) => $.panoProvider = new jsw.Callback.many(provider);
+  set panoProvider(StreetViewPanoramaData provider(String pano)) => $.panoProvider = new jsw.Callback.many((Option<String> pano) => provider(pano.value));
   set position(LatLng position) => $.position = position;
   set pov(StreetViewPov pov) => $.pov = pov;
   set scrollwheel(bool scrollwheel) => $.scrollwheel = scrollwheel;
@@ -1932,6 +1937,8 @@ class StreetViewPov extends jsw.IsJsProxy {
 }
 
 class StreetViewPanoramaData extends jsw.IsJsProxy {
+  static final INSTANCIATOR = (js.Proxy jsProxy) => new StreetViewPanoramaData.fromJsProxy(jsProxy);
+
   StreetViewPanoramaData() : super();
   StreetViewPanoramaData.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
@@ -1978,10 +1985,10 @@ class StreetViewService extends jsw.IsJsProxy {
   StreetViewService() : super.newInstance(maps.StreetViewService);
 
   void getPanoramaById(String pano, void callback(StreetViewPanoramaData streetViewPanoramaData, StreetViewStatus streetViewStatus)) {
-    $.getPanoramaById(pano, new jsw.Callback.once((streetViewPanoramaData, streetViewStatus) => callback(new StreetViewPanoramaData.fromJsProxy(streetViewPanoramaData), StreetViewStatus.find(streetViewStatus))));
+    $.getPanoramaById(pano, new jsw.Callback.once((Option<StreetViewPanoramaData> streetViewPanoramaData, Option<StreetViewStatus> streetViewStatus) => callback(streetViewPanoramaData.map(StreetViewPanoramaData.INSTANCIATOR).value, streetViewStatus.map(StreetViewStatus.find).value)));
   }
   void getPanoramaByLocation(LatLng latlng, num radius, void callback(StreetViewPanoramaData streetViewPanoramaData, StreetViewStatus streetViewStatus)) {
-    $.getPanoramaByLocation(latlng, radius, new jsw.Callback.once((streetViewPanoramaData, streetViewStatus) => callback(new StreetViewPanoramaData.fromJsProxy(streetViewPanoramaData), StreetViewStatus.find(streetViewStatus))));
+    $.getPanoramaByLocation(latlng, radius, new jsw.Callback.once((Option<StreetViewPanoramaData> streetViewPanoramaData, Option<StreetViewStatus> streetViewStatus) => callback(streetViewPanoramaData.map(StreetViewPanoramaData.INSTANCIATOR).value, streetViewStatus.map(StreetViewStatus.find).value)));
   }
 }
 
@@ -2008,27 +2015,26 @@ class MapsEventListener extends jsw.IsJsProxy {
 class NativeEvent extends jsw.IsJsProxy {
   NativeEvent() : super();
   NativeEvent.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
-  NativeEvent.fromIsJsProxy(jsw.IsJsProxy isJsProxy) : super.fromIsJsProxy(isJsProxy);
 }
 
 class Events {
-  static MapsEventListener addDomListener(Object instance, String eventName, handler(NativeEvent e), [bool capture]) {
-    final callback = new jsw.Callback.many(([arg1]) => handler(?arg1 ? new NativeEvent.fromJsProxy(arg1) : null));
+  static MapsEventListener addDomListener(Object instance, String eventName, Function handler, [bool capture]) {
+    final callback = new jsw.Callback.many(handler);
     final instanciator = (js.Proxy jsProxy) => new MapsEventListener.fromJsProxy(jsProxy, () => callback.dispose());
     return new jsw.IsJsProxy.fromJsProxy(maps.event).$.addDomListener(instance, eventName, callback, capture).map(instanciator).value;
   }
-  static MapsEventListener addDomListenerOnce(Object instance, String eventName, handler(NativeEvent e), [bool capture]) {
-    final callback = new jsw.Callback.once(([arg1]) => handler(?arg1 ? new NativeEvent.fromJsProxy(arg1) : null));
+  static MapsEventListener addDomListenerOnce(Object instance, String eventName, Function handler, [bool capture]) {
+    final callback = new jsw.Callback.once(handler);
     final instanciator = (js.Proxy jsProxy) => new MapsEventListener.fromJsProxy(jsProxy);
     return new jsw.IsJsProxy.fromJsProxy(maps.event).$.addDomListenerOnce(instance, eventName, callback, capture).map(instanciator).value;
   }
-  static MapsEventListener addListener(jsw.IsJsProxy instance, String eventName, handler(NativeEvent e)) {
-    final callback = new jsw.Callback.many(([arg1]) => handler(?arg1 ? new NativeEvent.fromJsProxy(arg1) : null));
+  static MapsEventListener addListener(jsw.IsJsProxy instance, String eventName, Function handler) {
+    final callback = new jsw.Callback.many(handler);
     final instanciator = (js.Proxy jsProxy) => new MapsEventListener.fromJsProxy(jsProxy, () => callback.dispose());
     return new jsw.IsJsProxy.fromJsProxy(maps.event).$.addListener(instance, eventName, callback).map(instanciator).value;
   }
-  static MapsEventListener addListenerOnce(jsw.IsJsProxy instance, String eventName, handler(NativeEvent e)) {
-    final callback = new jsw.Callback.once(([arg1]) => handler(?arg1 ? new NativeEvent.fromJsProxy(arg1) : null));
+  static MapsEventListener addListenerOnce(jsw.IsJsProxy instance, String eventName, Function handler) {
+    final callback = new jsw.Callback.once(handler);
     final instanciator = (js.Proxy jsProxy) => new MapsEventListener.fromJsProxy(jsProxy);
     return new jsw.IsJsProxy.fromJsProxy(maps.event).$.addListenerOnce(instance, eventName, callback).map(instanciator).value;
   }
@@ -2049,9 +2055,9 @@ class Events {
   }
 }
 
-class MouseEvent extends NativeEvent {
-  MouseEvent();
-  MouseEvent.wrap(NativeEvent e) : super.fromIsJsProxy(e);
+class MouseEvent extends jsw.IsJsProxy {
+  MouseEvent() : super();
+  MouseEvent.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   LatLng get latLng => $.latLng.map(LatLng.INSTANCIATOR).value;
 }
@@ -2145,43 +2151,36 @@ class MVCArray<E> extends MVCObject {
   jsw.Transformater _tranform;
 
   MVCArray([List<E> array, jsw.Transformater transform]) : super.newInstance(maps.MVCArray, [array]) {
-    _tranform = transform;
+    _tranform = ?transform ? transform : ((e) => e);
   }
   MVCArray.fromJsProxy(js.Proxy jsProxy, [jsw.Transformater transform]) : super.fromJsProxy(jsProxy) {
-    _tranform = transform;
+    _tranform = ?transform ? transform : ((e) => e);
   }
 
   void clear() { $.clear(); }
   void forEach(void callback(E o, num index)) {
-    $.forEach(new jsw.Callback.once((o, index) => callback(_mayWrap(o), index)));
+    $.forEach(new jsw.Callback.once((Option<Object> o, Option<num> index) => callback(o.map(_tranform).value, index.value)));
   }
-  List<E> getArray() => $.getArray().map((js.Proxy jsProxy) => new jsw.JsList<E>.fromJsProxy(jsProxy, _mayWrap)).value;
-  E getAt(num i) => _mayWrap($.getAt(i).value);
+  List<E> getArray() => $.getArray().map((js.Proxy jsProxy) => new jsw.JsList<E>.fromJsProxy(jsProxy, _tranform)).value;
+  E getAt(num i) => $.getAt(i).map(_tranform).value;
   num get length => $.getLength().value;
   void insertAt(num i, E elem) { $.insertAt(i, elem); }
-  E pop() => _mayWrap($.pop().value);
+  E pop() => $.pop().map(_tranform).value;
   num push(E elem) => $.push(elem).value;
-  E removeAt(num i) => _mayWrap($.removeAt(i).value);
+  E removeAt(num i) => $.removeAt(i).map(_tranform).value;
   void setAt(num i, E elem) { $.setAt(i, elem); }
-
-  E _mayWrap(Object o) {
-    if (_tranform !== null && o != null && o is js.Proxy) {
-      return _tranform(o);
-    }
-    return o;
-  }
 
   // TODO handle events on this Object ; need to deeply refactor Events...
 }
 
-class NativeEventListenerAdder {
+class EventListenerAdder {
   final jsw.IsJsProxy _instance;
   final String _eventName;
 
-  NativeEventListenerAdder(jsw.IsJsProxy this._instance, String this._eventName);
+  EventListenerAdder(jsw.IsJsProxy this._instance, String this._eventName);
 
-  void add(handler(NativeEvent e)) { Events.addListener(_instance, _eventName, handler); }
-  MapsEventListenerRegistration addTemporary(handler(NativeEvent e)) => new MapsEventListenerRegistration._(jsw.retain(Events.addListener(_instance, _eventName, handler)));
+  void add(Function handler) { Events.addListener(_instance, _eventName, handler); }
+  MapsEventListenerRegistration addTemporary(Function handler) => new MapsEventListenerRegistration._(jsw.retain(Events.addListener(_instance, _eventName, handler)));
 }
 
 class MapsEventListenerRegistration {
@@ -2196,38 +2195,45 @@ class MapsEventListenerRegistration {
   }
 }
 
-class NoArgsEventListenerAdder extends NativeEventListenerAdder {
+class NoArgsEventListenerAdder extends EventListenerAdder {
   NoArgsEventListenerAdder(jsw.IsJsProxy _instance, String _eventName) : super(_instance, _eventName);
 
-  void add(void handler()) => super.add((e) => handler());
-  MapsEventListenerRegistration addTemporary(void handler()) => super.addTemporary((e) => handler());
+  void add(void handler()) => super.add(() => handler());
+  MapsEventListenerRegistration addTemporary(void handler()) => super.addTemporary(() => handler());
 }
 
-class MouseEventListenerAdder extends NativeEventListenerAdder {
+class NativeEventListenerAdder extends EventListenerAdder {
+  NativeEventListenerAdder(jsw.IsJsProxy _instance, String _eventName) : super(_instance, _eventName);
+
+  void add(void handler(MouseEvent e)) { super.add((e) => handler(e.map((e) => new NativeEvent.fromJsProxy(e)).value)); }
+  MapsEventListenerRegistration addTemporary(void handler(NativeEvent e)) => super.addTemporary((e) => handler(e.map((e) => new NativeEvent.fromJsProxy(e)).value));
+}
+
+class MouseEventListenerAdder extends EventListenerAdder {
   MouseEventListenerAdder(jsw.IsJsProxy _instance, String _eventName) : super(_instance, _eventName);
 
-  void add(void handler(MouseEvent e)) { super.add((e) => handler(new MouseEvent.wrap(e))); }
-  MapsEventListenerRegistration addTemporary(void handler(MouseEvent e)) => super.addTemporary((e) => handler(new MouseEvent.wrap(e)));
+  void add(void handler(MouseEvent e)) { super.add((e) => handler(e.map((e) => new MouseEvent.fromJsProxy(e)).value)); }
+  MapsEventListenerRegistration addTemporary(void handler(MouseEvent e)) => super.addTemporary((e) => handler(e.map((e) => new MouseEvent.fromJsProxy(e)).value));
 }
 
-class PolyMouseEventListenerAdder extends NativeEventListenerAdder {
+class PolyMouseEventListenerAdder extends EventListenerAdder {
   PolyMouseEventListenerAdder(jsw.IsJsProxy _instance, String _eventName) : super(_instance, _eventName);
 
-  void add(void handler(PolyMouseEvent e)) { super.add((e) => handler(new PolyMouseEvent.wrap(e))); }
-  MapsEventListenerRegistration addTemporary(void handler(PolyMouseEvent e)) => super.addTemporary((e) => handler(new PolyMouseEvent.wrap(e)));
+  void add(void handler(PolyMouseEvent e)) { super.add((e) => handler(e.map((e) => new PolyMouseEvent.fromJsProxy(e)).value)); }
+  MapsEventListenerRegistration addTemporary(void handler(PolyMouseEvent e)) => super.addTemporary((e) => handler(e.map((e) => new PolyMouseEvent.fromJsProxy(e)).value));
 }
 
-class FusionTablesMouseEventListenerAdder extends NativeEventListenerAdder {
+class FusionTablesMouseEventListenerAdder extends EventListenerAdder {
   FusionTablesMouseEventListenerAdder(jsw.IsJsProxy _instance, String _eventName) : super(_instance, _eventName);
 
-  void add(void handler(FusionTablesMouseEvent e)) { super.add((e) => handler(new FusionTablesMouseEvent.wrap(e))); }
-  MapsEventListenerRegistration addTemporary(void handler(FusionTablesMouseEvent e)) => super.addTemporary((e) => handler(new FusionTablesMouseEvent.wrap(e)));
+  void add(void handler(FusionTablesMouseEvent e)) { super.add((e) => handler(e.map((e) => new FusionTablesMouseEvent.fromJsProxy(e)).value)); }
+  MapsEventListenerRegistration addTemporary(void handler(FusionTablesMouseEvent e)) => super.addTemporary((e) => handler(e.map((e) => new FusionTablesMouseEvent.fromJsProxy(e)).value));
 }
 
-class KmlMouseEventListenerAdder extends NativeEventListenerAdder {
+class KmlMouseEventListenerAdder extends EventListenerAdder {
   KmlMouseEventListenerAdder(jsw.IsJsProxy _instance, String _eventName) : super(_instance, _eventName);
 
-  void add(void handler(KmlMouseEvent e)) { super.add((e) => handler(new KmlMouseEvent.wrap(e))); }
-  MapsEventListenerRegistration addTemporary(void handler(KmlMouseEvent e)) => super.addTemporary((e) => handler(new KmlMouseEvent.wrap(e)));
+  void add(void handler(KmlMouseEvent e)) { super.add((e) => handler(e.map((e) => new KmlMouseEvent.fromJsProxy(e)).value)); }
+  MapsEventListenerRegistration addTemporary(void handler(KmlMouseEvent e)) => super.addTemporary((e) => handler(e.map((e) => new KmlMouseEvent.fromJsProxy(e)).value));
 }
 

@@ -1,5 +1,6 @@
 import 'dart:html';
 import 'package:js/js.dart' as js;
+import 'package:google_maps/optional.dart';
 import 'package:google_maps/jswrap.dart' as jsw;
 import 'package:google_maps/gmaps.dart';
 
@@ -50,7 +51,7 @@ void main() {
   });
 }
 
-String getCustomPanoramaTileUrl(pano, zoom, tileX, tileY) {
+String getCustomPanoramaTileUrl(String pano, num zoom, num tileX, num tileY) {
   // Return a pano image given the panoID.
   return '${IMAGE_URL}/images/panoReception1024-${zoom}-${tileX}-${tileY}.jpg';
 }
@@ -73,7 +74,7 @@ StreetViewPanoramaData getCustomPanorama(String pano) {
           ..worldSize = new Size(2048, 1024)
           // The heading at the origin of the panorama tile set.
           ..centerHeading = 105
-          ..$.getTileUrl = new jsw.Callback.many(getCustomPanoramaTileUrl)
+          ..$.getTileUrl = new jsw.Callback.many((Option<String> pano, Option<num> tileZoom, Option<num> tileX, Option<num> tileY) => getCustomPanoramaTileUrl(pano.value, tileZoom.value, tileX.value, tileY.value))
         )
       );
     default:

@@ -169,16 +169,19 @@ class Callback extends js.Callback {
   Callback.once(Function f) : super.once(_serializeResult(f));
   Callback.many(Function f) : super.many(_serializeResult(f));
   static _serializeResult(f) => ([arg1, arg2, arg3, arg4]) {
+    // TODO check number of parameter to avoid:"Closure argument mismatch"
+    // for exemple Events.addDomListener(mapDiv, 'click', () { window.alert('DIV clicked'); });
+    // callback has no interest for event param
     if (!?arg1) {
       return _serialize(f());
     } else if (!?arg2) {
-      return _serialize(f(arg1));
+      return _serialize(f(asOption(arg1)));
     } else if (!?arg3) {
-      return _serialize(f(arg1, arg2));
+      return _serialize(f(asOption(arg1), asOption(arg2)));
     } else if (!?arg4) {
-      return _serialize(f(arg1, arg2, arg3));
+      return _serialize(f(asOption(arg1), asOption(arg2), asOption(arg3)));
     } else {
-      return _serialize(f(arg1, arg2, arg3, arg4));
+      return _serialize(f(asOption(arg1), asOption(arg2), asOption(arg3), asOption(arg4)));
     }
   };
 }
