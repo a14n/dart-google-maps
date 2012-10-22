@@ -2148,29 +2148,39 @@ class MVCObject extends jsw.IsJsProxy {
 }
 
 class MVCArray<E> extends MVCObject {
-  jsw.Transformater _tranform;
+  jsw.Transformater _transform;
 
   MVCArray([List<E> array, jsw.Transformater transform]) : super.newInstance(maps.MVCArray, [array]) {
-    _tranform = ?transform ? transform : ((e) => e);
+    _transform = ?transform ? transform : ((e) => e);
   }
   MVCArray.fromJsProxy(js.Proxy jsProxy, [jsw.Transformater transform]) : super.fromJsProxy(jsProxy) {
-    _tranform = ?transform ? transform : ((e) => e);
+    _transform = ?transform ? transform : ((e) => e);
   }
 
   void clear() { $.clear(); }
   void forEach(void callback(E o, num index)) {
-    $.forEach(new jsw.Callback.once((Option<Object> o, Option<num> index) => callback(o.map(_tranform).value, index.value)));
+    $.forEach(new jsw.Callback.once((Option<Object> o, Option<num> index) => callback(o.map(_transform).value, index.value)));
   }
-  List<E> getArray() => $.getArray().map((js.Proxy jsProxy) => new jsw.JsList<E>.fromJsProxy(jsProxy, _tranform)).value;
-  E getAt(num i) => $.getAt(i).map(_tranform).value;
+  List<E> getArray() => $.getArray().map((js.Proxy jsProxy) => new jsw.JsList<E>.fromJsProxy(jsProxy, _transform)).value;
+  E getAt(num i) => $.getAt(i).map(_transform).value;
   num get length => $.getLength().value;
   void insertAt(num i, E elem) { $.insertAt(i, elem); }
-  E pop() => $.pop().map(_tranform).value;
+  E pop() => $.pop().map(_transform).value;
   num push(E elem) => $.push(elem).value;
-  E removeAt(num i) => $.removeAt(i).map(_tranform).value;
+  E removeAt(num i) => $.removeAt(i).map(_transform).value;
   void setAt(num i, E elem) { $.setAt(i, elem); }
 
-  // TODO handle events on this Object ; need to deeply refactor Events...
+  MVCArrayEvents<E> get on => new MVCArrayEvents<E>._(this);
+}
+
+class MVCArrayEvents<E> {
+  final MVCArray<E> _mvcArray;
+
+  MVCArrayEvents._(MVCArray<E> this._mvcArray);
+
+  NumEventListenerAdder get insertAt => new NumEventListenerAdder(_mvcArray, "insert_at");
+  NumAndElementEventListenerAdder<E> get removeAt => new NumAndElementEventListenerAdder<E>(_mvcArray, "remove_at", _mvcArray._transform);
+  NumAndElementEventListenerAdder<E> get setAt => new NumAndElementEventListenerAdder<E>(_mvcArray, "set_at", _mvcArray._transform);
 }
 
 class EventListenerAdder {
@@ -2235,5 +2245,21 @@ class KmlMouseEventListenerAdder extends EventListenerAdder {
 
   void add(void handler(KmlMouseEvent e)) { super.add((e) => handler(e.map((e) => new KmlMouseEvent.fromJsProxy(e)).value)); }
   MapsEventListenerRegistration addTemporary(void handler(KmlMouseEvent e)) => super.addTemporary((e) => handler(e.map((e) => new KmlMouseEvent.fromJsProxy(e)).value));
+}
+
+class NumEventListenerAdder extends EventListenerAdder {
+  NumEventListenerAdder(jsw.IsJsProxy _instance, String _eventName) : super(_instance, _eventName);
+
+  void add(void handler(num number)) { super.add((e) => handler(e.value)); }
+  MapsEventListenerRegistration addTemporary(void handler(num number)) => super.addTemporary((e) => handler(e.value));
+}
+
+class NumAndElementEventListenerAdder<E> extends EventListenerAdder {
+  jsw.Transformater _transform;
+
+  NumAndElementEventListenerAdder(jsw.IsJsProxy _instance, String _eventName, jsw.Transformater this._transform) : super(_instance, _eventName);
+
+  void add(void handler(num number, E e)) { super.add((number, e) => handler(number.value, e.map(_transform).value)); }
+  MapsEventListenerRegistration addTemporary(void handler(num number, E e)) => super.addTemporary((number, e) => handler(number.value, e.map(_transform).value));
 }
 
