@@ -4,6 +4,4 @@ homepage: https://github.com/a14n/dart-google-maps
 version: 1.0.0
 description: With that package you will be able to use Google Maps JavaScript API from Dart scripts.
 dependencies:
-  js:
-    git: https://github.com/dart-lang/js-interop.git
-#  js: '>=0.0.6'
+  js: '>=0.0.6'
