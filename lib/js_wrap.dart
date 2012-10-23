@@ -1,4 +1,4 @@
-library jswrap;
+library js_wrap;
 
 import 'package:js/js.dart' as js;
 import 'optional.dart';

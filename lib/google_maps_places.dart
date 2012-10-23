@@ -3,7 +3,7 @@ library google_maps_places;
 import 'dart:html' as html;
 import 'package:js/js.dart' as js;
 import 'optional.dart';
-import 'jswrap.dart' as jsw;
+import 'js_wrap.dart' as jsw;
 import 'google_maps.dart';
 
 class Autocomplete extends MVCObject {

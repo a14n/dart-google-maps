@@ -3,7 +3,7 @@ library google_maps;
 import 'dart:html' as html;
 import 'package:js/js.dart' as js;
 import 'optional.dart';
-import 'jswrap.dart' as jsw;
+import 'js_wrap.dart' as jsw;
 
 // utility to get js.Proxy even if out of scope
 Dynamic findIn(List elements, Object o) => elements.filter((e) => e == o).reduce(null, (previousValue, e) => (previousValue != null ? previousValue : e));
@@ -1309,10 +1309,10 @@ class ElevationService extends jsw.IsJsProxy {
   ElevationService() : super.newInstance(maps.ElevationService);
 
   void getElevationAlongPath(PathElevationRequest request, void callback(List<ElevationResult> results, ElevationStatus status)) {
-    $.getElevationAlongPath(request, new jsw.Callback.once((Option<js.proxy> results, Option<js.proxy> status) => callback(results.map((e) => new jsw.JsList<ElevationResult>.fromJsProxy(e, (e) => new ElevationResult.fromJsProxy(e))).value, status.map(ElevationStatus.find).value)));
+    $.getElevationAlongPath(request, new jsw.Callback.once((Option<js.Proxy> results, Option<js.Proxy> status) => callback(results.map((e) => new jsw.JsList<ElevationResult>.fromJsProxy(e, (e) => new ElevationResult.fromJsProxy(e))).value, status.map(ElevationStatus.find).value)));
   }
   void getElevationForLocations(LocationElevationRequest request, void callback(List<ElevationResult> results, ElevationStatus status)) {
-    $.getElevationForLocations(request, new jsw.Callback.once((Option<js.proxy> results, Option<js.proxy> status) => callback(results.map((e) => new jsw.JsList<ElevationResult>.fromJsProxy(e, (e) => new ElevationResult.fromJsProxy(e))).value, status.map(ElevationStatus.find).value)));
+    $.getElevationForLocations(request, new jsw.Callback.once((Option<js.Proxy> results, Option<js.Proxy> status) => callback(results.map((e) => new jsw.JsList<ElevationResult>.fromJsProxy(e, (e) => new ElevationResult.fromJsProxy(e))).value, status.map(ElevationStatus.find).value)));
   }
 }
 

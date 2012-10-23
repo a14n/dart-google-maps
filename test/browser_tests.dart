@@ -2,7 +2,7 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-library jswrap_tests;
+library js_wrap_tests;
 
 import 'dart:html';
 import 'dart:json';
@@ -10,7 +10,7 @@ import 'package:unittest/unittest.dart';
 import 'package:unittest/html_config.dart';
 
 import 'package:js/js.dart' as js;
-import 'package:google_maps/jswrap.dart';
+import 'package:google_maps/js_wrap.dart';
 import 'package:google_maps/google_maps.dart';
 
 injectSource(code) {

@@ -1,7 +1,7 @@
 library google_maps_visualization;
 
 import 'package:js/js.dart' as js;
-import 'jswrap.dart' as jsw;
+import 'js_wrap.dart' as jsw;
 import 'google_maps.dart';
 
 class HeatmapLayer extends MVCObject {

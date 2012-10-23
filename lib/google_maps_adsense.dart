@@ -2,7 +2,7 @@ library google_maps_adsense;
 
 import 'dart:html' as html;
 import 'package:js/js.dart' as js;
-import 'jswrap.dart' as jsw;
+import 'js_wrap.dart' as jsw;
 import 'google_maps.dart';
 
 class AdUnit extends MVCObject {
