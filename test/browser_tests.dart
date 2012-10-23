@@ -11,7 +11,7 @@ import 'package:unittest/html_config.dart';
 
 import 'package:js/js.dart' as js;
 import 'package:google_maps/jswrap.dart';
-import 'package:google_maps/gmaps.dart';
+import 'package:google_maps/google_maps.dart';
 
 injectSource(code) {
   final script = new ScriptElement();

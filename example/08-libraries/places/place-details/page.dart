@@ -1,8 +1,8 @@
 import 'dart:html';
 import 'package:js/js.dart' as js;
 import 'package:google_maps/jswrap.dart' as jsw;
-import 'package:google_maps/gmaps.dart';
-import 'package:google_maps/gmaps_places.dart';
+import 'package:google_maps/google_maps.dart';
+import 'package:google_maps/google_maps_places.dart';
 
 void main() {
   js.scoped(() {

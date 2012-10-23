@@ -1,10 +1,10 @@
-library gmaps_places;
+library google_maps_places;
 
 import 'dart:html' as html;
 import 'package:js/js.dart' as js;
 import 'optional.dart';
 import 'jswrap.dart' as jsw;
-import 'gmaps.dart';
+import 'google_maps.dart';
 
 class Autocomplete extends MVCObject {
   Autocomplete(html.InputElement inputField, [AutocompleteOptions opts]) : super.newInstance(maps.places.Autocomplete, [inputField, opts]);

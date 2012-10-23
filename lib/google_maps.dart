@@ -1,4 +1,4 @@
-library gmaps;
+library google_maps;
 
 import 'dart:html' as html;
 import 'package:js/js.dart' as js;

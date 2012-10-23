@@ -1,8 +1,8 @@
-library gmaps_weather;
+library google_maps_weather;
 
 import 'package:js/js.dart' as js;
 import 'jswrap.dart' as jsw;
-import 'gmaps.dart';
+import 'google_maps.dart';
 
 class CloudLayer extends MVCObject {
   CloudLayer() : super.newInstance(maps.weather.CloudLayer);

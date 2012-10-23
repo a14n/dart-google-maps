@@ -2,8 +2,8 @@ import 'dart:html' hide Events;
 import 'package:js/js.dart' as js;
 import 'package:google_maps/optional.dart';
 import 'package:google_maps/jswrap.dart' as jsw;
-import 'package:google_maps/gmaps.dart';
-import 'package:google_maps/gmaps_adsense.dart';
+import 'package:google_maps/google_maps.dart';
+import 'package:google_maps/google_maps_adsense.dart';
 
 final SAMPLE_AD_STYLES = {
   'default': {

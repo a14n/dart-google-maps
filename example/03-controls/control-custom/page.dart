@@ -2,7 +2,7 @@ import 'dart:html' hide Events;
 import 'dart:math';
 import 'package:js/js.dart' as js;
 import 'package:google_maps/jswrap.dart' as jsw;
-import 'package:google_maps/gmaps.dart';
+import 'package:google_maps/google_maps.dart';
 
 GMap map;
 final LatLng chicago = jsw.retain(new LatLng(41.850033, -87.6500523));

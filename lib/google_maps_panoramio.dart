@@ -1,8 +1,8 @@
-library gmaps_panoramio;
+library google_maps_panoramio;
 
 import 'package:js/js.dart' as js;
 import 'jswrap.dart' as jsw;
-import 'gmaps.dart';
+import 'google_maps.dart';
 
 class PanoramioLayer extends MVCObject {
   PanoramioLayer([PanoramioLayerOptions opts]) : super.newInstance(maps.panoramio.PanoramioLayer, [opts]);

@@ -16,7 +16,7 @@ dependencies:
 * add import in your `dart` code :
 
 ```dart
-import 'package:google_maps/gmaps.dart';
+import 'package:google_maps/google_maps.dart';
 ```
 
 * Include the Maps API JavaScript using a `script` tag.
@@ -25,14 +25,32 @@ import 'package:google_maps/gmaps.dart';
 <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 ```
 
+A very simple example : 
+```dart
+import 'dart:html';
+import 'package:js/js.dart' as js;
+import 'package:google_maps/google_maps.dart';
+
+void main() {
+  js.scoped((){
+    final mapOptions = new MapOptions()
+      ..zoom = 8
+      ..center = new LatLng(-34.397, 150.644)
+      ..mapTypeId = MapTypeId.ROADMAP
+      ;
+    final map = new GMap(query("#map_canvas"), mapOptions);
+  });
+}
+```
+
 ## Coverage ##
 The library covers all [Google Maps JavaScript API v3](https://developers.google.com/maps/documentation/javascript/) and its [Libraries](https://developers.google.com/maps/documentation/javascript/libraries).
 To use one or more Google Maps Library : 
 * add import in your `dart` code :
 
 ```dart
-import 'package:google_maps/gmaps-LIBRARY1.dart';
-import 'package:google_maps/gmaps-LIBRARY2.dart';
+import 'package:google_maps/google_maps_LIBRARY1.dart';
+import 'package:google_maps/google_maps_LIBRARY2.dart';
 ```
 
 * Include the Maps API JavaScript using a `script` tag.

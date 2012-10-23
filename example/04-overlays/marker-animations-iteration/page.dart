@@ -1,7 +1,7 @@
 import 'dart:html' hide Animation;
 import 'package:js/js.dart' as js;
 import 'package:google_maps/jswrap.dart' as jsw;
-import 'package:google_maps/gmaps.dart';
+import 'package:google_maps/google_maps.dart';
 
 final berlin = jsw.retain(new LatLng(52.520816, 13.410186));
 final List<LatLng> neighborhoods = [

@@ -1,9 +1,9 @@
-library gmaps_adsense;
+library google_maps_adsense;
 
 import 'dart:html' as html;
 import 'package:js/js.dart' as js;
 import 'jswrap.dart' as jsw;
-import 'gmaps.dart';
+import 'google_maps.dart';
 
 class AdUnit extends MVCObject {
   AdUnit(html.Node container, AdUnitOptions opts) : super.newInstance(maps.adsense.AdUnit, [container, opts]);

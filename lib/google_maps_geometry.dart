@@ -1,8 +1,8 @@
-library gmaps_geometry;
+library google_maps_geometry;
 
 import 'package:js/js.dart' as js;
 import 'jswrap.dart' as jsw;
-import 'gmaps.dart';
+import 'google_maps.dart';
 
 class Encoding {
   static List<LatLng> decodePath(String encodedPath) => new jsw.IsJsProxy.fromJsProxy(maps.geometry.encoding).$.decodePath(encodedPath).map((js.Proxy jsProxy) => new jsw.JsList<LatLng>.fromJsProxy(jsProxy, LatLng.INSTANCIATOR)).value;

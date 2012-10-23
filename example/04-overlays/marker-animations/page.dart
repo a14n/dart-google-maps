@@ -1,7 +1,7 @@
 import 'dart:html' hide Animation;
 import 'package:js/js.dart' as js;
 import 'package:google_maps/jswrap.dart' as jsw;
-import 'package:google_maps/gmaps.dart';
+import 'package:google_maps/google_maps.dart';
 
 final LatLng stockholm = jsw.retain(new LatLng(59.32522, 18.07002));
 final LatLng parliament = jsw.retain(new LatLng(59.327383, 18.06747));

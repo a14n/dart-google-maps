@@ -1,8 +1,8 @@
 import 'dart:html';
 import 'package:js/js.dart' as js;
 import 'package:google_maps/jswrap.dart' as jsw;
-import 'package:google_maps/gmaps.dart';
-import 'package:google_maps/gmaps_panoramio.dart';
+import 'package:google_maps/google_maps.dart';
+import 'package:google_maps/google_maps_panoramio.dart';
 
 class PhotoWidget extends jsw.IsJsProxy {
   PhotoWidget(DivElement div, PhotoRequestOptions photoRequestOptions, PhotoWidgetOptions photoWidgetOptions) : super.newInstance(js.context.panoramio.PhotoWidget, [div, photoRequestOptions, photoWidgetOptions]);
