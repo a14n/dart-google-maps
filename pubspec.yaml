@@ -5,3 +5,4 @@ version: 1.0.0
 description: With that package you will be able to use Google Maps JavaScript API from Dart scripts.
 dependencies:
   js: '>=0.0.6'
+  unittest: { sdk: unittest }
