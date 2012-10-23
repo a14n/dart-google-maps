@@ -1,4 +1,4 @@
-#library("optional");
+library optional;
 
 final NONE = new None._();
 
