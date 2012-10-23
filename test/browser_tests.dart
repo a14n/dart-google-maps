@@ -1,8 +1,4 @@
-// Copyright (c) 2012, the Dart project authors.  Please see the AUTHORS file
-// for details. All rights reserved. Use of this source code is governed by a
-// BSD-style license that can be found in the LICENSE file.
-
-library js_wrap_tests;
+library tests;
 
 import 'dart:html';
 import 'dart:json';
@@ -23,7 +19,7 @@ injectSource(code) {
 main() {
   useHtmlConfiguration();
 
-  test('jsList', () {
+  test('jsList works', () {
     js.scoped(() {
       injectSource('myArray=[];');
       final myArray = new JsList.fromJsProxy(js.context.myArray, null);
@@ -97,7 +93,7 @@ main() {
     });
   });
 
-  test('MVCArray', () {
+  test('MVCArray works', () {
     js.scoped(() {
       final mvcArray = new MVCArray();
       mvcArray.on.insertAt.add((num i) => print("inserted at $i"));
