@@ -539,7 +539,7 @@ void main() {
 
 void toggleHeatmap() {
   js.scoped(() {
-    heatmap.map = heatmap.map !== null ? null : map;
+    heatmap.map = heatmap.map != null ? null : map;
   });
 }
 
@@ -562,7 +562,7 @@ void changeGradient() {
       'rgba(255, 0, 0, 1)'
     ];
     heatmap.options = new HeatmapLayerOptions()
-      ..gradient = heatmap.get('gradient') !== null ? null : gradient
+      ..gradient = heatmap.get('gradient') != null ? null : gradient
     ;
   });
 }
@@ -570,7 +570,7 @@ void changeGradient() {
 void changeRadius() {
   js.scoped(() {
     heatmap.options = new HeatmapLayerOptions()
-      ..radius = heatmap.get('radius') !== null ? null : 20
+      ..radius = heatmap.get('radius') != null ? null : 20
     ;
   });
 }
@@ -578,7 +578,7 @@ void changeRadius() {
 void changeOpacity() {
   js.scoped(() {
     heatmap.options = new HeatmapLayerOptions()
-      ..opacity = heatmap.get('opacity') !== null ? null : 0.2
+      ..opacity = heatmap.get('opacity') != null ? null : 0.2
     ;
   });
 }

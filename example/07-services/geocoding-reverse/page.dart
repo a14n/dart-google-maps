@@ -1,5 +1,4 @@
 import 'dart:html';
-import 'dart:math';
 import 'package:js/js.dart' as js;
 import 'package:google_maps/js_wrap.dart' as jsw;
 import 'package:google_maps/google_maps.dart';
@@ -28,15 +27,15 @@ void codeLatLng() {
   js.scoped(() {
     final input = (query('#latlng') as InputElement).value;
     final latlngStr = input.split(',');
-    final lat = parseDouble(latlngStr[0]);
-    final lng = parseDouble(latlngStr[1]);
+    final lat = double.parse(latlngStr[0]);
+    final lng = double.parse(latlngStr[1]);
     final LatLng latlng = jsw.retain(new LatLng(lat, lng));
     final request = new GeocoderRequest()
       ..location = latlng  // TODO bad variable "latlng" in example code
       ;
     geocoder.geocode(request, (List<GeocoderResult> results, GeocoderStatus status) {
       if (status == GeocoderStatus.OK) {
-        if (results[1] !== null) {
+        if (results[1] != null) {
           map.zoom = 11;
           final marker = new Marker(new MarkerOptions()
             ..position = latlng

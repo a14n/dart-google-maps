@@ -44,7 +44,7 @@ class GMap extends MVCObject {
   Object get mapTypeId {
     final result = $.getMapTypeId().value;
     final mapTypeId = MapTypeId.find(result);
-    if ( mapTypeId !== null ) {
+    if ( mapTypeId != null ) {
       return mapTypeId;
     } else {
       return result;
@@ -339,14 +339,14 @@ class Marker extends MVCObject {
   set draggable(bool draggable) => $.setDraggable(draggable);
   set flat(bool flag) => $.setFlat(flag);
   set icon(Object icon) {
-    if (icon === null || icon is String || icon is MarkerImage) {
+    if (icon == null || icon is String || icon is MarkerImage) {
       $.setIcon(icon);
     } else {
       throw new IllegalArgumentException(icon);
     }
   }
   set map(Object map) {
-    if (map === null || map is GMap || map is StreetViewPanorama) {
+    if (map == null || map is GMap || map is StreetViewPanorama) {
       $.setMap(map);
     } else {
       throw new IllegalArgumentException(map);
@@ -548,7 +548,7 @@ class InfoWindow extends MVCObject {
   InfoWindow.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   void close() { $.close(); }
-  Object get content() {
+  Object get content {
     final result = $.getContent().value;
     if (result is String || result is html.Node) {
       return result;
@@ -900,7 +900,7 @@ class OverlayView extends MVCObject {
   void onAdd() { $.onAdd(); }
   void onRemove() { $.onRemove(); }
   set map(Object map) {
-    if (map === null || map is GMap || map is StreetViewPanorama) {
+    if (map == null || map is GMap || map is StreetViewPanorama) {
       $.setMap(map);
     } else {
       throw new IllegalArgumentException(map);

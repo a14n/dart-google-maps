@@ -14,7 +14,7 @@ void main() {
     map = jsw.retain(new GMap(query("#map_canvas"), mapOptions));
 
     // Try HTML5 geolocation
-    if (window.navigator.geolocation !== null) {
+    if (window.navigator.geolocation != null) {
       window.navigator.geolocation.getCurrentPosition((position) {
         js.scoped(() {
           final pos = new LatLng(position.coords.latitude,

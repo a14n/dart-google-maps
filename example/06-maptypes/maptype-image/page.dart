@@ -13,7 +13,7 @@ final moonTypeOptions = jsw.retain(new ImageMapTypeOptions()
   ..name = 'Moon'
   ..getTileUrl = (Point point, num zoomLevel) {
     final normalizedCoord = getNormalizedCoord(point, zoomLevel);
-    if (normalizedCoord === null) {
+    if (normalizedCoord == null) {
       return null;
     }
     final bound = Math.pow(2, zoomLevel);

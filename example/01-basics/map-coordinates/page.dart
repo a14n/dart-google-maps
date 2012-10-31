@@ -28,7 +28,7 @@ class MercatorProjection {
   const _pixelsPerLonRadian = TILE_SIZE / (2 * Math.PI);
 
   Point fromLatLngToPoint(LatLng latLng, [Point opt_point]) {
-    final point = opt_point === null ? new Point(0, 0) : opt_point;
+    final point = opt_point == null ? new Point(0, 0) : opt_point;
     final origin = _pixelOrigin;
 
     point.x = origin.x + latLng.lng * _pixelsPerLonDegree;

@@ -117,19 +117,19 @@ class USGSOverlay extends OverlayView {
 
   // Note that the visibility property must be a string enclosed in quotes
   void hide() {
-    if (_div !== null) {
+    if (_div != null) {
       _div.style.visibility = 'hidden';
     }
   }
 
   void show() {
-    if (_div !== null) {
+    if (_div != null) {
       _div.style.visibility = 'visible';
     }
   }
 
   void toggle() {
-    if (_div !== null) {
+    if (_div != null) {
       if (_div.style.visibility == 'hidden') {
         show();
       } else {
@@ -140,7 +140,7 @@ class USGSOverlay extends OverlayView {
 
   void toggleDOM() {
     js.scoped(() {
-      if (map !== null) {
+      if (map != null) {
         map = null;
       } else {
         map = _map;

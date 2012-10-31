@@ -19,8 +19,8 @@ final NONE = new None._();
 asOption(value) => value == null ? NONE : new Some._(value);
 
 abstract class Option<T> {
-  abstract Option map(Object transform(T e));
-  abstract T get value;
+  Option map(Object transform(T e));
+  T get value;
 }
 
 class None<T> extends Option<T> {

@@ -24,7 +24,7 @@ void main() {
 void rotate90() {
   js.scoped(() {
     final headingMap = map.heading;
-    final heading = headingMap !== null ? headingMap : 0;
+    final heading = headingMap != null ? headingMap : 0;
     map.heading = heading + 90;
   });
 }
