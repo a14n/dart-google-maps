@@ -135,7 +135,7 @@ class JsList<E> extends JsCollection<E> implements List<E> {
   void add(E value) { $.push(value); }
   void addLast(E value) { $.push.(value); }
   void addAll(Collection<E> collection) { setRange(length, collection.length, collection); }
-  void sort(int compare(E a, E b)) {
+  void sort([Comparator<E> compare = Comparable.compare]) {
     final sortedList = _asList()..sort(compare);
     clear();
     addAll(sortedList);
@@ -172,7 +172,7 @@ class IsEnum<E> {
 
 Object findIn(Object o, List<Object> elements, [Object transform(Object)]) {
   final matchingElements = elements.filter((e) => ((transform != null ? transform(e) : e) == o));
-  if (matchingElements.length === 1) {
+  if (matchingElements.length == 1) {
     return matchingElements.iterator().next();
   } else {
     return null;
