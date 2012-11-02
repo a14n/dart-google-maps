@@ -20,7 +20,7 @@ import 'optional.dart';
 import 'js_wrap.dart' as jsw;
 
 // utility to get js.Proxy even if out of scope
-Dynamic findIn(List elements, Object o) => elements.filter((e) => e == o).reduce(null, (previousValue, e) => (previousValue != null ? previousValue : e));
+dynamic findIn(List elements, Object o) => elements.filter((e) => e == o).reduce(null, (previousValue, e) => (previousValue != null ? previousValue : e));
 
 // js.Proxy for "google.maps"
 final maps = js.retain(js.context.google.maps);
@@ -180,7 +180,7 @@ class MapTypeId extends jsw.IsEnum<String> {
 
 class MapTypeControlOptions extends jsw.IsJsProxy {
   set mapTypeIds(List<Object> mapTypeIds) {
-    if (!mapTypeIds.filter((e) => !(e is String || e is MapTypeId)).isEmpty()) {
+    if (!mapTypeIds.filter((e) => !(e is String || e is MapTypeId)).isEmpty) {
       throw new IllegalArgumentException("some elements are not String or MapTypeId");
     }
     $.mapTypeIds = mapTypeIds;
@@ -822,7 +822,7 @@ class Circle extends MVCObject {
   set editable(bool editable) => $.setEditable(editable);
   set map(GMap map) => $.setMap(map);
   set options(CircleOptions options) => $.setOptions(options);
-  set radius(bool radius) => $.setRadius(radius);
+  set radius(num radius) => $.setRadius(radius);
   set visible(bool visible) => $.setVisible(visible);
 
   CircleEvents get on => new CircleEvents._(this);

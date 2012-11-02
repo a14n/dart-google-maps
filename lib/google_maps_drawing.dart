@@ -22,7 +22,7 @@ class DrawingManager extends MVCObject {
   DrawingManager([DrawingManagerOptions opts]) : super.newInstance(maps.drawing.DrawingManager, [opts]);
   DrawingManager.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  OverlayType get drawingMode => $.getDrawingMode().map(OverlayType.INSTANCIATOR).value;
+  OverlayType get drawingMode => $.getDrawingMode().map(OverlayType.find).value;
   GMap get map => $.getMap().map(GMap.INSTANCIATOR).value;
   set drawingMode(OverlayType drawingMode) => $.setDrawingMode(drawingMode);
   set map(GMap map) => $.setMap(map);
@@ -36,12 +36,12 @@ class DrawingManagerEvents {
 
   DrawingManagerEvents._(DrawingManager this._drawingManager);
 
-  CircleCompleteEventListenerAdder get circleComplete => new FusionTablesMouseEventListenerAdder(_drawingManager, "circlecomplete");
-  MarkerCompleteEventListenerAdder get markerComplete => new FusionTablesMouseEventListenerAdder(_drawingManager, "markercomplete");
-  OverlayCompleteEventListenerAdder get overlayComplete => new FusionTablesMouseEventListenerAdder(_drawingManager, "overlaycomplete");
-  PolygonCompleteEventListenerAdder get polygonComplete => new FusionTablesMouseEventListenerAdder(_drawingManager, "polygoncomplete");
-  PolylineCompleteEventListenerAdder get polylineComplete => new FusionTablesMouseEventListenerAdder(_drawingManager, "polylinecomplete");
-  RectangleCompleteEventListenerAdder get rectangleComplete => new FusionTablesMouseEventListenerAdder(_drawingManager, "rectanglecomplete");
+  CircleCompleteEventListenerAdder get circleComplete => new CircleCompleteEventListenerAdder(_drawingManager, "circlecomplete");
+  MarkerCompleteEventListenerAdder get markerComplete => new MarkerCompleteEventListenerAdder(_drawingManager, "markercomplete");
+  OverlayCompleteEventListenerAdder get overlayComplete => new OverlayCompleteEventListenerAdder(_drawingManager, "overlaycomplete");
+  PolygonCompleteEventListenerAdder get polygonComplete => new PolygonCompleteEventListenerAdder(_drawingManager, "polygoncomplete");
+  PolylineCompleteEventListenerAdder get polylineComplete => new PolylineCompleteEventListenerAdder(_drawingManager, "polylinecomplete");
+  RectangleCompleteEventListenerAdder get rectangleComplete => new RectangleCompleteEventListenerAdder(_drawingManager, "rectanglecomplete");
 }
 
 class DrawingManagerOptions extends jsw.IsJsProxy {
@@ -82,7 +82,7 @@ class OverlayCompleteEvent extends jsw.IsJsProxy {
       throw new Exception("Unsupported result");
     }
   }).value;
-  OverlayType get type => $.type.map(OverlayType.INSTANCIATOR).value;
+  OverlayType get type => $.type.map(OverlayType.find).value;
 }
 
 class OverlayType extends jsw.IsEnum<String> {
@@ -104,8 +104,8 @@ class OverlayType extends jsw.IsEnum<String> {
 class CircleCompleteEventListenerAdder extends EventListenerAdder {
   CircleCompleteEventListenerAdder(jsw.IsJsProxy _instance, String _eventName) : super(_instance, _eventName);
 
-  void add(void handler(Circle circle)) { super.add((e) => handler(e.map((e) => Circle.fromJsProxy(e)).value)); }
-  MapsEventListenerRegistration addTemporary(void handler(Circle circle)) => super.addTemporary((e) => handler(e.map((e) => Circle.fromJsProxy(e)).value));
+  void add(void handler(Circle circle)) { super.add((e) => handler(e.map((e) => new Circle.fromJsProxy(e)).value)); }
+  MapsEventListenerRegistration addTemporary(void handler(Circle circle)) => super.addTemporary((e) => handler(e.map((e) => new Circle.fromJsProxy(e)).value));
 }
 
 class MarkerCompleteEventListenerAdder extends EventListenerAdder {

@@ -24,8 +24,8 @@ class AdUnit extends MVCObject {
   AdUnit.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   String get channelNumber => $.getChannelNumber().value;
-  html.Node get container => $getContainer().value;
-  AdFormat get format => $.getFormat().map(AdFormat.INSTANCIATOR).value;
+  html.Node get container => $.getContainer().value;
+  AdFormat get format => $.getFormat().map(AdFormat.find).value;
   GMap get map => $.getMap().map(GMap.INSTANCIATOR).value;
   ControlPosition get position => $.getPosition().map(ControlPosition.find).value;
   String get publisherId => $.getPublisherId().value;

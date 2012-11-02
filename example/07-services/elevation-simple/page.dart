@@ -43,7 +43,7 @@ void getElevation(MouseEvent e) {
     if (status == ElevationStatus.OK) {
 
       // Retrieve the first result
-      if (!results.isEmpty()) {
+      if (!results.isEmpty) {
 
         // Open an info window indicating the elevation at the clicked position
         infowindow.content = 'The elevation at this point <br>is ${results[0].elevation} meters.';

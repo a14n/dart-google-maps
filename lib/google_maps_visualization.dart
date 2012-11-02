@@ -42,7 +42,7 @@ class HeatmapLayer extends MVCObject {
     if (data != null && list == null) {
       throw new IllegalArgumentException(data);
     }
-    if (!list.filter((e)=> !(e is LatLng || e is WeightedLocation)).isEmpty()) {
+    if (!list.filter((e)=> !(e is LatLng || e is WeightedLocation)).isEmpty) {
       throw new IllegalArgumentException("some elements are not LatLng or WeightedLocation");
     }
     $.setData(data);

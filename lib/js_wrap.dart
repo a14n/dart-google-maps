@@ -79,7 +79,7 @@ class JsIterator<E> implements Iterator<E> {
 
   // Iterator
   E next() => jsList.$[current++].map(instanciator != null ? instanciator : (e) => e).value;
-  bool hasNext() => current < jsList.$.length.value;
+  bool get hasNext => current < jsList.$.length.value;
 }
 
 class JsIterable<E> extends IsJsProxy implements Iterable<E> {
@@ -97,17 +97,18 @@ class JsCollection<E> extends JsIterable<E> implements Collection<E> {
 
   void forEach(void f(E element)) => _asList().forEach(f);
   Collection map(f(E element)) => _asList().map(f);
-  Dynamic reduce(Dynamic initialValue, Dynamic combine(Dynamic previousValue, E element)) => _asList().reduce(initialValue, combine);
+  dynamic reduce(dynamic initialValue, dynamic combine(dynamic previousValue, E element)) => _asList().reduce(initialValue, combine);
   Collection<E> filter(bool f(E element)) => _asList().filter(f);
   bool every(bool f(E element)) => _asList().every(f);
   bool some(bool f(E element)) => _asList().some(f);
-  bool isEmpty() => length == 0;
+  bool get isEmpty => length == 0;
   int get length => $.length.value;
+  bool contains(E element) => _asList().contains(element);
 
   List<E> _asList() {
     final list = new List<E>();
     for (int i = 0; i < length; i++) {
-      list.add(this[i]);
+      list.add($[i]);
     }
     return list;
   }
@@ -129,11 +130,11 @@ class JsList<E> extends JsCollection<E> implements List<E> {
       addAll(nulls);
     }
     if (length > newLength) {
-      throw new UnsupportedOperationException("New length has to be greater than actual length");
+      throw new UnsupportedError("New length has to be greater than actual length");
     }
   }
   void add(E value) { $.push(value); }
-  void addLast(E value) { $.push.(value); }
+  void addLast(E value) { $.push(value); }
   void addAll(Collection<E> collection) { setRange(length, collection.length, collection); }
   void sort([Comparator<E> compare = Comparable.compare]) {
     final sortedList = _asList()..sort(compare);
@@ -145,7 +146,7 @@ class JsList<E> extends JsCollection<E> implements List<E> {
   void clear() { $.splice(0, length); }
   E removeAt(int index) => ($.splice(index, 1).map((proxy) => new JsList.fromJsProxy(proxy, instanciator)).value as JsList<E>)[0];
   E removeLast() => this.$.pop().map(instanciator != null ? instanciator : (e) => e).value;
-  E last() => $[length - 1];
+  E get last => $[length - 1];
   List<E> getRange(int start, int length) => _asList().getRange(start, length);
   void setRange(int start, int length, List<E> from, [int startFrom=0]) {
     final args = [start, 0];

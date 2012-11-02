@@ -110,7 +110,7 @@ class WeatherFeature extends jsw.IsJsProxy {
   WeatherFeature.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   WeatherConditions get current => $.current.map(WeatherConditions.INSTANCIATOR).value;
-  List<WeatherForecast> get forecast => $.forecast.map((js.Proxy jsProxy) => new js.JsList<WeatherForecast>.fromJsProxy(jsProxy, WeatherForecast.INSTANCIATOR)).value;
+  List<WeatherForecast> get forecast => $.forecast.map((js.Proxy jsProxy) => new jsw.JsList<WeatherForecast>.fromJsProxy(jsProxy, WeatherForecast.INSTANCIATOR)).value;
   String get location => $.location.value;
   TemperatureUnit get temperatureUnit => $.temperatureUnit.map(TemperatureUnit.find).value;
   WindSpeedUnit get windSpeedUnit => $.windSpeedUnit.map(WindSpeedUnit.find).value;
