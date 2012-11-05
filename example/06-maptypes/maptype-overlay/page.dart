@@ -31,7 +31,7 @@ class CoordMapType extends MapType {
     return div;
   }
 
-  js.Proxy _getTileFromOtherDocument(Point coord, num zoom, jsw.IsJsProxy ownerDocument) {
+  jsw.IsJsProxy _getTileFromOtherDocument(Point coord, num zoom, jsw.IsJsProxy ownerDocument) {
     final div = new jsw.IsJsProxy.fromJsProxy(ownerDocument.$.createElement("div"))
       ..$.innerHTML = coord.toString()
       ;
