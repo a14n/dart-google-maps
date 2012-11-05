@@ -2086,7 +2086,7 @@ class LatLng extends jsw.IsJsProxy {
   bool equals(LatLng other) => $.equals(other).value;
   num get lat => $.lat().value;
   num get lng => $.lng().value;
-  String toString() => $.noSuchMethod("toString", []).value;
+  String toString() => $.noSuchMethod(new jsw.ProxyInvocationMirror.method("toString", [])).value;
   String toUrlValue([num precision]) => $.toUrlValue(precision).value;
 }
 
@@ -2105,7 +2105,7 @@ class LatLngBounds extends jsw.IsJsProxy {
   bool intersects(LatLngBounds other) => $.intersects(other).value;
   bool isEmpty() => $.isEmpty().value;
   LatLng toSpan() => $.toSpan().map(LatLng.INSTANCIATOR).value;
-  String toString() => $.noSuchMethod("toString", []).value;
+  String toString() => $.noSuchMethod(new jsw.ProxyInvocationMirror.method("toString", [])).value;
   String toUrlValue([num precision]) => $.toUrlValue(precision).value;
   bool union(LatLngBounds other) => $.union(other).value;
 }
@@ -2117,7 +2117,7 @@ class Point extends jsw.IsJsProxy {
   Point.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   bool equals(Point other) => $.equals(other).value;
-  String toString() => $.noSuchMethod("toString", []).value;
+  String toString() => $.noSuchMethod(new jsw.ProxyInvocationMirror.method("toString", [])).value;
 
   num get x => $.x.value;
   set x(num x) => $.x = x;
@@ -2132,7 +2132,7 @@ class Size extends jsw.IsJsProxy {
   Size.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   bool equals(Size other) => $.equals(other).value;
-  String toString() => $.noSuchMethod("toString", []).value;
+  String toString() => $.noSuchMethod(new jsw.ProxyInvocationMirror.method("toString", [])).value;
 
   num get height => $.height.value;
   set height(num height) => $.height = height;

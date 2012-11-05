@@ -17,6 +17,23 @@ library js_wrap;
 import 'package:js/js.dart' as js;
 import 'optional.dart';
 
+class ProxyInvocationMirror extends InvocationMirror {
+  final String memberName;
+  List positionalArguments;
+  final Map<String, dynamic> namedArguments;
+  final bool isMethod;
+  final bool isGetter;
+  final bool isSetter;
+  ProxyInvocationMirror(String this.memberName, List positionalArguments, Map<String, dynamic> this.namedArguments, bool this.isMethod, bool this.isGetter, bool this.isSetter) {
+    this.positionalArguments = positionalArguments != null ? positionalArguments.map(_serialize) : null;
+  }
+  ProxyInvocationMirror.fromInvocationMirror(InvocationMirror invocation) : this(invocation.memberName, invocation.positionalArguments, invocation.namedArguments, invocation.isMethod, invocation.isGetter, invocation.isSetter);
+  ProxyInvocationMirror.method(String memberName, List positionalArguments) : this(memberName, positionalArguments, {}, true, false, false);
+  ProxyInvocationMirror.getter(String memberName) : this(memberName, [], {}, false, true, false);
+  ProxyInvocationMirror.setter(String memberName, dynamic value) : this(memberName, [value], {}, false, false, true);
+  invokeOn(Object receiver) => throw new UnsupportedError("Forbidden");
+}
+
 typedef Object Transformater(Object proxy);
 
 Object _transformIfNotNull(Object o, Transformater onNotNull) {
@@ -35,8 +52,9 @@ class JsOperations {
 
   JsOperations._(js.Proxy this._proxy);
 
-  noSuchMethod(method, args) {
-    final jsResult = _proxy.noSuchMethod(method, args.map(_serialize));
+  noSuchMethod(InvocationMirror invocation) {
+    final proxyInvocation = new ProxyInvocationMirror.fromInvocationMirror(invocation);
+    final jsResult = _proxy.noSuchMethod(proxyInvocation);
     // print("${method}(${args}) => ${jsResult}");
     return asOption(jsResult);
   }
@@ -108,7 +126,7 @@ class JsCollection<E> extends JsIterable<E> implements Collection<E> {
   List<E> _asList() {
     final list = new List<E>();
     for (int i = 0; i < length; i++) {
-      list.add($[i]);
+      list.add($[i].value);
     }
     return list;
   }
@@ -148,12 +166,12 @@ class JsList<E> extends JsCollection<E> implements List<E> {
   E removeLast() => this.$.pop().map(instanciator != null ? instanciator : (e) => e).value;
   E get last => $[length - 1];
   List<E> getRange(int start, int length) => _asList().getRange(start, length);
-  void setRange(int start, int length, List<E> from, [int startFrom=0]) {
+  void setRange(int start, int length, List<E> from, [int startFrom = 0]) {
     final args = [start, 0];
     for(int i = startFrom; i < length; i++) {
       args.add(from[i]);
     }
-    this.$.noSuchMethod("splice", args);
+    this.$.noSuchMethod(new ProxyInvocationMirror.method("splice", args));
   }
   void removeRange(int start, int length) { this.$.splice(start, length); }
   void insertRange(int start, int length, [E initialValue]) {
@@ -161,7 +179,7 @@ class JsList<E> extends JsCollection<E> implements List<E> {
     for (int i = 0; i < length; i++) {
       args.add(initialValue);
     }
-    this.$.noSuchMethod("splice", args);
+    this.$.noSuchMethod(new ProxyInvocationMirror.method("splice", args));
   }
 }
 
