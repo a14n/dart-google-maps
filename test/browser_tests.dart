@@ -43,6 +43,7 @@ main() {
       expect(myArray[0], equals("e0"));
       expect(myArray[1], equals("e1"));
       expect(myArray[2], equals("e2"));
+      expect(myArray.last, equals("e2"));
       // ["e0", "e1", "e2"]
 
       myArray.length = 5;

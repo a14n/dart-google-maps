@@ -164,7 +164,7 @@ class JsList<E> extends JsCollection<E> implements List<E> {
   void clear() { $.splice(0, length); }
   E removeAt(int index) => ($.splice(index, 1).map((proxy) => new JsList.fromJsProxy(proxy, instanciator)).value as JsList<E>)[0];
   E removeLast() => this.$.pop().map(instanciator != null ? instanciator : (e) => e).value;
-  E get last => $[length - 1];
+  E get last => $[length - 1].value;
   List<E> getRange(int start, int length) => _asList().getRange(start, length);
   void setRange(int start, int length, List<E> from, [int startFrom = 0]) {
     final args = [start, 0];
