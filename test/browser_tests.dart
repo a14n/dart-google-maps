@@ -19,10 +19,17 @@ injectSource(code) {
 main() {
   useHtmlConfiguration();
 
+  test('LatLng.toString call js', () {
+    js.scoped(() {
+      final latLng = new LatLng(2, 8);
+      expect(latLng.toString(), equals("(2, 8)"));
+    });
+  });
+
   test('jsList works', () {
     js.scoped(() {
       injectSource('myArray=[];');
-      final myArray = new JsList.fromJsProxy(js.context.myArray, null);
+      final myArray = new JsList<String>.fromJsProxy(js.context.myArray, null);
       expect(myArray.length, equals(0));
       // []
 
