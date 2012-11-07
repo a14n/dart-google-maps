@@ -62,8 +62,5 @@ import 'package:google_maps/google_maps_LIBRARY2.dart';
 ## Examples ##
 Examples found at https://google-developers.appspot.com/maps/documentation/javascript/examples/ are available in a `dart` version in `example` directory.
 
-## Limitations ##
-* Compilation to `javascript` via `dart2js` does not work (yet?) in all case because of a limitation in `dart2js` : `Internal error: Closures inside initializers not implemented`
-
 ## License ##
 Apache 2.0
