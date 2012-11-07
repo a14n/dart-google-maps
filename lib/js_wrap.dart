@@ -31,7 +31,7 @@ class ProxyInvocationMirror extends InvocationMirror {
   ProxyInvocationMirror.method(String memberName, List positionalArguments) : this(memberName, positionalArguments, {}, true, false, false);
   ProxyInvocationMirror.getter(String memberName) : this(memberName, [], {}, false, true, false);
   ProxyInvocationMirror.setter(String memberName, dynamic value) : this(memberName, [value], {}, false, false, true);
-  invokeOn(Object receiver) => throw new UnsupportedError("Forbidden");
+  invokeOn(Object receiver) { throw new UnsupportedError("Forbidden"); }
 }
 
 typedef Object Transformater(Object proxy);
