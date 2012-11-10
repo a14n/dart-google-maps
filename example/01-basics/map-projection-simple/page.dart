@@ -49,20 +49,8 @@ class GallPetersProjection extends Projection {
 
   // TODO make a constructor with optionals
   GallPetersProjection() : super() {
-    $.fromLatLngToPoint = new jsw.Callback.many((Option<js.Proxy> latLng, [Option<js.Proxy> point]) {
-      if (?point) {
-        return _fromLatLngToPoint(latLng.map((e) => new LatLng.fromJsProxy(e)).value, point.map((e) => new Point.fromJsProxy(e)).value);
-      } else {
-        return _fromLatLngToPoint(latLng.map((e) => new LatLng.fromJsProxy(e)).value);
-      }
-    });
-    $.fromPointToLatLng = new jsw.Callback.many((Option<js.Proxy> pixel, [Option<bool> nowrap]) {
-      if (?nowrap) {
-        return _fromPointToLatLng(pixel.map((e) => new Point.fromJsProxy(e)).value, nowrap.value);
-      } else {
-        return _fromPointToLatLng(pixel.map((e) => new Point.fromJsProxy(e)).value);
-      }
-    });
+    this.set_fromLatLngToPoint(_fromLatLngToPoint);
+    this.set_fromPointToLatLng(_fromPointToLatLng);
   }
 
   Point _fromLatLngToPoint(LatLng latLng, [Point point]) {

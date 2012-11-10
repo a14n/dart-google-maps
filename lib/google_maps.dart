@@ -906,6 +906,10 @@ class OverlayView extends MVCObject {
       throw new IllegalArgumentException(map);
     }
   }
+
+  void set_onAdd(onAdd()) { $.onAdd = new jsw.Callback.many(onAdd); }
+  void set_onRemove(onRemove()) { $.onRemove = new jsw.Callback.many(onRemove); }
+  void set_draw(draw()) { $.draw = new jsw.Callback.many(draw); }
 }
 
 class MapPanes extends jsw.IsJsProxy {
@@ -1527,6 +1531,25 @@ class Projection extends jsw.IsJsProxy {
   Projection() : super();
   Projection.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
+  void set_fromLatLngToPoint(Point fromLatLngToPoint(LatLng latLng, [Point point])) {
+    $.fromLatLngToPoint = new jsw.Callback.many((Option<js.Proxy> latLng, [Option<js.Proxy> point]) {
+      if (?point) {
+        return fromLatLngToPoint(latLng.map((e) => new LatLng.fromJsProxy(e)).value, point.map((e) => new Point.fromJsProxy(e)).value);
+      } else {
+        return fromLatLngToPoint(latLng.map((e) => new LatLng.fromJsProxy(e)).value);
+      }
+    });
+  }
+  void set_fromPointToLatLng(LatLng fromPointToLatLng(Point pixel, [bool nowrap])) {
+    $.fromPointToLatLng = new jsw.Callback.many((Option<js.Proxy> pixel, [Option<bool> nowrap]) {
+      if (?nowrap) {
+        return fromPointToLatLng(pixel.map((e) => new Point.fromJsProxy(e)).value, nowrap.value);
+      } else {
+        return fromPointToLatLng(pixel.map((e) => new Point.fromJsProxy(e)).value);
+      }
+    });
+  }
+
   Point fromLatLngToPoint(LatLng latLng, [Point point]) => $.fromLatLngToPoint(latLng, point).map(Point.INSTANCIATOR).value;
   LatLng fromPointToLatLng(Point pixel, [bool nowrap]) => $.fromPointToLatLng(pixel, nowrap).map(LatLng.INSTANCIATOR).value;
 }
@@ -1988,6 +2011,9 @@ class StreetViewTileData extends jsw.IsJsProxy {
   StreetViewTileData() : super();
   StreetViewTileData.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
+  void set_getTileUrl(String getTileUrl(String pano, num tileZoom, num tileX, num tileY)) {
+    $.getTileUrl = new jsw.Callback.many((Option<String> pano, Option<num> tileZoom, Option<num> tileX, Option<num> tileY) => getTileUrl(pano.value, tileZoom.value, tileX.value, tileY.value));
+  }
   String getTileUrl(String pano, num tileZoom, num tileX, num tileY) => $.getTileUrl(pano, tileZoom, tileX, tileY).value;
 
   set centerHeading(num centerHeading) => $.centerHeading = centerHeading;

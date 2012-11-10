@@ -74,7 +74,7 @@ StreetViewPanoramaData getCustomPanorama(String pano) {
           ..worldSize = new Size(2048, 1024)
           // The heading at the origin of the panorama tile set.
           ..centerHeading = 105
-          ..$.getTileUrl = new jsw.Callback.many((Option<String> pano, Option<num> tileZoom, Option<num> tileX, Option<num> tileY) => getCustomPanoramaTileUrl(pano.value, tileZoom.value, tileX.value, tileY.value))
+          ..set_getTileUrl(getCustomPanoramaTileUrl)
         )
       );
     default:
