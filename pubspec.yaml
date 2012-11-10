@@ -6,3 +6,5 @@ description: With that package you will be able to use Google Maps JavaScript AP
 dependencies:
   js: '>=0.0.9 <1.0.0'
   unittest: { sdk: unittest }
+  meta: { sdk: meta }
+

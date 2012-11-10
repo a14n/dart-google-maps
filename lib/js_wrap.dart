@@ -14,6 +14,7 @@
 
 library js_wrap;
 
+import 'package:meta/meta.dart';
 import 'package:js/js.dart' as js;
 import 'optional.dart';
 
@@ -31,7 +32,7 @@ class ProxyInvocationMirror extends InvocationMirror {
   ProxyInvocationMirror.method(String memberName, List positionalArguments) : this(memberName, positionalArguments, {}, true, false, false);
   ProxyInvocationMirror.getter(String memberName) : this(memberName, [], {}, false, true, false);
   ProxyInvocationMirror.setter(String memberName, dynamic value) : this(memberName, [value], {}, false, false, true);
-  invokeOn(Object receiver) { throw new UnsupportedError("Forbidden"); }
+  @override invokeOn(Object receiver) { throw new UnsupportedError("Forbidden"); }
 }
 
 typedef Object Transformater(Object proxy);
@@ -52,7 +53,7 @@ class JsOperations {
 
   JsOperations._(js.Proxy this._proxy);
 
-  noSuchMethod(InvocationMirror invocation) {
+  @override noSuchMethod(InvocationMirror invocation) {
     final proxyInvocation = new ProxyInvocationMirror.fromInvocationMirror(invocation);
     final jsResult = _proxy.noSuchMethod(proxyInvocation);
     // print("${method}(${args}) => ${jsResult}");
@@ -96,8 +97,8 @@ class JsIterator<E> implements Iterator<E> {
   JsIterator._(JsList<E> this.jsList, Transformater this.instanciator);
 
   // Iterator
-  E next() => jsList.$[current++].map(instanciator != null ? instanciator : (e) => e).value;
-  bool get hasNext => current < jsList.$.length.value;
+  @override E next() => jsList.$[current++].map(instanciator != null ? instanciator : (e) => e).value;
+  @override bool get hasNext => current < jsList.$.length.value;
 }
 
 class JsIterable<E> extends IsJsProxy implements Iterable<E> {
@@ -105,23 +106,23 @@ class JsIterable<E> extends IsJsProxy implements Iterable<E> {
 
   JsIterable.fromJsProxy(js.Proxy proxy, Transformater this.instanciator) : super.fromJsProxy(proxy);
 
-  JsIterator<E> iterator() => new JsIterator._(this, instanciator);
+  @override JsIterator<E> iterator() => new JsIterator._(this, instanciator);
 }
 
 class JsCollection<E> extends JsIterable<E> implements Collection<E> {
   JsCollection.fromJsProxy(js.Proxy proxy, Transformater instanciator) : super.fromJsProxy(proxy, instanciator);
 
-  JsIterator<E> iterator() => new JsIterator._(this, instanciator);
+  @override JsIterator<E> iterator() => new JsIterator._(this, instanciator);
 
-  void forEach(void f(E element)) => _asList().forEach(f);
-  Collection map(f(E element)) => _asList().map(f);
-  dynamic reduce(dynamic initialValue, dynamic combine(dynamic previousValue, E element)) => _asList().reduce(initialValue, combine);
-  Collection<E> filter(bool f(E element)) => _asList().filter(f);
-  bool every(bool f(E element)) => _asList().every(f);
-  bool some(bool f(E element)) => _asList().some(f);
-  bool get isEmpty => length == 0;
-  int get length => $.length.value;
-  bool contains(E element) => _asList().contains(element);
+  @override void forEach(void f(E element)) => _asList().forEach(f);
+  @override Collection map(f(E element)) => _asList().map(f);
+  @override dynamic reduce(dynamic initialValue, dynamic combine(dynamic previousValue, E element)) => _asList().reduce(initialValue, combine);
+  @override Collection<E> filter(bool f(E element)) => _asList().filter(f);
+  @override bool every(bool f(E element)) => _asList().every(f);
+  @override bool some(bool f(E element)) => _asList().some(f);
+  @override bool get isEmpty => length == 0;
+  @override int get length => $.length.value;
+  @override bool contains(E element) => _asList().contains(element);
 
   List<E> _asList() {
     final list = new List<E>();
@@ -136,12 +137,12 @@ class JsList<E> extends JsCollection<E> implements List<E> {
   JsList.fromJsProxy(js.Proxy proxy, Transformater instanciator) : super.fromJsProxy(proxy, instanciator);
 
   // Object
-  String toString() => _asList().toString();
+  @override String toString() => _asList().toString();
 
   // List
-  E operator [](int index) => $[index].map(instanciator != null ? instanciator : (e) => e).value;
-  void operator []=(int index, E value) { $[index] = value; }
-  void set length(int newLength) {
+  @override E operator [](int index) => $[index].map(instanciator != null ? instanciator : (e) => e).value;
+  @override void operator []=(int index, E value) { $[index] = value; }
+  @override void set length(int newLength) {
     final length = length;
     if (length < newLength) {
       final nulls = new List<E>(newLength - length);
@@ -151,30 +152,30 @@ class JsList<E> extends JsCollection<E> implements List<E> {
       throw new UnsupportedError("New length has to be greater than actual length");
     }
   }
-  void add(E value) { $.push(value); }
-  void addLast(E value) { $.push(value); }
-  void addAll(Collection<E> collection) { setRange(length, collection.length, collection); }
-  void sort([Comparator<E> compare = Comparable.compare]) {
+  @override void add(E value) { $.push(value); }
+  @override void addLast(E value) { $.push(value); }
+  @override void addAll(Collection<E> collection) { setRange(length, collection.length, collection); }
+  @override void sort([Comparator<E> compare = Comparable.compare]) {
     final sortedList = _asList()..sort(compare);
     clear();
     addAll(sortedList);
   }
-  int indexOf(E element, [int start = 0]) => _asList().indexOf(element, start);
-  int lastIndexOf(E element, [int start]) => _asList().lastIndexOf(element, start);
-  void clear() { $.splice(0, length); }
-  E removeAt(int index) => ($.splice(index, 1).map((proxy) => new JsList.fromJsProxy(proxy, instanciator)).value as JsList<E>)[0];
-  E removeLast() => this.$.pop().map(instanciator != null ? instanciator : (e) => e).value;
-  E get last => $[length - 1].value;
-  List<E> getRange(int start, int length) => _asList().getRange(start, length);
-  void setRange(int start, int length, List<E> from, [int startFrom = 0]) {
+  @override int indexOf(E element, [int start = 0]) => _asList().indexOf(element, start);
+  @override int lastIndexOf(E element, [int start]) => _asList().lastIndexOf(element, start);
+  @override void clear() { $.splice(0, length); }
+  @override E removeAt(int index) => ($.splice(index, 1).map((proxy) => new JsList.fromJsProxy(proxy, instanciator)).value as JsList<E>)[0];
+  @override E removeLast() => this.$.pop().map(instanciator != null ? instanciator : (e) => e).value;
+  @override E get last => $[length - 1].value;
+  @override List<E> getRange(int start, int length) => _asList().getRange(start, length);
+  @override void setRange(int start, int length, List<E> from, [int startFrom = 0]) {
     final args = [start, 0];
     for(int i = startFrom; i < length; i++) {
       args.add(from[i]);
     }
     this.$.noSuchMethod(new ProxyInvocationMirror.method("splice", args));
   }
-  void removeRange(int start, int length) { this.$.splice(start, length); }
-  void insertRange(int start, int length, [E initialValue]) {
+  @override void removeRange(int start, int length) { this.$.splice(start, length); }
+  @override void insertRange(int start, int length, [E initialValue]) {
     final args = [start, 0];
     for (int i = 0; i < length; i++) {
       args.add(initialValue);
