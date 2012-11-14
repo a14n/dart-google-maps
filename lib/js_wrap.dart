@@ -37,14 +37,6 @@ class ProxyInvocationMirror extends InvocationMirror {
 
 typedef Object Transformater(Object proxy);
 
-Object _transformIfNotNull(Object o, Transformater onNotNull) {
-  if (onNotNull != null && o != null) {
-    return onNotNull(o);
-  } else {
-    return o;
-  }
-}
-
 // transform IsJsProxy to js.Proxy
 Object _serialize(data) =>
     (data is IsJsProxy) ? data._proxy :
