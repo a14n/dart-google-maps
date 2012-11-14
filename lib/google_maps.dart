@@ -1194,9 +1194,8 @@ class DirectionsLeg extends jsw.IsJsProxy {
   DirectionsLeg() : super();
   DirectionsLeg.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  // TODO test return type
-  Distance get arrival_time => $.arrival_time.map(Distance.INSTANCIATOR).value;
-  GDuration get departure_time => $.departure_time.map(GDuration.INSTANCIATOR).value;
+  Time get arrival_time => $.arrival_time.map(Time.INSTANCIATOR).value;
+  Time get departure_time => $.departure_time.map(Time.INSTANCIATOR).value;
   Distance get distance => $.distance.map(Distance.INSTANCIATOR).value;
   GDuration get duration => $.duration.map(GDuration.INSTANCIATOR).value;
   String get end_address => $.end_address.value;
@@ -1254,7 +1253,7 @@ class Time extends jsw.IsJsProxy {
 
   String get text => $.text.value;
   String get time_zone => $.time_zone.value;
-  Date get value => $.value.value;
+  Date get value => $.value.map(jsw.JsDate.INSTANCIATOR).value;
 }
 
 class TransitDetails extends jsw.IsJsProxy {
