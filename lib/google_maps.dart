@@ -1316,7 +1316,6 @@ class TransitVehicle extends jsw.IsJsProxy {
   String get icon => $.icon.value;
   String get local_icon => $.local_icon.value;
   String get name => $.name.value;
-  // TODO check type
   String get type => $.type.value;
 }
 
@@ -1571,7 +1570,7 @@ class ImageMapTypeEvents {
 
 class ImageMapTypeOptions extends jsw.IsJsProxy {
   set alt(String alt) => $.alt = alt;
-  // TODO report wtf arg
+  // REPORTED report wtf arg : http://code.google.com/p/gmaps-api-issues/issues/detail?id=4573
   set getTileUrl(String callback(Point point, num zoomLevel)) => $.getTileUrl = new jsw.Callback.many((Option<js.Proxy> point, Option<num> zoomLevel, [Option<Object> wtf]) => callback(point.map(Point.INSTANCIATOR).value, zoomLevel.value));
   set maxZoom(num maxZoom) => $.maxZoom = maxZoom;
   set minZoom(num minZoom) => $.minZoom = minZoom;
@@ -2105,7 +2104,6 @@ class LatLng extends jsw.IsJsProxy {
   LatLng(num lat, num lng, [bool noWrap]) : super.newInstance(maps.LatLng, [lat, lng, noWrap]);
   LatLng.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  // TODO test if .equals is call on js side
   bool equals(LatLng other) => $.equals(other).value;
   num get lat => $.lat().value;
   num get lng => $.lng().value;

@@ -26,6 +26,16 @@ main() {
     });
   });
 
+  test('LatLng.equals call js', () {
+    js.scoped(() {
+      final latLng1 = new LatLng(2, 8);
+      final latLng2 = new LatLng(2, 8);
+      final latLng3 = new LatLng(2, 9);
+      expect(latLng1.equals(latLng2), isTrue);
+      expect(latLng1.equals(latLng3), isFalse);
+    });
+  });
+
   test('jsList works', () {
     js.scoped(() {
       injectSource('myArray=[];');
