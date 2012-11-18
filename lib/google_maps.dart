@@ -1218,9 +1218,7 @@ class DirectionsStep extends jsw.IsJsProxy {
   String get instructions => $.instructions.value;
   List<LatLng> get path => $.path.map((js.Proxy jsProxy) => new jsw.JsList<LatLng>.fromJsProxy(jsProxy, LatLng.INSTANCIATOR)).value;
   LatLng get start_location => $.start_location.map(LatLng.INSTANCIATOR).value;
-  // TODO check return type
-  DirectionsStep get steps => $.steps.map(DirectionsStep.INSTANCIATOR).value;
-//  List<DirectionsStep> get steps => new js.JsList<DirectionsStep>.fromJsProxy($.getJsRef("steps"), (e) => new DirectionsStep.fromJsProxy(e));
+  List<DirectionsStep> get steps => $.steps.map((js.Proxy jsProxy) => new jsw.JsList<DirectionsStep>.fromJsProxy(jsProxy, DirectionsStep.INSTANCIATOR)).value;
   TransitDetails get transit => $.transit.map(TransitDetails.INSTANCIATOR).value;
   TravelMode get travel_mode => $.travel_mode.map(TravelMode.find).value;
 }
