@@ -63,7 +63,7 @@ class GMap extends MVCObject {
     if (mapTypeId is String || mapTypeId is MapTypeId) {
       $.setMapTypeId(mapTypeId);
     } else {
-      throw new IllegalArgumentException(mapTypeId);
+      throw new UnsupportedError("Parameter must be of type String or MapTypeId");
     }
   }
   set options(MapOptions options) => $.setOptions(options);
@@ -138,7 +138,7 @@ class MapOptions extends jsw.IsJsProxy {
     if (mapTypeId is String || mapTypeId is MapTypeId) {
       $.mapTypeId = mapTypeId;
     } else {
-      throw new IllegalArgumentException(mapTypeId);
+      throw new UnsupportedError("Parameter must be of type String or MapTypeId");
     }
   }
   set maxZoom(num maxZoom) => $.maxZoom = maxZoom;
@@ -181,7 +181,7 @@ class MapTypeId extends jsw.IsEnum<String> {
 class MapTypeControlOptions extends jsw.IsJsProxy {
   set mapTypeIds(List<Object> mapTypeIds) {
     if (!mapTypeIds.filter((e) => !(e is String || e is MapTypeId)).isEmpty) {
-      throw new IllegalArgumentException("some elements are not String or MapTypeId");
+      throw new UnsupportedError("Elements in list must be of type String or MapTypeId");
     }
     $.mapTypeIds = mapTypeIds;
   }
@@ -342,14 +342,14 @@ class Marker extends MVCObject {
     if (icon == null || icon is String || icon is MarkerImage) {
       $.setIcon(icon);
     } else {
-      throw new IllegalArgumentException(icon);
+      throw new UnsupportedError("Parameter must be of type String or MarkerImage");
     }
   }
   set map(Object map) {
     if (map == null || map is GMap || map is StreetViewPanorama) {
       $.setMap(map);
     } else {
-      throw new IllegalArgumentException(map);
+      throw new UnsupportedError("Parameter must be of type GMap or StreetViewPanorama");
     }
   }
   set options(MarkerOptions options) => $.setOptions(options);
@@ -358,7 +358,7 @@ class Marker extends MVCObject {
     if (shadow is String || shadow is MarkerImage) {
       $.setShadow(shadow);
     } else {
-      throw new IllegalArgumentException(shadow);
+      throw new UnsupportedError("Parameter must be of type String or MarkerImage");
     }
   }
   set title(String title) => $.setTitle(title);
@@ -410,14 +410,14 @@ class MarkerOptions extends jsw.IsJsProxy {
     if (icon is String || icon is MarkerImage || icon is Symbol) {
       $.icon = icon;
     } else {
-      throw new IllegalArgumentException(icon);
+      throw new UnsupportedError("Parameter must be of type String, MarkerImage or Symbol");
     }
   }
   set map(Object map) {
     if (map is GMap || map is StreetViewPanorama) {
       $.map = map;
     } else {
-      throw new IllegalArgumentException(map);
+      throw new UnsupportedError("Parameter must be of type GMap or StreetViewPanorama");
     }
   }
   set optimized(bool optimized) => $.optimized = optimized;
@@ -427,7 +427,7 @@ class MarkerOptions extends jsw.IsJsProxy {
     if (shadow is String || shadow is MarkerImage || shadow is Symbol) {
       $.shadow = shadow;
     } else {
-      throw new IllegalArgumentException(shadow);
+      throw new UnsupportedError("Parameter must be of type String, MarkerImage or Symbol");
     }
   }
   set shape(MarkerShape shape) => $.shape = shape;
@@ -499,7 +499,7 @@ class Symbol extends jsw.IsJsProxy {
     if (path is String || path is SymbolPath) {
       $.path = path;
     } else {
-      throw new IllegalArgumentException(path);
+      throw new UnsupportedError("Parameter must be of type String or SymbolPath");
     }
   }
   num get rotation => $.rotation.value;
@@ -562,14 +562,14 @@ class InfoWindow extends MVCObject {
     if (map is GMap || map is StreetViewPanorama) {
       $.open(map, anchor);
     } else {
-      throw new IllegalArgumentException(map);
+      throw new UnsupportedError("Parameter must be of type GMap or StreetViewPanorama");
     }
   }
   set content(Object content) {
     if (content is String || content is html.Node) {
       $.setContent(content);
     } else {
-      throw new IllegalArgumentException(content);
+      throw new UnsupportedError("Parameter must be of type String or Node");
     }
   }
   set options(InfoWindowOptions options) => $.setOptions(options);
@@ -596,7 +596,7 @@ class InfoWindowOptions extends jsw.IsJsProxy {
     if (content is String || content is html.Node) {
       $.content = content;
     } else {
-      throw new IllegalArgumentException(content);
+      throw new UnsupportedError("Parameter must be of type String or Node");
     }
   }
   bool get disableAutoPan => $.disableAutoPan.value;
@@ -628,7 +628,7 @@ class Polyline extends MVCObject {
     if (path is MVCArray<LatLng> || path is List<LatLng>) {
       $.setPath(path);
     } else {
-      throw new IllegalArgumentException(path);
+      throw new UnsupportedError("Parameter must be of type MVCArray<LatLng> or List<LatLng>");
     }
   }
   set visible(bool visible) => $.setVisible(visible);
@@ -661,7 +661,7 @@ class PolylineOptions extends jsw.IsJsProxy {
     if (path is MVCArray<LatLng> || path is List<LatLng>) {
       $.path = path;
     } else {
-      throw new IllegalArgumentException(path);
+      throw new UnsupportedError("Parameter must be of type MVCArray<LatLng> or List<LatLng>");
     }
   }
   set strokeColor(String strokeColor) => $.strokeColor = strokeColor;
@@ -698,14 +698,14 @@ class Polygon extends MVCObject {
     if (path is MVCArray<LatLng> || path is List<LatLng>) {
       $.setPath(path);
     } else {
-      throw new IllegalArgumentException(path);
+      throw new UnsupportedError("Parameter must be of type MVCArray<LatLng> or List<LatLng>");
     }
   }
   set paths(Object paths) {
     if (paths is MVCArray<MVCArray<LatLng>> || paths is MVCArray<LatLng> || paths is List<List<LatLng>> || paths is List<LatLng>) {
       $.setPaths(paths);
     } else {
-      throw new IllegalArgumentException(paths);
+      throw new UnsupportedError("Parameter must be of type MVCArray<MVCArray<LatLng>>, MVCArray<LatLng>, List<List<LatLng>> or List<LatLng>");
     }
   }
   set visible(bool visible) => $.setVisible(visible);
@@ -739,7 +739,7 @@ class PolygonOptions extends jsw.IsJsProxy {
     if (paths is MVCArray<MVCArray<LatLng>> || paths is MVCArray<LatLng> || paths is List<List<LatLng>> || paths is List<LatLng>) {
       $.paths = paths;
     } else {
-      throw new IllegalArgumentException(paths);
+      throw new UnsupportedError("Parameter must be of type MVCArray<MVCArray<LatLng>>, MVCArray<LatLng>, List<List<LatLng>> or List<LatLng>");
     }
   }
   set strokeColor(String strokeColor) => $.strokeColor = strokeColor;
@@ -903,7 +903,7 @@ class OverlayView extends MVCObject {
     if (map == null || map is GMap || map is StreetViewPanorama) {
       $.setMap(map);
     } else {
-      throw new IllegalArgumentException(map);
+      throw new UnsupportedError("Parameter must be of type GMap or StreetViewPanorama");
     }
   }
 
@@ -1083,7 +1083,7 @@ class DirectionsRequest extends jsw.IsJsProxy {
     if (destination is String || destination is LatLng) {
       $.destination = destination;
     } else {
-      throw new IllegalArgumentException(destination);
+      throw new UnsupportedError("Parameter must be of type String or LatLng");
     }
   }
   set optimizeWaypoints(bool optimizeWaypoints) => $.optimizeWaypoints = optimizeWaypoints;
@@ -1091,7 +1091,7 @@ class DirectionsRequest extends jsw.IsJsProxy {
     if (origin is String || origin is LatLng) {
       $.origin = origin;
     } else {
-      throw new IllegalArgumentException(origin);
+      throw new UnsupportedError("Parameter must be of type String or LatLng");
     }
   }
   set provideRouteAlternatives(bool provideRouteAlternatives) => $.provideRouteAlternatives = provideRouteAlternatives;
@@ -1140,7 +1140,7 @@ class DirectionsWaypoint extends jsw.IsJsProxy {
     if (location is String || location is LatLng) {
       $.location = location;
     } else {
-      throw new IllegalArgumentException(location);
+      throw new UnsupportedError("Parameter must be of type String or LatLng");
     }
   }
   set stopover(bool stopover) => $.stopover = stopover;
@@ -1410,14 +1410,14 @@ class DistanceMatrixRequest extends jsw.IsJsProxy {
     if (destinations is List<String> || destinations is List<LatLng>) {
       $.destinations = destinations;
     } else {
-      throw new IllegalArgumentException(destinations);
+      throw new UnsupportedError("Parameter must be of type List<String> or List<LatLng>");
     }
   }
   set origins(Object origins) {
     if (origins is List<String> || origins is List<LatLng>) {
       $.origins = origins;
     } else {
-      throw new IllegalArgumentException(origins);
+      throw new UnsupportedError("Parameter must be of type List<String> or List<LatLng>");
     }
   }
   set region(String region) => $.region = region;

@@ -24,7 +24,7 @@ class Encoding {
     if (path is MVCArray<LatLng> || path is List<LatLng>) {
       return new jsw.IsJsProxy.fromJsProxy(maps.geometry.encoding).$.encodePath(path).value;
     } else {
-      throw new IllegalArgumentException(path);
+      throw new UnsupportedError("Parameter must be of type MVCArray<LatLng> or List<LatLng>");
     }
   }
 }
@@ -34,7 +34,7 @@ class Spherical {
     if (path is MVCArray<LatLng> || path is List<LatLng>) {
       return new jsw.IsJsProxy.fromJsProxy(maps.geometry.spherical).$.computeArea(path, radius).value;
     } else {
-      throw new IllegalArgumentException(path);
+      throw new UnsupportedError("Parameter must be of type MVCArray<LatLng> or List<LatLng>");
     }
   }
   static num computeDistanceBetween(LatLng from, LatLng to, [num radius]) => new jsw.IsJsProxy.fromJsProxy(maps.geometry.spherical).$.computeDistanceBetween(from, to, radius).value;
@@ -43,7 +43,7 @@ class Spherical {
     if (path is MVCArray<LatLng> || path is List<LatLng>) {
       return new jsw.IsJsProxy.fromJsProxy(maps.geometry.spherical).$.computeLength(path, radius).value;
     } else {
-      throw new IllegalArgumentException(path);
+      throw new UnsupportedError("Parameter must be of type MVCArray<LatLng> or List<LatLng>");
     }
   }
   static LatLng computeOffset(LatLng from, num distance, num heading, [num radius]) => new jsw.IsJsProxy.fromJsProxy(maps.geometry.spherical).$.computeOffset(from, distance, heading, radius).map(LatLng.INSTANCIATOR).value;
@@ -51,7 +51,7 @@ class Spherical {
     if (loop is MVCArray<LatLng> || loop is List<LatLng>) {
       return new jsw.IsJsProxy.fromJsProxy(maps.geometry.spherical).$.computeSignedArea(loop, radius).value;
     } else {
-      throw new IllegalArgumentException(loop);
+      throw new UnsupportedError("Parameter must be of type MVCArray<LatLng> or List<LatLng>");
     }
   }
   static LatLng interpolate(LatLng from, LatLng to, num fraction) => new jsw.IsJsProxy.fromJsProxy(maps.geometry.spherical).$.interpolate(from, to, fraction).map(LatLng.INSTANCIATOR).value;
@@ -63,7 +63,7 @@ class Poly {
     if (poly is Polygon || poly is Polyline) {
       return new jsw.IsJsProxy.fromJsProxy(maps.geometry.poly).$.isLocationOnEdge(point, poly, tolerance).value;
     } else {
-      throw new IllegalArgumentException(poly);
+      throw new UnsupportedError("Parameter must be of type Polygon or Polyline");
     }
   }
 }

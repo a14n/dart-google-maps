@@ -116,7 +116,7 @@ class PlaceSearchPagination extends jsw.IsJsProxy {
 class PlacesService extends jsw.IsJsProxy {
   PlacesService(Object attrContainer) : super.newInstance(maps.places.PlacesService, [attrContainer]) {
     if (!(attrContainer is html.DivElement || attrContainer is GMap)) {
-      throw new IllegalArgumentException(attrContainer);
+      throw new UnsupportedError("Parameter must be of type DivElement or GMap");
     }
   }
 
