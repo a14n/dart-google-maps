@@ -886,7 +886,7 @@ class GroundOverlayEvents {
 class GroundOverlayOptions extends jsw.IsJsProxy {
   set clickable(bool clickable) => $.clickable = clickable;
   set map(GMap map) => $.map = map;
-  set opacity(num radius) => $.opacity = opacity;
+  set opacity(num opacity) => $.opacity = opacity;
 }
 
 class OverlayView extends MVCObject {

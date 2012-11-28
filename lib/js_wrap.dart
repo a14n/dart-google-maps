@@ -175,7 +175,7 @@ class JsList<E> extends JsCollection<E> implements List<E> {
   @override E operator [](int index) => $[index].map(instanciator != null ? instanciator : (e) => e).value;
   @override void operator []=(int index, E value) { $[index] = value; }
   @override void set length(int newLength) {
-    final length = length;
+    final length = this.length;
     if (length < newLength) {
       final nulls = new List<E>(newLength - length);
       addAll(nulls);
@@ -197,6 +197,7 @@ class JsList<E> extends JsCollection<E> implements List<E> {
   @override void clear() { $.splice(0, length); }
   @override E removeAt(int index) => ($.splice(index, 1).map((proxy) => new JsList.fromJsProxy(proxy, instanciator)).value as JsList<E>)[0];
   @override E removeLast() => this.$.pop().map(instanciator != null ? instanciator : (e) => e).value;
+  @override E get first => $[0].value;
   @override E get last => $[length - 1].value;
   @override List<E> getRange(int start, int length) => _asList().getRange(start, length);
   @override void setRange(int start, int length, List<E> from, [int startFrom = 0]) {
