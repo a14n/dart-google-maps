@@ -39,16 +39,16 @@ typedef Object Transformater(Object proxy);
 
 // transform IsJsProxy to js.Proxy
 Object _serialize(data) =>
-    (data is IsJsProxy) ? data._proxy :
+    (data is IsJsProxy) ? data._jsProxy._proxy :
     (data is IsEnum) ? data.value :
     (data is List) ? js.array(data.map(_serialize)) :
     (data is Date) ? new js.Proxy(js.context.Date, data.millisecondsSinceEpoch) :
     data;
 
-class JsOperations {
+class JsProxy {
   js.Proxy _proxy;
 
-  JsOperations._(js.Proxy this._proxy);
+  JsProxy._(js.Proxy this._proxy);
 
   @override noSuchMethod(InvocationMirror invocation) {
     final proxyInvocation = new ProxyInvocationMirror.fromInvocationMirror(invocation);
@@ -60,20 +60,20 @@ class JsOperations {
 
 /// Base class of object that wraps jsProxy
 class IsJsProxy {
-  js.Proxy _proxy;
-  JsOperations _jsOperations;
+  JsProxy _jsProxy;
 
   IsJsProxy() : this.fromJsProxy(js.map({}));
-  IsJsProxy.fromJsProxy(js.Proxy this._proxy) { _jsOperations = new JsOperations._(_proxy); }
-  IsJsProxy.fromIsJsProxy(IsJsProxy isJsProxy) : this.fromJsProxy(isJsProxy._proxy);
+  IsJsProxy._(JsProxy this._jsProxy);
+  IsJsProxy.fromIsJsProxy(IsJsProxy isJsProxy) : this._(isJsProxy._jsProxy);
+  IsJsProxy.fromJsProxy(js.Proxy proxy) : this._(new JsProxy._(proxy));
   IsJsProxy.newInstance(objectRef, [List args]) : this.fromJsProxy(new js.Proxy.withArgList(objectRef, args != null ? args.map(_serialize) : []));
 
-  JsOperations get $ => _jsOperations;
+  JsProxy get $ => _jsProxy;
 }
 
 /// retain [isJsProxy]
 IsJsProxy retain(IsJsProxy isJsProxy) {
-  js.retain(isJsProxy._proxy);
+  js.retain(isJsProxy._jsProxy._proxy);
   return isJsProxy;
 }
 /// retain all elements in [isJsProxyList]
@@ -82,7 +82,7 @@ void retainAll(List<IsJsProxy> isJsProxyList) {
 }
 /// release [isJsProxy]
 void release(IsJsProxy isJsProxy) {
-  js.release(isJsProxy._proxy);
+  js.release(isJsProxy._jsProxy._proxy);
 }
 
 class JsDate extends IsJsProxy implements Date {
