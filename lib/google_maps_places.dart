@@ -34,11 +34,13 @@ class Autocomplete extends MVCObject {
 }
 
 class AutocompleteEvents {
+  static final PLACE_CHANGED = "place_changed";
+  
   final Autocomplete _autocomplete;
 
   AutocompleteEvents._(this._autocomplete);
 
-  NoArgsEventListenerAdder get placeChanged => new NoArgsEventListenerAdder(_autocomplete, "place_changed");
+  NoArgsEventListenerAdder get placeChanged => new NoArgsEventListenerAdder(_autocomplete, PLACE_CHANGED);
 }
 
 class AutocompleteOptions extends jsw.IsJsProxy {

@@ -26,7 +26,6 @@ dynamic findIn(List elements, Object o) => elements.filter((e) => e == o).reduce
 final maps = js.retain(js.context.google.maps);
 
 // start GMaps wrapping
-
 class GMap extends MVCObject {
   static final INSTANCIATOR = (js.Proxy jsProxy) => new GMap.fromJsProxy(jsProxy);
   static bool isInstance(js.Proxy jsProxy) => js.instanceof(jsProxy, maps.Map);
@@ -114,43 +113,43 @@ class GMap extends MVCObject {
 
 class GMapEvents {
   /// This event is fired when the viewport bounds have changed.
-  static final String BOUNDS_CHANGED = "bounds_changed";
+  static final BOUNDS_CHANGED = "bounds_changed";
   /// This event is fired when the map center property changes.
-  static final String CENTER_CHANGED = "center_changed";
+  static final CENTER_CHANGED = "center_changed";
   /// This event is fired when the user clicks on the map (but not when they click on a marker or infowindow).
-  static final String CLICK = "click";
+  static final CLICK = "click";
   /// This event is fired when the user double-clicks on the map. Note that the click event will also fire, right before this one.
-  static final String DBLCLICK = "dblclick";
+  static final DBLCLICK = "dblclick";
   /// This event is repeatedly fired while the user drags the map.
-  static final String DRAG = "drag";
+  static final DRAG = "drag";
   /// This event is fired when the user stops dragging the map.
-  static final String DRAGEND = "dragend";
+  static final DRAGEND = "dragend";
   /// This event is fired when the user starts dragging the map.
-  static final String DRAGSTART = "dragstart";
+  static final DRAGSTART = "dragstart";
   /// This event is fired when the map heading property changes.
-  static final String HEADING_CHANGED = "heading_changed";
+  static final HEADING_CHANGED = "heading_changed";
   /// This event is fired when the map becomes idle after panning or zooming.
-  static final String IDLE = "idle";
+  static final IDLE = "idle";
   /// This event is fired when the mapTypeId property changes.
-  static final String MAPTYPEID_CHANGED = "maptypeid_changed";
+  static final MAPTYPEID_CHANGED = "maptypeid_changed";
   /// This event is fired whenever the user's mouse moves over the map container.
-  static final String MOUSEMOVE = "mousemove";
+  static final MOUSEMOVE = "mousemove";
   /// This event is fired when the user's mouse exits the map container.
-  static final String MOUSEOUT = "mouseout";
+  static final MOUSEOUT = "mouseout";
   /// This event is fired when the user's mouse enters the map container.
-  static final String MOUSEOVER = "mouseover";
+  static final MOUSEOVER = "mouseover";
   /// This event is fired when the projection has changed.
-  static final String PROJECTION_CHANGED = "projection_changed";
+  static final PROJECTION_CHANGED = "projection_changed";
   /// Developers should trigger this event on the map when the div changes size: `google.maps.event.trigger(map, 'resize')`.
-  static final String RESIZE = "resize";
+  static final RESIZE = "resize";
   /// This event is fired when the DOM contextmenu event is fired on the map container.
-  static final String RIGHTCLICK = "rightclick";
+  static final RIGHTCLICK = "rightclick";
   /// This event is fired when the visible tiles have finished loading.
-  static final String TILESLOADED = "tilesloaded";
+  static final TILESLOADED = "tilesloaded";
   /// This event is fired when the map tilt property changes.
-  static final String TILT_CHANGED = "tilt_changed";
+  static final TILT_CHANGED = "tilt_changed";
   /// This event is fired when the map zoom property changes.
-  static final String ZOOM_CHANGED = "zoom_changed";
+  static final ZOOM_CHANGED = "zoom_changed";
   
   final GMap _gmap;
 
@@ -437,32 +436,55 @@ class Marker extends MVCObject {
 }
 
 class MarkerEvents {
+  static final ANIMATION_CHANGED = "animation_changed";
+  static final CLICK = "click";
+  static final CLICKABLE_CHANGED = "clickable_changed";
+  static final CURSOR_CHANGED = "cursor_changed";
+  static final DBLCLICK = "dblclick";
+  static final DRAG = "drag";
+  static final DRAGEND = "dragend";
+  static final DRAGGABLE_CHANGED = "draggable_changed";
+  static final DRAGSTART = "dragstart";
+  static final FLAT_CHANGED = "flat_changed";
+  static final ICON_CHANGED = "icon_changed";
+  static final MOUSEDOWN = "mousedown";
+  static final MOUSEOUT = "mouseout";
+  static final MOUSEOVER = "mouseover";
+  static final MOUSEUP = "mouseup";
+  static final POSITION_CHANGED = "position_changed";
+  static final RIGHTCLICK = "rightclick";
+  static final SHADOW_CHANGED = "shadow_changed";
+  static final SHAPE_CHANGED = "shape_changed";
+  static final TITLE_CHANGED = "title_changed";
+  static final VISIBLE_CHANGED = "visible_changed";
+  static final ZINDEX_CHANGED = "zindex_changed";
+  
   final Marker _marker;
 
   MarkerEvents._(this._marker);
 
-  NoArgsEventListenerAdder get animationChanged => new NoArgsEventListenerAdder(_marker, "animation_changed");
-  MouseEventListenerAdder get click => new MouseEventListenerAdder(_marker, "click");
-  NoArgsEventListenerAdder get clickableChanged => new NoArgsEventListenerAdder(_marker, "clickable_changed");
-  NoArgsEventListenerAdder get cursorChanged => new NoArgsEventListenerAdder(_marker, "cursor_changed");
-  MouseEventListenerAdder get dblclick => new MouseEventListenerAdder(_marker, "dblclick");
-  MouseEventListenerAdder get drag => new MouseEventListenerAdder(_marker, "drag");
-  MouseEventListenerAdder get dragend => new MouseEventListenerAdder(_marker, "dragend");
-  NoArgsEventListenerAdder get draggableChanged => new NoArgsEventListenerAdder(_marker, "draggable_changed");
-  MouseEventListenerAdder get dragstart => new MouseEventListenerAdder(_marker, "dragstart");
-  NoArgsEventListenerAdder get flatChanged => new NoArgsEventListenerAdder(_marker, "flat_changed");
-  NoArgsEventListenerAdder get iconChanged => new NoArgsEventListenerAdder(_marker, "icon_changed");
-  MouseEventListenerAdder get mousedown => new MouseEventListenerAdder(_marker, "mousedown");
-  MouseEventListenerAdder get mouseout => new MouseEventListenerAdder(_marker, "mouseout");
-  MouseEventListenerAdder get mouseover => new MouseEventListenerAdder(_marker, "mouseover");
-  MouseEventListenerAdder get mouseup => new MouseEventListenerAdder(_marker, "mouseup");
-  NoArgsEventListenerAdder get positionChanged => new NoArgsEventListenerAdder(_marker, "position_changed");
-  MouseEventListenerAdder get rightclick => new MouseEventListenerAdder(_marker, "rightclick");
-  NoArgsEventListenerAdder get shadowChanged => new NoArgsEventListenerAdder(_marker, "shadow_changed");
-  NoArgsEventListenerAdder get shapeChanged => new NoArgsEventListenerAdder(_marker, "shape_changed");
-  NoArgsEventListenerAdder get titleChanged => new NoArgsEventListenerAdder(_marker, "title_changed");
-  NoArgsEventListenerAdder get visibleChanged => new NoArgsEventListenerAdder(_marker, "visible_changed");
-  NoArgsEventListenerAdder get zindexChanged => new NoArgsEventListenerAdder(_marker, "zindex_changed");
+  NoArgsEventListenerAdder get animationChanged => new NoArgsEventListenerAdder(_marker, ANIMATION_CHANGED);
+  MouseEventListenerAdder get click => new MouseEventListenerAdder(_marker, CLICK);
+  NoArgsEventListenerAdder get clickableChanged => new NoArgsEventListenerAdder(_marker, CLICKABLE_CHANGED);
+  NoArgsEventListenerAdder get cursorChanged => new NoArgsEventListenerAdder(_marker, CURSOR_CHANGED);
+  MouseEventListenerAdder get dblclick => new MouseEventListenerAdder(_marker, DBLCLICK);
+  MouseEventListenerAdder get drag => new MouseEventListenerAdder(_marker, DRAG);
+  MouseEventListenerAdder get dragend => new MouseEventListenerAdder(_marker, DRAGEND);
+  NoArgsEventListenerAdder get draggableChanged => new NoArgsEventListenerAdder(_marker, DRAGGABLE_CHANGED);
+  MouseEventListenerAdder get dragstart => new MouseEventListenerAdder(_marker, DRAGSTART);
+  NoArgsEventListenerAdder get flatChanged => new NoArgsEventListenerAdder(_marker, FLAT_CHANGED);
+  NoArgsEventListenerAdder get iconChanged => new NoArgsEventListenerAdder(_marker, ICON_CHANGED);
+  MouseEventListenerAdder get mousedown => new MouseEventListenerAdder(_marker, MOUSEDOWN);
+  MouseEventListenerAdder get mouseout => new MouseEventListenerAdder(_marker, MOUSEOUT);
+  MouseEventListenerAdder get mouseover => new MouseEventListenerAdder(_marker, MOUSEOVER);
+  MouseEventListenerAdder get mouseup => new MouseEventListenerAdder(_marker, MOUSEUP);
+  NoArgsEventListenerAdder get positionChanged => new NoArgsEventListenerAdder(_marker, POSITION_CHANGED);
+  MouseEventListenerAdder get rightclick => new MouseEventListenerAdder(_marker, RIGHTCLICK);
+  NoArgsEventListenerAdder get shadowChanged => new NoArgsEventListenerAdder(_marker, SHADOW_CHANGED);
+  NoArgsEventListenerAdder get shapeChanged => new NoArgsEventListenerAdder(_marker, SHAPE_CHANGED);
+  NoArgsEventListenerAdder get titleChanged => new NoArgsEventListenerAdder(_marker, TITLE_CHANGED);
+  NoArgsEventListenerAdder get visibleChanged => new NoArgsEventListenerAdder(_marker, VISIBLE_CHANGED);
+  NoArgsEventListenerAdder get zindexChanged => new NoArgsEventListenerAdder(_marker, ZINDEX_CHANGED);
 }
 
 
@@ -646,15 +668,21 @@ class InfoWindow extends MVCObject {
 }
 
 class InfoWindowEvents {
+  static final CLOSECLICK = "closeclick";
+  static final CONTENT_CHANGED = "content_changed";
+  static final DOMREADY = "domready";
+  static final POSITION_CHANGED = "position_changed";
+  static final ZINDEX_CHANGED = "zindex_changed";
+  
   final InfoWindow _infoWindow;
 
   InfoWindowEvents._(this._infoWindow);
 
-  NoArgsEventListenerAdder get closeclick => new NoArgsEventListenerAdder(_infoWindow, "closeclick");
-  NoArgsEventListenerAdder get contentChanged => new NoArgsEventListenerAdder(_infoWindow, "content_changed");
-  NoArgsEventListenerAdder get domready => new NoArgsEventListenerAdder(_infoWindow, "domready");
-  NoArgsEventListenerAdder get positionChanged => new NoArgsEventListenerAdder(_infoWindow, "position_changed");
-  NoArgsEventListenerAdder get zindexChanged => new NoArgsEventListenerAdder(_infoWindow, "zindex_changed");
+  NoArgsEventListenerAdder get closeclick => new NoArgsEventListenerAdder(_infoWindow, CLOSECLICK);
+  NoArgsEventListenerAdder get contentChanged => new NoArgsEventListenerAdder(_infoWindow, CONTENT_CHANGED);
+  NoArgsEventListenerAdder get domready => new NoArgsEventListenerAdder(_infoWindow, DOMREADY);
+  NoArgsEventListenerAdder get positionChanged => new NoArgsEventListenerAdder(_infoWindow, POSITION_CHANGED);
+  NoArgsEventListenerAdder get zindexChanged => new NoArgsEventListenerAdder(_infoWindow, ZINDEX_CHANGED);
 }
 
 class InfoWindowOptions extends jsw.IsJsProxy {
@@ -703,18 +731,27 @@ class Polyline extends MVCObject {
 }
 
 class PolylineEvents {
+  static final CLICK = "click";
+  static final DBLCLICK = "dblclick";
+  static final MOUSEDOWN = "mousedown";
+  static final MOUSEMOVE = "mousemove";
+  static final MOUSEOUT = "mouseout";
+  static final MOUSEOVER = "mouseover";
+  static final MOUSEUP = "mouseup";
+  static final RIGHTCLICK = "rightclick";
+  
   final Polyline _polyline;
 
   PolylineEvents._(this._polyline);
 
-  PolyMouseEventListenerAdder get click => new PolyMouseEventListenerAdder(_polyline, "click");
-  PolyMouseEventListenerAdder get dblclick => new PolyMouseEventListenerAdder(_polyline, "dblclick");
-  PolyMouseEventListenerAdder get mousedown => new PolyMouseEventListenerAdder(_polyline, "mousedown");
-  PolyMouseEventListenerAdder get mousemove => new PolyMouseEventListenerAdder(_polyline, "mousemove");
-  PolyMouseEventListenerAdder get mouseout => new PolyMouseEventListenerAdder(_polyline, "mouseout");
-  PolyMouseEventListenerAdder get mouseover => new PolyMouseEventListenerAdder(_polyline, "mouseover");
-  PolyMouseEventListenerAdder get mouseup => new PolyMouseEventListenerAdder(_polyline, "mouseup");
-  PolyMouseEventListenerAdder get rightclick => new PolyMouseEventListenerAdder(_polyline, "rightclick");
+  PolyMouseEventListenerAdder get click => new PolyMouseEventListenerAdder(_polyline, CLICK);
+  PolyMouseEventListenerAdder get dblclick => new PolyMouseEventListenerAdder(_polyline, DBLCLICK);
+  PolyMouseEventListenerAdder get mousedown => new PolyMouseEventListenerAdder(_polyline, MOUSEDOWN);
+  PolyMouseEventListenerAdder get mousemove => new PolyMouseEventListenerAdder(_polyline, MOUSEMOVE);
+  PolyMouseEventListenerAdder get mouseout => new PolyMouseEventListenerAdder(_polyline, MOUSEOUT);
+  PolyMouseEventListenerAdder get mouseover => new PolyMouseEventListenerAdder(_polyline, MOUSEOVER);
+  PolyMouseEventListenerAdder get mouseup => new PolyMouseEventListenerAdder(_polyline, MOUSEUP);
+  PolyMouseEventListenerAdder get rightclick => new PolyMouseEventListenerAdder(_polyline, RIGHTCLICK);
 }
 
 class PolylineOptions extends jsw.IsJsProxy {
@@ -780,18 +817,27 @@ class Polygon extends MVCObject {
 }
 
 class PolygonEvents {
+  static final CLICK = "click";
+  static final DBLCLICK = "dblclick";
+  static final MOUSEDOWN = "mousedown";
+  static final MOUSEMOVE = "mousemove";
+  static final MOUSEOUT = "mouseout";
+  static final MOUSEOVER = "mouseover";
+  static final MOUSEUP = "mouseup";
+  static final RIGHTCLICK = "rightclick";
+  
   final Polygon _polygon;
 
   PolygonEvents._(this._polygon);
 
-  PolyMouseEventListenerAdder get click => new PolyMouseEventListenerAdder(_polygon, "click");
-  PolyMouseEventListenerAdder get dblclick => new PolyMouseEventListenerAdder(_polygon, "dblclick");
-  PolyMouseEventListenerAdder get mousedown => new PolyMouseEventListenerAdder(_polygon, "mousedown");
-  PolyMouseEventListenerAdder get mousemove => new PolyMouseEventListenerAdder(_polygon, "mousemove");
-  PolyMouseEventListenerAdder get mouseout => new PolyMouseEventListenerAdder(_polygon, "mouseout");
-  PolyMouseEventListenerAdder get mouseover => new PolyMouseEventListenerAdder(_polygon, "mouseover");
-  PolyMouseEventListenerAdder get mouseup => new PolyMouseEventListenerAdder(_polygon, "mouseup");
-  PolyMouseEventListenerAdder get rightclick => new PolyMouseEventListenerAdder(_polygon, "rightclick");
+  PolyMouseEventListenerAdder get click => new PolyMouseEventListenerAdder(_polygon, CLICK);
+  PolyMouseEventListenerAdder get dblclick => new PolyMouseEventListenerAdder(_polygon, DBLCLICK);
+  PolyMouseEventListenerAdder get mousedown => new PolyMouseEventListenerAdder(_polygon, MOUSEDOWN);
+  PolyMouseEventListenerAdder get mousemove => new PolyMouseEventListenerAdder(_polygon, MOUSEMOVE);
+  PolyMouseEventListenerAdder get mouseout => new PolyMouseEventListenerAdder(_polygon, MOUSEOUT);
+  PolyMouseEventListenerAdder get mouseover => new PolyMouseEventListenerAdder(_polygon, MOUSEOVER);
+  PolyMouseEventListenerAdder get mouseup => new PolyMouseEventListenerAdder(_polygon, MOUSEUP);
+  PolyMouseEventListenerAdder get rightclick => new PolyMouseEventListenerAdder(_polygon, RIGHTCLICK);
 }
 
 class PolygonOptions extends jsw.IsJsProxy {
@@ -843,19 +889,29 @@ class Rectangle extends MVCObject {
 }
 
 class RectangleEvents {
+  static final BOUNDS_CHANGED = "bounds_changed";
+  static final CLICK = "click";
+  static final DBLCLICK = "dblclick";
+  static final MOUSEDOWN = "mousedown";
+  static final MOUSEMOVE = "mousemove";
+  static final MOUSEOUT = "mouseout";
+  static final MOUSEOVER = "mouseover";
+  static final MOUSEUP = "mouseup";
+  static final RIGHTCLICK = "rightclick";
+  
   final Rectangle _rectangle;
 
   RectangleEvents._(this._rectangle);
 
-  NoArgsEventListenerAdder get boundsChanged => new NoArgsEventListenerAdder(_rectangle, "bounds_changed");
-  MouseEventListenerAdder get click => new MouseEventListenerAdder(_rectangle, "click");
-  MouseEventListenerAdder get dblclick => new MouseEventListenerAdder(_rectangle, "dblclick");
-  MouseEventListenerAdder get mousedown => new MouseEventListenerAdder(_rectangle, "mousedown");
-  MouseEventListenerAdder get mousemove => new MouseEventListenerAdder(_rectangle, "mousemove");
-  MouseEventListenerAdder get mouseout => new MouseEventListenerAdder(_rectangle, "mouseout");
-  MouseEventListenerAdder get mouseover => new MouseEventListenerAdder(_rectangle, "mouseover");
-  MouseEventListenerAdder get mouseup => new MouseEventListenerAdder(_rectangle, "mouseup");
-  MouseEventListenerAdder get rightclick => new MouseEventListenerAdder(_rectangle, "rightclick");
+  NoArgsEventListenerAdder get boundsChanged => new NoArgsEventListenerAdder(_rectangle, BOUNDS_CHANGED);
+  MouseEventListenerAdder get click => new MouseEventListenerAdder(_rectangle, CLICK);
+  MouseEventListenerAdder get dblclick => new MouseEventListenerAdder(_rectangle, DBLCLICK);
+  MouseEventListenerAdder get mousedown => new MouseEventListenerAdder(_rectangle, MOUSEDOWN);
+  MouseEventListenerAdder get mousemove => new MouseEventListenerAdder(_rectangle, MOUSEMOVE);
+  MouseEventListenerAdder get mouseout => new MouseEventListenerAdder(_rectangle, MOUSEOUT);
+  MouseEventListenerAdder get mouseover => new MouseEventListenerAdder(_rectangle, MOUSEOVER);
+  MouseEventListenerAdder get mouseup => new MouseEventListenerAdder(_rectangle, MOUSEUP);
+  MouseEventListenerAdder get rightclick => new MouseEventListenerAdder(_rectangle, RIGHTCLICK);
 }
 
 class RectangleOptions extends jsw.IsJsProxy {
@@ -895,20 +951,31 @@ class Circle extends MVCObject {
 }
 
 class CircleEvents {
+  static final CENTER_CHANGED = "center_changed";
+  static final CLICK = "click";
+  static final DBLCLICK = "dblclick";
+  static final MOUSEDOWN = "mousedown";
+  static final MOUSEMOVE = "mousemove";
+  static final MOUSEOUT = "mouseout";
+  static final MOUSEOVER = "mouseover";
+  static final MOUSEUP = "mouseup";
+  static final RADIUS_CHANGED = "radius_changed";
+  static final RIGHTCLICK = "rightclick";
+  
   final Circle _circle;
 
   CircleEvents._(this._circle);
 
-  NoArgsEventListenerAdder get centerChanged => new NoArgsEventListenerAdder(_circle, "center_changed");
-  MouseEventListenerAdder get click => new MouseEventListenerAdder(_circle, "click");
-  MouseEventListenerAdder get dblclick => new MouseEventListenerAdder(_circle, "dblclick");
-  MouseEventListenerAdder get mousedown => new MouseEventListenerAdder(_circle, "mousedown");
-  MouseEventListenerAdder get mousemove => new MouseEventListenerAdder(_circle, "mousemove");
-  MouseEventListenerAdder get mouseout => new MouseEventListenerAdder(_circle, "mouseout");
-  MouseEventListenerAdder get mouseover => new MouseEventListenerAdder(_circle, "mouseover");
-  MouseEventListenerAdder get mouseup => new MouseEventListenerAdder(_circle, "mouseup");
-  NoArgsEventListenerAdder get radiusChanged => new NoArgsEventListenerAdder(_circle, "radius_changed");
-  MouseEventListenerAdder get rightclick => new MouseEventListenerAdder(_circle, "rightclick");
+  NoArgsEventListenerAdder get centerChanged => new NoArgsEventListenerAdder(_circle, CENTER_CHANGED);
+  MouseEventListenerAdder get click => new MouseEventListenerAdder(_circle, CLICK);
+  MouseEventListenerAdder get dblclick => new MouseEventListenerAdder(_circle, DBLCLICK);
+  MouseEventListenerAdder get mousedown => new MouseEventListenerAdder(_circle, MOUSEDOWN);
+  MouseEventListenerAdder get mousemove => new MouseEventListenerAdder(_circle, MOUSEMOVE);
+  MouseEventListenerAdder get mouseout => new MouseEventListenerAdder(_circle, MOUSEOUT);
+  MouseEventListenerAdder get mouseover => new MouseEventListenerAdder(_circle, MOUSEOVER);
+  MouseEventListenerAdder get mouseup => new MouseEventListenerAdder(_circle, MOUSEUP);
+  NoArgsEventListenerAdder get radiusChanged => new NoArgsEventListenerAdder(_circle, RADIUS_CHANGED);
+  MouseEventListenerAdder get rightclick => new MouseEventListenerAdder(_circle, RIGHTCLICK);
 }
 
 class CircleOptions extends jsw.IsJsProxy {
@@ -941,12 +1008,15 @@ class GroundOverlay extends MVCObject {
 }
 
 class GroundOverlayEvents {
+  static final CLICK = "click";
+  static final DBLCLICK = "dblclick";
+  
   final GroundOverlay _groundOverlay;
 
   GroundOverlayEvents._(this._groundOverlay);
 
-  MouseEventListenerAdder get click => new MouseEventListenerAdder(_groundOverlay, "click");
-  MouseEventListenerAdder get dblclick => new MouseEventListenerAdder(_groundOverlay, "dblclick");
+  MouseEventListenerAdder get click => new MouseEventListenerAdder(_groundOverlay, CLICK);
+  MouseEventListenerAdder get dblclick => new MouseEventListenerAdder(_groundOverlay, DBLCLICK);
 }
 
 class GroundOverlayOptions extends jsw.IsJsProxy {
@@ -1110,11 +1180,13 @@ class DirectionsRenderer extends MVCObject {
 }
 
 class DirectionsRendererEvents {
+  static final DIRECTIONS_CHANGED = "directions_changed";
+  
   final DirectionsRenderer _directionsRenderer;
 
   DirectionsRendererEvents._(this._directionsRenderer);
 
-  NoArgsEventListenerAdder get directionsChanged => new NoArgsEventListenerAdder(_directionsRenderer, "directions_changed");
+  NoArgsEventListenerAdder get directionsChanged => new NoArgsEventListenerAdder(_directionsRenderer, DIRECTIONS_CHANGED);
 }
 
 class DirectionsRendererOptions extends jsw.IsJsProxy {
@@ -1627,11 +1699,13 @@ class ImageMapType extends MapType {
 }
 
 class ImageMapTypeEvents {
+  static final TILESLOADED = "tilesloaded";
+  
   final ImageMapType _imageMapType;
 
   ImageMapTypeEvents._(this._imageMapType);
 
-  NoArgsEventListenerAdder get tilesloaded => new NoArgsEventListenerAdder(_imageMapType, "tilesloaded");
+  NoArgsEventListenerAdder get tilesloaded => new NoArgsEventListenerAdder(_imageMapType, TILESLOADED);
 }
 
 class ImageMapTypeOptions extends jsw.IsJsProxy {
@@ -1761,11 +1835,13 @@ class FusionTablesLayer extends MVCObject {
 }
 
 class FusionTablesLayerEvents {
+  static final CLICK = "click";
+  
   final FusionTablesLayer _fusionTablesLayer;
 
   FusionTablesLayerEvents._(this._fusionTablesLayer);
 
-  FusionTablesMouseEventListenerAdder get click => new FusionTablesMouseEventListenerAdder(_fusionTablesLayer, "click");
+  FusionTablesMouseEventListenerAdder get click => new FusionTablesMouseEventListenerAdder(_fusionTablesLayer, CLICK);
 }
 
 class FusionTablesLayerOptions extends jsw.IsJsProxy {
@@ -1848,13 +1924,17 @@ class KmlLayer extends MVCObject {
 }
 
 class KmlLayerEvents {
+  static final CLICK = "click";
+  static final DEFAULTVIEWPORT_CHANGED = "defaultviewport_changed";
+  static final STATUS_CHANGED = "status_changed";
+  
   final KmlLayer _kmlLayer;
 
   KmlLayerEvents._(this._kmlLayer);
 
-  KmlMouseEventListenerAdder get click => new KmlMouseEventListenerAdder(_kmlLayer, "click");
-  NoArgsEventListenerAdder get defaultviewportChanged => new NoArgsEventListenerAdder(_kmlLayer, "defaultviewport_changed");
-  NoArgsEventListenerAdder get statusChanged => new NoArgsEventListenerAdder(_kmlLayer, "status_changed");
+  KmlMouseEventListenerAdder get click => new KmlMouseEventListenerAdder(_kmlLayer, CLICK);
+  NoArgsEventListenerAdder get defaultviewportChanged => new NoArgsEventListenerAdder(_kmlLayer, DEFAULTVIEWPORT_CHANGED);
+  NoArgsEventListenerAdder get statusChanged => new NoArgsEventListenerAdder(_kmlLayer, STATUS_CHANGED);
 }
 
 class KmlLayerOptions extends jsw.IsJsProxy {
@@ -1970,17 +2050,25 @@ class StreetViewPanorama extends MVCObject {
 }
 
 class StreetViewPanoramaEvents {
+  static final CLOSECLICK = "closeclick";
+  static final LINKS_CHANGED = "links_changed";
+  static final PANO_CHANGED = "pano_changed";
+  static final POSITION_CHANGED = "position_changed";
+  static final POV_CHANGED = "pov_changed";
+  static final RESIZE = "resize";
+  static final VISIBLE_CHANGED = "visible_changed";
+  
   final StreetViewPanorama _streetViewPanorama;
 
   StreetViewPanoramaEvents._(this._streetViewPanorama);
 
-  NativeEventListenerAdder get closeclick => new NativeEventListenerAdder(_streetViewPanorama, "closeclick");
-  NoArgsEventListenerAdder get linksChanged => new NoArgsEventListenerAdder(_streetViewPanorama, "links_changed");
-  NoArgsEventListenerAdder get panoChanged => new NoArgsEventListenerAdder(_streetViewPanorama, "pano_changed");
-  NoArgsEventListenerAdder get positionChanged => new NoArgsEventListenerAdder(_streetViewPanorama, "position_changed");
-  NoArgsEventListenerAdder get povChanged => new NoArgsEventListenerAdder(_streetViewPanorama, "pov_changed");
-  NoArgsEventListenerAdder get resize => new NoArgsEventListenerAdder(_streetViewPanorama, "resize");
-  NoArgsEventListenerAdder get visibleChanged => new NoArgsEventListenerAdder(_streetViewPanorama, "visible_changed");
+  NativeEventListenerAdder get closeclick => new NativeEventListenerAdder(_streetViewPanorama, CLOSECLICK);
+  NoArgsEventListenerAdder get linksChanged => new NoArgsEventListenerAdder(_streetViewPanorama, LINKS_CHANGED);
+  NoArgsEventListenerAdder get panoChanged => new NoArgsEventListenerAdder(_streetViewPanorama, PANO_CHANGED);
+  NoArgsEventListenerAdder get positionChanged => new NoArgsEventListenerAdder(_streetViewPanorama, POSITION_CHANGED);
+  NoArgsEventListenerAdder get povChanged => new NoArgsEventListenerAdder(_streetViewPanorama, POV_CHANGED);
+  NoArgsEventListenerAdder get resize => new NoArgsEventListenerAdder(_streetViewPanorama, RESIZE);
+  NoArgsEventListenerAdder get visibleChanged => new NoArgsEventListenerAdder(_streetViewPanorama, VISIBLE_CHANGED);
 }
 
 class StreetViewPanoramaOptions extends jsw.IsJsProxy {
@@ -2275,13 +2363,17 @@ class MVCArray<E> extends MVCObject {
 }
 
 class MVCArrayEvents<E> {
+  static final INSERT_AT = "insert_at";
+  static final REMOVE_AT = "remove_at";
+  static final SET_AT = "set_at";
+  
   final MVCArray<E> _mvcArray;
 
   MVCArrayEvents._(this._mvcArray);
 
-  NumEventListenerAdder get insertAt => new NumEventListenerAdder(_mvcArray, "insert_at");
-  NumAndElementEventListenerAdder<E> get removeAt => new NumAndElementEventListenerAdder<E>(_mvcArray, "remove_at", _mvcArray._transform);
-  NumAndElementEventListenerAdder<E> get setAt => new NumAndElementEventListenerAdder<E>(_mvcArray, "set_at", _mvcArray._transform);
+  NumEventListenerAdder get insertAt => new NumEventListenerAdder(_mvcArray, INSERT_AT);
+  NumAndElementEventListenerAdder<E> get removeAt => new NumAndElementEventListenerAdder<E>(_mvcArray, REMOVE_AT, _mvcArray._transform);
+  NumAndElementEventListenerAdder<E> get setAt => new NumAndElementEventListenerAdder<E>(_mvcArray, SET_AT, _mvcArray._transform);
 }
 
 class EventListenerAdder {

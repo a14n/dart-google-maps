@@ -38,11 +38,13 @@ class WeatherLayer extends MVCObject {
 }
 
 class WeatherLayerEvents {
+  static final CLICK = "click";
+  
   final WeatherLayer _weatherLayer;
 
   WeatherLayerEvents._(this._weatherLayer);
 
-  WeatherMouseEventListenerAdder get click => new WeatherMouseEventListenerAdder(_weatherLayer, "click");
+  WeatherMouseEventListenerAdder get click => new WeatherMouseEventListenerAdder(_weatherLayer, CLICK);
 }
 
 class WeatherLayerOptions extends jsw.IsJsProxy {

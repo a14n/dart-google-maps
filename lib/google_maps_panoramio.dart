@@ -34,11 +34,13 @@ class PanoramioLayer extends MVCObject {
 }
 
 class PanoramioLayerEvents {
+  static final CLICK = "click";
+  
   final PanoramioLayer _panoramioLayer;
 
   PanoramioLayerEvents._(this._panoramioLayer);
 
-  PanoramioMouseEventListenerAdder get click => new PanoramioMouseEventListenerAdder(_panoramioLayer, "click");
+  PanoramioMouseEventListenerAdder get click => new PanoramioMouseEventListenerAdder(_panoramioLayer, CLICK);
 }
 
 class PanoramioLayerOptions extends jsw.IsJsProxy {

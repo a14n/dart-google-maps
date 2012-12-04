@@ -32,16 +32,23 @@ class DrawingManager extends MVCObject {
 }
 
 class DrawingManagerEvents {
+  static final CIRCLECOMPLETE = "circlecomplete";
+  static final MARKERCOMPLETE = "markercomplete";
+  static final OVERLAYCOMPLETE = "overlaycomplete";
+  static final POLYGONCOMPLETE = "polygoncomplete";
+  static final POLYLINECOMPLETE = "polylinecomplete";
+  static final RECTANGLECOMPLETE = "rectanglecomplete";
+  
   final DrawingManager _drawingManager;
 
   DrawingManagerEvents._(this._drawingManager);
 
-  CircleCompleteEventListenerAdder get circleComplete => new CircleCompleteEventListenerAdder(_drawingManager, "circlecomplete");
-  MarkerCompleteEventListenerAdder get markerComplete => new MarkerCompleteEventListenerAdder(_drawingManager, "markercomplete");
-  OverlayCompleteEventListenerAdder get overlayComplete => new OverlayCompleteEventListenerAdder(_drawingManager, "overlaycomplete");
-  PolygonCompleteEventListenerAdder get polygonComplete => new PolygonCompleteEventListenerAdder(_drawingManager, "polygoncomplete");
-  PolylineCompleteEventListenerAdder get polylineComplete => new PolylineCompleteEventListenerAdder(_drawingManager, "polylinecomplete");
-  RectangleCompleteEventListenerAdder get rectangleComplete => new RectangleCompleteEventListenerAdder(_drawingManager, "rectanglecomplete");
+  CircleCompleteEventListenerAdder get circleComplete => new CircleCompleteEventListenerAdder(_drawingManager, CIRCLECOMPLETE);
+  MarkerCompleteEventListenerAdder get markerComplete => new MarkerCompleteEventListenerAdder(_drawingManager, MARKERCOMPLETE);
+  OverlayCompleteEventListenerAdder get overlayComplete => new OverlayCompleteEventListenerAdder(_drawingManager, OVERLAYCOMPLETE);
+  PolygonCompleteEventListenerAdder get polygonComplete => new PolygonCompleteEventListenerAdder(_drawingManager, POLYGONCOMPLETE);
+  PolylineCompleteEventListenerAdder get polylineComplete => new PolylineCompleteEventListenerAdder(_drawingManager, POLYLINECOMPLETE);
+  RectangleCompleteEventListenerAdder get rectangleComplete => new RectangleCompleteEventListenerAdder(_drawingManager, RECTANGLECOMPLETE);
 }
 
 class DrawingManagerOptions extends jsw.IsJsProxy {
