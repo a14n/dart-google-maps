@@ -34,7 +34,7 @@ class DrawingManager extends MVCObject {
 class DrawingManagerEvents {
   final DrawingManager _drawingManager;
 
-  DrawingManagerEvents._(DrawingManager this._drawingManager);
+  DrawingManagerEvents._(this._drawingManager);
 
   CircleCompleteEventListenerAdder get circleComplete => new CircleCompleteEventListenerAdder(_drawingManager, "circlecomplete");
   MarkerCompleteEventListenerAdder get markerComplete => new MarkerCompleteEventListenerAdder(_drawingManager, "markercomplete");

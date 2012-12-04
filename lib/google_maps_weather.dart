@@ -40,7 +40,7 @@ class WeatherLayer extends MVCObject {
 class WeatherLayerEvents {
   final WeatherLayer _weatherLayer;
 
-  WeatherLayerEvents._(WeatherLayer this._weatherLayer);
+  WeatherLayerEvents._(this._weatherLayer);
 
   WeatherMouseEventListenerAdder get click => new WeatherMouseEventListenerAdder(_weatherLayer, "click");
 }

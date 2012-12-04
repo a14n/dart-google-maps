@@ -36,7 +36,7 @@ class PanoramioLayer extends MVCObject {
 class PanoramioLayerEvents {
   final PanoramioLayer _panoramioLayer;
 
-  PanoramioLayerEvents._(PanoramioLayer this._panoramioLayer);
+  PanoramioLayerEvents._(this._panoramioLayer);
 
   PanoramioMouseEventListenerAdder get click => new PanoramioMouseEventListenerAdder(_panoramioLayer, "click");
 }

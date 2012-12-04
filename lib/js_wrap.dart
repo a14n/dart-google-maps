@@ -25,7 +25,7 @@ class ProxyInvocationMirror extends InvocationMirror {
   final bool isMethod;
   final bool isGetter;
   final bool isSetter;
-  ProxyInvocationMirror(String this.memberName, List positionalArguments, Map<String, dynamic> this.namedArguments, bool this.isMethod, bool this.isGetter, bool this.isSetter) {
+  ProxyInvocationMirror(this.memberName, List positionalArguments, this.namedArguments, this.isMethod, this.isGetter, this.isSetter) {
     this.positionalArguments = positionalArguments != null ? positionalArguments.map(_serialize) : null;
   }
   ProxyInvocationMirror.fromInvocationMirror(InvocationMirror invocation) : this(invocation.memberName, invocation.positionalArguments, invocation.namedArguments, invocation.isMethod, invocation.isGetter, invocation.isSetter);
@@ -48,7 +48,7 @@ Object _serialize(data) =>
 class JsProxy {
   js.Proxy _proxy;
 
-  JsProxy._(js.Proxy this._proxy);
+  JsProxy._(this._proxy);
 
   @override noSuchMethod(InvocationMirror invocation) {
     final proxyInvocation = new ProxyInvocationMirror.fromInvocationMirror(invocation);
@@ -63,7 +63,7 @@ class IsJsProxy {
   JsProxy _jsProxy;
 
   IsJsProxy() : this.fromJsProxy(js.map({}));
-  IsJsProxy._(JsProxy this._jsProxy);
+  IsJsProxy._(this._jsProxy);
   IsJsProxy.fromIsJsProxy(IsJsProxy isJsProxy) : this._(isJsProxy._jsProxy);
   IsJsProxy.fromJsProxy(js.Proxy proxy) : this._(new JsProxy._(proxy));
   IsJsProxy.newInstance(objectRef, [List args]) : this.fromJsProxy(new js.Proxy.withArgList(objectRef, args != null ? args.map(_serialize) : []));
@@ -126,7 +126,7 @@ class JsIterator<E> implements Iterator<E> {
   Transformater instanciator;
   int current = 0;
 
-  JsIterator._(JsList<E> this.jsList, Transformater this.instanciator);
+  JsIterator._(this.jsList, this.instanciator);
 
   // Iterator
   @override E next() => jsList.$[current++].map(instanciator != null ? instanciator : (e) => e).value;
@@ -136,7 +136,7 @@ class JsIterator<E> implements Iterator<E> {
 class JsIterable<E> extends IsJsProxy implements Iterable<E> {
   Transformater instanciator;
 
-  JsIterable.fromJsProxy(js.Proxy proxy, Transformater this.instanciator) : super.fromJsProxy(proxy);
+  JsIterable.fromJsProxy(js.Proxy proxy, this.instanciator) : super.fromJsProxy(proxy);
 
   @override JsIterator<E> iterator() => new JsIterator._(this, instanciator);
 }
@@ -220,7 +220,7 @@ class JsList<E> extends JsCollection<E> implements List<E> {
 class IsEnum<E> {
   E value;
 
-  IsEnum(E this.value);
+  IsEnum(this.value);
 }
 
 Object findIn(Object o, List<Object> elements, [Object transform(Object)]) {

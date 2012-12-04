@@ -154,7 +154,7 @@ class GMapEvents {
   
   final GMap _gmap;
 
-  GMapEvents._(GMap this._gmap);
+  GMapEvents._(this._gmap);
 
   NoArgsEventListenerAdder get boundsChanged => new NoArgsEventListenerAdder(_gmap, BOUNDS_CHANGED);
   NoArgsEventListenerAdder get centerChanged => new NoArgsEventListenerAdder(_gmap, CENTER_CHANGED);
@@ -439,7 +439,7 @@ class Marker extends MVCObject {
 class MarkerEvents {
   final Marker _marker;
 
-  MarkerEvents._(Marker this._marker);
+  MarkerEvents._(this._marker);
 
   NoArgsEventListenerAdder get animationChanged => new NoArgsEventListenerAdder(_marker, "animation_changed");
   MouseEventListenerAdder get click => new MouseEventListenerAdder(_marker, "click");
@@ -648,7 +648,7 @@ class InfoWindow extends MVCObject {
 class InfoWindowEvents {
   final InfoWindow _infoWindow;
 
-  InfoWindowEvents._(InfoWindow this._infoWindow);
+  InfoWindowEvents._(this._infoWindow);
 
   NoArgsEventListenerAdder get closeclick => new NoArgsEventListenerAdder(_infoWindow, "closeclick");
   NoArgsEventListenerAdder get contentChanged => new NoArgsEventListenerAdder(_infoWindow, "content_changed");
@@ -705,7 +705,7 @@ class Polyline extends MVCObject {
 class PolylineEvents {
   final Polyline _polyline;
 
-  PolylineEvents._(Polyline this._polyline);
+  PolylineEvents._(this._polyline);
 
   PolyMouseEventListenerAdder get click => new PolyMouseEventListenerAdder(_polyline, "click");
   PolyMouseEventListenerAdder get dblclick => new PolyMouseEventListenerAdder(_polyline, "dblclick");
@@ -782,7 +782,7 @@ class Polygon extends MVCObject {
 class PolygonEvents {
   final Polygon _polygon;
 
-  PolygonEvents._(Polygon this._polygon);
+  PolygonEvents._(this._polygon);
 
   PolyMouseEventListenerAdder get click => new PolyMouseEventListenerAdder(_polygon, "click");
   PolyMouseEventListenerAdder get dblclick => new PolyMouseEventListenerAdder(_polygon, "dblclick");
@@ -845,7 +845,7 @@ class Rectangle extends MVCObject {
 class RectangleEvents {
   final Rectangle _rectangle;
 
-  RectangleEvents._(Rectangle this._rectangle);
+  RectangleEvents._(this._rectangle);
 
   NoArgsEventListenerAdder get boundsChanged => new NoArgsEventListenerAdder(_rectangle, "bounds_changed");
   MouseEventListenerAdder get click => new MouseEventListenerAdder(_rectangle, "click");
@@ -897,7 +897,7 @@ class Circle extends MVCObject {
 class CircleEvents {
   final Circle _circle;
 
-  CircleEvents._(Circle this._circle);
+  CircleEvents._(this._circle);
 
   NoArgsEventListenerAdder get centerChanged => new NoArgsEventListenerAdder(_circle, "center_changed");
   MouseEventListenerAdder get click => new MouseEventListenerAdder(_circle, "click");
@@ -943,7 +943,7 @@ class GroundOverlay extends MVCObject {
 class GroundOverlayEvents {
   final GroundOverlay _groundOverlay;
 
-  GroundOverlayEvents._(GroundOverlay this._groundOverlay);
+  GroundOverlayEvents._(this._groundOverlay);
 
   MouseEventListenerAdder get click => new MouseEventListenerAdder(_groundOverlay, "click");
   MouseEventListenerAdder get dblclick => new MouseEventListenerAdder(_groundOverlay, "dblclick");
@@ -1112,7 +1112,7 @@ class DirectionsRenderer extends MVCObject {
 class DirectionsRendererEvents {
   final DirectionsRenderer _directionsRenderer;
 
-  DirectionsRendererEvents._(DirectionsRenderer this._directionsRenderer);
+  DirectionsRendererEvents._(this._directionsRenderer);
 
   NoArgsEventListenerAdder get directionsChanged => new NoArgsEventListenerAdder(_directionsRenderer, "directions_changed");
 }
@@ -1629,7 +1629,7 @@ class ImageMapType extends MapType {
 class ImageMapTypeEvents {
   final ImageMapType _imageMapType;
 
-  ImageMapTypeEvents._(ImageMapType this._imageMapType);
+  ImageMapTypeEvents._(this._imageMapType);
 
   NoArgsEventListenerAdder get tilesloaded => new NoArgsEventListenerAdder(_imageMapType, "tilesloaded");
 }
@@ -1763,7 +1763,7 @@ class FusionTablesLayer extends MVCObject {
 class FusionTablesLayerEvents {
   final FusionTablesLayer _fusionTablesLayer;
 
-  FusionTablesLayerEvents._(FusionTablesLayer this._fusionTablesLayer);
+  FusionTablesLayerEvents._(this._fusionTablesLayer);
 
   FusionTablesMouseEventListenerAdder get click => new FusionTablesMouseEventListenerAdder(_fusionTablesLayer, "click");
 }
@@ -1850,7 +1850,7 @@ class KmlLayer extends MVCObject {
 class KmlLayerEvents {
   final KmlLayer _kmlLayer;
 
-  KmlLayerEvents._(KmlLayer this._kmlLayer);
+  KmlLayerEvents._(this._kmlLayer);
 
   KmlMouseEventListenerAdder get click => new KmlMouseEventListenerAdder(_kmlLayer, "click");
   NoArgsEventListenerAdder get defaultviewportChanged => new NoArgsEventListenerAdder(_kmlLayer, "defaultviewport_changed");
@@ -1972,7 +1972,7 @@ class StreetViewPanorama extends MVCObject {
 class StreetViewPanoramaEvents {
   final StreetViewPanorama _streetViewPanorama;
 
-  StreetViewPanoramaEvents._(StreetViewPanorama this._streetViewPanorama);
+  StreetViewPanoramaEvents._(this._streetViewPanorama);
 
   NativeEventListenerAdder get closeclick => new NativeEventListenerAdder(_streetViewPanorama, "closeclick");
   NoArgsEventListenerAdder get linksChanged => new NoArgsEventListenerAdder(_streetViewPanorama, "links_changed");
@@ -2111,7 +2111,7 @@ class StreetViewStatus extends jsw.IsEnum<String> {
 typedef void OnRelease();
 class MapsEventListener extends jsw.IsJsProxy {
   final OnRelease onRelease;
-  MapsEventListener.fromJsProxy(js.Proxy jsProxy, [OnRelease this.onRelease]) : super.fromJsProxy(jsProxy);
+  MapsEventListener.fromJsProxy(js.Proxy jsProxy, [this.onRelease]) : super.fromJsProxy(jsProxy);
 }
 
 class NativeEvent extends jsw.IsJsProxy {
@@ -2277,7 +2277,7 @@ class MVCArray<E> extends MVCObject {
 class MVCArrayEvents<E> {
   final MVCArray<E> _mvcArray;
 
-  MVCArrayEvents._(MVCArray<E> this._mvcArray);
+  MVCArrayEvents._(this._mvcArray);
 
   NumEventListenerAdder get insertAt => new NumEventListenerAdder(_mvcArray, "insert_at");
   NumAndElementEventListenerAdder<E> get removeAt => new NumAndElementEventListenerAdder<E>(_mvcArray, "remove_at", _mvcArray._transform);
@@ -2288,7 +2288,7 @@ class EventListenerAdder {
   final jsw.IsJsProxy _instance;
   final String _eventName;
 
-  EventListenerAdder(jsw.IsJsProxy this._instance, String this._eventName);
+  EventListenerAdder(this._instance, this._eventName);
 
   void add(Function handler) { Events.addListener(_instance, _eventName, handler); }
   MapsEventListenerRegistration addTemporary(Function handler) => new MapsEventListenerRegistration._(jsw.retain(Events.addListener(_instance, _eventName, handler)));
@@ -2296,7 +2296,7 @@ class EventListenerAdder {
 
 class MapsEventListenerRegistration {
   final MapsEventListener _mapsEventListener;
-  MapsEventListenerRegistration._(MapsEventListener this._mapsEventListener);
+  MapsEventListenerRegistration._(this._mapsEventListener);
 
   void removeListener() {
     js.scoped(() {
@@ -2358,7 +2358,7 @@ class NumEventListenerAdder extends EventListenerAdder {
 class NumAndElementEventListenerAdder<E> extends EventListenerAdder {
   jsw.Transformater _transform;
 
-  NumAndElementEventListenerAdder(jsw.IsJsProxy _instance, String _eventName, jsw.Transformater this._transform) : super(_instance, _eventName);
+  NumAndElementEventListenerAdder(jsw.IsJsProxy _instance, String _eventName, this._transform) : super(_instance, _eventName);
 
   void add(void handler(num number, E e)) { super.add((number, e) => handler(number.value, e.map(_transform).value)); }
   MapsEventListenerRegistration addTemporary(void handler(num number, E e)) => super.addTemporary((number, e) => handler(number.value, e.map(_transform).value));

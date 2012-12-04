@@ -33,7 +33,7 @@ class None<T> extends Option<T> {
 class Some<T> extends Option<T> {
   final T _value;
 
-  Some._(T this._value);
+  Some._(this._value);
 
   Option map(Object transform(T e)) => asOption(transform(_value));
   T get value => _value;

@@ -36,7 +36,7 @@ class Autocomplete extends MVCObject {
 class AutocompleteEvents {
   final Autocomplete _autocomplete;
 
-  AutocompleteEvents._(Autocomplete this._autocomplete);
+  AutocompleteEvents._(this._autocomplete);
 
   NoArgsEventListenerAdder get placeChanged => new NoArgsEventListenerAdder(_autocomplete, "place_changed");
 }
