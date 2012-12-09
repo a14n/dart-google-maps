@@ -20,12 +20,12 @@ class TransitDetails extends jsw.IsJsProxy {
   TransitDetails() : super();
   TransitDetails.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  TransitStop get arrival_stop => $.arrival_stop.map(TransitStop.INSTANCIATOR).value;
-  Time get arrival_time => $.arrival_time.map(Time.INSTANCIATOR).value;
-  TransitStop get departure_stop => $.departure_stop.map(TransitStop.INSTANCIATOR).value;
-  Time get departure_time => $.departure_time.map(Time.INSTANCIATOR).value;
+  TransitStop get arrivalStop => $.arrival_stop.map(TransitStop.INSTANCIATOR).value;
+  Time get arrivalTime => $.arrival_time.map(Time.INSTANCIATOR).value;
+  TransitStop get departureStop => $.departure_stop.map(TransitStop.INSTANCIATOR).value;
+  Time get departureTime => $.departure_time.map(Time.INSTANCIATOR).value;
   String get headsign => $.headsign.value;
   num get headway => $.headway.value;
   TransitLine get line => $.line.map(TransitLine.INSTANCIATOR).value;
-  num get num_stops => $.num_stops.value;
+  num get numStops => $.num_stops.value;
 }

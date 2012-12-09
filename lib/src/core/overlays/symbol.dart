@@ -15,6 +15,9 @@
 part of google_maps;
 
 class Symbol extends jsw.IsJsProxy {
+  Symbol() : super();
+  Symbol.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+
   Point get anchor => $.anchor.map(Point.INSTANCIATOR).value;
   set anchor(Point anchor) => $.anchor = anchor;
   String get fillColor => $.fillColor.value;

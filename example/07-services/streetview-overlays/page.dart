@@ -22,7 +22,9 @@ void main() {
     map = jsw.retain(new GMap(query('#map_canvas'), mapOptions));
 
     // Setup the markers on the map
-    final cafeMarkerImage = new MarkerImage('http://chart.apis.google.com/chart?chst=d_map_pin_icon&chld=cafe|FFFF00');
+    // TODO issue for MarkerImage deprecated
+    final cafeMarkerImage = new Icon()
+      ..url = 'http://chart.apis.google.com/chart?chst=d_map_pin_icon&chld=cafe|FFFF00';
     final cafeMarker = new Marker(new MarkerOptions()
       ..position = cafe
       ..map = map
@@ -30,7 +32,9 @@ void main() {
       ..title = 'Cafe'
     );
 
-    final bankMarkerImage = new MarkerImage('http://chart.apis.google.com/chart?chst=d_map_pin_icon&chld=dollar|FFFF00');
+    // TODO issue for MarkerImage deprecated
+    final bankMarkerImage = new Icon()
+      ..url = 'http://chart.apis.google.com/chart?chst=d_map_pin_icon&chld=dollar|FFFF00';
     final bankMarker = new Marker(new MarkerOptions()
       ..position = bank
       ..map = map
@@ -38,7 +42,9 @@ void main() {
       ..title = 'Bank'
     );
 
-    final busMarkerImage = new MarkerImage('http://chart.apis.google.com/chart?chst=d_map_pin_icon&chld=bus|FFFF00');
+    // TODO issue for MarkerImage deprecated
+    final busMarkerImage = new Icon()
+      ..url = 'http://chart.apis.google.com/chart?chst=d_map_pin_icon&chld=bus|FFFF00';
     final busMarker = new Marker(new MarkerOptions()
       ..position = busStop
       ..map = map

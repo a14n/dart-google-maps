@@ -18,17 +18,23 @@ class AdFormat extends jsw.IsEnum<String> {
   static final BANNER = new AdFormat._(maps.adsense.AdFormat.BANNER);
   static final BUTTON = new AdFormat._(maps.adsense.AdFormat.BUTTON);
   static final HALF_BANNER = new AdFormat._(maps.adsense.AdFormat.HALF_BANNER);
+  static final LARGE_HORIZONTAL_LINK_UNIT = new AdFormat._(maps.adsense.AdFormat.LARGE_HORIZONTAL_LINK_UNIT);
   static final LARGE_RECTANGLE = new AdFormat._(maps.adsense.AdFormat.LARGE_RECTANGLE);
+  static final LARGE_VERTICAL_LINK_UNIT = new AdFormat._(maps.adsense.AdFormat.LARGE_VERTICAL_LINK_UNIT);
   static final LEADERBOARD = new AdFormat._(maps.adsense.AdFormat.LEADERBOARD);
   static final MEDIUM_RECTANGLE = new AdFormat._(maps.adsense.AdFormat.MEDIUM_RECTANGLE);
+  static final MEDIUM_VERTICAL_LINK_UNIT = new AdFormat._(maps.adsense.AdFormat.MEDIUM_VERTICAL_LINK_UNIT);
   static final SKYSCRAPER = new AdFormat._(maps.adsense.AdFormat.SKYSCRAPER);
+  static final SMALL_HORIZONTAL_LINK_UNIT = new AdFormat._(maps.adsense.AdFormat.SMALL_HORIZONTAL_LINK_UNIT);
   static final SMALL_RECTANGLE = new AdFormat._(maps.adsense.AdFormat.SMALL_RECTANGLE);
   static final SMALL_SQUARE = new AdFormat._(maps.adsense.AdFormat.SMALL_SQUARE);
+  static final SMALL_VERTICAL_LINK_UNIT = new AdFormat._(maps.adsense.AdFormat.SMALL_VERTICAL_LINK_UNIT);
   static final SQUARE = new AdFormat._(maps.adsense.AdFormat.SQUARE);
   static final VERTICAL_BANNER = new AdFormat._(maps.adsense.AdFormat.VERTICAL_BANNER);
   static final WIDE_SKYSCRAPER = new AdFormat._(maps.adsense.AdFormat.WIDE_SKYSCRAPER);
+  static final X_LARGE_VERTICAL_LINK_UNIT = new AdFormat._(maps.adsense.AdFormat.X_LARGE_VERTICAL_LINK_UNIT);
 
-  static final _INSTANCES = [BANNER, BUTTON, HALF_BANNER, LARGE_RECTANGLE, LEADERBOARD, MEDIUM_RECTANGLE, SKYSCRAPER, SMALL_RECTANGLE, SMALL_SQUARE, SQUARE, VERTICAL_BANNER, WIDE_SKYSCRAPER];
+  static final _INSTANCES = [BANNER, BUTTON, HALF_BANNER, LARGE_HORIZONTAL_LINK_UNIT, LARGE_RECTANGLE, LARGE_VERTICAL_LINK_UNIT, LEADERBOARD, MEDIUM_RECTANGLE, MEDIUM_VERTICAL_LINK_UNIT, SKYSCRAPER, SMALL_HORIZONTAL_LINK_UNIT, SMALL_RECTANGLE, SMALL_SQUARE, SMALL_VERTICAL_LINK_UNIT, SQUARE, VERTICAL_BANNER, WIDE_SKYSCRAPER, X_LARGE_VERTICAL_LINK_UNIT];
 
   static AdFormat find(Object o) => findIn(_INSTANCES, o);
 

@@ -27,6 +27,7 @@ class MapOptions extends jsw.IsJsProxy {
   set mapMaker(bool mapMaker) => $.mapMaker = mapMaker;
   set mapTypeControl(bool mapTypeControl) => $.mapTypeControl = mapTypeControl;
   set mapTypeControlOptions(MapTypeControlOptions mapTypeControlOptions) => $.mapTypeControlOptions = mapTypeControlOptions;
+  // TODO bad online doc
   set mapTypeId(Object mapTypeId) {
     if (mapTypeId is String || mapTypeId is MapTypeId) {
       $.mapTypeId = mapTypeId;

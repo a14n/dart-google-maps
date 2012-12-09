@@ -19,4 +19,5 @@ class TextSearchRequest extends jsw.IsJsProxy {
   set location(LatLng location) => $.location = location;
   set query(String query) => $.query = query;
   set radius(num radius) => $.radius = radius;
+  set types(List<String> types) => $.types = types;
 }

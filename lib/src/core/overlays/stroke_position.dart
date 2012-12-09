@@ -14,14 +14,16 @@
 
 part of google_maps;
 
-class TransitVehicle extends jsw.IsJsProxy {
-  static final INSTANCIATOR = (js.Proxy jsProxy) => new TransitVehicle.fromJsProxy(jsProxy);
+class StrokePosition extends jsw.IsEnum<int> {
+  static final CENTER = new StrokePosition._(maps.StrokePosition.CENTER);
+  static final INSIDE = new StrokePosition._(maps.StrokePosition.INSIDE);
+  static final OUTSIDE = new StrokePosition._(maps.StrokePosition.OUTSIDE);
 
-  TransitVehicle() : super();
-  TransitVehicle.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  static final _INSTANCES = [CENTER, INSIDE, OUTSIDE];
 
-  String get icon => $.icon.value;
-  String get localIcon => $.local_icon.value;
-  String get name => $.name.value;
-  VehicleType get type => $.type.map(VehicleType.find).value;
+  static StrokePosition find(Object o) => findIn(_INSTANCES, o);
+
+  StrokePosition._(int value) : super(value);
+
+  bool operator ==(Object other) => value == (other is StrokePosition ? (other as StrokePosition).value : other);
 }

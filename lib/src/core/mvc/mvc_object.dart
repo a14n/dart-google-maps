@@ -19,6 +19,11 @@ class MVCObject extends jsw.IsJsProxy {
   MVCObject.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
   MVCObject.newInstance(objectName, [List args]) : super.newInstance(objectName, args);
 
+  MapsEventListener addListener(String eventName, Function handler) {
+    final callback = new jsw.Callback.many(handler);
+    final instanciator = (js.Proxy jsProxy) => new MapsEventListener.fromJsProxy(jsProxy, () => callback.dispose());
+    return $.addListener(eventName, callback).map(instanciator).value;
+  }
   void bindTo(String key, MVCObject target, [String targetKey, bool noNotify]) { $.bindTo(key, target, targetKey, noNotify); }
   void changed(String key) { $.changed(key); }
   Object get(String key) => $.get(key).value;

@@ -20,7 +20,7 @@ class GeocoderAddressComponent extends jsw.IsJsProxy {
   GeocoderAddressComponent() : super();
   GeocoderAddressComponent.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  String get long_name => $.long_name.value;
-  String get short_name => $.short_name.value;
+  String get longName => $.long_name.value;
+  String get shortName => $.short_name.value;
   List<String> get types => $.types.map((js.Proxy jsProxy) => new jsw.JsList<String>.fromJsProxy(jsProxy, null)).value;
 }

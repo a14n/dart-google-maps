@@ -13,7 +13,9 @@ void main() {
       ;
     final map = new GMap(query("#map_canvas"), mapOptions);
 
-    final ctaLayer = new KmlLayer('http://gmaps-samples.googlecode.com/svn/trunk/ggeoxml/cta.kml');
+    // TODO signature change 3.9 -> 3.10
+    final ctaLayer = new KmlLayer()
+      ..url = 'http://gmaps-samples.googlecode.com/svn/trunk/ggeoxml/cta.kml';
     ctaLayer.map = map;
   });
 }

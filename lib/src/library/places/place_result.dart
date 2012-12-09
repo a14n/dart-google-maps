@@ -20,17 +20,19 @@ class PlaceResult extends jsw.IsJsProxy {
   PlaceResult() : super();
   PlaceResult.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  List<GeocoderAddressComponent> get address_components => $.address_components.map((js.Proxy jsProxy) => new jsw.JsList<GeocoderAddressComponent>.fromJsProxy(jsProxy, GeocoderAddressComponent.INSTANCIATOR)).value;
-  String get formatted_address => $.formatted_address.value;
-  String get formatted_phone_number => $.formatted_phone_number.value;
+  List<GeocoderAddressComponent> get addressComponents => $.address_components.map((js.Proxy jsProxy) => new jsw.JsList<GeocoderAddressComponent>.fromJsProxy(jsProxy, GeocoderAddressComponent.INSTANCIATOR)).value;
+  List<PlaceAspectRating> get aspects => $.aspects.map((js.Proxy jsProxy) => new jsw.JsList<PlaceAspectRating>.fromJsProxy(jsProxy, PlaceAspectRating.INSTANCIATOR)).value;
+  String get formattedAddress => $.formatted_address.value;
+  String get formattedPhoneNumber => $.formatted_phone_number.value;
   PlaceGeometry get geometry => $.geometry.map(PlaceGeometry.INSTANCIATOR).value;
-  List<String> get html_attributions => $.html_attributions.map((js.Proxy jsProxy) => new jsw.JsList<String>.fromJsProxy(jsProxy, null)).value;
+  List<String> get htmlAttributions => $.html_attributions.map((js.Proxy jsProxy) => new jsw.JsList<String>.fromJsProxy(jsProxy, null)).value;
   String get icon => $.icon.value;
   String get id => $.id.value;
-  String get international_phone_number => $.international_phone_number.value;
+  String get internationalPhoneNumber => $.international_phone_number.value;
   String get name => $.name.value;
   num get rating => $.rating.value;
   String get reference => $.reference.value;
+  List<PlaceReview> get reviews => $.reviews.map((js.Proxy jsProxy) => new jsw.JsList<PlaceReview>.fromJsProxy(jsProxy, PlaceReview.INSTANCIATOR)).value;
   List<String> get types => $.types.map((js.Proxy jsProxy) => new jsw.JsList<String>.fromJsProxy(jsProxy, null)).value;
   String get url => $.url.value;
   String get vicinity => $.vicinity.value;

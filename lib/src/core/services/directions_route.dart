@@ -23,7 +23,7 @@ class DirectionsRoute extends jsw.IsJsProxy {
   LatLngBounds get bounds => new LatLngBounds.fromJsProxy($.bounds.value);
   String get copyrights => $.copyrights.value;
   List<DirectionsLeg> get legs => $.legs.map((js.Proxy jsProxy) => new jsw.JsList<DirectionsLeg>.fromJsProxy(jsProxy, DirectionsLeg.INSTANCIATOR)).value;
-  List<LatLng> get overview_path => $.overview_path.map((js.Proxy jsProxy) => new jsw.JsList<LatLng>.fromJsProxy(jsProxy, LatLng.INSTANCIATOR)).value;
+  List<LatLng> get overviewPath => $.overview_path.map((js.Proxy jsProxy) => new jsw.JsList<LatLng>.fromJsProxy(jsProxy, LatLng.INSTANCIATOR)).value;
   List<String> get warnings => $.warnings.map((js.Proxy jsProxy) => new jsw.JsList<String>.fromJsProxy(jsProxy, null)).value;
-  List<num> get waypoint_order => $.waypoint_order.map((js.Proxy jsProxy) => new jsw.JsList<num>.fromJsProxy(jsProxy, null)).value;
+  List<num> get waypointOrder => $.waypoint_order.map((js.Proxy jsProxy) => new jsw.JsList<num>.fromJsProxy(jsProxy, null)).value;
 }

@@ -18,8 +18,8 @@ class GeocoderResult extends jsw.IsJsProxy {
   GeocoderResult() : super();
   GeocoderResult.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  List<GeocoderAddressComponent> get address_components => $.address_components.map((js.Proxy jsProxy) => new jsw.JsList<GeocoderAddressComponent>.fromJsProxy(jsProxy, GeocoderAddressComponent.INSTANCIATOR)).value;
-  String get formatted_address => $.formatted_address.value;
+  List<GeocoderAddressComponent> get addressComponents => $.address_components.map((js.Proxy jsProxy) => new jsw.JsList<GeocoderAddressComponent>.fromJsProxy(jsProxy, GeocoderAddressComponent.INSTANCIATOR)).value;
+  String get formattedAddress => $.formatted_address.value;
   GeocoderGeometry get geometry => $.geometry.map(GeocoderGeometry.INSTANCIATOR).value;
   List<String> get types => $.types.map((js.Proxy jsProxy) => new jsw.JsList<String>.fromJsProxy(jsProxy, null)).value;
 }

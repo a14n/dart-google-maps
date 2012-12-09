@@ -14,6 +14,7 @@
 
 part of google_maps;
 
+// TODO extends MVCObject mixin MapType
 class ImageMapType extends MapType {
   ImageMapType(ImageMapTypeOptions opts) : super.newInstance(maps.ImageMapType, [opts]);
   ImageMapType.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);

@@ -15,9 +15,14 @@
 part of google_maps_adsense;
 
 class AdUnitOptions extends jsw.IsJsProxy {
+  set backgroundColor(String backgroundColor) => $.backgroundColor = backgroundColor;
+  set borderColor(String borderColor) => $.borderColor = borderColor;
   set channelNumber(String channelNumber) => $.channelNumber = channelNumber;
   set format(AdFormat format) => $.format = format;
   set map(GMap map) => $.map = map;
   set position(ControlPosition position) => $.position = position;
   set publisherId(String publisherId) => $.publisherId = publisherId;
+  set textColor(String textColor) => $.textColor = textColor;
+  set titleColor(String titleColor) => $.titleColor = titleColor;
+  set urlColor(String urlColor) => $.urlColor = urlColor;
 }

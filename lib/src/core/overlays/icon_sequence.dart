@@ -18,6 +18,7 @@ class IconSequence extends jsw.IsJsProxy {
   IconSequence() : super();
   IconSequence.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
+  set fixedRotation(bool fixedRotation) => $.fixedRotation = fixedRotation;
   set icon(Symbol icon) => $.icon = icon;
   set offset(String offset) => $.offset = offset;
   set repeat(String repeat) => $.repeat = repeat;

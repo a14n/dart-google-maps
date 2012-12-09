@@ -49,19 +49,23 @@ void setMarkers(GMap map, List locations) {
   // Origins, anchor positions and coordinates of the marker
   // increase in the X direction to the right and in
   // the Y direction down.
-  final image = new MarkerImage('${IMAGE_URL}/images/beachflag.png',
-      // This marker is 20 pixels wide by 32 pixels tall.
-      new Size(20, 32),
-      // The origin for this image is 0,0.
-      new Point(0,0),
-      // The anchor for this image is the base of the flagpole at 0,32.
-      new Point(0, 32));
-  final shadow = new MarkerImage('${IMAGE_URL}/images/beachflag_shadow.png',
-      // The shadow image is larger in the horizontal dimension
-      // while the position and offset are the same as for the main image.
-      new Size(37, 32),
-      new Point(0, 0),
-      new Point(0, 32));
+  // TODO issue for MarkerImage deprecated
+  final image = new Icon()
+    ..url = '${IMAGE_URL}/images/beachflag.png'
+    // This marker is 20 pixels wide by 32 pixels tall.
+    ..size = new Size(20, 32)
+    // The origin for this image is 0,0.
+    ..origin = new Point(0,0)
+    // The anchor for this image is the base of the flagpole at 0,32.
+    ..anchor = new Point(0, 32);
+  // TODO issue for MarkerImage deprecated
+  final shadow = new Icon()
+    ..url = '${IMAGE_URL}/images/beachflag_shadow.png'
+    // The shadow image is larger in the horizontal dimension
+    // while the position and offset are the same as for the main image.
+    ..size = new Size(37, 32)
+    ..origin = new Point(0, 0)
+    ..anchor = new Point(0, 32);
   // Shapes define the clickable region of the icon.
   // The type defines an HTML &lt;area&gt; element 'poly' which
   // traces out a polygon as a series of X,Y points. The final

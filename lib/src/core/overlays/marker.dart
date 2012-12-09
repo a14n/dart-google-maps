@@ -35,10 +35,14 @@ class Marker extends MVCObject {
     } else if (result is String) {
       return result;
     } else if (result is js.Proxy) {
-      return new MarkerImage.fromJsProxy(result);
-    } else {
-      throw new Exception("Unsupported result");
+      final type = _isSymbolOrIcon(result);
+      if (type == "Symbol") {
+        return new Symbol.fromJsProxy(result);
+      } else if (type == "Icon") {
+        return new Icon.fromJsProxy(result);
+      }
     }
+    throw new Exception("Unsupported result");
   }
   Object get map {
     final result = $.getMap().value;
@@ -60,10 +64,14 @@ class Marker extends MVCObject {
     } else if (result is String) {
       return result;
     } else if (result is js.Proxy) {
-      return new MarkerImage.fromJsProxy(result);
-    } else {
-      throw new Exception("Unsupported result");
+      final type = _isSymbolOrIcon(result);
+      if (type == "Symbol") {
+        return new Symbol.fromJsProxy(result);
+      } else if (type == "Icon") {
+        return new Icon.fromJsProxy(result);
+      }
     }
+    throw new Exception("Unsupported result");
   }
   MarkerShape get shape => $.getShape().map(MarkerShape.INSTANCIATOR).value;
   String get title => $.getTitle().value;
@@ -75,10 +83,10 @@ class Marker extends MVCObject {
   set draggable(bool draggable) => $.setDraggable(draggable);
   set flat(bool flag) => $.setFlat(flag);
   set icon(Object icon) {
-    if (icon == null || icon is String || icon is MarkerImage) {
+    if (icon == null || icon is String || icon is Icon || icon is Symbol) {
       $.setIcon(icon);
     } else {
-      throw new UnsupportedError("Parameter must be of type String or MarkerImage");
+      throw new UnsupportedError("Parameter must be of type String, Icon or Symbol");
     }
   }
   set map(Object map) {
@@ -91,15 +99,24 @@ class Marker extends MVCObject {
   set options(MarkerOptions options) => $.setOptions(options);
   set position(LatLng latlng) => $.setPosition(latlng);
   set shadow(Object shadow) {
-    if (shadow is String || shadow is MarkerImage) {
+    if (shadow == null || shadow is String || shadow is Icon || shadow is Symbol) {
       $.setShadow(shadow);
     } else {
-      throw new UnsupportedError("Parameter must be of type String or MarkerImage");
+      throw new UnsupportedError("Parameter must be of type String, Icon or Symbol");
     }
   }
   set title(String title) => $.setTitle(title);
   set visible(bool visible) => $.setVisible(visible);
   set zIndex(num zIndex) => $.setZIndex(zIndex);
+
+  String _isSymbolOrIcon(js.Proxy jsProxy) {
+    try {
+      final path = jsProxy.path;
+      return "Symbol";
+    } on NoSuchMethodError {
+      return "Icon";
+    }
+  }
 
   // js events
 
@@ -129,7 +146,7 @@ class MarkerEvents {
   static final TITLE_CHANGED = "title_changed";
   static final VISIBLE_CHANGED = "visible_changed";
   static final ZINDEX_CHANGED = "zindex_changed";
-  
+
   final Marker _marker;
 
   MarkerEvents._(this._marker);

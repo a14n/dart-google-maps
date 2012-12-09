@@ -35,21 +35,22 @@ void main() {
         map.zoom = 17;  // Why 17? Because it looks good.
       }
 
-      final image = new MarkerImage(
-          place.icon,
-          new Size(71, 71),
-          new Point(0, 0),
-          new Point(17, 34),
-          new Size(35, 35));
-      marker.icon = image;
+      // TODO issue for MarkerImage deprecated
+      final icon = new Icon()
+        ..url = place.icon
+        ..size = new Size(71, 71)
+        ..origin = new Point(0, 0)
+        ..anchor = new Point(17, 34)
+        ..scaledSize = new Size(35, 35);
+      marker.icon = icon;
       marker.position = place.geometry.location;
 
       String address = '';
-      if (place.address_components != null) {
+      if (place.addressComponents != null) {
         address = Strings.join([
-          (place.address_components[0] != null && place.address_components[0].short_name != null ? place.address_components[0].short_name : ''),
-          (place.address_components[1] != null && place.address_components[1].short_name != null ? place.address_components[1].short_name : ''),
-          (place.address_components[2] != null && place.address_components[2].short_name != null ? place.address_components[2].short_name : '')
+          (place.addressComponents[0] != null && place.addressComponents[0].shortName != null ? place.addressComponents[0].shortName : ''),
+          (place.addressComponents[1] != null && place.addressComponents[1].shortName != null ? place.addressComponents[1].shortName : ''),
+          (place.addressComponents[2] != null && place.addressComponents[2].shortName != null ? place.addressComponents[2].shortName : '')
         ], ' ');
       }
 

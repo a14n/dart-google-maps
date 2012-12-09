@@ -13,12 +13,13 @@ void main() {
       ;
     final map = new GMap(query("#map_canvas"), mapOptions);
 
+    // TODO signature change 3.9 -> 3.10
     final nyLayer = new KmlLayer(
-        'http://www.searcharoo.net/SearchKml/newyork.kml',
         new KmlLayerOptions()
           ..suppressInfoWindows = true
           ..map = map
-        );
+        )
+        ..url = 'http://www.searcharoo.net/SearchKml/newyork.kml';
 
     nyLayer.on.click.add((e) {
       final text = e.featureData.description;

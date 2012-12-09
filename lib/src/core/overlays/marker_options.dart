@@ -15,16 +15,17 @@
 part of google_maps;
 
 class MarkerOptions extends jsw.IsJsProxy {
+  set anchorPoint(Point anchorPoint) => $.anchorPoint = anchorPoint;
   set animation(Animation animation) => $.animation = animation;
   set clickable(bool clickable) => $.clickable = clickable;
   set cursor(String cursor) => $.cursor = cursor;
   set draggable(bool draggable) => $.draggable = draggable;
   set flat(bool flat) => $.flat = flat;
   set icon(Object icon) {
-    if (icon is String || icon is MarkerImage || icon is Symbol) {
+    if (icon == null || icon is String || icon is Icon || icon is Symbol) {
       $.icon = icon;
     } else {
-      throw new UnsupportedError("Parameter must be of type String, MarkerImage or Symbol");
+      throw new UnsupportedError("Parameter must be of type String, Icon or Symbol");
     }
   }
   set map(Object map) {
@@ -38,10 +39,10 @@ class MarkerOptions extends jsw.IsJsProxy {
   set position(LatLng position) => $.position = position;
   set raiseOnDrag(bool raiseOnDrag) => $.raiseOnDrag = raiseOnDrag;
   set shadow(Object shadow) {
-    if (shadow is String || shadow is MarkerImage || shadow is Symbol) {
+    if (shadow == null || shadow is String || shadow is Icon || shadow is Symbol) {
       $.shadow = shadow;
     } else {
-      throw new UnsupportedError("Parameter must be of type String, MarkerImage or Symbol");
+      throw new UnsupportedError("Parameter must be of type String, Icon or Symbol");
     }
   }
   set shape(MarkerShape shape) => $.shape = shape;

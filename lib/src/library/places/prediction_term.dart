@@ -12,16 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-part of google_maps;
+part of google_maps_places;
 
-class TransitVehicle extends jsw.IsJsProxy {
-  static final INSTANCIATOR = (js.Proxy jsProxy) => new TransitVehicle.fromJsProxy(jsProxy);
+class PredictionTerm extends jsw.IsJsProxy {
+  static final INSTANCIATOR = (js.Proxy jsProxy) => new PredictionTerm.fromJsProxy(jsProxy);
 
-  TransitVehicle() : super();
-  TransitVehicle.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  PredictionTerm() : super();
+  PredictionTerm.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  String get icon => $.icon.value;
-  String get localIcon => $.local_icon.value;
-  String get name => $.name.value;
-  VehicleType get type => $.type.map(VehicleType.find).value;
+  num get offset => $.offset;
+  String get value => $.value;
+  set offset(num offset) => $.offset = offset;
+  set value(String value) => $.value = value;
 }

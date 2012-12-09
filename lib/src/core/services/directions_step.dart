@@ -22,11 +22,11 @@ class DirectionsStep extends jsw.IsJsProxy {
 
   Distance get distance => $.distance.map(Distance.INSTANCIATOR).value;
   GDuration get duration => $.duration.map(GDuration.INSTANCIATOR).value;
-  LatLng get end_location => $.end_location.map(LatLng.INSTANCIATOR).value;
+  LatLng get endLocation => $.end_location.map(LatLng.INSTANCIATOR).value;
   String get instructions => $.instructions.value;
   List<LatLng> get path => $.path.map((js.Proxy jsProxy) => new jsw.JsList<LatLng>.fromJsProxy(jsProxy, LatLng.INSTANCIATOR)).value;
-  LatLng get start_location => $.start_location.map(LatLng.INSTANCIATOR).value;
+  LatLng get startLocation => $.start_location.map(LatLng.INSTANCIATOR).value;
   List<DirectionsStep> get steps => $.steps.map((js.Proxy jsProxy) => new jsw.JsList<DirectionsStep>.fromJsProxy(jsProxy, DirectionsStep.INSTANCIATOR)).value;
   TransitDetails get transit => $.transit.map(TransitDetails.INSTANCIATOR).value;
-  TravelMode get travel_mode => $.travel_mode.map(TravelMode.find).value;
+  TravelMode get travelMode => $.travel_mode.map(TravelMode.find).value;
 }

@@ -14,6 +14,7 @@
 
 part of google_maps;
 
+// TODO extends MVCObject mixin MapType
 class StyledMapType extends MapType {
   StyledMapType(List<MapTypeStyle> styles, [StyledMapTypeOptions options]) : super.newInstance(maps.StyledMapType, [styles, options]);
 }

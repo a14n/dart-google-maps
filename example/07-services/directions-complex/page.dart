@@ -78,7 +78,7 @@ void showSteps(DirectionsResult directionResult) {
 
   for(final step in myRoute.steps) {
     final marker = new Marker(new MarkerOptions()
-      ..position = step.start_location // TODO bad attribut in example "start_point"
+      ..position = step.startLocation // TODO bad attribut in example "start_point"
       ..map = map
     );
     attachInstructionText(marker, step.instructions);

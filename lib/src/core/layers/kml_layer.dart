@@ -15,7 +15,7 @@
 part of google_maps;
 
 class KmlLayer extends MVCObject {
-  KmlLayer(String url, [KmlLayerOptions options]) : super.newInstance(maps.KmlLayer, [url, options]);
+  KmlLayer([KmlLayerOptions options]) : super.newInstance(maps.KmlLayer, [options]);
   KmlLayer.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   LatLngBounds get defaultViewport => $.getDefaultViewport().map(LatLngBounds.INSTANCIATOR).value;
@@ -24,6 +24,7 @@ class KmlLayer extends MVCObject {
   KmlLayerStatus get status => $.getStatus().map(KmlLayerStatus.find).value;
   String get url => $.getUrl().value;
   set map(GMap map) => $.setMap(map);
+  set url(String url) => $.setUrl(url);
 
   KmlLayerEvents get on => new KmlLayerEvents._(this);
 }

@@ -19,4 +19,5 @@ class KmlLayerOptions extends jsw.IsJsProxy {
   set map(GMap map) => $.map = map;
   set preserveViewport(bool preserveViewport) => $.preserveViewport = preserveViewport;
   set suppressInfoWindows(bool suppressInfoWindows) => $.suppressInfoWindows = suppressInfoWindows;
+  set url(String url) => $.url = url;
 }

@@ -20,14 +20,14 @@ class DirectionsLeg extends jsw.IsJsProxy {
   DirectionsLeg() : super();
   DirectionsLeg.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  Time get arrival_time => $.arrival_time.map(Time.INSTANCIATOR).value;
-  Time get departure_time => $.departure_time.map(Time.INSTANCIATOR).value;
+  Time get arrivalTime => $.arrival_time.map(Time.INSTANCIATOR).value;
+  Time get departureTime => $.departure_time.map(Time.INSTANCIATOR).value;
   Distance get distance => $.distance.map(Distance.INSTANCIATOR).value;
   GDuration get duration => $.duration.map(GDuration.INSTANCIATOR).value;
-  String get end_address => $.end_address.value;
-  LatLng get end_location => $.end_location.map(LatLng.INSTANCIATOR).value;
-  String get start_address => $.start_address.value;
-  LatLng get start_location => $.start_location.map(LatLng.INSTANCIATOR).value;
+  String get endAddress => $.end_address.value;
+  LatLng get endLocation => $.end_location.map(LatLng.INSTANCIATOR).value;
+  String get startAddress => $.start_address.value;
+  LatLng get startLocation => $.start_location.map(LatLng.INSTANCIATOR).value;
   List<DirectionsStep> get steps => $.steps.map((js.Proxy jsProxy) => new jsw.JsList<DirectionsStep>.fromJsProxy(jsProxy, DirectionsStep.INSTANCIATOR)).value;
-  List<LatLng> get via_waypoints => $.via_waypoints.map((js.Proxy jsProxy) => new jsw.JsList<LatLng>.fromJsProxy(jsProxy, LatLng.INSTANCIATOR)).value;
+  List<LatLng> get viaWaypoints => $.via_waypoints.map((js.Proxy jsProxy) => new jsw.JsList<LatLng>.fromJsProxy(jsProxy, LatLng.INSTANCIATOR)).value;
 }

@@ -17,7 +17,7 @@ part of google_maps;
 class MapTypeStyler extends jsw.IsJsProxy {
   set gamma(num gamma) => $.gamma = gamma;
   set hue(String hue) => $.hue = hue;
-  set invert_lightness(bool invert_lightness) => $.invert_lightness = invert_lightness;
+  set invertLightness(bool invertLightness) => $.invert_lightness = invertLightness;
   set lightness(num lightness) => $.lightness = lightness;
   set saturation(num saturation) => $.saturation = saturation;
   set visibility(MapTypeStylerVisibility visibility) => $.visibility = visibility.value;

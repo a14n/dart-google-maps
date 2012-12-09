@@ -30,6 +30,7 @@ class PolygonOptions extends jsw.IsJsProxy {
   }
   set strokeColor(String strokeColor) => $.strokeColor = strokeColor;
   set strokeOpacity(num strokeOpacity) => $.strokeOpacity = strokeOpacity;
+  set strokePosition(StrokePosition strokePosition) => $.strokePosition = strokePosition;
   set strokeWeight(num strokeWeight) => $.strokeWeight = strokeWeight;
   set visible(bool visible) => $.visible = visible;
   set zIndex(num zIndex) => $.zIndex = zIndex;

@@ -32,6 +32,7 @@ class Spherical {
     }
   }
   static LatLng computeOffset(LatLng from, num distance, num heading, [num radius]) => new jsw.IsJsProxy.fromJsProxy(maps.geometry.spherical).$.computeOffset(from, distance, heading, radius).map(LatLng.INSTANCIATOR).value;
+  static LatLng computeOffsetOrigin(LatLng to, num distance, num heading, [num radius]) => new jsw.IsJsProxy.fromJsProxy(maps.geometry.spherical).$.computeOffsetOrigin(to, distance, heading, radius).map(LatLng.INSTANCIATOR).value;
   static num computeSignedArea(Object loop, [num radius]) {
     if (loop is MVCArray<LatLng> || loop is List<LatLng>) {
       return new jsw.IsJsProxy.fromJsProxy(maps.geometry.spherical).$.computeSignedArea(loop, radius).value;

@@ -24,8 +24,8 @@ class TransitLine extends jsw.IsJsProxy {
   String get color => $.color.value;
   String get icon => $.icon.value;
   String get name => $.name.value;
-  String get short_name => $.short_name.value;
-  String get text_color => $.text_color.value;
+  String get shortName => $.short_name.value;
+  String get textColor => $.text_color.value;
   String get url => $.url.value;
   TransitVehicle get vehicle => $.vehicle.map(TransitVehicle.INSTANCIATOR).value;
 }

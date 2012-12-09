@@ -56,8 +56,8 @@ void calcRoute() {
           final leg = route.legs[i];
           final routeSegment = i + 1;
           html.add('<b>Route Segment: ${routeSegment}</b><br>');
-          html.add('${leg.start_address} to ');
-          html.add('${leg.end_address}<br>');
+          html.add('${leg.startAddress} to ');
+          html.add('${leg.endAddress}<br>');
           html.add('${leg.distance.text}<br><br>');
         }
         summaryPanel.innerHTML = html.toString();

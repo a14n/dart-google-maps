@@ -42,7 +42,7 @@ void codeLatLng() {
             ..map = map
           );
           jsw.release(latlng);
-          infowindow.content = results[1].formatted_address;
+          infowindow.content = results[1].formattedAddress;
           infowindow.open(map, marker);
         } else {
           window.alert('No results found');

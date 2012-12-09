@@ -13,7 +13,9 @@ void main() {
       ;
     final map = new GMap(query("#map_canvas"), mapOptions);
 
-    final georssLayer = new KmlLayer('http://api.flickr.com/services/feeds/geo/?g=322338@N20&lang=en-us&format=feed-georss');
+    // TODO signature change 3.9 -> 3.10
+    final georssLayer = new KmlLayer()
+      ..url = 'http://api.flickr.com/services/feeds/geo/?g=322338@N20&lang=en-us&format=feed-georss';
     georssLayer.map = map;
   });
 }
