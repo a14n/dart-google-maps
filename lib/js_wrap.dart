@@ -187,7 +187,7 @@ class JsList<E> extends JsCollection<E> implements List<E> {
   @override void add(E value) { $.push(value); }
   @override void addLast(E value) { $.push(value); }
   @override void addAll(Collection<E> collection) { setRange(length, collection.length, collection); }
-  @override void sort([Comparator<E> compare = Comparable.compare]) {
+  @override void sort([int compare(E a, E b)]) {
     final sortedList = _asList()..sort(compare);
     clear();
     addAll(sortedList);
