@@ -61,7 +61,7 @@ void calcRoute() {
     directionsService.route(request, (DirectionsResult response, DirectionsStatus status) {
       if (status == DirectionsStatus.OK) {
         final warnings = query('#warnings_panel');
-        warnings.innerHTML = '<b>${response.routes[0].warnings}</b>';
+        warnings.innerHtml = '<b>${response.routes[0].warnings}</b>';
         directionsDisplay.directions = response;
         showSteps(response);
       }

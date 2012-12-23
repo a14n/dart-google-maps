@@ -18,7 +18,7 @@ class CoordMapType extends MapType {
 
   DivElement _getTile(Point coord, num zoom) {
     final div = new DivElement()
-      ..innerHTML = coord.toString()
+      ..innerHtml = coord.toString()
       ;
     div.style
       ..width = '${tileSize.width}px'

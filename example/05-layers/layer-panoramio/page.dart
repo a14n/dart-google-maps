@@ -22,10 +22,10 @@ void main() {
     panoramioLayer.on.click.add((e) {
       final li = new LIElement();
       final link = new AnchorElement();
-      link.innerHTML = '${e.featureDetails.title}: ${e.featureDetails.author}';
+      link.innerHtml = '${e.featureDetails.title}: ${e.featureDetails.author}';
       link.href = e.featureDetails.url;
-      li.elements.add(link);
-      photoPanel.elements.add(li);
+      li.children.add(link);
+      photoPanel.children.add(li);
       photoPanel.style.display = 'block';
     });
   });

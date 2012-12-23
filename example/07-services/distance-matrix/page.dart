@@ -61,7 +61,7 @@ void callback(DistanceMatrixResponse response, DistanceMatrixStatus status) {
         html.add('${origins[i]} to ${destinations[j]}: ${results[j].distance.text} in ${results[j].duration.text}<br>');
       }
     }
-    query('#outputDiv').innerHTML = html.toString();
+    query('#outputDiv').innerHtml = html.toString();
   }
 }
 

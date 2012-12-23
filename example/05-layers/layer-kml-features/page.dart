@@ -30,5 +30,5 @@ void main() {
 
 void showInContentWindow(text) {
   final sidediv = document.query('#content_window');
-  sidediv.innerHTML = text;
+  sidediv.innerHtml = text;
 }

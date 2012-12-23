@@ -79,14 +79,14 @@ class USGSOverlay extends OverlayView {
       ..width = '100%'
       ..height = '100%'
       ;
-    div.elements.add(img);
+    div.children.add(img);
 
     // Set the overlay's div_ property to this DIV
     _div = div;
 
     // We add an overlay to a map via one of the map's panes.
     // We'll add this overlay to the overlayImage pane.
-    (panes.overlayImage as Element).elements.add(_div);
+    (panes.overlayImage as Element).children.add(_div);
   }
 
   void _draw() {

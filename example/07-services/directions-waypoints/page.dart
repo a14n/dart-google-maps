@@ -60,7 +60,7 @@ void calcRoute() {
           html.add('${leg.endAddress}<br>');
           html.add('${leg.distance.text}<br><br>');
         }
-        summaryPanel.innerHTML = html.toString();
+        summaryPanel.innerHtml = html.toString();
       }
     });
   });

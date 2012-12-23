@@ -29,7 +29,7 @@ class HomeControl {
       ..textAlign = 'center'
       ;
     controlUI.title = 'Click to set the map to Home';
-    controlDiv.elements.add(controlUI);
+    controlDiv.children.add(controlUI);
 
     // Set CSS for the control interior
     final controlText = new DivElement();
@@ -39,8 +39,8 @@ class HomeControl {
       ..paddingLeft = '4px'
       ..paddingRight = '4px'
       ;
-    controlText.innerHTML = '<b>Home</b>';
-    controlUI.elements.add(controlText);
+    controlText.innerHtml = '<b>Home</b>';
+    controlUI.children.add(controlText);
 
     // Setup the click event listeners: simply set the map to
     // Chicago

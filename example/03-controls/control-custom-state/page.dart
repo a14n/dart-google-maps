@@ -32,7 +32,7 @@ class HomeControl {
       ..textAlign = 'center'
       ;
     goHomeUI.title = 'Click to set the map to Home';
-    controlDiv.elements.add(goHomeUI);
+    controlDiv.children.add(goHomeUI);
 
     // Set CSS for the control interior
     final goHomeText = new DivElement();
@@ -42,8 +42,8 @@ class HomeControl {
       ..paddingLeft = '4px'
       ..paddingRight = '4px'
       ;
-    goHomeText.innerHTML = '<b>Home</b>';
-    goHomeUI.elements.add(goHomeText);
+    goHomeText.innerHtml = '<b>Home</b>';
+    goHomeUI.children.add(goHomeText);
 
     // Set CSS for the setHome control border
     final setHomeUI = new DivElement();
@@ -55,7 +55,7 @@ class HomeControl {
       ..textAlign = 'center'
       ;
     setHomeUI.title = 'Click to set Home to the current center';
-    controlDiv.elements.add(setHomeUI);
+    controlDiv.children.add(setHomeUI);
 
     // Set CSS for the control interior
     final setHomeText = new DivElement();
@@ -65,8 +65,8 @@ class HomeControl {
       ..paddingLeft = '4px'
       ..paddingRight = '4px'
       ;
-    setHomeText.innerHTML = '<b>Set Home</b>';
-    setHomeUI.elements.add(setHomeText);
+    setHomeText.innerHtml = '<b>Set Home</b>';
+    setHomeUI.children.add(setHomeText);
 
     // Setup the click event listener for Home:
     // simply set the map to the control's current home property.

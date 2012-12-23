@@ -23,5 +23,5 @@ void main() {
     ..type = 'text/javascript'
     ..src = 'https://maps.googleapis.com/maps/api/js?sensor=false&callback=initialize'
     ;
-  document.body.elements.add(script);
+  document.body.children.add(script);
 }

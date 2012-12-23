@@ -55,5 +55,5 @@ void computeTotalDistance(DirectionsResult result) {
     total += myroute.legs[i].distance.value;
   }
   total = total / 1000.0;  // TODO bad synthax in example
-  query('#total').innerHTML = '${total} km';
+  query('#total').innerHtml = '${total} km';
 }
