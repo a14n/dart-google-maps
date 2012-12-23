@@ -45,7 +45,7 @@ class HomeControl {
     // Setup the click event listeners: simply set the map to
     // Chicago
     jsw.retain(map);
-    Events.addDomListener(controlUI, 'click', (e) {
+    event.addDomListener(controlUI, 'click', (e) {
       map.center = chicago;
     });
   }

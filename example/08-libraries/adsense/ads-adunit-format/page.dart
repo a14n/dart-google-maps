@@ -101,14 +101,14 @@ void main() {
 
     final SelectElement format = query('#format');
     jsw.retainAll([adUnit]);
-    Events.addDomListener(format, 'change', (e) {
+    event.addDomListener(format, 'change', (e) {
       final adsFormat = (new jsw.IsJsProxy.fromJsProxy(maps.adsense.AdFormat).$[format.value] as Option<String>).value;
       adUnit.format = AdFormat.find(adsFormat);
     });
 
     final SelectElement style = query('#style');
     jsw.retainAll([adUnit]);
-    Events.addDomListener(style, 'change', (e) {
+    event.addDomListener(style, 'change', (e) {
       final adStyle = SAMPLE_AD_STYLES[style.value];
       // TODO undocumented or undefined functions
       adUnit.$
@@ -122,7 +122,7 @@ void main() {
 
     final SelectElement position = query('#position');
     jsw.retainAll([adUnit]);
-    Events.addDomListener(position, 'change', (e) {
+    event.addDomListener(position, 'change', (e) {
       final adsPosition = (new jsw.IsJsProxy.fromJsProxy(maps.ControlPosition).$[position.value] as Option<int>).value;
       adUnit.position = ControlPosition.find(adsPosition);
     });

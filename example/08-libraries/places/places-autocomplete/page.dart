@@ -62,7 +62,7 @@ void main() {
     // Autocomplete.
     void setupClickListener(id, types) {
       final radioButton = query('#${id}');
-      Events.addDomListener(radioButton, 'click', () {
+      event.addDomListener(radioButton, 'click', () {
         autocomplete.types = types;
       });
     }

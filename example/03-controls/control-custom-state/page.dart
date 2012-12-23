@@ -71,14 +71,14 @@ class HomeControl {
     // Setup the click event listener for Home:
     // simply set the map to the control's current home property.
     jsw.retainAll([map]);
-    Events.addDomListener(goHomeUI, 'click', (e) {
+    event.addDomListener(goHomeUI, 'click', (e) {
       map.center = _home;
     });
 
     // Setup the click event listener for Set Home:
     // Set the control's home to the current Map center.
     jsw.retainAll([map]);
-    Events.addDomListener(setHomeUI, 'click', (e) {
+    event.addDomListener(setHomeUI, 'click', (e) {
       jsw.release(_home);
       _home = jsw.retain(map.center);
     });

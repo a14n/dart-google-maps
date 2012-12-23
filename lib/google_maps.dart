@@ -16,6 +16,7 @@ library google_maps;
 
 import 'dart:html' as html;
 import 'package:js/js.dart' as js;
+import 'package:meta/meta.dart';
 import 'optional.dart';
 import 'js_wrap.dart' as jsw;
 
@@ -180,8 +181,8 @@ class EventListenerAdder {
 
   EventListenerAdder(this._instance, this._eventName);
 
-  void add(Function handler) { Events.addListener(_instance, _eventName, handler); }
-  MapsEventListenerRegistration addTemporary(Function handler) => new MapsEventListenerRegistration._(jsw.retain(Events.addListener(_instance, _eventName, handler)));
+  void add(Function handler) { event.addListener(_instance, _eventName, handler); }
+  MapsEventListenerRegistration addTemporary(Function handler) => new MapsEventListenerRegistration._(jsw.retain(event.addListener(_instance, _eventName, handler)));
 }
 
 class MapsEventListenerRegistration {
@@ -190,7 +191,7 @@ class MapsEventListenerRegistration {
 
   void removeListener() {
     js.scoped(() {
-      Events.removeListener(_mapsEventListener);
+      event.removeListener(_mapsEventListener);
       jsw.release(_mapsEventListener);
     });
   }

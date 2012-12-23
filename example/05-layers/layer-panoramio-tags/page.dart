@@ -20,7 +20,7 @@ void main() {
     final button = query('#filter-button');
 
     jsw.retain(panoramioLayer);
-    Events.addDomListener(button, 'click', (e) {
+    event.addDomListener(button, 'click', (e) {
       panoramioLayer.tag = tag.value;
     });
 

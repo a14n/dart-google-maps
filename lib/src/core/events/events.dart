@@ -14,36 +14,54 @@
 
 part of google_maps;
 
-class Events {
-  static MapsEventListener addDomListener(Object instance, String eventName, Function handler, [bool capture]) {
+GEvent get event => new GEvent();
+
+@deprecated class Events {
+  static MapsEventListener addDomListener(Object instance, String eventName, Function handler, [bool capture]) => event.addDomListener(instance, eventName, handler, capture);
+  static MapsEventListener addDomListenerOnce(Object instance, String eventName, Function handler, [bool capture]) => event.addDomListenerOnce(instance, eventName, handler, capture);
+  static MapsEventListener addListener(jsw.IsJsProxy instance, String eventName, Function handler) => event.addListener(instance, eventName, handler);
+  static MapsEventListener addListenerOnce(jsw.IsJsProxy instance, String eventName, Function handler) => event.addListenerOnce(instance, eventName, handler);
+  static void clearInstanceListeners(jsw.IsJsProxy instance) { event.clearInstanceListeners(instance); }
+  static void clearListeners(jsw.IsJsProxy instance, String eventName) { event.clearListeners(instance, eventName); }
+  static void removeListener(MapsEventListener listener) { event.removeListener(listener); }
+  static void trigger(jsw.IsJsProxy instance, String eventName, List<Object> args) { event.trigger(instance, eventName, args); }
+}
+
+class GEvent {
+  static final _INSTANCE = new GEvent._();
+
+  factory GEvent() => _INSTANCE;
+  GEvent._();
+
+  MapsEventListener addDomListener(Object instance, String eventName, Function handler, [bool capture]) {
     final callback = new jsw.Callback.many(handler);
     final instanciator = (js.Proxy jsProxy) => new MapsEventListener.fromJsProxy(jsProxy, () => callback.dispose());
     return new jsw.IsJsProxy.fromJsProxy(maps.event).$.addDomListener(instance, eventName, callback, capture).map(instanciator).value;
   }
-  static MapsEventListener addDomListenerOnce(Object instance, String eventName, Function handler, [bool capture]) {
+  MapsEventListener addDomListenerOnce(Object instance, String eventName, Function handler, [bool capture]) {
     final callback = new jsw.Callback.once(handler);
     final instanciator = (js.Proxy jsProxy) => new MapsEventListener.fromJsProxy(jsProxy);
     return new jsw.IsJsProxy.fromJsProxy(maps.event).$.addDomListenerOnce(instance, eventName, callback, capture).map(instanciator).value;
   }
-  static MapsEventListener addListener(jsw.IsJsProxy instance, String eventName, Function handler) {
+  MapsEventListener addListener(jsw.IsJsProxy instance, String eventName, Function handler) {
     final callback = new jsw.Callback.many(handler);
     final instanciator = (js.Proxy jsProxy) => new MapsEventListener.fromJsProxy(jsProxy, () => callback.dispose());
     return new jsw.IsJsProxy.fromJsProxy(maps.event).$.addListener(instance, eventName, callback).map(instanciator).value;
   }
-  static MapsEventListener addListenerOnce(jsw.IsJsProxy instance, String eventName, Function handler) {
+  MapsEventListener addListenerOnce(jsw.IsJsProxy instance, String eventName, Function handler) {
     final callback = new jsw.Callback.once(handler);
     final instanciator = (js.Proxy jsProxy) => new MapsEventListener.fromJsProxy(jsProxy);
     return new jsw.IsJsProxy.fromJsProxy(maps.event).$.addListenerOnce(instance, eventName, callback).map(instanciator).value;
   }
-  static void clearInstanceListeners(jsw.IsJsProxy instance) { new jsw.IsJsProxy.fromJsProxy(maps.event).$.clearInstanceListeners(instance); }
-  static void clearListeners(jsw.IsJsProxy instance, String eventName) { new jsw.IsJsProxy.fromJsProxy(maps.event).$.clearListeners(instance, eventName); }
-  static void removeListener(MapsEventListener listener) {
+  void clearInstanceListeners(jsw.IsJsProxy instance) { new jsw.IsJsProxy.fromJsProxy(maps.event).$.clearInstanceListeners(instance); }
+  void clearListeners(jsw.IsJsProxy instance, String eventName) { new jsw.IsJsProxy.fromJsProxy(maps.event).$.clearListeners(instance, eventName); }
+  void removeListener(MapsEventListener listener) {
     if (listener.onRelease != null) {
       listener.onRelease();
     }
     new jsw.IsJsProxy.fromJsProxy(maps.event).$.removeListener(listener);
   }
-  static void trigger(jsw.IsJsProxy instance, String eventName, List<Object> args) {
+  void trigger(jsw.IsJsProxy instance, String eventName, List<Object> args) {
     final parameters = new List<Object>();
     parameters.add(instance);
     parameters.add(eventName);
