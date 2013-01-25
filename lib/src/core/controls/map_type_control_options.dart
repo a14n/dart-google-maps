@@ -16,7 +16,7 @@ part of google_maps;
 
 class MapTypeControlOptions extends jsw.IsJsProxy {
   set mapTypeIds(List<Object> mapTypeIds) {
-    if (!mapTypeIds.filter((e) => !(e is String || e is MapTypeId)).isEmpty) {
+    if (!mapTypeIds.where((e) => !(e is String || e is MapTypeId)).isEmpty) {
       throw new UnsupportedError("Elements in list must be of type String or MapTypeId");
     }
     $.mapTypeIds = mapTypeIds;

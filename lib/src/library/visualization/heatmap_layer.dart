@@ -38,7 +38,7 @@ class HeatmapLayer extends MVCObject {
     if (data != null && list == null) {
       throw new UnsupportedError("Parameter must be of type MVCArray or List");
     }
-    if (!list.filter((e)=> !(e is LatLng || e is WeightedLocation)).isEmpty) {
+    if (!list.where((e)=> !(e is LatLng || e is WeightedLocation)).isEmpty) {
       throw new UnsupportedError("some elements are not LatLng or WeightedLocation");
     }
     $.setData(data);

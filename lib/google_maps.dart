@@ -165,7 +165,7 @@ part 'src/core/mvc/mvc_object.dart';
 part 'src/core/mvc/mvc_array.dart';
 
 // utility to get js.Proxy even if out of scope
-dynamic findIn(List elements, Object o) => elements.filter((e) => e == o).reduce(null, (previousValue, e) => (previousValue != null ? previousValue : e));
+dynamic findIn(List elements, Object o) => elements.where((e) => e == o).reduce(null, (previousValue, e) => (previousValue != null ? previousValue : e));
 
 // js.Proxy for "google.maps"
 final maps = js.retain(js.context.google.maps);

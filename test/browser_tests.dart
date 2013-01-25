@@ -101,10 +101,13 @@ main() {
       expect(myArray[2], equals("e2"));
       // ["e0", "e1", "e2"]
 
-      final iterator = myArray.iterator();
-      expect(iterator.next(), equals("e0"));
-      expect(iterator.next(), equals("e1"));
-      expect(iterator.next(), equals("e2"));
+      final iterator = myArray.iterator;
+      iterator.moveNext();
+      expect(iterator.current, equals("e0"));
+      iterator.moveNext();
+      expect(iterator.current, equals("e1"));
+      iterator.moveNext();
+      expect(iterator.current, equals("e2"));
 
       myArray.clear();
       expect(myArray.length, equals(0));
