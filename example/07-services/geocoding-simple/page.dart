@@ -17,7 +17,7 @@ void main() {
       ;
     map = jsw.retain(new GMap(query("#map_canvas"), mapOptions));
 
-    query("#codeAddress").on.click.add((e) => codeAddress());
+    query("#codeAddress").onClick.listen((e) => codeAddress());
   });
 }
 

@@ -530,10 +530,10 @@ void main() {
 
     heatmap.map = map;
 
-    query("#toggleHeatmap").on.click.add((e){toggleHeatmap();});
-    query("#changeGradient").on.click.add((e){changeGradient();});
-    query("#changeRadius").on.click.add((e){changeRadius();});
-    query("#changeOpacity").on.click.add((e){changeOpacity();});
+    query("#toggleHeatmap").onClick.listen((e){toggleHeatmap();});
+    query("#changeGradient").onClick.listen((e){changeGradient();});
+    query("#changeRadius").onClick.listen((e){changeRadius();});
+    query("#changeOpacity").onClick.listen((e){changeOpacity();});
   });
 }
 

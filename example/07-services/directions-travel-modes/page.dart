@@ -20,7 +20,7 @@ void main() {
     map = new GMap(query("#map_canvas"), mapOptions);
     directionsDisplay.map = map;
 
-    query('#mode').on.change.add((e) => calcRoute());
+    query('#mode').onChange.listen((e) => calcRoute());
   });
 }
 

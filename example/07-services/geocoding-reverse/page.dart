@@ -19,7 +19,7 @@ void main() {
       ;
     map = jsw.retain(new GMap(query("#map_canvas"), mapOptions));
 
-    query("#codeLatLng").on.click.add((e) => codeLatLng());
+    query("#codeLatLng").onClick.listen((e) => codeLatLng());
   });
 }
 

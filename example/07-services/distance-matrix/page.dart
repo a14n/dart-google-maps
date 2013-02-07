@@ -26,7 +26,7 @@ void main() {
     map = jsw.retain(new GMap(query("#map"), mapOptions));
     geocoder = jsw.retain(new Geocoder());
 
-    query('#calculateDistances').on.click.add((e) => calculateDistances());
+    query('#calculateDistances').onClick.listen((e) => calculateDistances());
   });
 }
 

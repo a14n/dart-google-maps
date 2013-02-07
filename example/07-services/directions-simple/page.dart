@@ -19,8 +19,8 @@ void main() {
     map = jsw.retain(new GMap(query("#map_canvas"), mapOptions));
     directionsDisplay.map = map;
 
-    query('#start').on.change.add((e) => calcRoute());
-    query('#end').on.change.add((e) => calcRoute());
+    query('#start').onChange.listen((e) => calcRoute());
+    query('#end').onChange.listen((e) => calcRoute());
   });
 }
 

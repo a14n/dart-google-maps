@@ -17,7 +17,7 @@ void main() {
     map = jsw.retain(new GMap(query("#map_canvas"), mapOptions));
     map.tilt = 45;
 
-    query("#autoRotate").on.click.add((e) => autoRotate());
+    query("#autoRotate").onClick.listen((e) => autoRotate());
   });
 }
 

@@ -22,9 +22,9 @@ void main() {
       addMarker(e.latLng);
     });
 
-    query("#clearOverlays").on.click.add((e) => clearOverlays());
-    query("#showOverlays").on.click.add((e) => showOverlays());
-    query("#deleteOverlays").on.click.add((e) => deleteOverlays());
+    query("#clearOverlays").onClick.listen((e) => clearOverlays());
+    query("#showOverlays").onClick.listen((e) => showOverlays());
+    query("#deleteOverlays").onClick.listen((e) => deleteOverlays());
   });
 }
 

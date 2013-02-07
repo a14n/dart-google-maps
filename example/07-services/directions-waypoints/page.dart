@@ -19,7 +19,7 @@ void main() {
     map = jsw.retain(new GMap(query("#map_canvas"), mapOptions));
     directionsDisplay.map = map;
 
-    query('#calcRoute').on.click.add((e) => calcRoute());
+    query('#calcRoute').onClick.listen((e) => calcRoute());
   });
 }
 

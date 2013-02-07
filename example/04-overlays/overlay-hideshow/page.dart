@@ -25,8 +25,8 @@ void main() {
     final srcImage = '${IMAGE_URL}/images/talkeetna.png';
     overlay = jsw.retain(new USGSOverlay(bounds, srcImage, map));
 
-    query("#toggle").on.click.add((e) => overlay.toggle());
-    query("#toggleDOM").on.click.add((e) => overlay.toggleDOM());
+    query("#toggle").onClick.listen((e) => overlay.toggle());
+    query("#toggleDOM").onClick.listen((e) => overlay.toggleDOM());
   });
 }
 

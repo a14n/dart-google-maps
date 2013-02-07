@@ -24,7 +24,7 @@ void main() {
       ..center = berlin;
     map = jsw.retain(new GMap(query("#map_canvas"), mapOptions));
 
-    query("#drop").on.click.add(drop);
+    query("#drop").onClick.listen(drop);
   });
 }
 

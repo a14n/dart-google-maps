@@ -22,8 +22,8 @@ void main() {
     control.style.display = 'block';
     map.controls.getNodes(ControlPosition.TOP_CENTER).push(control);
 
-    query('#start').on.change.add((e) => calcRoute());
-    query('#end').on.change.add((e) => calcRoute());
+    query('#start').onChange.listen((e) => calcRoute());
+    query('#end').onChange.listen((e) => calcRoute());
   });
 }
 

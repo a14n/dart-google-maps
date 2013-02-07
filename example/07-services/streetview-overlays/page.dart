@@ -62,7 +62,7 @@ void main() {
       ..pitch = 0
     ;
 
-    query("#toggleStreetView").on.click.add((e) => toggleStreetView());
+    query("#toggleStreetView").onClick.listen((e) => toggleStreetView());
   });
 }
 

@@ -32,8 +32,8 @@ void main() {
     // Instantiate an info window to hold step text.
     stepDisplay = jsw.retain(new InfoWindow());
 
-    query('#start').on.change.add((e) => calcRoute());
-    query('#end').on.change.add((e) => calcRoute());
+    query('#start').onChange.listen((e) => calcRoute());
+    query('#end').onChange.listen((e) => calcRoute());
   });
 }
 
