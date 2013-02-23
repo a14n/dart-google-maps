@@ -47,14 +47,14 @@ void showArrays(MouseEvent e) {
   final vertices = bermudaTriangle.path;
 
   final contentString = new StringBuffer()
-    ..add('<b>Bermuda Triangle Polygon</b><br>')
-    ..add('Clicked Location: <br>${e.latLng.lat},${e.latLng.lng}<br>')
+    ..write('<b>Bermuda Triangle Polygon</b><br>')
+    ..write('Clicked Location: <br>${e.latLng.lat},${e.latLng.lng}<br>')
     ;
 
   // Iterate over the vertices.
   for (var i =0; i < vertices.length; i++) {
     var xy = vertices.getAt(i);
-    contentString.add('<br>Coordinate: ${i}<br>${xy.lat},${xy.lng}');
+    contentString.write('<br>Coordinate: ${i}<br>${xy.lat},${xy.lng}');
   }
 
   // Replace our Info Window's content and position

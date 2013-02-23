@@ -55,10 +55,10 @@ void calcRoute() {
         for (var i = 0; i < route.legs.length; i++) {
           final leg = route.legs[i];
           final routeSegment = i + 1;
-          html.add('<b>Route Segment: ${routeSegment}</b><br>');
-          html.add('${leg.startAddress} to ');
-          html.add('${leg.endAddress}<br>');
-          html.add('${leg.distance.text}<br><br>');
+          html.write('<b>Route Segment: ${routeSegment}</b><br>');
+          html.write('${leg.startAddress} to ');
+          html.write('${leg.endAddress}<br>');
+          html.write('${leg.distance.text}<br><br>');
         }
         summaryPanel.innerHtml = html.toString();
       }

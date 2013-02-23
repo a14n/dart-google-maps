@@ -22,5 +22,5 @@ class Time extends jsw.IsJsProxy {
 
   String get text => $.text.value;
   String get timeZone => $.time_zone.value;
-  Date get value => $.value.map(jsw.JsDate.INSTANCIATOR).value;
+  DateTime get value => $.value.map(jsw.JsDate.INSTANCIATOR).value;
 }

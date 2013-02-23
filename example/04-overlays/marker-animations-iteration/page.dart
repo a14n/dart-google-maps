@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:html' hide Animation;
 import 'package:js/js.dart' as js;
 import 'package:google_maps/js_wrap.dart' as jsw;
@@ -31,7 +32,7 @@ void main() {
 void drop(e) {
   js.scoped(() {
     for (var i = 0; i < neighborhoods.length; i++) {
-      window.setTimeout(addMarker, i * 200);
+      new Timer(new Duration(milliseconds: i * 200), addMarker);
     }
   });
 }

@@ -28,6 +28,7 @@ void main() {
       infowindow.close();
       final place = autocomplete.place;
 
+      js.context.console.log(place.geometry.$);
       if (place.geometry.viewport != null) {
         map.fitBounds(place.geometry.viewport);
       } else {
@@ -47,11 +48,11 @@ void main() {
 
       String address = '';
       if (place.addressComponents != null) {
-        address = Strings.join([
+        address = [
           (place.addressComponents[0] != null && place.addressComponents[0].shortName != null ? place.addressComponents[0].shortName : ''),
           (place.addressComponents[1] != null && place.addressComponents[1].shortName != null ? place.addressComponents[1].shortName : ''),
           (place.addressComponents[2] != null && place.addressComponents[2].shortName != null ? place.addressComponents[2].shortName : '')
-        ], ' ');
+        ].join(' ');
       }
 
       infowindow.content = '<div><strong>${place.name}</strong><br>${address}';

@@ -15,6 +15,6 @@
 part of google_maps;
 
 class TransitOptions extends jsw.IsJsProxy {
-  set arrivalTime(Date arrivalTime) => $.arrivalTime = arrivalTime;
-  set departureTime(Date departureTime) => $.departureTime = departureTime;
+  set arrivalTime(DateTime arrivalTime) => $.arrivalTime = arrivalTime;
+  set departureTime(DateTime departureTime) => $.departureTime = departureTime;
 }

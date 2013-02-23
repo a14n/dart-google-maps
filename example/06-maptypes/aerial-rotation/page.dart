@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:html';
 import 'package:js/js.dart' as js;
 import 'package:google_maps/js_wrap.dart' as jsw;
@@ -21,7 +22,7 @@ void main() {
   });
 }
 
-void rotate90() {
+void rotate90(_) {
   js.scoped(() {
     final headingMap = map.heading;
     final heading = headingMap != null ? headingMap : 0;
@@ -33,7 +34,7 @@ void autoRotate() {
   js.scoped(() {
     // Determine if we're showing aerial imagery
     if (map.tilt != 0) {
-      window.setInterval(rotate90, 3000);
+      new Timer.repeating(new Duration(seconds: 3), rotate90);
     }
   });
 }

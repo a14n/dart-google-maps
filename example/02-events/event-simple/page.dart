@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:html';
 import 'package:js/js.dart' as js;
 import 'package:google_maps/js_wrap.dart' as jsw;
@@ -22,11 +23,11 @@ void main() {
     jsw.retainAll([map, marker]);
     map.on.centerChanged.add(() {
       // 3 seconds after the center of the map has changed, pan back to the marker.
-      window.setTimeout(() {
+      new Timer(const Duration(seconds: 3), () {
         js.scoped(() {
           map.panTo(marker.position);
         });
-      }, 3000);
+      });
     });
 
     jsw.retainAll([map, marker]);

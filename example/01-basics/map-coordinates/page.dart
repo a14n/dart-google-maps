@@ -65,13 +65,13 @@ String createInfoWindowContent() {
       (pixelCoordinate.x / TILE_SIZE).floor(),
       (pixelCoordinate.y / TILE_SIZE).floor());
 
-  return Strings.join([
+  return [
     'Chicago, IL',
     'LatLng: ${chicago.lat} , ${chicago.lng}',
     'World Coordinate: ${worldCoordinate.x} , ${worldCoordinate.y}',
     'Pixel Coordinate: ${pixelCoordinate.x.floor()} , ${pixelCoordinate.y.floor()}',
     'Tile Coordinate: ${tileCoordinate.x} , ${tileCoordinate.y} at Zoom Level: ${map.zoom}'
-  ], '<br>');
+  ].join('<br>');
 }
 
 void main() {

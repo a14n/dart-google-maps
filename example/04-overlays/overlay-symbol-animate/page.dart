@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:html';
 import 'package:js/js.dart' as js;
 import 'package:google_maps/js_wrap.dart' as jsw;
@@ -39,7 +40,7 @@ void main() {
 
 void animateCircle() {
   var count = 0;
-  window.setInterval(() {
+  new Timer.repeating(new Duration(milliseconds: 20), (_) {
     js.scoped(() {
       count = (count + 1) % 200;
 
@@ -47,5 +48,5 @@ void animateCircle() {
       icons[0].offset = '${count / 2}%';
       line.set('icons', icons);
     });
-  }, 20);
+  });
 }

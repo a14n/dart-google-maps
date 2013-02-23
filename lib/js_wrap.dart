@@ -29,7 +29,7 @@ class ProxyInvocationMirror extends InvocationMirror {
   final bool isGetter;
   final bool isSetter;
   ProxyInvocationMirror(this.memberName, List positionalArguments, this.namedArguments, this.isMethod, this.isGetter, this.isSetter) {
-    this.positionalArguments = positionalArguments != null ? positionalArguments.mappedBy(_serialize).toList() : null;
+    this.positionalArguments = positionalArguments != null ? positionalArguments.map(_serialize).toList() : null;
   }
   ProxyInvocationMirror.fromInvocationMirror(InvocationMirror invocation) : this(invocation.memberName, invocation.positionalArguments, invocation.namedArguments, invocation.isMethod, invocation.isGetter, invocation.isSetter);
   ProxyInvocationMirror.method(String memberName, List positionalArguments) : this(memberName, positionalArguments, {}, true, false, false);
@@ -42,10 +42,10 @@ typedef Object Transformater(Object proxy);
 
 // transform IsJsProxy to js.Proxy
 Object _serialize(data) =>
-    (data is IsJsProxy) ? data._jsProxy._proxy :
-    (data is IsEnum) ? data.value :
-    (data is List) ? js.array(data.mappedBy(_serialize).toList()) :
-    (data is Date) ? new js.Proxy(js.context.Date, data.millisecondsSinceEpoch) :
+    (data is IsJsProxy) ? (data as IsJsProxy)._jsProxy._proxy :
+    (data is IsEnum) ? (data as IsEnum).value :
+    (data is List) ? js.array((data as List).map(_serialize).toList()) :
+    (data is DateTime) ? new js.Proxy(js.context.Date, (data as DateTime).millisecondsSinceEpoch) :
     data;
 
 class JsProxy {
@@ -69,7 +69,7 @@ class IsJsProxy {
   IsJsProxy._(this._jsProxy);
   IsJsProxy.fromIsJsProxy(IsJsProxy isJsProxy) : this._(isJsProxy._jsProxy);
   IsJsProxy.fromJsProxy(js.Proxy proxy) : this._(new JsProxy._(proxy));
-  IsJsProxy.newInstance(objectRef, [List args]) : this.fromJsProxy(new js.Proxy.withArgList(objectRef, args != null ? args.mappedBy(_serialize).toList() : []));
+  IsJsProxy.newInstance(objectRef, [List args]) : this.fromJsProxy(new js.Proxy.withArgList(objectRef, args != null ? args.map(_serialize).toList() : []));
 
   JsProxy get $ => _jsProxy;
 }
@@ -88,40 +88,44 @@ void release(IsJsProxy isJsProxy) {
   js.release(isJsProxy._jsProxy._proxy);
 }
 
-class JsDate extends IsJsProxy implements Date {
+class JsDate extends IsJsProxy implements DateTime {
   static final INSTANCIATOR = (js.Proxy jsProxy) => new JsDate.fromJsProxy(jsProxy);
 
   JsDate.fromJsProxy(js.Proxy proxy) : super.fromJsProxy(proxy);
 
-  // from Date->Comparable
-  @override int compareTo(Date other) => _asDate().compareTo(other);
+  // from DateTime->Comparable
+  @override int compareTo(DateTime other) => _asDateTime().compareTo(other);
 
   // from Date
-  @override bool operator ==(Date other) => _asDate() == other;
-  @override bool operator <(Date other) => _asDate() < other;
-  @override bool operator <=(Date other) => _asDate() <= other;
-  @override bool operator >(Date other) => _asDate() > other;
-  @override bool operator >=(Date other) => _asDate() >= other;
-  @override Date toLocal() => _asDate().toLocal();
-  @override Date toUtc() => _asDate().toUtc();
-  @override String get timeZoneName => _asDate().timeZoneName;
-  @override Duration get timeZoneOffset => _asDate().timeZoneOffset;
-  @override int get year => _asDate().year;
-  @override int get month => _asDate().month;
-  @override int get day => _asDate().day;
-  @override int get hour => _asDate().hour;
-  @override int get minute => _asDate().minute;
-  @override int get second => _asDate().second;
-  @override int get millisecond => _asDate().millisecond;
-  @override int get weekday => _asDate().weekday;
-  @override int get millisecondsSinceEpoch => _asDate().millisecondsSinceEpoch;
-  @override bool get isUtc => _asDate().isUtc;
-  @override String toString() => _asDate().toString();
-  @override Date add(Duration duration) => _asDate().add(duration);
-  @override Date subtract(Duration duration) => _asDate().subtract(duration);
-  @override Duration difference(Date other) => _asDate().difference(other);
+  @override bool operator ==(DateTime  other) => _asDateTime() == other;
+  @deprecated @override bool operator <(DateTime other) => _asDateTime() < other;
+  @deprecated @override bool operator <=(DateTime other) => _asDateTime() <= other;
+  @deprecated @override bool operator >(DateTime other) => _asDateTime() > other;
+  @deprecated @override bool operator >=(DateTime other) => _asDateTime() >= other;
 
-  Date _asDate() => new Date.fromMillisecondsSinceEpoch($.getTime().value);
+  @override bool isBefore(DateTime other) => _asDateTime().isBefore(other);
+  @override bool isAfter(DateTime other) => _asDateTime().isAfter(other);
+  @override bool isAtSameMomentAs(DateTime other) => _asDateTime().isAtSameMomentAs(other);
+  @override DateTime toLocal() => _asDateTime().toLocal();
+  @override DateTime toUtc() => _asDateTime().toUtc();
+  @override String get timeZoneName => _asDateTime().timeZoneName;
+  @override Duration get timeZoneOffset => _asDateTime().timeZoneOffset;
+  @override int get year => _asDateTime().year;
+  @override int get month => _asDateTime().month;
+  @override int get day => _asDateTime().day;
+  @override int get hour => _asDateTime().hour;
+  @override int get minute => _asDateTime().minute;
+  @override int get second => _asDateTime().second;
+  @override int get millisecond => _asDateTime().millisecond;
+  @override int get weekday => _asDateTime().weekday;
+  @override int get millisecondsSinceEpoch => _asDateTime().millisecondsSinceEpoch;
+  @override bool get isUtc => _asDateTime().isUtc;
+  @override String toString() => _asDateTime().toString();
+  @override DateTime add(Duration duration) => _asDateTime().add(duration);
+  @override DateTime subtract(Duration duration) => _asDateTime().subtract(duration);
+  @override Duration difference(DateTime other) => _asDateTime().difference(other);
+
+  DateTime _asDateTime() => new DateTime.fromMillisecondsSinceEpoch($.getTime().value);
 }
 
 class _JsIterator<E> implements Iterator<E> {
@@ -212,8 +216,8 @@ class JsList<E> extends IsJsProxy implements List<E> {
 
   // -------remove this copy of Iterable when mixin will land
   @override Iterable map(f(E element)) => IterableMixinWorkaround.map(this, f);
-  @override Iterable mappedBy(f(E element)) => IterableMixinWorkaround.map(this, f);
   @override Iterable<E> where(bool f(E element)) => IterableMixinWorkaround.where(this, f);
+  @override Iterable expand(Iterable f(E element)) => IterableMixinWorkaround.expand(this, f);
   @override bool contains(E element) => IterableMixinWorkaround.contains(this, element);
   @override void forEach(void f(E element)) => IterableMixinWorkaround.forEach(this, f);
   @override dynamic reduce(var initialValue, dynamic combine(var previousValue, E element)) => IterableMixinWorkaround.reduce(this, initialValue, combine);
