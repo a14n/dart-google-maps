@@ -178,15 +178,11 @@ class JsList<E> extends IsJsProxy implements List<E> {
       throw new UnsupportedError("New length has to be greater than actual length");
     }
   }
-  @override void addLast(E value) { $.push(value); }
-  @override List<E> get reversed => _asList().reversed;
   @override void sort([int compare(E a, E b)]) {
     final sortedList = _asList()..sort(compare);
     clear();
     addAll(sortedList);
   }
-  @override int indexOf(E element, [int start = 0]) => _asList().indexOf(element, start);
-  @override int lastIndexOf(E element, [int start]) => _asList().lastIndexOf(element, start);
   @override E removeAt(int index) => ($.splice(index, 1).map((proxy) => new JsList<E>.fromJsProxy(proxy, _instantiator)).value as JsList<E>)[0];
   @override E removeLast() => $.pop().map(_instantiator).value;
   @override List<E> getRange(int start, int length) => _asList().getRange(start, length);
@@ -224,7 +220,7 @@ class JsList<E> extends IsJsProxy implements List<E> {
   @override bool every(bool f(E element)) => IterableMixinWorkaround.every(this, f);
   @override String join([String separator]) => IterableMixinWorkaround.join(this, separator);
   @override bool any(bool f(E element)) => IterableMixinWorkaround.any(this, f);
-  @override List<E> toList() => new List<E>.from(this);
+  @override List<E> toList({ bool growable: true }) => new List<E>.from(this, growable: growable);
   @override Set<E> toSet() => new Set<E>.from(this);
   @override E min([int compare(E a, E b)]) => IterableMixinWorkaround.min(this, compare);
   @override E max([int compare(E a, E b)]) => IterableMixinWorkaround.max(this, compare);
@@ -251,6 +247,13 @@ class JsList<E> extends IsJsProxy implements List<E> {
   @override void retainAll(Iterable elements) => IterableMixinWorkaround.retainAll(this, elements);
   @override void removeMatching(bool test(E element)) => IterableMixinWorkaround.removeMatching(this, test);
   @override void retainMatching(bool test(E element)) => IterableMixinWorkaround.retainMatching(this, test);
+
+  // List
+  @deprecated @override void addLast(E value) { add(value); }
+  @override Iterable<E> get reversed => IterableMixinWorkaround.reversedList(this);
+  @override int indexOf(E element, [int start = 0]) => IterableMixinWorkaround.indexOfList(this, element, start);
+  @override int lastIndexOf(E element, [int start]) => IterableMixinWorkaround.lastIndexOfList(this, element, start);
+  @override Map<int, E> asMap() => IterableMixinWorkaround.asMapList(this);
 }
 
 class IsEnum<E> {

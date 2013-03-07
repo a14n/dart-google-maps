@@ -15,7 +15,7 @@ void main() {
 
     // Try HTML5 geolocation
     if (window.navigator.geolocation != null) {
-      window.navigator.geolocation.getCurrentPosition((position) {
+      window.navigator.geolocation.getCurrentPosition().then((position) {
         js.scoped(() {
           final pos = new LatLng(position.coords.latitude,
               position.coords.longitude);
@@ -28,7 +28,7 @@ void main() {
 
           map.center = pos;
         });
-      }, (error) {
+      }, onError : (error) {
         handleNoGeolocation(true);
       });
     } else {
