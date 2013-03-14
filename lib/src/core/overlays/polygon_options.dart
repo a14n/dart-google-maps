@@ -16,6 +16,7 @@ part of google_maps;
 
 class PolygonOptions extends jsw.IsJsProxy {
   set clickable(bool clickable) => $.clickable = clickable;
+  set draggable(bool draggable) => $.draggable = draggable;
   set editable(bool editable) => $.editable = editable;
   set fillColor(String fillColor) => $.fillColor = fillColor;
   set fillOpacity(num fillOpacity) => $.fillOpacity = fillOpacity;

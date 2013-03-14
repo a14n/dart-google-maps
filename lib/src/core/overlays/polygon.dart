@@ -20,11 +20,13 @@ class Polygon extends MVCObject {
   Polygon([PolygonOptions opts]) : super.newInstance(maps.Polygon, [opts]);
   Polygon.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
+  bool get draggable => $.getDraggable().value;
   bool get editable => $.getEditable().value;
   GMap get map => $.getMap().map(GMap.INSTANCIATOR).value;
   MVCArray<LatLng> get path => $.getPath().map((js.Proxy jsProxy) => new MVCArray.fromJsProxy(jsProxy, (js.Proxy jsProxy) => new LatLng.fromJsProxy(jsProxy))).value;
   MVCArray<MVCArray<LatLng>> get paths => $.getPaths().map((js.Proxy jsProxy) => new MVCArray.fromJsProxy(jsProxy, (js.Proxy jsProxy) => new MVCArray.fromJsProxy(jsProxy, (js.Proxy jsProxy) => new LatLng.fromJsProxy(jsProxy)))).value;
   bool get visible => $.getVisible().value;
+  set draggable(bool draggable) => $.setDraggable(draggable);
   set editable(bool editable) => $.setEditable(editable);
   set map(GMap map) => $.setMap(map);
   set options(PolylineOptions options) => $.setOptions(options);
@@ -56,7 +58,7 @@ class PolygonEvents {
   static final MOUSEOVER = "mouseover";
   static final MOUSEUP = "mouseup";
   static final RIGHTCLICK = "rightclick";
-  
+
   final Polygon _polygon;
 
   PolygonEvents._(this._polygon);

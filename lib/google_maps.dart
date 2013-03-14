@@ -151,6 +151,7 @@ part 'src/core/street_view/street_view_location.dart';
 part 'src/core/street_view/street_view_tile_data.dart';
 part 'src/core/street_view/street_view_service.dart';
 part 'src/core/street_view/street_view_status.dart';
+part 'src/core/street_view/street_view_coverage_layer.dart';
 
 part 'src/core/events/maps_event_listener.dart';
 part 'src/core/events/events.dart';

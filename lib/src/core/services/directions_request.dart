@@ -24,6 +24,7 @@ class DirectionsRequest extends jsw.IsJsProxy {
       throw new UnsupportedError("Parameter must be of type String or LatLng");
     }
   }
+  set durationInTraffic(bool durationInTraffic) => $.durationInTraffic = durationInTraffic;
   set optimizeWaypoints(bool optimizeWaypoints) => $.optimizeWaypoints = optimizeWaypoints;
   set origin(Object origin) {
     if (origin is String || origin is LatLng) {

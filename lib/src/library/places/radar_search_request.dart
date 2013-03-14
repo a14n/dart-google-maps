@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2013, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,14 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-part of google_maps_weather;
+part of google_maps_places;
 
-class WeatherMouseEvent extends jsw.IsJsProxy {
-  WeatherMouseEvent();
-  WeatherMouseEvent.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
-
-  WeatherFeature get featureDetails => $.featureDetails.map(WeatherFeature.INSTANCIATOR).value;
-  String get infoWindowHtml => $.infoWindowHtml.value;
-  LatLng get latLng => $.latLng.map(LatLng.INSTANCIATOR).value;
-  Size get pixelOffset => $.pixelOffset.map(Size.INSTANCIATOR).value;
+class RadarSearchRequest extends jsw.IsJsProxy {
+  set bounds(LatLngBounds bounds) => $.bounds = bounds;
+  set keyword(String keyword) => $.keyword = keyword;
+  set location(LatLng location) => $.location = location;
+  set name(String name) => $.name = name;
+  set radius(num radius) => $.radius = radius;
+  set types(List<String> types) => $.types = types;
 }

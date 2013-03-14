@@ -23,9 +23,11 @@ class StreetViewPanorama extends MVCObject {
 
   List<StreetViewLink> get links => $.getLinks().map((js.Proxy jsProxy) => new jsw.JsList<StreetViewLink>.fromJsProxy(jsProxy, StreetViewLink.INSTANCIATOR)).value;
   String get pano => $.getPano().value;
+  StreetViewPov get photographerPov => $.getPhotographerPov().map(StreetViewPov.INSTANCIATOR).value;
   LatLng get position => $.getPosition().map(LatLng.INSTANCIATOR).value;
   StreetViewPov get pov => $.getPov().map(StreetViewPov.INSTANCIATOR).value;
   bool get visible => $.getVisible().value;
+  num get zoom => $.getZoom().value;
   void registerPanoProvider(StreetViewPanoramaData provider(String pano)) {
     $.registerPanoProvider(new jsw.Callback.many((Option<String> pano) => provider(pano.value)));
   }
@@ -33,6 +35,7 @@ class StreetViewPanorama extends MVCObject {
   set position(LatLng latLng) => $.setPosition(latLng);
   set pov(StreetViewPov pov) => $.setPov(pov);
   set visible(bool flag) => $.setVisible(flag);
+  set zoom(num zoom) => $.setZoom(zoom);
 
   Controls get controls => $.controls.map(Controls.INSTANCIATOR).value;
   set controls(Controls controls) => $.controls = controls;
@@ -48,7 +51,8 @@ class StreetViewPanoramaEvents {
   static final POV_CHANGED = "pov_changed";
   static final RESIZE = "resize";
   static final VISIBLE_CHANGED = "visible_changed";
-  
+  static final ZOOM_CHANGED = "zoom_changed";
+
   final StreetViewPanorama _streetViewPanorama;
 
   StreetViewPanoramaEvents._(this._streetViewPanorama);
@@ -60,4 +64,5 @@ class StreetViewPanoramaEvents {
   NoArgsEventListenerAdder get povChanged => new NoArgsEventListenerAdder(_streetViewPanorama, POV_CHANGED);
   NoArgsEventListenerAdder get resize => new NoArgsEventListenerAdder(_streetViewPanorama, RESIZE);
   NoArgsEventListenerAdder get visibleChanged => new NoArgsEventListenerAdder(_streetViewPanorama, VISIBLE_CHANGED);
+  NoArgsEventListenerAdder get zoomChanged => new NoArgsEventListenerAdder(_streetViewPanorama, ZOOM_CHANGED);
 }

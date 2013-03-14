@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2013, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,21 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-part of google_maps;
+part of google_maps_visualization;
 
-class CircleOptions extends jsw.IsJsProxy {
-  set center(LatLng center) => $.center = center;
-  set clickable(bool clickable) => $.clickable = clickable;
-  set draggable(bool draggable) => $.draggable = draggable;
-  set editable(bool editable) => $.editable = editable;
+class DemographicsPolygonOptions extends jsw.IsJsProxy {
   set fillColor(String fillColor) => $.fillColor = fillColor;
+  set fillColorStyle(DemographicsPropertyStyle fillColorStyle) => $.fillColorStyle = fillColorStyle;
   set fillOpacity(num fillOpacity) => $.fillOpacity = fillOpacity;
-  set map(GMap map) => $.map = map;
-  set radius(num radius) => $.radius = radius;
+  set fillOpacityStyle(DemographicsPropertyStyle fillOpacityStyle) => $.fillOpacityStyle = fillOpacityStyle;
   set strokeColor(String strokeColor) => $.strokeColor = strokeColor;
+  set strokeColorStyle(DemographicsPropertyStyle strokeColorStyle) => $.strokeColorStyle = strokeColorStyle;
   set strokeOpacity(num strokeOpacity) => $.strokeOpacity = strokeOpacity;
-  set strokePosition(StrokePosition strokePosition) => $.strokePosition = strokePosition;
+  set strokeOpacityStyle(DemographicsPropertyStyle strokeOpacityStyle) => $.strokeOpacityStyle = strokeOpacityStyle;
   set strokeWeight(num strokeWeight) => $.strokeWeight = strokeWeight;
-  set visible(bool visible) => $.visible = visible;
-  set zIndex(num zIndex) => $.zIndex = zIndex;
 }

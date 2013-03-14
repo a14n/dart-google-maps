@@ -27,6 +27,9 @@ class PlacesService extends jsw.IsJsProxy {
   void nearbySearch(PlaceSearchRequest request, void callback(List<PlaceResult> results, PlacesServiceStatus status, PlaceSearchPagination pagination)) {
     $.nearbySearch(request, new jsw.Callback.once((Option<js.Proxy> results, Option<js.Proxy> status, Option<js.Proxy> pagination) => callback(results.map((e) => new jsw.JsList<PlaceResult>.fromJsProxy(e, (e) => new PlaceResult.fromJsProxy(e))).value, status.map(PlacesServiceStatus.find).value, pagination.map(PlaceSearchPagination.INSTANCIATOR).value)));
   }
+  void radarSearch(RadarSearchRequest request, void callback(List<PlaceResult> results, PlacesServiceStatus status)) {
+    $.radarSearch(request, new jsw.Callback.once((Option<js.Proxy> results, Option<js.Proxy> status) => callback(results.map((e) => new jsw.JsList<PlaceResult>.fromJsProxy(e, (e) => new PlaceResult.fromJsProxy(e))).value, status.map(PlacesServiceStatus.find).value)));
+  }
   void textSearch(TextSearchRequest request, void callback(List<PlaceResult> results, PlacesServiceStatus status)) {
     $.textSearch(request, new jsw.Callback.once((Option<js.Proxy> results, Option<js.Proxy> status) => callback(results.map((e) => new jsw.JsList<PlaceResult>.fromJsProxy(e, (e) => new PlaceResult.fromJsProxy(e))).value, status.map(PlacesServiceStatus.find).value)));
   }

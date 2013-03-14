@@ -21,10 +21,12 @@ class Rectangle extends MVCObject {
   Rectangle.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   LatLngBounds get bounds => $.getBounds().map(LatLngBounds.INSTANCIATOR).value;
+  bool get draggable => $.getDraggable().value;
   bool get editable => $.getEditable().value;
   GMap get map => $.getMap().map(GMap.INSTANCIATOR).value;
   bool get visible => $.getVisible().value;
   set bounds(LatLngBounds bounds) => $.setBounds(bounds);
+  set draggable(bool draggable) => $.setDraggable(draggable);
   set editable(bool editable) => $.setEditable(editable);
   set map(GMap map) => $.setMap(map);
   set options(RectangleOptions options) => $.setOptions(options);
@@ -43,7 +45,7 @@ class RectangleEvents {
   static final MOUSEOVER = "mouseover";
   static final MOUSEUP = "mouseup";
   static final RIGHTCLICK = "rightclick";
-  
+
   final Rectangle _rectangle;
 
   RectangleEvents._(this._rectangle);

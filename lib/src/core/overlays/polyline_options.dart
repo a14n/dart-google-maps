@@ -16,6 +16,7 @@ part of google_maps;
 
 class PolylineOptions extends jsw.IsJsProxy {
   set clickable(bool clickable) => $.clickable = clickable;
+  set draggable(bool draggable) => $.draggable = draggable;
   set editable(bool editable) => $.editable = editable;
   set geodesic(bool geodesic) => $.geodesic = geodesic;
   set icons(List<IconSequence> icons) => $.icons = icons;

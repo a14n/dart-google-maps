@@ -30,8 +30,12 @@ class PlaceResult extends jsw.IsJsProxy {
   String get id => $.id.value;
   String get internationalPhoneNumber => $.international_phone_number.value;
   String get name => $.name.value;
+  bool get permanentlyClosed => $.permanently_closed.value;
+  List<PlacePhoto> get photos => $.photos.map((js.Proxy jsProxy) => new jsw.JsList<PlacePhoto>.fromJsProxy(jsProxy, PlacePhoto.INSTANCIATOR)).value;
+  num get priceLevel => $.price_level.value;
   num get rating => $.rating.value;
   String get reference => $.reference.value;
+  String get reviewSummary => $.review_summary.value;
   List<PlaceReview> get reviews => $.reviews.map((js.Proxy jsProxy) => new jsw.JsList<PlaceReview>.fromJsProxy(jsProxy, PlaceReview.INSTANCIATOR)).value;
   List<String> get types => $.types.map((js.Proxy jsProxy) => new jsw.JsList<String>.fromJsProxy(jsProxy, null)).value;
   String get url => $.url.value;

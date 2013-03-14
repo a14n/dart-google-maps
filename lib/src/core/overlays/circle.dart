@@ -22,11 +22,13 @@ class Circle extends MVCObject {
 
   LatLngBounds get bounds => $.getBounds().map(LatLngBounds.INSTANCIATOR).value;
   LatLng get center => $.getCenter().map(LatLng.INSTANCIATOR).value;
+  bool get draggable => $.getDraggable().value;
   bool get editable => $.getEditable().value;
   GMap get map => $.getMap().map(GMap.INSTANCIATOR).value;
   num get radius => $.getRadius().value;
   bool get visible => $.getVisible().value;
   set center(LatLng center) => $.setCenter(center);
+  set draggable(bool draggable) => $.setDraggable(draggable);
   set editable(bool editable) => $.setEditable(editable);
   set map(GMap map) => $.setMap(map);
   set options(CircleOptions options) => $.setOptions(options);
@@ -47,7 +49,7 @@ class CircleEvents {
   static final MOUSEUP = "mouseup";
   static final RADIUS_CHANGED = "radius_changed";
   static final RIGHTCLICK = "rightclick";
-  
+
   final Circle _circle;
 
   CircleEvents._(this._circle);

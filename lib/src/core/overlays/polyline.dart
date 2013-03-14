@@ -20,10 +20,12 @@ class Polyline extends MVCObject {
   Polyline([PolylineOptions opts]) : super.newInstance(maps.Polyline, [opts]);
   Polyline.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
-  bool get editable=> $.getEditable().value;
+  bool get draggable => $.getDraggable().value;
+  bool get editable => $.getEditable().value;
   GMap get map => $.getMap().map(GMap.INSTANCIATOR).value;
   MVCArray<LatLng> get path => $.getPath().map((js.Proxy jsProxy) => new MVCArray.fromJsProxy(jsProxy, (js.Proxy jsProxy) => new LatLng.fromJsProxy(jsProxy))).value;
   bool get visible => $.getVisible().value;
+  set draggable(bool draggable) => $.setDraggable(draggable);
   set editable(bool editable) => $.setEditable(editable);
   set map(GMap map) => $.setMap(map);
   set options(PolylineOptions options) => $.setOptions(options);
@@ -48,7 +50,7 @@ class PolylineEvents {
   static final MOUSEOVER = "mouseover";
   static final MOUSEUP = "mouseup";
   static final RIGHTCLICK = "rightclick";
-  
+
   final Polyline _polyline;
 
   PolylineEvents._(this._polyline);

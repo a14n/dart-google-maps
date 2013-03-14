@@ -18,6 +18,17 @@ import 'package:js/js.dart' as js;
 import 'js_wrap.dart' as jsw;
 import 'google_maps.dart';
 
+part 'src/library/visualization/maps_engine_layer.dart';
+part 'src/library/visualization/maps_engine_layer_options.dart';
+part 'src/library/visualization/maps_engine_layer_properties.dart';
+part 'src/library/visualization/maps_engine_mouse_event.dart';
+part 'src/library/visualization/maps_engine_status.dart';
 part 'src/library/visualization/heatmap_layer.dart';
 part 'src/library/visualization/heatmap_layer_options.dart';
 part 'src/library/visualization/weighted_location.dart';
+part 'src/library/visualization/demographics_layer.dart';
+part 'src/library/visualization/demographics_layer_options.dart';
+part 'src/library/visualization/demographics_query.dart';
+part 'src/library/visualization/demographics_style.dart';
+part 'src/library/visualization/demographics_polygon_options.dart';
+part 'src/library/visualization/demographics_property_style.dart';

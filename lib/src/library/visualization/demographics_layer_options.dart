@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2013, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,14 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-part of google_maps_weather;
+part of google_maps_visualization;
 
-class WeatherMouseEvent extends jsw.IsJsProxy {
-  WeatherMouseEvent();
-  WeatherMouseEvent.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
-
-  WeatherFeature get featureDetails => $.featureDetails.map(WeatherFeature.INSTANCIATOR).value;
-  String get infoWindowHtml => $.infoWindowHtml.value;
-  LatLng get latLng => $.latLng.map(LatLng.INSTANCIATOR).value;
-  Size get pixelOffset => $.pixelOffset.map(Size.INSTANCIATOR).value;
+class DemographicsLayerOptions extends jsw.IsJsProxy {
+  set clickable(bool clickable) => $.clickable = clickable;
+  set map(GMap map) => $.map = map;
+  set query(DemographicsQuery query) => $.query = query;
+  set style(List<DemographicsStyle> style) => $.style = style;
+  // TODO bad type in doc
+  set suppressInfoWindows(bool suppressInfoWindows) => $.suppressInfoWindows = suppressInfoWindows;
 }

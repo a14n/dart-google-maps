@@ -19,6 +19,7 @@ class SearchBox extends MVCObject {
   SearchBox.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
 
   LatLngBounds get bounds => $.getBounds().map(LatLngBounds.INSTANCIATOR).value;
+  List<PlaceResult> get places => $.getPlaces().map((js.Proxy jsProxy) => new jsw.JsList<PlaceResult>.fromJsProxy(jsProxy, PlaceResult.INSTANCIATOR)).value;
   set bounds(LatLngBounds bounds) => $.setBounds(bounds);
 
   SearchBoxEvents get on => new SearchBoxEvents._(this);
