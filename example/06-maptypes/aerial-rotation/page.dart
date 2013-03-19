@@ -34,7 +34,7 @@ void autoRotate() {
   js.scoped(() {
     // Determine if we're showing aerial imagery
     if (map.tilt != 0) {
-      new Timer.repeating(new Duration(seconds: 3), rotate90);
+      new Timer.periodic(new Duration(seconds: 3), rotate90);
     }
   });
 }

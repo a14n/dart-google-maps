@@ -40,7 +40,7 @@ void main() {
 
 void animateCircle() {
   var count = 0;
-  new Timer.repeating(new Duration(milliseconds: 20), (_) {
+  new Timer.periodic(new Duration(milliseconds: 20), (_) {
     js.scoped(() {
       count = (count + 1) % 200;
 
