@@ -15,37 +15,20 @@
 part of google_maps;
 
 class InfoWindow extends MVCObject {
-  InfoWindow([InfoWindowOptions opts]) : super.newInstance(maps.InfoWindow, [opts]);
-  InfoWindow.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  static InfoWindow cast(js.Proxy proxy) => proxy == null ? null : new InfoWindow.fromProxy(proxy);
 
-  void close() { $.close(); }
-  Object get content {
-    final result = $.getContent().value;
-    if (result is String || result is html.Node) {
-      return result;
-    } else {
-      throw new Exception("Unsupported result");
-    }
-  }
-  LatLng get position => $.getPosition().map(LatLng.INSTANCIATOR).value;
-  num get zIndex => $.getZIndex().value;
-  void open([Object map, MVCObject anchor]) {
-    if (map is GMap || map is StreetViewPanorama) {
-      $.open(map, anchor);
-    } else {
-      throw new UnsupportedError("Parameter must be of type GMap or StreetViewPanorama");
-    }
-  }
-  set content(Object content) {
-    if (content is String || content is html.Node) {
-      $.setContent(content);
-    } else {
-      throw new UnsupportedError("Parameter must be of type String or Node");
-    }
-  }
-  set options(InfoWindowOptions options) => $.setOptions(options);
-  set position(LatLng position) => $.setPosition(position);
-  set zIndex(num zIndex) => $.setZIndex(zIndex);
+  InfoWindow([InfoWindowOptions opts]) : super(maps.InfoWindow, [opts]);
+  InfoWindow.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+
+  void close() { $unsafe.close(); }
+  dynamic/*string|Node*/ get content => $unsafe.getContent();
+  LatLng get position => LatLng.cast($unsafe.getPosition());
+  num get zIndex => $unsafe.getZIndex();
+  void open([dynamic/*Map|StreetViewPanorama*/ map, MVCObject anchor]) => $unsafe.open(map, anchor);
+  set content(dynamic/*string|Node*/ content) => $unsafe.setContent(content);
+  set options(InfoWindowOptions options) => $unsafe.setOptions(options);
+  set position(LatLng position) => $unsafe.setPosition(position);
+  set zIndex(num zIndex) => $unsafe.setZIndex(zIndex);
 
   InfoWindowEvents get on => new InfoWindowEvents._(this);
 }
@@ -56,7 +39,7 @@ class InfoWindowEvents {
   static final DOMREADY = "domready";
   static final POSITION_CHANGED = "position_changed";
   static final ZINDEX_CHANGED = "zindex_changed";
-  
+
   final InfoWindow _infoWindow;
 
   InfoWindowEvents._(this._infoWindow);

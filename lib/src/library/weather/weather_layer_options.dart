@@ -14,11 +14,22 @@
 
 part of google_maps_weather;
 
-class WeatherLayerOptions extends jsw.IsJsProxy {
-  set clickable(bool clickable) => $.clickable = clickable;
-  set labelColor(LabelColor labelColor) => $.labelColor = labelColor;
-  set map(GMap map) => $.map = map;
-  set suppressInfoWindows(bool suppressInfoWindows) => $.suppressInfoWindows = suppressInfoWindows;
-  set temperatureUnits(TemperatureUnit temperatureUnits) => $.temperatureUnits = temperatureUnits;
-  set windSpeedUnits(WindSpeedUnit windSpeedUnits) => $.windSpeedUnits = windSpeedUnits;
+class WeatherLayerOptions extends jsw.TypedProxy {
+  static WeatherLayerOptions cast(js.Proxy proxy) => proxy == null ? null : new WeatherLayerOptions.fromProxy(proxy);
+
+  WeatherLayerOptions() : super();
+  WeatherLayerOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+
+  bool get clickable => $unsafe.clickable;
+  LabelColor get labelColor => LabelColor.find($unsafe.labelColor);
+  GMap get map => GMap.cast($unsafe.map);
+  bool get suppressInfoWindows => $unsafe.suppressInfoWindows;
+  TemperatureUnit get temperatureUnits => TemperatureUnit.find($unsafe.temperatureUnits);
+  WindSpeedUnit get windSpeedUnits => WindSpeedUnit.find($unsafe.windSpeedUnits);
+  set clickable(bool clickable) => $unsafe.clickable = clickable;
+  set labelColor(LabelColor labelColor) => $unsafe.labelColor = labelColor;
+  set map(GMap map) => $unsafe.map = map;
+  set suppressInfoWindows(bool suppressInfoWindows) => $unsafe.suppressInfoWindows = suppressInfoWindows;
+  set temperatureUnits(TemperatureUnit temperatureUnits) => $unsafe.temperatureUnits = temperatureUnits;
+  set windSpeedUnits(WindSpeedUnit windSpeedUnits) => $unsafe.windSpeedUnits = windSpeedUnits;
 }

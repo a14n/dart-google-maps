@@ -16,11 +16,23 @@ part of google_maps;
 
 // TODO extends MVCObject mixin MapType
 class ImageMapType extends MapType {
-  ImageMapType(ImageMapTypeOptions opts) : super.newInstance(maps.ImageMapType, [opts]);
-  ImageMapType.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  static ImageMapType cast(js.Proxy proxy) => proxy == null ? null : new ImageMapType.fromProxy(proxy);
 
-  num get opacity => $.getOpacity().value;
-  set opacity(num opacity) => $.setOpacity(opacity);
+  ImageMapType(ImageMapTypeOptions opts) : super(maps.ImageMapType, [opts]);
+  ImageMapType.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+
+  num get opacity => $unsafe.getOpacity();
+  set opacity(num opacity) => $unsafe.setOpacity(opacity);
 
   ImageMapTypeEvents get on => new ImageMapTypeEvents._(this);
+}
+
+class ImageMapTypeEvents {
+  static final TILESLOADED = "tilesloaded";
+
+  final ImageMapType _imageMapType;
+
+  ImageMapTypeEvents._(this._imageMapType);
+
+  NoArgsEventListenerAdder get tilesloaded => new NoArgsEventListenerAdder(_imageMapType, TILESLOADED);
 }

@@ -14,28 +14,29 @@
 
 part of google_maps;
 
-class MVCObject extends jsw.IsJsProxy {
-  MVCObject() : super.newInstance(maps.MVCObject);
-  MVCObject.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
-  MVCObject.newInstance(objectName, [List args]) : super.newInstance(objectName, args);
+class MVCObject extends jsw.TypedProxy {
+  static MVCObject cast(js.Proxy proxy) => proxy == null ? null : new MVCObject.fromProxy(proxy);
+
+  MVCObject([js.FunctionProxy function, List args]) : super(function != null ? function : maps.MVCObject, args);
+  MVCObject.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   MapsEventListener addListener(String eventName, Function handler) {
-    final callback = new jsw.Callback.many(handler);
-    final instanciator = (js.Proxy jsProxy) => new MapsEventListener.fromJsProxy(jsProxy, () => callback.dispose());
-    return $.addListener(eventName, callback).map(instanciator).value;
+    final callback = new js.Callback.many(handler);
+    final js.Proxy proxy = $unsafe.addListener(eventName, callback);
+    return proxy == null ? null : new MapsEventListener.fromProxy(proxy, () => callback.dispose());
   }
-  void bindTo(String key, MVCObject target, [String targetKey, bool noNotify]) { $.bindTo(key, target, targetKey, noNotify); }
-  void changed(String key) { $.changed(key); }
-  Object get(String key) => $.get(key).value;
-  void notify(String key) { $.notify(key); }
-  void set(String key, Object value) { $.set(key, value); }
+  void bindTo(String key, MVCObject target, [String targetKey, bool noNotify]) { $unsafe.bindTo(key, target, targetKey, noNotify); }
+  void changed(String key) { $unsafe.changed(key); }
+  Object get(String key) => $unsafe.get(key);
+  void notify(String key) { $unsafe.notify(key); }
+  void set(String key, Object value) { $unsafe.set(key, value); }
   set values(Map<String, Object> values) {
-    final valuesJs = new jsw.IsJsProxy();
+    final valuesJs = jsw.JsObjectToMapAdapter.cast(js.map({}));
     values.forEach((String key, Object value) {
-      $[key] = value;
+      valuesJs[key] = value;
     });
-    $.setValues(valuesJs);
+    $unsafe.setValues(valuesJs);
   }
-  void unbind(String key) { $.unbind(key); }
-  void unbindAll() { $.unbindAll(); }
+  void unbind(String key) { $unsafe.unbind(key); }
+  void unbindAll() { $unsafe.unbindAll(); }
 }

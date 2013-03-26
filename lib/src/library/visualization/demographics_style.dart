@@ -14,12 +14,14 @@
 
 part of google_maps_visualization;
 
-class DemographicsStyle extends jsw.IsJsProxy {
-  static final INSTANCIATOR = (js.Proxy jsProxy) => new DemographicsStyle.fromJsProxy(jsProxy);
+class DemographicsStyle extends jsw.TypedProxy {
+  static DemographicsStyle cast(js.Proxy proxy) => proxy == null ? null : new DemographicsStyle.fromProxy(proxy);
 
   DemographicsStyle() : super();
-  DemographicsStyle.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  DemographicsStyle.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  set polygonOptions(DemographicsPolygonOptions polygonOptions) => $.polygonOptions = polygonOptions;
-  set where(String where) => $.where = where;
+  DemographicsPolygonOptions get polygonOptions => DemographicsPolygonOptions.cast($unsafe.polygonOptions);
+  String get where => $unsafe.where;
+  set polygonOptions(DemographicsPolygonOptions polygonOptions) => $unsafe.polygonOptions = polygonOptions;
+  set where(String where) => $unsafe.where = where;
 }

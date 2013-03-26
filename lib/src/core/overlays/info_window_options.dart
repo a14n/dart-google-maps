@@ -14,22 +14,22 @@
 
 part of google_maps;
 
-class InfoWindowOptions extends jsw.IsJsProxy {
-  set content(Object content) {
-    if (content is String || content is html.Node) {
-      $.content = content;
-    } else {
-      throw new UnsupportedError("Parameter must be of type String or Node");
-    }
-  }
-  bool get disableAutoPan => $.disableAutoPan.value;
-  set disableAutoPan(bool disableAutoPan) => $.disableAutoPan = disableAutoPan;
-  num get maxWidth => $.maxWidth.value;
-  set maxWidth(num maxWidth) => $.maxWidth = maxWidth;
-  Size get pixelOffset => $.pixelOffset.map(Size.INSTANCIATOR).value;
-  set pixelOffset(Size pixelOffset) => $.pixelOffset = pixelOffset;
-  LatLng get position => $.position.map(LatLng.INSTANCIATOR).value;
-  set position(LatLng position) => $.position = position;
-  num get zIndex => $.zIndex.value;
-  set zIndex(num zIndex) => $.zIndex = zIndex;
+class InfoWindowOptions extends jsw.TypedProxy {
+  static InfoWindowOptions cast(js.Proxy proxy) => proxy == null ? null : new InfoWindowOptions.fromProxy(proxy);
+
+  InfoWindowOptions() : super();
+  InfoWindowOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+
+  dynamic/*string|Node*/ get content => $unsafe.content;
+  bool get disableAutoPan => $unsafe.disableAutoPan;
+  num get maxWidth => $unsafe.maxWidth;
+  Size get pixelOffset => Size.cast($unsafe.pixelOffset);
+  LatLng get position => LatLng.cast($unsafe.position);
+  num get zIndex => $unsafe.zIndex;
+  set content(dynamic/*string|Node*/ content) => $unsafe.content = content;
+  set disableAutoPan(bool disableAutoPan) => $unsafe.disableAutoPan = disableAutoPan;
+  set maxWidth(num maxWidth) => $unsafe.maxWidth = maxWidth;
+  set pixelOffset(Size pixelOffset) => $unsafe.pixelOffset = pixelOffset;
+  set position(LatLng position) => $unsafe.position = position;
+  set zIndex(num zIndex) => $unsafe.zIndex = zIndex;
 }

@@ -14,12 +14,14 @@
 
 part of google_maps_visualization;
 
-class DemographicsQuery extends jsw.IsJsProxy {
-  static final INSTANCIATOR = (js.Proxy jsProxy) => new DemographicsQuery.fromJsProxy(jsProxy);
+class DemographicsQuery extends jsw.TypedProxy {
+  static DemographicsQuery cast(js.Proxy proxy) => proxy == null ? null : new DemographicsQuery.fromProxy(proxy);
 
   DemographicsQuery() : super();
-  DemographicsQuery.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  DemographicsQuery.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  set from(String from) => $.from = from;
-  set where(String where) => $.where = where;
+  String get from => $unsafe.from;
+  String get where => $unsafe.where;
+  set from(String from) => $unsafe.from = from;
+  set where(String where) => $unsafe.where = where;
 }

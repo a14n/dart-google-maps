@@ -14,14 +14,14 @@
 
 part of google_maps_places;
 
-class PlaceAspectRating extends jsw.IsJsProxy {
-  static final INSTANCIATOR = (js.Proxy jsProxy) => new PlaceAspectRating.fromJsProxy(jsProxy);
+class PlaceAspectRating extends jsw.TypedProxy {
+  static PlaceAspectRating cast(js.Proxy proxy) => proxy == null ? null : new PlaceAspectRating.fromProxy(proxy);
 
   PlaceAspectRating() : super();
-  PlaceAspectRating.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  PlaceAspectRating.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  num get rating => $.rating.value;
-  String get type => $.type.value;
-  set rating(num rating) => $.rating = rating;
-  set type(String type) => $.type = type;
+  num get rating => $unsafe.rating;
+  String get type => $unsafe.type;
+  set rating(num rating) => $unsafe.rating = rating;
+  set type(String type) => $unsafe.type = type;
 }

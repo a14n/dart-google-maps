@@ -14,11 +14,21 @@
 
 part of google_maps_visualization;
 
-class DemographicsLayerOptions extends jsw.IsJsProxy {
-  set clickable(bool clickable) => $.clickable = clickable;
-  set map(GMap map) => $.map = map;
-  set query(DemographicsQuery query) => $.query = query;
-  set style(List<DemographicsStyle> style) => $.style = style;
+class DemographicsLayerOptions extends jsw.TypedProxy {
+  static DemographicsLayerOptions cast(js.Proxy proxy) => proxy == null ? null : new DemographicsLayerOptions.fromProxy(proxy);
+
+  DemographicsLayerOptions() : super();
+  DemographicsLayerOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+
+  bool get clickable => $unsafe.clickable;
+  GMap get map => GMap.cast($unsafe.map);
+  DemographicsQuery get query => DemographicsQuery.cast($unsafe.query);
+  List<DemographicsStyle> get style => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.style, DemographicsStyle.cast);
+  bool get suppressInfoWindows => $unsafe.suppressInfoWindows;
+  set clickable(bool clickable) => $unsafe.clickable = clickable;
+  set map(GMap map) => $unsafe.map = map;
+  set query(DemographicsQuery query) => $unsafe.query = query;
+  set style(List<DemographicsStyle> style) => $unsafe.style = jsifyList(style);
   // TODO bad type in doc
-  set suppressInfoWindows(bool suppressInfoWindows) => $.suppressInfoWindows = suppressInfoWindows;
+  set suppressInfoWindows(bool suppressInfoWindows) => $unsafe.suppressInfoWindows = suppressInfoWindows;
 }

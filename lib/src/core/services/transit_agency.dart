@@ -14,13 +14,16 @@
 
 part of google_maps;
 
-class TransitAgency extends jsw.IsJsProxy {
-  static final INSTANCIATOR = (js.Proxy jsProxy) => new TransitAgency.fromJsProxy(jsProxy);
+class TransitAgency extends jsw.TypedProxy {
+  static TransitAgency cast(js.Proxy proxy) => proxy == null ? null : new TransitAgency.fromProxy(proxy);
 
   TransitAgency() : super();
-  TransitAgency.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  TransitAgency.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  String get name => $.name.value;
-  String get phone => $.phone.value;
-  String get url => $.url.value;
+  String get name => $unsafe.name;
+  String get phone => $unsafe.phone;
+  String get url => $unsafe.url;
+  set name(String name) => $unsafe.name = name;
+  set phone(String phone) => $unsafe.phone = phone;
+  set url(String url) => $unsafe.url = url;
 }

@@ -1,14 +1,13 @@
 import 'dart:html';
 import 'package:js/js.dart' as js;
-import 'package:google_maps/js_wrap.dart' as jsw;
 import 'package:google_maps/google_maps.dart';
 
 DirectionsRenderer directionsDisplay;
-final DirectionsService directionsService = jsw.retain(new DirectionsService());
+final DirectionsService directionsService = js.retain(new DirectionsService());
 
 void main() {
   js.scoped(() {
-    directionsDisplay = jsw.retain(new DirectionsRenderer());
+    directionsDisplay = js.retain(new DirectionsRenderer());
     final mapOptions = new MapOptions()
       ..zoom = 7
       ..mapTypeId = MapTypeId.ROADMAP

@@ -14,22 +14,46 @@
 
 part of google_maps;
 
-class StreetViewPanoramaOptions extends jsw.IsJsProxy {
-  set addressControl(bool addressControl) => $.addressControl = addressControl;
-  set addressControlOptions(StreetViewAddressControlOptions addressControlOptions) => $.addressControlOptions = addressControlOptions;
-  set clickToGo(bool clickToGo) => $.clickToGo = clickToGo;
-  set disableDoubleClickZoom(bool disableDoubleClickZoom) => $.disableDoubleClickZoom = disableDoubleClickZoom;
-  set enableCloseButton(bool enableCloseButton) => $.enableCloseButton = enableCloseButton;
-  set imageDateControl(bool imageDateControl) => $.imageDateControl = imageDateControl;
-  set linksControl(bool linksControl) => $.linksControl = linksControl;
-  set panControl(bool panControl) => $.panControl = panControl;
-  set panControlOptions(PanControlOptions panControlOptions) => $.panControlOptions = panControlOptions;
-  set pano(String pano) => $.pano = pano;
-  set panoProvider(StreetViewPanoramaData provider(String pano)) => $.panoProvider = new jsw.Callback.many((Option<String> pano) => provider(pano.value));
-  set position(LatLng position) => $.position = position;
-  set pov(StreetViewPov pov) => $.pov = pov;
-  set scrollwheel(bool scrollwheel) => $.scrollwheel = scrollwheel;
-  set visible(bool visible) => $.visible = visible;
-  set zoomControl(bool zoomControl) => $.zoomControl = zoomControl;
-  set zoomControlOptions(ZoomControlOptions zoomControlOptions) => $.zoomControlOptions = zoomControlOptions;
+typedef StreetViewPanoramaData PanoProvider(String pano);
+
+class StreetViewPanoramaOptions extends jsw.TypedProxy {
+  static StreetViewPanoramaOptions cast(js.Proxy proxy) => proxy == null ? null : new StreetViewPanoramaOptions.fromProxy(proxy);
+
+  StreetViewPanoramaOptions() : super();
+  StreetViewPanoramaOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+
+  bool get addressControl => $unsafe.addressControl;
+  StreetViewAddressControlOptions get addressControlOptions => StreetViewAddressControlOptions.cast($unsafe.addressControlOptions);
+  bool get clickToGo => $unsafe.clickToGo;
+  bool get disableDoubleClickZoom => $unsafe.disableDoubleClickZoom;
+  bool get enableCloseButton => $unsafe.enableCloseButton;
+  bool get imageDateControl => $unsafe.imageDateControl;
+  bool get linksControl => $unsafe.linksControl;
+  bool get panControl => $unsafe.panControl;
+  PanControlOptions get panControlOptions => PanControlOptions.cast($unsafe.panControlOptions);
+  String get pano => $unsafe.pano;
+  PanoProvider get panoProvider => $unsafe.panoProvider;
+  LatLng get position => LatLng.cast($unsafe.position);
+  StreetViewPov get pov => StreetViewPov.cast($unsafe.pov);
+  bool get scrollwheel => $unsafe.scrollwheel;
+  bool get visible => $unsafe.visible;
+  bool get zoomControl => $unsafe.zoomControl;
+  ZoomControlOptions get zoomControlOptions => ZoomControlOptions.cast($unsafe.zoomControlOptions);
+  set addressControl(bool addressControl) => $unsafe.addressControl = addressControl;
+  set addressControlOptions(StreetViewAddressControlOptions addressControlOptions) => $unsafe.addressControlOptions = addressControlOptions;
+  set clickToGo(bool clickToGo) => $unsafe.clickToGo = clickToGo;
+  set disableDoubleClickZoom(bool disableDoubleClickZoom) => $unsafe.disableDoubleClickZoom = disableDoubleClickZoom;
+  set enableCloseButton(bool enableCloseButton) => $unsafe.enableCloseButton = enableCloseButton;
+  set imageDateControl(bool imageDateControl) => $unsafe.imageDateControl = imageDateControl;
+  set linksControl(bool linksControl) => $unsafe.linksControl = linksControl;
+  set panControl(bool panControl) => $unsafe.panControl = panControl;
+  set panControlOptions(PanControlOptions panControlOptions) => $unsafe.panControlOptions = panControlOptions;
+  set pano(String pano) => $unsafe.pano = pano;
+  set panoProvider(PanoProvider panoProvider) => $unsafe.panoProvider = new js.Callback.many(panoProvider);
+  set position(LatLng position) => $unsafe.position = position;
+  set pov(StreetViewPov pov) => $unsafe.pov = pov;
+  set scrollwheel(bool scrollwheel) => $unsafe.scrollwheel = scrollwheel;
+  set visible(bool visible) => $unsafe.visible = visible;
+  set zoomControl(bool zoomControl) => $unsafe.zoomControl = zoomControl;
+  set zoomControlOptions(ZoomControlOptions zoomControlOptions) => $unsafe.zoomControlOptions = zoomControlOptions;
 }

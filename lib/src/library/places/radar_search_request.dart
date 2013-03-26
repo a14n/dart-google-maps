@@ -14,11 +14,22 @@
 
 part of google_maps_places;
 
-class RadarSearchRequest extends jsw.IsJsProxy {
-  set bounds(LatLngBounds bounds) => $.bounds = bounds;
-  set keyword(String keyword) => $.keyword = keyword;
-  set location(LatLng location) => $.location = location;
-  set name(String name) => $.name = name;
-  set radius(num radius) => $.radius = radius;
-  set types(List<String> types) => $.types = types;
+class RadarSearchRequest extends jsw.TypedProxy {
+  static RadarSearchRequest cast(js.Proxy proxy) => proxy == null ? null : new RadarSearchRequest.fromProxy(proxy);
+
+  RadarSearchRequest() : super();
+  RadarSearchRequest.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+
+  LatLngBounds get bounds => LatLngBounds.cast($unsafe.bounds);
+  String get keyword => $unsafe.keyword;
+  LatLng get location => LatLng.cast($unsafe.location);
+  String get name => $unsafe.name;
+  num get radius => $unsafe.radius;
+  List<String> get types => jsw.JsArrayToListAdapter.cast($unsafe.types);
+  set bounds(LatLngBounds bounds) => $unsafe.bounds = bounds;
+  set keyword(String keyword) => $unsafe.keyword = keyword;
+  set location(LatLng location) => $unsafe.location = location;
+  set name(String name) => $unsafe.name = name;
+  set radius(num radius) => $unsafe.radius = radius;
+  set types(List<String> types) => $unsafe.types = jsifyList(types);
 }

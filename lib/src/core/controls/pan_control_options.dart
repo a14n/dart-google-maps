@@ -14,6 +14,12 @@
 
 part of google_maps;
 
-class PanControlOptions extends jsw.IsJsProxy {
-  set position(ControlPosition position) => $.position = position;
+class PanControlOptions extends jsw.TypedProxy {
+  static PanControlOptions cast(js.Proxy proxy) => proxy == null ? null : new PanControlOptions.fromProxy(proxy);
+
+  PanControlOptions() : super();
+  PanControlOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+
+  ControlPosition get position => ControlPosition.find($unsafe.position);
+  set position(ControlPosition position) => $unsafe.position = position;
 }

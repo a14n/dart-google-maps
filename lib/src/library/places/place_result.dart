@@ -14,31 +14,52 @@
 
 part of google_maps_places;
 
-class PlaceResult extends jsw.IsJsProxy {
-  static final INSTANCIATOR = (js.Proxy jsProxy) => new PlaceResult.fromJsProxy(jsProxy);
+class PlaceResult extends jsw.TypedProxy {
+  static PlaceResult cast(js.Proxy proxy) => proxy == null ? null : new PlaceResult.fromProxy(proxy);
 
   PlaceResult() : super();
-  PlaceResult.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  PlaceResult.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  List<GeocoderAddressComponent> get addressComponents => $.address_components.map((js.Proxy jsProxy) => new jsw.JsList<GeocoderAddressComponent>.fromJsProxy(jsProxy, GeocoderAddressComponent.INSTANCIATOR)).value;
-  List<PlaceAspectRating> get aspects => $.aspects.map((js.Proxy jsProxy) => new jsw.JsList<PlaceAspectRating>.fromJsProxy(jsProxy, PlaceAspectRating.INSTANCIATOR)).value;
-  String get formattedAddress => $.formatted_address.value;
-  String get formattedPhoneNumber => $.formatted_phone_number.value;
-  PlaceGeometry get geometry => $.geometry.map(PlaceGeometry.INSTANCIATOR).value;
-  List<String> get htmlAttributions => $.html_attributions.map((js.Proxy jsProxy) => new jsw.JsList<String>.fromJsProxy(jsProxy, null)).value;
-  String get icon => $.icon.value;
-  String get id => $.id.value;
-  String get internationalPhoneNumber => $.international_phone_number.value;
-  String get name => $.name.value;
-  bool get permanentlyClosed => $.permanently_closed.value;
-  List<PlacePhoto> get photos => $.photos.map((js.Proxy jsProxy) => new jsw.JsList<PlacePhoto>.fromJsProxy(jsProxy, PlacePhoto.INSTANCIATOR)).value;
-  num get priceLevel => $.price_level.value;
-  num get rating => $.rating.value;
-  String get reference => $.reference.value;
-  String get reviewSummary => $.review_summary.value;
-  List<PlaceReview> get reviews => $.reviews.map((js.Proxy jsProxy) => new jsw.JsList<PlaceReview>.fromJsProxy(jsProxy, PlaceReview.INSTANCIATOR)).value;
-  List<String> get types => $.types.map((js.Proxy jsProxy) => new jsw.JsList<String>.fromJsProxy(jsProxy, null)).value;
-  String get url => $.url.value;
-  String get vicinity => $.vicinity.value;
-  String get website => $.website.value;
+  List<GeocoderAddressComponent> get addressComponents => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.address_components, GeocoderAddressComponent.cast);
+  List<PlaceAspectRating> get aspects => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.aspects, PlaceAspectRating.cast);
+  String get formattedAddress => $unsafe.formatted_address;
+  String get formattedPhoneNumber => $unsafe.formatted_phone_number;
+  PlaceGeometry get geometry => PlaceGeometry.cast($unsafe.geometry);
+  List<String> get htmlAttributions => jsw.JsArrayToListAdapter.cast($unsafe.html_attributions);
+  String get icon => $unsafe.icon;
+  String get id => $unsafe.id;
+  String get internationalPhoneNumber => $unsafe.international_phone_number;
+  String get name => $unsafe.name;
+  bool get permanentlyClosed => $unsafe.permanently_closed;
+  List<PlacePhoto> get photos => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.photos, PlacePhoto.cast);
+  num get priceLevel => $unsafe.price_level;
+  num get rating => $unsafe.rating;
+  String get reference => $unsafe.reference;
+  String get reviewSummary => $unsafe.review_summary;
+  List<PlaceReview> get reviews => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.reviews, PlaceReview.cast);
+  List<String> get types => jsw.JsArrayToListAdapter.cast($unsafe.types);
+  String get url => $unsafe.url;
+  String get vicinity => $unsafe.vicinity;
+  String get website => $unsafe.website;
+  set addressComponents(List<GeocoderAddressComponent> addressComponents) => $unsafe.address_components = jsifyList(addressComponents);
+  set aspects(List<PlaceAspectRating> aspects) => $unsafe.aspects = jsifyList(aspects);
+  set formattedAddress(String formattedAddress) => $unsafe.formatted_address = formattedAddress;
+  set formattedPhoneNumber(String formattedPhoneNumber) => $unsafe.formatted_phone_number = formattedPhoneNumber;
+  set geometry(PlaceGeometry geometry) => $unsafe.geometry = geometry;
+  set htmlAttributions(List<String> htmlAttributions) => $unsafe.html_attributions = jsifyList(htmlAttributions);
+  set icon(String icon) => $unsafe.icon = icon;
+  set id(String id) => $unsafe.id = id;
+  set internationalPhoneNumber(String internationalPhoneNumber) => $unsafe.international_phone_number = internationalPhoneNumber;
+  set name(String name) => $unsafe.name = name;
+  set permanentlyClosed(bool permanentlyClosed) => $unsafe.permanently_closed = permanentlyClosed;
+  set photos(List<PlacePhoto> photos) => $unsafe.photos = jsifyList(photos);
+  set priceLevel(num priceLevel) => $unsafe.price_level = priceLevel;
+  set rating(num rating) => $unsafe.rating = rating;
+  set reference(String reference) => $unsafe.reference = reference;
+  set reviewSummary(String reviewSummary) => $unsafe.review_summary = reviewSummary;
+  set reviews(List<PlaceReview> reviews) => $unsafe.reviews = jsifyList(reviews);
+  set types(List<String> types) => $unsafe.types = jsifyList(types);
+  set url(String url) => $unsafe.url = url;
+  set vicinity(String vicinity) => $unsafe.vicinity = vicinity;
+  set website(String website) => $unsafe.website = website;
 }

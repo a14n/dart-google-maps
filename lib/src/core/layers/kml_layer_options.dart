@@ -14,10 +14,20 @@
 
 part of google_maps;
 
-class KmlLayerOptions extends jsw.IsJsProxy {
-  set clickable(bool clickable) => $.clickable = clickable;
-  set map(GMap map) => $.map = map;
-  set preserveViewport(bool preserveViewport) => $.preserveViewport = preserveViewport;
-  set suppressInfoWindows(bool suppressInfoWindows) => $.suppressInfoWindows = suppressInfoWindows;
-  set url(String url) => $.url = url;
+class KmlLayerOptions extends jsw.TypedProxy {
+  static KmlLayerOptions cast(js.Proxy proxy) => proxy == null ? null : new KmlLayerOptions.fromProxy(proxy);
+
+  KmlLayerOptions() : super();
+  KmlLayerOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+
+  bool get clickable => $unsafe.clickable;
+  GMap get map => GMap.cast($unsafe.map);
+  bool get preserveViewport => $unsafe.preserveViewport;
+  bool get suppressInfoWindows => $unsafe.suppressInfoWindows;
+  String get url => $unsafe.url;
+  set clickable(bool clickable) => $unsafe.clickable = clickable;
+  set map(GMap map) => $unsafe.map = map;
+  set preserveViewport(bool preserveViewport) => $unsafe.preserveViewport = preserveViewport;
+  set suppressInfoWindows(bool suppressInfoWindows) => $unsafe.suppressInfoWindows = suppressInfoWindows;
+  set url(String url) => $unsafe.url = url;
 }

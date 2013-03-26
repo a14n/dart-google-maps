@@ -14,12 +14,14 @@
 
 part of google_maps;
 
-class Distance extends jsw.IsJsProxy {
-  static final INSTANCIATOR = (js.Proxy jsProxy) => new Distance.fromJsProxy(jsProxy);
+class Distance extends jsw.TypedProxy {
+  static Distance cast(js.Proxy proxy) => proxy == null ? null : new Distance.fromProxy(proxy);
 
   Distance() : super();
-  Distance.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  Distance.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  String get text => $.text.value;
-  num get value => $.value.value;
+  String get text => $unsafe.text;
+  num get value => $unsafe.value;
+  set text(String text) => $unsafe.text = text;
+  set value(num value) => $unsafe.value = value;
 }

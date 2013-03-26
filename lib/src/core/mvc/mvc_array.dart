@@ -15,27 +15,32 @@
 part of google_maps;
 
 class MVCArray<E> extends MVCObject {
-  jsw.Transformater _transform;
+  static MVCArray cast(js.Proxy proxy, [jsw.Translator translator]) => proxy == null ? null : new MVCArray.fromProxy(proxy, translator);
+  static MVCArray castListOfSerializables(js.Proxy proxy, jsw.Mapper<dynamic, js.Serializable> fromJs, {mapOnlyNotNull: false}) => proxy == null ? null : new MVCArray.fromProxy(proxy, new jsw.TranslatorForSerializable(fromJs, mapOnlyNotNull: mapOnlyNotNull));
+  static bool isInstance(js.Proxy proxy) => js.instanceof(proxy, maps.MVCArray);
 
-  MVCArray([List<E> array, jsw.Transformater transform]) : super.newInstance(maps.MVCArray, [array]) {
-    _transform = ?transform ? transform : ((e) => e);
-  }
-  MVCArray.fromJsProxy(js.Proxy jsProxy, [jsw.Transformater transform]) : super.fromJsProxy(jsProxy) {
-    _transform = ?transform ? transform : ((e) => e);
-  }
+  final jsw.Translator<E> _translator;
 
-  void clear() { $.clear(); }
+  MVCArray([List<E> array, jsw.Translator<E> translator]) : super(maps.MVCArray, [array]), this._translator = translator;
+  MVCArray.fromProxy(js.Proxy proxy, [jsw.Translator<E> translator]) : super.fromProxy(proxy), this._translator = translator;
+
+  dynamic _toJs(E e) => _translator == null ? e : _translator.toJs(e);
+  E _fromJs(dynamic value) => _translator == null ? value : _translator.fromJs(value);
+
+  void clear() { $unsafe.clear(); }
   void forEach(void callback(E o, num index)) {
-    $.forEach(new jsw.Callback.once((Option<Object> o, Option<num> index) => callback(o.map(_transform).value, index.value)));
+    final jswCallback = new js.Callback.many((Object o, num index) => callback(_fromJs(o), index));
+    $unsafe.forEach(jswCallback);
+    jswCallback.dispose();
   }
-  List<E> getArray() => $.getArray().map((js.Proxy jsProxy) => new jsw.JsList<E>.fromJsProxy(jsProxy, _transform)).value;
-  E getAt(num i) => $.getAt(i).map(_transform).value;
-  num get length => $.getLength().value;
-  void insertAt(num i, E elem) { $.insertAt(i, elem); }
-  E pop() => $.pop().map(_transform).value;
-  num push(E elem) => $.push(elem).value;
-  E removeAt(num i) => $.removeAt(i).map(_transform).value;
-  void setAt(num i, E elem) { $.setAt(i, elem); }
+  List<E> getArray() => jsw.JsArrayToListAdapter.cast($unsafe.getArray(), _translator);
+  E getAt(num i) => _fromJs($unsafe.getAt(i));
+  num get length => $unsafe.getLength();
+  void insertAt(num i, E elem) { $unsafe.insertAt(i, _toJs(elem)); }
+  E pop() => _fromJs($unsafe.pop());
+  num push(E elem) => $unsafe.push(_toJs(elem));
+  E removeAt(num i) => _fromJs($unsafe.removeAt(i));
+  void setAt(num i, E elem) { $unsafe.setAt(i, _toJs(elem)); }
 
   MVCArrayEvents<E> get on => new MVCArrayEvents<E>._(this);
 }
@@ -44,12 +49,12 @@ class MVCArrayEvents<E> {
   static final INSERT_AT = "insert_at";
   static final REMOVE_AT = "remove_at";
   static final SET_AT = "set_at";
-  
+
   final MVCArray<E> _mvcArray;
 
   MVCArrayEvents._(this._mvcArray);
 
   NumEventListenerAdder get insertAt => new NumEventListenerAdder(_mvcArray, INSERT_AT);
-  NumAndElementEventListenerAdder<E> get removeAt => new NumAndElementEventListenerAdder<E>(_mvcArray, REMOVE_AT, _mvcArray._transform);
-  NumAndElementEventListenerAdder<E> get setAt => new NumAndElementEventListenerAdder<E>(_mvcArray, SET_AT, _mvcArray._transform);
+  NumAndElementEventListenerAdder<E> get removeAt => new NumAndElementEventListenerAdder<E>(_mvcArray, REMOVE_AT, _mvcArray._fromJs);
+  NumAndElementEventListenerAdder<E> get setAt => new NumAndElementEventListenerAdder<E>(_mvcArray, SET_AT, _mvcArray._fromJs);
 }

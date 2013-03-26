@@ -14,23 +14,47 @@
 
 part of google_maps;
 
-class PolylineOptions extends jsw.IsJsProxy {
-  set clickable(bool clickable) => $.clickable = clickable;
-  set draggable(bool draggable) => $.draggable = draggable;
-  set editable(bool editable) => $.editable = editable;
-  set geodesic(bool geodesic) => $.geodesic = geodesic;
-  set icons(List<IconSequence> icons) => $.icons = icons;
-  set map(GMap map) => $.map = map;
+class PolylineOptions extends jsw.TypedProxy {
+  static PolylineOptions cast(js.Proxy proxy) => proxy == null ? null : new PolylineOptions.fromProxy(proxy);
+
+  PolylineOptions() : super();
+  PolylineOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+
+  bool get clickable => $unsafe.clickable;
+  bool get draggable => $unsafe.draggable;
+  bool get editable => $unsafe.editable;
+  bool get geodesic => $unsafe.geodesic;
+  List<IconSequence> get icons => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.icons, IconSequence.cast);
+  GMap get map => GMap.cast($unsafe.map);
+  dynamic/*MVCArray.<LatLng>|Array.<LatLng>*/ get path {
+    final result = $unsafe.path;
+    if (MVCArray.isInstance(result)) {
+      return MVCArray.castListOfSerializables(result, LatLng.cast);
+    } else {
+      return jsw.JsArrayToListAdapter.castListOfSerializables(result, LatLng.cast);
+    }
+  }
+  String get strokeColor => $unsafe.strokeColor;
+  num get strokeOpacity => $unsafe.strokeOpacity;
+  num get strokeWeight => $unsafe.strokeWeight;
+  bool get visible => $unsafe.visible;
+  num get zIndex => $unsafe.zIndex;
+  set clickable(bool clickable) => $unsafe.clickable = clickable;
+  set draggable(bool draggable) => $unsafe.draggable = draggable;
+  set editable(bool editable) => $unsafe.editable = editable;
+  set geodesic(bool geodesic) => $unsafe.geodesic = geodesic;
+  set icons(List<IconSequence> icons) => $unsafe.icons = jsifyList(icons);
+  set map(GMap map) => $unsafe.map = map;
   set path(Object path) {
     if (path is MVCArray<LatLng> || path is List<LatLng>) {
-      $.path = path;
+      $unsafe.path = path;
     } else {
       throw new UnsupportedError("Parameter must be of type MVCArray<LatLng> or List<LatLng>");
     }
   }
-  set strokeColor(String strokeColor) => $.strokeColor = strokeColor;
-  set strokeOpacity(num strokeOpacity) => $.strokeOpacity = strokeOpacity;
-  set strokeWeight(num strokeWeight) => $.strokeWeight = strokeWeight;
-  set visible(bool visible) => $.visible = visible;
-  set zIndex(num zIndex) => $.zIndex = zIndex;
+  set strokeColor(String strokeColor) => $unsafe.strokeColor = strokeColor;
+  set strokeOpacity(num strokeOpacity) => $unsafe.strokeOpacity = strokeOpacity;
+  set strokeWeight(num strokeWeight) => $unsafe.strokeWeight = strokeWeight;
+  set visible(bool visible) => $unsafe.visible = visible;
+  set zIndex(num zIndex) => $unsafe.zIndex = zIndex;
 }

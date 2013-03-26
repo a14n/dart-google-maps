@@ -14,7 +14,7 @@
 
 part of google_maps;
 
-class StreetViewStatus extends jsw.IsEnum<String> {
+class StreetViewStatus extends IsEnum<String> {
   static final OK = new StreetViewStatus._(maps.StreetViewStatus.OK);
   static final UNKNOWN_ERROR = new StreetViewStatus._(maps.StreetViewStatus.UNKNOWN_ERROR);
   static final ZERO_RESULTS = new StreetViewStatus._(maps.StreetViewStatus.ZERO_RESULTS);

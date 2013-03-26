@@ -14,6 +14,12 @@
 
 part of google_maps;
 
-class FusionTablesHeatmap extends jsw.IsJsProxy {
-  set enabled(bool enabled) => $.enabled = enabled;
+class FusionTablesHeatmap extends jsw.TypedProxy {
+  static FusionTablesHeatmap cast(js.Proxy proxy) => proxy == null ? null : new FusionTablesHeatmap.fromProxy(proxy);
+
+  FusionTablesHeatmap() : super();
+  FusionTablesHeatmap.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+
+  bool get enabled => $unsafe.enabled;
+  set enabled(bool enabled) => $unsafe.enabled = enabled;
 }

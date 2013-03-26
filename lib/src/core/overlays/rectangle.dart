@@ -15,22 +15,23 @@
 part of google_maps;
 
 class Rectangle extends MVCObject {
-  static bool isInstance(js.Proxy jsProxy) => js.instanceof(jsProxy, maps.Rectangle);
+  static Rectangle cast(js.Proxy proxy) => proxy == null ? null : new Rectangle.fromProxy(proxy);
+  static bool isInstance(js.Proxy proxy) => js.instanceof(proxy, maps.Rectangle);
 
-  Rectangle([RectangleOptions opts]) : super.newInstance(maps.Rectangle, [opts]);
-  Rectangle.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  Rectangle([RectangleOptions opts]) : super(maps.Rectangle, [opts]);
+  Rectangle.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  LatLngBounds get bounds => $.getBounds().map(LatLngBounds.INSTANCIATOR).value;
-  bool get draggable => $.getDraggable().value;
-  bool get editable => $.getEditable().value;
-  GMap get map => $.getMap().map(GMap.INSTANCIATOR).value;
-  bool get visible => $.getVisible().value;
-  set bounds(LatLngBounds bounds) => $.setBounds(bounds);
-  set draggable(bool draggable) => $.setDraggable(draggable);
-  set editable(bool editable) => $.setEditable(editable);
-  set map(GMap map) => $.setMap(map);
-  set options(RectangleOptions options) => $.setOptions(options);
-  set visible(bool visible) => $.setVisible(visible);
+  LatLngBounds get bounds => LatLngBounds.cast($unsafe.getBounds());
+  bool get draggable => $unsafe.getDraggable();
+  bool get editable => $unsafe.getEditable();
+  GMap get map => GMap.cast($unsafe.getMap());
+  bool get visible => $unsafe.getVisible();
+  set bounds(LatLngBounds bounds) => $unsafe.setBounds(bounds);
+  set draggable(bool draggable) => $unsafe.setDraggable(draggable);
+  set editable(bool editable) => $unsafe.setEditable(editable);
+  set map(GMap map) => $unsafe.setMap(map);
+  set options(RectangleOptions options) => $unsafe.setOptions(options);
+  set visible(bool visible) => $unsafe.setVisible(visible);
 
   RectangleEvents get on => new RectangleEvents._(this);
 }

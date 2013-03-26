@@ -14,7 +14,7 @@
 
 part of google_maps;
 
-class MapTypeId extends jsw.IsEnum<String> {
+class MapTypeId extends IsEnum<String> {
   static final HYBRID = new MapTypeId._(maps.MapTypeId.HYBRID);
   static final ROADMAP = new MapTypeId._(maps.MapTypeId.ROADMAP);
   static final SATELLITE = new MapTypeId._(maps.MapTypeId.SATELLITE);

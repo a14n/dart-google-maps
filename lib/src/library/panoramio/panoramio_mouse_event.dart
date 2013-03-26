@@ -14,12 +14,18 @@
 
 part of google_maps_panoramio;
 
-class PanoramioMouseEvent extends jsw.IsJsProxy {
-  PanoramioMouseEvent();
-  PanoramioMouseEvent.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+class PanoramioMouseEvent extends jsw.TypedProxy {
+  static PanoramioMouseEvent cast(js.Proxy proxy) => proxy == null ? null : new PanoramioMouseEvent.fromProxy(proxy);
 
-  PanoramioFeature get featureDetails => $.featureDetails.map(PanoramioFeature.INSTANCIATOR).value;
-  String get infoWindowHtml => $.infoWindowHtml.value;
-  LatLng get latLng => $.latLng.map(LatLng.INSTANCIATOR).value;
-  Size get pixelOffset => $.pixelOffset.map(Size.INSTANCIATOR).value;
+  PanoramioMouseEvent();
+  PanoramioMouseEvent.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+
+  PanoramioFeature get featureDetails => PanoramioFeature.cast($unsafe.featureDetails);
+  String get infoWindowHtml => $unsafe.infoWindowHtml;
+  LatLng get latLng => LatLng.cast($unsafe.latLng);
+  Size get pixelOffset => Size.cast($unsafe.pixelOffset);
+  set featureDetails(PanoramioFeature featureDetails) => $unsafe.featureDetails = featureDetails;
+  set infoWindowHtml(String infoWindowHtml) => $unsafe.infoWindowHtml = infoWindowHtml;
+  set latLng(LatLng latLng) => $unsafe.latLng = latLng;
+  set pixelOffset(Size pixelOffset) => $unsafe.pixelOffset = pixelOffset;
 }

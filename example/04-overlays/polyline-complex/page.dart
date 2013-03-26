@@ -1,6 +1,5 @@
 import 'dart:html' hide MouseEvent;
 import 'package:js/js.dart' as js;
-import 'package:google_maps/js_wrap.dart' as jsw;
 import 'package:google_maps/google_maps.dart';
 
 Polyline poly;
@@ -14,14 +13,14 @@ void main() {
       ..center = chicago
       ..mapTypeId = MapTypeId.ROADMAP
       ;
-    map = jsw.retain(new GMap(query("#map_canvas"), mapOptions));
+    map = js.retain(new GMap(query("#map_canvas"), mapOptions));
 
     final polyOptions = new PolylineOptions()
       ..strokeColor = '#000000'
       ..strokeOpacity = 1.0
       ..strokeWeight = 3
       ;
-    poly = jsw.retain(new Polyline(polyOptions));
+    poly = js.retain(new Polyline(polyOptions));
     poly.map = map;
 
     // Add a listener for the click event

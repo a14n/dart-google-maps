@@ -15,10 +15,13 @@
 library google_maps_places;
 
 import 'dart:html' as html;
+
 import 'package:js/js.dart' as js;
-import 'optional.dart';
-import 'js_wrap.dart' as jsw;
+import 'package:js/js_wrapping.dart' as jsw;
+import 'package:meta/meta.dart';
+
 import 'google_maps.dart';
+import 'src/utils.dart';
 
 part 'src/library/places/autocomplete.dart';
 part 'src/library/places/autocomplete_options.dart';

@@ -14,7 +14,7 @@
 
 part of google_maps_weather;
 
-class TemperatureUnit extends jsw.IsEnum<String> {
+class TemperatureUnit extends IsEnum<String> {
   static final CELSIUS = new TemperatureUnit._(maps.weather.TemperatureUnit.CELSIUS);
   static final FAHRENHEIT = new TemperatureUnit._(maps.weather.TemperatureUnit.FAHRENHEIT);
 

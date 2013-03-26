@@ -1,6 +1,5 @@
 import 'dart:html';
 import 'package:js/js.dart' as js;
-import 'package:google_maps/js_wrap.dart' as jsw;
 import 'package:google_maps/google_maps.dart';
 import 'package:google_maps/google_maps_geometry.dart';
 
@@ -23,13 +22,13 @@ void main() {
     map.controls.getNodes(ControlPosition.TOP_CENTER).push(query('#info'));
 
 
-    marker1 = jsw.retain(new Marker(new MarkerOptions()
+    marker1 = js.retain(new Marker(new MarkerOptions()
       ..map = map
       ..draggable = true
       ..position = new LatLng(40.71435280, -74.0059731)
     ));
 
-    marker2 = jsw.retain(new Marker(new MarkerOptions()
+    marker2 = js.retain(new Marker(new MarkerOptions()
       ..map = map
       ..draggable = true
       ..position = new LatLng(48.8566140, 2.35222190)
@@ -47,7 +46,7 @@ void main() {
       ..strokeWeight = 3
       ..map = map
       ;
-    poly = jsw.retain(new Polyline(polyOptions));
+    poly = js.retain(new Polyline(polyOptions));
 
     final geodesicOptions = new PolylineOptions()
       ..strokeColor = '#CC0099'
@@ -56,7 +55,7 @@ void main() {
       ..geodesic = true
       ..map = map
       ;
-    geodesicPoly = jsw.retain(new Polyline(geodesicOptions));
+    geodesicPoly = js.retain(new Polyline(geodesicOptions));
 
     update();
   });
@@ -66,7 +65,7 @@ void update() {
   final path = [marker1.position, marker2.position];
   poly.path = path;
   geodesicPoly.path = path;
-  final heading = Spherical.computeHeading(path[0], path[1]);
+  final heading = spherical.computeHeading(path[0], path[1]);
   (query('#heading') as InputElement).value = heading.toString();
   (query('#origin') as InputElement).value = path[0].toString();
   (query('#destination') as InputElement).value = path[1].toString();

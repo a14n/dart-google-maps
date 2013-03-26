@@ -14,14 +14,14 @@
 
 part of google_maps_places;
 
-class PlaceGeometry extends jsw.IsJsProxy {
-  static final INSTANCIATOR = (js.Proxy jsProxy) => new PlaceGeometry.fromJsProxy(jsProxy);
+class PlaceGeometry extends jsw.TypedProxy {
+  static PlaceGeometry cast(js.Proxy proxy) => proxy == null ? null : new PlaceGeometry.fromProxy(proxy);
 
   PlaceGeometry() : super();
-  PlaceGeometry.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  PlaceGeometry.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  LatLng get location => $.location.map(LatLng.INSTANCIATOR).value;
-  set location(LatLng location) => $.location = location;
-  LatLngBounds get viewport => $.viewport.map(LatLngBounds.INSTANCIATOR).value;
-  set viewport(LatLngBounds viewport) => $.viewport = viewport;
+  LatLng get location => LatLng.cast($unsafe.location);
+  LatLngBounds get viewport => LatLngBounds.cast($unsafe.viewport);
+  set location(LatLng location) => $unsafe.location = location;
+  set viewport(LatLngBounds viewport) => $unsafe.viewport = viewport;
 }

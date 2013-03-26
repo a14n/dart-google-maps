@@ -14,15 +14,22 @@
 
 part of google_maps;
 
-class KmlFeatureData extends jsw.IsJsProxy {
-  static final INSTANCIATOR = (js.Proxy jsProxy) => new KmlFeatureData.fromJsProxy(jsProxy);
+class KmlFeatureData extends jsw.TypedProxy {
+  static KmlFeatureData cast(js.Proxy proxy) => proxy == null ? null : new KmlFeatureData.fromProxy(proxy);
 
-  KmlFeatureData.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  KmlFeatureData() : super();
+  KmlFeatureData.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  KmlAuthor get author => $.author.map(KmlAuthor.INSTANCIATOR).value;
-  String get description => $.description.value;
-  String get id => $.id.value;
-  String get infoWindowHtml => $.infoWindowHtml.value;
-  String get name => $.name.value;
-  String get snippet => $.snippet.value;
+  KmlAuthor get author => KmlAuthor.cast($unsafe.author);
+  String get description => $unsafe.description;
+  String get id => $unsafe.id;
+  String get infoWindowHtml => $unsafe.infoWindowHtml;
+  String get name => $unsafe.name;
+  String get snippet => $unsafe.snippet;
+  set author(KmlAuthor author) => $unsafe.author = author;
+  set description(String description) => $unsafe.description = description;
+  set id(String id) => $unsafe.id = id;
+  set infoWindowHtml(String infoWindowHtml) => $unsafe.infoWindowHtml = infoWindowHtml;
+  set name(String name) => $unsafe.name = name;
+  set snippet(String snippet) => $unsafe.snippet = snippet;
 }

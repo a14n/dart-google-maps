@@ -15,16 +15,18 @@
 part of google_maps;
 
 class KmlLayer extends MVCObject {
-  KmlLayer([KmlLayerOptions options]) : super.newInstance(maps.KmlLayer, [options]);
-  KmlLayer.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  static KmlLayer cast(js.Proxy proxy) => proxy == null ? null : new KmlLayer.fromProxy(proxy);
 
-  LatLngBounds get defaultViewport => $.getDefaultViewport().map(LatLngBounds.INSTANCIATOR).value;
-  GMap get map => $.getMap().map(GMap.INSTANCIATOR).value;
-  KmlLayerMetadata get metadata => $.getMetadata().map(KmlLayerMetadata.INSTANCIATOR).value;
-  KmlLayerStatus get status => $.getStatus().map(KmlLayerStatus.find).value;
-  String get url => $.getUrl().value;
-  set map(GMap map) => $.setMap(map);
-  set url(String url) => $.setUrl(url);
+  KmlLayer([KmlLayerOptions options]) : super(maps.KmlLayer, [options]);
+  KmlLayer.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+
+  LatLngBounds get defaultViewport => LatLngBounds.cast($unsafe.getDefaultViewport());
+  GMap get map => GMap.cast($unsafe.getMap());
+  KmlLayerMetadata get metadata => KmlLayerMetadata.cast($unsafe.getMetadata());
+  KmlLayerStatus get status => KmlLayerStatus.find($unsafe.getStatus());
+  String get url => $unsafe.getUrl();
+  set map(GMap map) => $unsafe.setMap(map);
+  set url(String url) => $unsafe.setUrl(url);
 
   KmlLayerEvents get on => new KmlLayerEvents._(this);
 }
@@ -33,7 +35,7 @@ class KmlLayerEvents {
   static final CLICK = "click";
   static final DEFAULTVIEWPORT_CHANGED = "defaultviewport_changed";
   static final STATUS_CHANGED = "status_changed";
-  
+
   final KmlLayer _kmlLayer;
 
   KmlLayerEvents._(this._kmlLayer);

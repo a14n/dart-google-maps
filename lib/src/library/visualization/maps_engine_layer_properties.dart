@@ -14,12 +14,12 @@
 
 part of google_maps_visualization;
 
-class MapsEngineLayerProperties extends jsw.IsJsProxy {
-  static final INSTANCIATOR = (js.Proxy jsProxy) => new MapsEngineLayerProperties.fromJsProxy(jsProxy);
+class MapsEngineLayerProperties extends jsw.TypedProxy {
+  static MapsEngineLayerProperties cast(js.Proxy proxy) => proxy == null ? null : new MapsEngineLayerProperties.fromProxy(proxy);
 
   MapsEngineLayerProperties() : super();
-  MapsEngineLayerProperties.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  MapsEngineLayerProperties.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  String get name => $.name;
-  set name(String name) => $.name = name;
+  String get name => $unsafe.name;
+  set name(String name) => $unsafe.name = name;
 }

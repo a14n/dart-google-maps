@@ -14,19 +14,19 @@
 
 part of google_maps;
 
-class MarkerShape extends jsw.IsJsProxy {
-  static final INSTANCIATOR = (js.Proxy jsProxy) => new MarkerShape.fromJsProxy(jsProxy);
+class MarkerShape extends jsw.TypedProxy {
+  static MarkerShape cast(js.Proxy proxy) => proxy == null ? null : new MarkerShape.fromProxy(proxy);
 
   MarkerShape() : super();
-  MarkerShape.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  MarkerShape.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  List<num> get coords => $.coords.map((js.Proxy jsProxy) => new jsw.JsList<num>.fromJsProxy(jsProxy, null)).value;
-  set coords(List<num> coords) => $.coords = coords;
-  MarkerShapeType get type => MarkerShapeType.find($.type.value);
-  set type(MarkerShapeType type) => $.type = type.value;
+  List<num> get coords => jsw.JsArrayToListAdapter.cast($unsafe.coords);
+  MarkerShapeType get type => MarkerShapeType.find($unsafe.type);
+  set coords(List<num> coords) => $unsafe.coords = jsifyList(coords);
+  set type(MarkerShapeType type) => $unsafe.type = type;
 }
 
-class MarkerShapeType extends jsw.IsEnum<String> {
+class MarkerShapeType extends IsEnum<String> {
   static final CIRCLE = new MarkerShapeType._("circle");
   static final POLY = new MarkerShapeType._("poly");
   static final RECT = new MarkerShapeType._("rect");
@@ -37,5 +37,5 @@ class MarkerShapeType extends jsw.IsEnum<String> {
 
   MarkerShapeType._(String value) : super(value);
 
-  bool operator ==(Object other) => value == (other is MarkerShapeType ? (other as MarkerShapeType).value : other);
+  bool operator ==(Object other) => value == (other is MarkerShapeType ? (other as MarkerShapeType) : other);
 }

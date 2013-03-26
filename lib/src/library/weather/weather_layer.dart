@@ -15,19 +15,21 @@
 part of google_maps_weather;
 
 class WeatherLayer extends MVCObject {
-  WeatherLayer([WeatherLayerOptions opts]) : super.newInstance(maps.weather.WeatherLayer, [opts]);
-  WeatherLayer.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  static WeatherLayer cast(js.Proxy proxy) => proxy == null ? null : new WeatherLayer.fromProxy(proxy);
 
-  GMap get map => $.getMap().map(GMap.INSTANCIATOR).value;
-  set map(GMap map) => $.setMap(map);
-  set options(WeatherLayerOptions options) => $.setOptions(options);
+  WeatherLayer([WeatherLayerOptions opts]) : super(maps.weather.WeatherLayer, [opts]);
+  WeatherLayer.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+
+  GMap get map => GMap.cast($unsafe.getMap());
+  set map(GMap map) => $unsafe.setMap(map);
+  set options(WeatherLayerOptions options) => $unsafe.setOptions(options);
 
   WeatherLayerEvents get on => new WeatherLayerEvents._(this);
 }
 
 class WeatherLayerEvents {
   static final CLICK = "click";
-  
+
   final WeatherLayer _weatherLayer;
 
   WeatherLayerEvents._(this._weatherLayer);

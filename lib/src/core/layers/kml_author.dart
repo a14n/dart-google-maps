@@ -14,12 +14,16 @@
 
 part of google_maps;
 
-class KmlAuthor extends jsw.IsJsProxy {
-  static final INSTANCIATOR = (js.Proxy jsProxy) => new KmlAuthor.fromJsProxy(jsProxy);
+class KmlAuthor extends jsw.TypedProxy {
+  static KmlAuthor cast(js.Proxy proxy) => proxy == null ? null : new KmlAuthor.fromProxy(proxy);
 
-  KmlAuthor.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  KmlAuthor() : super();
+  KmlAuthor.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  String get email => $.email.value;
-  String get name => $.name.value;
-  String get uri => $.uri.value;
+  String get email => $unsafe.email;
+  String get name => $unsafe.name;
+  String get uri => $unsafe.uri;
+  set email(String email) => $unsafe.email = email;
+  set name(String name) => $unsafe.name = name;
+  set uri(String uri) => $unsafe.uri = uri;
 }

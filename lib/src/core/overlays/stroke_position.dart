@@ -14,7 +14,7 @@
 
 part of google_maps;
 
-class StrokePosition extends jsw.IsEnum<int> {
+class StrokePosition extends IsEnum<int> {
   static final CENTER = new StrokePosition._(maps.StrokePosition.CENTER);
   static final INSIDE = new StrokePosition._(maps.StrokePosition.INSIDE);
   static final OUTSIDE = new StrokePosition._(maps.StrokePosition.OUTSIDE);

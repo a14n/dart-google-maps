@@ -15,36 +15,25 @@
 part of google_maps;
 
 class Polygon extends MVCObject {
-  static bool isInstance(js.Proxy jsProxy) => js.instanceof(jsProxy, maps.Polygon);
+  static Polygon cast(js.Proxy proxy) => proxy == null ? null : new Polygon.fromProxy(proxy);
+  static bool isInstance(js.Proxy proxy) => js.instanceof(proxy, maps.Polygon);
 
-  Polygon([PolygonOptions opts]) : super.newInstance(maps.Polygon, [opts]);
-  Polygon.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  Polygon([PolygonOptions opts]) : super(maps.Polygon, [opts]);
+  Polygon.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  bool get draggable => $.getDraggable().value;
-  bool get editable => $.getEditable().value;
-  GMap get map => $.getMap().map(GMap.INSTANCIATOR).value;
-  MVCArray<LatLng> get path => $.getPath().map((js.Proxy jsProxy) => new MVCArray.fromJsProxy(jsProxy, (js.Proxy jsProxy) => new LatLng.fromJsProxy(jsProxy))).value;
-  MVCArray<MVCArray<LatLng>> get paths => $.getPaths().map((js.Proxy jsProxy) => new MVCArray.fromJsProxy(jsProxy, (js.Proxy jsProxy) => new MVCArray.fromJsProxy(jsProxy, (js.Proxy jsProxy) => new LatLng.fromJsProxy(jsProxy)))).value;
-  bool get visible => $.getVisible().value;
-  set draggable(bool draggable) => $.setDraggable(draggable);
-  set editable(bool editable) => $.setEditable(editable);
-  set map(GMap map) => $.setMap(map);
-  set options(PolylineOptions options) => $.setOptions(options);
-  set path(Object path) {
-    if (path is MVCArray<LatLng> || path is List<LatLng>) {
-      $.setPath(path);
-    } else {
-      throw new UnsupportedError("Parameter must be of type MVCArray<LatLng> or List<LatLng>");
-    }
-  }
-  set paths(Object paths) {
-    if (paths is MVCArray<MVCArray<LatLng>> || paths is MVCArray<LatLng> || paths is List<List<LatLng>> || paths is List<LatLng>) {
-      $.setPaths(paths);
-    } else {
-      throw new UnsupportedError("Parameter must be of type MVCArray<MVCArray<LatLng>>, MVCArray<LatLng>, List<List<LatLng>> or List<LatLng>");
-    }
-  }
-  set visible(bool visible) => $.setVisible(visible);
+  bool get draggable => $unsafe.getDraggable();
+  bool get editable => $unsafe.getEditable();
+  GMap get map => GMap.cast($unsafe.getMap());
+  MVCArray<LatLng> get path => MVCArray.castListOfSerializables($unsafe.getPath(), LatLng.cast);
+  MVCArray<MVCArray<LatLng>> get paths => MVCArray.castListOfSerializables($unsafe.getPath(), (e) => MVCArray.castListOfSerializables(e, LatLng.cast));
+  bool get visible => $unsafe.getVisible();
+  set draggable(bool draggable) => $unsafe.setDraggable(draggable);
+  set editable(bool editable) => $unsafe.setEditable(editable);
+  set map(GMap map) => $unsafe.setMap(map);
+  set options(PolylineOptions options) => $unsafe.setOptions(options);
+  set path(dynamic/*MVCArray.<LatLng>|Array.<LatLng>*/ path) => $unsafe.setPath(path is List ? jsifyList(path) : path);
+  set paths(dynamic/*MVCArray.<MVCArray.<LatLng>>|MVCArray.<LatLng>|Array.<Array.<LatLng>>|Array.<LatLng>*/ paths) => $unsafe.setPaths(paths is List ? jsifyList(paths) : paths);
+  set visible(bool visible) => $unsafe.setVisible(visible);
 
   PolygonEvents get on => new PolygonEvents._(this);
 }

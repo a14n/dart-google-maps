@@ -15,23 +15,25 @@
 part of google_maps_panoramio;
 
 class PanoramioLayer extends MVCObject {
-  PanoramioLayer([PanoramioLayerOptions opts]) : super.newInstance(maps.panoramio.PanoramioLayer, [opts]);
-  PanoramioLayer.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  static PanoramioLayer cast(js.Proxy proxy) => proxy == null ? null : new PanoramioLayer.fromProxy(proxy);
 
-  GMap get map => $.getMap().map(GMap.INSTANCIATOR).value;
-  String get tag => $.getTag().value;
-  String get userId => $.getUserId().value;
-  set map(GMap map) => $.setMap(map);
-  set options(PanoramioLayerOptions options) => $.setOptions(options);
-  set tag(String tag) => $.setTag(tag);
-  set userId(String userId) => $.setUserId(userId);
+  PanoramioLayer([PanoramioLayerOptions opts]) : super(maps.panoramio.PanoramioLayer, [opts]);
+  PanoramioLayer.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+
+  GMap get map => GMap.cast($unsafe.getMap());
+  String get tag => $unsafe.getTag();
+  String get userId => $unsafe.getUserId();
+  set map(GMap map) => $unsafe.setMap(map);
+  set options(PanoramioLayerOptions options) => $unsafe.setOptions(options);
+  set tag(String tag) => $unsafe.setTag(tag);
+  set userId(String userId) => $unsafe.setUserId(userId);
 
   PanoramioLayerEvents get on => new PanoramioLayerEvents._(this);
 }
 
 class PanoramioLayerEvents {
   static final CLICK = "click";
-  
+
   final PanoramioLayer _panoramioLayer;
 
   PanoramioLayerEvents._(this._panoramioLayer);

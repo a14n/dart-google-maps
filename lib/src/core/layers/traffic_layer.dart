@@ -15,9 +15,11 @@
 part of google_maps;
 
 class TrafficLayer extends MVCObject {
-  TrafficLayer() : super.newInstance(maps.TrafficLayer);
-  TrafficLayer.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  static TrafficLayer cast(js.Proxy proxy) => proxy == null ? null : new TrafficLayer.fromProxy(proxy);
 
-  GMap get map => $.getMap().map(GMap.INSTANCIATOR).value;
-  set map(GMap map) => $.setMap(map);
+  TrafficLayer() : super(maps.TrafficLayer);
+  TrafficLayer.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+
+  GMap get map => GMap.cast($unsafe.getMap());
+  set map(GMap map) => $unsafe.setMap(map);
 }

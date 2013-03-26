@@ -14,19 +14,28 @@
 
 part of google_maps;
 
-class DirectionsStep extends jsw.IsJsProxy {
-  static final INSTANCIATOR = (js.Proxy jsProxy) => new DirectionsStep.fromJsProxy(jsProxy);
+class DirectionsStep extends jsw.TypedProxy {
+  static DirectionsStep cast(js.Proxy proxy) => proxy == null ? null : new DirectionsStep.fromProxy(proxy);
 
   DirectionsStep() : super();
-  DirectionsStep.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  DirectionsStep.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  Distance get distance => $.distance.map(Distance.INSTANCIATOR).value;
-  GDuration get duration => $.duration.map(GDuration.INSTANCIATOR).value;
-  LatLng get endLocation => $.end_location.map(LatLng.INSTANCIATOR).value;
-  String get instructions => $.instructions.value;
-  List<LatLng> get path => $.path.map((js.Proxy jsProxy) => new jsw.JsList<LatLng>.fromJsProxy(jsProxy, LatLng.INSTANCIATOR)).value;
-  LatLng get startLocation => $.start_location.map(LatLng.INSTANCIATOR).value;
-  List<DirectionsStep> get steps => $.steps.map((js.Proxy jsProxy) => new jsw.JsList<DirectionsStep>.fromJsProxy(jsProxy, DirectionsStep.INSTANCIATOR)).value;
-  TransitDetails get transit => $.transit.map(TransitDetails.INSTANCIATOR).value;
-  TravelMode get travelMode => $.travel_mode.map(TravelMode.find).value;
+  Distance get distance => Distance.cast($unsafe.distance);
+  GDuration get duration => GDuration.cast($unsafe.duration);
+  LatLng get endLocation => LatLng.cast($unsafe.end_location);
+  String get instructions => $unsafe.instructions;
+  List<LatLng> get path => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.path, LatLng.cast);
+  LatLng get startLocation => LatLng.cast($unsafe.start_location);
+  List<DirectionsStep> get steps => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.steps, DirectionsStep.cast);
+  TransitDetails get transit => TransitDetails.cast($unsafe.transit);
+  TravelMode get travelMode => TravelMode.find($unsafe.travel_mode);
+  set distance(Distance distance) => $unsafe.distance = distance;
+  set duration(GDuration duration) => $unsafe.duration = duration;
+  set endLocation(LatLng endLocation) => $unsafe.end_location = endLocation;
+  set instructions(String instructions) => $unsafe.instructions = instructions;
+  set path(List<LatLng> path) => $unsafe.path = jsifyList(path);
+  set startLocation(LatLng startLocation) => $unsafe.start_location = startLocation;
+  set steps(List<DirectionsStep> steps) => $unsafe.steps = jsifyList(steps);
+  set transit(TransitDetails transit) => $unsafe.transit = transit;
+  set travelMode(TravelMode travelMode) => $unsafe.travel_mode = travelMode;
 }

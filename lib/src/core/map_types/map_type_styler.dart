@@ -14,16 +14,27 @@
 
 part of google_maps;
 
-class MapTypeStyler extends jsw.IsJsProxy {
-  set gamma(num gamma) => $.gamma = gamma;
-  set hue(String hue) => $.hue = hue;
-  set invertLightness(bool invertLightness) => $.invert_lightness = invertLightness;
-  set lightness(num lightness) => $.lightness = lightness;
-  set saturation(num saturation) => $.saturation = saturation;
-  set visibility(MapTypeStylerVisibility visibility) => $.visibility = visibility.value;
+class MapTypeStyler extends jsw.TypedProxy {
+  static MapTypeStyler cast(js.Proxy proxy) => proxy == null ? null : new MapTypeStyler.fromProxy(proxy);
+
+  MapTypeStyler() : super();
+  MapTypeStyler.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+
+  num get gamma => $unsafe.gamma;
+  String get hue => $unsafe.hue;
+  bool get invertLightness => $unsafe.invert_lightness;
+  num get lightness => $unsafe.lightness;
+  num get saturation => $unsafe.saturation;
+  MapTypeStylerVisibility get visibility => MapTypeStylerVisibility.find($unsafe.visibility);
+  set gamma(num gamma) => $unsafe.gamma = gamma;
+  set hue(String hue) => $unsafe.hue = hue;
+  set invertLightness(bool invertLightness) => $unsafe.invert_lightness = invertLightness;
+  set lightness(num lightness) => $unsafe.lightness = lightness;
+  set saturation(num saturation) => $unsafe.saturation = saturation;
+  set visibility(MapTypeStylerVisibility visibility) => $unsafe.visibility = visibility;
 }
 
-class MapTypeStylerVisibility extends jsw.IsEnum<String> {
+class MapTypeStylerVisibility extends IsEnum<String> {
   static final ON = new MapTypeStylerVisibility._("on");
   static final OFF = new MapTypeStylerVisibility._("off");
   static final SIMPLIFIED = new MapTypeStylerVisibility._("simplified");
@@ -34,5 +45,5 @@ class MapTypeStylerVisibility extends jsw.IsEnum<String> {
 
   MapTypeStylerVisibility._(String value) : super(value);
 
-  bool operator ==(Object other) => value == (other is MapTypeStylerVisibility ? (other as MapTypeStylerVisibility).value : other);
+  bool operator ==(Object other) => value == (other is MapTypeStylerVisibility ? (other as MapTypeStylerVisibility) : other);
 }

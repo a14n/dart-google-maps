@@ -14,12 +14,18 @@
 
 part of google_maps;
 
-class GeocoderResult extends jsw.IsJsProxy {
-  GeocoderResult() : super();
-  GeocoderResult.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+class GeocoderResult extends jsw.TypedProxy {
+  static GeocoderResult cast(js.Proxy proxy) => proxy == null ? null : new GeocoderResult.fromProxy(proxy);
 
-  List<GeocoderAddressComponent> get addressComponents => $.address_components.map((js.Proxy jsProxy) => new jsw.JsList<GeocoderAddressComponent>.fromJsProxy(jsProxy, GeocoderAddressComponent.INSTANCIATOR)).value;
-  String get formattedAddress => $.formatted_address.value;
-  GeocoderGeometry get geometry => $.geometry.map(GeocoderGeometry.INSTANCIATOR).value;
-  List<String> get types => $.types.map((js.Proxy jsProxy) => new jsw.JsList<String>.fromJsProxy(jsProxy, null)).value;
+  GeocoderResult() : super();
+  GeocoderResult.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+
+  List<GeocoderAddressComponent> get addressComponents => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.address_components, GeocoderAddressComponent.cast);
+  String get formattedAddress => $unsafe.formatted_address;
+  GeocoderGeometry get geometry => GeocoderGeometry.cast($unsafe.geometry);
+  List<String> get types => jsw.JsArrayToListAdapter.cast($unsafe.types);
+  set addressComponents(List<GeocoderAddressComponent> addressComponents) => $unsafe.address_components = jsifyList(addressComponents);
+  set formattedAddress(String formattedAddress) => $unsafe.formatted_address = formattedAddress;
+  set geometry(GeocoderGeometry geometry) => $unsafe.geometry = geometry;
+  set types(List<String> types) => $unsafe.types = jsifyList(types);
 }

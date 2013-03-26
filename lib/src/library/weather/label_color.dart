@@ -14,7 +14,7 @@
 
 part of google_maps_weather;
 
-class LabelColor extends jsw.IsEnum<String> {
+class LabelColor extends IsEnum<String> {
   static final BLACK = new LabelColor._(maps.weather.LabelColor.BLACK);
   static final WHITE = new LabelColor._(maps.weather.LabelColor.WHITE);
 

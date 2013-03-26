@@ -15,34 +15,16 @@
 part of google_maps_visualization;
 
 class HeatmapLayer extends MVCObject {
-  HeatmapLayer([HeatmapLayerOptions opts]) : super.newInstance(maps.visualization.HeatmapLayer, [opts]);
-  HeatmapLayer.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  static HeatmapLayer cast(js.Proxy proxy) => proxy == null ? null : new HeatmapLayer.fromProxy(proxy);
 
-  MVCArray<Object> get data => $.getData().map((js.Proxy jsProxy) => new MVCArray.fromJsProxy(jsProxy, (js.Proxy jsProxy) {
-    if (jsProxy == null) {
-      return jsProxy;
-    } else if (js.instanceof(jsProxy, maps.LatLng)) {
-      return new LatLng.fromJsProxy(jsProxy);
-    } else {
-      return new WeightedLocation.fromJsProxy(jsProxy);
-    }
-  })).value;
-  GMap get map => $.getMap().map(GMap.INSTANCIATOR).value;
-  set data(Object data) {
-    List list;
-    if (data is MVCArray) {
-      list = data.getArray();
-    } else if (data is List) {
-      list = data;
-    }
-    if (data != null && list == null) {
-      throw new UnsupportedError("Parameter must be of type MVCArray or List");
-    }
-    if (!list.where((e)=> !(e is LatLng || e is WeightedLocation)).isEmpty) {
-      throw new UnsupportedError("some elements are not LatLng or WeightedLocation");
-    }
-    $.setData(data);
+  HeatmapLayer([HeatmapLayerOptions opts]) : super(maps.visualization.HeatmapLayer, [opts]);
+  HeatmapLayer.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+
+  MVCArray<dynamic/*LatLng|WeightedLocation*/> get data => MVCArray.castListOfSerializables($unsafe.getData(), (e) => LatLng.isInstance(e) ? LatLng.cast(e) : WeightedLocation.cast(e));
+  GMap get map => GMap.cast($unsafe.getMap());
+  set data(dynamic/*MVCArray.<LatLng|WeightedLocation>|Array.<LatLng|WeightedLocation>*/ data) {
+    $unsafe.setData(MVCArray.isInstance(data) ? MVCArray.cast(data) : jsifyList(data));
   }
-  set map(GMap map) => $.setMap(map);
-  set options(HeatmapLayerOptions options) => $.setOptions(options);
+  set map(GMap map) => $unsafe.setMap(map);
+  set options(HeatmapLayerOptions options) => $unsafe.setOptions(options);
 }

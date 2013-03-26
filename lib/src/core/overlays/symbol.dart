@@ -14,41 +14,35 @@
 
 part of google_maps;
 
-class Symbol extends jsw.IsJsProxy {
-  Symbol() : super();
-  Symbol.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+class Symbol extends jsw.TypedProxy {
+  static Symbol cast(js.Proxy proxy) => proxy == null ? null : new Symbol.fromProxy(proxy);
 
-  Point get anchor => $.anchor.map(Point.INSTANCIATOR).value;
-  set anchor(Point anchor) => $.anchor = anchor;
-  String get fillColor => $.fillColor.value;
-  set fillColor(String fillColor) => $.fillColor = fillColor;
-  num get fillOpacity => $.fillOpacity.value;
-  set fillOpacity(num fillOpacity) => $.fillOpacity = fillOpacity;
-  Object get path {
-    final result = $.path.value;
-    if (result is String) {
-      return result;
-    } else if (result is js.Proxy) {
+  Symbol() : super();
+  Symbol.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+
+  Point get anchor => Point.cast($unsafe.anchor);
+  String get fillColor => $unsafe.fillColor;
+  num get fillOpacity => $unsafe.fillOpacity;
+  dynamic/*SymbolPath|string*/ get path {
+    final result = $unsafe.path;
+    if (result is js.Proxy) {
       return SymbolPath.find(result);
     } else {
-      throw new Exception("Unsupported result");
+      return result;
     }
   }
-  set path(Object path) {
-    if (path is String || path is SymbolPath) {
-      $.path = path;
-    } else {
-      throw new UnsupportedError("Parameter must be of type String or SymbolPath");
-    }
-  }
-  num get rotation => $.rotation.value;
-  set rotation(num rotation) => $.rotation = rotation;
-  num get scale => $.scale.value;
-  set scale(num scale) => $.scale = scale;
-  String get strokeColor => $.strokeColor.value;
-  set strokeColor(String strokeColor) => $.strokeColor = strokeColor;
-  num get strokeOpacity => $.strokeOpacity.value;
-  set strokeOpacity(num strokeOpacity) => $.strokeOpacity = strokeOpacity;
-  num get strokeWeight => $.strokeWeight.value;
-  set strokeWeight(num strokeWeight) => $.strokeWeight = strokeWeight;
+  num get rotation => $unsafe.rotation;
+  num get scale => $unsafe.scale;
+  String get strokeColor => $unsafe.strokeColor;
+  num get strokeOpacity => $unsafe.strokeOpacity;
+  num get strokeWeight => $unsafe.strokeWeight;
+  set anchor(Point anchor) => $unsafe.anchor = anchor;
+  set fillColor(String fillColor) => $unsafe.fillColor = fillColor;
+  set fillOpacity(num fillOpacity) => $unsafe.fillOpacity = fillOpacity;
+  set path(dynamic/*SymbolPath|string*/ path) => $unsafe.path = path;
+  set rotation(num rotation) => $unsafe.rotation = rotation;
+  set scale(num scale) => $unsafe.scale = scale;
+  set strokeColor(String strokeColor) => $unsafe.strokeColor = strokeColor;
+  set strokeOpacity(num strokeOpacity) => $unsafe.strokeOpacity = strokeOpacity;
+  set strokeWeight(num strokeWeight) => $unsafe.strokeWeight = strokeWeight;
 }

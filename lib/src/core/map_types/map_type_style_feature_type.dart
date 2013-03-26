@@ -14,7 +14,7 @@
 
 part of google_maps;
 
-class MapTypeStyleFeatureType extends jsw.IsEnum<String> {
+class MapTypeStyleFeatureType extends IsEnum<String> {
   static final ADMINISTRATIVE = new MapTypeStyleFeatureType._("administrative");
   static final ADMINISTRATIVE_COUNTRY = new MapTypeStyleFeatureType._("administrative.country");
   static final ADMINISTRATIVE_LAND_PARCEL = new MapTypeStyleFeatureType._("administrative.land_parcel");

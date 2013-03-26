@@ -15,24 +15,20 @@
 part of google_maps;
 
 class OverlayView extends MVCObject {
-  OverlayView() : super.newInstance(maps.OverlayView);
-  OverlayView.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  static OverlayView cast(js.Proxy proxy) => proxy == null ? null : new OverlayView.fromProxy(proxy);
 
-  void draw() { $.draw(); }
-  GMap get map => $.getMap().map(GMap.INSTANCIATOR).value;
-  MapPanes get panes => $.getPanes().map(MapPanes.INSTANCIATOR).value;
-  MapCanvasProjection get projection => $.getProjection().map(MapCanvasProjection.INSTANCIATOR).value;
-  void onAdd() { $.onAdd(); }
-  void onRemove() { $.onRemove(); }
-  set map(Object map) {
-    if (map == null || map is GMap || map is StreetViewPanorama) {
-      $.setMap(map);
-    } else {
-      throw new UnsupportedError("Parameter must be of type GMap or StreetViewPanorama");
-    }
-  }
+  OverlayView() : super(maps.OverlayView);
+  OverlayView.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  void set_onAdd(onAdd()) { $.onAdd = new jsw.Callback.many(onAdd); }
-  void set_onRemove(onRemove()) { $.onRemove = new jsw.Callback.many(onRemove); }
-  void set_draw(draw()) { $.draw = new jsw.Callback.many(draw); }
+  void draw() { $unsafe.draw(); }
+  GMap get map => GMap.cast($unsafe.getMap());
+  MapPanes get panes => MapPanes.cast($unsafe.getPanes());
+  MapCanvasProjection get projection => MapCanvasProjection.cast($unsafe.getProjection());
+  void onAdd() { $unsafe.onAdd(); }
+  void onRemove() { $unsafe.onRemove(); }
+  set map(dynamic/*Map|StreetViewPanorama*/ map) => $unsafe.setMap(map);
+
+  void set_onAdd(onAdd()) { $unsafe.onAdd = new js.Callback.many(onAdd); }
+  void set_onRemove(onRemove()) { $unsafe.onRemove = new js.Callback.many(onRemove); }
+  void set_draw(draw()) { $unsafe.draw = new js.Callback.many(draw); }
 }

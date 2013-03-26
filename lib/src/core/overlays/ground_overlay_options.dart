@@ -14,8 +14,16 @@
 
 part of google_maps;
 
-class GroundOverlayOptions extends jsw.IsJsProxy {
-  set clickable(bool clickable) => $.clickable = clickable;
-  set map(GMap map) => $.map = map;
-  set opacity(num opacity) => $.opacity = opacity;
+class GroundOverlayOptions extends jsw.TypedProxy {
+  static GroundOverlayOptions cast(js.Proxy proxy) => proxy == null ? null : new GroundOverlayOptions.fromProxy(proxy);
+
+  GroundOverlayOptions() : super();
+  GroundOverlayOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+
+  bool get clickable => $unsafe.clickable;
+  GMap get map => GMap.cast($unsafe.map);
+  num get opacity => $unsafe.opacity;
+  set clickable(bool clickable) => $unsafe.clickable = clickable;
+  set map(GMap map) => $unsafe.map = map;
+  set opacity(num opacity) => $unsafe.opacity = opacity;
 }

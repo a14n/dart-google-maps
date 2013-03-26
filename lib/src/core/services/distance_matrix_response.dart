@@ -14,13 +14,16 @@
 
 part of google_maps;
 
-class DistanceMatrixResponse extends jsw.IsJsProxy {
-  static final INSTANCIATOR = (js.Proxy jsProxy) => new DistanceMatrixResponse.fromJsProxy(jsProxy);
+class DistanceMatrixResponse extends jsw.TypedProxy {
+  static DistanceMatrixResponse cast(js.Proxy proxy) => proxy == null ? null : new DistanceMatrixResponse.fromProxy(proxy);
 
   DistanceMatrixResponse() : super();
-  DistanceMatrixResponse.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  DistanceMatrixResponse.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  List<String> get destinationAddresses => $.destinationAddresses.map((js.Proxy jsProxy) => new jsw.JsList<String>.fromJsProxy(jsProxy, null)).value;
-  List<String> get originAddresses => $.originAddresses.map((js.Proxy jsProxy) => new jsw.JsList<String>.fromJsProxy(jsProxy, null)).value;
-  List<DistanceMatrixResponseRow> get rows => $.rows.map((js.Proxy jsProxy) => new jsw.JsList<DistanceMatrixResponseRow>.fromJsProxy(jsProxy, DistanceMatrixResponseRow.INSTANCIATOR)).value;
+  List<String> get destinationAddresses => jsw.JsArrayToListAdapter.cast($unsafe.destinationAddresses);
+  List<String> get originAddresses => jsw.JsArrayToListAdapter.cast($unsafe.originAddresses);
+  List<DistanceMatrixResponseRow> get rows => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.rows, DistanceMatrixResponseRow.cast);
+  set destinationAddresses(List<String> destinationAddresses) => $unsafe.destinationAddresses = jsifyList(destinationAddresses);
+  set originAddresses(List<String> originAddresses) => $unsafe.originAddresses = jsifyList(originAddresses);
+  set rows(List<DistanceMatrixResponseRow> rows) => $unsafe.rows = jsifyList(rows);
 }

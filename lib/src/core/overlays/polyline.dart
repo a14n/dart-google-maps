@@ -15,28 +15,23 @@
 part of google_maps;
 
 class Polyline extends MVCObject {
-  static bool isInstance(js.Proxy jsProxy) => js.instanceof(jsProxy, maps.Polyline);
+  static Polyline cast(js.Proxy proxy) => proxy == null ? null : new Polyline.fromProxy(proxy);
+  static bool isInstance(js.Proxy proxy) => js.instanceof(proxy, maps.Polyline);
 
-  Polyline([PolylineOptions opts]) : super.newInstance(maps.Polyline, [opts]);
-  Polyline.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  Polyline([PolylineOptions opts]) : super(maps.Polyline, [opts]);
+  Polyline.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  bool get draggable => $.getDraggable().value;
-  bool get editable => $.getEditable().value;
-  GMap get map => $.getMap().map(GMap.INSTANCIATOR).value;
-  MVCArray<LatLng> get path => $.getPath().map((js.Proxy jsProxy) => new MVCArray.fromJsProxy(jsProxy, (js.Proxy jsProxy) => new LatLng.fromJsProxy(jsProxy))).value;
-  bool get visible => $.getVisible().value;
-  set draggable(bool draggable) => $.setDraggable(draggable);
-  set editable(bool editable) => $.setEditable(editable);
-  set map(GMap map) => $.setMap(map);
-  set options(PolylineOptions options) => $.setOptions(options);
-  set path(Object path) {
-    if (path is MVCArray<LatLng> || path is List<LatLng>) {
-      $.setPath(path);
-    } else {
-      throw new UnsupportedError("Parameter must be of type MVCArray<LatLng> or List<LatLng>");
-    }
-  }
-  set visible(bool visible) => $.setVisible(visible);
+  bool get draggable => $unsafe.getDraggable();
+  bool get editable => $unsafe.getEditable();
+  GMap get map => GMap.cast($unsafe.getMap());
+  MVCArray<LatLng> get path => MVCArray.castListOfSerializables($unsafe.getPath(), LatLng.cast);
+  bool get visible => $unsafe.getVisible();
+  set draggable(bool draggable) => $unsafe.setDraggable(draggable);
+  set editable(bool editable) => $unsafe.setEditable(editable);
+  set map(GMap map) => $unsafe.setMap(map);
+  set options(PolylineOptions options) => $unsafe.setOptions(options);
+  set path(dynamic/*MVCArray.<LatLng>|Array.<LatLng>*/ path) => $unsafe.setPath(path is List ? jsifyList(path) : path);
+  set visible(bool visible) => $unsafe.setVisible(visible);
 
   PolylineEvents get on => new PolylineEvents._(this);
 }

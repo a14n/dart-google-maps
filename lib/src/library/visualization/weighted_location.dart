@@ -14,12 +14,14 @@
 
 part of google_maps_visualization;
 
-class WeightedLocation extends jsw.IsJsProxy {
-  WeightedLocation() : super();
-  WeightedLocation.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+class WeightedLocation extends jsw.TypedProxy {
+  static WeightedLocation cast(js.Proxy proxy) => proxy == null ? null : new WeightedLocation.fromProxy(proxy);
 
-  LatLng get location => $.location.map(LatLng.INSTANCIATOR).value;
-  set location(LatLng location) => $.location = location;
-  num get weight => $.weight.value;
-  set weight(num weight) => $.weight = weight;
+  WeightedLocation() : super();
+  WeightedLocation.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+
+  LatLng get location => LatLng.cast($unsafe.location);
+  num get weight => $unsafe.weight;
+  set location(LatLng location) => $unsafe.location = location;
+  set weight(num weight) => $unsafe.weight = weight;
 }

@@ -14,7 +14,7 @@
 
 part of google_maps;
 
-class ControlPosition extends jsw.IsEnum<int> {
+class ControlPosition extends IsEnum<int> {
   static final BOTTOM_CENTER = new ControlPosition._(maps.ControlPosition.BOTTOM_CENTER);
   static final BOTTOM_LEFT = new ControlPosition._(maps.ControlPosition.BOTTOM_LEFT);
   static final BOTTOM_RIGHT = new ControlPosition._(maps.ControlPosition.BOTTOM_RIGHT);

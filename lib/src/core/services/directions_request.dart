@@ -14,29 +14,46 @@
 
 part of google_maps;
 
-class DirectionsRequest extends jsw.IsJsProxy {
-  set avoidHighways(bool avoidHighways) => $.avoidHighways = avoidHighways;
-  set avoidTolls(bool avoidTolls) => $.avoidTolls = avoidTolls;
-  set destination(Object destination) {
-    if (destination is String || destination is LatLng) {
-      $.destination = destination;
-    } else {
-      throw new UnsupportedError("Parameter must be of type String or LatLng");
+class DirectionsRequest extends jsw.TypedProxy {
+  static DirectionsRequest cast(js.Proxy proxy) => proxy == null ? null : new DirectionsRequest.fromProxy(proxy);
+
+  DirectionsRequest() : super();
+  DirectionsRequest.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+
+  bool get avoidHighways => $unsafe.avoidHighways;
+  bool get avoidTolls => $unsafe.avoidTolls;
+  dynamic/*LatLng|string*/ get destination {
+    final result = $unsafe.destination;
+    if(LatLng.isInstance(result)) {
+      return LatLng.cast(result);
     }
+    return result;
   }
-  set durationInTraffic(bool durationInTraffic) => $.durationInTraffic = durationInTraffic;
-  set optimizeWaypoints(bool optimizeWaypoints) => $.optimizeWaypoints = optimizeWaypoints;
-  set origin(Object origin) {
-    if (origin is String || origin is LatLng) {
-      $.origin = origin;
-    } else {
-      throw new UnsupportedError("Parameter must be of type String or LatLng");
+  bool get durationInTraffic => $unsafe.durationInTraffic;
+  bool get optimizeWaypoints => $unsafe.optimizeWaypoints;
+  dynamic/*LatLng|string*/ get origin {
+    final result = $unsafe.origin;
+    if(LatLng.isInstance(result)) {
+      return LatLng.cast(result);
     }
+    return result;
   }
-  set provideRouteAlternatives(bool provideRouteAlternatives) => $.provideRouteAlternatives = provideRouteAlternatives;
-  set region(String region) => $.region = region;
-  set transitOptions(TransitOptions transitOptions) => $.transitOptions = transitOptions;
-  set travelMode(TravelMode travelMode) => $.travelMode = travelMode;
-  set unitSystem(UnitSystem unitSystem) => $.unitSystem = unitSystem;
-  set waypoints(List<DirectionsWaypoint> waypoints) => $.waypoints = waypoints;
+  bool get provideRouteAlternatives => $unsafe.provideRouteAlternatives;
+  String get region => $unsafe.region;
+  TransitOptions get transitOptions => TransitOptions.cast($unsafe.transitOptions);
+  TravelMode get travelMode => TravelMode.find($unsafe.travelMode);
+  UnitSystem get unitSystem => UnitSystem.find($unsafe.unitSystem);
+  List<DirectionsWaypoint> get waypoints => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.waypoints, DirectionsWaypoint.cast);
+  set avoidHighways(bool avoidHighways) => $unsafe.avoidHighways = avoidHighways;
+  set avoidTolls(bool avoidTolls) => $unsafe.avoidTolls = avoidTolls;
+  set destination(dynamic/*LatLng|string*/ destination) => $unsafe.destination = destination;
+  set durationInTraffic(bool durationInTraffic) => $unsafe.durationInTraffic = durationInTraffic;
+  set optimizeWaypoints(bool optimizeWaypoints) => $unsafe.optimizeWaypoints = optimizeWaypoints;
+  set origin(dynamic/*LatLng|string*/ origin) => $unsafe.origin = origin;
+  set provideRouteAlternatives(bool provideRouteAlternatives) => $unsafe.provideRouteAlternatives = provideRouteAlternatives;
+  set region(String region) => $unsafe.region = region;
+  set transitOptions(TransitOptions transitOptions) => $unsafe.transitOptions = transitOptions;
+  set travelMode(TravelMode travelMode) => $unsafe.travelMode = travelMode;
+  set unitSystem(UnitSystem unitSystem) => $unsafe.unitSystem = unitSystem;
+  set waypoints(List<DirectionsWaypoint> waypoints) => $unsafe.waypoints = jsifyList(waypoints);
 }

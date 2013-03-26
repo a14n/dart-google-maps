@@ -15,20 +15,22 @@
 part of google_maps_visualization;
 
 class MapsEngineLayer extends MVCObject {
-  MapsEngineLayer(MapsEngineLayerOptions opts) : super.newInstance(maps.visualization.MapsEngineLayer, [opts]);
-  MapsEngineLayer.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  static MapsEngineLayer cast(js.Proxy proxy) => proxy == null ? null : new MapsEngineLayer.fromProxy(proxy);
 
-  String get layerId => $.getLayerId().value;
-  String get layerKey => $.getLayerKey().value;
-  GMap get map => $.getMap().map(GMap.INSTANCIATOR).value;
-  String get mapId => $.getMapId().value;
-  MapsEngineLayerProperties get properties => $.getProperties().map(MapsEngineLayerProperties.INSTANCIATOR).value;
-  MapsEngineStatus get status => $.getStatus().map(MapsEngineStatus.find).value;
-  set layerId(String layerId) => $.setLayerId(layerId);
-  set layerKey(String layerKey) => $.setLayerKey(layerKey);
-  set map(GMap map) => $.setMap(map);
-  set mapId(String mapId) => $.setMapId(mapId);
-  set options(MapsEngineLayerOptions options) => $.setOptions(options);
+  MapsEngineLayer(MapsEngineLayerOptions opts) : super(maps.visualization.MapsEngineLayer, [opts]);
+  MapsEngineLayer.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+
+  String get layerId => $unsafe.getLayerId();
+  String get layerKey => $unsafe.getLayerKey();
+  GMap get map => GMap.cast($unsafe.getMap());
+  String get mapId => $unsafe.getMapId();
+  MapsEngineLayerProperties get properties => MapsEngineLayerProperties.cast($unsafe.getProperties());
+  MapsEngineStatus get status => MapsEngineStatus.find($unsafe.getStatus());
+  set layerId(String layerId) => $unsafe.setLayerId(layerId);
+  set layerKey(String layerKey) => $unsafe.setLayerKey(layerKey);
+  set map(GMap map) => $unsafe.setMap(map);
+  set mapId(String mapId) => $unsafe.setMapId(mapId);
+  set options(MapsEngineLayerOptions options) => $unsafe.setOptions(options);
 
   MapsEngineLayerEvents get on => new MapsEngineLayerEvents._(this);
 }
@@ -48,8 +50,8 @@ class MapsEngineLayerEvents {
 }
 
 class MapsEngineMouseEventListenerAdder extends EventListenerAdder {
-  MapsEngineMouseEventListenerAdder(jsw.IsJsProxy _instance, String _eventName) : super(_instance, _eventName);
+  MapsEngineMouseEventListenerAdder(jsw.TypedProxy _instance, String _eventName) : super(_instance, _eventName);
 
-  void add(void handler(MapsEngineMouseEvent e)) { super.add((e) => handler(e.map((e) => new MapsEngineMouseEvent.fromJsProxy(e)).value)); }
-  MapsEventListenerRegistration addTemporary(void handler(MapsEngineMouseEvent e)) => super.addTemporary((e) => handler(e.map((e) => new MapsEngineMouseEvent.fromJsProxy(e)).value));
+  void add(void handler(MapsEngineMouseEvent e)) { super.add((o) => handler(MapsEngineMouseEvent.cast(o))); }
+  MapsEventListenerRegistration addTemporary(void handler(MapsEngineMouseEvent e)) => super.addTemporary((o) => handler(MapsEngineMouseEvent.cast(o)));
 }

@@ -15,21 +15,23 @@
 part of google_maps_places;
 
 class Autocomplete extends MVCObject {
-  Autocomplete(html.InputElement inputField, [AutocompleteOptions opts]) : super.newInstance(maps.places.Autocomplete, [inputField, opts]);
-  Autocomplete.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  static Autocomplete cast(js.Proxy proxy) => proxy == null ? null : new Autocomplete.fromProxy(proxy);
 
-  LatLngBounds get bounds => $.getBounds().map(LatLngBounds.INSTANCIATOR).value;
-  PlaceResult get place => $.getPlace().map(PlaceResult.INSTANCIATOR).value;
-  set bounds(LatLngBounds bounds) => $.setBounds(bounds);
-  set componentRestrictions(ComponentRestrictions restrictions) => $.setComponentRestrictions(restrictions);
-  set types(List<String> types) => $.setTypes(types);
+  Autocomplete(html.InputElement inputField, [AutocompleteOptions opts]) : super(maps.places.Autocomplete, [inputField, opts]);
+  Autocomplete.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+
+  LatLngBounds get bounds => LatLngBounds.cast($unsafe.getBounds());
+  PlaceResult get place => PlaceResult.cast($unsafe.getPlace());
+  set bounds(LatLngBounds bounds) => $unsafe.setBounds(bounds);
+  set componentRestrictions(ComponentRestrictions restrictions) => $unsafe.setComponentRestrictions(restrictions);
+  set types(List<String> types) => $unsafe.setTypes(types);
 
   AutocompleteEvents get on => new AutocompleteEvents._(this);
 }
 
 class AutocompleteEvents {
   static final PLACE_CHANGED = "place_changed";
-  
+
   final Autocomplete _autocomplete;
 
   AutocompleteEvents._(this._autocomplete);

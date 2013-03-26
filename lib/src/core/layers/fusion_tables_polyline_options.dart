@@ -14,8 +14,16 @@
 
 part of google_maps;
 
-class FusionTablesPolylineOptions extends jsw.IsJsProxy {
-  set strokeColor(String strokeColor) => $.strokeColor = strokeColor;
-  set strokeOpacity(num strokeOpacity) => $.strokeOpacity = strokeOpacity;
-  set strokeWeight(num strokeWeight) => $.strokeWeight = strokeWeight;
+class FusionTablesPolylineOptions extends jsw.TypedProxy {
+  static FusionTablesPolylineOptions cast(js.Proxy proxy) => proxy == null ? null : new FusionTablesPolylineOptions.fromProxy(proxy);
+
+  FusionTablesPolylineOptions() : super();
+  FusionTablesPolylineOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+
+  String get strokeColor => $unsafe.strokeColor;
+  num get strokeOpacity => $unsafe.strokeOpacity;
+  num get strokeWeight => $unsafe.strokeWeight;
+  set strokeColor(String strokeColor) => $unsafe.strokeColor = strokeColor;
+  set strokeOpacity(num strokeOpacity) => $unsafe.strokeOpacity = strokeOpacity;
+  set strokeWeight(num strokeWeight) => $unsafe.strokeWeight = strokeWeight;
 }

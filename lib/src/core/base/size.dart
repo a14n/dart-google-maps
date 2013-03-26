@@ -14,17 +14,17 @@
 
 part of google_maps;
 
-class Size extends jsw.IsJsProxy {
-  static final INSTANCIATOR = (js.Proxy jsProxy) => new Size.fromJsProxy(jsProxy);
+class Size extends jsw.TypedProxy {
+  static Size cast(js.Proxy proxy) => proxy == null ? null : new Size.fromProxy(proxy);
 
-  Size(num width, num height, [String widthUnit, String heightUnit]) : super.newInstance(maps.Size, [width, height, widthUnit, heightUnit]);
-  Size.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  Size(num width, num height, [String widthUnit, String heightUnit]) : super(maps.Size, [width, height, widthUnit, heightUnit]);
+  Size.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  bool equals(Size other) => $.equals(other).value;
-  String toString() => $.noSuchMethod(new jsw.ProxyInvocationMirror.method("toString", [])).value;
+  bool equals(Size other) => $unsafe.equals(other);
+  String toString() => $unsafe["toString"].apply($unsafe, js.array([]));
 
-  num get height => $.height.value;
-  set height(num height) => $.height = height;
-  num get width => $.width.value;
-  set width(num width) => $.width = width;
+  num get height => $unsafe.height;
+  num get width => $unsafe.width;
+  set height(num height) => $unsafe.height = height;
+  set width(num width) => $unsafe.width = width;
 }

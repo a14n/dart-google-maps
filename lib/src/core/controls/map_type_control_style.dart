@@ -14,7 +14,7 @@
 
 part of google_maps;
 
-class MapTypeControlStyle extends jsw.IsEnum<int> {
+class MapTypeControlStyle extends IsEnum<int> {
   static final DEFAULT = new MapTypeControlStyle._(maps.MapTypeControlStyle.DEFAULT);
   static final DROPDOWN_MENU = new MapTypeControlStyle._(maps.MapTypeControlStyle.DROPDOWN_MENU);
   static final HORIZONTAL_BAR = new MapTypeControlStyle._(maps.MapTypeControlStyle.HORIZONTAL_BAR);

@@ -1,20 +1,18 @@
 import 'dart:html' hide Point;
 import 'dart:math' as Math;
 import 'package:js/js.dart' as js;
-import 'package:google_maps/optional.dart';
-import 'package:google_maps/js_wrap.dart' as jsw;
 import 'package:google_maps/google_maps.dart';
 
 const IMAGE_URL = "https://google-developers.appspot.com/maps/documentation/javascript/examples";
 
-final LatLng chicago = jsw.retain(new LatLng(41.850033, -87.6500523));
-final LatLng anchorage = jsw.retain(new LatLng(61.2180556, -149.9002778));
-final LatLng mexico = jsw.retain(new LatLng(19.4270499, -99.1275711));
-final LatLng equator = jsw.retain(new LatLng(0,0));
-final LatLng london = jsw.retain(new LatLng(51.5001524, -0.1262362));
-final LatLng johannesburg = jsw.retain(new LatLng(-26.201452, 28.045488));
-final LatLng kinshasa = jsw.retain(new LatLng(-4.325, 15.322222));
-final LatLng sydney = jsw.retain(new LatLng( -33.867139, 151.207114));
+final LatLng chicago = js.retain(new LatLng(41.850033, -87.6500523));
+final LatLng anchorage = js.retain(new LatLng(61.2180556, -149.9002778));
+final LatLng mexico = js.retain(new LatLng(19.4270499, -99.1275711));
+final LatLng equator = js.retain(new LatLng(0,0));
+final LatLng london = js.retain(new LatLng(51.5001524, -0.1262362));
+final LatLng johannesburg = js.retain(new LatLng(-26.201452, 28.045488));
+final LatLng kinshasa = js.retain(new LatLng(-4.325, 15.322222));
+final LatLng sydney = js.retain(new LatLng( -33.867139, 151.207114));
 
 final locationArray = [chicago,anchorage,mexico,equator,london,johannesburg,kinshasa,sydney];
 final locationNameArray = ['Chicago','Anchorage','Mexico City','The Equator','London','Johannesburg','Kinshasa','Sydney'];
@@ -38,7 +36,7 @@ num radiansToDegrees(num rad) {
 class GallPetersProjection extends Projection {
 
   // Using the base map tile, denote the lat/lon of the equatorial origin.
-  final Point _worldOrigin = jsw.retain(new Point(GALL_PETERS_RANGE_X * 400 / 800, GALL_PETERS_RANGE_Y / 2));
+  final Point _worldOrigin = js.retain(new Point(GALL_PETERS_RANGE_X * 400 / 800, GALL_PETERS_RANGE_Y / 2));
 
   // This projection has equidistant meridians, so each longitude degree is a linear
   // mapping.
@@ -110,7 +108,7 @@ void main() {
       ..name = 'Gall-Peters'
     );
 
-    gallPetersMapType.projection = jsw.retain(new GallPetersProjection());
+    gallPetersMapType.projection = js.retain(new GallPetersProjection());
 
     final mapOptions = new MapOptions()
       ..zoom = 0

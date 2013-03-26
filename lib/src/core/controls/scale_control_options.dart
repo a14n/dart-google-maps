@@ -14,7 +14,14 @@
 
 part of google_maps;
 
-class ScaleControlOptions extends jsw.IsJsProxy {
-  set position(ControlPosition position) => $.position = position;
-  set style(ScaleControlStyle style) => $.style = style;
+class ScaleControlOptions extends jsw.TypedProxy {
+  static ScaleControlOptions cast(js.Proxy proxy) => proxy == null ? null : new ScaleControlOptions.fromProxy(proxy);
+
+  ScaleControlOptions() : super();
+  ScaleControlOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+
+  ControlPosition get position => ControlPosition.find($unsafe.position);
+  ScaleControlStyle get style => ScaleControlStyle.find($unsafe.style);
+  set position(ControlPosition position) => $unsafe.position = position;
+  set style(ScaleControlStyle style) => $unsafe.style = style;
 }

@@ -14,13 +14,16 @@
 
 part of google_maps;
 
-class StreetViewService extends jsw.IsJsProxy {
-  StreetViewService() : super.newInstance(maps.StreetViewService);
+class StreetViewService extends jsw.TypedProxy {
+  static StreetViewPov cast(js.Proxy proxy) => proxy == null ? null : new StreetViewPov.fromProxy(proxy);
+
+  StreetViewService() : super(maps.StreetViewService);
+  StreetViewService.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   void getPanoramaById(String pano, void callback(StreetViewPanoramaData streetViewPanoramaData, StreetViewStatus streetViewStatus)) {
-    $.getPanoramaById(pano, new jsw.Callback.once((Option<StreetViewPanoramaData> streetViewPanoramaData, Option<StreetViewStatus> streetViewStatus) => callback(streetViewPanoramaData.map(StreetViewPanoramaData.INSTANCIATOR).value, streetViewStatus.map(StreetViewStatus.find).value)));
+    $unsafe.getPanoramaById(pano, new js.Callback.once((js.Proxy streetViewPanoramaData, js.Proxy streetViewStatus) => callback(StreetViewPanoramaData.cast(streetViewPanoramaData), StreetViewStatus.find(streetViewStatus))));
   }
   void getPanoramaByLocation(LatLng latlng, num radius, void callback(StreetViewPanoramaData streetViewPanoramaData, StreetViewStatus streetViewStatus)) {
-    $.getPanoramaByLocation(latlng, radius, new jsw.Callback.once((Option<StreetViewPanoramaData> streetViewPanoramaData, Option<StreetViewStatus> streetViewStatus) => callback(streetViewPanoramaData.map(StreetViewPanoramaData.INSTANCIATOR).value, streetViewStatus.map(StreetViewStatus.find).value)));
+    $unsafe.getPanoramaByLocation(latlng, radius, new js.Callback.once((js.Proxy streetViewPanoramaData, js.Proxy streetViewStatus) => callback(StreetViewPanoramaData.cast(streetViewPanoramaData), StreetViewStatus.find(streetViewStatus))));
   }
 }

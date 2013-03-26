@@ -1,16 +1,15 @@
 import 'dart:html';
 import 'package:js/js.dart' as js;
-import 'package:google_maps/js_wrap.dart' as jsw;
 import 'package:google_maps/google_maps.dart';
 
-final DirectionsRendererOptions rendererOptions = jsw.retain(new DirectionsRendererOptions()
+final DirectionsRendererOptions rendererOptions = js.retain(new DirectionsRendererOptions()
   ..draggable = true
 );
-final DirectionsRenderer directionsDisplay = jsw.retain(new DirectionsRenderer(rendererOptions));
-final DirectionsService directionsService = jsw.retain(new DirectionsService());
+final DirectionsRenderer directionsDisplay = js.retain(new DirectionsRenderer(rendererOptions));
+final DirectionsService directionsService = js.retain(new DirectionsService());
 GMap map;
 
-final LatLng australia = jsw.retain(new LatLng(-25.274398, 133.775136));
+final LatLng australia = js.retain(new LatLng(-25.274398, 133.775136));
 
 void main() {
   js.scoped(() {
@@ -19,7 +18,7 @@ void main() {
       ..mapTypeId = MapTypeId.ROADMAP
       ..center = australia
       ;
-    map = jsw.retain(new GMap(query("#map_canvas"), mapOptions));
+    map = js.retain(new GMap(query("#map_canvas"), mapOptions));
     directionsDisplay.map = map;
     directionsDisplay.panel = query('#directionsPanel');
 

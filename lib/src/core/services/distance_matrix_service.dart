@@ -14,10 +14,14 @@
 
 part of google_maps;
 
-class DistanceMatrixService extends jsw.IsJsProxy {
-  DistanceMatrixService() : super.newInstance(maps.DistanceMatrixService);
+class DistanceMatrixService extends jsw.TypedProxy {
+  static DistanceMatrixService cast(js.Proxy proxy) => proxy == null ? null : new DistanceMatrixService.fromProxy(proxy);
+
+  DistanceMatrixService() : super(maps.DistanceMatrixService);
+  DistanceMatrixService.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+
 
   void getDistanceMatrix(DistanceMatrixRequest request, void callback(DistanceMatrixResponse response, DistanceMatrixStatus status)) {
-    $.getDistanceMatrix(request, new jsw.Callback.once((Option<js.Proxy> response, Option<js.Proxy> status) => callback(response.map(DistanceMatrixResponse.INSTANCIATOR).value, status.map(DistanceMatrixStatus.find).value)));
+    $unsafe.getDistanceMatrix(request, new js.Callback.once((js.Proxy response, js.Proxy status) => callback(DistanceMatrixResponse.cast(response), DistanceMatrixStatus.find(status))));
   }
 }

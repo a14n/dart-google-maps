@@ -15,9 +15,11 @@
 part of google_maps;
 
 class BicyclingLayer extends MVCObject {
-  BicyclingLayer() : super.newInstance(maps.BicyclingLayer);
-  BicyclingLayer.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  static BicyclingLayer cast(js.Proxy proxy) => proxy == null ? null : new BicyclingLayer.fromProxy(proxy);
 
-  GMap get map => $.getMap().map(GMap.INSTANCIATOR).value;
-  set map(GMap map) => $.setMap(map);
+  BicyclingLayer() : super(maps.BicyclingLayer);
+  BicyclingLayer.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+
+  GMap get map => GMap.cast($unsafe.getMap());
+  set map(GMap map) => $unsafe.setMap(map);
 }

@@ -15,14 +15,16 @@
 part of google_maps_drawing;
 
 class DrawingManager extends MVCObject {
-  DrawingManager([DrawingManagerOptions opts]) : super.newInstance(maps.drawing.DrawingManager, [opts]);
-  DrawingManager.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  static DrawingManager cast(js.Proxy proxy) => proxy == null ? null : new DrawingManager.fromProxy(proxy);
 
-  OverlayType get drawingMode => $.getDrawingMode().map(OverlayType.find).value;
-  GMap get map => $.getMap().map(GMap.INSTANCIATOR).value;
-  set drawingMode(OverlayType drawingMode) => $.setDrawingMode(drawingMode);
-  set map(GMap map) => $.setMap(map);
-  set options(DrawingManagerOptions options) => $.setOptions(options);
+  DrawingManager([DrawingManagerOptions opts]) : super(maps.drawing.DrawingManager, [opts]);
+  DrawingManager.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+
+  OverlayType get drawingMode => OverlayType.find($unsafe.getDrawingMode());
+  GMap get map => GMap.cast($unsafe.getMap());
+  set drawingMode(OverlayType drawingMode) => $unsafe.setDrawingMode(drawingMode);
+  set map(GMap map) => $unsafe.setMap(map);
+  set options(DrawingManagerOptions options) => $unsafe.setOptions(options);
 
   DrawingManagerEvents get on => new DrawingManagerEvents._(this);
 }
@@ -34,7 +36,7 @@ class DrawingManagerEvents {
   static final POLYGONCOMPLETE = "polygoncomplete";
   static final POLYLINECOMPLETE = "polylinecomplete";
   static final RECTANGLECOMPLETE = "rectanglecomplete";
-  
+
   final DrawingManager _drawingManager;
 
   DrawingManagerEvents._(this._drawingManager);

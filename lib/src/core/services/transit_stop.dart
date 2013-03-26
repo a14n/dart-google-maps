@@ -14,12 +14,14 @@
 
 part of google_maps;
 
-class TransitStop extends jsw.IsJsProxy {
-  static final INSTANCIATOR = (js.Proxy jsProxy) => new TransitStop.fromJsProxy(jsProxy);
+class TransitStop extends jsw.TypedProxy {
+  static TransitStop cast(js.Proxy proxy) => proxy == null ? null : new TransitStop.fromProxy(proxy);
 
   TransitStop() : super();
-  TransitStop.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  TransitStop.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  LatLng get location => $.location.map(LatLng.INSTANCIATOR).value;
-  String get name => $.name.value;
+  LatLng get location => LatLng.cast($unsafe.location);
+  String get name => $unsafe.name;
+  set location(LatLng location) => $unsafe.location = location;
+  set name(String name) => $unsafe.name = name;
 }

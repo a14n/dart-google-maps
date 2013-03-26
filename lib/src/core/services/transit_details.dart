@@ -14,18 +14,26 @@
 
 part of google_maps;
 
-class TransitDetails extends jsw.IsJsProxy {
-  static final INSTANCIATOR = (js.Proxy jsProxy) => new TransitDetails.fromJsProxy(jsProxy);
+class TransitDetails extends jsw.TypedProxy {
+  static TransitDetails cast(js.Proxy proxy) => proxy == null ? null : new TransitDetails.fromProxy(proxy);
 
   TransitDetails() : super();
-  TransitDetails.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  TransitDetails.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  TransitStop get arrivalStop => $.arrival_stop.map(TransitStop.INSTANCIATOR).value;
-  Time get arrivalTime => $.arrival_time.map(Time.INSTANCIATOR).value;
-  TransitStop get departureStop => $.departure_stop.map(TransitStop.INSTANCIATOR).value;
-  Time get departureTime => $.departure_time.map(Time.INSTANCIATOR).value;
-  String get headsign => $.headsign.value;
-  num get headway => $.headway.value;
-  TransitLine get line => $.line.map(TransitLine.INSTANCIATOR).value;
-  num get numStops => $.num_stops.value;
+  TransitStop get arrivalStop => TransitStop.cast($unsafe.arrival_stop);
+  Time get arrivalTime => Time.cast($unsafe.arrival_time);
+  TransitStop get departureStop => TransitStop.cast($unsafe.departure_stop);
+  Time get departureTime => Time.cast($unsafe.departure_time);
+  String get headsign => $unsafe.headsign;
+  num get headway => $unsafe.headway;
+  TransitLine get line => TransitLine.cast($unsafe.line);
+  num get numStops => $unsafe.num_stops;
+  set arrivalStop(TransitStop arrivalStop) => $unsafe.arrival_stop = arrivalStop;
+  set arrivalTime(Time arrivalTime) => $unsafe.arrival_time = arrivalTime;
+  set departureStop(TransitStop departureStop) => $unsafe.departure_stop = departureStop;
+  set departureTime(Time departureTime) => $unsafe.departure_time = departureTime;
+  set headsign(String headsign) => $unsafe.headsign = headsign;
+  set headway(num headway) => $unsafe.headway = headway;
+  set line(TransitLine line) => $unsafe.line = line;
+  set numStops(num numStops) => $unsafe.num_stops = numStops;
 }

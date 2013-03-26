@@ -19,53 +19,50 @@ GEvent get event => new GEvent();
 @deprecated class Events {
   static MapsEventListener addDomListener(Object instance, String eventName, Function handler, [bool capture]) => event.addDomListener(instance, eventName, handler, capture);
   static MapsEventListener addDomListenerOnce(Object instance, String eventName, Function handler, [bool capture]) => event.addDomListenerOnce(instance, eventName, handler, capture);
-  static MapsEventListener addListener(jsw.IsJsProxy instance, String eventName, Function handler) => event.addListener(instance, eventName, handler);
-  static MapsEventListener addListenerOnce(jsw.IsJsProxy instance, String eventName, Function handler) => event.addListenerOnce(instance, eventName, handler);
-  static void clearInstanceListeners(jsw.IsJsProxy instance) { event.clearInstanceListeners(instance); }
-  static void clearListeners(jsw.IsJsProxy instance, String eventName) { event.clearListeners(instance, eventName); }
+  static MapsEventListener addListener(jsw.TypedProxy instance, String eventName, Function handler) => event.addListener(instance, eventName, handler);
+  static MapsEventListener addListenerOnce(jsw.TypedProxy instance, String eventName, Function handler) => event.addListenerOnce(instance, eventName, handler);
+  static void clearInstanceListeners(jsw.TypedProxy instance) { event.clearInstanceListeners(instance); }
+  static void clearListeners(jsw.TypedProxy instance, String eventName) { event.clearListeners(instance, eventName); }
   static void removeListener(MapsEventListener listener) { event.removeListener(listener); }
-  static void trigger(jsw.IsJsProxy instance, String eventName, List<Object> args) { event.trigger(instance, eventName, args); }
+  static void trigger(jsw.TypedProxy instance, String eventName, List<Object> args) { event.trigger(instance, eventName, args); }
 }
 
-class GEvent {
-  static final _INSTANCE = new GEvent._();
+class GEvent extends jsw.TypedProxy {
+  GEvent() : super.fromProxy(maps.event);
 
-  factory GEvent() => _INSTANCE;
-  GEvent._();
-
-  MapsEventListener addDomListener(Object instance, String eventName, Function handler, [bool capture]) {
-    final callback = new jsw.Callback.many(handler);
-    final instanciator = (js.Proxy jsProxy) => new MapsEventListener.fromJsProxy(jsProxy, () => callback.dispose());
-    return new jsw.IsJsProxy.fromJsProxy(maps.event).$.addDomListener(instance, eventName, callback, capture).map(instanciator).value;
+  MapsEventListener addDomListener(dynamic instance, String eventName, Function handler, [bool capture]) {
+    final callback = new js.Callback.many(handler);
+    final js.Proxy proxy = $unsafe.addDomListener(instance, eventName, callback, capture);
+    return proxy == null ? null : new MapsEventListener.fromProxy(proxy, () => callback.dispose());
   }
-  MapsEventListener addDomListenerOnce(Object instance, String eventName, Function handler, [bool capture]) {
-    final callback = new jsw.Callback.once(handler);
-    final instanciator = (js.Proxy jsProxy) => new MapsEventListener.fromJsProxy(jsProxy);
-    return new jsw.IsJsProxy.fromJsProxy(maps.event).$.addDomListenerOnce(instance, eventName, callback, capture).map(instanciator).value;
+  MapsEventListener addDomListenerOnce(dynamic instance, String eventName, Function handler, [bool capture]) {
+    final callback = new js.Callback.once(handler);
+    final js.Proxy proxy = $unsafe.addDomListenerOnce(instance, eventName, callback, capture);
+    return proxy == null ? null : new MapsEventListener.fromProxy(proxy);
   }
-  MapsEventListener addListener(jsw.IsJsProxy instance, String eventName, Function handler) {
-    final callback = new jsw.Callback.many(handler);
-    final instanciator = (js.Proxy jsProxy) => new MapsEventListener.fromJsProxy(jsProxy, () => callback.dispose());
-    return new jsw.IsJsProxy.fromJsProxy(maps.event).$.addListener(instance, eventName, callback).map(instanciator).value;
+  MapsEventListener addListener(dynamic instance, String eventName, Function handler) {
+    final callback = new js.Callback.many(handler);
+    final js.Proxy proxy = $unsafe.addListener(instance, eventName, callback);
+    return proxy == null ? null : new MapsEventListener.fromProxy(proxy, () => callback.dispose());
   }
-  MapsEventListener addListenerOnce(jsw.IsJsProxy instance, String eventName, Function handler) {
-    final callback = new jsw.Callback.once(handler);
-    final instanciator = (js.Proxy jsProxy) => new MapsEventListener.fromJsProxy(jsProxy);
-    return new jsw.IsJsProxy.fromJsProxy(maps.event).$.addListenerOnce(instance, eventName, callback).map(instanciator).value;
+  MapsEventListener addListenerOnce(dynamic instance, String eventName, Function handler) {
+    final callback = new js.Callback.once(handler);
+    final js.Proxy proxy = $unsafe.addListenerOnce(instance, eventName, callback);
+    return proxy == null ? null : new MapsEventListener.fromProxy(proxy);
   }
-  void clearInstanceListeners(jsw.IsJsProxy instance) { new jsw.IsJsProxy.fromJsProxy(maps.event).$.clearInstanceListeners(instance); }
-  void clearListeners(jsw.IsJsProxy instance, String eventName) { new jsw.IsJsProxy.fromJsProxy(maps.event).$.clearListeners(instance, eventName); }
+  void clearInstanceListeners(dynamic instance) { $unsafe.clearInstanceListeners(instance); }
+  void clearListeners(dynamic instance, String eventName) { $unsafe.clearListeners(instance, eventName); }
   void removeListener(MapsEventListener listener) {
     if (listener.onRelease != null) {
       listener.onRelease();
     }
-    new jsw.IsJsProxy.fromJsProxy(maps.event).$.removeListener(listener);
+    $unsafe.removeListener(listener);
   }
-  void trigger(jsw.IsJsProxy instance, String eventName, List<Object> args) {
-    final parameters = new List<Object>();
+  void trigger(dynamic instance, String eventName, List<dynamic> args) {
+    final parameters = new List();
     parameters.add(instance);
     parameters.add(eventName);
     parameters.addAll(args);
-    new jsw.IsJsProxy.fromJsProxy(maps.event).$.trigger(parameters);
+    $unsafe.trigger(parameters);
   }
 }

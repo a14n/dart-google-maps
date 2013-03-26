@@ -15,12 +15,14 @@
 part of google_maps_places;
 
 class SearchBox extends MVCObject {
-  SearchBox(html.InputElement inputField, [SearchBoxOptions opts]) : super.newInstance(maps.places.SearchBox, [inputField, opts]);
-  SearchBox.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  static SearchBox cast(js.Proxy proxy) => proxy == null ? null : new SearchBox.fromProxy(proxy);
 
-  LatLngBounds get bounds => $.getBounds().map(LatLngBounds.INSTANCIATOR).value;
-  List<PlaceResult> get places => $.getPlaces().map((js.Proxy jsProxy) => new jsw.JsList<PlaceResult>.fromJsProxy(jsProxy, PlaceResult.INSTANCIATOR)).value;
-  set bounds(LatLngBounds bounds) => $.setBounds(bounds);
+  SearchBox(html.InputElement inputField, [SearchBoxOptions opts]) : super(maps.places.SearchBox, [inputField, opts]);
+  SearchBox.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+
+  LatLngBounds get bounds => LatLngBounds.cast($unsafe.getBounds());
+  List<PlaceResult> get places => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.getPlaces(), PlaceResult.cast);
+  set bounds(LatLngBounds bounds) => $unsafe.setBounds(bounds);
 
   SearchBoxEvents get on => new SearchBoxEvents._(this);
 }

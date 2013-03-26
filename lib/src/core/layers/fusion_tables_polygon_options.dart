@@ -14,10 +14,20 @@
 
 part of google_maps;
 
-class FusionTablesPolygonOptions extends jsw.IsJsProxy {
-  set fillColor(String fillColor) => $.fillColor = fillColor;
-  set fillOpacity(num fillOpacity) => $.fillOpacity = fillOpacity;
-  set strokeColor(String strokeColor) => $.strokeColor = strokeColor;
-  set strokeOpacity(num strokeOpacity) => $.strokeOpacity = strokeOpacity;
-  set strokeWeight(num strokeWeight) => $.strokeWeight = strokeWeight;
+class FusionTablesPolygonOptions extends jsw.TypedProxy {
+  static FusionTablesPolygonOptions cast(js.Proxy proxy) => proxy == null ? null : new FusionTablesPolygonOptions.fromProxy(proxy);
+
+  FusionTablesPolygonOptions() : super();
+  FusionTablesPolygonOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+
+  String get fillColor => $unsafe.fillColor;
+  num get fillOpacity => $unsafe.fillOpacity;
+  String get strokeColor => $unsafe.strokeColor;
+  num get strokeOpacity => $unsafe.strokeOpacity;
+  num get strokeWeight => $unsafe.strokeWeight;
+  set fillColor(String fillColor) => $unsafe.fillColor = fillColor;
+  set fillOpacity(num fillOpacity) => $unsafe.fillOpacity = fillOpacity;
+  set strokeColor(String strokeColor) => $unsafe.strokeColor = strokeColor;
+  set strokeOpacity(num strokeOpacity) => $unsafe.strokeOpacity = strokeOpacity;
+  set strokeWeight(num strokeWeight) => $unsafe.strokeWeight = strokeWeight;
 }

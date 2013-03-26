@@ -14,11 +14,22 @@
 
 part of google_maps_visualization;
 
-class MapsEngineLayerOptions extends jsw.IsJsProxy {
-  set clickable(bool clickable) => $.clickable = clickable;
-  set layerId(String layerId) => $.layerId = layerId;
-  set layerKey(String layerKey) => $.layerKey = layerKey;
-  set map(GMap map) => $.map = map;
-  set mapId(String mapId) => $.mapId = mapId;
-  set suppressInfoWindows(bool suppressInfoWindows) => $.suppressInfoWindows = suppressInfoWindows;
+class MapsEngineLayerOptions extends jsw.TypedProxy {
+  static MapsEngineLayerOptions cast(js.Proxy proxy) => proxy == null ? null : new MapsEngineLayerOptions.fromProxy(proxy);
+
+  MapsEngineLayerOptions() : super();
+  MapsEngineLayerOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+
+  bool get clickable => $unsafe.clickable;
+  String get layerId => $unsafe.layerId;
+  String get layerKey => $unsafe.layerKey;
+  GMap get map => GMap.cast($unsafe.map);
+  String get mapId => $unsafe.mapId;
+  bool get suppressInfoWindows => $unsafe.suppressInfoWindows;
+  set clickable(bool clickable) => $unsafe.clickable = clickable;
+  set layerId(String layerId) => $unsafe.layerId = layerId;
+  set layerKey(String layerKey) => $unsafe.layerKey = layerKey;
+  set map(GMap map) => $unsafe.map = map;
+  set mapId(String mapId) => $unsafe.mapId = mapId;
+  set suppressInfoWindows(bool suppressInfoWindows) => $unsafe.suppressInfoWindows = suppressInfoWindows;
 }

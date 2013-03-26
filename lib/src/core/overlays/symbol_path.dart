@@ -14,7 +14,7 @@
 
 part of google_maps;
 
-class SymbolPath extends jsw.IsEnum<int> {
+class SymbolPath extends IsEnum<int> {
   static final BACKWARD_CLOSED_ARROW = new SymbolPath._(maps.SymbolPath.BACKWARD_CLOSED_ARROW);
   static final BACKWARD_OPEN_ARROW = new SymbolPath._(maps.SymbolPath.BACKWARD_OPEN_ARROW);
   static final CIRCLE = new SymbolPath._(maps.SymbolPath.CIRCLE);

@@ -1,9 +1,8 @@
 import 'dart:html';
 import 'package:js/js.dart' as js;
-import 'package:google_maps/js_wrap.dart' as jsw;
 import 'package:google_maps/google_maps.dart';
 
-final LatLng cafe = jsw.retain(new LatLng(37.869085,-122.254775));
+final LatLng cafe = js.retain(new LatLng(37.869085,-122.254775));
 
 void main() {
   js.scoped(() {
@@ -18,13 +17,13 @@ void main() {
       ;
     final panorama = new StreetViewPanorama(query('#pano'), panoramaOptions);
 
-    jsw.retainAll([panorama]);
+    js.retain(panorama);
     panorama.on.panoChanged.add(() {
       final panoCell = query('#pano_cell');
       panoCell.innerHtml = panorama.pano;
     });
 
-    jsw.retainAll([panorama]);
+    js.retain(panorama);
     panorama.on.linksChanged.add(() {
       final linksTable = query('#links_table');
       linksTable.children.clear();
@@ -41,13 +40,13 @@ void main() {
       }
     });
 
-    jsw.retainAll([panorama]);
+    js.retain(panorama);
     panorama.on.positionChanged.add(() {
       final positionCell = query('#position_cell');
       positionCell.innerHtml = '${panorama.position}';
     });
 
-    jsw.retainAll([panorama]);
+    js.retain(panorama);
     panorama.on.povChanged.add(() {
       final headingCell = query('#heading_cell');
       final pitchCell = query('#pitch_cell');

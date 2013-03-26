@@ -14,16 +14,16 @@
 
 part of google_maps_places;
 
-class QueryAutocompletePrediction extends jsw.IsJsProxy {
-  static final INSTANCIATOR = (js.Proxy jsProxy) => new QueryAutocompletePrediction.fromJsProxy(jsProxy);
+class QueryAutocompletePrediction extends jsw.TypedProxy {
+  static QueryAutocompletePrediction cast(js.Proxy proxy) => proxy == null ? null : new QueryAutocompletePrediction.fromProxy(proxy);
 
   QueryAutocompletePrediction() : super();
-  QueryAutocompletePrediction.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  QueryAutocompletePrediction.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  String get description => $.description.value;
-  List<PredictionSubstring> get matchedSubstrings => $.matched_substrings.map((js.Proxy jsProxy) => new jsw.JsList<PredictionSubstring>.fromJsProxy(jsProxy, PredictionSubstring.INSTANCIATOR)).value;
-  List<PredictionTerm> get terms => $.terms.map((js.Proxy jsProxy) => new jsw.JsList<PredictionTerm>.fromJsProxy(jsProxy, PredictionTerm.INSTANCIATOR)).value;
-  set description(String description) => $.description = description;
-  set matchedSubstrings(List<PredictionSubstring> matchedSubstrings) => $.matched_substrings = matchedSubstrings;
-  set terms(List<PredictionTerm> terms) => $.terms = terms;
+  String get description => $unsafe.description;
+  List<PredictionSubstring> get matchedSubstrings => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.matched_substrings, PredictionSubstring.cast);
+  List<PredictionTerm> get terms => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.terms, PredictionTerm.cast);
+  set description(String description) => $unsafe.description = description;
+  set matchedSubstrings(List<PredictionSubstring> matchedSubstrings) => $unsafe.matched_substrings = jsifyList(matchedSubstrings);
+  set terms(List<PredictionTerm> terms) => $unsafe.terms = jsifyList(terms);
 }

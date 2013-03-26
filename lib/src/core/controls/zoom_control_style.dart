@@ -14,7 +14,7 @@
 
 part of google_maps;
 
-class ZoomControlStyle extends jsw.IsEnum<int> {
+class ZoomControlStyle extends IsEnum<int> {
   static final DEFAULT = new ZoomControlStyle._(maps.ZoomControlStyle.DEFAULT);
   static final LARGE = new ZoomControlStyle._(maps.ZoomControlStyle.LARGE);
   static final SMALL = new ZoomControlStyle._(maps.ZoomControlStyle.SMALL);

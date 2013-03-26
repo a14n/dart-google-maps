@@ -14,13 +14,16 @@
 
 part of google_maps;
 
-class GeocoderAddressComponent extends jsw.IsJsProxy {
-  static final INSTANCIATOR = (js.Proxy jsProxy) => new GeocoderAddressComponent.fromJsProxy(jsProxy);
+class GeocoderAddressComponent extends jsw.TypedProxy {
+  static GeocoderAddressComponent cast(js.Proxy proxy) => proxy == null ? null : new GeocoderAddressComponent.fromProxy(proxy);
 
   GeocoderAddressComponent() : super();
-  GeocoderAddressComponent.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  GeocoderAddressComponent.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  String get longName => $.long_name.value;
-  String get shortName => $.short_name.value;
-  List<String> get types => $.types.map((js.Proxy jsProxy) => new jsw.JsList<String>.fromJsProxy(jsProxy, null)).value;
+  String get longName => $unsafe.long_name;
+  String get shortName => $unsafe.short_name;
+  List<String> get types => jsw.JsArrayToListAdapter.cast($unsafe.types);
+  set longName(String longName) => $unsafe.long_name = longName;
+  set shortName(String shortName) => $unsafe.short_name = shortName;
+  set types(List<String> types) => $unsafe.types = jsifyList(types);
 }

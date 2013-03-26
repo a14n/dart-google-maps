@@ -14,9 +14,18 @@
 
 part of google_maps_visualization;
 
-class DemographicsPropertyStyle extends jsw.IsJsProxy {
-  set expression(String expression) => $.expression = expression;
-  set gradient(List<String> gradient) => $.gradient = gradient;
-  set min(num min) => $.min = min;
-  set max(num max) => $.max = max;
+class DemographicsPropertyStyle extends jsw.TypedProxy {
+  static DemographicsPropertyStyle cast(js.Proxy proxy) => proxy == null ? null : new DemographicsPropertyStyle.fromProxy(proxy);
+
+  DemographicsPropertyStyle() : super();
+  DemographicsPropertyStyle.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+
+  String get expression => $unsafe.expression;
+  List<String> get gradient => jsw.JsArrayToListAdapter.cast($unsafe.gradient);
+  num get min => $unsafe.min;
+  num get max => $unsafe.max;
+  set expression(String expression) => $unsafe.expression = expression;
+  set gradient(List<String> gradient) => $unsafe.gradient = jsifyList(gradient);
+  set min(num min) => $unsafe.min = min;
+  set max(num max) => $unsafe.max = max;
 }

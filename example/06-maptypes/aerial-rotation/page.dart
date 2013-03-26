@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:html';
 import 'package:js/js.dart' as js;
-import 'package:google_maps/js_wrap.dart' as jsw;
 import 'package:google_maps/google_maps.dart';
 
 GMap map;
@@ -15,7 +14,7 @@ void main() {
       ..heading = 90
       ..tilt = 45
       ;
-    map = jsw.retain(new GMap(query("#map_canvas"), mapOptions));
+    map = js.retain(new GMap(query("#map_canvas"), mapOptions));
     map.tilt = 45;
 
     query("#autoRotate").onClick.listen((e) => autoRotate());

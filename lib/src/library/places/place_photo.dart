@@ -14,16 +14,16 @@
 
 part of google_maps_places;
 
-class PlacePhoto extends jsw.IsJsProxy {
-  static final INSTANCIATOR = (js.Proxy jsProxy) => new PlacePhoto.fromJsProxy(jsProxy);
+class PlacePhoto extends jsw.TypedProxy {
+  static PlacePhoto cast(js.Proxy proxy) => proxy == null ? null : new PlacePhoto.fromProxy(proxy);
 
   PlacePhoto() : super();
-  PlacePhoto.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  PlacePhoto.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  num get height => $.height.value;
-  List<String> get htmlAttributions => $.html_attributions.map((js.Proxy jsProxy) => new jsw.JsList<String>.fromJsProxy(jsProxy, null)).value;
-  num get width => $.width.value;
-  set height(num height) => $.height = height;
-  set htmlAttributions(List<String> htmlAttributions) => $.html_attributions = htmlAttributions;
-  set width(num width) => $.width = width;
+  num get height => $unsafe.height;
+  List<String> get htmlAttributions => jsw.JsArrayToListAdapter.cast($unsafe.html_attributions);
+  num get width => $unsafe.width;
+  set height(num height) => $unsafe.height = height;
+  set htmlAttributions(List<String> htmlAttributions) => $unsafe.html_attributions = jsifyList(htmlAttributions);
+  set width(num width) => $unsafe.width = width;
 }

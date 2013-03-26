@@ -1,11 +1,10 @@
 import 'dart:html' hide Events;
 import 'dart:math';
 import 'package:js/js.dart' as js;
-import 'package:google_maps/js_wrap.dart' as jsw;
 import 'package:google_maps/google_maps.dart';
 
 GMap map;
-final LatLng chicago = jsw.retain(new LatLng(41.850033, -87.6500523));
+final LatLng chicago = js.retain(new LatLng(41.850033, -87.6500523));
 
 /**
  * The HomeControl adds a control to the map that simply
@@ -44,7 +43,7 @@ class HomeControl {
 
     // Setup the click event listeners: simply set the map to
     // Chicago
-    jsw.retain(map);
+    js.retain(map);
     event.addDomListener(controlUI, 'click', (e) {
       map.center = chicago;
     });
@@ -59,7 +58,7 @@ void main() {
       ..center = chicago
       ..mapTypeId = MapTypeId.ROADMAP
       ;
-    map = jsw.retain(new GMap(mapDiv, mapOptions));
+    map = js.retain(new GMap(mapDiv, mapOptions));
 
     // Create the DIV to hold the control and
     // call the HomeControl() constructor passing

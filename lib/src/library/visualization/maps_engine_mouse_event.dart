@@ -14,12 +14,18 @@
 
 part of google_maps_visualization;
 
-class MapsEngineMouseEvent extends jsw.IsJsProxy {
-  MapsEngineMouseEvent() : super();
-  MapsEngineMouseEvent.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+class MapsEngineMouseEvent extends jsw.TypedProxy {
+  static MapsEngineMouseEvent cast(js.Proxy proxy) => proxy == null ? null : new MapsEngineMouseEvent.fromProxy(proxy);
 
-  String get featureId => $.featureId.value;
-  String get infoWindowHtml => $.infoWindowHtml.value;
-  LatLng get latLng => $.latLng.map(LatLng.INSTANCIATOR).value;
-  Size get pixelOffset => $.pixelOffset.map(Size.INSTANCIATOR).value;
+  MapsEngineMouseEvent() : super();
+  MapsEngineMouseEvent.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+
+  String get featureId => $unsafe.featureId;
+  String get infoWindowHtml => $unsafe.infoWindowHtml;
+  LatLng get latLng => LatLng.cast($unsafe.latLng);
+  Size get pixelOffset => Size.cast($unsafe.pixelOffset);
+  set featureId(String featureId) => $unsafe.featureId = featureId;
+  set infoWindowHtml(String infoWindowHtml) => $unsafe.infoWindowHtml = infoWindowHtml;
+  set latLng(LatLng latLng) => $unsafe.latLng = latLng;
+  set pixelOffset(Size pixelOffset) => $unsafe.pixelOffset = pixelOffset;
 }

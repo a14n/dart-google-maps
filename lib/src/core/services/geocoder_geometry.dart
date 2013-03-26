@@ -14,14 +14,18 @@
 
 part of google_maps;
 
-class GeocoderGeometry extends jsw.IsJsProxy {
-  static final INSTANCIATOR = (js.Proxy jsProxy) => new GeocoderGeometry.fromJsProxy(jsProxy);
+class GeocoderGeometry extends jsw.TypedProxy {
+  static GeocoderGeometry cast(js.Proxy proxy) => proxy == null ? null : new GeocoderGeometry.fromProxy(proxy);
 
   GeocoderGeometry() : super();
-  GeocoderGeometry.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  GeocoderGeometry.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  LatLngBounds get bounds => $.bounds.map(LatLngBounds.INSTANCIATOR).value;
-  LatLng get location => $.location.map(LatLng.INSTANCIATOR).value;
-  GeocoderLocationType get locationType => $.location_type.map(GeocoderLocationType.find).value;
-  LatLngBounds get viewport => $.viewport.map(LatLngBounds.INSTANCIATOR).value;
+  LatLngBounds get bounds => LatLngBounds.cast($unsafe.bounds);
+  LatLng get location => LatLng.cast($unsafe.location);
+  GeocoderLocationType get locationType => GeocoderLocationType.find($unsafe.location_type);
+  LatLngBounds get viewport => LatLngBounds.cast($unsafe.viewport);
+  set bounds(LatLngBounds bounds) => $unsafe.bounds = bounds;
+  set location(LatLng location) => $unsafe.location = location;
+  set locationType(GeocoderLocationType locationType) => $unsafe.location_type = locationType;
+  set viewport(LatLngBounds viewport) => $unsafe.viewport = viewport;
 }

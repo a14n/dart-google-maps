@@ -14,22 +14,22 @@
 
 part of google_maps;
 
-class LatLngBounds extends jsw.IsJsProxy {
-  static final INSTANCIATOR = (js.Proxy jsProxy) => new LatLngBounds.fromJsProxy(jsProxy);
+class LatLngBounds extends jsw.TypedProxy {
+  static LatLngBounds cast(js.Proxy proxy) => proxy == null ? null : new LatLngBounds.fromProxy(proxy);
 
-  LatLngBounds([LatLng sw, LatLng ne]) : super.newInstance(maps.LatLngBounds, [sw, ne]);
-  LatLngBounds.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  LatLngBounds([LatLng sw, LatLng ne]) : super(maps.LatLngBounds, [sw, ne]);
+  LatLngBounds.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  bool contains(LatLng latLng) => $.contains(latLng).value;
-  bool equals(LatLngBounds other) => $.equals(other).value;
-  LatLngBounds extend(LatLng point) => $.extend(point).map(LatLngBounds.INSTANCIATOR).value;
-  LatLng get center => $.getCenter().map(LatLng.INSTANCIATOR).value;
-  LatLng get northEast => $.getNorthEast().map(LatLng.INSTANCIATOR).value;
-  LatLng get southWest => $.getSouthWest().map(LatLng.INSTANCIATOR).value;
-  bool intersects(LatLngBounds other) => $.intersects(other).value;
-  bool isEmpty() => $.isEmpty().value;
-  LatLng toSpan() => $.toSpan().map(LatLng.INSTANCIATOR).value;
-  String toString() => $.noSuchMethod(new jsw.ProxyInvocationMirror.method("toString", [])).value;
-  String toUrlValue([num precision]) => $.toUrlValue(precision).value;
-  bool union(LatLngBounds other) => $.union(other).value;
+  bool contains(LatLng latLng) => $unsafe.contains(latLng);
+  bool equals(LatLngBounds other) => $unsafe.equals(other);
+  LatLngBounds extend(LatLng point) => LatLngBounds.cast($unsafe.extend(point));
+  LatLng get center => LatLng.cast($unsafe.getCenter());
+  LatLng get northEast => LatLng.cast($unsafe.getNorthEast());
+  LatLng get southWest => LatLng.cast($unsafe.getSouthWest());
+  bool intersects(LatLngBounds other) => $unsafe.intersects(other);
+  bool isEmpty() => $unsafe.isEmpty();
+  LatLng toSpan() => LatLng.cast($unsafe.toSpan());
+  String toString() => $unsafe["toString"].apply($unsafe, js.array([]));
+  String toUrlValue([num precision]) => $unsafe.toUrlValue(precision);
+  bool union(LatLngBounds other) => $unsafe.union(other);
 }

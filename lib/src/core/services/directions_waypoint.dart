@@ -14,13 +14,20 @@
 
 part of google_maps;
 
-class DirectionsWaypoint extends jsw.IsJsProxy {
-  set location(Object location) {
-    if (location is String || location is LatLng) {
-      $.location = location;
-    } else {
-      throw new UnsupportedError("Parameter must be of type String or LatLng");
+class DirectionsWaypoint extends jsw.TypedProxy {
+  static DirectionsWaypoint cast(js.Proxy proxy) => proxy == null ? null : new DirectionsWaypoint.fromProxy(proxy);
+
+  DirectionsWaypoint() : super();
+  DirectionsWaypoint.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+
+  dynamic/*LatLng|string*/ get location {
+    final result = $unsafe.location;
+    if(LatLng.isInstance(result)) {
+      return LatLng.cast(result);
     }
+    return result;
   }
-  set stopover(bool stopover) => $.stopover = stopover;
+  bool get stopover => $unsafe.stopover;
+  set location(dynamic/*LatLng|string*/ location) => $unsafe.location = location;
+  set stopover(bool stopover) => $unsafe.stopover = stopover;
 }

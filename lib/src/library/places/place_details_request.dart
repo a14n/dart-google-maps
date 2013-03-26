@@ -14,7 +14,12 @@
 
 part of google_maps_places;
 
-class PlaceDetailsRequest extends jsw.IsJsProxy {
-  String get reference => $.reference.value;
-  set reference(String reference) => $.reference = reference;
+class PlaceDetailsRequest extends jsw.TypedProxy {
+  static PlaceDetailsRequest cast(js.Proxy proxy) => proxy == null ? null : new PlaceDetailsRequest.fromProxy(proxy);
+
+  PlaceDetailsRequest() : super();
+  PlaceDetailsRequest.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+
+  String get reference => $unsafe.reference;
+  set reference(String reference) => $unsafe.reference = reference;
 }

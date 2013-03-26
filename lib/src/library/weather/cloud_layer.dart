@@ -15,9 +15,11 @@
 part of google_maps_weather;
 
 class CloudLayer extends MVCObject {
-  CloudLayer() : super.newInstance(maps.weather.CloudLayer);
-  CloudLayer.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  static CloudLayer cast(js.Proxy proxy) => proxy == null ? null : new CloudLayer.fromProxy(proxy);
 
-  GMap get map => $.getMap().map(GMap.INSTANCIATOR).value;
-  set map(GMap map) => $.setMap(map);
+  CloudLayer() : super(maps.weather.CloudLayer);
+  CloudLayer.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+
+  GMap get map => GMap.cast($unsafe.getMap());
+  set map(GMap map) => $unsafe.setMap(map);
 }

@@ -12,11 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+
 library google_maps_geometry;
 
 import 'package:js/js.dart' as js;
-import 'js_wrap.dart' as jsw;
+import 'package:js/js_wrapping.dart' as jsw;
+import 'package:meta/meta.dart';
+
 import 'google_maps.dart';
+import 'src/utils.dart';
 
 part 'src/library/geometry/encoding.dart';
 part 'src/library/geometry/spherical.dart';

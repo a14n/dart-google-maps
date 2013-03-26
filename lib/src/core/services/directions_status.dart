@@ -14,7 +14,7 @@
 
 part of google_maps;
 
-class DirectionsStatus extends jsw.IsEnum<String> {
+class DirectionsStatus extends IsEnum<String> {
   static final INVALID_REQUEST = new DirectionsStatus._(maps.DirectionsStatus.INVALID_REQUEST);
   static final MAX_WAYPOINTS_EXCEEDED = new DirectionsStatus._(maps.DirectionsStatus.MAX_WAYPOINTS_EXCEEDED);
   static final NOT_FOUND = new DirectionsStatus._(maps.DirectionsStatus.NOT_FOUND);

@@ -4,7 +4,7 @@
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-//    http://www.apache.org/licenses/LICENSE-2.0
+// http://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,9 +15,13 @@
 library google_maps_adsense;
 
 import 'dart:html' as html;
+
 import 'package:js/js.dart' as js;
-import 'js_wrap.dart' as jsw;
+import 'package:js/js_wrapping.dart' as jsw;
+import 'package:meta/meta.dart';
+
 import 'google_maps.dart';
+import 'src/utils.dart';
 
 part 'src/library/adsense/ad_unit.dart';
 part 'src/library/adsense/ad_unit_options.dart';

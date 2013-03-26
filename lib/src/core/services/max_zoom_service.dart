@@ -14,10 +14,13 @@
 
 part of google_maps;
 
-class MaxZoomService extends jsw.IsJsProxy {
-  MaxZoomService() : super.newInstance(maps.MaxZoomService);
+class MaxZoomService extends jsw.TypedProxy {
+  static MaxZoomService cast(js.Proxy proxy) => proxy == null ? null : new MaxZoomService.fromProxy(proxy);
+
+  MaxZoomService() : super(maps.MaxZoomService);
+  MaxZoomService.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   void getMaxZoomAtLatLng(LatLng latlng, void callback(MaxZoomResult result)) {
-    $.getMaxZoomAtLatLng(latlng, new jsw.Callback.once((Option<js.Proxy> result) => callback(result.map(MaxZoomResult.INSTANCIATOR).value)));
+    $unsafe.getMaxZoomAtLatLng(latlng, new js.Callback.once((js.Proxy result) => callback(MaxZoomResult.cast(result))));
   }
 }

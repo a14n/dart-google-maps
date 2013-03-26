@@ -14,6 +14,12 @@
 
 part of google_maps;
 
-class OverviewMapControlOptions extends jsw.IsJsProxy {
-  set opened(bool opened) => $.opened = opened;
+class OverviewMapControlOptions extends jsw.TypedProxy {
+  static OverviewMapControlOptions cast(js.Proxy proxy) => proxy == null ? null : new OverviewMapControlOptions.fromProxy(proxy);
+
+  OverviewMapControlOptions() : super();
+  OverviewMapControlOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+
+  bool get opened => $unsafe.opened;
+  set opened(bool opened) => $unsafe.opened = opened;
 }

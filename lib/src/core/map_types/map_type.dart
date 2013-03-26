@@ -14,26 +14,27 @@
 
 part of google_maps;
 
-class MapType extends jsw.IsJsProxy {
-  MapType() : super();
-  MapType.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
-  MapType.newInstance(objectName, [List args]) : super.newInstance(objectName, args);
+class MapType extends jsw.TypedProxy {
+  static MapType cast(js.Proxy proxy) => proxy == null ? null : new MapType.fromProxy(proxy);
 
-  html.Node getTile(Point tileCoord, num zoom, html.Document ownerDocument) => $.getTile(tileCoord, zoom, ownerDocument).value;
-  html.Node releaseTile(html.Node tile) => $.releaseTile(tile).value;
+  MapType([js.FunctionProxy function, List args]) : super(function, args);
+  MapType.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  String get alt => $.alt.value;
-  set alt(String alt) => $.alt = alt;
-  num get maxZoom => $.maxZoom.value;
-  set maxZoom(num maxZoom) => $.maxZoom = maxZoom;
-  num get minZoom => $.minZoom.value;
-  set minZoom(num minZoom) => $.minZoom = minZoom;
-  String get name => $.name.value;
-  set name(String name) => $.name = name;
-  Projection get projection => $.projection.map(Projection.INSTANCIATOR).value;
-  set projection(Projection projection) => $.projection = projection;
-  num get radius => $.radius.value;
-  set radius(num radius) => $.radius = radius;
-  Size get tileSize => $.tileSize.map(Size.INSTANCIATOR).value;
-  set tileSize(Size tileSize) => $.tileSize = tileSize;
+  html.Node getTile(Point tileCoord, num zoom, html.Document ownerDocument) => $unsafe.getTile(tileCoord, zoom, ownerDocument);
+  html.Node releaseTile(html.Node tile) => $unsafe.releaseTile(tile);
+
+  String get alt => $unsafe.alt;
+  num get maxZoom => $unsafe.maxZoom;
+  num get minZoom => $unsafe.minZoom;
+  String get name => $unsafe.name;
+  Projection get projection => Projection.cast($unsafe.projection);
+  num get radius => $unsafe.radius;
+  Size get tileSize => Size.cast($unsafe.tileSize);
+  set alt(String alt) => $unsafe.alt = alt;
+  set maxZoom(num maxZoom) => $unsafe.maxZoom = maxZoom;
+  set minZoom(num minZoom) => $unsafe.minZoom = minZoom;
+  set name(String name) => $unsafe.name = name;
+  set projection(Projection projection) => $unsafe.projection = projection;
+  set radius(num radius) => $unsafe.radius = radius;
+  set tileSize(Size tileSize) => $unsafe.tileSize = tileSize;
 }

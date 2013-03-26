@@ -14,7 +14,7 @@
 
 part of google_maps_places;
 
-class RankBy extends jsw.IsEnum<String> {
+class RankBy extends IsEnum<String> {
   static final DISTANCE= new RankBy._(maps.places.RankBy.DISTANCE);
   static final PROMINENCE= new RankBy._(maps.places.RankBy.PROMINENCE);
 

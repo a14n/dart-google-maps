@@ -14,7 +14,7 @@
 
 part of google_maps;
 
-class ScaleControlStyle extends jsw.IsEnum<String> {
+class ScaleControlStyle extends IsEnum<String> {
   static final DEFAULT = new ScaleControlStyle._(maps.ScaleControlStyle.DEFAULT);
 
   static final _INSTANCES = [DEFAULT];

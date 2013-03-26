@@ -14,6 +14,12 @@
 
 part of google_maps;
 
-class FusionTablesMarkerOptions extends jsw.IsJsProxy {
-  set iconName(String iconName) => $.iconName = iconName;
+class FusionTablesMarkerOptions extends jsw.TypedProxy {
+  static FusionTablesMarkerOptions cast(js.Proxy proxy) => proxy == null ? null : new FusionTablesMarkerOptions.fromProxy(proxy);
+
+  FusionTablesMarkerOptions() : super();
+  FusionTablesMarkerOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+
+  String get iconName => $unsafe.iconName;
+  set iconName(String iconName) => $unsafe.iconName = iconName;
 }

@@ -14,9 +14,18 @@
 
 part of google_maps;
 
-class FusionTablesStyle extends jsw.IsJsProxy {
-  set markerOptions(FusionTablesMarkerOptions markerOptions) => $.markerOptions = markerOptions;
-  set polygonOptions(FusionTablesPolygonOptions polygonOptions) => $.polygonOptions = polygonOptions;
-  set polylineOptions(FusionTablesPolylineOptions polylineOptions) => $.polylineOptions = polylineOptions;
-  set where(String where) => $.where = where;
+class FusionTablesStyle extends jsw.TypedProxy {
+  static FusionTablesStyle cast(js.Proxy proxy) => proxy == null ? null : new FusionTablesStyle.fromProxy(proxy);
+
+  FusionTablesStyle() : super();
+  FusionTablesStyle.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+
+  FusionTablesMarkerOptions get markerOptions => FusionTablesMarkerOptions.cast($unsafe.markerOptions);
+  FusionTablesPolygonOptions get polygonOptions => FusionTablesPolygonOptions.cast($unsafe.polygonOptions);
+  FusionTablesPolylineOptions get polylineOptions => FusionTablesPolylineOptions.cast($unsafe.polylineOptions);
+  String get where => $unsafe.where;
+  set markerOptions(FusionTablesMarkerOptions markerOptions) => $unsafe.markerOptions = markerOptions;
+  set polygonOptions(FusionTablesPolygonOptions polygonOptions) => $unsafe.polygonOptions = polygonOptions;
+  set polylineOptions(FusionTablesPolylineOptions polylineOptions) => $unsafe.polylineOptions = polylineOptions;
+  set where(String where) => $unsafe.where = where;
 }

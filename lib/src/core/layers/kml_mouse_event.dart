@@ -14,11 +14,16 @@
 
 part of google_maps;
 
-class KmlMouseEvent extends jsw.IsJsProxy {
-  KmlMouseEvent();
-  KmlMouseEvent.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+class KmlMouseEvent extends jsw.TypedProxy {
+  static KmlMouseEvent cast(js.Proxy proxy) => proxy == null ? null : new KmlMouseEvent.fromProxy(proxy);
 
-  KmlFeatureData get featureData => $.featureData.map(KmlFeatureData.INSTANCIATOR).value;
-  LatLng get latLng => $.latLng.map(LatLng.INSTANCIATOR).value;
-  Size get pixelOffset => $.pixelOffset.map(Size.INSTANCIATOR).value;
+  KmlMouseEvent();
+  KmlMouseEvent.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+
+  KmlFeatureData get featureData => KmlFeatureData.cast($unsafe.featureData);
+  LatLng get latLng => LatLng.cast($unsafe.latLng);
+  Size get pixelOffset => Size.cast($unsafe.pixelOffset);
+  set featureData(KmlFeatureData featureData) => $unsafe.featureData = featureData;
+  set latLng(LatLng latLng) => $unsafe.latLng = latLng;
+  set pixelOffset(Size pixelOffset) => $unsafe.pixelOffset = pixelOffset;
 }

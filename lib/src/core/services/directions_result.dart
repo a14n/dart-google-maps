@@ -14,11 +14,13 @@
 
 part of google_maps;
 
-class DirectionsResult extends jsw.IsJsProxy {
-  static final INSTANCIATOR = (js.Proxy jsProxy) => new DirectionsResult.fromJsProxy(jsProxy);
+class DirectionsResult extends jsw.TypedProxy {
+  static DirectionsResult cast(js.Proxy proxy) => proxy == null ? null : new DirectionsResult.fromProxy(proxy);
 
   DirectionsResult() : super();
-  DirectionsResult.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  DirectionsResult.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  List<DirectionsRoute> get routes => $.routes.map((js.Proxy jsProxy) => new jsw.JsList<DirectionsRoute>.fromJsProxy(jsProxy, DirectionsRoute.INSTANCIATOR)).value;
+
+  List<DirectionsRoute> get routes => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.routes, DirectionsRoute.cast);
+  set routes(List<DirectionsRoute> routes) => $unsafe.routes = jsifyList(routes);
 }

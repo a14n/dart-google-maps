@@ -14,13 +14,16 @@
 
 part of google_maps;
 
-class Time extends jsw.IsJsProxy {
-  static final INSTANCIATOR = (js.Proxy jsProxy) => new Time.fromJsProxy(jsProxy);
+class Time extends jsw.TypedProxy {
+  static Time cast(js.Proxy proxy) => proxy == null ? null : new Time.fromProxy(proxy);
 
   Time() : super();
-  Time.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  Time.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  String get text => $.text.value;
-  String get timeZone => $.time_zone.value;
-  DateTime get value => $.value.map(jsw.JsDate.INSTANCIATOR).value;
+  String get text => $unsafe.text;
+  String get timeZone => $unsafe.time_zone;
+  DateTime get value => jsw.JsDateToDateTimeAdapter.cast($unsafe.value);
+  set samples(String text) => $unsafe.text = text;
+  set timeZone(String timeZone) => $unsafe.time_zone = timeZone;
+  set value(DateTime value) => $unsafe.value = jsifyDateTime(value);
 }

@@ -14,23 +14,22 @@
 
 part of google_maps_places;
 
-class PlacesService extends jsw.IsJsProxy {
-  PlacesService(Object attrContainer) : super.newInstance(maps.places.PlacesService, [attrContainer]) {
-    if (!(attrContainer is html.DivElement || attrContainer is GMap)) {
-      throw new UnsupportedError("Parameter must be of type DivElement or GMap");
-    }
-  }
+class PlacesService extends jsw.TypedProxy {
+  static PlacesService cast(js.Proxy proxy) => proxy == null ? null : new PlacesService.fromProxy(proxy);
+
+  PlacesService(dynamic/*HTMLDivElement|Map*/ attrContainer) : super(maps.places.PlacesService, [attrContainer]);
+  PlacesService.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   void getDetails(PlaceDetailsRequest request, void callback(PlaceResult results, PlacesServiceStatus status)) {
-    $.getDetails(request, new jsw.Callback.once((Option<js.Proxy> result, Option<js.Proxy> status) => callback(result.map(PlaceResult.INSTANCIATOR).value, status.map(PlacesServiceStatus.find).value)));
+    $unsafe.getDetails(request, new js.Callback.once((js.Proxy result, js.Proxy status) => callback(PlaceResult.cast(result), PlacesServiceStatus.find(status))));
   }
   void nearbySearch(PlaceSearchRequest request, void callback(List<PlaceResult> results, PlacesServiceStatus status, PlaceSearchPagination pagination)) {
-    $.nearbySearch(request, new jsw.Callback.once((Option<js.Proxy> results, Option<js.Proxy> status, Option<js.Proxy> pagination) => callback(results.map((e) => new jsw.JsList<PlaceResult>.fromJsProxy(e, (e) => new PlaceResult.fromJsProxy(e))).value, status.map(PlacesServiceStatus.find).value, pagination.map(PlaceSearchPagination.INSTANCIATOR).value)));
+    $unsafe.nearbySearch(request, new js.Callback.once((js.Proxy results, js.Proxy status, js.Proxy pagination) => callback(jsw.JsArrayToListAdapter.castListOfSerializables(results, PlaceResult.cast), PlacesServiceStatus.find(status), PlaceSearchPagination.cast(pagination))));
   }
   void radarSearch(RadarSearchRequest request, void callback(List<PlaceResult> results, PlacesServiceStatus status)) {
-    $.radarSearch(request, new jsw.Callback.once((Option<js.Proxy> results, Option<js.Proxy> status) => callback(results.map((e) => new jsw.JsList<PlaceResult>.fromJsProxy(e, (e) => new PlaceResult.fromJsProxy(e))).value, status.map(PlacesServiceStatus.find).value)));
+    $unsafe.radarSearch(request, new js.Callback.once((js.Proxy results, js.Proxy status) => callback(jsw.JsArrayToListAdapter.castListOfSerializables(results, PlaceResult.cast), PlacesServiceStatus.find(status))));
   }
   void textSearch(TextSearchRequest request, void callback(List<PlaceResult> results, PlacesServiceStatus status)) {
-    $.textSearch(request, new jsw.Callback.once((Option<js.Proxy> results, Option<js.Proxy> status) => callback(results.map((e) => new jsw.JsList<PlaceResult>.fromJsProxy(e, (e) => new PlaceResult.fromJsProxy(e))).value, status.map(PlacesServiceStatus.find).value)));
+    $unsafe.textSearch(request, new js.Callback.once((js.Proxy results, js.Proxy status) => callback(jsw.JsArrayToListAdapter.castListOfSerializables(results, PlaceResult.cast), PlacesServiceStatus.find(status))));
   }
 }

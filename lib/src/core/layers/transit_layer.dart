@@ -15,9 +15,11 @@
 part of google_maps;
 
 class TransitLayer extends MVCObject {
-  TransitLayer() : super.newInstance(maps.TransitLayer);
-  TransitLayer.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  static TransitLayer cast(js.Proxy proxy) => proxy == null ? null : new TransitLayer.fromProxy(proxy);
 
-  GMap get map => $.getMap().map(GMap.INSTANCIATOR).value;
-  set map(GMap map) => $.setMap(map);
+  TransitLayer() : super(maps.TransitLayer);
+  TransitLayer.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+
+  GMap get map => GMap.cast($unsafe.getMap());
+  set map(GMap map) => $unsafe.setMap(map);
 }

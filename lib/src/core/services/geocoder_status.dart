@@ -14,7 +14,7 @@
 
 part of google_maps;
 
-class GeocoderStatus extends jsw.IsEnum<String> {
+class GeocoderStatus extends IsEnum<String> {
   static final ERROR = new GeocoderStatus._(maps.GeocoderStatus.ERROR);
   static final INVALID_REQUEST = new GeocoderStatus._(maps.GeocoderStatus.INVALID_REQUEST);
   static final OK = new GeocoderStatus._(maps.GeocoderStatus.OK);

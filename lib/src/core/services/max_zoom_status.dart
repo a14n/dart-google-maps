@@ -14,7 +14,7 @@
 
 part of google_maps;
 
-class MaxZoomStatus extends jsw.IsEnum<String> {
+class MaxZoomStatus extends IsEnum<String> {
   static final ERROR = new MaxZoomStatus._(maps.MaxZoomStatus.ERROR);
   static final OK = new MaxZoomStatus._(maps.MaxZoomStatus.OK);
 

@@ -15,110 +15,82 @@
 part of google_maps;
 
 class Marker extends MVCObject {
+  static Marker cast(js.Proxy proxy) => proxy == null ? null : new Marker.fromProxy(proxy);
+  static bool isInstance(js.Proxy proxy) => js.instanceof(proxy, maps.Marker);
   static final num MAX_ZINDEX = maps.Marker.MAX_ZINDEX;
-  static bool isInstance(js.Proxy jsProxy) => js.instanceof(jsProxy, maps.Marker);
 
-  Marker([MarkerOptions opts]) : super.newInstance(maps.Marker, [opts]);
-  Marker.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
-
-  // js methods
-
-  Animation get animation => $.getAnimation().map(Animation.find).value;
-  bool get clickable => $.getClickable().value;
-  String get cursor => $.getCursor().value;
-  bool get draggable => $.getDraggable().value;
-  bool get flat => $.getFlat().value;
-  Object get icon {
-    final result = $.getIcon().value;
-    if (result == null) {
-      return result;
-    } else if (result is String) {
-      return result;
-    } else if (result is js.Proxy) {
-      final type = _isSymbolOrIcon(result);
-      if (type == "Symbol") {
-        return new Symbol.fromJsProxy(result);
-      } else if (type == "Icon") {
-        return new Icon.fromJsProxy(result);
-      }
-    }
-    throw new Exception("Unsupported result");
-  }
-  Object get map {
-    final result = $.getMap().value;
-    if (result == null) {
-      return result;
-    } else if (GMap.isInstance(result)) {
-      return new GMap.fromJsProxy(result);
-    } else if (StreetViewPanorama.isInstance(result)) {
-      return new StreetViewPanorama.fromJsProxy(result);
-    } else {
-      throw new Exception("Unsupported result");
-    }
-  }
-  LatLng get position => $.getPosition().map(LatLng.INSTANCIATOR).value;
-  Object get shadow {
-    final result = $.getShadow().value;
-    if (result == null) {
-      return result;
-    } else if (result is String) {
-      return result;
-    } else if (result is js.Proxy) {
-      final type = _isSymbolOrIcon(result);
-      if (type == "Symbol") {
-        return new Symbol.fromJsProxy(result);
-      } else if (type == "Icon") {
-        return new Icon.fromJsProxy(result);
-      }
-    }
-    throw new Exception("Unsupported result");
-  }
-  MarkerShape get shape => $.getShape().map(MarkerShape.INSTANCIATOR).value;
-  String get title => $.getTitle().value;
-  bool get visible => $.getVisible().value;
-  num get zIndex => $.getZIndex().value;
-  set animation(Animation animation) => $.setAnimation(animation);
-  set clickable(bool clickable) => $.setClickable(clickable);
-  set cursor(String cursor) => $.setCursor(cursor);
-  set draggable(bool draggable) => $.setDraggable(draggable);
-  set flat(bool flag) => $.setFlat(flag);
-  set icon(Object icon) {
-    if (icon == null || icon is String || icon is Icon || icon is Symbol) {
-      $.setIcon(icon);
-    } else {
-      throw new UnsupportedError("Parameter must be of type String, Icon or Symbol");
-    }
-  }
-  set map(Object map) {
-    if (map == null || map is GMap || map is StreetViewPanorama) {
-      $.setMap(map);
-    } else {
-      throw new UnsupportedError("Parameter must be of type GMap or StreetViewPanorama");
-    }
-  }
-  set options(MarkerOptions options) => $.setOptions(options);
-  set position(LatLng latlng) => $.setPosition(latlng);
-  set shadow(Object shadow) {
-    if (shadow == null || shadow is String || shadow is Icon || shadow is Symbol) {
-      $.setShadow(shadow);
-    } else {
-      throw new UnsupportedError("Parameter must be of type String, Icon or Symbol");
-    }
-  }
-  set title(String title) => $.setTitle(title);
-  set visible(bool visible) => $.setVisible(visible);
-  set zIndex(num zIndex) => $.setZIndex(zIndex);
-
-  String _isSymbolOrIcon(js.Proxy jsProxy) {
+  static String _isSymbolOrIcon(js.Proxy proxy) {
     try {
-      final path = jsProxy.path;
+      final path = proxy.path;
       return "Symbol";
     } on NoSuchMethodError {
       return "Icon";
     }
   }
 
-  // js events
+  Marker([MarkerOptions opts]) : super(maps.Marker, [opts]);
+  Marker.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+
+  Animation get animation => Animation.find($unsafe.getAnimation());
+  bool get clickable => $unsafe.getClickable();
+  String get cursor => $unsafe.getCursor();
+  bool get draggable => $unsafe.getDraggable();
+  bool get flat => $unsafe.getFlat();
+  dynamic/*string|Icon|Symbol*/ get icon {
+    final result = $unsafe.getIcon();
+    if (result is String) {
+      return result;
+    } else if (result is js.Proxy) {
+      final type = _isSymbolOrIcon(result);
+      if (type == "Symbol") {
+        return Symbol.cast(result);
+      } else if (type == "Icon") {
+        return Icon.cast(result);
+      }
+    }
+    return result;
+  }
+  dynamic/*Map|StreetViewPanorama*/ get map {
+    final result = $unsafe.getMap();
+    if (GMap.isInstance(result)) {
+      return GMap.cast(result);
+    } else if (StreetViewPanorama.isInstance(result)) {
+      return StreetViewPanorama.cast(result);
+    }
+    return result;
+  }
+  LatLng get position => LatLng.cast($unsafe.getPosition());
+  dynamic/*string|Icon|Symbol*/ get shadow {
+    final result = $unsafe.getShadow();
+    if (result is String) {
+      return result;
+    } else if (result is js.Proxy) {
+      final type = _isSymbolOrIcon(result);
+      if (type == "Symbol") {
+        return Symbol.cast(result);
+      } else if (type == "Icon") {
+        return Icon.cast(result);
+      }
+    }
+    return result;
+  }
+  MarkerShape get shape => MarkerShape.cast($unsafe.getShape());
+  String get title => $unsafe.getTitle();
+  bool get visible => $unsafe.getVisible();
+  num get zIndex => $unsafe.getZIndex();
+  set animation(Animation animation) => $unsafe.setAnimation(animation);
+  set clickable(bool clickable) => $unsafe.setClickable(clickable);
+  set cursor(String cursor) => $unsafe.setCursor(cursor);
+  set draggable(bool draggable) => $unsafe.setDraggable(draggable);
+  set flat(bool flag) => $unsafe.setFlat(flag);
+  set icon(dynamic/*string|Icon|Symbol*/ icon) => $unsafe.setIcon(icon);
+  set map(dynamic/*Map|StreetViewPanorama*/ map) => $unsafe.setMap(map);
+  set options(MarkerOptions options) => $unsafe.setOptions(options);
+  set position(LatLng latlng) => $unsafe.setPosition(latlng);
+  set shadow(dynamic/*string|Icon|Symbol*/ shadow) => $unsafe.setShadow(shadow);
+  set title(String title) => $unsafe.setTitle(title);
+  set visible(bool visible) => $unsafe.setVisible(visible);
+  set zIndex(num zIndex) => $unsafe.setZIndex(zIndex);
 
   MarkerEvents get on => new MarkerEvents._(this);
 }

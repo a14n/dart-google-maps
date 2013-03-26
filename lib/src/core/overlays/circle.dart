@@ -15,25 +15,26 @@
 part of google_maps;
 
 class Circle extends MVCObject {
-  static bool isInstance(js.Proxy jsProxy) => js.instanceof(jsProxy, maps.Circle);
+  static Circle cast(js.Proxy proxy) => proxy == null ? null : new Circle.fromProxy(proxy);
+  static bool isInstance(js.Proxy proxy) => js.instanceof(proxy, maps.Circle);
 
-  Circle([CircleOptions opts]) : super.newInstance(maps.Circle, [opts]);
-  Circle.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  Circle([CircleOptions opts]) : super(maps.Circle, [opts]);
+  Circle.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  LatLngBounds get bounds => $.getBounds().map(LatLngBounds.INSTANCIATOR).value;
-  LatLng get center => $.getCenter().map(LatLng.INSTANCIATOR).value;
-  bool get draggable => $.getDraggable().value;
-  bool get editable => $.getEditable().value;
-  GMap get map => $.getMap().map(GMap.INSTANCIATOR).value;
-  num get radius => $.getRadius().value;
-  bool get visible => $.getVisible().value;
-  set center(LatLng center) => $.setCenter(center);
-  set draggable(bool draggable) => $.setDraggable(draggable);
-  set editable(bool editable) => $.setEditable(editable);
-  set map(GMap map) => $.setMap(map);
-  set options(CircleOptions options) => $.setOptions(options);
-  set radius(num radius) => $.setRadius(radius);
-  set visible(bool visible) => $.setVisible(visible);
+  LatLngBounds get bounds => LatLngBounds.cast($unsafe.getBounds());
+  LatLng get center => LatLng.cast($unsafe.getCenter());
+  bool get draggable => $unsafe.getDraggable();
+  bool get editable => $unsafe.getEditable();
+  GMap get map => GMap.cast($unsafe.getMap());
+  num get radius => $unsafe.getRadius();
+  bool get visible => $unsafe.getVisible();
+  set center(LatLng center) => $unsafe.setCenter(center);
+  set draggable(bool draggable) => $unsafe.setDraggable(draggable);
+  set editable(bool editable) => $unsafe.setEditable(editable);
+  set map(GMap map) => $unsafe.setMap(map);
+  set options(CircleOptions options) => $unsafe.setOptions(options);
+  set radius(num radius) => $unsafe.setRadius(radius);
+  set visible(bool visible) => $unsafe.setVisible(visible);
 
   CircleEvents get on => new CircleEvents._(this);
 }

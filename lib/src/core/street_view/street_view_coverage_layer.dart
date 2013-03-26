@@ -15,11 +15,11 @@
 part of google_maps;
 
 class StreetViewCoverageLayer extends MVCObject {
-  static final INSTANCIATOR = (js.Proxy jsProxy) => new StreetViewCoverageLayer.fromJsProxy(jsProxy);
+  static StreetViewCoverageLayer cast(js.Proxy proxy) => proxy == null ? null : new StreetViewCoverageLayer.fromProxy(proxy);
 
-  StreetViewCoverageLayer() : super.newInstance(maps.StreetViewCoverageLayer);
-  StreetViewCoverageLayer.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  StreetViewCoverageLayer() : super(maps.StreetViewCoverageLayer);
+  StreetViewCoverageLayer.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  GMap get map => $.getMap().map(GMap.INSTANCIATOR).value;
-  set map(GMap map) => $.setMap(map);
+  GMap get map => GMap.cast($unsafe.getMap());
+  set map(GMap map) => $unsafe.setMap(map);
 }

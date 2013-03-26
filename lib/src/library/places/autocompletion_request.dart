@@ -14,25 +14,24 @@
 
 part of google_maps_places;
 
-class AutocompletionRequest extends jsw.IsJsProxy {
-  static final INSTANCIATOR = (js.Proxy jsProxy) => new AutocompletionRequest.fromJsProxy(jsProxy);
+class AutocompletionRequest extends jsw.TypedProxy {
+  static AutocompletionRequest cast(js.Proxy proxy) => proxy == null ? null : new AutocompletionRequest.fromProxy(proxy);
 
   AutocompletionRequest() : super();
-  AutocompletionRequest.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  AutocompletionRequest.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  LatLngBounds get bounds => $.bounds.map(LatLngBounds.INSTANCIATOR).value;
-  ComponentRestrictions get componentRestrictions => $.componentRestrictions.map(ComponentRestrictions.INSTANCIATOR).value;
-  String get input => $.input.value;
-  LatLng get location => $.location.map(LatLng.INSTANCIATOR).value;
-  num get offset => $.offset.value;
-  num get radius => $.radius.value;
-  List<String> get types => $.types.map((js.Proxy jsProxy) => new jsw.JsList<String>.fromJsProxy(jsProxy, null)).value;
-
-  set bounds(LatLngBounds bounds) => $.bounds = bounds;
-  set componentRestrictions(ComponentRestrictions componentRestrictions) => $.componentRestrictions = componentRestrictions;
-  set input(String input) => $.input = input;
-  set location(LatLng location) => $.location = location;
-  set offset(num offset) => $.offset = offset;
-  set radius(num radius) => $.radius = radius;
-  set types(List<String> types) => $.types = types;
+  LatLngBounds get bounds => LatLngBounds.cast($unsafe.bounds);
+  ComponentRestrictions get componentRestrictions => ComponentRestrictions.cast($unsafe.componentRestrictions);
+  String get input => $unsafe.input;
+  LatLng get location => LatLng.cast($unsafe.location);
+  num get offset => $unsafe.offset;
+  num get radius => $unsafe.radius;
+  List<String> get types => jsw.JsArrayToListAdapter.cast($unsafe.types);
+  set bounds(LatLngBounds bounds) => $unsafe.bounds = bounds;
+  set componentRestrictions(ComponentRestrictions componentRestrictions) => $unsafe.componentRestrictions = componentRestrictions;
+  set input(String input) => $unsafe.input = input;
+  set location(LatLng location) => $unsafe.location = location;
+  set offset(num offset) => $unsafe.offset = offset;
+  set radius(num radius) => $unsafe.radius = radius;
+  set types(List<String> types) => $unsafe.types = jsifyList(types);
 }

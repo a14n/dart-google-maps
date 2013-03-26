@@ -14,7 +14,7 @@
 
 part of google_maps;
 
-class Animation extends jsw.IsEnum<int> {
+class Animation extends IsEnum<int> {
   static final BOUNCE = new Animation._(maps.Animation.BOUNCE);
   static final DROP = new Animation._(maps.Animation.DROP);
 

@@ -14,13 +14,16 @@
 
 part of google_maps;
 
-class DistanceMatrixResponseElement extends jsw.IsJsProxy {
-  static final INSTANCIATOR = (js.Proxy jsProxy) => new DistanceMatrixResponseElement.fromJsProxy(jsProxy);
+class DistanceMatrixResponseElement extends jsw.TypedProxy {
+  static DistanceMatrixResponseElement cast(js.Proxy proxy) => proxy == null ? null : new DistanceMatrixResponseElement.fromProxy(proxy);
 
   DistanceMatrixResponseElement() : super();
-  DistanceMatrixResponseElement.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  DistanceMatrixResponseElement.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  Distance get distance => $.distance.map(Distance.INSTANCIATOR).value;
-  GDuration get duration => $.duration.map(GDuration.INSTANCIATOR).value;
-  DistanceMatrixElementStatus get status => $.status.map(DistanceMatrixElementStatus.find).value;
+  Distance get distance => Distance.cast($unsafe.distance);
+  GDuration get duration => GDuration.cast($unsafe.duration);
+  DistanceMatrixElementStatus get status => DistanceMatrixElementStatus.find($unsafe.status);
+  set distance(Distance distance) => $unsafe.distance = distance;
+  set duration(GDuration duration) => $unsafe.duration = duration;
+  set status(DistanceMatrixElementStatus status) => $unsafe.status = status;
 }

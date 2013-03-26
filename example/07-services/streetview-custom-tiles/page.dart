@@ -1,7 +1,5 @@
 import 'dart:html';
 import 'package:js/js.dart' as js;
-import 'package:google_maps/optional.dart';
-import 'package:google_maps/js_wrap.dart' as jsw;
 import 'package:google_maps/google_maps.dart';
 
 const IMAGE_URL = "https://google-developers.appspot.com/maps/documentation/javascript/examples";
@@ -21,7 +19,7 @@ void main() {
       ;
     final map = new GMap(query('#map_canvas'), mapOptions);
 
-    panorama = jsw.retain(map.streetView);
+    panorama = js.retain(map.streetView);
     // Set up Street View and initially set it visible. Register the
     // custom panorama provider function.
     final panoOptions = new StreetViewPanoramaOptions()
@@ -29,7 +27,7 @@ void main() {
       ..visible = true
       ..panoProvider =  getCustomPanorama
       ;
-    panorama.$.setOptions(panoOptions); //TODO undocumented method
+    panorama.$unsafe.setOptions(panoOptions); //TODO undocumented method
 
     // Create a StreetViewService object.
     final streetviewService = new StreetViewService();
@@ -37,12 +35,12 @@ void main() {
     // Compute the nearest panorama to the Google Sydney office
     // using the service and store that pano ID.
     final radius = 50;
-    jsw.retain(sydneyOffice);
+    js.retain(sydneyOffice);
     streetviewService.getPanoramaByLocation(sydneyOffice, radius, (StreetViewPanoramaData result, StreetViewStatus status) {
       if (status == StreetViewStatus.OK) {
         // We'll monitor the links_changed event to check if the current
         // pano is either a custom pano or our entry pano.
-        jsw.retain(result);
+        js.retain(result);
         panorama.on.linksChanged.add(() {
           return createCustomLinks(result.location.pano);
         });
@@ -59,7 +57,7 @@ String getCustomPanoramaTileUrl(String pano, num zoom, num tileX, num tileY) {
 StreetViewPanoramaData getCustomPanorama(String pano) {
   switch(pano) {
     case 'reception':
-      return jsw.retain(new StreetViewPanoramaData()
+      return js.retain(new StreetViewPanoramaData()
         ..location = (new StreetViewLocation()
           ..pano = 'reception'
           ..description = 'Google Sydney - Reception'

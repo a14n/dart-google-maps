@@ -1,7 +1,5 @@
 import 'dart:html' hide Events;
 import 'package:js/js.dart' as js;
-import 'package:google_maps/optional.dart';
-import 'package:google_maps/js_wrap.dart' as jsw;
 import 'package:google_maps/google_maps.dart';
 import 'package:google_maps/google_maps_adsense.dart';
 
@@ -88,30 +86,30 @@ void main() {
     final adUnitOptions = new AdUnitOptions()
       ..format = AdFormat.HALF_BANNER
       ..position = ControlPosition.TOP_CENTER
-      ..$.backgroundColor = '#c4d4f3'
-      ..$.borderColor = '#e5ecf9'
-      ..$.titleColor = '#0000cc'
-      ..$.textColor = '#000000'
-      ..$.urlColor = '#009900'
+      ..$unsafe.backgroundColor = '#c4d4f3'
+      ..$unsafe.borderColor = '#e5ecf9'
+      ..$unsafe.titleColor = '#0000cc'
+      ..$unsafe.textColor = '#000000'
+      ..$unsafe.urlColor = '#009900'
       ..publisherId = 'ca-google-maps_apidocs'
       ..map = map
-      ..$.visible = true
+      ..$unsafe.visible = true
       ;
     final adUnit = new AdUnit(adUnitDiv, adUnitOptions);
 
     final SelectElement format = query('#format');
-    jsw.retainAll([adUnit]);
+    js.retain(adUnit);
     event.addDomListener(format, 'change', (e) {
-      final adsFormat = (new jsw.IsJsProxy.fromJsProxy(maps.adsense.AdFormat).$[format.value] as Option<String>).value;
+      final String adsFormat = maps.adsense.AdFormat[format.value];
       adUnit.format = AdFormat.find(adsFormat);
     });
 
     final SelectElement style = query('#style');
-    jsw.retainAll([adUnit]);
+    js.retain(adUnit);
     event.addDomListener(style, 'change', (e) {
       final adStyle = SAMPLE_AD_STYLES[style.value];
       // TODO undocumented or undefined functions
-      adUnit.$
+      adUnit.$unsafe
         //..call("setBackgroundColor", [adStyle['color_bg']])
         //..call("setBorderColor", [adStyle['color_border']])
         //..call("setTitleColor", [adStyle['color_link']])
@@ -121,9 +119,9 @@ void main() {
     });
 
     final SelectElement position = query('#position');
-    jsw.retainAll([adUnit]);
+    js.retain(adUnit);
     event.addDomListener(position, 'change', (e) {
-      final adsPosition = (new jsw.IsJsProxy.fromJsProxy(maps.ControlPosition).$[position.value] as Option<int>).value;
+      final int adsPosition = maps.ControlPosition[position.value];
       adUnit.position = ControlPosition.find(adsPosition);
     });
   });

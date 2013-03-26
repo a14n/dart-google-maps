@@ -14,7 +14,7 @@
 
 part of google_maps;
 
-class DistanceMatrixElementStatus extends jsw.IsEnum<String> {
+class DistanceMatrixElementStatus extends IsEnum<String> {
   static final NOT_FOUND = new DistanceMatrixElementStatus._(maps.DistanceMatrixElementStatus.NOT_FOUND);
   static final OK = new DistanceMatrixElementStatus._(maps.DistanceMatrixElementStatus.OK);
   static final ZERO_RESULTS = new DistanceMatrixElementStatus._(maps.DistanceMatrixElementStatus.ZERO_RESULTS);

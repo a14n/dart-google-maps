@@ -14,7 +14,7 @@
 
 part of google_maps;
 
-class KmlLayerStatus extends jsw.IsEnum<String> {
+class KmlLayerStatus extends IsEnum<String> {
   static final DOCUMENT_NOT_FOUND = new KmlLayerStatus._(maps.KmlLayerStatus.DOCUMENT_NOT_FOUND);
   static final DOCUMENT_TOO_LARGE = new KmlLayerStatus._(maps.KmlLayerStatus.DOCUMENT_TOO_LARGE);
   static final FETCH_ERROR = new KmlLayerStatus._(maps.KmlLayerStatus.FETCH_ERROR);

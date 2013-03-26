@@ -14,13 +14,13 @@
 
 part of google_maps_places;
 
-class PlaceSearchPagination extends jsw.IsJsProxy {
-  static final INSTANCIATOR = (js.Proxy jsProxy) => new PlaceSearchPagination.fromJsProxy(jsProxy);
+class PlaceSearchPagination extends jsw.TypedProxy {
+  static PlaceSearchPagination cast(js.Proxy proxy) => proxy == null ? null : new PlaceSearchPagination.fromProxy(proxy);
 
   PlaceSearchPagination() : super();
-  PlaceSearchPagination.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  PlaceSearchPagination.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  void nextPage() { $.nextPage(); }
+  void nextPage() { $unsafe.nextPage(); }
 
-  bool get hasNextPage => $.hasNextPage.value;
+  bool get hasNextPage => $unsafe.hasNextPage;
 }

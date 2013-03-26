@@ -15,27 +15,29 @@
 part of google_maps_adsense;
 
 class AdUnit extends MVCObject {
-  AdUnit(html.Node container, AdUnitOptions opts) : super.newInstance(maps.adsense.AdUnit, [container, opts]);
-  AdUnit.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  static AdUnit cast(js.Proxy proxy) => proxy == null ? null : new AdUnit.fromProxy(proxy);
 
-  String get backgroundColor => $.getBackgroundColor().value;
-  String get borderColor => $.getBorderColor().value;
-  String get channelNumber => $.getChannelNumber().value;
-  html.Node get container => $.getContainer().value;
-  AdFormat get format => $.getFormat().map(AdFormat.find).value;
-  GMap get map => $.getMap().map(GMap.INSTANCIATOR).value;
-  ControlPosition get position => $.getPosition().map(ControlPosition.find).value;
-  String get publisherId => $.getPublisherId().value;
-  String get textColor => $.getTextColor().value;
-  String get titleColor => $.getTitleColor().value;
-  String get urlColor => $.getUrlColor().value;
-  set backgroundColor(String backgroundColor) => $.setBackgroundColor(backgroundColor);
-  set borderColor(String borderColor) => $.setBorderColor(borderColor);
-  set channelNumber(String channelNumber) => $.setChannelNumber(channelNumber);
-  set format(AdFormat format) => $.setFormat(format);
-  set map(GMap map) => $.setMap(map);
-  set position(ControlPosition position) => $.setPosition(position);
-  set textColor(String textColor) => $.setTextColor(textColor);
-  set titleColor(String titleColor) => $.setTitleColor(titleColor);
-  set urlColor(String urlColor) => $.setUrlColor(urlColor);
+  AdUnit(html.Node container, AdUnitOptions opts) : super(maps.adsense.AdUnit, [container, opts]);
+  AdUnit.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+
+  String get backgroundColor => $unsafe.getBackgroundColor();
+  String get borderColor => $unsafe.getBorderColor();
+  String get channelNumber => $unsafe.getChannelNumber();
+  html.Node get container => $unsafe.getContainer();
+  AdFormat get format => AdFormat.find($unsafe.getFormat());
+  GMap get map => GMap.cast($unsafe.getMap());
+  ControlPosition get position => ControlPosition.find($unsafe.getPosition());
+  String get publisherId => $unsafe.getPublisherId();
+  String get textColor => $unsafe.getTextColor();
+  String get titleColor => $unsafe.getTitleColor();
+  String get urlColor => $unsafe.getUrlColor();
+  set backgroundColor(String backgroundColor) => $unsafe.setBackgroundColor(backgroundColor);
+  set borderColor(String borderColor) => $unsafe.setBorderColor(borderColor);
+  set channelNumber(String channelNumber) => $unsafe.setChannelNumber(channelNumber);
+  set format(AdFormat format) => $unsafe.setFormat(format);
+  set map(GMap map) => $unsafe.setMap(map);
+  set position(ControlPosition position) => $unsafe.setPosition(position);
+  set textColor(String textColor) => $unsafe.setTextColor(textColor);
+  set titleColor(String titleColor) => $unsafe.setTitleColor(titleColor);
+  set urlColor(String urlColor) => $unsafe.setUrlColor(urlColor);
 }

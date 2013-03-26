@@ -14,7 +14,7 @@
 
 part of google_maps_places;
 
-class PlacesServiceStatus extends jsw.IsEnum<String> {
+class PlacesServiceStatus extends IsEnum<String> {
   static final INVALID_REQUEST= new PlacesServiceStatus._(maps.places.PlacesServiceStatus.INVALID_REQUEST);
   static final OK= new PlacesServiceStatus._(maps.places.PlacesServiceStatus.OK);
   static final OVER_QUERY_LIMIT= new PlacesServiceStatus._(maps.places.PlacesServiceStatus.OVER_QUERY_LIMIT);

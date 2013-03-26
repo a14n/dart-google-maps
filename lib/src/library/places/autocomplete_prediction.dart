@@ -14,22 +14,22 @@
 
 part of google_maps_places;
 
-class AutocompletePrediction extends jsw.IsJsProxy {
-  static final INSTANCIATOR = (js.Proxy jsProxy) => new AutocompletePrediction.fromJsProxy(jsProxy);
+class AutocompletePrediction extends jsw.TypedProxy {
+  static AutocompletePrediction cast(js.Proxy proxy) => proxy == null ? null : new AutocompletePrediction.fromProxy(proxy);
 
   AutocompletePrediction() : super();
-  AutocompletePrediction.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  AutocompletePrediction.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  String get description => $.description.value;
-  String get id => $.id.value;
-  List<PredictionSubstring> get matchedSubstrings => $.matched_substrings.map((js.Proxy jsProxy) => new jsw.JsList<PredictionSubstring>.fromJsProxy(jsProxy, PredictionSubstring.INSTANCIATOR)).value;
-  String get reference => $.reference.value;
-  List<PredictionTerm> get terms => $.terms.map((js.Proxy jsProxy) => new jsw.JsList<PredictionTerm>.fromJsProxy(jsProxy, PredictionTerm.INSTANCIATOR)).value;
-  List<String> get types => $.types.map((js.Proxy jsProxy) => new jsw.JsList<String>.fromJsProxy(jsProxy, null)).value;
-  set description(String description) => $.description = description;
-  set id(String id) => $.id = id;
-  set matchedSubstrings(List<PredictionSubstring> matchedSubstrings) => $.matched_substrings = matchedSubstrings;
-  set reference(String reference) => $.reference = reference;
-  set terms(List<PredictionTerm> terms) => $.terms = terms;
-  set types(List<String> types) => $.types = types;
+  String get description => $unsafe.description;
+  String get id => $unsafe.id;
+  List<PredictionSubstring> get matchedSubstrings => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.matched_substrings, PredictionSubstring.cast);
+  String get reference => $unsafe.reference;
+  List<PredictionTerm> get terms => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.terms, PredictionTerm.cast);
+  List<String> get types => jsw.JsArrayToListAdapter.cast($unsafe.types);
+  set description(String description) => $unsafe.description = description;
+  set id(String id) => $unsafe.id = id;
+  set matchedSubstrings(List<PredictionSubstring> matchedSubstrings) => $unsafe.matched_substrings = jsifyList(matchedSubstrings);
+  set reference(String reference) => $unsafe.reference = reference;
+  set terms(List<PredictionTerm> terms) => $unsafe.terms = jsifyList(terms);
+  set types(List<String> types) => $unsafe.types = jsifyList(types);
 }

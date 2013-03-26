@@ -15,10 +15,10 @@
 part of google_maps;
 
 class MapTypeRegistry extends MVCObject {
-  static final INSTANCIATOR = (js.Proxy jsProxy) => new MapTypeRegistry.fromJsProxy(jsProxy);
+  static MapTypeRegistry cast(js.Proxy proxy) => proxy == null ? null : new MapTypeRegistry.fromProxy(proxy);
 
-  MapTypeRegistry() : super.newInstance(maps.MapTypeRegistry);
-  MapTypeRegistry.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  MapTypeRegistry() : super(maps.MapTypeRegistry);
+  MapTypeRegistry.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  void set(String id, MapType mapType) { $.set(id, mapType); }
+  void set(String id, MapType mapType) { $unsafe.set(id, mapType); }
 }

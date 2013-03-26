@@ -15,8 +15,11 @@
 library google_maps_visualization;
 
 import 'package:js/js.dart' as js;
-import 'js_wrap.dart' as jsw;
+import 'package:js/js_wrapping.dart' as jsw;
+import 'package:meta/meta.dart';
+
 import 'google_maps.dart';
+import 'src/utils.dart';
 
 part 'src/library/visualization/maps_engine_layer.dart';
 part 'src/library/visualization/maps_engine_layer_options.dart';

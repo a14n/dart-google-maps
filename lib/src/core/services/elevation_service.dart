@@ -14,13 +14,16 @@
 
 part of google_maps;
 
-class ElevationService extends jsw.IsJsProxy {
-  ElevationService() : super.newInstance(maps.ElevationService);
+class ElevationService extends jsw.TypedProxy {
+  static ElevationService cast(js.Proxy proxy) => proxy == null ? null : new ElevationService.fromProxy(proxy);
+
+  ElevationService() : super(maps.ElevationService);
+  ElevationService.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   void getElevationAlongPath(PathElevationRequest request, void callback(List<ElevationResult> results, ElevationStatus status)) {
-    $.getElevationAlongPath(request, new jsw.Callback.once((Option<js.Proxy> results, Option<js.Proxy> status) => callback(results.map((e) => new jsw.JsList<ElevationResult>.fromJsProxy(e, (e) => new ElevationResult.fromJsProxy(e))).value, status.map(ElevationStatus.find).value)));
+    $unsafe.getElevationAlongPath(request, new js.Callback.once((js.Proxy results, js.Proxy status) => callback(jsw.JsArrayToListAdapter.castListOfSerializables(results, ElevationResult.cast), ElevationStatus.find(status))));
   }
   void getElevationForLocations(LocationElevationRequest request, void callback(List<ElevationResult> results, ElevationStatus status)) {
-    $.getElevationForLocations(request, new jsw.Callback.once((Option<js.Proxy> results, Option<js.Proxy> status) => callback(results.map((e) => new jsw.JsList<ElevationResult>.fromJsProxy(e, (e) => new ElevationResult.fromJsProxy(e))).value, status.map(ElevationStatus.find).value)));
+    $unsafe.getElevationForLocations(request, new js.Callback.once((js.Proxy results, js.Proxy status) => callback(jsw.JsArrayToListAdapter.castListOfSerializables(results, ElevationResult.cast), ElevationStatus.find(status))));
   }
 }

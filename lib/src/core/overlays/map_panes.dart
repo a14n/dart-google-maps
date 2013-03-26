@@ -14,23 +14,23 @@
 
 part of google_maps;
 
-class MapPanes extends jsw.IsJsProxy {
-  static final INSTANCIATOR = (js.Proxy jsProxy) => new MapPanes.fromJsProxy(jsProxy);
+class MapPanes extends jsw.TypedProxy {
+  static MapPanes cast(js.Proxy proxy) => proxy == null ? null : new MapPanes.fromProxy(proxy);
 
-  MapPanes.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  MapPanes.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  html.Node get floatPane => $.floatPane.value;
-  set floatPane(html.Node floatPane) => $.floatPane = floatPane;
-  html.Node get floatShadow => $.floatShadow.value;
-  set floatShadow(html.Node floatShadow) => $.floatShadow = floatShadow;
-  html.Node get mapPane => $.mapPane.value;
-  set mapPane(html.Node mapPane) => $.mapPane = mapPane;
-  html.Node get overlayImage => $.overlayImage.value;
-  set overlayImage(html.Node overlayImage) => $.overlayImage = overlayImage;
-  html.Node get overlayLayer => $.overlayLayer.value;
-  set overlayLayer(html.Node overlayLayer) => $.overlayLayer = overlayLayer;
-  html.Node get overlayMouseTarget => $.overlayMouseTarget.value;
-  set overlayMouseTarget(html.Node overlayMouseTarget) => $.overlayMouseTarget = overlayMouseTarget;
-  html.Node get overlayShadow => $.overlayShadow.value;
-  set overlayShadow(html.Node overlayShadow) => $.overlayShadow = overlayShadow;
+  html.Node get floatPane => $unsafe.floatPane;
+  html.Node get floatShadow => $unsafe.floatShadow;
+  html.Node get mapPane => $unsafe.mapPane;
+  html.Node get overlayImage => $unsafe.overlayImage;
+  html.Node get overlayLayer => $unsafe.overlayLayer;
+  html.Node get overlayMouseTarget => $unsafe.overlayMouseTarget;
+  html.Node get overlayShadow => $unsafe.overlayShadow;
+  set floatPane(html.Node floatPane) => $unsafe.floatPane = floatPane;
+  set floatShadow(html.Node floatShadow) => $unsafe.floatShadow = floatShadow;
+  set mapPane(html.Node mapPane) => $unsafe.mapPane = mapPane;
+  set overlayImage(html.Node overlayImage) => $unsafe.overlayImage = overlayImage;
+  set overlayLayer(html.Node overlayLayer) => $unsafe.overlayLayer = overlayLayer;
+  set overlayMouseTarget(html.Node overlayMouseTarget) => $unsafe.overlayMouseTarget = overlayMouseTarget;
+  set overlayShadow(html.Node overlayShadow) => $unsafe.overlayShadow = overlayShadow;
 }

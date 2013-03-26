@@ -14,7 +14,7 @@
 
 part of google_maps;
 
-class ElevationStatus extends jsw.IsEnum<String> {
+class ElevationStatus extends IsEnum<String> {
   static final INVALID_REQUEST = new ElevationStatus._(maps.ElevationStatus.INVALID_REQUEST);
   static final OK = new ElevationStatus._(maps.ElevationStatus.OK);
   static final OVER_QUERY_LIMIT = new ElevationStatus._(maps.ElevationStatus.OVER_QUERY_LIMIT);

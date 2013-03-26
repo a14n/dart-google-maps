@@ -14,12 +14,12 @@
 
 part of google_maps_places;
 
-class ComponentRestrictions extends jsw.IsJsProxy {
-  static final INSTANCIATOR = (js.Proxy jsProxy) => new ComponentRestrictions.fromJsProxy(jsProxy);
+class ComponentRestrictions extends jsw.TypedProxy {
+  static ComponentRestrictions cast(js.Proxy proxy) => proxy == null ? null : new ComponentRestrictions.fromProxy(proxy);
 
   ComponentRestrictions() : super();
-  ComponentRestrictions.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  ComponentRestrictions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  String get country => $.country.value;
-  set country(String country) => $.country = country;
+  String get country => $unsafe.country;
+  set country(String country) => $unsafe.country = country;
 }

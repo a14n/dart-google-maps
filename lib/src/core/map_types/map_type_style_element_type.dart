@@ -14,7 +14,7 @@
 
 part of google_maps;
 
-class MapTypeStyleElementType extends jsw.IsEnum<String> {
+class MapTypeStyleElementType extends IsEnum<String> {
   static final ALL = new MapTypeStyleElementType._("all");
   static final GEOMETRY = new MapTypeStyleElementType._("geometry");
   static final LABELS = new MapTypeStyleElementType._("labels");

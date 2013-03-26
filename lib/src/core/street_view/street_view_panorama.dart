@@ -15,30 +15,30 @@
 part of google_maps;
 
 class StreetViewPanorama extends MVCObject {
-  static final INSTANCIATOR = (js.Proxy jsProxy) => new StreetViewPanorama.fromJsProxy(jsProxy);
-  static bool isInstance(js.Proxy jsProxy) => js.instanceof(jsProxy, maps.StreetViewPanorama);
+  static StreetViewPanorama cast(js.Proxy proxy) => proxy == null ? null : new StreetViewPanorama.fromProxy(proxy);
+  static bool isInstance(js.Proxy proxy) => js.instanceof(proxy, maps.StreetViewPanorama);
 
-  StreetViewPanorama(html.Node container, [StreetViewPanoramaOptions opts]) : super.newInstance(maps.StreetViewPanorama, [container, opts]);
-  StreetViewPanorama.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  StreetViewPanorama(html.Node container, [StreetViewPanoramaOptions opts]) : super(maps.StreetViewPanorama, [container, opts]);
+  StreetViewPanorama.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  List<StreetViewLink> get links => $.getLinks().map((js.Proxy jsProxy) => new jsw.JsList<StreetViewLink>.fromJsProxy(jsProxy, StreetViewLink.INSTANCIATOR)).value;
-  String get pano => $.getPano().value;
-  StreetViewPov get photographerPov => $.getPhotographerPov().map(StreetViewPov.INSTANCIATOR).value;
-  LatLng get position => $.getPosition().map(LatLng.INSTANCIATOR).value;
-  StreetViewPov get pov => $.getPov().map(StreetViewPov.INSTANCIATOR).value;
-  bool get visible => $.getVisible().value;
-  num get zoom => $.getZoom().value;
+  List<StreetViewLink> get links => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.getLinks(), StreetViewLink.cast);
+  String get pano => $unsafe.getPano();
+  StreetViewPov get photographerPov => StreetViewPov.cast($unsafe.getPhotographerPov());
+  LatLng get position => LatLng.cast($unsafe.getPosition());
+  StreetViewPov get pov => StreetViewPov.cast($unsafe.getPov());
+  bool get visible => $unsafe.getVisible();
+  num get zoom => $unsafe.getZoom();
   void registerPanoProvider(StreetViewPanoramaData provider(String pano)) {
-    $.registerPanoProvider(new jsw.Callback.many((Option<String> pano) => provider(pano.value)));
+    $unsafe.registerPanoProvider(new js.Callback.many((String pano) => provider(pano)));
   }
-  set pano(String pano) => $.setPano(pano);
-  set position(LatLng latLng) => $.setPosition(latLng);
-  set pov(StreetViewPov pov) => $.setPov(pov);
-  set visible(bool flag) => $.setVisible(flag);
-  set zoom(num zoom) => $.setZoom(zoom);
+  set pano(String pano) => $unsafe.setPano(pano);
+  set position(LatLng latLng) => $unsafe.setPosition(latLng);
+  set pov(StreetViewPov pov) => $unsafe.setPov(pov);
+  set visible(bool flag) => $unsafe.setVisible(flag);
+  set zoom(num zoom) => $unsafe.setZoom(zoom);
 
-  Controls get controls => $.controls.map(Controls.INSTANCIATOR).value;
-  set controls(Controls controls) => $.controls = controls;
+  Controls get controls => Controls.cast($unsafe.controls);
+  set controls(Controls controls) => $unsafe.controls = controls;
 
   StreetViewPanoramaEvents get on => new StreetViewPanoramaEvents._(this);
 }

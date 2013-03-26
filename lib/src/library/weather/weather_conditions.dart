@@ -14,18 +14,28 @@
 
 part of google_maps_weather;
 
-class WeatherConditions extends jsw.IsJsProxy {
-  static final INSTANCIATOR = (js.Proxy jsProxy) => new WeatherConditions.fromJsProxy(jsProxy);
+class WeatherConditions extends jsw.TypedProxy {
+  static WeatherConditions cast(js.Proxy proxy) => proxy == null ? null : new WeatherConditions.fromProxy(proxy);
 
-  WeatherConditions.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  WeatherConditions() : super();
+  WeatherConditions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  String get day => $.day.value;
-  String get description => $.description.value;
-  num get high => $.high.value;
-  num get humidity => $.humidity.value;
-  num get low => $.low.value;
-  String get shortDay => $.shortDay.value;
-  num get temperature => $.temperature.value;
-  String get windDirection => $.windDirection.value;
-  num get windSpeed => $.windSpeed.value;
+  String get day => $unsafe.day;
+  String get description => $unsafe.description;
+  num get high => $unsafe.high;
+  num get humidity => $unsafe.humidity;
+  num get low => $unsafe.low;
+  String get shortDay => $unsafe.shortDay;
+  num get temperature => $unsafe.temperature;
+  String get windDirection => $unsafe.windDirection;
+  num get windSpeed => $unsafe.windSpeed;
+  set day(String day) => $unsafe.day = day;
+  set description(String description) => $unsafe.description = description;
+  set high(num high) => $unsafe.high = high;
+  set humidity(num humidity) => $unsafe.humidity = humidity;
+  set low(num low) => $unsafe.low = low;
+  set shortDay(String shortDay) => $unsafe.shortDay = shortDay;
+  set temperature(num temperature) => $unsafe.temperature = temperature;
+  set windDirection(String windDirection) => $unsafe.windDirection = windDirection;
+  set windSpeed(num windSpeed) => $unsafe.windSpeed = windSpeed;
 }

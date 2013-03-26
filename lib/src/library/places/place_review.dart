@@ -14,18 +14,18 @@
 
 part of google_maps_places;
 
-class PlaceReview extends jsw.IsJsProxy {
-  static final INSTANCIATOR = (js.Proxy jsProxy) => new PlaceReview.fromJsProxy(jsProxy);
+class PlaceReview extends jsw.TypedProxy {
+  static PlaceReview cast(js.Proxy proxy) => proxy == null ? null : new PlaceReview.fromProxy(proxy);
 
   PlaceReview() : super();
-  PlaceReview.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  PlaceReview.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  List<PlaceAspectRating> get aspects => $.aspects.map((js.Proxy jsProxy) => new jsw.JsList<PlaceAspectRating>.fromJsProxy(jsProxy, PlaceAspectRating.INSTANCIATOR)).value;
-  String get authorName => $.author_name.value;
-  String get authorUrl => $.author_url.value;
-  String get text => $.text.value;
-  set aspects(List<PlaceAspectRating> aspects) => $.aspects = aspects;
-  set authorName(String authorName) => $.author_name = authorName;
-  set authorUrl(String authorUrl) => $.author_url = authorUrl;
-  set text(String text) => $.text = text;
+  List<PlaceAspectRating> get aspects => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.aspects, PlaceAspectRating.cast);
+  String get authorName => $unsafe.author_name;
+  String get authorUrl => $unsafe.author_url;
+  String get text => $unsafe.text;
+  set aspects(List<PlaceAspectRating> aspects) => $unsafe.aspects = jsifyList(aspects);
+  set authorName(String authorName) => $unsafe.author_name = authorName;
+  set authorUrl(String authorUrl) => $unsafe.author_url = authorUrl;
+  set text(String text) => $unsafe.text = text;
 }

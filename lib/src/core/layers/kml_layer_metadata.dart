@@ -14,13 +14,18 @@
 
 part of google_maps;
 
-class KmlLayerMetadata extends jsw.IsJsProxy {
-  static final INSTANCIATOR = (js.Proxy jsProxy) => new KmlLayerMetadata.fromJsProxy(jsProxy);
+class KmlLayerMetadata extends jsw.TypedProxy {
+  static KmlLayerMetadata cast(js.Proxy proxy) => proxy == null ? null : new KmlLayerMetadata.fromProxy(proxy);
 
-  KmlLayerMetadata.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  KmlLayerMetadata() : super();
+  KmlLayerMetadata.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  KmlAuthor get author => $.author.map(KmlAuthor.INSTANCIATOR).value;
-  String get description => $.description.value;
-  String get name => $.name.value;
-  String get snippet => $.snippet.value;
+  KmlAuthor get author => KmlAuthor.cast($unsafe.author);
+  String get description => $unsafe.description;
+  String get name => $unsafe.name;
+  String get snippet => $unsafe.snippet;
+  set author(KmlAuthor author) => $unsafe.author = author;
+  set description(String description) => $unsafe.description = description;
+  set name(String name) => $unsafe.name = name;
+  set snippet(String snippet) => $unsafe.snippet = snippet;
 }

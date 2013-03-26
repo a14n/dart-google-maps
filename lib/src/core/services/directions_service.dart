@@ -14,10 +14,13 @@
 
 part of google_maps;
 
-class DirectionsService extends jsw.IsJsProxy {
-  DirectionsService() : super.newInstance(maps.DirectionsService);
+class DirectionsService extends jsw.TypedProxy {
+  static DirectionsService cast(js.Proxy proxy) => proxy == null ? null : new DirectionsService.fromProxy(proxy);
+
+  DirectionsService() : super(maps.DirectionsService);
+  DirectionsService.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   void route(DirectionsRequest request, void callback(DirectionsResult results, DirectionsStatus status)) {
-    $.route(request, new jsw.Callback.once((Option<js.Proxy> results, Option<js.Proxy> status) => callback(results.map(DirectionsResult.INSTANCIATOR).value, status.map(DirectionsStatus.find).value)));
+    $unsafe.route(request, new js.Callback.once((js.Proxy results, js.Proxy status) => callback(DirectionsResult.cast(results), DirectionsStatus.find(status))));
   }
 }

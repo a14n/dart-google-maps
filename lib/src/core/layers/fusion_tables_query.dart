@@ -14,11 +14,22 @@
 
 part of google_maps;
 
-class FusionTablesQuery extends jsw.IsJsProxy {
-  set from(String from) => $.from = from;
-  set limit(num limit) => $.limit = limit;
-  set offset(num offset) => $.offset = offset;
-  set orderBy(String orderBy) => $.orderBy = orderBy;
-  set select(String select) => $.select = select;
-  set where(String where) => $.where = where;
+class FusionTablesQuery extends jsw.TypedProxy {
+  static FusionTablesQuery cast(js.Proxy proxy) => proxy == null ? null : new FusionTablesQuery.fromProxy(proxy);
+
+  FusionTablesQuery() : super();
+  FusionTablesQuery.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+
+  String get from => $unsafe.from;
+  num get limit => $unsafe.limit;
+  num get offset => $unsafe.offset;
+  String get orderBy => $unsafe.orderBy;
+  String get select => $unsafe.select;
+  String get where => $unsafe.where;
+  set from(String from) => $unsafe.from = from;
+  set limit(num limit) => $unsafe.limit = limit;
+  set offset(num offset) => $unsafe.offset = offset;
+  set orderBy(String orderBy) => $unsafe.orderBy = orderBy;
+  set select(String select) => $unsafe.select = select;
+  set where(String where) => $unsafe.where = where;
 }

@@ -14,9 +14,14 @@
 
 part of google_maps;
 
-class FusionTablesCell extends jsw.IsJsProxy {
-  String get columnName => $.columnName.value;
-  set columnName(String columnName) => $.columnName = columnName;
-  String get value => $.value.value;
-  set value(String value) => $.value = value;
+class FusionTablesCell extends jsw.TypedProxy {
+  static FusionTablesCell cast(js.Proxy proxy) => proxy == null ? null : new FusionTablesCell.fromProxy(proxy);
+
+  FusionTablesCell() : super();
+  FusionTablesCell.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+
+  String get columnName => $unsafe.columnName;
+  String get value => $unsafe.value;
+  set columnName(String columnName) => $unsafe.columnName = columnName;
+  set value(String value) => $unsafe.value = value;
 }

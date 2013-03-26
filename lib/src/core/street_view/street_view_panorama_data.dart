@@ -14,20 +14,20 @@
 
 part of google_maps;
 
-class StreetViewPanoramaData extends jsw.IsJsProxy {
-  static final INSTANCIATOR = (js.Proxy jsProxy) => new StreetViewPanoramaData.fromJsProxy(jsProxy);
+class StreetViewPanoramaData extends jsw.TypedProxy {
+  static StreetViewPanoramaData cast(js.Proxy proxy) => proxy == null ? null : new StreetViewPanoramaData.fromProxy(proxy);
 
   StreetViewPanoramaData() : super();
-  StreetViewPanoramaData.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  StreetViewPanoramaData.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  String get copyright => $.copyright.value;
-  set copyright(String copyright) => $.copyright = copyright;
-  String get imageDate => $.imageDate.value;
-  set imageDate(String imageDate) => $.imageDate = imageDate;
-  List<StreetViewLink> get links => $.links.map((js.Proxy jsProxy) => new jsw.JsList<StreetViewLink>.fromJsProxy(jsProxy, StreetViewLink.INSTANCIATOR)).value;
-  set links(List<StreetViewLink> links) => $.links = links;
-  StreetViewLocation get location => $.location.map(StreetViewLocation.INSTANCIATOR).value;
-  set location(StreetViewLocation location) => $.location = location;
-  StreetViewTileData get tiles => $.tiles.map(StreetViewTileData.INSTANCIATOR).value;
-  set tiles(StreetViewTileData tiles) => $.tiles = tiles;
+  String get copyright => $unsafe.copyright;
+  String get imageDate => $unsafe.imageDate;
+  List<StreetViewLink> get links => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.links, StreetViewLink.cast);
+  StreetViewLocation get location => StreetViewLocation.cast($unsafe.location);
+  StreetViewTileData get tiles => StreetViewTileData.cast($unsafe.tiles);
+  set copyright(String copyright) => $unsafe.copyright = copyright;
+  set imageDate(String imageDate) => $unsafe.imageDate = imageDate;
+  set links(List<StreetViewLink> links) => $unsafe.links = jsifyList(links);
+  set location(StreetViewLocation location) => $unsafe.location = location;
+  set tiles(StreetViewTileData tiles) => $unsafe.tiles = tiles;
 }

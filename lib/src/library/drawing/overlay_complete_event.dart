@@ -14,26 +14,29 @@
 
 part of google_maps_drawing;
 
-class OverlayCompleteEvent extends jsw.IsJsProxy {
-  OverlayCompleteEvent();
-  OverlayCompleteEvent.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+class OverlayCompleteEvent extends jsw.TypedProxy {
+  static OverlayCompleteEvent cast(js.Proxy proxy) => proxy == null ? null : new OverlayCompleteEvent.fromProxy(proxy);
 
-  jsw.IsJsProxy get overlay => $.overlay.map((jsProxy) {
-    if (jsProxy == null) {
-      return null;
-    } else if (Marker.isInstance(jsProxy)) {
-      return new Marker.fromJsProxy(jsProxy);
-    } else if (Polygon.isInstance(jsProxy)) {
-      return new Polygon.fromJsProxy(jsProxy);
-    } else if (Polyline.isInstance(jsProxy)) {
-      return new Polyline.fromJsProxy(jsProxy);
-    } else if (Rectangle.isInstance(jsProxy)) {
-      return new Rectangle.fromJsProxy(jsProxy);
-    } else if (Circle.isInstance(jsProxy)) {
-      return new Circle.fromJsProxy(jsProxy);
+  OverlayCompleteEvent();
+  OverlayCompleteEvent.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+
+  dynamic/*Marker|Polygon|Polyline|Rectangle|Circle*/ get overlay {
+    final result = $unsafe.overlay;
+    if (Marker.isInstance(result)) {
+      return Marker.cast(result);
+    } else if (Polygon.isInstance(result)) {
+      return Polygon.cast(result);
+    } else if (Polyline.isInstance(result)) {
+      return Polyline.cast(result);
+    } else if (Rectangle.isInstance(result)) {
+      return Rectangle.cast(result);
+    } else if (Circle.isInstance(result)) {
+      return Circle.cast(result);
     } else {
-      throw new Exception("Unsupported result");
+      return result;
     }
-  }).value;
-  OverlayType get type => $.type.map(OverlayType.find).value;
+  }
+  OverlayType get type => OverlayType.find($unsafe.type);
+  set overlay(dynamic/*Marker|Polygon|Polyline|Rectangle|Circle*/ overlay) => $unsafe.overlay = overlay;
+  set type(OverlayType type) => $unsafe.type = type;
 }

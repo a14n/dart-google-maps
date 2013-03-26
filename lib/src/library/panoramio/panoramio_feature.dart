@@ -14,13 +14,15 @@
 
 part of google_maps_panoramio;
 
-class PanoramioFeature extends jsw.IsJsProxy {
-  static final INSTANCIATOR = (js.Proxy jsProxy) => new PanoramioFeature.fromJsProxy(jsProxy);
-  PanoramioFeature.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+class PanoramioFeature extends jsw.TypedProxy {
+  static PanoramioFeature cast(js.Proxy proxy) => proxy == null ? null : new PanoramioFeature.fromProxy(proxy);
 
-  String get author => $.author.value;
-  String get photoId => $.photoId.value;
-  String get title => $.title.value;
-  String get url => $.url.value;
-  String get userId => $.userId.value;
+  PanoramioFeature() : super();
+  PanoramioFeature.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+
+  String get author => $unsafe.author;
+  String get photoId => $unsafe.photoId;
+  String get title => $unsafe.title;
+  String get url => $unsafe.url;
+  String get userId => $unsafe.userId;
 }

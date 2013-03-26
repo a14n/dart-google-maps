@@ -14,13 +14,16 @@
 
 part of google_maps_places;
 
-class AutocompleteService extends jsw.IsJsProxy {
-  AutocompleteService() : super.newInstance(maps.places.AutocompleteService, []);
+class AutocompleteService extends jsw.TypedProxy {
+  static AutocompleteService cast(js.Proxy proxy) => proxy == null ? null : new AutocompleteService.fromProxy(proxy);
+
+  AutocompleteService() : super(maps.places.AutocompleteService);
+  AutocompleteService.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   void getPlacePredictions(AutocompletionRequest request, void callback(List<AutocompletePrediction> results, PlacesServiceStatus status)) {
-    $.getPlacePredictions(request, new jsw.Callback.once((Option<js.Proxy> results, Option<js.Proxy> status) => callback(results.map((e) => new jsw.JsList<AutocompletePrediction>.fromJsProxy(e, AutocompletePrediction.INSTANCIATOR)).value, status.map(PlacesServiceStatus.find).value)));
+    $unsafe.getPlacePredictions(request, new js.Callback.once((js.Proxy results, js.Proxy status) => callback(jsw.JsArrayToListAdapter.castListOfSerializables(results, AutocompletePrediction.cast), PlacesServiceStatus.find(status))));
   }
   void getQueryPredictions(QueryAutocompletionRequest request, void callback(List<QueryAutocompletePrediction> results, PlacesServiceStatus status)) {
-    $.getQueryPredictions(request, new jsw.Callback.once((Option<js.Proxy> results, Option<js.Proxy> status) => callback(results.map((e) => new jsw.JsList<QueryAutocompletePrediction>.fromJsProxy(e, QueryAutocompletePrediction.INSTANCIATOR)).value, status.map(PlacesServiceStatus.find).value)));
+    $unsafe.getQueryPredictions(request, new js.Callback.once((js.Proxy results, js.Proxy status) => callback(jsw.JsArrayToListAdapter.castListOfSerializables(results, QueryAutocompletionRequest.cast), PlacesServiceStatus.find(status))));
   }
 }

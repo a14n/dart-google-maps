@@ -14,7 +14,7 @@
 
 part of google_maps;
 
-class TravelMode extends jsw.IsEnum<String> {
+class TravelMode extends IsEnum<String> {
   static final BICYCLING = new TravelMode._(maps.TravelMode.BICYCLING);
   static final DRIVING = new TravelMode._(maps.TravelMode.DRIVING);
   static final TRANSIT = new TravelMode._(maps.TravelMode.TRANSIT);

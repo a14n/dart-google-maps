@@ -14,13 +14,27 @@
 
 part of google_maps;
 
-class ImageMapTypeOptions extends jsw.IsJsProxy {
-  set alt(String alt) => $.alt = alt;
+typedef String GetTileUrl(Point point, num zoomLevel);
+
+class ImageMapTypeOptions extends jsw.TypedProxy {
+  static ImageMapTypeOptions cast(js.Proxy proxy) => proxy == null ? null : new ImageMapTypeOptions.fromProxy(proxy);
+
+  ImageMapTypeOptions() : super();
+  ImageMapTypeOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+
+  String get alt => $unsafe.alt;
+  GetTileUrl get getTileUrl => (Point point, num zoomLevel) => $unsafe.getTileUrl(point, zoomLevel);
+  num get maxZoom => $unsafe.maxZoom;
+  num get minZoom => $unsafe.minZoom;
+  String get name => $unsafe.name;
+  num get opacity => $unsafe.opacity;
+  Size get tileSize => Size.cast($unsafe.tileSize);
+  set alt(String alt) => $unsafe.alt = alt;
   // REPORTED report wtf arg : http://code.google.com/p/gmaps-api-issues/issues/detail?id=4573
-  set getTileUrl(String callback(Point point, num zoomLevel)) => $.getTileUrl = new jsw.Callback.many((Option<js.Proxy> point, Option<num> zoomLevel, [Option<Object> wtf]) => callback(point.map(Point.INSTANCIATOR).value, zoomLevel.value));
-  set maxZoom(num maxZoom) => $.maxZoom = maxZoom;
-  set minZoom(num minZoom) => $.minZoom = minZoom;
-  set name(String name) => $.name = name;
-  set opacity(num opacity) => $.opacity = opacity;
-  set tileSize(Size tileSize) => $.tileSize = tileSize;
+  set getTileUrl(GetTileUrl callback) => $unsafe.getTileUrl = new js.Callback.many((js.Proxy point, num zoomLevel, [dynamic wtf]) => callback(Point.cast(point), zoomLevel));
+  set maxZoom(num maxZoom) => $unsafe.maxZoom = maxZoom;
+  set minZoom(num minZoom) => $unsafe.minZoom = minZoom;
+  set name(String name) => $unsafe.name = name;
+  set opacity(num opacity) => $unsafe.opacity = opacity;
+  set tileSize(Size tileSize) => $unsafe.tileSize = tileSize;
 }

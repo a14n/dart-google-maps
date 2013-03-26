@@ -14,31 +14,20 @@
 
 part of google_maps_geometry;
 
-class Spherical {
-  static num computeArea(Object path, [num radius]) {
-    if (path is MVCArray<LatLng> || path is List<LatLng>) {
-      return new jsw.IsJsProxy.fromJsProxy(maps.geometry.spherical).$.computeArea(path, radius).value;
-    } else {
-      throw new UnsupportedError("Parameter must be of type MVCArray<LatLng> or List<LatLng>");
-    }
-  }
-  static num computeDistanceBetween(LatLng from, LatLng to, [num radius]) => new jsw.IsJsProxy.fromJsProxy(maps.geometry.spherical).$.computeDistanceBetween(from, to, radius).value;
-  static num computeHeading(LatLng from, LatLng to) => new jsw.IsJsProxy.fromJsProxy(maps.geometry.spherical).$.computeHeading(from, to).value;
-  static num computeLength(Object path, [num radius]) {
-    if (path is MVCArray<LatLng> || path is List<LatLng>) {
-      return new jsw.IsJsProxy.fromJsProxy(maps.geometry.spherical).$.computeLength(path, radius).value;
-    } else {
-      throw new UnsupportedError("Parameter must be of type MVCArray<LatLng> or List<LatLng>");
-    }
-  }
-  static LatLng computeOffset(LatLng from, num distance, num heading, [num radius]) => new jsw.IsJsProxy.fromJsProxy(maps.geometry.spherical).$.computeOffset(from, distance, heading, radius).map(LatLng.INSTANCIATOR).value;
-  static LatLng computeOffsetOrigin(LatLng to, num distance, num heading, [num radius]) => new jsw.IsJsProxy.fromJsProxy(maps.geometry.spherical).$.computeOffsetOrigin(to, distance, heading, radius).map(LatLng.INSTANCIATOR).value;
-  static num computeSignedArea(Object loop, [num radius]) {
-    if (loop is MVCArray<LatLng> || loop is List<LatLng>) {
-      return new jsw.IsJsProxy.fromJsProxy(maps.geometry.spherical).$.computeSignedArea(loop, radius).value;
-    } else {
-      throw new UnsupportedError("Parameter must be of type MVCArray<LatLng> or List<LatLng>");
-    }
-  }
-  static LatLng interpolate(LatLng from, LatLng to, num fraction) => new jsw.IsJsProxy.fromJsProxy(maps.geometry.spherical).$.interpolate(from, to, fraction).map(LatLng.INSTANCIATOR).value;
+Spherical get spherical => new Spherical();
+
+class Spherical extends jsw.TypedProxy {
+  static Spherical cast(js.Proxy proxy) => proxy == null ? null : new Spherical.fromProxy(proxy);
+
+  Spherical() : super.fromProxy(maps.geometry.spherical);
+  Spherical.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+
+  num computeArea(dynamic/*Array.<LatLng>|MVCArray.<LatLng>*/ path, [num radius]) => $unsafe.computeArea(path is List<LatLng> ? jsifyList(path) : path, radius);
+  num computeDistanceBetween(LatLng from, LatLng to, [num radius]) => $unsafe.computeDistanceBetween(from, to, radius);
+  num computeHeading(LatLng from, LatLng to) => $unsafe.computeHeading(from, to);
+  num computeLength(dynamic/*Array.<LatLng>|MVCArray.<LatLng>*/ path, [num radius]) => $unsafe.computeLength(path is List<LatLng> ? jsifyList(path) : path, radius);
+  LatLng computeOffset(LatLng from, num distance, num heading, [num radius]) => LatLng.cast($unsafe.computeOffset(from, distance, heading, radius));
+  LatLng computeOffsetOrigin(LatLng to, num distance, num heading, [num radius]) => LatLng.cast($unsafe.computeOffsetOrigin(to, distance, heading, radius));
+  num computeSignedArea(dynamic/*Array.<LatLng>|MVCArray.<LatLng>*/ loop, [num radius]) => $unsafe.computeSignedArea(loop is List<LatLng> ? jsifyList(loop) : loop, radius);
+  LatLng interpolate(LatLng from, LatLng to, num fraction) => LatLng.cast($unsafe.interpolate(from, to, fraction));
 }

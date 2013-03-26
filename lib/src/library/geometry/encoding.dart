@@ -14,13 +14,14 @@
 
 part of google_maps_geometry;
 
-class Encoding {
-  static List<LatLng> decodePath(String encodedPath) => new jsw.IsJsProxy.fromJsProxy(maps.geometry.encoding).$.decodePath(encodedPath).map((js.Proxy jsProxy) => new jsw.JsList<LatLng>.fromJsProxy(jsProxy, LatLng.INSTANCIATOR)).value;
-  static String encodePath(Object path) {
-    if (path is MVCArray<LatLng> || path is List<LatLng>) {
-      return new jsw.IsJsProxy.fromJsProxy(maps.geometry.encoding).$.encodePath(path).value;
-    } else {
-      throw new UnsupportedError("Parameter must be of type MVCArray<LatLng> or List<LatLng>");
-    }
-  }
+Encoding get encoding => new Encoding();
+
+class Encoding extends jsw.TypedProxy {
+  static Encoding cast(js.Proxy proxy) => proxy == null ? null : new Encoding.fromProxy(proxy);
+
+  Encoding() : super.fromProxy(maps.geometry.encoding);
+  Encoding.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+
+  List<LatLng> decodePath(String encodedPath) => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.decodePath(encodedPath), LatLng.cast);
+  String encodePath(dynamic/*Array.<LatLng>|MVCArray.<LatLng>*/ path) => $unsafe.encodePath(path is List<LatLng> ? jsifyList(path) : path);
 }

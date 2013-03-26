@@ -1,7 +1,5 @@
 import 'dart:html';
 import 'package:js/js.dart' as js;
-import 'package:google_maps/optional.dart';
-import 'package:google_maps/js_wrap.dart' as jsw;
 import 'package:google_maps/google_maps.dart';
 
 const IMAGE_URL = "https://google-developers.appspot.com/maps/documentation/javascript/examples";
@@ -33,7 +31,7 @@ String getCustomPanoramaTileUrl(String pano, num tileZoom, num tileX, num tileY)
 // the passed pano IDs.
 StreetViewPanoramaData getCustomPanorama(String pano) { // TODO bad parameters
   if (pano == 'reception') {
-    return jsw.retain(new StreetViewPanoramaData()
+    return js.retain(new StreetViewPanoramaData()
       ..location = (new StreetViewLocation()
         ..pano = 'reception'
         ..description = 'Google Sydney - Reception'

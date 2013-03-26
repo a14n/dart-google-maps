@@ -14,14 +14,14 @@
 
 part of google_maps_places;
 
-class PhotoOptions extends jsw.IsJsProxy {
-  static final INSTANCIATOR = (js.Proxy jsProxy) => new PhotoOptions.fromJsProxy(jsProxy);
+class PhotoOptions extends jsw.TypedProxy {
+  static PhotoOptions cast(js.Proxy proxy) => proxy == null ? null : new PhotoOptions.fromProxy(proxy);
 
   PhotoOptions() : super();
-  PhotoOptions.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  PhotoOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  num get maxHeight => $.maxHeight.value;
-  num get maxWidth => $.maxWidth.value;
-  set maxHeight(num maxHeight) => $.maxHeight = maxHeight;
-  set maxWidth(num maxWidth) => $.maxWidth = maxWidth;
+  num get maxHeight => $unsafe.maxHeight;
+  num get maxWidth => $unsafe.maxWidth;
+  set maxHeight(num maxHeight) => $unsafe.maxHeight = maxHeight;
+  set maxWidth(num maxWidth) => $unsafe.maxWidth = maxWidth;
 }

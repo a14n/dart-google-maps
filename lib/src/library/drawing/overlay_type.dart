@@ -14,7 +14,7 @@
 
 part of google_maps_drawing;
 
-class OverlayType extends jsw.IsEnum<String> {
+class OverlayType extends IsEnum<String> {
   static final CIRCLE= new OverlayType._(maps.drawing.OverlayType.CIRCLE);
   static final MARKER= new OverlayType._(maps.drawing.OverlayType.MARKER);
   static final POLYGON= new OverlayType._(maps.drawing.OverlayType.POLYGON);

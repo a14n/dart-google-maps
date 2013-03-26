@@ -14,12 +14,18 @@
 
 part of google_maps_weather;
 
-class WeatherMouseEvent extends jsw.IsJsProxy {
-  WeatherMouseEvent();
-  WeatherMouseEvent.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+class WeatherMouseEvent extends jsw.TypedProxy {
+  static WeatherMouseEvent cast(js.Proxy proxy) => proxy == null ? null : new WeatherMouseEvent.fromProxy(proxy);
 
-  WeatherFeature get featureDetails => $.featureDetails.map(WeatherFeature.INSTANCIATOR).value;
-  String get infoWindowHtml => $.infoWindowHtml.value;
-  LatLng get latLng => $.latLng.map(LatLng.INSTANCIATOR).value;
-  Size get pixelOffset => $.pixelOffset.map(Size.INSTANCIATOR).value;
+  WeatherMouseEvent();
+  WeatherMouseEvent.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+
+  WeatherFeature get featureDetails => WeatherFeature.cast($unsafe.featureDetails);
+  String get infoWindowHtml => $unsafe.infoWindowHtml;
+  LatLng get latLng => LatLng.cast($unsafe.latLng);
+  Size get pixelOffset => Size.cast($unsafe.pixelOffset);
+  set featureDetails(WeatherFeature featureDetails) => $unsafe.featureDetails = featureDetails;
+  set infoWindowHtml(String infoWindowHtml) => $unsafe.infoWindowHtml = infoWindowHtml;
+  set latLng(LatLng latLng) => $unsafe.latLng = latLng;
+  set pixelOffset(Size pixelOffset) => $unsafe.pixelOffset = pixelOffset;
 }

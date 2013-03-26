@@ -1,6 +1,5 @@
 import 'dart:html' hide Point, Events;
 import 'package:js/js.dart' as js;
-import 'package:google_maps/js_wrap.dart' as jsw;
 import 'package:google_maps/google_maps.dart';
 import 'package:google_maps/google_maps_places.dart';
 
@@ -23,12 +22,11 @@ void main() {
       ..map = map
     );
 
-    jsw.retainAll([map, marker, infowindow, autocomplete]);
+    [map, marker, infowindow, autocomplete].forEach(js.retain);
     autocomplete.on.placeChanged.add(() {
       infowindow.close();
       final place = autocomplete.place;
 
-      js.context.console.log(place.geometry.$);
       if (place.geometry.viewport != null) {
         map.fitBounds(place.geometry.viewport);
       } else {

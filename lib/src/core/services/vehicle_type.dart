@@ -14,7 +14,7 @@
 
 part of google_maps;
 
-class VehicleType extends jsw.IsEnum<String> {
+class VehicleType extends IsEnum<String> {
   static final BUS = new VehicleType._("BUS");
   static final CABLE_CAR = new VehicleType._("CABLE_CAR");
   static final COMMUTER_TRAIN = new VehicleType._("COMMUTER_TRAIN");

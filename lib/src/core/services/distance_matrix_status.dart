@@ -14,7 +14,7 @@
 
 part of google_maps;
 
-class DistanceMatrixStatus extends jsw.IsEnum<String> {
+class DistanceMatrixStatus extends IsEnum<String> {
   static final INVALID_REQUEST = new DistanceMatrixStatus._(maps.DistanceMatrixStatus.INVALID_REQUEST);
   static final MAX_DIMENSIONS_EXCEEDED = new DistanceMatrixStatus._(maps.DistanceMatrixStatus.MAX_DIMENSIONS_EXCEEDED);
   static final MAX_ELEMENTS_EXCEEDED = new DistanceMatrixStatus._(maps.DistanceMatrixStatus.MAX_ELEMENTS_EXCEEDED);

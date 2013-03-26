@@ -14,11 +14,16 @@
 
 part of google_maps;
 
-class ElevationResult extends jsw.IsJsProxy {
-  ElevationResult() : super();
-  ElevationResult.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+class ElevationResult extends jsw.TypedProxy {
+  static ElevationResult cast(js.Proxy proxy) => proxy == null ? null : new ElevationResult.fromProxy(proxy);
 
-  num get elevation => $.elevation.value;
-  LatLng get location => $.location.map(LatLng.INSTANCIATOR).value;
-  num get resolution => $.resolution.value;
+  ElevationResult() : super();
+  ElevationResult.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+
+  num get elevation => $unsafe.elevation;
+  LatLng get location => LatLng.cast($unsafe.location);
+  num get resolution => $unsafe.resolution;
+  set elevation(num elevation) => $unsafe.elevation = elevation;
+  set location(LatLng location) => $unsafe.location = location;
+  set resolution(num resolution) => $unsafe.resolution = resolution;
 }

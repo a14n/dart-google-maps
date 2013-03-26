@@ -14,7 +14,7 @@
 
 part of google_maps_visualization;
 
-class MapsEngineStatus extends jsw.IsEnum<String> {
+class MapsEngineStatus extends IsEnum<String> {
   static final INVALID_LAYER = new MapsEngineStatus._(maps.places.PlacesServiceStatus.INVALID_LAYER);
   static final OK = new MapsEngineStatus._(maps.places.PlacesServiceStatus.OK);
   static final UNKNOWN_ERROR = new MapsEngineStatus._(maps.places.PlacesServiceStatus.UNKNOWN_ERROR);

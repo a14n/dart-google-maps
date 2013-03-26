@@ -14,15 +14,30 @@
 
 part of google_maps_adsense;
 
-class AdUnitOptions extends jsw.IsJsProxy {
-  set backgroundColor(String backgroundColor) => $.backgroundColor = backgroundColor;
-  set borderColor(String borderColor) => $.borderColor = borderColor;
-  set channelNumber(String channelNumber) => $.channelNumber = channelNumber;
-  set format(AdFormat format) => $.format = format;
-  set map(GMap map) => $.map = map;
-  set position(ControlPosition position) => $.position = position;
-  set publisherId(String publisherId) => $.publisherId = publisherId;
-  set textColor(String textColor) => $.textColor = textColor;
-  set titleColor(String titleColor) => $.titleColor = titleColor;
-  set urlColor(String urlColor) => $.urlColor = urlColor;
+class AdUnitOptions extends jsw.TypedProxy {
+  static AdUnitOptions cast(js.Proxy proxy) => proxy == null ? null : new AdUnitOptions.fromProxy(proxy);
+
+  AdUnitOptions() : super();
+  AdUnitOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+
+  String get backgroundColor => $unsafe.backgroundColor;
+  String get borderColor => $unsafe.borderColor;
+  String get channelNumber => $unsafe.channelNumber;
+  AdFormat get format => AdFormat.find($unsafe.format);
+  GMap get map => GMap.cast($unsafe.map);
+  ControlPosition get position => ControlPosition.find($unsafe.position);
+  String get publisherId => $unsafe.publisherId;
+  String get textColor => $unsafe.textColor;
+  String get titleColor => $unsafe.titleColor;
+  String get urlColor => $unsafe.urlColor;
+  set backgroundColor(String backgroundColor) => $unsafe.backgroundColor = backgroundColor;
+  set borderColor(String borderColor) => $unsafe.borderColor = borderColor;
+  set channelNumber(String channelNumber) => $unsafe.channelNumber = channelNumber;
+  set format(AdFormat format) => $unsafe.format = format;
+  set map(GMap map) => $unsafe.map = map;
+  set position(ControlPosition position) => $unsafe.position = position;
+  set publisherId(String publisherId) => $unsafe.publisherId = publisherId;
+  set textColor(String textColor) => $unsafe.textColor = textColor;
+  set titleColor(String titleColor) => $unsafe.titleColor = titleColor;
+  set urlColor(String urlColor) => $unsafe.urlColor = urlColor;
 }

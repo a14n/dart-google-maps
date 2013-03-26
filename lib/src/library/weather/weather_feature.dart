@@ -14,14 +14,20 @@
 
 part of google_maps_weather;
 
-class WeatherFeature extends jsw.IsJsProxy {
-  static final INSTANCIATOR = (js.Proxy jsProxy) => new WeatherFeature.fromJsProxy(jsProxy);
+class WeatherFeature extends jsw.TypedProxy {
+  static WeatherFeature cast(js.Proxy proxy) => proxy == null ? null : new WeatherFeature.fromProxy(proxy);
 
-  WeatherFeature.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  WeatherFeature() : super();
+  WeatherFeature.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  WeatherConditions get current => $.current.map(WeatherConditions.INSTANCIATOR).value;
-  List<WeatherForecast> get forecast => $.forecast.map((js.Proxy jsProxy) => new jsw.JsList<WeatherForecast>.fromJsProxy(jsProxy, WeatherForecast.INSTANCIATOR)).value;
-  String get location => $.location.value;
-  TemperatureUnit get temperatureUnit => $.temperatureUnit.map(TemperatureUnit.find).value;
-  WindSpeedUnit get windSpeedUnit => $.windSpeedUnit.map(WindSpeedUnit.find).value;
+  WeatherConditions get current => WeatherConditions.cast($unsafe.current);
+  List<WeatherForecast> get forecast => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.forecast, WeatherForecast.cast);
+  String get location => $unsafe.location;
+  TemperatureUnit get temperatureUnit => TemperatureUnit.find($unsafe.temperatureUnit);
+  WindSpeedUnit get windSpeedUnit => WindSpeedUnit.find($unsafe.windSpeedUnit);
+  set current(WeatherConditions current) => $unsafe.current = current;
+  set forecast(List<WeatherForecast> forecast) => $unsafe.forecast = jsifyList(forecast);
+  set location(String location) => $unsafe.location = location;
+  set temperatureUnit(TemperatureUnit temperatureUnit) => $unsafe.temperatureUnit = temperatureUnit;
+  set windSpeedUnit(WindSpeedUnit windSpeedUnit) => $unsafe.windSpeedUnit = windSpeedUnit;
 }

@@ -15,25 +15,27 @@
 part of google_maps;
 
 class DirectionsRenderer extends MVCObject {
-  DirectionsRenderer([DirectionsRendererOptions opts]) : super.newInstance(maps.DirectionsRenderer, [opts]);
-  DirectionsRenderer.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  static DirectionsRenderer cast(js.Proxy proxy) => proxy == null ? null : new DirectionsRenderer.fromProxy(proxy);
 
-  DirectionsResult get directions => $.getDirections().map(DirectionsResult.INSTANCIATOR).value;
-  GMap get map => $.getMap().map(GMap.INSTANCIATOR).value;
-  html.Node get panel => $.getPanel().value;
-  num get routeIndex => $.getRouteIndex().value;
-  set directions(DirectionsResult directions) => $.setDirections(directions);
-  set map(GMap map) => $.setMap(map);
-  set options(DirectionsRendererOptions options) => $.setOptions(options);
-  set panel(html.Node panel) => $.setPanel(panel);
-  set routeIndex(num routeIndex) => $.setRouteIndex(routeIndex);
+  DirectionsRenderer([DirectionsRendererOptions opts]) : super(maps.DirectionsRenderer, [opts]);
+  DirectionsRenderer.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+
+  DirectionsResult get directions => DirectionsResult.cast($unsafe.getDirections());
+  GMap get map => GMap.cast($unsafe.getMap());
+  html.Node get panel => $unsafe.getPanel();
+  num get routeIndex => $unsafe.getRouteIndex();
+  set directions(DirectionsResult directions) => $unsafe.setDirections(directions);
+  set map(GMap map) => $unsafe.setMap(map);
+  set options(DirectionsRendererOptions options) => $unsafe.setOptions(options);
+  set panel(html.Node panel) => $unsafe.setPanel(panel);
+  set routeIndex(num routeIndex) => $unsafe.setRouteIndex(routeIndex);
 
   DirectionsRendererEvents get on => new DirectionsRendererEvents._(this);
 }
 
 class DirectionsRendererEvents {
   static final DIRECTIONS_CHANGED = "directions_changed";
-  
+
   final DirectionsRenderer _directionsRenderer;
 
   DirectionsRendererEvents._(this._directionsRenderer);

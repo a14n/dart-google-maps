@@ -14,7 +14,7 @@
 
 part of google_maps;
 
-class GeocoderLocationType extends jsw.IsEnum<String> {
+class GeocoderLocationType extends IsEnum<String> {
   static final APPROXIMATE = new GeocoderLocationType._(maps.GeocoderLocationType.APPROXIMATE);
   static final GEOMETRIC_CENTER = new GeocoderLocationType._(maps.GeocoderLocationType.GEOMETRIC_CENTER);
   static final RANGE_INTERPOLATED = new GeocoderLocationType._(maps.GeocoderLocationType.RANGE_INTERPOLATED);

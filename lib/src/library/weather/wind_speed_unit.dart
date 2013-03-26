@@ -14,7 +14,7 @@
 
 part of google_maps_weather;
 
-class WindSpeedUnit extends jsw.IsEnum<String> {
+class WindSpeedUnit extends IsEnum<String> {
   static final KILOMETERS_PER_HOUR = new WindSpeedUnit._(maps.weather.WindSpeedUnit.KILOMETERS_PER_HOUR);
   static final METERS_PER_SECOND = new WindSpeedUnit._(maps.weather.WindSpeedUnit.METERS_PER_SECOND);
   static final MILES_PER_HOUR = new WindSpeedUnit._(maps.weather.WindSpeedUnit.MILES_PER_HOUR);

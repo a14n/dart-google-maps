@@ -14,16 +14,22 @@
 
 part of google_maps;
 
-class DirectionsRoute extends jsw.IsJsProxy {
-  static final INSTANCIATOR = (js.Proxy jsProxy) => new DirectionsRoute.fromJsProxy(jsProxy);
+class DirectionsRoute extends jsw.TypedProxy {
+  static DirectionsRoute cast(js.Proxy proxy) => proxy == null ? null : new DirectionsRoute.fromProxy(proxy);
 
   DirectionsRoute() : super();
-  DirectionsRoute.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  DirectionsRoute.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  LatLngBounds get bounds => new LatLngBounds.fromJsProxy($.bounds.value);
-  String get copyrights => $.copyrights.value;
-  List<DirectionsLeg> get legs => $.legs.map((js.Proxy jsProxy) => new jsw.JsList<DirectionsLeg>.fromJsProxy(jsProxy, DirectionsLeg.INSTANCIATOR)).value;
-  List<LatLng> get overviewPath => $.overview_path.map((js.Proxy jsProxy) => new jsw.JsList<LatLng>.fromJsProxy(jsProxy, LatLng.INSTANCIATOR)).value;
-  List<String> get warnings => $.warnings.map((js.Proxy jsProxy) => new jsw.JsList<String>.fromJsProxy(jsProxy, null)).value;
-  List<num> get waypointOrder => $.waypoint_order.map((js.Proxy jsProxy) => new jsw.JsList<num>.fromJsProxy(jsProxy, null)).value;
+  LatLngBounds get bounds => LatLngBounds.cast($unsafe.bounds);
+  String get copyrights => $unsafe.copyrights;
+  List<DirectionsLeg> get legs => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.legs, DirectionsLeg.cast);
+  List<LatLng> get overviewPath => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.overview_path, LatLng.cast);
+  List<String> get warnings => jsw.JsArrayToListAdapter.cast($unsafe.warnings);
+  List<num> get waypointOrder => jsw.JsArrayToListAdapter.cast($unsafe.waypoint_order);
+  set bounds(LatLngBounds bounds) => $unsafe.bounds = bounds;
+  set copyrights(String copyrights) => $unsafe.copyrights = copyrights;
+  set legs(List<DirectionsLeg> legs) => $unsafe.legs = jsifyList(legs);
+  set overviewPath(List<LatLng> overviewPath) => $unsafe.overview_path = jsifyList(overviewPath);
+  set warnings(List<String> warnings) => $unsafe.warnings = jsifyList(warnings);
+  set waypointOrder(List<num> waypointOrder) => $unsafe.waypoint_order = jsifyList(waypointOrder);
 }

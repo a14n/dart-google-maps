@@ -14,7 +14,7 @@
 
 part of google_maps_adsense;
 
-class AdFormat extends jsw.IsEnum<String> {
+class AdFormat extends IsEnum<String> {
   static final BANNER = new AdFormat._(maps.adsense.AdFormat.BANNER);
   static final BUTTON = new AdFormat._(maps.adsense.AdFormat.BUTTON);
   static final HALF_BANNER = new AdFormat._(maps.adsense.AdFormat.HALF_BANNER);

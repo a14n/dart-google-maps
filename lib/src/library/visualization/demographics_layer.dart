@@ -14,15 +14,17 @@
 
 part of google_maps_visualization;
 
-class DemographicsLayer extends jsw.IsJsProxy {
-  DemographicsLayer([DemographicsLayerOptions opts]) : super.newInstance(maps.visualization.DemographicsLayer, [opts]);
-  DemographicsLayer.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+class DemographicsLayer extends jsw.TypedProxy {
+  static DemographicsLayer cast(js.Proxy proxy) => proxy == null ? null : new DemographicsLayer.fromProxy(proxy);
 
-  GMap get map => $.getMap().map(GMap.INSTANCIATOR).value;
-  DemographicsQuery get query => $.getQuery().map(DemographicsQuery.INSTANCIATOR).value;
-  List<DemographicsStyle> get styles => $.getStyle().map((js.Proxy jsProxy) => new jsw.JsList<DemographicsStyle>.fromJsProxy(jsProxy, DemographicsStyle.INSTANCIATOR)).value;
-  set map(GMap map) => $.setMap(map);
-  set options(DemographicsLayerOptions options) => $.setOptions(options);
-  set query(DemographicsQuery query) => $.setQuery(query);
-  set style(List<DemographicsStyle> style) => $.setStyle(style);
+  DemographicsLayer([DemographicsLayerOptions opts]) : super(maps.visualization.DemographicsLayer, [opts]);
+  DemographicsLayer.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+
+  GMap get map => GMap.cast($unsafe.getMap());
+  DemographicsQuery get query => DemographicsQuery.cast($unsafe.getQuery());
+  List<DemographicsStyle> get styles => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.getStyle(), DemographicsStyle.cast);
+  set map(GMap map) => $unsafe.setMap(map);
+  set options(DemographicsLayerOptions options) => $unsafe.setOptions(options);
+  set query(DemographicsQuery query) => $unsafe.setQuery(query);
+  set style(List<DemographicsStyle> style) => $unsafe.setStyle(jsifyList(style));
 }

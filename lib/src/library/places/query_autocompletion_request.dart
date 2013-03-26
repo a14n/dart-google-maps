@@ -14,21 +14,21 @@
 
 part of google_maps_places;
 
-class QueryAutocompletionRequest extends jsw.IsJsProxy {
-  static final INSTANCIATOR = (js.Proxy jsProxy) => new QueryAutocompletionRequest.fromJsProxy(jsProxy);
+class QueryAutocompletionRequest extends jsw.TypedProxy {
+  static QueryAutocompletionRequest cast(js.Proxy proxy) => proxy == null ? null : new QueryAutocompletionRequest.fromProxy(proxy);
 
   QueryAutocompletionRequest() : super();
-  QueryAutocompletionRequest.fromJsProxy(js.Proxy jsProxy) : super.fromJsProxy(jsProxy);
+  QueryAutocompletionRequest.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  LatLngBounds get bounds => $.bounds.map(LatLngBounds.INSTANCIATOR).value;
-  String get input => $.input.value;
-  LatLng get location => $.location.map(LatLng.INSTANCIATOR).value;
-  num get offset => $.offset.value;
-  num get radius => $.radius.value;
+  LatLngBounds get bounds => LatLngBounds.cast($unsafe.bounds);
+  String get input => $unsafe.input;
+  LatLng get location => LatLng.cast($unsafe.location);
+  num get offset => $unsafe.offset;
+  num get radius => $unsafe.radius;
 
-  set bounds(LatLngBounds bounds) => $.bounds = bounds;
-  set input(String input) => $.input = input;
-  set location(LatLng location) => $.location = location;
-  set offset(num offset) => $.offset = offset;
-  set radius(num radius) => $.radius = radius;
+  set bounds(LatLngBounds bounds) => $unsafe.bounds = bounds;
+  set input(String input) => $unsafe.input = input;
+  set location(LatLng location) => $unsafe.location = location;
+  set offset(num offset) => $unsafe.offset = offset;
+  set radius(num radius) => $unsafe.radius = radius;
 }
