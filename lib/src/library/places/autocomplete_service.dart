@@ -21,9 +21,9 @@ class AutocompleteService extends jsw.TypedProxy {
   AutocompleteService.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   void getPlacePredictions(AutocompletionRequest request, void callback(List<AutocompletePrediction> results, PlacesServiceStatus status)) {
-    $unsafe.getPlacePredictions(request, new js.Callback.once((js.Proxy results, js.Proxy status) => callback(jsw.JsArrayToListAdapter.castListOfSerializables(results, AutocompletePrediction.cast), PlacesServiceStatus.find(status))));
+    $unsafe.getPlacePredictions(request, new js.Callback.once((js.Proxy results, String status) => callback(jsw.JsArrayToListAdapter.castListOfSerializables(results, AutocompletePrediction.cast), PlacesServiceStatus.find(status))));
   }
   void getQueryPredictions(QueryAutocompletionRequest request, void callback(List<QueryAutocompletePrediction> results, PlacesServiceStatus status)) {
-    $unsafe.getQueryPredictions(request, new js.Callback.once((js.Proxy results, js.Proxy status) => callback(jsw.JsArrayToListAdapter.castListOfSerializables(results, QueryAutocompletionRequest.cast), PlacesServiceStatus.find(status))));
+    $unsafe.getQueryPredictions(request, new js.Callback.once((js.Proxy results, String status) => callback(jsw.JsArrayToListAdapter.castListOfSerializables(results, QueryAutocompletionRequest.cast), PlacesServiceStatus.find(status))));
   }
 }

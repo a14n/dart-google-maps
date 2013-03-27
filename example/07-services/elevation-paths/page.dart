@@ -3,6 +3,8 @@ import 'package:js/js.dart' as js;
 import 'package:js/js_wrapping.dart' as jsw;
 import 'package:google_maps/google_maps.dart';
 
+js.Serializable<js.Proxy> jsifyList(List list) => (list is js.Serializable<js.Proxy>) ? list : js.array(list);
+
 class ColumnChart extends jsw.TypedProxy {
   ColumnChart(Node div) : super(js.context.google.visualization.ColumnChart, [div]);
 
@@ -13,7 +15,7 @@ class DataTable extends jsw.TypedProxy {
   DataTable() : super(js.context.google.visualization.DataTable);
 
   void addColumn(String type, [String label, String id]) { $unsafe.addColumn(type, label, id); }
-  void addRow([List<Object> cellArray]) { $unsafe.addRow(cellArray); }
+  void addRow([List<Object> cellArray]) { $unsafe.addRow(jsifyList(cellArray)); }
 }
 
 ElevationService elevator;

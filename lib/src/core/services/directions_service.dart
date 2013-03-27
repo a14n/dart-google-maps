@@ -21,6 +21,6 @@ class DirectionsService extends jsw.TypedProxy {
   DirectionsService.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   void route(DirectionsRequest request, void callback(DirectionsResult results, DirectionsStatus status)) {
-    $unsafe.route(request, new js.Callback.once((js.Proxy results, js.Proxy status) => callback(DirectionsResult.cast(results), DirectionsStatus.find(status))));
+    $unsafe.route(request, new js.Callback.once((js.Proxy results, String status) => callback(DirectionsResult.cast(results), DirectionsStatus.find(status))));
   }
 }

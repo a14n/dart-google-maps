@@ -21,15 +21,15 @@ class PlacesService extends jsw.TypedProxy {
   PlacesService.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   void getDetails(PlaceDetailsRequest request, void callback(PlaceResult results, PlacesServiceStatus status)) {
-    $unsafe.getDetails(request, new js.Callback.once((js.Proxy result, js.Proxy status) => callback(PlaceResult.cast(result), PlacesServiceStatus.find(status))));
+    $unsafe.getDetails(request, new js.Callback.once((js.Proxy result, String status) => callback(PlaceResult.cast(result), PlacesServiceStatus.find(status))));
   }
   void nearbySearch(PlaceSearchRequest request, void callback(List<PlaceResult> results, PlacesServiceStatus status, PlaceSearchPagination pagination)) {
-    $unsafe.nearbySearch(request, new js.Callback.once((js.Proxy results, js.Proxy status, js.Proxy pagination) => callback(jsw.JsArrayToListAdapter.castListOfSerializables(results, PlaceResult.cast), PlacesServiceStatus.find(status), PlaceSearchPagination.cast(pagination))));
+    $unsafe.nearbySearch(request, new js.Callback.once((js.Proxy results, String status, js.Proxy pagination) => callback(jsw.JsArrayToListAdapter.castListOfSerializables(results, PlaceResult.cast), PlacesServiceStatus.find(status), PlaceSearchPagination.cast(pagination))));
   }
   void radarSearch(RadarSearchRequest request, void callback(List<PlaceResult> results, PlacesServiceStatus status)) {
-    $unsafe.radarSearch(request, new js.Callback.once((js.Proxy results, js.Proxy status) => callback(jsw.JsArrayToListAdapter.castListOfSerializables(results, PlaceResult.cast), PlacesServiceStatus.find(status))));
+    $unsafe.radarSearch(request, new js.Callback.once((js.Proxy results, String status) => callback(jsw.JsArrayToListAdapter.castListOfSerializables(results, PlaceResult.cast), PlacesServiceStatus.find(status))));
   }
   void textSearch(TextSearchRequest request, void callback(List<PlaceResult> results, PlacesServiceStatus status)) {
-    $unsafe.textSearch(request, new js.Callback.once((js.Proxy results, js.Proxy status) => callback(jsw.JsArrayToListAdapter.castListOfSerializables(results, PlaceResult.cast), PlacesServiceStatus.find(status))));
+    $unsafe.textSearch(request, new js.Callback.once((js.Proxy results, String status) => callback(jsw.JsArrayToListAdapter.castListOfSerializables(results, PlaceResult.cast), PlacesServiceStatus.find(status))));
   }
 }

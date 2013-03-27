@@ -21,9 +21,9 @@ class StreetViewService extends jsw.TypedProxy {
   StreetViewService.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   void getPanoramaById(String pano, void callback(StreetViewPanoramaData streetViewPanoramaData, StreetViewStatus streetViewStatus)) {
-    $unsafe.getPanoramaById(pano, new js.Callback.once((js.Proxy streetViewPanoramaData, js.Proxy streetViewStatus) => callback(StreetViewPanoramaData.cast(streetViewPanoramaData), StreetViewStatus.find(streetViewStatus))));
+    $unsafe.getPanoramaById(pano, new js.Callback.once((js.Proxy streetViewPanoramaData, String streetViewStatus) => callback(StreetViewPanoramaData.cast(streetViewPanoramaData), StreetViewStatus.find(streetViewStatus))));
   }
   void getPanoramaByLocation(LatLng latlng, num radius, void callback(StreetViewPanoramaData streetViewPanoramaData, StreetViewStatus streetViewStatus)) {
-    $unsafe.getPanoramaByLocation(latlng, radius, new js.Callback.once((js.Proxy streetViewPanoramaData, js.Proxy streetViewStatus) => callback(StreetViewPanoramaData.cast(streetViewPanoramaData), StreetViewStatus.find(streetViewStatus))));
+    $unsafe.getPanoramaByLocation(latlng, radius, new js.Callback.once((js.Proxy streetViewPanoramaData, String streetViewStatus) => callback(StreetViewPanoramaData.cast(streetViewPanoramaData), StreetViewStatus.find(streetViewStatus))));
   }
 }

@@ -21,6 +21,6 @@ class Geocoder extends jsw.TypedProxy {
   Geocoder.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   void geocode(GeocoderRequest request, void callback(List<GeocoderResult> results, GeocoderStatus status)) {
-    $unsafe.geocode(request, new js.Callback.once((js.Proxy results, js.Proxy status) => callback(jsw.JsArrayToListAdapter.castListOfSerializables(results, GeocoderResult.cast), GeocoderStatus.find(status))));
+    $unsafe.geocode(request, new js.Callback.once((js.Proxy results, String status) => callback(jsw.JsArrayToListAdapter.castListOfSerializables(results, GeocoderResult.cast), GeocoderStatus.find(status))));
   }
 }

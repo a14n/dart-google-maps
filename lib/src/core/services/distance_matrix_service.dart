@@ -22,6 +22,6 @@ class DistanceMatrixService extends jsw.TypedProxy {
 
 
   void getDistanceMatrix(DistanceMatrixRequest request, void callback(DistanceMatrixResponse response, DistanceMatrixStatus status)) {
-    $unsafe.getDistanceMatrix(request, new js.Callback.once((js.Proxy response, js.Proxy status) => callback(DistanceMatrixResponse.cast(response), DistanceMatrixStatus.find(status))));
+    $unsafe.getDistanceMatrix(request, new js.Callback.once((js.Proxy response, String status) => callback(DistanceMatrixResponse.cast(response), DistanceMatrixStatus.find(status))));
   }
 }

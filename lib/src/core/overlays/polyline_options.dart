@@ -45,13 +45,7 @@ class PolylineOptions extends jsw.TypedProxy {
   set geodesic(bool geodesic) => $unsafe.geodesic = geodesic;
   set icons(List<IconSequence> icons) => $unsafe.icons = jsifyList(icons);
   set map(GMap map) => $unsafe.map = map;
-  set path(Object path) {
-    if (path is MVCArray<LatLng> || path is List<LatLng>) {
-      $unsafe.path = path;
-    } else {
-      throw new UnsupportedError("Parameter must be of type MVCArray<LatLng> or List<LatLng>");
-    }
-  }
+  set path(dynamic/*MVCArray.<LatLng>|Array.<LatLng>*/ path) => $unsafe.path = path is List ? jsifyList(path) : path;
   set strokeColor(String strokeColor) => $unsafe.strokeColor = strokeColor;
   set strokeOpacity(num strokeOpacity) => $unsafe.strokeOpacity = strokeOpacity;
   set strokeWeight(num strokeWeight) => $unsafe.strokeWeight = strokeWeight;

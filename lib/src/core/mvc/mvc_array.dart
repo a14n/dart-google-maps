@@ -21,7 +21,7 @@ class MVCArray<E> extends MVCObject {
 
   final jsw.Translator<E> _translator;
 
-  MVCArray([List<E> array, jsw.Translator<E> translator]) : super(maps.MVCArray, [array]), this._translator = translator;
+  MVCArray([List<E> array, jsw.Translator<E> translator]) : super(maps.MVCArray, [jsifyList(array)]), this._translator = translator;
   MVCArray.fromProxy(js.Proxy proxy, [jsw.Translator<E> translator]) : super.fromProxy(proxy), this._translator = translator;
 
   dynamic _toJs(E e) => _translator == null ? e : _translator.toJs(e);

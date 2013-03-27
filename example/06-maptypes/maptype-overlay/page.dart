@@ -7,7 +7,7 @@ class CoordMapType extends MapType {
   CoordMapType(Size tileSize) : super() {
     this.tileSize = js.retain(tileSize);
     $unsafe.getTile = new js.Callback.many((js.Proxy tileCoord, num zoom, js.Proxy ownerDocument) {
-      if (ownerDocument.value.createElement("div") is js.Proxy) {
+      if (ownerDocument.createElement("div") is js.Proxy) {
         return _getTileFromOtherDocument(Point.cast(tileCoord), zoom, ownerDocument == null ? null : new jsw.TypedProxy.fromProxy(ownerDocument));
       } else {
         return _getTile(Point.cast(tileCoord), zoom);

@@ -47,7 +47,7 @@ class PolygonOptions extends jsw.TypedProxy {
   set fillOpacity(num fillOpacity) => $unsafe.fillOpacity = fillOpacity;
   set geodesic(bool geodesic) => $unsafe.geodesic = geodesic;
   set map(GMap map) => $unsafe.map = map;
-  set paths(dynamic/*MVCArray.<MVCArray.<LatLng>>|MVCArray.<LatLng>|Array.<Array.<LatLng>>|Array.<LatLng>*/ paths) => $unsafe.setPaths(paths is List ? jsifyList(paths) : paths);
+  set paths(dynamic/*MVCArray.<MVCArray.<LatLng>>|MVCArray.<LatLng>|Array.<Array.<LatLng>>|Array.<LatLng>*/ paths) => $unsafe.paths = paths is List ? jsifyList(paths) : paths;
   set strokeColor(String strokeColor) => $unsafe.strokeColor = strokeColor;
   set strokeOpacity(num strokeOpacity) => $unsafe.strokeOpacity = strokeOpacity;
   set strokePosition(StrokePosition strokePosition) => $unsafe.strokePosition = strokePosition;
