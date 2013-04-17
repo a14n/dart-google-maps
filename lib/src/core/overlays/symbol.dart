@@ -14,11 +14,11 @@
 
 part of google_maps;
 
-class Symbol extends jsw.TypedProxy {
-  static Symbol cast(js.Proxy proxy) => proxy == null ? null : new Symbol.fromProxy(proxy);
+class GSymbol extends jsw.TypedProxy {
+  static GSymbol cast(js.Proxy proxy) => proxy == null ? null : new GSymbol.fromProxy(proxy);
 
-  Symbol() : super();
-  Symbol.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+  GSymbol() : super();
+  GSymbol.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   Point get anchor => Point.cast($unsafe.anchor);
   String get fillColor => $unsafe.fillColor;

@@ -17,20 +17,20 @@ void main() {
       new LatLng(18.291, 153.027)
     ];
 
-    final symbolOne = new Symbol()
+    final symbolOne = new GSymbol()
       ..path = 'M -2,0 0,-2 2,0 0,2 z'
       ..strokeColor = '#F00'
       ..fillColor = '#F00'
       ..fillOpacity = 1
       ;
 
-    final symbolTwo = new Symbol()
+    final symbolTwo = new GSymbol()
       ..path = 'M -2,-2 2,2 M 2,-2 -2,2'
       ..strokeColor = '#292'
       ..strokeWeight = 4
       ;
 
-    final symbolThree = new Symbol()
+    final symbolThree = new GSymbol()
       ..path = 'M -1,0 A 1,1 0 0 0 -3,0 1,1 0 0 0 -1,0M 1,0 A 1,1 0 0 0 3,0 1,1 0 0 0 1,0M -3,3 Q 0,5 3,3'
       ..strokeColor = '#00F'
       ..rotation = 0

@@ -43,7 +43,7 @@ class Marker extends MVCObject {
     } else if (result is js.Proxy) {
       final type = _isSymbolOrIcon(result);
       if (type == "Symbol") {
-        return Symbol.cast(result);
+        return GSymbol.cast(result);
       } else if (type == "Icon") {
         return Icon.cast(result);
       }
@@ -67,7 +67,7 @@ class Marker extends MVCObject {
     } else if (result is js.Proxy) {
       final type = _isSymbolOrIcon(result);
       if (type == "Symbol") {
-        return Symbol.cast(result);
+        return GSymbol.cast(result);
       } else if (type == "Icon") {
         return Icon.cast(result);
       }

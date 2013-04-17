@@ -17,7 +17,7 @@ part of google_maps;
 class MapType extends jsw.TypedProxy {
   static MapType cast(js.Proxy proxy) => proxy == null ? null : new MapType.fromProxy(proxy);
 
-  MapType([js.FunctionProxy function, List args]) : super(function, args);
+  MapType([js.Serializable<js.FunctionProxy> constructor, List args]) : super(constructor, args);
   MapType.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   html.Node getTile(Point tileCoord, num zoom, html.Document ownerDocument) => $unsafe.getTile(tileCoord, zoom, ownerDocument);

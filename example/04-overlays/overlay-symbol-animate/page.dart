@@ -19,7 +19,7 @@ void main() {
       new LatLng(22.291, 153.027),
       new LatLng(18.291, 153.027)
     ];
-    final lineSymbol = new Symbol()
+    final lineSymbol = new GSymbol()
       ..path = SymbolPath.CIRCLE
       ..scale = 8
       ..strokeColor = '#393'

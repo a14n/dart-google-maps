@@ -17,7 +17,7 @@ part of google_maps;
 class MVCObject extends jsw.TypedProxy {
   static MVCObject cast(js.Proxy proxy) => proxy == null ? null : new MVCObject.fromProxy(proxy);
 
-  MVCObject([js.FunctionProxy function, List args]) : super(function != null ? function : maps.MVCObject, args);
+  MVCObject([js.Serializable<js.FunctionProxy> constructor, List args]) : super(constructor != null ? constructor : maps.MVCObject, args);
   MVCObject.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   MapsEventListener addListener(String eventName, Function handler) {

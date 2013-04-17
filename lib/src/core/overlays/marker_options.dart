@@ -33,7 +33,7 @@ class MarkerOptions extends jsw.TypedProxy {
     } else if (result is js.Proxy) {
       final type = Marker._isSymbolOrIcon(result);
       if (type == "Symbol") {
-        return Symbol.cast(result);
+        return GSymbol.cast(result);
       } else if (type == "Icon") {
         return Icon.cast(result);
       }
@@ -59,7 +59,7 @@ class MarkerOptions extends jsw.TypedProxy {
     } else if (result is js.Proxy) {
       final type = Marker._isSymbolOrIcon(result);
       if (type == "Symbol") {
-        return Symbol.cast(result);
+        return GSymbol.cast(result);
       } else if (type == "Icon") {
         return Icon.cast(result);
       }

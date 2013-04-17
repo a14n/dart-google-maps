@@ -18,7 +18,7 @@ void main() {
       new LatLng(22.291, 153.027),
       new LatLng(18.291, 153.027)
     ];
-    final lineSymbol = new Symbol()
+    final lineSymbol = new GSymbol()
       ..path = 'M 0,-1 0,1'
       ..strokeOpacity = 1
       ..scale = 4
