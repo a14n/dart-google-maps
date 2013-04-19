@@ -18,15 +18,25 @@ part of google_maps;
 class ImageMapType extends MapType {
   static ImageMapType cast(js.Proxy proxy) => proxy == null ? null : new ImageMapType.fromProxy(proxy);
 
-  ImageMapType(ImageMapTypeOptions opts) : super(maps.ImageMapType, [opts]);
-  ImageMapType.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+  Stream _onTilesloaded;
+
+  ImageMapType(ImageMapTypeOptions opts) : super(maps.ImageMapType, [opts]) { _initStreams(); }
+  ImageMapType.fromProxy(js.Proxy proxy) : super.fromProxy(proxy) { _initStreams(); }
+
+  void _initStreams() {
+    _onTilesloaded = event.getStreamFor(this, "tilesloaded");
+  }
+
+  Stream get onTilesloaded => _onTilesloaded;
 
   num get opacity => $unsafe.getOpacity();
   set opacity(num opacity) => $unsafe.setOpacity(opacity);
 
-  ImageMapTypeEvents get on => new ImageMapTypeEvents._(this);
+  /// deprecated : use onXxx stream.
+  @deprecated ImageMapTypeEvents get on => new ImageMapTypeEvents._(this);
 }
 
+@deprecated
 class ImageMapTypeEvents {
   static final TILESLOADED = "tilesloaded";
 

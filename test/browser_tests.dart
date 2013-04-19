@@ -38,9 +38,9 @@ main() {
   test('MVCArray works', () {
     js.scoped(() {
       final mvcArray = new MVCArray();
-      mvcArray.on.insertAt.add((num i) => print("inserted at $i"));
-      mvcArray.on.removeAt.add((num i, e) => print("removed $e at $i"));
-      mvcArray.on.setAt.add((num i, e) => print("set $e at $i"));
+      mvcArray.onInsertAt.listen((int i) => print("inserted at $i"));
+      mvcArray.onRemoveAt.listen((IndexAndElement e) => print("removed ${e.element} at ${e.index}"));
+      mvcArray.onSetAt.listen((IndexAndElement e) => print("set ${e.element} at ${e.index}"));
       mvcArray.push("aa");
       expect(mvcArray.length, equals(1));
       mvcArray.setAt(0, "bb");

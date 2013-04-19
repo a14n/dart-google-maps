@@ -20,7 +20,7 @@ void main() {
     elevator = js.retain(new ElevationService());
 
     // Add a listener for the click event and call getElevation on that location
-    map.on.click.add(getElevation);
+    map.onClick.listen(getElevation);
   });
 }
 

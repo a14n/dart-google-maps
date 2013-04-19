@@ -14,7 +14,7 @@
 
 part of google_maps_geometry;
 
-Encoding get encoding => new Encoding();
+final Encoding encoding = js.retain(new Encoding());
 
 class Encoding extends jsw.TypedProxy {
   static Encoding cast(js.Proxy proxy) => proxy == null ? null : new Encoding.fromProxy(proxy);

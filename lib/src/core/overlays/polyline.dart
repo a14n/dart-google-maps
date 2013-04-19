@@ -18,8 +18,37 @@ class Polyline extends MVCObject {
   static Polyline cast(js.Proxy proxy) => proxy == null ? null : new Polyline.fromProxy(proxy);
   static bool isInstance(js.Proxy proxy) => js.instanceof(proxy, maps.Polyline);
 
-  Polyline([PolylineOptions opts]) : super(maps.Polyline, [opts]);
-  Polyline.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+  Stream<PolyMouseEvent> _onClick;
+  Stream<PolyMouseEvent> _onDblClick;
+  Stream<PolyMouseEvent> _onMousedown;
+  Stream<PolyMouseEvent> _onMousemove;
+  Stream<PolyMouseEvent> _onMouseout;
+  Stream<PolyMouseEvent> _onMouseover;
+  Stream<PolyMouseEvent> _onMouseup;
+  Stream<PolyMouseEvent> _onRightclick;
+
+  Polyline([PolylineOptions opts]) : super(maps.Polyline, [opts]) { _initStreams(); }
+  Polyline.fromProxy(js.Proxy proxy) : super.fromProxy(proxy) { _initStreams(); }
+
+  void _initStreams() {
+    _onClick = event.getStreamFor(this, "click", PolyMouseEvent.cast);
+    _onDblClick = event.getStreamFor(this, "dblclick", PolyMouseEvent.cast);
+    _onMousedown = event.getStreamFor(this, "mousedown", PolyMouseEvent.cast);
+    _onMousemove = event.getStreamFor(this, "mousemove", PolyMouseEvent.cast);
+    _onMouseout = event.getStreamFor(this, "mouseout", PolyMouseEvent.cast);
+    _onMouseover = event.getStreamFor(this, "mouseover", PolyMouseEvent.cast);
+    _onMouseup = event.getStreamFor(this, "mouseup", PolyMouseEvent.cast);
+    _onRightclick = event.getStreamFor(this, "rightclick", PolyMouseEvent.cast);
+  }
+
+  Stream<PolyMouseEvent> get onClick => _onClick;
+  Stream<PolyMouseEvent> get onDblClick => _onDblClick;
+  Stream<PolyMouseEvent> get onMousedown => _onMousedown;
+  Stream<PolyMouseEvent> get onMousemove => _onMousemove;
+  Stream<PolyMouseEvent> get onMouseout => _onMouseout;
+  Stream<PolyMouseEvent> get onMouseover => _onMouseover;
+  Stream<PolyMouseEvent> get onMouseup => _onMouseup;
+  Stream<PolyMouseEvent> get onRightclick => _onRightclick;
 
   bool get draggable => $unsafe.getDraggable();
   bool get editable => $unsafe.getEditable();
@@ -33,9 +62,11 @@ class Polyline extends MVCObject {
   set path(dynamic/*MVCArray.<LatLng>|Array.<LatLng>*/ path) => $unsafe.setPath(path is List ? jsifyList(path) : path);
   set visible(bool visible) => $unsafe.setVisible(visible);
 
-  PolylineEvents get on => new PolylineEvents._(this);
+  /// deprecated : use onXxx stream.
+  @deprecated PolylineEvents get on => new PolylineEvents._(this);
 }
 
+@deprecated
 class PolylineEvents {
   static final CLICK = "click";
   static final DBLCLICK = "dblclick";

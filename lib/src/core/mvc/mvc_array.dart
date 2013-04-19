@@ -21,8 +21,22 @@ class MVCArray<E> extends MVCObject {
 
   final jsw.Translator<E> _translator;
 
-  MVCArray([List<E> array, jsw.Translator<E> translator]) : super(maps.MVCArray, [jsifyList(array)]), this._translator = translator;
-  MVCArray.fromProxy(js.Proxy proxy, [jsw.Translator<E> translator]) : super.fromProxy(proxy), this._translator = translator;
+  Stream<int> _onInsertAt;
+  Stream<IndexAndElement<E>> _onRemoveAt;
+  Stream<IndexAndElement<E>> _onSetAt;
+
+  MVCArray([List<E> array, jsw.Translator<E> translator]) : super(maps.MVCArray, [jsifyList(array)]), this._translator = translator { _initStreams(); }
+  MVCArray.fromProxy(js.Proxy proxy, [jsw.Translator<E> translator]) : super.fromProxy(proxy), this._translator = translator { _initStreams(); }
+
+  void _initStreams() {
+    _onInsertAt = event.getStreamFor(this, "insert_at");
+    _onRemoveAt = event.getStreamFor(this, "remove_at", (int index, oldElement) => new IndexAndElement<E>(index, _fromJs(oldElement)));
+    _onSetAt = event.getStreamFor(this, "set_at", (int index, oldElement) => new IndexAndElement<E>(index, _fromJs(oldElement)));
+  }
+
+  Stream<int> get onInsertAt => _onInsertAt;
+  Stream<IndexAndElement<E>> get onRemoveAt => _onRemoveAt;
+  Stream<IndexAndElement<E>> get onSetAt => _onSetAt;
 
   dynamic _toJs(E e) => _translator == null ? e : _translator.toJs(e);
   E _fromJs(dynamic value) => _translator == null ? value : _translator.fromJs(value);
@@ -42,9 +56,17 @@ class MVCArray<E> extends MVCObject {
   E removeAt(num i) => _fromJs($unsafe.removeAt(i));
   void setAt(num i, E elem) { $unsafe.setAt(i, _toJs(elem)); }
 
-  MVCArrayEvents<E> get on => new MVCArrayEvents<E>._(this);
+  /// deprecated : use onXxx stream.
+  @deprecated MVCArrayEvents<E> get on => new MVCArrayEvents<E>._(this);
 }
 
+class IndexAndElement<E> {
+  final int index;
+  final E element;
+  IndexAndElement(this.index, this.element);
+}
+
+@deprecated
 class MVCArrayEvents<E> {
   static final INSERT_AT = "insert_at";
   static final REMOVE_AT = "remove_at";

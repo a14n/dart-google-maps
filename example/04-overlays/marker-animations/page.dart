@@ -22,7 +22,7 @@ void main() {
       ..animation = Animation.DROP
       ..position = parliament
     ));
-    marker.on.click.add((e) => toggleBounce());
+    marker.onClick.listen((e) => toggleBounce());
   });
 }
 

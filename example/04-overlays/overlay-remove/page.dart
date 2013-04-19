@@ -17,7 +17,7 @@ void main() {
       ;
     map = js.retain(new GMap(query("#map-canvas"), mapOptions));
 
-    map.on.click.add((e) {
+    map.onClick.listen((e) {
       addMarker(e.latLng);
     });
 

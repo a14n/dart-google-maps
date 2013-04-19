@@ -88,7 +88,7 @@ void main() {
       ..open(map)
     );
 
-    map.on.zoomChanged.add(() {
+    map.onZoomChanged.listen((_) {
       coordInfoWindow.content = createInfoWindowContent();
       coordInfoWindow.open(map);
     });

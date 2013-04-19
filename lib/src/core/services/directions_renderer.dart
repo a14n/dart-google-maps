@@ -17,8 +17,16 @@ part of google_maps;
 class DirectionsRenderer extends MVCObject {
   static DirectionsRenderer cast(js.Proxy proxy) => proxy == null ? null : new DirectionsRenderer.fromProxy(proxy);
 
-  DirectionsRenderer([DirectionsRendererOptions opts]) : super(maps.DirectionsRenderer, [opts]);
-  DirectionsRenderer.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+  Stream _onDirectionsChanged;
+
+  DirectionsRenderer([DirectionsRendererOptions opts]) : super(maps.DirectionsRenderer, [opts]) { _initStreams(); }
+  DirectionsRenderer.fromProxy(js.Proxy proxy) : super.fromProxy(proxy) { _initStreams(); }
+
+  void _initStreams() {
+    _onDirectionsChanged = event.getStreamFor(this, "directions_changed");
+  }
+
+  Stream get onDirectionsChanged => _onDirectionsChanged;
 
   DirectionsResult get directions => DirectionsResult.cast($unsafe.getDirections());
   GMap get map => GMap.cast($unsafe.getMap());
@@ -30,9 +38,11 @@ class DirectionsRenderer extends MVCObject {
   set panel(html.Node panel) => $unsafe.setPanel(panel);
   set routeIndex(num routeIndex) => $unsafe.setRouteIndex(routeIndex);
 
-  DirectionsRendererEvents get on => new DirectionsRendererEvents._(this);
+  /// deprecated : use onXxx stream.
+  @deprecated DirectionsRendererEvents get on => new DirectionsRendererEvents._(this);
 }
 
+@deprecated
 class DirectionsRendererEvents {
   static final DIRECTIONS_CHANGED = "directions_changed";
 

@@ -18,7 +18,7 @@ void main() {
     final photoPanel = query('#photo-panel');
     map.controls.getNodes(ControlPosition.RIGHT_TOP).push(photoPanel);
 
-    panoramioLayer.on.click.add((e) {
+    panoramioLayer.onClick.listen((e) {
       final li = new LIElement();
       final link = new AnchorElement();
       link.innerHtml = '${e.featureDetails.title}: ${e.featureDetails.author}';

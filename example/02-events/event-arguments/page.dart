@@ -12,7 +12,7 @@ void main() {
     final map = new GMap(query("#map_canvas"), mapOptions);
 
     js.retain(map);
-    map.on.click.add((e) {
+    map.onClick.listen((e) {
       placeMarker(e.latLng, map);
     });
   });

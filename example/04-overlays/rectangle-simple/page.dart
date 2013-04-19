@@ -16,7 +16,7 @@ void main() {
     final rectangle = new Rectangle();
 
     [map, rectangle].forEach(js.retain);
-    map.on.zoomChanged.add(() {
+    map.onZoomChanged.listen((_) {
       // Get the current bounds, which reflect the bounds before the zoom.
       final rectOptions = new RectangleOptions()
         ..strokeColor = '#FF0000'

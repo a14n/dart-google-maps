@@ -14,7 +14,12 @@
 
 part of google_maps;
 
-GEvent get event => new GEvent();
+const _undefined = const _Undefined();
+class _Undefined {
+  const _Undefined();
+}
+
+final GEvent event = js.retain(new GEvent());
 
 @deprecated class Events {
   static MapsEventListener addDomListener(Object instance, String eventName, Function handler, [bool capture]) => event.addDomListener(instance, eventName, handler, capture);
@@ -64,5 +69,36 @@ class GEvent extends jsw.TypedProxy {
     parameters.add(eventName);
     parameters.addAll(args);
     $unsafe.trigger(parameters);
+  }
+
+  Stream getStreamFor(dynamic instance, String eventName, [Function transformArguments]) {
+    StreamController streamController;
+    MapsEventListener mapsEventListener = null;
+    final listener = () {
+      if (!streamController.hasListener || streamController.isPaused || streamController.isClosed) {
+        if (mapsEventListener != null) {
+          removeListener(mapsEventListener);
+          mapsEventListener = null;
+        }
+      } else {
+        if (mapsEventListener == null) {
+          mapsEventListener = addListener(instance, eventName, ([
+              p1 = _undefined,
+              p2 = _undefined,
+              p3 = _undefined,
+              p4 = _undefined,
+              p5 = _undefined]) {
+            var args = [p1, p2, p3, p4, p5].where((e) => e != _undefined).toList(growable: false);
+            var value =
+                args.length == 0 ? null :
+                args.length == 1 ? args.first :
+                args;
+            streamController.add(transformArguments == null ? value : Function.apply(transformArguments, args));
+          });
+        }
+      }
+    };
+    streamController = new StreamController(onListen: listener, onPause: listener, onResume: listener, onCancel: listener);
+    return streamController.stream.asBroadcastStream();
   }
 }

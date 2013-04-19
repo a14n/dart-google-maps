@@ -22,7 +22,7 @@ void main() {
     directionsDisplay.map = map;
     directionsDisplay.panel = query('#directionsPanel');
 
-    directionsDisplay.on.directionsChanged.add(() {
+    directionsDisplay.onDirectionsChanged.listen((_) {
       computeTotalDistance(directionsDisplay.directions);
     });
 

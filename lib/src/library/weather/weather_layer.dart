@@ -17,16 +17,26 @@ part of google_maps_weather;
 class WeatherLayer extends MVCObject {
   static WeatherLayer cast(js.Proxy proxy) => proxy == null ? null : new WeatherLayer.fromProxy(proxy);
 
-  WeatherLayer([WeatherLayerOptions opts]) : super(maps.weather.WeatherLayer, [opts]);
-  WeatherLayer.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+  Stream<WeatherMouseEvent> _onClick;
+
+  WeatherLayer([WeatherLayerOptions opts]) : super(maps.weather.WeatherLayer, [opts]) { _initStreams(); }
+  WeatherLayer.fromProxy(js.Proxy proxy) : super.fromProxy(proxy) { _initStreams(); }
+
+  void _initStreams() {
+    _onClick = event.getStreamFor(this, "click", WeatherMouseEvent.cast);
+  }
+
+  Stream<WeatherMouseEvent> get onClick => _onClick;
 
   GMap get map => GMap.cast($unsafe.getMap());
   set map(GMap map) => $unsafe.setMap(map);
   set options(WeatherLayerOptions options) => $unsafe.setOptions(options);
 
-  WeatherLayerEvents get on => new WeatherLayerEvents._(this);
+  /// deprecated : use onXxx stream.
+  @deprecated WeatherLayerEvents get on => new WeatherLayerEvents._(this);
 }
 
+@deprecated
 class WeatherLayerEvents {
   static final CLICK = "click";
 

@@ -20,7 +20,7 @@ void main() {
     );
 
     [map, marker].forEach(js.retain);
-    map.on.centerChanged.add(() {
+    map.onCenterChanged.listen((_) {
       // 3 seconds after the center of the map has changed, pan back to the marker.
       new Timer(const Duration(seconds: 3), () {
         js.scoped(() {
@@ -30,7 +30,7 @@ void main() {
     });
 
     [map, marker].forEach(js.retain);
-    marker.on.click.add((e) {
+    marker.onClick.listen((e) {
       map.zoom = 8;
       map.center = marker.position;
     });

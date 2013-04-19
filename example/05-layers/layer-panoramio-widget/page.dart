@@ -66,7 +66,7 @@ void main() {
     panoramioLayer.map = map;
 
     [photoWidget, infoWindow, map].forEach(js.retain);
-    panoramioLayer.on.click.add((e) {
+    panoramioLayer.onClick.listen((e) {
       final photoRequestOptions = new PhotoRequestOptions()
         ..ids = [new PhotoRequestOptionsId()
           ..photoId = e.featureDetails.photoId

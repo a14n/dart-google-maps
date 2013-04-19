@@ -28,7 +28,7 @@ void main() {
           ..position = place.geometry.location
         );
         [marker, place].forEach(js.retain);
-        marker.on.click.add((e) {
+        marker.onClick.listen((e) {
           infowindow.content = place.name;
           infowindow.open(map, marker);
         });

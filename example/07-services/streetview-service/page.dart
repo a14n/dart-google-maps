@@ -23,7 +23,7 @@ void main() {
 
     // getPanoramaByLocation will return the nearest pano when the
     // given radius is 50 meters or less.
-    map.on.click.add((e) {
+    map.onClick.listen((e) {
       sv.getPanoramaByLocation(e.latLng, 50, processSVData);
     });
   });
@@ -46,7 +46,7 @@ void processSVData(StreetViewPanoramaData data, StreetViewStatus status) {
     panorama.visible = true;
 
     js.retain(data);
-    marker.on.click.add((e) {
+    marker.onClick.listen((e) {
       final markerPanoID = data.location.pano;
       // Set the Pano to use the passed panoID
       panorama.pano = markerPanoID;

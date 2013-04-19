@@ -87,7 +87,7 @@ void showSteps(DirectionsResult directionResult) {
 }
 
 void attachInstructionText(Marker marker, String text) {
-  marker.on.click.add((e) {
+  marker.onClick.listen((e) {
     // Open an info window when the marker is clicked on,
     // containing the text of the step.
     stepDisplay.content = text;

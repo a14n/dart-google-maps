@@ -18,8 +18,70 @@ class GMap extends MVCObject {
   static GMap cast(js.Proxy proxy) => proxy == null ? null : new GMap.fromProxy(proxy);
   static bool isInstance(js.Proxy proxy) => js.instanceof(proxy, maps.Map);
 
-  GMap(html.Node mapDiv, [MapOptions opts]) : super(maps.Map, [mapDiv, opts]);
-  GMap.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+  Stream _onBoundsChanged;
+  Stream _onCenterChanged;
+  Stream<MouseEvent> _onClick;
+  Stream<MouseEvent> _onDblClick;
+  Stream _onDrag;
+  Stream _onDragend;
+  Stream _onDragstart;
+  Stream _onHeadingChanged;
+  Stream _onIdle;
+  Stream _onMaptypeidChanged;
+  Stream<MouseEvent> _onMousemove;
+  Stream<MouseEvent> _onMouseout;
+  Stream<MouseEvent> _onMouseover;
+  Stream _onProjectionChanged;
+  Stream _onResize;
+  Stream<MouseEvent> _onRightclick;
+  Stream _onTilesloaded;
+  Stream _onTiltChanged;
+  Stream _onZoomChanged;
+
+  GMap(html.Node mapDiv, [MapOptions opts]) : super(maps.Map, [mapDiv, opts]) { _initStreams(); }
+  GMap.fromProxy(js.Proxy proxy) : super.fromProxy(proxy) { _initStreams(); }
+
+  void _initStreams() {
+    _onBoundsChanged = event.getStreamFor(this, "bounds_changed");
+    _onCenterChanged = event.getStreamFor(this, "center_changed");
+    _onClick = event.getStreamFor(this, "click", MouseEvent.cast);
+    _onDblClick = event.getStreamFor(this, "dblclick", MouseEvent.cast);
+    _onDrag = event.getStreamFor(this, "drag");
+    _onDragend = event.getStreamFor(this, "dragend");
+    _onDragstart = event.getStreamFor(this, "dragstart");
+    _onHeadingChanged = event.getStreamFor(this, "heading_changed");
+    _onIdle = event.getStreamFor(this, "idle");
+    _onMaptypeidChanged = event.getStreamFor(this, "maptypeid_changed");
+    _onMousemove = event.getStreamFor(this, "mousemove", MouseEvent.cast);
+    _onMouseout = event.getStreamFor(this, "mouseout", MouseEvent.cast);
+    _onMouseover = event.getStreamFor(this, "mouseover", MouseEvent.cast);
+    _onProjectionChanged = event.getStreamFor(this, "projection_changed");
+    _onResize = event.getStreamFor(this, "resize");
+    _onRightclick = event.getStreamFor(this, "rightclick", MouseEvent.cast);
+    _onTilesloaded = event.getStreamFor(this, "tilesloaded");
+    _onTiltChanged = event.getStreamFor(this, "tilt_changed");
+    _onZoomChanged = event.getStreamFor(this, "zoom_changed");
+  }
+
+  Stream get onBoundsChanged => _onBoundsChanged;
+  Stream get onCenterChanged => _onCenterChanged;
+  Stream<MouseEvent> get onClick => _onClick;
+  Stream<MouseEvent> get onDblClick => _onDblClick;
+  Stream get onDrag => _onDrag;
+  Stream get onDragend => _onDragend;
+  Stream get onDragstart => _onDragstart;
+  Stream get onHeadingChanged => _onHeadingChanged;
+  Stream get onIdle => _onIdle;
+  Stream get onMaptypeidChanged => _onMaptypeidChanged;
+  Stream<MouseEvent> get onMousemove => _onMousemove;
+  Stream<MouseEvent> get onMouseout => _onMouseout;
+  Stream<MouseEvent> get onMouseover => _onMouseover;
+  Stream get onProjectionChanged => _onProjectionChanged;
+  Stream get onResize => _onResize;
+  Stream<MouseEvent> get onRightclick => _onRightclick;
+  Stream get onTilesloaded => _onTilesloaded;
+  Stream get onTiltChanged => _onTiltChanged;
+  Stream get onZoomChanged => _onZoomChanged;
 
   void fitBounds(LatLngBounds bounds) { $unsafe.fitBounds(bounds); }
   LatLngBounds get bounds => LatLngBounds.cast($unsafe.getBounds());
@@ -52,9 +114,11 @@ class GMap extends MVCObject {
   set mapTypes(MapTypeRegistry mapTypes) => $unsafe.mapTypes = mapTypes;
   set overlayMapTypes(MVCArray<MapType> overlayMapTypes) => $unsafe.overlayMapTypes = overlayMapTypes;
 
-  GMapEvents get on => new GMapEvents._(this);
+  /// deprecated : use onXxx stream.
+  @deprecated GMapEvents get on => new GMapEvents._(this);
 }
 
+@deprecated
 class GMapEvents {
   static final BOUNDS_CHANGED = "bounds_changed";
   static final CENTER_CHANGED = "center_changed";

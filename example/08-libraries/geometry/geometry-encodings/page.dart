@@ -24,7 +24,7 @@ void main() {
     poly = js.retain(new Polyline(polyOptions));
 
     // Add a listener for the click event
-    map.on.click.add(addLatLng);
+    map.onClick.listen(addLatLng);
   });
 }
 

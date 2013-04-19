@@ -14,6 +14,7 @@
 
 library google_maps;
 
+import 'dart:async';
 import 'dart:html' as html;
 
 import 'package:js/js.dart' as js;
