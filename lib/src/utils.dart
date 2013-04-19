@@ -25,7 +25,7 @@ class _Dartified {
 }
 
 // utility to get js.Proxy even if out of scope
-dynamic findIn(List elements, Object o) => elements.where((e) => e == o).fold(null, (previousValue, e) => (previousValue != null ? previousValue : e));
+dynamic findIn(List elements, Object o) => elements.firstWhere((e) => e == o, orElse: () => null);
 
 dynamic firstNotNull(List elements) {
   for (final e in elements) {
