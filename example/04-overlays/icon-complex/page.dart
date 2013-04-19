@@ -2,7 +2,7 @@ import 'dart:html' hide Point;
 import 'package:js/js.dart' as js;
 import 'package:google_maps/google_maps.dart';
 
-const IMAGE_URL = "https://google-developers.appspot.com/maps/documentation/javascript/examples";
+const IMAGE_URL = "https://google-developers.appspot.com/maps/documentation/javascript/examples/full";
 
 /**
  * Data for the markers consisting of a name, a LatLng and a zIndex for

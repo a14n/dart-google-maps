@@ -3,7 +3,7 @@ import 'dart:math' as Math;
 import 'package:js/js.dart' as js;
 import 'package:google_maps/google_maps.dart';
 
-const IMAGE_URL = "https://google-developers.appspot.com/maps/documentation/javascript/examples";
+const IMAGE_URL = "https://google-developers.appspot.com/maps/documentation/javascript/examples/full";
 
 final LatLng chicago = js.retain(new LatLng(41.850033, -87.6500523));
 final LatLng anchorage = js.retain(new LatLng(61.2180556, -149.9002778));
