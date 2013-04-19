@@ -34,7 +34,7 @@ void main() {
     bermudaTriangle.map = map;
 
     // Add a listener for the click event
-    bermudaTriangle.on.click.add(showArrays);
+    bermudaTriangle.onClick.listen(showArrays);
 
     infoWindow = js.retain(new InfoWindow());
   });

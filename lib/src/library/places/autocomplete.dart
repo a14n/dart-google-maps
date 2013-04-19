@@ -17,8 +17,16 @@ part of google_maps_places;
 class Autocomplete extends MVCObject {
   static Autocomplete cast(js.Proxy proxy) => proxy == null ? null : new Autocomplete.fromProxy(proxy);
 
-  Autocomplete(html.InputElement inputField, [AutocompleteOptions opts]) : super(maps.places.Autocomplete, [inputField, opts]);
-  Autocomplete.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+  Stream _onPlaceChanged;
+
+  Autocomplete(html.InputElement inputField, [AutocompleteOptions opts]) : super(maps.places.Autocomplete, [inputField, opts]) { _initStreams(); }
+  Autocomplete.fromProxy(js.Proxy proxy) : super.fromProxy(proxy) { _initStreams(); }
+
+  void _initStreams() {
+    _onPlaceChanged = event.getStreamFor(this, "place_changed");
+  }
+
+  Stream get onPlaceChanged => _onPlaceChanged;
 
   LatLngBounds get bounds => LatLngBounds.cast($unsafe.getBounds());
   PlaceResult get place => PlaceResult.cast($unsafe.getPlace());
@@ -26,9 +34,11 @@ class Autocomplete extends MVCObject {
   set componentRestrictions(ComponentRestrictions restrictions) => $unsafe.setComponentRestrictions(restrictions);
   set types(List<String> types) => $unsafe.setTypes(types);
 
-  AutocompleteEvents get on => new AutocompleteEvents._(this);
+  /// deprecated : use onXxx stream.
+  @deprecated AutocompleteEvents get on => new AutocompleteEvents._(this);
 }
 
+@deprecated
 class AutocompleteEvents {
   static final PLACE_CHANGED = "place_changed";
 

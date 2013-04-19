@@ -17,8 +17,22 @@ part of google_maps;
 class KmlLayer extends MVCObject {
   static KmlLayer cast(js.Proxy proxy) => proxy == null ? null : new KmlLayer.fromProxy(proxy);
 
-  KmlLayer([KmlLayerOptions options]) : super(maps.KmlLayer, [options]);
-  KmlLayer.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+  Stream<KmlMouseEvent> _onClick;
+  Stream _onDefaultviewportChanged;
+  Stream _onStatusChanged;
+
+  KmlLayer([KmlLayerOptions options]) : super(maps.KmlLayer, [options]) { _initStreams(); }
+  KmlLayer.fromProxy(js.Proxy proxy) : super.fromProxy(proxy) { _initStreams(); }
+
+  void _initStreams() {
+    _onClick = event.getStreamFor(this, "click", KmlMouseEvent.cast);
+    _onDefaultviewportChanged = event.getStreamFor(this, "defaultviewport_changed");
+    _onStatusChanged = event.getStreamFor(this, "status_changed");
+  }
+
+  Stream<KmlMouseEvent> get onClick => _onClick;
+  Stream get onDefaultviewportChanged => _onDefaultviewportChanged;
+  Stream get onStatusChanged => _onStatusChanged;
 
   LatLngBounds get defaultViewport => LatLngBounds.cast($unsafe.getDefaultViewport());
   GMap get map => GMap.cast($unsafe.getMap());
@@ -28,9 +42,11 @@ class KmlLayer extends MVCObject {
   set map(GMap map) => $unsafe.setMap(map);
   set url(String url) => $unsafe.setUrl(url);
 
-  KmlLayerEvents get on => new KmlLayerEvents._(this);
+  /// deprecated : use onXxx stream.
+  @deprecated KmlLayerEvents get on => new KmlLayerEvents._(this);
 }
 
+@deprecated
 class KmlLayerEvents {
   static final CLICK = "click";
   static final DEFAULTVIEWPORT_CHANGED = "defaultviewport_changed";

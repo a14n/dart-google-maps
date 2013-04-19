@@ -21,7 +21,7 @@ void main() {
     infowindow.open(map);
 
     [map, myLatLng, infowindow].forEach(js.retain);
-    map.on.zoomChanged.add(() {
+    map.onZoomChanged.listen((_) {
       var zoomLevel = map.zoom;
       map.center = myLatLng;
       infowindow.content = "Zoom: $zoomLevel";

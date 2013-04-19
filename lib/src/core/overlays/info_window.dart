@@ -17,8 +17,28 @@ part of google_maps;
 class InfoWindow extends MVCObject {
   static InfoWindow cast(js.Proxy proxy) => proxy == null ? null : new InfoWindow.fromProxy(proxy);
 
-  InfoWindow([InfoWindowOptions opts]) : super(maps.InfoWindow, [opts]);
-  InfoWindow.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+  Stream _onCloseclick;
+  Stream _onContentChanged;
+  Stream _onDomready;
+  Stream _onPositionChanged;
+  Stream _onZindexChanged;
+
+  InfoWindow([InfoWindowOptions opts]) : super(maps.InfoWindow, [opts]) { _initStreams(); }
+  InfoWindow.fromProxy(js.Proxy proxy) : super.fromProxy(proxy) { _initStreams(); }
+
+  void _initStreams() {
+    _onCloseclick = event.getStreamFor(this, "closeclick");
+    _onContentChanged = event.getStreamFor(this, "content_changed");
+    _onDomready = event.getStreamFor(this, "domready");
+    _onPositionChanged = event.getStreamFor(this, "position_changed");
+    _onZindexChanged = event.getStreamFor(this, "zindex_changed");
+  }
+
+  Stream get onCloseclick => _onCloseclick;
+  Stream get onContentChanged => _onContentChanged;
+  Stream get onDomready => _onDomready;
+  Stream get onPositionChanged => _onPositionChanged;
+  Stream get onZindexChanged => _onZindexChanged;
 
   void close() { $unsafe.close(); }
   dynamic/*string|Node*/ get content => $unsafe.getContent();
@@ -30,9 +50,11 @@ class InfoWindow extends MVCObject {
   set position(LatLng position) => $unsafe.setPosition(position);
   set zIndex(num zIndex) => $unsafe.setZIndex(zIndex);
 
-  InfoWindowEvents get on => new InfoWindowEvents._(this);
+  /// deprecated : use onXxx stream.
+  @deprecated InfoWindowEvents get on => new InfoWindowEvents._(this);
 }
 
+@deprecated
 class InfoWindowEvents {
   static final CLOSECLICK = "closeclick";
   static final CONTENT_CHANGED = "content_changed";

@@ -17,8 +17,19 @@ part of google_maps;
 class GroundOverlay extends MVCObject {
   static GroundOverlay cast(js.Proxy proxy) => proxy == null ? null : new GroundOverlay.fromProxy(proxy);
 
-  GroundOverlay(String url, LatLngBounds bounds, [GroundOverlayOptions opts]) : super(maps.GroundOverlay, [url, bounds, opts]);
-  GroundOverlay.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+  Stream<MouseEvent> _onClick;
+  Stream<MouseEvent> _onDblClick;
+
+  GroundOverlay(String url, LatLngBounds bounds, [GroundOverlayOptions opts]) : super(maps.GroundOverlay, [url, bounds, opts]) { _initStreams(); }
+  GroundOverlay.fromProxy(js.Proxy proxy) : super.fromProxy(proxy) { _initStreams(); }
+
+  void _initStreams() {
+    _onClick = event.getStreamFor(this, "click", MouseEvent.cast);
+    _onDblClick = event.getStreamFor(this, "dblclick", MouseEvent.cast);
+  }
+
+  Stream<MouseEvent> get onClick => _onClick;
+  Stream<MouseEvent> get onDblClick => _onDblClick;
 
   LatLngBounds get bounds => LatLngBounds.cast($unsafe.getBounds());
   GMap get map => GMap.cast($unsafe.getMap());
@@ -27,9 +38,11 @@ class GroundOverlay extends MVCObject {
   set map(GMap map) => $unsafe.setMap(map);
   set opacity(num opacity) => $unsafe.setOpacity(opacity);
 
-  GroundOverlayEvents get on => new GroundOverlayEvents._(this);
+  /// deprecated : use onXxx stream.
+  @deprecated GroundOverlayEvents get on => new GroundOverlayEvents._(this);
 }
 
+@deprecated
 class GroundOverlayEvents {
   static final CLICK = "click";
   static final DBLCLICK = "dblclick";

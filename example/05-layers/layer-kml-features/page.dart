@@ -20,7 +20,7 @@ void main() {
         )
         ..url = 'http://www.searcharoo.net/SearchKml/newyork.kml';
 
-    nyLayer.on.click.add((e) {
+    nyLayer.onClick.listen((e) {
       final text = e.featureData.description;
       showInContentWindow(text);
     });

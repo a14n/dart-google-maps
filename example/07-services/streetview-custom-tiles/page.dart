@@ -41,7 +41,7 @@ void main() {
         // We'll monitor the links_changed event to check if the current
         // pano is either a custom pano or our entry pano.
         js.retain(result);
-        panorama.on.linksChanged.add(() {
+        panorama.onLinksChanged.listen((_) {
           return createCustomLinks(result.location.pano);
         });
       }

@@ -17,16 +17,26 @@ part of google_maps_places;
 class SearchBox extends MVCObject {
   static SearchBox cast(js.Proxy proxy) => proxy == null ? null : new SearchBox.fromProxy(proxy);
 
-  SearchBox(html.InputElement inputField, [SearchBoxOptions opts]) : super(maps.places.SearchBox, [inputField, opts]);
-  SearchBox.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+  Stream _onPlaceChanged;
+
+  SearchBox(html.InputElement inputField, [SearchBoxOptions opts]) : super(maps.places.SearchBox, [inputField, opts]) { _initStreams(); }
+  SearchBox.fromProxy(js.Proxy proxy) : super.fromProxy(proxy) { _initStreams(); }
+
+  void _initStreams() {
+    _onPlaceChanged = event.getStreamFor(this, "place_changed");
+  }
+
+  Stream get onPlaceChanged => _onPlaceChanged;
 
   LatLngBounds get bounds => LatLngBounds.cast($unsafe.getBounds());
   List<PlaceResult> get places => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.getPlaces(), PlaceResult.cast);
   set bounds(LatLngBounds bounds) => $unsafe.setBounds(bounds);
 
-  SearchBoxEvents get on => new SearchBoxEvents._(this);
+  /// deprecated : use onXxx stream.
+  @deprecated SearchBoxEvents get on => new SearchBoxEvents._(this);
 }
 
+@deprecated
 class SearchBoxEvents {
   static final PLACE_CHANGED = "place_changed";
 

@@ -17,16 +17,26 @@ part of google_maps;
 class FusionTablesLayer extends MVCObject {
   static FusionTablesLayer cast(js.Proxy proxy) => proxy == null ? null : new FusionTablesLayer.fromProxy(proxy);
 
-  FusionTablesLayer(FusionTablesLayerOptions options) : super(maps.FusionTablesLayer, [options]);
-  FusionTablesLayer.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+  Stream<FusionTablesMouseEvent> _onClick;
+
+  FusionTablesLayer(FusionTablesLayerOptions options) : super(maps.FusionTablesLayer, [options]) { _initStreams(); }
+  FusionTablesLayer.fromProxy(js.Proxy proxy) : super.fromProxy(proxy) { _initStreams(); }
+
+  void _initStreams() {
+    _onClick = event.getStreamFor(this, "click", FusionTablesMouseEvent.cast);
+  }
+
+  Stream<FusionTablesMouseEvent> get onClick => _onClick;
 
   GMap get map => GMap.cast($unsafe.getMap());
   set map(GMap map) => $unsafe.setMap(map);
   set options(FusionTablesLayerOptions options) => $unsafe.setOptions(options);
 
-  FusionTablesLayerEvents get on => new FusionTablesLayerEvents._(this);
+  /// deprecated : use onXxx stream.
+  @deprecated FusionTablesLayerEvents get on => new FusionTablesLayerEvents._(this);
 }
 
+@deprecated
 class FusionTablesLayerEvents {
   static final CLICK = "click";
 

@@ -16,7 +16,7 @@ void main() {
 
     maxZoomService = js.retain(new MaxZoomService());
 
-    map.on.click.add(showMaxZoom);
+    map.onClick.listen(showMaxZoom);
   });
 }
 

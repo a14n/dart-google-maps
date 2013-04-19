@@ -24,7 +24,7 @@ void main() {
     poly.map = map;
 
     // Add a listener for the click event
-    map.on.click.add(addLatLng);
+    map.onClick.listen(addLatLng);
   });
 }
 

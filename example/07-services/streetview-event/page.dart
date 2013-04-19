@@ -18,13 +18,13 @@ void main() {
     final panorama = new StreetViewPanorama(query('#pano'), panoramaOptions);
 
     js.retain(panorama);
-    panorama.on.panoChanged.add(() {
+    panorama.onPanoChanged.listen((_) {
       final panoCell = query('#pano_cell');
       panoCell.innerHtml = panorama.pano;
     });
 
     js.retain(panorama);
-    panorama.on.linksChanged.add(() {
+    panorama.onLinksChanged.listen((_) {
       final linksTable = query('#links_table');
       linksTable.children.clear();
       final links =  panorama.links;
@@ -41,13 +41,13 @@ void main() {
     });
 
     js.retain(panorama);
-    panorama.on.positionChanged.add(() {
+    panorama.onPositionChanged.listen((_) {
       final positionCell = query('#position_cell');
       positionCell.innerHtml = '${panorama.position}';
     });
 
     js.retain(panorama);
-    panorama.on.povChanged.add(() {
+    panorama.onPovChanged.listen((_) {
       final headingCell = query('#heading_cell');
       final pitchCell = query('#pitch_cell');
       headingCell.innerHtml = '${panorama.pov.heading}';

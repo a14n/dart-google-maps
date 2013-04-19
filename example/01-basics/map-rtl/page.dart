@@ -20,7 +20,7 @@ void main() {
     infowindow.content = '<b>القاهرة</b>';
 
     [infowindow, map, marker].forEach(js.retain);
-    marker.on.click.add((e) {
+    marker.onClick.listen((e) {
       infowindow.open(map, marker);
     });
   });

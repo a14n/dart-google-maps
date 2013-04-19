@@ -28,8 +28,79 @@ class Marker extends MVCObject {
     }
   }
 
-  Marker([MarkerOptions opts]) : super(maps.Marker, [opts]);
-  Marker.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+  Stream _onAnimationChanged;
+  Stream<MouseEvent> _onClick;
+  Stream _onClickableChanged;
+  Stream _onCursorChanged;
+  Stream<MouseEvent> _onDblClick;
+  Stream<MouseEvent> _onDrag;
+  Stream<MouseEvent> _onDragend;
+  Stream _onDraggableChanged;
+  Stream<MouseEvent> _onDragstart;
+  Stream _onFlatChanged;
+  Stream _onIconChanged;
+  Stream<MouseEvent> _onMousedown;
+  Stream<MouseEvent> _onMouseout;
+  Stream<MouseEvent> _onMouseover;
+  Stream<MouseEvent> _onMouseup;
+  Stream _onPositionChanged;
+  Stream<MouseEvent> _onRightclick;
+  Stream _onShadowChanged;
+  Stream _onShapeChanged;
+  Stream _onTitleChanged;
+  Stream _onVisibleChanged;
+  Stream _onZindexChanged;
+
+  Marker([MarkerOptions opts]) : super(maps.Marker, [opts]) { _initStreams(); }
+  Marker.fromProxy(js.Proxy proxy) : super.fromProxy(proxy) { _initStreams(); }
+
+  void _initStreams() {
+    _onAnimationChanged = event.getStreamFor(this, "animation_changed");
+    _onClick = event.getStreamFor(this, "click", MouseEvent.cast);
+    _onClickableChanged = event.getStreamFor(this, "clickable_changed");
+    _onCursorChanged = event.getStreamFor(this, "cursor_changed");
+    _onDblClick = event.getStreamFor(this, "dblclick", MouseEvent.cast);
+    _onDrag = event.getStreamFor(this, "drag", MouseEvent.cast);
+    _onDragend = event.getStreamFor(this, "dragend", MouseEvent.cast);
+    _onDraggableChanged = event.getStreamFor(this, "draggable_changed");
+    _onDragstart = event.getStreamFor(this, "dragstart", MouseEvent.cast);
+    _onFlatChanged = event.getStreamFor(this, "flat_changed");
+    _onIconChanged = event.getStreamFor(this, "icon_changed");
+    _onMousedown = event.getStreamFor(this, "mousedown", MouseEvent.cast);
+    _onMouseout = event.getStreamFor(this, "mouseout", MouseEvent.cast);
+    _onMouseover = event.getStreamFor(this, "mouseover", MouseEvent.cast);
+    _onMouseup = event.getStreamFor(this, "mouseup", MouseEvent.cast);
+    _onPositionChanged = event.getStreamFor(this, "position_changed");
+    _onRightclick = event.getStreamFor(this, "rightclick", MouseEvent.cast);
+    _onShadowChanged = event.getStreamFor(this, "shadow_changed");
+    _onShapeChanged = event.getStreamFor(this, "shape_changed");
+    _onTitleChanged = event.getStreamFor(this, "title_changed");
+    _onVisibleChanged = event.getStreamFor(this, "visible_changed");
+    _onZindexChanged = event.getStreamFor(this, "zindex_changed");
+  }
+
+  Stream get onAnimationChanged => _onAnimationChanged;
+  Stream<MouseEvent> get onClick => _onClick;
+  Stream get onClickableChanged => _onClickableChanged;
+  Stream get onCursorChanged => _onCursorChanged;
+  Stream<MouseEvent> get onDblClick => _onDblClick;
+  Stream<MouseEvent> get onDrag => _onDrag;
+  Stream<MouseEvent> get onDragend => _onDragend;
+  Stream get onDraggableChanged => _onDraggableChanged;
+  Stream<MouseEvent> get onDragstart => _onDragstart;
+  Stream get onFlatChanged => _onFlatChanged;
+  Stream get onIconChanged => _onIconChanged;
+  Stream<MouseEvent> get onMousedown => _onMousedown;
+  Stream<MouseEvent> get onMouseout => _onMouseout;
+  Stream<MouseEvent> get onMouseover => _onMouseover;
+  Stream<MouseEvent> get onMouseup => _onMouseup;
+  Stream get onPositionChanged => _onPositionChanged;
+  Stream<MouseEvent> get onRightclick => _onRightclick;
+  Stream get onShadowChanged => _onShadowChanged;
+  Stream get onShapeChanged => _onShapeChanged;
+  Stream get onTitleChanged => _onTitleChanged;
+  Stream get onVisibleChanged => _onVisibleChanged;
+  Stream get onZindexChanged => _onZindexChanged;
 
   Animation get animation => Animation.find($unsafe.getAnimation());
   bool get clickable => $unsafe.getClickable();
@@ -92,9 +163,11 @@ class Marker extends MVCObject {
   set visible(bool visible) => $unsafe.setVisible(visible);
   set zIndex(num zIndex) => $unsafe.setZIndex(zIndex);
 
-  MarkerEvents get on => new MarkerEvents._(this);
+  /// deprecated : use onXxx stream.
+  @deprecated MarkerEvents get on => new MarkerEvents._(this);
 }
 
+@deprecated
 class MarkerEvents {
   static final ANIMATION_CHANGED = "animation_changed";
   static final CLICK = "click";

@@ -17,8 +17,31 @@ part of google_maps_drawing;
 class DrawingManager extends MVCObject {
   static DrawingManager cast(js.Proxy proxy) => proxy == null ? null : new DrawingManager.fromProxy(proxy);
 
-  DrawingManager([DrawingManagerOptions opts]) : super(maps.drawing.DrawingManager, [opts]);
-  DrawingManager.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+  Stream<Circle> _onCirclecomplete;
+  Stream<Marker> _onMarkercomplete;
+  Stream<OverlayCompleteEvent> _onOverlaycomplete;
+  Stream<Polygon> _onPolygoncomplete;
+  Stream<Polyline> _onPolylinecomplete;
+  Stream<Rectangle> _onRectanglecomplete;
+
+  DrawingManager([DrawingManagerOptions opts]) : super(maps.drawing.DrawingManager, [opts]) { _initStreams(); }
+  DrawingManager.fromProxy(js.Proxy proxy) : super.fromProxy(proxy) { _initStreams(); }
+
+  void _initStreams() {
+    _onCirclecomplete = event.getStreamFor(this, "circlecomplete", Circle.cast);
+    _onMarkercomplete = event.getStreamFor(this, "markercomplete", Marker.cast);
+    _onOverlaycomplete = event.getStreamFor(this, "overlaycomplete", OverlayCompleteEvent.cast);
+    _onPolygoncomplete = event.getStreamFor(this, "polygoncomplete", Polygon.cast);
+    _onPolylinecomplete = event.getStreamFor(this, "polylinecomplete", Polyline.cast);
+    _onRectanglecomplete = event.getStreamFor(this, "rectanglecomplete", Rectangle.cast);
+  }
+
+  Stream<Circle> get onCirclecomplete => _onCirclecomplete;
+  Stream<Marker> get onMarkercomplete => _onMarkercomplete;
+  Stream<OverlayCompleteEvent> get onOverlaycomplete => _onOverlaycomplete;
+  Stream<Polygon> get onPolygoncomplete => _onPolygoncomplete;
+  Stream<Polyline> get onPolylinecomplete => _onPolylinecomplete;
+  Stream<Rectangle> get onRectanglecomplete => _onRectanglecomplete;
 
   OverlayType get drawingMode => OverlayType.find($unsafe.getDrawingMode());
   GMap get map => GMap.cast($unsafe.getMap());
@@ -26,9 +49,11 @@ class DrawingManager extends MVCObject {
   set map(GMap map) => $unsafe.setMap(map);
   set options(DrawingManagerOptions options) => $unsafe.setOptions(options);
 
-  DrawingManagerEvents get on => new DrawingManagerEvents._(this);
+  /// deprecated : use onXxx stream.
+  @deprecated DrawingManagerEvents get on => new DrawingManagerEvents._(this);
 }
 
+@deprecated
 class DrawingManagerEvents {
   static final CIRCLECOMPLETE = "circlecomplete";
   static final MARKERCOMPLETE = "markercomplete";

@@ -18,8 +18,37 @@ class StreetViewPanorama extends MVCObject {
   static StreetViewPanorama cast(js.Proxy proxy) => proxy == null ? null : new StreetViewPanorama.fromProxy(proxy);
   static bool isInstance(js.Proxy proxy) => js.instanceof(proxy, maps.StreetViewPanorama);
 
-  StreetViewPanorama(html.Node container, [StreetViewPanoramaOptions opts]) : super(maps.StreetViewPanorama, [container, opts]);
-  StreetViewPanorama.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+  Stream<NativeEvent> _onCloseclick;
+  Stream _onLinksChanged;
+  Stream _onPanoChanged;
+  Stream _onPositionChanged;
+  Stream _onPovChanged;
+  Stream _onResize;
+  Stream _onVisibleChanged;
+  Stream _onZoomChanged;
+
+  StreetViewPanorama(html.Node container, [StreetViewPanoramaOptions opts]) : super(maps.StreetViewPanorama, [container, opts]) { _initStreams(); }
+  StreetViewPanorama.fromProxy(js.Proxy proxy) : super.fromProxy(proxy) { _initStreams(); }
+
+  void _initStreams() {
+    _onCloseclick = event.getStreamFor(this, "closeclick", NativeEvent.cast);
+    _onLinksChanged = event.getStreamFor(this, "links_changed");
+    _onPanoChanged = event.getStreamFor(this, "pano_changed");
+    _onPositionChanged = event.getStreamFor(this, "position_changed");
+    _onPovChanged = event.getStreamFor(this, "pov_changed");
+    _onResize = event.getStreamFor(this, "resize");
+    _onVisibleChanged = event.getStreamFor(this, "visible_changed");
+    _onZoomChanged = event.getStreamFor(this, "zoom_changed");
+  }
+
+  Stream<NativeEvent> get onCloseclick => _onCloseclick;
+  Stream get onLinksChanged => _onLinksChanged;
+  Stream get onPanoChanged => _onPanoChanged;
+  Stream get onPositionChanged => _onPositionChanged;
+  Stream get onPovChanged => _onPovChanged;
+  Stream get onResize => _onResize;
+  Stream get onVisibleChanged => _onVisibleChanged;
+  Stream get onZoomChanged => _onZoomChanged;
 
   List<StreetViewLink> get links => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.getLinks(), StreetViewLink.cast);
   String get pano => $unsafe.getPano();
@@ -40,9 +69,11 @@ class StreetViewPanorama extends MVCObject {
   Controls get controls => Controls.cast($unsafe.controls);
   set controls(Controls controls) => $unsafe.controls = controls;
 
-  StreetViewPanoramaEvents get on => new StreetViewPanoramaEvents._(this);
+  /// deprecated : use onXxx stream.
+  @deprecated StreetViewPanoramaEvents get on => new StreetViewPanoramaEvents._(this);
 }
 
+@deprecated
 class StreetViewPanoramaEvents {
   static final CLOSECLICK = "closeclick";
   static final LINKS_CHANGED = "links_changed";

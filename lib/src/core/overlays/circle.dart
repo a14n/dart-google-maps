@@ -18,8 +18,43 @@ class Circle extends MVCObject {
   static Circle cast(js.Proxy proxy) => proxy == null ? null : new Circle.fromProxy(proxy);
   static bool isInstance(js.Proxy proxy) => js.instanceof(proxy, maps.Circle);
 
-  Circle([CircleOptions opts]) : super(maps.Circle, [opts]);
-  Circle.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+  Stream _onCenterChanged;
+  Stream<MouseEvent> _onClick;
+  Stream<MouseEvent> _onDblClick;
+  Stream<MouseEvent> _onMousedown;
+  Stream<MouseEvent> _onMousemove;
+  Stream<MouseEvent> _onMouseout;
+  Stream<MouseEvent> _onMouseover;
+  Stream<MouseEvent> _onMouseup;
+  Stream _onRadiusChanged;
+  Stream<MouseEvent> _onRightclick;
+
+  Circle([CircleOptions opts]) : super(maps.Circle, [opts]) { _initStreams(); }
+  Circle.fromProxy(js.Proxy proxy) : super.fromProxy(proxy) { _initStreams(); }
+
+  void _initStreams() {
+    _onCenterChanged = event.getStreamFor(this, "center_changed");
+    _onClick = event.getStreamFor(this, "click", MouseEvent.cast);
+    _onDblClick = event.getStreamFor(this, "dblclick", MouseEvent.cast);
+    _onMousedown = event.getStreamFor(this, "mousedown", MouseEvent.cast);
+    _onMousemove = event.getStreamFor(this, "mousemove", MouseEvent.cast);
+    _onMouseout = event.getStreamFor(this, "mouseout", MouseEvent.cast);
+    _onMouseover = event.getStreamFor(this, "mouseover", MouseEvent.cast);
+    _onMouseup = event.getStreamFor(this, "mouseup", MouseEvent.cast);
+    _onRadiusChanged = event.getStreamFor(this, "radius_changed");
+    _onRightclick = event.getStreamFor(this, "rightclick", MouseEvent.cast);
+  }
+
+  Stream get onCenterChanged => _onCenterChanged;
+  Stream<MouseEvent> get onClick => _onClick;
+  Stream<MouseEvent> get onDblClick => _onDblClick;
+  Stream<MouseEvent> get onMousedown => _onMousedown;
+  Stream<MouseEvent> get onMousemove => _onMousemove;
+  Stream<MouseEvent> get onMouseout => _onMouseout;
+  Stream<MouseEvent> get onMouseover => _onMouseover;
+  Stream<MouseEvent> get onMouseup => _onMouseup;
+  Stream get onRadiusChanged => _onRadiusChanged;
+  Stream<MouseEvent> get onRightclick => _onRightclick;
 
   LatLngBounds get bounds => LatLngBounds.cast($unsafe.getBounds());
   LatLng get center => LatLng.cast($unsafe.getCenter());
@@ -36,9 +71,11 @@ class Circle extends MVCObject {
   set radius(num radius) => $unsafe.setRadius(radius);
   set visible(bool visible) => $unsafe.setVisible(visible);
 
-  CircleEvents get on => new CircleEvents._(this);
+  /// deprecated : use onXxx stream.
+  @deprecated CircleEvents get on => new CircleEvents._(this);
 }
 
+@deprecated
 class CircleEvents {
   static final CENTER_CHANGED = "center_changed";
   static final CLICK = "click";

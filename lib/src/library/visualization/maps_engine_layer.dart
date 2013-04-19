@@ -17,8 +17,22 @@ part of google_maps_visualization;
 class MapsEngineLayer extends MVCObject {
   static MapsEngineLayer cast(js.Proxy proxy) => proxy == null ? null : new MapsEngineLayer.fromProxy(proxy);
 
-  MapsEngineLayer(MapsEngineLayerOptions opts) : super(maps.visualization.MapsEngineLayer, [opts]);
-  MapsEngineLayer.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+  Stream<MapsEngineMouseEvent> _onClick;
+  Stream _onPropertiesChanged;
+  Stream _onStatusChanged;
+
+  MapsEngineLayer(MapsEngineLayerOptions opts) : super(maps.visualization.MapsEngineLayer, [opts]) { _initStreams(); }
+  MapsEngineLayer.fromProxy(js.Proxy proxy) : super.fromProxy(proxy) { _initStreams(); }
+
+  void _initStreams() {
+    _onClick = event.getStreamFor(this, "click", MapsEngineMouseEvent.cast);
+    _onPropertiesChanged = event.getStreamFor(this, "properties_changed");
+    _onStatusChanged = event.getStreamFor(this, "status_changed");
+  }
+
+  Stream<MapsEngineMouseEvent> get onClick => _onClick;
+  Stream get onPropertiesChanged => _onPropertiesChanged;
+  Stream get onStatusChanged => _onStatusChanged;
 
   String get layerId => $unsafe.getLayerId();
   String get layerKey => $unsafe.getLayerKey();
@@ -32,9 +46,11 @@ class MapsEngineLayer extends MVCObject {
   set mapId(String mapId) => $unsafe.setMapId(mapId);
   set options(MapsEngineLayerOptions options) => $unsafe.setOptions(options);
 
-  MapsEngineLayerEvents get on => new MapsEngineLayerEvents._(this);
+  /// deprecated : use onXxx stream.
+  @deprecated MapsEngineLayerEvents get on => new MapsEngineLayerEvents._(this);
 }
 
+@deprecated
 class MapsEngineLayerEvents {
   static final CLICK = "click";
   static final PROPERTIES_CHANGED = "properties_changed";
@@ -44,7 +60,7 @@ class MapsEngineLayerEvents {
 
   MapsEngineLayerEvents._(this._mapsEngineLayer);
 
-  MapsEngineMouseEventListenerAdder get placeChanged => new MapsEngineMouseEventListenerAdder(_mapsEngineLayer, CLICK);
+  MapsEngineMouseEventListenerAdder get click => new MapsEngineMouseEventListenerAdder(_mapsEngineLayer, CLICK);
   NoArgsEventListenerAdder get propertiesChanged => new NoArgsEventListenerAdder(_mapsEngineLayer, PROPERTIES_CHANGED);
   NoArgsEventListenerAdder get statusChanged => new NoArgsEventListenerAdder(_mapsEngineLayer, STATUS_CHANGED);
 }

@@ -23,7 +23,7 @@ void main() {
     );
 
     [map, marker, infowindow, autocomplete].forEach(js.retain);
-    autocomplete.on.placeChanged.add(() {
+    autocomplete.onPlaceChanged.listen((_) {
       infowindow.close();
       final place = autocomplete.place;
 

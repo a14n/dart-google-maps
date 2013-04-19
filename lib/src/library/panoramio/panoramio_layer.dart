@@ -17,8 +17,16 @@ part of google_maps_panoramio;
 class PanoramioLayer extends MVCObject {
   static PanoramioLayer cast(js.Proxy proxy) => proxy == null ? null : new PanoramioLayer.fromProxy(proxy);
 
-  PanoramioLayer([PanoramioLayerOptions opts]) : super(maps.panoramio.PanoramioLayer, [opts]);
-  PanoramioLayer.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+  Stream<PanoramioMouseEvent> _onClick;
+
+  PanoramioLayer([PanoramioLayerOptions opts]) : super(maps.panoramio.PanoramioLayer, [opts]) { _initStreams(); }
+  PanoramioLayer.fromProxy(js.Proxy proxy) : super.fromProxy(proxy) { _initStreams(); }
+
+  void _initStreams() {
+    _onClick = event.getStreamFor(this, "click", PanoramioMouseEvent.cast);
+  }
+
+  Stream<PanoramioMouseEvent> get onClick => _onClick;
 
   GMap get map => GMap.cast($unsafe.getMap());
   String get tag => $unsafe.getTag();
@@ -28,9 +36,11 @@ class PanoramioLayer extends MVCObject {
   set tag(String tag) => $unsafe.setTag(tag);
   set userId(String userId) => $unsafe.setUserId(userId);
 
-  PanoramioLayerEvents get on => new PanoramioLayerEvents._(this);
+  /// deprecated : use onXxx stream.
+  @deprecated PanoramioLayerEvents get on => new PanoramioLayerEvents._(this);
 }
 
+@deprecated
 class PanoramioLayerEvents {
   static final CLICK = "click";
 

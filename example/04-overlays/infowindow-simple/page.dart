@@ -43,7 +43,7 @@ void main() {
       ..title = 'Uluru (Ayers Rock)'
     );
     [infowindow, map, marker].forEach(js.retain);
-    marker.on.click.add((e) {
+    marker.onClick.listen((e) {
       infowindow.open(map, marker);
     });
   });

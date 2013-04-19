@@ -47,7 +47,7 @@ void attachSecretMessage(Marker marker, num number) {
     ..content = message[number]
   );
   [infowindow, marker.map, marker].forEach(js.retain);
-  marker.on.click.add((e) {
+  marker.onClick.listen((e) {
     infowindow.open(marker.map, marker);
   });
 }

@@ -18,8 +18,40 @@ class Rectangle extends MVCObject {
   static Rectangle cast(js.Proxy proxy) => proxy == null ? null : new Rectangle.fromProxy(proxy);
   static bool isInstance(js.Proxy proxy) => js.instanceof(proxy, maps.Rectangle);
 
-  Rectangle([RectangleOptions opts]) : super(maps.Rectangle, [opts]);
-  Rectangle.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+  Stream _onBoundsChanged;
+  Stream<MouseEvent> _onClick;
+  Stream<MouseEvent> _onDblClick;
+  Stream<MouseEvent> _onMousedown;
+  Stream<MouseEvent> _onMousemove;
+  Stream<MouseEvent> _onMouseout;
+  Stream<MouseEvent> _onMouseover;
+  Stream<MouseEvent> _onMouseup;
+  Stream<MouseEvent> _onRightclick;
+
+  Rectangle([RectangleOptions opts]) : super(maps.Rectangle, [opts]) { _initStreams(); }
+  Rectangle.fromProxy(js.Proxy proxy) : super.fromProxy(proxy) { _initStreams(); }
+
+  void _initStreams() {
+    _onBoundsChanged = event.getStreamFor(this, "bounds_changed");
+    _onClick = event.getStreamFor(this, "click", MouseEvent.cast);
+    _onDblClick = event.getStreamFor(this, "dblclick", MouseEvent.cast);
+    _onMousedown = event.getStreamFor(this, "mousedown", MouseEvent.cast);
+    _onMousemove = event.getStreamFor(this, "mousemove", MouseEvent.cast);
+    _onMouseout = event.getStreamFor(this, "mouseout", MouseEvent.cast);
+    _onMouseover = event.getStreamFor(this, "mouseover", MouseEvent.cast);
+    _onMouseup = event.getStreamFor(this, "mouseup", MouseEvent.cast);
+    _onRightclick = event.getStreamFor(this, "rightclick", MouseEvent.cast);
+  }
+
+  Stream get onBoundsChanged => _onBoundsChanged;
+  Stream<MouseEvent> get onClick => _onClick;
+  Stream<MouseEvent> get onDblClick => _onDblClick;
+  Stream<MouseEvent> get onMousedown => _onMousedown;
+  Stream<MouseEvent> get onMousemove => _onMousemove;
+  Stream<MouseEvent> get onMouseout => _onMouseout;
+  Stream<MouseEvent> get onMouseover => _onMouseover;
+  Stream<MouseEvent> get onMouseup => _onMouseup;
+  Stream<MouseEvent> get onRightclick => _onRightclick;
 
   LatLngBounds get bounds => LatLngBounds.cast($unsafe.getBounds());
   bool get draggable => $unsafe.getDraggable();
@@ -33,9 +65,11 @@ class Rectangle extends MVCObject {
   set options(RectangleOptions options) => $unsafe.setOptions(options);
   set visible(bool visible) => $unsafe.setVisible(visible);
 
-  RectangleEvents get on => new RectangleEvents._(this);
+  /// deprecated : use onXxx stream.
+  @deprecated RectangleEvents get on => new RectangleEvents._(this);
 }
 
+@deprecated
 class RectangleEvents {
   static final BOUNDS_CHANGED = "bounds_changed";
   static final CLICK = "click";

@@ -130,7 +130,7 @@ void main() {
       );
     }
 
-    gallPetersMap.on.click.add((e) {
+    gallPetersMap.onClick.listen((e) {
       window.alert('Point.X.Y: ${e.latLng}');
     });
   });

@@ -37,8 +37,8 @@ void main() {
     final bounds = new LatLngBounds(marker1.position, marker2.position);
     map.fitBounds(bounds);
 
-    marker1.on.positionChanged.add(() => update());
-    marker2.on.positionChanged.add(() => update());
+    marker1.onPositionChanged.listen((_) => update());
+    marker2.onPositionChanged.listen((_) => update());
 
     final polyOptions = new PolylineOptions()
       ..strokeColor = '#FF0000'
