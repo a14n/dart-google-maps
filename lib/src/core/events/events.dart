@@ -19,7 +19,7 @@ class _Undefined {
   const _Undefined();
 }
 
-GEvent get event => new GEvent();
+final GEvent event = js.retain(new GEvent());
 
 @deprecated class Events {
   static MapsEventListener addDomListener(Object instance, String eventName, Function handler, [bool capture]) => event.addDomListener(instance, eventName, handler, capture);
