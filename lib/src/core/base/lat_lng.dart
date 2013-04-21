@@ -24,6 +24,6 @@ class LatLng extends jsw.TypedProxy {
   bool equals(LatLng other) => $unsafe.equals(other);
   num get lat => $unsafe.lat();
   num get lng => $unsafe.lng();
-  String toString() => $unsafe["toString"].apply($unsafe, js.array([]));
+  String toString() => $unsafe.toString();
   String toUrlValue([num precision]) => $unsafe.toUrlValue(precision);
 }

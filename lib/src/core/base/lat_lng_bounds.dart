@@ -29,7 +29,7 @@ class LatLngBounds extends jsw.TypedProxy {
   bool intersects(LatLngBounds other) => $unsafe.intersects(other);
   bool isEmpty() => $unsafe.isEmpty();
   LatLng toSpan() => LatLng.cast($unsafe.toSpan());
-  String toString() => $unsafe["toString"].apply($unsafe, js.array([]));
+  String toString() => $unsafe.toString();
   String toUrlValue([num precision]) => $unsafe.toUrlValue(precision);
   bool union(LatLngBounds other) => $unsafe.union(other);
 }
