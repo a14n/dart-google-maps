@@ -20,14 +20,14 @@ class StreetViewPanoramaData extends jsw.TypedProxy {
   StreetViewPanoramaData() : super();
   StreetViewPanoramaData.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  String get copyright => $unsafe.copyright;
-  String get imageDate => $unsafe.imageDate;
-  List<StreetViewLink> get links => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.links, StreetViewLink.cast);
-  StreetViewLocation get location => StreetViewLocation.cast($unsafe.location);
-  StreetViewTileData get tiles => StreetViewTileData.cast($unsafe.tiles);
-  set copyright(String copyright) => $unsafe.copyright = copyright;
-  set imageDate(String imageDate) => $unsafe.imageDate = imageDate;
-  set links(List<StreetViewLink> links) => $unsafe.links = jsifyList(links);
-  set location(StreetViewLocation location) => $unsafe.location = location;
-  set tiles(StreetViewTileData tiles) => $unsafe.tiles = tiles;
+  String get copyright => $unsafe['copyright'];
+  String get imageDate => $unsafe['imageDate'];
+  List<StreetViewLink> get links => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe['links'], StreetViewLink.cast);
+  StreetViewLocation get location => StreetViewLocation.cast($unsafe['location']);
+  StreetViewTileData get tiles => StreetViewTileData.cast($unsafe['tiles']);
+  set copyright(String copyright) => $unsafe['copyright'] = copyright;
+  set imageDate(String imageDate) => $unsafe['imageDate'] = imageDate;
+  set links(List<StreetViewLink> links) => $unsafe['links'] = jsifyList(links);
+  set location(StreetViewLocation location) => $unsafe['location'] = location;
+  set tiles(StreetViewTileData tiles) => $unsafe['tiles'] = tiles;
 }

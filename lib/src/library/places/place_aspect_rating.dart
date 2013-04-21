@@ -20,8 +20,8 @@ class PlaceAspectRating extends jsw.TypedProxy {
   PlaceAspectRating() : super();
   PlaceAspectRating.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  num get rating => $unsafe.rating;
-  String get type => $unsafe.type;
-  set rating(num rating) => $unsafe.rating = rating;
-  set type(String type) => $unsafe.type = type;
+  num get rating => $unsafe['rating'];
+  String get type => $unsafe['type'];
+  set rating(num rating) => $unsafe['rating'] = rating;
+  set type(String type) => $unsafe['type'] = type;
 }

@@ -20,14 +20,14 @@ class PanoramioLayerOptions extends jsw.TypedProxy {
   PanoramioLayerOptions() : super();
   PanoramioLayerOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  bool get clickable => $unsafe.clickable;
-  GMap get map => GMap.cast($unsafe.map);
-  bool get suppressInfoWindows => $unsafe.suppressInfoWindows;
-  String get tag => $unsafe.tag;
-  String get userId => $unsafe.userId;
-  set clickable(bool clickable) => $unsafe.clickable = clickable;
-  set map(GMap map) => $unsafe.map = map;
-  set suppressInfoWindows(bool suppressInfoWindows) => $unsafe.suppressInfoWindows = suppressInfoWindows;
-  set tag(String tag) => $unsafe.tag = tag;
-  set userId(String userId) => $unsafe.userId = userId;
+  bool get clickable => $unsafe['clickable'];
+  GMap get map => GMap.cast($unsafe['map']);
+  bool get suppressInfoWindows => $unsafe['suppressInfoWindows'];
+  String get tag => $unsafe['tag'];
+  String get userId => $unsafe['userId'];
+  set clickable(bool clickable) => $unsafe['clickable'] = clickable;
+  set map(GMap map) => $unsafe['map'] = map;
+  set suppressInfoWindows(bool suppressInfoWindows) => $unsafe['suppressInfoWindows'] = suppressInfoWindows;
+  set tag(String tag) => $unsafe['tag'] = tag;
+  set userId(String userId) => $unsafe['userId'] = userId;
 }

@@ -23,18 +23,18 @@ class MapType extends jsw.TypedProxy {
   html.Node getTile(Point tileCoord, num zoom, html.Document ownerDocument) => $unsafe.getTile(tileCoord, zoom, ownerDocument);
   html.Node releaseTile(html.Node tile) => $unsafe.releaseTile(tile);
 
-  String get alt => $unsafe.alt;
-  num get maxZoom => $unsafe.maxZoom;
-  num get minZoom => $unsafe.minZoom;
-  String get name => $unsafe.name;
-  Projection get projection => Projection.cast($unsafe.projection);
-  num get radius => $unsafe.radius;
-  Size get tileSize => Size.cast($unsafe.tileSize);
-  set alt(String alt) => $unsafe.alt = alt;
-  set maxZoom(num maxZoom) => $unsafe.maxZoom = maxZoom;
-  set minZoom(num minZoom) => $unsafe.minZoom = minZoom;
-  set name(String name) => $unsafe.name = name;
-  set projection(Projection projection) => $unsafe.projection = projection;
-  set radius(num radius) => $unsafe.radius = radius;
-  set tileSize(Size tileSize) => $unsafe.tileSize = tileSize;
+  String get alt => $unsafe['alt'];
+  num get maxZoom => $unsafe['maxZoom'];
+  num get minZoom => $unsafe['minZoom'];
+  String get name => $unsafe['name'];
+  Projection get projection => Projection.cast($unsafe['projection']);
+  num get radius => $unsafe['radius'];
+  Size get tileSize => Size.cast($unsafe['tileSize']);
+  set alt(String alt) => $unsafe['alt'] = alt;
+  set maxZoom(num maxZoom) => $unsafe['maxZoom'] = maxZoom;
+  set minZoom(num minZoom) => $unsafe['minZoom'] = minZoom;
+  set name(String name) => $unsafe['name'] = name;
+  set projection(Projection projection) => $unsafe['projection'] = projection;
+  set radius(num radius) => $unsafe['radius'] = radius;
+  set tileSize(Size tileSize) => $unsafe['tileSize'] = tileSize;
 }

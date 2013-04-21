@@ -20,16 +20,16 @@ class InfoWindowOptions extends jsw.TypedProxy {
   InfoWindowOptions() : super();
   InfoWindowOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  dynamic/*string|Node*/ get content => $unsafe.content;
-  bool get disableAutoPan => $unsafe.disableAutoPan;
-  num get maxWidth => $unsafe.maxWidth;
-  Size get pixelOffset => Size.cast($unsafe.pixelOffset);
-  LatLng get position => LatLng.cast($unsafe.position);
-  num get zIndex => $unsafe.zIndex;
-  set content(dynamic/*string|Node*/ content) => $unsafe.content = content;
-  set disableAutoPan(bool disableAutoPan) => $unsafe.disableAutoPan = disableAutoPan;
-  set maxWidth(num maxWidth) => $unsafe.maxWidth = maxWidth;
-  set pixelOffset(Size pixelOffset) => $unsafe.pixelOffset = pixelOffset;
-  set position(LatLng position) => $unsafe.position = position;
-  set zIndex(num zIndex) => $unsafe.zIndex = zIndex;
+  dynamic/*string|Node*/ get content => $unsafe['content'];
+  bool get disableAutoPan => $unsafe['disableAutoPan'];
+  num get maxWidth => $unsafe['maxWidth'];
+  Size get pixelOffset => Size.cast($unsafe['pixelOffset']);
+  LatLng get position => LatLng.cast($unsafe['position']);
+  num get zIndex => $unsafe['zIndex'];
+  set content(dynamic/*string|Node*/ content) => $unsafe['content'] = content;
+  set disableAutoPan(bool disableAutoPan) => $unsafe['disableAutoPan'] = disableAutoPan;
+  set maxWidth(num maxWidth) => $unsafe['maxWidth'] = maxWidth;
+  set pixelOffset(Size pixelOffset) => $unsafe['pixelOffset'] = pixelOffset;
+  set position(LatLng position) => $unsafe['position'] = position;
+  set zIndex(num zIndex) => $unsafe['zIndex'] = zIndex;
 }

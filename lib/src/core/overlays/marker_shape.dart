@@ -20,10 +20,10 @@ class MarkerShape extends jsw.TypedProxy {
   MarkerShape() : super();
   MarkerShape.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  List<num> get coords => jsw.JsArrayToListAdapter.cast($unsafe.coords);
-  MarkerShapeType get type => MarkerShapeType.find($unsafe.type);
-  set coords(List<num> coords) => $unsafe.coords = jsifyList(coords);
-  set type(MarkerShapeType type) => $unsafe.type = type;
+  List<num> get coords => jsw.JsArrayToListAdapter.cast($unsafe['coords']);
+  MarkerShapeType get type => MarkerShapeType.find($unsafe['type']);
+  set coords(List<num> coords) => $unsafe['coords'] = jsifyList(coords);
+  set type(MarkerShapeType type) => $unsafe['type'] = type;
 }
 
 class MarkerShapeType extends IsEnum<String> {

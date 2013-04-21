@@ -20,8 +20,8 @@ class TransitStop extends jsw.TypedProxy {
   TransitStop() : super();
   TransitStop.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  LatLng get location => LatLng.cast($unsafe.location);
-  String get name => $unsafe.name;
-  set location(LatLng location) => $unsafe.location = location;
-  set name(String name) => $unsafe.name = name;
+  LatLng get location => LatLng.cast($unsafe['location']);
+  String get name => $unsafe['name'];
+  set location(LatLng location) => $unsafe['location'] = location;
+  set name(String name) => $unsafe['name'] = name;
 }

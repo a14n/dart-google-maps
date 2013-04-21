@@ -20,16 +20,16 @@ class AutocompletePrediction extends jsw.TypedProxy {
   AutocompletePrediction() : super();
   AutocompletePrediction.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  String get description => $unsafe.description;
-  String get id => $unsafe.id;
-  List<PredictionSubstring> get matchedSubstrings => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.matched_substrings, PredictionSubstring.cast);
-  String get reference => $unsafe.reference;
-  List<PredictionTerm> get terms => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.terms, PredictionTerm.cast);
-  List<String> get types => jsw.JsArrayToListAdapter.cast($unsafe.types);
-  set description(String description) => $unsafe.description = description;
-  set id(String id) => $unsafe.id = id;
-  set matchedSubstrings(List<PredictionSubstring> matchedSubstrings) => $unsafe.matched_substrings = jsifyList(matchedSubstrings);
-  set reference(String reference) => $unsafe.reference = reference;
-  set terms(List<PredictionTerm> terms) => $unsafe.terms = jsifyList(terms);
-  set types(List<String> types) => $unsafe.types = jsifyList(types);
+  String get description => $unsafe['description'];
+  String get id => $unsafe['id'];
+  List<PredictionSubstring> get matchedSubstrings => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe['matched_substrings'], PredictionSubstring.cast);
+  String get reference => $unsafe['reference'];
+  List<PredictionTerm> get terms => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe['terms'], PredictionTerm.cast);
+  List<String> get types => jsw.JsArrayToListAdapter.cast($unsafe['types']);
+  set description(String description) => $unsafe['description'] = description;
+  set id(String id) => $unsafe['id'] = id;
+  set matchedSubstrings(List<PredictionSubstring> matchedSubstrings) => $unsafe['matched_substrings'] = jsifyList(matchedSubstrings);
+  set reference(String reference) => $unsafe['reference'] = reference;
+  set terms(List<PredictionTerm> terms) => $unsafe['terms'] = jsifyList(terms);
+  set types(List<String> types) => $unsafe['types'] = jsifyList(types);
 }

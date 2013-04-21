@@ -20,18 +20,18 @@ class AutocompletionRequest extends jsw.TypedProxy {
   AutocompletionRequest() : super();
   AutocompletionRequest.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  LatLngBounds get bounds => LatLngBounds.cast($unsafe.bounds);
-  ComponentRestrictions get componentRestrictions => ComponentRestrictions.cast($unsafe.componentRestrictions);
-  String get input => $unsafe.input;
-  LatLng get location => LatLng.cast($unsafe.location);
-  num get offset => $unsafe.offset;
-  num get radius => $unsafe.radius;
-  List<String> get types => jsw.JsArrayToListAdapter.cast($unsafe.types);
-  set bounds(LatLngBounds bounds) => $unsafe.bounds = bounds;
-  set componentRestrictions(ComponentRestrictions componentRestrictions) => $unsafe.componentRestrictions = componentRestrictions;
-  set input(String input) => $unsafe.input = input;
-  set location(LatLng location) => $unsafe.location = location;
-  set offset(num offset) => $unsafe.offset = offset;
-  set radius(num radius) => $unsafe.radius = radius;
-  set types(List<String> types) => $unsafe.types = jsifyList(types);
+  LatLngBounds get bounds => LatLngBounds.cast($unsafe['bounds']);
+  ComponentRestrictions get componentRestrictions => ComponentRestrictions.cast($unsafe['componentRestrictions']);
+  String get input => $unsafe['input'];
+  LatLng get location => LatLng.cast($unsafe['location']);
+  num get offset => $unsafe['offset'];
+  num get radius => $unsafe['radius'];
+  List<String> get types => jsw.JsArrayToListAdapter.cast($unsafe['types']);
+  set bounds(LatLngBounds bounds) => $unsafe['bounds'] = bounds;
+  set componentRestrictions(ComponentRestrictions componentRestrictions) => $unsafe['componentRestrictions'] = componentRestrictions;
+  set input(String input) => $unsafe['input'] = input;
+  set location(LatLng location) => $unsafe['location'] = location;
+  set offset(num offset) => $unsafe['offset'] = offset;
+  set radius(num radius) => $unsafe['radius'] = radius;
+  set types(List<String> types) => $unsafe['types'] = jsifyList(types);
 }

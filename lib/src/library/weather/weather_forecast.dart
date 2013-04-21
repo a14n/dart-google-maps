@@ -20,14 +20,14 @@ class WeatherForecast extends jsw.TypedProxy {
   WeatherForecast() : super();
   WeatherForecast.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  String get day => $unsafe.day;
-  String get description => $unsafe.description;
-  num get high => $unsafe.high;
-  num get low => $unsafe.low;
-  String get shortDay => $unsafe.shortDay;
-  set day(String day) => $unsafe.day = day;
-  set description(String description) => $unsafe.description = description;
-  set high(num high) => $unsafe.high = high;
-  set low(num low) => $unsafe.low = low;
-  set shortDay(String shortDay) => $unsafe.shortDay = shortDay;
+  String get day => $unsafe['day'];
+  String get description => $unsafe['description'];
+  num get high => $unsafe['high'];
+  num get low => $unsafe['low'];
+  String get shortDay => $unsafe['shortDay'];
+  set day(String day) => $unsafe['day'] = day;
+  set description(String description) => $unsafe['description'] = description;
+  set high(num high) => $unsafe['high'] = high;
+  set low(num low) => $unsafe['low'] = low;
+  set shortDay(String shortDay) => $unsafe['shortDay'] = shortDay;
 }

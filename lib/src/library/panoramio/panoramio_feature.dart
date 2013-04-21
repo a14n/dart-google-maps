@@ -20,9 +20,9 @@ class PanoramioFeature extends jsw.TypedProxy {
   PanoramioFeature() : super();
   PanoramioFeature.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  String get author => $unsafe.author;
-  String get photoId => $unsafe.photoId;
-  String get title => $unsafe.title;
-  String get url => $unsafe.url;
-  String get userId => $unsafe.userId;
+  String get author => $unsafe['author'];
+  String get photoId => $unsafe['photoId'];
+  String get title => $unsafe['title'];
+  String get url => $unsafe['url'];
+  String get userId => $unsafe['userId'];
 }

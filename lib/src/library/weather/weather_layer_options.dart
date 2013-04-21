@@ -20,16 +20,16 @@ class WeatherLayerOptions extends jsw.TypedProxy {
   WeatherLayerOptions() : super();
   WeatherLayerOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  bool get clickable => $unsafe.clickable;
-  LabelColor get labelColor => LabelColor.find($unsafe.labelColor);
-  GMap get map => GMap.cast($unsafe.map);
-  bool get suppressInfoWindows => $unsafe.suppressInfoWindows;
-  TemperatureUnit get temperatureUnits => TemperatureUnit.find($unsafe.temperatureUnits);
-  WindSpeedUnit get windSpeedUnits => WindSpeedUnit.find($unsafe.windSpeedUnits);
-  set clickable(bool clickable) => $unsafe.clickable = clickable;
-  set labelColor(LabelColor labelColor) => $unsafe.labelColor = labelColor;
-  set map(GMap map) => $unsafe.map = map;
-  set suppressInfoWindows(bool suppressInfoWindows) => $unsafe.suppressInfoWindows = suppressInfoWindows;
-  set temperatureUnits(TemperatureUnit temperatureUnits) => $unsafe.temperatureUnits = temperatureUnits;
-  set windSpeedUnits(WindSpeedUnit windSpeedUnits) => $unsafe.windSpeedUnits = windSpeedUnits;
+  bool get clickable => $unsafe['clickable'];
+  LabelColor get labelColor => LabelColor.find($unsafe['labelColor']);
+  GMap get map => GMap.cast($unsafe['map']);
+  bool get suppressInfoWindows => $unsafe['suppressInfoWindows'];
+  TemperatureUnit get temperatureUnits => TemperatureUnit.find($unsafe['temperatureUnits']);
+  WindSpeedUnit get windSpeedUnits => WindSpeedUnit.find($unsafe['windSpeedUnits']);
+  set clickable(bool clickable) => $unsafe['clickable'] = clickable;
+  set labelColor(LabelColor labelColor) => $unsafe['labelColor'] = labelColor;
+  set map(GMap map) => $unsafe['map'] = map;
+  set suppressInfoWindows(bool suppressInfoWindows) => $unsafe['suppressInfoWindows'] = suppressInfoWindows;
+  set temperatureUnits(TemperatureUnit temperatureUnits) => $unsafe['temperatureUnits'] = temperatureUnits;
+  set windSpeedUnits(WindSpeedUnit windSpeedUnits) => $unsafe['windSpeedUnits'] = windSpeedUnits;
 }

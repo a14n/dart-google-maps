@@ -20,12 +20,12 @@ class IconSequence extends jsw.TypedProxy {
   IconSequence() : super();
   IconSequence.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  bool get fixedRotation => $unsafe.fixedRotation;
-  GSymbol get icon => GSymbol.cast($unsafe.icon);
-  String get offset => $unsafe.offset;
-  String get repeat => $unsafe.repeat;
-  set fixedRotation(bool fixedRotation) => $unsafe.fixedRotation = fixedRotation;
-  set icon(GSymbol icon) => $unsafe.icon = icon;
-  set offset(String offset) => $unsafe.offset = offset;
-  set repeat(String repeat) => $unsafe.repeat = repeat;
+  bool get fixedRotation => $unsafe['fixedRotation'];
+  GSymbol get icon => GSymbol.cast($unsafe['icon']);
+  String get offset => $unsafe['offset'];
+  String get repeat => $unsafe['repeat'];
+  set fixedRotation(bool fixedRotation) => $unsafe['fixedRotation'] = fixedRotation;
+  set icon(GSymbol icon) => $unsafe['icon'] = icon;
+  set offset(String offset) => $unsafe['offset'] = offset;
+  set repeat(String repeat) => $unsafe['repeat'] = repeat;
 }

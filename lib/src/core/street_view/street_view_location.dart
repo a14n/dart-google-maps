@@ -20,10 +20,10 @@ class StreetViewLocation extends jsw.TypedProxy {
   StreetViewLocation() : super();
   StreetViewLocation.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  String get description => $unsafe.description;
-  LatLng get latLng => LatLng.cast($unsafe.latLng);
-  String get pano => $unsafe.pano;
-  set description(String description) => $unsafe.description = description;
-  set latLng(LatLng latLng) => $unsafe.latLng = latLng;
-  set pano(String pano) => $unsafe.pano = pano;
+  String get description => $unsafe['description'];
+  LatLng get latLng => LatLng.cast($unsafe['latLng']);
+  String get pano => $unsafe['pano'];
+  set description(String description) => $unsafe['description'] = description;
+  set latLng(LatLng latLng) => $unsafe['latLng'] = latLng;
+  set pano(String pano) => $unsafe['pano'] = pano;
 }

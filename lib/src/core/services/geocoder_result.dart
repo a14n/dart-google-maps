@@ -20,12 +20,12 @@ class GeocoderResult extends jsw.TypedProxy {
   GeocoderResult() : super();
   GeocoderResult.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  List<GeocoderAddressComponent> get addressComponents => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.address_components, GeocoderAddressComponent.cast);
-  String get formattedAddress => $unsafe.formatted_address;
-  GeocoderGeometry get geometry => GeocoderGeometry.cast($unsafe.geometry);
-  List<String> get types => jsw.JsArrayToListAdapter.cast($unsafe.types);
-  set addressComponents(List<GeocoderAddressComponent> addressComponents) => $unsafe.address_components = jsifyList(addressComponents);
-  set formattedAddress(String formattedAddress) => $unsafe.formatted_address = formattedAddress;
-  set geometry(GeocoderGeometry geometry) => $unsafe.geometry = geometry;
-  set types(List<String> types) => $unsafe.types = jsifyList(types);
+  List<GeocoderAddressComponent> get addressComponents => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe['address_components'], GeocoderAddressComponent.cast);
+  String get formattedAddress => $unsafe['formatted_address'];
+  GeocoderGeometry get geometry => GeocoderGeometry.cast($unsafe['geometry']);
+  List<String> get types => jsw.JsArrayToListAdapter.cast($unsafe['types']);
+  set addressComponents(List<GeocoderAddressComponent> addressComponents) => $unsafe['address_components'] = jsifyList(addressComponents);
+  set formattedAddress(String formattedAddress) => $unsafe['formatted_address'] = formattedAddress;
+  set geometry(GeocoderGeometry geometry) => $unsafe['geometry'] = geometry;
+  set types(List<String> types) => $unsafe['types'] = jsifyList(types);
 }

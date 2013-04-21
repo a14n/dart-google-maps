@@ -20,10 +20,10 @@ class KmlAuthor extends jsw.TypedProxy {
   KmlAuthor() : super();
   KmlAuthor.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  String get email => $unsafe.email;
-  String get name => $unsafe.name;
-  String get uri => $unsafe.uri;
-  set email(String email) => $unsafe.email = email;
-  set name(String name) => $unsafe.name = name;
-  set uri(String uri) => $unsafe.uri = uri;
+  String get email => $unsafe['email'];
+  String get name => $unsafe['name'];
+  String get uri => $unsafe['uri'];
+  set email(String email) => $unsafe['email'] = email;
+  set name(String name) => $unsafe['name'] = name;
+  set uri(String uri) => $unsafe['uri'] = uri;
 }

@@ -20,29 +20,29 @@ class GSymbol extends jsw.TypedProxy {
   GSymbol() : super();
   GSymbol.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  Point get anchor => Point.cast($unsafe.anchor);
-  String get fillColor => $unsafe.fillColor;
-  num get fillOpacity => $unsafe.fillOpacity;
+  Point get anchor => Point.cast($unsafe['anchor']);
+  String get fillColor => $unsafe['fillColor'];
+  num get fillOpacity => $unsafe['fillOpacity'];
   dynamic/*SymbolPath|string*/ get path {
-    final result = $unsafe.path;
+    final result = $unsafe['path'];
     if (result is js.Proxy) {
       return SymbolPath.find(result);
     } else {
       return result;
     }
   }
-  num get rotation => $unsafe.rotation;
-  num get scale => $unsafe.scale;
-  String get strokeColor => $unsafe.strokeColor;
-  num get strokeOpacity => $unsafe.strokeOpacity;
-  num get strokeWeight => $unsafe.strokeWeight;
-  set anchor(Point anchor) => $unsafe.anchor = anchor;
-  set fillColor(String fillColor) => $unsafe.fillColor = fillColor;
-  set fillOpacity(num fillOpacity) => $unsafe.fillOpacity = fillOpacity;
-  set path(dynamic/*SymbolPath|string*/ path) => $unsafe.path = path;
-  set rotation(num rotation) => $unsafe.rotation = rotation;
-  set scale(num scale) => $unsafe.scale = scale;
-  set strokeColor(String strokeColor) => $unsafe.strokeColor = strokeColor;
-  set strokeOpacity(num strokeOpacity) => $unsafe.strokeOpacity = strokeOpacity;
-  set strokeWeight(num strokeWeight) => $unsafe.strokeWeight = strokeWeight;
+  num get rotation => $unsafe['rotation'];
+  num get scale => $unsafe['scale'];
+  String get strokeColor => $unsafe['strokeColor'];
+  num get strokeOpacity => $unsafe['strokeOpacity'];
+  num get strokeWeight => $unsafe['strokeWeight'];
+  set anchor(Point anchor) => $unsafe['anchor'] = anchor;
+  set fillColor(String fillColor) => $unsafe['fillColor'] = fillColor;
+  set fillOpacity(num fillOpacity) => $unsafe['fillOpacity'] = fillOpacity;
+  set path(dynamic/*SymbolPath|string*/ path) => $unsafe['path'] = path;
+  set rotation(num rotation) => $unsafe['rotation'] = rotation;
+  set scale(num scale) => $unsafe['scale'] = scale;
+  set strokeColor(String strokeColor) => $unsafe['strokeColor'] = strokeColor;
+  set strokeOpacity(num strokeOpacity) => $unsafe['strokeOpacity'] = strokeOpacity;
+  set strokeWeight(num strokeWeight) => $unsafe['strokeWeight'] = strokeWeight;
 }

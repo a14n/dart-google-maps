@@ -20,8 +20,8 @@ class FusionTablesCell extends jsw.TypedProxy {
   FusionTablesCell() : super();
   FusionTablesCell.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  String get columnName => $unsafe.columnName;
-  String get value => $unsafe.value;
-  set columnName(String columnName) => $unsafe.columnName = columnName;
-  set value(String value) => $unsafe.value = value;
+  String get columnName => $unsafe['columnName'];
+  String get value => $unsafe['value'];
+  set columnName(String columnName) => $unsafe['columnName'] = columnName;
+  set value(String value) => $unsafe['value'] = value;
 }

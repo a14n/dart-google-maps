@@ -23,8 +23,8 @@ class Size extends jsw.TypedProxy {
   bool equals(Size other) => $unsafe.equals(other);
   String toString() => $unsafe["toString"].apply($unsafe, js.array([]));
 
-  num get height => $unsafe.height;
-  num get width => $unsafe.width;
-  set height(num height) => $unsafe.height = height;
-  set width(num width) => $unsafe.width = width;
+  num get height => $unsafe['height'];
+  num get width => $unsafe['width'];
+  set height(num height) => $unsafe['height'] = height;
+  set width(num width) => $unsafe['width'] = width;
 }

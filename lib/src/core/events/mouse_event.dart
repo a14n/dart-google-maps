@@ -20,5 +20,5 @@ class MouseEvent extends jsw.TypedProxy {
   MouseEvent() : super();
   MouseEvent.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  LatLng get latLng => LatLng.cast($unsafe.latLng);
+  LatLng get latLng => LatLng.cast($unsafe['latLng']);
 }

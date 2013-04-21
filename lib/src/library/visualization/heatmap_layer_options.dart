@@ -20,18 +20,18 @@ class HeatmapLayerOptions extends jsw.TypedProxy {
   HeatmapLayerOptions() : super();
   HeatmapLayerOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  MVCArray<LatLng> get data => MVCArray.castListOfSerializables($unsafe.data, LatLng.cast);
-  bool get dissipating => $unsafe.dissipating;
-  List<String> get gradient => jsw.JsArrayToListAdapter.cast($unsafe.gradient);
-  GMap get map => $unsafe.map;
-  num get maxIntensity => $unsafe.maxIntensity;
-  num get opacity => $unsafe.opacity;
-  num get radius => $unsafe.radius;
-  set data(MVCArray<LatLng> data) => $unsafe.data = data;
-  set dissipating(bool dissipating) => $unsafe.dissipating = dissipating;
-  set gradient(List<String> gradient) => $unsafe.gradient = jsifyList(gradient);
-  set map(GMap map) => $unsafe.map = map;
-  set maxIntensity(num maxIntensity) => $unsafe.maxIntensity = maxIntensity;
-  set opacity(num opacity) => $unsafe.opacity = opacity;
-  set radius(num radius) => $unsafe.radius = radius;
+  MVCArray<LatLng> get data => MVCArray.castListOfSerializables($unsafe['data'], LatLng.cast);
+  bool get dissipating => $unsafe['dissipating'];
+  List<String> get gradient => jsw.JsArrayToListAdapter.cast($unsafe['gradient']);
+  GMap get map => $unsafe['map'];
+  num get maxIntensity => $unsafe['maxIntensity'];
+  num get opacity => $unsafe['opacity'];
+  num get radius => $unsafe['radius'];
+  set data(MVCArray<LatLng> data) => $unsafe['data'] = data;
+  set dissipating(bool dissipating) => $unsafe['dissipating'] = dissipating;
+  set gradient(List<String> gradient) => $unsafe['gradient'] = jsifyList(gradient);
+  set map(GMap map) => $unsafe['map'] = map;
+  set maxIntensity(num maxIntensity) => $unsafe['maxIntensity'] = maxIntensity;
+  set opacity(num opacity) => $unsafe['opacity'] = opacity;
+  set radius(num radius) => $unsafe['radius'] = radius;
 }

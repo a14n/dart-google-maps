@@ -20,8 +20,8 @@ class DemographicsQuery extends jsw.TypedProxy {
   DemographicsQuery() : super();
   DemographicsQuery.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  String get from => $unsafe.from;
-  String get where => $unsafe.where;
-  set from(String from) => $unsafe.from = from;
-  set where(String where) => $unsafe.where = where;
+  String get from => $unsafe['from'];
+  String get where => $unsafe['where'];
+  set from(String from) => $unsafe['from'] = from;
+  set where(String where) => $unsafe['where'] = where;
 }

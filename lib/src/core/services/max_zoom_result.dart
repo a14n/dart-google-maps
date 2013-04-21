@@ -20,8 +20,8 @@ class MaxZoomResult extends jsw.TypedProxy {
   MaxZoomResult() : super();
   MaxZoomResult.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  MaxZoomStatus get status => MaxZoomStatus.find($unsafe.status);
-  num get zoom => $unsafe.zoom;
-  set status(MaxZoomStatus status) => $unsafe.status = status;
-  set zoom(num zoom) => $unsafe.zoom = zoom;
+  MaxZoomStatus get status => MaxZoomStatus.find($unsafe['status']);
+  num get zoom => $unsafe['zoom'];
+  set status(MaxZoomStatus status) => $unsafe['status'] = status;
+  set zoom(num zoom) => $unsafe['zoom'] = zoom;
 }

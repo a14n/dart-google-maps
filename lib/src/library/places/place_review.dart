@@ -20,12 +20,12 @@ class PlaceReview extends jsw.TypedProxy {
   PlaceReview() : super();
   PlaceReview.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  List<PlaceAspectRating> get aspects => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.aspects, PlaceAspectRating.cast);
-  String get authorName => $unsafe.author_name;
-  String get authorUrl => $unsafe.author_url;
-  String get text => $unsafe.text;
-  set aspects(List<PlaceAspectRating> aspects) => $unsafe.aspects = jsifyList(aspects);
-  set authorName(String authorName) => $unsafe.author_name = authorName;
-  set authorUrl(String authorUrl) => $unsafe.author_url = authorUrl;
-  set text(String text) => $unsafe.text = text;
+  List<PlaceAspectRating> get aspects => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe['aspects'], PlaceAspectRating.cast);
+  String get authorName => $unsafe['author_name'];
+  String get authorUrl => $unsafe['author_url'];
+  String get text => $unsafe['text'];
+  set aspects(List<PlaceAspectRating> aspects) => $unsafe['aspects'] = jsifyList(aspects);
+  set authorName(String authorName) => $unsafe['author_name'] = authorName;
+  set authorUrl(String authorUrl) => $unsafe['author_url'] = authorUrl;
+  set text(String text) => $unsafe['text'] = text;
 }

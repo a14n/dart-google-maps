@@ -20,15 +20,15 @@ class DemographicsLayerOptions extends jsw.TypedProxy {
   DemographicsLayerOptions() : super();
   DemographicsLayerOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  bool get clickable => $unsafe.clickable;
-  GMap get map => GMap.cast($unsafe.map);
-  DemographicsQuery get query => DemographicsQuery.cast($unsafe.query);
-  List<DemographicsStyle> get style => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.style, DemographicsStyle.cast);
-  bool get suppressInfoWindows => $unsafe.suppressInfoWindows;
-  set clickable(bool clickable) => $unsafe.clickable = clickable;
-  set map(GMap map) => $unsafe.map = map;
-  set query(DemographicsQuery query) => $unsafe.query = query;
-  set style(List<DemographicsStyle> style) => $unsafe.style = jsifyList(style);
+  bool get clickable => $unsafe['clickable'];
+  GMap get map => GMap.cast($unsafe['map']);
+  DemographicsQuery get query => DemographicsQuery.cast($unsafe['query']);
+  List<DemographicsStyle> get style => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe['style'], DemographicsStyle.cast);
+  bool get suppressInfoWindows => $unsafe['suppressInfoWindows'];
+  set clickable(bool clickable) => $unsafe['clickable'] = clickable;
+  set map(GMap map) => $unsafe['map'] = map;
+  set query(DemographicsQuery query) => $unsafe['query'] = query;
+  set style(List<DemographicsStyle> style) => $unsafe['style'] = jsifyList(style);
   // TODO bad type in doc
-  set suppressInfoWindows(bool suppressInfoWindows) => $unsafe.suppressInfoWindows = suppressInfoWindows;
+  set suppressInfoWindows(bool suppressInfoWindows) => $unsafe['suppressInfoWindows'] = suppressInfoWindows;
 }

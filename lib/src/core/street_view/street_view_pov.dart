@@ -20,10 +20,10 @@ class StreetViewPov extends jsw.TypedProxy {
   StreetViewPov() : super();
   StreetViewPov.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  num get heading => $unsafe.heading;
-  num get pitch => $unsafe.pitch;
-  num get zoom => $unsafe.zoom;
-  set heading(num heading) => $unsafe.heading = heading;
-  set pitch(num pitch) => $unsafe.pitch = pitch;
-  set zoom(num zoom) => $unsafe.zoom = zoom;
+  num get heading => $unsafe['heading'];
+  num get pitch => $unsafe['pitch'];
+  num get zoom => $unsafe['zoom'];
+  set heading(num heading) => $unsafe['heading'] = heading;
+  set pitch(num pitch) => $unsafe['pitch'] = pitch;
+  set zoom(num zoom) => $unsafe['zoom'] = zoom;
 }

@@ -107,12 +107,12 @@ class GMap extends MVCObject {
   set tilt(num tilt) => $unsafe.setTilt(tilt);
   set zoom(num zoom) => $unsafe.setZoom(zoom);
 
-  Controls get controls => Controls.cast($unsafe.controls);
-  MapTypeRegistry get mapTypes => MapTypeRegistry.cast($unsafe.mapTypes);
-  MVCArray<MapType> get overlayMapTypes => MVCArray.castListOfSerializables($unsafe.overlayMapTypes, MapType.cast);
-  set controls(Controls controls) => $unsafe.controls = controls;
-  set mapTypes(MapTypeRegistry mapTypes) => $unsafe.mapTypes = mapTypes;
-  set overlayMapTypes(MVCArray<MapType> overlayMapTypes) => $unsafe.overlayMapTypes = overlayMapTypes;
+  Controls get controls => Controls.cast($unsafe['controls']);
+  MapTypeRegistry get mapTypes => MapTypeRegistry.cast($unsafe['mapTypes']);
+  MVCArray<MapType> get overlayMapTypes => MVCArray.castListOfSerializables($unsafe['overlayMapTypes'], MapType.cast);
+  set controls(Controls controls) => $unsafe['controls'] = controls;
+  set mapTypes(MapTypeRegistry mapTypes) => $unsafe['mapTypes'] = mapTypes;
+  set overlayMapTypes(MVCArray<MapType> overlayMapTypes) => $unsafe['overlayMapTypes'] = overlayMapTypes;
 
   /// deprecated : use onXxx stream.
   @deprecated GMapEvents get on => new GMapEvents._(this);

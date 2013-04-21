@@ -20,14 +20,14 @@ class MarkerOptions extends jsw.TypedProxy {
   MarkerOptions() : super();
   MarkerOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  Point get anchorPoint => Point.cast($unsafe.anchorPoint);
-  Animation get animation => Animation.find($unsafe.animation);
-  bool get clickable => $unsafe.clickable;
-  String get cursor => $unsafe.cursor;
-  bool get draggable => $unsafe.draggable;
-  bool get flat => $unsafe.flat;
+  Point get anchorPoint => Point.cast($unsafe['anchorPoint']);
+  Animation get animation => Animation.find($unsafe['animation']);
+  bool get clickable => $unsafe['clickable'];
+  String get cursor => $unsafe['cursor'];
+  bool get draggable => $unsafe['draggable'];
+  bool get flat => $unsafe['flat'];
   dynamic/*string|Icon|Symbol*/ get icon {
-    final result = $unsafe.icon;
+    final result = $unsafe['icon'];
     if (result is String) {
       return result;
     } else if (result is js.Proxy) {
@@ -41,7 +41,7 @@ class MarkerOptions extends jsw.TypedProxy {
     return result;
   }
   dynamic/*Map|StreetViewPanorama*/ get map {
-    final result = $unsafe.map;
+    final result = $unsafe['map'];
     if (GMap.isInstance(result)) {
       return GMap.cast(result);
     } else if (StreetViewPanorama.isInstance(result)) {
@@ -49,11 +49,11 @@ class MarkerOptions extends jsw.TypedProxy {
     }
     return result;
   }
-  bool get optimized => $unsafe.optimized;
-  LatLng get position => LatLng.cast($unsafe.position);
-  bool get raiseOnDrag => $unsafe.raiseOnDrag;
+  bool get optimized => $unsafe['optimized'];
+  LatLng get position => LatLng.cast($unsafe['position']);
+  bool get raiseOnDrag => $unsafe['raiseOnDrag'];
   dynamic/*string|Icon|Symbol*/ get shadow {
-    final result = $unsafe.shadow;
+    final result = $unsafe['shadow'];
     if (result is String) {
       return result;
     } else if (result is js.Proxy) {
@@ -66,24 +66,24 @@ class MarkerOptions extends jsw.TypedProxy {
     }
     return result;
   }
-  MarkerShape get shape => MarkerShape.cast($unsafe.shape);
-  String get title => $unsafe.title;
-  bool get visible => $unsafe.visible;
-  num get zIndex => $unsafe.zIndex;
-  set anchorPoint(Point anchorPoint) => $unsafe.anchorPoint = anchorPoint;
-  set animation(Animation animation) => $unsafe.animation = animation;
-  set clickable(bool clickable) => $unsafe.clickable = clickable;
-  set cursor(String cursor) => $unsafe.cursor = cursor;
-  set draggable(bool draggable) => $unsafe.draggable = draggable;
-  set flat(bool flat) => $unsafe.flat = flat;
-  set icon(dynamic/*string|Icon|Symbol*/ icon) => $unsafe.icon = icon;
-  set map(dynamic/*Map|StreetViewPanorama*/ map) => $unsafe.map = map;
-  set optimized(bool optimized) => $unsafe.optimized = optimized;
-  set position(LatLng position) => $unsafe.position = position;
-  set raiseOnDrag(bool raiseOnDrag) => $unsafe.raiseOnDrag = raiseOnDrag;
-  set shadow(dynamic/*string|Icon|Symbol*/ shadow) => $unsafe.shadow = shadow;
-  set shape(MarkerShape shape) => $unsafe.shape = shape;
-  set title(String title) => $unsafe.title = title;
-  set visible(bool visible) => $unsafe.visible = visible;
-  set zIndex(num zIndex) => $unsafe.zIndex = zIndex;
+  MarkerShape get shape => MarkerShape.cast($unsafe['shape']);
+  String get title => $unsafe['title'];
+  bool get visible => $unsafe['visible'];
+  num get zIndex => $unsafe['zIndex'];
+  set anchorPoint(Point anchorPoint) => $unsafe['anchorPoint'] = anchorPoint;
+  set animation(Animation animation) => $unsafe['animation'] = animation;
+  set clickable(bool clickable) => $unsafe['clickable'] = clickable;
+  set cursor(String cursor) => $unsafe['cursor'] = cursor;
+  set draggable(bool draggable) => $unsafe['draggable'] = draggable;
+  set flat(bool flat) => $unsafe['flat'] = flat;
+  set icon(dynamic/*string|Icon|Symbol*/ icon) => $unsafe['icon'] = icon;
+  set map(dynamic/*Map|StreetViewPanorama*/ map) => $unsafe['map'] = map;
+  set optimized(bool optimized) => $unsafe['optimized'] = optimized;
+  set position(LatLng position) => $unsafe['position'] = position;
+  set raiseOnDrag(bool raiseOnDrag) => $unsafe['raiseOnDrag'] = raiseOnDrag;
+  set shadow(dynamic/*string|Icon|Symbol*/ shadow) => $unsafe['shadow'] = shadow;
+  set shape(MarkerShape shape) => $unsafe['shape'] = shape;
+  set title(String title) => $unsafe['title'] = title;
+  set visible(bool visible) => $unsafe['visible'] = visible;
+  set zIndex(num zIndex) => $unsafe['zIndex'] = zIndex;
 }

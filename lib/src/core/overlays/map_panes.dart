@@ -19,18 +19,18 @@ class MapPanes extends jsw.TypedProxy {
 
   MapPanes.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  html.Node get floatPane => $unsafe.floatPane;
-  html.Node get floatShadow => $unsafe.floatShadow;
-  html.Node get mapPane => $unsafe.mapPane;
-  html.Node get overlayImage => $unsafe.overlayImage;
-  html.Node get overlayLayer => $unsafe.overlayLayer;
-  html.Node get overlayMouseTarget => $unsafe.overlayMouseTarget;
-  html.Node get overlayShadow => $unsafe.overlayShadow;
-  set floatPane(html.Node floatPane) => $unsafe.floatPane = floatPane;
-  set floatShadow(html.Node floatShadow) => $unsafe.floatShadow = floatShadow;
-  set mapPane(html.Node mapPane) => $unsafe.mapPane = mapPane;
-  set overlayImage(html.Node overlayImage) => $unsafe.overlayImage = overlayImage;
-  set overlayLayer(html.Node overlayLayer) => $unsafe.overlayLayer = overlayLayer;
-  set overlayMouseTarget(html.Node overlayMouseTarget) => $unsafe.overlayMouseTarget = overlayMouseTarget;
-  set overlayShadow(html.Node overlayShadow) => $unsafe.overlayShadow = overlayShadow;
+  html.Node get floatPane => $unsafe['floatPane'];
+  html.Node get floatShadow => $unsafe['floatShadow'];
+  html.Node get mapPane => $unsafe['mapPane'];
+  html.Node get overlayImage => $unsafe['overlayImage'];
+  html.Node get overlayLayer => $unsafe['overlayLayer'];
+  html.Node get overlayMouseTarget => $unsafe['overlayMouseTarget'];
+  html.Node get overlayShadow => $unsafe['overlayShadow'];
+  set floatPane(html.Node floatPane) => $unsafe['floatPane'] = floatPane;
+  set floatShadow(html.Node floatShadow) => $unsafe['floatShadow'] = floatShadow;
+  set mapPane(html.Node mapPane) => $unsafe['mapPane'] = mapPane;
+  set overlayImage(html.Node overlayImage) => $unsafe['overlayImage'] = overlayImage;
+  set overlayLayer(html.Node overlayLayer) => $unsafe['overlayLayer'] = overlayLayer;
+  set overlayMouseTarget(html.Node overlayMouseTarget) => $unsafe['overlayMouseTarget'] = overlayMouseTarget;
+  set overlayShadow(html.Node overlayShadow) => $unsafe['overlayShadow'] = overlayShadow;
 }

@@ -20,12 +20,12 @@ class DemographicsPropertyStyle extends jsw.TypedProxy {
   DemographicsPropertyStyle() : super();
   DemographicsPropertyStyle.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  String get expression => $unsafe.expression;
-  List<String> get gradient => jsw.JsArrayToListAdapter.cast($unsafe.gradient);
-  num get min => $unsafe.min;
-  num get max => $unsafe.max;
-  set expression(String expression) => $unsafe.expression = expression;
-  set gradient(List<String> gradient) => $unsafe.gradient = jsifyList(gradient);
-  set min(num min) => $unsafe.min = min;
-  set max(num max) => $unsafe.max = max;
+  String get expression => $unsafe['expression'];
+  List<String> get gradient => jsw.JsArrayToListAdapter.cast($unsafe['gradient']);
+  num get min => $unsafe['min'];
+  num get max => $unsafe['max'];
+  set expression(String expression) => $unsafe['expression'] = expression;
+  set gradient(List<String> gradient) => $unsafe['gradient'] = jsifyList(gradient);
+  set min(num min) => $unsafe['min'] = min;
+  set max(num max) => $unsafe['max'] = max;
 }

@@ -20,12 +20,12 @@ class GeocoderGeometry extends jsw.TypedProxy {
   GeocoderGeometry() : super();
   GeocoderGeometry.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  LatLngBounds get bounds => LatLngBounds.cast($unsafe.bounds);
-  LatLng get location => LatLng.cast($unsafe.location);
-  GeocoderLocationType get locationType => GeocoderLocationType.find($unsafe.location_type);
-  LatLngBounds get viewport => LatLngBounds.cast($unsafe.viewport);
-  set bounds(LatLngBounds bounds) => $unsafe.bounds = bounds;
-  set location(LatLng location) => $unsafe.location = location;
-  set locationType(GeocoderLocationType locationType) => $unsafe.location_type = locationType;
-  set viewport(LatLngBounds viewport) => $unsafe.viewport = viewport;
+  LatLngBounds get bounds => LatLngBounds.cast($unsafe['bounds']);
+  LatLng get location => LatLng.cast($unsafe['location']);
+  GeocoderLocationType get locationType => GeocoderLocationType.find($unsafe['location_type']);
+  LatLngBounds get viewport => LatLngBounds.cast($unsafe['viewport']);
+  set bounds(LatLngBounds bounds) => $unsafe['bounds'] = bounds;
+  set location(LatLng location) => $unsafe['location'] = location;
+  set locationType(GeocoderLocationType locationType) => $unsafe['location_type'] = locationType;
+  set viewport(LatLngBounds viewport) => $unsafe['viewport'] = viewport;
 }

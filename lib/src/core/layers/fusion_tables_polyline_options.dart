@@ -20,10 +20,10 @@ class FusionTablesPolylineOptions extends jsw.TypedProxy {
   FusionTablesPolylineOptions() : super();
   FusionTablesPolylineOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  String get strokeColor => $unsafe.strokeColor;
-  num get strokeOpacity => $unsafe.strokeOpacity;
-  num get strokeWeight => $unsafe.strokeWeight;
-  set strokeColor(String strokeColor) => $unsafe.strokeColor = strokeColor;
-  set strokeOpacity(num strokeOpacity) => $unsafe.strokeOpacity = strokeOpacity;
-  set strokeWeight(num strokeWeight) => $unsafe.strokeWeight = strokeWeight;
+  String get strokeColor => $unsafe['strokeColor'];
+  num get strokeOpacity => $unsafe['strokeOpacity'];
+  num get strokeWeight => $unsafe['strokeWeight'];
+  set strokeColor(String strokeColor) => $unsafe['strokeColor'] = strokeColor;
+  set strokeOpacity(num strokeOpacity) => $unsafe['strokeOpacity'] = strokeOpacity;
+  set strokeWeight(num strokeWeight) => $unsafe['strokeWeight'] = strokeWeight;
 }

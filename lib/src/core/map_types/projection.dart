@@ -21,7 +21,7 @@ class Projection extends jsw.TypedProxy {
   Projection.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   void set_fromLatLngToPoint(Point fromLatLngToPoint(LatLng latLng, [Point point])) {
-    $unsafe.fromLatLngToPoint = new js.Callback.many((js.Proxy latLng, [js.Proxy point]) {
+    $unsafe['fromLatLngToPoint'] = new js.Callback.many((js.Proxy latLng, [js.Proxy point]) {
       if (?point) {
         return fromLatLngToPoint(LatLng.cast(latLng), Point.cast(point));
       } else {
@@ -30,7 +30,7 @@ class Projection extends jsw.TypedProxy {
     });
   }
   void set_fromPointToLatLng(LatLng fromPointToLatLng(Point pixel, [bool nowrap])) {
-    $unsafe.fromPointToLatLng = new js.Callback.many((js.Proxy pixel, [bool nowrap]) {
+    $unsafe['fromPointToLatLng'] = new js.Callback.many((js.Proxy pixel, [bool nowrap]) {
       if (?nowrap) {
         return fromPointToLatLng(Point.cast(pixel), nowrap);
       } else {

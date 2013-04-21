@@ -20,14 +20,14 @@ class FusionTablesPolygonOptions extends jsw.TypedProxy {
   FusionTablesPolygonOptions() : super();
   FusionTablesPolygonOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  String get fillColor => $unsafe.fillColor;
-  num get fillOpacity => $unsafe.fillOpacity;
-  String get strokeColor => $unsafe.strokeColor;
-  num get strokeOpacity => $unsafe.strokeOpacity;
-  num get strokeWeight => $unsafe.strokeWeight;
-  set fillColor(String fillColor) => $unsafe.fillColor = fillColor;
-  set fillOpacity(num fillOpacity) => $unsafe.fillOpacity = fillOpacity;
-  set strokeColor(String strokeColor) => $unsafe.strokeColor = strokeColor;
-  set strokeOpacity(num strokeOpacity) => $unsafe.strokeOpacity = strokeOpacity;
-  set strokeWeight(num strokeWeight) => $unsafe.strokeWeight = strokeWeight;
+  String get fillColor => $unsafe['fillColor'];
+  num get fillOpacity => $unsafe['fillOpacity'];
+  String get strokeColor => $unsafe['strokeColor'];
+  num get strokeOpacity => $unsafe['strokeOpacity'];
+  num get strokeWeight => $unsafe['strokeWeight'];
+  set fillColor(String fillColor) => $unsafe['fillColor'] = fillColor;
+  set fillOpacity(num fillOpacity) => $unsafe['fillOpacity'] = fillOpacity;
+  set strokeColor(String strokeColor) => $unsafe['strokeColor'] = strokeColor;
+  set strokeOpacity(num strokeOpacity) => $unsafe['strokeOpacity'] = strokeOpacity;
+  set strokeWeight(num strokeWeight) => $unsafe['strokeWeight'] = strokeWeight;
 }

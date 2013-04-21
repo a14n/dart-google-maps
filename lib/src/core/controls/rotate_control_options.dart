@@ -20,6 +20,6 @@ class RotateControlOptions extends jsw.TypedProxy {
   RotateControlOptions() : super();
   RotateControlOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  ControlPosition get position => ControlPosition.find($unsafe.position);
-  set position(ControlPosition position) => $unsafe.position = position;
+  ControlPosition get position => ControlPosition.find($unsafe['position']);
+  set position(ControlPosition position) => $unsafe['position'] = position;
 }

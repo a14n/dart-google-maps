@@ -20,20 +20,20 @@ class TransitDetails extends jsw.TypedProxy {
   TransitDetails() : super();
   TransitDetails.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  TransitStop get arrivalStop => TransitStop.cast($unsafe.arrival_stop);
-  Time get arrivalTime => Time.cast($unsafe.arrival_time);
-  TransitStop get departureStop => TransitStop.cast($unsafe.departure_stop);
-  Time get departureTime => Time.cast($unsafe.departure_time);
-  String get headsign => $unsafe.headsign;
-  num get headway => $unsafe.headway;
-  TransitLine get line => TransitLine.cast($unsafe.line);
-  num get numStops => $unsafe.num_stops;
-  set arrivalStop(TransitStop arrivalStop) => $unsafe.arrival_stop = arrivalStop;
-  set arrivalTime(Time arrivalTime) => $unsafe.arrival_time = arrivalTime;
-  set departureStop(TransitStop departureStop) => $unsafe.departure_stop = departureStop;
-  set departureTime(Time departureTime) => $unsafe.departure_time = departureTime;
-  set headsign(String headsign) => $unsafe.headsign = headsign;
-  set headway(num headway) => $unsafe.headway = headway;
-  set line(TransitLine line) => $unsafe.line = line;
-  set numStops(num numStops) => $unsafe.num_stops = numStops;
+  TransitStop get arrivalStop => TransitStop.cast($unsafe['arrival_stop']);
+  Time get arrivalTime => Time.cast($unsafe['arrival_time']);
+  TransitStop get departureStop => TransitStop.cast($unsafe['departure_stop']);
+  Time get departureTime => Time.cast($unsafe['departure_time']);
+  String get headsign => $unsafe['headsign'];
+  num get headway => $unsafe['headway'];
+  TransitLine get line => TransitLine.cast($unsafe['line']);
+  num get numStops => $unsafe['num_stops'];
+  set arrivalStop(TransitStop arrivalStop) => $unsafe['arrival_stop'] = arrivalStop;
+  set arrivalTime(Time arrivalTime) => $unsafe['arrival_time'] = arrivalTime;
+  set departureStop(TransitStop departureStop) => $unsafe['departure_stop'] = departureStop;
+  set departureTime(Time departureTime) => $unsafe['departure_time'] = departureTime;
+  set headsign(String headsign) => $unsafe['headsign'] = headsign;
+  set headway(num headway) => $unsafe['headway'] = headway;
+  set line(TransitLine line) => $unsafe['line'] = line;
+  set numStops(num numStops) => $unsafe['num_stops'] = numStops;
 }

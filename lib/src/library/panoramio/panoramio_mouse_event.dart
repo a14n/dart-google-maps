@@ -20,12 +20,12 @@ class PanoramioMouseEvent extends jsw.TypedProxy {
   PanoramioMouseEvent();
   PanoramioMouseEvent.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  PanoramioFeature get featureDetails => PanoramioFeature.cast($unsafe.featureDetails);
-  String get infoWindowHtml => $unsafe.infoWindowHtml;
-  LatLng get latLng => LatLng.cast($unsafe.latLng);
-  Size get pixelOffset => Size.cast($unsafe.pixelOffset);
-  set featureDetails(PanoramioFeature featureDetails) => $unsafe.featureDetails = featureDetails;
-  set infoWindowHtml(String infoWindowHtml) => $unsafe.infoWindowHtml = infoWindowHtml;
-  set latLng(LatLng latLng) => $unsafe.latLng = latLng;
-  set pixelOffset(Size pixelOffset) => $unsafe.pixelOffset = pixelOffset;
+  PanoramioFeature get featureDetails => PanoramioFeature.cast($unsafe['featureDetails']);
+  String get infoWindowHtml => $unsafe['infoWindowHtml'];
+  LatLng get latLng => LatLng.cast($unsafe['latLng']);
+  Size get pixelOffset => Size.cast($unsafe['pixelOffset']);
+  set featureDetails(PanoramioFeature featureDetails) => $unsafe['featureDetails'] = featureDetails;
+  set infoWindowHtml(String infoWindowHtml) => $unsafe['infoWindowHtml'] = infoWindowHtml;
+  set latLng(LatLng latLng) => $unsafe['latLng'] = latLng;
+  set pixelOffset(Size pixelOffset) => $unsafe['pixelOffset'] = pixelOffset;
 }

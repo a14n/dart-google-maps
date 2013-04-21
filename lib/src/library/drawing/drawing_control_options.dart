@@ -20,8 +20,8 @@ class DrawingControlOptions extends jsw.TypedProxy {
   DrawingControlOptions() : super();
   DrawingControlOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  List<OverlayType> get drawingModes => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.drawingModes, OverlayType.find);
-  ControlPosition get position => ControlPosition.find($unsafe.position);
-  set drawingModes(List<OverlayType> drawingModes) => $unsafe.drawingModes = jsifyList(drawingModes);
-  set position(ControlPosition position) => $unsafe.position = position;
+  List<OverlayType> get drawingModes => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe['drawingModes'], OverlayType.find);
+  ControlPosition get position => ControlPosition.find($unsafe['position']);
+  set drawingModes(List<OverlayType> drawingModes) => $unsafe['drawingModes'] = jsifyList(drawingModes);
+  set position(ControlPosition position) => $unsafe['position'] = position;
 }

@@ -20,12 +20,12 @@ class MapsEngineMouseEvent extends jsw.TypedProxy {
   MapsEngineMouseEvent() : super();
   MapsEngineMouseEvent.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  String get featureId => $unsafe.featureId;
-  String get infoWindowHtml => $unsafe.infoWindowHtml;
-  LatLng get latLng => LatLng.cast($unsafe.latLng);
-  Size get pixelOffset => Size.cast($unsafe.pixelOffset);
-  set featureId(String featureId) => $unsafe.featureId = featureId;
-  set infoWindowHtml(String infoWindowHtml) => $unsafe.infoWindowHtml = infoWindowHtml;
-  set latLng(LatLng latLng) => $unsafe.latLng = latLng;
-  set pixelOffset(Size pixelOffset) => $unsafe.pixelOffset = pixelOffset;
+  String get featureId => $unsafe['featureId'];
+  String get infoWindowHtml => $unsafe['infoWindowHtml'];
+  LatLng get latLng => LatLng.cast($unsafe['latLng']);
+  Size get pixelOffset => Size.cast($unsafe['pixelOffset']);
+  set featureId(String featureId) => $unsafe['featureId'] = featureId;
+  set infoWindowHtml(String infoWindowHtml) => $unsafe['infoWindowHtml'] = infoWindowHtml;
+  set latLng(LatLng latLng) => $unsafe['latLng'] = latLng;
+  set pixelOffset(Size pixelOffset) => $unsafe['pixelOffset'] = pixelOffset;
 }

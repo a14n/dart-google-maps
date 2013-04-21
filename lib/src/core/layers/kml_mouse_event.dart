@@ -20,10 +20,10 @@ class KmlMouseEvent extends jsw.TypedProxy {
   KmlMouseEvent();
   KmlMouseEvent.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  KmlFeatureData get featureData => KmlFeatureData.cast($unsafe.featureData);
-  LatLng get latLng => LatLng.cast($unsafe.latLng);
-  Size get pixelOffset => Size.cast($unsafe.pixelOffset);
-  set featureData(KmlFeatureData featureData) => $unsafe.featureData = featureData;
-  set latLng(LatLng latLng) => $unsafe.latLng = latLng;
-  set pixelOffset(Size pixelOffset) => $unsafe.pixelOffset = pixelOffset;
+  KmlFeatureData get featureData => KmlFeatureData.cast($unsafe['featureData']);
+  LatLng get latLng => LatLng.cast($unsafe['latLng']);
+  Size get pixelOffset => Size.cast($unsafe['pixelOffset']);
+  set featureData(KmlFeatureData featureData) => $unsafe['featureData'] = featureData;
+  set latLng(LatLng latLng) => $unsafe['latLng'] = latLng;
+  set pixelOffset(Size pixelOffset) => $unsafe['pixelOffset'] = pixelOffset;
 }

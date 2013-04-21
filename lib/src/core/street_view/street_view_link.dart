@@ -20,10 +20,10 @@ class StreetViewLink extends jsw.TypedProxy {
   StreetViewLink() : super();
   StreetViewLink.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  String get description => $unsafe.description;
-  num get heading => $unsafe.heading;
-  String get pano => $unsafe.pano;
-  set description(String description) => $unsafe.description = description;
-  set heading(num heading) => $unsafe.heading = heading;
-  set pano(String pano) => $unsafe.pano = pano;
+  String get description => $unsafe['description'];
+  num get heading => $unsafe['heading'];
+  String get pano => $unsafe['pano'];
+  set description(String description) => $unsafe['description'] = description;
+  set heading(num heading) => $unsafe['heading'] = heading;
+  set pano(String pano) => $unsafe['pano'] = pano;
 }

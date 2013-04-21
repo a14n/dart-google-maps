@@ -20,10 +20,10 @@ class QueryAutocompletePrediction extends jsw.TypedProxy {
   QueryAutocompletePrediction() : super();
   QueryAutocompletePrediction.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  String get description => $unsafe.description;
-  List<PredictionSubstring> get matchedSubstrings => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.matched_substrings, PredictionSubstring.cast);
-  List<PredictionTerm> get terms => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.terms, PredictionTerm.cast);
-  set description(String description) => $unsafe.description = description;
-  set matchedSubstrings(List<PredictionSubstring> matchedSubstrings) => $unsafe.matched_substrings = jsifyList(matchedSubstrings);
-  set terms(List<PredictionTerm> terms) => $unsafe.terms = jsifyList(terms);
+  String get description => $unsafe['description'];
+  List<PredictionSubstring> get matchedSubstrings => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe['matched_substrings'], PredictionSubstring.cast);
+  List<PredictionTerm> get terms => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe['terms'], PredictionTerm.cast);
+  set description(String description) => $unsafe['description'] = description;
+  set matchedSubstrings(List<PredictionSubstring> matchedSubstrings) => $unsafe['matched_substrings'] = jsifyList(matchedSubstrings);
+  set terms(List<PredictionTerm> terms) => $unsafe['terms'] = jsifyList(terms);
 }

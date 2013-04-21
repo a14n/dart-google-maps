@@ -20,6 +20,6 @@ class OverviewMapControlOptions extends jsw.TypedProxy {
   OverviewMapControlOptions() : super();
   OverviewMapControlOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  bool get opened => $unsafe.opened;
-  set opened(bool opened) => $unsafe.opened = opened;
+  bool get opened => $unsafe['opened'];
+  set opened(bool opened) => $unsafe['opened'] = opened;
 }

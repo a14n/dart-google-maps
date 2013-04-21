@@ -20,6 +20,6 @@ class DistanceMatrixResponseRow extends jsw.TypedProxy {
   DistanceMatrixResponseRow() : super();
   DistanceMatrixResponseRow.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  List<DistanceMatrixResponseElement> get elements => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.elements, DistanceMatrixResponseElement.cast);
-  set elements(List elements) => $unsafe.elements = jsifyList(elements);
+  List<DistanceMatrixResponseElement> get elements => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe['elements'], DistanceMatrixResponseElement.cast);
+  set elements(List elements) => $unsafe['elements'] = jsifyList(elements);
 }

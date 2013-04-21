@@ -20,20 +20,20 @@ class TransitLine extends jsw.TypedProxy {
   TransitLine() : super();
   TransitLine.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  List<TransitAgency> get agencies => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.agencies, TransitAgency.cast);
-  String get color => $unsafe.color;
-  String get icon => $unsafe.icon;
-  String get name => $unsafe.name;
-  String get shortName => $unsafe.short_name;
-  String get textColor => $unsafe.text_color;
-  String get url => $unsafe.url;
-  TransitVehicle get vehicle => TransitVehicle.cast($unsafe.vehicle);
-  set agencies(List<TransitAgency> agencies) => $unsafe.agencies = jsifyList(agencies);
-  set color(String color) => $unsafe.color = color;
-  set icon(String icon) => $unsafe.icon = icon;
-  set name(String name) => $unsafe.name = name;
-  set shortName(String shortName) => $unsafe.short_name = shortName;
-  set textColor(String textColor) => $unsafe.text_color = textColor;
-  set url(String url) => $unsafe.url = url;
-  set vehicle(TransitVehicle vehicle) => $unsafe.vehicle = vehicle;
+  List<TransitAgency> get agencies => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe['agencies'], TransitAgency.cast);
+  String get color => $unsafe['color'];
+  String get icon => $unsafe['icon'];
+  String get name => $unsafe['name'];
+  String get shortName => $unsafe['short_name'];
+  String get textColor => $unsafe['text_color'];
+  String get url => $unsafe['url'];
+  TransitVehicle get vehicle => TransitVehicle.cast($unsafe['vehicle']);
+  set agencies(List<TransitAgency> agencies) => $unsafe['agencies'] = jsifyList(agencies);
+  set color(String color) => $unsafe['color'] = color;
+  set icon(String icon) => $unsafe['icon'] = icon;
+  set name(String name) => $unsafe['name'] = name;
+  set shortName(String shortName) => $unsafe['short_name'] = shortName;
+  set textColor(String textColor) => $unsafe['text_color'] = textColor;
+  set url(String url) => $unsafe['url'] = url;
+  set vehicle(TransitVehicle vehicle) => $unsafe['vehicle'] = vehicle;
 }

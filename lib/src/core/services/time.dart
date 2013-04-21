@@ -20,10 +20,10 @@ class Time extends jsw.TypedProxy {
   Time() : super();
   Time.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  String get text => $unsafe.text;
-  String get timeZone => $unsafe.time_zone;
-  DateTime get value => jsw.JsDateToDateTimeAdapter.cast($unsafe.value);
-  set samples(String text) => $unsafe.text = text;
-  set timeZone(String timeZone) => $unsafe.time_zone = timeZone;
-  set value(DateTime value) => $unsafe.value = jsifyDateTime(value);
+  String get text => $unsafe['text'];
+  String get timeZone => $unsafe['time_zone'];
+  DateTime get value => jsw.JsDateToDateTimeAdapter.cast($unsafe['value']);
+  set samples(String text) => $unsafe['text'] = text;
+  set timeZone(String timeZone) => $unsafe['time_zone'] = timeZone;
+  set value(DateTime value) => $unsafe['value'] = jsifyDateTime(value);
 }

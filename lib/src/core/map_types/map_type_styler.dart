@@ -20,18 +20,18 @@ class MapTypeStyler extends jsw.TypedProxy {
   MapTypeStyler() : super();
   MapTypeStyler.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  num get gamma => $unsafe.gamma;
-  String get hue => $unsafe.hue;
-  bool get invertLightness => $unsafe.invert_lightness;
-  num get lightness => $unsafe.lightness;
-  num get saturation => $unsafe.saturation;
-  MapTypeStylerVisibility get visibility => MapTypeStylerVisibility.find($unsafe.visibility);
-  set gamma(num gamma) => $unsafe.gamma = gamma;
-  set hue(String hue) => $unsafe.hue = hue;
-  set invertLightness(bool invertLightness) => $unsafe.invert_lightness = invertLightness;
-  set lightness(num lightness) => $unsafe.lightness = lightness;
-  set saturation(num saturation) => $unsafe.saturation = saturation;
-  set visibility(MapTypeStylerVisibility visibility) => $unsafe.visibility = visibility;
+  num get gamma => $unsafe['gamma'];
+  String get hue => $unsafe['hue'];
+  bool get invertLightness => $unsafe['invert_lightness'];
+  num get lightness => $unsafe['lightness'];
+  num get saturation => $unsafe['saturation'];
+  MapTypeStylerVisibility get visibility => MapTypeStylerVisibility.find($unsafe['visibility']);
+  set gamma(num gamma) => $unsafe['gamma'] = gamma;
+  set hue(String hue) => $unsafe['hue'] = hue;
+  set invertLightness(bool invertLightness) => $unsafe['invert_lightness'] = invertLightness;
+  set lightness(num lightness) => $unsafe['lightness'] = lightness;
+  set saturation(num saturation) => $unsafe['saturation'] = saturation;
+  set visibility(MapTypeStylerVisibility visibility) => $unsafe['visibility'] = visibility;
 }
 
 class MapTypeStylerVisibility extends IsEnum<String> {

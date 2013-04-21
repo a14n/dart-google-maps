@@ -21,13 +21,13 @@ class DirectionsWaypoint extends jsw.TypedProxy {
   DirectionsWaypoint.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   dynamic/*LatLng|string*/ get location {
-    final result = $unsafe.location;
+    final result = $unsafe['location'];
     if(LatLng.isInstance(result)) {
       return LatLng.cast(result);
     }
     return result;
   }
-  bool get stopover => $unsafe.stopover;
-  set location(dynamic/*LatLng|string*/ location) => $unsafe.location = location;
-  set stopover(bool stopover) => $unsafe.stopover = stopover;
+  bool get stopover => $unsafe['stopover'];
+  set location(dynamic/*LatLng|string*/ location) => $unsafe['location'] = location;
+  set stopover(bool stopover) => $unsafe['stopover'] = stopover;
 }

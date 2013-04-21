@@ -20,6 +20,6 @@ class PlaceDetailsRequest extends jsw.TypedProxy {
   PlaceDetailsRequest() : super();
   PlaceDetailsRequest.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  String get reference => $unsafe.reference;
-  set reference(String reference) => $unsafe.reference = reference;
+  String get reference => $unsafe['reference'];
+  set reference(String reference) => $unsafe['reference'] = reference;
 }

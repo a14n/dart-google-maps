@@ -20,12 +20,12 @@ class GeocoderRequest extends jsw.TypedProxy {
   GeocoderRequest() : super();
   GeocoderRequest.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  String get address => $unsafe.address;
-  LatLngBounds get bounds => LatLngBounds.cast($unsafe.bounds);
-  LatLng get location => LatLng.cast($unsafe.location);
-  String get region => $unsafe.region;
-  set address(String address) => $unsafe.address = address;
-  set bounds(LatLngBounds bounds) => $unsafe.bounds = bounds;
-  set location(LatLng location) => $unsafe.location = location;
-  set region(String region) => $unsafe.region = region;
+  String get address => $unsafe['address'];
+  LatLngBounds get bounds => LatLngBounds.cast($unsafe['bounds']);
+  LatLng get location => LatLng.cast($unsafe['location']);
+  String get region => $unsafe['region'];
+  set address(String address) => $unsafe['address'] = address;
+  set bounds(LatLngBounds bounds) => $unsafe['bounds'] = bounds;
+  set location(LatLng location) => $unsafe['location'] = location;
+  set region(String region) => $unsafe['region'] = region;
 }

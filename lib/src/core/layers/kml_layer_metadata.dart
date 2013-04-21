@@ -20,12 +20,12 @@ class KmlLayerMetadata extends jsw.TypedProxy {
   KmlLayerMetadata() : super();
   KmlLayerMetadata.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  KmlAuthor get author => KmlAuthor.cast($unsafe.author);
-  String get description => $unsafe.description;
-  String get name => $unsafe.name;
-  String get snippet => $unsafe.snippet;
-  set author(KmlAuthor author) => $unsafe.author = author;
-  set description(String description) => $unsafe.description = description;
-  set name(String name) => $unsafe.name = name;
-  set snippet(String snippet) => $unsafe.snippet = snippet;
+  KmlAuthor get author => KmlAuthor.cast($unsafe['author']);
+  String get description => $unsafe['description'];
+  String get name => $unsafe['name'];
+  String get snippet => $unsafe['snippet'];
+  set author(KmlAuthor author) => $unsafe['author'] = author;
+  set description(String description) => $unsafe['description'] = description;
+  set name(String name) => $unsafe['name'] = name;
+  set snippet(String snippet) => $unsafe['snippet'] = snippet;
 }

@@ -20,16 +20,16 @@ class KmlFeatureData extends jsw.TypedProxy {
   KmlFeatureData() : super();
   KmlFeatureData.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  KmlAuthor get author => KmlAuthor.cast($unsafe.author);
-  String get description => $unsafe.description;
-  String get id => $unsafe.id;
-  String get infoWindowHtml => $unsafe.infoWindowHtml;
-  String get name => $unsafe.name;
-  String get snippet => $unsafe.snippet;
-  set author(KmlAuthor author) => $unsafe.author = author;
-  set description(String description) => $unsafe.description = description;
-  set id(String id) => $unsafe.id = id;
-  set infoWindowHtml(String infoWindowHtml) => $unsafe.infoWindowHtml = infoWindowHtml;
-  set name(String name) => $unsafe.name = name;
-  set snippet(String snippet) => $unsafe.snippet = snippet;
+  KmlAuthor get author => KmlAuthor.cast($unsafe['author']);
+  String get description => $unsafe['description'];
+  String get id => $unsafe['id'];
+  String get infoWindowHtml => $unsafe['infoWindowHtml'];
+  String get name => $unsafe['name'];
+  String get snippet => $unsafe['snippet'];
+  set author(KmlAuthor author) => $unsafe['author'] = author;
+  set description(String description) => $unsafe['description'] = description;
+  set id(String id) => $unsafe['id'] = id;
+  set infoWindowHtml(String infoWindowHtml) => $unsafe['infoWindowHtml'] = infoWindowHtml;
+  set name(String name) => $unsafe['name'] = name;
+  set snippet(String snippet) => $unsafe['snippet'] = snippet;
 }

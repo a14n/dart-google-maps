@@ -20,10 +20,10 @@ class GroundOverlayOptions extends jsw.TypedProxy {
   GroundOverlayOptions() : super();
   GroundOverlayOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  bool get clickable => $unsafe.clickable;
-  GMap get map => GMap.cast($unsafe.map);
-  num get opacity => $unsafe.opacity;
-  set clickable(bool clickable) => $unsafe.clickable = clickable;
-  set map(GMap map) => $unsafe.map = map;
-  set opacity(num opacity) => $unsafe.opacity = opacity;
+  bool get clickable => $unsafe['clickable'];
+  GMap get map => GMap.cast($unsafe['map']);
+  num get opacity => $unsafe['opacity'];
+  set clickable(bool clickable) => $unsafe['clickable'] = clickable;
+  set map(GMap map) => $unsafe['map'] = map;
+  set opacity(num opacity) => $unsafe['opacity'] = opacity;
 }

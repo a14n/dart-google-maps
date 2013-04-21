@@ -20,10 +20,10 @@ class TransitAgency extends jsw.TypedProxy {
   TransitAgency() : super();
   TransitAgency.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  String get name => $unsafe.name;
-  String get phone => $unsafe.phone;
-  String get url => $unsafe.url;
-  set name(String name) => $unsafe.name = name;
-  set phone(String phone) => $unsafe.phone = phone;
-  set url(String url) => $unsafe.url = url;
+  String get name => $unsafe['name'];
+  String get phone => $unsafe['phone'];
+  String get url => $unsafe['url'];
+  set name(String name) => $unsafe['name'] = name;
+  set phone(String phone) => $unsafe['phone'] = phone;
+  set url(String url) => $unsafe['url'] = url;
 }

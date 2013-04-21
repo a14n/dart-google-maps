@@ -21,6 +21,6 @@ class DirectionsResult extends jsw.TypedProxy {
   DirectionsResult.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
 
-  List<DirectionsRoute> get routes => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.routes, DirectionsRoute.cast);
-  set routes(List<DirectionsRoute> routes) => $unsafe.routes = jsifyList(routes);
+  List<DirectionsRoute> get routes => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe['routes'], DirectionsRoute.cast);
+  set routes(List<DirectionsRoute> routes) => $unsafe['routes'] = jsifyList(routes);
 }

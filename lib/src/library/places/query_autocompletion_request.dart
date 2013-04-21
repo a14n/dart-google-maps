@@ -20,15 +20,15 @@ class QueryAutocompletionRequest extends jsw.TypedProxy {
   QueryAutocompletionRequest() : super();
   QueryAutocompletionRequest.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  LatLngBounds get bounds => LatLngBounds.cast($unsafe.bounds);
-  String get input => $unsafe.input;
-  LatLng get location => LatLng.cast($unsafe.location);
-  num get offset => $unsafe.offset;
-  num get radius => $unsafe.radius;
+  LatLngBounds get bounds => LatLngBounds.cast($unsafe['bounds']);
+  String get input => $unsafe['input'];
+  LatLng get location => LatLng.cast($unsafe['location']);
+  num get offset => $unsafe['offset'];
+  num get radius => $unsafe['radius'];
 
-  set bounds(LatLngBounds bounds) => $unsafe.bounds = bounds;
-  set input(String input) => $unsafe.input = input;
-  set location(LatLng location) => $unsafe.location = location;
-  set offset(num offset) => $unsafe.offset = offset;
-  set radius(num radius) => $unsafe.radius = radius;
+  set bounds(LatLngBounds bounds) => $unsafe['bounds'] = bounds;
+  set input(String input) => $unsafe['input'] = input;
+  set location(LatLng location) => $unsafe['location'] = location;
+  set offset(num offset) => $unsafe['offset'] = offset;
+  set radius(num radius) => $unsafe['radius'] = radius;
 }

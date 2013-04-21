@@ -22,5 +22,5 @@ class PlaceSearchPagination extends jsw.TypedProxy {
 
   void nextPage() { $unsafe.nextPage(); }
 
-  bool get hasNextPage => $unsafe.hasNextPage;
+  bool get hasNextPage => $unsafe['hasNextPage'];
 }

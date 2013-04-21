@@ -20,8 +20,8 @@ class DemographicsStyle extends jsw.TypedProxy {
   DemographicsStyle() : super();
   DemographicsStyle.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  DemographicsPolygonOptions get polygonOptions => DemographicsPolygonOptions.cast($unsafe.polygonOptions);
-  String get where => $unsafe.where;
-  set polygonOptions(DemographicsPolygonOptions polygonOptions) => $unsafe.polygonOptions = polygonOptions;
-  set where(String where) => $unsafe.where = where;
+  DemographicsPolygonOptions get polygonOptions => DemographicsPolygonOptions.cast($unsafe['polygonOptions']);
+  String get where => $unsafe['where'];
+  set polygonOptions(DemographicsPolygonOptions polygonOptions) => $unsafe['polygonOptions'] = polygonOptions;
+  set where(String where) => $unsafe['where'] = where;
 }

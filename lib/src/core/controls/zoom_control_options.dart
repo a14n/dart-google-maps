@@ -20,8 +20,8 @@ class ZoomControlOptions extends jsw.TypedProxy {
   ZoomControlOptions() : super();
   ZoomControlOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  ControlPosition get position => ControlPosition.find($unsafe.position);
-  ZoomControlStyle get style => ZoomControlStyle.find($unsafe.style);
-  set position(ControlPosition position) => $unsafe.position = position;
-  set style(ZoomControlStyle style) => $unsafe.style = style;
+  ControlPosition get position => ControlPosition.find($unsafe['position']);
+  ZoomControlStyle get style => ZoomControlStyle.find($unsafe['style']);
+  set position(ControlPosition position) => $unsafe['position'] = position;
+  set style(ZoomControlStyle style) => $unsafe['style'] = style;
 }

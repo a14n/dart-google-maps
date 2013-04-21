@@ -20,14 +20,14 @@ class TextSearchRequest extends jsw.TypedProxy {
   TextSearchRequest() : super();
   TextSearchRequest.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  LatLngBounds get bounds => LatLngBounds.cast($unsafe.bounds);
-  LatLng get location => LatLng.cast($unsafe.location);
-  String get query => $unsafe.query;
-  num get radius => $unsafe.radius;
-  List<String> get types => jsw.JsArrayToListAdapter.cast($unsafe.types);
-  set bounds(LatLngBounds bounds) => $unsafe.bounds = bounds;
-  set location(LatLng location) => $unsafe.location = location;
-  set query(String query) => $unsafe.query = query;
-  set radius(num radius) => $unsafe.radius = radius;
-  set types(List<String> types) => $unsafe.types = jsifyList(types);
+  LatLngBounds get bounds => LatLngBounds.cast($unsafe['bounds']);
+  LatLng get location => LatLng.cast($unsafe['location']);
+  String get query => $unsafe['query'];
+  num get radius => $unsafe['radius'];
+  List<String> get types => jsw.JsArrayToListAdapter.cast($unsafe['types']);
+  set bounds(LatLngBounds bounds) => $unsafe['bounds'] = bounds;
+  set location(LatLng location) => $unsafe['location'] = location;
+  set query(String query) => $unsafe['query'] = query;
+  set radius(num radius) => $unsafe['radius'] = radius;
+  set types(List<String> types) => $unsafe['types'] = jsifyList(types);
 }

@@ -20,12 +20,12 @@ class FusionTablesStyle extends jsw.TypedProxy {
   FusionTablesStyle() : super();
   FusionTablesStyle.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  FusionTablesMarkerOptions get markerOptions => FusionTablesMarkerOptions.cast($unsafe.markerOptions);
-  FusionTablesPolygonOptions get polygonOptions => FusionTablesPolygonOptions.cast($unsafe.polygonOptions);
-  FusionTablesPolylineOptions get polylineOptions => FusionTablesPolylineOptions.cast($unsafe.polylineOptions);
-  String get where => $unsafe.where;
-  set markerOptions(FusionTablesMarkerOptions markerOptions) => $unsafe.markerOptions = markerOptions;
-  set polygonOptions(FusionTablesPolygonOptions polygonOptions) => $unsafe.polygonOptions = polygonOptions;
-  set polylineOptions(FusionTablesPolylineOptions polylineOptions) => $unsafe.polylineOptions = polylineOptions;
-  set where(String where) => $unsafe.where = where;
+  FusionTablesMarkerOptions get markerOptions => FusionTablesMarkerOptions.cast($unsafe['markerOptions']);
+  FusionTablesPolygonOptions get polygonOptions => FusionTablesPolygonOptions.cast($unsafe['polygonOptions']);
+  FusionTablesPolylineOptions get polylineOptions => FusionTablesPolylineOptions.cast($unsafe['polylineOptions']);
+  String get where => $unsafe['where'];
+  set markerOptions(FusionTablesMarkerOptions markerOptions) => $unsafe['markerOptions'] = markerOptions;
+  set polygonOptions(FusionTablesPolygonOptions polygonOptions) => $unsafe['polygonOptions'] = polygonOptions;
+  set polylineOptions(FusionTablesPolylineOptions polylineOptions) => $unsafe['polylineOptions'] = polylineOptions;
+  set where(String where) => $unsafe['where'] = where;
 }

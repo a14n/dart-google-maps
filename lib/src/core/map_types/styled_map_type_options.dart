@@ -20,12 +20,12 @@ class StyledMapTypeOptions extends jsw.TypedProxy {
   StyledMapTypeOptions() : super();
   StyledMapTypeOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  String get alt => $unsafe.alt;
-  num get maxZoom => $unsafe.maxZoom;
-  num get minZoom => $unsafe.minZoom;
-  String get name => $unsafe.name;
-  set alt(String alt) => $unsafe.alt = alt;
-  set maxZoom(num maxZoom) => $unsafe.maxZoom = maxZoom;
-  set minZoom(num minZoom) => $unsafe.minZoom = minZoom;
-  set name(String name) => $unsafe.name = name;
+  String get alt => $unsafe['alt'];
+  num get maxZoom => $unsafe['maxZoom'];
+  num get minZoom => $unsafe['minZoom'];
+  String get name => $unsafe['name'];
+  set alt(String alt) => $unsafe['alt'] = alt;
+  set maxZoom(num maxZoom) => $unsafe['maxZoom'] = maxZoom;
+  set minZoom(num minZoom) => $unsafe['minZoom'] = minZoom;
+  set name(String name) => $unsafe['name'] = name;
 }

@@ -20,6 +20,6 @@ class ComponentRestrictions extends jsw.TypedProxy {
   ComponentRestrictions() : super();
   ComponentRestrictions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  String get country => $unsafe.country;
-  set country(String country) => $unsafe.country = country;
+  String get country => $unsafe['country'];
+  set country(String country) => $unsafe['country'] = country;
 }

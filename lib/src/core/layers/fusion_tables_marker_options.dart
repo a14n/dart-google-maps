@@ -20,6 +20,6 @@ class FusionTablesMarkerOptions extends jsw.TypedProxy {
   FusionTablesMarkerOptions() : super();
   FusionTablesMarkerOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  String get iconName => $unsafe.iconName;
-  set iconName(String iconName) => $unsafe.iconName = iconName;
+  String get iconName => $unsafe['iconName'];
+  set iconName(String iconName) => $unsafe['iconName'] = iconName;
 }

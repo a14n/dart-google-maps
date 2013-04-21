@@ -20,6 +20,6 @@ class MapsEngineLayerProperties extends jsw.TypedProxy {
   MapsEngineLayerProperties() : super();
   MapsEngineLayerProperties.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  String get name => $unsafe.name;
-  set name(String name) => $unsafe.name = name;
+  String get name => $unsafe['name'];
+  set name(String name) => $unsafe['name'] = name;
 }

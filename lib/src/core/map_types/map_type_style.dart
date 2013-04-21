@@ -20,10 +20,10 @@ class MapTypeStyle extends jsw.TypedProxy {
   MapTypeStyle() : super();
   MapTypeStyle.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  MapTypeStyleElementType get elementType => MapTypeStyleElementType.find($unsafe.elementType);
-  MapTypeStyleFeatureType get featureType => MapTypeStyleFeatureType.find($unsafe.featureType);
-  List<MapTypeStyler> get stylers => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.stylers, MapTypeStyler.cast);
-  set elementType(MapTypeStyleElementType elementType) => $unsafe.elementType = elementType;
-  set featureType(MapTypeStyleFeatureType featureType) => $unsafe.featureType = featureType;
-  set stylers(List<MapTypeStyler> stylers) => $unsafe.stylers = jsifyList(stylers);
+  MapTypeStyleElementType get elementType => MapTypeStyleElementType.find($unsafe['elementType']);
+  MapTypeStyleFeatureType get featureType => MapTypeStyleFeatureType.find($unsafe['featureType']);
+  List<MapTypeStyler> get stylers => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe['stylers'], MapTypeStyler.cast);
+  set elementType(MapTypeStyleElementType elementType) => $unsafe['elementType'] = elementType;
+  set featureType(MapTypeStyleFeatureType featureType) => $unsafe['featureType'] = featureType;
+  set stylers(List<MapTypeStyler> stylers) => $unsafe['stylers'] = jsifyList(stylers);
 }

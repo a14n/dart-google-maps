@@ -20,10 +20,10 @@ class DistanceMatrixResponseElement extends jsw.TypedProxy {
   DistanceMatrixResponseElement() : super();
   DistanceMatrixResponseElement.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  Distance get distance => Distance.cast($unsafe.distance);
-  GDuration get duration => GDuration.cast($unsafe.duration);
-  DistanceMatrixElementStatus get status => DistanceMatrixElementStatus.find($unsafe.status);
-  set distance(Distance distance) => $unsafe.distance = distance;
-  set duration(GDuration duration) => $unsafe.duration = duration;
-  set status(DistanceMatrixElementStatus status) => $unsafe.status = status;
+  Distance get distance => Distance.cast($unsafe['distance']);
+  GDuration get duration => GDuration.cast($unsafe['duration']);
+  DistanceMatrixElementStatus get status => DistanceMatrixElementStatus.find($unsafe['status']);
+  set distance(Distance distance) => $unsafe['distance'] = distance;
+  set duration(GDuration duration) => $unsafe['duration'] = duration;
+  set status(DistanceMatrixElementStatus status) => $unsafe['status'] = status;
 }

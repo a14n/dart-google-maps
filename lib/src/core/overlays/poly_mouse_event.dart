@@ -19,10 +19,10 @@ class PolyMouseEvent extends MouseEvent {
 
   PolyMouseEvent.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  num get edge => $unsafe.edge;
-  num get path => $unsafe.path;
-  num get vertex => $unsafe.vertex;
-  set edge(num edge) => $unsafe.edge = edge;
-  set path(num path) => $unsafe.path = path;
-  set vertex(num vertex) => $unsafe.vertex = vertex;
+  num get edge => $unsafe['edge'];
+  num get path => $unsafe['path'];
+  num get vertex => $unsafe['vertex'];
+  set edge(num edge) => $unsafe['edge'] = edge;
+  set path(num path) => $unsafe['path'] = path;
+  set vertex(num vertex) => $unsafe['vertex'] = vertex;
 }

@@ -20,10 +20,10 @@ class MapTypeControlOptions extends jsw.TypedProxy {
   MapTypeControlOptions() : super();
   MapTypeControlOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  List get mapTypeIds => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.mapTypeIds, (e) => firstNotNull([MapTypeId.find(e), e]));
-  ControlPosition get position => ControlPosition.find($unsafe.position);
-  MapTypeControlStyle get style => MapTypeControlStyle.find($unsafe.style);
-  set mapTypeIds(List mapTypeIds) => $unsafe.mapTypeIds = jsifyList(mapTypeIds);
-  set position(ControlPosition position) => $unsafe.position = position;
-  set style(MapTypeControlStyle style) => $unsafe.style = style;
+  List get mapTypeIds => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe['mapTypeIds'], (e) => firstNotNull([MapTypeId.find(e), e]));
+  ControlPosition get position => ControlPosition.find($unsafe['position']);
+  MapTypeControlStyle get style => MapTypeControlStyle.find($unsafe['style']);
+  set mapTypeIds(List mapTypeIds) => $unsafe['mapTypeIds'] = jsifyList(mapTypeIds);
+  set position(ControlPosition position) => $unsafe['position'] = position;
+  set style(MapTypeControlStyle style) => $unsafe['style'] = style;
 }

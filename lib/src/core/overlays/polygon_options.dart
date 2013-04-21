@@ -20,38 +20,38 @@ class PolygonOptions extends jsw.TypedProxy {
   PolygonOptions() : super();
   PolygonOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  bool get clickable => $unsafe.clickable;
-  bool get draggable => $unsafe.draggable;
-  bool get editable => $unsafe.editable;
-  String get fillColor => $unsafe.fillColor;
-  num get fillOpacity => $unsafe.fillOpacity;
-  bool get geodesic => $unsafe.geodesic;
-  GMap get map => GMap.cast($unsafe.map);
+  bool get clickable => $unsafe['clickable'];
+  bool get draggable => $unsafe['draggable'];
+  bool get editable => $unsafe['editable'];
+  String get fillColor => $unsafe['fillColor'];
+  num get fillOpacity => $unsafe['fillOpacity'];
+  bool get geodesic => $unsafe['geodesic'];
+  GMap get map => GMap.cast($unsafe['map']);
   dynamic/*MVCArray.<MVCArray.<LatLng>>|MVCArray.<LatLng>|Array.<Array.<LatLng>>|Array.<LatLng>*/ get paths {
-    final result = $unsafe.paths;
+    final result = $unsafe['paths'];
     if (MVCArray.isInstance(result)) {
       return MVCArray.castListOfSerializables(result, (e) => LatLng.isInstance(e) ? LatLng.cast(e) : MVCArray.castListOfSerializables(e, LatLng.cast));
     }
     return jsw.JsArrayToListAdapter.castListOfSerializables(result, (e) => LatLng.isInstance(e) ? LatLng.cast(e) : jsw.JsArrayToListAdapter.castListOfSerializables(e, LatLng.cast));
   }
-  String get strokeColor => $unsafe.strokeColor;
-  num get strokeOpacity => $unsafe.strokeOpacity;
-  StrokePosition get strokePosition => StrokePosition.find($unsafe.strokePosition);
-  num get strokeWeight => $unsafe.strokeWeight;
-  bool get visible => $unsafe.visible;
-  num get zIndex => $unsafe.zIndex;
-  set clickable(bool clickable) => $unsafe.clickable = clickable;
-  set draggable(bool draggable) => $unsafe.draggable = draggable;
-  set editable(bool editable) => $unsafe.editable = editable;
-  set fillColor(String fillColor) => $unsafe.fillColor = fillColor;
-  set fillOpacity(num fillOpacity) => $unsafe.fillOpacity = fillOpacity;
-  set geodesic(bool geodesic) => $unsafe.geodesic = geodesic;
-  set map(GMap map) => $unsafe.map = map;
-  set paths(dynamic/*MVCArray.<MVCArray.<LatLng>>|MVCArray.<LatLng>|Array.<Array.<LatLng>>|Array.<LatLng>*/ paths) => $unsafe.paths = paths is List ? jsifyList(paths) : paths;
-  set strokeColor(String strokeColor) => $unsafe.strokeColor = strokeColor;
-  set strokeOpacity(num strokeOpacity) => $unsafe.strokeOpacity = strokeOpacity;
-  set strokePosition(StrokePosition strokePosition) => $unsafe.strokePosition = strokePosition;
-  set strokeWeight(num strokeWeight) => $unsafe.strokeWeight = strokeWeight;
-  set visible(bool visible) => $unsafe.visible = visible;
-  set zIndex(num zIndex) => $unsafe.zIndex = zIndex;
+  String get strokeColor => $unsafe['strokeColor'];
+  num get strokeOpacity => $unsafe['strokeOpacity'];
+  StrokePosition get strokePosition => StrokePosition.find($unsafe['strokePosition']);
+  num get strokeWeight => $unsafe['strokeWeight'];
+  bool get visible => $unsafe['visible'];
+  num get zIndex => $unsafe['zIndex'];
+  set clickable(bool clickable) => $unsafe['clickable'] = clickable;
+  set draggable(bool draggable) => $unsafe['draggable'] = draggable;
+  set editable(bool editable) => $unsafe['editable'] = editable;
+  set fillColor(String fillColor) => $unsafe['fillColor'] = fillColor;
+  set fillOpacity(num fillOpacity) => $unsafe['fillOpacity'] = fillOpacity;
+  set geodesic(bool geodesic) => $unsafe['geodesic'] = geodesic;
+  set map(GMap map) => $unsafe['map'] = map;
+  set paths(dynamic/*MVCArray.<MVCArray.<LatLng>>|MVCArray.<LatLng>|Array.<Array.<LatLng>>|Array.<LatLng>*/ paths) => $unsafe['paths'] = paths is List ? jsifyList(paths) : paths;
+  set strokeColor(String strokeColor) => $unsafe['strokeColor'] = strokeColor;
+  set strokeOpacity(num strokeOpacity) => $unsafe['strokeOpacity'] = strokeOpacity;
+  set strokePosition(StrokePosition strokePosition) => $unsafe['strokePosition'] = strokePosition;
+  set strokeWeight(num strokeWeight) => $unsafe['strokeWeight'] = strokeWeight;
+  set visible(bool visible) => $unsafe['visible'] = visible;
+  set zIndex(num zIndex) => $unsafe['zIndex'] = zIndex;
 }

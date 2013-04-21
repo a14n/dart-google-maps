@@ -20,10 +20,10 @@ class ElevationResult extends jsw.TypedProxy {
   ElevationResult() : super();
   ElevationResult.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  num get elevation => $unsafe.elevation;
-  LatLng get location => LatLng.cast($unsafe.location);
-  num get resolution => $unsafe.resolution;
-  set elevation(num elevation) => $unsafe.elevation = elevation;
-  set location(LatLng location) => $unsafe.location = location;
-  set resolution(num resolution) => $unsafe.resolution = resolution;
+  num get elevation => $unsafe['elevation'];
+  LatLng get location => LatLng.cast($unsafe['location']);
+  num get resolution => $unsafe['resolution'];
+  set elevation(num elevation) => $unsafe['elevation'] = elevation;
+  set location(LatLng location) => $unsafe['location'] = location;
+  set resolution(num resolution) => $unsafe['resolution'] = resolution;
 }

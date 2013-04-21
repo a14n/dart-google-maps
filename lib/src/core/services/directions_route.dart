@@ -20,16 +20,16 @@ class DirectionsRoute extends jsw.TypedProxy {
   DirectionsRoute() : super();
   DirectionsRoute.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  LatLngBounds get bounds => LatLngBounds.cast($unsafe.bounds);
-  String get copyrights => $unsafe.copyrights;
-  List<DirectionsLeg> get legs => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.legs, DirectionsLeg.cast);
-  List<LatLng> get overviewPath => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.overview_path, LatLng.cast);
-  List<String> get warnings => jsw.JsArrayToListAdapter.cast($unsafe.warnings);
-  List<num> get waypointOrder => jsw.JsArrayToListAdapter.cast($unsafe.waypoint_order);
-  set bounds(LatLngBounds bounds) => $unsafe.bounds = bounds;
-  set copyrights(String copyrights) => $unsafe.copyrights = copyrights;
-  set legs(List<DirectionsLeg> legs) => $unsafe.legs = jsifyList(legs);
-  set overviewPath(List<LatLng> overviewPath) => $unsafe.overview_path = jsifyList(overviewPath);
-  set warnings(List<String> warnings) => $unsafe.warnings = jsifyList(warnings);
-  set waypointOrder(List<num> waypointOrder) => $unsafe.waypoint_order = jsifyList(waypointOrder);
+  LatLngBounds get bounds => LatLngBounds.cast($unsafe['bounds']);
+  String get copyrights => $unsafe['copyrights'];
+  List<DirectionsLeg> get legs => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe['legs'], DirectionsLeg.cast);
+  List<LatLng> get overviewPath => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe['overview_path'], LatLng.cast);
+  List<String> get warnings => jsw.JsArrayToListAdapter.cast($unsafe['warnings']);
+  List<num> get waypointOrder => jsw.JsArrayToListAdapter.cast($unsafe['waypoint_order']);
+  set bounds(LatLngBounds bounds) => $unsafe['bounds'] = bounds;
+  set copyrights(String copyrights) => $unsafe['copyrights'] = copyrights;
+  set legs(List<DirectionsLeg> legs) => $unsafe['legs'] = jsifyList(legs);
+  set overviewPath(List<LatLng> overviewPath) => $unsafe['overview_path'] = jsifyList(overviewPath);
+  set warnings(List<String> warnings) => $unsafe['warnings'] = jsifyList(warnings);
+  set waypointOrder(List<num> waypointOrder) => $unsafe['waypoint_order'] = jsifyList(waypointOrder);
 }

@@ -20,8 +20,8 @@ class PredictionTerm extends jsw.TypedProxy {
   PredictionTerm() : super();
   PredictionTerm.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  num get offset => $unsafe.offset;
-  String get value => $unsafe.value;
-  set offset(num offset) => $unsafe.offset = offset;
-  set value(String value) => $unsafe.value = value;
+  num get offset => $unsafe['offset'];
+  String get value => $unsafe['value'];
+  set offset(num offset) => $unsafe['offset'] = offset;
+  set value(String value) => $unsafe['value'] = value;
 }

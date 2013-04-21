@@ -20,18 +20,18 @@ class DistanceMatrixRequest extends jsw.TypedProxy {
   DistanceMatrixRequest() : super();
   DistanceMatrixRequest.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  bool get avoidHighways => $unsafe.avoidHighways;
-  bool get avoidTolls => $unsafe.avoidTolls;
-  List/*Array.<LatLng>|Array.<string>*/ get destinations => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.destinations, (e) => LatLng.isInstance(e) ? LatLng.cast(e) : e);
-  List/*Array.<LatLng>|Array.<string>*/ get origins => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.origins, (e) => LatLng.isInstance(e) ? LatLng.cast(e) : e);
-  String get region => $unsafe.region;
-  TravelMode get travelMode => TravelMode.find($unsafe.travelMode);
-  UnitSystem get unitSystem => UnitSystem.find($unsafe.unitSystem);
-  set avoidHighways(bool avoidHighways) => $unsafe.avoidHighways = avoidHighways;
-  set avoidTolls(bool avoidTolls) => $unsafe.avoidTolls = avoidTolls;
-  set destinations(List/*Array.<LatLng>|Array.<string>*/ destinations) => $unsafe.destinations = jsifyList(destinations);
-  set origins(List/*Array.<LatLng>|Array.<string>*/ origins) => $unsafe.origins = jsifyList(origins);
-  set region(String region) => $unsafe.region = region;
-  set travelMode(TravelMode travelMode) => $unsafe.travelMode = travelMode;
-  set unitSystem(UnitSystem unitSystem) => $unsafe.unitSystem = unitSystem;
+  bool get avoidHighways => $unsafe['avoidHighways'];
+  bool get avoidTolls => $unsafe['avoidTolls'];
+  List/*Array.<LatLng>|Array.<string>*/ get destinations => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe['destinations'], (e) => LatLng.isInstance(e) ? LatLng.cast(e) : e);
+  List/*Array.<LatLng>|Array.<string>*/ get origins => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe['origins'], (e) => LatLng.isInstance(e) ? LatLng.cast(e) : e);
+  String get region => $unsafe['region'];
+  TravelMode get travelMode => TravelMode.find($unsafe['travelMode']);
+  UnitSystem get unitSystem => UnitSystem.find($unsafe['unitSystem']);
+  set avoidHighways(bool avoidHighways) => $unsafe['avoidHighways'] = avoidHighways;
+  set avoidTolls(bool avoidTolls) => $unsafe['avoidTolls'] = avoidTolls;
+  set destinations(List/*Array.<LatLng>|Array.<string>*/ destinations) => $unsafe['destinations'] = jsifyList(destinations);
+  set origins(List/*Array.<LatLng>|Array.<string>*/ origins) => $unsafe['origins'] = jsifyList(origins);
+  set region(String region) => $unsafe['region'] = region;
+  set travelMode(TravelMode travelMode) => $unsafe['travelMode'] = travelMode;
+  set unitSystem(UnitSystem unitSystem) => $unsafe['unitSystem'] = unitSystem;
 }

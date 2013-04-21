@@ -20,8 +20,8 @@ class PredictionSubstring extends jsw.TypedProxy {
   PredictionSubstring() : super();
   PredictionSubstring.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  num get length => $unsafe.length;
-  num get offset => $unsafe.offset;
-  set length(num length) => $unsafe.length = length;
-  set offset(num offset) => $unsafe.offset = offset;
+  num get length => $unsafe['length'];
+  num get offset => $unsafe['offset'];
+  set length(num length) => $unsafe['length'] = length;
+  set offset(num offset) => $unsafe['offset'] = offset;
 }

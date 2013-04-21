@@ -66,8 +66,8 @@ class StreetViewPanorama extends MVCObject {
   set visible(bool flag) => $unsafe.setVisible(flag);
   set zoom(num zoom) => $unsafe.setZoom(zoom);
 
-  Controls get controls => Controls.cast($unsafe.controls);
-  set controls(Controls controls) => $unsafe.controls = controls;
+  Controls get controls => Controls.cast($unsafe['controls']);
+  set controls(Controls controls) => $unsafe['controls'] = controls;
 
   /// deprecated : use onXxx stream.
   @deprecated StreetViewPanoramaEvents get on => new StreetViewPanoramaEvents._(this);

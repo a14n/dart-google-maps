@@ -20,8 +20,8 @@ class GDuration extends jsw.TypedProxy {
   GDuration() : super();
   GDuration.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  String get text => $unsafe.text;
-  num get value => $unsafe.value;
-  set text(String text) => $unsafe.text = text;
-  set value(num value) => $unsafe.value = value;
+  String get text => $unsafe['text'];
+  num get value => $unsafe['value'];
+  set text(String text) => $unsafe['text'] = text;
+  set value(num value) => $unsafe['value'] = value;
 }

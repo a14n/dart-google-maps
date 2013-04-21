@@ -20,14 +20,14 @@ class Icon extends jsw.TypedProxy {
   Icon() : super();
   Icon.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  Point get anchor => Point.cast($unsafe.anchor);
-  Point get origin => Point.cast($unsafe.origin);
-  Size get scaledSize => Size.cast($unsafe.scaledSize);
-  Size get size => Size.cast($unsafe.size);
-  String get url => $unsafe.url;
-  set anchor(Point anchor) => $unsafe.anchor = anchor;
-  set origin(Point origin) => $unsafe.origin = origin;
-  set scaledSize(Size scaledSize) => $unsafe.scaledSize = scaledSize;
-  set size(Size size) => $unsafe.size = size;
-  set url(String url) => $unsafe.url = url;
+  Point get anchor => Point.cast($unsafe['anchor']);
+  Point get origin => Point.cast($unsafe['origin']);
+  Size get scaledSize => Size.cast($unsafe['scaledSize']);
+  Size get size => Size.cast($unsafe['size']);
+  String get url => $unsafe['url'];
+  set anchor(Point anchor) => $unsafe['anchor'] = anchor;
+  set origin(Point origin) => $unsafe['origin'] = origin;
+  set scaledSize(Size scaledSize) => $unsafe['scaledSize'] = scaledSize;
+  set size(Size size) => $unsafe['size'] = size;
+  set url(String url) => $unsafe['url'] = url;
 }

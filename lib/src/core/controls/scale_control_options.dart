@@ -20,8 +20,8 @@ class ScaleControlOptions extends jsw.TypedProxy {
   ScaleControlOptions() : super();
   ScaleControlOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  ControlPosition get position => ControlPosition.find($unsafe.position);
-  ScaleControlStyle get style => ScaleControlStyle.find($unsafe.style);
-  set position(ControlPosition position) => $unsafe.position = position;
-  set style(ScaleControlStyle style) => $unsafe.style = style;
+  ControlPosition get position => ControlPosition.find($unsafe['position']);
+  ScaleControlStyle get style => ScaleControlStyle.find($unsafe['style']);
+  set position(ControlPosition position) => $unsafe['position'] = position;
+  set style(ScaleControlStyle style) => $unsafe['style'] = style;
 }

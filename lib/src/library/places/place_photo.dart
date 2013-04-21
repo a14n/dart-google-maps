@@ -20,10 +20,10 @@ class PlacePhoto extends jsw.TypedProxy {
   PlacePhoto() : super();
   PlacePhoto.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  num get height => $unsafe.height;
-  List<String> get htmlAttributions => jsw.JsArrayToListAdapter.cast($unsafe.html_attributions);
-  num get width => $unsafe.width;
-  set height(num height) => $unsafe.height = height;
-  set htmlAttributions(List<String> htmlAttributions) => $unsafe.html_attributions = jsifyList(htmlAttributions);
-  set width(num width) => $unsafe.width = width;
+  num get height => $unsafe['height'];
+  List<String> get htmlAttributions => jsw.JsArrayToListAdapter.cast($unsafe['html_attributions']);
+  num get width => $unsafe['width'];
+  set height(num height) => $unsafe['height'] = height;
+  set htmlAttributions(List<String> htmlAttributions) => $unsafe['html_attributions'] = jsifyList(htmlAttributions);
+  set width(num width) => $unsafe['width'] = width;
 }

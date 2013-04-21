@@ -20,12 +20,12 @@ class TransitVehicle extends jsw.TypedProxy {
   TransitVehicle() : super();
   TransitVehicle.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  String get icon => $unsafe.icon;
-  String get localIcon => $unsafe.local_icon;
-  String get name => $unsafe.name;
-  VehicleType get type => VehicleType.find($unsafe.type);
-  set icon(String icon) => $unsafe.icon = icon;
-  set localIcon(String localIcon) => $unsafe.local_icon = localIcon;
-  set name(String name) => $unsafe.name = name;
-  set type(VehicleType type) => $unsafe.type = type;
+  String get icon => $unsafe['icon'];
+  String get localIcon => $unsafe['local_icon'];
+  String get name => $unsafe['name'];
+  VehicleType get type => VehicleType.find($unsafe['type']);
+  set icon(String icon) => $unsafe['icon'] = icon;
+  set localIcon(String localIcon) => $unsafe['local_icon'] = localIcon;
+  set name(String name) => $unsafe['name'] = name;
+  set type(VehicleType type) => $unsafe['type'] = type;
 }

@@ -20,12 +20,12 @@ class WeatherMouseEvent extends jsw.TypedProxy {
   WeatherMouseEvent();
   WeatherMouseEvent.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  WeatherFeature get featureDetails => WeatherFeature.cast($unsafe.featureDetails);
-  String get infoWindowHtml => $unsafe.infoWindowHtml;
-  LatLng get latLng => LatLng.cast($unsafe.latLng);
-  Size get pixelOffset => Size.cast($unsafe.pixelOffset);
-  set featureDetails(WeatherFeature featureDetails) => $unsafe.featureDetails = featureDetails;
-  set infoWindowHtml(String infoWindowHtml) => $unsafe.infoWindowHtml = infoWindowHtml;
-  set latLng(LatLng latLng) => $unsafe.latLng = latLng;
-  set pixelOffset(Size pixelOffset) => $unsafe.pixelOffset = pixelOffset;
+  WeatherFeature get featureDetails => WeatherFeature.cast($unsafe['featureDetails']);
+  String get infoWindowHtml => $unsafe['infoWindowHtml'];
+  LatLng get latLng => LatLng.cast($unsafe['latLng']);
+  Size get pixelOffset => Size.cast($unsafe['pixelOffset']);
+  set featureDetails(WeatherFeature featureDetails) => $unsafe['featureDetails'] = featureDetails;
+  set infoWindowHtml(String infoWindowHtml) => $unsafe['infoWindowHtml'] = infoWindowHtml;
+  set latLng(LatLng latLng) => $unsafe['latLng'] = latLng;
+  set pixelOffset(Size pixelOffset) => $unsafe['pixelOffset'] = pixelOffset;
 }

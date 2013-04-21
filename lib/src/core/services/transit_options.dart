@@ -20,8 +20,8 @@ class TransitOptions extends jsw.TypedProxy {
   TransitOptions() : super();
   TransitOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  DateTime get arrivalTime => jsw.JsDateToDateTimeAdapter.cast($unsafe.arrivalTime);
-  DateTime get departureTime => jsw.JsDateToDateTimeAdapter.cast($unsafe.departureTime);
-  set arrivalTime(DateTime arrivalTime) => $unsafe.arrivalTime = jsifyDateTime(arrivalTime);
-  set departureTime(DateTime departureTime) => $unsafe.departureTime = jsifyDateTime(departureTime);
+  DateTime get arrivalTime => jsw.JsDateToDateTimeAdapter.cast($unsafe['arrivalTime']);
+  DateTime get departureTime => jsw.JsDateToDateTimeAdapter.cast($unsafe['departureTime']);
+  set arrivalTime(DateTime arrivalTime) => $unsafe['arrivalTime'] = jsifyDateTime(arrivalTime);
+  set departureTime(DateTime departureTime) => $unsafe['departureTime'] = jsifyDateTime(departureTime);
 }

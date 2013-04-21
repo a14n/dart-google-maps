@@ -20,6 +20,6 @@ class FusionTablesHeatmap extends jsw.TypedProxy {
   FusionTablesHeatmap() : super();
   FusionTablesHeatmap.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  bool get enabled => $unsafe.enabled;
-  set enabled(bool enabled) => $unsafe.enabled = enabled;
+  bool get enabled => $unsafe['enabled'];
+  set enabled(bool enabled) => $unsafe['enabled'] = enabled;
 }

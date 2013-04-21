@@ -20,8 +20,8 @@ class PhotoOptions extends jsw.TypedProxy {
   PhotoOptions() : super();
   PhotoOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  num get maxHeight => $unsafe.maxHeight;
-  num get maxWidth => $unsafe.maxWidth;
-  set maxHeight(num maxHeight) => $unsafe.maxHeight = maxHeight;
-  set maxWidth(num maxWidth) => $unsafe.maxWidth = maxWidth;
+  num get maxHeight => $unsafe['maxHeight'];
+  num get maxWidth => $unsafe['maxWidth'];
+  set maxHeight(num maxHeight) => $unsafe['maxHeight'] = maxHeight;
+  set maxWidth(num maxWidth) => $unsafe['maxWidth'] = maxWidth;
 }

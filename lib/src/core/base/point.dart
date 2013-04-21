@@ -23,8 +23,8 @@ class Point extends jsw.TypedProxy {
   bool equals(Point other) => $unsafe.equals(other);
   String toString() => $unsafe["toString"].apply($unsafe, js.array([]));
 
-  num get x => $unsafe.x;
-  num get y => $unsafe.y;
-  set x(num x) => $unsafe.x = x;
-  set y(num y) => $unsafe.y = y;
+  num get x => $unsafe['x'];
+  num get y => $unsafe['y'];
+  set x(num x) => $unsafe['x'] = x;
+  set y(num y) => $unsafe['y'] = y;
 }

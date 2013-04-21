@@ -28,7 +28,7 @@ class OverlayView extends MVCObject {
   void onRemove() { $unsafe.onRemove(); }
   set map(dynamic/*Map|StreetViewPanorama*/ map) => $unsafe.setMap(map);
 
-  void set_onAdd(onAdd()) { $unsafe.onAdd = new js.Callback.many(onAdd); }
-  void set_onRemove(onRemove()) { $unsafe.onRemove = new js.Callback.many(onRemove); }
-  void set_draw(draw()) { $unsafe.draw = new js.Callback.many(draw); }
+  void set_onAdd(onAdd()) { $unsafe['onAdd'] = new js.Callback.many(onAdd); }
+  void set_onRemove(onRemove()) { $unsafe['onRemove'] = new js.Callback.many(onRemove); }
+  void set_draw(draw()) { $unsafe['draw'] = new js.Callback.many(draw); }
 }

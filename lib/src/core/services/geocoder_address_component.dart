@@ -20,10 +20,10 @@ class GeocoderAddressComponent extends jsw.TypedProxy {
   GeocoderAddressComponent() : super();
   GeocoderAddressComponent.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  String get longName => $unsafe.long_name;
-  String get shortName => $unsafe.short_name;
-  List<String> get types => jsw.JsArrayToListAdapter.cast($unsafe.types);
-  set longName(String longName) => $unsafe.long_name = longName;
-  set shortName(String shortName) => $unsafe.short_name = shortName;
-  set types(List<String> types) => $unsafe.types = jsifyList(types);
+  String get longName => $unsafe['long_name'];
+  String get shortName => $unsafe['short_name'];
+  List<String> get types => jsw.JsArrayToListAdapter.cast($unsafe['types']);
+  set longName(String longName) => $unsafe['long_name'] = longName;
+  set shortName(String shortName) => $unsafe['short_name'] = shortName;
+  set types(List<String> types) => $unsafe['types'] = jsifyList(types);
 }

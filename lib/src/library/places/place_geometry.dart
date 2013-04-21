@@ -20,8 +20,8 @@ class PlaceGeometry extends jsw.TypedProxy {
   PlaceGeometry() : super();
   PlaceGeometry.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  LatLng get location => LatLng.cast($unsafe.location);
-  LatLngBounds get viewport => LatLngBounds.cast($unsafe.viewport);
-  set location(LatLng location) => $unsafe.location = location;
-  set viewport(LatLngBounds viewport) => $unsafe.viewport = viewport;
+  LatLng get location => LatLng.cast($unsafe['location']);
+  LatLngBounds get viewport => LatLngBounds.cast($unsafe['viewport']);
+  set location(LatLng location) => $unsafe['location'] = location;
+  set viewport(LatLngBounds viewport) => $unsafe['viewport'] = viewport;
 }

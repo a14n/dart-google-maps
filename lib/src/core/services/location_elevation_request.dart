@@ -20,6 +20,6 @@ class LocationElevationRequest extends jsw.TypedProxy {
   LocationElevationRequest() : super();
   LocationElevationRequest.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  List<LatLng> get locations => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.locations, LatLng.cast);
-  set locations(List<LatLng> locations) => $unsafe.locations = jsifyList(locations);
+  List<LatLng> get locations => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe['locations'], LatLng.cast);
+  set locations(List<LatLng> locations) => $unsafe['locations'] = jsifyList(locations);
 }

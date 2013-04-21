@@ -21,7 +21,7 @@ class OverlayCompleteEvent extends jsw.TypedProxy {
   OverlayCompleteEvent.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   dynamic/*Marker|Polygon|Polyline|Rectangle|Circle*/ get overlay {
-    final result = $unsafe.overlay;
+    final result = $unsafe['overlay'];
     if (Marker.isInstance(result)) {
       return Marker.cast(result);
     } else if (Polygon.isInstance(result)) {
@@ -36,7 +36,7 @@ class OverlayCompleteEvent extends jsw.TypedProxy {
       return result;
     }
   }
-  OverlayType get type => OverlayType.find($unsafe.type);
-  set overlay(dynamic/*Marker|Polygon|Polyline|Rectangle|Circle*/ overlay) => $unsafe.overlay = overlay;
-  set type(OverlayType type) => $unsafe.type = type;
+  OverlayType get type => OverlayType.find($unsafe['type']);
+  set overlay(dynamic/*Marker|Polygon|Polyline|Rectangle|Circle*/ overlay) => $unsafe['overlay'] = overlay;
+  set type(OverlayType type) => $unsafe['type'] = type;
 }

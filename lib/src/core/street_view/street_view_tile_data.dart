@@ -21,14 +21,14 @@ class StreetViewTileData extends jsw.TypedProxy {
   StreetViewTileData.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   void set_getTileUrl(String getTileUrl(String pano, num tileZoom, num tileX, num tileY)) {
-    $unsafe.getTileUrl = new js.Callback.many(getTileUrl);
+    $unsafe['getTileUrl'] = new js.Callback.many(getTileUrl);
   }
   String getTileUrl(String pano, num tileZoom, num tileX, num tileY) => $unsafe.getTileUrl(pano, tileZoom, tileX, tileY);
 
-  num get centerHeading => $unsafe.centerHeading;
-  Size get tileSize => Size.cast($unsafe.tileSize);
-  Size get worldSize => Size.cast($unsafe.worldSize);
-  set centerHeading(num centerHeading) => $unsafe.centerHeading = centerHeading;
-  set tileSize(Size tileSize) => $unsafe.tileSize = tileSize;
-  set worldSize(Size worldSize) => $unsafe.worldSize = worldSize;
+  num get centerHeading => $unsafe['centerHeading'];
+  Size get tileSize => Size.cast($unsafe['tileSize']);
+  Size get worldSize => Size.cast($unsafe['worldSize']);
+  set centerHeading(num centerHeading) => $unsafe['centerHeading'] = centerHeading;
+  set tileSize(Size tileSize) => $unsafe['tileSize'] = tileSize;
+  set worldSize(Size worldSize) => $unsafe['worldSize'] = worldSize;
 }

@@ -20,6 +20,6 @@ class PanControlOptions extends jsw.TypedProxy {
   PanControlOptions() : super();
   PanControlOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  ControlPosition get position => ControlPosition.find($unsafe.position);
-  set position(ControlPosition position) => $unsafe.position = position;
+  ControlPosition get position => ControlPosition.find($unsafe['position']);
+  set position(ControlPosition position) => $unsafe['position'] = position;
 }

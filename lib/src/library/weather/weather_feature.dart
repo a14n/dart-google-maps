@@ -20,14 +20,14 @@ class WeatherFeature extends jsw.TypedProxy {
   WeatherFeature() : super();
   WeatherFeature.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  WeatherConditions get current => WeatherConditions.cast($unsafe.current);
-  List<WeatherForecast> get forecast => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.forecast, WeatherForecast.cast);
-  String get location => $unsafe.location;
-  TemperatureUnit get temperatureUnit => TemperatureUnit.find($unsafe.temperatureUnit);
-  WindSpeedUnit get windSpeedUnit => WindSpeedUnit.find($unsafe.windSpeedUnit);
-  set current(WeatherConditions current) => $unsafe.current = current;
-  set forecast(List<WeatherForecast> forecast) => $unsafe.forecast = jsifyList(forecast);
-  set location(String location) => $unsafe.location = location;
-  set temperatureUnit(TemperatureUnit temperatureUnit) => $unsafe.temperatureUnit = temperatureUnit;
-  set windSpeedUnit(WindSpeedUnit windSpeedUnit) => $unsafe.windSpeedUnit = windSpeedUnit;
+  WeatherConditions get current => WeatherConditions.cast($unsafe['current']);
+  List<WeatherForecast> get forecast => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe['forecast'], WeatherForecast.cast);
+  String get location => $unsafe['location'];
+  TemperatureUnit get temperatureUnit => TemperatureUnit.find($unsafe['temperatureUnit']);
+  WindSpeedUnit get windSpeedUnit => WindSpeedUnit.find($unsafe['windSpeedUnit']);
+  set current(WeatherConditions current) => $unsafe['current'] = current;
+  set forecast(List<WeatherForecast> forecast) => $unsafe['forecast'] = jsifyList(forecast);
+  set location(String location) => $unsafe['location'] = location;
+  set temperatureUnit(TemperatureUnit temperatureUnit) => $unsafe['temperatureUnit'] = temperatureUnit;
+  set windSpeedUnit(WindSpeedUnit windSpeedUnit) => $unsafe['windSpeedUnit'] = windSpeedUnit;
 }

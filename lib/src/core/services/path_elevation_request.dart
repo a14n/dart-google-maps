@@ -20,8 +20,8 @@ class PathElevationRequest extends jsw.TypedProxy {
   PathElevationRequest() : super();
   PathElevationRequest.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
-  List<LatLng> get path => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.path, LatLng.cast);
-  num get samples => $unsafe.samples;
-  set path(List<LatLng> path) => $unsafe.path = jsifyList(path);
-  set samples(num samples) => $unsafe.samples = samples;
+  List<LatLng> get path => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe['path'], LatLng.cast);
+  num get samples => $unsafe['samples'];
+  set path(List<LatLng> path) => $unsafe['path'] = jsifyList(path);
+  set samples(num samples) => $unsafe['samples'] = samples;
 }
