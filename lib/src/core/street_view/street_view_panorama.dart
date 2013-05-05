@@ -18,37 +18,37 @@ class StreetViewPanorama extends MVCObject {
   static StreetViewPanorama cast(js.Proxy proxy) => proxy == null ? null : new StreetViewPanorama.fromProxy(proxy);
   static bool isInstance(js.Proxy proxy) => js.instanceof(proxy, maps.StreetViewPanorama);
 
-  Stream<NativeEvent> _onCloseclick;
-  Stream _onLinksChanged;
-  Stream _onPanoChanged;
-  Stream _onPositionChanged;
-  Stream _onPovChanged;
-  Stream _onResize;
-  Stream _onVisibleChanged;
-  Stream _onZoomChanged;
+  SubscribeStreamProvider<NativeEvent> _onCloseclick;
+  SubscribeStreamProvider _onLinksChanged;
+  SubscribeStreamProvider _onPanoChanged;
+  SubscribeStreamProvider _onPositionChanged;
+  SubscribeStreamProvider _onPovChanged;
+  SubscribeStreamProvider _onResize;
+  SubscribeStreamProvider _onVisibleChanged;
+  SubscribeStreamProvider _onZoomChanged;
 
   StreetViewPanorama(html.Node container, [StreetViewPanoramaOptions opts]) : super(maps.StreetViewPanorama, [container, opts]) { _initStreams(); }
   StreetViewPanorama.fromProxy(js.Proxy proxy) : super.fromProxy(proxy) { _initStreams(); }
 
   void _initStreams() {
-    _onCloseclick = event.getStreamFor(this, "closeclick", NativeEvent.cast);
-    _onLinksChanged = event.getStreamFor(this, "links_changed");
-    _onPanoChanged = event.getStreamFor(this, "pano_changed");
-    _onPositionChanged = event.getStreamFor(this, "position_changed");
-    _onPovChanged = event.getStreamFor(this, "pov_changed");
-    _onResize = event.getStreamFor(this, "resize");
-    _onVisibleChanged = event.getStreamFor(this, "visible_changed");
-    _onZoomChanged = event.getStreamFor(this, "zoom_changed");
+    _onCloseclick = event.getStreamProviderFor(this, "closeclick", NativeEvent.cast);
+    _onLinksChanged = event.getStreamProviderFor(this, "links_changed");
+    _onPanoChanged = event.getStreamProviderFor(this, "pano_changed");
+    _onPositionChanged = event.getStreamProviderFor(this, "position_changed");
+    _onPovChanged = event.getStreamProviderFor(this, "pov_changed");
+    _onResize = event.getStreamProviderFor(this, "resize");
+    _onVisibleChanged = event.getStreamProviderFor(this, "visible_changed");
+    _onZoomChanged = event.getStreamProviderFor(this, "zoom_changed");
   }
 
-  Stream<NativeEvent> get onCloseclick => _onCloseclick;
-  Stream get onLinksChanged => _onLinksChanged;
-  Stream get onPanoChanged => _onPanoChanged;
-  Stream get onPositionChanged => _onPositionChanged;
-  Stream get onPovChanged => _onPovChanged;
-  Stream get onResize => _onResize;
-  Stream get onVisibleChanged => _onVisibleChanged;
-  Stream get onZoomChanged => _onZoomChanged;
+  Stream<NativeEvent> get onCloseclick => _onCloseclick.stream;
+  Stream get onLinksChanged => _onLinksChanged.stream;
+  Stream get onPanoChanged => _onPanoChanged.stream;
+  Stream get onPositionChanged => _onPositionChanged.stream;
+  Stream get onPovChanged => _onPovChanged.stream;
+  Stream get onResize => _onResize.stream;
+  Stream get onVisibleChanged => _onVisibleChanged.stream;
+  Stream get onZoomChanged => _onZoomChanged.stream;
 
   List<StreetViewLink> get links => jsw.JsArrayToListAdapter.castListOfSerializables($unsafe.getLinks(), StreetViewLink.cast);
   String get pano => $unsafe.getPano();

@@ -17,16 +17,16 @@ part of google_maps_places;
 class Autocomplete extends MVCObject {
   static Autocomplete cast(js.Proxy proxy) => proxy == null ? null : new Autocomplete.fromProxy(proxy);
 
-  Stream _onPlaceChanged;
+  SubscribeStreamProvider _onPlaceChanged;
 
   Autocomplete(html.InputElement inputField, [AutocompleteOptions opts]) : super(maps.places.Autocomplete, [inputField, opts]) { _initStreams(); }
   Autocomplete.fromProxy(js.Proxy proxy) : super.fromProxy(proxy) { _initStreams(); }
 
   void _initStreams() {
-    _onPlaceChanged = event.getStreamFor(this, "place_changed");
+    _onPlaceChanged = event.getStreamProviderFor(this, "place_changed");
   }
 
-  Stream get onPlaceChanged => _onPlaceChanged;
+  Stream get onPlaceChanged => _onPlaceChanged.stream;
 
   LatLngBounds get bounds => LatLngBounds.cast($unsafe.getBounds());
   PlaceResult get place => PlaceResult.cast($unsafe.getPlace());

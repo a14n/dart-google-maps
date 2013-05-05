@@ -71,17 +71,10 @@ class GEvent extends jsw.TypedProxy {
     $unsafe.trigger(parameters);
   }
 
-  Stream getStreamFor(dynamic instance, String eventName, [Function transformArguments]) {
-    StreamController streamController;
+  SubscribeStreamProvider getStreamProviderFor(dynamic instance, String eventName, [Function transformArguments]) {
     MapsEventListener mapsEventListener = null;
-    final listener = () {
-      if (!streamController.hasListener || streamController.isPaused || streamController.isClosed) {
-        if (mapsEventListener != null) {
-          removeListener(mapsEventListener);
-          mapsEventListener = null;
-        }
-      } else {
-        if (mapsEventListener == null) {
+    return new SubscribeStreamProvider(
+        subscribe: (EventSink eventSink) {
           mapsEventListener = addListener(instance, eventName, ([
               p1 = _undefined,
               p2 = _undefined,
@@ -93,12 +86,12 @@ class GEvent extends jsw.TypedProxy {
                 args.length == 0 ? null :
                 args.length == 1 ? args.first :
                 args;
-            streamController.add(transformArguments == null ? value : Function.apply(transformArguments, args));
+            eventSink.add(transformArguments == null ? value : Function.apply(transformArguments, args));
           });
+        },
+        unsubscribe: (EventSink eventSink) {
+          removeListener(mapsEventListener);
         }
-      }
-    };
-    streamController = new StreamController(onListen: listener, onPause: listener, onResume: listener, onCancel: listener);
-    return streamController.stream.asBroadcastStream();
+    );
   }
 }

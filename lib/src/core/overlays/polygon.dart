@@ -18,37 +18,37 @@ class Polygon extends MVCObject {
   static Polygon cast(js.Proxy proxy) => proxy == null ? null : new Polygon.fromProxy(proxy);
   static bool isInstance(js.Proxy proxy) => js.instanceof(proxy, maps.Polygon);
 
-  Stream<PolyMouseEvent> _onClick;
-  Stream<PolyMouseEvent> _onDblClick;
-  Stream<PolyMouseEvent> _onMousedown;
-  Stream<PolyMouseEvent> _onMousemove;
-  Stream<PolyMouseEvent> _onMouseout;
-  Stream<PolyMouseEvent> _onMouseover;
-  Stream<PolyMouseEvent> _onMouseup;
-  Stream<PolyMouseEvent> _onRightclick;
+  SubscribeStreamProvider<PolyMouseEvent> _onClick;
+  SubscribeStreamProvider<PolyMouseEvent> _onDblClick;
+  SubscribeStreamProvider<PolyMouseEvent> _onMousedown;
+  SubscribeStreamProvider<PolyMouseEvent> _onMousemove;
+  SubscribeStreamProvider<PolyMouseEvent> _onMouseout;
+  SubscribeStreamProvider<PolyMouseEvent> _onMouseover;
+  SubscribeStreamProvider<PolyMouseEvent> _onMouseup;
+  SubscribeStreamProvider<PolyMouseEvent> _onRightclick;
 
   Polygon([PolygonOptions opts]) : super(maps.Polygon, [opts]) { _initStreams(); }
   Polygon.fromProxy(js.Proxy proxy) : super.fromProxy(proxy) { _initStreams(); }
 
   void _initStreams() {
-    _onClick = event.getStreamFor(this, "click", PolyMouseEvent.cast);
-    _onDblClick = event.getStreamFor(this, "dblclick", PolyMouseEvent.cast);
-    _onMousedown = event.getStreamFor(this, "mousedown", PolyMouseEvent.cast);
-    _onMousemove = event.getStreamFor(this, "mousemove", PolyMouseEvent.cast);
-    _onMouseout = event.getStreamFor(this, "mouseout", PolyMouseEvent.cast);
-    _onMouseover = event.getStreamFor(this, "mouseover", PolyMouseEvent.cast);
-    _onMouseup = event.getStreamFor(this, "mouseup", PolyMouseEvent.cast);
-    _onRightclick = event.getStreamFor(this, "rightclick", PolyMouseEvent.cast);
+    _onClick = event.getStreamProviderFor(this, "click", PolyMouseEvent.cast);
+    _onDblClick = event.getStreamProviderFor(this, "dblclick", PolyMouseEvent.cast);
+    _onMousedown = event.getStreamProviderFor(this, "mousedown", PolyMouseEvent.cast);
+    _onMousemove = event.getStreamProviderFor(this, "mousemove", PolyMouseEvent.cast);
+    _onMouseout = event.getStreamProviderFor(this, "mouseout", PolyMouseEvent.cast);
+    _onMouseover = event.getStreamProviderFor(this, "mouseover", PolyMouseEvent.cast);
+    _onMouseup = event.getStreamProviderFor(this, "mouseup", PolyMouseEvent.cast);
+    _onRightclick = event.getStreamProviderFor(this, "rightclick", PolyMouseEvent.cast);
   }
 
-  Stream<PolyMouseEvent> get onClick => _onClick;
-  Stream<PolyMouseEvent> get onDblClick => _onDblClick;
-  Stream<PolyMouseEvent> get onMousedown => _onMousedown;
-  Stream<PolyMouseEvent> get onMousemove => _onMousemove;
-  Stream<PolyMouseEvent> get onMouseout => _onMouseout;
-  Stream<PolyMouseEvent> get onMouseover => _onMouseover;
-  Stream<PolyMouseEvent> get onMouseup => _onMouseup;
-  Stream<PolyMouseEvent> get onRightclick => _onRightclick;
+  Stream<PolyMouseEvent> get onClick => _onClick.stream;
+  Stream<PolyMouseEvent> get onDblClick => _onDblClick.stream;
+  Stream<PolyMouseEvent> get onMousedown => _onMousedown.stream;
+  Stream<PolyMouseEvent> get onMousemove => _onMousemove.stream;
+  Stream<PolyMouseEvent> get onMouseout => _onMouseout.stream;
+  Stream<PolyMouseEvent> get onMouseover => _onMouseover.stream;
+  Stream<PolyMouseEvent> get onMouseup => _onMouseup.stream;
+  Stream<PolyMouseEvent> get onRightclick => _onRightclick.stream;
 
   bool get draggable => $unsafe.getDraggable();
   bool get editable => $unsafe.getEditable();

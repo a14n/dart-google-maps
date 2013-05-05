@@ -17,22 +17,22 @@ part of google_maps;
 class KmlLayer extends MVCObject {
   static KmlLayer cast(js.Proxy proxy) => proxy == null ? null : new KmlLayer.fromProxy(proxy);
 
-  Stream<KmlMouseEvent> _onClick;
-  Stream _onDefaultviewportChanged;
-  Stream _onStatusChanged;
+  SubscribeStreamProvider<KmlMouseEvent> _onClick;
+  SubscribeStreamProvider _onDefaultviewportChanged;
+  SubscribeStreamProvider _onStatusChanged;
 
   KmlLayer([KmlLayerOptions options]) : super(maps.KmlLayer, [options]) { _initStreams(); }
   KmlLayer.fromProxy(js.Proxy proxy) : super.fromProxy(proxy) { _initStreams(); }
 
   void _initStreams() {
-    _onClick = event.getStreamFor(this, "click", KmlMouseEvent.cast);
-    _onDefaultviewportChanged = event.getStreamFor(this, "defaultviewport_changed");
-    _onStatusChanged = event.getStreamFor(this, "status_changed");
+    _onClick = event.getStreamProviderFor(this, "click", KmlMouseEvent.cast);
+    _onDefaultviewportChanged = event.getStreamProviderFor(this, "defaultviewport_changed");
+    _onStatusChanged = event.getStreamProviderFor(this, "status_changed");
   }
 
-  Stream<KmlMouseEvent> get onClick => _onClick;
-  Stream get onDefaultviewportChanged => _onDefaultviewportChanged;
-  Stream get onStatusChanged => _onStatusChanged;
+  Stream<KmlMouseEvent> get onClick => _onClick.stream;
+  Stream get onDefaultviewportChanged => _onDefaultviewportChanged.stream;
+  Stream get onStatusChanged => _onStatusChanged.stream;
 
   LatLngBounds get defaultViewport => LatLngBounds.cast($unsafe.getDefaultViewport());
   GMap get map => GMap.cast($unsafe.getMap());

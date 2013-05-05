@@ -17,28 +17,28 @@ part of google_maps;
 class InfoWindow extends MVCObject {
   static InfoWindow cast(js.Proxy proxy) => proxy == null ? null : new InfoWindow.fromProxy(proxy);
 
-  Stream _onCloseclick;
-  Stream _onContentChanged;
-  Stream _onDomready;
-  Stream _onPositionChanged;
-  Stream _onZindexChanged;
+  SubscribeStreamProvider _onCloseclick;
+  SubscribeStreamProvider _onContentChanged;
+  SubscribeStreamProvider _onDomready;
+  SubscribeStreamProvider _onPositionChanged;
+  SubscribeStreamProvider _onZindexChanged;
 
   InfoWindow([InfoWindowOptions opts]) : super(maps.InfoWindow, [opts]) { _initStreams(); }
   InfoWindow.fromProxy(js.Proxy proxy) : super.fromProxy(proxy) { _initStreams(); }
 
   void _initStreams() {
-    _onCloseclick = event.getStreamFor(this, "closeclick");
-    _onContentChanged = event.getStreamFor(this, "content_changed");
-    _onDomready = event.getStreamFor(this, "domready");
-    _onPositionChanged = event.getStreamFor(this, "position_changed");
-    _onZindexChanged = event.getStreamFor(this, "zindex_changed");
+    _onCloseclick = event.getStreamProviderFor(this, "closeclick");
+    _onContentChanged = event.getStreamProviderFor(this, "content_changed");
+    _onDomready = event.getStreamProviderFor(this, "domready");
+    _onPositionChanged = event.getStreamProviderFor(this, "position_changed");
+    _onZindexChanged = event.getStreamProviderFor(this, "zindex_changed");
   }
 
-  Stream get onCloseclick => _onCloseclick;
-  Stream get onContentChanged => _onContentChanged;
-  Stream get onDomready => _onDomready;
-  Stream get onPositionChanged => _onPositionChanged;
-  Stream get onZindexChanged => _onZindexChanged;
+  Stream get onCloseclick => _onCloseclick.stream;
+  Stream get onContentChanged => _onContentChanged.stream;
+  Stream get onDomready => _onDomready.stream;
+  Stream get onPositionChanged => _onPositionChanged.stream;
+  Stream get onZindexChanged => _onZindexChanged.stream;
 
   void close() { $unsafe.close(); }
   dynamic/*string|Node*/ get content => $unsafe.getContent();

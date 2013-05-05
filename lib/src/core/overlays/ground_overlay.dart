@@ -17,19 +17,19 @@ part of google_maps;
 class GroundOverlay extends MVCObject {
   static GroundOverlay cast(js.Proxy proxy) => proxy == null ? null : new GroundOverlay.fromProxy(proxy);
 
-  Stream<MouseEvent> _onClick;
-  Stream<MouseEvent> _onDblClick;
+  SubscribeStreamProvider<MouseEvent> _onClick;
+  SubscribeStreamProvider<MouseEvent> _onDblClick;
 
   GroundOverlay(String url, LatLngBounds bounds, [GroundOverlayOptions opts]) : super(maps.GroundOverlay, [url, bounds, opts]) { _initStreams(); }
   GroundOverlay.fromProxy(js.Proxy proxy) : super.fromProxy(proxy) { _initStreams(); }
 
   void _initStreams() {
-    _onClick = event.getStreamFor(this, "click", MouseEvent.cast);
-    _onDblClick = event.getStreamFor(this, "dblclick", MouseEvent.cast);
+    _onClick = event.getStreamProviderFor(this, "click", MouseEvent.cast);
+    _onDblClick = event.getStreamProviderFor(this, "dblclick", MouseEvent.cast);
   }
 
-  Stream<MouseEvent> get onClick => _onClick;
-  Stream<MouseEvent> get onDblClick => _onDblClick;
+  Stream<MouseEvent> get onClick => _onClick.stream;
+  Stream<MouseEvent> get onDblClick => _onDblClick.stream;
 
   LatLngBounds get bounds => LatLngBounds.cast($unsafe.getBounds());
   GMap get map => GMap.cast($unsafe.getMap());

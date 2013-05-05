@@ -14,6 +14,8 @@
 
 library utils;
 
+import 'dart:async';
+
 import 'package:js/js.dart' as js;
 import 'package:js/js_wrapping.dart' as jsw;
 import 'package:meta/meta.dart';
@@ -45,3 +47,37 @@ class IsEnum<E> implements js.Serializable<E> {
 js.Serializable<js.Proxy> jsifyList(List list) => (list is js.Serializable<js.Proxy>) ? list : js.array(list);
 js.Serializable<js.Proxy> jsifyDateTime(DateTime dateTime) => (dateTime is js.Serializable<js.Proxy>) ? (dateTime as js.Serializable<js.Proxy>) : new jsw.JsDateToDateTimeAdapter(dateTime);
 
+
+typedef _EventSinkCallback<T>(EventSink<T> eventSink);
+/// Utility class to create streams from event retrieve with subscribe/unsubscribe
+class SubscribeStreamProvider<T> implements EventSink<T> {
+  final _EventSinkCallback<T> subscribe;
+  final _EventSinkCallback<T> unsubscribe;
+  final _controllers = new List<StreamController<T>>();
+
+  SubscribeStreamProvider({subscribe(EventSink<T> eventSink), unsubscribe(EventSink<T> eventSink)})
+      : subscribe = subscribe,
+        unsubscribe = unsubscribe;
+
+  void _addController(StreamController<T> controller) {
+    _controllers.add(controller);
+    if (_controllers.length == 1 && subscribe != null) subscribe(this);
+  }
+
+  void _removeController(StreamController<T> controller) {
+    _controllers.remove(controller);
+    if (_controllers.isEmpty && unsubscribe != null) unsubscribe(this);
+  }
+
+  Stream<T> get stream {
+    StreamController<T> controller;
+    controller = new StreamController<T>(
+        onListen: () => _addController(controller),
+        onCancel: () => _removeController(controller));
+    return controller.stream;
+  }
+
+  void add(T event) => _controllers.forEach((controller) => controller.add(event));
+  void addError(errorEvent) => _controllers.forEach((controller) => controller.addError(errorEvent));
+  void close() => _controllers.forEach((controller) => controller.close());
+}

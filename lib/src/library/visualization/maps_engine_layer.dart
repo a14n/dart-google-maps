@@ -17,22 +17,22 @@ part of google_maps_visualization;
 class MapsEngineLayer extends MVCObject {
   static MapsEngineLayer cast(js.Proxy proxy) => proxy == null ? null : new MapsEngineLayer.fromProxy(proxy);
 
-  Stream<MapsEngineMouseEvent> _onClick;
-  Stream _onPropertiesChanged;
-  Stream _onStatusChanged;
+  SubscribeStreamProvider<MapsEngineMouseEvent> _onClick;
+  SubscribeStreamProvider _onPropertiesChanged;
+  SubscribeStreamProvider _onStatusChanged;
 
   MapsEngineLayer(MapsEngineLayerOptions opts) : super(maps.visualization.MapsEngineLayer, [opts]) { _initStreams(); }
   MapsEngineLayer.fromProxy(js.Proxy proxy) : super.fromProxy(proxy) { _initStreams(); }
 
   void _initStreams() {
-    _onClick = event.getStreamFor(this, "click", MapsEngineMouseEvent.cast);
-    _onPropertiesChanged = event.getStreamFor(this, "properties_changed");
-    _onStatusChanged = event.getStreamFor(this, "status_changed");
+    _onClick = event.getStreamProviderFor(this, "click", MapsEngineMouseEvent.cast);
+    _onPropertiesChanged = event.getStreamProviderFor(this, "properties_changed");
+    _onStatusChanged = event.getStreamProviderFor(this, "status_changed");
   }
 
-  Stream<MapsEngineMouseEvent> get onClick => _onClick;
-  Stream get onPropertiesChanged => _onPropertiesChanged;
-  Stream get onStatusChanged => _onStatusChanged;
+  Stream<MapsEngineMouseEvent> get onClick => _onClick.stream;
+  Stream get onPropertiesChanged => _onPropertiesChanged.stream;
+  Stream get onStatusChanged => _onStatusChanged.stream;
 
   String get layerId => $unsafe.getLayerId();
   String get layerKey => $unsafe.getLayerKey();

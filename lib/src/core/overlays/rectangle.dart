@@ -18,40 +18,40 @@ class Rectangle extends MVCObject {
   static Rectangle cast(js.Proxy proxy) => proxy == null ? null : new Rectangle.fromProxy(proxy);
   static bool isInstance(js.Proxy proxy) => js.instanceof(proxy, maps.Rectangle);
 
-  Stream _onBoundsChanged;
-  Stream<MouseEvent> _onClick;
-  Stream<MouseEvent> _onDblClick;
-  Stream<MouseEvent> _onMousedown;
-  Stream<MouseEvent> _onMousemove;
-  Stream<MouseEvent> _onMouseout;
-  Stream<MouseEvent> _onMouseover;
-  Stream<MouseEvent> _onMouseup;
-  Stream<MouseEvent> _onRightclick;
+  SubscribeStreamProvider _onBoundsChanged;
+  SubscribeStreamProvider<MouseEvent> _onClick;
+  SubscribeStreamProvider<MouseEvent> _onDblClick;
+  SubscribeStreamProvider<MouseEvent> _onMousedown;
+  SubscribeStreamProvider<MouseEvent> _onMousemove;
+  SubscribeStreamProvider<MouseEvent> _onMouseout;
+  SubscribeStreamProvider<MouseEvent> _onMouseover;
+  SubscribeStreamProvider<MouseEvent> _onMouseup;
+  SubscribeStreamProvider<MouseEvent> _onRightclick;
 
   Rectangle([RectangleOptions opts]) : super(maps.Rectangle, [opts]) { _initStreams(); }
   Rectangle.fromProxy(js.Proxy proxy) : super.fromProxy(proxy) { _initStreams(); }
 
   void _initStreams() {
-    _onBoundsChanged = event.getStreamFor(this, "bounds_changed");
-    _onClick = event.getStreamFor(this, "click", MouseEvent.cast);
-    _onDblClick = event.getStreamFor(this, "dblclick", MouseEvent.cast);
-    _onMousedown = event.getStreamFor(this, "mousedown", MouseEvent.cast);
-    _onMousemove = event.getStreamFor(this, "mousemove", MouseEvent.cast);
-    _onMouseout = event.getStreamFor(this, "mouseout", MouseEvent.cast);
-    _onMouseover = event.getStreamFor(this, "mouseover", MouseEvent.cast);
-    _onMouseup = event.getStreamFor(this, "mouseup", MouseEvent.cast);
-    _onRightclick = event.getStreamFor(this, "rightclick", MouseEvent.cast);
+    _onBoundsChanged = event.getStreamProviderFor(this, "bounds_changed");
+    _onClick = event.getStreamProviderFor(this, "click", MouseEvent.cast);
+    _onDblClick = event.getStreamProviderFor(this, "dblclick", MouseEvent.cast);
+    _onMousedown = event.getStreamProviderFor(this, "mousedown", MouseEvent.cast);
+    _onMousemove = event.getStreamProviderFor(this, "mousemove", MouseEvent.cast);
+    _onMouseout = event.getStreamProviderFor(this, "mouseout", MouseEvent.cast);
+    _onMouseover = event.getStreamProviderFor(this, "mouseover", MouseEvent.cast);
+    _onMouseup = event.getStreamProviderFor(this, "mouseup", MouseEvent.cast);
+    _onRightclick = event.getStreamProviderFor(this, "rightclick", MouseEvent.cast);
   }
 
-  Stream get onBoundsChanged => _onBoundsChanged;
-  Stream<MouseEvent> get onClick => _onClick;
-  Stream<MouseEvent> get onDblClick => _onDblClick;
-  Stream<MouseEvent> get onMousedown => _onMousedown;
-  Stream<MouseEvent> get onMousemove => _onMousemove;
-  Stream<MouseEvent> get onMouseout => _onMouseout;
-  Stream<MouseEvent> get onMouseover => _onMouseover;
-  Stream<MouseEvent> get onMouseup => _onMouseup;
-  Stream<MouseEvent> get onRightclick => _onRightclick;
+  Stream get onBoundsChanged => _onBoundsChanged.stream;
+  Stream<MouseEvent> get onClick => _onClick.stream;
+  Stream<MouseEvent> get onDblClick => _onDblClick.stream;
+  Stream<MouseEvent> get onMousedown => _onMousedown.stream;
+  Stream<MouseEvent> get onMousemove => _onMousemove.stream;
+  Stream<MouseEvent> get onMouseout => _onMouseout.stream;
+  Stream<MouseEvent> get onMouseover => _onMouseover.stream;
+  Stream<MouseEvent> get onMouseup => _onMouseup.stream;
+  Stream<MouseEvent> get onRightclick => _onRightclick.stream;
 
   LatLngBounds get bounds => LatLngBounds.cast($unsafe.getBounds());
   bool get draggable => $unsafe.getDraggable();

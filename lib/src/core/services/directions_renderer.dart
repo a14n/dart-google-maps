@@ -17,16 +17,16 @@ part of google_maps;
 class DirectionsRenderer extends MVCObject {
   static DirectionsRenderer cast(js.Proxy proxy) => proxy == null ? null : new DirectionsRenderer.fromProxy(proxy);
 
-  Stream _onDirectionsChanged;
+  SubscribeStreamProvider _onDirectionsChanged;
 
   DirectionsRenderer([DirectionsRendererOptions opts]) : super(maps.DirectionsRenderer, [opts]) { _initStreams(); }
   DirectionsRenderer.fromProxy(js.Proxy proxy) : super.fromProxy(proxy) { _initStreams(); }
 
   void _initStreams() {
-    _onDirectionsChanged = event.getStreamFor(this, "directions_changed");
+    _onDirectionsChanged = event.getStreamProviderFor(this, "directions_changed");
   }
 
-  Stream get onDirectionsChanged => _onDirectionsChanged;
+  Stream get onDirectionsChanged => _onDirectionsChanged.stream;
 
   DirectionsResult get directions => DirectionsResult.cast($unsafe.getDirections());
   GMap get map => GMap.cast($unsafe.getMap());

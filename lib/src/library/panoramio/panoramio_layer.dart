@@ -17,16 +17,16 @@ part of google_maps_panoramio;
 class PanoramioLayer extends MVCObject {
   static PanoramioLayer cast(js.Proxy proxy) => proxy == null ? null : new PanoramioLayer.fromProxy(proxy);
 
-  Stream<PanoramioMouseEvent> _onClick;
+  SubscribeStreamProvider<PanoramioMouseEvent> _onClick;
 
   PanoramioLayer([PanoramioLayerOptions opts]) : super(maps.panoramio.PanoramioLayer, [opts]) { _initStreams(); }
   PanoramioLayer.fromProxy(js.Proxy proxy) : super.fromProxy(proxy) { _initStreams(); }
 
   void _initStreams() {
-    _onClick = event.getStreamFor(this, "click", PanoramioMouseEvent.cast);
+    _onClick = event.getStreamProviderFor(this, "click", PanoramioMouseEvent.cast);
   }
 
-  Stream<PanoramioMouseEvent> get onClick => _onClick;
+  Stream<PanoramioMouseEvent> get onClick => _onClick.stream;
 
   GMap get map => GMap.cast($unsafe.getMap());
   String get tag => $unsafe.getTag();
