@@ -88,7 +88,7 @@ class GEvent extends jsw.TypedProxy {
               p3 = _undefined,
               p4 = _undefined,
               p5 = _undefined]) {
-            var args = [p1, p2, p3, p4, p5].where((e) => e != _undefined).toList(growable: false);
+            var args = [p1, p2, p3, p4, p5].takeWhile((e) => e != _undefined).toList(growable: false);
             var value =
                 args.length == 0 ? null :
                 args.length == 1 ? args.first :
