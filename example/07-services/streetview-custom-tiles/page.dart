@@ -84,27 +84,22 @@ void createCustomLinks(String entryPanoId) {
   final links = panorama.links;
   final panoId = panorama.pano;
 
-  switch(panoId) {
-    case entryPanoId:
-      // Adding a link in the view from the entrance of the building to
-      // reception.
-      links.add(new StreetViewLink()
-        ..heading = 25
-        ..description = 'Google Sydney'
-        ..pano = 'reception'
-      );
-      break;
-    case 'reception':
-      // Adding a link in the view from the entrance of the office
-      // with an arrow pointing at 100 degrees, with a text of 'Exit'
-      // and loading the street entrance of the building pano on click.
-      links.add(new StreetViewLink()
-        ..heading = 195
-        ..description = 'Exit'
-        ..pano = entryPanoId
-      );
-      break;
-    default:
-      return;
+  if (panoId == entryPanoId) {
+    // Adding a link in the view from the entrance of the building to
+    // reception.
+    links.add(new StreetViewLink()
+      ..heading = 25
+      ..description = 'Google Sydney'
+      ..pano = 'reception'
+    );
+  } else if (panoId == 'reception') {
+    // Adding a link in the view from the entrance of the office
+    // with an arrow pointing at 100 degrees, with a text of 'Exit'
+    // and loading the street entrance of the building pano on click.
+    links.add(new StreetViewLink()
+      ..heading = 195
+      ..description = 'Exit'
+      ..pano = entryPanoId
+    );
   }
 }
