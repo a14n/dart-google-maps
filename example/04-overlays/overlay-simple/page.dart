@@ -7,23 +7,21 @@ const IMAGE_URL = "https://google-developers.appspot.com/maps/documentation/java
 USGSOverlay overlay;
 
 void main() {
-  js.scoped(() {
-    final myLatLng = new LatLng(62.323907, -150.109291);
-    final mapOptions = new MapOptions()
-      ..zoom = 11
-      ..center = myLatLng
-      ..mapTypeId = MapTypeId.SATELLITE
-      ;
-    final map = new GMap(query("#map_canvas"), mapOptions);
+  final myLatLng = new LatLng(62.323907, -150.109291);
+  final mapOptions = new MapOptions()
+    ..zoom = 11
+    ..center = myLatLng
+    ..mapTypeId = MapTypeId.SATELLITE
+    ;
+  final map = new GMap(query("#map_canvas"), mapOptions);
 
-    final swBound = new LatLng(62.281819, -150.287132);
-    final neBound = new LatLng(62.400471, -150.005608);
-    final bounds = new LatLngBounds(swBound, neBound);
+  final swBound = new LatLng(62.281819, -150.287132);
+  final neBound = new LatLng(62.400471, -150.005608);
+  final bounds = new LatLngBounds(swBound, neBound);
 
-    // Photograph courtesy of the U.S. Geological Survey
-    final srcImage = '${IMAGE_URL}/images/talkeetna.png';
-    overlay = js.retain(new USGSOverlay(bounds, srcImage, map));
-  });
+  // Photograph courtesy of the U.S. Geological Survey
+  final srcImage = '${IMAGE_URL}/images/talkeetna.png';
+  overlay = js.retain(new USGSOverlay(bounds, srcImage, map));
 }
 
 class USGSOverlay extends OverlayView {

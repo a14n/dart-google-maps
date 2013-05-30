@@ -7,15 +7,13 @@ GMap map;
 const address = 'Toledo';
 
 void main() {
-  js.scoped(() {
-    geocoder = js.retain(new Geocoder());
-    final mapOptions = new MapOptions()
-      ..zoom = 8
-      ..mapTypeId = MapTypeId.ROADMAP
-      ;
-    map = js.retain(new GMap(query("#map_canvas"), mapOptions));
-    codeAddress();
-  });
+  geocoder = js.retain(new Geocoder());
+  final mapOptions = new MapOptions()
+    ..zoom = 8
+    ..mapTypeId = MapTypeId.ROADMAP
+    ;
+  map = js.retain(new GMap(query("#map_canvas"), mapOptions));
+  codeAddress();
 }
 
 void codeAddress() {

@@ -6,18 +6,16 @@ GMap map;
 MaxZoomService maxZoomService;
 
 void main() {
-  js.scoped(() {
-    final mapOptions = new MapOptions()
-      ..zoom = 11
-      ..center = new LatLng(35.6894875, 139.6917064)
-      ..mapTypeId = MapTypeId.HYBRID
-      ;
-    map = js.retain(new GMap(query("#map_canvas"), mapOptions));
+  final mapOptions = new MapOptions()
+    ..zoom = 11
+    ..center = new LatLng(35.6894875, 139.6917064)
+    ..mapTypeId = MapTypeId.HYBRID
+    ;
+  map = js.retain(new GMap(query("#map_canvas"), mapOptions));
 
-    maxZoomService = js.retain(new MaxZoomService());
+  maxZoomService = js.retain(new MaxZoomService());
 
-    map.onClick.listen(showMaxZoom);
-  });
+  map.onClick.listen(showMaxZoom);
 }
 
 void showMaxZoom(MouseEvent e) {

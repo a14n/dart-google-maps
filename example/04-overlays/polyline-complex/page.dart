@@ -6,26 +6,24 @@ Polyline poly;
 GMap map;
 
 void main() {
-  js.scoped(() {
-    final chicago = new LatLng(41.879535, -87.624333);
-    final mapOptions = new MapOptions()
-      ..zoom = 7
-      ..center = chicago
-      ..mapTypeId = MapTypeId.ROADMAP
-      ;
-    map = js.retain(new GMap(query("#map_canvas"), mapOptions));
+  final chicago = new LatLng(41.879535, -87.624333);
+  final mapOptions = new MapOptions()
+    ..zoom = 7
+    ..center = chicago
+    ..mapTypeId = MapTypeId.ROADMAP
+    ;
+  map = js.retain(new GMap(query("#map_canvas"), mapOptions));
 
-    final polyOptions = new PolylineOptions()
-      ..strokeColor = '#000000'
-      ..strokeOpacity = 1.0
-      ..strokeWeight = 3
-      ;
-    poly = js.retain(new Polyline(polyOptions));
-    poly.map = map;
+  final polyOptions = new PolylineOptions()
+    ..strokeColor = '#000000'
+    ..strokeOpacity = 1.0
+    ..strokeWeight = 3
+    ;
+  poly = js.retain(new Polyline(polyOptions));
+  poly.map = map;
 
-    // Add a listener for the click event
-    map.onClick.listen(addLatLng);
-  });
+  // Add a listener for the click event
+  map.onClick.listen(addLatLng);
 }
 
 /**

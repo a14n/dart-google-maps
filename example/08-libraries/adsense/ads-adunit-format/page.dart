@@ -70,59 +70,57 @@ final SAMPLE_AD_STYLES = {
 };
 
 void main() {
-  js.scoped(() {
-    final mapOptions = new MapOptions()
-      ..center = new LatLng(36.5987, -121.8950)
-      ..zoom = 12
-      ..mapTypeId = MapTypeId.ROADMAP
+  final mapOptions = new MapOptions()
+    ..center = new LatLng(36.5987, -121.8950)
+    ..zoom = 12
+    ..mapTypeId = MapTypeId.ROADMAP
+    ;
+  final map = new GMap(query("#map_canvas"), mapOptions);
+
+
+  final adUnitDiv = new DivElement();
+
+  // Note: replace the publisher ID noted here with your own
+  // publisher ID.
+  final adUnitOptions = new AdUnitOptions()
+    ..format = AdFormat.HALF_BANNER
+    ..position = ControlPosition.TOP_CENTER
+    ..$unsafe.backgroundColor = '#c4d4f3'
+    ..$unsafe.borderColor = '#e5ecf9'
+    ..$unsafe.titleColor = '#0000cc'
+    ..$unsafe.textColor = '#000000'
+    ..$unsafe.urlColor = '#009900'
+    ..publisherId = 'ca-google-maps_apidocs'
+    ..map = map
+    ..$unsafe.visible = true
+    ;
+  final adUnit = new AdUnit(adUnitDiv, adUnitOptions);
+
+  final SelectElement format = query('#format');
+  js.retain(adUnit);
+  event.addDomListener(format, 'change', (e) {
+    final String adsFormat = maps.adsense.AdFormat[format.value];
+    adUnit.format = AdFormat.find(adsFormat);
+  });
+
+  final SelectElement style = query('#style');
+  js.retain(adUnit);
+  event.addDomListener(style, 'change', (e) {
+    final adStyle = SAMPLE_AD_STYLES[style.value];
+    // TODO undocumented or undefined functions
+    adUnit.$unsafe
+      //..call("setBackgroundColor", [adStyle['color_bg']])
+      //..call("setBorderColor", [adStyle['color_border']])
+      //..call("setTitleColor", [adStyle['color_link']])
+      //..call("setTextColor", [adStyle['color_text']])
+      //..call("setUrlColor", [adStyle['color_url']])
       ;
-    final map = new GMap(query("#map_canvas"), mapOptions);
+  });
 
-
-    final adUnitDiv = new DivElement();
-
-    // Note: replace the publisher ID noted here with your own
-    // publisher ID.
-    final adUnitOptions = new AdUnitOptions()
-      ..format = AdFormat.HALF_BANNER
-      ..position = ControlPosition.TOP_CENTER
-      ..$unsafe.backgroundColor = '#c4d4f3'
-      ..$unsafe.borderColor = '#e5ecf9'
-      ..$unsafe.titleColor = '#0000cc'
-      ..$unsafe.textColor = '#000000'
-      ..$unsafe.urlColor = '#009900'
-      ..publisherId = 'ca-google-maps_apidocs'
-      ..map = map
-      ..$unsafe.visible = true
-      ;
-    final adUnit = new AdUnit(adUnitDiv, adUnitOptions);
-
-    final SelectElement format = query('#format');
-    js.retain(adUnit);
-    event.addDomListener(format, 'change', (e) {
-      final String adsFormat = maps.adsense.AdFormat[format.value];
-      adUnit.format = AdFormat.find(adsFormat);
-    });
-
-    final SelectElement style = query('#style');
-    js.retain(adUnit);
-    event.addDomListener(style, 'change', (e) {
-      final adStyle = SAMPLE_AD_STYLES[style.value];
-      // TODO undocumented or undefined functions
-      adUnit.$unsafe
-        //..call("setBackgroundColor", [adStyle['color_bg']])
-        //..call("setBorderColor", [adStyle['color_border']])
-        //..call("setTitleColor", [adStyle['color_link']])
-        //..call("setTextColor", [adStyle['color_text']])
-        //..call("setUrlColor", [adStyle['color_url']])
-        ;
-    });
-
-    final SelectElement position = query('#position');
-    js.retain(adUnit);
-    event.addDomListener(position, 'change', (e) {
-      final int adsPosition = maps.ControlPosition[position.value];
-      adUnit.position = ControlPosition.find(adsPosition);
-    });
+  final SelectElement position = query('#position');
+  js.retain(adUnit);
+  event.addDomListener(position, 'change', (e) {
+    final int adsPosition = maps.ControlPosition[position.value];
+    adUnit.position = ControlPosition.find(adsPosition);
   });
 }

@@ -4,39 +4,37 @@ import 'package:js/js.dart' as js;
 import 'package:google_maps/google_maps.dart';
 
 void main() {
-  js.scoped(() {
-    final mapOptions = new MapOptions()
-      ..zoom = 4
-      ..center = new LatLng(-25.363882,131.044922)
-      ..mapTypeId = MapTypeId.ROADMAP
-    ;
+  final mapOptions = new MapOptions()
+    ..zoom = 4
+    ..center = new LatLng(-25.363882,131.044922)
+    ..mapTypeId = MapTypeId.ROADMAP
+  ;
 
-    final map = new GMap(query("#map_canvas"), mapOptions);
+  final map = new GMap(query("#map_canvas"), mapOptions);
 
-    // Add 5 markers to the map at random locations.
-    final southWest = new LatLng(-31.203405,125.244141);
-    final northEast = new LatLng(-25.363882,131.044922);
+  // Add 5 markers to the map at random locations.
+  final southWest = new LatLng(-31.203405,125.244141);
+  final northEast = new LatLng(-25.363882,131.044922);
 
-    final bounds = new LatLngBounds(southWest,northEast);
-    map.fitBounds(bounds);
+  final bounds = new LatLngBounds(southWest,northEast);
+  map.fitBounds(bounds);
 
-    final lngSpan = northEast.lng - southWest.lng;
-    final latSpan = northEast.lat - southWest.lat;
+  final lngSpan = northEast.lng - southWest.lng;
+  final latSpan = northEast.lat - southWest.lat;
 
-    final random = new Math.Random();
-    for (var i = 0; i < 5; i++) {
-      final position = new LatLng(
-        southWest.lat + latSpan * random.nextDouble(),
-        southWest.lng + lngSpan * random.nextDouble());
-      final marker = new Marker(new MarkerOptions()
-        ..position = position
-        ..map = map
-      );
+  final random = new Math.Random();
+  for (var i = 0; i < 5; i++) {
+    final position = new LatLng(
+      southWest.lat + latSpan * random.nextDouble(),
+      southWest.lng + lngSpan * random.nextDouble());
+    final marker = new Marker(new MarkerOptions()
+      ..position = position
+      ..map = map
+    );
 
-      marker.title = (i + 1).toString();
-      attachSecretMessage(marker, i);
-    }
-  });
+    marker.title = (i + 1).toString();
+    attachSecretMessage(marker, i);
+  }
 }
 
 // The five markers show a secret message when clicked

@@ -512,72 +512,62 @@ final taxiData = [
 ];
 
 void main() {
-  js.scoped(() {
-    final chicago = new LatLng(41.875696,-87.624207);
-    final mapOptions = new MapOptions()
-      ..zoom = 13
-      ..center = new LatLng(37.774546, -122.433523)
-      ..mapTypeId = MapTypeId.SATELLITE
-      ;
-    map = js.retain(new GMap(query("#map_canvas"), mapOptions));
+  final chicago = new LatLng(41.875696,-87.624207);
+  final mapOptions = new MapOptions()
+    ..zoom = 13
+    ..center = new LatLng(37.774546, -122.433523)
+    ..mapTypeId = MapTypeId.SATELLITE
+    ;
+  map = js.retain(new GMap(query("#map_canvas"), mapOptions));
 
-    pointArray = js.retain(new MVCArray(taxiData));
+  pointArray = js.retain(new MVCArray(taxiData));
 
-    heatmap = js.retain(new HeatmapLayer(new HeatmapLayerOptions()
-      ..data = pointArray
-    ));
+  heatmap = js.retain(new HeatmapLayer(new HeatmapLayerOptions()
+    ..data = pointArray
+  ));
 
-    heatmap.map = map;
+  heatmap.map = map;
 
-    query("#toggleHeatmap").onClick.listen((e){toggleHeatmap();});
-    query("#changeGradient").onClick.listen((e){changeGradient();});
-    query("#changeRadius").onClick.listen((e){changeRadius();});
-    query("#changeOpacity").onClick.listen((e){changeOpacity();});
-  });
+  query("#toggleHeatmap").onClick.listen((e){toggleHeatmap();});
+  query("#changeGradient").onClick.listen((e){changeGradient();});
+  query("#changeRadius").onClick.listen((e){changeRadius();});
+  query("#changeOpacity").onClick.listen((e){changeOpacity();});
 }
 
 void toggleHeatmap() {
-  js.scoped(() {
-    heatmap.map = heatmap.map != null ? null : map;
-  });
+  heatmap.map = heatmap.map != null ? null : map;
 }
 
 void changeGradient() {
-  js.scoped(() {
-    final gradient = [
-      'rgba(0, 255, 255, 0)',
-      'rgba(0, 255, 255, 1)',
-      'rgba(0, 191, 255, 1)',
-      'rgba(0, 127, 255, 1)',
-      'rgba(0, 63, 255, 1)',
-      'rgba(0, 0, 255, 1)',
-      'rgba(0, 0, 223, 1)',
-      'rgba(0, 0, 191, 1)',
-      'rgba(0, 0, 159, 1)',
-      'rgba(0, 0, 127, 1)',
-      'rgba(63, 0, 91, 1)',
-      'rgba(127, 0, 63, 1)',
-      'rgba(191, 0, 31, 1)',
-      'rgba(255, 0, 0, 1)'
-    ];
-    heatmap.options = new HeatmapLayerOptions()
-      ..gradient = heatmap.get('gradient') != null ? null : gradient
-    ;
-  });
+  final gradient = [
+    'rgba(0, 255, 255, 0)',
+    'rgba(0, 255, 255, 1)',
+    'rgba(0, 191, 255, 1)',
+    'rgba(0, 127, 255, 1)',
+    'rgba(0, 63, 255, 1)',
+    'rgba(0, 0, 255, 1)',
+    'rgba(0, 0, 223, 1)',
+    'rgba(0, 0, 191, 1)',
+    'rgba(0, 0, 159, 1)',
+    'rgba(0, 0, 127, 1)',
+    'rgba(63, 0, 91, 1)',
+    'rgba(127, 0, 63, 1)',
+    'rgba(191, 0, 31, 1)',
+    'rgba(255, 0, 0, 1)'
+  ];
+  heatmap.options = new HeatmapLayerOptions()
+    ..gradient = heatmap.get('gradient') != null ? null : gradient
+  ;
 }
 
 void changeRadius() {
-  js.scoped(() {
-    heatmap.options = new HeatmapLayerOptions()
-      ..radius = heatmap.get('radius') != null ? null : 20
+  heatmap.options = new HeatmapLayerOptions()
+    ..radius = heatmap.get('radius') != null ? null : 20
     ;
-  });
 }
 
 void changeOpacity() {
-  js.scoped(() {
-    heatmap.options = new HeatmapLayerOptions()
-      ..opacity = heatmap.get('opacity') != null ? null : 0.2
+  heatmap.options = new HeatmapLayerOptions()
+    ..opacity = heatmap.get('opacity') != null ? null : 0.2
     ;
-  });
 }

@@ -9,56 +9,54 @@ Marker marker1;
 Marker marker2;
 
 void main() {
-  js.scoped(() {
-    final mapOptions = new MapOptions()
-      ..center = new LatLng(34, -40.605)
-      ..zoom = 4
-      ..mapTypeId = MapTypeId.ROADMAP
-      ;
+  final mapOptions = new MapOptions()
+    ..center = new LatLng(34, -40.605)
+    ..zoom = 4
+    ..mapTypeId = MapTypeId.ROADMAP
+    ;
 
-    final map = new GMap(query("#map_canvas"), mapOptions);
+  final map = new GMap(query("#map_canvas"), mapOptions);
 
-    // TODO ControlPosition.TOP does not exists
-    map.controls.getNodes(ControlPosition.TOP_CENTER).push(query('#info'));
+  // TODO ControlPosition.TOP does not exists
+  map.controls.getNodes(ControlPosition.TOP_CENTER).push(query('#info'));
 
 
-    marker1 = js.retain(new Marker(new MarkerOptions()
-      ..map = map
-      ..draggable = true
-      ..position = new LatLng(40.71435280, -74.0059731)
-    ));
+  marker1 = js.retain(new Marker(new MarkerOptions()
+    ..map = map
+    ..draggable = true
+    ..position = new LatLng(40.71435280, -74.0059731)
+  ));
 
-    marker2 = js.retain(new Marker(new MarkerOptions()
-      ..map = map
-      ..draggable = true
-      ..position = new LatLng(48.8566140, 2.35222190)
-    ));
+  marker2 = js.retain(new Marker(new MarkerOptions()
+    ..map = map
+    ..draggable = true
+    ..position = new LatLng(48.8566140, 2.35222190)
+  ));
 
-    final bounds = new LatLngBounds(marker1.position, marker2.position);
-    map.fitBounds(bounds);
+  final bounds = new LatLngBounds(marker1.position, marker2.position);
+  map.fitBounds(bounds);
 
-    marker1.onPositionChanged.listen((_) => update());
-    marker2.onPositionChanged.listen((_) => update());
+  marker1.onPositionChanged.listen((_) => update());
+  marker2.onPositionChanged.listen((_) => update());
 
-    final polyOptions = new PolylineOptions()
-      ..strokeColor = '#FF0000'
-      ..strokeOpacity = 1.0
-      ..strokeWeight = 3
-      ..map = map
-      ;
-    poly = js.retain(new Polyline(polyOptions));
+  final polyOptions = new PolylineOptions()
+    ..strokeColor = '#FF0000'
+    ..strokeOpacity = 1.0
+    ..strokeWeight = 3
+    ..map = map
+    ;
+  poly = js.retain(new Polyline(polyOptions));
 
-    final geodesicOptions = new PolylineOptions()
-      ..strokeColor = '#CC0099'
-      ..strokeOpacity = 1.0
-      .. strokeWeight = 3
-      ..geodesic = true
-      ..map = map
-      ;
-    geodesicPoly = js.retain(new Polyline(geodesicOptions));
+  final geodesicOptions = new PolylineOptions()
+    ..strokeColor = '#CC0099'
+    ..strokeOpacity = 1.0
+    .. strokeWeight = 3
+    ..geodesic = true
+    ..map = map
+    ;
+  geodesicPoly = js.retain(new Polyline(geodesicOptions));
 
-    update();
-  });
+  update();
 }
 
 void update() {

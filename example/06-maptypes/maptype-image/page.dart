@@ -23,21 +23,19 @@ final moonTypeOptions = js.retain(new ImageMapTypeOptions()
 final moonMapType = new ImageMapType(moonTypeOptions);
 
 void main() {
-  js.scoped(() {
-    final myLatlng = new LatLng(0, 0);
-    final mapOptions = new MapOptions()
-      ..center = myLatlng
-      ..zoom = 1
-      ..streetViewControl = false
-      ..mapTypeControlOptions = (new MapTypeControlOptions()
-        ..mapTypeIds = ['moon']
-      )
-      ;
+  final myLatlng = new LatLng(0, 0);
+  final mapOptions = new MapOptions()
+    ..center = myLatlng
+    ..zoom = 1
+    ..streetViewControl = false
+    ..mapTypeControlOptions = (new MapTypeControlOptions()
+      ..mapTypeIds = ['moon']
+    )
+    ;
 
-    final map = new GMap(query('#map_canvas'), mapOptions);
-    map.mapTypes.set('moon', moonMapType);
-    map.mapTypeId = 'moon';
-  });
+  final map = new GMap(query('#map_canvas'), mapOptions);
+  map.mapTypes.set('moon', moonMapType);
+  map.mapTypeId = 'moon';
 }
 
 // Normalizes the coords that tiles repeat across the x axis (horizontally)

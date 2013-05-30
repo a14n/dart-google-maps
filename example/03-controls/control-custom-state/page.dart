@@ -85,22 +85,20 @@ class HomeControl {
 }
 
 void main() {
-  js.scoped(() {
-    final mapDiv = query("#map_canvas");
-    final mapOptions = new MapOptions()
-      ..zoom = 12
-      ..center = chicago
-      ..mapTypeId = MapTypeId.ROADMAP
-      ;
-    map = js.retain(new GMap(mapDiv, mapOptions));
+  final mapDiv = query("#map_canvas");
+  final mapOptions = new MapOptions()
+    ..zoom = 12
+    ..center = chicago
+    ..mapTypeId = MapTypeId.ROADMAP
+    ;
+  map = js.retain(new GMap(mapDiv, mapOptions));
 
-    // Create the DIV to hold the control and
-    // call the HomeControl() constructor passing
-    // in this DIV.
-    var homeControlDiv = new DivElement();
-    var homeControl = new HomeControl(homeControlDiv, map, chicago);
+  // Create the DIV to hold the control and
+  // call the HomeControl() constructor passing
+  // in this DIV.
+  var homeControlDiv = new DivElement();
+  var homeControl = new HomeControl(homeControlDiv, map, chicago);
 
-    homeControlDiv.attributes["index"] = 1.toString();
-    map.controls.getNodes(ControlPosition.TOP_RIGHT).push(homeControlDiv);
-  });
+  homeControlDiv.attributes["index"] = 1.toString();
+  map.controls.getNodes(ControlPosition.TOP_RIGHT).push(homeControlDiv);
 }

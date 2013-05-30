@@ -51,19 +51,17 @@ GMap map;
 LatLng chicago;
 
 void main() {
-  js.scoped(() {
-    chicago = js.retain(new LatLng(41.850033,-87.6500523));
+  chicago = js.retain(new LatLng(41.850033,-87.6500523));
 
-    final mapOptions = new MapOptions()
-      ..zoom = 10
-      ..center = chicago
-      ..mapTypeId = MapTypeId.ROADMAP
-      ;
-    map = js.retain(new GMap(query("#map_canvas"), mapOptions));
+  final mapOptions = new MapOptions()
+    ..zoom = 10
+    ..center = chicago
+    ..mapTypeId = MapTypeId.ROADMAP
+    ;
+  map = js.retain(new GMap(query("#map_canvas"), mapOptions));
 
-    // Insert this overlay map type as the first overlay map type at
-    // position 0. Note that all overlay map types appear on top of
-    // their parent base map.
-    map.overlayMapTypes.insertAt(0, js.retain(new CoordMapType(new Size(256, 256))));
-  });
+  // Insert this overlay map type as the first overlay map type at
+  // position 0. Note that all overlay map types appear on top of
+  // their parent base map.
+  map.overlayMapTypes.insertAt(0, js.retain(new CoordMapType(new Size(256, 256))));
 }

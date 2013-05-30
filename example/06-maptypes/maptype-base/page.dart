@@ -57,27 +57,25 @@ final LatLng chicago = js.retain(new LatLng(41.850033,-87.6500523));
 final CoordMapType coordinateMapType = js.retain(new CoordMapType());
 
 void main() {
-  js.scoped(() {
-    final mapOptions = new MapOptions()
-      ..zoom = 10
-      ..center = chicago
-      ..streetViewControl = false
-      ..mapTypeId = "coordinate"
-      ..mapTypeControlOptions = (new MapTypeControlOptions()
-        ..mapTypeIds = ['coordinate', MapTypeId.ROADMAP]
-        ..style = MapTypeControlStyle.DROPDOWN_MENU
-      )
-      ;
-    map = js.retain(new GMap(query("#map_canvas"), mapOptions));
+  final mapOptions = new MapOptions()
+    ..zoom = 10
+    ..center = chicago
+    ..streetViewControl = false
+    ..mapTypeId = "coordinate"
+    ..mapTypeControlOptions = (new MapTypeControlOptions()
+      ..mapTypeIds = ['coordinate', MapTypeId.ROADMAP]
+      ..style = MapTypeControlStyle.DROPDOWN_MENU
+    )
+    ;
+  map = js.retain(new GMap(query("#map_canvas"), mapOptions));
 
-    map.onMaptypeidChanged.listen((_) {
-      final showStreetViewControl = map.mapTypeId != 'coordinate';
-      map.options = new MapOptions()
-        ..streetViewControl = showStreetViewControl
-      ;
-    });
-
-    // Now attach the coordinate map type to the map's registry
-    map.mapTypes.set('coordinate', coordinateMapType);
+  map.onMaptypeidChanged.listen((_) {
+    final showStreetViewControl = map.mapTypeId != 'coordinate';
+    map.options = new MapOptions()
+      ..streetViewControl = showStreetViewControl
+    ;
   });
+
+  // Now attach the coordinate map type to the map's registry
+  map.mapTypes.set('coordinate', coordinateMapType);
 }

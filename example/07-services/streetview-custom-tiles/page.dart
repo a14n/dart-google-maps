@@ -7,45 +7,43 @@ const IMAGE_URL = "https://google-developers.appspot.com/maps/documentation/java
 StreetViewPanorama panorama;
 
 void main() {
-  js.scoped(() {
-    // The latlng of the entry point to the Google office on the road.
-    final sydneyOffice = new LatLng(-33.867386, 151.195767);
+  // The latlng of the entry point to the Google office on the road.
+  final sydneyOffice = new LatLng(-33.867386, 151.195767);
 
-    // Set up the map and enable the Street View control.
-    final mapOptions = new MapOptions()
-      ..center = sydneyOffice
-      ..zoom = 16
-      ..mapTypeId = MapTypeId.ROADMAP
-      ;
-    final map = new GMap(query('#map_canvas'), mapOptions);
+  // Set up the map and enable the Street View control.
+  final mapOptions = new MapOptions()
+    ..center = sydneyOffice
+    ..zoom = 16
+    ..mapTypeId = MapTypeId.ROADMAP
+    ;
+  final map = new GMap(query('#map_canvas'), mapOptions);
 
-    panorama = js.retain(map.streetView);
-    // Set up Street View and initially set it visible. Register the
-    // custom panorama provider function.
-    final panoOptions = new StreetViewPanoramaOptions()
-      ..position = sydneyOffice
-      ..visible = true
-      ..panoProvider =  getCustomPanorama
-      ;
-    panorama.$unsafe.setOptions(panoOptions); //TODO undocumented method
+  panorama = js.retain(map.streetView);
+  // Set up Street View and initially set it visible. Register the
+  // custom panorama provider function.
+  final panoOptions = new StreetViewPanoramaOptions()
+    ..position = sydneyOffice
+    ..visible = true
+    ..panoProvider =  getCustomPanorama
+    ;
+  panorama.$unsafe.setOptions(panoOptions); //TODO undocumented method
 
-    // Create a StreetViewService object.
-    final streetviewService = new StreetViewService();
+  // Create a StreetViewService object.
+  final streetviewService = new StreetViewService();
 
-    // Compute the nearest panorama to the Google Sydney office
-    // using the service and store that pano ID.
-    final radius = 50;
-    js.retain(sydneyOffice);
-    streetviewService.getPanoramaByLocation(sydneyOffice, radius, (StreetViewPanoramaData result, StreetViewStatus status) {
-      if (status == StreetViewStatus.OK) {
-        // We'll monitor the links_changed event to check if the current
-        // pano is either a custom pano or our entry pano.
-        js.retain(result);
-        panorama.onLinksChanged.listen((_) {
-          return createCustomLinks(result.location.pano);
-        });
-      }
-    });
+  // Compute the nearest panorama to the Google Sydney office
+  // using the service and store that pano ID.
+  final radius = 50;
+  js.retain(sydneyOffice);
+  streetviewService.getPanoramaByLocation(sydneyOffice, radius, (StreetViewPanoramaData result, StreetViewStatus status) {
+    if (status == StreetViewStatus.OK) {
+      // We'll monitor the links_changed event to check if the current
+      // pano is either a custom pano or our entry pano.
+      js.retain(result);
+      panorama.onLinksChanged.listen((_) {
+        return createCustomLinks(result.location.pano);
+      });
+    }
   });
 }
 

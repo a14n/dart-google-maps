@@ -34,50 +34,48 @@ class PhotoRequestOptionsId extends jsw.TypedProxy {
 }
 
 void main() {
-  js.scoped(() {
-    // The photoDiv defines the DIV within the info window for
-    // displaying the Panoramio photo within its PhotoWidget.
-    final photoDiv = new DivElement();
+  // The photoDiv defines the DIV within the info window for
+  // displaying the Panoramio photo within its PhotoWidget.
+  final photoDiv = new DivElement();
 
-    // The PhotoWidget width and height are expressed as number values,
-    // not string values.
-    final photoWidgetOptions = new PhotoWidgetOptions()
-      ..width = 640
-      ..height = 500
+  // The PhotoWidget width and height are expressed as number values,
+  // not string values.
+  final photoWidgetOptions = new PhotoWidgetOptions()
+    ..width = 640
+    ..height = 500
+    ;
+
+  // We construct a PhotoWidget here with a blank (null) request as we
+  // don't yet have a photo to populate it.
+  final photoWidget = new PhotoWidget(photoDiv, null, photoWidgetOptions);
+
+  final monoLake = new LatLng(37.973432, -119.093170);
+  final mapOptions = new MapOptions()
+    ..zoom = 11
+    ..center = monoLake
+    ..mapTypeId = MapTypeId.ROADMAP
+    ;
+  final map = new GMap(query("#map_canvas"), mapOptions);
+
+  final infoWindow = new InfoWindow();
+  final panoramioLayer = new PanoramioLayer(new PanoramioLayerOptions()
+    ..suppressInfoWindows = true
+  );
+
+  panoramioLayer.map = map;
+
+  [photoWidget, infoWindow, map].forEach(js.retain);
+  panoramioLayer.onClick.listen((e) {
+    final photoRequestOptions = new PhotoRequestOptions()
+      ..ids = [new PhotoRequestOptionsId()
+        ..photoId = e.featureDetails.photoId
+        ..userId = e.featureDetails.userId
+      ]
       ;
-
-    // We construct a PhotoWidget here with a blank (null) request as we
-    // don't yet have a photo to populate it.
-    final photoWidget = new PhotoWidget(photoDiv, null, photoWidgetOptions);
-
-    final monoLake = new LatLng(37.973432, -119.093170);
-    final mapOptions = new MapOptions()
-      ..zoom = 11
-      ..center = monoLake
-      ..mapTypeId = MapTypeId.ROADMAP
-      ;
-    final map = new GMap(query("#map_canvas"), mapOptions);
-
-    final infoWindow = new InfoWindow();
-    final panoramioLayer = new PanoramioLayer(new PanoramioLayerOptions()
-      ..suppressInfoWindows = true
-    );
-
-    panoramioLayer.map = map;
-
-    [photoWidget, infoWindow, map].forEach(js.retain);
-    panoramioLayer.onClick.listen((e) {
-      final photoRequestOptions = new PhotoRequestOptions()
-        ..ids = [new PhotoRequestOptionsId()
-          ..photoId = e.featureDetails.photoId
-          ..userId = e.featureDetails.userId
-        ]
-        ;
-      photoWidget.setRequest(photoRequestOptions);
-      photoWidget.setPosition(0);
-      infoWindow.position = e.latLng;
-      infoWindow.open(map);
-      infoWindow.content = photoDiv;
-    });
+    photoWidget.setRequest(photoRequestOptions);
+    photoWidget.setPosition(0);
+    infoWindow.position = e.latLng;
+    infoWindow.open(map);
+    infoWindow.content = photoDiv;
   });
 }

@@ -8,20 +8,18 @@ final InfoWindow infowindow = js.retain(new InfoWindow());
 final LatLng denali = js.retain(new LatLng(63.3333333, -150.5));
 
 void main() {
-  js.scoped(() {
-    final mapOptions = new MapOptions()
-      ..zoom = 8
-      ..center = denali
-      ..mapTypeId = MapTypeId.TERRAIN
-      ;
-    map = js.retain(new GMap(query("#map_canvas"), mapOptions));
+  final mapOptions = new MapOptions()
+    ..zoom = 8
+    ..center = denali
+    ..mapTypeId = MapTypeId.TERRAIN
+    ;
+  map = js.retain(new GMap(query("#map_canvas"), mapOptions));
 
-    // Create an ElevationService
-    elevator = js.retain(new ElevationService());
+  // Create an ElevationService
+  elevator = js.retain(new ElevationService());
 
-    // Add a listener for the click event and call getElevation on that location
-    map.onClick.listen(getElevation);
-  });
+  // Add a listener for the click event and call getElevation on that location
+  map.onClick.listen(getElevation);
 }
 
 

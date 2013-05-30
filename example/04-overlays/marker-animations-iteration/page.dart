@@ -17,33 +17,27 @@ int iterator = 0;
 GMap map;
 
 void main() {
-  js.scoped(() {
-    final mapOptions = new MapOptions()
-      ..zoom = 12
-      ..mapTypeId = MapTypeId.ROADMAP
-      ..center = berlin;
-    map = js.retain(new GMap(query("#map_canvas"), mapOptions));
+  final mapOptions = new MapOptions()
+    ..zoom = 12
+    ..mapTypeId = MapTypeId.ROADMAP
+    ..center = berlin;
+  map = js.retain(new GMap(query("#map_canvas"), mapOptions));
 
-    query("#drop").onClick.listen(drop);
-  });
+  query("#drop").onClick.listen(drop);
 }
 
 void drop(e) {
-  js.scoped(() {
-    for (var i = 0; i < neighborhoods.length; i++) {
-      new Timer(new Duration(milliseconds: i * 200), addMarker);
-    }
-  });
+  for (var i = 0; i < neighborhoods.length; i++) {
+    new Timer(new Duration(milliseconds: i * 200), addMarker);
+  }
 }
 
 void addMarker() {
-  js.scoped(() {
-    markers.add(new Marker(new MarkerOptions()
-      ..position = neighborhoods[iterator % neighborhoods.length]
-      ..map = map
-      ..draggable = false
-      ..animation = Animation.DROP
-    ));
-    iterator++;
-  });
+  markers.add(new Marker(new MarkerOptions()
+    ..position = neighborhoods[iterator % neighborhoods.length]
+    ..map = map
+    ..draggable = false
+    ..animation = Animation.DROP
+  ));
+  iterator++;
 }

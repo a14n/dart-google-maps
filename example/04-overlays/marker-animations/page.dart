@@ -8,22 +8,20 @@ Marker marker;
 GMap map;
 
 void main() {
-  js.scoped(() {
-    final mapOptions = new MapOptions()
-      ..zoom = 13
-      ..mapTypeId = MapTypeId.ROADMAP
-      ..center = stockholm
-      ;
-    map = js.retain(new GMap(query("#map_canvas"), mapOptions));
+  final mapOptions = new MapOptions()
+    ..zoom = 13
+    ..mapTypeId = MapTypeId.ROADMAP
+    ..center = stockholm
+    ;
+  map = js.retain(new GMap(query("#map_canvas"), mapOptions));
 
-    marker = js.retain(new Marker(new MarkerOptions()
-      ..map = map
-      ..draggable = true
-      ..animation = Animation.DROP
-      ..position = parliament
-    ));
-    marker.onClick.listen((e) => toggleBounce());
-  });
+  marker = js.retain(new Marker(new MarkerOptions()
+    ..map = map
+    ..draggable = true
+    ..animation = Animation.DROP
+    ..position = parliament
+  ));
+  marker.onClick.listen((e) => toggleBounce());
 }
 
 void toggleBounce() {

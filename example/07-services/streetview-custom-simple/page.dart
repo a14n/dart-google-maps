@@ -5,18 +5,16 @@ import 'package:google_maps/google_maps.dart';
 const IMAGE_URL = "https://google-developers.appspot.com/maps/documentation/javascript/examples/full";
 
 void main() {
-  js.scoped(() {
-    // Set up Street View and initially set it visible. Register the
-    // custom panorama provider function. Set the StreetView to display
-    // the custom panorama 'reception' which we check for below.
-    final panoOptions = new StreetViewPanoramaOptions()
-      ..pano = 'reception'
-      ..visible = true
-      ..panoProvider = getCustomPanorama
-      ;
+  // Set up Street View and initially set it visible. Register the
+  // custom panorama provider function. Set the StreetView to display
+  // the custom panorama 'reception' which we check for below.
+  final panoOptions = new StreetViewPanoramaOptions()
+    ..pano = 'reception'
+    ..visible = true
+    ..panoProvider = getCustomPanorama
+    ;
 
-    final panorama = new StreetViewPanorama(query('#pano_canvas'), panoOptions);
-  });
+  final panorama = new StreetViewPanorama(query('#pano_canvas'), panoOptions);
 }
 
 // Return a pano image given the panoID.

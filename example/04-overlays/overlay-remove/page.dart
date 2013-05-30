@@ -6,25 +6,23 @@ GMap map;
 List<Marker> markers;
 
 void main() {
-  js.scoped(() {
-    markers = new List<Marker>();
+  markers = new List<Marker>();
 
-    final haightAshbury = new LatLng(37.7699298, -122.4469157);
-    final mapOptions = new MapOptions()
-      ..zoom = 12
-      ..center = haightAshbury
-      ..mapTypeId = MapTypeId.TERRAIN
-      ;
-    map = js.retain(new GMap(query("#map-canvas"), mapOptions));
+  final haightAshbury = new LatLng(37.7699298, -122.4469157);
+  final mapOptions = new MapOptions()
+    ..zoom = 12
+    ..center = haightAshbury
+    ..mapTypeId = MapTypeId.TERRAIN
+    ;
+  map = js.retain(new GMap(query("#map-canvas"), mapOptions));
 
-    map.onClick.listen((e) {
-      addMarker(e.latLng);
-    });
-
-    query("#clearOverlays").onClick.listen((e) => clearOverlays());
-    query("#showOverlays").onClick.listen((e) => showOverlays());
-    query("#deleteOverlays").onClick.listen((e) => deleteOverlays());
+  map.onClick.listen((e) {
+    addMarker(e.latLng);
   });
+
+  query("#clearOverlays").onClick.listen((e) => clearOverlays());
+  query("#showOverlays").onClick.listen((e) => showOverlays());
+  query("#deleteOverlays").onClick.listen((e) => deleteOverlays());
 }
 
 // Add a marker to the map and push to the array.
@@ -46,23 +44,17 @@ void setAllMap(GMap map) {
 
 // Removes the overlays from the map, but keeps them in the array.
 void clearOverlays() {
-  js.scoped(() {
-    setAllMap(null);
-  });
+  setAllMap(null);
 }
 
 // Shows any overlays currently in the array.
 void showOverlays() {
-  js.scoped(() {
-    setAllMap(map);
-  });
+  setAllMap(map);
 }
 
 // Deletes all markers in the array by removing references to them.
 void deleteOverlays() {
-  js.scoped(() {
-    clearOverlays();
-    markers.forEach(js.release);
-    markers.clear();
-  });
+  clearOverlays();
+  markers.forEach(js.release);
+  markers.clear();
 }

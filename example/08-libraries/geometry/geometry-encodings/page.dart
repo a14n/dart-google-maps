@@ -6,26 +6,24 @@ import 'package:google_maps/google_maps_geometry.dart';
 Polyline poly;
 
 void main() {
-  js.scoped(() {
-    final mapOptions = new MapOptions()
-      ..zoom = 14
-      ..center = new LatLng(34.3664951, -89.5192484)
-      ..mapTypeId = MapTypeId.ROADMAP
-      ;
+  final mapOptions = new MapOptions()
+    ..zoom = 14
+    ..center = new LatLng(34.3664951, -89.5192484)
+    ..mapTypeId = MapTypeId.ROADMAP
+    ;
 
-    final map = new GMap(query("#map_canvas"), mapOptions);
+  final map = new GMap(query("#map_canvas"), mapOptions);
 
-    final polyOptions = new PolylineOptions()
-      ..strokeColor = '#000000'
-      ..strokeOpacity = 1.0
-      ..strokeWeight = 3
-      ..map = map
-      ;
-    poly = js.retain(new Polyline(polyOptions));
+  final polyOptions = new PolylineOptions()
+    ..strokeColor = '#000000'
+    ..strokeOpacity = 1.0
+    ..strokeWeight = 3
+    ..map = map
+    ;
+  poly = js.retain(new Polyline(polyOptions));
 
-    // Add a listener for the click event
-    map.onClick.listen(addLatLng);
-  });
+  // Add a listener for the click event
+  map.onClick.listen(addLatLng);
 }
 
 /**

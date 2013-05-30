@@ -19,34 +19,28 @@ main() {
   useHtmlConfiguration();
 
   test('LatLng.toString call js', () {
-    js.scoped(() {
-      final latLng = new LatLng(2, 8);
-      expect(latLng.toString(), equals("(2, 8)"));
-    });
+    final latLng = new LatLng(2, 8);
+    expect(latLng.toString(), equals("(2, 8)"));
   });
 
   test('LatLng.equals call js', () {
-    js.scoped(() {
-      final latLng1 = new LatLng(2, 8);
-      final latLng2 = new LatLng(2, 8);
-      final latLng3 = new LatLng(2, 9);
-      expect(latLng1.equals(latLng2), isTrue);
-      expect(latLng1.equals(latLng3), isFalse);
-    });
+    final latLng1 = new LatLng(2, 8);
+    final latLng2 = new LatLng(2, 8);
+    final latLng3 = new LatLng(2, 9);
+    expect(latLng1.equals(latLng2), isTrue);
+    expect(latLng1.equals(latLng3), isFalse);
   });
 
   test('MVCArray works', () {
-    js.scoped(() {
-      final mvcArray = new MVCArray();
-      mvcArray.onInsertAt.listen((int i) => print("inserted at $i"));
-      mvcArray.onRemoveAt.listen((IndexAndElement e) => print("removed ${e.element} at ${e.index}"));
-      mvcArray.onSetAt.listen((IndexAndElement e) => print("set ${e.element} at ${e.index}"));
-      mvcArray.push("aa");
-      expect(mvcArray.length, equals(1));
-      mvcArray.setAt(0, "bb");
-      expect(mvcArray.length, equals(1));
-      mvcArray.removeAt(0);
-      expect(mvcArray.length, equals(0));
-    });
+    final mvcArray = new MVCArray();
+    mvcArray.onInsertAt.listen((int i) => print("inserted at $i"));
+    mvcArray.onRemoveAt.listen((IndexAndElement e) => print("removed ${e.element} at ${e.index}"));
+    mvcArray.onSetAt.listen((IndexAndElement e) => print("set ${e.element} at ${e.index}"));
+    mvcArray.push("aa");
+    expect(mvcArray.length, equals(1));
+    mvcArray.setAt(0, "bb");
+    expect(mvcArray.length, equals(1));
+    mvcArray.removeAt(0);
+    expect(mvcArray.length, equals(0));
   });
 }

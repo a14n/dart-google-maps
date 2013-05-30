@@ -9,23 +9,21 @@ final StreetViewService sv = js.retain(new StreetViewService());
 StreetViewPanorama panorama;
 
 void main() {
-  js.scoped(() {
-    panorama = js.retain(new StreetViewPanorama(query('#pano')));
+  panorama = js.retain(new StreetViewPanorama(query('#pano')));
 
-    // Set up the map
-    final mapOptions = new MapOptions()
-      ..center = berkeley
-      ..zoom = 16
-      ..mapTypeId = MapTypeId.ROADMAP
-      ..streetViewControl = false
-      ;
-    map = js.retain(new GMap(query('#map_canvas'), mapOptions));
+  // Set up the map
+  final mapOptions = new MapOptions()
+    ..center = berkeley
+    ..zoom = 16
+    ..mapTypeId = MapTypeId.ROADMAP
+    ..streetViewControl = false
+    ;
+  map = js.retain(new GMap(query('#map_canvas'), mapOptions));
 
-    // getPanoramaByLocation will return the nearest pano when the
-    // given radius is 50 meters or less.
-    map.onClick.listen((e) {
-      sv.getPanoramaByLocation(e.latLng, 50, processSVData);
-    });
+  // getPanoramaByLocation will return the nearest pano when the
+  // given radius is 50 meters or less.
+  map.onClick.listen((e) {
+    sv.getPanoramaByLocation(e.latLng, 50, processSVData);
   });
 }
 

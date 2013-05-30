@@ -12,22 +12,20 @@ GMap map;
 final LatLng australia = js.retain(new LatLng(-25.274398, 133.775136));
 
 void main() {
-  js.scoped(() {
-    final mapOptions = new MapOptions()
-      ..zoom = 7
-      ..mapTypeId = MapTypeId.ROADMAP
-      ..center = australia
-      ;
-    map = js.retain(new GMap(query("#map_canvas"), mapOptions));
-    directionsDisplay.map = map;
-    directionsDisplay.panel = query('#directionsPanel');
+  final mapOptions = new MapOptions()
+    ..zoom = 7
+    ..mapTypeId = MapTypeId.ROADMAP
+    ..center = australia
+    ;
+  map = js.retain(new GMap(query("#map_canvas"), mapOptions));
+  directionsDisplay.map = map;
+  directionsDisplay.panel = query('#directionsPanel');
 
-    directionsDisplay.onDirectionsChanged.listen((_) {
-      computeTotalDistance(directionsDisplay.directions);
-    });
-
-    calcRoute();
+  directionsDisplay.onDirectionsChanged.listen((_) {
+    computeTotalDistance(directionsDisplay.directions);
   });
+
+  calcRoute();
 }
 
 void calcRoute() {

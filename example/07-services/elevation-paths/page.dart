@@ -35,20 +35,18 @@ final LatLng panamintsprings = js.retain(new LatLng(36.339722, -117.467778));
 final LatLng badwater = js.retain(new LatLng(36.23998, -116.83171));
 
 void main() {
-  js.scoped(() {
-    final mapOptions = new MapOptions()
-      ..zoom = 8
-      ..center = lonepine
-      ..mapTypeId = MapTypeId.TERRAIN
-      ;
-    map = js.retain(new GMap(query('#map_canvas'), mapOptions));
+  final mapOptions = new MapOptions()
+    ..zoom = 8
+    ..center = lonepine
+    ..mapTypeId = MapTypeId.TERRAIN
+    ;
+  map = js.retain(new GMap(query('#map_canvas'), mapOptions));
 
-    // Create an ElevationService.
-    elevator = js.retain(new ElevationService());
+  // Create an ElevationService.
+  elevator = js.retain(new ElevationService());
 
-    // Draw the path, using the Visualization API and the Elevation service.
-    drawPath();
-  });
+  // Draw the path, using the Visualization API and the Elevation service.
+  drawPath();
 }
 
 void drawPath() {
