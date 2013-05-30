@@ -83,55 +83,53 @@ class GallPetersProjection extends Projection {
 }
 
 void main() {
-  js.scoped(() {
-    final gallPetersMapType = new ImageMapType(new ImageMapTypeOptions()
-      ..getTileUrl = (Point coord, num zoom) {
-        final numTiles = 1 << zoom;
+  final gallPetersMapType = new ImageMapType(new ImageMapTypeOptions()
+    ..getTileUrl = (Point coord, num zoom) {
+      final numTiles = 1 << zoom;
 
-        // Don't wrap tiles vertically.
-        if (coord.y < 0 || coord.y >= numTiles) {
-          return null;
-        }
-
-        // Wrap tiles horizontally.
-        var x = ((coord.x % numTiles) + numTiles) % numTiles;
-
-        // For simplicity, we use a tileset consisting of 1 tile at zoom level 0
-        // and 4 tiles at zoom level 1. Note that we set the base URL to a relative
-        // directory.
-        return '${IMAGE_URL}/images/gall-peters_${zoom}_${x}_${coord.y}.png';
+      // Don't wrap tiles vertically.
+      if (coord.y < 0 || coord.y >= numTiles) {
+        return null;
       }
-      ..tileSize = new Size(800, 512)
-      //..isPng = true
-      ..minZoom = 0
-      ..maxZoom = 1
-      ..name = 'Gall-Peters'
-    );
 
-    gallPetersMapType.projection = js.retain(new GallPetersProjection());
+      // Wrap tiles horizontally.
+      var x = ((coord.x % numTiles) + numTiles) % numTiles;
 
-    final mapOptions = new MapOptions()
-      ..zoom = 0
-      ..center = new LatLng(0,0)
-      ..mapTypeControlOptions = (new MapTypeControlOptions()
-        ..mapTypeIds = [MapTypeId.ROADMAP, 'gallPetersMap']
-      )
-    ;
-    final gallPetersMap = new GMap(query('#gallPetersMap'), mapOptions);
-
-    gallPetersMap.mapTypes.set('gallPetersMap', gallPetersMapType);
-    gallPetersMap.mapTypeId = 'gallPetersMap';
-
-    for (var i = 0; i < locationArray.length; i++) {
-      new Marker(new MarkerOptions()
-        ..position = locationArray[i]
-        ..map = gallPetersMap
-        ..title = locationNameArray[i]
-      );
+      // For simplicity, we use a tileset consisting of 1 tile at zoom level 0
+      // and 4 tiles at zoom level 1. Note that we set the base URL to a relative
+      // directory.
+      return '${IMAGE_URL}/images/gall-peters_${zoom}_${x}_${coord.y}.png';
     }
+    ..tileSize = new Size(800, 512)
+    //..isPng = true
+    ..minZoom = 0
+    ..maxZoom = 1
+    ..name = 'Gall-Peters'
+  );
 
-    gallPetersMap.onClick.listen((e) {
-      window.alert('Point.X.Y: ${e.latLng}');
-    });
+  gallPetersMapType.projection = js.retain(new GallPetersProjection());
+
+  final mapOptions = new MapOptions()
+    ..zoom = 0
+    ..center = new LatLng(0,0)
+    ..mapTypeControlOptions = (new MapTypeControlOptions()
+      ..mapTypeIds = [MapTypeId.ROADMAP, 'gallPetersMap']
+    )
+  ;
+  final gallPetersMap = new GMap(query('#gallPetersMap'), mapOptions);
+
+  gallPetersMap.mapTypes.set('gallPetersMap', gallPetersMapType);
+  gallPetersMap.mapTypeId = 'gallPetersMap';
+
+  for (var i = 0; i < locationArray.length; i++) {
+    new Marker(new MarkerOptions()
+      ..position = locationArray[i]
+      ..map = gallPetersMap
+      ..title = locationNameArray[i]
+    );
+  }
+
+  gallPetersMap.onClick.listen((e) {
+    window.alert('Point.X.Y: ${e.latLng}');
   });
 }
