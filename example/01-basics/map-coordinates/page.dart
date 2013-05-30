@@ -74,23 +74,21 @@ String createInfoWindowContent() {
 }
 
 void main() {
-  js.scoped((){
-    final mapOptions = new MapOptions()
-      ..zoom = 0
-      ..center = chicago
-      ..mapTypeId = MapTypeId.ROADMAP
-      ;
-    map = js.retain(new GMap(query("#map_canvas"), mapOptions));
+  final mapOptions = new MapOptions()
+    ..zoom = 0
+    ..center = chicago
+    ..mapTypeId = MapTypeId.ROADMAP
+    ;
+  map = js.retain(new GMap(query("#map_canvas"), mapOptions));
 
-    final InfoWindow coordInfoWindow = js.retain(new InfoWindow()
-      ..content = createInfoWindowContent()
-      ..position = chicago
-      ..open(map)
-    );
+  final InfoWindow coordInfoWindow = js.retain(new InfoWindow()
+    ..content = createInfoWindowContent()
+    ..position = chicago
+    ..open(map)
+  );
 
-    map.onZoomChanged.listen((_) {
-      coordInfoWindow.content = createInfoWindowContent();
-      coordInfoWindow.open(map);
-    });
+  map.onZoomChanged.listen((_) {
+    coordInfoWindow.content = createInfoWindowContent();
+    coordInfoWindow.open(map);
   });
 }
