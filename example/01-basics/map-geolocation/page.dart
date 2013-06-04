@@ -14,18 +14,16 @@ void main() {
   // Try HTML5 geolocation
   if (window.navigator.geolocation != null) {
     window.navigator.geolocation.getCurrentPosition().then((position) {
-      js.scoped(() {
-        final pos = new LatLng(position.coords.latitude,
-            position.coords.longitude);
+      final pos = new LatLng(position.coords.latitude,
+          position.coords.longitude);
 
-        final infowindow = new InfoWindow(new InfoWindowOptions()
-          ..position = pos
-          ..content = 'Location found using HTML5.'
-        );
-        infowindow.open(map);
+      final infowindow = new InfoWindow(new InfoWindowOptions()
+        ..position = pos
+        ..content = 'Location found using HTML5.'
+      );
+      infowindow.open(map);
 
-        map.center = pos;
-      });
+      map.center = pos;
     }, onError : (error) {
       handleNoGeolocation(true);
     });

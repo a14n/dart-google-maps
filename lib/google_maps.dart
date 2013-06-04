@@ -197,10 +197,8 @@ class MapsEventListenerRegistration {
   MapsEventListenerRegistration._(this._mapsEventListener);
 
   void removeListener() {
-    js.scoped(() {
-      event.removeListener(_mapsEventListener);
-      js.release(_mapsEventListener);
-    });
+    event.removeListener(_mapsEventListener);
+    js.release(_mapsEventListener);
   }
 }
 
