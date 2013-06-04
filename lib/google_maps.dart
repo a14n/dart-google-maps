@@ -171,6 +171,9 @@ part 'src/core/mvc/mvc_array.dart';
 // js.Proxy for "google.maps"
 final maps = js.retain(js.context.google.maps);
 
+bool get visualRefresh => maps.visualRefresh;
+set visualRefresh(bool visualRefresh) => maps.visualRefresh = visualRefresh;
+
 class NativeEvent extends jsw.TypedProxy {
   static NativeEvent cast(js.Proxy proxy) => proxy == null ? null : new NativeEvent.fromProxy(proxy);
 

@@ -52,6 +52,7 @@ class MarkerOptions extends jsw.TypedProxy {
   bool get optimized => $unsafe['optimized'];
   LatLng get position => LatLng.cast($unsafe['position']);
   bool get raiseOnDrag => $unsafe['raiseOnDrag'];
+  bool get crossOnDrag => $unsafe['crossOnDrag'];
   dynamic/*string|Icon|Symbol*/ get shadow {
     final result = $unsafe['shadow'];
     if (result is String) {
@@ -81,6 +82,7 @@ class MarkerOptions extends jsw.TypedProxy {
   set optimized(bool optimized) => $unsafe['optimized'] = optimized;
   set position(LatLng position) => $unsafe['position'] = position;
   set raiseOnDrag(bool raiseOnDrag) => $unsafe['raiseOnDrag'] = raiseOnDrag;
+  set crossOnDrag(bool crossOnDrag) => $unsafe['crossOnDrag'] = crossOnDrag;
   set shadow(dynamic/*string|Icon|Symbol*/ shadow) => $unsafe['shadow'] = shadow;
   set shape(MarkerShape shape) => $unsafe['shape'] = shape;
   set title(String title) => $unsafe['title'] = title;

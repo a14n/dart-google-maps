@@ -20,12 +20,14 @@ class MapsEngineLayerOptions extends jsw.TypedProxy {
   MapsEngineLayerOptions() : super();
   MapsEngineLayerOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
+  String get accessToken => $unsafe['accessToken'];
   bool get clickable => $unsafe['clickable'];
   String get layerId => $unsafe['layerId'];
   String get layerKey => $unsafe['layerKey'];
   GMap get map => GMap.cast($unsafe['map']);
   String get mapId => $unsafe['mapId'];
   bool get suppressInfoWindows => $unsafe['suppressInfoWindows'];
+  set accessToken(String accessToken) => $unsafe['accessToken'] = accessToken;
   set clickable(bool clickable) => $unsafe['clickable'] = clickable;
   set layerId(String layerId) => $unsafe['layerId'] = layerId;
   set layerKey(String layerKey) => $unsafe['layerKey'] = layerKey;

@@ -19,4 +19,7 @@ class SearchBoxOptions extends jsw.TypedProxy {
 
   SearchBoxOptions() : super();
   SearchBoxOptions.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
+
+  LatLngBounds get bounds => LatLngBounds.cast($unsafe['bounds']);
+  set bounds(LatLngBounds bounds) => $unsafe['bounds'] = bounds;
 }
