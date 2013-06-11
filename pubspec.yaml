@@ -1,11 +1,11 @@
 name: google_maps
-author: "Alexandre Ardhuin <alexandre.ardhuin@gmail.com>"
-homepage: https://github.com/a14n/dart-google-maps
-version: 1.1.12-dev
+version: 1.1.12
+author: Alexandre Ardhuin <alexandre.ardhuin@gmail.com>
 description: With that package you will be able to use Google Maps JavaScript API from Dart scripts.
-dev_dependencies:
-  unittest: any
-  meta: any
-  browser: any
+homepage: https://github.com/a14n/dart-google-maps
 dependencies:
   js: '>=0.0.21 <1.0.0'
+dev_dependencies:
+  browser: any
+  meta: any
+  unittest: any
