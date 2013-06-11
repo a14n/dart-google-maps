@@ -73,7 +73,8 @@ class SubscribeStreamProvider<T> implements EventSink<T> {
     StreamController<T> controller;
     controller = new StreamController<T>(
         onListen: () => _addController(controller),
-        onCancel: () => _removeController(controller));
+        onCancel: () => _removeController(controller),
+        sync: true);
     return controller.stream;
   }
 
