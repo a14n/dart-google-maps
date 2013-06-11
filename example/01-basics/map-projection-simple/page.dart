@@ -40,10 +40,10 @@ class GallPetersProjection extends Projection {
 
   // This projection has equidistant meridians, so each longitude degree is a linear
   // mapping.
-  const _worldCoordinatePerLonDegree = GALL_PETERS_RANGE_X / 360;
+  static const _worldCoordinatePerLonDegree = GALL_PETERS_RANGE_X / 360;
 
   // This constant merely reflects that latitudes vary from +90 to -90 degrees.
-  const _worldCoordinateLatRange = GALL_PETERS_RANGE_Y / 2;
+  static const _worldCoordinateLatRange = GALL_PETERS_RANGE_Y / 2;
 
   // TODO make a constructor with optionals
   GallPetersProjection() : super() {

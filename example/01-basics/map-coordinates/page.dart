@@ -23,8 +23,8 @@ num radiansToDegrees(num rad) {
 
 class MercatorProjection {
   final _pixelOrigin = new Point(TILE_SIZE / 2, TILE_SIZE / 2);
-  const _pixelsPerLonDegree = TILE_SIZE / 360;
-  const _pixelsPerLonRadian = TILE_SIZE / (2 * Math.PI);
+  static const _pixelsPerLonDegree = TILE_SIZE / 360;
+  static const _pixelsPerLonRadian = TILE_SIZE / (2 * Math.PI);
 
   Point fromLatLngToPoint(LatLng latLng, [Point opt_point]) {
     final point = opt_point == null ? new Point(0, 0) : opt_point;
