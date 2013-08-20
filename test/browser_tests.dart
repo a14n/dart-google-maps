@@ -1,11 +1,9 @@
 library tests;
 
 import 'dart:html';
-import 'dart:json';
 import 'package:unittest/unittest.dart';
 import 'package:unittest/html_config.dart';
 
-import 'package:js/js.dart' as js;
 import 'package:google_maps/google_maps.dart';
 
 injectSource(code) {

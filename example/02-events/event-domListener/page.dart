@@ -1,6 +1,4 @@
 import 'dart:html' hide Events;
-import 'dart:math';
-import 'package:js/js.dart' as js;
 import 'package:google_maps/google_maps.dart';
 
 void main() {

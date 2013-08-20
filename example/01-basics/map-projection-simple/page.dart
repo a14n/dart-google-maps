@@ -53,12 +53,12 @@ class GallPetersProjection extends Projection {
 
   Point _fromLatLngToPoint(LatLng latLng, [Point point]) {
     final origin = this._worldOrigin;
-    final x = origin.x + this._worldCoordinatePerLonDegree * latLng.lng;
+    final x = origin.x + _worldCoordinatePerLonDegree * latLng.lng;
 
     // Note that latitude is measured from the world coordinate origin
     // at the top left of the map.
     final latRadians = degreesToRadians(latLng.lat);
-    final y = origin.y - this._worldCoordinateLatRange * Math.sin(latRadians);
+    final y = origin.y - _worldCoordinateLatRange * Math.sin(latRadians);
 
     return new Point(x, y);
   }
@@ -75,8 +75,8 @@ class GallPetersProjection extends Projection {
     }
 
     final origin = this._worldOrigin;
-    final lng = (x - origin.x) / this._worldCoordinatePerLonDegree;
-    final latRadians = Math.asin((origin.y - y) / this._worldCoordinateLatRange);
+    final lng = (x - origin.x) / _worldCoordinatePerLonDegree;
+    final latRadians = Math.asin((origin.y - y) / _worldCoordinateLatRange);
     final lat = radiansToDegrees(latRadians);
     return new LatLng(lat, lng, nowrap);
   }

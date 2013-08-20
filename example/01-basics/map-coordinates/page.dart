@@ -45,8 +45,8 @@ class MercatorProjection {
   LatLng fromPointToLatLng(Point point) {
     var me = this;
     var origin = me._pixelOrigin;
-    var lng = (point.x - origin.x) / me._pixelsPerLonDegree;
-    var latRadians = (point.y - origin.y) / -me._pixelsPerLonRadian;
+    var lng = (point.x - origin.x) / _pixelsPerLonDegree;
+    var latRadians = (point.y - origin.y) / -_pixelsPerLonRadian;
     var lat = radiansToDegrees(2 * Math.atan(Math.exp(latRadians)) -
         Math.PI / 2);
     return new LatLng(lat, lng);
