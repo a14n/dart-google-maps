@@ -78,7 +78,7 @@ class SubscribeStreamProvider<T> implements EventSink<T> {
     return controller.stream;
   }
 
-  void add(T event) => _controllers.forEach((controller) => controller.add(event));
-  void addError(errorEvent) => _controllers.forEach((controller) => controller.addError(errorEvent));
-  void close() => _controllers.forEach((controller) => controller.close());
+  void add(T event) => _controllers.toList().forEach((controller) => controller.add(event));
+  void addError(errorEvent) => _controllers.toList().forEach((controller) => controller.addError(errorEvent));
+  void close() => _controllers.toList().forEach((controller) => controller.close());
 }
