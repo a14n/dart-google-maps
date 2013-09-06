@@ -109,7 +109,7 @@ class USGSOverlay extends OverlayView {
   }
 
   void _onRemove() {
-    _div.parent.$dom_removeChild(_div);
+    _div.remove();
   }
 
   // Note that the visibility property must be a string enclosed in quotes

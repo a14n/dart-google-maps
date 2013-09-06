@@ -107,7 +107,7 @@ class USGSOverlay extends OverlayView {
   }
 
   void _onRemove() {
-    _div.parent.$dom_removeChild(_div);
+    _div.remove();
     _div = null;
   }
 }
