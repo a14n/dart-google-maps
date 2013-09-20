@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:html';
-import 'package:js/js.dart' as js;
-import 'package:js/js_wrapping.dart' as jsw;
+import 'package:js_wrapping/wrapping.dart' as jsw;
 import 'package:google_maps/google_maps.dart';
 
 Polyline line;
@@ -24,14 +23,14 @@ void main() {
     ..strokeColor = '#393'
     ;
 
-  line = js.retain(new Polyline(new PolylineOptions()
+  line = new Polyline(new PolylineOptions()
     ..path = lineCoordinates
     ..icons = [new IconSequence()
       ..icon = lineSymbol
       ..offset = '100%'
     ]
     ..map = map
-  ));
+  );
 
   animateCircle();
 }
@@ -41,7 +40,7 @@ void animateCircle() {
   new Timer.periodic(new Duration(milliseconds: 20), (_) {
     count = (count + 1) % 200;
 
-    final icons = jsw.JsArrayToListAdapter.castListOfSerializables(line.get('icons'), IconSequence.cast);
+    final icons = jsw.TypedJsArray.castListOfSerializables(line.get('icons'), IconSequence.cast);
     icons[0].offset = '${count / 2}%';
     line.set('icons', icons);
   });

@@ -1,5 +1,5 @@
 import 'dart:html';
-import 'package:js/js.dart' as js;
+import 'dart:js' as js;
 import 'package:google_maps/google_maps.dart';
 
 void initialize() {
@@ -12,7 +12,7 @@ void initialize() {
 }
 
 void main() {
-  js.context.initialize = new js.Callback.once(initialize);
+  js.context['initialize'] = initialize;
 
   final script = new ScriptElement()
     ..type = 'text/javascript'

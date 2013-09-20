@@ -1,20 +1,20 @@
 import 'dart:html';
-import 'package:js/js.dart' as js;
+
 import 'package:google_maps/google_maps.dart';
 
 DirectionsRenderer directionsDisplay;
-final DirectionsService directionsService = js.retain(new DirectionsService());
+final DirectionsService directionsService = new DirectionsService();
 GMap map;
 
 void main() {
-  directionsDisplay = js.retain(new DirectionsRenderer());
+  directionsDisplay = new DirectionsRenderer();
   final chicago = new LatLng(41.850033, -87.6500523);
   final mapOptions = new MapOptions()
     ..zoom = 7
     ..mapTypeId = MapTypeId.ROADMAP
     ..center = chicago
     ;
-  map = js.retain(new GMap(query("#map_canvas"), mapOptions));
+  map = new GMap(query("#map_canvas"), mapOptions);
   directionsDisplay.map = map;
 
   query('#start').onChange.listen((e) => calcRoute());

@@ -14,7 +14,7 @@ void main() {
   panoramioLayer.map = map;
 
   final photoPanel = query('#photo-panel');
-  map.controls.getNodes(ControlPosition.RIGHT_TOP).push(photoPanel);
+  map.controls[ControlPosition.RIGHT_TOP].push(photoPanel);
 
   panoramioLayer.onClick.listen((e) {
     final li = new LIElement();

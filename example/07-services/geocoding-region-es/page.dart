@@ -1,5 +1,5 @@
 import 'dart:html';
-import 'package:js/js.dart' as js;
+
 import 'package:google_maps/google_maps.dart';
 
 Geocoder geocoder;
@@ -7,12 +7,12 @@ GMap map;
 const address = 'Toledo';
 
 void main() {
-  geocoder = js.retain(new Geocoder());
+  geocoder = new Geocoder();
   final mapOptions = new MapOptions()
     ..zoom = 8
     ..mapTypeId = MapTypeId.ROADMAP
     ;
-  map = js.retain(new GMap(query("#map_canvas"), mapOptions));
+  map = new GMap(query("#map_canvas"), mapOptions);
   codeAddress();
 }
 

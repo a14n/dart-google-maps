@@ -1,5 +1,4 @@
 import 'dart:html';
-import 'package:js/js.dart' as js;
 import 'package:google_maps/google_maps.dart';
 
 Polyline line;
@@ -23,7 +22,7 @@ void main() {
     ..scale = 4
     ;
 
-  line = js.retain(new Polyline(new PolylineOptions()
+  line = new Polyline(new PolylineOptions()
     ..path = lineCoordinates
     ..strokeOpacity = 0
     ..icons = [new IconSequence()
@@ -32,5 +31,5 @@ void main() {
       ..repeat = '20px'
     ]
     ..map = map
-  ));
+  );
 }

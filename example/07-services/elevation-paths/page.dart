@@ -1,38 +1,38 @@
 import 'dart:html';
-import 'package:js/js.dart' as js;
-import 'package:js/js_wrapping.dart' as jsw;
+import 'dart:js' as js;
+
+import 'package:js_wrapping/utils.dart';
+import 'package:js_wrapping/wrapping.dart' as jsw;
 import 'package:google_maps/google_maps.dart';
 
-js.Serializable<js.Proxy> jsifyList(List list) => (list is js.Serializable<js.Proxy>) ? list : js.array(list);
+class ColumnChart extends jsw.TypedJsObject {
+  ColumnChart(Node div) : super(js.context['google']['visualization']['ColumnChart'], [convertElementToJs(div)]);
 
-class ColumnChart extends jsw.TypedProxy {
-  ColumnChart(Node div) : super(js.context.google.visualization.ColumnChart, [div]);
-
-  void draw(DataTable data, [jsw.TypedProxy options]) { $unsafe.draw(data, options); }
+  void draw(DataTable data, [js.JsObject options]) { $unsafe.callMethod('draw', [data, options]); }
 }
 
-class DataTable extends jsw.TypedProxy {
-  DataTable() : super(js.context.google.visualization.DataTable);
+class DataTable extends jsw.TypedJsObject {
+  DataTable() : super(js.context['google']['visualization']['DataTable']);
 
-  void addColumn(String type, [String label, String id]) { $unsafe.addColumn(type, label, id); }
-  void addRow([List<Object> cellArray]) { $unsafe.addRow(jsifyList(cellArray)); }
+  void addColumn(String type, [String label, String id]) { $unsafe.callMethod('addColumn', [type, label, id]); }
+  void addRow([List<Object> cellArray]) { $unsafe.callMethod('addRow', [cellArray == null ? null : cellArray is js.Serializable ? cellArray : js.jsify(cellArray)]); }
 }
 
 ElevationService elevator;
 GMap map;
 ColumnChart chart;
-final InfoWindow infowindow = js.retain(new InfoWindow());
+final InfoWindow infowindow = new InfoWindow();
 Polyline polyline;
 
 // The following path marks a general path from Mt.
 // Whitney, the highest point in the continental United
 // States to Badwater, Death Vallet, the lowest point.
-final LatLng whitney = js.retain(new LatLng(36.578581, -118.291994));
-final LatLng lonepine = js.retain(new LatLng(36.606111, -118.062778));
-final LatLng owenslake = js.retain(new LatLng(36.433269, -117.950916));
-final LatLng beattyjunction = js.retain(new LatLng(36.588056, -116.943056));
-final LatLng panamintsprings = js.retain(new LatLng(36.339722, -117.467778));
-final LatLng badwater = js.retain(new LatLng(36.23998, -116.83171));
+final LatLng whitney = new LatLng(36.578581, -118.291994);
+final LatLng lonepine = new LatLng(36.606111, -118.062778);
+final LatLng owenslake = new LatLng(36.433269, -117.950916);
+final LatLng beattyjunction = new LatLng(36.588056, -116.943056);
+final LatLng panamintsprings = new LatLng(36.339722, -117.467778);
+final LatLng badwater = new LatLng(36.23998, -116.83171);
 
 void main() {
   final mapOptions = new MapOptions()
@@ -40,10 +40,10 @@ void main() {
     ..center = lonepine
     ..mapTypeId = MapTypeId.TERRAIN
     ;
-  map = js.retain(new GMap(query('#map_canvas'), mapOptions));
+  map = new GMap(query('#map_canvas'), mapOptions);
 
   // Create an ElevationService.
-  elevator = js.retain(new ElevationService());
+  elevator = new ElevationService();
 
   // Draw the path, using the Visualization API and the Elevation service.
   drawPath();
@@ -52,7 +52,7 @@ void main() {
 void drawPath() {
 
   // Create a new chart in the elevation_chart DIV.
-  chart = js.retain(new ColumnChart(query('#elevation_chart')));
+  chart = new ColumnChart(query('#elevation_chart'));
 
   final path = [ whitney, lonepine, owenslake, panamintsprings, beattyjunction, badwater];
 
@@ -82,10 +82,10 @@ void plotElevation(List<ElevationResult> results, ElevationStatus status) {
     final pathOptions = new PolylineOptions()
       ..path = elevationPath
       ..strokeColor = '#0000CC'
-      ..$unsafe.opacity = 0.4  // TODO not in doc
+      ..$unsafe['opacity'] = 0.4  // TODO not in doc
       ..map = map
       ;
-    polyline = js.retain(new Polyline(pathOptions));
+    polyline = new Polyline(pathOptions);
 
     // Extract the data from which to populate the chart.
     // Because the samples are equidistant, the 'Sample'
@@ -100,11 +100,11 @@ void plotElevation(List<ElevationResult> results, ElevationStatus status) {
 
     // Draw the chart using the data within its DIV.
     query('#elevation_chart').style.display = 'block';
-    chart.draw(data, new jsw.TypedProxy()
-      ..$unsafe.width = 640
-      ..$unsafe.height = 200
-      ..$unsafe.legend = 'none'
-      ..$unsafe.titleY = 'Elevation (m)'
+    chart.draw(data, js.jsify({})
+      ..['width'] = 640
+      ..['height'] = 200
+      ..['legend'] = 'none'
+      ..['titleY'] = 'Elevation (m)'
     );
   }
 }

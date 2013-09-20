@@ -15,22 +15,13 @@
 library google_maps_panoramio;
 
 import 'dart:async';
+import 'dart:js' as js;
 
-import 'package:js/js.dart' as js;
-import 'package:js/js_wrapping.dart' as jsw;
-import 'package:meta/meta.dart';
+import 'package:google_maps/google_maps.dart';
+import 'package:js_wrapping/utils.dart';
+import 'package:js_wrapping/wrapping.dart' as jsw;
 
-import 'google_maps.dart';
-import 'src/utils.dart';
-
-part 'src/library/panoramio/panoramio_layer.dart';
-part 'src/library/panoramio/panoramio_layer_options.dart';
-part 'src/library/panoramio/panoramio_feature.dart';
-part 'src/library/panoramio/panoramio_mouse_event.dart';
-
-class PanoramioMouseEventListenerAdder extends EventListenerAdder {
-  PanoramioMouseEventListenerAdder(jsw.TypedProxy _instance, String _eventName) : super(_instance, _eventName);
-
-  void add(void handler(PanoramioMouseEvent e)) { super.add((o) => handler(PanoramioMouseEvent.cast(o))); }
-  MapsEventListenerRegistration addTemporary(void handler(PanoramioMouseEvent e)) => super.addTemporary((o) => handler(PanoramioMouseEvent.cast(o)));
-}
+part 'src/generated/library/panoramio/panoramio_layer.dart';
+part 'src/generated/library/panoramio/panoramio_layer_options.dart';
+part 'src/generated/library/panoramio/panoramio_feature.dart';
+part 'src/generated/library/panoramio/panoramio_mouse_event.dart';

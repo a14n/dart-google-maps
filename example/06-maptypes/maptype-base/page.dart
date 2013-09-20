@@ -1,19 +1,19 @@
 import 'dart:html' hide Point;
-import 'package:js/js.dart' as js;
-import 'package:js/js_wrapping.dart' as jsw;
+import 'dart:js' as js;
+
 import 'package:google_maps/google_maps.dart';
 
 class CoordMapType extends MapType {
   CoordMapType() : super() {
-    this.tileSize = js.retain(new Size(256,256));
+    this.tileSize = new Size(256,256);
     this.maxZoom = 19;
-    $unsafe.getTile = new js.Callback.many((js.Proxy tileCoord, num zoom, js.Proxy ownerDocument) {
-      if (ownerDocument.createElement("div") is js.Proxy) {
-        return _getTileFromOtherDocument(Point.cast(tileCoord), zoom, ownerDocument == null ? null : new jsw.TypedProxy.fromProxy(ownerDocument));
+    $unsafe['getTile'] = (js.JsObject tileCoord, num zoom, js.JsObject ownerDocument) {
+      if (ownerDocument.callMethod('createElement', ['div']) is js.JsObject) {
+        return _getTileWithoutElementHandled(Point.cast(tileCoord), zoom, ownerDocument);
       } else {
         return _getTile(Point.cast(tileCoord), zoom);
       }
-    });
+    };
     this.name = 'Tile #s';
     this.alt = 'Tile Coordinate Map Type';
   }
@@ -34,27 +34,27 @@ class CoordMapType extends MapType {
     return div;
   }
 
-  jsw.TypedProxy _getTileFromOtherDocument(Point coord, num zoom, jsw.TypedProxy ownerDocument) {
-    final div = new jsw.TypedProxy.fromProxy(ownerDocument.$unsafe.createElement("div"))
-      ..$unsafe.innerHTML = coord.toString()
+  js.JsObject _getTileWithoutElementHandled(Point coord, num zoom, js.JsObject ownerDocument) {
+    final div = ownerDocument.callMethod('createElement', ['div'])
+      ..['innerHTML'] = coord.toString()
       ;
-    final style = new jsw.TypedProxy.fromProxy(div.$unsafe.style);
+    final style = div['style'];
     style
-      ..$unsafe.width = '${tileSize.width}px'
-      ..$unsafe.height = '${tileSize.height}px'
-      ..$unsafe.fontSize = '10'
-      ..$unsafe.borderStyle = 'solid'
-      ..$unsafe.borderWidth = '1px'
-      ..$unsafe.borderColor = '#AAAAAA'
-      ..$unsafe.backgroundColor = '#E5E3DF'
+      ..['width'] = '${tileSize.width}px'
+      ..['height'] = '${tileSize.height}px'
+      ..['fontSize'] = '10'
+      ..['borderStyle'] = 'solid'
+      ..['borderWidth'] = '1px'
+      ..['borderColor'] = '#AAAAAA'
+      ..['backgroundColor'] = '#E5E3DF'
       ;
     return div;
   }
 }
 
 GMap map;
-final LatLng chicago = js.retain(new LatLng(41.850033,-87.6500523));
-final CoordMapType coordinateMapType = js.retain(new CoordMapType());
+final LatLng chicago = new LatLng(41.850033,-87.6500523);
+final CoordMapType coordinateMapType = new CoordMapType();
 
 void main() {
   final mapOptions = new MapOptions()
@@ -67,7 +67,7 @@ void main() {
       ..style = MapTypeControlStyle.DROPDOWN_MENU
     )
     ;
-  map = js.retain(new GMap(query("#map_canvas"), mapOptions));
+  map = new GMap(query("#map_canvas"), mapOptions);
 
   map.onMaptypeidChanged.listen((_) {
     final showStreetViewControl = map.mapTypeId != 'coordinate';

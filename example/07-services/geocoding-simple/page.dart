@@ -1,19 +1,19 @@
 import 'dart:html';
-import 'package:js/js.dart' as js;
+
 import 'package:google_maps/google_maps.dart';
 
 Geocoder geocoder;
 GMap map;
 
 void main() {
-  geocoder = js.retain(new Geocoder());
+  geocoder = new Geocoder();
   final latlng = new LatLng(-34.397, 150.644);
   final mapOptions = new MapOptions()
     ..zoom = 8
     ..center = latlng
     ..mapTypeId = MapTypeId.ROADMAP
     ;
-  map = js.retain(new GMap(query("#map_canvas"), mapOptions));
+  map = new GMap(query("#map_canvas"), mapOptions);
 
   query("#codeAddress").onClick.listen((e) => codeAddress());
 }

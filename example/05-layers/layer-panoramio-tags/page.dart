@@ -1,5 +1,4 @@
 import 'dart:html' hide Events;
-import 'package:js/js.dart' as js;
 import 'package:google_maps/google_maps.dart';
 import 'package:google_maps/google_maps_panoramio.dart';
 
@@ -17,10 +16,9 @@ void main() {
   final tag = query('#tag') as InputElement;
   final button = query('#filter-button');
 
-  js.retain(panoramioLayer);
   event.addDomListener(button, 'click', (e) {
     panoramioLayer.tag = tag.value;
   });
 
-  map.controls.getNodes(ControlPosition.TOP_CENTER).push(query('#filter'));
+  map.controls[ControlPosition.TOP_CENTER].push(query('#filter'));
 }

@@ -1,5 +1,4 @@
 import 'dart:html';
-import 'package:js/js.dart' as js;
 import 'package:google_maps/google_maps.dart';
 
 void main() {
@@ -10,7 +9,6 @@ void main() {
   ;
   final map = new GMap(query("#map_canvas"), mapOptions);
 
-  js.retain(map);
   map.onClick.listen((e) {
     placeMarker(e.latLng, map);
   });

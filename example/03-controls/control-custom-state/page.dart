@@ -1,9 +1,8 @@
 import 'dart:html' hide Events;
-import 'package:js/js.dart' as js;
 import 'package:google_maps/google_maps.dart';
 
 GMap map;
-final LatLng chicago = js.retain(new LatLng(41.850033, -87.6500523));
+final LatLng chicago = new LatLng(41.850033, -87.6500523);
 
 /**
  * The HomeControl adds a control to the map that
@@ -12,9 +11,7 @@ final LatLng chicago = js.retain(new LatLng(41.850033, -87.6500523));
 class HomeControl {
   LatLng _home;
 
-  HomeControl(Element controlDiv, GMap map, LatLng home) {
-    this._home = js.retain(home);
-
+  HomeControl(Element controlDiv, GMap map, this._home) {
     // Set CSS styles for the DIV containing the control
     // Setting padding to 5 px will offset the control
     // from the edge of the map
@@ -68,17 +65,14 @@ class HomeControl {
 
     // Setup the click event listener for Home:
     // simply set the map to the control's current home property.
-    js.retain(map);
     event.addDomListener(goHomeUI, 'click', (e) {
       map.center = _home;
     });
 
     // Setup the click event listener for Set Home:
     // Set the control's home to the current Map center.
-    js.retain(map);
     event.addDomListener(setHomeUI, 'click', (e) {
-      js.release(_home);
-      _home = js.retain(map.center);
+      _home = map.center;
     });
   }
 }
@@ -90,7 +84,7 @@ void main() {
     ..center = chicago
     ..mapTypeId = MapTypeId.ROADMAP
     ;
-  map = js.retain(new GMap(mapDiv, mapOptions));
+  map = new GMap(mapDiv, mapOptions);
 
   // Create the DIV to hold the control and
   // call the HomeControl() constructor passing
@@ -99,5 +93,5 @@ void main() {
   var homeControl = new HomeControl(homeControlDiv, map, chicago);
 
   homeControlDiv.attributes["index"] = 1.toString();
-  map.controls.getNodes(ControlPosition.TOP_RIGHT).push(homeControlDiv);
+  map.controls[ControlPosition.TOP_RIGHT].push(homeControlDiv);
 }

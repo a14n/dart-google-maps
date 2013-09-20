@@ -1,5 +1,5 @@
 import 'dart:html' hide MouseEvent;
-import 'package:js/js.dart' as js;
+
 import 'package:google_maps/google_maps.dart';
 import 'package:google_maps/google_maps_geometry.dart';
 
@@ -20,7 +20,7 @@ void main() {
     ..strokeWeight = 3
     ..map = map
     ;
-  poly = js.retain(new Polyline(polyOptions));
+  poly = new Polyline(polyOptions);
 
   // Add a listener for the click event
   map.onClick.listen(addLatLng);

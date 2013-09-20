@@ -1,5 +1,5 @@
 import 'dart:html';
-import 'package:js/js.dart' as js;
+
 import 'package:google_maps/google_maps.dart';
 import 'package:google_maps/google_maps_places.dart';
 
@@ -19,14 +19,12 @@ void main() {
   final infowindow = new InfoWindow();
   final service = new PlacesService(map);
 
-  [map, infowindow].forEach(js.retain);
   service.getDetails(request, (place, status) {
     if (status == PlacesServiceStatus.OK) {
       final marker = new Marker(new MarkerOptions()
         ..map = map
         ..position = place.geometry.location
       );
-      [marker, place].forEach(js.retain);
       marker.onClick.listen((e) {
         infowindow.content = place.name;
         infowindow.open(map, marker);

@@ -15,28 +15,19 @@
 library google_maps_weather;
 
 import 'dart:async';
+import 'dart:js' as js;
 
-import 'package:js/js.dart' as js;
-import 'package:js/js_wrapping.dart' as jsw;
-import 'package:meta/meta.dart';
+import 'package:google_maps/google_maps.dart';
+import 'package:js_wrapping/utils.dart';
+import 'package:js_wrapping/wrapping.dart' as jsw;
 
-import 'google_maps.dart';
-import 'src/utils.dart';
-
-part 'src/library/weather/cloud_layer.dart';
-part 'src/library/weather/weather_layer.dart';
-part 'src/library/weather/weather_layer_options.dart';
-part 'src/library/weather/temperature_unit.dart';
-part 'src/library/weather/wind_speed_unit.dart';
-part 'src/library/weather/label_color.dart';
-part 'src/library/weather/weather_mouse_event.dart';
-part 'src/library/weather/weather_feature.dart';
-part 'src/library/weather/weather_conditions.dart';
-part 'src/library/weather/weather_forecast.dart';
-
-class WeatherMouseEventListenerAdder extends EventListenerAdder {
-  WeatherMouseEventListenerAdder(jsw.TypedProxy _instance, String _eventName) : super(_instance, _eventName);
-
-  void add(void handler(WeatherMouseEvent e)) { super.add((o) => handler(WeatherMouseEvent.cast(o))); }
-  MapsEventListenerRegistration addTemporary(void handler(WeatherMouseEvent e)) => super.addTemporary((o) => handler(WeatherMouseEvent.cast(o)));
-}
+part 'src/generated/library/weather/cloud_layer.dart';
+part 'src/generated/library/weather/weather_layer.dart';
+part 'src/generated/library/weather/weather_layer_options.dart';
+part 'src/generated/library/weather/temperature_unit.dart';
+part 'src/generated/library/weather/wind_speed_unit.dart';
+part 'src/generated/library/weather/label_color.dart';
+part 'src/generated/library/weather/weather_mouse_event.dart';
+part 'src/generated/library/weather/weather_feature.dart';
+part 'src/generated/library/weather/weather_conditions.dart';
+part 'src/generated/library/weather/weather_forecast.dart';

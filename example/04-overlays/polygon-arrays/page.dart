@@ -1,5 +1,4 @@
 import 'dart:html' hide MouseEvent;
-import 'package:js/js.dart' as js;
 import 'package:google_maps/google_maps.dart';
 
 GMap map;
@@ -13,7 +12,7 @@ void main() {
     ..center = myLatLng
     ..mapTypeId = MapTypeId.TERRAIN
     ;
-  map = js.retain(new GMap(query("#map_canvas"), mapOptions));
+  map = new GMap(query("#map_canvas"), mapOptions);
 
   final triangleCoords = [
                         new LatLng(25.774252, -80.190262),
@@ -21,21 +20,21 @@ void main() {
                         new LatLng(32.321384, -64.75737)
                         ];
 
-  bermudaTriangle = js.retain(new Polygon(new PolygonOptions()
+  bermudaTriangle = new Polygon(new PolygonOptions()
     ..paths = triangleCoords
     ..strokeColor = '#FF0000'
     ..strokeOpacity = 0.8
     ..strokeWeight = 3
     ..fillColor = '#FF0000'
     ..fillOpacity = 0.35
-  ));
+  );
 
   bermudaTriangle.map = map;
 
   // Add a listener for the click event
   bermudaTriangle.onClick.listen(showArrays);
 
-  infoWindow = js.retain(new InfoWindow());
+  infoWindow = new InfoWindow();
 }
 
 void showArrays(MouseEvent e) {

@@ -1,5 +1,5 @@
 import 'dart:html' hide Point, Events;
-import 'package:js/js.dart' as js;
+
 import 'package:google_maps/google_maps.dart';
 import 'package:google_maps/google_maps_places.dart';
 
@@ -21,7 +21,6 @@ void main() {
     ..map = map
   );
 
-  [map, marker, infowindow, autocomplete].forEach(js.retain);
   autocomplete.onPlaceChanged.listen((_) {
     infowindow.close();
     final place = autocomplete.place;

@@ -1,5 +1,5 @@
 import 'dart:html';
-import 'package:js/js.dart' as js;
+
 import 'package:google_maps/google_maps.dart';
 
 GMap map;
@@ -10,7 +10,7 @@ final markerArray = new List<Marker>();
 
 void main() {
   // Instantiate a directions service.
-  directionsService = js.retain(new DirectionsService());
+  directionsService = new DirectionsService();
 
   // Create a map and center it on Manhattan.
   final manhattan = new LatLng(40.7711329, -73.9741874);
@@ -19,16 +19,16 @@ void main() {
     ..mapTypeId = MapTypeId.ROADMAP
     ..center = manhattan
     ;
-  map = js.retain(new GMap(query("#map_canvas"), mapOptions));
+  map = new GMap(query("#map_canvas"), mapOptions);
 
   // Create a renderer for directions and bind it to the map.
   final rendererOptions = new DirectionsRendererOptions()
     ..map = map
     ;
-  directionsDisplay = js.retain(new DirectionsRenderer(rendererOptions));
+  directionsDisplay = new DirectionsRenderer(rendererOptions);
 
   // Instantiate an info window to hold step text.
-  stepDisplay = js.retain(new InfoWindow());
+  stepDisplay = new InfoWindow();
 
   query('#start').onChange.listen((e) => calcRoute());
   query('#end').onChange.listen((e) => calcRoute());
@@ -37,7 +37,6 @@ void main() {
 void calcRoute() {
   // First, remove any existing markers from the map.
   markerArray.forEach((marker) => marker.map = null);
-  markerArray.forEach(js.release);
 
   // Now, clear the array itself.
   markerArray.clear();
@@ -77,7 +76,6 @@ void showSteps(DirectionsResult directionResult) {
       ..map = map
     );
     attachInstructionText(marker, step.instructions);
-    js.retain(marker);
     markerArray.add(marker);
   }
 }

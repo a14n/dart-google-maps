@@ -1,12 +1,12 @@
 import 'dart:html';
-import 'package:js/js.dart' as js;
+
 import 'package:google_maps/google_maps.dart';
 
 DirectionsRenderer directionsDisplay;
-final DirectionsService directionsService = js.retain(new DirectionsService());
+final DirectionsService directionsService = new DirectionsService();
 
 void main() {
-  directionsDisplay = js.retain(new DirectionsRenderer());
+  directionsDisplay = new DirectionsRenderer();
   final mapOptions = new MapOptions()
     ..zoom = 7
     ..mapTypeId = MapTypeId.ROADMAP
@@ -18,7 +18,7 @@ void main() {
 
   final control = query('#control');
   control.style.display = 'block';
-  map.controls.getNodes(ControlPosition.TOP_CENTER).push(control);
+  map.controls[ControlPosition.TOP_CENTER].push(control);
 
   query('#start').onChange.listen((e) => calcRoute());
   query('#end').onChange.listen((e) => calcRoute());

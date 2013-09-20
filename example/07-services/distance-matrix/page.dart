@@ -1,16 +1,16 @@
 import 'dart:html';
-import 'package:js/js.dart' as js;
+
 import 'package:google_maps/google_maps.dart';
 
 GMap map;
 Geocoder geocoder;
-final LatLngBounds bounds = js.retain(new LatLngBounds());
+final LatLngBounds bounds = new LatLngBounds();
 final markersArray = new List<Marker>();
 
-final LatLng origin1 = js.retain(new LatLng(55.930385, -3.118425));
+final LatLng origin1 = new LatLng(55.930385, -3.118425);
 const origin2 = 'Greenwich, England';
 const destinationA = 'Stockholm, Sweden';
-final LatLng destinationB = js.retain(new LatLng(50.087692, 14.421150));
+final LatLng destinationB = new LatLng(50.087692, 14.421150);
 
 const destinationIcon = 'https://chart.googleapis.com/chart?chst=d_map_pin_letter&chld=D|FF0000|000000';
 const originIcon = 'https://chart.googleapis.com/chart?chst=d_map_pin_letter&chld=O|FFFF00|000000';
@@ -21,8 +21,8 @@ void main() {
     ..zoom = 10
     ..mapTypeId = MapTypeId.ROADMAP
     ;
-  map = js.retain(new GMap(query("#map"), mapOptions));
-  geocoder = js.retain(new Geocoder());
+  map = new GMap(query("#map"), mapOptions);
+  geocoder = new Geocoder();
 
   query('#calculateDistances').onClick.listen((e) => calculateDistances());
 }

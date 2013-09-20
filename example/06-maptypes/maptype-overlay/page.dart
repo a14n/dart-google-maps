@@ -1,18 +1,18 @@
 import 'dart:html' hide Point;
-import 'package:js/js.dart' as js;
-import 'package:js/js_wrapping.dart' as jsw;
+import 'dart:js' as js;
+
 import 'package:google_maps/google_maps.dart';
 
 class CoordMapType extends MapType {
   CoordMapType(Size tileSize) : super() {
-    this.tileSize = js.retain(tileSize);
-    $unsafe.getTile = new js.Callback.many((js.Proxy tileCoord, num zoom, js.Proxy ownerDocument) {
-      if (ownerDocument.createElement("div") is js.Proxy) {
-        return _getTileFromOtherDocument(Point.cast(tileCoord), zoom, ownerDocument == null ? null : new jsw.TypedProxy.fromProxy(ownerDocument));
+    this.tileSize = tileSize;
+    $unsafe['getTile'] = (js.JsObject tileCoord, num zoom, js.JsObject ownerDocument) {
+      if (ownerDocument.callMethod('createElement', ['div']) is js.JsObject) {
+        return _getTileWithoutElementHandled(Point.cast(tileCoord), zoom, ownerDocument);
       } else {
         return _getTile(Point.cast(tileCoord), zoom);
       }
-    });
+    };
   }
 
   DivElement _getTile(Point coord, num zoom) {
@@ -30,18 +30,18 @@ class CoordMapType extends MapType {
     return div;
   }
 
-  jsw.TypedProxy _getTileFromOtherDocument(Point coord, num zoom, jsw.TypedProxy ownerDocument) {
-    final div = new jsw.TypedProxy.fromProxy(ownerDocument.$unsafe.createElement("div"))
-      ..$unsafe.innerHTML = coord.toString()
+  js.JsObject _getTileWithoutElementHandled(Point coord, num zoom, js.JsObject ownerDocument) {
+    final div = ownerDocument.callMethod('createElement', ['div'])
+      ..['innerHTML'] = coord.toString()
       ;
-    final style = new jsw.TypedProxy.fromProxy(div.$unsafe.style);
+    final style = div['style'];
     style
-      ..$unsafe.width = '${tileSize.width}px'
-      ..$unsafe.height = '${tileSize.height}px'
-      ..$unsafe.fontSize = '10'
-      ..$unsafe.borderStyle = 'solid'
-      ..$unsafe.borderWidth = '1px'
-      ..$unsafe.borderColor = '#AAAAAA'
+      ..['width'] = '${tileSize.width}px'
+      ..['height'] = '${tileSize.height}px'
+      ..['fontSize'] = '10'
+      ..['borderStyle'] = 'solid'
+      ..['borderWidth'] = '1px'
+      ..['borderColor'] = '#AAAAAA'
       ;
     return div;
   }
@@ -51,17 +51,17 @@ GMap map;
 LatLng chicago;
 
 void main() {
-  chicago = js.retain(new LatLng(41.850033,-87.6500523));
+  chicago = new LatLng(41.850033,-87.6500523);
 
   final mapOptions = new MapOptions()
     ..zoom = 10
     ..center = chicago
     ..mapTypeId = MapTypeId.ROADMAP
     ;
-  map = js.retain(new GMap(query("#map_canvas"), mapOptions));
+  map = new GMap(query("#map_canvas"), mapOptions);
 
   // Insert this overlay map type as the first overlay map type at
   // position 0. Note that all overlay map types appear on top of
   // their parent base map.
-  map.overlayMapTypes.insertAt(0, js.retain(new CoordMapType(new Size(256, 256))));
+  map.overlayMapTypes.insertAt(0, new CoordMapType(new Size(256, 256)));
 }
