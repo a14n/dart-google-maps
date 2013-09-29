@@ -19,6 +19,6 @@ part of google_maps;
 
   String text;
   String timeZone;
-  DateTime get value => jsw.JsDateToDateTimeAdapter.cast($unsafe['value']);
-  set value(DateTime value) => $unsafe['value'] = value == null ? null : new jsw.JsDateToDateTimeAdapter(value);
+  DateTime get value;
+  set value(DateTime value);
 }

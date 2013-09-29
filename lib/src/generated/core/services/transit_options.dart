@@ -20,7 +20,7 @@ class TransitOptions extends jsw.TypedJsObject {
   TransitOptions() : super();
 
   DateTime get arrivalTime => jsw.JsDateToDateTimeAdapter.cast($unsafe['arrivalTime']);
-  set arrivalTime(DateTime arrivalTime) => $unsafe['arrivalTime'] = arrivalTime == null ? null : new jsw.JsDateToDateTimeAdapter(arrivalTime);
+  set arrivalTime(DateTime arrivalTime) => $unsafe['arrivalTime'] = arrivalTime == null ? null : arrivalTime is js.Serializable ? arrivalTime : new jsw.JsDateToDateTimeAdapter(arrivalTime);
   DateTime get departureTime => jsw.JsDateToDateTimeAdapter.cast($unsafe['departureTime']);
-  set departureTime(DateTime departureTime) => $unsafe['departureTime'] = departureTime == null ? null : new jsw.JsDateToDateTimeAdapter(departureTime);
+  set departureTime(DateTime departureTime) => $unsafe['departureTime'] = departureTime == null ? null : departureTime is js.Serializable ? departureTime : new jsw.JsDateToDateTimeAdapter(departureTime);
 }

@@ -17,8 +17,8 @@ part of google_maps;
 @wrapper abstract class TransitOptions extends jsw.TypedJsObject {
   TransitOptions() : super();
 
-  DateTime get arrivalTime => jsw.JsDateToDateTimeAdapter.cast($unsafe['arrivalTime']);
-  set arrivalTime(DateTime arrivalTime) => $unsafe['arrivalTime'] = arrivalTime == null ? null : new jsw.JsDateToDateTimeAdapter(arrivalTime);
-  DateTime get departureTime => jsw.JsDateToDateTimeAdapter.cast($unsafe['departureTime']);
-  set departureTime(DateTime departureTime) => $unsafe['departureTime'] = departureTime == null ? null : new jsw.JsDateToDateTimeAdapter(departureTime);
+  DateTime get arrivalTime;
+  set arrivalTime(DateTime arrivalTime);
+  DateTime get departureTime;
+  set departureTime(DateTime departureTime);
 }
