@@ -20,13 +20,13 @@ class QueryAutocompletionRequest extends jsw.TypedJsObject {
   QueryAutocompletionRequest() : super();
 
   set bounds(LatLngBounds bounds) => $unsafe['bounds'] = bounds;
-LatLngBounds get bounds => LatLngBounds.cast($unsafe['bounds']);
-set input(String input) => $unsafe['input'] = input;
-String get input => $unsafe['input'];
-set location(LatLng location) => $unsafe['location'] = location;
-LatLng get location => LatLng.cast($unsafe['location']);
-set offset(num offset) => $unsafe['offset'] = offset;
-num get offset => $unsafe['offset'];
-set radius(num radius) => $unsafe['radius'] = radius;
-num get radius => $unsafe['radius'];
+  LatLngBounds get bounds => LatLngBounds.cast($unsafe['bounds']);
+  set input(String input) => $unsafe['input'] = input;
+  String get input => $unsafe['input'];
+  set location(LatLng location) => $unsafe['location'] = location;
+  LatLng get location => LatLng.cast($unsafe['location']);
+  set offset(num offset) => $unsafe['offset'] = offset;
+  num get offset => $unsafe['offset'];
+  set radius(num radius) => $unsafe['radius'] = radius;
+  num get radius => $unsafe['radius'];
 }

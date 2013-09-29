@@ -20,7 +20,7 @@ class PlaceAspectRating extends jsw.TypedJsObject {
   PlaceAspectRating() : super();
 
   set rating(num rating) => $unsafe['rating'] = rating;
-num get rating => $unsafe['rating'];
-set type(String type) => $unsafe['type'] = type;
-String get type => $unsafe['type'];
+  num get rating => $unsafe['rating'];
+  set type(String type) => $unsafe['type'] = type;
+  String get type => $unsafe['type'];
 }

@@ -20,15 +20,15 @@ class InfoWindowOptions extends jsw.TypedJsObject {
   InfoWindowOptions() : super();
 
   set content(dynamic content) => $unsafe['content'] = content;
-dynamic get content => $unsafe['content'];
-set disableAutoPan(bool disableAutoPan) => $unsafe['disableAutoPan'] = disableAutoPan;
-bool get disableAutoPan => $unsafe['disableAutoPan'];
-set maxWidth(num maxWidth) => $unsafe['maxWidth'] = maxWidth;
-num get maxWidth => $unsafe['maxWidth'];
-set pixelOffset(Size pixelOffset) => $unsafe['pixelOffset'] = pixelOffset;
-Size get pixelOffset => Size.cast($unsafe['pixelOffset']);
-set position(LatLng position) => $unsafe['position'] = position;
-LatLng get position => LatLng.cast($unsafe['position']);
-set zIndex(num zIndex) => $unsafe['zIndex'] = zIndex;
-num get zIndex => $unsafe['zIndex'];
+  dynamic get content => $unsafe['content'];
+  set disableAutoPan(bool disableAutoPan) => $unsafe['disableAutoPan'] = disableAutoPan;
+  bool get disableAutoPan => $unsafe['disableAutoPan'];
+  set maxWidth(num maxWidth) => $unsafe['maxWidth'] = maxWidth;
+  num get maxWidth => $unsafe['maxWidth'];
+  set pixelOffset(Size pixelOffset) => $unsafe['pixelOffset'] = pixelOffset;
+  Size get pixelOffset => Size.cast($unsafe['pixelOffset']);
+  set position(LatLng position) => $unsafe['position'] = position;
+  LatLng get position => LatLng.cast($unsafe['position']);
+  set zIndex(num zIndex) => $unsafe['zIndex'] = zIndex;
+  num get zIndex => $unsafe['zIndex'];
 }

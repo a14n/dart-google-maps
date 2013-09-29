@@ -15,12 +15,12 @@
 part of google_maps_places;
 
 class PlacesServiceStatus extends IsEnum<String> {
-  static final INVALID_REQUEST= new PlacesServiceStatus._(maps['places']['PlacesServiceStatus']['INVALID_REQUEST']);
-  static final OK= new PlacesServiceStatus._(maps['places']['PlacesServiceStatus']['OK']);
-  static final OVER_QUERY_LIMIT= new PlacesServiceStatus._(maps['places']['PlacesServiceStatus']['OVER_QUERY_LIMIT']);
-  static final REQUEST_DENIED= new PlacesServiceStatus._(maps['places']['PlacesServiceStatus']['REQUEST_DENIED']);
-  static final UNKNOWN_ERROR= new PlacesServiceStatus._(maps['places']['PlacesServiceStatus']['UNKNOWN_ERROR']);
-  static final ZERO_RESULTS= new PlacesServiceStatus._(maps['places']['PlacesServiceStatus']['ZERO_RESULTS']);
+  static final INVALID_REQUEST = new PlacesServiceStatus._(maps['places']['PlacesServiceStatus']['INVALID_REQUEST']);
+  static final OK = new PlacesServiceStatus._(maps['places']['PlacesServiceStatus']['OK']);
+  static final OVER_QUERY_LIMIT = new PlacesServiceStatus._(maps['places']['PlacesServiceStatus']['OVER_QUERY_LIMIT']);
+  static final REQUEST_DENIED = new PlacesServiceStatus._(maps['places']['PlacesServiceStatus']['REQUEST_DENIED']);
+  static final UNKNOWN_ERROR = new PlacesServiceStatus._(maps['places']['PlacesServiceStatus']['UNKNOWN_ERROR']);
+  static final ZERO_RESULTS = new PlacesServiceStatus._(maps['places']['PlacesServiceStatus']['ZERO_RESULTS']);
 
   static final _FINDER = new EnumFinder<String, PlacesServiceStatus>([INVALID_REQUEST, OK, OVER_QUERY_LIMIT, REQUEST_DENIED, UNKNOWN_ERROR, ZERO_RESULTS]);
 

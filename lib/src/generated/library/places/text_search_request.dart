@@ -20,13 +20,13 @@ class TextSearchRequest extends jsw.TypedJsObject {
   TextSearchRequest() : super();
 
   set bounds(LatLngBounds bounds) => $unsafe['bounds'] = bounds;
-LatLngBounds get bounds => LatLngBounds.cast($unsafe['bounds']);
-set location(LatLng location) => $unsafe['location'] = location;
-LatLng get location => LatLng.cast($unsafe['location']);
-set query(String query) => $unsafe['query'] = query;
-String get query => $unsafe['query'];
-set radius(num radius) => $unsafe['radius'] = radius;
-num get radius => $unsafe['radius'];
-set types(List<String> types) => $unsafe['types'] = types == null ? null : types is js.Serializable<js.JsObject> ? types : js.jsify(types);
-List<String> get types => jsw.TypedJsArray.cast($unsafe['types']);
+  LatLngBounds get bounds => LatLngBounds.cast($unsafe['bounds']);
+  set location(LatLng location) => $unsafe['location'] = location;
+  LatLng get location => LatLng.cast($unsafe['location']);
+  set query(String query) => $unsafe['query'] = query;
+  String get query => $unsafe['query'];
+  set radius(num radius) => $unsafe['radius'] = radius;
+  num get radius => $unsafe['radius'];
+  set types(List<String> types) => $unsafe['types'] = types == null ? null : types is js.Serializable ? types : js.jsify(types);
+  List<String> get types => jsw.TypedJsArray.cast($unsafe['types']);
 }

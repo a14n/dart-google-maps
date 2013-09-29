@@ -20,12 +20,12 @@ class GSymbol extends jsw.TypedJsObject {
   GSymbol() : super();
 
   set anchor(Point anchor) => $unsafe['anchor'] = anchor;
-Point get anchor => Point.cast($unsafe['anchor']);
-set fillColor(String fillColor) => $unsafe['fillColor'] = fillColor;
-String get fillColor => $unsafe['fillColor'];
-set fillOpacity(num fillOpacity) => $unsafe['fillOpacity'] = fillOpacity;
-num get fillOpacity => $unsafe['fillOpacity'];
-dynamic/*SymbolPath|string*/ get path {
+  Point get anchor => Point.cast($unsafe['anchor']);
+  set fillColor(String fillColor) => $unsafe['fillColor'] = fillColor;
+  String get fillColor => $unsafe['fillColor'];
+  set fillOpacity(num fillOpacity) => $unsafe['fillOpacity'] = fillOpacity;
+  num get fillOpacity => $unsafe['fillOpacity'];
+  dynamic /*SymbolPath|string*/ get path {
     final result = $unsafe['path'];
     if (result is int) {
       return SymbolPath.find(result);
@@ -35,13 +35,13 @@ dynamic/*SymbolPath|string*/ get path {
   }
   set path(dynamic path) => $unsafe['path'] = path;
   set rotation(num rotation) => $unsafe['rotation'] = rotation;
-num get rotation => $unsafe['rotation'];
-set scale(num scale) => $unsafe['scale'] = scale;
-num get scale => $unsafe['scale'];
-set strokeColor(String strokeColor) => $unsafe['strokeColor'] = strokeColor;
-String get strokeColor => $unsafe['strokeColor'];
-set strokeOpacity(num strokeOpacity) => $unsafe['strokeOpacity'] = strokeOpacity;
-num get strokeOpacity => $unsafe['strokeOpacity'];
-set strokeWeight(num strokeWeight) => $unsafe['strokeWeight'] = strokeWeight;
-num get strokeWeight => $unsafe['strokeWeight'];
+  num get rotation => $unsafe['rotation'];
+  set scale(num scale) => $unsafe['scale'] = scale;
+  num get scale => $unsafe['scale'];
+  set strokeColor(String strokeColor) => $unsafe['strokeColor'] = strokeColor;
+  String get strokeColor => $unsafe['strokeColor'];
+  set strokeOpacity(num strokeOpacity) => $unsafe['strokeOpacity'] = strokeOpacity;
+  num get strokeOpacity => $unsafe['strokeOpacity'];
+  set strokeWeight(num strokeWeight) => $unsafe['strokeWeight'] = strokeWeight;
+  num get strokeWeight => $unsafe['strokeWeight'];
 }

@@ -20,9 +20,9 @@ class KmlAuthor extends jsw.TypedJsObject {
   KmlAuthor() : super();
 
   set email(String email) => $unsafe['email'] = email;
-String get email => $unsafe['email'];
-set name(String name) => $unsafe['name'] = name;
-String get name => $unsafe['name'];
-set uri(String uri) => $unsafe['uri'] = uri;
-String get uri => $unsafe['uri'];
+  String get email => $unsafe['email'];
+  set name(String name) => $unsafe['name'] = name;
+  String get name => $unsafe['name'];
+  set uri(String uri) => $unsafe['uri'] = uri;
+  String get uri => $unsafe['uri'];
 }

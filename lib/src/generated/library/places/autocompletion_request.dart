@@ -20,17 +20,17 @@ class AutocompletionRequest extends jsw.TypedJsObject {
   AutocompletionRequest() : super();
 
   set bounds(LatLngBounds bounds) => $unsafe['bounds'] = bounds;
-LatLngBounds get bounds => LatLngBounds.cast($unsafe['bounds']);
-set componentRestrictions(ComponentRestrictions componentRestrictions) => $unsafe['componentRestrictions'] = componentRestrictions;
-ComponentRestrictions get componentRestrictions => ComponentRestrictions.cast($unsafe['componentRestrictions']);
-set input(String input) => $unsafe['input'] = input;
-String get input => $unsafe['input'];
-set location(LatLng location) => $unsafe['location'] = location;
-LatLng get location => LatLng.cast($unsafe['location']);
-set offset(num offset) => $unsafe['offset'] = offset;
-num get offset => $unsafe['offset'];
-set radius(num radius) => $unsafe['radius'] = radius;
-num get radius => $unsafe['radius'];
-set types(List<String> types) => $unsafe['types'] = types == null ? null : types is js.Serializable<js.JsObject> ? types : js.jsify(types);
-List<String> get types => jsw.TypedJsArray.cast($unsafe['types']);
+  LatLngBounds get bounds => LatLngBounds.cast($unsafe['bounds']);
+  set componentRestrictions(ComponentRestrictions componentRestrictions) => $unsafe['componentRestrictions'] = componentRestrictions;
+  ComponentRestrictions get componentRestrictions => ComponentRestrictions.cast($unsafe['componentRestrictions']);
+  set input(String input) => $unsafe['input'] = input;
+  String get input => $unsafe['input'];
+  set location(LatLng location) => $unsafe['location'] = location;
+  LatLng get location => LatLng.cast($unsafe['location']);
+  set offset(num offset) => $unsafe['offset'] = offset;
+  num get offset => $unsafe['offset'];
+  set radius(num radius) => $unsafe['radius'] = radius;
+  num get radius => $unsafe['radius'];
+  set types(List<String> types) => $unsafe['types'] = types == null ? null : types is js.Serializable ? types : js.jsify(types);
+  List<String> get types => jsw.TypedJsArray.cast($unsafe['types']);
 }

@@ -20,19 +20,19 @@ class TransitDetails extends jsw.TypedJsObject {
   TransitDetails() : super();
 
   set arrivalStop(TransitStop arrivalStop) => $unsafe['arrivalStop'] = arrivalStop;
-TransitStop get arrivalStop => TransitStop.cast($unsafe['arrivalStop']);
-set arrivalTime(Time arrivalTime) => $unsafe['arrivalTime'] = arrivalTime;
-Time get arrivalTime => Time.cast($unsafe['arrivalTime']);
-set departureStop(TransitStop departureStop) => $unsafe['departureStop'] = departureStop;
-TransitStop get departureStop => TransitStop.cast($unsafe['departureStop']);
-set departureTime(Time departureTime) => $unsafe['departureTime'] = departureTime;
-Time get departureTime => Time.cast($unsafe['departureTime']);
-set headsign(String headsign) => $unsafe['headsign'] = headsign;
-String get headsign => $unsafe['headsign'];
-set headway(num headway) => $unsafe['headway'] = headway;
-num get headway => $unsafe['headway'];
-set line(TransitLine line) => $unsafe['line'] = line;
-TransitLine get line => TransitLine.cast($unsafe['line']);
-set numStops(num numStops) => $unsafe['numStops'] = numStops;
-num get numStops => $unsafe['numStops'];
+  TransitStop get arrivalStop => TransitStop.cast($unsafe['arrivalStop']);
+  set arrivalTime(Time arrivalTime) => $unsafe['arrivalTime'] = arrivalTime;
+  Time get arrivalTime => Time.cast($unsafe['arrivalTime']);
+  set departureStop(TransitStop departureStop) => $unsafe['departureStop'] = departureStop;
+  TransitStop get departureStop => TransitStop.cast($unsafe['departureStop']);
+  set departureTime(Time departureTime) => $unsafe['departureTime'] = departureTime;
+  Time get departureTime => Time.cast($unsafe['departureTime']);
+  set headsign(String headsign) => $unsafe['headsign'] = headsign;
+  String get headsign => $unsafe['headsign'];
+  set headway(num headway) => $unsafe['headway'] = headway;
+  num get headway => $unsafe['headway'];
+  set line(TransitLine line) => $unsafe['line'] = line;
+  TransitLine get line => TransitLine.cast($unsafe['line']);
+  set numStops(num numStops) => $unsafe['numStops'] = numStops;
+  num get numStops => $unsafe['numStops'];
 }

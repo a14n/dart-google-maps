@@ -20,5 +20,5 @@ class OverviewMapControlOptions extends jsw.TypedJsObject {
   OverviewMapControlOptions() : super();
 
   set opened(bool opened) => $unsafe['opened'] = opened;
-bool get opened => $unsafe['opened'];
+  bool get opened => $unsafe['opened'];
 }

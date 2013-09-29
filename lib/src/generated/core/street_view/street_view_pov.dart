@@ -20,9 +20,9 @@ class StreetViewPov extends jsw.TypedJsObject {
   StreetViewPov() : super();
 
   set heading(num heading) => $unsafe['heading'] = heading;
-num get heading => $unsafe['heading'];
-set pitch(num pitch) => $unsafe['pitch'] = pitch;
-num get pitch => $unsafe['pitch'];
-set zoom(num zoom) => $unsafe['zoom'] = zoom;
-num get zoom => $unsafe['zoom'];
+  num get heading => $unsafe['heading'];
+  set pitch(num pitch) => $unsafe['pitch'] = pitch;
+  num get pitch => $unsafe['pitch'];
+  set zoom(num zoom) => $unsafe['zoom'] = zoom;
+  num get zoom => $unsafe['zoom'];
 }

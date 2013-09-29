@@ -19,8 +19,8 @@ class PathElevationRequest extends jsw.TypedJsObject {
   PathElevationRequest.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
   PathElevationRequest() : super();
 
-  set path(List<LatLng> path) => $unsafe['path'] = path == null ? null : path is js.Serializable<js.JsObject> ? path : js.jsify(path);
-List<LatLng> get path => jsw.TypedJsArray.castListOfSerializables($unsafe['path'], LatLng.cast);
-set samples(num samples) => $unsafe['samples'] = samples;
-num get samples => $unsafe['samples'];
+  set path(List<LatLng> path) => $unsafe['path'] = path == null ? null : path is js.Serializable ? path : js.jsify(path);
+  List<LatLng> get path => jsw.TypedJsArray.castListOfSerializables($unsafe['path'], LatLng.cast);
+  set samples(num samples) => $unsafe['samples'] = samples;
+  num get samples => $unsafe['samples'];
 }

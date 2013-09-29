@@ -20,37 +20,37 @@ class PolygonOptions extends jsw.TypedJsObject {
   PolygonOptions() : super();
 
   set clickable(bool clickable) => $unsafe['clickable'] = clickable;
-bool get clickable => $unsafe['clickable'];
-set draggable(bool draggable) => $unsafe['draggable'] = draggable;
-bool get draggable => $unsafe['draggable'];
-set editable(bool editable) => $unsafe['editable'] = editable;
-bool get editable => $unsafe['editable'];
-set fillColor(String fillColor) => $unsafe['fillColor'] = fillColor;
-String get fillColor => $unsafe['fillColor'];
-set fillOpacity(num fillOpacity) => $unsafe['fillOpacity'] = fillOpacity;
-num get fillOpacity => $unsafe['fillOpacity'];
-set geodesic(bool geodesic) => $unsafe['geodesic'] = geodesic;
-bool get geodesic => $unsafe['geodesic'];
-set map(GMap map) => $unsafe['map'] = map;
-GMap get map => GMap.cast($unsafe['map']);
-dynamic/*MVCArray.<MVCArray.<LatLng>>|MVCArray.<LatLng>|Array.<Array.<LatLng>>|Array.<LatLng>*/ get paths {
+  bool get clickable => $unsafe['clickable'];
+  set draggable(bool draggable) => $unsafe['draggable'] = draggable;
+  bool get draggable => $unsafe['draggable'];
+  set editable(bool editable) => $unsafe['editable'] = editable;
+  bool get editable => $unsafe['editable'];
+  set fillColor(String fillColor) => $unsafe['fillColor'] = fillColor;
+  String get fillColor => $unsafe['fillColor'];
+  set fillOpacity(num fillOpacity) => $unsafe['fillOpacity'] = fillOpacity;
+  num get fillOpacity => $unsafe['fillOpacity'];
+  set geodesic(bool geodesic) => $unsafe['geodesic'] = geodesic;
+  bool get geodesic => $unsafe['geodesic'];
+  set map(GMap map) => $unsafe['map'] = map;
+  GMap get map => GMap.cast($unsafe['map']);
+  dynamic /*MVCArray.<MVCArray.<LatLng>>|MVCArray.<LatLng>|Array.<Array.<LatLng>>|Array.<LatLng>*/ get paths {
     final result = $unsafe['paths'];
     if (MVCArray.isInstance(result)) {
       return MVCArray.castListOfSerializables(result, (e) => LatLng.isInstance(e) ? LatLng.cast(e) : MVCArray.castListOfSerializables(e, LatLng.cast));
     }
     return jsw.TypedJsArray.castListOfSerializables(result, (e) => LatLng.isInstance(e) ? LatLng.cast(e) : jsw.TypedJsArray.castListOfSerializables(e, LatLng.cast));
   }
-  set paths(dynamic/*MVCArray.<MVCArray.<LatLng>>|MVCArray.<LatLng>|Array.<Array.<LatLng>>|Array.<LatLng>*/ paths) => $unsafe['paths'] = paths == null ? null : paths is js.Serializable ? paths : paths is List ? js.jsify(paths) : paths;
+  set paths(dynamic /*MVCArray.<MVCArray.<LatLng>>|MVCArray.<LatLng>|Array.<Array.<LatLng>>|Array.<LatLng>*/ paths) => $unsafe['paths'] = paths == null ? null : paths is js.Serializable ? paths : paths is List ? js.jsify(paths) : paths;
   set strokeColor(String strokeColor) => $unsafe['strokeColor'] = strokeColor;
-String get strokeColor => $unsafe['strokeColor'];
-set strokeOpacity(num strokeOpacity) => $unsafe['strokeOpacity'] = strokeOpacity;
-num get strokeOpacity => $unsafe['strokeOpacity'];
-StrokePosition get strokePosition => StrokePosition.find($unsafe['strokePosition']);
+  String get strokeColor => $unsafe['strokeColor'];
+  set strokeOpacity(num strokeOpacity) => $unsafe['strokeOpacity'] = strokeOpacity;
+  num get strokeOpacity => $unsafe['strokeOpacity'];
+  StrokePosition get strokePosition => StrokePosition.find($unsafe['strokePosition']);
   set strokePosition(StrokePosition strokePosition) => $unsafe['strokePosition'] = strokePosition;
   set strokeWeight(num strokeWeight) => $unsafe['strokeWeight'] = strokeWeight;
-num get strokeWeight => $unsafe['strokeWeight'];
-set visible(bool visible) => $unsafe['visible'] = visible;
-bool get visible => $unsafe['visible'];
-set zIndex(num zIndex) => $unsafe['zIndex'] = zIndex;
-num get zIndex => $unsafe['zIndex'];
+  num get strokeWeight => $unsafe['strokeWeight'];
+  set visible(bool visible) => $unsafe['visible'] = visible;
+  bool get visible => $unsafe['visible'];
+  set zIndex(num zIndex) => $unsafe['zIndex'] = zIndex;
+  num get zIndex => $unsafe['zIndex'];
 }

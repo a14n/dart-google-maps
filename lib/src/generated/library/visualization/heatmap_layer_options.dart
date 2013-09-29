@@ -22,15 +22,15 @@ class HeatmapLayerOptions extends jsw.TypedJsObject {
   MVCArray<LatLng> get data => MVCArray.castListOfSerializables($unsafe['data'], LatLng.cast);
   set data(MVCArray<LatLng> data) => $unsafe['data'] = data;
   set dissipating(bool dissipating) => $unsafe['dissipating'] = dissipating;
-bool get dissipating => $unsafe['dissipating'];
-set gradient(List<String> gradient) => $unsafe['gradient'] = gradient == null ? null : gradient is js.Serializable<js.JsObject> ? gradient : js.jsify(gradient);
-List<String> get gradient => jsw.TypedJsArray.cast($unsafe['gradient']);
-set map(GMap map) => $unsafe['map'] = map;
-GMap get map => GMap.cast($unsafe['map']);
-set maxIntensity(num maxIntensity) => $unsafe['maxIntensity'] = maxIntensity;
-num get maxIntensity => $unsafe['maxIntensity'];
-set opacity(num opacity) => $unsafe['opacity'] = opacity;
-num get opacity => $unsafe['opacity'];
-set radius(num radius) => $unsafe['radius'] = radius;
-num get radius => $unsafe['radius'];
+  bool get dissipating => $unsafe['dissipating'];
+  set gradient(List<String> gradient) => $unsafe['gradient'] = gradient == null ? null : gradient is js.Serializable ? gradient : js.jsify(gradient);
+  List<String> get gradient => jsw.TypedJsArray.cast($unsafe['gradient']);
+  set map(GMap map) => $unsafe['map'] = map;
+  GMap get map => GMap.cast($unsafe['map']);
+  set maxIntensity(num maxIntensity) => $unsafe['maxIntensity'] = maxIntensity;
+  num get maxIntensity => $unsafe['maxIntensity'];
+  set opacity(num opacity) => $unsafe['opacity'] = opacity;
+  num get opacity => $unsafe['opacity'];
+  set radius(num radius) => $unsafe['radius'] = radius;
+  num get radius => $unsafe['radius'];
 }

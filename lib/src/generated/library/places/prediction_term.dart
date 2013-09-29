@@ -20,7 +20,7 @@ class PredictionTerm extends jsw.TypedJsObject {
   PredictionTerm() : super();
 
   set offset(num offset) => $unsafe['offset'] = offset;
-num get offset => $unsafe['offset'];
-set value(String value) => $unsafe['value'] = value;
-String get value => $unsafe['value'];
+  num get offset => $unsafe['offset'];
+  set value(String value) => $unsafe['value'] = value;
+  String get value => $unsafe['value'];
 }

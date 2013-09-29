@@ -20,11 +20,11 @@ class KmlLayerMetadata extends jsw.TypedJsObject {
   KmlLayerMetadata() : super();
 
   set author(KmlAuthor author) => $unsafe['author'] = author;
-KmlAuthor get author => KmlAuthor.cast($unsafe['author']);
-set description(String description) => $unsafe['description'] = description;
-String get description => $unsafe['description'];
-set name(String name) => $unsafe['name'] = name;
-String get name => $unsafe['name'];
-set snippet(String snippet) => $unsafe['snippet'] = snippet;
-String get snippet => $unsafe['snippet'];
+  KmlAuthor get author => KmlAuthor.cast($unsafe['author']);
+  set description(String description) => $unsafe['description'] = description;
+  String get description => $unsafe['description'];
+  set name(String name) => $unsafe['name'] = name;
+  String get name => $unsafe['name'];
+  set snippet(String snippet) => $unsafe['snippet'] = snippet;
+  String get snippet => $unsafe['snippet'];
 }

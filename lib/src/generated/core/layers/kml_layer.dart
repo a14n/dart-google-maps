@@ -20,8 +20,12 @@ class KmlLayer extends MVCObject {
   SubscribeStreamProvider _onDefaultviewportChanged;
   SubscribeStreamProvider _onStatusChanged;
 
-  KmlLayer([KmlLayerOptions options]) : super(maps['KmlLayer'], [options]) { _initStreams(); }
-  KmlLayer.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) { _initStreams(); }
+  KmlLayer([KmlLayerOptions options]) : super(maps['KmlLayer'], [options]) {
+    _initStreams();
+  }
+  KmlLayer.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) {
+    _initStreams();
+  }
 
   void _initStreams() {
     _onClick = event.getStreamProviderFor(this, "click", KmlMouseEvent.cast);

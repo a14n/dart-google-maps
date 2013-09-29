@@ -19,12 +19,12 @@ class GeocoderResult extends jsw.TypedJsObject {
   GeocoderResult.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
   GeocoderResult() : super();
 
-  set addressComponents(List<GeocoderAddressComponent> addressComponents) => $unsafe['address_components'] = addressComponents == null ? null : addressComponents is js.Serializable<js.JsObject> ? addressComponents : js.jsify(addressComponents);
-List<GeocoderAddressComponent> get addressComponents => jsw.TypedJsArray.castListOfSerializables($unsafe['address_components'], GeocoderAddressComponent.cast);
-set formattedAddress(String formattedAddress) => $unsafe['formatted_address'] = formattedAddress;
-String get formattedAddress => $unsafe['formatted_address'];
-set geometry(GeocoderGeometry geometry) => $unsafe['geometry'] = geometry;
-GeocoderGeometry get geometry => GeocoderGeometry.cast($unsafe['geometry']);
-set types(List<String> types) => $unsafe['types'] = types == null ? null : types is js.Serializable<js.JsObject> ? types : js.jsify(types);
-List<String> get types => jsw.TypedJsArray.cast($unsafe['types']);
+  set addressComponents(List<GeocoderAddressComponent> addressComponents) => $unsafe['address_components'] = addressComponents == null ? null : addressComponents is js.Serializable ? addressComponents : js.jsify(addressComponents);
+  List<GeocoderAddressComponent> get addressComponents => jsw.TypedJsArray.castListOfSerializables($unsafe['address_components'], GeocoderAddressComponent.cast);
+  set formattedAddress(String formattedAddress) => $unsafe['formatted_address'] = formattedAddress;
+  String get formattedAddress => $unsafe['formatted_address'];
+  set geometry(GeocoderGeometry geometry) => $unsafe['geometry'] = geometry;
+  GeocoderGeometry get geometry => GeocoderGeometry.cast($unsafe['geometry']);
+  set types(List<String> types) => $unsafe['types'] = types == null ? null : types is js.Serializable ? types : js.jsify(types);
+  List<String> get types => jsw.TypedJsArray.cast($unsafe['types']);
 }

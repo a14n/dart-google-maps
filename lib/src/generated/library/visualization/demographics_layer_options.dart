@@ -20,13 +20,13 @@ class DemographicsLayerOptions extends jsw.TypedJsObject {
   DemographicsLayerOptions() : super();
 
   set clickable(bool clickable) => $unsafe['clickable'] = clickable;
-bool get clickable => $unsafe['clickable'];
-set map(GMap map) => $unsafe['map'] = map;
-GMap get map => GMap.cast($unsafe['map']);
-set query(DemographicsQuery query) => $unsafe['query'] = query;
-DemographicsQuery get query => DemographicsQuery.cast($unsafe['query']);
-set style(List<DemographicsStyle> style) => $unsafe['style'] = style == null ? null : style is js.Serializable<js.JsObject> ? style : js.jsify(style);
-List<DemographicsStyle> get style => jsw.TypedJsArray.castListOfSerializables($unsafe['style'], DemographicsStyle.cast);
-set suppressInfoWindows(bool suppressInfoWindows) => $unsafe['suppressInfoWindows'] = suppressInfoWindows;
-bool get suppressInfoWindows => $unsafe['suppressInfoWindows'];
+  bool get clickable => $unsafe['clickable'];
+  set map(GMap map) => $unsafe['map'] = map;
+  GMap get map => GMap.cast($unsafe['map']);
+  set query(DemographicsQuery query) => $unsafe['query'] = query;
+  DemographicsQuery get query => DemographicsQuery.cast($unsafe['query']);
+  set style(List<DemographicsStyle> style) => $unsafe['style'] = style == null ? null : style is js.Serializable ? style : js.jsify(style);
+  List<DemographicsStyle> get style => jsw.TypedJsArray.castListOfSerializables($unsafe['style'], DemographicsStyle.cast);
+  set suppressInfoWindows(bool suppressInfoWindows) => $unsafe['suppressInfoWindows'] = suppressInfoWindows;
+  bool get suppressInfoWindows => $unsafe['suppressInfoWindows'];
 }

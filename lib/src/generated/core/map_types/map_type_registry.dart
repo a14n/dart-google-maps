@@ -19,5 +19,7 @@ class MapTypeRegistry extends MVCObject {
   MapTypeRegistry.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
   MapTypeRegistry() : super(maps['MapTypeRegistry']);
 
-  void set(String id, MapType mapType) { $unsafe.callMethod('set', [id, mapType]); }
+  void set(String id, MapType mapType) {
+    $unsafe.callMethod('set', [id, mapType]);
+  }
 }

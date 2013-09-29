@@ -20,11 +20,11 @@ class FusionTablesMouseEvent extends jsw.TypedJsObject {
   FusionTablesMouseEvent();
 
   set infoWindowHtml(String infoWindowHtml) => $unsafe['infoWindowHtml'] = infoWindowHtml;
-String get infoWindowHtml => $unsafe['infoWindowHtml'];
-set latLng(LatLng latLng) => $unsafe['latLng'] = latLng;
-LatLng get latLng => LatLng.cast($unsafe['latLng']);
-set pixelOffset(Size pixelOffset) => $unsafe['pixelOffset'] = pixelOffset;
-Size get pixelOffset => Size.cast($unsafe['pixelOffset']);
-set row(js.JsObject row) => $unsafe['row'] = row;
-js.JsObject get row => $unsafe['row'];
+  String get infoWindowHtml => $unsafe['infoWindowHtml'];
+  set latLng(LatLng latLng) => $unsafe['latLng'] = latLng;
+  LatLng get latLng => LatLng.cast($unsafe['latLng']);
+  set pixelOffset(Size pixelOffset) => $unsafe['pixelOffset'] = pixelOffset;
+  Size get pixelOffset => Size.cast($unsafe['pixelOffset']);
+  set row(js.JsObject row) => $unsafe['row'] = row;
+  js.JsObject get row => $unsafe['row'];
 }

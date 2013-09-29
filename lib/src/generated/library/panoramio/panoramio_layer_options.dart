@@ -20,13 +20,13 @@ class PanoramioLayerOptions extends jsw.TypedJsObject {
   PanoramioLayerOptions() : super();
 
   set clickable(bool clickable) => $unsafe['clickable'] = clickable;
-bool get clickable => $unsafe['clickable'];
-set map(GMap map) => $unsafe['map'] = map;
-GMap get map => GMap.cast($unsafe['map']);
-set suppressInfoWindows(bool suppressInfoWindows) => $unsafe['suppressInfoWindows'] = suppressInfoWindows;
-bool get suppressInfoWindows => $unsafe['suppressInfoWindows'];
-set tag(String tag) => $unsafe['tag'] = tag;
-String get tag => $unsafe['tag'];
-set userId(String userId) => $unsafe['userId'] = userId;
-String get userId => $unsafe['userId'];
+  bool get clickable => $unsafe['clickable'];
+  set map(GMap map) => $unsafe['map'] = map;
+  GMap get map => GMap.cast($unsafe['map']);
+  set suppressInfoWindows(bool suppressInfoWindows) => $unsafe['suppressInfoWindows'] = suppressInfoWindows;
+  bool get suppressInfoWindows => $unsafe['suppressInfoWindows'];
+  set tag(String tag) => $unsafe['tag'] = tag;
+  String get tag => $unsafe['tag'];
+  set userId(String userId) => $unsafe['userId'] = userId;
+  String get userId => $unsafe['userId'];
 }

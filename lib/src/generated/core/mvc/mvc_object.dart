@@ -1,4 +1,4 @@
- // Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2012, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -20,12 +20,24 @@ class MVCObject extends jsw.TypedJsObject {
   MVCObject.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
 
   MapsEventListener addListener(String eventName, Function handler) => MapsEventListener.cast($unsafe.callMethod('addListener', [eventName, handler]));
-  void bindTo(String key, MVCObject target, [String targetKey, bool noNotify]) { $unsafe.callMethod('bindTo', [key, target, targetKey, noNotify]); }
-  void changed(String key) { $unsafe.callMethod('changed', [key]); }
+  void bindTo(String key, MVCObject target, [String targetKey, bool noNotify]) {
+    $unsafe.callMethod('bindTo', [key, target, targetKey, noNotify]);
+  }
+  void changed(String key) {
+    $unsafe.callMethod('changed', [key]);
+  }
   Object get(String key) => $unsafe.callMethod('get', [key]);
-  void notify(String key) { $unsafe.callMethod('notify', [key]); }
-  void set(String key, Object value) { $unsafe.callMethod('set', [key, value]); }
-  set values(Map<String, Object> values) => $unsafe.callMethod('setValues', [values == null ? null : values is js.Serializable<js.JsObject> ? values : js.jsify(values)]);
-  void unbind(String key) { $unsafe.callMethod('unbind', [key]); }
-  void unbindAll() { $unsafe.callMethod('unbindAll'); }
+  void notify(String key) {
+    $unsafe.callMethod('notify', [key]);
+  }
+  void set(String key, Object value) {
+    $unsafe.callMethod('set', [key, value]);
+  }
+  set values(Map<String, Object> values) => $unsafe.callMethod('setValues', [values == null ? null : values is js.Serializable ? values : js.jsify(values)]);
+  void unbind(String key) {
+    $unsafe.callMethod('unbind', [key]);
+  }
+  void unbindAll() {
+    $unsafe.callMethod('unbindAll');
+  }
 }

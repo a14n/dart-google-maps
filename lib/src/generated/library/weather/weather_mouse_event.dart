@@ -20,11 +20,11 @@ class WeatherMouseEvent extends jsw.TypedJsObject {
   WeatherMouseEvent();
 
   set featureDetails(WeatherFeature featureDetails) => $unsafe['featureDetails'] = featureDetails;
-WeatherFeature get featureDetails => WeatherFeature.cast($unsafe['featureDetails']);
-set infoWindowHtml(String infoWindowHtml) => $unsafe['infoWindowHtml'] = infoWindowHtml;
-String get infoWindowHtml => $unsafe['infoWindowHtml'];
-set latLng(LatLng latLng) => $unsafe['latLng'] = latLng;
-LatLng get latLng => LatLng.cast($unsafe['latLng']);
-set pixelOffset(Size pixelOffset) => $unsafe['pixelOffset'] = pixelOffset;
-Size get pixelOffset => Size.cast($unsafe['pixelOffset']);
+  WeatherFeature get featureDetails => WeatherFeature.cast($unsafe['featureDetails']);
+  set infoWindowHtml(String infoWindowHtml) => $unsafe['infoWindowHtml'] = infoWindowHtml;
+  String get infoWindowHtml => $unsafe['infoWindowHtml'];
+  set latLng(LatLng latLng) => $unsafe['latLng'] = latLng;
+  LatLng get latLng => LatLng.cast($unsafe['latLng']);
+  set pixelOffset(Size pixelOffset) => $unsafe['pixelOffset'] = pixelOffset;
+  Size get pixelOffset => Size.cast($unsafe['pixelOffset']);
 }

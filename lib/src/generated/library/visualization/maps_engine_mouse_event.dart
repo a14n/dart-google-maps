@@ -20,11 +20,11 @@ class MapsEngineMouseEvent extends jsw.TypedJsObject {
   MapsEngineMouseEvent() : super();
 
   set featureId(String featureId) => $unsafe['featureId'] = featureId;
-String get featureId => $unsafe['featureId'];
-set infoWindowHtml(String infoWindowHtml) => $unsafe['infoWindowHtml'] = infoWindowHtml;
-String get infoWindowHtml => $unsafe['infoWindowHtml'];
-set latLng(LatLng latLng) => $unsafe['latLng'] = latLng;
-LatLng get latLng => LatLng.cast($unsafe['latLng']);
-set pixelOffset(Size pixelOffset) => $unsafe['pixelOffset'] = pixelOffset;
-Size get pixelOffset => Size.cast($unsafe['pixelOffset']);
+  String get featureId => $unsafe['featureId'];
+  set infoWindowHtml(String infoWindowHtml) => $unsafe['infoWindowHtml'] = infoWindowHtml;
+  String get infoWindowHtml => $unsafe['infoWindowHtml'];
+  set latLng(LatLng latLng) => $unsafe['latLng'] = latLng;
+  LatLng get latLng => LatLng.cast($unsafe['latLng']);
+  set pixelOffset(Size pixelOffset) => $unsafe['pixelOffset'] = pixelOffset;
+  Size get pixelOffset => Size.cast($unsafe['pixelOffset']);
 }

@@ -19,8 +19,12 @@ class ImageMapType extends MapType {
   static ImageMapType cast(js.JsObject jsObject) => jsObject == null ? null : new ImageMapType.fromJsObject(jsObject);
   SubscribeStreamProvider _onTilesloaded;
 
-  ImageMapType(ImageMapTypeOptions opts) : super(maps['ImageMapType'], [opts]) { _initStreams(); }
-  ImageMapType.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) { _initStreams(); }
+  ImageMapType(ImageMapTypeOptions opts) : super(maps['ImageMapType'], [opts]) {
+    _initStreams();
+  }
+  ImageMapType.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) {
+    _initStreams();
+  }
 
   void _initStreams() {
     _onTilesloaded = event.getStreamProviderFor(this, "tilesloaded");
@@ -29,5 +33,5 @@ class ImageMapType extends MapType {
   Stream get onTilesloaded => _onTilesloaded.stream;
 
   set opacity(num opacity) => $unsafe.callMethod('setOpacity', [opacity]);
-num get opacity => $unsafe.callMethod('getOpacity');
+  num get opacity => $unsafe.callMethod('getOpacity');
 }

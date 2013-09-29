@@ -20,7 +20,7 @@ class PredictionSubstring extends jsw.TypedJsObject {
   PredictionSubstring() : super();
 
   set length(num length) => $unsafe['length'] = length;
-num get length => $unsafe['length'];
-set offset(num offset) => $unsafe['offset'] = offset;
-num get offset => $unsafe['offset'];
+  num get length => $unsafe['length'];
+  set offset(num offset) => $unsafe['offset'] = offset;
+  num get offset => $unsafe['offset'];
 }

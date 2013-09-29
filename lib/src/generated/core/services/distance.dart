@@ -20,7 +20,7 @@ class Distance extends jsw.TypedJsObject {
   Distance() : super();
 
   set text(String text) => $unsafe['text'] = text;
-String get text => $unsafe['text'];
-set value(num value) => $unsafe['value'] = value;
-num get value => $unsafe['value'];
+  String get text => $unsafe['text'];
+  set value(num value) => $unsafe['value'] = value;
+  num get value => $unsafe['value'];
 }

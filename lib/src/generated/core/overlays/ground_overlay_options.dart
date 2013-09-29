@@ -20,9 +20,9 @@ class GroundOverlayOptions extends jsw.TypedJsObject {
   GroundOverlayOptions() : super();
 
   set clickable(bool clickable) => $unsafe['clickable'] = clickable;
-bool get clickable => $unsafe['clickable'];
-set map(GMap map) => $unsafe['map'] = map;
-GMap get map => GMap.cast($unsafe['map']);
-set opacity(num opacity) => $unsafe['opacity'] = opacity;
-num get opacity => $unsafe['opacity'];
+  bool get clickable => $unsafe['clickable'];
+  set map(GMap map) => $unsafe['map'] = map;
+  GMap get map => GMap.cast($unsafe['map']);
+  set opacity(num opacity) => $unsafe['opacity'] = opacity;
+  num get opacity => $unsafe['opacity'];
 }

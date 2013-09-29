@@ -18,9 +18,9 @@ class PolyMouseEvent extends MouseEvent {
   static PolyMouseEvent cast(js.JsObject jsObject) => jsObject == null ? null : new PolyMouseEvent.fromJsObject(jsObject);
   PolyMouseEvent.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
   set edge(num edge) => $unsafe['edge'] = edge;
-num get edge => $unsafe['edge'];
-set path(num path) => $unsafe['path'] = path;
-num get path => $unsafe['path'];
-set vertex(num vertex) => $unsafe['vertex'] = vertex;
-num get vertex => $unsafe['vertex'];
+  num get edge => $unsafe['edge'];
+  set path(num path) => $unsafe['path'] = path;
+  num get path => $unsafe['path'];
+  set vertex(num vertex) => $unsafe['vertex'] = vertex;
+  num get vertex => $unsafe['vertex'];
 }

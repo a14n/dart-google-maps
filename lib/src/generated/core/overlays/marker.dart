@@ -18,12 +18,12 @@ class Marker extends MVCObject {
   static Marker cast(js.JsObject jsObject) => jsObject == null ? null : new Marker.fromJsObject(jsObject);
   static bool isInstance(js.JsObject proxy) => proxy.instanceof(maps['Marker']);
   set MAX_ZINDEX(num MAX_ZINDEX) => $unsafe.callMethod('setMAX_ZINDEX', [MAX_ZINDEX]);
-num get MAX_ZINDEX => $unsafe.callMethod('getMAX_ZINDEX');
-static String _isSymbolOrIcon(js.JsObject proxy) {
+  num get MAX_ZINDEX => $unsafe.callMethod('getMAX_ZINDEX');
+  static String _isSymbolOrIcon(js.JsObject proxy) {
     try {
       final path = proxy['path'];
       return "Symbol";
-    } on NoSuchMethodError {
+    }  on NoSuchMethodError {
       return "Icon";
     }
   }
@@ -51,8 +51,12 @@ static String _isSymbolOrIcon(js.JsObject proxy) {
   SubscribeStreamProvider _onVisibleChanged;
   SubscribeStreamProvider _onZindexChanged;
 
-  Marker([MarkerOptions opts]) : super(maps['Marker'], [opts]) { _initStreams(); }
-  Marker.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) { _initStreams(); }
+  Marker([MarkerOptions opts]) : super(maps['Marker'], [opts]) {
+    _initStreams();
+  }
+  Marker.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) {
+    _initStreams();
+  }
 
   void _initStreams() {
     _onAnimationChanged = event.getStreamProviderFor(this, "animation_changed");
@@ -107,7 +111,7 @@ static String _isSymbolOrIcon(js.JsObject proxy) {
   String get cursor => $unsafe.callMethod('getCursor');
   bool get draggable => $unsafe.callMethod('getDraggable');
   bool get flat => $unsafe.callMethod('getFlat');
-  dynamic/*string|Icon|Symbol*/ get icon {
+  dynamic /*string|Icon|Symbol*/ get icon {
     final result = $unsafe.callMethod('getIcon');
     if (result is String) {
       return result;
@@ -121,7 +125,7 @@ static String _isSymbolOrIcon(js.JsObject proxy) {
     }
     return result;
   }
-  dynamic/*Map|StreetViewPanorama*/ get map {
+  dynamic /*Map|StreetViewPanorama*/ get map {
     final result = $unsafe.callMethod('getMap');
     if (GMap.isInstance(result)) {
       return GMap.cast(result);
@@ -131,7 +135,7 @@ static String _isSymbolOrIcon(js.JsObject proxy) {
     return result;
   }
   LatLng get position => LatLng.cast($unsafe.callMethod('getPosition'));
-  dynamic/*string|Icon|Symbol*/ get shadow {
+  dynamic /*string|Icon|Symbol*/ get shadow {
     final result = $unsafe.callMethod('getShadow');
     if (result is String) {
       return result;

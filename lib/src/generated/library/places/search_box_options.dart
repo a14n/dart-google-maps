@@ -20,5 +20,5 @@ class SearchBoxOptions extends jsw.TypedJsObject {
   SearchBoxOptions() : super();
 
   set bounds(LatLngBounds bounds) => $unsafe['bounds'] = bounds;
-LatLngBounds get bounds => LatLngBounds.cast($unsafe['bounds']);
+  LatLngBounds get bounds => LatLngBounds.cast($unsafe['bounds']);
 }

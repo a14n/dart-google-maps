@@ -19,7 +19,9 @@ class PlaceSearchPagination extends jsw.TypedJsObject {
   PlaceSearchPagination.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
   PlaceSearchPagination() : super();
 
-  void nextPage() { $unsafe.callMethod('nextPage'); }
+  void nextPage() {
+    $unsafe.callMethod('nextPage');
+  }
 
   bool get hasNextPage => $unsafe['hasNextPage'];
 }

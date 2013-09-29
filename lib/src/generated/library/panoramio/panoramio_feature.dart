@@ -20,13 +20,13 @@ class PanoramioFeature extends jsw.TypedJsObject {
   PanoramioFeature() : super();
 
   set author(String author) => $unsafe['author'] = author;
-String get author => $unsafe['author'];
-set photoId(String photoId) => $unsafe['photoId'] = photoId;
-String get photoId => $unsafe['photoId'];
-set title(String title) => $unsafe['title'] = title;
-String get title => $unsafe['title'];
-set url(String url) => $unsafe['url'] = url;
-String get url => $unsafe['url'];
-set userId(String userId) => $unsafe['userId'] = userId;
-String get userId => $unsafe['userId'];
+  String get author => $unsafe['author'];
+  set photoId(String photoId) => $unsafe['photoId'] = photoId;
+  String get photoId => $unsafe['photoId'];
+  set title(String title) => $unsafe['title'] = title;
+  String get title => $unsafe['title'];
+  set url(String url) => $unsafe['url'] = url;
+  String get url => $unsafe['url'];
+  set userId(String userId) => $unsafe['userId'] = userId;
+  String get userId => $unsafe['userId'];
 }

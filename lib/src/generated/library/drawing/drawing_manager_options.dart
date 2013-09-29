@@ -20,21 +20,21 @@ class DrawingManagerOptions extends jsw.TypedJsObject {
   DrawingManagerOptions() : super();
 
   set circleOptions(CircleOptions circleOptions) => $unsafe['circleOptions'] = circleOptions;
-CircleOptions get circleOptions => CircleOptions.cast($unsafe['circleOptions']);
-set drawingControl(bool drawingControl) => $unsafe['drawingControl'] = drawingControl;
-bool get drawingControl => $unsafe['drawingControl'];
-set drawingControlOptions(DrawingControlOptions drawingControlOptions) => $unsafe['drawingControlOptions'] = drawingControlOptions;
-DrawingControlOptions get drawingControlOptions => DrawingControlOptions.cast($unsafe['drawingControlOptions']);
-OverlayType get drawingMode => OverlayType.find($unsafe['drawingMode']);
+  CircleOptions get circleOptions => CircleOptions.cast($unsafe['circleOptions']);
+  set drawingControl(bool drawingControl) => $unsafe['drawingControl'] = drawingControl;
+  bool get drawingControl => $unsafe['drawingControl'];
+  set drawingControlOptions(DrawingControlOptions drawingControlOptions) => $unsafe['drawingControlOptions'] = drawingControlOptions;
+  DrawingControlOptions get drawingControlOptions => DrawingControlOptions.cast($unsafe['drawingControlOptions']);
+  OverlayType get drawingMode => OverlayType.find($unsafe['drawingMode']);
   set drawingMode(OverlayType drawingMode) => $unsafe['drawingMode'] = drawingMode;
   set map(GMap map) => $unsafe['map'] = map;
-GMap get map => GMap.cast($unsafe['map']);
-set markerOptions(MarkerOptions markerOptions) => $unsafe['markerOptions'] = markerOptions;
-MarkerOptions get markerOptions => MarkerOptions.cast($unsafe['markerOptions']);
-set polygonOptions(PolygonOptions polygonOptions) => $unsafe['polygonOptions'] = polygonOptions;
-PolygonOptions get polygonOptions => PolygonOptions.cast($unsafe['polygonOptions']);
-set polylineOptions(PolylineOptions polylineOptions) => $unsafe['polylineOptions'] = polylineOptions;
-PolylineOptions get polylineOptions => PolylineOptions.cast($unsafe['polylineOptions']);
-set rectangleOptions(RectangleOptions rectangleOptions) => $unsafe['rectangleOptions'] = rectangleOptions;
-RectangleOptions get rectangleOptions => RectangleOptions.cast($unsafe['rectangleOptions']);
+  GMap get map => GMap.cast($unsafe['map']);
+  set markerOptions(MarkerOptions markerOptions) => $unsafe['markerOptions'] = markerOptions;
+  MarkerOptions get markerOptions => MarkerOptions.cast($unsafe['markerOptions']);
+  set polygonOptions(PolygonOptions polygonOptions) => $unsafe['polygonOptions'] = polygonOptions;
+  PolygonOptions get polygonOptions => PolygonOptions.cast($unsafe['polygonOptions']);
+  set polylineOptions(PolylineOptions polylineOptions) => $unsafe['polylineOptions'] = polylineOptions;
+  PolylineOptions get polylineOptions => PolylineOptions.cast($unsafe['polylineOptions']);
+  set rectangleOptions(RectangleOptions rectangleOptions) => $unsafe['rectangleOptions'] = rectangleOptions;
+  RectangleOptions get rectangleOptions => RectangleOptions.cast($unsafe['rectangleOptions']);
 }

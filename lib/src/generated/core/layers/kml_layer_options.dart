@@ -20,13 +20,13 @@ class KmlLayerOptions extends jsw.TypedJsObject {
   KmlLayerOptions() : super();
 
   set clickable(bool clickable) => $unsafe['clickable'] = clickable;
-bool get clickable => $unsafe['clickable'];
-set map(GMap map) => $unsafe['map'] = map;
-GMap get map => GMap.cast($unsafe['map']);
-set preserveViewport(bool preserveViewport) => $unsafe['preserveViewport'] = preserveViewport;
-bool get preserveViewport => $unsafe['preserveViewport'];
-set suppressInfoWindows(bool suppressInfoWindows) => $unsafe['suppressInfoWindows'] = suppressInfoWindows;
-bool get suppressInfoWindows => $unsafe['suppressInfoWindows'];
-set url(String url) => $unsafe['url'] = url;
-String get url => $unsafe['url'];
+  bool get clickable => $unsafe['clickable'];
+  set map(GMap map) => $unsafe['map'] = map;
+  GMap get map => GMap.cast($unsafe['map']);
+  set preserveViewport(bool preserveViewport) => $unsafe['preserveViewport'] = preserveViewport;
+  bool get preserveViewport => $unsafe['preserveViewport'];
+  set suppressInfoWindows(bool suppressInfoWindows) => $unsafe['suppressInfoWindows'] = suppressInfoWindows;
+  bool get suppressInfoWindows => $unsafe['suppressInfoWindows'];
+  set url(String url) => $unsafe['url'] = url;
+  String get url => $unsafe['url'];
 }

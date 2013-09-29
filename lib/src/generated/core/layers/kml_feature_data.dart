@@ -20,15 +20,15 @@ class KmlFeatureData extends jsw.TypedJsObject {
   KmlFeatureData() : super();
 
   set author(KmlAuthor author) => $unsafe['author'] = author;
-KmlAuthor get author => KmlAuthor.cast($unsafe['author']);
-set description(String description) => $unsafe['description'] = description;
-String get description => $unsafe['description'];
-set id(String id) => $unsafe['id'] = id;
-String get id => $unsafe['id'];
-set infoWindowHtml(String infoWindowHtml) => $unsafe['infoWindowHtml'] = infoWindowHtml;
-String get infoWindowHtml => $unsafe['infoWindowHtml'];
-set name(String name) => $unsafe['name'] = name;
-String get name => $unsafe['name'];
-set snippet(String snippet) => $unsafe['snippet'] = snippet;
-String get snippet => $unsafe['snippet'];
+  KmlAuthor get author => KmlAuthor.cast($unsafe['author']);
+  set description(String description) => $unsafe['description'] = description;
+  String get description => $unsafe['description'];
+  set id(String id) => $unsafe['id'] = id;
+  String get id => $unsafe['id'];
+  set infoWindowHtml(String infoWindowHtml) => $unsafe['infoWindowHtml'] = infoWindowHtml;
+  String get infoWindowHtml => $unsafe['infoWindowHtml'];
+  set name(String name) => $unsafe['name'] = name;
+  String get name => $unsafe['name'];
+  set snippet(String snippet) => $unsafe['snippet'] = snippet;
+  String get snippet => $unsafe['snippet'];
 }

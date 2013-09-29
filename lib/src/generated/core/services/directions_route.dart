@@ -20,15 +20,15 @@ class DirectionsRoute extends jsw.TypedJsObject {
   DirectionsRoute() : super();
 
   set bounds(LatLngBounds bounds) => $unsafe['bounds'] = bounds;
-LatLngBounds get bounds => LatLngBounds.cast($unsafe['bounds']);
-set copyrights(String copyrights) => $unsafe['copyrights'] = copyrights;
-String get copyrights => $unsafe['copyrights'];
-set legs(List<DirectionsLeg> legs) => $unsafe['legs'] = legs == null ? null : legs is js.Serializable<js.JsObject> ? legs : js.jsify(legs);
-List<DirectionsLeg> get legs => jsw.TypedJsArray.castListOfSerializables($unsafe['legs'], DirectionsLeg.cast);
-set overviewPath(List<LatLng> overviewPath) => $unsafe['overview_path'] = overviewPath == null ? null : overviewPath is js.Serializable<js.JsObject> ? overviewPath : js.jsify(overviewPath);
-List<LatLng> get overviewPath => jsw.TypedJsArray.castListOfSerializables($unsafe['overview_path'], LatLng.cast);
-set warnings(List<String> warnings) => $unsafe['warnings'] = warnings == null ? null : warnings is js.Serializable<js.JsObject> ? warnings : js.jsify(warnings);
-List<String> get warnings => jsw.TypedJsArray.cast($unsafe['warnings']);
-set waypointOrder(List<num> waypointOrder) => $unsafe['waypoint_order'] = waypointOrder == null ? null : waypointOrder is js.Serializable<js.JsObject> ? waypointOrder : js.jsify(waypointOrder);
-List<num> get waypointOrder => jsw.TypedJsArray.cast($unsafe['waypoint_order']);
+  LatLngBounds get bounds => LatLngBounds.cast($unsafe['bounds']);
+  set copyrights(String copyrights) => $unsafe['copyrights'] = copyrights;
+  String get copyrights => $unsafe['copyrights'];
+  set legs(List<DirectionsLeg> legs) => $unsafe['legs'] = legs == null ? null : legs is js.Serializable ? legs : js.jsify(legs);
+  List<DirectionsLeg> get legs => jsw.TypedJsArray.castListOfSerializables($unsafe['legs'], DirectionsLeg.cast);
+  set overviewPath(List<LatLng> overviewPath) => $unsafe['overview_path'] = overviewPath == null ? null : overviewPath is js.Serializable ? overviewPath : js.jsify(overviewPath);
+  List<LatLng> get overviewPath => jsw.TypedJsArray.castListOfSerializables($unsafe['overview_path'], LatLng.cast);
+  set warnings(List<String> warnings) => $unsafe['warnings'] = warnings == null ? null : warnings is js.Serializable ? warnings : js.jsify(warnings);
+  List<String> get warnings => jsw.TypedJsArray.cast($unsafe['warnings']);
+  set waypointOrder(List<num> waypointOrder) => $unsafe['waypoint_order'] = waypointOrder == null ? null : waypointOrder is js.Serializable ? waypointOrder : js.jsify(waypointOrder);
+  List<num> get waypointOrder => jsw.TypedJsArray.cast($unsafe['waypoint_order']);
 }

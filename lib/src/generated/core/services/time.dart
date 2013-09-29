@@ -20,9 +20,9 @@ class Time extends jsw.TypedJsObject {
   Time() : super();
 
   set text(String text) => $unsafe['text'] = text;
-String get text => $unsafe['text'];
-set timeZone(String timeZone) => $unsafe['timeZone'] = timeZone;
-String get timeZone => $unsafe['timeZone'];
-DateTime get value => jsw.JsDateToDateTimeAdapter.cast($unsafe['value']);
+  String get text => $unsafe['text'];
+  set timeZone(String timeZone) => $unsafe['timeZone'] = timeZone;
+  String get timeZone => $unsafe['timeZone'];
+  DateTime get value => jsw.JsDateToDateTimeAdapter.cast($unsafe['value']);
   set value(DateTime value) => $unsafe['value'] = value == null ? null : value is js.Serializable ? value : new jsw.JsDateToDateTimeAdapter(value);
 }

@@ -27,8 +27,12 @@ class Polyline extends MVCObject {
   SubscribeStreamProvider<PolyMouseEvent> _onMouseup;
   SubscribeStreamProvider<PolyMouseEvent> _onRightclick;
 
-  Polyline([PolylineOptions opts]) : super(maps['Polyline'], [opts]) { _initStreams(); }
-  Polyline.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) { _initStreams(); }
+  Polyline([PolylineOptions opts]) : super(maps['Polyline'], [opts]) {
+    _initStreams();
+  }
+  Polyline.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) {
+    _initStreams();
+  }
 
   void _initStreams() {
     _onClick = event.getStreamProviderFor(this, "click", PolyMouseEvent.cast);
@@ -59,6 +63,6 @@ class Polyline extends MVCObject {
   set editable(bool editable) => $unsafe.callMethod('setEditable', [editable]);
   set map(GMap map) => $unsafe.callMethod('setMap', [map]);
   set options(PolylineOptions options) => $unsafe.callMethod('setOptions', [options]);
-  set path(dynamic/*MVCArray.<LatLng>|Array.<LatLng>*/ path) => $unsafe.callMethod('setPath', [path == null ? null : path is js.Serializable ? path : path is List ? js.jsify(path) : path]);
+  set path(dynamic /*MVCArray.<LatLng>|Array.<LatLng>*/ path) => $unsafe.callMethod('setPath', [path == null ? null : path is js.Serializable ? path : path is List ? js.jsify(path) : path]);
   set visible(bool visible) => $unsafe.callMethod('setVisible', [visible]);
 }

@@ -20,8 +20,12 @@ class MapsEngineLayer extends MVCObject {
   SubscribeStreamProvider _onPropertiesChanged;
   SubscribeStreamProvider _onStatusChanged;
 
-  MapsEngineLayer(MapsEngineLayerOptions opts) : super(maps.visualization.MapsEngineLayer, [opts]) { _initStreams(); }
-  MapsEngineLayer.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) { _initStreams(); }
+  MapsEngineLayer(MapsEngineLayerOptions opts) : super(maps.visualization.MapsEngineLayer, [opts]) {
+    _initStreams();
+  }
+  MapsEngineLayer.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) {
+    _initStreams();
+  }
 
   void _initStreams() {
     _onClick = event.getStreamProviderFor(this, "click", MapsEngineMouseEvent.cast);

@@ -27,8 +27,12 @@ class Polygon extends MVCObject {
   SubscribeStreamProvider<PolyMouseEvent> _onMouseup;
   SubscribeStreamProvider<PolyMouseEvent> _onRightclick;
 
-  Polygon([PolygonOptions opts]) : super(maps['Polygon'], [opts]) { _initStreams(); }
-  Polygon.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) { _initStreams(); }
+  Polygon([PolygonOptions opts]) : super(maps['Polygon'], [opts]) {
+    _initStreams();
+  }
+  Polygon.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) {
+    _initStreams();
+  }
 
   void _initStreams() {
     _onClick = event.getStreamProviderFor(this, "click", PolyMouseEvent.cast);
@@ -60,7 +64,7 @@ class Polygon extends MVCObject {
   set editable(bool editable) => $unsafe.callMethod('setEditable', [editable]);
   set map(GMap map) => $unsafe.callMethod('setMap', [map]);
   set options(PolylineOptions options) => $unsafe.callMethod('setOptions', [options]);
-  set path(dynamic/*MVCArray.<LatLng>|Array.<LatLng>*/ path) => $unsafe.callMethod('setPath', [path == null ? null : path is js.Serializable ? path : path is List ? js.jsify(path) : path]);
-  set paths(dynamic/*MVCArray.<MVCArray.<LatLng>>|MVCArray.<LatLng>|Array.<Array.<LatLng>>|Array.<LatLng>*/ paths) => $unsafe.callMethod('setPaths', [paths == null ? null : paths is js.Serializable ? paths : paths is List ? js.jsify(paths) : paths]);
+  set path(dynamic /*MVCArray.<LatLng>|Array.<LatLng>*/ path) => $unsafe.callMethod('setPath', [path == null ? null : path is js.Serializable ? path : path is List ? js.jsify(path) : path]);
+  set paths(dynamic /*MVCArray.<MVCArray.<LatLng>>|MVCArray.<LatLng>|Array.<Array.<LatLng>>|Array.<LatLng>*/ paths) => $unsafe.callMethod('setPaths', [paths == null ? null : paths is js.Serializable ? paths : paths is List ? js.jsify(paths) : paths]);
   set visible(bool visible) => $unsafe.callMethod('setVisible', [visible]);
 }

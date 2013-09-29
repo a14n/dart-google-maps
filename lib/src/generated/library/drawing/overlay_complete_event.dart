@@ -19,7 +19,7 @@ class OverlayCompleteEvent extends jsw.TypedJsObject {
   OverlayCompleteEvent.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
   OverlayCompleteEvent();
 
-  dynamic/*Marker|Polygon|Polyline|Rectangle|Circle*/ get overlay {
+  dynamic /*Marker|Polygon|Polyline|Rectangle|Circle*/ get overlay {
     final result = $unsafe['overlay'];
     if (Marker.isInstance(result)) {
       return Marker.cast(result);

@@ -20,9 +20,9 @@ class QueryAutocompletePrediction extends jsw.TypedJsObject {
   QueryAutocompletePrediction() : super();
 
   set description(String description) => $unsafe['description'] = description;
-String get description => $unsafe['description'];
-set matchedSubstrings(List<PredictionSubstring> matchedSubstrings) => $unsafe['matched_substrings'] = matchedSubstrings == null ? null : matchedSubstrings is js.Serializable<js.JsObject> ? matchedSubstrings : js.jsify(matchedSubstrings);
-List<PredictionSubstring> get matchedSubstrings => jsw.TypedJsArray.castListOfSerializables($unsafe['matched_substrings'], PredictionSubstring.cast);
-set terms(List<PredictionTerm> terms) => $unsafe['terms'] = terms == null ? null : terms is js.Serializable<js.JsObject> ? terms : js.jsify(terms);
-List<PredictionTerm> get terms => jsw.TypedJsArray.castListOfSerializables($unsafe['terms'], PredictionTerm.cast);
+  String get description => $unsafe['description'];
+  set matchedSubstrings(List<PredictionSubstring> matchedSubstrings) => $unsafe['matched_substrings'] = matchedSubstrings == null ? null : matchedSubstrings is js.Serializable ? matchedSubstrings : js.jsify(matchedSubstrings);
+  List<PredictionSubstring> get matchedSubstrings => jsw.TypedJsArray.castListOfSerializables($unsafe['matched_substrings'], PredictionSubstring.cast);
+  set terms(List<PredictionTerm> terms) => $unsafe['terms'] = terms == null ? null : terms is js.Serializable ? terms : js.jsify(terms);
+  List<PredictionTerm> get terms => jsw.TypedJsArray.castListOfSerializables($unsafe['terms'], PredictionTerm.cast);
 }

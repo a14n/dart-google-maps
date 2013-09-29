@@ -20,16 +20,16 @@ class MapTypeStyler extends jsw.TypedJsObject {
   MapTypeStyler() : super();
 
   set gamma(num gamma) => $unsafe['gamma'] = gamma;
-num get gamma => $unsafe['gamma'];
-set hue(String hue) => $unsafe['hue'] = hue;
-String get hue => $unsafe['hue'];
-set invertLightness(bool invertLightness) => $unsafe['invertLightness'] = invertLightness;
-bool get invertLightness => $unsafe['invertLightness'];
-set lightness(num lightness) => $unsafe['lightness'] = lightness;
-num get lightness => $unsafe['lightness'];
-set saturation(num saturation) => $unsafe['saturation'] = saturation;
-num get saturation => $unsafe['saturation'];
-MapTypeStylerVisibility get visibility => MapTypeStylerVisibility.find($unsafe['visibility']);
+  num get gamma => $unsafe['gamma'];
+  set hue(String hue) => $unsafe['hue'] = hue;
+  String get hue => $unsafe['hue'];
+  set invertLightness(bool invertLightness) => $unsafe['invertLightness'] = invertLightness;
+  bool get invertLightness => $unsafe['invertLightness'];
+  set lightness(num lightness) => $unsafe['lightness'] = lightness;
+  num get lightness => $unsafe['lightness'];
+  set saturation(num saturation) => $unsafe['saturation'] = saturation;
+  num get saturation => $unsafe['saturation'];
+  MapTypeStylerVisibility get visibility => MapTypeStylerVisibility.find($unsafe['visibility']);
   set visibility(MapTypeStylerVisibility visibility) => $unsafe['visibility'] = visibility;
 }
 

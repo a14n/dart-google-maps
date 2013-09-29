@@ -22,5 +22,5 @@ class MaxZoomResult extends jsw.TypedJsObject {
   MaxZoomStatus get status => MaxZoomStatus.find($unsafe['status']);
   set status(MaxZoomStatus status) => $unsafe['status'] = status;
   set zoom(num zoom) => $unsafe['zoom'] = zoom;
-num get zoom => $unsafe['zoom'];
+  num get zoom => $unsafe['zoom'];
 }

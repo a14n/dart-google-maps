@@ -19,6 +19,6 @@ class DistanceMatrixResponseRow extends jsw.TypedJsObject {
   DistanceMatrixResponseRow.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
   DistanceMatrixResponseRow() : super();
 
-  set elements(List<DistanceMatrixResponseElement> elements) => $unsafe['elements'] = elements == null ? null : elements is js.Serializable<js.JsObject> ? elements : js.jsify(elements);
-List<DistanceMatrixResponseElement> get elements => jsw.TypedJsArray.castListOfSerializables($unsafe['elements'], DistanceMatrixResponseElement.cast);
+  set elements(List<DistanceMatrixResponseElement> elements) => $unsafe['elements'] = elements == null ? null : elements is js.Serializable ? elements : js.jsify(elements);
+  List<DistanceMatrixResponseElement> get elements => jsw.TypedJsArray.castListOfSerializables($unsafe['elements'], DistanceMatrixResponseElement.cast);
 }

@@ -25,5 +25,5 @@ class DemographicsLayer extends jsw.TypedJsObject {
   set map(GMap map) => $unsafe.callMethod('setMap', [map]);
   set options(DemographicsLayerOptions options) => $unsafe.callMethod('setOptions', [options]);
   set query(DemographicsQuery query) => $unsafe.callMethod('setQuery', [query]);
-  set style(List<DemographicsStyle> style) => $unsafe.callMethod('setStyle', [style == null ? null : style is js.Serializable<js.JsObject> ? style : js.jsify(style)]);
+  set style(List<DemographicsStyle> style) => $unsafe.callMethod('setStyle', [style == null ? null : style is js.Serializable ? style : js.jsify(style)]);
 }

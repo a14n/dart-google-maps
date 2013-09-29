@@ -20,9 +20,9 @@ class ElevationResult extends jsw.TypedJsObject {
   ElevationResult() : super();
 
   set elevation(num elevation) => $unsafe['elevation'] = elevation;
-num get elevation => $unsafe['elevation'];
-set location(LatLng location) => $unsafe['location'] = location;
-LatLng get location => LatLng.cast($unsafe['location']);
-set resolution(num resolution) => $unsafe['resolution'] = resolution;
-num get resolution => $unsafe['resolution'];
+  num get elevation => $unsafe['elevation'];
+  set location(LatLng location) => $unsafe['location'] = location;
+  LatLng get location => LatLng.cast($unsafe['location']);
+  set resolution(num resolution) => $unsafe['resolution'] = resolution;
+  num get resolution => $unsafe['resolution'];
 }

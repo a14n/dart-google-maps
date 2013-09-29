@@ -20,14 +20,14 @@ class WeatherLayerOptions extends jsw.TypedJsObject {
   WeatherLayerOptions() : super();
 
   set clickable(bool clickable) => $unsafe['clickable'] = clickable;
-bool get clickable => $unsafe['clickable'];
-LabelColor get labelColor => LabelColor.find($unsafe['labelColor']);
+  bool get clickable => $unsafe['clickable'];
+  LabelColor get labelColor => LabelColor.find($unsafe['labelColor']);
   set labelColor(LabelColor labelColor) => $unsafe['labelColor'] = labelColor;
   set map(GMap map) => $unsafe['map'] = map;
-GMap get map => GMap.cast($unsafe['map']);
-set suppressInfoWindows(bool suppressInfoWindows) => $unsafe['suppressInfoWindows'] = suppressInfoWindows;
-bool get suppressInfoWindows => $unsafe['suppressInfoWindows'];
-TemperatureUnit get temperatureUnits => TemperatureUnit.find($unsafe['temperatureUnits']);
+  GMap get map => GMap.cast($unsafe['map']);
+  set suppressInfoWindows(bool suppressInfoWindows) => $unsafe['suppressInfoWindows'] = suppressInfoWindows;
+  bool get suppressInfoWindows => $unsafe['suppressInfoWindows'];
+  TemperatureUnit get temperatureUnits => TemperatureUnit.find($unsafe['temperatureUnits']);
   set temperatureUnits(TemperatureUnit temperatureUnits) => $unsafe['temperatureUnits'] = temperatureUnits;
   WindSpeedUnit get windSpeedUnits => WindSpeedUnit.find($unsafe['windSpeedUnits']);
   set windSpeedUnits(WindSpeedUnit windSpeedUnits) => $unsafe['windSpeedUnits'] = windSpeedUnits;

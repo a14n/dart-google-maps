@@ -20,9 +20,9 @@ class StreetViewLink extends jsw.TypedJsObject {
   StreetViewLink() : super();
 
   set description(String description) => $unsafe['description'] = description;
-String get description => $unsafe['description'];
-set heading(num heading) => $unsafe['heading'] = heading;
-num get heading => $unsafe['heading'];
-set pano(String pano) => $unsafe['pano'] = pano;
-String get pano => $unsafe['pano'];
+  String get description => $unsafe['description'];
+  set heading(num heading) => $unsafe['heading'] = heading;
+  num get heading => $unsafe['heading'];
+  set pano(String pano) => $unsafe['pano'] = pano;
+  String get pano => $unsafe['pano'];
 }

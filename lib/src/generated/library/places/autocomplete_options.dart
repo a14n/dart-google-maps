@@ -20,9 +20,9 @@ class AutocompleteOptions extends jsw.TypedJsObject {
   AutocompleteOptions() : super();
 
   set bounds(LatLngBounds bounds) => $unsafe['bounds'] = bounds;
-LatLngBounds get bounds => LatLngBounds.cast($unsafe['bounds']);
-set componentRestrictions(ComponentRestrictions componentRestrictions) => $unsafe['componentRestrictions'] = componentRestrictions;
-ComponentRestrictions get componentRestrictions => ComponentRestrictions.cast($unsafe['componentRestrictions']);
-set types(List<String> types) => $unsafe['types'] = types == null ? null : types is js.Serializable<js.JsObject> ? types : js.jsify(types);
-List<String> get types => jsw.TypedJsArray.cast($unsafe['types']);
+  LatLngBounds get bounds => LatLngBounds.cast($unsafe['bounds']);
+  set componentRestrictions(ComponentRestrictions componentRestrictions) => $unsafe['componentRestrictions'] = componentRestrictions;
+  ComponentRestrictions get componentRestrictions => ComponentRestrictions.cast($unsafe['componentRestrictions']);
+  set types(List<String> types) => $unsafe['types'] = types == null ? null : types is js.Serializable ? types : js.jsify(types);
+  List<String> get types => jsw.TypedJsArray.cast($unsafe['types']);
 }

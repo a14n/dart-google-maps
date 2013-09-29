@@ -22,5 +22,5 @@ class Encoding extends jsw.TypedJsObject {
   Encoding() : super.fromJsObject(maps['geometry']['encoding']);
 
   List<LatLng> decodePath(String encodedPath) => jsw.TypedJsArray.castListOfSerializables($unsafe.callMethod('decodePath', [encodedPath]), LatLng.cast);
-  String encodePath(dynamic/*Array.<LatLng>|MVCArray.<LatLng>*/ path) => $unsafe.callMethod('encodePath', [path == null ? null : path is js.Serializable ? path : js.jsify(path)]);
+  String encodePath(dynamic /*Array.<LatLng>|MVCArray.<LatLng>*/ path) => $unsafe.callMethod('encodePath', [path == null ? null : path is js.Serializable ? path : js.jsify(path)]);
 }

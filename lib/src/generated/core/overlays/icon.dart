@@ -20,13 +20,13 @@ class Icon extends jsw.TypedJsObject {
   Icon() : super();
 
   set anchor(Point anchor) => $unsafe['anchor'] = anchor;
-Point get anchor => Point.cast($unsafe['anchor']);
-set origin(Point origin) => $unsafe['origin'] = origin;
-Point get origin => Point.cast($unsafe['origin']);
-set scaledSize(Size scaledSize) => $unsafe['scaledSize'] = scaledSize;
-Size get scaledSize => Size.cast($unsafe['scaledSize']);
-set size(Size size) => $unsafe['size'] = size;
-Size get size => Size.cast($unsafe['size']);
-set url(String url) => $unsafe['url'] = url;
-String get url => $unsafe['url'];
+  Point get anchor => Point.cast($unsafe['anchor']);
+  set origin(Point origin) => $unsafe['origin'] = origin;
+  Point get origin => Point.cast($unsafe['origin']);
+  set scaledSize(Size scaledSize) => $unsafe['scaledSize'] = scaledSize;
+  Size get scaledSize => Size.cast($unsafe['scaledSize']);
+  set size(Size size) => $unsafe['size'] = size;
+  Size get size => Size.cast($unsafe['size']);
+  set url(String url) => $unsafe['url'] = url;
+  String get url => $unsafe['url'];
 }

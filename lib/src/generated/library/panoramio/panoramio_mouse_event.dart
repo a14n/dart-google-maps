@@ -20,11 +20,11 @@ class PanoramioMouseEvent extends jsw.TypedJsObject {
   PanoramioMouseEvent();
 
   set featureDetails(PanoramioFeature featureDetails) => $unsafe['featureDetails'] = featureDetails;
-PanoramioFeature get featureDetails => PanoramioFeature.cast($unsafe['featureDetails']);
-set infoWindowHtml(String infoWindowHtml) => $unsafe['infoWindowHtml'] = infoWindowHtml;
-String get infoWindowHtml => $unsafe['infoWindowHtml'];
-set latLng(LatLng latLng) => $unsafe['latLng'] = latLng;
-LatLng get latLng => LatLng.cast($unsafe['latLng']);
-set pixelOffset(Size pixelOffset) => $unsafe['pixelOffset'] = pixelOffset;
-Size get pixelOffset => Size.cast($unsafe['pixelOffset']);
+  PanoramioFeature get featureDetails => PanoramioFeature.cast($unsafe['featureDetails']);
+  set infoWindowHtml(String infoWindowHtml) => $unsafe['infoWindowHtml'] = infoWindowHtml;
+  String get infoWindowHtml => $unsafe['infoWindowHtml'];
+  set latLng(LatLng latLng) => $unsafe['latLng'] = latLng;
+  LatLng get latLng => LatLng.cast($unsafe['latLng']);
+  set pixelOffset(Size pixelOffset) => $unsafe['pixelOffset'] = pixelOffset;
+  Size get pixelOffset => Size.cast($unsafe['pixelOffset']);
 }

@@ -29,8 +29,12 @@ class Circle extends MVCObject {
   SubscribeStreamProvider _onRadiusChanged;
   SubscribeStreamProvider<MouseEvent> _onRightclick;
 
-  Circle([CircleOptions opts]) : super(maps['Circle'], [opts]) { _initStreams(); }
-  Circle.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) { _initStreams(); }
+  Circle([CircleOptions opts]) : super(maps['Circle'], [opts]) {
+    _initStreams();
+  }
+  Circle.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) {
+    _initStreams();
+  }
 
   void _initStreams() {
     _onCenterChanged = event.getStreamProviderFor(this, "center_changed");

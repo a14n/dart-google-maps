@@ -27,8 +27,12 @@ class StreetViewPanorama extends MVCObject {
   SubscribeStreamProvider _onVisibleChanged;
   SubscribeStreamProvider _onZoomChanged;
 
-  StreetViewPanorama(html.Node container, [StreetViewPanoramaOptions opts]) : super(maps['StreetViewPanorama'], [convertElementToJs(container), opts]) { _initStreams(); }
-  StreetViewPanorama.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) { _initStreams(); }
+  StreetViewPanorama(html.Node container, [StreetViewPanoramaOptions opts]) : super(maps['StreetViewPanorama'], [convertElementToJs(container), opts]) {
+    _initStreams();
+  }
+  StreetViewPanorama.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) {
+    _initStreams();
+  }
 
   void _initStreams() {
     _onCloseclick = event.getStreamProviderFor(this, "closeclick", NativeEvent.cast);
@@ -67,5 +71,5 @@ class StreetViewPanorama extends MVCObject {
   set zoom(num zoom) => $unsafe.callMethod('setZoom', [zoom]);
 
   set controls(Controls controls) => $unsafe['controls'] = controls;
-Controls get controls => Controls.cast($unsafe['controls']);
+  Controls get controls => Controls.cast($unsafe['controls']);
 }

@@ -20,7 +20,7 @@ class GDuration extends jsw.TypedJsObject {
   GDuration() : super();
 
   set text(String text) => $unsafe['text'] = text;
-String get text => $unsafe['text'];
-set value(num value) => $unsafe['value'] = value;
-num get value => $unsafe['value'];
+  String get text => $unsafe['text'];
+  set value(num value) => $unsafe['value'] = value;
+  num get value => $unsafe['value'];
 }

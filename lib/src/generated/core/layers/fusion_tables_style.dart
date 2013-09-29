@@ -20,11 +20,11 @@ class FusionTablesStyle extends jsw.TypedJsObject {
   FusionTablesStyle() : super();
 
   set markerOptions(FusionTablesMarkerOptions markerOptions) => $unsafe['markerOptions'] = markerOptions;
-FusionTablesMarkerOptions get markerOptions => FusionTablesMarkerOptions.cast($unsafe['markerOptions']);
-set polygonOptions(FusionTablesPolygonOptions polygonOptions) => $unsafe['polygonOptions'] = polygonOptions;
-FusionTablesPolygonOptions get polygonOptions => FusionTablesPolygonOptions.cast($unsafe['polygonOptions']);
-set polylineOptions(FusionTablesPolylineOptions polylineOptions) => $unsafe['polylineOptions'] = polylineOptions;
-FusionTablesPolylineOptions get polylineOptions => FusionTablesPolylineOptions.cast($unsafe['polylineOptions']);
-set where(String where) => $unsafe['where'] = where;
-String get where => $unsafe['where'];
+  FusionTablesMarkerOptions get markerOptions => FusionTablesMarkerOptions.cast($unsafe['markerOptions']);
+  set polygonOptions(FusionTablesPolygonOptions polygonOptions) => $unsafe['polygonOptions'] = polygonOptions;
+  FusionTablesPolygonOptions get polygonOptions => FusionTablesPolygonOptions.cast($unsafe['polygonOptions']);
+  set polylineOptions(FusionTablesPolylineOptions polylineOptions) => $unsafe['polylineOptions'] = polylineOptions;
+  FusionTablesPolylineOptions get polylineOptions => FusionTablesPolylineOptions.cast($unsafe['polylineOptions']);
+  set where(String where) => $unsafe['where'] = where;
+  String get where => $unsafe['where'];
 }

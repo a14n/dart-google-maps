@@ -20,11 +20,11 @@ class GeocoderGeometry extends jsw.TypedJsObject {
   GeocoderGeometry() : super();
 
   set bounds(LatLngBounds bounds) => $unsafe['bounds'] = bounds;
-LatLngBounds get bounds => LatLngBounds.cast($unsafe['bounds']);
-set location(LatLng location) => $unsafe['location'] = location;
-LatLng get location => LatLng.cast($unsafe['location']);
-GeocoderLocationType get locationType => GeocoderLocationType.find($unsafe['location_type']);
+  LatLngBounds get bounds => LatLngBounds.cast($unsafe['bounds']);
+  set location(LatLng location) => $unsafe['location'] = location;
+  LatLng get location => LatLng.cast($unsafe['location']);
+  GeocoderLocationType get locationType => GeocoderLocationType.find($unsafe['location_type']);
   set locationType(GeocoderLocationType locationType) => $unsafe['location_type'] = locationType;
   set viewport(LatLngBounds viewport) => $unsafe['viewport'] = viewport;
-LatLngBounds get viewport => LatLngBounds.cast($unsafe['viewport']);
+  LatLngBounds get viewport => LatLngBounds.cast($unsafe['viewport']);
 }

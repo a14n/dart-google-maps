@@ -19,9 +19,9 @@ class HeatmapLayer extends MVCObject {
   HeatmapLayer.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
   HeatmapLayer([HeatmapLayerOptions opts]) : super(maps['visualization']['HeatmapLayer'], [opts]);
 
-  MVCArray<dynamic/*LatLng|WeightedLocation*/> get data => MVCArray.castListOfSerializables($unsafe.callMethod('getData'), (e) => LatLng.isInstance(e) ? LatLng.cast(e) : WeightedLocation.cast(e));
+  MVCArray<dynamic/*LatLng|WeightedLocation*/ > get data => MVCArray.castListOfSerializables($unsafe.callMethod('getData'), (e) => LatLng.isInstance(e) ? LatLng.cast(e) : WeightedLocation.cast(e));
   GMap get map => GMap.cast($unsafe.callMethod('getMap'));
-  set data(dynamic/*MVCArray.<LatLng|WeightedLocation>|Array.<LatLng|WeightedLocation>*/ data) {
+  set data(dynamic /*MVCArray.<LatLng|WeightedLocation>|Array.<LatLng|WeightedLocation>*/ data) {
     $unsafe.callMethod('setData', [data == null ? null : data is js.Serializable ? data : js.jsify(data)]);
   }
   set map(GMap map) => $unsafe.callMethod('setMap', [map]);

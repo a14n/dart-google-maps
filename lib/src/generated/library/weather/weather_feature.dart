@@ -20,12 +20,12 @@ class WeatherFeature extends jsw.TypedJsObject {
   WeatherFeature() : super();
 
   set current(WeatherConditions current) => $unsafe['current'] = current;
-WeatherConditions get current => WeatherConditions.cast($unsafe['current']);
-set forecast(List<WeatherForecast> forecast) => $unsafe['forecast'] = forecast == null ? null : forecast is js.Serializable<js.JsObject> ? forecast : js.jsify(forecast);
-List<WeatherForecast> get forecast => jsw.TypedJsArray.castListOfSerializables($unsafe['forecast'], WeatherForecast.cast);
-set location(String location) => $unsafe['location'] = location;
-String get location => $unsafe['location'];
-TemperatureUnit get temperatureUnit => TemperatureUnit.find($unsafe['temperatureUnit']);
+  WeatherConditions get current => WeatherConditions.cast($unsafe['current']);
+  set forecast(List<WeatherForecast> forecast) => $unsafe['forecast'] = forecast == null ? null : forecast is js.Serializable ? forecast : js.jsify(forecast);
+  List<WeatherForecast> get forecast => jsw.TypedJsArray.castListOfSerializables($unsafe['forecast'], WeatherForecast.cast);
+  set location(String location) => $unsafe['location'] = location;
+  String get location => $unsafe['location'];
+  TemperatureUnit get temperatureUnit => TemperatureUnit.find($unsafe['temperatureUnit']);
   set temperatureUnit(TemperatureUnit temperatureUnit) => $unsafe['temperatureUnit'] = temperatureUnit;
   WindSpeedUnit get windSpeedUnit => WindSpeedUnit.find($unsafe['windSpeedUnit']);
   set windSpeedUnit(WindSpeedUnit windSpeedUnit) => $unsafe['windSpeedUnit'] = windSpeedUnit;

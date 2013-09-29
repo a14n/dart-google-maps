@@ -20,7 +20,7 @@ class FusionTablesCell extends jsw.TypedJsObject {
   FusionTablesCell() : super();
 
   set columnName(String columnName) => $unsafe['columnName'] = columnName;
-String get columnName => $unsafe['columnName'];
-set value(String value) => $unsafe['value'] = value;
-String get value => $unsafe['value'];
+  String get columnName => $unsafe['columnName'];
+  set value(String value) => $unsafe['value'] = value;
+  String get value => $unsafe['value'];
 }

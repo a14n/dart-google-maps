@@ -20,5 +20,5 @@ class TrafficLayer extends MVCObject {
   TrafficLayer() : super(maps['TrafficLayer']);
 
   set map(GMap map) => $unsafe.callMethod('setMap', [map]);
-GMap get map => GMap.cast($unsafe.callMethod('getMap'));
+  GMap get map => GMap.cast($unsafe.callMethod('getMap'));
 }

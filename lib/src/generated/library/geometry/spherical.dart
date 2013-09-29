@@ -21,12 +21,12 @@ class Spherical extends jsw.TypedJsObject {
   Spherical.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
   Spherical() : super.fromJsObject(maps['geometry']['spherical']);
 
-  num computeArea(dynamic/*Array.<LatLng>|MVCArray.<LatLng>*/ path, [num radius]) => $unsafe.callMethod('computeArea', [path == null ? null : path is js.Serializable ? path : js.jsify(path), radius]);
+  num computeArea(dynamic /*Array.<LatLng>|MVCArray.<LatLng>*/ path, [num radius]) => $unsafe.callMethod('computeArea', [path == null ? null : path is js.Serializable ? path : js.jsify(path), radius]);
   num computeDistanceBetween(LatLng from, LatLng to, [num radius]) => $unsafe.callMethod('computeDistanceBetween', [from, to, radius]);
   num computeHeading(LatLng from, LatLng to) => $unsafe.callMethod('computeHeading', [from, to]);
-  num computeLength(dynamic/*Array.<LatLng>|MVCArray.<LatLng>*/ path, [num radius]) => $unsafe.callMethod('computeLength', [path == null ? null : path is js.Serializable ? path : js.jsify(path), radius]);
+  num computeLength(dynamic /*Array.<LatLng>|MVCArray.<LatLng>*/ path, [num radius]) => $unsafe.callMethod('computeLength', [path == null ? null : path is js.Serializable ? path : js.jsify(path), radius]);
   LatLng computeOffset(LatLng from, num distance, num heading, [num radius]) => LatLng.cast($unsafe.callMethod('computeOffset', [from, distance, heading, radius]));
   LatLng computeOffsetOrigin(LatLng to, num distance, num heading, [num radius]) => LatLng.cast($unsafe.callMethod('computeOffsetOrigin', [to, distance, heading, radius]));
-  num computeSignedArea(dynamic/*Array.<LatLng>|MVCArray.<LatLng>*/ loop, [num radius]) => $unsafe.callMethod('computeSignedArea', [loop == null ? null : loop is js.Serializable ? loop : js.jsify(loop), radius]);
+  num computeSignedArea(dynamic /*Array.<LatLng>|MVCArray.<LatLng>*/ loop, [num radius]) => $unsafe.callMethod('computeSignedArea', [loop == null ? null : loop is js.Serializable ? loop : js.jsify(loop), radius]);
   LatLng interpolate(LatLng from, LatLng to, num fraction) => LatLng.cast($unsafe.callMethod('interpolate', [from, to, fraction]));
 }

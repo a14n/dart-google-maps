@@ -20,9 +20,9 @@ class DistanceMatrixResponseElement extends jsw.TypedJsObject {
   DistanceMatrixResponseElement() : super();
 
   set distance(Distance distance) => $unsafe['distance'] = distance;
-Distance get distance => Distance.cast($unsafe['distance']);
-set duration(GDuration duration) => $unsafe['duration'] = duration;
-GDuration get duration => GDuration.cast($unsafe['duration']);
-DistanceMatrixElementStatus get status => DistanceMatrixElementStatus.find($unsafe['status']);
+  Distance get distance => Distance.cast($unsafe['distance']);
+  set duration(GDuration duration) => $unsafe['duration'] = duration;
+  GDuration get duration => GDuration.cast($unsafe['duration']);
+  DistanceMatrixElementStatus get status => DistanceMatrixElementStatus.find($unsafe['status']);
   set status(DistanceMatrixElementStatus status) => $unsafe['status'] = status;
 }

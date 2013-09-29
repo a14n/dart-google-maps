@@ -20,7 +20,7 @@ class PhotoOptions extends jsw.TypedJsObject {
   PhotoOptions() : super();
 
   set maxHeight(num maxHeight) => $unsafe['maxHeight'] = maxHeight;
-num get maxHeight => $unsafe['maxHeight'];
-set maxWidth(num maxWidth) => $unsafe['maxWidth'] = maxWidth;
-num get maxWidth => $unsafe['maxWidth'];
+  num get maxHeight => $unsafe['maxHeight'];
+  set maxWidth(num maxWidth) => $unsafe['maxWidth'] = maxWidth;
+  num get maxWidth => $unsafe['maxWidth'];
 }

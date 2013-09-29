@@ -18,8 +18,12 @@ class SearchBox extends MVCObject {
   static SearchBox cast(js.JsObject jsObject) => jsObject == null ? null : new SearchBox.fromJsObject(jsObject);
   SubscribeStreamProvider _onPlaceChanged;
 
-  SearchBox(html.InputElement inputField, [SearchBoxOptions opts]) : super(maps['places']['SearchBox'], [convertElementToJs(inputField), opts]) { _initStreams(); }
-  SearchBox.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) { _initStreams(); }
+  SearchBox(html.InputElement inputField, [SearchBoxOptions opts]) : super(maps['places']['SearchBox'], [convertElementToJs(inputField), opts]) {
+    _initStreams();
+  }
+  SearchBox.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) {
+    _initStreams();
+  }
 
   void _initStreams() {
     _onPlaceChanged = event.getStreamProviderFor(this, "place_changed");

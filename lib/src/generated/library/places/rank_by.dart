@@ -15,8 +15,8 @@
 part of google_maps_places;
 
 class RankBy extends IsEnum<String> {
-  static final DISTANCE= new RankBy._(maps['places']['RankBy']['DISTANCE']);
-  static final PROMINENCE= new RankBy._(maps['places']['RankBy']['PROMINENCE']);
+  static final DISTANCE = new RankBy._(maps['places']['RankBy']['DISTANCE']);
+  static final PROMINENCE = new RankBy._(maps['places']['RankBy']['PROMINENCE']);
 
   static final _FINDER = new EnumFinder<String, RankBy>([DISTANCE, PROMINENCE]);
 

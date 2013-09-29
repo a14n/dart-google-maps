@@ -18,8 +18,12 @@ class PanoramioLayer extends MVCObject {
   static PanoramioLayer cast(js.JsObject jsObject) => jsObject == null ? null : new PanoramioLayer.fromJsObject(jsObject);
   SubscribeStreamProvider<PanoramioMouseEvent> _onClick;
 
-  PanoramioLayer([PanoramioLayerOptions opts]) : super(maps['panoramio']['PanoramioLayer'], [opts]) { _initStreams(); }
-  PanoramioLayer.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) { _initStreams(); }
+  PanoramioLayer([PanoramioLayerOptions opts]) : super(maps['panoramio']['PanoramioLayer'], [opts]) {
+    _initStreams();
+  }
+  PanoramioLayer.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) {
+    _initStreams();
+  }
 
   void _initStreams() {
     _onClick = event.getStreamProviderFor(this, "click", PanoramioMouseEvent.cast);

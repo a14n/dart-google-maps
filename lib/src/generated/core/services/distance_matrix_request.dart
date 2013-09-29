@@ -20,16 +20,16 @@ class DistanceMatrixRequest extends jsw.TypedJsObject {
   DistanceMatrixRequest() : super();
 
   set avoidHighways(bool avoidHighways) => $unsafe['avoidHighways'] = avoidHighways;
-bool get avoidHighways => $unsafe['avoidHighways'];
-set avoidTolls(bool avoidTolls) => $unsafe['avoidTolls'] = avoidTolls;
-bool get avoidTolls => $unsafe['avoidTolls'];
-List/*Array.<LatLng>|Array.<string>*/ get destinations => jsw.TypedJsArray.castListOfSerializables($unsafe['destinations'], (e) => LatLng.isInstance(e) ? LatLng.cast(e) : e);
-  set destinations(List destinations) => $unsafe['destinations'] = destinations == null ? null : destinations is js.Serializable<js.JsObject> ? destinations : js.jsify(destinations);
-  List/*Array.<LatLng>|Array.<string>*/ get origins => jsw.TypedJsArray.castListOfSerializables($unsafe['origins'], (e) => LatLng.isInstance(e) ? LatLng.cast(e) : e);
-  set origins(List origins) => $unsafe['origins'] = origins == null ? null : origins is js.Serializable<js.JsObject> ? origins : js.jsify(origins);
+  bool get avoidHighways => $unsafe['avoidHighways'];
+  set avoidTolls(bool avoidTolls) => $unsafe['avoidTolls'] = avoidTolls;
+  bool get avoidTolls => $unsafe['avoidTolls'];
+  List /*Array.<LatLng>|Array.<string>*/ get destinations => jsw.TypedJsArray.castListOfSerializables($unsafe['destinations'], (e) => LatLng.isInstance(e) ? LatLng.cast(e) : e);
+  set destinations(List destinations) => $unsafe['destinations'] = destinations == null ? null : destinations is js.Serializable ? destinations : js.jsify(destinations);
+  List /*Array.<LatLng>|Array.<string>*/ get origins => jsw.TypedJsArray.castListOfSerializables($unsafe['origins'], (e) => LatLng.isInstance(e) ? LatLng.cast(e) : e);
+  set origins(List origins) => $unsafe['origins'] = origins == null ? null : origins is js.Serializable ? origins : js.jsify(origins);
   set region(String region) => $unsafe['region'] = region;
-String get region => $unsafe['region'];
-TravelMode get travelMode => TravelMode.find($unsafe['travelMode']);
+  String get region => $unsafe['region'];
+  TravelMode get travelMode => TravelMode.find($unsafe['travelMode']);
   set travelMode(TravelMode travelMode) => $unsafe['travelMode'] = travelMode;
   UnitSystem get unitSystem => UnitSystem.find($unsafe['unitSystem']);
   set unitSystem(UnitSystem unitSystem) => $unsafe['unitSystem'] = unitSystem;

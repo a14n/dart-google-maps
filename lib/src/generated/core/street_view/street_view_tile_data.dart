@@ -25,9 +25,9 @@ class StreetViewTileData extends jsw.TypedJsObject {
   String getTileUrl(String pano, num tileZoom, num tileX, num tileY) => $unsafe.callMethod('getTileUrl', [pano, tileZoom, tileX, tileY]);
 
   set centerHeading(num centerHeading) => $unsafe['centerHeading'] = centerHeading;
-num get centerHeading => $unsafe['centerHeading'];
-set tileSize(Size tileSize) => $unsafe['tileSize'] = tileSize;
-Size get tileSize => Size.cast($unsafe['tileSize']);
-set worldSize(Size worldSize) => $unsafe['worldSize'] = worldSize;
-Size get worldSize => Size.cast($unsafe['worldSize']);
+  num get centerHeading => $unsafe['centerHeading'];
+  set tileSize(Size tileSize) => $unsafe['tileSize'] = tileSize;
+  Size get tileSize => Size.cast($unsafe['tileSize']);
+  set worldSize(Size worldSize) => $unsafe['worldSize'] = worldSize;
+  Size get worldSize => Size.cast($unsafe['worldSize']);
 }

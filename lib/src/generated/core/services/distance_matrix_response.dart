@@ -19,10 +19,10 @@ class DistanceMatrixResponse extends jsw.TypedJsObject {
   DistanceMatrixResponse.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
   DistanceMatrixResponse() : super();
 
-  set destinationAddresses(List<String> destinationAddresses) => $unsafe['destinationAddresses'] = destinationAddresses == null ? null : destinationAddresses is js.Serializable<js.JsObject> ? destinationAddresses : js.jsify(destinationAddresses);
-List<String> get destinationAddresses => jsw.TypedJsArray.cast($unsafe['destinationAddresses']);
-set originAddresses(List<String> originAddresses) => $unsafe['originAddresses'] = originAddresses == null ? null : originAddresses is js.Serializable<js.JsObject> ? originAddresses : js.jsify(originAddresses);
-List<String> get originAddresses => jsw.TypedJsArray.cast($unsafe['originAddresses']);
-set rows(List<DistanceMatrixResponseRow> rows) => $unsafe['rows'] = rows == null ? null : rows is js.Serializable<js.JsObject> ? rows : js.jsify(rows);
-List<DistanceMatrixResponseRow> get rows => jsw.TypedJsArray.castListOfSerializables($unsafe['rows'], DistanceMatrixResponseRow.cast);
+  set destinationAddresses(List<String> destinationAddresses) => $unsafe['destinationAddresses'] = destinationAddresses == null ? null : destinationAddresses is js.Serializable ? destinationAddresses : js.jsify(destinationAddresses);
+  List<String> get destinationAddresses => jsw.TypedJsArray.cast($unsafe['destinationAddresses']);
+  set originAddresses(List<String> originAddresses) => $unsafe['originAddresses'] = originAddresses == null ? null : originAddresses is js.Serializable ? originAddresses : js.jsify(originAddresses);
+  List<String> get originAddresses => jsw.TypedJsArray.cast($unsafe['originAddresses']);
+  set rows(List<DistanceMatrixResponseRow> rows) => $unsafe['rows'] = rows == null ? null : rows is js.Serializable ? rows : js.jsify(rows);
+  List<DistanceMatrixResponseRow> get rows => jsw.TypedJsArray.castListOfSerializables($unsafe['rows'], DistanceMatrixResponseRow.cast);
 }

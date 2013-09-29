@@ -19,8 +19,12 @@ class GroundOverlay extends MVCObject {
   SubscribeStreamProvider<MouseEvent> _onClick;
   SubscribeStreamProvider<MouseEvent> _onDblClick;
 
-  GroundOverlay(String url, LatLngBounds bounds, [GroundOverlayOptions opts]) : super(maps['GroundOverlay'], [url, bounds, opts]) { _initStreams(); }
-  GroundOverlay.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) { _initStreams(); }
+  GroundOverlay(String url, LatLngBounds bounds, [GroundOverlayOptions opts]) : super(maps['GroundOverlay'], [url, bounds, opts]) {
+    _initStreams();
+  }
+  GroundOverlay.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) {
+    _initStreams();
+  }
 
   void _initStreams() {
     _onClick = event.getStreamProviderFor(this, "click", MouseEvent.cast);

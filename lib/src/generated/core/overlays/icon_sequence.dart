@@ -20,11 +20,11 @@ class IconSequence extends jsw.TypedJsObject {
   IconSequence() : super();
 
   set fixedRotation(bool fixedRotation) => $unsafe['fixedRotation'] = fixedRotation;
-bool get fixedRotation => $unsafe['fixedRotation'];
-set icon(GSymbol icon) => $unsafe['icon'] = icon;
-GSymbol get icon => GSymbol.cast($unsafe['icon']);
-set offset(String offset) => $unsafe['offset'] = offset;
-String get offset => $unsafe['offset'];
-set repeat(String repeat) => $unsafe['repeat'] = repeat;
-String get repeat => $unsafe['repeat'];
+  bool get fixedRotation => $unsafe['fixedRotation'];
+  set icon(GSymbol icon) => $unsafe['icon'] = icon;
+  GSymbol get icon => GSymbol.cast($unsafe['icon']);
+  set offset(String offset) => $unsafe['offset'] = offset;
+  String get offset => $unsafe['offset'];
+  set repeat(String repeat) => $unsafe['repeat'] = repeat;
+  String get repeat => $unsafe['repeat'];
 }

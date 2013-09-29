@@ -20,7 +20,7 @@ class PlaceGeometry extends jsw.TypedJsObject {
   PlaceGeometry() : super();
 
   set location(LatLng location) => $unsafe['location'] = location;
-LatLng get location => LatLng.cast($unsafe['location']);
-set viewport(LatLngBounds viewport) => $unsafe['viewport'] = viewport;
-LatLngBounds get viewport => LatLngBounds.cast($unsafe['viewport']);
+  LatLng get location => LatLng.cast($unsafe['location']);
+  set viewport(LatLngBounds viewport) => $unsafe['viewport'] = viewport;
+  LatLngBounds get viewport => LatLngBounds.cast($unsafe['viewport']);
 }

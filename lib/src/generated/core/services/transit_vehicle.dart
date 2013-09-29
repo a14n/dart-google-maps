@@ -20,11 +20,11 @@ class TransitVehicle extends jsw.TypedJsObject {
   TransitVehicle() : super();
 
   set icon(String icon) => $unsafe['icon'] = icon;
-String get icon => $unsafe['icon'];
-set localIcon(String localIcon) => $unsafe['localIcon'] = localIcon;
-String get localIcon => $unsafe['localIcon'];
-set name(String name) => $unsafe['name'] = name;
-String get name => $unsafe['name'];
-VehicleType get type => VehicleType.find($unsafe['type']);
+  String get icon => $unsafe['icon'];
+  set localIcon(String localIcon) => $unsafe['localIcon'] = localIcon;
+  String get localIcon => $unsafe['localIcon'];
+  set name(String name) => $unsafe['name'] = name;
+  String get name => $unsafe['name'];
+  VehicleType get type => VehicleType.find($unsafe['type']);
   set type(VehicleType type) => $unsafe['type'] = type;
 }

@@ -19,20 +19,20 @@ class TransitLine extends jsw.TypedJsObject {
   TransitLine.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
   TransitLine() : super();
 
-  set agencies(List<TransitAgency> agencies) => $unsafe['agencies'] = agencies == null ? null : agencies is js.Serializable<js.JsObject> ? agencies : js.jsify(agencies);
-List<TransitAgency> get agencies => jsw.TypedJsArray.castListOfSerializables($unsafe['agencies'], TransitAgency.cast);
-set color(String color) => $unsafe['color'] = color;
-String get color => $unsafe['color'];
-set icon(String icon) => $unsafe['icon'] = icon;
-String get icon => $unsafe['icon'];
-set name(String name) => $unsafe['name'] = name;
-String get name => $unsafe['name'];
-set shortName(String shortName) => $unsafe['short_name'] = shortName;
-String get shortName => $unsafe['short_name'];
-set textColor(String textColor) => $unsafe['text_color'] = textColor;
-String get textColor => $unsafe['text_color'];
-set url(String url) => $unsafe['url'] = url;
-String get url => $unsafe['url'];
-set vehicle(TransitVehicle vehicle) => $unsafe['vehicle'] = vehicle;
-TransitVehicle get vehicle => TransitVehicle.cast($unsafe['vehicle']);
+  set agencies(List<TransitAgency> agencies) => $unsafe['agencies'] = agencies == null ? null : agencies is js.Serializable ? agencies : js.jsify(agencies);
+  List<TransitAgency> get agencies => jsw.TypedJsArray.castListOfSerializables($unsafe['agencies'], TransitAgency.cast);
+  set color(String color) => $unsafe['color'] = color;
+  String get color => $unsafe['color'];
+  set icon(String icon) => $unsafe['icon'] = icon;
+  String get icon => $unsafe['icon'];
+  set name(String name) => $unsafe['name'] = name;
+  String get name => $unsafe['name'];
+  set shortName(String shortName) => $unsafe['short_name'] = shortName;
+  String get shortName => $unsafe['short_name'];
+  set textColor(String textColor) => $unsafe['text_color'] = textColor;
+  String get textColor => $unsafe['text_color'];
+  set url(String url) => $unsafe['url'] = url;
+  String get url => $unsafe['url'];
+  set vehicle(TransitVehicle vehicle) => $unsafe['vehicle'] = vehicle;
+  TransitVehicle get vehicle => TransitVehicle.cast($unsafe['vehicle']);
 }

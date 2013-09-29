@@ -22,7 +22,7 @@ class MapTypeControlOptions extends jsw.TypedJsObject {
   List get mapTypeIds => jsw.TypedJsArray.castListOfSerializables($unsafe['mapTypeIds'], (e) => [MapTypeId.find(e), e].firstWhere((e) => e != null, orElse: () => null));
   ControlPosition get position => ControlPosition.find($unsafe['position']);
   MapTypeControlStyle get style => MapTypeControlStyle.find($unsafe['style']);
-  set mapTypeIds(List mapTypeIds) => $unsafe['mapTypeIds'] = mapTypeIds == null ? null : mapTypeIds is js.Serializable<js.JsObject> ? mapTypeIds : js.jsify(mapTypeIds);
+  set mapTypeIds(List mapTypeIds) => $unsafe['mapTypeIds'] = mapTypeIds == null ? null : mapTypeIds is js.Serializable ? mapTypeIds : js.jsify(mapTypeIds);
   set position(ControlPosition position) => $unsafe['position'] = position;
   set style(MapTypeControlStyle style) => $unsafe['style'] = style;
 }

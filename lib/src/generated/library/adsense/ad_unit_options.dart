@@ -20,23 +20,23 @@ class AdUnitOptions extends jsw.TypedJsObject {
   AdUnitOptions() : super();
 
   set backgroundColor(String backgroundColor) => $unsafe['backgroundColor'] = backgroundColor;
-String get backgroundColor => $unsafe['backgroundColor'];
-set borderColor(String borderColor) => $unsafe['borderColor'] = borderColor;
-String get borderColor => $unsafe['borderColor'];
-set channelNumber(String channelNumber) => $unsafe['channelNumber'] = channelNumber;
-String get channelNumber => $unsafe['channelNumber'];
-AdFormat get format => AdFormat.find($unsafe['format']);
+  String get backgroundColor => $unsafe['backgroundColor'];
+  set borderColor(String borderColor) => $unsafe['borderColor'] = borderColor;
+  String get borderColor => $unsafe['borderColor'];
+  set channelNumber(String channelNumber) => $unsafe['channelNumber'] = channelNumber;
+  String get channelNumber => $unsafe['channelNumber'];
+  AdFormat get format => AdFormat.find($unsafe['format']);
   set format(AdFormat format) => $unsafe['format'] = format;
   set map(GMap map) => $unsafe['map'] = map;
-GMap get map => GMap.cast($unsafe['map']);
-ControlPosition get position => ControlPosition.find($unsafe['position']);
+  GMap get map => GMap.cast($unsafe['map']);
+  ControlPosition get position => ControlPosition.find($unsafe['position']);
   set position(ControlPosition position) => $unsafe['position'] = position;
   set publisherId(String publisherId) => $unsafe['publisherId'] = publisherId;
-String get publisherId => $unsafe['publisherId'];
-set textColor(String textColor) => $unsafe['textColor'] = textColor;
-String get textColor => $unsafe['textColor'];
-set titleColor(String titleColor) => $unsafe['titleColor'] = titleColor;
-String get titleColor => $unsafe['titleColor'];
-set urlColor(String urlColor) => $unsafe['urlColor'] = urlColor;
-String get urlColor => $unsafe['urlColor'];
+  String get publisherId => $unsafe['publisherId'];
+  set textColor(String textColor) => $unsafe['textColor'] = textColor;
+  String get textColor => $unsafe['textColor'];
+  set titleColor(String titleColor) => $unsafe['titleColor'] = titleColor;
+  String get titleColor => $unsafe['titleColor'];
+  set urlColor(String urlColor) => $unsafe['urlColor'] = urlColor;
+  String get urlColor => $unsafe['urlColor'];
 }

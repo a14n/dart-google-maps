@@ -20,5 +20,5 @@ class FusionTablesHeatmap extends jsw.TypedJsObject {
   FusionTablesHeatmap() : super();
 
   set enabled(bool enabled) => $unsafe['enabled'] = enabled;
-bool get enabled => $unsafe['enabled'];
+  bool get enabled => $unsafe['enabled'];
 }

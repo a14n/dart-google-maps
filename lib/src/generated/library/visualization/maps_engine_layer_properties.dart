@@ -20,5 +20,5 @@ class MapsEngineLayerProperties extends jsw.TypedJsObject {
   MapsEngineLayerProperties() : super();
 
   set name(String name) => $unsafe['name'] = name;
-String get name => $unsafe['name'];
+  String get name => $unsafe['name'];
 }

@@ -20,9 +20,9 @@ class PlacePhoto extends jsw.TypedJsObject {
   PlacePhoto() : super();
 
   set height(num height) => $unsafe['height'] = height;
-num get height => $unsafe['height'];
-set htmlAttributions(List<String> htmlAttributions) => $unsafe['html_attributions'] = htmlAttributions == null ? null : htmlAttributions is js.Serializable<js.JsObject> ? htmlAttributions : js.jsify(htmlAttributions);
-List<String> get htmlAttributions => jsw.TypedJsArray.cast($unsafe['html_attributions']);
-set width(num width) => $unsafe['width'] = width;
-num get width => $unsafe['width'];
+  num get height => $unsafe['height'];
+  set htmlAttributions(List<String> htmlAttributions) => $unsafe['html_attributions'] = htmlAttributions == null ? null : htmlAttributions is js.Serializable ? htmlAttributions : js.jsify(htmlAttributions);
+  List<String> get htmlAttributions => jsw.TypedJsArray.cast($unsafe['html_attributions']);
+  set width(num width) => $unsafe['width'] = width;
+  num get width => $unsafe['width'];
 }

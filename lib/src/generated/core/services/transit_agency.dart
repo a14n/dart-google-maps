@@ -20,9 +20,9 @@ class TransitAgency extends jsw.TypedJsObject {
   TransitAgency() : super();
 
   set name(String name) => $unsafe['name'] = name;
-String get name => $unsafe['name'];
-set phone(String phone) => $unsafe['phone'] = phone;
-String get phone => $unsafe['phone'];
-set url(String url) => $unsafe['url'] = url;
-String get url => $unsafe['url'];
+  String get name => $unsafe['name'];
+  set phone(String phone) => $unsafe['phone'] = phone;
+  String get phone => $unsafe['phone'];
+  set url(String url) => $unsafe['url'] = url;
+  String get url => $unsafe['url'];
 }

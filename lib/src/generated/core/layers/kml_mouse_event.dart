@@ -20,9 +20,9 @@ class KmlMouseEvent extends jsw.TypedJsObject {
   KmlMouseEvent();
 
   set featureData(KmlFeatureData featureData) => $unsafe['featureData'] = featureData;
-KmlFeatureData get featureData => KmlFeatureData.cast($unsafe['featureData']);
-set latLng(LatLng latLng) => $unsafe['latLng'] = latLng;
-LatLng get latLng => LatLng.cast($unsafe['latLng']);
-set pixelOffset(Size pixelOffset) => $unsafe['pixelOffset'] = pixelOffset;
-Size get pixelOffset => Size.cast($unsafe['pixelOffset']);
+  KmlFeatureData get featureData => KmlFeatureData.cast($unsafe['featureData']);
+  set latLng(LatLng latLng) => $unsafe['latLng'] = latLng;
+  LatLng get latLng => LatLng.cast($unsafe['latLng']);
+  set pixelOffset(Size pixelOffset) => $unsafe['pixelOffset'] = pixelOffset;
+  Size get pixelOffset => Size.cast($unsafe['pixelOffset']);
 }

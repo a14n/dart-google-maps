@@ -20,15 +20,15 @@ class FusionTablesLayerOptions extends jsw.TypedJsObject {
   FusionTablesLayerOptions() : super();
 
   set clickable(bool clickable) => $unsafe['clickable'] = clickable;
-bool get clickable => $unsafe['clickable'];
-set heatmap(FusionTablesHeatmap heatmap) => $unsafe['heatmap'] = heatmap;
-FusionTablesHeatmap get heatmap => FusionTablesHeatmap.cast($unsafe['heatmap']);
-set map(GMap map) => $unsafe['map'] = map;
-GMap get map => GMap.cast($unsafe['map']);
-set query(FusionTablesQuery query) => $unsafe['query'] = query;
-FusionTablesQuery get query => FusionTablesQuery.cast($unsafe['query']);
-set styles(List<FusionTablesStyle> styles) => $unsafe['styles'] = styles == null ? null : styles is js.Serializable<js.JsObject> ? styles : js.jsify(styles);
-List<FusionTablesStyle> get styles => jsw.TypedJsArray.castListOfSerializables($unsafe['styles'], FusionTablesStyle.cast);
-set suppressInfoWindows(bool suppressInfoWindows) => $unsafe['suppressInfoWindows'] = suppressInfoWindows;
-bool get suppressInfoWindows => $unsafe['suppressInfoWindows'];
+  bool get clickable => $unsafe['clickable'];
+  set heatmap(FusionTablesHeatmap heatmap) => $unsafe['heatmap'] = heatmap;
+  FusionTablesHeatmap get heatmap => FusionTablesHeatmap.cast($unsafe['heatmap']);
+  set map(GMap map) => $unsafe['map'] = map;
+  GMap get map => GMap.cast($unsafe['map']);
+  set query(FusionTablesQuery query) => $unsafe['query'] = query;
+  FusionTablesQuery get query => FusionTablesQuery.cast($unsafe['query']);
+  set styles(List<FusionTablesStyle> styles) => $unsafe['styles'] = styles == null ? null : styles is js.Serializable ? styles : js.jsify(styles);
+  List<FusionTablesStyle> get styles => jsw.TypedJsArray.castListOfSerializables($unsafe['styles'], FusionTablesStyle.cast);
+  set suppressInfoWindows(bool suppressInfoWindows) => $unsafe['suppressInfoWindows'] = suppressInfoWindows;
+  bool get suppressInfoWindows => $unsafe['suppressInfoWindows'];
 }

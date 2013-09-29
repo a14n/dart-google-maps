@@ -20,15 +20,15 @@ class FusionTablesQuery extends jsw.TypedJsObject {
   FusionTablesQuery() : super();
 
   set from(String from) => $unsafe['from'] = from;
-String get from => $unsafe['from'];
-set limit(num limit) => $unsafe['limit'] = limit;
-num get limit => $unsafe['limit'];
-set offset(num offset) => $unsafe['offset'] = offset;
-num get offset => $unsafe['offset'];
-set orderBy(String orderBy) => $unsafe['orderBy'] = orderBy;
-String get orderBy => $unsafe['orderBy'];
-set select(String select) => $unsafe['select'] = select;
-String get select => $unsafe['select'];
-set where(String where) => $unsafe['where'] = where;
-String get where => $unsafe['where'];
+  String get from => $unsafe['from'];
+  set limit(num limit) => $unsafe['limit'] = limit;
+  num get limit => $unsafe['limit'];
+  set offset(num offset) => $unsafe['offset'] = offset;
+  num get offset => $unsafe['offset'];
+  set orderBy(String orderBy) => $unsafe['orderBy'] = orderBy;
+  String get orderBy => $unsafe['orderBy'];
+  set select(String select) => $unsafe['select'] = select;
+  String get select => $unsafe['select'];
+  set where(String where) => $unsafe['where'] = where;
+  String get where => $unsafe['where'];
 }

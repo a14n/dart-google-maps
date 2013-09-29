@@ -18,8 +18,12 @@ class Autocomplete extends MVCObject {
   static Autocomplete cast(js.JsObject jsObject) => jsObject == null ? null : new Autocomplete.fromJsObject(jsObject);
   SubscribeStreamProvider _onPlaceChanged;
 
-  Autocomplete(html.InputElement inputField, [AutocompleteOptions opts]) : super(maps['places']['Autocomplete'], [convertElementToJs(inputField), opts]) { _initStreams(); }
-  Autocomplete.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) { _initStreams(); }
+  Autocomplete(html.InputElement inputField, [AutocompleteOptions opts]) : super(maps['places']['Autocomplete'], [convertElementToJs(inputField), opts]) {
+    _initStreams();
+  }
+  Autocomplete.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) {
+    _initStreams();
+  }
 
   void _initStreams() {
     _onPlaceChanged = event.getStreamProviderFor(this, "place_changed");
@@ -31,5 +35,5 @@ class Autocomplete extends MVCObject {
   PlaceResult get place => PlaceResult.cast($unsafe.callMethod('getPlace'));
   set bounds(LatLngBounds bounds) => $unsafe.callMethod('setBounds', [bounds]);
   set componentRestrictions(ComponentRestrictions restrictions) => $unsafe.callMethod('setComponentRestrictions', [restrictions]);
-  set types(List<String> types) => $unsafe.callMethod('setTypes', [types == null ? null : types is js.Serializable<js.JsObject> ? types : js.jsify(types)]);
+  set types(List<String> types) => $unsafe.callMethod('setTypes', [types == null ? null : types is js.Serializable ? types : js.jsify(types)]);
 }

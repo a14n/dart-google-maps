@@ -23,8 +23,12 @@ class DrawingManager extends MVCObject {
   SubscribeStreamProvider<Polyline> _onPolylinecomplete;
   SubscribeStreamProvider<Rectangle> _onRectanglecomplete;
 
-  DrawingManager([DrawingManagerOptions opts]) : super(maps['drawing']['DrawingManager'], [opts]) { _initStreams(); }
-  DrawingManager.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) { _initStreams(); }
+  DrawingManager([DrawingManagerOptions opts]) : super(maps['drawing']['DrawingManager'], [opts]) {
+    _initStreams();
+  }
+  DrawingManager.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) {
+    _initStreams();
+  }
 
   void _initStreams() {
     _onCirclecomplete = event.getStreamProviderFor(this, "circlecomplete", Circle.cast);

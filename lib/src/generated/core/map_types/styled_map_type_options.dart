@@ -20,11 +20,11 @@ class StyledMapTypeOptions extends jsw.TypedJsObject {
   StyledMapTypeOptions() : super();
 
   set alt(String alt) => $unsafe['alt'] = alt;
-String get alt => $unsafe['alt'];
-set maxZoom(num maxZoom) => $unsafe['maxZoom'] = maxZoom;
-num get maxZoom => $unsafe['maxZoom'];
-set minZoom(num minZoom) => $unsafe['minZoom'] = minZoom;
-num get minZoom => $unsafe['minZoom'];
-set name(String name) => $unsafe['name'] = name;
-String get name => $unsafe['name'];
+  String get alt => $unsafe['alt'];
+  set maxZoom(num maxZoom) => $unsafe['maxZoom'] = maxZoom;
+  num get maxZoom => $unsafe['maxZoom'];
+  set minZoom(num minZoom) => $unsafe['minZoom'] = minZoom;
+  num get minZoom => $unsafe['minZoom'];
+  set name(String name) => $unsafe['name'] = name;
+  String get name => $unsafe['name'];
 }

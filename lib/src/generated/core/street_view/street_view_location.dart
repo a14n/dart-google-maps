@@ -20,9 +20,9 @@ class StreetViewLocation extends jsw.TypedJsObject {
   StreetViewLocation() : super();
 
   set description(String description) => $unsafe['description'] = description;
-String get description => $unsafe['description'];
-set latLng(LatLng latLng) => $unsafe['latLng'] = latLng;
-LatLng get latLng => LatLng.cast($unsafe['latLng']);
-set pano(String pano) => $unsafe['pano'] = pano;
-String get pano => $unsafe['pano'];
+  String get description => $unsafe['description'];
+  set latLng(LatLng latLng) => $unsafe['latLng'] = latLng;
+  LatLng get latLng => LatLng.cast($unsafe['latLng']);
+  set pano(String pano) => $unsafe['pano'] = pano;
+  String get pano => $unsafe['pano'];
 }

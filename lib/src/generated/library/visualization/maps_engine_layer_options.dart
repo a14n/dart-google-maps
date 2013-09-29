@@ -20,17 +20,17 @@ class MapsEngineLayerOptions extends jsw.TypedJsObject {
   MapsEngineLayerOptions() : super();
 
   set accessToken(String accessToken) => $unsafe['accessToken'] = accessToken;
-String get accessToken => $unsafe['accessToken'];
-set clickable(bool clickable) => $unsafe['clickable'] = clickable;
-bool get clickable => $unsafe['clickable'];
-set layerId(String layerId) => $unsafe['layerId'] = layerId;
-String get layerId => $unsafe['layerId'];
-set layerKey(String layerKey) => $unsafe['layerKey'] = layerKey;
-String get layerKey => $unsafe['layerKey'];
-set map(GMap map) => $unsafe['map'] = map;
-GMap get map => GMap.cast($unsafe['map']);
-set mapId(String mapId) => $unsafe['mapId'] = mapId;
-String get mapId => $unsafe['mapId'];
-set suppressInfoWindows(bool suppressInfoWindows) => $unsafe['suppressInfoWindows'] = suppressInfoWindows;
-bool get suppressInfoWindows => $unsafe['suppressInfoWindows'];
+  String get accessToken => $unsafe['accessToken'];
+  set clickable(bool clickable) => $unsafe['clickable'] = clickable;
+  bool get clickable => $unsafe['clickable'];
+  set layerId(String layerId) => $unsafe['layerId'] = layerId;
+  String get layerId => $unsafe['layerId'];
+  set layerKey(String layerKey) => $unsafe['layerKey'] = layerKey;
+  String get layerKey => $unsafe['layerKey'];
+  set map(GMap map) => $unsafe['map'] = map;
+  GMap get map => GMap.cast($unsafe['map']);
+  set mapId(String mapId) => $unsafe['mapId'] = mapId;
+  String get mapId => $unsafe['mapId'];
+  set suppressInfoWindows(bool suppressInfoWindows) => $unsafe['suppressInfoWindows'] = suppressInfoWindows;
+  bool get suppressInfoWindows => $unsafe['suppressInfoWindows'];
 }

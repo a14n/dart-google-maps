@@ -20,15 +20,15 @@ class RadarSearchRequest extends jsw.TypedJsObject {
   RadarSearchRequest() : super();
 
   set bounds(LatLngBounds bounds) => $unsafe['bounds'] = bounds;
-LatLngBounds get bounds => LatLngBounds.cast($unsafe['bounds']);
-set keyword(String keyword) => $unsafe['keyword'] = keyword;
-String get keyword => $unsafe['keyword'];
-set location(LatLng location) => $unsafe['location'] = location;
-LatLng get location => LatLng.cast($unsafe['location']);
-set name(String name) => $unsafe['name'] = name;
-String get name => $unsafe['name'];
-set radius(num radius) => $unsafe['radius'] = radius;
-num get radius => $unsafe['radius'];
-set types(List<String> types) => $unsafe['types'] = types == null ? null : types is js.Serializable<js.JsObject> ? types : js.jsify(types);
-List<String> get types => jsw.TypedJsArray.cast($unsafe['types']);
+  LatLngBounds get bounds => LatLngBounds.cast($unsafe['bounds']);
+  set keyword(String keyword) => $unsafe['keyword'] = keyword;
+  String get keyword => $unsafe['keyword'];
+  set location(LatLng location) => $unsafe['location'] = location;
+  LatLng get location => LatLng.cast($unsafe['location']);
+  set name(String name) => $unsafe['name'] = name;
+  String get name => $unsafe['name'];
+  set radius(num radius) => $unsafe['radius'] = radius;
+  num get radius => $unsafe['radius'];
+  set types(List<String> types) => $unsafe['types'] = types == null ? null : types is js.Serializable ? types : js.jsify(types);
+  List<String> get types => jsw.TypedJsArray.cast($unsafe['types']);
 }

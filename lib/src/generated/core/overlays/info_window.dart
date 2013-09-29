@@ -22,8 +22,12 @@ class InfoWindow extends MVCObject {
   SubscribeStreamProvider _onPositionChanged;
   SubscribeStreamProvider _onZindexChanged;
 
-  InfoWindow([InfoWindowOptions opts]) : super(maps['InfoWindow'], [opts]) { _initStreams(); }
-  InfoWindow.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) { _initStreams(); }
+  InfoWindow([InfoWindowOptions opts]) : super(maps['InfoWindow'], [opts]) {
+    _initStreams();
+  }
+  InfoWindow.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) {
+    _initStreams();
+  }
 
   void _initStreams() {
     _onCloseclick = event.getStreamProviderFor(this, "closeclick");
@@ -39,8 +43,10 @@ class InfoWindow extends MVCObject {
   Stream get onPositionChanged => _onPositionChanged.stream;
   Stream get onZindexChanged => _onZindexChanged.stream;
 
-  void close() { $unsafe.callMethod('close'); }
-  dynamic/*string|Node*/ get content {
+  void close() {
+    $unsafe.callMethod('close');
+  }
+  dynamic /*string|Node*/ get content {
     final result = $unsafe['content'];
     if (result is String) {
       return result;
@@ -50,8 +56,10 @@ class InfoWindow extends MVCObject {
   }
   LatLng get position => LatLng.cast($unsafe.callMethod('getPosition'));
   num get zIndex => $unsafe.callMethod('getZIndex');
-  void open([dynamic map, MVCObject anchor]) { $unsafe.callMethod('open', [map, anchor]); }
-  set content(dynamic/*string|Node*/ content) => $unsafe.callMethod('setContent', [content is String ? content : convertElementToJs(content)]);
+  void open([dynamic map, MVCObject anchor]) {
+    $unsafe.callMethod('open', [map, anchor]);
+  }
+  set content(dynamic /*string|Node*/ content) => $unsafe.callMethod('setContent', [content is String ? content : convertElementToJs(content)]);
   set options(InfoWindowOptions options) => $unsafe.callMethod('setOptions', [options]);
   set position(LatLng position) => $unsafe.callMethod('setPosition', [position]);
   set zIndex(num zIndex) => $unsafe.callMethod('setZIndex', [zIndex]);

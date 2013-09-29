@@ -20,18 +20,18 @@ class MarkerOptions extends jsw.TypedJsObject {
   MarkerOptions() : super();
 
   set anchorPoint(Point anchorPoint) => $unsafe['anchorPoint'] = anchorPoint;
-Point get anchorPoint => Point.cast($unsafe['anchorPoint']);
-Animation get animation => Animation.find($unsafe['animation']);
+  Point get anchorPoint => Point.cast($unsafe['anchorPoint']);
+  Animation get animation => Animation.find($unsafe['animation']);
   set animation(Animation animation) => $unsafe['animation'] = animation;
   set clickable(bool clickable) => $unsafe['clickable'] = clickable;
-bool get clickable => $unsafe['clickable'];
-set cursor(String cursor) => $unsafe['cursor'] = cursor;
-String get cursor => $unsafe['cursor'];
-set draggable(bool draggable) => $unsafe['draggable'] = draggable;
-bool get draggable => $unsafe['draggable'];
-set flat(bool flat) => $unsafe['flat'] = flat;
-bool get flat => $unsafe['flat'];
-dynamic/*string|Icon|Symbol*/ get icon {
+  bool get clickable => $unsafe['clickable'];
+  set cursor(String cursor) => $unsafe['cursor'] = cursor;
+  String get cursor => $unsafe['cursor'];
+  set draggable(bool draggable) => $unsafe['draggable'] = draggable;
+  bool get draggable => $unsafe['draggable'];
+  set flat(bool flat) => $unsafe['flat'] = flat;
+  bool get flat => $unsafe['flat'];
+  dynamic /*string|Icon|Symbol*/ get icon {
     final result = $unsafe['icon'];
     if (result is String) {
       return result;
@@ -46,7 +46,7 @@ dynamic/*string|Icon|Symbol*/ get icon {
     return result;
   }
   set icon(dynamic icon) => $unsafe['icon'] = icon;
-  dynamic/*Map|StreetViewPanorama*/ get map {
+  dynamic /*Map|StreetViewPanorama*/ get map {
     final result = $unsafe['map'];
     if (GMap.isInstance(result)) {
       return GMap.cast(result);
@@ -57,14 +57,14 @@ dynamic/*string|Icon|Symbol*/ get icon {
   }
   set map(dynamic map) => $unsafe['map'] = map;
   set optimized(bool optimized) => $unsafe['optimized'] = optimized;
-bool get optimized => $unsafe['optimized'];
-set position(LatLng position) => $unsafe['position'] = position;
-LatLng get position => LatLng.cast($unsafe['position']);
-set raiseOnDrag(bool raiseOnDrag) => $unsafe['raiseOnDrag'] = raiseOnDrag;
-bool get raiseOnDrag => $unsafe['raiseOnDrag'];
-set crossOnDrag(bool crossOnDrag) => $unsafe['crossOnDrag'] = crossOnDrag;
-bool get crossOnDrag => $unsafe['crossOnDrag'];
-dynamic/*string|Icon|Symbol*/ get shadow {
+  bool get optimized => $unsafe['optimized'];
+  set position(LatLng position) => $unsafe['position'] = position;
+  LatLng get position => LatLng.cast($unsafe['position']);
+  set raiseOnDrag(bool raiseOnDrag) => $unsafe['raiseOnDrag'] = raiseOnDrag;
+  bool get raiseOnDrag => $unsafe['raiseOnDrag'];
+  set crossOnDrag(bool crossOnDrag) => $unsafe['crossOnDrag'] = crossOnDrag;
+  bool get crossOnDrag => $unsafe['crossOnDrag'];
+  dynamic /*string|Icon|Symbol*/ get shadow {
     final result = $unsafe['shadow'];
     if (result is String) {
       return result;
@@ -80,11 +80,11 @@ dynamic/*string|Icon|Symbol*/ get shadow {
   }
   set shadow(dynamic shadow) => $unsafe['shadow'] = shadow;
   set shape(MarkerShape shape) => $unsafe['shape'] = shape;
-MarkerShape get shape => MarkerShape.cast($unsafe['shape']);
-set title(String title) => $unsafe['title'] = title;
-String get title => $unsafe['title'];
-set visible(bool visible) => $unsafe['visible'] = visible;
-bool get visible => $unsafe['visible'];
-set zIndex(num zIndex) => $unsafe['zIndex'] = zIndex;
-num get zIndex => $unsafe['zIndex'];
+  MarkerShape get shape => MarkerShape.cast($unsafe['shape']);
+  set title(String title) => $unsafe['title'] = title;
+  String get title => $unsafe['title'];
+  set visible(bool visible) => $unsafe['visible'] = visible;
+  bool get visible => $unsafe['visible'];
+  set zIndex(num zIndex) => $unsafe['zIndex'] = zIndex;
+  num get zIndex => $unsafe['zIndex'];
 }

@@ -20,21 +20,21 @@ class WeatherConditions extends jsw.TypedJsObject {
   WeatherConditions() : super();
 
   set day(String day) => $unsafe['day'] = day;
-String get day => $unsafe['day'];
-set description(String description) => $unsafe['description'] = description;
-String get description => $unsafe['description'];
-set high(num high) => $unsafe['high'] = high;
-num get high => $unsafe['high'];
-set humidity(num humidity) => $unsafe['humidity'] = humidity;
-num get humidity => $unsafe['humidity'];
-set low(num low) => $unsafe['low'] = low;
-num get low => $unsafe['low'];
-set shortDay(String shortDay) => $unsafe['shortDay'] = shortDay;
-String get shortDay => $unsafe['shortDay'];
-set temperature(num temperature) => $unsafe['temperature'] = temperature;
-num get temperature => $unsafe['temperature'];
-set windDirection(String windDirection) => $unsafe['windDirection'] = windDirection;
-String get windDirection => $unsafe['windDirection'];
-set windSpeed(num windSpeed) => $unsafe['windSpeed'] = windSpeed;
-num get windSpeed => $unsafe['windSpeed'];
+  String get day => $unsafe['day'];
+  set description(String description) => $unsafe['description'] = description;
+  String get description => $unsafe['description'];
+  set high(num high) => $unsafe['high'] = high;
+  num get high => $unsafe['high'];
+  set humidity(num humidity) => $unsafe['humidity'] = humidity;
+  num get humidity => $unsafe['humidity'];
+  set low(num low) => $unsafe['low'] = low;
+  num get low => $unsafe['low'];
+  set shortDay(String shortDay) => $unsafe['shortDay'] = shortDay;
+  String get shortDay => $unsafe['shortDay'];
+  set temperature(num temperature) => $unsafe['temperature'] = temperature;
+  num get temperature => $unsafe['temperature'];
+  set windDirection(String windDirection) => $unsafe['windDirection'] = windDirection;
+  String get windDirection => $unsafe['windDirection'];
+  set windSpeed(num windSpeed) => $unsafe['windSpeed'] = windSpeed;
+  num get windSpeed => $unsafe['windSpeed'];
 }

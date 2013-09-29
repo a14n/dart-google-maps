@@ -20,13 +20,13 @@ class FusionTablesPolygonOptions extends jsw.TypedJsObject {
   FusionTablesPolygonOptions() : super();
 
   set fillColor(String fillColor) => $unsafe['fillColor'] = fillColor;
-String get fillColor => $unsafe['fillColor'];
-set fillOpacity(num fillOpacity) => $unsafe['fillOpacity'] = fillOpacity;
-num get fillOpacity => $unsafe['fillOpacity'];
-set strokeColor(String strokeColor) => $unsafe['strokeColor'] = strokeColor;
-String get strokeColor => $unsafe['strokeColor'];
-set strokeOpacity(num strokeOpacity) => $unsafe['strokeOpacity'] = strokeOpacity;
-num get strokeOpacity => $unsafe['strokeOpacity'];
-set strokeWeight(num strokeWeight) => $unsafe['strokeWeight'] = strokeWeight;
-num get strokeWeight => $unsafe['strokeWeight'];
+  String get fillColor => $unsafe['fillColor'];
+  set fillOpacity(num fillOpacity) => $unsafe['fillOpacity'] = fillOpacity;
+  num get fillOpacity => $unsafe['fillOpacity'];
+  set strokeColor(String strokeColor) => $unsafe['strokeColor'] = strokeColor;
+  String get strokeColor => $unsafe['strokeColor'];
+  set strokeOpacity(num strokeOpacity) => $unsafe['strokeOpacity'] = strokeOpacity;
+  num get strokeOpacity => $unsafe['strokeOpacity'];
+  set strokeWeight(num strokeWeight) => $unsafe['strokeWeight'] = strokeWeight;
+  num get strokeWeight => $unsafe['strokeWeight'];
 }

@@ -19,9 +19,9 @@ class MarkerShape extends jsw.TypedJsObject {
   MarkerShape.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
   MarkerShape() : super();
 
-  set coords(List<num> coords) => $unsafe['coords'] = coords == null ? null : coords is js.Serializable<js.JsObject> ? coords : js.jsify(coords);
-List<num> get coords => jsw.TypedJsArray.cast($unsafe['coords']);
-MarkerShapeType get type => MarkerShapeType.find($unsafe['type']);
+  set coords(List<num> coords) => $unsafe['coords'] = coords == null ? null : coords is js.Serializable ? coords : js.jsify(coords);
+  List<num> get coords => jsw.TypedJsArray.cast($unsafe['coords']);
+  MarkerShapeType get type => MarkerShapeType.find($unsafe['type']);
   set type(MarkerShapeType type) => $unsafe['type'] = type;
 }
 

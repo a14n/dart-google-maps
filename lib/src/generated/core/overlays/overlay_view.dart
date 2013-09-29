@@ -19,15 +19,27 @@ class OverlayView extends MVCObject {
   OverlayView.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
   OverlayView() : super(maps['OverlayView']);
 
-  void draw() { $unsafe.callMethod('draw'); }
+  void draw() {
+    $unsafe.callMethod('draw');
+  }
   GMap get map => GMap.cast($unsafe.callMethod('getMap'));
   MapPanes get panes => MapPanes.cast($unsafe.callMethod('getPanes'));
   MapCanvasProjection get projection => MapCanvasProjection.cast($unsafe.callMethod('getProjection'));
-  void onAdd() { $unsafe.callMethod('onAdd'); }
-  void onRemove() { $unsafe.callMethod('onRemove'); }
+  void onAdd() {
+    $unsafe.callMethod('onAdd');
+  }
+  void onRemove() {
+    $unsafe.callMethod('onRemove');
+  }
   set map(dynamic map) => $unsafe.callMethod('setMap', [map]);
 
-  void set_onAdd(onAdd()) { $unsafe['onAdd'] = onAdd; }
-  void set_onRemove(onRemove()) { $unsafe['onRemove'] = onRemove; }
-  void set_draw(draw()) { $unsafe['draw'] = draw; }
+  void set_onAdd(onAdd()) {
+    $unsafe['onAdd'] = onAdd;
+  }
+  void set_onRemove(onRemove()) {
+    $unsafe['onRemove'] = onRemove;
+  }
+  void set_draw(draw()) {
+    $unsafe['draw'] = draw;
+  }
 }

@@ -38,8 +38,12 @@ class GMap extends MVCObject {
   SubscribeStreamProvider _onTiltChanged;
   SubscribeStreamProvider _onZoomChanged;
 
-  GMap(html.Node mapDiv, [MapOptions opts]) : super(maps['Map'], [convertElementToJs(mapDiv), opts]) { _initStreams(); }
-  GMap.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) { _initStreams(); }
+  GMap(html.Node mapDiv, [MapOptions opts]) : super(maps['Map'], [convertElementToJs(mapDiv), opts]) {
+    _initStreams();
+  }
+  GMap.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) {
+    _initStreams();
+  }
 
   void _initStreams() {
     _onBoundsChanged = event.getStreamProviderFor(this, "bounds_changed");
@@ -83,12 +87,14 @@ class GMap extends MVCObject {
   Stream get onTiltChanged => _onTiltChanged.stream;
   Stream get onZoomChanged => _onZoomChanged.stream;
 
-  void fitBounds(LatLngBounds bounds) { $unsafe.callMethod('fitBounds', [bounds]); }
+  void fitBounds(LatLngBounds bounds) {
+    $unsafe.callMethod('fitBounds', [bounds]);
+  }
   LatLngBounds get bounds => LatLngBounds.cast($unsafe.callMethod('getBounds'));
   LatLng get center => LatLng.cast($unsafe.callMethod('getCenter'));
   html.Node get div => convertElementToDart($unsafe.callMethod('getDiv'));
   num get heading => $unsafe.callMethod('getHeading');
-  dynamic/*MapTypeId|String*/ get mapTypeId {
+  dynamic /*MapTypeId|String*/ get mapTypeId {
     final result = $unsafe.callMethod('getMapTypeId');
     return [MapTypeId.find(result), result].firstWhere((e) => e != null, orElse: () => null);
   }
@@ -96,9 +102,15 @@ class GMap extends MVCObject {
   StreetViewPanorama get streetView => StreetViewPanorama.cast($unsafe.callMethod('getStreetView'));
   num get tilt => $unsafe.callMethod('getTilt');
   num get zoom => $unsafe.callMethod('getZoom');
-  void panBy(num x, num y) { $unsafe.callMethod('panBy', [x, y]); }
-  void panTo(LatLng latLng) { $unsafe.callMethod('panTo', [latLng]); }
-  void panToBounds(LatLngBounds latLngBounds) { $unsafe.callMethod('panToBounds', [latLngBounds]); }
+  void panBy(num x, num y) {
+    $unsafe.callMethod('panBy', [x, y]);
+  }
+  void panTo(LatLng latLng) {
+    $unsafe.callMethod('panTo', [latLng]);
+  }
+  void panToBounds(LatLngBounds latLngBounds) {
+    $unsafe.callMethod('panToBounds', [latLngBounds]);
+  }
   set center(LatLng latLng) => $unsafe.callMethod('setCenter', [latLng]);
   set heading(num heading) => $unsafe.callMethod('setHeading', [heading]);
   set mapTypeId(dynamic mapTypeId) => $unsafe.callMethod('setMapTypeId', [mapTypeId]);
@@ -121,8 +133,10 @@ class Controls extends jsw.TypedJsObject {
   Controls.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
   Controls() : super.fromJsObject(js.jsify([]));
 
-  MVCArray<html.Node> operator[](ControlPosition controlPosition) => MVCArray.cast($unsafe[controlPosition], _nodeTranslator);
-  void operator[]=(ControlPosition controlPosition, MVCArray<html.Node> nodes) { $unsafe[controlPosition] = nodes; }
+  MVCArray<html.Node> operator [](ControlPosition controlPosition) => MVCArray.cast($unsafe[controlPosition], _nodeTranslator);
+  void operator []=(ControlPosition controlPosition, MVCArray<html.Node> nodes) {
+    $unsafe[controlPosition] = nodes;
+  }
 }
 
 final _nodeTranslator = new _NodeTranslator();

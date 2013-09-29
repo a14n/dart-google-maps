@@ -22,17 +22,17 @@ class ImageMapTypeOptions extends jsw.TypedJsObject {
   ImageMapTypeOptions() : super();
 
   set alt(String alt) => $unsafe['alt'] = alt;
-String get alt => $unsafe['alt'];
-set getTileUrl(GetTileUrl callback) => $unsafe['getTileUrl'] = (js.JsObject point, num zoomLevel, [dynamic wtf]) => callback(Point.cast(point), zoomLevel);
+  String get alt => $unsafe['alt'];
+  set getTileUrl(GetTileUrl callback) => $unsafe['getTileUrl'] = (js.JsObject point, num zoomLevel, [dynamic wtf]) => callback(Point.cast(point), zoomLevel);
   GetTileUrl get getTileUrl => (Point point, num zoomLevel) => $unsafe.callMethod('getTileUrl', [point, zoomLevel]);
   set maxZoom(num maxZoom) => $unsafe['maxZoom'] = maxZoom;
-num get maxZoom => $unsafe['maxZoom'];
-set minZoom(num minZoom) => $unsafe['minZoom'] = minZoom;
-num get minZoom => $unsafe['minZoom'];
-set name(String name) => $unsafe['name'] = name;
-String get name => $unsafe['name'];
-set opacity(num opacity) => $unsafe['opacity'] = opacity;
-num get opacity => $unsafe['opacity'];
-set tileSize(Size tileSize) => $unsafe['tileSize'] = tileSize;
-Size get tileSize => Size.cast($unsafe['tileSize']);
+  num get maxZoom => $unsafe['maxZoom'];
+  set minZoom(num minZoom) => $unsafe['minZoom'] = minZoom;
+  num get minZoom => $unsafe['minZoom'];
+  set name(String name) => $unsafe['name'] = name;
+  String get name => $unsafe['name'];
+  set opacity(num opacity) => $unsafe['opacity'] = opacity;
+  num get opacity => $unsafe['opacity'];
+  set tileSize(Size tileSize) => $unsafe['tileSize'] = tileSize;
+  Size get tileSize => Size.cast($unsafe['tileSize']);
 }

@@ -20,7 +20,7 @@ class TransitStop extends jsw.TypedJsObject {
   TransitStop() : super();
 
   set location(LatLng location) => $unsafe['location'] = location;
-LatLng get location => LatLng.cast($unsafe['location']);
-set name(String name) => $unsafe['name'] = name;
-String get name => $unsafe['name'];
+  LatLng get location => LatLng.cast($unsafe['location']);
+  set name(String name) => $unsafe['name'] = name;
+  String get name => $unsafe['name'];
 }

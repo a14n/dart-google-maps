@@ -20,11 +20,11 @@ class DemographicsPropertyStyle extends jsw.TypedJsObject {
   DemographicsPropertyStyle() : super();
 
   set expression(String expression) => $unsafe['expression'] = expression;
-String get expression => $unsafe['expression'];
-set gradient(List<String> gradient) => $unsafe['gradient'] = gradient == null ? null : gradient is js.Serializable<js.JsObject> ? gradient : js.jsify(gradient);
-List<String> get gradient => jsw.TypedJsArray.cast($unsafe['gradient']);
-set min(num min) => $unsafe['min'] = min;
-num get min => $unsafe['min'];
-set max(num max) => $unsafe['max'] = max;
-num get max => $unsafe['max'];
+  String get expression => $unsafe['expression'];
+  set gradient(List<String> gradient) => $unsafe['gradient'] = gradient == null ? null : gradient is js.Serializable ? gradient : js.jsify(gradient);
+  List<String> get gradient => jsw.TypedJsArray.cast($unsafe['gradient']);
+  set min(num min) => $unsafe['min'] = min;
+  num get min => $unsafe['min'];
+  set max(num max) => $unsafe['max'] = max;
+  num get max => $unsafe['max'];
 }

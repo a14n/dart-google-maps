@@ -23,7 +23,7 @@ class Size extends jsw.TypedJsObject {
   String toString() => $unsafe.callMethod('toString');
 
   set height(num height) => $unsafe['height'] = height;
-num get height => $unsafe['height'];
-set width(num width) => $unsafe['width'] = width;
-num get width => $unsafe['width'];
+  num get height => $unsafe['height'];
+  set width(num width) => $unsafe['width'] = width;
+  num get width => $unsafe['width'];
 }

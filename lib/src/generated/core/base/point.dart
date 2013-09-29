@@ -23,7 +23,7 @@ class Point extends jsw.TypedJsObject {
   String toString() => $unsafe.callMethod('toString');
 
   set x(num x) => $unsafe['x'] = x;
-num get x => $unsafe['x'];
-set y(num y) => $unsafe['y'] = y;
-num get y => $unsafe['y'];
+  num get x => $unsafe['x'];
+  set y(num y) => $unsafe['y'] = y;
+  num get y => $unsafe['y'];
 }

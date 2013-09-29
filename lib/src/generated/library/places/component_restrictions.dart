@@ -20,5 +20,5 @@ class ComponentRestrictions extends jsw.TypedJsObject {
   ComponentRestrictions() : super();
 
   set country(String country) => $unsafe['country'] = country;
-String get country => $unsafe['country'];
+  String get country => $unsafe['country'];
 }

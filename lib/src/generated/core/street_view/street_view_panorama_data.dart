@@ -20,13 +20,13 @@ class StreetViewPanoramaData extends jsw.TypedJsObject {
   StreetViewPanoramaData() : super();
 
   set copyright(String copyright) => $unsafe['copyright'] = copyright;
-String get copyright => $unsafe['copyright'];
-set imageDate(String imageDate) => $unsafe['imageDate'] = imageDate;
-String get imageDate => $unsafe['imageDate'];
-set links(List<StreetViewLink> links) => $unsafe['links'] = links == null ? null : links is js.Serializable<js.JsObject> ? links : js.jsify(links);
-List<StreetViewLink> get links => jsw.TypedJsArray.castListOfSerializables($unsafe['links'], StreetViewLink.cast);
-set location(StreetViewLocation location) => $unsafe['location'] = location;
-StreetViewLocation get location => StreetViewLocation.cast($unsafe['location']);
-set tiles(StreetViewTileData tiles) => $unsafe['tiles'] = tiles;
-StreetViewTileData get tiles => StreetViewTileData.cast($unsafe['tiles']);
+  String get copyright => $unsafe['copyright'];
+  set imageDate(String imageDate) => $unsafe['imageDate'] = imageDate;
+  String get imageDate => $unsafe['imageDate'];
+  set links(List<StreetViewLink> links) => $unsafe['links'] = links == null ? null : links is js.Serializable ? links : js.jsify(links);
+  List<StreetViewLink> get links => jsw.TypedJsArray.castListOfSerializables($unsafe['links'], StreetViewLink.cast);
+  set location(StreetViewLocation location) => $unsafe['location'] = location;
+  StreetViewLocation get location => StreetViewLocation.cast($unsafe['location']);
+  set tiles(StreetViewTileData tiles) => $unsafe['tiles'] = tiles;
+  StreetViewTileData get tiles => StreetViewTileData.cast($unsafe['tiles']);
 }

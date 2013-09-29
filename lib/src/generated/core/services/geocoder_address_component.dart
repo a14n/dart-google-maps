@@ -20,9 +20,9 @@ class GeocoderAddressComponent extends jsw.TypedJsObject {
   GeocoderAddressComponent() : super();
 
   set longName(String longName) => $unsafe['long_name'] = longName;
-String get longName => $unsafe['long_name'];
-set shortName(String shortName) => $unsafe['short_name'] = shortName;
-String get shortName => $unsafe['short_name'];
-set types(List<String> types) => $unsafe['types'] = types == null ? null : types is js.Serializable<js.JsObject> ? types : js.jsify(types);
-List<String> get types => jsw.TypedJsArray.cast($unsafe['types']);
+  String get longName => $unsafe['long_name'];
+  set shortName(String shortName) => $unsafe['short_name'] = shortName;
+  String get shortName => $unsafe['short_name'];
+  set types(List<String> types) => $unsafe['types'] = types == null ? null : types is js.Serializable ? types : js.jsify(types);
+  List<String> get types => jsw.TypedJsArray.cast($unsafe['types']);
 }

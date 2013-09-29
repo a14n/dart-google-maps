@@ -19,12 +19,12 @@ class PlaceReview extends jsw.TypedJsObject {
   PlaceReview.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
   PlaceReview() : super();
 
-  set aspects(List<PlaceAspectRating> aspects) => $unsafe['aspects'] = aspects == null ? null : aspects is js.Serializable<js.JsObject> ? aspects : js.jsify(aspects);
-List<PlaceAspectRating> get aspects => jsw.TypedJsArray.castListOfSerializables($unsafe['aspects'], PlaceAspectRating.cast);
-set authorName(String authorName) => $unsafe['author_name'] = authorName;
-String get authorName => $unsafe['author_name'];
-set authorUrl(String authorUrl) => $unsafe['author_url'] = authorUrl;
-String get authorUrl => $unsafe['author_url'];
-set text(String text) => $unsafe['text'] = text;
-String get text => $unsafe['text'];
+  set aspects(List<PlaceAspectRating> aspects) => $unsafe['aspects'] = aspects == null ? null : aspects is js.Serializable ? aspects : js.jsify(aspects);
+  List<PlaceAspectRating> get aspects => jsw.TypedJsArray.castListOfSerializables($unsafe['aspects'], PlaceAspectRating.cast);
+  set authorName(String authorName) => $unsafe['author_name'] = authorName;
+  String get authorName => $unsafe['author_name'];
+  set authorUrl(String authorUrl) => $unsafe['author_url'] = authorUrl;
+  String get authorUrl => $unsafe['author_url'];
+  set text(String text) => $unsafe['text'] = text;
+  String get text => $unsafe['text'];
 }

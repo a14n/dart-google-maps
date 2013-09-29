@@ -20,13 +20,13 @@ class WeatherForecast extends jsw.TypedJsObject {
   WeatherForecast() : super();
 
   set day(String day) => $unsafe['day'] = day;
-String get day => $unsafe['day'];
-set description(String description) => $unsafe['description'] = description;
-String get description => $unsafe['description'];
-set high(num high) => $unsafe['high'] = high;
-num get high => $unsafe['high'];
-set low(num low) => $unsafe['low'] = low;
-num get low => $unsafe['low'];
-set shortDay(String shortDay) => $unsafe['shortDay'] = shortDay;
-String get shortDay => $unsafe['shortDay'];
+  String get day => $unsafe['day'];
+  set description(String description) => $unsafe['description'] = description;
+  String get description => $unsafe['description'];
+  set high(num high) => $unsafe['high'] = high;
+  num get high => $unsafe['high'];
+  set low(num low) => $unsafe['low'] = low;
+  num get low => $unsafe['low'];
+  set shortDay(String shortDay) => $unsafe['shortDay'] = shortDay;
+  String get shortDay => $unsafe['shortDay'];
 }

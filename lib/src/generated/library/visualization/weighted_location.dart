@@ -20,7 +20,7 @@ class WeightedLocation extends jsw.TypedJsObject {
   WeightedLocation() : super();
 
   set location(LatLng location) => $unsafe['location'] = location;
-LatLng get location => LatLng.cast($unsafe['location']);
-set weight(num weight) => $unsafe['weight'] = weight;
-num get weight => $unsafe['weight'];
+  LatLng get location => LatLng.cast($unsafe['location']);
+  set weight(num weight) => $unsafe['weight'] = weight;
+  num get weight => $unsafe['weight'];
 }

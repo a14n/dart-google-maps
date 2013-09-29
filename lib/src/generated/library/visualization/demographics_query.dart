@@ -20,7 +20,7 @@ class DemographicsQuery extends jsw.TypedJsObject {
   DemographicsQuery() : super();
 
   set from(String from) => $unsafe['from'] = from;
-String get from => $unsafe['from'];
-set where(String where) => $unsafe['where'] = where;
-String get where => $unsafe['where'];
+  String get from => $unsafe['from'];
+  set where(String where) => $unsafe['where'] = where;
+  String get where => $unsafe['where'];
 }

@@ -19,21 +19,21 @@ class MapType extends jsw.TypedJsObject {
   MapType([js.Serializable<js.JsFunction> constructor, List args]) : super(constructor, args);
   MapType.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy);
 
-  html.Node getTile(Point tileCoord, num zoom, js.JsObject/*html.Document*/ ownerDocument) => convertElementToDart($unsafe.callMethod('getTile', [tileCoord, zoom, ownerDocument]));
+  html.Node getTile(Point tileCoord, num zoom, js.JsObject /*html.Document*/ ownerDocument) => convertElementToDart($unsafe.callMethod('getTile', [tileCoord, zoom, ownerDocument]));
   void releaseTile(html.Node tile) => $unsafe.callMethod('releaseTile', [convertElementToJs(tile)]);
 
   set alt(String alt) => $unsafe['alt'] = alt;
-String get alt => $unsafe['alt'];
-set maxZoom(num maxZoom) => $unsafe['maxZoom'] = maxZoom;
-num get maxZoom => $unsafe['maxZoom'];
-set minZoom(num minZoom) => $unsafe['minZoom'] = minZoom;
-num get minZoom => $unsafe['minZoom'];
-set name(String name) => $unsafe['name'] = name;
-String get name => $unsafe['name'];
-set projection(Projection projection) => $unsafe['projection'] = projection;
-Projection get projection => Projection.cast($unsafe['projection']);
-set radius(num radius) => $unsafe['radius'] = radius;
-num get radius => $unsafe['radius'];
-set tileSize(Size tileSize) => $unsafe['tileSize'] = tileSize;
-Size get tileSize => Size.cast($unsafe['tileSize']);
+  String get alt => $unsafe['alt'];
+  set maxZoom(num maxZoom) => $unsafe['maxZoom'] = maxZoom;
+  num get maxZoom => $unsafe['maxZoom'];
+  set minZoom(num minZoom) => $unsafe['minZoom'] = minZoom;
+  num get minZoom => $unsafe['minZoom'];
+  set name(String name) => $unsafe['name'] = name;
+  String get name => $unsafe['name'];
+  set projection(Projection projection) => $unsafe['projection'] = projection;
+  Projection get projection => Projection.cast($unsafe['projection']);
+  set radius(num radius) => $unsafe['radius'] = radius;
+  num get radius => $unsafe['radius'];
+  set tileSize(Size tileSize) => $unsafe['tileSize'] = tileSize;
+  Size get tileSize => Size.cast($unsafe['tileSize']);
 }

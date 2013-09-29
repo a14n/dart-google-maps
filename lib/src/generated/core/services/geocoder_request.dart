@@ -20,11 +20,11 @@ class GeocoderRequest extends jsw.TypedJsObject {
   GeocoderRequest() : super();
 
   set address(String address) => $unsafe['address'] = address;
-String get address => $unsafe['address'];
-set bounds(LatLngBounds bounds) => $unsafe['bounds'] = bounds;
-LatLngBounds get bounds => LatLngBounds.cast($unsafe['bounds']);
-set location(LatLng location) => $unsafe['location'] = location;
-LatLng get location => LatLng.cast($unsafe['location']);
-set region(String region) => $unsafe['region'] = region;
-String get region => $unsafe['region'];
+  String get address => $unsafe['address'];
+  set bounds(LatLngBounds bounds) => $unsafe['bounds'] = bounds;
+  LatLngBounds get bounds => LatLngBounds.cast($unsafe['bounds']);
+  set location(LatLng location) => $unsafe['location'] = location;
+  LatLng get location => LatLng.cast($unsafe['location']);
+  set region(String region) => $unsafe['region'] = region;
+  String get region => $unsafe['region'];
 }

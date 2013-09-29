@@ -20,5 +20,5 @@ class FusionTablesMarkerOptions extends jsw.TypedJsObject {
   FusionTablesMarkerOptions() : super();
 
   set iconName(String iconName) => $unsafe['iconName'] = iconName;
-String get iconName => $unsafe['iconName'];
+  String get iconName => $unsafe['iconName'];
 }

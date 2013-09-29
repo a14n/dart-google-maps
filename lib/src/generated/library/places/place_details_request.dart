@@ -20,5 +20,5 @@ class PlaceDetailsRequest extends jsw.TypedJsObject {
   PlaceDetailsRequest() : super();
 
   set reference(String reference) => $unsafe['reference'] = reference;
-String get reference => $unsafe['reference'];
+  String get reference => $unsafe['reference'];
 }

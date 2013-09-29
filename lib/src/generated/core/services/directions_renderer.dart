@@ -18,8 +18,12 @@ class DirectionsRenderer extends MVCObject {
   static DirectionsRenderer cast(js.JsObject jsObject) => jsObject == null ? null : new DirectionsRenderer.fromJsObject(jsObject);
   SubscribeStreamProvider _onDirectionsChanged;
 
-  DirectionsRenderer([DirectionsRendererOptions opts]) : super(maps['DirectionsRenderer'], [opts]) { _initStreams(); }
-  DirectionsRenderer.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) { _initStreams(); }
+  DirectionsRenderer([DirectionsRendererOptions opts]) : super(maps['DirectionsRenderer'], [opts]) {
+    _initStreams();
+  }
+  DirectionsRenderer.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) {
+    _initStreams();
+  }
 
   void _initStreams() {
     _onDirectionsChanged = event.getStreamProviderFor(this, "directions_changed");
@@ -34,6 +38,6 @@ class DirectionsRenderer extends MVCObject {
   set directions(DirectionsResult directions) => $unsafe.callMethod('setDirections', [directions]);
   set map(GMap map) => $unsafe.callMethod('setMap', [map]);
   set options(DirectionsRendererOptions options) => $unsafe.callMethod('setOptions', [options]);
-  set panel(html.Node panel) => $unsafe.callMethod('setPanel',[convertElementToJs(panel)]);
+  set panel(html.Node panel) => $unsafe.callMethod('setPanel', [convertElementToJs(panel)]);
   set routeIndex(num routeIndex) => $unsafe.callMethod('setRouteIndex', [routeIndex]);
 }

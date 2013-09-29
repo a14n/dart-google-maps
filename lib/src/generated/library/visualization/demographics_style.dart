@@ -20,7 +20,7 @@ class DemographicsStyle extends jsw.TypedJsObject {
   DemographicsStyle() : super();
 
   set polygonOptions(DemographicsPolygonOptions polygonOptions) => $unsafe['polygonOptions'] = polygonOptions;
-DemographicsPolygonOptions get polygonOptions => DemographicsPolygonOptions.cast($unsafe['polygonOptions']);
-set where(String where) => $unsafe['where'] = where;
-String get where => $unsafe['where'];
+  DemographicsPolygonOptions get polygonOptions => DemographicsPolygonOptions.cast($unsafe['polygonOptions']);
+  set where(String where) => $unsafe['where'] = where;
+  String get where => $unsafe['where'];
 }

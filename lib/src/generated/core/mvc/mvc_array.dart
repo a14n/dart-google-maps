@@ -25,8 +25,12 @@ class MVCArray<E> extends MVCObject {
   SubscribeStreamProvider<IndexAndElement<E>> _onRemoveAt;
   SubscribeStreamProvider<IndexAndElement<E>> _onSetAt;
 
-  MVCArray([List<E> array, jsw.Translator<E> translator]) : super(maps['MVCArray'], [array is js.Serializable ? array : js.jsify(array)]), this._translator = translator { _initStreams(); }
-  MVCArray.fromJsObject(js.JsObject proxy, [jsw.Translator<E> translator]) : super.fromJsObject(proxy), this._translator = translator { _initStreams(); }
+  MVCArray([List<E> array, jsw.Translator<E> translator]) : super(maps['MVCArray'], [array is js.Serializable ? array : js.jsify(array)]), this._translator = translator {
+    _initStreams();
+  }
+  MVCArray.fromJsObject(js.JsObject proxy, [jsw.Translator<E> translator]) : super.fromJsObject(proxy), this._translator = translator {
+    _initStreams();
+  }
 
   void _initStreams() {
     _onInsertAt = event.getStreamProviderFor(this, "insert_at");
@@ -41,27 +45,47 @@ class MVCArray<E> extends MVCObject {
   dynamic _toJs(E e) => _translator == null ? e : _translator.toJs(e);
   E _fromJs(dynamic value) => _translator == null ? value : _translator.fromJs(value);
 
-  void clear() { $unsafe.callMethod('clear'); }
+  void clear() {
+    $unsafe.callMethod('clear');
+  }
   void forEach(void callback(E o, num index)) => $unsafe.callMethod('forEach', [(Object o, num index) => callback(_fromJs(o), index)]);
   List<E> getArray() => jsw.TypedJsArray.cast($unsafe.callMethod('getArray'), _translator);
   E getAt(num i) => _fromJs($unsafe.callMethod('getAt', [i]));
   num get length => $unsafe.callMethod('getLength');
-  void insertAt(num i, E elem) { $unsafe.callMethod('insertAt', [i, _toJs(elem)]); }
+  void insertAt(num i, E elem) {
+    $unsafe.callMethod('insertAt', [i, _toJs(elem)]);
+  }
   E pop() => _fromJs($unsafe.callMethod('pop'));
   num push(E elem) => $unsafe.callMethod('push', [_toJs(elem)]);
   E removeAt(num i) => _fromJs($unsafe.callMethod('removeAt', [i]));
-  void setAt(num i, E elem) { $unsafe.callMethod('.setAt', [i, _toJs(elem)]); }
+  void setAt(num i, E elem) {
+    $unsafe.callMethod('.setAt', [i, _toJs(elem)]);
+  }
 
   // TODO mark methods with @remove
   MapsEventListener addListener(String eventName, Function handler) => super.addListener(eventName, handler);
-  void bindTo(String key, MVCObject target, [String targetKey, bool noNotify]) { super.bindTo(key, target, targetKey, noNotify); }
-  void changed(String key) { super.changed(key); }
+  void bindTo(String key, MVCObject target, [String targetKey, bool noNotify]) {
+    super.bindTo(key, target, targetKey, noNotify);
+  }
+  void changed(String key) {
+    super.changed(key);
+  }
   Object get(String key) => super.get(key);
-  void notify(String key) { super.notify(key); }
-  void set(String key, Object value) { super.set(key, value); }
-  void unbind(String key) { super.unbind(key); }
-  void unbindAll() { super.unbindAll(); }
-  set values(Map<String, Object> values) { super.values = values; }
+  void notify(String key) {
+    super.notify(key);
+  }
+  void set(String key, Object value) {
+    super.set(key, value);
+  }
+  void unbind(String key) {
+    super.unbind(key);
+  }
+  void unbindAll() {
+    super.unbindAll();
+  }
+  set values(Map<String, Object> values) {
+    super.values = values;
+  }
 }
 
 class IndexAndElement<E> {
