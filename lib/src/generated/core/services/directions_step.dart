@@ -35,6 +35,6 @@ class DirectionsStep extends jsw.TypedJsObject {
   List<DirectionsStep> get steps => jsw.TypedJsArray.castListOfSerializables($unsafe['steps'], DirectionsStep.cast);
   set transit(TransitDetails transit) => $unsafe['transit'] = transit;
   TransitDetails get transit => TransitDetails.cast($unsafe['transit']);
-  TravelMode get travelMode => TravelMode.find($unsafe['travel_mode']);
   set travelMode(TravelMode travelMode) => $unsafe['travel_mode'] = travelMode;
+  TravelMode get travelMode => TravelMode.find($unsafe['travel_mode']);
 }

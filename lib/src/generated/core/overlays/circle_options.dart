@@ -39,8 +39,8 @@ class CircleOptions extends jsw.TypedJsObject {
   String get strokeColor => $unsafe['strokeColor'];
   set strokeOpacity(num strokeOpacity) => $unsafe['strokeOpacity'] = strokeOpacity;
   num get strokeOpacity => $unsafe['strokeOpacity'];
-  StrokePosition get strokePosition => StrokePosition.find($unsafe['strokePosition']);
   set strokePosition(StrokePosition strokePosition) => $unsafe['strokePosition'] = strokePosition;
+  StrokePosition get strokePosition => StrokePosition.find($unsafe['strokePosition']);
   set strokeWeight(num strokeWeight) => $unsafe['strokeWeight'] = strokeWeight;
   num get strokeWeight => $unsafe['strokeWeight'];
   set visible(bool visible) => $unsafe['visible'] = visible;

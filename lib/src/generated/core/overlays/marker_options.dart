@@ -21,8 +21,8 @@ class MarkerOptions extends jsw.TypedJsObject {
 
   set anchorPoint(Point anchorPoint) => $unsafe['anchorPoint'] = anchorPoint;
   Point get anchorPoint => Point.cast($unsafe['anchorPoint']);
-  Animation get animation => Animation.find($unsafe['animation']);
   set animation(Animation animation) => $unsafe['animation'] = animation;
+  Animation get animation => Animation.find($unsafe['animation']);
   set clickable(bool clickable) => $unsafe['clickable'] = clickable;
   bool get clickable => $unsafe['clickable'];
   set cursor(String cursor) => $unsafe['cursor'] = cursor;

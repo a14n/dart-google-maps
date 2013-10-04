@@ -17,8 +17,6 @@ part of google_maps;
 @wrapper abstract class ScaleControlOptions extends jsw.TypedJsObject {
   ScaleControlOptions() : super();
 
-  ControlPosition get position => ControlPosition.find($unsafe['position']);
-  ScaleControlStyle get style => ScaleControlStyle.find($unsafe['style']);
-  set position(ControlPosition position);
-  set style(ScaleControlStyle style);
+  @isEnum ControlPosition position;
+  @isEnum ScaleControlStyle style;
 }

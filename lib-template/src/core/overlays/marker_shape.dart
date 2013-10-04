@@ -18,8 +18,7 @@ part of google_maps;
   MarkerShape() : super();
 
   List<num> coords;
-  MarkerShapeType get type => MarkerShapeType.find($unsafe['type']);
-  set type(MarkerShapeType type);
+  @isEnum MarkerShapeType type;
 }
 
 class MarkerShapeType extends IsEnum<String> {

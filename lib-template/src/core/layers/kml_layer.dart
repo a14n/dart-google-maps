@@ -35,7 +35,7 @@ part of google_maps;
   LatLngBounds get defaultViewport;
   GMap get map;
   KmlLayerMetadata get metadata;
-  KmlLayerStatus get status => KmlLayerStatus.find($unsafe.callMethod('getStatus'));
+  @isEnum KmlLayerStatus get status;
   String get url;
   set map(GMap map);
   set url(String url);

@@ -25,7 +25,6 @@ part of google_maps_places;
   String name;
   bool openNow;
   num radius;
-  RankBy get rankBy => RankBy.find($unsafe['rankBy']);
-  set rankBy(RankBy rankBy);
+  @isEnum RankBy rankBy;
   List<String> types;
 }

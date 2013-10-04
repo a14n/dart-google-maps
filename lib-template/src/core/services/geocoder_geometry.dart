@@ -19,7 +19,6 @@ part of google_maps;
 
   LatLngBounds bounds;
   LatLng location;
-  GeocoderLocationType get locationType => GeocoderLocationType.find($unsafe['location_type']);
-  set locationType(GeocoderLocationType locationType);
+  @isEnum GeocoderLocationType locationType;
   LatLngBounds viewport;
 }

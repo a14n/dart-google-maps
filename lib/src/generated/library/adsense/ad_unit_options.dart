@@ -25,12 +25,12 @@ class AdUnitOptions extends jsw.TypedJsObject {
   String get borderColor => $unsafe['borderColor'];
   set channelNumber(String channelNumber) => $unsafe['channelNumber'] = channelNumber;
   String get channelNumber => $unsafe['channelNumber'];
-  AdFormat get format => AdFormat.find($unsafe['format']);
   set format(AdFormat format) => $unsafe['format'] = format;
+  AdFormat get format => AdFormat.find($unsafe['format']);
   set map(GMap map) => $unsafe['map'] = map;
   GMap get map => GMap.cast($unsafe['map']);
-  ControlPosition get position => ControlPosition.find($unsafe['position']);
   set position(ControlPosition position) => $unsafe['position'] = position;
+  ControlPosition get position => ControlPosition.find($unsafe['position']);
   set publisherId(String publisherId) => $unsafe['publisherId'] = publisherId;
   String get publisherId => $unsafe['publisherId'];
   set textColor(String textColor) => $unsafe['textColor'] = textColor;

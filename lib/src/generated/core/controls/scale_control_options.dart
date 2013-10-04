@@ -19,8 +19,8 @@ class ScaleControlOptions extends jsw.TypedJsObject {
   ScaleControlOptions.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
   ScaleControlOptions() : super();
 
-  ControlPosition get position => ControlPosition.find($unsafe['position']);
-  ScaleControlStyle get style => ScaleControlStyle.find($unsafe['style']);
   set position(ControlPosition position) => $unsafe['position'] = position;
+  ControlPosition get position => ControlPosition.find($unsafe['position']);
   set style(ScaleControlStyle style) => $unsafe['style'] = style;
+  ScaleControlStyle get style => ScaleControlStyle.find($unsafe['style']);
 }

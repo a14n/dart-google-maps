@@ -19,6 +19,6 @@ class PanControlOptions extends jsw.TypedJsObject {
   PanControlOptions.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
   PanControlOptions() : super();
 
-  ControlPosition get position => ControlPosition.find($unsafe['position']);
   set position(ControlPosition position) => $unsafe['position'] = position;
+  ControlPosition get position => ControlPosition.find($unsafe['position']);
 }

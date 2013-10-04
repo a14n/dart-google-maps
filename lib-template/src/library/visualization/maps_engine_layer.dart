@@ -37,7 +37,7 @@ part of google_maps_visualization;
   GMap get map;
   String get mapId;
   MapsEngineLayerProperties get properties;
-  MapsEngineStatus get status => MapsEngineStatus.find($unsafe.callMethod('getStatus'));
+  @isEnum MapsEngineStatus get status;
   set layerId(String layerId);
   set layerKey(String layerKey);
   set map(GMap map);

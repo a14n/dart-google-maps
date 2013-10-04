@@ -19,7 +19,6 @@ part of google_maps;
 
   MaxZoomResult() : super();
 
-  MaxZoomStatus get status => MaxZoomStatus.find($unsafe['status']);
-  set status(MaxZoomStatus status);
+  @isEnum MaxZoomStatus status;
   num zoom;
 }

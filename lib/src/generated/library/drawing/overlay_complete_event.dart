@@ -36,6 +36,6 @@ class OverlayCompleteEvent extends jsw.TypedJsObject {
     }
   }
   set overlay(dynamic overlay) => $unsafe['overlay'] = overlay;
-  OverlayType get type => OverlayType.find($unsafe['type']);
   set type(OverlayType type) => $unsafe['type'] = type;
+  OverlayType get type => OverlayType.find($unsafe['type']);
 }

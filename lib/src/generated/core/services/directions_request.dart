@@ -49,10 +49,10 @@ class DirectionsRequest extends jsw.TypedJsObject {
   String get region => $unsafe['region'];
   set transitOptions(TransitOptions transitOptions) => $unsafe['transitOptions'] = transitOptions;
   TransitOptions get transitOptions => TransitOptions.cast($unsafe['transitOptions']);
-  TravelMode get travelMode => TravelMode.find($unsafe['travelMode']);
   set travelMode(TravelMode travelMode) => $unsafe['travelMode'] = travelMode;
-  UnitSystem get unitSystem => UnitSystem.find($unsafe['unitSystem']);
+  TravelMode get travelMode => TravelMode.find($unsafe['travelMode']);
   set unitSystem(UnitSystem unitSystem) => $unsafe['unitSystem'] = unitSystem;
+  UnitSystem get unitSystem => UnitSystem.find($unsafe['unitSystem']);
   set waypoints(List<DirectionsWaypoint> waypoints) => $unsafe['waypoints'] = waypoints == null ? null : waypoints is js.Serializable ? waypoints : js.jsify(waypoints);
   List<DirectionsWaypoint> get waypoints => jsw.TypedJsArray.castListOfSerializables($unsafe['waypoints'], DirectionsWaypoint.cast);
 }

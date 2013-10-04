@@ -102,7 +102,7 @@ part of google_maps;
   Stream get onVisibleChanged => _onVisibleChanged.stream;
   Stream get onZindexChanged => _onZindexChanged.stream;
 
-  Animation get animation => Animation.find($unsafe.callMethod('getAnimation'));
+  @isEnum Animation get animation;
   bool get clickable;
   String get cursor;
   bool get draggable;

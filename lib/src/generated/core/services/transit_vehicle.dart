@@ -25,6 +25,6 @@ class TransitVehicle extends jsw.TypedJsObject {
   String get localIcon => $unsafe['localIcon'];
   set name(String name) => $unsafe['name'] = name;
   String get name => $unsafe['name'];
-  VehicleType get type => VehicleType.find($unsafe['type']);
   set type(VehicleType type) => $unsafe['type'] = type;
+  VehicleType get type => VehicleType.find($unsafe['type']);
 }

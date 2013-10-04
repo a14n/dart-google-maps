@@ -25,6 +25,5 @@ part of google_maps;
   LatLng startLocation;
   List<DirectionsStep> steps;
   TransitDetails transit;
-  TravelMode get travelMode => TravelMode.find($unsafe['travel_mode']);
-  set travelMode(TravelMode travelMode);
+  @isEnum TravelMode travelMode;
 }

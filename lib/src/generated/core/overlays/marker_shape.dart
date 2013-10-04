@@ -21,8 +21,8 @@ class MarkerShape extends jsw.TypedJsObject {
 
   set coords(List<num> coords) => $unsafe['coords'] = coords == null ? null : coords is js.Serializable ? coords : js.jsify(coords);
   List<num> get coords => jsw.TypedJsArray.cast($unsafe['coords']);
-  MarkerShapeType get type => MarkerShapeType.find($unsafe['type']);
   set type(MarkerShapeType type) => $unsafe['type'] = type;
+  MarkerShapeType get type => MarkerShapeType.find($unsafe['type']);
 }
 
 class MarkerShapeType extends IsEnum<String> {

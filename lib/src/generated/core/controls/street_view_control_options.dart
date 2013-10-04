@@ -19,6 +19,6 @@ class StreetViewControlOptions extends jsw.TypedJsObject {
   StreetViewControlOptions.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
   StreetViewControlOptions() : super();
 
-  ControlPosition get position => ControlPosition.find($unsafe['position']);
   set position(ControlPosition position) => $unsafe['position'] = position;
+  ControlPosition get position => ControlPosition.find($unsafe['position']);
 }

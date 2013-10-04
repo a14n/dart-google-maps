@@ -29,8 +29,8 @@ class DistanceMatrixRequest extends jsw.TypedJsObject {
   set origins(List origins) => $unsafe['origins'] = origins == null ? null : origins is js.Serializable ? origins : js.jsify(origins);
   set region(String region) => $unsafe['region'] = region;
   String get region => $unsafe['region'];
-  TravelMode get travelMode => TravelMode.find($unsafe['travelMode']);
   set travelMode(TravelMode travelMode) => $unsafe['travelMode'] = travelMode;
-  UnitSystem get unitSystem => UnitSystem.find($unsafe['unitSystem']);
+  TravelMode get travelMode => TravelMode.find($unsafe['travelMode']);
   set unitSystem(UnitSystem unitSystem) => $unsafe['unitSystem'] = unitSystem;
+  UnitSystem get unitSystem => UnitSystem.find($unsafe['unitSystem']);
 }

@@ -19,6 +19,5 @@ part of google_maps_drawing;
 
   List<OverlayType> get drawingModes => jsw.TypedJsArray.castListOfSerializables($unsafe['drawingModes'], OverlayType.find);
   set drawingModes(List<OverlayType> drawingModes);
-  ControlPosition get position => ControlPosition.find($unsafe['position']);
-  set position(ControlPosition position);
+  @isEnum ControlPosition position;
 }

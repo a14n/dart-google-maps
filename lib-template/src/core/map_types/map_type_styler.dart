@@ -22,8 +22,7 @@ part of google_maps;
   bool invertLightness;
   num lightness;
   num saturation;
-  MapTypeStylerVisibility get visibility => MapTypeStylerVisibility.find($unsafe['visibility']);
-  set visibility(MapTypeStylerVisibility visibility);
+  @isEnum MapTypeStylerVisibility visibility;
 }
 
 class MapTypeStylerVisibility extends IsEnum<String> {

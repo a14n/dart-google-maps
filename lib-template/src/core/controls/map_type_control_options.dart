@@ -18,9 +18,7 @@ part of google_maps;
   MapTypeControlOptions() : super();
 
   List get mapTypeIds => jsw.TypedJsArray.castListOfSerializables($unsafe['mapTypeIds'], (e) => [MapTypeId.find(e), e].firstWhere((e) => e != null, orElse: () => null));
-  ControlPosition get position => ControlPosition.find($unsafe['position']);
-  MapTypeControlStyle get style => MapTypeControlStyle.find($unsafe['style']);
   set mapTypeIds(List mapTypeIds);
-  set position(ControlPosition position);
-  set style(MapTypeControlStyle style);
+  @isEnum ControlPosition position;
+  @isEnum MapTypeControlStyle style;
 }

@@ -23,8 +23,8 @@ class GeocoderGeometry extends jsw.TypedJsObject {
   LatLngBounds get bounds => LatLngBounds.cast($unsafe['bounds']);
   set location(LatLng location) => $unsafe['location'] = location;
   LatLng get location => LatLng.cast($unsafe['location']);
-  GeocoderLocationType get locationType => GeocoderLocationType.find($unsafe['location_type']);
   set locationType(GeocoderLocationType locationType) => $unsafe['location_type'] = locationType;
+  GeocoderLocationType get locationType => GeocoderLocationType.find($unsafe['location_type']);
   set viewport(LatLngBounds viewport) => $unsafe['viewport'] = viewport;
   LatLngBounds get viewport => LatLngBounds.cast($unsafe['viewport']);
 }

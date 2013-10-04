@@ -17,8 +17,6 @@ part of google_maps;
 @wrapper abstract class ZoomControlOptions extends jsw.TypedJsObject {
   ZoomControlOptions() : super();
 
-  ControlPosition get position => ControlPosition.find($unsafe['position']);
-  ZoomControlStyle get style => ZoomControlStyle.find($unsafe['style']);
-  set position(ControlPosition position);
-  set style(ZoomControlStyle style);
+  @isEnum ControlPosition position;
+  @isEnum ZoomControlStyle style;
 }

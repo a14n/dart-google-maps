@@ -19,8 +19,8 @@ class ZoomControlOptions extends jsw.TypedJsObject {
   ZoomControlOptions.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
   ZoomControlOptions() : super();
 
-  ControlPosition get position => ControlPosition.find($unsafe['position']);
-  ZoomControlStyle get style => ZoomControlStyle.find($unsafe['style']);
   set position(ControlPosition position) => $unsafe['position'] = position;
+  ControlPosition get position => ControlPosition.find($unsafe['position']);
   set style(ZoomControlStyle style) => $unsafe['style'] = style;
+  ZoomControlStyle get style => ZoomControlStyle.find($unsafe['style']);
 }

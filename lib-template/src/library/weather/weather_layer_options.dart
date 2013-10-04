@@ -18,12 +18,9 @@ part of google_maps_weather;
   WeatherLayerOptions() : super();
 
   bool clickable;
-  LabelColor get labelColor => LabelColor.find($unsafe['labelColor']);
-  set labelColor(LabelColor labelColor);
+  @isEnum LabelColor labelColor;
   GMap map;
   bool suppressInfoWindows;
-  TemperatureUnit get temperatureUnits => TemperatureUnit.find($unsafe['temperatureUnits']);
-  set temperatureUnits(TemperatureUnit temperatureUnits);
-  WindSpeedUnit get windSpeedUnits => WindSpeedUnit.find($unsafe['windSpeedUnits']);
-  set windSpeedUnits(WindSpeedUnit windSpeedUnits);
+  @isEnum TemperatureUnit temperatureUnits;
+  @isEnum WindSpeedUnit windSpeedUnits;
 }

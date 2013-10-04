@@ -41,7 +41,7 @@ part of google_maps_drawing;
   Stream<Polyline> get onPolylinecomplete => _onPolylinecomplete.stream;
   Stream<Rectangle> get onRectanglecomplete => _onRectanglecomplete.stream;
 
-  OverlayType get drawingMode => OverlayType.find($unsafe.callMethod('getDrawingMode'));
+  @isEnum OverlayType get drawingMode;
   GMap get map;
   set drawingMode(OverlayType drawingMode);
   set map(GMap map);

@@ -36,6 +36,5 @@ part of google_maps_drawing;
     }
   }
   set overlay(dynamic/*Marker|Polygon|Polyline|Rectangle|Circle*/ overlay);
-  OverlayType get type => OverlayType.find($unsafe['type']);
-  set type(OverlayType type);
+  @isEnum OverlayType type;
 }

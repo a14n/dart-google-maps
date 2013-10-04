@@ -19,6 +19,5 @@ part of google_maps;
 
   Distance distance;
   GDuration duration;
-  DistanceMatrixElementStatus get status => DistanceMatrixElementStatus.find($unsafe['status']);
-  set status(DistanceMatrixElementStatus status);
+  @isEnum DistanceMatrixElementStatus status;
 }

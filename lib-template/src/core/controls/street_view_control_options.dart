@@ -17,6 +17,5 @@ part of google_maps;
 @wrapper abstract class StreetViewControlOptions extends jsw.TypedJsObject {
   StreetViewControlOptions() : super();
 
-  ControlPosition get position => ControlPosition.find($unsafe['position']);
-  set position(ControlPosition position);
+  @isEnum ControlPosition position;
 }

@@ -25,8 +25,8 @@ class WeatherFeature extends jsw.TypedJsObject {
   List<WeatherForecast> get forecast => jsw.TypedJsArray.castListOfSerializables($unsafe['forecast'], WeatherForecast.cast);
   set location(String location) => $unsafe['location'] = location;
   String get location => $unsafe['location'];
-  TemperatureUnit get temperatureUnit => TemperatureUnit.find($unsafe['temperatureUnit']);
   set temperatureUnit(TemperatureUnit temperatureUnit) => $unsafe['temperatureUnit'] = temperatureUnit;
-  WindSpeedUnit get windSpeedUnit => WindSpeedUnit.find($unsafe['windSpeedUnit']);
+  TemperatureUnit get temperatureUnit => TemperatureUnit.find($unsafe['temperatureUnit']);
   set windSpeedUnit(WindSpeedUnit windSpeedUnit) => $unsafe['windSpeedUnit'] = windSpeedUnit;
+  WindSpeedUnit get windSpeedUnit => WindSpeedUnit.find($unsafe['windSpeedUnit']);
 }

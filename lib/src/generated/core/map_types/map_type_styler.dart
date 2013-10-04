@@ -29,8 +29,8 @@ class MapTypeStyler extends jsw.TypedJsObject {
   num get lightness => $unsafe['lightness'];
   set saturation(num saturation) => $unsafe['saturation'] = saturation;
   num get saturation => $unsafe['saturation'];
-  MapTypeStylerVisibility get visibility => MapTypeStylerVisibility.find($unsafe['visibility']);
   set visibility(MapTypeStylerVisibility visibility) => $unsafe['visibility'] = visibility;
+  MapTypeStylerVisibility get visibility => MapTypeStylerVisibility.find($unsafe['visibility']);
 }
 
 class MapTypeStylerVisibility extends IsEnum<String> {

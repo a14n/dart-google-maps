@@ -24,8 +24,6 @@ part of google_maps;
   List/*Array.<LatLng>|Array.<string>*/ get origins => jsw.TypedJsArray.castListOfSerializables($unsafe['origins'], (e) => LatLng.isInstance(e) ? LatLng.cast(e) : e);
   set origins(List/*Array.<LatLng>|Array.<string>*/ origins);
   String region;
-  TravelMode get travelMode => TravelMode.find($unsafe['travelMode']);
-  set travelMode(TravelMode travelMode);
-  UnitSystem get unitSystem => UnitSystem.find($unsafe['unitSystem']);
-  set unitSystem(UnitSystem unitSystem);
+  @isEnum TravelMode travelMode;
+  @isEnum UnitSystem unitSystem;
 }

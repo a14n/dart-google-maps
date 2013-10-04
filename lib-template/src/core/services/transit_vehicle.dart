@@ -20,6 +20,5 @@ part of google_maps;
   String icon;
   String localIcon;
   String name;
-  VehicleType get type => VehicleType.find($unsafe['type']);
-  set type(VehicleType type);
+  @isEnum VehicleType type;
 }

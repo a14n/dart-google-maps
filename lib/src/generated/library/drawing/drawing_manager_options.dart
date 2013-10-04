@@ -25,8 +25,8 @@ class DrawingManagerOptions extends jsw.TypedJsObject {
   bool get drawingControl => $unsafe['drawingControl'];
   set drawingControlOptions(DrawingControlOptions drawingControlOptions) => $unsafe['drawingControlOptions'] = drawingControlOptions;
   DrawingControlOptions get drawingControlOptions => DrawingControlOptions.cast($unsafe['drawingControlOptions']);
-  OverlayType get drawingMode => OverlayType.find($unsafe['drawingMode']);
   set drawingMode(OverlayType drawingMode) => $unsafe['drawingMode'] = drawingMode;
+  OverlayType get drawingMode => OverlayType.find($unsafe['drawingMode']);
   set map(GMap map) => $unsafe['map'] = map;
   GMap get map => GMap.cast($unsafe['map']);
   set markerOptions(MarkerOptions markerOptions) => $unsafe['markerOptions'] = markerOptions;

@@ -40,9 +40,7 @@ part of google_maps;
   bool provideRouteAlternatives;
   String region;
   TransitOptions transitOptions;
-  TravelMode get travelMode => TravelMode.find($unsafe['travelMode']);
-  set travelMode(TravelMode travelMode);
-  UnitSystem get unitSystem => UnitSystem.find($unsafe['unitSystem']);
-  set unitSystem(UnitSystem unitSystem);
+  @isEnum TravelMode travelMode;
+  @isEnum UnitSystem unitSystem;
   List<DirectionsWaypoint> waypoints;
 }

@@ -20,8 +20,6 @@ part of google_maps_weather;
   WeatherConditions current;
   List<WeatherForecast> forecast;
   String location;
-  TemperatureUnit get temperatureUnit => TemperatureUnit.find($unsafe['temperatureUnit']);
-  set temperatureUnit(TemperatureUnit temperatureUnit);
-  WindSpeedUnit get windSpeedUnit => WindSpeedUnit.find($unsafe['windSpeedUnit']);
-  set windSpeedUnit(WindSpeedUnit windSpeedUnit);
+  @isEnum TemperatureUnit temperatureUnit;
+  @isEnum WindSpeedUnit windSpeedUnit;
 }

@@ -18,8 +18,7 @@ part of google_maps;
   MarkerOptions() : super();
 
   Point anchorPoint;
-  Animation get animation => Animation.find($unsafe['animation']);
-  set animation(Animation animation);
+  @isEnum Animation animation;
   bool clickable;
   String cursor;
   bool draggable;

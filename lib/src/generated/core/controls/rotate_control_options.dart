@@ -19,6 +19,6 @@ class RotateControlOptions extends jsw.TypedJsObject {
   RotateControlOptions.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
   RotateControlOptions() : super();
 
-  ControlPosition get position => ControlPosition.find($unsafe['position']);
   set position(ControlPosition position) => $unsafe['position'] = position;
+  ControlPosition get position => ControlPosition.find($unsafe['position']);
 }

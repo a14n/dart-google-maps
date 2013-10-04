@@ -17,9 +17,7 @@ part of google_maps;
 @wrapper abstract class MapTypeStyle extends jsw.TypedJsObject {
   MapTypeStyle() : super();
 
-  MapTypeStyleElementType get elementType => MapTypeStyleElementType.find($unsafe['elementType']);
-  set elementType(MapTypeStyleElementType elementType);
-  MapTypeStyleFeatureType get featureType => MapTypeStyleFeatureType.find($unsafe['featureType']);
-  set featureType(MapTypeStyleFeatureType featureType);
+  @isEnum MapTypeStyleElementType elementType;
+  @isEnum MapTypeStyleFeatureType featureType;
   List<MapTypeStyler> stylers;
 }
