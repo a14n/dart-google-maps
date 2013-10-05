@@ -1,12 +1,11 @@
 import 'dart:html';
 import 'dart:js' as js;
 
-import 'package:js_wrapping/utils.dart';
-import 'package:js_wrapping/wrapping.dart' as jsw;
+import 'package:js_wrapping/js_wrapping.dart' as jsw;
 import 'package:google_maps/google_maps.dart';
 
 class ColumnChart extends jsw.TypedJsObject {
-  ColumnChart(Node div) : super(js.context['google']['visualization']['ColumnChart'], [convertElementToJs(div)]);
+  ColumnChart(Node div) : super(js.context['google']['visualization']['ColumnChart'], [jsw.convertElementToJs(div)]);
 
   void draw(DataTable data, [js.JsObject options]) { $unsafe.callMethod('draw', [data, options]); }
 }

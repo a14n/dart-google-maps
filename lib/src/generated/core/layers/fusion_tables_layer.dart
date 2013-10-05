@@ -16,7 +16,7 @@ part of google_maps;
 
 class FusionTablesLayer extends MVCObject {
   static FusionTablesLayer cast(js.JsObject jsObject) => jsObject == null ? null : new FusionTablesLayer.fromJsObject(jsObject);
-  SubscribeStreamProvider<FusionTablesMouseEvent> _onClick;
+  jsw.SubscribeStreamProvider<FusionTablesMouseEvent> _onClick;
 
   FusionTablesLayer(FusionTablesLayerOptions options) : super(maps['FusionTablesLayer'], [options]) {
     _initStreams();

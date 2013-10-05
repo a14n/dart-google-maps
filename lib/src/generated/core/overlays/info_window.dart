@@ -16,11 +16,11 @@ part of google_maps;
 
 class InfoWindow extends MVCObject {
   static InfoWindow cast(js.JsObject jsObject) => jsObject == null ? null : new InfoWindow.fromJsObject(jsObject);
-  SubscribeStreamProvider _onCloseclick;
-  SubscribeStreamProvider _onContentChanged;
-  SubscribeStreamProvider _onDomready;
-  SubscribeStreamProvider _onPositionChanged;
-  SubscribeStreamProvider _onZindexChanged;
+  jsw.SubscribeStreamProvider _onCloseclick;
+  jsw.SubscribeStreamProvider _onContentChanged;
+  jsw.SubscribeStreamProvider _onDomready;
+  jsw.SubscribeStreamProvider _onPositionChanged;
+  jsw.SubscribeStreamProvider _onZindexChanged;
 
   InfoWindow([InfoWindowOptions opts]) : super(maps['InfoWindow'], [opts]) {
     _initStreams();
@@ -51,7 +51,7 @@ class InfoWindow extends MVCObject {
     if (result is String) {
       return result;
     } else {
-      return convertElementToDart(result);
+      return jsw.convertElementToDart(result);
     }
   }
   LatLng get position => LatLng.cast($unsafe.callMethod('getPosition'));
@@ -59,7 +59,7 @@ class InfoWindow extends MVCObject {
   void open([dynamic map, MVCObject anchor]) {
     $unsafe.callMethod('open', [map, anchor]);
   }
-  set content(dynamic /*string|Node*/ content) => $unsafe.callMethod('setContent', [content is String ? content : convertElementToJs(content)]);
+  set content(dynamic /*string|Node*/ content) => $unsafe.callMethod('setContent', [content is String ? content : jsw.convertElementToJs(content)]);
   set options(InfoWindowOptions options) => $unsafe.callMethod('setOptions', [options]);
   set position(LatLng position) => $unsafe.callMethod('setPosition', [position]);
   set zIndex(num zIndex) => $unsafe.callMethod('setZIndex', [zIndex]);

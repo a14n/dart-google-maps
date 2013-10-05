@@ -19,8 +19,8 @@ class MapType extends jsw.TypedJsObject {
   MapType([js.Serializable<js.JsFunction> constructor, List args]) : super(constructor, args);
   MapType.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy);
 
-  html.Node getTile(Point tileCoord, num zoom, js.JsObject /*html.Document*/ ownerDocument) => convertElementToDart($unsafe.callMethod('getTile', [tileCoord, zoom, ownerDocument]));
-  void releaseTile(html.Node tile) => $unsafe.callMethod('releaseTile', [convertElementToJs(tile)]);
+  html.Node getTile(Point tileCoord, num zoom, js.JsObject /*html.Document*/ ownerDocument) => jsw.convertElementToDart($unsafe.callMethod('getTile', [tileCoord, zoom, ownerDocument]));
+  void releaseTile(html.Node tile) => $unsafe.callMethod('releaseTile', [jsw.convertElementToJs(tile)]);
 
   set alt(String alt) => $unsafe['alt'] = alt;
   String get alt => $unsafe['alt'];

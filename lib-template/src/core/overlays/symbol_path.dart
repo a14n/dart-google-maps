@@ -14,14 +14,14 @@
 
 part of google_maps;
 
-class SymbolPath extends IsEnum<int> {
+class SymbolPath extends jsw.IsEnum<int> {
   static final BACKWARD_CLOSED_ARROW = new SymbolPath._(maps['SymbolPath']['BACKWARD_CLOSED_ARROW']);
   static final BACKWARD_OPEN_ARROW = new SymbolPath._(maps['SymbolPath']['BACKWARD_OPEN_ARROW']);
   static final CIRCLE = new SymbolPath._(maps['SymbolPath']['CIRCLE']);
   static final FORWARD_CLOSED_ARROW = new SymbolPath._(maps['SymbolPath']['FORWARD_CLOSED_ARROW']);
   static final FORWARD_OPEN_ARROW = new SymbolPath._(maps['SymbolPath']['FORWARD_OPEN_ARROW']);
 
-  static final _FINDER = new EnumFinder<int, SymbolPath>([BACKWARD_CLOSED_ARROW, BACKWARD_OPEN_ARROW, CIRCLE, FORWARD_CLOSED_ARROW, FORWARD_OPEN_ARROW]);
+  static final _FINDER = new jsw.EnumFinder<int, SymbolPath>([BACKWARD_CLOSED_ARROW, BACKWARD_OPEN_ARROW, CIRCLE, FORWARD_CLOSED_ARROW, FORWARD_OPEN_ARROW]);
 
   static SymbolPath find(o) => _FINDER.find(o);
 

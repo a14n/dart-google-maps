@@ -14,7 +14,7 @@
 
 part of google_maps;
 
-class GeocoderStatus extends IsEnum<String> {
+class GeocoderStatus extends jsw.IsEnum<String> {
   static final ERROR = new GeocoderStatus._(maps['GeocoderStatus']['ERROR']);
   static final INVALID_REQUEST = new GeocoderStatus._(maps['GeocoderStatus']['INVALID_REQUEST']);
   static final OK = new GeocoderStatus._(maps['GeocoderStatus']['OK']);
@@ -23,7 +23,7 @@ class GeocoderStatus extends IsEnum<String> {
   static final UNKNOWN_ERROR = new GeocoderStatus._(maps['GeocoderStatus']['UNKNOWN_ERROR']);
   static final ZERO_RESULTS = new GeocoderStatus._(maps['GeocoderStatus']['ZERO_RESULTS']);
 
-  static final _FINDER = new EnumFinder<String, GeocoderStatus>([ERROR, INVALID_REQUEST, OK, OVER_QUERY_LIMIT, REQUEST_DENIED, UNKNOWN_ERROR, ZERO_RESULTS]);
+  static final _FINDER = new jsw.EnumFinder<String, GeocoderStatus>([ERROR, INVALID_REQUEST, OK, OVER_QUERY_LIMIT, REQUEST_DENIED, UNKNOWN_ERROR, ZERO_RESULTS]);
 
   static GeocoderStatus find(o) => _FINDER.find(o);
 

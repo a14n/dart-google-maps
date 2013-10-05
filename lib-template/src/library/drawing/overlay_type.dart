@@ -14,14 +14,14 @@
 
 part of google_maps_drawing;
 
-class OverlayType extends IsEnum<String> {
+class OverlayType extends jsw.IsEnum<String> {
   static final CIRCLE= new OverlayType._(maps['drawing']['OverlayType']['CIRCLE']);
   static final MARKER= new OverlayType._(maps['drawing']['OverlayType']['MARKER']);
   static final POLYGON= new OverlayType._(maps['drawing']['OverlayType']['POLYGON']);
   static final POLYLINE= new OverlayType._(maps['drawing']['OverlayType']['POLYLINE']);
   static final RECTANGLE= new OverlayType._(maps['drawing']['OverlayType']['RECTANGLE']);
 
-  static final _FINDER = new EnumFinder<String, OverlayType>([CIRCLE, MARKER, POLYGON, POLYLINE, RECTANGLE]);
+  static final _FINDER = new jsw.EnumFinder<String, OverlayType>([CIRCLE, MARKER, POLYGON, POLYLINE, RECTANGLE]);
 
   static OverlayType find(o) => _FINDER.find(o);
 

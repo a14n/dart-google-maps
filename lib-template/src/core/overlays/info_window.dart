@@ -15,11 +15,11 @@
 part of google_maps;
 
 @wrapper @forMethods @skipConstructor abstract class InfoWindow extends MVCObject {
-  SubscribeStreamProvider _onCloseclick;
-  SubscribeStreamProvider _onContentChanged;
-  SubscribeStreamProvider _onDomready;
-  SubscribeStreamProvider _onPositionChanged;
-  SubscribeStreamProvider _onZindexChanged;
+  jsw.SubscribeStreamProvider _onCloseclick;
+  jsw.SubscribeStreamProvider _onContentChanged;
+  jsw.SubscribeStreamProvider _onDomready;
+  jsw.SubscribeStreamProvider _onPositionChanged;
+  jsw.SubscribeStreamProvider _onZindexChanged;
 
   InfoWindow([InfoWindowOptions opts]) : super(maps['InfoWindow'], [opts]) { _initStreams(); }
   InfoWindow.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) { _initStreams(); }
@@ -44,13 +44,13 @@ part of google_maps;
     if (result is String) {
       return result;
     } else {
-      return convertElementToDart(result);
+      return jsw.convertElementToDart(result);
     }
   }
   LatLng get position;
   num get zIndex;
   void open([dynamic/*Map|StreetViewPanorama*/ map, MVCObject anchor]);
-  set content(dynamic/*string|Node*/ content) => $unsafe.callMethod('setContent', [content is String ? content : convertElementToJs(content)]);
+  set content(dynamic/*string|Node*/ content) => $unsafe.callMethod('setContent', [content is String ? content : jsw.convertElementToJs(content)]);
   set options(InfoWindowOptions options);
   set position(LatLng position);
   set zIndex(num zIndex);

@@ -19,7 +19,7 @@ import 'dart:js' as js;
 
 import 'package:google_maps/google_maps.dart';
 import 'package:js_wrapping/generator.dart';
-import 'package:js_wrapping/wrapping.dart' as jsw;
+import 'package:js_wrapping/js_wrapping.dart' as jsw;
 
 part 'src/library/geometry/encoding.dart';
 part 'src/library/geometry/spherical.dart';

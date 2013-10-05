@@ -28,28 +28,28 @@ part of google_maps;
     }
   }
 
-  SubscribeStreamProvider _onAnimationChanged;
-  SubscribeStreamProvider<MouseEvent> _onClick;
-  SubscribeStreamProvider _onClickableChanged;
-  SubscribeStreamProvider _onCursorChanged;
-  SubscribeStreamProvider<MouseEvent> _onDblClick;
-  SubscribeStreamProvider<MouseEvent> _onDrag;
-  SubscribeStreamProvider<MouseEvent> _onDragend;
-  SubscribeStreamProvider _onDraggableChanged;
-  SubscribeStreamProvider<MouseEvent> _onDragstart;
-  SubscribeStreamProvider _onFlatChanged;
-  SubscribeStreamProvider _onIconChanged;
-  SubscribeStreamProvider<MouseEvent> _onMousedown;
-  SubscribeStreamProvider<MouseEvent> _onMouseout;
-  SubscribeStreamProvider<MouseEvent> _onMouseover;
-  SubscribeStreamProvider<MouseEvent> _onMouseup;
-  SubscribeStreamProvider _onPositionChanged;
-  SubscribeStreamProvider<MouseEvent> _onRightclick;
-  SubscribeStreamProvider _onShadowChanged;
-  SubscribeStreamProvider _onShapeChanged;
-  SubscribeStreamProvider _onTitleChanged;
-  SubscribeStreamProvider _onVisibleChanged;
-  SubscribeStreamProvider _onZindexChanged;
+  jsw.SubscribeStreamProvider _onAnimationChanged;
+  jsw.SubscribeStreamProvider<MouseEvent> _onClick;
+  jsw.SubscribeStreamProvider _onClickableChanged;
+  jsw.SubscribeStreamProvider _onCursorChanged;
+  jsw.SubscribeStreamProvider<MouseEvent> _onDblClick;
+  jsw.SubscribeStreamProvider<MouseEvent> _onDrag;
+  jsw.SubscribeStreamProvider<MouseEvent> _onDragend;
+  jsw.SubscribeStreamProvider _onDraggableChanged;
+  jsw.SubscribeStreamProvider<MouseEvent> _onDragstart;
+  jsw.SubscribeStreamProvider _onFlatChanged;
+  jsw.SubscribeStreamProvider _onIconChanged;
+  jsw.SubscribeStreamProvider<MouseEvent> _onMousedown;
+  jsw.SubscribeStreamProvider<MouseEvent> _onMouseout;
+  jsw.SubscribeStreamProvider<MouseEvent> _onMouseover;
+  jsw.SubscribeStreamProvider<MouseEvent> _onMouseup;
+  jsw.SubscribeStreamProvider _onPositionChanged;
+  jsw.SubscribeStreamProvider<MouseEvent> _onRightclick;
+  jsw.SubscribeStreamProvider _onShadowChanged;
+  jsw.SubscribeStreamProvider _onShapeChanged;
+  jsw.SubscribeStreamProvider _onTitleChanged;
+  jsw.SubscribeStreamProvider _onVisibleChanged;
+  jsw.SubscribeStreamProvider _onZindexChanged;
 
   Marker([MarkerOptions opts]) : super(maps['Marker'], [opts]) { _initStreams(); }
   Marker.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) { _initStreams(); }

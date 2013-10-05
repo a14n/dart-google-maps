@@ -18,27 +18,27 @@ part of google_maps;
   static GMap cast(js.JsObject jsObject) => null;
   static bool isInstance(js.JsObject proxy) => proxy.instanceof(maps['Map']);
 
-  SubscribeStreamProvider _onBoundsChanged;
-  SubscribeStreamProvider _onCenterChanged;
-  SubscribeStreamProvider<MouseEvent> _onClick;
-  SubscribeStreamProvider<MouseEvent> _onDblClick;
-  SubscribeStreamProvider _onDrag;
-  SubscribeStreamProvider _onDragend;
-  SubscribeStreamProvider _onDragstart;
-  SubscribeStreamProvider _onHeadingChanged;
-  SubscribeStreamProvider _onIdle;
-  SubscribeStreamProvider _onMaptypeidChanged;
-  SubscribeStreamProvider<MouseEvent> _onMousemove;
-  SubscribeStreamProvider<MouseEvent> _onMouseout;
-  SubscribeStreamProvider<MouseEvent> _onMouseover;
-  SubscribeStreamProvider _onProjectionChanged;
-  SubscribeStreamProvider _onResize;
-  SubscribeStreamProvider<MouseEvent> _onRightclick;
-  SubscribeStreamProvider _onTilesloaded;
-  SubscribeStreamProvider _onTiltChanged;
-  SubscribeStreamProvider _onZoomChanged;
+  jsw.SubscribeStreamProvider _onBoundsChanged;
+  jsw.SubscribeStreamProvider _onCenterChanged;
+  jsw.SubscribeStreamProvider<MouseEvent> _onClick;
+  jsw.SubscribeStreamProvider<MouseEvent> _onDblClick;
+  jsw.SubscribeStreamProvider _onDrag;
+  jsw.SubscribeStreamProvider _onDragend;
+  jsw.SubscribeStreamProvider _onDragstart;
+  jsw.SubscribeStreamProvider _onHeadingChanged;
+  jsw.SubscribeStreamProvider _onIdle;
+  jsw.SubscribeStreamProvider _onMaptypeidChanged;
+  jsw.SubscribeStreamProvider<MouseEvent> _onMousemove;
+  jsw.SubscribeStreamProvider<MouseEvent> _onMouseout;
+  jsw.SubscribeStreamProvider<MouseEvent> _onMouseover;
+  jsw.SubscribeStreamProvider _onProjectionChanged;
+  jsw.SubscribeStreamProvider _onResize;
+  jsw.SubscribeStreamProvider<MouseEvent> _onRightclick;
+  jsw.SubscribeStreamProvider _onTilesloaded;
+  jsw.SubscribeStreamProvider _onTiltChanged;
+  jsw.SubscribeStreamProvider _onZoomChanged;
 
-  GMap(html.Node mapDiv, [MapOptions opts]) : super(maps['Map'], [convertElementToJs(mapDiv), opts]) { _initStreams(); }
+  GMap(html.Node mapDiv, [MapOptions opts]) : super(maps['Map'], [jsw.convertElementToJs(mapDiv), opts]) { _initStreams(); }
   GMap.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) { _initStreams(); }
 
   void _initStreams() {
@@ -86,7 +86,7 @@ part of google_maps;
   void fitBounds(LatLngBounds bounds);
   @forMethods LatLngBounds get bounds;
   @forMethods LatLng get center;
-  html.Node get div => convertElementToDart($unsafe.callMethod('getDiv'));
+  html.Node get div => jsw.convertElementToDart($unsafe.callMethod('getDiv'));
   @forMethods num get heading;
   dynamic/*MapTypeId|String*/ get mapTypeId {
     final result = $unsafe.callMethod('getMapTypeId');
@@ -127,5 +127,5 @@ part of google_maps;
 
 final _nodeTranslator = new _NodeTranslator();
 class _NodeTranslator extends jsw.Translator<html.Node> {
-  _NodeTranslator() : super(convertElementToDart, convertElementToJs);
+  _NodeTranslator() : super(jsw.convertElementToDart, jsw.convertElementToJs);
 }

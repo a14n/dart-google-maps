@@ -14,12 +14,12 @@
 
 part of google_maps;
 
-class StreetViewStatus extends IsEnum<String> {
+class StreetViewStatus extends jsw.IsEnum<String> {
   static final OK = new StreetViewStatus._(maps['StreetViewStatus']['OK']);
   static final UNKNOWN_ERROR = new StreetViewStatus._(maps['StreetViewStatus']['UNKNOWN_ERROR']);
   static final ZERO_RESULTS = new StreetViewStatus._(maps['StreetViewStatus']['ZERO_RESULTS']);
 
-  static final _FINDER = new EnumFinder<String, StreetViewStatus>([OK, UNKNOWN_ERROR, ZERO_RESULTS]);
+  static final _FINDER = new jsw.EnumFinder<String, StreetViewStatus>([OK, UNKNOWN_ERROR, ZERO_RESULTS]);
 
   static StreetViewStatus find(o) => _FINDER.find(o);
 

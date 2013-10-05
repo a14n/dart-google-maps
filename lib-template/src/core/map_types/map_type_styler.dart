@@ -25,12 +25,12 @@ part of google_maps;
   @isEnum MapTypeStylerVisibility visibility;
 }
 
-class MapTypeStylerVisibility extends IsEnum<String> {
+class MapTypeStylerVisibility extends jsw.IsEnum<String> {
   static final ON = new MapTypeStylerVisibility._("on");
   static final OFF = new MapTypeStylerVisibility._("off");
   static final SIMPLIFIED = new MapTypeStylerVisibility._("simplified");
 
-  static final _FINDER = new EnumFinder<String, MapTypeStylerVisibility>([ON, OFF, SIMPLIFIED]);
+  static final _FINDER = new jsw.EnumFinder<String, MapTypeStylerVisibility>([ON, OFF, SIMPLIFIED]);
 
   static MapTypeStylerVisibility find(o) => _FINDER.find(o);
 

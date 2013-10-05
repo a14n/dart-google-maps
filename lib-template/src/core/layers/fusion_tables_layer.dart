@@ -15,7 +15,7 @@
 part of google_maps;
 
 @wrapper @skipConstructor abstract class FusionTablesLayer extends MVCObject {
-  SubscribeStreamProvider<FusionTablesMouseEvent> _onClick;
+  jsw.SubscribeStreamProvider<FusionTablesMouseEvent> _onClick;
 
   FusionTablesLayer(FusionTablesLayerOptions options) : super(maps['FusionTablesLayer'], [options]) { _initStreams(); }
   FusionTablesLayer.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) { _initStreams(); }

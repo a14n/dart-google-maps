@@ -18,14 +18,14 @@ part of google_maps;
   static Polyline cast(js.JsObject jsObject) => null;
   static bool isInstance(js.JsObject proxy) => proxy.instanceof(maps['Polyline']);
 
-  SubscribeStreamProvider<PolyMouseEvent> _onClick;
-  SubscribeStreamProvider<PolyMouseEvent> _onDblClick;
-  SubscribeStreamProvider<PolyMouseEvent> _onMousedown;
-  SubscribeStreamProvider<PolyMouseEvent> _onMousemove;
-  SubscribeStreamProvider<PolyMouseEvent> _onMouseout;
-  SubscribeStreamProvider<PolyMouseEvent> _onMouseover;
-  SubscribeStreamProvider<PolyMouseEvent> _onMouseup;
-  SubscribeStreamProvider<PolyMouseEvent> _onRightclick;
+  jsw.SubscribeStreamProvider<PolyMouseEvent> _onClick;
+  jsw.SubscribeStreamProvider<PolyMouseEvent> _onDblClick;
+  jsw.SubscribeStreamProvider<PolyMouseEvent> _onMousedown;
+  jsw.SubscribeStreamProvider<PolyMouseEvent> _onMousemove;
+  jsw.SubscribeStreamProvider<PolyMouseEvent> _onMouseout;
+  jsw.SubscribeStreamProvider<PolyMouseEvent> _onMouseover;
+  jsw.SubscribeStreamProvider<PolyMouseEvent> _onMouseup;
+  jsw.SubscribeStreamProvider<PolyMouseEvent> _onRightclick;
 
   Polyline([PolylineOptions opts]) : super(maps['Polyline'], [opts]) { _initStreams(); }
   Polyline.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) { _initStreams(); }

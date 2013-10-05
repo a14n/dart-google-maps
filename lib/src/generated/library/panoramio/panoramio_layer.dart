@@ -16,7 +16,7 @@ part of google_maps_panoramio;
 
 class PanoramioLayer extends MVCObject {
   static PanoramioLayer cast(js.JsObject jsObject) => jsObject == null ? null : new PanoramioLayer.fromJsObject(jsObject);
-  SubscribeStreamProvider<PanoramioMouseEvent> _onClick;
+  jsw.SubscribeStreamProvider<PanoramioMouseEvent> _onClick;
 
   PanoramioLayer([PanoramioLayerOptions opts]) : super(maps['panoramio']['PanoramioLayer'], [opts]) {
     _initStreams();

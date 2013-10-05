@@ -1,13 +1,12 @@
 import 'dart:html';
 import 'dart:js' as js;
 
-import 'package:js_wrapping/utils.dart';
-import 'package:js_wrapping/wrapping.dart' as jsw;
+import 'package:js_wrapping/js_wrapping.dart' as jsw;
 import 'package:google_maps/google_maps.dart';
 import 'package:google_maps/google_maps_panoramio.dart';
 
 class PhotoWidget extends jsw.TypedJsObject {
-  PhotoWidget(DivElement div, PhotoRequestOptions photoRequestOptions, PhotoWidgetOptions photoWidgetOptions) : super(js.context['panoramio']['PhotoWidget'], [convertElementToJs(div), photoRequestOptions, photoWidgetOptions]);
+  PhotoWidget(DivElement div, PhotoRequestOptions photoRequestOptions, PhotoWidgetOptions photoWidgetOptions) : super(js.context['panoramio']['PhotoWidget'], [jsw.convertElementToJs(div), photoRequestOptions, photoWidgetOptions]);
 
   void set request(PhotoRequestOptions photoRequestOptions) { $unsafe.callMethod('setRequest', [photoRequestOptions]); }
   void set position(num position) { $unsafe.callMethod('setPosition', [position]); }

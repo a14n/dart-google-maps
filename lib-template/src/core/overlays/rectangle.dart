@@ -18,15 +18,15 @@ part of google_maps;
   static Rectangle cast(js.JsObject jsObject) => null;
   static bool isInstance(js.JsObject proxy) => proxy.instanceof(maps['Rectangle']);
 
-  SubscribeStreamProvider _onBoundsChanged;
-  SubscribeStreamProvider<MouseEvent> _onClick;
-  SubscribeStreamProvider<MouseEvent> _onDblClick;
-  SubscribeStreamProvider<MouseEvent> _onMousedown;
-  SubscribeStreamProvider<MouseEvent> _onMousemove;
-  SubscribeStreamProvider<MouseEvent> _onMouseout;
-  SubscribeStreamProvider<MouseEvent> _onMouseover;
-  SubscribeStreamProvider<MouseEvent> _onMouseup;
-  SubscribeStreamProvider<MouseEvent> _onRightclick;
+  jsw.SubscribeStreamProvider _onBoundsChanged;
+  jsw.SubscribeStreamProvider<MouseEvent> _onClick;
+  jsw.SubscribeStreamProvider<MouseEvent> _onDblClick;
+  jsw.SubscribeStreamProvider<MouseEvent> _onMousedown;
+  jsw.SubscribeStreamProvider<MouseEvent> _onMousemove;
+  jsw.SubscribeStreamProvider<MouseEvent> _onMouseout;
+  jsw.SubscribeStreamProvider<MouseEvent> _onMouseover;
+  jsw.SubscribeStreamProvider<MouseEvent> _onMouseup;
+  jsw.SubscribeStreamProvider<MouseEvent> _onRightclick;
 
   Rectangle([RectangleOptions opts]) : super(maps['Rectangle'], [opts]) { _initStreams(); }
   Rectangle.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) { _initStreams(); }

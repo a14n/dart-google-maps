@@ -14,11 +14,11 @@
 
 part of google_maps;
 
-class Animation extends IsEnum<int> {
+class Animation extends jsw.IsEnum<int> {
   static final BOUNCE = new Animation._(maps['Animation']['BOUNCE']);
   static final DROP = new Animation._(maps['Animation']['DROP']);
 
-  static final _FINDER = new EnumFinder<int, Animation>([BOUNCE, DROP]);
+  static final _FINDER = new jsw.EnumFinder<int, Animation>([BOUNCE, DROP]);
 
   static Animation find(o) => _FINDER.find(o);
 

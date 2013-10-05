@@ -16,7 +16,7 @@ part of google_maps;
 
 class DirectionsRenderer extends MVCObject {
   static DirectionsRenderer cast(js.JsObject jsObject) => jsObject == null ? null : new DirectionsRenderer.fromJsObject(jsObject);
-  SubscribeStreamProvider _onDirectionsChanged;
+  jsw.SubscribeStreamProvider _onDirectionsChanged;
 
   DirectionsRenderer([DirectionsRendererOptions opts]) : super(maps['DirectionsRenderer'], [opts]) {
     _initStreams();
@@ -33,11 +33,11 @@ class DirectionsRenderer extends MVCObject {
 
   DirectionsResult get directions => DirectionsResult.cast($unsafe.callMethod('getDirections'));
   GMap get map => GMap.cast($unsafe.callMethod('getMap'));
-  html.Node get panel => convertElementToDart($unsafe.callMethod('getPanel'));
+  html.Node get panel => jsw.convertElementToDart($unsafe.callMethod('getPanel'));
   num get routeIndex => $unsafe.callMethod('getRouteIndex');
   set directions(DirectionsResult directions) => $unsafe.callMethod('setDirections', [directions]);
   set map(GMap map) => $unsafe.callMethod('setMap', [map]);
   set options(DirectionsRendererOptions options) => $unsafe.callMethod('setOptions', [options]);
-  set panel(html.Node panel) => $unsafe.callMethod('setPanel', [convertElementToJs(panel)]);
+  set panel(html.Node panel) => $unsafe.callMethod('setPanel', [jsw.convertElementToJs(panel)]);
   set routeIndex(num routeIndex) => $unsafe.callMethod('setRouteIndex', [routeIndex]);
 }

@@ -15,9 +15,9 @@
 part of google_maps_places;
 
 @wrapper @forMethods @skipConstructor abstract class SearchBox extends MVCObject {
-  SubscribeStreamProvider _onPlaceChanged;
+  jsw.SubscribeStreamProvider _onPlaceChanged;
 
-  SearchBox(html.InputElement inputField, [SearchBoxOptions opts]) : super(maps['places']['SearchBox'], [convertElementToJs(inputField), opts]) { _initStreams(); }
+  SearchBox(html.InputElement inputField, [SearchBoxOptions opts]) : super(maps['places']['SearchBox'], [jsw.convertElementToJs(inputField), opts]) { _initStreams(); }
   SearchBox.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) { _initStreams(); }
 
   void _initStreams() {

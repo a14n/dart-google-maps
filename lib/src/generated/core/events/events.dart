@@ -24,7 +24,7 @@ final GEvent event = new GEvent();
 class GEvent extends jsw.TypedJsObject {
   GEvent() : super.fromJsObject(maps['event']);
 
-  _mayConvert(instance) => instance is html.Element ? convertElementToJs(instance) : instance;
+  _mayConvert(instance) => instance is html.Element ? jsw.convertElementToJs(instance) : instance;
 
   MapsEventListener addDomListener(dynamic instance, String eventName, Function handler, [bool capture]) => MapsEventListener.cast($unsafe.callMethod('addDomListener', [_mayConvert(instance), eventName, handler, capture]));
   MapsEventListener addDomListenerOnce(dynamic instance, String eventName, Function handler, [bool capture]) => MapsEventListener.cast($unsafe.callMethod('addDomListenerOnce', [_mayConvert(instance), eventName, handler, capture]));
@@ -43,9 +43,9 @@ class GEvent extends jsw.TypedJsObject {
     $unsafe.callMethod('trigger', [_mayConvert(instance), eventName]..addAll(args));
   }
 
-  SubscribeStreamProvider getStreamProviderFor(dynamic instance, String eventName, [Function transformArguments]) {
+  jsw.SubscribeStreamProvider getStreamProviderFor(dynamic instance, String eventName, [Function transformArguments]) {
     MapsEventListener mapsEventListener = null;
-    return new SubscribeStreamProvider(
+    return new jsw.SubscribeStreamProvider(
     subscribe: (EventSink eventSink) {
       mapsEventListener = addListener(_mayConvert(instance), eventName, ([
       p1 = _undefined, 

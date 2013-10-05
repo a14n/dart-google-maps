@@ -18,16 +18,16 @@ class StreetViewPanorama extends MVCObject {
   static StreetViewPanorama cast(js.JsObject jsObject) => jsObject == null ? null : new StreetViewPanorama.fromJsObject(jsObject);
   static bool isInstance(js.JsObject proxy) => proxy.instanceof(maps['StreetViewPanorama']);
 
-  SubscribeStreamProvider<NativeEvent> _onCloseclick;
-  SubscribeStreamProvider _onLinksChanged;
-  SubscribeStreamProvider _onPanoChanged;
-  SubscribeStreamProvider _onPositionChanged;
-  SubscribeStreamProvider _onPovChanged;
-  SubscribeStreamProvider _onResize;
-  SubscribeStreamProvider _onVisibleChanged;
-  SubscribeStreamProvider _onZoomChanged;
+  jsw.SubscribeStreamProvider<NativeEvent> _onCloseclick;
+  jsw.SubscribeStreamProvider _onLinksChanged;
+  jsw.SubscribeStreamProvider _onPanoChanged;
+  jsw.SubscribeStreamProvider _onPositionChanged;
+  jsw.SubscribeStreamProvider _onPovChanged;
+  jsw.SubscribeStreamProvider _onResize;
+  jsw.SubscribeStreamProvider _onVisibleChanged;
+  jsw.SubscribeStreamProvider _onZoomChanged;
 
-  StreetViewPanorama(html.Node container, [StreetViewPanoramaOptions opts]) : super(maps['StreetViewPanorama'], [convertElementToJs(container), opts]) {
+  StreetViewPanorama(html.Node container, [StreetViewPanoramaOptions opts]) : super(maps['StreetViewPanorama'], [jsw.convertElementToJs(container), opts]) {
     _initStreams();
   }
   StreetViewPanorama.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) {

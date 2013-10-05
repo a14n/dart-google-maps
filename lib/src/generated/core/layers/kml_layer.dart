@@ -16,9 +16,9 @@ part of google_maps;
 
 class KmlLayer extends MVCObject {
   static KmlLayer cast(js.JsObject jsObject) => jsObject == null ? null : new KmlLayer.fromJsObject(jsObject);
-  SubscribeStreamProvider<KmlMouseEvent> _onClick;
-  SubscribeStreamProvider _onDefaultviewportChanged;
-  SubscribeStreamProvider _onStatusChanged;
+  jsw.SubscribeStreamProvider<KmlMouseEvent> _onClick;
+  jsw.SubscribeStreamProvider _onDefaultviewportChanged;
+  jsw.SubscribeStreamProvider _onStatusChanged;
 
   KmlLayer([KmlLayerOptions options]) : super(maps['KmlLayer'], [options]) {
     _initStreams();

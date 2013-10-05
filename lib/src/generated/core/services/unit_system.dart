@@ -14,11 +14,11 @@
 
 part of google_maps;
 
-class UnitSystem extends IsEnum<int> {
+class UnitSystem extends jsw.IsEnum<int> {
   static final IMPERIAL = new UnitSystem._(maps['UnitSystem']['IMPERIAL']);
   static final METRIC = new UnitSystem._(maps['UnitSystem']['METRIC']);
 
-  static final _FINDER = new EnumFinder<int, UnitSystem>([IMPERIAL, METRIC]);
+  static final _FINDER = new jsw.EnumFinder<int, UnitSystem>([IMPERIAL, METRIC]);
 
   static UnitSystem find(o) => _FINDER.find(o);
 

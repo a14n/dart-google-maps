@@ -15,12 +15,12 @@
 part of google_maps_drawing;
 
 @wrapper @forMethods @skipConstructor abstract class DrawingManager extends MVCObject {
-  SubscribeStreamProvider<Circle> _onCirclecomplete;
-  SubscribeStreamProvider<Marker> _onMarkercomplete;
-  SubscribeStreamProvider<OverlayCompleteEvent> _onOverlaycomplete;
-  SubscribeStreamProvider<Polygon> _onPolygoncomplete;
-  SubscribeStreamProvider<Polyline> _onPolylinecomplete;
-  SubscribeStreamProvider<Rectangle> _onRectanglecomplete;
+  jsw.SubscribeStreamProvider<Circle> _onCirclecomplete;
+  jsw.SubscribeStreamProvider<Marker> _onMarkercomplete;
+  jsw.SubscribeStreamProvider<OverlayCompleteEvent> _onOverlaycomplete;
+  jsw.SubscribeStreamProvider<Polygon> _onPolygoncomplete;
+  jsw.SubscribeStreamProvider<Polyline> _onPolylinecomplete;
+  jsw.SubscribeStreamProvider<Rectangle> _onRectanglecomplete;
 
   DrawingManager([DrawingManagerOptions opts]) : super(maps['drawing']['DrawingManager'], [opts]) { _initStreams(); }
   DrawingManager.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) { _initStreams(); }

@@ -14,10 +14,10 @@
 
 part of google_maps;
 
-class ScaleControlStyle extends IsEnum<String> {
+class ScaleControlStyle extends jsw.IsEnum<String> {
   static final DEFAULT = new ScaleControlStyle._(maps['ScaleControlStyle']['DEFAULT']);
 
-  static final _FINDER = new EnumFinder<String, ScaleControlStyle>([DEFAULT]);
+  static final _FINDER = new jsw.EnumFinder<String, ScaleControlStyle>([DEFAULT]);
 
   static ScaleControlStyle find(o) => _FINDER.find(o);
 

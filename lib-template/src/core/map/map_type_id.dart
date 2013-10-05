@@ -14,13 +14,13 @@
 
 part of google_maps;
 
-class MapTypeId extends IsEnum<String> {
+class MapTypeId extends jsw.IsEnum<String> {
   static final HYBRID = new MapTypeId._(maps['MapTypeId']['HYBRID']);
   static final ROADMAP = new MapTypeId._(maps['MapTypeId']['ROADMAP']);
   static final SATELLITE = new MapTypeId._(maps['MapTypeId']['SATELLITE']);
   static final TERRAIN = new MapTypeId._(maps['MapTypeId']['TERRAIN']);
 
-  static final _FINDER = new EnumFinder<String, MapTypeId>([HYBRID, ROADMAP, SATELLITE, TERRAIN]);
+  static final _FINDER = new jsw.EnumFinder<String, MapTypeId>([HYBRID, ROADMAP, SATELLITE, TERRAIN]);
 
   static MapTypeId find(o) => _FINDER.find(o);
 

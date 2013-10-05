@@ -18,8 +18,7 @@ import 'dart:html' as html;
 import 'dart:js' as js;
 
 import 'package:google_maps/google_maps.dart';
-import 'package:js_wrapping/utils.dart';
-import 'package:js_wrapping/wrapping.dart' as jsw;
+import 'package:js_wrapping/js_wrapping.dart' as jsw;
 
 part 'src/generated/library/adsense/ad_unit.dart';
 part 'src/generated/library/adsense/ad_unit_options.dart';

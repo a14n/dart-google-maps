@@ -14,14 +14,14 @@
 
 part of google_maps;
 
-class ElevationStatus extends IsEnum<String> {
+class ElevationStatus extends jsw.IsEnum<String> {
   static final INVALID_REQUEST = new ElevationStatus._(maps['ElevationStatus']['INVALID_REQUEST']);
   static final OK = new ElevationStatus._(maps['ElevationStatus']['OK']);
   static final OVER_QUERY_LIMIT = new ElevationStatus._(maps['ElevationStatus']['OVER_QUERY_LIMIT']);
   static final REQUEST_DENIED = new ElevationStatus._(maps['ElevationStatus']['REQUEST_DENIED']);
   static final UNKNOWN_ERROR = new ElevationStatus._(maps['ElevationStatus']['UNKNOWN_ERROR']);
 
-  static final _FINDER = new EnumFinder<String, ElevationStatus>([INVALID_REQUEST, OK, OVER_QUERY_LIMIT, REQUEST_DENIED, UNKNOWN_ERROR]);
+  static final _FINDER = new jsw.EnumFinder<String, ElevationStatus>([INVALID_REQUEST, OK, OVER_QUERY_LIMIT, REQUEST_DENIED, UNKNOWN_ERROR]);
 
   static ElevationStatus find(o) => _FINDER.find(o);
 

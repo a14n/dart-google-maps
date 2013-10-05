@@ -14,7 +14,7 @@
 
 part of google_maps;
 
-class DistanceMatrixStatus extends IsEnum<String> {
+class DistanceMatrixStatus extends jsw.IsEnum<String> {
   static final INVALID_REQUEST = new DistanceMatrixStatus._(maps['DistanceMatrixStatus']['INVALID_REQUEST']);
   static final MAX_DIMENSIONS_EXCEEDED = new DistanceMatrixStatus._(maps['DistanceMatrixStatus']['MAX_DIMENSIONS_EXCEEDED']);
   static final MAX_ELEMENTS_EXCEEDED = new DistanceMatrixStatus._(maps['DistanceMatrixStatus']['MAX_ELEMENTS_EXCEEDED']);
@@ -23,7 +23,7 @@ class DistanceMatrixStatus extends IsEnum<String> {
   static final REQUEST_DENIED = new DistanceMatrixStatus._(maps['DistanceMatrixStatus']['REQUEST_DENIED']);
   static final UNKNOWN_ERROR = new DistanceMatrixStatus._(maps['DistanceMatrixStatus']['UNKNOWN_ERROR']);
 
-  static final _FINDER = new EnumFinder<String, DistanceMatrixStatus>([INVALID_REQUEST, MAX_DIMENSIONS_EXCEEDED, MAX_ELEMENTS_EXCEEDED, OK, OVER_QUERY_LIMIT, REQUEST_DENIED, UNKNOWN_ERROR]);
+  static final _FINDER = new jsw.EnumFinder<String, DistanceMatrixStatus>([INVALID_REQUEST, MAX_DIMENSIONS_EXCEEDED, MAX_ELEMENTS_EXCEEDED, OK, OVER_QUERY_LIMIT, REQUEST_DENIED, UNKNOWN_ERROR]);
 
   static DistanceMatrixStatus find(o) => _FINDER.find(o);
 

@@ -14,11 +14,11 @@
 
 part of google_maps_weather;
 
-class LabelColor extends IsEnum<String> {
+class LabelColor extends jsw.IsEnum<String> {
   static final BLACK = new LabelColor._(maps['weather']['LabelColor']['BLACK']);
   static final WHITE = new LabelColor._(maps['weather']['LabelColor']['WHITE']);
 
-  static final _FINDER = new EnumFinder<String, LabelColor>([BLACK, WHITE]);
+  static final _FINDER = new jsw.EnumFinder<String, LabelColor>([BLACK, WHITE]);
 
   static LabelColor find(o) => _FINDER.find(o);
 

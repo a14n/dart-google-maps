@@ -14,11 +14,11 @@
 
 part of google_maps_weather;
 
-class TemperatureUnit extends IsEnum<String> {
+class TemperatureUnit extends jsw.IsEnum<String> {
   static final CELSIUS = new TemperatureUnit._(maps['weather']['TemperatureUnit']['CELSIUS']);
   static final FAHRENHEIT = new TemperatureUnit._(maps['weather']['TemperatureUnit']['FAHRENHEIT']);
 
-  static final _FINDER = new EnumFinder<String, TemperatureUnit>([CELSIUS, FAHRENHEIT]);
+  static final _FINDER = new jsw.EnumFinder<String, TemperatureUnit>([CELSIUS, FAHRENHEIT]);
 
   static TemperatureUnit find(o) => _FINDER.find(o);
 

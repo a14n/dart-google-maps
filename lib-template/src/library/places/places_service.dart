@@ -15,7 +15,7 @@
 part of google_maps_places;
 
 @wrapper abstract class PlacesService extends jsw.TypedJsObject {
-  PlacesService(dynamic/*HTMLDivElement|GMap*/ attrContainer) : super(maps['places']['PlacesService'], [attrContainer is html.Element ? convertElementToJs(attrContainer): attrContainer]);
+  PlacesService(dynamic/*HTMLDivElement|GMap*/ attrContainer) : super(maps['places']['PlacesService'], [attrContainer is html.Element ? jsw.convertElementToJs(attrContainer): attrContainer]);
 
   void getDetails(PlaceDetailsRequest request, void callback(PlaceResult results, PlacesServiceStatus status)) {
     $unsafe.callMethod('getDetails', [request, (js.JsObject result, String status) => callback(PlaceResult.cast(result), PlacesServiceStatus.find(status))]);

@@ -14,12 +14,12 @@
 
 part of google_maps;
 
-class MapTypeStyleElementType extends IsEnum<String> {
+class MapTypeStyleElementType extends jsw.IsEnum<String> {
   static final ALL = new MapTypeStyleElementType._("all");
   static final GEOMETRY = new MapTypeStyleElementType._("geometry");
   static final LABELS = new MapTypeStyleElementType._("labels");
 
-  static final _FINDER = new EnumFinder<String, MapTypeStyleElementType>([ALL, GEOMETRY, LABELS]);
+  static final _FINDER = new jsw.EnumFinder<String, MapTypeStyleElementType>([ALL, GEOMETRY, LABELS]);
 
   static MapTypeStyleElementType find(o) => _FINDER.find(o);
 

@@ -25,12 +25,12 @@ class MarkerShape extends jsw.TypedJsObject {
   MarkerShapeType get type => MarkerShapeType.find($unsafe['type']);
 }
 
-class MarkerShapeType extends IsEnum<String> {
+class MarkerShapeType extends jsw.IsEnum<String> {
   static final CIRCLE = new MarkerShapeType._("circle");
   static final POLY = new MarkerShapeType._("poly");
   static final RECT = new MarkerShapeType._("rect");
 
-  static final _FINDER = new EnumFinder<String, MarkerShapeType>([CIRCLE, POLY, RECT]);
+  static final _FINDER = new jsw.EnumFinder<String, MarkerShapeType>([CIRCLE, POLY, RECT]);
 
   static MarkerShapeType find(o) => _FINDER.find(o);
 

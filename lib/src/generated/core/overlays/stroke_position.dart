@@ -14,12 +14,12 @@
 
 part of google_maps;
 
-class StrokePosition extends IsEnum<int> {
+class StrokePosition extends jsw.IsEnum<int> {
   static final CENTER = new StrokePosition._(maps['StrokePosition']['CENTER']);
   static final INSIDE = new StrokePosition._(maps['StrokePosition']['INSIDE']);
   static final OUTSIDE = new StrokePosition._(maps['StrokePosition']['OUTSIDE']);
 
-  static final _FINDER = new EnumFinder<int, StrokePosition>([CENTER, INSIDE, OUTSIDE]);
+  static final _FINDER = new jsw.EnumFinder<int, StrokePosition>([CENTER, INSIDE, OUTSIDE]);
 
   static StrokePosition find(o) => _FINDER.find(o);
 

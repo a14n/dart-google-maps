@@ -15,9 +15,9 @@
 part of google_maps_visualization;
 
 @wrapper @forMethods @skipConstructor abstract class MapsEngineLayer extends MVCObject {
-  SubscribeStreamProvider<MapsEngineMouseEvent> _onClick;
-  SubscribeStreamProvider _onPropertiesChanged;
-  SubscribeStreamProvider _onStatusChanged;
+  jsw.SubscribeStreamProvider<MapsEngineMouseEvent> _onClick;
+  jsw.SubscribeStreamProvider _onPropertiesChanged;
+  jsw.SubscribeStreamProvider _onStatusChanged;
 
   MapsEngineLayer(MapsEngineLayerOptions opts) : super(maps.visualization.MapsEngineLayer, [opts]) { _initStreams(); }
   MapsEngineLayer.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) { _initStreams(); }

@@ -15,7 +15,7 @@
 part of google_maps_weather;
 
 @wrapper @forMethods @skipConstructor abstract class WeatherLayer extends MVCObject {
-  SubscribeStreamProvider<WeatherMouseEvent> _onClick;
+  jsw.SubscribeStreamProvider<WeatherMouseEvent> _onClick;
 
   WeatherLayer([WeatherLayerOptions opts]) : super(maps['weather']['WeatherLayer'], [opts]) { _initStreams(); }
   WeatherLayer.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) { _initStreams(); }

@@ -31,8 +31,8 @@ class DirectionsRendererOptions extends jsw.TypedJsObject {
   GMap get map => GMap.cast($unsafe['map']);
   set markerOptions(MarkerOptions markerOptions) => $unsafe['markerOptions'] = markerOptions;
   MarkerOptions get markerOptions => MarkerOptions.cast($unsafe['markerOptions']);
-  html.Node get panel => convertElementToDart($unsafe['panel']);
-  set panel(html.Node panel) => $unsafe['panel'] = convertElementToJs(panel);
+  html.Node get panel => jsw.convertElementToDart($unsafe['panel']);
+  set panel(html.Node panel) => $unsafe['panel'] = jsw.convertElementToJs(panel);
   set polylineOptions(PolylineOptions polylineOptions) => $unsafe['polylineOptions'] = polylineOptions;
   PolylineOptions get polylineOptions => PolylineOptions.cast($unsafe['polylineOptions']);
   set preserveViewport(bool preserveViewport) => $unsafe['preserveViewport'] = preserveViewport;

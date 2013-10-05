@@ -15,8 +15,8 @@
 part of google_maps;
 
 @wrapper @forMethods @skipConstructor abstract class GroundOverlay extends MVCObject {
-  SubscribeStreamProvider<MouseEvent> _onClick;
-  SubscribeStreamProvider<MouseEvent> _onDblClick;
+  jsw.SubscribeStreamProvider<MouseEvent> _onClick;
+  jsw.SubscribeStreamProvider<MouseEvent> _onDblClick;
 
   GroundOverlay(String url, LatLngBounds bounds, [GroundOverlayOptions opts]) : super(maps['GroundOverlay'], [url, bounds, opts]) { _initStreams(); }
   GroundOverlay.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) { _initStreams(); }

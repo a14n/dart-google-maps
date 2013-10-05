@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'dart:html';
-import 'package:js_wrapping/wrapping.dart' as jsw;
+import 'package:js_wrapping/js_wrapping.dart' as jsw;
 import 'package:google_maps/google_maps.dart';
 
 Polyline line;

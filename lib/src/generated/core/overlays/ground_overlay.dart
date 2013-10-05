@@ -16,8 +16,8 @@ part of google_maps;
 
 class GroundOverlay extends MVCObject {
   static GroundOverlay cast(js.JsObject jsObject) => jsObject == null ? null : new GroundOverlay.fromJsObject(jsObject);
-  SubscribeStreamProvider<MouseEvent> _onClick;
-  SubscribeStreamProvider<MouseEvent> _onDblClick;
+  jsw.SubscribeStreamProvider<MouseEvent> _onClick;
+  jsw.SubscribeStreamProvider<MouseEvent> _onDblClick;
 
   GroundOverlay(String url, LatLngBounds bounds, [GroundOverlayOptions opts]) : super(maps['GroundOverlay'], [url, bounds, opts]) {
     _initStreams();

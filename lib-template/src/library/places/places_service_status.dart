@@ -14,7 +14,7 @@
 
 part of google_maps_places;
 
-class PlacesServiceStatus extends IsEnum<String> {
+class PlacesServiceStatus extends jsw.IsEnum<String> {
   static final INVALID_REQUEST= new PlacesServiceStatus._(maps['places']['PlacesServiceStatus']['INVALID_REQUEST']);
   static final OK= new PlacesServiceStatus._(maps['places']['PlacesServiceStatus']['OK']);
   static final OVER_QUERY_LIMIT= new PlacesServiceStatus._(maps['places']['PlacesServiceStatus']['OVER_QUERY_LIMIT']);
@@ -22,7 +22,7 @@ class PlacesServiceStatus extends IsEnum<String> {
   static final UNKNOWN_ERROR= new PlacesServiceStatus._(maps['places']['PlacesServiceStatus']['UNKNOWN_ERROR']);
   static final ZERO_RESULTS= new PlacesServiceStatus._(maps['places']['PlacesServiceStatus']['ZERO_RESULTS']);
 
-  static final _FINDER = new EnumFinder<String, PlacesServiceStatus>([INVALID_REQUEST, OK, OVER_QUERY_LIMIT, REQUEST_DENIED, UNKNOWN_ERROR, ZERO_RESULTS]);
+  static final _FINDER = new jsw.EnumFinder<String, PlacesServiceStatus>([INVALID_REQUEST, OK, OVER_QUERY_LIMIT, REQUEST_DENIED, UNKNOWN_ERROR, ZERO_RESULTS]);
 
   static PlacesServiceStatus find(o) => _FINDER.find(o);
 

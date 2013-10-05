@@ -14,13 +14,13 @@
 
 part of google_maps;
 
-class GeocoderLocationType extends IsEnum<String> {
+class GeocoderLocationType extends jsw.IsEnum<String> {
   static final APPROXIMATE = new GeocoderLocationType._(maps['GeocoderLocationType']['APPROXIMATE']);
   static final GEOMETRIC_CENTER = new GeocoderLocationType._(maps['GeocoderLocationType']['GEOMETRIC_CENTER']);
   static final RANGE_INTERPOLATED = new GeocoderLocationType._(maps['GeocoderLocationType']['RANGE_INTERPOLATED']);
   static final ROOFTOP = new GeocoderLocationType._(maps['GeocoderLocationType']['ROOFTOP']);
 
-  static final _FINDER = new EnumFinder<String, GeocoderLocationType>([APPROXIMATE, GEOMETRIC_CENTER, RANGE_INTERPOLATED, ROOFTOP]);
+  static final _FINDER = new jsw.EnumFinder<String, GeocoderLocationType>([APPROXIMATE, GEOMETRIC_CENTER, RANGE_INTERPOLATED, ROOFTOP]);
 
   static GeocoderLocationType find(o) => _FINDER.find(o);
 

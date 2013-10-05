@@ -18,16 +18,16 @@ part of google_maps;
   static Circle cast(js.JsObject jsObject) => null;
   static bool isInstance(js.JsObject proxy) => proxy.instanceof(maps['Circle']);
 
-  SubscribeStreamProvider _onCenterChanged;
-  SubscribeStreamProvider<MouseEvent> _onClick;
-  SubscribeStreamProvider<MouseEvent> _onDblClick;
-  SubscribeStreamProvider<MouseEvent> _onMousedown;
-  SubscribeStreamProvider<MouseEvent> _onMousemove;
-  SubscribeStreamProvider<MouseEvent> _onMouseout;
-  SubscribeStreamProvider<MouseEvent> _onMouseover;
-  SubscribeStreamProvider<MouseEvent> _onMouseup;
-  SubscribeStreamProvider _onRadiusChanged;
-  SubscribeStreamProvider<MouseEvent> _onRightclick;
+  jsw.SubscribeStreamProvider _onCenterChanged;
+  jsw.SubscribeStreamProvider<MouseEvent> _onClick;
+  jsw.SubscribeStreamProvider<MouseEvent> _onDblClick;
+  jsw.SubscribeStreamProvider<MouseEvent> _onMousedown;
+  jsw.SubscribeStreamProvider<MouseEvent> _onMousemove;
+  jsw.SubscribeStreamProvider<MouseEvent> _onMouseout;
+  jsw.SubscribeStreamProvider<MouseEvent> _onMouseover;
+  jsw.SubscribeStreamProvider<MouseEvent> _onMouseup;
+  jsw.SubscribeStreamProvider _onRadiusChanged;
+  jsw.SubscribeStreamProvider<MouseEvent> _onRightclick;
 
   Circle([CircleOptions opts]) : super(maps['Circle'], [opts]) { _initStreams(); }
   Circle.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) { _initStreams(); }

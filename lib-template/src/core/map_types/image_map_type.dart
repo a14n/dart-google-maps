@@ -16,7 +16,7 @@ part of google_maps;
 
 // TODO extends MVCObject mixin MapType
 @wrapper @forMethods @skipConstructor abstract class ImageMapType extends MapType {
-  SubscribeStreamProvider _onTilesloaded;
+  jsw.SubscribeStreamProvider _onTilesloaded;
 
   ImageMapType(ImageMapTypeOptions opts) : super(maps['ImageMapType'], [opts]) { _initStreams(); }
   ImageMapType.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) { _initStreams(); }

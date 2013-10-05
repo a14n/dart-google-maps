@@ -21,9 +21,9 @@ class MVCArray<E> extends MVCObject {
 
   final jsw.Translator<E> _translator;
 
-  SubscribeStreamProvider<int> _onInsertAt;
-  SubscribeStreamProvider<IndexAndElement<E>> _onRemoveAt;
-  SubscribeStreamProvider<IndexAndElement<E>> _onSetAt;
+  jsw.SubscribeStreamProvider<int> _onInsertAt;
+  jsw.SubscribeStreamProvider<IndexAndElement<E>> _onRemoveAt;
+  jsw.SubscribeStreamProvider<IndexAndElement<E>> _onSetAt;
 
   MVCArray([List<E> array, jsw.Translator<E> translator]) : super(maps['MVCArray'], [array is js.Serializable ? array : js.jsify(array)]), this._translator = translator {
     _initStreams();
