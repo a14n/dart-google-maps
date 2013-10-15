@@ -16,8 +16,10 @@ part of google_maps;
 
 class Icon extends jsw.TypedJsObject {
   static Icon cast(js.JsObject jsObject) => jsObject == null ? null : new Icon.fromJsObject(jsObject);
-  Icon.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  Icon() : super();
+  Icon.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  Icon()
+      : super();
 
   set anchor(Point anchor) => $unsafe['anchor'] = anchor;
   Point get anchor => Point.cast($unsafe['anchor']);

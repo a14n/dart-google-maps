@@ -16,8 +16,10 @@ part of google_maps;
 
 class FusionTablesPolylineOptions extends jsw.TypedJsObject {
   static FusionTablesPolylineOptions cast(js.JsObject jsObject) => jsObject == null ? null : new FusionTablesPolylineOptions.fromJsObject(jsObject);
-  FusionTablesPolylineOptions.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  FusionTablesPolylineOptions() : super();
+  FusionTablesPolylineOptions.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  FusionTablesPolylineOptions()
+      : super();
 
   set strokeColor(String strokeColor) => $unsafe['strokeColor'] = strokeColor;
   String get strokeColor => $unsafe['strokeColor'];

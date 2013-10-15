@@ -16,8 +16,10 @@ part of google_maps_places;
 
 class RadarSearchRequest extends jsw.TypedJsObject {
   static RadarSearchRequest cast(js.JsObject jsObject) => jsObject == null ? null : new RadarSearchRequest.fromJsObject(jsObject);
-  RadarSearchRequest.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  RadarSearchRequest() : super();
+  RadarSearchRequest.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  RadarSearchRequest()
+      : super();
 
   set bounds(LatLngBounds bounds) => $unsafe['bounds'] = bounds;
   LatLngBounds get bounds => LatLngBounds.cast($unsafe['bounds']);

@@ -23,5 +23,6 @@ class DistanceMatrixElementStatus extends jsw.IsEnum<String> {
 
   static DistanceMatrixElementStatus find(o) => _FINDER.find(o);
 
-  DistanceMatrixElementStatus._(String value) : super(value);
+  DistanceMatrixElementStatus._(String value)
+      : super(value);
 }

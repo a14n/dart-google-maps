@@ -16,8 +16,10 @@ part of google_maps_places;
 
 class PlaceReview extends jsw.TypedJsObject {
   static PlaceReview cast(js.JsObject jsObject) => jsObject == null ? null : new PlaceReview.fromJsObject(jsObject);
-  PlaceReview.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  PlaceReview() : super();
+  PlaceReview.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  PlaceReview()
+      : super();
 
   set aspects(List<PlaceAspectRating> aspects) => $unsafe['aspects'] = aspects == null ? null : aspects is js.Serializable ? aspects : js.jsify(aspects);
   List<PlaceAspectRating> get aspects => jsw.TypedJsArray.castListOfSerializables($unsafe['aspects'], PlaceAspectRating.cast);

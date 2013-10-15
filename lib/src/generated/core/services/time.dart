@@ -16,8 +16,10 @@ part of google_maps;
 
 class Time extends jsw.TypedJsObject {
   static Time cast(js.JsObject jsObject) => jsObject == null ? null : new Time.fromJsObject(jsObject);
-  Time.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  Time() : super();
+  Time.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  Time()
+      : super();
 
   set text(String text) => $unsafe['text'] = text;
   String get text => $unsafe['text'];

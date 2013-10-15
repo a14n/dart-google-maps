@@ -22,5 +22,6 @@ class Animation extends jsw.IsEnum<int> {
 
   static Animation find(o) => _FINDER.find(o);
 
-  Animation._(int value) : super(value);
+  Animation._(int value)
+      : super(value);
 }

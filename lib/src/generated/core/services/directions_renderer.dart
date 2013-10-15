@@ -18,10 +18,12 @@ class DirectionsRenderer extends MVCObject {
   static DirectionsRenderer cast(js.JsObject jsObject) => jsObject == null ? null : new DirectionsRenderer.fromJsObject(jsObject);
   jsw.SubscribeStreamProvider _onDirectionsChanged;
 
-  DirectionsRenderer([DirectionsRendererOptions opts]) : super(maps['DirectionsRenderer'], [opts]) {
+  DirectionsRenderer([DirectionsRendererOptions opts])
+      : super(maps['DirectionsRenderer'], [opts]) {
     _initStreams();
   }
-  DirectionsRenderer.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) {
+  DirectionsRenderer.fromJsObject(js.JsObject proxy)
+      : super.fromJsObject(proxy) {
     _initStreams();
   }
 

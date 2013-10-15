@@ -16,8 +16,10 @@ part of google_maps;
 
 class MarkerOptions extends jsw.TypedJsObject {
   static MarkerOptions cast(js.JsObject jsObject) => jsObject == null ? null : new MarkerOptions.fromJsObject(jsObject);
-  MarkerOptions.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  MarkerOptions() : super();
+  MarkerOptions.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  MarkerOptions()
+      : super();
 
   set anchorPoint(Point anchorPoint) => $unsafe['anchorPoint'] = anchorPoint;
   Point get anchorPoint => Point.cast($unsafe['anchorPoint']);
@@ -35,12 +37,16 @@ class MarkerOptions extends jsw.TypedJsObject {
     final result = $unsafe['icon'];
     if (result is String) {
       return result;
-    } else if (result is js.JsObject) {
-      final type = Marker._isSymbolOrIcon(result);
-      if (type == "Symbol") {
-        return GSymbol.cast(result);
-      } else if (type == "Icon") {
-        return Icon.cast(result);
+    } else {
+      if (result is js.JsObject) {
+        final type = Marker._isSymbolOrIcon(result);
+        if (type == "Symbol") {
+          return GSymbol.cast(result);
+        } else {
+          if (type == "Icon") {
+            return Icon.cast(result);
+          }
+        }
       }
     }
     return result;
@@ -50,8 +56,10 @@ class MarkerOptions extends jsw.TypedJsObject {
     final result = $unsafe['map'];
     if (GMap.isInstance(result)) {
       return GMap.cast(result);
-    } else if (StreetViewPanorama.isInstance(result)) {
-      return StreetViewPanorama.cast(result);
+    } else {
+      if (StreetViewPanorama.isInstance(result)) {
+        return StreetViewPanorama.cast(result);
+      }
     }
     return result;
   }
@@ -68,12 +76,16 @@ class MarkerOptions extends jsw.TypedJsObject {
     final result = $unsafe['shadow'];
     if (result is String) {
       return result;
-    } else if (result is js.JsObject) {
-      final type = Marker._isSymbolOrIcon(result);
-      if (type == "Symbol") {
-        return GSymbol.cast(result);
-      } else if (type == "Icon") {
-        return Icon.cast(result);
+    } else {
+      if (result is js.JsObject) {
+        final type = Marker._isSymbolOrIcon(result);
+        if (type == "Symbol") {
+          return GSymbol.cast(result);
+        } else {
+          if (type == "Icon") {
+            return Icon.cast(result);
+          }
+        }
       }
     }
     return result;

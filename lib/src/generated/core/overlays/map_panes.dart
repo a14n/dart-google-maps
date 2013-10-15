@@ -16,7 +16,8 @@ part of google_maps;
 
 class MapPanes extends jsw.TypedJsObject {
   static MapPanes cast(js.JsObject jsObject) => jsObject == null ? null : new MapPanes.fromJsObject(jsObject);
-  MapPanes.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
+  MapPanes.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
   html.Node get floatPane => jsw.convertElementToDart($unsafe['floatPane']);
   html.Node get floatShadow => jsw.convertElementToDart($unsafe['floatShadow']);
   html.Node get mapPane => jsw.convertElementToDart($unsafe['mapPane']);

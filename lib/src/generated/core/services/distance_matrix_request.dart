@@ -16,8 +16,10 @@ part of google_maps;
 
 class DistanceMatrixRequest extends jsw.TypedJsObject {
   static DistanceMatrixRequest cast(js.JsObject jsObject) => jsObject == null ? null : new DistanceMatrixRequest.fromJsObject(jsObject);
-  DistanceMatrixRequest.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  DistanceMatrixRequest() : super();
+  DistanceMatrixRequest.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  DistanceMatrixRequest()
+      : super();
 
   set avoidHighways(bool avoidHighways) => $unsafe['avoidHighways'] = avoidHighways;
   bool get avoidHighways => $unsafe['avoidHighways'];

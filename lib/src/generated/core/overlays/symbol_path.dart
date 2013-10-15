@@ -25,5 +25,6 @@ class SymbolPath extends jsw.IsEnum<int> {
 
   static SymbolPath find(o) => _FINDER.find(o);
 
-  SymbolPath._(int value) : super(value);
+  SymbolPath._(int value)
+      : super(value);
 }

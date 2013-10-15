@@ -16,8 +16,10 @@ part of google_maps_adsense;
 
 class AdUnitOptions extends jsw.TypedJsObject {
   static AdUnitOptions cast(js.JsObject jsObject) => jsObject == null ? null : new AdUnitOptions.fromJsObject(jsObject);
-  AdUnitOptions.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  AdUnitOptions() : super();
+  AdUnitOptions.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  AdUnitOptions()
+      : super();
 
   set backgroundColor(String backgroundColor) => $unsafe['backgroundColor'] = backgroundColor;
   String get backgroundColor => $unsafe['backgroundColor'];

@@ -23,5 +23,6 @@ class MapTypeControlStyle extends jsw.IsEnum<int> {
 
   static MapTypeControlStyle find(Object o) => _FINDER.find(o);
 
-  MapTypeControlStyle._(int value) : super(value);
+  MapTypeControlStyle._(int value)
+      : super(value);
 }

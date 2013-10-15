@@ -16,8 +16,10 @@ part of google_maps;
 
 class StreetViewService extends jsw.TypedJsObject {
   static StreetViewService cast(js.JsObject jsObject) => jsObject == null ? null : new StreetViewService.fromJsObject(jsObject);
-  StreetViewService.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  StreetViewService() : super(maps['StreetViewService']);
+  StreetViewService.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  StreetViewService()
+      : super(maps['StreetViewService']);
 
   void getPanoramaById(String pano, void callback(StreetViewPanoramaData streetViewPanoramaData, StreetViewStatus streetViewStatus)) {
     $unsafe.callMethod('getPanoramaById', [pano, (js.JsObject streetViewPanoramaData, String streetViewStatus) => callback(StreetViewPanoramaData.cast(streetViewPanoramaData), StreetViewStatus.find(streetViewStatus))]);

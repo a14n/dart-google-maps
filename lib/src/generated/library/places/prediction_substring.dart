@@ -16,8 +16,10 @@ part of google_maps_places;
 
 class PredictionSubstring extends jsw.TypedJsObject {
   static PredictionSubstring cast(js.JsObject jsObject) => jsObject == null ? null : new PredictionSubstring.fromJsObject(jsObject);
-  PredictionSubstring.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  PredictionSubstring() : super();
+  PredictionSubstring.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  PredictionSubstring()
+      : super();
 
   set length(num length) => $unsafe['length'] = length;
   num get length => $unsafe['length'];

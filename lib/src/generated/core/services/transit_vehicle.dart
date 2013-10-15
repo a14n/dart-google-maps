@@ -16,8 +16,10 @@ part of google_maps;
 
 class TransitVehicle extends jsw.TypedJsObject {
   static TransitVehicle cast(js.JsObject jsObject) => jsObject == null ? null : new TransitVehicle.fromJsObject(jsObject);
-  TransitVehicle.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  TransitVehicle() : super();
+  TransitVehicle.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  TransitVehicle()
+      : super();
 
   set icon(String icon) => $unsafe['icon'] = icon;
   String get icon => $unsafe['icon'];

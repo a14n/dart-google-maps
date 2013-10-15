@@ -16,8 +16,10 @@ part of google_maps;
 
 class StreetViewLocation extends jsw.TypedJsObject {
   static StreetViewLocation cast(js.JsObject jsObject) => jsObject == null ? null : new StreetViewLocation.fromJsObject(jsObject);
-  StreetViewLocation.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  StreetViewLocation() : super();
+  StreetViewLocation.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  StreetViewLocation()
+      : super();
 
   set description(String description) => $unsafe['description'] = description;
   String get description => $unsafe['description'];

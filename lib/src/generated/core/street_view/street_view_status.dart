@@ -23,5 +23,6 @@ class StreetViewStatus extends jsw.IsEnum<String> {
 
   static StreetViewStatus find(o) => _FINDER.find(o);
 
-  StreetViewStatus._(String value) : super(value);
+  StreetViewStatus._(String value)
+      : super(value);
 }

@@ -16,8 +16,10 @@ part of google_maps;
 
 class DistanceMatrixService extends jsw.TypedJsObject {
   static DistanceMatrixService cast(js.JsObject jsObject) => jsObject == null ? null : new DistanceMatrixService.fromJsObject(jsObject);
-  DistanceMatrixService.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  DistanceMatrixService() : super(maps['DistanceMatrixService']);
+  DistanceMatrixService.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  DistanceMatrixService()
+      : super(maps['DistanceMatrixService']);
 
   void getDistanceMatrix(DistanceMatrixRequest request, void callback(DistanceMatrixResponse response, DistanceMatrixStatus status)) {
     $unsafe.callMethod('getDistanceMatrix', [request, (js.JsObject response, String status) => callback(DistanceMatrixResponse.cast(response), DistanceMatrixStatus.find(status))]);

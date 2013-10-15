@@ -22,5 +22,6 @@ class UnitSystem extends jsw.IsEnum<int> {
 
   static UnitSystem find(o) => _FINDER.find(o);
 
-  UnitSystem._(int value) : super(value);
+  UnitSystem._(int value)
+      : super(value);
 }

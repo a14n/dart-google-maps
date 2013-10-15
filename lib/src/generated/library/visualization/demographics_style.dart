@@ -16,8 +16,10 @@ part of google_maps_visualization;
 
 class DemographicsStyle extends jsw.TypedJsObject {
   static DemographicsStyle cast(js.JsObject jsObject) => jsObject == null ? null : new DemographicsStyle.fromJsObject(jsObject);
-  DemographicsStyle.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  DemographicsStyle() : super();
+  DemographicsStyle.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  DemographicsStyle()
+      : super();
 
   set polygonOptions(DemographicsPolygonOptions polygonOptions) => $unsafe['polygonOptions'] = polygonOptions;
   DemographicsPolygonOptions get polygonOptions => DemographicsPolygonOptions.cast($unsafe['polygonOptions']);

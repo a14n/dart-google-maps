@@ -16,8 +16,10 @@ part of google_maps;
 
 class StreetViewLink extends jsw.TypedJsObject {
   static StreetViewLink cast(js.JsObject jsObject) => jsObject == null ? null : new StreetViewLink.fromJsObject(jsObject);
-  StreetViewLink.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  StreetViewLink() : super();
+  StreetViewLink.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  StreetViewLink()
+      : super();
 
   set description(String description) => $unsafe['description'] = description;
   String get description => $unsafe['description'];

@@ -16,8 +16,10 @@ part of google_maps_visualization;
 
 class DemographicsLayer extends jsw.TypedJsObject {
   static DemographicsLayer cast(js.JsObject jsObject) => jsObject == null ? null : new DemographicsLayer.fromJsObject(jsObject);
-  DemographicsLayer.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  DemographicsLayer([DemographicsLayerOptions opts]) : super(maps['visualization']['DemographicsLayer'], [opts]);
+  DemographicsLayer.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  DemographicsLayer([DemographicsLayerOptions opts])
+      : super(maps['visualization']['DemographicsLayer'], [opts]);
 
   GMap get map => GMap.cast($unsafe.callMethod('getMap'));
   DemographicsQuery get query => DemographicsQuery.cast($unsafe.callMethod('getQuery'));

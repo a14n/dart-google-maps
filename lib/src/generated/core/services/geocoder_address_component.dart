@@ -16,8 +16,10 @@ part of google_maps;
 
 class GeocoderAddressComponent extends jsw.TypedJsObject {
   static GeocoderAddressComponent cast(js.JsObject jsObject) => jsObject == null ? null : new GeocoderAddressComponent.fromJsObject(jsObject);
-  GeocoderAddressComponent.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  GeocoderAddressComponent() : super();
+  GeocoderAddressComponent.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  GeocoderAddressComponent()
+      : super();
 
   set longName(String longName) => $unsafe['long_name'] = longName;
   String get longName => $unsafe['long_name'];

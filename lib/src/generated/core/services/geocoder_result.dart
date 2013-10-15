@@ -16,8 +16,10 @@ part of google_maps;
 
 class GeocoderResult extends jsw.TypedJsObject {
   static GeocoderResult cast(js.JsObject jsObject) => jsObject == null ? null : new GeocoderResult.fromJsObject(jsObject);
-  GeocoderResult.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  GeocoderResult() : super();
+  GeocoderResult.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  GeocoderResult()
+      : super();
 
   set addressComponents(List<GeocoderAddressComponent> addressComponents) => $unsafe['address_components'] = addressComponents == null ? null : addressComponents is js.Serializable ? addressComponents : js.jsify(addressComponents);
   List<GeocoderAddressComponent> get addressComponents => jsw.TypedJsArray.castListOfSerializables($unsafe['address_components'], GeocoderAddressComponent.cast);

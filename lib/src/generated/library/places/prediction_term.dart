@@ -16,8 +16,10 @@ part of google_maps_places;
 
 class PredictionTerm extends jsw.TypedJsObject {
   static PredictionTerm cast(js.JsObject jsObject) => jsObject == null ? null : new PredictionTerm.fromJsObject(jsObject);
-  PredictionTerm.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  PredictionTerm() : super();
+  PredictionTerm.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  PredictionTerm()
+      : super();
 
   set offset(num offset) => $unsafe['offset'] = offset;
   num get offset => $unsafe['offset'];

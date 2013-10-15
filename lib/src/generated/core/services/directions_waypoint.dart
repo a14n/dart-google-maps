@@ -16,8 +16,10 @@ part of google_maps;
 
 class DirectionsWaypoint extends jsw.TypedJsObject {
   static DirectionsWaypoint cast(js.JsObject jsObject) => jsObject == null ? null : new DirectionsWaypoint.fromJsObject(jsObject);
-  DirectionsWaypoint.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  DirectionsWaypoint() : super();
+  DirectionsWaypoint.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  DirectionsWaypoint()
+      : super();
 
   dynamic /*LatLng|string*/ get location {
     final result = $unsafe['location'];

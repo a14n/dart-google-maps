@@ -17,6 +17,8 @@ part of google_maps;
 // TODO extends MVCObject mixin MapType
 class StyledMapType extends MapType {
   static StyledMapType cast(js.JsObject jsObject) => jsObject == null ? null : new StyledMapType.fromJsObject(jsObject);
-  StyledMapType.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  StyledMapType(List<MapTypeStyle> styles, [StyledMapTypeOptions options]) : super(maps['StyledMapType'], [styles == null ? null : styles is js.Serializable ? styles : js.jsify(styles), options]);
+  StyledMapType.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  StyledMapType(List<MapTypeStyle> styles, [StyledMapTypeOptions options])
+      : super(maps['StyledMapType'], [styles == null ? null : styles is js.Serializable ? styles : js.jsify(styles), options]);
 }

@@ -16,8 +16,10 @@ part of google_maps;
 
 class DirectionsRequest extends jsw.TypedJsObject {
   static DirectionsRequest cast(js.JsObject jsObject) => jsObject == null ? null : new DirectionsRequest.fromJsObject(jsObject);
-  DirectionsRequest.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  DirectionsRequest() : super();
+  DirectionsRequest.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  DirectionsRequest()
+      : super();
 
   set avoidHighways(bool avoidHighways) => $unsafe['avoidHighways'] = avoidHighways;
   bool get avoidHighways => $unsafe['avoidHighways'];

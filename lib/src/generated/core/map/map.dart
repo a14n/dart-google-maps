@@ -38,10 +38,12 @@ class GMap extends MVCObject {
   jsw.SubscribeStreamProvider _onTiltChanged;
   jsw.SubscribeStreamProvider _onZoomChanged;
 
-  GMap(html.Node mapDiv, [MapOptions opts]) : super(maps['Map'], [jsw.convertElementToJs(mapDiv), opts]) {
+  GMap(html.Node mapDiv, [MapOptions opts])
+      : super(maps['Map'], [jsw.convertElementToJs(mapDiv), opts]) {
     _initStreams();
   }
-  GMap.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) {
+  GMap.fromJsObject(js.JsObject proxy)
+      : super.fromJsObject(proxy) {
     _initStreams();
   }
 
@@ -130,8 +132,10 @@ class GMap extends MVCObject {
 // TODO make this a Map
 class Controls extends jsw.TypedJsObject {
   static Controls cast(js.JsObject jsObject) => jsObject == null ? null : new Controls.fromJsObject(jsObject);
-  Controls.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  Controls() : super.fromJsObject(js.jsify([]));
+  Controls.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  Controls()
+      : super.fromJsObject(js.jsify([]));
 
   MVCArray<html.Node> operator [](ControlPosition controlPosition) => MVCArray.cast($unsafe[controlPosition], _nodeTranslator);
   void operator []=(ControlPosition controlPosition, MVCArray<html.Node> nodes) {
@@ -141,5 +145,6 @@ class Controls extends jsw.TypedJsObject {
 
 final _nodeTranslator = new _NodeTranslator();
 class _NodeTranslator extends jsw.Translator<html.Node> {
-  _NodeTranslator() : super(jsw.convertElementToDart, jsw.convertElementToJs);
+  _NodeTranslator()
+      : super(jsw.convertElementToDart, jsw.convertElementToJs);
 }

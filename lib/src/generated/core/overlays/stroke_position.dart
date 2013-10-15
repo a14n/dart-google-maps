@@ -23,5 +23,6 @@ class StrokePosition extends jsw.IsEnum<int> {
 
   static StrokePosition find(o) => _FINDER.find(o);
 
-  StrokePosition._(int value) : super(value);
+  StrokePosition._(int value)
+      : super(value);
 }

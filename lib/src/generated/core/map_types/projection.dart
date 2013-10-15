@@ -16,8 +16,10 @@ part of google_maps;
 
 class Projection extends jsw.TypedJsObject {
   static Projection cast(js.JsObject jsObject) => jsObject == null ? null : new Projection.fromJsObject(jsObject);
-  Projection.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  Projection() : super();
+  Projection.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  Projection()
+      : super();
 
   void set_fromLatLngToPoint(Point fromLatLngToPoint(LatLng latLng, [Point point])) {
     $unsafe['fromLatLngToPoint'] = (js.JsObject latLng, [js.JsObject point]) {

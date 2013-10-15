@@ -18,8 +18,10 @@ final Poly poly = new Poly();
 
 class Poly extends jsw.TypedJsObject {
   static Poly cast(js.JsObject jsObject) => jsObject == null ? null : new Poly.fromJsObject(jsObject);
-  Poly.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  Poly() : super.fromJsObject(maps['geometry']['poly']);
+  Poly.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  Poly()
+      : super.fromJsObject(maps['geometry']['poly']);
 
   bool containsLocation(LatLng point, Polygon polygon) => $unsafe.callMethod('containsLocation', [point, polygon]);
   bool isLocationOnEdge(LatLng point, dynamic poly, [num tolerance]) => $unsafe.callMethod('isLocationOnEdge', [point, poly, tolerance]);

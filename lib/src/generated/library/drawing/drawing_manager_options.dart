@@ -16,8 +16,10 @@ part of google_maps_drawing;
 
 class DrawingManagerOptions extends jsw.TypedJsObject {
   static DrawingManagerOptions cast(js.JsObject jsObject) => jsObject == null ? null : new DrawingManagerOptions.fromJsObject(jsObject);
-  DrawingManagerOptions.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  DrawingManagerOptions() : super();
+  DrawingManagerOptions.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  DrawingManagerOptions()
+      : super();
 
   set circleOptions(CircleOptions circleOptions) => $unsafe['circleOptions'] = circleOptions;
   CircleOptions get circleOptions => CircleOptions.cast($unsafe['circleOptions']);

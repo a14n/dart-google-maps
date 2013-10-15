@@ -16,8 +16,10 @@ part of google_maps;
 
 class DistanceMatrixResponseElement extends jsw.TypedJsObject {
   static DistanceMatrixResponseElement cast(js.JsObject jsObject) => jsObject == null ? null : new DistanceMatrixResponseElement.fromJsObject(jsObject);
-  DistanceMatrixResponseElement.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  DistanceMatrixResponseElement() : super();
+  DistanceMatrixResponseElement.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  DistanceMatrixResponseElement()
+      : super();
 
   set distance(Distance distance) => $unsafe['distance'] = distance;
   Distance get distance => Distance.cast($unsafe['distance']);

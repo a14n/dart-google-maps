@@ -16,8 +16,10 @@ part of google_maps_adsense;
 
 class AdUnit extends MVCObject {
   static AdUnit cast(js.JsObject jsObject) => jsObject == null ? null : new AdUnit.fromJsObject(jsObject);
-  AdUnit.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  AdUnit(html.Node container, AdUnitOptions opts) : super(maps['adsense']['AdUnit'], [jsw.convertElementToJs(container), opts]);
+  AdUnit.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  AdUnit(html.Node container, AdUnitOptions opts)
+      : super(maps['adsense']['AdUnit'], [jsw.convertElementToJs(container), opts]);
 
   String get backgroundColor => $unsafe.callMethod('getBackgroundColor');
   String get borderColor => $unsafe.callMethod('getBorderColor');

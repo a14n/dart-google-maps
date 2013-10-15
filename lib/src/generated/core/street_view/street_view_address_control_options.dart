@@ -16,8 +16,10 @@ part of google_maps;
 
 class StreetViewAddressControlOptions extends jsw.TypedJsObject {
   static StreetViewAddressControlOptions cast(js.JsObject jsObject) => jsObject == null ? null : new StreetViewAddressControlOptions.fromJsObject(jsObject);
-  StreetViewAddressControlOptions.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  StreetViewAddressControlOptions() : super();
+  StreetViewAddressControlOptions.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  StreetViewAddressControlOptions()
+      : super();
 
   set position(ControlPosition position) => $unsafe['position'] = position;
   ControlPosition get position => ControlPosition.find($unsafe['position']);

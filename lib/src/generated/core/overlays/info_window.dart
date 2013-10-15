@@ -22,10 +22,12 @@ class InfoWindow extends MVCObject {
   jsw.SubscribeStreamProvider _onPositionChanged;
   jsw.SubscribeStreamProvider _onZindexChanged;
 
-  InfoWindow([InfoWindowOptions opts]) : super(maps['InfoWindow'], [opts]) {
+  InfoWindow([InfoWindowOptions opts])
+      : super(maps['InfoWindow'], [opts]) {
     _initStreams();
   }
-  InfoWindow.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) {
+  InfoWindow.fromJsObject(js.JsObject proxy)
+      : super.fromJsObject(proxy) {
     _initStreams();
   }
 

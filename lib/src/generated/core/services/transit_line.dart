@@ -16,8 +16,10 @@ part of google_maps;
 
 class TransitLine extends jsw.TypedJsObject {
   static TransitLine cast(js.JsObject jsObject) => jsObject == null ? null : new TransitLine.fromJsObject(jsObject);
-  TransitLine.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  TransitLine() : super();
+  TransitLine.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  TransitLine()
+      : super();
 
   set agencies(List<TransitAgency> agencies) => $unsafe['agencies'] = agencies == null ? null : agencies is js.Serializable ? agencies : js.jsify(agencies);
   List<TransitAgency> get agencies => jsw.TypedJsArray.castListOfSerializables($unsafe['agencies'], TransitAgency.cast);

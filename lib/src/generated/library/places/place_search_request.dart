@@ -16,8 +16,10 @@ part of google_maps_places;
 
 class PlaceSearchRequest extends jsw.TypedJsObject {
   static PlaceSearchRequest cast(js.JsObject jsObject) => jsObject == null ? null : new PlaceSearchRequest.fromJsObject(jsObject);
-  PlaceSearchRequest.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  PlaceSearchRequest() : super();
+  PlaceSearchRequest.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  PlaceSearchRequest()
+      : super();
 
   set bounds(LatLngBounds bounds) => $unsafe['bounds'] = bounds;
   LatLngBounds get bounds => LatLngBounds.cast($unsafe['bounds']);

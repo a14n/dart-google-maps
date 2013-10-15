@@ -16,8 +16,10 @@ part of google_maps;
 
 class PolylineOptions extends jsw.TypedJsObject {
   static PolylineOptions cast(js.JsObject jsObject) => jsObject == null ? null : new PolylineOptions.fromJsObject(jsObject);
-  PolylineOptions.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  PolylineOptions() : super();
+  PolylineOptions.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  PolylineOptions()
+      : super();
 
   set clickable(bool clickable) => $unsafe['clickable'] = clickable;
   bool get clickable => $unsafe['clickable'];

@@ -16,8 +16,10 @@ part of google_maps;
 
 class CircleOptions extends jsw.TypedJsObject {
   static CircleOptions cast(js.JsObject jsObject) => jsObject == null ? null : new CircleOptions.fromJsObject(jsObject);
-  CircleOptions.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  CircleOptions() : super();
+  CircleOptions.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  CircleOptions()
+      : super();
 
   set center(LatLng center) => $unsafe['center'] = center;
   LatLng get center => LatLng.cast($unsafe['center']);

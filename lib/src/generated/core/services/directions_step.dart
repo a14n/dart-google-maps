@@ -16,8 +16,10 @@ part of google_maps;
 
 class DirectionsStep extends jsw.TypedJsObject {
   static DirectionsStep cast(js.JsObject jsObject) => jsObject == null ? null : new DirectionsStep.fromJsObject(jsObject);
-  DirectionsStep.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  DirectionsStep() : super();
+  DirectionsStep.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  DirectionsStep()
+      : super();
 
   set distance(Distance distance) => $unsafe['distance'] = distance;
   Distance get distance => Distance.cast($unsafe['distance']);

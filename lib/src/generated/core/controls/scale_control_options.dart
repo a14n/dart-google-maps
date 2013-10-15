@@ -16,8 +16,10 @@ part of google_maps;
 
 class ScaleControlOptions extends jsw.TypedJsObject {
   static ScaleControlOptions cast(js.JsObject jsObject) => jsObject == null ? null : new ScaleControlOptions.fromJsObject(jsObject);
-  ScaleControlOptions.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  ScaleControlOptions() : super();
+  ScaleControlOptions.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  ScaleControlOptions()
+      : super();
 
   set position(ControlPosition position) => $unsafe['position'] = position;
   ControlPosition get position => ControlPosition.find($unsafe['position']);

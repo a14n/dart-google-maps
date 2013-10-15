@@ -18,8 +18,10 @@ final Encoding encoding = new Encoding();
 
 class Encoding extends jsw.TypedJsObject {
   static Encoding cast(js.JsObject jsObject) => jsObject == null ? null : new Encoding.fromJsObject(jsObject);
-  Encoding.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  Encoding() : super.fromJsObject(maps['geometry']['encoding']);
+  Encoding.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  Encoding()
+      : super.fromJsObject(maps['geometry']['encoding']);
 
   List<LatLng> decodePath(String encodedPath) => jsw.TypedJsArray.castListOfSerializables($unsafe.callMethod('decodePath', [encodedPath]), LatLng.cast);
   String encodePath(dynamic /*Array.<LatLng>|MVCArray.<LatLng>*/ path) => $unsafe.callMethod('encodePath', [path == null ? null : path is js.Serializable ? path : js.jsify(path)]);

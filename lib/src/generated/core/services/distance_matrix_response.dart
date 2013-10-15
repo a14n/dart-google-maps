@@ -16,8 +16,10 @@ part of google_maps;
 
 class DistanceMatrixResponse extends jsw.TypedJsObject {
   static DistanceMatrixResponse cast(js.JsObject jsObject) => jsObject == null ? null : new DistanceMatrixResponse.fromJsObject(jsObject);
-  DistanceMatrixResponse.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  DistanceMatrixResponse() : super();
+  DistanceMatrixResponse.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  DistanceMatrixResponse()
+      : super();
 
   set destinationAddresses(List<String> destinationAddresses) => $unsafe['destinationAddresses'] = destinationAddresses == null ? null : destinationAddresses is js.Serializable ? destinationAddresses : js.jsify(destinationAddresses);
   List<String> get destinationAddresses => jsw.TypedJsArray.cast($unsafe['destinationAddresses']);

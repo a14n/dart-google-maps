@@ -16,8 +16,10 @@ part of google_maps_visualization;
 
 class DemographicsPolygonOptions extends jsw.TypedJsObject {
   static DemographicsPolygonOptions cast(js.JsObject jsObject) => jsObject == null ? null : new DemographicsPolygonOptions.fromJsObject(jsObject);
-  DemographicsPolygonOptions.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  DemographicsPolygonOptions() : super();
+  DemographicsPolygonOptions.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  DemographicsPolygonOptions()
+      : super();
 
   set fillColor(String fillColor) => $unsafe['fillColor'] = fillColor;
   String get fillColor => $unsafe['fillColor'];

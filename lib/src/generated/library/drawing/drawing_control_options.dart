@@ -16,8 +16,10 @@ part of google_maps_drawing;
 
 class DrawingControlOptions extends jsw.TypedJsObject {
   static DrawingControlOptions cast(js.JsObject jsObject) => jsObject == null ? null : new DrawingControlOptions.fromJsObject(jsObject);
-  DrawingControlOptions.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  DrawingControlOptions() : super();
+  DrawingControlOptions.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  DrawingControlOptions()
+      : super();
 
   List<OverlayType> get drawingModes => jsw.TypedJsArray.castListOfSerializables($unsafe['drawingModes'], OverlayType.find);
   set drawingModes(List<OverlayType> drawingModes) => $unsafe['drawingModes'] = drawingModes == null ? null : drawingModes is js.Serializable ? drawingModes : js.jsify(drawingModes);

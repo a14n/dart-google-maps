@@ -16,7 +16,8 @@ part of google_maps_panoramio;
 
 class PanoramioMouseEvent extends jsw.TypedJsObject {
   static PanoramioMouseEvent cast(js.JsObject jsObject) => jsObject == null ? null : new PanoramioMouseEvent.fromJsObject(jsObject);
-  PanoramioMouseEvent.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
+  PanoramioMouseEvent.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
   PanoramioMouseEvent();
 
   set featureDetails(PanoramioFeature featureDetails) => $unsafe['featureDetails'] = featureDetails;

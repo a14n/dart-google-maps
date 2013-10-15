@@ -16,8 +16,10 @@ part of google_maps;
 
 class PanControlOptions extends jsw.TypedJsObject {
   static PanControlOptions cast(js.JsObject jsObject) => jsObject == null ? null : new PanControlOptions.fromJsObject(jsObject);
-  PanControlOptions.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  PanControlOptions() : super();
+  PanControlOptions.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  PanControlOptions()
+      : super();
 
   set position(ControlPosition position) => $unsafe['position'] = position;
   ControlPosition get position => ControlPosition.find($unsafe['position']);

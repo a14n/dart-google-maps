@@ -16,8 +16,10 @@ part of google_maps_visualization;
 
 class MapsEngineMouseEvent extends jsw.TypedJsObject {
   static MapsEngineMouseEvent cast(js.JsObject jsObject) => jsObject == null ? null : new MapsEngineMouseEvent.fromJsObject(jsObject);
-  MapsEngineMouseEvent.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  MapsEngineMouseEvent() : super();
+  MapsEngineMouseEvent.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  MapsEngineMouseEvent()
+      : super();
 
   set featureId(String featureId) => $unsafe['featureId'] = featureId;
   String get featureId => $unsafe['featureId'];

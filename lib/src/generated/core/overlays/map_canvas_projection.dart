@@ -16,7 +16,8 @@ part of google_maps;
 
 class MapCanvasProjection extends MVCObject {
   static MapCanvasProjection cast(js.JsObject jsObject) => jsObject == null ? null : new MapCanvasProjection.fromJsObject(jsObject);
-  MapCanvasProjection.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
+  MapCanvasProjection.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
   LatLng fromContainerPixelToLatLng(Point pixel, [bool nowrap]) => LatLng.cast($unsafe.callMethod('fromContainerPixelToLatLng', [pixel, nowrap]));
   LatLng fromDivPixelToLatLng(Point pixel, [bool nowrap]) => LatLng.cast($unsafe.callMethod('fromDivPixelToLatLng', [pixel, nowrap]));
   Point fromLatLngToContainerPixel(LatLng latLng) => Point.cast($unsafe.callMethod('fromLatLngToContainerPixel', [latLng]));

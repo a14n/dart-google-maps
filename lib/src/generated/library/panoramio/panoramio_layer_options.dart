@@ -16,8 +16,10 @@ part of google_maps_panoramio;
 
 class PanoramioLayerOptions extends jsw.TypedJsObject {
   static PanoramioLayerOptions cast(js.JsObject jsObject) => jsObject == null ? null : new PanoramioLayerOptions.fromJsObject(jsObject);
-  PanoramioLayerOptions.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  PanoramioLayerOptions() : super();
+  PanoramioLayerOptions.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  PanoramioLayerOptions()
+      : super();
 
   set clickable(bool clickable) => $unsafe['clickable'] = clickable;
   bool get clickable => $unsafe['clickable'];

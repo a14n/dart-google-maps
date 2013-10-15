@@ -16,8 +16,10 @@ part of google_maps_weather;
 
 class WeatherLayerOptions extends jsw.TypedJsObject {
   static WeatherLayerOptions cast(js.JsObject jsObject) => jsObject == null ? null : new WeatherLayerOptions.fromJsObject(jsObject);
-  WeatherLayerOptions.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  WeatherLayerOptions() : super();
+  WeatherLayerOptions.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  WeatherLayerOptions()
+      : super();
 
   set clickable(bool clickable) => $unsafe['clickable'] = clickable;
   bool get clickable => $unsafe['clickable'];

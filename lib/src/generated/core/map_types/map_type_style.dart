@@ -16,8 +16,10 @@ part of google_maps;
 
 class MapTypeStyle extends jsw.TypedJsObject {
   static MapTypeStyle cast(js.JsObject jsObject) => jsObject == null ? null : new MapTypeStyle.fromJsObject(jsObject);
-  MapTypeStyle.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  MapTypeStyle() : super();
+  MapTypeStyle.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  MapTypeStyle()
+      : super();
 
   set elementType(MapTypeStyleElementType elementType) => $unsafe['elementType'] = elementType;
   MapTypeStyleElementType get elementType => MapTypeStyleElementType.find($unsafe['elementType']);

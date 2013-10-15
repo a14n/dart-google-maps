@@ -16,8 +16,10 @@ part of google_maps;
 
 class GeocoderRequest extends jsw.TypedJsObject {
   static GeocoderRequest cast(js.JsObject jsObject) => jsObject == null ? null : new GeocoderRequest.fromJsObject(jsObject);
-  GeocoderRequest.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  GeocoderRequest() : super();
+  GeocoderRequest.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  GeocoderRequest()
+      : super();
 
   set address(String address) => $unsafe['address'] = address;
   String get address => $unsafe['address'];

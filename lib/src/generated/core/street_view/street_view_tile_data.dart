@@ -16,8 +16,10 @@ part of google_maps;
 
 class StreetViewTileData extends jsw.TypedJsObject {
   static StreetViewTileData cast(js.JsObject jsObject) => jsObject == null ? null : new StreetViewTileData.fromJsObject(jsObject);
-  StreetViewTileData.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  StreetViewTileData() : super();
+  StreetViewTileData.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  StreetViewTileData()
+      : super();
 
   void set_getTileUrl(String getTileUrl(String pano, num tileZoom, num tileX, num tileY)) {
     $unsafe['getTileUrl'] = getTileUrl;

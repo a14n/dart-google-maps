@@ -16,8 +16,10 @@ part of google_maps;
 
 class FusionTablesStyle extends jsw.TypedJsObject {
   static FusionTablesStyle cast(js.JsObject jsObject) => jsObject == null ? null : new FusionTablesStyle.fromJsObject(jsObject);
-  FusionTablesStyle.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  FusionTablesStyle() : super();
+  FusionTablesStyle.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  FusionTablesStyle()
+      : super();
 
   set markerOptions(FusionTablesMarkerOptions markerOptions) => $unsafe['markerOptions'] = markerOptions;
   FusionTablesMarkerOptions get markerOptions => FusionTablesMarkerOptions.cast($unsafe['markerOptions']);

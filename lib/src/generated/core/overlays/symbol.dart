@@ -16,8 +16,10 @@ part of google_maps;
 
 class GSymbol extends jsw.TypedJsObject {
   static GSymbol cast(js.JsObject jsObject) => jsObject == null ? null : new GSymbol.fromJsObject(jsObject);
-  GSymbol.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  GSymbol() : super();
+  GSymbol.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  GSymbol()
+      : super();
 
   set anchor(Point anchor) => $unsafe['anchor'] = anchor;
   Point get anchor => Point.cast($unsafe['anchor']);

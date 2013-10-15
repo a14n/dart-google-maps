@@ -16,8 +16,10 @@ part of google_maps_visualization;
 
 class WeightedLocation extends jsw.TypedJsObject {
   static WeightedLocation cast(js.JsObject jsObject) => jsObject == null ? null : new WeightedLocation.fromJsObject(jsObject);
-  WeightedLocation.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  WeightedLocation() : super();
+  WeightedLocation.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  WeightedLocation()
+      : super();
 
   set location(LatLng location) => $unsafe['location'] = location;
   LatLng get location => LatLng.cast($unsafe['location']);

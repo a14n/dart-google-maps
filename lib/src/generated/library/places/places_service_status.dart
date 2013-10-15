@@ -26,5 +26,6 @@ class PlacesServiceStatus extends jsw.IsEnum<String> {
 
   static PlacesServiceStatus find(o) => _FINDER.find(o);
 
-  PlacesServiceStatus._(String value) : super(value);
+  PlacesServiceStatus._(String value)
+      : super(value);
 }

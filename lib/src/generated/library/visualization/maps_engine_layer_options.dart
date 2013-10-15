@@ -16,8 +16,10 @@ part of google_maps_visualization;
 
 class MapsEngineLayerOptions extends jsw.TypedJsObject {
   static MapsEngineLayerOptions cast(js.JsObject jsObject) => jsObject == null ? null : new MapsEngineLayerOptions.fromJsObject(jsObject);
-  MapsEngineLayerOptions.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  MapsEngineLayerOptions() : super();
+  MapsEngineLayerOptions.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  MapsEngineLayerOptions()
+      : super();
 
   set accessToken(String accessToken) => $unsafe['accessToken'] = accessToken;
   String get accessToken => $unsafe['accessToken'];

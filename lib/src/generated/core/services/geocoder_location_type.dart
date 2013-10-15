@@ -24,5 +24,6 @@ class GeocoderLocationType extends jsw.IsEnum<String> {
 
   static GeocoderLocationType find(o) => _FINDER.find(o);
 
-  GeocoderLocationType._(String value) : super(value);
+  GeocoderLocationType._(String value)
+      : super(value);
 }

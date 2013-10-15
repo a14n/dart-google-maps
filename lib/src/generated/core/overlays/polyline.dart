@@ -27,10 +27,12 @@ class Polyline extends MVCObject {
   jsw.SubscribeStreamProvider<PolyMouseEvent> _onMouseup;
   jsw.SubscribeStreamProvider<PolyMouseEvent> _onRightclick;
 
-  Polyline([PolylineOptions opts]) : super(maps['Polyline'], [opts]) {
+  Polyline([PolylineOptions opts])
+      : super(maps['Polyline'], [opts]) {
     _initStreams();
   }
-  Polyline.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) {
+  Polyline.fromJsObject(js.JsObject proxy)
+      : super.fromJsObject(proxy) {
     _initStreams();
   }
 

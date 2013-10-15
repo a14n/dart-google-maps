@@ -16,8 +16,10 @@ part of google_maps_places;
 
 class PlaceAspectRating extends jsw.TypedJsObject {
   static PlaceAspectRating cast(js.JsObject jsObject) => jsObject == null ? null : new PlaceAspectRating.fromJsObject(jsObject);
-  PlaceAspectRating.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  PlaceAspectRating() : super();
+  PlaceAspectRating.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  PlaceAspectRating()
+      : super();
 
   set rating(num rating) => $unsafe['rating'] = rating;
   num get rating => $unsafe['rating'];

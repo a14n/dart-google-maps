@@ -16,8 +16,10 @@ part of google_maps;
 
 class DirectionsRoute extends jsw.TypedJsObject {
   static DirectionsRoute cast(js.JsObject jsObject) => jsObject == null ? null : new DirectionsRoute.fromJsObject(jsObject);
-  DirectionsRoute.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  DirectionsRoute() : super();
+  DirectionsRoute.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  DirectionsRoute()
+      : super();
 
   set bounds(LatLngBounds bounds) => $unsafe['bounds'] = bounds;
   LatLngBounds get bounds => LatLngBounds.cast($unsafe['bounds']);

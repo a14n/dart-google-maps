@@ -16,8 +16,10 @@ part of google_maps_visualization;
 
 class DemographicsLayerOptions extends jsw.TypedJsObject {
   static DemographicsLayerOptions cast(js.JsObject jsObject) => jsObject == null ? null : new DemographicsLayerOptions.fromJsObject(jsObject);
-  DemographicsLayerOptions.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  DemographicsLayerOptions() : super();
+  DemographicsLayerOptions.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  DemographicsLayerOptions()
+      : super();
 
   set clickable(bool clickable) => $unsafe['clickable'] = clickable;
   bool get clickable => $unsafe['clickable'];

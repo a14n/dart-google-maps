@@ -16,8 +16,10 @@ part of google_maps_places;
 
 class TextSearchRequest extends jsw.TypedJsObject {
   static TextSearchRequest cast(js.JsObject jsObject) => jsObject == null ? null : new TextSearchRequest.fromJsObject(jsObject);
-  TextSearchRequest.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  TextSearchRequest() : super();
+  TextSearchRequest.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  TextSearchRequest()
+      : super();
 
   set bounds(LatLngBounds bounds) => $unsafe['bounds'] = bounds;
   LatLngBounds get bounds => LatLngBounds.cast($unsafe['bounds']);

@@ -16,8 +16,10 @@ part of google_maps_panoramio;
 
 class PanoramioFeature extends jsw.TypedJsObject {
   static PanoramioFeature cast(js.JsObject jsObject) => jsObject == null ? null : new PanoramioFeature.fromJsObject(jsObject);
-  PanoramioFeature.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  PanoramioFeature() : super();
+  PanoramioFeature.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  PanoramioFeature()
+      : super();
 
   set author(String author) => $unsafe['author'] = author;
   String get author => $unsafe['author'];

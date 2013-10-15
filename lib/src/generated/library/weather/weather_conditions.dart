@@ -16,8 +16,10 @@ part of google_maps_weather;
 
 class WeatherConditions extends jsw.TypedJsObject {
   static WeatherConditions cast(js.JsObject jsObject) => jsObject == null ? null : new WeatherConditions.fromJsObject(jsObject);
-  WeatherConditions.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  WeatherConditions() : super();
+  WeatherConditions.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  WeatherConditions()
+      : super();
 
   set day(String day) => $unsafe['day'] = day;
   String get day => $unsafe['day'];

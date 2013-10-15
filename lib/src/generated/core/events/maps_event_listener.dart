@@ -16,5 +16,6 @@ part of google_maps;
 
 class MapsEventListener extends jsw.TypedJsObject {
   static MapsEventListener cast(js.JsObject jsObject) => jsObject == null ? null : new MapsEventListener.fromJsObject(jsObject);
-  MapsEventListener.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
+  MapsEventListener.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
 }

@@ -51,5 +51,6 @@ class MapTypeStyleFeatureType extends jsw.IsEnum<String> {
 
   static MapTypeStyleFeatureType find(o) => _FINDER.find(o);
 
-  MapTypeStyleFeatureType._(String value) : super(value);
+  MapTypeStyleFeatureType._(String value)
+      : super(value);
 }

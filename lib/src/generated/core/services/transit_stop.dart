@@ -16,8 +16,10 @@ part of google_maps;
 
 class TransitStop extends jsw.TypedJsObject {
   static TransitStop cast(js.JsObject jsObject) => jsObject == null ? null : new TransitStop.fromJsObject(jsObject);
-  TransitStop.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  TransitStop() : super();
+  TransitStop.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  TransitStop()
+      : super();
 
   set location(LatLng location) => $unsafe['location'] = location;
   LatLng get location => LatLng.cast($unsafe['location']);

@@ -22,5 +22,6 @@ class MaxZoomStatus extends jsw.IsEnum<String> {
 
   static MaxZoomStatus find(o) => _FINDER.find(o);
 
-  MaxZoomStatus._(String value) : super(value);
+  MaxZoomStatus._(String value)
+      : super(value);
 }

@@ -16,7 +16,8 @@ part of google_maps;
 
 class PolyMouseEvent extends MouseEvent {
   static PolyMouseEvent cast(js.JsObject jsObject) => jsObject == null ? null : new PolyMouseEvent.fromJsObject(jsObject);
-  PolyMouseEvent.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
+  PolyMouseEvent.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
   set edge(num edge) => $unsafe['edge'] = edge;
   num get edge => $unsafe['edge'];
   set path(num path) => $unsafe['path'] = path;

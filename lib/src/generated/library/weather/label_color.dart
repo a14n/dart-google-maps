@@ -22,5 +22,6 @@ class LabelColor extends jsw.IsEnum<String> {
 
   static LabelColor find(o) => _FINDER.find(o);
 
-  LabelColor._(String value) : super(value);
+  LabelColor._(String value)
+      : super(value);
 }

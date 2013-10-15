@@ -16,8 +16,10 @@ part of google_maps_visualization;
 
 class HeatmapLayerOptions extends jsw.TypedJsObject {
   static HeatmapLayerOptions cast(js.JsObject jsObject) => jsObject == null ? null : new HeatmapLayerOptions.fromJsObject(jsObject);
-  HeatmapLayerOptions.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  HeatmapLayerOptions() : super();
+  HeatmapLayerOptions.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  HeatmapLayerOptions()
+      : super();
 
   MVCArray<LatLng> get data => MVCArray.castListOfSerializables($unsafe['data'], LatLng.cast);
   set data(MVCArray<LatLng> data) => $unsafe['data'] = data;

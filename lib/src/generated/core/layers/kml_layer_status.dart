@@ -29,5 +29,6 @@ class KmlLayerStatus extends jsw.IsEnum<String> {
 
   static KmlLayerStatus find(o) => _FINDER.find(o);
 
-  KmlLayerStatus._(String value) : super(value);
+  KmlLayerStatus._(String value)
+      : super(value);
 }

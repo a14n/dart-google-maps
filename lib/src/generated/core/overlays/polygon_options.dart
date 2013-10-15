@@ -16,8 +16,10 @@ part of google_maps;
 
 class PolygonOptions extends jsw.TypedJsObject {
   static PolygonOptions cast(js.JsObject jsObject) => jsObject == null ? null : new PolygonOptions.fromJsObject(jsObject);
-  PolygonOptions.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  PolygonOptions() : super();
+  PolygonOptions.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  PolygonOptions()
+      : super();
 
   set clickable(bool clickable) => $unsafe['clickable'] = clickable;
   bool get clickable => $unsafe['clickable'];

@@ -18,10 +18,12 @@ class WeatherLayer extends MVCObject {
   static WeatherLayer cast(js.JsObject jsObject) => jsObject == null ? null : new WeatherLayer.fromJsObject(jsObject);
   jsw.SubscribeStreamProvider<WeatherMouseEvent> _onClick;
 
-  WeatherLayer([WeatherLayerOptions opts]) : super(maps['weather']['WeatherLayer'], [opts]) {
+  WeatherLayer([WeatherLayerOptions opts])
+      : super(maps['weather']['WeatherLayer'], [opts]) {
     _initStreams();
   }
-  WeatherLayer.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) {
+  WeatherLayer.fromJsObject(js.JsObject proxy)
+      : super.fromJsObject(proxy) {
     _initStreams();
   }
 

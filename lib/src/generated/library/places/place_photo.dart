@@ -16,8 +16,10 @@ part of google_maps_places;
 
 class PlacePhoto extends jsw.TypedJsObject {
   static PlacePhoto cast(js.JsObject jsObject) => jsObject == null ? null : new PlacePhoto.fromJsObject(jsObject);
-  PlacePhoto.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  PlacePhoto() : super();
+  PlacePhoto.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  PlacePhoto()
+      : super();
 
   set height(num height) => $unsafe['height'] = height;
   num get height => $unsafe['height'];

@@ -24,5 +24,6 @@ class MapTypeId extends jsw.IsEnum<String> {
 
   static MapTypeId find(o) => _FINDER.find(o);
 
-  MapTypeId._(String value) : super(value);
+  MapTypeId._(String value)
+      : super(value);
 }

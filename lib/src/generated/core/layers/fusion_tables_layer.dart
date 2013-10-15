@@ -18,10 +18,12 @@ class FusionTablesLayer extends MVCObject {
   static FusionTablesLayer cast(js.JsObject jsObject) => jsObject == null ? null : new FusionTablesLayer.fromJsObject(jsObject);
   jsw.SubscribeStreamProvider<FusionTablesMouseEvent> _onClick;
 
-  FusionTablesLayer(FusionTablesLayerOptions options) : super(maps['FusionTablesLayer'], [options]) {
+  FusionTablesLayer(FusionTablesLayerOptions options)
+      : super(maps['FusionTablesLayer'], [options]) {
     _initStreams();
   }
-  FusionTablesLayer.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) {
+  FusionTablesLayer.fromJsObject(js.JsObject proxy)
+      : super.fromJsObject(proxy) {
     _initStreams();
   }
 

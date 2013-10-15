@@ -16,8 +16,10 @@ part of google_maps_visualization;
 
 class DemographicsPropertyStyle extends jsw.TypedJsObject {
   static DemographicsPropertyStyle cast(js.JsObject jsObject) => jsObject == null ? null : new DemographicsPropertyStyle.fromJsObject(jsObject);
-  DemographicsPropertyStyle.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  DemographicsPropertyStyle() : super();
+  DemographicsPropertyStyle.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  DemographicsPropertyStyle()
+      : super();
 
   set expression(String expression) => $unsafe['expression'] = expression;
   String get expression => $unsafe['expression'];

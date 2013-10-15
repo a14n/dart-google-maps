@@ -16,8 +16,10 @@ part of google_maps_places;
 
 class PlacesService extends jsw.TypedJsObject {
   static PlacesService cast(js.JsObject jsObject) => jsObject == null ? null : new PlacesService.fromJsObject(jsObject);
-  PlacesService.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  PlacesService(dynamic /*HTMLDivElement|GMap*/ attrContainer) : super(maps['places']['PlacesService'], [attrContainer is html.Element ? jsw.convertElementToJs(attrContainer) : attrContainer]);
+  PlacesService.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  PlacesService(dynamic /*HTMLDivElement|GMap*/ attrContainer)
+      : super(maps['places']['PlacesService'], [attrContainer is html.Element ? jsw.convertElementToJs(attrContainer) : attrContainer]);
 
   void getDetails(PlaceDetailsRequest request, void callback(PlaceResult results, PlacesServiceStatus status)) {
     $unsafe.callMethod('getDetails', [request, (js.JsObject result, String status) => callback(PlaceResult.cast(result), PlacesServiceStatus.find(status))]);

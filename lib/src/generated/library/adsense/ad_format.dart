@@ -38,5 +38,6 @@ class AdFormat extends jsw.IsEnum<String> {
 
   static AdFormat find(o) => _FINDER.find(o);
 
-  AdFormat._(String value) : super(value);
+  AdFormat._(String value)
+      : super(value);
 }

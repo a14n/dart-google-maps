@@ -16,8 +16,10 @@ part of google_maps;
 
 class MarkerShape extends jsw.TypedJsObject {
   static MarkerShape cast(js.JsObject jsObject) => jsObject == null ? null : new MarkerShape.fromJsObject(jsObject);
-  MarkerShape.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  MarkerShape() : super();
+  MarkerShape.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  MarkerShape()
+      : super();
 
   set coords(List<num> coords) => $unsafe['coords'] = coords == null ? null : coords is js.Serializable ? coords : js.jsify(coords);
   List<num> get coords => jsw.TypedJsArray.cast($unsafe['coords']);
@@ -34,5 +36,6 @@ class MarkerShapeType extends jsw.IsEnum<String> {
 
   static MarkerShapeType find(o) => _FINDER.find(o);
 
-  MarkerShapeType._(String value) : super(value);
+  MarkerShapeType._(String value)
+      : super(value);
 }

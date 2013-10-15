@@ -16,8 +16,10 @@ part of google_maps_visualization;
 
 class HeatmapLayer extends MVCObject {
   static HeatmapLayer cast(js.JsObject jsObject) => jsObject == null ? null : new HeatmapLayer.fromJsObject(jsObject);
-  HeatmapLayer.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  HeatmapLayer([HeatmapLayerOptions opts]) : super(maps['visualization']['HeatmapLayer'], [opts]);
+  HeatmapLayer.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  HeatmapLayer([HeatmapLayerOptions opts])
+      : super(maps['visualization']['HeatmapLayer'], [opts]);
 
   MVCArray<dynamic/*LatLng|WeightedLocation*/ > get data => MVCArray.castListOfSerializables($unsafe.callMethod('getData'), (e) => LatLng.isInstance(e) ? LatLng.cast(e) : WeightedLocation.cast(e));
   GMap get map => GMap.cast($unsafe.callMethod('getMap'));

@@ -16,7 +16,8 @@ part of google_maps_weather;
 
 class WeatherMouseEvent extends jsw.TypedJsObject {
   static WeatherMouseEvent cast(js.JsObject jsObject) => jsObject == null ? null : new WeatherMouseEvent.fromJsObject(jsObject);
-  WeatherMouseEvent.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
+  WeatherMouseEvent.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
   WeatherMouseEvent();
 
   set featureDetails(WeatherFeature featureDetails) => $unsafe['featureDetails'] = featureDetails;

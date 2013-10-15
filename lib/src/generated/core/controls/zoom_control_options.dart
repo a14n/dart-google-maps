@@ -16,8 +16,10 @@ part of google_maps;
 
 class ZoomControlOptions extends jsw.TypedJsObject {
   static ZoomControlOptions cast(js.JsObject jsObject) => jsObject == null ? null : new ZoomControlOptions.fromJsObject(jsObject);
-  ZoomControlOptions.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  ZoomControlOptions() : super();
+  ZoomControlOptions.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  ZoomControlOptions()
+      : super();
 
   set position(ControlPosition position) => $unsafe['position'] = position;
   ControlPosition get position => ControlPosition.find($unsafe['position']);

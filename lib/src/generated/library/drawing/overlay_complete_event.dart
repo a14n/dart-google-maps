@@ -16,23 +16,32 @@ part of google_maps_drawing;
 
 class OverlayCompleteEvent extends jsw.TypedJsObject {
   static OverlayCompleteEvent cast(js.JsObject jsObject) => jsObject == null ? null : new OverlayCompleteEvent.fromJsObject(jsObject);
-  OverlayCompleteEvent.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
+  OverlayCompleteEvent.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
   OverlayCompleteEvent();
 
   dynamic /*Marker|Polygon|Polyline|Rectangle|Circle*/ get overlay {
     final result = $unsafe['overlay'];
     if (Marker.isInstance(result)) {
       return Marker.cast(result);
-    } else if (Polygon.isInstance(result)) {
-      return Polygon.cast(result);
-    } else if (Polyline.isInstance(result)) {
-      return Polyline.cast(result);
-    } else if (Rectangle.isInstance(result)) {
-      return Rectangle.cast(result);
-    } else if (Circle.isInstance(result)) {
-      return Circle.cast(result);
     } else {
-      return result;
+      if (Polygon.isInstance(result)) {
+        return Polygon.cast(result);
+      } else {
+        if (Polyline.isInstance(result)) {
+          return Polyline.cast(result);
+        } else {
+          if (Rectangle.isInstance(result)) {
+            return Rectangle.cast(result);
+          } else {
+            if (Circle.isInstance(result)) {
+              return Circle.cast(result);
+            } else {
+              return result;
+            }
+          }
+        }
+      }
     }
   }
   set overlay(dynamic overlay) => $unsafe['overlay'] = overlay;

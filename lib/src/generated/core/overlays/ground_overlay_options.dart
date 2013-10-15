@@ -16,8 +16,10 @@ part of google_maps;
 
 class GroundOverlayOptions extends jsw.TypedJsObject {
   static GroundOverlayOptions cast(js.JsObject jsObject) => jsObject == null ? null : new GroundOverlayOptions.fromJsObject(jsObject);
-  GroundOverlayOptions.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  GroundOverlayOptions() : super();
+  GroundOverlayOptions.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  GroundOverlayOptions()
+      : super();
 
   set clickable(bool clickable) => $unsafe['clickable'] = clickable;
   bool get clickable => $unsafe['clickable'];

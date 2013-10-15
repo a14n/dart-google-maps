@@ -16,8 +16,10 @@ part of google_maps;
 
 class InfoWindowOptions extends jsw.TypedJsObject {
   static InfoWindowOptions cast(js.JsObject jsObject) => jsObject == null ? null : new InfoWindowOptions.fromJsObject(jsObject);
-  InfoWindowOptions.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  InfoWindowOptions() : super();
+  InfoWindowOptions.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  InfoWindowOptions()
+      : super();
 
   set content(dynamic content) => $unsafe['content'] = content;
   dynamic get content => $unsafe['content'];

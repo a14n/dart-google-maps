@@ -16,8 +16,10 @@ part of google_maps;
 
 class GeocoderGeometry extends jsw.TypedJsObject {
   static GeocoderGeometry cast(js.JsObject jsObject) => jsObject == null ? null : new GeocoderGeometry.fromJsObject(jsObject);
-  GeocoderGeometry.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  GeocoderGeometry() : super();
+  GeocoderGeometry.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  GeocoderGeometry()
+      : super();
 
   set bounds(LatLngBounds bounds) => $unsafe['bounds'] = bounds;
   LatLngBounds get bounds => LatLngBounds.cast($unsafe['bounds']);

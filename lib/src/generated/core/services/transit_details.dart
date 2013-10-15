@@ -16,8 +16,10 @@ part of google_maps;
 
 class TransitDetails extends jsw.TypedJsObject {
   static TransitDetails cast(js.JsObject jsObject) => jsObject == null ? null : new TransitDetails.fromJsObject(jsObject);
-  TransitDetails.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  TransitDetails() : super();
+  TransitDetails.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  TransitDetails()
+      : super();
 
   set arrivalStop(TransitStop arrivalStop) => $unsafe['arrivalStop'] = arrivalStop;
   TransitStop get arrivalStop => TransitStop.cast($unsafe['arrivalStop']);

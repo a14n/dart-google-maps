@@ -23,10 +23,12 @@ class DrawingManager extends MVCObject {
   jsw.SubscribeStreamProvider<Polyline> _onPolylinecomplete;
   jsw.SubscribeStreamProvider<Rectangle> _onRectanglecomplete;
 
-  DrawingManager([DrawingManagerOptions opts]) : super(maps['drawing']['DrawingManager'], [opts]) {
+  DrawingManager([DrawingManagerOptions opts])
+      : super(maps['drawing']['DrawingManager'], [opts]) {
     _initStreams();
   }
-  DrawingManager.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) {
+  DrawingManager.fromJsObject(js.JsObject proxy)
+      : super.fromJsObject(proxy) {
     _initStreams();
   }
 

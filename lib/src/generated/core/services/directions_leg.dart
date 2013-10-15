@@ -16,8 +16,10 @@ part of google_maps;
 
 class DirectionsLeg extends jsw.TypedJsObject {
   static DirectionsLeg cast(js.JsObject jsObject) => jsObject == null ? null : new DirectionsLeg.fromJsObject(jsObject);
-  DirectionsLeg.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  DirectionsLeg() : super();
+  DirectionsLeg.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  DirectionsLeg()
+      : super();
 
   set arrivalTime(Time arrivalTime) => $unsafe['arrival_time'] = arrivalTime;
   Time get arrivalTime => Time.cast($unsafe['arrival_time']);

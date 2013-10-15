@@ -18,10 +18,12 @@ class SearchBox extends MVCObject {
   static SearchBox cast(js.JsObject jsObject) => jsObject == null ? null : new SearchBox.fromJsObject(jsObject);
   jsw.SubscribeStreamProvider _onPlaceChanged;
 
-  SearchBox(html.InputElement inputField, [SearchBoxOptions opts]) : super(maps['places']['SearchBox'], [jsw.convertElementToJs(inputField), opts]) {
+  SearchBox(html.InputElement inputField, [SearchBoxOptions opts])
+      : super(maps['places']['SearchBox'], [jsw.convertElementToJs(inputField), opts]) {
     _initStreams();
   }
-  SearchBox.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) {
+  SearchBox.fromJsObject(js.JsObject proxy)
+      : super.fromJsObject(proxy) {
     _initStreams();
   }
 

@@ -16,8 +16,10 @@ part of google_maps;
 
 class MaxZoomResult extends jsw.TypedJsObject {
   static MaxZoomResult cast(js.JsObject jsObject) => jsObject == null ? null : new MaxZoomResult.fromJsObject(jsObject);
-  MaxZoomResult.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  MaxZoomResult() : super();
+  MaxZoomResult.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  MaxZoomResult()
+      : super();
 
   set status(MaxZoomStatus status) => $unsafe['status'] = status;
   MaxZoomStatus get status => MaxZoomStatus.find($unsafe['status']);

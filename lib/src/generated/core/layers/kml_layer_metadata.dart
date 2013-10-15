@@ -16,8 +16,10 @@ part of google_maps;
 
 class KmlLayerMetadata extends jsw.TypedJsObject {
   static KmlLayerMetadata cast(js.JsObject jsObject) => jsObject == null ? null : new KmlLayerMetadata.fromJsObject(jsObject);
-  KmlLayerMetadata.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  KmlLayerMetadata() : super();
+  KmlLayerMetadata.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  KmlLayerMetadata()
+      : super();
 
   set author(KmlAuthor author) => $unsafe['author'] = author;
   KmlAuthor get author => KmlAuthor.cast($unsafe['author']);

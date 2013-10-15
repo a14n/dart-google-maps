@@ -16,8 +16,10 @@ part of google_maps;
 
 class LatLngBounds extends jsw.TypedJsObject {
   static LatLngBounds cast(js.JsObject jsObject) => jsObject == null ? null : new LatLngBounds.fromJsObject(jsObject);
-  LatLngBounds.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  LatLngBounds([LatLng sw, LatLng ne]) : super(maps['LatLngBounds'], [sw, ne]);
+  LatLngBounds.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  LatLngBounds([LatLng sw, LatLng ne])
+      : super(maps['LatLngBounds'], [sw, ne]);
 
   bool contains(LatLng latLng) => $unsafe.callMethod('contains', [latLng]);
   bool equals(LatLngBounds other) => $unsafe.callMethod('equals', [other]);

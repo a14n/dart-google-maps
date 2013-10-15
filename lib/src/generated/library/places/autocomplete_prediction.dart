@@ -16,8 +16,10 @@ part of google_maps_places;
 
 class AutocompletePrediction extends jsw.TypedJsObject {
   static AutocompletePrediction cast(js.JsObject jsObject) => jsObject == null ? null : new AutocompletePrediction.fromJsObject(jsObject);
-  AutocompletePrediction.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  AutocompletePrediction() : super();
+  AutocompletePrediction.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  AutocompletePrediction()
+      : super();
 
   set description(String description) => $unsafe['description'] = description;
   String get description => $unsafe['description'];

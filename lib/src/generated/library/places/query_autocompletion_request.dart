@@ -16,8 +16,10 @@ part of google_maps_places;
 
 class QueryAutocompletionRequest extends jsw.TypedJsObject {
   static QueryAutocompletionRequest cast(js.JsObject jsObject) => jsObject == null ? null : new QueryAutocompletionRequest.fromJsObject(jsObject);
-  QueryAutocompletionRequest.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  QueryAutocompletionRequest() : super();
+  QueryAutocompletionRequest.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  QueryAutocompletionRequest()
+      : super();
 
   set bounds(LatLngBounds bounds) => $unsafe['bounds'] = bounds;
   LatLngBounds get bounds => LatLngBounds.cast($unsafe['bounds']);

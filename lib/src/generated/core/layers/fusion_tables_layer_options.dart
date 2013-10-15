@@ -16,8 +16,10 @@ part of google_maps;
 
 class FusionTablesLayerOptions extends jsw.TypedJsObject {
   static FusionTablesLayerOptions cast(js.JsObject jsObject) => jsObject == null ? null : new FusionTablesLayerOptions.fromJsObject(jsObject);
-  FusionTablesLayerOptions.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  FusionTablesLayerOptions() : super();
+  FusionTablesLayerOptions.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  FusionTablesLayerOptions()
+      : super();
 
   set clickable(bool clickable) => $unsafe['clickable'] = clickable;
   bool get clickable => $unsafe['clickable'];

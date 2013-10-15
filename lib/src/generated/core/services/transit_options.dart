@@ -16,8 +16,10 @@ part of google_maps;
 
 class TransitOptions extends jsw.TypedJsObject {
   static TransitOptions cast(js.JsObject jsObject) => jsObject == null ? null : new TransitOptions.fromJsObject(jsObject);
-  TransitOptions.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  TransitOptions() : super();
+  TransitOptions.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  TransitOptions()
+      : super();
 
   DateTime get arrivalTime => jsw.JsDateToDateTimeAdapter.cast($unsafe['arrivalTime']);
   set arrivalTime(DateTime arrivalTime) => $unsafe['arrivalTime'] = arrivalTime == null ? null : arrivalTime is js.Serializable ? arrivalTime : new jsw.JsDateToDateTimeAdapter(arrivalTime);

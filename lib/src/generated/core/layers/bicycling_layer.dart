@@ -16,8 +16,10 @@ part of google_maps;
 
 class BicyclingLayer extends MVCObject {
   static BicyclingLayer cast(js.JsObject jsObject) => jsObject == null ? null : new BicyclingLayer.fromJsObject(jsObject);
-  BicyclingLayer.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  BicyclingLayer() : super(maps['BicyclingLayer']);
+  BicyclingLayer.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  BicyclingLayer()
+      : super(maps['BicyclingLayer']);
 
   set map(GMap map) => $unsafe.callMethod('setMap', [map]);
   GMap get map => GMap.cast($unsafe.callMethod('getMap'));

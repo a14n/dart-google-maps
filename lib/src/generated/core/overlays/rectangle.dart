@@ -28,10 +28,12 @@ class Rectangle extends MVCObject {
   jsw.SubscribeStreamProvider<MouseEvent> _onMouseup;
   jsw.SubscribeStreamProvider<MouseEvent> _onRightclick;
 
-  Rectangle([RectangleOptions opts]) : super(maps['Rectangle'], [opts]) {
+  Rectangle([RectangleOptions opts])
+      : super(maps['Rectangle'], [opts]) {
     _initStreams();
   }
-  Rectangle.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) {
+  Rectangle.fromJsObject(js.JsObject proxy)
+      : super.fromJsObject(proxy) {
     _initStreams();
   }
 

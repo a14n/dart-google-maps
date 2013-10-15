@@ -16,8 +16,10 @@ part of google_maps;
 
 class Point extends jsw.TypedJsObject {
   static Point cast(js.JsObject jsObject) => jsObject == null ? null : new Point.fromJsObject(jsObject);
-  Point.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  Point(num x, num y) : super(maps['Point'], [x, y]);
+  Point.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  Point(num x, num y)
+      : super(maps['Point'], [x, y]);
 
   bool equals(Point other) => $unsafe.callMethod('equals', [other]);
   String toString() => $unsafe.callMethod('toString');

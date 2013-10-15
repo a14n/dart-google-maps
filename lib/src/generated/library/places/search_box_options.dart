@@ -16,8 +16,10 @@ part of google_maps_places;
 
 class SearchBoxOptions extends jsw.TypedJsObject {
   static SearchBoxOptions cast(js.JsObject jsObject) => jsObject == null ? null : new SearchBoxOptions.fromJsObject(jsObject);
-  SearchBoxOptions.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  SearchBoxOptions() : super();
+  SearchBoxOptions.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  SearchBoxOptions()
+      : super();
 
   set bounds(LatLngBounds bounds) => $unsafe['bounds'] = bounds;
   LatLngBounds get bounds => LatLngBounds.cast($unsafe['bounds']);

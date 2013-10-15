@@ -16,7 +16,8 @@ part of google_maps;
 
 class KmlMouseEvent extends jsw.TypedJsObject {
   static KmlMouseEvent cast(js.JsObject jsObject) => jsObject == null ? null : new KmlMouseEvent.fromJsObject(jsObject);
-  KmlMouseEvent.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
+  KmlMouseEvent.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
   KmlMouseEvent();
 
   set featureData(KmlFeatureData featureData) => $unsafe['featureData'] = featureData;

@@ -16,8 +16,10 @@ part of google_maps;
 
 class MapTypeControlOptions extends jsw.TypedJsObject {
   static MapTypeControlOptions cast(js.JsObject jsObject) => jsObject == null ? null : new MapTypeControlOptions.fromJsObject(jsObject);
-  MapTypeControlOptions.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  MapTypeControlOptions() : super();
+  MapTypeControlOptions.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  MapTypeControlOptions()
+      : super();
 
   List get mapTypeIds => jsw.TypedJsArray.castListOfSerializables($unsafe['mapTypeIds'], (e) => [MapTypeId.find(e), e].firstWhere((e) => e != null, orElse: () => null));
   set mapTypeIds(List mapTypeIds) => $unsafe['mapTypeIds'] = mapTypeIds == null ? null : mapTypeIds is js.Serializable ? mapTypeIds : js.jsify(mapTypeIds);

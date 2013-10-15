@@ -16,8 +16,10 @@ part of google_maps;
 
 class FusionTablesQuery extends jsw.TypedJsObject {
   static FusionTablesQuery cast(js.JsObject jsObject) => jsObject == null ? null : new FusionTablesQuery.fromJsObject(jsObject);
-  FusionTablesQuery.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  FusionTablesQuery() : super();
+  FusionTablesQuery.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  FusionTablesQuery()
+      : super();
 
   set from(String from) => $unsafe['from'] = from;
   String get from => $unsafe['from'];

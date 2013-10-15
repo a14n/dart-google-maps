@@ -25,5 +25,6 @@ class OverlayType extends jsw.IsEnum<String> {
 
   static OverlayType find(o) => _FINDER.find(o);
 
-  OverlayType._(String value) : super(value);
+  OverlayType._(String value)
+      : super(value);
 }

@@ -16,8 +16,10 @@ part of google_maps;
 
 class OverlayView extends MVCObject {
   static OverlayView cast(js.JsObject jsObject) => jsObject == null ? null : new OverlayView.fromJsObject(jsObject);
-  OverlayView.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  OverlayView() : super(maps['OverlayView']);
+  OverlayView.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  OverlayView()
+      : super(maps['OverlayView']);
 
   void draw() {
     $unsafe.callMethod('draw');

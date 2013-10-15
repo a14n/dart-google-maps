@@ -27,10 +27,12 @@ class Polygon extends MVCObject {
   jsw.SubscribeStreamProvider<PolyMouseEvent> _onMouseup;
   jsw.SubscribeStreamProvider<PolyMouseEvent> _onRightclick;
 
-  Polygon([PolygonOptions opts]) : super(maps['Polygon'], [opts]) {
+  Polygon([PolygonOptions opts])
+      : super(maps['Polygon'], [opts]) {
     _initStreams();
   }
-  Polygon.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) {
+  Polygon.fromJsObject(js.JsObject proxy)
+      : super.fromJsObject(proxy) {
     _initStreams();
   }
 

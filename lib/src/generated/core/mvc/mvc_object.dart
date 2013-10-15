@@ -16,8 +16,10 @@ part of google_maps;
 
 class MVCObject extends jsw.TypedJsObject {
   static MVCObject cast(js.JsObject jsObject) => jsObject == null ? null : new MVCObject.fromJsObject(jsObject);
-  MVCObject([js.Serializable<js.JsFunction> constructor, List args]) : super(constructor != null ? constructor : maps['MVCObject'], args);
-  MVCObject.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
+  MVCObject([js.Serializable<js.JsFunction> constructor, List args])
+      : super(constructor != null ? constructor : maps['MVCObject'], args);
+  MVCObject.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
 
   MapsEventListener addListener(String eventName, Function handler) => MapsEventListener.cast($unsafe.callMethod('addListener', [eventName, handler]));
   void bindTo(String key, MVCObject target, [String targetKey, bool noNotify]) {

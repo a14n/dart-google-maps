@@ -16,8 +16,10 @@ part of google_maps;
 
 class StreetViewPanoramaData extends jsw.TypedJsObject {
   static StreetViewPanoramaData cast(js.JsObject jsObject) => jsObject == null ? null : new StreetViewPanoramaData.fromJsObject(jsObject);
-  StreetViewPanoramaData.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  StreetViewPanoramaData() : super();
+  StreetViewPanoramaData.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  StreetViewPanoramaData()
+      : super();
 
   set copyright(String copyright) => $unsafe['copyright'] = copyright;
   String get copyright => $unsafe['copyright'];

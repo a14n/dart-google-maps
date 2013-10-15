@@ -32,5 +32,6 @@ class ControlPosition extends jsw.IsEnum<int> {
 
   static ControlPosition find(Object o) => _FINDER.find(o);
 
-  ControlPosition._(int value) : super(value);
+  ControlPosition._(int value)
+      : super(value);
 }

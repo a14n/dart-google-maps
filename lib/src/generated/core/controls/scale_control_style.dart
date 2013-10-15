@@ -21,5 +21,6 @@ class ScaleControlStyle extends jsw.IsEnum<String> {
 
   static ScaleControlStyle find(o) => _FINDER.find(o);
 
-  ScaleControlStyle._(String value) : super(value);
+  ScaleControlStyle._(String value)
+      : super(value);
 }

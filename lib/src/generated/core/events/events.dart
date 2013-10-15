@@ -22,7 +22,8 @@ class _Undefined {
 final GEvent event = new GEvent();
 
 class GEvent extends jsw.TypedJsObject {
-  GEvent() : super.fromJsObject(maps['event']);
+  GEvent()
+      : super.fromJsObject(maps['event']);
 
   _mayConvert(instance) => instance is html.Element ? jsw.convertElementToJs(instance) : instance;
 
@@ -54,14 +55,14 @@ class GEvent extends jsw.TypedJsObject {
       p4 = _undefined, 
       p5 = _undefined]) {
         var args = [p1, p2, p3, p4, p5].takeWhile((e) => e != _undefined).toList(growable: false);
-        var value = 
-        args.length == 0 ? null : 
-        args.length == 1 ? args.first : 
-        args;
+        var value =
+         args.length == 0 ? null :
+         args.length == 1 ? args.first :
+         args;
         eventSink.add(transformArguments == null ? value : Function.apply(transformArguments, args));
       });
-    }, 
-    unsubscribe: (EventSink eventSink) {
+    },
+     unsubscribe: (EventSink eventSink) {
       removeListener(mapsEventListener);
     }
     );

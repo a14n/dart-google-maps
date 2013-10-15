@@ -16,8 +16,10 @@ part of google_maps_visualization;
 
 class MapsEngineLayerProperties extends jsw.TypedJsObject {
   static MapsEngineLayerProperties cast(js.JsObject jsObject) => jsObject == null ? null : new MapsEngineLayerProperties.fromJsObject(jsObject);
-  MapsEngineLayerProperties.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  MapsEngineLayerProperties() : super();
+  MapsEngineLayerProperties.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  MapsEngineLayerProperties()
+      : super();
 
   set name(String name) => $unsafe['name'] = name;
   String get name => $unsafe['name'];

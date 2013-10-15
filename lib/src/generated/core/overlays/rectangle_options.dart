@@ -16,8 +16,10 @@ part of google_maps;
 
 class RectangleOptions extends jsw.TypedJsObject {
   static RectangleOptions cast(js.JsObject jsObject) => jsObject == null ? null : new RectangleOptions.fromJsObject(jsObject);
-  RectangleOptions.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  RectangleOptions() : super();
+  RectangleOptions.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  RectangleOptions()
+      : super();
 
   set bounds(LatLngBounds bounds) => $unsafe['bounds'] = bounds;
   LatLngBounds get bounds => LatLngBounds.cast($unsafe['bounds']);

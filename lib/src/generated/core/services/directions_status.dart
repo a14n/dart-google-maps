@@ -28,5 +28,6 @@ class DirectionsStatus extends jsw.IsEnum<String> {
 
   static DirectionsStatus find(o) => _FINDER.find(o);
 
-  DirectionsStatus._(String value) : super(value);
+  DirectionsStatus._(String value)
+      : super(value);
 }

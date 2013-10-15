@@ -18,8 +18,10 @@ final Spherical spherical = new Spherical();
 
 class Spherical extends jsw.TypedJsObject {
   static Spherical cast(js.JsObject jsObject) => jsObject == null ? null : new Spherical.fromJsObject(jsObject);
-  Spherical.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  Spherical() : super.fromJsObject(maps['geometry']['spherical']);
+  Spherical.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  Spherical()
+      : super.fromJsObject(maps['geometry']['spherical']);
 
   num computeArea(dynamic /*Array.<LatLng>|MVCArray.<LatLng>*/ path, [num radius]) => $unsafe.callMethod('computeArea', [path == null ? null : path is js.Serializable ? path : js.jsify(path), radius]);
   num computeDistanceBetween(LatLng from, LatLng to, [num radius]) => $unsafe.callMethod('computeDistanceBetween', [from, to, radius]);

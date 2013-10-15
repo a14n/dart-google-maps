@@ -16,8 +16,10 @@ part of google_maps;
 
 class KmlLayerOptions extends jsw.TypedJsObject {
   static KmlLayerOptions cast(js.JsObject jsObject) => jsObject == null ? null : new KmlLayerOptions.fromJsObject(jsObject);
-  KmlLayerOptions.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  KmlLayerOptions() : super();
+  KmlLayerOptions.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  KmlLayerOptions()
+      : super();
 
   set clickable(bool clickable) => $unsafe['clickable'] = clickable;
   bool get clickable => $unsafe['clickable'];

@@ -37,5 +37,6 @@ class VehicleType extends jsw.IsEnum<String> {
 
   static VehicleType find(o) => _FINDER.find(o);
 
-  VehicleType._(String value) : super(value);
+  VehicleType._(String value)
+      : super(value);
 }

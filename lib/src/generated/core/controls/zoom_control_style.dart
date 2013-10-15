@@ -23,5 +23,6 @@ class ZoomControlStyle extends jsw.IsEnum<int> {
 
   static ZoomControlStyle find(o) => _FINDER.find(o);
 
-  ZoomControlStyle._(int value) : super(value);
+  ZoomControlStyle._(int value)
+      : super(value);
 }

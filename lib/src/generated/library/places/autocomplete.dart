@@ -18,10 +18,12 @@ class Autocomplete extends MVCObject {
   static Autocomplete cast(js.JsObject jsObject) => jsObject == null ? null : new Autocomplete.fromJsObject(jsObject);
   jsw.SubscribeStreamProvider _onPlaceChanged;
 
-  Autocomplete(html.InputElement inputField, [AutocompleteOptions opts]) : super(maps['places']['Autocomplete'], [jsw.convertElementToJs(inputField), opts]) {
+  Autocomplete(html.InputElement inputField, [AutocompleteOptions opts])
+      : super(maps['places']['Autocomplete'], [jsw.convertElementToJs(inputField), opts]) {
     _initStreams();
   }
-  Autocomplete.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) {
+  Autocomplete.fromJsObject(js.JsObject proxy)
+      : super.fromJsObject(proxy) {
     _initStreams();
   }
 

@@ -16,8 +16,10 @@ part of google_maps_places;
 
 class AutocompleteService extends jsw.TypedJsObject {
   static AutocompleteService cast(js.JsObject jsObject) => jsObject == null ? null : new AutocompleteService.fromJsObject(jsObject);
-  AutocompleteService.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  AutocompleteService() : super(maps['places']['AutocompleteService']);
+  AutocompleteService.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  AutocompleteService()
+      : super(maps['places']['AutocompleteService']);
 
   void getPlacePredictions(AutocompletionRequest request, void callback(List<AutocompletePrediction> results, PlacesServiceStatus status)) {
     $unsafe.callMethod('getPlacePredictions', [request, (js.JsObject results, String status) => callback(jsw.TypedJsArray.castListOfSerializables(results, AutocompletePrediction.cast), PlacesServiceStatus.find(status))]);

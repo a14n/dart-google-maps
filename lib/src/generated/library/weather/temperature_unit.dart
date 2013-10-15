@@ -22,5 +22,6 @@ class TemperatureUnit extends jsw.IsEnum<String> {
 
   static TemperatureUnit find(o) => _FINDER.find(o);
 
-  TemperatureUnit._(String value) : super(value);
+  TemperatureUnit._(String value)
+      : super(value);
 }

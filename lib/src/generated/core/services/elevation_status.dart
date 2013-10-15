@@ -25,5 +25,6 @@ class ElevationStatus extends jsw.IsEnum<String> {
 
   static ElevationStatus find(o) => _FINDER.find(o);
 
-  ElevationStatus._(String value) : super(value);
+  ElevationStatus._(String value)
+      : super(value);
 }

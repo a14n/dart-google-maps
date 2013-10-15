@@ -18,8 +18,10 @@ typedef String GetTileUrl(Point point, num zoomLevel);
 
 class ImageMapTypeOptions extends jsw.TypedJsObject {
   static ImageMapTypeOptions cast(js.JsObject jsObject) => jsObject == null ? null : new ImageMapTypeOptions.fromJsObject(jsObject);
-  ImageMapTypeOptions.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  ImageMapTypeOptions() : super();
+  ImageMapTypeOptions.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  ImageMapTypeOptions()
+      : super();
 
   set alt(String alt) => $unsafe['alt'] = alt;
   String get alt => $unsafe['alt'];

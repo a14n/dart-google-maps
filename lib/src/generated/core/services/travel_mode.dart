@@ -24,5 +24,6 @@ class TravelMode extends jsw.IsEnum<String> {
 
   static TravelMode find(o) => _FINDER.find(o);
 
-  TravelMode._(String value) : super(value);
+  TravelMode._(String value)
+      : super(value);
 }

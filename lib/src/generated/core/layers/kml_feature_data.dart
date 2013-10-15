@@ -16,8 +16,10 @@ part of google_maps;
 
 class KmlFeatureData extends jsw.TypedJsObject {
   static KmlFeatureData cast(js.JsObject jsObject) => jsObject == null ? null : new KmlFeatureData.fromJsObject(jsObject);
-  KmlFeatureData.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  KmlFeatureData() : super();
+  KmlFeatureData.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  KmlFeatureData()
+      : super();
 
   set author(KmlAuthor author) => $unsafe['author'] = author;
   KmlAuthor get author => KmlAuthor.cast($unsafe['author']);

@@ -16,8 +16,10 @@ part of google_maps;
 
 class DirectionsRendererOptions extends jsw.TypedJsObject {
   static DirectionsRendererOptions cast(js.JsObject jsObject) => jsObject == null ? null : new DirectionsRendererOptions.fromJsObject(jsObject);
-  DirectionsRendererOptions.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  DirectionsRendererOptions() : super();
+  DirectionsRendererOptions.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  DirectionsRendererOptions()
+      : super();
 
   set directions(DirectionsResult directions) => $unsafe['directions'] = directions;
   DirectionsResult get directions => DirectionsResult.cast($unsafe['directions']);

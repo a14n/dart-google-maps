@@ -16,7 +16,8 @@ part of google_maps;
 
 class FusionTablesMouseEvent extends jsw.TypedJsObject {
   static FusionTablesMouseEvent cast(js.JsObject jsObject) => jsObject == null ? null : new FusionTablesMouseEvent.fromJsObject(jsObject);
-  FusionTablesMouseEvent.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
+  FusionTablesMouseEvent.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
   FusionTablesMouseEvent();
 
   set infoWindowHtml(String infoWindowHtml) => $unsafe['infoWindowHtml'] = infoWindowHtml;

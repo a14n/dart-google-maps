@@ -16,8 +16,10 @@ part of google_maps;
 
 class MapTypeStyler extends jsw.TypedJsObject {
   static MapTypeStyler cast(js.JsObject jsObject) => jsObject == null ? null : new MapTypeStyler.fromJsObject(jsObject);
-  MapTypeStyler.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  MapTypeStyler() : super();
+  MapTypeStyler.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  MapTypeStyler()
+      : super();
 
   set gamma(num gamma) => $unsafe['gamma'] = gamma;
   num get gamma => $unsafe['gamma'];
@@ -42,5 +44,6 @@ class MapTypeStylerVisibility extends jsw.IsEnum<String> {
 
   static MapTypeStylerVisibility find(o) => _FINDER.find(o);
 
-  MapTypeStylerVisibility._(String value) : super(value);
+  MapTypeStylerVisibility._(String value)
+      : super(value);
 }

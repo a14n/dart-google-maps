@@ -16,8 +16,10 @@ part of google_maps;
 
 class PathElevationRequest extends jsw.TypedJsObject {
   static PathElevationRequest cast(js.JsObject jsObject) => jsObject == null ? null : new PathElevationRequest.fromJsObject(jsObject);
-  PathElevationRequest.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  PathElevationRequest() : super();
+  PathElevationRequest.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  PathElevationRequest()
+      : super();
 
   set path(List<LatLng> path) => $unsafe['path'] = path == null ? null : path is js.Serializable ? path : js.jsify(path);
   List<LatLng> get path => jsw.TypedJsArray.castListOfSerializables($unsafe['path'], LatLng.cast);

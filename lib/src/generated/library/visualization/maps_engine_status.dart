@@ -23,5 +23,6 @@ class MapsEngineStatus extends jsw.IsEnum<String> {
 
   static MapsEngineStatus find(o) => _FINDER.find(o);
 
-  MapsEngineStatus._(String value) : super(value);
+  MapsEngineStatus._(String value)
+      : super(value);
 }

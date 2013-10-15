@@ -27,10 +27,12 @@ class StreetViewPanorama extends MVCObject {
   jsw.SubscribeStreamProvider _onVisibleChanged;
   jsw.SubscribeStreamProvider _onZoomChanged;
 
-  StreetViewPanorama(html.Node container, [StreetViewPanoramaOptions opts]) : super(maps['StreetViewPanorama'], [jsw.convertElementToJs(container), opts]) {
+  StreetViewPanorama(html.Node container, [StreetViewPanoramaOptions opts])
+      : super(maps['StreetViewPanorama'], [jsw.convertElementToJs(container), opts]) {
     _initStreams();
   }
-  StreetViewPanorama.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) {
+  StreetViewPanorama.fromJsObject(js.JsObject proxy)
+      : super.fromJsObject(proxy) {
     _initStreams();
   }
 

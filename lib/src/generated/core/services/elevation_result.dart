@@ -16,8 +16,10 @@ part of google_maps;
 
 class ElevationResult extends jsw.TypedJsObject {
   static ElevationResult cast(js.JsObject jsObject) => jsObject == null ? null : new ElevationResult.fromJsObject(jsObject);
-  ElevationResult.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  ElevationResult() : super();
+  ElevationResult.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  ElevationResult()
+      : super();
 
   set elevation(num elevation) => $unsafe['elevation'] = elevation;
   num get elevation => $unsafe['elevation'];

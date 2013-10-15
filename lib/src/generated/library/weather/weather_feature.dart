@@ -16,8 +16,10 @@ part of google_maps_weather;
 
 class WeatherFeature extends jsw.TypedJsObject {
   static WeatherFeature cast(js.JsObject jsObject) => jsObject == null ? null : new WeatherFeature.fromJsObject(jsObject);
-  WeatherFeature.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  WeatherFeature() : super();
+  WeatherFeature.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  WeatherFeature()
+      : super();
 
   set current(WeatherConditions current) => $unsafe['current'] = current;
   WeatherConditions get current => WeatherConditions.cast($unsafe['current']);

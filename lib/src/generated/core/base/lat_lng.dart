@@ -16,10 +16,12 @@ part of google_maps;
 
 class LatLng extends jsw.TypedJsObject {
   static LatLng cast(js.JsObject jsObject) => jsObject == null ? null : new LatLng.fromJsObject(jsObject);
-  LatLng.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
+  LatLng.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
   static bool isInstance(js.JsObject jsObject) => jsObject.instanceof(maps['LatLng']);
 
-  LatLng(num lat, num lng, [bool noWrap]) : super(maps['LatLng'], [lat, lng, noWrap]);
+  LatLng(num lat, num lng, [bool noWrap])
+      : super(maps['LatLng'], [lat, lng, noWrap]);
 
   bool equals(LatLng other) => $unsafe.callMethod('equals', [other]);
   num get lat => $unsafe.callMethod('lat');

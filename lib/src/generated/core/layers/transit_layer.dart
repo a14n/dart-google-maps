@@ -16,8 +16,10 @@ part of google_maps;
 
 class TransitLayer extends MVCObject {
   static TransitLayer cast(js.JsObject jsObject) => jsObject == null ? null : new TransitLayer.fromJsObject(jsObject);
-  TransitLayer.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  TransitLayer() : super(maps['TransitLayer']);
+  TransitLayer.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  TransitLayer()
+      : super(maps['TransitLayer']);
 
   set map(GMap map) => $unsafe.callMethod('setMap', [map]);
   GMap get map => GMap.cast($unsafe.callMethod('getMap'));

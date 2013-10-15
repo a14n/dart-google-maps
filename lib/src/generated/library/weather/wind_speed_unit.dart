@@ -23,5 +23,6 @@ class WindSpeedUnit extends jsw.IsEnum<String> {
 
   static WindSpeedUnit find(o) => _FINDER.find(o);
 
-  WindSpeedUnit._(String value) : super(value);
+  WindSpeedUnit._(String value)
+      : super(value);
 }

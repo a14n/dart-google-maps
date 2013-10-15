@@ -16,8 +16,10 @@ part of google_maps;
 
 class MapOptions extends jsw.TypedJsObject {
   static MapOptions cast(js.JsObject jsObject) => jsObject == null ? null : new MapOptions.fromJsObject(jsObject);
-  MapOptions.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  MapOptions() : super();
+  MapOptions.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  MapOptions()
+      : super();
 
   set backgroundColor(String backgroundColor) => $unsafe['backgroundColor'] = backgroundColor;
   String get backgroundColor => $unsafe['backgroundColor'];

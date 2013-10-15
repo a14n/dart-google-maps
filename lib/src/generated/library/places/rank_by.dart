@@ -22,5 +22,6 @@ class RankBy extends jsw.IsEnum<String> {
 
   static RankBy find(o) => _FINDER.find(o);
 
-  RankBy._(String value) : super(value);
+  RankBy._(String value)
+      : super(value);
 }

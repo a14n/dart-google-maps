@@ -18,8 +18,10 @@ typedef StreetViewPanoramaData PanoProvider(String pano);
 
 class StreetViewPanoramaOptions extends jsw.TypedJsObject {
   static StreetViewPanoramaOptions cast(js.JsObject jsObject) => jsObject == null ? null : new StreetViewPanoramaOptions.fromJsObject(jsObject);
-  StreetViewPanoramaOptions.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  StreetViewPanoramaOptions() : super();
+  StreetViewPanoramaOptions.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  StreetViewPanoramaOptions()
+      : super();
 
   set addressControl(bool addressControl) => $unsafe['addressControl'] = addressControl;
   bool get addressControl => $unsafe['addressControl'];

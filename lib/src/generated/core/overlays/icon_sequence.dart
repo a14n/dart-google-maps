@@ -16,8 +16,10 @@ part of google_maps;
 
 class IconSequence extends jsw.TypedJsObject {
   static IconSequence cast(js.JsObject jsObject) => jsObject == null ? null : new IconSequence.fromJsObject(jsObject);
-  IconSequence.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  IconSequence() : super();
+  IconSequence.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  IconSequence()
+      : super();
 
   set fixedRotation(bool fixedRotation) => $unsafe['fixedRotation'] = fixedRotation;
   bool get fixedRotation => $unsafe['fixedRotation'];

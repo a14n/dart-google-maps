@@ -16,8 +16,10 @@ part of google_maps_places;
 
 class ComponentRestrictions extends jsw.TypedJsObject {
   static ComponentRestrictions cast(js.JsObject jsObject) => jsObject == null ? null : new ComponentRestrictions.fromJsObject(jsObject);
-  ComponentRestrictions.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  ComponentRestrictions() : super();
+  ComponentRestrictions.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  ComponentRestrictions()
+      : super();
 
   set country(String country) => $unsafe['country'] = country;
   String get country => $unsafe['country'];

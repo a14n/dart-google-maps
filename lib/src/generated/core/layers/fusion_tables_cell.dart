@@ -16,8 +16,10 @@ part of google_maps;
 
 class FusionTablesCell extends jsw.TypedJsObject {
   static FusionTablesCell cast(js.JsObject jsObject) => jsObject == null ? null : new FusionTablesCell.fromJsObject(jsObject);
-  FusionTablesCell.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  FusionTablesCell() : super();
+  FusionTablesCell.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  FusionTablesCell()
+      : super();
 
   set columnName(String columnName) => $unsafe['columnName'] = columnName;
   String get columnName => $unsafe['columnName'];

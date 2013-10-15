@@ -16,8 +16,10 @@ part of google_maps_places;
 
 class PlaceGeometry extends jsw.TypedJsObject {
   static PlaceGeometry cast(js.JsObject jsObject) => jsObject == null ? null : new PlaceGeometry.fromJsObject(jsObject);
-  PlaceGeometry.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  PlaceGeometry() : super();
+  PlaceGeometry.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  PlaceGeometry()
+      : super();
 
   set location(LatLng location) => $unsafe['location'] = location;
   LatLng get location => LatLng.cast($unsafe['location']);

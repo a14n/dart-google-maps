@@ -16,8 +16,10 @@ part of google_maps;
 
 class LocationElevationRequest extends jsw.TypedJsObject {
   static LocationElevationRequest cast(js.JsObject jsObject) => jsObject == null ? null : new LocationElevationRequest.fromJsObject(jsObject);
-  LocationElevationRequest.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  LocationElevationRequest() : super();
+  LocationElevationRequest.fromJsObject(js.JsObject jsObject)
+      : super.fromJsObject(jsObject);
+  LocationElevationRequest()
+      : super();
 
   set locations(List<LatLng> locations) => $unsafe['locations'] = locations == null ? null : locations is js.Serializable ? locations : js.jsify(locations);
   List<LatLng> get locations => jsw.TypedJsArray.castListOfSerializables($unsafe['locations'], LatLng.cast);

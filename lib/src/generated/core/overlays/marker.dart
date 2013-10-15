@@ -51,10 +51,12 @@ class Marker extends MVCObject {
   jsw.SubscribeStreamProvider _onVisibleChanged;
   jsw.SubscribeStreamProvider _onZindexChanged;
 
-  Marker([MarkerOptions opts]) : super(maps['Marker'], [opts]) {
+  Marker([MarkerOptions opts])
+      : super(maps['Marker'], [opts]) {
     _initStreams();
   }
-  Marker.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) {
+  Marker.fromJsObject(js.JsObject proxy)
+      : super.fromJsObject(proxy) {
     _initStreams();
   }
 
@@ -115,12 +117,16 @@ class Marker extends MVCObject {
     final result = $unsafe.callMethod('getIcon');
     if (result is String) {
       return result;
-    } else if (result is js.JsObject) {
-      final type = _isSymbolOrIcon(result);
-      if (type == "Symbol") {
-        return GSymbol.cast(result);
-      } else if (type == "Icon") {
-        return Icon.cast(result);
+    } else {
+      if (result is js.JsObject) {
+        final type = _isSymbolOrIcon(result);
+        if (type == "Symbol") {
+          return GSymbol.cast(result);
+        } else {
+          if (type == "Icon") {
+            return Icon.cast(result);
+          }
+        }
       }
     }
     return result;
@@ -129,8 +135,10 @@ class Marker extends MVCObject {
     final result = $unsafe.callMethod('getMap');
     if (GMap.isInstance(result)) {
       return GMap.cast(result);
-    } else if (StreetViewPanorama.isInstance(result)) {
-      return StreetViewPanorama.cast(result);
+    } else {
+      if (StreetViewPanorama.isInstance(result)) {
+        return StreetViewPanorama.cast(result);
+      }
     }
     return result;
   }
@@ -139,12 +147,16 @@ class Marker extends MVCObject {
     final result = $unsafe.callMethod('getShadow');
     if (result is String) {
       return result;
-    } else if (result is js.JsObject) {
-      final type = _isSymbolOrIcon(result);
-      if (type == "Symbol") {
-        return GSymbol.cast(result);
-      } else if (type == "Icon") {
-        return Icon.cast(result);
+    } else {
+      if (result is js.JsObject) {
+        final type = _isSymbolOrIcon(result);
+        if (type == "Symbol") {
+          return GSymbol.cast(result);
+        } else {
+          if (type == "Icon") {
+            return Icon.cast(result);
+          }
+        }
       }
     }
     return result;

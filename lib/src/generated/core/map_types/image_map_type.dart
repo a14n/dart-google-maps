@@ -19,10 +19,12 @@ class ImageMapType extends MapType {
   static ImageMapType cast(js.JsObject jsObject) => jsObject == null ? null : new ImageMapType.fromJsObject(jsObject);
   jsw.SubscribeStreamProvider _onTilesloaded;
 
-  ImageMapType(ImageMapTypeOptions opts) : super(maps['ImageMapType'], [opts]) {
+  ImageMapType(ImageMapTypeOptions opts)
+      : super(maps['ImageMapType'], [opts]) {
     _initStreams();
   }
-  ImageMapType.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) {
+  ImageMapType.fromJsObject(js.JsObject proxy)
+      : super.fromJsObject(proxy) {
     _initStreams();
   }
 
