@@ -58,7 +58,7 @@ class StreetViewPanorama extends MVCObject {
   bool get visible => $unsafe.getVisible();
   num get zoom => $unsafe.getZoom();
   void registerPanoProvider(StreetViewPanoramaData provider(String pano)) {
-    $unsafe.registerPanoProvider(new js.Callback.many((String pano) => provider(pano)));
+    $unsafe.registerPanoProvider((String pano) => provider(pano));
   }
   set pano(String pano) => $unsafe.setPano(pano);
   set position(LatLng latLng) => $unsafe.setPosition(latLng);

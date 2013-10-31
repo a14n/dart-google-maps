@@ -21,6 +21,6 @@ class MaxZoomService extends jsw.TypedProxy {
   MaxZoomService.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   void getMaxZoomAtLatLng(LatLng latlng, void callback(MaxZoomResult result)) {
-    $unsafe.getMaxZoomAtLatLng(latlng, new js.Callback.once((js.Proxy result) => callback(MaxZoomResult.cast(result))));
+    $unsafe.getMaxZoomAtLatLng(latlng, (js.Proxy result) => callback(MaxZoomResult.cast(result)));
   }
 }

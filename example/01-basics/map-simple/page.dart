@@ -8,5 +8,5 @@ void main() {
     ..center = new LatLng(-34.397, 150.644)
     ..mapTypeId = MapTypeId.ROADMAP
     ;
-  final map = new GMap(query("#map_canvas"), mapOptions);
+  final map = new GMap(querySelector("#map_canvas"), mapOptions);
 }

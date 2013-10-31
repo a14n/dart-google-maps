@@ -21,7 +21,7 @@ class StreetViewTileData extends jsw.TypedProxy {
   StreetViewTileData.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   void set_getTileUrl(String getTileUrl(String pano, num tileZoom, num tileX, num tileY)) {
-    $unsafe['getTileUrl'] = new js.Callback.many(getTileUrl);
+    $unsafe['getTileUrl'] = getTileUrl;
   }
   String getTileUrl(String pano, num tileZoom, num tileX, num tileY) => $unsafe.getTileUrl(pano, tileZoom, tileX, tileY);
 

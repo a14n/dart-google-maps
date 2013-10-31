@@ -43,9 +43,7 @@ class MVCArray<E> extends MVCObject {
 
   void clear() { $unsafe.clear(); }
   void forEach(void callback(E o, num index)) {
-    final jswCallback = new js.Callback.many((Object o, num index) => callback(_fromJs(o), index));
-    $unsafe.forEach(jswCallback);
-    jswCallback.dispose();
+    $unsafe.forEach((Object o, num index) => callback(_fromJs(o), index));
   }
   List<E> getArray() => jsw.JsArrayToListAdapter.cast($unsafe.getArray(), _translator);
   E getAt(num i) => _fromJs($unsafe.getAt(i));

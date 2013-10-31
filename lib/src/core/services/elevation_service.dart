@@ -21,9 +21,9 @@ class ElevationService extends jsw.TypedProxy {
   ElevationService.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   void getElevationAlongPath(PathElevationRequest request, void callback(List<ElevationResult> results, ElevationStatus status)) {
-    $unsafe.getElevationAlongPath(request, new js.Callback.once((js.Proxy results, String status) => callback(jsw.JsArrayToListAdapter.castListOfSerializables(results, ElevationResult.cast), ElevationStatus.find(status))));
+    $unsafe.getElevationAlongPath(request, (js.Proxy results, String status) => callback(jsw.JsArrayToListAdapter.castListOfSerializables(results, ElevationResult.cast), ElevationStatus.find(status)));
   }
   void getElevationForLocations(LocationElevationRequest request, void callback(List<ElevationResult> results, ElevationStatus status)) {
-    $unsafe.getElevationForLocations(request, new js.Callback.once((js.Proxy results, String status) => callback(jsw.JsArrayToListAdapter.castListOfSerializables(results, ElevationResult.cast), ElevationStatus.find(status))));
+    $unsafe.getElevationForLocations(request, (js.Proxy results, String status) => callback(jsw.JsArrayToListAdapter.castListOfSerializables(results, ElevationResult.cast), ElevationStatus.find(status)));
   }
 }

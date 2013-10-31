@@ -18,7 +18,6 @@ import 'dart:async';
 
 import 'package:js/js.dart' as js;
 import 'package:js/js_wrapping.dart' as jsw;
-import 'package:meta/meta.dart';
 
 /// metadata to indicate that an wrapped method has been renamed or customized in a darty way
 const dartified = const _Dartified();
@@ -79,6 +78,6 @@ class SubscribeStreamProvider<T> implements EventSink<T> {
   }
 
   void add(T event) => _controllers.toList().forEach((controller) => controller.add(event));
-  void addError(errorEvent) => _controllers.toList().forEach((controller) => controller.addError(errorEvent));
+  void addError(errorEvent, [StackTrace stackTrace]) => _controllers.toList().forEach((controller) => controller.addError(errorEvent, stackTrace));
   void close() => _controllers.toList().forEach((controller) => controller.close());
 }

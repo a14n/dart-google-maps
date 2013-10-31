@@ -19,7 +19,7 @@ class _Undefined {
   const _Undefined();
 }
 
-final GEvent event = js.retain(new GEvent());
+final GEvent event = new GEvent();
 
 @deprecated class Events {
   static MapsEventListener addDomListener(Object instance, String eventName, Function handler, [bool capture]) => event.addDomListener(instance, eventName, handler, capture);
@@ -36,31 +36,24 @@ class GEvent extends jsw.TypedProxy {
   GEvent() : super.fromProxy(maps.event);
 
   MapsEventListener addDomListener(dynamic instance, String eventName, Function handler, [bool capture]) {
-    final callback = new js.Callback.many(handler);
-    final js.Proxy proxy = $unsafe.addDomListener(instance, eventName, callback, capture);
-    return proxy == null ? null : new MapsEventListener.fromProxy(proxy, () => callback.dispose());
+    final js.Proxy proxy = $unsafe.addDomListener(instance, eventName, handler, capture);
+    return proxy == null ? null : new MapsEventListener.fromProxy(proxy);
   }
   MapsEventListener addDomListenerOnce(dynamic instance, String eventName, Function handler, [bool capture]) {
-    final callback = new js.Callback.once(handler);
-    final js.Proxy proxy = $unsafe.addDomListenerOnce(instance, eventName, callback, capture);
+    final js.Proxy proxy = $unsafe.addDomListenerOnce(instance, eventName, handler, capture);
     return proxy == null ? null : new MapsEventListener.fromProxy(proxy);
   }
   MapsEventListener addListener(dynamic instance, String eventName, Function handler) {
-    final callback = new js.Callback.many(handler);
-    final js.Proxy proxy = $unsafe.addListener(instance, eventName, callback);
-    return proxy == null ? null : new MapsEventListener.fromProxy(proxy, () => callback.dispose());
+    final js.Proxy proxy = $unsafe.addListener(instance, eventName, handler);
+    return proxy == null ? null : new MapsEventListener.fromProxy(proxy);
   }
   MapsEventListener addListenerOnce(dynamic instance, String eventName, Function handler) {
-    final callback = new js.Callback.once(handler);
-    final js.Proxy proxy = $unsafe.addListenerOnce(instance, eventName, callback);
+    final js.Proxy proxy = $unsafe.addListenerOnce(instance, eventName, handler);
     return proxy == null ? null : new MapsEventListener.fromProxy(proxy);
   }
   void clearInstanceListeners(dynamic instance) { $unsafe.clearInstanceListeners(instance); }
   void clearListeners(dynamic instance, String eventName) { $unsafe.clearListeners(instance, eventName); }
   void removeListener(MapsEventListener listener) {
-    if (listener.onRelease != null) {
-      listener.onRelease();
-    }
     $unsafe.removeListener(listener);
   }
   void trigger(dynamic instance, String eventName, List<dynamic> args) {

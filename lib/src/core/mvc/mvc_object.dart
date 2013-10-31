@@ -21,9 +21,8 @@ class MVCObject extends jsw.TypedProxy {
   MVCObject.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 
   MapsEventListener addListener(String eventName, Function handler) {
-    final callback = new js.Callback.many(handler);
-    final js.Proxy proxy = $unsafe.addListener(eventName, callback);
-    return proxy == null ? null : new MapsEventListener.fromProxy(proxy, () => callback.dispose());
+    final js.Proxy proxy = $unsafe.addListener(eventName, handler);
+    return proxy == null ? null : new MapsEventListener.fromProxy(proxy);
   }
   void bindTo(String key, MVCObject target, [String targetKey, bool noNotify]) { $unsafe.bindTo(key, target, targetKey, noNotify); }
   void changed(String key) { $unsafe.changed(key); }

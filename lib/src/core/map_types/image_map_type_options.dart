@@ -31,7 +31,7 @@ class ImageMapTypeOptions extends jsw.TypedProxy {
   Size get tileSize => Size.cast($unsafe['tileSize']);
   set alt(String alt) => $unsafe['alt'] = alt;
   // REPORTED report wtf arg : http://code.google.com/p/gmaps-api-issues/issues/detail?id=4573
-  set getTileUrl(GetTileUrl callback) => $unsafe['getTileUrl'] = new js.Callback.many((js.Proxy point, num zoomLevel, [dynamic wtf]) => callback(Point.cast(point), zoomLevel));
+  set getTileUrl(GetTileUrl callback) => $unsafe['getTileUrl'] = (js.Proxy point, num zoomLevel, [dynamic wtf]) => callback(Point.cast(point), zoomLevel);
   set maxZoom(num maxZoom) => $unsafe['maxZoom'] = maxZoom;
   set minZoom(num minZoom) => $unsafe['minZoom'] = minZoom;
   set name(String name) => $unsafe['name'] = name;

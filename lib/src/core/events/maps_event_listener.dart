@@ -14,9 +14,6 @@
 
 part of google_maps;
 
-typedef void OnRelease();
 class MapsEventListener extends jsw.TypedProxy {
-  final OnRelease onRelease;
-
-  MapsEventListener.fromProxy(js.Proxy proxy, [this.onRelease]) : super.fromProxy(proxy);
+  MapsEventListener.fromProxy(js.Proxy proxy) : super.fromProxy(proxy);
 }

@@ -14,7 +14,7 @@
 
 part of google_maps_geometry;
 
-final Poly poly = js.retain(new Poly());
+final Poly poly = new Poly();
 
 class Poly extends jsw.TypedProxy {
   static Poly cast(js.Proxy proxy) => proxy == null ? null : new Poly.fromProxy(proxy);

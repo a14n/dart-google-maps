@@ -1,11 +1,10 @@
 import 'dart:html' hide Point;
 import 'dart:math' as Math;
-import 'package:js/js.dart' as js;
 import 'package:google_maps/google_maps.dart';
 
 GMap map;
 const TILE_SIZE = 256;
-final LatLng chicago = js.retain(new LatLng(41.850033,-87.6500523));
+final LatLng chicago = new LatLng(41.850033,-87.6500523);
 
 num bound(num value, num opt_min, num opt_max) {
   if (opt_min != null) value = Math.max(value, opt_min);
@@ -79,13 +78,13 @@ void main() {
     ..center = chicago
     ..mapTypeId = MapTypeId.ROADMAP
     ;
-  map = js.retain(new GMap(query("#map_canvas"), mapOptions));
+  map = new GMap(querySelector("#map_canvas"), mapOptions);
 
-  final InfoWindow coordInfoWindow = js.retain(new InfoWindow()
+  final InfoWindow coordInfoWindow = new InfoWindow()
     ..content = createInfoWindowContent()
     ..position = chicago
     ..open(map)
-  );
+    ;
 
   map.onZoomChanged.listen((_) {
     coordInfoWindow.content = createInfoWindowContent();

@@ -8,11 +8,11 @@ void initialize() {
     ..center = new LatLng(-34.397, 150.644)
     ..mapTypeId = MapTypeId.ROADMAP
     ;
-  final map = new GMap(query("#map_canvas"), mapOptions);
+  final map = new GMap(querySelector("#map_canvas"), mapOptions);
 }
 
 void main() {
-  js.context.initialize = new js.Callback.once(initialize);
+  js.context.initialize = initialize;
 
   final script = new ScriptElement()
     ..type = 'text/javascript'

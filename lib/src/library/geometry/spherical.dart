@@ -14,7 +14,7 @@
 
 part of google_maps_geometry;
 
-final Spherical spherical = js.retain(new Spherical());
+final Spherical spherical = new Spherical();
 
 class Spherical extends jsw.TypedProxy {
   static Spherical cast(js.Proxy proxy) => proxy == null ? null : new Spherical.fromProxy(proxy);

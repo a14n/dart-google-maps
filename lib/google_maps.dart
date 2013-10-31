@@ -19,7 +19,6 @@ import 'dart:html' as html;
 
 import 'package:js/js.dart' as js;
 import 'package:js/js_wrapping.dart' as jsw;
-import 'package:meta/meta.dart';
 
 import 'src/utils.dart';
 
@@ -169,7 +168,7 @@ part 'src/core/mvc/mvc_object.dart';
 part 'src/core/mvc/mvc_array.dart';
 
 // js.Proxy for "google.maps"
-final maps = js.retain(js.context.google.maps);
+final maps = js.context.google.maps;
 
 bool get visualRefresh => maps.visualRefresh;
 set visualRefresh(bool visualRefresh) => maps.visualRefresh = visualRefresh;
@@ -188,7 +187,7 @@ class EventListenerAdder {
   EventListenerAdder(this._instance, this._eventName);
 
   void add(Function handler) { event.addListener(_instance, _eventName, handler); }
-  MapsEventListenerRegistration addTemporary(Function handler) => new MapsEventListenerRegistration._(js.retain(event.addListener(_instance, _eventName, handler)));
+  MapsEventListenerRegistration addTemporary(Function handler) => new MapsEventListenerRegistration._(event.addListener(_instance, _eventName, handler));
 }
 
 class MapsEventListenerRegistration {
@@ -198,7 +197,6 @@ class MapsEventListenerRegistration {
 
   void removeListener() {
     event.removeListener(_mapsEventListener);
-    js.release(_mapsEventListener);
   }
 }
 

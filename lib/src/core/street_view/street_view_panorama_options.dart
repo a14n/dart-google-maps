@@ -49,7 +49,7 @@ class StreetViewPanoramaOptions extends jsw.TypedProxy {
   set panControl(bool panControl) => $unsafe['panControl'] = panControl;
   set panControlOptions(PanControlOptions panControlOptions) => $unsafe['panControlOptions'] = panControlOptions;
   set pano(String pano) => $unsafe['pano'] = pano;
-  set panoProvider(PanoProvider panoProvider) => $unsafe['panoProvider'] = new js.Callback.many(panoProvider);
+  set panoProvider(PanoProvider panoProvider) => $unsafe['panoProvider'] = panoProvider;
   set position(LatLng position) => $unsafe['position'] = position;
   set pov(StreetViewPov pov) => $unsafe['pov'] = pov;
   set scrollwheel(bool scrollwheel) => $unsafe['scrollwheel'] = scrollwheel;
