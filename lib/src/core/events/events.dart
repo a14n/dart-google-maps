@@ -61,7 +61,7 @@ class GEvent extends jsw.TypedProxy {
     parameters.add(instance);
     parameters.add(eventName);
     parameters.addAll(args);
-    $unsafe.trigger(parameters);
+    $unsafe.trigger.apply($unsafe, js.array(parameters));
   }
 
   SubscribeStreamProvider getStreamProviderFor(dynamic instance, String eventName, [Function transformArguments]) {
