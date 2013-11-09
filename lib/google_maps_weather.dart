@@ -18,7 +18,6 @@ import 'dart:async';
 
 import 'package:js/js.dart' as js;
 import 'package:js/js_wrapping.dart' as jsw;
-import 'package:meta/meta.dart';
 
 import 'google_maps.dart';
 import 'src/utils.dart';
