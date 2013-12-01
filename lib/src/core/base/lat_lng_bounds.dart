@@ -31,5 +31,5 @@ class LatLngBounds extends jsw.TypedProxy {
   LatLng toSpan() => LatLng.cast($unsafe.toSpan());
   String toString() => $unsafe.toString();
   String toUrlValue([num precision]) => $unsafe.toUrlValue(precision);
-  bool union(LatLngBounds other) => $unsafe.union(other);
+  LatLngBounds union(LatLngBounds other) => LatLngBounds.cast($unsafe.union(other));
 }
