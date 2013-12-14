@@ -15,19 +15,10 @@
 part of google_maps;
 
 class Marker extends MVCObject {
-  static Marker cast(js.JsObject jsObject) => jsObject == null ? null : new Marker.fromJsObject(jsObject);
+  static Marker $wrap(js.JsObject jsObject) => jsObject == null ? null : new Marker.fromJsObject(jsObject);
   static bool isInstance(js.JsObject proxy) => proxy.instanceof(maps['Marker']);
   set MAX_ZINDEX(num MAX_ZINDEX) => $unsafe.callMethod('setMAX_ZINDEX', [MAX_ZINDEX]);
   num get MAX_ZINDEX => $unsafe.callMethod('getMAX_ZINDEX');
-  static String _isSymbolOrIcon(js.JsObject proxy) {
-    try {
-      final path = proxy['path'];
-      return "Symbol";
-    }  on NoSuchMethodError {
-      return "Icon";
-    }
-  }
-
   jsw.SubscribeStreamProvider _onAnimationChanged;
   jsw.SubscribeStreamProvider<MouseEvent> _onClick;
   jsw.SubscribeStreamProvider _onClickableChanged;
@@ -52,7 +43,7 @@ class Marker extends MVCObject {
   jsw.SubscribeStreamProvider _onZindexChanged;
 
   Marker([MarkerOptions opts])
-      : super(maps['Marker'], [opts]) {
+      : super(maps['Marker'], [opts == null ? null : opts.$unsafe]) {
     _initStreams();
   }
   Marker.fromJsObject(js.JsObject proxy)
@@ -62,22 +53,22 @@ class Marker extends MVCObject {
 
   void _initStreams() {
     _onAnimationChanged = event.getStreamProviderFor(this, "animation_changed");
-    _onClick = event.getStreamProviderFor(this, "click", MouseEvent.cast);
+    _onClick = event.getStreamProviderFor(this, "click", MouseEvent.$wrap);
     _onClickableChanged = event.getStreamProviderFor(this, "clickable_changed");
     _onCursorChanged = event.getStreamProviderFor(this, "cursor_changed");
-    _onDblClick = event.getStreamProviderFor(this, "dblclick", MouseEvent.cast);
-    _onDrag = event.getStreamProviderFor(this, "drag", MouseEvent.cast);
-    _onDragend = event.getStreamProviderFor(this, "dragend", MouseEvent.cast);
+    _onDblClick = event.getStreamProviderFor(this, "dblclick", MouseEvent.$wrap);
+    _onDrag = event.getStreamProviderFor(this, "drag", MouseEvent.$wrap);
+    _onDragend = event.getStreamProviderFor(this, "dragend", MouseEvent.$wrap);
     _onDraggableChanged = event.getStreamProviderFor(this, "draggable_changed");
-    _onDragstart = event.getStreamProviderFor(this, "dragstart", MouseEvent.cast);
+    _onDragstart = event.getStreamProviderFor(this, "dragstart", MouseEvent.$wrap);
     _onFlatChanged = event.getStreamProviderFor(this, "flat_changed");
     _onIconChanged = event.getStreamProviderFor(this, "icon_changed");
-    _onMousedown = event.getStreamProviderFor(this, "mousedown", MouseEvent.cast);
-    _onMouseout = event.getStreamProviderFor(this, "mouseout", MouseEvent.cast);
-    _onMouseover = event.getStreamProviderFor(this, "mouseover", MouseEvent.cast);
-    _onMouseup = event.getStreamProviderFor(this, "mouseup", MouseEvent.cast);
+    _onMousedown = event.getStreamProviderFor(this, "mousedown", MouseEvent.$wrap);
+    _onMouseout = event.getStreamProviderFor(this, "mouseout", MouseEvent.$wrap);
+    _onMouseover = event.getStreamProviderFor(this, "mouseover", MouseEvent.$wrap);
+    _onMouseup = event.getStreamProviderFor(this, "mouseup", MouseEvent.$wrap);
     _onPositionChanged = event.getStreamProviderFor(this, "position_changed");
-    _onRightclick = event.getStreamProviderFor(this, "rightclick", MouseEvent.cast);
+    _onRightclick = event.getStreamProviderFor(this, "rightclick", MouseEvent.$wrap);
     _onShadowChanged = event.getStreamProviderFor(this, "shadow_changed");
     _onShapeChanged = event.getStreamProviderFor(this, "shape_changed");
     _onTitleChanged = event.getStreamProviderFor(this, "title_changed");
@@ -108,73 +99,29 @@ class Marker extends MVCObject {
   Stream get onVisibleChanged => _onVisibleChanged.stream;
   Stream get onZindexChanged => _onZindexChanged.stream;
 
-  Animation get animation => Animation.find($unsafe.callMethod('getAnimation'));
+  Animation get animation => Animation.$wrap($unsafe.callMethod('getAnimation'));
   bool get clickable => $unsafe.callMethod('getClickable');
   String get cursor => $unsafe.callMethod('getCursor');
   bool get draggable => $unsafe.callMethod('getDraggable');
   bool get flat => $unsafe.callMethod('getFlat');
-  dynamic /*string|Icon|Symbol*/ get icon {
-    final result = $unsafe.callMethod('getIcon');
-    if (result is String) {
-      return result;
-    } else {
-      if (result is js.JsObject) {
-        final type = _isSymbolOrIcon(result);
-        if (type == "Symbol") {
-          return GSymbol.cast(result);
-        } else {
-          if (type == "Icon") {
-            return Icon.cast(result);
-          }
-        }
-      }
-    }
-    return result;
-  }
-  dynamic /*Map|StreetViewPanorama*/ get map {
-    final result = $unsafe.callMethod('getMap');
-    if (GMap.isInstance(result)) {
-      return GMap.cast(result);
-    } else {
-      if (StreetViewPanorama.isInstance(result)) {
-        return StreetViewPanorama.cast(result);
-      }
-    }
-    return result;
-  }
-  LatLng get position => LatLng.cast($unsafe.callMethod('getPosition'));
-  dynamic /*string|Icon|Symbol*/ get shadow {
-    final result = $unsafe.callMethod('getShadow');
-    if (result is String) {
-      return result;
-    } else {
-      if (result is js.JsObject) {
-        final type = _isSymbolOrIcon(result);
-        if (type == "Symbol") {
-          return GSymbol.cast(result);
-        } else {
-          if (type == "Icon") {
-            return Icon.cast(result);
-          }
-        }
-      }
-    }
-    return result;
-  }
-  MarkerShape get shape => MarkerShape.cast($unsafe.callMethod('getShape'));
+  dynamic get icon => ((v3) => v3 is String ? v3 : ((v2) => Icon.isInstance(v2) ? Icon.$wrap(v2) : ((v1) => GSymbol.isInstance(v1) ? GSymbol.$wrap(v1) : ((v0) => v0)(v1))(v2))(v3))($unsafe.callMethod('getIcon'));
+  dynamic get map => ((v2) => GMap.isInstance(v2) ? GMap.$wrap(v2) : ((v1) => StreetViewPanorama.isInstance(v1) ? StreetViewPanorama.$wrap(v1) : ((v0) => v0)(v1))(v2))($unsafe.callMethod('getMap'));
+  LatLng get position => LatLng.$wrap($unsafe.callMethod('getPosition'));
+  dynamic get shadow => ((v3) => v3 is String ? v3 : ((v2) => Icon.isInstance(v2) ? Icon.$wrap(v2) : ((v1) => GSymbol.isInstance(v1) ? GSymbol.$wrap(v1) : ((v0) => v0)(v1))(v2))(v3))($unsafe.callMethod('getShadow'));
+  MarkerShape get shape => MarkerShape.$wrap($unsafe.callMethod('getShape'));
   String get title => $unsafe.callMethod('getTitle');
   bool get visible => $unsafe.callMethod('getVisible');
   num get zIndex => $unsafe.callMethod('getZIndex');
-  set animation(Animation animation) => $unsafe.callMethod('setAnimation', [animation]);
+  set animation(Animation animation) => $unsafe.callMethod('setAnimation', [animation == null ? null : animation.$unsafe]);
   set clickable(bool clickable) => $unsafe.callMethod('setClickable', [clickable]);
   set cursor(String cursor) => $unsafe.callMethod('setCursor', [cursor]);
   set draggable(bool draggable) => $unsafe.callMethod('setDraggable', [draggable]);
   set flat(bool flag) => $unsafe.callMethod('setFlat', [flag]);
-  set icon(dynamic icon) => $unsafe.callMethod('setIcon', [icon]);
-  set map(dynamic map) => $unsafe.callMethod('setMap', [map]);
-  set options(MarkerOptions options) => $unsafe.callMethod('setOptions', [options]);
-  set position(LatLng latlng) => $unsafe.callMethod('setPosition', [latlng]);
-  set shadow(dynamic shadow) => $unsafe.callMethod('setShadow', [shadow]);
+  set icon(dynamic icon) => $unsafe.callMethod('setIcon', [icon == null ? null : icon is GSymbol ? icon.$unsafe : icon is Icon ? icon.$unsafe : icon is String ? icon : throw "bad type"]);
+  set map(dynamic map) => $unsafe.callMethod('setMap', [map == null ? null : map is GMap ? map.$unsafe : map is StreetViewPanorama ? map.$unsafe : throw "bad type"]);
+  set options(MarkerOptions options) => $unsafe.callMethod('setOptions', [options == null ? null : options.$unsafe]);
+  set position(LatLng latlng) => $unsafe.callMethod('setPosition', [latlng == null ? null : latlng.$unsafe]);
+  set shadow(dynamic shadow) => $unsafe.callMethod('setShadow', [shadow == null ? null : shadow is GSymbol ? shadow.$unsafe : shadow is Icon ? shadow.$unsafe : shadow is String ? shadow : throw "bad type"]);
   set title(String title) => $unsafe.callMethod('setTitle', [title]);
   set visible(bool visible) => $unsafe.callMethod('setVisible', [visible]);
   set zIndex(num zIndex) => $unsafe.callMethod('setZIndex', [zIndex]);

@@ -15,7 +15,7 @@
 part of google_maps;
 
 @wrapper abstract class PanControlOptions extends jsw.TypedJsObject {
-  PanControlOptions() : super();
+  PanControlOptions();
 
-  @isEnum ControlPosition position;
+  ControlPosition position;
 }

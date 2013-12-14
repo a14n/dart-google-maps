@@ -16,18 +16,18 @@ part of google_maps;
 
 @deprecated
 class MarkerImage extends jsw.TypedJsObject {
-  static MarkerImage cast(js.JsObject jsObject) => jsObject == null ? null : new MarkerImage.fromJsObject(jsObject);
+  static MarkerImage $wrap(js.JsObject jsObject) => jsObject == null ? null : new MarkerImage.fromJsObject(jsObject);
   MarkerImage.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
-  MarkerImage(String url, [Size size, Point origin, Point anchor, Size scaledSize]) : super(maps['MarkerImage'], [url, size, origin, anchor, scaledSize]);
+  MarkerImage(String url, [Size size, Point origin, Point anchor, Size scaledSize]):super(maps['MarkerImage'], [url, size == null ? null : size.$unsafe, origin == null ? null : origin.$unsafe, anchor == null ? null : anchor.$unsafe, scaledSize == null ? null : scaledSize.$unsafe]);
 
-  set anchor(Point anchor) => $unsafe['anchor'] = anchor;
-Point get anchor => Point.cast($unsafe['anchor']);
-set origin(Point origin) => $unsafe['origin'] = origin;
-Point get origin => Point.cast($unsafe['origin']);
-set scaledSize(Size scaledSize) => $unsafe['scaledSize'] = scaledSize;
-Size get scaledSize => Size.cast($unsafe['scaledSize']);
-set size(Size size) => $unsafe['size'] = size;
-Size get size => Size.cast($unsafe['size']);
+  set anchor(Point anchor) => $unsafe['anchor'] = anchor == null ? null : anchor.$unsafe;
+Point get anchor => Point.$wrap($unsafe['anchor']);
+set origin(Point origin) => $unsafe['origin'] = origin == null ? null : origin.$unsafe;
+Point get origin => Point.$wrap($unsafe['origin']);
+set scaledSize(Size scaledSize) => $unsafe['scaledSize'] = scaledSize == null ? null : scaledSize.$unsafe;
+Size get scaledSize => Size.$wrap($unsafe['scaledSize']);
+set size(Size size) => $unsafe['size'] = size == null ? null : size.$unsafe;
+Size get size => Size.$wrap($unsafe['size']);
 set url(String url) => $unsafe['url'] = url;
 String get url => $unsafe['url'];
 }

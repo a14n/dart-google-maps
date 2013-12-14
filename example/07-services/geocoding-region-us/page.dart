@@ -12,7 +12,7 @@ void main() {
     ..zoom = 8
     ..mapTypeId = MapTypeId.ROADMAP
     ;
-  map = new GMap(query("#map_canvas"), mapOptions);
+  map = new GMap(querySelector("#map_canvas"), mapOptions);
   codeAddress();
 }
 

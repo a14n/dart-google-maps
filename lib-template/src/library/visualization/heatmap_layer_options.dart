@@ -17,7 +17,7 @@ part of google_maps_visualization;
 @wrapper abstract class HeatmapLayerOptions extends jsw.TypedJsObject {
   HeatmapLayerOptions() : super();
 
-  MVCArray<LatLng> get data => MVCArray.castListOfSerializables($unsafe['data'], LatLng.cast);
+  MVCArray<LatLng> get data => MVCArray.$wrapSerializables($unsafe['data'], LatLng.$wrap);
   set data(MVCArray<LatLng> data);
   bool dissipating;
   List<String> gradient;

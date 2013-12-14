@@ -15,11 +15,10 @@
 part of google_maps;
 
 class TransitAgency extends jsw.TypedJsObject {
-  static TransitAgency cast(js.JsObject jsObject) => jsObject == null ? null : new TransitAgency.fromJsObject(jsObject);
+  static TransitAgency $wrap(js.JsObject jsObject) => jsObject == null ? null : new TransitAgency.fromJsObject(jsObject);
   TransitAgency.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  TransitAgency()
-      : super();
+  TransitAgency();
 
   set name(String name) => $unsafe['name'] = name;
   String get name => $unsafe['name'];

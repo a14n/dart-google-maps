@@ -15,7 +15,7 @@
 part of google_maps_visualization;
 
 @wrapper abstract class WeightedLocation extends jsw.TypedJsObject {
-  static WeightedLocation cast(js.JsObject jsObject) => null;
+  static WeightedLocation $wrap(js.JsObject jsObject) => null;
 
   WeightedLocation() : super();
 

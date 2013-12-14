@@ -12,7 +12,7 @@ void main() {
     ..center = myLatLng
     ..mapTypeId = MapTypeId.SATELLITE
     ;
-  final map = new GMap(query("#map_canvas"), mapOptions);
+  final map = new GMap(querySelector("#map_canvas"), mapOptions);
 
   final swBound = new LatLng(62.281819, -150.287132);
   final neBound = new LatLng(62.400471, -150.005608);

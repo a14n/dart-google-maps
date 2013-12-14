@@ -22,7 +22,7 @@ void main() {
     ..center = new LatLng(37.09024, -95.712891)
     ..mapTypeId = MapTypeId.TERRAIN
     ;
-  final map = new GMap(query("#map_canvas"), mapOptions);
+  final map = new GMap(querySelector("#map_canvas"), mapOptions);
 
   citymap.forEach((String name, Map city) {
     // Construct the circle for each value in citymap. We scale population by 20.

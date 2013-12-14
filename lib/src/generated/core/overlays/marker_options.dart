@@ -15,16 +15,15 @@
 part of google_maps;
 
 class MarkerOptions extends jsw.TypedJsObject {
-  static MarkerOptions cast(js.JsObject jsObject) => jsObject == null ? null : new MarkerOptions.fromJsObject(jsObject);
+  static MarkerOptions $wrap(js.JsObject jsObject) => jsObject == null ? null : new MarkerOptions.fromJsObject(jsObject);
   MarkerOptions.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  MarkerOptions()
-      : super();
+  MarkerOptions();
 
-  set anchorPoint(Point anchorPoint) => $unsafe['anchorPoint'] = anchorPoint;
-  Point get anchorPoint => Point.cast($unsafe['anchorPoint']);
-  set animation(Animation animation) => $unsafe['animation'] = animation;
-  Animation get animation => Animation.find($unsafe['animation']);
+  set anchorPoint(Point anchorPoint) => $unsafe['anchorPoint'] = anchorPoint == null ? null : anchorPoint.$unsafe;
+  Point get anchorPoint => Point.$wrap($unsafe['anchorPoint']);
+  set animation(Animation animation) => $unsafe['animation'] = animation == null ? null : animation.$unsafe;
+  Animation get animation => Animation.$wrap($unsafe['animation']);
   set clickable(bool clickable) => $unsafe['clickable'] = clickable;
   bool get clickable => $unsafe['clickable'];
   set cursor(String cursor) => $unsafe['cursor'] = cursor;
@@ -33,66 +32,22 @@ class MarkerOptions extends jsw.TypedJsObject {
   bool get draggable => $unsafe['draggable'];
   set flat(bool flat) => $unsafe['flat'] = flat;
   bool get flat => $unsafe['flat'];
-  dynamic /*string|Icon|Symbol*/ get icon {
-    final result = $unsafe['icon'];
-    if (result is String) {
-      return result;
-    } else {
-      if (result is js.JsObject) {
-        final type = Marker._isSymbolOrIcon(result);
-        if (type == "Symbol") {
-          return GSymbol.cast(result);
-        } else {
-          if (type == "Icon") {
-            return Icon.cast(result);
-          }
-        }
-      }
-    }
-    return result;
-  }
-  set icon(dynamic icon) => $unsafe['icon'] = icon;
-  dynamic /*Map|StreetViewPanorama*/ get map {
-    final result = $unsafe['map'];
-    if (GMap.isInstance(result)) {
-      return GMap.cast(result);
-    } else {
-      if (StreetViewPanorama.isInstance(result)) {
-        return StreetViewPanorama.cast(result);
-      }
-    }
-    return result;
-  }
-  set map(dynamic map) => $unsafe['map'] = map;
+  set icon(dynamic icon) => $unsafe['icon'] = icon == null ? null : icon is String ? icon : icon is Icon ? icon.$unsafe : icon is GSymbol ? icon.$unsafe : throw "bad type";
+  dynamic get icon => ((v3) => v3 is String ? v3 : ((v2) => Icon.isInstance(v2) ? Icon.$wrap(v2) : ((v1) => GSymbol.isInstance(v1) ? GSymbol.$wrap(v1) : ((v0) => v0)(v1))(v2))(v3))($unsafe['icon']);
+  set map(dynamic map) => $unsafe['map'] = map == null ? null : map is GMap ? map.$unsafe : map is StreetViewPanorama ? map.$unsafe : throw "bad type";
+  dynamic get map => ((v2) => GMap.isInstance(v2) ? GMap.$wrap(v2) : ((v1) => StreetViewPanorama.isInstance(v1) ? StreetViewPanorama.$wrap(v1) : ((v0) => v0)(v1))(v2))($unsafe['map']);
   set optimized(bool optimized) => $unsafe['optimized'] = optimized;
   bool get optimized => $unsafe['optimized'];
-  set position(LatLng position) => $unsafe['position'] = position;
-  LatLng get position => LatLng.cast($unsafe['position']);
+  set position(LatLng position) => $unsafe['position'] = position == null ? null : position.$unsafe;
+  LatLng get position => LatLng.$wrap($unsafe['position']);
   set raiseOnDrag(bool raiseOnDrag) => $unsafe['raiseOnDrag'] = raiseOnDrag;
   bool get raiseOnDrag => $unsafe['raiseOnDrag'];
   set crossOnDrag(bool crossOnDrag) => $unsafe['crossOnDrag'] = crossOnDrag;
   bool get crossOnDrag => $unsafe['crossOnDrag'];
-  dynamic /*string|Icon|Symbol*/ get shadow {
-    final result = $unsafe['shadow'];
-    if (result is String) {
-      return result;
-    } else {
-      if (result is js.JsObject) {
-        final type = Marker._isSymbolOrIcon(result);
-        if (type == "Symbol") {
-          return GSymbol.cast(result);
-        } else {
-          if (type == "Icon") {
-            return Icon.cast(result);
-          }
-        }
-      }
-    }
-    return result;
-  }
-  set shadow(dynamic shadow) => $unsafe['shadow'] = shadow;
-  set shape(MarkerShape shape) => $unsafe['shape'] = shape;
-  MarkerShape get shape => MarkerShape.cast($unsafe['shape']);
+  set shadow(dynamic shadow) => $unsafe['shadow'] = shadow == null ? null : shadow is String ? shadow : shadow is Icon ? shadow.$unsafe : shadow is GSymbol ? shadow.$unsafe : throw "bad type";
+  dynamic get shadow => ((v3) => v3 is String ? v3 : ((v2) => Icon.isInstance(v2) ? Icon.$wrap(v2) : ((v1) => GSymbol.isInstance(v1) ? GSymbol.$wrap(v1) : ((v0) => v0)(v1))(v2))(v3))($unsafe['shadow']);
+  set shape(MarkerShape shape) => $unsafe['shape'] = shape == null ? null : shape.$unsafe;
+  MarkerShape get shape => MarkerShape.$wrap($unsafe['shape']);
   set title(String title) => $unsafe['title'] = title;
   String get title => $unsafe['title'];
   set visible(bool visible) => $unsafe['visible'] = visible;

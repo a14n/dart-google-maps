@@ -15,12 +15,12 @@
 part of google_maps;
 
 class BicyclingLayer extends MVCObject {
-  static BicyclingLayer cast(js.JsObject jsObject) => jsObject == null ? null : new BicyclingLayer.fromJsObject(jsObject);
+  static BicyclingLayer $wrap(js.JsObject jsObject) => jsObject == null ? null : new BicyclingLayer.fromJsObject(jsObject);
   BicyclingLayer.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
   BicyclingLayer()
-      : super(maps['BicyclingLayer']);
+      : super(maps['BicyclingLayer'], []);
 
-  set map(GMap map) => $unsafe.callMethod('setMap', [map]);
-  GMap get map => GMap.cast($unsafe.callMethod('getMap'));
+  set map(GMap map) => $unsafe.callMethod('setMap', [map == null ? null : map.$unsafe]);
+  GMap get map => GMap.$wrap($unsafe.callMethod('getMap'));
 }

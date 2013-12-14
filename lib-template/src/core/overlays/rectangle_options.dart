@@ -15,7 +15,7 @@
 part of google_maps;
 
 @wrapper abstract class RectangleOptions extends jsw.TypedJsObject {
-  RectangleOptions() : super();
+  RectangleOptions();
 
   LatLngBounds bounds;
   bool clickable;
@@ -26,7 +26,7 @@ part of google_maps;
   GMap map;
   String strokeColor;
   num strokeOpacity;
-  @isEnum StrokePosition strokePosition;
+  StrokePosition strokePosition;
   num strokeWeight;
   bool visible;
   num zIndex;

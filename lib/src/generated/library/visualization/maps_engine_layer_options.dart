@@ -15,7 +15,7 @@
 part of google_maps_visualization;
 
 class MapsEngineLayerOptions extends jsw.TypedJsObject {
-  static MapsEngineLayerOptions cast(js.JsObject jsObject) => jsObject == null ? null : new MapsEngineLayerOptions.fromJsObject(jsObject);
+  static MapsEngineLayerOptions $wrap(js.JsObject jsObject) => jsObject == null ? null : new MapsEngineLayerOptions.fromJsObject(jsObject);
   MapsEngineLayerOptions.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
   MapsEngineLayerOptions()
@@ -29,8 +29,8 @@ class MapsEngineLayerOptions extends jsw.TypedJsObject {
   String get layerId => $unsafe['layerId'];
   set layerKey(String layerKey) => $unsafe['layerKey'] = layerKey;
   String get layerKey => $unsafe['layerKey'];
-  set map(GMap map) => $unsafe['map'] = map;
-  GMap get map => GMap.cast($unsafe['map']);
+  set map(GMap map) => $unsafe['map'] = map == null ? null : map.$unsafe;
+  GMap get map => GMap.$wrap($unsafe['map']);
   set mapId(String mapId) => $unsafe['mapId'] = mapId;
   String get mapId => $unsafe['mapId'];
   set suppressInfoWindows(bool suppressInfoWindows) => $unsafe['suppressInfoWindows'] = suppressInfoWindows;

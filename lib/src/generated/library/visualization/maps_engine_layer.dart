@@ -15,7 +15,7 @@
 part of google_maps_visualization;
 
 class MapsEngineLayer extends MVCObject {
-  static MapsEngineLayer cast(js.JsObject jsObject) => jsObject == null ? null : new MapsEngineLayer.fromJsObject(jsObject);
+  static MapsEngineLayer $wrap(js.JsObject jsObject) => jsObject == null ? null : new MapsEngineLayer.fromJsObject(jsObject);
   jsw.SubscribeStreamProvider<MapsEngineMouseEvent> _onClick;
   jsw.SubscribeStreamProvider _onPropertiesChanged;
   jsw.SubscribeStreamProvider _onStatusChanged;
@@ -30,7 +30,7 @@ class MapsEngineLayer extends MVCObject {
   }
 
   void _initStreams() {
-    _onClick = event.getStreamProviderFor(this, "click", MapsEngineMouseEvent.cast);
+    _onClick = event.getStreamProviderFor(this, "click", MapsEngineMouseEvent.$wrap);
     _onPropertiesChanged = event.getStreamProviderFor(this, "properties_changed");
     _onStatusChanged = event.getStreamProviderFor(this, "status_changed");
   }
@@ -41,13 +41,13 @@ class MapsEngineLayer extends MVCObject {
 
   String get layerId => $unsafe.callMethod('getLayerId');
   String get layerKey => $unsafe.callMethod('getLayerKey');
-  GMap get map => GMap.cast($unsafe.callMethod('getMap'));
+  GMap get map => GMap.$wrap($unsafe.callMethod('getMap'));
   String get mapId => $unsafe.callMethod('getMapId');
-  MapsEngineLayerProperties get properties => MapsEngineLayerProperties.cast($unsafe.callMethod('getProperties'));
-  MapsEngineStatus get status => MapsEngineStatus.find($unsafe.callMethod('getStatus'));
+  MapsEngineLayerProperties get properties => MapsEngineLayerProperties.$wrap($unsafe.callMethod('getProperties'));
+  MapsEngineStatus get status => MapsEngineStatus.$wrap($unsafe.callMethod('getStatus'));
   set layerId(String layerId) => $unsafe.callMethod('setLayerId', [layerId]);
   set layerKey(String layerKey) => $unsafe.callMethod('setLayerKey', [layerKey]);
-  set map(GMap map) => $unsafe.callMethod('setMap', [map]);
+  set map(GMap map) => $unsafe.callMethod('setMap', [map == null ? null : map.$unsafe]);
   set mapId(String mapId) => $unsafe.callMethod('setMapId', [mapId]);
-  set options(MapsEngineLayerOptions options) => $unsafe.callMethod('setOptions', [options]);
+  set options(MapsEngineLayerOptions options) => $unsafe.callMethod('setOptions', [options == null ? null : options.$unsafe]);
 }

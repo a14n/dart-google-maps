@@ -15,14 +15,13 @@
 part of google_maps;
 
 class TransitStop extends jsw.TypedJsObject {
-  static TransitStop cast(js.JsObject jsObject) => jsObject == null ? null : new TransitStop.fromJsObject(jsObject);
+  static TransitStop $wrap(js.JsObject jsObject) => jsObject == null ? null : new TransitStop.fromJsObject(jsObject);
   TransitStop.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  TransitStop()
-      : super();
+  TransitStop();
 
-  set location(LatLng location) => $unsafe['location'] = location;
-  LatLng get location => LatLng.cast($unsafe['location']);
+  set location(LatLng location) => $unsafe['location'] = location == null ? null : location.$unsafe;
+  LatLng get location => LatLng.$wrap($unsafe['location']);
   set name(String name) => $unsafe['name'] = name;
   String get name => $unsafe['name'];
 }

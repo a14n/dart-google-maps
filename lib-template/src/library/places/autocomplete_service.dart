@@ -18,9 +18,9 @@ part of google_maps_places;
   AutocompleteService() : super(maps['places']['AutocompleteService']);
 
   void getPlacePredictions(AutocompletionRequest request, void callback(List<AutocompletePrediction> results, PlacesServiceStatus status)) {
-    $unsafe.callMethod('getPlacePredictions', [request, (js.JsObject results, String status) => callback(jsw.TypedJsArray.castListOfSerializables(results, AutocompletePrediction.cast), PlacesServiceStatus.find(status))]);
+    $unsafe.callMethod('getPlacePredictions', [jsw.Serializable.$unwrap(request), (js.JsObject results, String status) => callback(jsw.TypedJsArray.$wrapSerializables(results, AutocompletePrediction.$wrap), PlacesServiceStatus.$wrap(status))]);
   }
   void getQueryPredictions(QueryAutocompletionRequest request, void callback(List<QueryAutocompletePrediction> results, PlacesServiceStatus status)) {
-    $unsafe.callMethod('getQueryPredictions', [request, (js.JsObject results, String status) => callback(jsw.TypedJsArray.castListOfSerializables(results, QueryAutocompletionRequest.cast), PlacesServiceStatus.find(status))]);
+    $unsafe.callMethod('getQueryPredictions', [jsw.Serializable.$unwrap(request), (js.JsObject results, String status) => callback(jsw.TypedJsArray.$wrapSerializables(results, QueryAutocompletionRequest.$wrap), PlacesServiceStatus.$wrap(status))]);
   }
 }

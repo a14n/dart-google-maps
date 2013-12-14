@@ -115,7 +115,7 @@ void main() {
       ..mapTypeIds = [MapTypeId.ROADMAP, 'gallPetersMap']
     )
   ;
-  final gallPetersMap = new GMap(query('#gallPetersMap'), mapOptions);
+  final gallPetersMap = new GMap(querySelector('#gallPetersMap'), mapOptions);
 
   gallPetersMap.mapTypes.set('gallPetersMap', gallPetersMapType);
   gallPetersMap.mapTypeId = 'gallPetersMap';

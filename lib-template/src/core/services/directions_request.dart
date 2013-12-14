@@ -15,32 +15,17 @@
 part of google_maps;
 
 @wrapper abstract class DirectionsRequest extends jsw.TypedJsObject {
-  DirectionsRequest() : super();
+  DirectionsRequest();
 
   bool avoidHighways;
   bool avoidTolls;
-  dynamic/*LatLng|string*/ get destination {
-    final result = $unsafe['destination'];
-    if(LatLng.isInstance(result)) {
-      return LatLng.cast(result);
-    }
-    return result;
-  }
-  set destination(dynamic/*LatLng|string*/ destination);
+  @Types(const [LatLng,String]) dynamic destination;
   bool durationInTraffic;
   bool optimizeWaypoints;
-  dynamic/*LatLng|string*/ get origin {
-    final result = $unsafe['origin'];
-    if(LatLng.isInstance(result)) {
-      return LatLng.cast(result);
-    }
-    return result;
-  }
-  set origin(dynamic/*LatLng|string*/ origin);
-  bool provideRouteAlternatives;
+  @Types(const [LatLng,String]) dynamic origin;
   String region;
   TransitOptions transitOptions;
-  @isEnum TravelMode travelMode;
-  @isEnum UnitSystem unitSystem;
+  TravelMode travelMode;
+  UnitSystem unitSystem;
   List<DirectionsWaypoint> waypoints;
 }

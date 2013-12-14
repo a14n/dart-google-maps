@@ -17,12 +17,12 @@ part of google_maps;
 typedef String GetTileUrl(Point point, num zoomLevel);
 
 @wrapper abstract class ImageMapTypeOptions extends jsw.TypedJsObject {
-  ImageMapTypeOptions() : super();
+  ImageMapTypeOptions();
 
   String alt;
   // REPORTED report wtf arg : http://code.google.com/p/gmaps-api-issues/issues/detail?id=4573
-  set getTileUrl(GetTileUrl callback) => $unsafe['getTileUrl'] = (js.JsObject point, num zoomLevel, [dynamic wtf]) => callback(Point.cast(point), zoomLevel);
-  GetTileUrl get getTileUrl => (Point point, num zoomLevel) => $unsafe.callMethod('getTileUrl', [point, zoomLevel]);
+  set getTileUrl(GetTileUrl callback) => $unsafe['getTileUrl'] = (js.JsObject point, num zoomLevel, [dynamic wtf]) => callback(Point.$wrap(point), zoomLevel);
+  GetTileUrl get getTileUrl => (Point point, num zoomLevel) => $unsafe.callMethod('getTileUrl', [jsw.Serializable.$unwrap(point), zoomLevel]);
   num maxZoom;
   num minZoom;
   String name;

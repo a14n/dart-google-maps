@@ -15,7 +15,7 @@
 part of google_maps;
 
 @wrapper abstract class TransitDetails extends jsw.TypedJsObject {
-  TransitDetails() : super();
+  TransitDetails();
 
   TransitStop arrivalStop;
   Time arrivalTime;

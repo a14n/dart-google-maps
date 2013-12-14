@@ -18,9 +18,9 @@ part of google_maps_weather;
   WeatherLayerOptions() : super();
 
   bool clickable;
-  @isEnum LabelColor labelColor;
+  LabelColor labelColor;
   GMap map;
   bool suppressInfoWindows;
-  @isEnum TemperatureUnit temperatureUnits;
-  @isEnum WindSpeedUnit windSpeedUnits;
+  TemperatureUnit temperatureUnits;
+  WindSpeedUnit windSpeedUnits;
 }

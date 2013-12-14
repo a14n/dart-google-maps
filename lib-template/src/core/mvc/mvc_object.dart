@@ -15,7 +15,7 @@
 part of google_maps;
 
 @wrapper @skipConstructor abstract class MVCObject extends jsw.TypedJsObject {
-  MVCObject([js.Serializable<js.JsFunction> constructor, List args]) : super(constructor != null ? constructor : maps['MVCObject'], args);
+  MVCObject([js.JsFunction constructor, List args]) : super(constructor != null ? constructor : maps['MVCObject'], args);
   MVCObject.fromJsObject(js.JsObject jsObject) : super.fromJsObject(jsObject);
 
   MapsEventListener addListener(String eventName, Function handler);
@@ -23,7 +23,7 @@ part of google_maps;
   void changed(String key);
   Object get(String key);
   void notify(String key);
-  void set(String key, Object value);
+  void set(String key, dynamic value);
   @forMethods set values(Map<String, Object> values);
   void unbind(String key);
   void unbindAll();

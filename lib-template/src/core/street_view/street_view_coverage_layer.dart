@@ -15,7 +15,7 @@
 part of google_maps;
 
 @wrapper @forMethods abstract class StreetViewCoverageLayer extends MVCObject {
-  StreetViewCoverageLayer() : super(maps['StreetViewCoverageLayer']);
+  @generate StreetViewCoverageLayer();
 
   GMap get map;
   set map(GMap map);

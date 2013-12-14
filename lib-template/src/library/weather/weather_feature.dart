@@ -20,6 +20,6 @@ part of google_maps_weather;
   WeatherConditions current;
   List<WeatherForecast> forecast;
   String location;
-  @isEnum TemperatureUnit temperatureUnit;
-  @isEnum WindSpeedUnit windSpeedUnit;
+  TemperatureUnit temperatureUnit;
+  WindSpeedUnit windSpeedUnit;
 }

@@ -15,9 +15,7 @@
 part of google_maps;
 
 @wrapper abstract class FusionTablesMouseEvent extends jsw.TypedJsObject {
-  static FusionTablesMouseEvent cast(js.JsObject proxy) => null;
-
-  FusionTablesMouseEvent();
+  static FusionTablesMouseEvent $wrap(js.JsObject proxy) => null;
 
   String infoWindowHtml;
   LatLng latLng;

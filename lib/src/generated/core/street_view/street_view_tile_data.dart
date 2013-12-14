@@ -15,11 +15,10 @@
 part of google_maps;
 
 class StreetViewTileData extends jsw.TypedJsObject {
-  static StreetViewTileData cast(js.JsObject jsObject) => jsObject == null ? null : new StreetViewTileData.fromJsObject(jsObject);
+  static StreetViewTileData $wrap(js.JsObject jsObject) => jsObject == null ? null : new StreetViewTileData.fromJsObject(jsObject);
   StreetViewTileData.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  StreetViewTileData()
-      : super();
+  StreetViewTileData();
 
   void set_getTileUrl(String getTileUrl(String pano, num tileZoom, num tileX, num tileY)) {
     $unsafe['getTileUrl'] = getTileUrl;
@@ -28,8 +27,8 @@ class StreetViewTileData extends jsw.TypedJsObject {
 
   set centerHeading(num centerHeading) => $unsafe['centerHeading'] = centerHeading;
   num get centerHeading => $unsafe['centerHeading'];
-  set tileSize(Size tileSize) => $unsafe['tileSize'] = tileSize;
-  Size get tileSize => Size.cast($unsafe['tileSize']);
-  set worldSize(Size worldSize) => $unsafe['worldSize'] = worldSize;
-  Size get worldSize => Size.cast($unsafe['worldSize']);
+  set tileSize(Size tileSize) => $unsafe['tileSize'] = tileSize == null ? null : tileSize.$unsafe;
+  Size get tileSize => Size.$wrap($unsafe['tileSize']);
+  set worldSize(Size worldSize) => $unsafe['worldSize'] = worldSize == null ? null : worldSize.$unsafe;
+  Size get worldSize => Size.$wrap($unsafe['worldSize']);
 }

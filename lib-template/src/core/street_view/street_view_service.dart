@@ -15,12 +15,12 @@
 part of google_maps;
 
 @wrapper abstract class StreetViewService extends jsw.TypedJsObject {
-  StreetViewService() : super(maps['StreetViewService']);
+  @generate StreetViewService();
 
   void getPanoramaById(String pano, void callback(StreetViewPanoramaData streetViewPanoramaData, StreetViewStatus streetViewStatus)) {
-    $unsafe.callMethod('getPanoramaById', [pano, (js.JsObject streetViewPanoramaData, String streetViewStatus) => callback(StreetViewPanoramaData.cast(streetViewPanoramaData), StreetViewStatus.find(streetViewStatus))]);
+    $unsafe.callMethod('getPanoramaById', [pano, (js.JsObject streetViewPanoramaData, String streetViewStatus) => callback(StreetViewPanoramaData.$wrap(streetViewPanoramaData), StreetViewStatus.$wrap(streetViewStatus))]);
   }
   void getPanoramaByLocation(LatLng latlng, num radius, void callback(StreetViewPanoramaData streetViewPanoramaData, StreetViewStatus streetViewStatus)) {
-    $unsafe.callMethod('getPanoramaByLocation', [latlng, radius, (js.JsObject streetViewPanoramaData, String streetViewStatus) => callback(StreetViewPanoramaData.cast(streetViewPanoramaData), StreetViewStatus.find(streetViewStatus))]);
+    $unsafe.callMethod('getPanoramaByLocation', [jsw.Serializable.$unwrap(latlng), radius, (js.JsObject streetViewPanoramaData, String streetViewStatus) => callback(StreetViewPanoramaData.$wrap(streetViewPanoramaData), StreetViewStatus.$wrap(streetViewStatus))]);
   }
 }

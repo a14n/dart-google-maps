@@ -15,7 +15,7 @@
 part of google_maps;
 
 class StreetViewPanorama extends MVCObject {
-  static StreetViewPanorama cast(js.JsObject jsObject) => jsObject == null ? null : new StreetViewPanorama.fromJsObject(jsObject);
+  static StreetViewPanorama $wrap(js.JsObject jsObject) => jsObject == null ? null : new StreetViewPanorama.fromJsObject(jsObject);
   static bool isInstance(js.JsObject proxy) => proxy.instanceof(maps['StreetViewPanorama']);
 
   jsw.SubscribeStreamProvider<NativeEvent> _onCloseclick;
@@ -28,7 +28,7 @@ class StreetViewPanorama extends MVCObject {
   jsw.SubscribeStreamProvider _onZoomChanged;
 
   StreetViewPanorama(html.Node container, [StreetViewPanoramaOptions opts])
-      : super(maps['StreetViewPanorama'], [jsw.convertElementToJs(container), opts]) {
+      : super(maps['StreetViewPanorama'], [container, opts == null ? null : opts.$unsafe]) {
     _initStreams();
   }
   StreetViewPanorama.fromJsObject(js.JsObject proxy)
@@ -37,7 +37,7 @@ class StreetViewPanorama extends MVCObject {
   }
 
   void _initStreams() {
-    _onCloseclick = event.getStreamProviderFor(this, "closeclick", NativeEvent.cast);
+    _onCloseclick = event.getStreamProviderFor(this, "closeclick", NativeEvent.$wrap);
     _onLinksChanged = event.getStreamProviderFor(this, "links_changed");
     _onPanoChanged = event.getStreamProviderFor(this, "pano_changed");
     _onPositionChanged = event.getStreamProviderFor(this, "position_changed");
@@ -56,22 +56,22 @@ class StreetViewPanorama extends MVCObject {
   Stream get onVisibleChanged => _onVisibleChanged.stream;
   Stream get onZoomChanged => _onZoomChanged.stream;
 
-  List<StreetViewLink> get links => jsw.TypedJsArray.castListOfSerializables($unsafe.callMethod('getLinks'), StreetViewLink.cast);
+  List<StreetViewLink> get links => jsw.TypedJsArray.$wrapSerializables($unsafe.callMethod('getLinks'), StreetViewLink.$wrap);
   String get pano => $unsafe.callMethod('getPano');
-  StreetViewPov get photographerPov => StreetViewPov.cast($unsafe.callMethod('getPhotographerPov'));
-  LatLng get position => LatLng.cast($unsafe.callMethod('getPosition'));
-  StreetViewPov get pov => StreetViewPov.cast($unsafe.callMethod('getPov'));
+  StreetViewPov get photographerPov => StreetViewPov.$wrap($unsafe.callMethod('getPhotographerPov'));
+  LatLng get position => LatLng.$wrap($unsafe.callMethod('getPosition'));
+  StreetViewPov get pov => StreetViewPov.$wrap($unsafe.callMethod('getPov'));
   bool get visible => $unsafe.callMethod('getVisible');
   num get zoom => $unsafe.callMethod('getZoom');
   void registerPanoProvider(StreetViewPanoramaData provider(String pano)) {
-    $unsafe.callMethod('registerPanoProvider', [(String pano) => provider(pano)]);
+    $unsafe.callMethod('registerPanoProvider', [(String pano) => jsw.Serializable.$unwrap(provider(pano))]);
   }
   set pano(String pano) => $unsafe.callMethod('setPano', [pano]);
-  set position(LatLng latLng) => $unsafe.callMethod('setPosition', [latLng]);
-  set pov(StreetViewPov pov) => $unsafe.callMethod('setPov', [pov]);
+  set position(LatLng latLng) => $unsafe.callMethod('setPosition', [latLng == null ? null : latLng.$unsafe]);
+  set pov(StreetViewPov pov) => $unsafe.callMethod('setPov', [pov == null ? null : pov.$unsafe]);
   set visible(bool flag) => $unsafe.callMethod('setVisible', [flag]);
   set zoom(num zoom) => $unsafe.callMethod('setZoom', [zoom]);
 
-  set controls(Controls controls) => $unsafe['controls'] = controls;
-  Controls get controls => Controls.cast($unsafe['controls']);
+  set controls(Controls controls) => $unsafe['controls'] = controls == null ? null : controls.$unsafe;
+  Controls get controls => Controls.$wrap($unsafe['controls']);
 }

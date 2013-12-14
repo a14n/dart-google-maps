@@ -15,9 +15,9 @@
 part of google_maps;
 
 @wrapper abstract class DirectionsService extends jsw.TypedJsObject {
-  DirectionsService() : super(maps['DirectionsService']);
+  @generate DirectionsService();
 
   void route(DirectionsRequest request, void callback(DirectionsResult results, DirectionsStatus status)) {
-    $unsafe.callMethod('route', [request, (js.JsObject results, String status) => callback(DirectionsResult.cast(results), DirectionsStatus.find(status))]);
+    $unsafe.callMethod('route', [jsw.Serializable.$unwrap(request), (js.JsObject results, String status) => callback(DirectionsResult.$wrap(results), DirectionsStatus.$wrap(status))]);
   }
 }

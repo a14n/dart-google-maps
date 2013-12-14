@@ -15,13 +15,13 @@
 part of google_maps;
 
 class KmlLayer extends MVCObject {
-  static KmlLayer cast(js.JsObject jsObject) => jsObject == null ? null : new KmlLayer.fromJsObject(jsObject);
+  static KmlLayer $wrap(js.JsObject jsObject) => jsObject == null ? null : new KmlLayer.fromJsObject(jsObject);
   jsw.SubscribeStreamProvider<KmlMouseEvent> _onClick;
   jsw.SubscribeStreamProvider _onDefaultviewportChanged;
   jsw.SubscribeStreamProvider _onStatusChanged;
 
   KmlLayer([KmlLayerOptions options])
-      : super(maps['KmlLayer'], [options]) {
+      : super(maps['KmlLayer'], [options == null ? null : options.$unsafe]) {
     _initStreams();
   }
   KmlLayer.fromJsObject(js.JsObject proxy)
@@ -30,7 +30,7 @@ class KmlLayer extends MVCObject {
   }
 
   void _initStreams() {
-    _onClick = event.getStreamProviderFor(this, "click", KmlMouseEvent.cast);
+    _onClick = event.getStreamProviderFor(this, "click", KmlMouseEvent.$wrap);
     _onDefaultviewportChanged = event.getStreamProviderFor(this, "defaultviewport_changed");
     _onStatusChanged = event.getStreamProviderFor(this, "status_changed");
   }
@@ -39,11 +39,11 @@ class KmlLayer extends MVCObject {
   Stream get onDefaultviewportChanged => _onDefaultviewportChanged.stream;
   Stream get onStatusChanged => _onStatusChanged.stream;
 
-  LatLngBounds get defaultViewport => LatLngBounds.cast($unsafe.callMethod('getDefaultViewport'));
-  GMap get map => GMap.cast($unsafe.callMethod('getMap'));
-  KmlLayerMetadata get metadata => KmlLayerMetadata.cast($unsafe.callMethod('getMetadata'));
-  KmlLayerStatus get status => KmlLayerStatus.find($unsafe.callMethod('getStatus'));
+  LatLngBounds get defaultViewport => LatLngBounds.$wrap($unsafe.callMethod('getDefaultViewport'));
+  GMap get map => GMap.$wrap($unsafe.callMethod('getMap'));
+  KmlLayerMetadata get metadata => KmlLayerMetadata.$wrap($unsafe.callMethod('getMetadata'));
+  KmlLayerStatus get status => KmlLayerStatus.$wrap($unsafe.callMethod('getStatus'));
   String get url => $unsafe.callMethod('getUrl');
-  set map(GMap map) => $unsafe.callMethod('setMap', [map]);
+  set map(GMap map) => $unsafe.callMethod('setMap', [map == null ? null : map.$unsafe]);
   set url(String url) => $unsafe.callMethod('setUrl', [url]);
 }

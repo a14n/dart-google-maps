@@ -32,7 +32,7 @@ void main() {
     )
     ;
 
-  final map = new GMap(query('#map_canvas'), mapOptions);
+  final map = new GMap(querySelector('#map_canvas'), mapOptions);
   map.mapTypes.set('moon', moonMapType);
   map.mapTypeId = 'moon';
 }

@@ -15,14 +15,13 @@
 part of google_maps;
 
 class TransitOptions extends jsw.TypedJsObject {
-  static TransitOptions cast(js.JsObject jsObject) => jsObject == null ? null : new TransitOptions.fromJsObject(jsObject);
+  static TransitOptions $wrap(js.JsObject jsObject) => jsObject == null ? null : new TransitOptions.fromJsObject(jsObject);
   TransitOptions.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  TransitOptions()
-      : super();
+  TransitOptions();
 
-  DateTime get arrivalTime => jsw.JsDateToDateTimeAdapter.cast($unsafe['arrivalTime']);
-  set arrivalTime(DateTime arrivalTime) => $unsafe['arrivalTime'] = arrivalTime == null ? null : arrivalTime is js.Serializable ? arrivalTime : new jsw.JsDateToDateTimeAdapter(arrivalTime);
-  DateTime get departureTime => jsw.JsDateToDateTimeAdapter.cast($unsafe['departureTime']);
-  set departureTime(DateTime departureTime) => $unsafe['departureTime'] = departureTime == null ? null : departureTime is js.Serializable ? departureTime : new jsw.JsDateToDateTimeAdapter(departureTime);
+  set arrivalTime(DateTime arrivalTime) => $unsafe['arrivalTime'] = arrivalTime;
+  DateTime get arrivalTime => $unsafe['arrivalTime'];
+  set departureTime(DateTime departureTime) => $unsafe['departureTime'] = departureTime;
+  DateTime get departureTime => $unsafe['departureTime'];
 }

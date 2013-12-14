@@ -15,12 +15,11 @@
 part of google_maps;
 
 class PanControlOptions extends jsw.TypedJsObject {
-  static PanControlOptions cast(js.JsObject jsObject) => jsObject == null ? null : new PanControlOptions.fromJsObject(jsObject);
+  static PanControlOptions $wrap(js.JsObject jsObject) => jsObject == null ? null : new PanControlOptions.fromJsObject(jsObject);
   PanControlOptions.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  PanControlOptions()
-      : super();
+  PanControlOptions();
 
-  set position(ControlPosition position) => $unsafe['position'] = position;
-  ControlPosition get position => ControlPosition.find($unsafe['position']);
+  set position(ControlPosition position) => $unsafe['position'] = position == null ? null : position.$unsafe;
+  ControlPosition get position => ControlPosition.$wrap($unsafe['position']);
 }

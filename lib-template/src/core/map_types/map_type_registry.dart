@@ -15,7 +15,7 @@
 part of google_maps;
 
 @wrapper abstract class MapTypeRegistry extends MVCObject {
-  MapTypeRegistry() : super(maps['MapTypeRegistry']);
+  @generate MapTypeRegistry();
 
   void set(String id, MapType mapType);
 }

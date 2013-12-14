@@ -15,11 +15,10 @@
 part of google_maps;
 
 class GDuration extends jsw.TypedJsObject {
-  static GDuration cast(js.JsObject jsObject) => jsObject == null ? null : new GDuration.fromJsObject(jsObject);
+  static GDuration $wrap(js.JsObject jsObject) => jsObject == null ? null : new GDuration.fromJsObject(jsObject);
   GDuration.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  GDuration()
-      : super();
+  GDuration();
 
   set text(String text) => $unsafe['text'] = text;
   String get text => $unsafe['text'];

@@ -15,7 +15,7 @@
 part of google_maps;
 
 @wrapper @forMethods abstract class LatLngBounds extends jsw.TypedJsObject {
-  LatLngBounds([LatLng sw, LatLng ne]) : super(maps['LatLngBounds'], [sw, ne]);
+  @generate LatLngBounds([LatLng sw, LatLng ne]);
 
   bool contains(LatLng latLng);
   bool equals(LatLngBounds other);
@@ -28,5 +28,5 @@ part of google_maps;
   LatLng toSpan();
   String toString();
   String toUrlValue([num precision]);
-  bool union(LatLngBounds other);
+  LatLngBounds union(LatLngBounds other);
 }

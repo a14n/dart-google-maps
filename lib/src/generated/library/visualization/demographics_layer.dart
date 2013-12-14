@@ -15,17 +15,17 @@
 part of google_maps_visualization;
 
 class DemographicsLayer extends jsw.TypedJsObject {
-  static DemographicsLayer cast(js.JsObject jsObject) => jsObject == null ? null : new DemographicsLayer.fromJsObject(jsObject);
+  static DemographicsLayer $wrap(js.JsObject jsObject) => jsObject == null ? null : new DemographicsLayer.fromJsObject(jsObject);
   DemographicsLayer.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
   DemographicsLayer([DemographicsLayerOptions opts])
-      : super(maps['visualization']['DemographicsLayer'], [opts]);
+      : super(maps['visualization']['DemographicsLayer'], [jsw.Serializable.$unwrap(opts)]);
 
-  GMap get map => GMap.cast($unsafe.callMethod('getMap'));
-  DemographicsQuery get query => DemographicsQuery.cast($unsafe.callMethod('getQuery'));
-  List<DemographicsStyle> get styles => jsw.TypedJsArray.castListOfSerializables($unsafe.callMethod('getStyles'), DemographicsStyle.cast);
-  set map(GMap map) => $unsafe.callMethod('setMap', [map]);
-  set options(DemographicsLayerOptions options) => $unsafe.callMethod('setOptions', [options]);
-  set query(DemographicsQuery query) => $unsafe.callMethod('setQuery', [query]);
-  set style(List<DemographicsStyle> style) => $unsafe.callMethod('setStyle', [style == null ? null : style is js.Serializable ? style : js.jsify(style)]);
+  GMap get map => GMap.$wrap($unsafe.callMethod('getMap'));
+  DemographicsQuery get query => DemographicsQuery.$wrap($unsafe.callMethod('getQuery'));
+  List<DemographicsStyle> get styles => jsw.TypedJsArray.$wrapSerializables($unsafe.callMethod('getStyles'), DemographicsStyle.$wrap);
+  set map(GMap map) => $unsafe.callMethod('setMap', [map == null ? null : map.$unsafe]);
+  set options(DemographicsLayerOptions options) => $unsafe.callMethod('setOptions', [options == null ? null : options.$unsafe]);
+  set query(DemographicsQuery query) => $unsafe.callMethod('setQuery', [query == null ? null : query.$unsafe]);
+  set style(List style) => $unsafe.callMethod('setStyle', [style == null ? null : (style is jsw.TypedJsObject ? (style as jsw.TypedJsObject).$unsafe : jsw.jsify(style))]);
 }

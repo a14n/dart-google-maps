@@ -15,7 +15,7 @@
 part of google_maps;
 
 @wrapper abstract class FusionTablesPolylineOptions extends jsw.TypedJsObject {
-  FusionTablesPolylineOptions() : super();
+  FusionTablesPolylineOptions();
 
   String strokeColor;
   num strokeOpacity;

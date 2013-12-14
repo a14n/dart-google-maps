@@ -15,15 +15,8 @@
 part of google_maps;
 
 @wrapper abstract class DirectionsWaypoint extends jsw.TypedJsObject {
-  DirectionsWaypoint() : super();
+  DirectionsWaypoint();
 
-  dynamic/*LatLng|string*/ get location {
-    final result = $unsafe['location'];
-    if(LatLng.isInstance(result)) {
-      return LatLng.cast(result);
-    }
-    return result;
-  }
-  set location(dynamic/*LatLng|string*/ location);
+  @Types(const [LatLng,String]) dynamic location;
   bool stopover;
 }

@@ -15,13 +15,12 @@
 part of google_maps;
 
 class ZoomControlStyle extends jsw.IsEnum<int> {
+  static final _FINDER = new jsw.EnumFinder<int, ZoomControlStyle>([DEFAULT, LARGE, SMALL]);
+  static ZoomControlStyle $wrap(int jsValue) => _FINDER.find(jsValue);
+
   static final DEFAULT = new ZoomControlStyle._(maps['ZoomControlStyle']['DEFAULT']);
   static final LARGE = new ZoomControlStyle._(maps['ZoomControlStyle']['LARGE']);
   static final SMALL = new ZoomControlStyle._(maps['ZoomControlStyle']['SMALL']);
-
-  static final _FINDER = new jsw.EnumFinder<int, ZoomControlStyle>([DEFAULT, LARGE, SMALL]);
-
-  static ZoomControlStyle find(o) => _FINDER.find(o);
 
   ZoomControlStyle._(int value) : super(value);
 }

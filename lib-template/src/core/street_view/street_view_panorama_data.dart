@@ -15,9 +15,9 @@
 part of google_maps;
 
 @wrapper abstract class StreetViewPanoramaData extends jsw.TypedJsObject {
-  static StreetViewPanoramaData cast(js.JsObject jsObject) => null;
+  static StreetViewPanoramaData $wrap(js.JsObject jsObject) => null;
 
-  StreetViewPanoramaData() : super();
+  StreetViewPanoramaData();
 
   String copyright;
   String imageDate;

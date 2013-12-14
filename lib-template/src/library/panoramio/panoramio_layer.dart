@@ -17,11 +17,11 @@ part of google_maps_panoramio;
 @wrapper @forMethods @skipConstructor abstract class PanoramioLayer extends MVCObject {
   jsw.SubscribeStreamProvider<PanoramioMouseEvent> _onClick;
 
-  PanoramioLayer([PanoramioLayerOptions opts]) : super(maps['panoramio']['PanoramioLayer'], [opts]) { _initStreams(); }
+  PanoramioLayer([PanoramioLayerOptions opts]) : super(maps['panoramio']['PanoramioLayer'], [jsw.Serializable.$unwrap(opts)]) { _initStreams(); }
   PanoramioLayer.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) { _initStreams(); }
 
   void _initStreams() {
-    _onClick = event.getStreamProviderFor(this, "click", PanoramioMouseEvent.cast);
+    _onClick = event.getStreamProviderFor(this, "click", PanoramioMouseEvent.$wrap);
   }
 
   Stream<PanoramioMouseEvent> get onClick => _onClick.stream;

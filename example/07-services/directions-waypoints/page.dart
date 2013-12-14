@@ -14,17 +14,17 @@ void main() {
     ..mapTypeId = MapTypeId.ROADMAP
     ..center = chicago
     ;
-  map = new GMap(query("#map_canvas"), mapOptions);
+  map = new GMap(querySelector("#map_canvas"), mapOptions);
   directionsDisplay.map = map;
 
-  query('#calcRoute').onClick.listen((e) => calcRoute());
+  querySelector('#calcRoute').onClick.listen((e) => calcRoute());
 }
 
 void calcRoute() {
-  final start = (query('#start') as SelectElement).value;
-  final end = (query('#end') as SelectElement).value;
+  final start = (querySelector('#start') as SelectElement).value;
+  final end = (querySelector('#end') as SelectElement).value;
   final waypts = new List<DirectionsWaypoint>();
-  final checkboxArray = query('#waypoints') as SelectElement;
+  final checkboxArray = querySelector('#waypoints') as SelectElement;
   for (final OptionElement option in checkboxArray.options) {
     if (option.selected) {
       waypts.add(new DirectionsWaypoint()
@@ -45,7 +45,7 @@ void calcRoute() {
     if (status == DirectionsStatus.OK) {
       directionsDisplay.directions = response;
       final route = response.routes[0];
-      final summaryPanel = query('#directions_panel');
+      final summaryPanel = querySelector('#directions_panel');
       final html = new StringBuffer();
       // For each route, display summary information.
       for (var i = 0; i < route.legs.length; i++) {

@@ -17,7 +17,7 @@ part of google_maps;
 @wrapper @forMethods @skipConstructor abstract class DirectionsRenderer extends MVCObject {
   jsw.SubscribeStreamProvider _onDirectionsChanged;
 
-  DirectionsRenderer([DirectionsRendererOptions opts]) : super(maps['DirectionsRenderer'], [opts]) { _initStreams(); }
+  @generate DirectionsRenderer([DirectionsRendererOptions opts]) { _initStreams(); }
   DirectionsRenderer.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) { _initStreams(); }
 
   void _initStreams() {
@@ -28,11 +28,11 @@ part of google_maps;
 
   DirectionsResult get directions;
   GMap get map;
-  html.Node get panel => jsw.convertElementToDart($unsafe.callMethod('getPanel'));
+  html.Node get panel;
   num get routeIndex;
   set directions(DirectionsResult directions);
   set map(GMap map);
   set options(DirectionsRendererOptions options);
-  set panel(html.Node panel) => $unsafe.callMethod('setPanel',[jsw.convertElementToJs(panel)]);
+  set panel(html.Node panel);
   set routeIndex(num routeIndex);
 }

@@ -15,18 +15,18 @@ void main() {
     ..mapTypeId = MapTypeId.ROADMAP
     ..center = haight
     ;
-  map = new GMap(query("#map_canvas"), mapOptions);
+  map = new GMap(querySelector("#map_canvas"), mapOptions);
   directionsDisplay.map = map;
 
-  query('#mode').onChange.listen((e) => calcRoute());
+  querySelector('#mode').onChange.listen((e) => calcRoute());
 }
 
 void calcRoute() {
-  final selectedMode = (query('#mode') as SelectElement).value;
+  final selectedMode = (querySelector('#mode') as SelectElement).value;
   final request = new DirectionsRequest()
     ..origin = haight
     ..destination = oceanBeach
-    ..travelMode = TravelMode.find(selectedMode)
+    ..travelMode = TravelMode.$wrap(selectedMode)
     ;
   directionsService.route(request, (DirectionsResult response, DirectionsStatus status) {
     if (status == DirectionsStatus.OK) {

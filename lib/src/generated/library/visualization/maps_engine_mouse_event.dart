@@ -15,7 +15,7 @@
 part of google_maps_visualization;
 
 class MapsEngineMouseEvent extends jsw.TypedJsObject {
-  static MapsEngineMouseEvent cast(js.JsObject jsObject) => jsObject == null ? null : new MapsEngineMouseEvent.fromJsObject(jsObject);
+  static MapsEngineMouseEvent $wrap(js.JsObject jsObject) => jsObject == null ? null : new MapsEngineMouseEvent.fromJsObject(jsObject);
   MapsEngineMouseEvent.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
   MapsEngineMouseEvent()
@@ -25,8 +25,8 @@ class MapsEngineMouseEvent extends jsw.TypedJsObject {
   String get featureId => $unsafe['featureId'];
   set infoWindowHtml(String infoWindowHtml) => $unsafe['infoWindowHtml'] = infoWindowHtml;
   String get infoWindowHtml => $unsafe['infoWindowHtml'];
-  set latLng(LatLng latLng) => $unsafe['latLng'] = latLng;
-  LatLng get latLng => LatLng.cast($unsafe['latLng']);
-  set pixelOffset(Size pixelOffset) => $unsafe['pixelOffset'] = pixelOffset;
-  Size get pixelOffset => Size.cast($unsafe['pixelOffset']);
+  set latLng(LatLng latLng) => $unsafe['latLng'] = latLng == null ? null : latLng.$unsafe;
+  LatLng get latLng => LatLng.$wrap($unsafe['latLng']);
+  set pixelOffset(Size pixelOffset) => $unsafe['pixelOffset'] = pixelOffset == null ? null : pixelOffset.$unsafe;
+  Size get pixelOffset => Size.$wrap($unsafe['pixelOffset']);
 }

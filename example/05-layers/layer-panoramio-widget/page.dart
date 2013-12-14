@@ -6,7 +6,7 @@ import 'package:google_maps/google_maps.dart';
 import 'package:google_maps/google_maps_panoramio.dart';
 
 class PhotoWidget extends jsw.TypedJsObject {
-  PhotoWidget(DivElement div, PhotoRequestOptions photoRequestOptions, PhotoWidgetOptions photoWidgetOptions) : super(js.context['panoramio']['PhotoWidget'], [jsw.convertElementToJs(div), photoRequestOptions, photoWidgetOptions]);
+  PhotoWidget(DivElement div, PhotoRequestOptions photoRequestOptions, PhotoWidgetOptions photoWidgetOptions) : super(js.context['panoramio']['PhotoWidget'], [div, photoRequestOptions, photoWidgetOptions]);
 
   void set request(PhotoRequestOptions photoRequestOptions) { $unsafe.callMethod('setRequest', [photoRequestOptions]); }
   void set position(num position) { $unsafe.callMethod('setPosition', [position]); }
@@ -22,7 +22,7 @@ class PhotoWidgetOptions extends jsw.TypedJsObject {
 class PhotoRequestOptions extends jsw.TypedJsObject {
   PhotoRequestOptions() : super();
 
-  set ids(List<PhotoRequestOptionsId> ids) => $unsafe['ids'] = (ids == null ? null : ids is js.Serializable ? ids : js.jsify(ids));
+  set ids(List<PhotoRequestOptionsId> ids) => $unsafe['ids'] = (ids == null ? null : ids is js.JsArray ? ids : jsw.jsify(ids));
 }
 
 class PhotoRequestOptionsId extends jsw.TypedJsObject {
@@ -54,7 +54,7 @@ void main() {
     ..center = monoLake
     ..mapTypeId = MapTypeId.ROADMAP
     ;
-  final map = new GMap(query("#map_canvas"), mapOptions);
+  final map = new GMap(querySelector("#map_canvas"), mapOptions);
 
   final infoWindow = new InfoWindow();
   final panoramioLayer = new PanoramioLayer(new PanoramioLayerOptions()

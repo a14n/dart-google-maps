@@ -15,9 +15,9 @@
 part of google_maps;
 
 @wrapper abstract class Geocoder extends jsw.TypedJsObject {
-  Geocoder() : super(maps['Geocoder']);
+  @generate Geocoder();
 
   void geocode(GeocoderRequest request, void callback(List<GeocoderResult> results, GeocoderStatus status)) {
-    $unsafe.callMethod('geocode', [request, (js.JsObject results, String status) => callback(jsw.TypedJsArray.castListOfSerializables(results, GeocoderResult.cast), GeocoderStatus.find(status))]);
+    $unsafe.callMethod('geocode', [jsw.Serializable.$unwrap(request), (js.JsObject results, String status) => callback(jsw.TypedJsArray.$wrapSerializables(results, GeocoderResult.$wrap), GeocoderStatus.$wrap(status))]);
   }
 }

@@ -3,7 +3,7 @@ import 'package:google_maps/google_maps.dart';
 
 void main() {
   final chicago = new LatLng(41.850033, -87.6500523);
-  final map = new GMap(query("#map_canvas"), new MapOptions()
+  final map = new GMap(querySelector("#map_canvas"), new MapOptions()
     ..center = chicago
     ..zoom = 11
     ..mapTypeId = MapTypeId.ROADMAP

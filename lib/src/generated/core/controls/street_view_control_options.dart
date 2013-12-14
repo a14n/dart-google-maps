@@ -15,12 +15,11 @@
 part of google_maps;
 
 class StreetViewControlOptions extends jsw.TypedJsObject {
-  static StreetViewControlOptions cast(js.JsObject jsObject) => jsObject == null ? null : new StreetViewControlOptions.fromJsObject(jsObject);
+  static StreetViewControlOptions $wrap(js.JsObject jsObject) => jsObject == null ? null : new StreetViewControlOptions.fromJsObject(jsObject);
   StreetViewControlOptions.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  StreetViewControlOptions()
-      : super();
+  StreetViewControlOptions();
 
-  set position(ControlPosition position) => $unsafe['position'] = position;
-  ControlPosition get position => ControlPosition.find($unsafe['position']);
+  set position(ControlPosition position) => $unsafe['position'] = position == null ? null : position.$unsafe;
+  ControlPosition get position => ControlPosition.$wrap($unsafe['position']);
 }

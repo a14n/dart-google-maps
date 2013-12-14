@@ -15,7 +15,7 @@
 part of google_maps_places;
 
 class ComponentRestrictions extends jsw.TypedJsObject {
-  static ComponentRestrictions cast(js.JsObject jsObject) => jsObject == null ? null : new ComponentRestrictions.fromJsObject(jsObject);
+  static ComponentRestrictions $wrap(js.JsObject jsObject) => jsObject == null ? null : new ComponentRestrictions.fromJsObject(jsObject);
   ComponentRestrictions.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
   ComponentRestrictions()

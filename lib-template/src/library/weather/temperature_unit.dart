@@ -15,12 +15,11 @@
 part of google_maps_weather;
 
 class TemperatureUnit extends jsw.IsEnum<String> {
+  static final _FINDER = new jsw.EnumFinder<String, TemperatureUnit>([CELSIUS, FAHRENHEIT]);
+  static TemperatureUnit $wrap(String jsValue) => _FINDER.find(jsValue);
+
   static final CELSIUS = new TemperatureUnit._(maps['weather']['TemperatureUnit']['CELSIUS']);
   static final FAHRENHEIT = new TemperatureUnit._(maps['weather']['TemperatureUnit']['FAHRENHEIT']);
-
-  static final _FINDER = new jsw.EnumFinder<String, TemperatureUnit>([CELSIUS, FAHRENHEIT]);
-
-  static TemperatureUnit find(o) => _FINDER.find(o);
 
   TemperatureUnit._(String value) : super(value);
 }

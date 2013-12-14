@@ -15,7 +15,7 @@
 part of google_maps;
 
 @wrapper abstract class FusionTablesStyle extends jsw.TypedJsObject {
-  FusionTablesStyle() : super();
+  FusionTablesStyle();
 
   FusionTablesMarkerOptions markerOptions;
   FusionTablesPolygonOptions polygonOptions;

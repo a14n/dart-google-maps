@@ -15,15 +15,15 @@
 part of google_maps;
 
 @wrapper abstract class DistanceMatrixRequest extends jsw.TypedJsObject {
-  DistanceMatrixRequest() : super();
+  DistanceMatrixRequest();
 
   bool avoidHighways;
   bool avoidTolls;
-  List/*Array.<LatLng>|Array.<string>*/ get destinations => jsw.TypedJsArray.castListOfSerializables($unsafe['destinations'], (e) => LatLng.isInstance(e) ? LatLng.cast(e) : e);
+  List/*Array.<LatLng>|Array.<string>*/ get destinations => jsw.TypedJsArray.$wrap($unsafe['destinations'], wrap: (e) => LatLng.isInstance(e) ? LatLng.$wrap(e) : e, unwrap: jsw.mayUnwrap);
   set destinations(List/*Array.<LatLng>|Array.<string>*/ destinations);
-  List/*Array.<LatLng>|Array.<string>*/ get origins => jsw.TypedJsArray.castListOfSerializables($unsafe['origins'], (e) => LatLng.isInstance(e) ? LatLng.cast(e) : e);
+  List/*Array.<LatLng>|Array.<string>*/ get origins => jsw.TypedJsArray.$wrap($unsafe['origins'], wrap: (e) => LatLng.isInstance(e) ? LatLng.$wrap(e) : e, unwrap: jsw.mayUnwrap);
   set origins(List/*Array.<LatLng>|Array.<string>*/ origins);
   String region;
-  @isEnum TravelMode travelMode;
-  @isEnum UnitSystem unitSystem;
+  TravelMode travelMode;
+  UnitSystem unitSystem;
 }

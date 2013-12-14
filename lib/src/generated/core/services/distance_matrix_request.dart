@@ -15,24 +15,23 @@
 part of google_maps;
 
 class DistanceMatrixRequest extends jsw.TypedJsObject {
-  static DistanceMatrixRequest cast(js.JsObject jsObject) => jsObject == null ? null : new DistanceMatrixRequest.fromJsObject(jsObject);
+  static DistanceMatrixRequest $wrap(js.JsObject jsObject) => jsObject == null ? null : new DistanceMatrixRequest.fromJsObject(jsObject);
   DistanceMatrixRequest.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  DistanceMatrixRequest()
-      : super();
+  DistanceMatrixRequest();
 
   set avoidHighways(bool avoidHighways) => $unsafe['avoidHighways'] = avoidHighways;
   bool get avoidHighways => $unsafe['avoidHighways'];
   set avoidTolls(bool avoidTolls) => $unsafe['avoidTolls'] = avoidTolls;
   bool get avoidTolls => $unsafe['avoidTolls'];
-  List /*Array.<LatLng>|Array.<string>*/ get destinations => jsw.TypedJsArray.castListOfSerializables($unsafe['destinations'], (e) => LatLng.isInstance(e) ? LatLng.cast(e) : e);
-  set destinations(List destinations) => $unsafe['destinations'] = destinations == null ? null : destinations is js.Serializable ? destinations : js.jsify(destinations);
-  List /*Array.<LatLng>|Array.<string>*/ get origins => jsw.TypedJsArray.castListOfSerializables($unsafe['origins'], (e) => LatLng.isInstance(e) ? LatLng.cast(e) : e);
-  set origins(List origins) => $unsafe['origins'] = origins == null ? null : origins is js.Serializable ? origins : js.jsify(origins);
+  List /*Array.<LatLng>|Array.<string>*/ get destinations => jsw.TypedJsArray.$wrap($unsafe['destinations'], wrap: (e) => LatLng.isInstance(e) ? LatLng.$wrap(e) : e, unwrap: jsw.mayUnwrap);
+  set destinations(List destinations) => $unsafe['destinations'] = destinations == null ? null : (destinations is jsw.TypedJsObject ? (destinations as jsw.TypedJsObject).$unsafe : jsw.jsify(destinations));
+  List /*Array.<LatLng>|Array.<string>*/ get origins => jsw.TypedJsArray.$wrap($unsafe['origins'], wrap: (e) => LatLng.isInstance(e) ? LatLng.$wrap(e) : e, unwrap: jsw.mayUnwrap);
+  set origins(List origins) => $unsafe['origins'] = origins == null ? null : (origins is jsw.TypedJsObject ? (origins as jsw.TypedJsObject).$unsafe : jsw.jsify(origins));
   set region(String region) => $unsafe['region'] = region;
   String get region => $unsafe['region'];
-  set travelMode(TravelMode travelMode) => $unsafe['travelMode'] = travelMode;
-  TravelMode get travelMode => TravelMode.find($unsafe['travelMode']);
-  set unitSystem(UnitSystem unitSystem) => $unsafe['unitSystem'] = unitSystem;
-  UnitSystem get unitSystem => UnitSystem.find($unsafe['unitSystem']);
+  set travelMode(TravelMode travelMode) => $unsafe['travelMode'] = travelMode == null ? null : travelMode.$unsafe;
+  TravelMode get travelMode => TravelMode.$wrap($unsafe['travelMode']);
+  set unitSystem(UnitSystem unitSystem) => $unsafe['unitSystem'] = unitSystem == null ? null : unitSystem.$unsafe;
+  UnitSystem get unitSystem => UnitSystem.$wrap($unsafe['unitSystem']);
 }

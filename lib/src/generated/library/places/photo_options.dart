@@ -15,7 +15,7 @@
 part of google_maps_places;
 
 class PhotoOptions extends jsw.TypedJsObject {
-  static PhotoOptions cast(js.JsObject jsObject) => jsObject == null ? null : new PhotoOptions.fromJsObject(jsObject);
+  static PhotoOptions $wrap(js.JsObject jsObject) => jsObject == null ? null : new PhotoOptions.fromJsObject(jsObject);
   PhotoOptions.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
   PhotoOptions()

@@ -15,7 +15,7 @@
 part of google_maps;
 
 @wrapper @forMethods abstract class TrafficLayer extends MVCObject {
-  TrafficLayer() : super(maps['TrafficLayer']);
+  @generate TrafficLayer();
 
   GMap map;
 }

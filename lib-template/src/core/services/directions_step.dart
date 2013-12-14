@@ -15,7 +15,7 @@
 part of google_maps;
 
 @wrapper @namesWithUnderscores abstract class DirectionsStep extends jsw.TypedJsObject {
-  DirectionsStep() : super();
+  DirectionsStep();
 
   Distance distance;
   GDuration duration;
@@ -25,5 +25,5 @@ part of google_maps;
   LatLng startLocation;
   List<DirectionsStep> steps;
   TransitDetails transit;
-  @isEnum TravelMode travelMode;
+  TravelMode travelMode;
 }

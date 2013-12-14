@@ -13,13 +13,13 @@ void main() {
     ..center = latlng
     ..mapTypeId = MapTypeId.ROADMAP
     ;
-  map = new GMap(query("#map_canvas"), mapOptions);
+  map = new GMap(querySelector("#map_canvas"), mapOptions);
 
-  query("#codeAddress").onClick.listen((e) => codeAddress());
+  querySelector("#codeAddress").onClick.listen((e) => codeAddress());
 }
 
 void codeAddress() {
-  final address = (query('#address') as InputElement).value;
+  final address = (querySelector('#address') as InputElement).value;
   final request = new GeocoderRequest()
     ..address = address
     ;

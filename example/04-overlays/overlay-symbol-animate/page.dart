@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'dart:html';
+import 'dart:html' show querySelector;
 import 'package:js_wrapping/js_wrapping.dart' as jsw;
 import 'package:google_maps/google_maps.dart';
 
@@ -11,7 +11,7 @@ void main() {
     ..zoom = 6
     ..mapTypeId = MapTypeId.ROADMAP
     ;
-  final map = new GMap(query("#map_canvas"), mapOptions);
+  final map = new GMap(querySelector("#map_canvas"), mapOptions);
 
   final lineCoordinates = [
     new LatLng(22.291, 153.027),
@@ -40,7 +40,7 @@ void animateCircle() {
   new Timer.periodic(new Duration(milliseconds: 20), (_) {
     count = (count + 1) % 200;
 
-    final icons = jsw.TypedJsArray.castListOfSerializables(line.get('icons'), IconSequence.cast);
+    final icons = jsw.TypedJsArray.$wrapSerializables(line.get('icons'), IconSequence.$wrap);
     icons[0].offset = '${count / 2}%';
     line.set('icons', icons);
   });

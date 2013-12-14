@@ -15,8 +15,8 @@
 part of google_maps;
 
 @wrapper abstract class ZoomControlOptions extends jsw.TypedJsObject {
-  ZoomControlOptions() : super();
+  ZoomControlOptions();
 
-  @isEnum ControlPosition position;
-  @isEnum ZoomControlStyle style;
+  ControlPosition position;
+  ZoomControlStyle style;
 }

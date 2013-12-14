@@ -78,7 +78,7 @@ void main() {
     ..center = chicago
     ..mapTypeId = MapTypeId.ROADMAP
     ;
-  map = new GMap(query("#map_canvas"), mapOptions);
+  map = new GMap(querySelector("#map_canvas"), mapOptions);
 
   final InfoWindow coordInfoWindow = new InfoWindow()
     ..content = createInfoWindowContent()

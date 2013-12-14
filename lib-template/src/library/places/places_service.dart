@@ -15,18 +15,18 @@
 part of google_maps_places;
 
 @wrapper abstract class PlacesService extends jsw.TypedJsObject {
-  PlacesService(dynamic/*HTMLDivElement|GMap*/ attrContainer) : super(maps['places']['PlacesService'], [attrContainer is html.Element ? jsw.convertElementToJs(attrContainer): attrContainer]);
+  PlacesService(dynamic/*HTMLDivElement|GMap*/ attrContainer) : super(maps['places']['PlacesService'], [jsw.mayUnwrap(attrContainer)]);
 
   void getDetails(PlaceDetailsRequest request, void callback(PlaceResult results, PlacesServiceStatus status)) {
-    $unsafe.callMethod('getDetails', [request, (js.JsObject result, String status) => callback(PlaceResult.cast(result), PlacesServiceStatus.find(status))]);
+    $unsafe.callMethod('getDetails', [jsw.Serializable.$unwrap(request), (js.JsObject result, String status) => callback(PlaceResult.$wrap(result), PlacesServiceStatus.$wrap(status))]);
   }
   void nearbySearch(PlaceSearchRequest request, void callback(List<PlaceResult> results, PlacesServiceStatus status, PlaceSearchPagination pagination)) {
-    $unsafe.callMethod('nearbySearch', [request, (js.JsObject results, String status, js.JsObject pagination) => callback(jsw.TypedJsArray.castListOfSerializables(results, PlaceResult.cast), PlacesServiceStatus.find(status), PlaceSearchPagination.cast(pagination))]);
+    $unsafe.callMethod('nearbySearch', [jsw.Serializable.$unwrap(request), (js.JsObject results, String status, js.JsObject pagination) => callback(jsw.TypedJsArray.$wrapSerializables(results, PlaceResult.$wrap), PlacesServiceStatus.$wrap(status), PlaceSearchPagination.$wrap(pagination))]);
   }
   void radarSearch(RadarSearchRequest request, void callback(List<PlaceResult> results, PlacesServiceStatus status)) {
-    $unsafe.callMethod('radarSearch', [request, (js.JsObject results, String status) => callback(jsw.TypedJsArray.castListOfSerializables(results, PlaceResult.cast), PlacesServiceStatus.find(status))]);
+    $unsafe.callMethod('radarSearch', [jsw.Serializable.$unwrap(request), (js.JsObject results, String status) => callback(jsw.TypedJsArray.$wrapSerializables(results, PlaceResult.$wrap), PlacesServiceStatus.$wrap(status))]);
   }
   void textSearch(TextSearchRequest request, void callback(List<PlaceResult> results, PlacesServiceStatus status)) {
-    $unsafe.callMethod('textSearch', [request, (js.JsObject results, String status) => callback(jsw.TypedJsArray.castListOfSerializables(results, PlaceResult.cast), PlacesServiceStatus.find(status))]);
+    $unsafe.callMethod('textSearch', [jsw.Serializable.$unwrap(request), (js.JsObject results, String status) => callback(jsw.TypedJsArray.$wrapSerializables(results, PlaceResult.$wrap), PlacesServiceStatus.$wrap(status))]);
   }
 }

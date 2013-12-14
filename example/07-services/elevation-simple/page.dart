@@ -13,7 +13,7 @@ void main() {
     ..center = denali
     ..mapTypeId = MapTypeId.TERRAIN
     ;
-  map = new GMap(query("#map_canvas"), mapOptions);
+  map = new GMap(querySelector("#map_canvas"), mapOptions);
 
   // Create an ElevationService
   elevator = new ElevationService();

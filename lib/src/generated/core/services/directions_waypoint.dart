@@ -15,20 +15,13 @@
 part of google_maps;
 
 class DirectionsWaypoint extends jsw.TypedJsObject {
-  static DirectionsWaypoint cast(js.JsObject jsObject) => jsObject == null ? null : new DirectionsWaypoint.fromJsObject(jsObject);
+  static DirectionsWaypoint $wrap(js.JsObject jsObject) => jsObject == null ? null : new DirectionsWaypoint.fromJsObject(jsObject);
   DirectionsWaypoint.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  DirectionsWaypoint()
-      : super();
+  DirectionsWaypoint();
 
-  dynamic /*LatLng|string*/ get location {
-    final result = $unsafe['location'];
-    if (LatLng.isInstance(result)) {
-      return LatLng.cast(result);
-    }
-    return result;
-  }
-  set location(dynamic location) => $unsafe['location'] = location;
+  set location(dynamic location) => $unsafe['location'] = location == null ? null : location is LatLng ? location.$unsafe : location is String ? location : throw "bad type";
+  dynamic get location => ((v2) => LatLng.isInstance(v2) ? LatLng.$wrap(v2) : ((v1) => v1 is String ? v1 : ((v0) => v0)(v1))(v2))($unsafe['location']);
   set stopover(bool stopover) => $unsafe['stopover'] = stopover;
   bool get stopover => $unsafe['stopover'];
 }

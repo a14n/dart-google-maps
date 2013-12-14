@@ -9,7 +9,7 @@ void main() {
     ..center = new LatLng(-33.8665433, 151.1956316)
     ..zoom = 15
     ;
-  final map = new GMap(query("#map_canvas"), mapOptions);
+  final map = new GMap(querySelector("#map_canvas"), mapOptions);
 
 
   final request = new PlaceDetailsRequest()

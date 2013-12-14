@@ -15,6 +15,7 @@
 part of google_maps;
 
 @wrapper abstract class PolyMouseEvent extends MouseEvent {
+  static PolyMouseEvent $wrap(js.JsObject jsObject) => null;
   num edge;
   num path;
   num vertex;

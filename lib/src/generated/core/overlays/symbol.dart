@@ -15,27 +15,23 @@
 part of google_maps;
 
 class GSymbol extends jsw.TypedJsObject {
-  static GSymbol cast(js.JsObject jsObject) => jsObject == null ? null : new GSymbol.fromJsObject(jsObject);
+  static GSymbol $wrap(js.JsObject jsObject) => jsObject == null ? null : new GSymbol.fromJsObject(jsObject);
   GSymbol.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  GSymbol()
-      : super();
+  static bool isInstance(js.JsObject jsObject) => jsObject['_jsw.type'] == 'google_maps.GSymbol';
 
-  set anchor(Point anchor) => $unsafe['anchor'] = anchor;
-  Point get anchor => Point.cast($unsafe['anchor']);
+  GSymbol() {
+    $unsafe['_jsw.type'] = 'google_maps.GSymbol';
+  }
+
+  set anchor(Point anchor) => $unsafe['anchor'] = anchor == null ? null : anchor.$unsafe;
+  Point get anchor => Point.$wrap($unsafe['anchor']);
   set fillColor(String fillColor) => $unsafe['fillColor'] = fillColor;
   String get fillColor => $unsafe['fillColor'];
   set fillOpacity(num fillOpacity) => $unsafe['fillOpacity'] = fillOpacity;
   num get fillOpacity => $unsafe['fillOpacity'];
-  dynamic /*SymbolPath|string*/ get path {
-    final result = $unsafe['path'];
-    if (result is int) {
-      return SymbolPath.find(result);
-    } else {
-      return result;
-    }
-  }
-  set path(dynamic path) => $unsafe['path'] = path;
+  set path(dynamic path) => $unsafe['path'] = path == null ? null : path is SymbolPath ? path.$unsafe : path is String ? path : throw "bad type";
+  dynamic get path => ((v3) => ((v2) => v2 != null ? v2 : ((v1) => v1 is String ? v1 : ((v0) => v0)(v1))(v3))(SymbolPath.$wrap(v3)))($unsafe['path']);
   set rotation(num rotation) => $unsafe['rotation'] = rotation;
   num get rotation => $unsafe['rotation'];
   set scale(num scale) => $unsafe['scale'] = scale;

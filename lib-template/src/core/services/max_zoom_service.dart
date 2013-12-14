@@ -15,9 +15,9 @@
 part of google_maps;
 
 @wrapper abstract class MaxZoomService extends jsw.TypedJsObject {
-  MaxZoomService() : super(maps['MaxZoomService']);
+  @generate MaxZoomService();
 
   void getMaxZoomAtLatLng(LatLng latlng, void callback(MaxZoomResult result)) {
-    $unsafe.callMethod('getMaxZoomAtLatLng', [latlng, (js.JsObject result) => callback(MaxZoomResult.cast(result))]);
+    $unsafe.callMethod('getMaxZoomAtLatLng', [jsw.Serializable.$unwrap(latlng), (js.JsObject result) => callback(MaxZoomResult.$wrap(result))]);
   }
 }

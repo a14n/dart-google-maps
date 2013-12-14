@@ -15,7 +15,7 @@
 part of google_maps_adsense;
 
 class AdUnitOptions extends jsw.TypedJsObject {
-  static AdUnitOptions cast(js.JsObject jsObject) => jsObject == null ? null : new AdUnitOptions.fromJsObject(jsObject);
+  static AdUnitOptions $wrap(js.JsObject jsObject) => jsObject == null ? null : new AdUnitOptions.fromJsObject(jsObject);
   AdUnitOptions.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
   AdUnitOptions()
@@ -27,12 +27,12 @@ class AdUnitOptions extends jsw.TypedJsObject {
   String get borderColor => $unsafe['borderColor'];
   set channelNumber(String channelNumber) => $unsafe['channelNumber'] = channelNumber;
   String get channelNumber => $unsafe['channelNumber'];
-  set format(AdFormat format) => $unsafe['format'] = format;
-  AdFormat get format => AdFormat.find($unsafe['format']);
-  set map(GMap map) => $unsafe['map'] = map;
-  GMap get map => GMap.cast($unsafe['map']);
-  set position(ControlPosition position) => $unsafe['position'] = position;
-  ControlPosition get position => ControlPosition.find($unsafe['position']);
+  set format(AdFormat format) => $unsafe['format'] = format == null ? null : format.$unsafe;
+  AdFormat get format => AdFormat.$wrap($unsafe['format']);
+  set map(GMap map) => $unsafe['map'] = map == null ? null : map.$unsafe;
+  GMap get map => GMap.$wrap($unsafe['map']);
+  set position(ControlPosition position) => $unsafe['position'] = position == null ? null : position.$unsafe;
+  ControlPosition get position => ControlPosition.$wrap($unsafe['position']);
   set publisherId(String publisherId) => $unsafe['publisherId'] = publisherId;
   String get publisherId => $unsafe['publisherId'];
   set textColor(String textColor) => $unsafe['textColor'] = textColor;

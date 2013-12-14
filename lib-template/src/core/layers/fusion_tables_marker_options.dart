@@ -15,7 +15,7 @@
 part of google_maps;
 
 @wrapper abstract class FusionTablesMarkerOptions extends jsw.TypedJsObject {
-  FusionTablesMarkerOptions() : super();
+  FusionTablesMarkerOptions();
 
   String iconName;
 }

@@ -21,25 +21,23 @@ class _Undefined {
 
 final GEvent event = new GEvent();
 
-@wrapper @skipCast @skipConstructor class GEvent extends jsw.TypedJsObject {
+@wrapper @skipWrap @skipConstructor class GEvent extends jsw.TypedJsObject {
   GEvent() : super.fromJsObject(maps['event']);
 
-  _mayConvert(instance) => instance is html.Element ? jsw.convertElementToJs(instance) : instance;
-
-  MapsEventListener addDomListener(dynamic instance, String eventName, Function handler, [bool capture]) => MapsEventListener.cast($unsafe.callMethod('addDomListener', [_mayConvert(instance), eventName, handler, capture]));
-  MapsEventListener addDomListenerOnce(dynamic instance, String eventName, Function handler, [bool capture]) => MapsEventListener.cast($unsafe.callMethod('addDomListenerOnce', [_mayConvert(instance), eventName, handler, capture]));
-  MapsEventListener addListener(dynamic instance, String eventName, Function handler) => MapsEventListener.cast($unsafe.callMethod('addListener', [_mayConvert(instance), eventName, handler]));
-  MapsEventListener addListenerOnce(dynamic instance, String eventName, Function handler) => MapsEventListener.cast($unsafe.callMethod('addListenerOnce', [_mayConvert(instance), eventName, handler]));
-  void clearInstanceListeners(dynamic instance) { $unsafe.callMethod('clearInstanceListeners', [_mayConvert(instance)]); }
-  void clearListeners(dynamic instance, String eventName) { $unsafe.callMethod('clearListeners', [_mayConvert(instance), eventName]); }
+  @generate MapsEventListener addDomListener(dynamic instance, String eventName, Function handler, [bool capture]) => null;
+  @generate MapsEventListener addDomListenerOnce(dynamic instance, String eventName, Function handler, [bool capture]) => null;
+  @generate MapsEventListener addListener(dynamic instance, String eventName, Function handler) => null;
+  @generate MapsEventListener addListenerOnce(dynamic instance, String eventName, Function handler) => null;
+  @generate void clearInstanceListeners(dynamic instance) {}
+  @generate void clearListeners(dynamic instance, String eventName) {}
   @generate void removeListener(MapsEventListener listener) {}
-  void trigger(dynamic instance, String eventName, List<dynamic> args) { $unsafe.callMethod('trigger', [_mayConvert(instance), eventName]..addAll(args)); }
+  void trigger(dynamic instance, String eventName, List<dynamic> args) { $unsafe.callMethod('trigger', [jsw.mayUnwrap(instance), eventName]..addAll(args.map(jsw.mayUnwrap))); }
 
   jsw.SubscribeStreamProvider getStreamProviderFor(dynamic instance, String eventName, [Function transformArguments]) {
     MapsEventListener mapsEventListener = null;
     return new jsw.SubscribeStreamProvider(
         subscribe: (EventSink eventSink) {
-          mapsEventListener = addListener(_mayConvert(instance), eventName, ([
+          mapsEventListener = addListener(instance, eventName, ([
               p1 = _undefined,
               p2 = _undefined,
               p3 = _undefined,

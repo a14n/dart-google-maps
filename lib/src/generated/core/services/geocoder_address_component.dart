@@ -15,16 +15,15 @@
 part of google_maps;
 
 class GeocoderAddressComponent extends jsw.TypedJsObject {
-  static GeocoderAddressComponent cast(js.JsObject jsObject) => jsObject == null ? null : new GeocoderAddressComponent.fromJsObject(jsObject);
+  static GeocoderAddressComponent $wrap(js.JsObject jsObject) => jsObject == null ? null : new GeocoderAddressComponent.fromJsObject(jsObject);
   GeocoderAddressComponent.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  GeocoderAddressComponent()
-      : super();
+  GeocoderAddressComponent();
 
   set longName(String longName) => $unsafe['long_name'] = longName;
   String get longName => $unsafe['long_name'];
   set shortName(String shortName) => $unsafe['short_name'] = shortName;
   String get shortName => $unsafe['short_name'];
-  set types(List<String> types) => $unsafe['types'] = types == null ? null : types is js.Serializable ? types : js.jsify(types);
-  List<String> get types => jsw.TypedJsArray.cast($unsafe['types']);
+  set types(List<String> types) => $unsafe['types'] = types == null ? null : (types is jsw.TypedJsObject ? (types as jsw.TypedJsObject).$unsafe : jsw.jsify(types));
+  List<String> get types => jsw.TypedJsArray.$wrap($unsafe['types']);
 }

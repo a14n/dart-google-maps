@@ -7,7 +7,7 @@ void main() {
     ..center = new LatLng(-25.363882,131.044922)
     ..mapTypeId = MapTypeId.ROADMAP
   ;
-  final map = new GMap(query("#map_canvas"), mapOptions);
+  final map = new GMap(querySelector("#map_canvas"), mapOptions);
 
   map.onClick.listen((e) {
     placeMarker(e.latLng, map);

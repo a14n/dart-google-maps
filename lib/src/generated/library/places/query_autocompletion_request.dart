@@ -15,18 +15,18 @@
 part of google_maps_places;
 
 class QueryAutocompletionRequest extends jsw.TypedJsObject {
-  static QueryAutocompletionRequest cast(js.JsObject jsObject) => jsObject == null ? null : new QueryAutocompletionRequest.fromJsObject(jsObject);
+  static QueryAutocompletionRequest $wrap(js.JsObject jsObject) => jsObject == null ? null : new QueryAutocompletionRequest.fromJsObject(jsObject);
   QueryAutocompletionRequest.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
   QueryAutocompletionRequest()
       : super();
 
-  set bounds(LatLngBounds bounds) => $unsafe['bounds'] = bounds;
-  LatLngBounds get bounds => LatLngBounds.cast($unsafe['bounds']);
+  set bounds(LatLngBounds bounds) => $unsafe['bounds'] = bounds == null ? null : bounds.$unsafe;
+  LatLngBounds get bounds => LatLngBounds.$wrap($unsafe['bounds']);
   set input(String input) => $unsafe['input'] = input;
   String get input => $unsafe['input'];
-  set location(LatLng location) => $unsafe['location'] = location;
-  LatLng get location => LatLng.cast($unsafe['location']);
+  set location(LatLng location) => $unsafe['location'] = location == null ? null : location.$unsafe;
+  LatLng get location => LatLng.$wrap($unsafe['location']);
   set offset(num offset) => $unsafe['offset'] = offset;
   num get offset => $unsafe['offset'];
   set radius(num radius) => $unsafe['radius'] = radius;

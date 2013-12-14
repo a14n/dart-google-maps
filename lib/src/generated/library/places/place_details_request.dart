@@ -15,7 +15,7 @@
 part of google_maps_places;
 
 class PlaceDetailsRequest extends jsw.TypedJsObject {
-  static PlaceDetailsRequest cast(js.JsObject jsObject) => jsObject == null ? null : new PlaceDetailsRequest.fromJsObject(jsObject);
+  static PlaceDetailsRequest $wrap(js.JsObject jsObject) => jsObject == null ? null : new PlaceDetailsRequest.fromJsObject(jsObject);
   PlaceDetailsRequest.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
   PlaceDetailsRequest()

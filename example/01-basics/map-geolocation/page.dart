@@ -8,7 +8,7 @@ void main() {
     ..zoom = 6
     ..mapTypeId = MapTypeId.ROADMAP
     ;
-  map = new GMap(query("#map_canvas"), mapOptions);
+  map = new GMap(querySelector("#map_canvas"), mapOptions);
 
   // Try HTML5 geolocation
   if (window.navigator.geolocation != null) {

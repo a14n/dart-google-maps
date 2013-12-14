@@ -15,14 +15,13 @@
 part of google_maps;
 
 class MaxZoomResult extends jsw.TypedJsObject {
-  static MaxZoomResult cast(js.JsObject jsObject) => jsObject == null ? null : new MaxZoomResult.fromJsObject(jsObject);
+  static MaxZoomResult $wrap(js.JsObject jsObject) => jsObject == null ? null : new MaxZoomResult.fromJsObject(jsObject);
   MaxZoomResult.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  MaxZoomResult()
-      : super();
+  MaxZoomResult();
 
-  set status(MaxZoomStatus status) => $unsafe['status'] = status;
-  MaxZoomStatus get status => MaxZoomStatus.find($unsafe['status']);
+  set status(MaxZoomStatus status) => $unsafe['status'] = status == null ? null : status.$unsafe;
+  MaxZoomStatus get status => MaxZoomStatus.$wrap($unsafe['status']);
   set zoom(num zoom) => $unsafe['zoom'] = zoom;
   num get zoom => $unsafe['zoom'];
 }

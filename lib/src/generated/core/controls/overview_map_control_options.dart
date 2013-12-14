@@ -15,11 +15,10 @@
 part of google_maps;
 
 class OverviewMapControlOptions extends jsw.TypedJsObject {
-  static OverviewMapControlOptions cast(js.JsObject jsObject) => jsObject == null ? null : new OverviewMapControlOptions.fromJsObject(jsObject);
+  static OverviewMapControlOptions $wrap(js.JsObject jsObject) => jsObject == null ? null : new OverviewMapControlOptions.fromJsObject(jsObject);
   OverviewMapControlOptions.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  OverviewMapControlOptions()
-      : super();
+  OverviewMapControlOptions();
 
   set opened(bool opened) => $unsafe['opened'] = opened;
   bool get opened => $unsafe['opened'];

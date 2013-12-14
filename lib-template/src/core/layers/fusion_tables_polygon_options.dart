@@ -15,7 +15,7 @@
 part of google_maps;
 
 @wrapper abstract class FusionTablesPolygonOptions extends jsw.TypedJsObject {
-  FusionTablesPolygonOptions() : super();
+  FusionTablesPolygonOptions();
 
   String fillColor;
   num fillOpacity;

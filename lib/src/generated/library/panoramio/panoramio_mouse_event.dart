@@ -15,17 +15,17 @@
 part of google_maps_panoramio;
 
 class PanoramioMouseEvent extends jsw.TypedJsObject {
-  static PanoramioMouseEvent cast(js.JsObject jsObject) => jsObject == null ? null : new PanoramioMouseEvent.fromJsObject(jsObject);
+  static PanoramioMouseEvent $wrap(js.JsObject jsObject) => jsObject == null ? null : new PanoramioMouseEvent.fromJsObject(jsObject);
   PanoramioMouseEvent.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
   PanoramioMouseEvent();
 
-  set featureDetails(PanoramioFeature featureDetails) => $unsafe['featureDetails'] = featureDetails;
-  PanoramioFeature get featureDetails => PanoramioFeature.cast($unsafe['featureDetails']);
+  set featureDetails(PanoramioFeature featureDetails) => $unsafe['featureDetails'] = featureDetails == null ? null : featureDetails.$unsafe;
+  PanoramioFeature get featureDetails => PanoramioFeature.$wrap($unsafe['featureDetails']);
   set infoWindowHtml(String infoWindowHtml) => $unsafe['infoWindowHtml'] = infoWindowHtml;
   String get infoWindowHtml => $unsafe['infoWindowHtml'];
-  set latLng(LatLng latLng) => $unsafe['latLng'] = latLng;
-  LatLng get latLng => LatLng.cast($unsafe['latLng']);
-  set pixelOffset(Size pixelOffset) => $unsafe['pixelOffset'] = pixelOffset;
-  Size get pixelOffset => Size.cast($unsafe['pixelOffset']);
+  set latLng(LatLng latLng) => $unsafe['latLng'] = latLng == null ? null : latLng.$unsafe;
+  LatLng get latLng => LatLng.$wrap($unsafe['latLng']);
+  set pixelOffset(Size pixelOffset) => $unsafe['pixelOffset'] = pixelOffset == null ? null : pixelOffset.$unsafe;
+  Size get pixelOffset => Size.$wrap($unsafe['pixelOffset']);
 }

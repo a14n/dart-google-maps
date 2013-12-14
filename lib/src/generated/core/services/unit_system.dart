@@ -15,12 +15,11 @@
 part of google_maps;
 
 class UnitSystem extends jsw.IsEnum<int> {
+  static final _FINDER = new jsw.EnumFinder<int, UnitSystem>([IMPERIAL, METRIC]);
+  static UnitSystem $wrap(int jsValue) => _FINDER.find(jsValue);
+
   static final IMPERIAL = new UnitSystem._(maps['UnitSystem']['IMPERIAL']);
   static final METRIC = new UnitSystem._(maps['UnitSystem']['METRIC']);
-
-  static final _FINDER = new jsw.EnumFinder<int, UnitSystem>([IMPERIAL, METRIC]);
-
-  static UnitSystem find(o) => _FINDER.find(o);
 
   UnitSystem._(int value)
       : super(value);

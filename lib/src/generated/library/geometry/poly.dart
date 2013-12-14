@@ -17,12 +17,12 @@ part of google_maps_geometry;
 final Poly poly = new Poly();
 
 class Poly extends jsw.TypedJsObject {
-  static Poly cast(js.JsObject jsObject) => jsObject == null ? null : new Poly.fromJsObject(jsObject);
+  static Poly $wrap(js.JsObject jsObject) => jsObject == null ? null : new Poly.fromJsObject(jsObject);
   Poly.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
   Poly()
       : super.fromJsObject(maps['geometry']['poly']);
 
-  bool containsLocation(LatLng point, Polygon polygon) => $unsafe.callMethod('containsLocation', [point, polygon]);
-  bool isLocationOnEdge(LatLng point, dynamic poly, [num tolerance]) => $unsafe.callMethod('isLocationOnEdge', [point, poly, tolerance]);
+  bool containsLocation(LatLng point, Polygon polygon) => $unsafe.callMethod('containsLocation', [point == null ? null : point.$unsafe, polygon == null ? null : polygon.$unsafe]);
+  bool isLocationOnEdge(LatLng point, dynamic poly, [num tolerance]) => $unsafe.callMethod('isLocationOnEdge', [point == null ? null : point.$unsafe, poly == null ? null : poly is Polygon ? poly.$unsafe : poly is Polyline ? poly.$unsafe : throw "bad type", tolerance]);
 }

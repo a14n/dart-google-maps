@@ -8,7 +8,7 @@ void main() {
     ..center = new LatLng(49.265984,-123.127491)
     ..mapTypeId = MapTypeId.ROADMAP
     ;
-  final map = new GMap(query("#map_canvas"), mapOptions);
+  final map = new GMap(querySelector("#map_canvas"), mapOptions);
 
   final weatherLayer = new WeatherLayer(new WeatherLayerOptions()
     ..temperatureUnits = TemperatureUnit.FAHRENHEIT

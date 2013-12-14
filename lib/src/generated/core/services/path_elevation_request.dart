@@ -15,14 +15,13 @@
 part of google_maps;
 
 class PathElevationRequest extends jsw.TypedJsObject {
-  static PathElevationRequest cast(js.JsObject jsObject) => jsObject == null ? null : new PathElevationRequest.fromJsObject(jsObject);
+  static PathElevationRequest $wrap(js.JsObject jsObject) => jsObject == null ? null : new PathElevationRequest.fromJsObject(jsObject);
   PathElevationRequest.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  PathElevationRequest()
-      : super();
+  PathElevationRequest();
 
-  set path(List<LatLng> path) => $unsafe['path'] = path == null ? null : path is js.Serializable ? path : js.jsify(path);
-  List<LatLng> get path => jsw.TypedJsArray.castListOfSerializables($unsafe['path'], LatLng.cast);
+  set path(List<LatLng> path) => $unsafe['path'] = path == null ? null : (path is jsw.TypedJsObject ? (path as jsw.TypedJsObject).$unsafe : jsw.jsify(path));
+  List<LatLng> get path => jsw.TypedJsArray.$wrapSerializables($unsafe['path'], LatLng.$wrap);
   set samples(num samples) => $unsafe['samples'] = samples;
   num get samples => $unsafe['samples'];
 }

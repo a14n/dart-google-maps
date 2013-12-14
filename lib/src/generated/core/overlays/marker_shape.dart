@@ -15,26 +15,24 @@
 part of google_maps;
 
 class MarkerShape extends jsw.TypedJsObject {
-  static MarkerShape cast(js.JsObject jsObject) => jsObject == null ? null : new MarkerShape.fromJsObject(jsObject);
+  static MarkerShape $wrap(js.JsObject jsObject) => jsObject == null ? null : new MarkerShape.fromJsObject(jsObject);
   MarkerShape.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  MarkerShape()
-      : super();
+  MarkerShape();
 
-  set coords(List<num> coords) => $unsafe['coords'] = coords == null ? null : coords is js.Serializable ? coords : js.jsify(coords);
-  List<num> get coords => jsw.TypedJsArray.cast($unsafe['coords']);
-  set type(MarkerShapeType type) => $unsafe['type'] = type;
-  MarkerShapeType get type => MarkerShapeType.find($unsafe['type']);
+  set coords(List<num> coords) => $unsafe['coords'] = coords == null ? null : (coords is jsw.TypedJsObject ? (coords as jsw.TypedJsObject).$unsafe : jsw.jsify(coords));
+  List<num> get coords => jsw.TypedJsArray.$wrap($unsafe['coords']);
+  set type(MarkerShapeType type) => $unsafe['type'] = type == null ? null : type.$unsafe;
+  MarkerShapeType get type => MarkerShapeType.$wrap($unsafe['type']);
 }
 
 class MarkerShapeType extends jsw.IsEnum<String> {
+  static final _FINDER = new jsw.EnumFinder<String, MarkerShapeType>([CIRCLE, POLY, RECT]);
+  static MarkerShapeType $wrap(String jsValue) => _FINDER.find(jsValue);
+
   static final CIRCLE = new MarkerShapeType._("circle");
   static final POLY = new MarkerShapeType._("poly");
   static final RECT = new MarkerShapeType._("rect");
-
-  static final _FINDER = new jsw.EnumFinder<String, MarkerShapeType>([CIRCLE, POLY, RECT]);
-
-  static MarkerShapeType find(o) => _FINDER.find(o);
 
   MarkerShapeType._(String value)
       : super(value);

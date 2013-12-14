@@ -15,26 +15,25 @@
 part of google_maps;
 
 class TransitDetails extends jsw.TypedJsObject {
-  static TransitDetails cast(js.JsObject jsObject) => jsObject == null ? null : new TransitDetails.fromJsObject(jsObject);
+  static TransitDetails $wrap(js.JsObject jsObject) => jsObject == null ? null : new TransitDetails.fromJsObject(jsObject);
   TransitDetails.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  TransitDetails()
-      : super();
+  TransitDetails();
 
-  set arrivalStop(TransitStop arrivalStop) => $unsafe['arrivalStop'] = arrivalStop;
-  TransitStop get arrivalStop => TransitStop.cast($unsafe['arrivalStop']);
-  set arrivalTime(Time arrivalTime) => $unsafe['arrivalTime'] = arrivalTime;
-  Time get arrivalTime => Time.cast($unsafe['arrivalTime']);
-  set departureStop(TransitStop departureStop) => $unsafe['departureStop'] = departureStop;
-  TransitStop get departureStop => TransitStop.cast($unsafe['departureStop']);
-  set departureTime(Time departureTime) => $unsafe['departureTime'] = departureTime;
-  Time get departureTime => Time.cast($unsafe['departureTime']);
+  set arrivalStop(TransitStop arrivalStop) => $unsafe['arrivalStop'] = arrivalStop == null ? null : arrivalStop.$unsafe;
+  TransitStop get arrivalStop => TransitStop.$wrap($unsafe['arrivalStop']);
+  set arrivalTime(Time arrivalTime) => $unsafe['arrivalTime'] = arrivalTime == null ? null : arrivalTime.$unsafe;
+  Time get arrivalTime => Time.$wrap($unsafe['arrivalTime']);
+  set departureStop(TransitStop departureStop) => $unsafe['departureStop'] = departureStop == null ? null : departureStop.$unsafe;
+  TransitStop get departureStop => TransitStop.$wrap($unsafe['departureStop']);
+  set departureTime(Time departureTime) => $unsafe['departureTime'] = departureTime == null ? null : departureTime.$unsafe;
+  Time get departureTime => Time.$wrap($unsafe['departureTime']);
   set headsign(String headsign) => $unsafe['headsign'] = headsign;
   String get headsign => $unsafe['headsign'];
   set headway(num headway) => $unsafe['headway'] = headway;
   num get headway => $unsafe['headway'];
-  set line(TransitLine line) => $unsafe['line'] = line;
-  TransitLine get line => TransitLine.cast($unsafe['line']);
+  set line(TransitLine line) => $unsafe['line'] = line == null ? null : line.$unsafe;
+  TransitLine get line => TransitLine.$wrap($unsafe['line']);
   set numStops(num numStops) => $unsafe['numStops'] = numStops;
   num get numStops => $unsafe['numStops'];
 }

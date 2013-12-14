@@ -15,16 +15,15 @@
 part of google_maps;
 
 class StreetViewLocation extends jsw.TypedJsObject {
-  static StreetViewLocation cast(js.JsObject jsObject) => jsObject == null ? null : new StreetViewLocation.fromJsObject(jsObject);
+  static StreetViewLocation $wrap(js.JsObject jsObject) => jsObject == null ? null : new StreetViewLocation.fromJsObject(jsObject);
   StreetViewLocation.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  StreetViewLocation()
-      : super();
+  StreetViewLocation();
 
   set description(String description) => $unsafe['description'] = description;
   String get description => $unsafe['description'];
-  set latLng(LatLng latLng) => $unsafe['latLng'] = latLng;
-  LatLng get latLng => LatLng.cast($unsafe['latLng']);
+  set latLng(LatLng latLng) => $unsafe['latLng'] = latLng == null ? null : latLng.$unsafe;
+  LatLng get latLng => LatLng.$wrap($unsafe['latLng']);
   set pano(String pano) => $unsafe['pano'] = pano;
   String get pano => $unsafe['pano'];
 }

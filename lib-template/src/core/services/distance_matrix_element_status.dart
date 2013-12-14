@@ -15,13 +15,12 @@
 part of google_maps;
 
 class DistanceMatrixElementStatus extends jsw.IsEnum<String> {
+  static final _FINDER = new jsw.EnumFinder<String, DistanceMatrixElementStatus>([NOT_FOUND, OK, ZERO_RESULTS]);
+  static DistanceMatrixElementStatus $wrap(String jsValue) => _FINDER.find(jsValue);
+
   static final NOT_FOUND = new DistanceMatrixElementStatus._(maps['DistanceMatrixElementStatus']['NOT_FOUND']);
   static final OK = new DistanceMatrixElementStatus._(maps['DistanceMatrixElementStatus']['OK']);
   static final ZERO_RESULTS = new DistanceMatrixElementStatus._(maps['DistanceMatrixElementStatus']['ZERO_RESULTS']);
-
-  static final _FINDER = new jsw.EnumFinder<String, DistanceMatrixElementStatus>([NOT_FOUND, OK, ZERO_RESULTS]);
-
-  static DistanceMatrixElementStatus find(o) => _FINDER.find(o);
 
   DistanceMatrixElementStatus._(String value) : super(value);
 }

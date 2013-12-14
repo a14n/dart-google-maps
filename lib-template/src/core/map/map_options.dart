@@ -15,7 +15,7 @@
 part of google_maps;
 
 @wrapper abstract class MapOptions extends jsw.TypedJsObject {
-  MapOptions() : super();
+  MapOptions();
 
   String backgroundColor;
   LatLng center;
@@ -29,12 +29,7 @@ part of google_maps;
   bool mapMaker;
   bool mapTypeControl;
   MapTypeControlOptions mapTypeControlOptions;
-  // TODO bad online doc : should be MapTypeId|string
-  dynamic/*MapTypeId|string*/ get mapTypeId {
-    final result = $unsafe['mapTypeId'];
-    return [MapTypeId.find(result), result].firstWhere((e) => e != null, orElse: () => null);
-  }
-  void set mapTypeId(dynamic/*MapTypeId|string*/ mapTypeId);
+  @Types(const [MapTypeId,String]) dynamic mapTypeId;
   num maxZoom;
   num minZoom;
   bool noClear;

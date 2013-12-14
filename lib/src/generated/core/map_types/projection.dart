@@ -15,31 +15,30 @@
 part of google_maps;
 
 class Projection extends jsw.TypedJsObject {
-  static Projection cast(js.JsObject jsObject) => jsObject == null ? null : new Projection.fromJsObject(jsObject);
+  static Projection $wrap(js.JsObject jsObject) => jsObject == null ? null : new Projection.fromJsObject(jsObject);
   Projection.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  Projection()
-      : super();
+  Projection();
 
   void set_fromLatLngToPoint(Point fromLatLngToPoint(LatLng latLng, [Point point])) {
     $unsafe['fromLatLngToPoint'] = (js.JsObject latLng, [js.JsObject point]) {
       if (point != null) {
-        return fromLatLngToPoint(LatLng.cast(latLng), Point.cast(point));
+        return jsw.Serializable.$unwrap(fromLatLngToPoint(LatLng.$wrap(latLng), Point.$wrap(point)));
       } else {
-        return fromLatLngToPoint(LatLng.cast(latLng));
+        return jsw.Serializable.$unwrap(fromLatLngToPoint(LatLng.$wrap(latLng)));
       }
     };
   }
   void set_fromPointToLatLng(LatLng fromPointToLatLng(Point pixel, [bool nowrap])) {
     $unsafe['fromPointToLatLng'] = (js.JsObject pixel, [bool nowrap]) {
       if (nowrap != null) {
-        return fromPointToLatLng(Point.cast(pixel), nowrap);
+        return jsw.Serializable.$unwrap(fromPointToLatLng(Point.$wrap(pixel), nowrap));
       } else {
-        return fromPointToLatLng(Point.cast(pixel));
+        return jsw.Serializable.$unwrap(fromPointToLatLng(Point.$wrap(pixel)));
       }
     };
   }
 
-  Point fromLatLngToPoint(LatLng latLng, [Point point]) => Point.cast($unsafe.callMethod('fromLatLngToPoint', [latLng, point]));
-  LatLng fromPointToLatLng(Point pixel, [bool nowrap]) => LatLng.cast($unsafe.callMethod('fromPointToLatLng', [pixel, nowrap]));
+  Point fromLatLngToPoint(LatLng latLng, [Point point]) => Point.$wrap($unsafe.callMethod('fromLatLngToPoint', [latLng == null ? null : latLng.$unsafe, point == null ? null : point.$unsafe]));
+  LatLng fromPointToLatLng(Point pixel, [bool nowrap]) => LatLng.$wrap($unsafe.callMethod('fromPointToLatLng', [pixel == null ? null : pixel.$unsafe, nowrap]));
 }

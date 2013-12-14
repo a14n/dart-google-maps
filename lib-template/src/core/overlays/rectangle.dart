@@ -15,7 +15,7 @@
 part of google_maps;
 
 @wrapper @forMethods @skipConstructor abstract class Rectangle extends MVCObject {
-  static Rectangle cast(js.JsObject jsObject) => null;
+  static Rectangle $wrap(js.JsObject jsObject) => null;
   static bool isInstance(js.JsObject proxy) => proxy.instanceof(maps['Rectangle']);
 
   jsw.SubscribeStreamProvider _onBoundsChanged;
@@ -28,19 +28,19 @@ part of google_maps;
   jsw.SubscribeStreamProvider<MouseEvent> _onMouseup;
   jsw.SubscribeStreamProvider<MouseEvent> _onRightclick;
 
-  Rectangle([RectangleOptions opts]) : super(maps['Rectangle'], [opts]) { _initStreams(); }
+  @generate Rectangle([RectangleOptions opts]) { _initStreams(); }
   Rectangle.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) { _initStreams(); }
 
   void _initStreams() {
     _onBoundsChanged = event.getStreamProviderFor(this, "bounds_changed");
-    _onClick = event.getStreamProviderFor(this, "click", MouseEvent.cast);
-    _onDblClick = event.getStreamProviderFor(this, "dblclick", MouseEvent.cast);
-    _onMousedown = event.getStreamProviderFor(this, "mousedown", MouseEvent.cast);
-    _onMousemove = event.getStreamProviderFor(this, "mousemove", MouseEvent.cast);
-    _onMouseout = event.getStreamProviderFor(this, "mouseout", MouseEvent.cast);
-    _onMouseover = event.getStreamProviderFor(this, "mouseover", MouseEvent.cast);
-    _onMouseup = event.getStreamProviderFor(this, "mouseup", MouseEvent.cast);
-    _onRightclick = event.getStreamProviderFor(this, "rightclick", MouseEvent.cast);
+    _onClick = event.getStreamProviderFor(this, "click", MouseEvent.$wrap);
+    _onDblClick = event.getStreamProviderFor(this, "dblclick", MouseEvent.$wrap);
+    _onMousedown = event.getStreamProviderFor(this, "mousedown", MouseEvent.$wrap);
+    _onMousemove = event.getStreamProviderFor(this, "mousemove", MouseEvent.$wrap);
+    _onMouseout = event.getStreamProviderFor(this, "mouseout", MouseEvent.$wrap);
+    _onMouseover = event.getStreamProviderFor(this, "mouseover", MouseEvent.$wrap);
+    _onMouseup = event.getStreamProviderFor(this, "mouseup", MouseEvent.$wrap);
+    _onRightclick = event.getStreamProviderFor(this, "rightclick", MouseEvent.$wrap);
   }
 
   Stream get onBoundsChanged => _onBoundsChanged.stream;

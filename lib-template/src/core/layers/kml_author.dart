@@ -15,7 +15,7 @@
 part of google_maps;
 
 @wrapper abstract class KmlAuthor extends jsw.TypedJsObject {
-  KmlAuthor() : super();
+  KmlAuthor();
 
   String email;
   String name;

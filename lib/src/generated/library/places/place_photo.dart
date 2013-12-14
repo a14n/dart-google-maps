@@ -15,7 +15,7 @@
 part of google_maps_places;
 
 class PlacePhoto extends jsw.TypedJsObject {
-  static PlacePhoto cast(js.JsObject jsObject) => jsObject == null ? null : new PlacePhoto.fromJsObject(jsObject);
+  static PlacePhoto $wrap(js.JsObject jsObject) => jsObject == null ? null : new PlacePhoto.fromJsObject(jsObject);
   PlacePhoto.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
   PlacePhoto()
@@ -23,8 +23,8 @@ class PlacePhoto extends jsw.TypedJsObject {
 
   set height(num height) => $unsafe['height'] = height;
   num get height => $unsafe['height'];
-  set htmlAttributions(List<String> htmlAttributions) => $unsafe['html_attributions'] = htmlAttributions == null ? null : htmlAttributions is js.Serializable ? htmlAttributions : js.jsify(htmlAttributions);
-  List<String> get htmlAttributions => jsw.TypedJsArray.cast($unsafe['html_attributions']);
+  set htmlAttributions(List<String> htmlAttributions) => $unsafe['html_attributions'] = htmlAttributions == null ? null : (htmlAttributions is jsw.TypedJsObject ? (htmlAttributions as jsw.TypedJsObject).$unsafe : jsw.jsify(htmlAttributions));
+  List<String> get htmlAttributions => jsw.TypedJsArray.$wrap($unsafe['html_attributions']);
   set width(num width) => $unsafe['width'] = width;
   num get width => $unsafe['width'];
 }

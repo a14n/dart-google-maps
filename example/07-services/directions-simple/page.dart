@@ -14,16 +14,16 @@ void main() {
     ..mapTypeId = MapTypeId.ROADMAP
     ..center = chicago
     ;
-  map = new GMap(query("#map_canvas"), mapOptions);
+  map = new GMap(querySelector("#map_canvas"), mapOptions);
   directionsDisplay.map = map;
 
-  query('#start').onChange.listen((e) => calcRoute());
-  query('#end').onChange.listen((e) => calcRoute());
+  querySelector('#start').onChange.listen((e) => calcRoute());
+  querySelector('#end').onChange.listen((e) => calcRoute());
 }
 
 void calcRoute() {
-  final start = (query('#start') as SelectElement).value;
-  final end = (query('#end') as SelectElement).value;
+  final start = (querySelector('#start') as SelectElement).value;
+  final end = (querySelector('#end') as SelectElement).value;
   final request = new DirectionsRequest()
     ..origin = start
     ..destination = end

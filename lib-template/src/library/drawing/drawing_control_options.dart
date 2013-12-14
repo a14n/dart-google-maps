@@ -17,7 +17,7 @@ part of google_maps_drawing;
 @wrapper abstract class DrawingControlOptions extends jsw.TypedJsObject {
   DrawingControlOptions() : super();
 
-  List<OverlayType> get drawingModes => jsw.TypedJsArray.castListOfSerializables($unsafe['drawingModes'], OverlayType.find);
+  List<OverlayType> get drawingModes => jsw.TypedJsArray.$wrapSerializables($unsafe['drawingModes'], OverlayType.$wrap);
   set drawingModes(List<OverlayType> drawingModes);
-  @isEnum ControlPosition position;
+  ControlPosition position;
 }

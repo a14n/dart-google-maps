@@ -15,10 +15,10 @@
 part of google_maps;
 
 @wrapper abstract class LatLng extends jsw.TypedJsObject {
-  static LatLng cast(js.JsObject jsObject) => null;
+  static LatLng $wrap(js.JsObject jsObject) => null;
   static bool isInstance(js.JsObject jsObject) => jsObject.instanceof(maps['LatLng']);
 
-  LatLng(num lat, num lng, [bool noWrap]) : super(maps['LatLng'], [lat, lng, noWrap]);
+  @generate LatLng(num lat, num lng, [bool noWrap]);
 
   bool equals(LatLng other);
   num get lat => $unsafe.callMethod('lat');

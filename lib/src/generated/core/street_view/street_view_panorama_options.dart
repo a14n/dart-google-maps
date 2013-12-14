@@ -17,16 +17,15 @@ part of google_maps;
 typedef StreetViewPanoramaData PanoProvider(String pano);
 
 class StreetViewPanoramaOptions extends jsw.TypedJsObject {
-  static StreetViewPanoramaOptions cast(js.JsObject jsObject) => jsObject == null ? null : new StreetViewPanoramaOptions.fromJsObject(jsObject);
+  static StreetViewPanoramaOptions $wrap(js.JsObject jsObject) => jsObject == null ? null : new StreetViewPanoramaOptions.fromJsObject(jsObject);
   StreetViewPanoramaOptions.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  StreetViewPanoramaOptions()
-      : super();
+  StreetViewPanoramaOptions();
 
   set addressControl(bool addressControl) => $unsafe['addressControl'] = addressControl;
   bool get addressControl => $unsafe['addressControl'];
-  set addressControlOptions(StreetViewAddressControlOptions addressControlOptions) => $unsafe['addressControlOptions'] = addressControlOptions;
-  StreetViewAddressControlOptions get addressControlOptions => StreetViewAddressControlOptions.cast($unsafe['addressControlOptions']);
+  set addressControlOptions(StreetViewAddressControlOptions addressControlOptions) => $unsafe['addressControlOptions'] = addressControlOptions == null ? null : addressControlOptions.$unsafe;
+  StreetViewAddressControlOptions get addressControlOptions => StreetViewAddressControlOptions.$wrap($unsafe['addressControlOptions']);
   set clickToGo(bool clickToGo) => $unsafe['clickToGo'] = clickToGo;
   bool get clickToGo => $unsafe['clickToGo'];
   set disableDoubleClickZoom(bool disableDoubleClickZoom) => $unsafe['disableDoubleClickZoom'] = disableDoubleClickZoom;
@@ -39,22 +38,22 @@ class StreetViewPanoramaOptions extends jsw.TypedJsObject {
   bool get linksControl => $unsafe['linksControl'];
   set panControl(bool panControl) => $unsafe['panControl'] = panControl;
   bool get panControl => $unsafe['panControl'];
-  set panControlOptions(PanControlOptions panControlOptions) => $unsafe['panControlOptions'] = panControlOptions;
-  PanControlOptions get panControlOptions => PanControlOptions.cast($unsafe['panControlOptions']);
+  set panControlOptions(PanControlOptions panControlOptions) => $unsafe['panControlOptions'] = panControlOptions == null ? null : panControlOptions.$unsafe;
+  PanControlOptions get panControlOptions => PanControlOptions.$wrap($unsafe['panControlOptions']);
   set pano(String pano) => $unsafe['pano'] = pano;
   String get pano => $unsafe['pano'];
-  PanoProvider get panoProvider => $unsafe['panoProvider'];
-  set panoProvider(PanoProvider panoProvider) => $unsafe['panoProvider'] = panoProvider;
-  set position(LatLng position) => $unsafe['position'] = position;
-  LatLng get position => LatLng.cast($unsafe['position']);
-  set pov(StreetViewPov pov) => $unsafe['pov'] = pov;
-  StreetViewPov get pov => StreetViewPov.cast($unsafe['pov']);
+  set panoProvider(PanoProvider panoProvider) => $unsafe['panoProvider'] = (String pano) => jsw.Serializable.$unwrap(panoProvider(pano));
+  PanoProvider get panoProvider => (String pano) => StreetViewPanoramaData.$wrap($unsafe['panoProvider'].apply(pano));
+  set position(LatLng position) => $unsafe['position'] = position == null ? null : position.$unsafe;
+  LatLng get position => LatLng.$wrap($unsafe['position']);
+  set pov(StreetViewPov pov) => $unsafe['pov'] = pov == null ? null : pov.$unsafe;
+  StreetViewPov get pov => StreetViewPov.$wrap($unsafe['pov']);
   set scrollwheel(bool scrollwheel) => $unsafe['scrollwheel'] = scrollwheel;
   bool get scrollwheel => $unsafe['scrollwheel'];
   set visible(bool visible) => $unsafe['visible'] = visible;
   bool get visible => $unsafe['visible'];
   set zoomControl(bool zoomControl) => $unsafe['zoomControl'] = zoomControl;
   bool get zoomControl => $unsafe['zoomControl'];
-  set zoomControlOptions(ZoomControlOptions zoomControlOptions) => $unsafe['zoomControlOptions'] = zoomControlOptions;
-  ZoomControlOptions get zoomControlOptions => ZoomControlOptions.cast($unsafe['zoomControlOptions']);
+  set zoomControlOptions(ZoomControlOptions zoomControlOptions) => $unsafe['zoomControlOptions'] = zoomControlOptions == null ? null : zoomControlOptions.$unsafe;
+  ZoomControlOptions get zoomControlOptions => ZoomControlOptions.$wrap($unsafe['zoomControlOptions']);
 }

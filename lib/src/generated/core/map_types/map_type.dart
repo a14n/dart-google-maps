@@ -15,14 +15,16 @@
 part of google_maps;
 
 class MapType extends jsw.TypedJsObject {
-  static MapType cast(js.JsObject jsObject) => jsObject == null ? null : new MapType.fromJsObject(jsObject);
-  MapType([js.Serializable<js.JsFunction> constructor, List args])
+  static MapType $wrap(js.JsObject jsObject) => jsObject == null ? null : new MapType.fromJsObject(jsObject);
+  MapType([js.JsFunction constructor, List args])
       : super(constructor, args);
   MapType.fromJsObject(js.JsObject proxy)
       : super.fromJsObject(proxy);
 
-  html.Node getTile(Point tileCoord, num zoom, js.JsObject /*html.Document*/ ownerDocument) => jsw.convertElementToDart($unsafe.callMethod('getTile', [tileCoord, zoom, ownerDocument]));
-  void releaseTile(html.Node tile) => $unsafe.callMethod('releaseTile', [jsw.convertElementToJs(tile)]);
+  html.Node getTile(Point tileCoord, num zoom, js.JsObject ownerDocument) => $unsafe.callMethod('getTile', [tileCoord == null ? null : tileCoord.$unsafe, zoom, ownerDocument]);
+  void releaseTile(html.Node tile) {
+    $unsafe.callMethod('releaseTile', [tile]);
+  }
 
   set alt(String alt) => $unsafe['alt'] = alt;
   String get alt => $unsafe['alt'];
@@ -32,10 +34,10 @@ class MapType extends jsw.TypedJsObject {
   num get minZoom => $unsafe['minZoom'];
   set name(String name) => $unsafe['name'] = name;
   String get name => $unsafe['name'];
-  set projection(Projection projection) => $unsafe['projection'] = projection;
-  Projection get projection => Projection.cast($unsafe['projection']);
+  set projection(Projection projection) => $unsafe['projection'] = projection == null ? null : projection.$unsafe;
+  Projection get projection => Projection.$wrap($unsafe['projection']);
   set radius(num radius) => $unsafe['radius'] = radius;
   num get radius => $unsafe['radius'];
-  set tileSize(Size tileSize) => $unsafe['tileSize'] = tileSize;
-  Size get tileSize => Size.cast($unsafe['tileSize']);
+  set tileSize(Size tileSize) => $unsafe['tileSize'] = tileSize == null ? null : tileSize.$unsafe;
+  Size get tileSize => Size.$wrap($unsafe['tileSize']);
 }

@@ -15,28 +15,27 @@
 part of google_maps;
 
 class DirectionsRendererOptions extends jsw.TypedJsObject {
-  static DirectionsRendererOptions cast(js.JsObject jsObject) => jsObject == null ? null : new DirectionsRendererOptions.fromJsObject(jsObject);
+  static DirectionsRendererOptions $wrap(js.JsObject jsObject) => jsObject == null ? null : new DirectionsRendererOptions.fromJsObject(jsObject);
   DirectionsRendererOptions.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  DirectionsRendererOptions()
-      : super();
+  DirectionsRendererOptions();
 
-  set directions(DirectionsResult directions) => $unsafe['directions'] = directions;
-  DirectionsResult get directions => DirectionsResult.cast($unsafe['directions']);
+  set directions(DirectionsResult directions) => $unsafe['directions'] = directions == null ? null : directions.$unsafe;
+  DirectionsResult get directions => DirectionsResult.$wrap($unsafe['directions']);
   set draggable(bool draggable) => $unsafe['draggable'] = draggable;
   bool get draggable => $unsafe['draggable'];
   set hideRouteList(bool hideRouteList) => $unsafe['hideRouteList'] = hideRouteList;
   bool get hideRouteList => $unsafe['hideRouteList'];
-  set infoWindow(InfoWindow infoWindow) => $unsafe['infoWindow'] = infoWindow;
-  InfoWindow get infoWindow => InfoWindow.cast($unsafe['infoWindow']);
-  set map(GMap map) => $unsafe['map'] = map;
-  GMap get map => GMap.cast($unsafe['map']);
-  set markerOptions(MarkerOptions markerOptions) => $unsafe['markerOptions'] = markerOptions;
-  MarkerOptions get markerOptions => MarkerOptions.cast($unsafe['markerOptions']);
-  html.Node get panel => jsw.convertElementToDart($unsafe['panel']);
-  set panel(html.Node panel) => $unsafe['panel'] = jsw.convertElementToJs(panel);
-  set polylineOptions(PolylineOptions polylineOptions) => $unsafe['polylineOptions'] = polylineOptions;
-  PolylineOptions get polylineOptions => PolylineOptions.cast($unsafe['polylineOptions']);
+  set infoWindow(InfoWindow infoWindow) => $unsafe['infoWindow'] = infoWindow == null ? null : infoWindow.$unsafe;
+  InfoWindow get infoWindow => InfoWindow.$wrap($unsafe['infoWindow']);
+  set map(GMap map) => $unsafe['map'] = map == null ? null : map.$unsafe;
+  GMap get map => GMap.$wrap($unsafe['map']);
+  set markerOptions(MarkerOptions markerOptions) => $unsafe['markerOptions'] = markerOptions == null ? null : markerOptions.$unsafe;
+  MarkerOptions get markerOptions => MarkerOptions.$wrap($unsafe['markerOptions']);
+  html.Node get panel => $unsafe['panel'];
+  set panel(html.Node panel) => $unsafe['panel'] = panel;
+  set polylineOptions(PolylineOptions polylineOptions) => $unsafe['polylineOptions'] = polylineOptions == null ? null : polylineOptions.$unsafe;
+  PolylineOptions get polylineOptions => PolylineOptions.$wrap($unsafe['polylineOptions']);
   set preserveViewport(bool preserveViewport) => $unsafe['preserveViewport'] = preserveViewport;
   bool get preserveViewport => $unsafe['preserveViewport'];
   set routeIndex(num routeIndex) => $unsafe['routeIndex'] = routeIndex;

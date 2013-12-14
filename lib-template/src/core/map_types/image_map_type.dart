@@ -18,7 +18,7 @@ part of google_maps;
 @wrapper @forMethods @skipConstructor abstract class ImageMapType extends MapType {
   jsw.SubscribeStreamProvider _onTilesloaded;
 
-  ImageMapType(ImageMapTypeOptions opts) : super(maps['ImageMapType'], [opts]) { _initStreams(); }
+  @generate ImageMapType(ImageMapTypeOptions opts) { _initStreams(); }
   ImageMapType.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) { _initStreams(); }
 
   void _initStreams() {

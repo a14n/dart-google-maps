@@ -15,7 +15,7 @@
 part of google_maps;
 
 @wrapper abstract class IconSequence extends jsw.TypedJsObject {
-  IconSequence() : super();
+  IconSequence();
 
   bool fixedRotation;
   GSymbol icon;

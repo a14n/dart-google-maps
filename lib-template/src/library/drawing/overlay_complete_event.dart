@@ -15,26 +15,10 @@
 part of google_maps_drawing;
 
 @wrapper abstract class OverlayCompleteEvent extends jsw.TypedJsObject {
-  static OverlayCompleteEvent cast(js.JsObject proxy) => null;
+  static OverlayCompleteEvent $wrap(js.JsObject proxy) => null;
 
   OverlayCompleteEvent();
 
-  dynamic/*Marker|Polygon|Polyline|Rectangle|Circle*/ get overlay {
-    final result = $unsafe['overlay'];
-    if (Marker.isInstance(result)) {
-      return Marker.cast(result);
-    } else if (Polygon.isInstance(result)) {
-      return Polygon.cast(result);
-    } else if (Polyline.isInstance(result)) {
-      return Polyline.cast(result);
-    } else if (Rectangle.isInstance(result)) {
-      return Rectangle.cast(result);
-    } else if (Circle.isInstance(result)) {
-      return Circle.cast(result);
-    } else {
-      return result;
-    }
-  }
-  set overlay(dynamic/*Marker|Polygon|Polyline|Rectangle|Circle*/ overlay);
-  @isEnum OverlayType type;
+  @Types(const [Marker,Polygon,Polyline,Rectangle,Circle]) dynamic overlay;
+  OverlayType type;
 }

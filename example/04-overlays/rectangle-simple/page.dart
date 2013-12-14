@@ -1,4 +1,4 @@
-import 'dart:html';
+import 'dart:html' show querySelector;
 import 'package:google_maps/google_maps.dart';
 
 void main() {
@@ -9,7 +9,7 @@ void main() {
     ..center = coachella
     ..mapTypeId = MapTypeId.TERRAIN
     ;
-  final map = new GMap(query("#map_canvas"), mapOptions);
+  final map = new GMap(querySelector("#map_canvas"), mapOptions);
 
   final rectangle = new Rectangle();
 

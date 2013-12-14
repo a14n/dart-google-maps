@@ -15,7 +15,7 @@
 part of google_maps;
 
 @wrapper abstract class PathElevationRequest extends jsw.TypedJsObject {
-  PathElevationRequest() : super();
+  PathElevationRequest();
 
   List<LatLng> path;
   num samples;

@@ -15,11 +15,10 @@
 part of google_maps;
 
 class PolylineOptions extends jsw.TypedJsObject {
-  static PolylineOptions cast(js.JsObject jsObject) => jsObject == null ? null : new PolylineOptions.fromJsObject(jsObject);
+  static PolylineOptions $wrap(js.JsObject jsObject) => jsObject == null ? null : new PolylineOptions.fromJsObject(jsObject);
   PolylineOptions.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  PolylineOptions()
-      : super();
+  PolylineOptions();
 
   set clickable(bool clickable) => $unsafe['clickable'] = clickable;
   bool get clickable => $unsafe['clickable'];
@@ -29,19 +28,19 @@ class PolylineOptions extends jsw.TypedJsObject {
   bool get editable => $unsafe['editable'];
   set geodesic(bool geodesic) => $unsafe['geodesic'] = geodesic;
   bool get geodesic => $unsafe['geodesic'];
-  set icons(List<IconSequence> icons) => $unsafe['icons'] = icons == null ? null : icons is js.Serializable ? icons : js.jsify(icons);
-  List<IconSequence> get icons => jsw.TypedJsArray.castListOfSerializables($unsafe['icons'], IconSequence.cast);
-  set map(GMap map) => $unsafe['map'] = map;
-  GMap get map => GMap.cast($unsafe['map']);
+  set icons(List<IconSequence> icons) => $unsafe['icons'] = icons == null ? null : (icons is jsw.TypedJsObject ? (icons as jsw.TypedJsObject).$unsafe : jsw.jsify(icons));
+  List<IconSequence> get icons => jsw.TypedJsArray.$wrapSerializables($unsafe['icons'], IconSequence.$wrap);
+  set map(GMap map) => $unsafe['map'] = map == null ? null : map.$unsafe;
+  GMap get map => GMap.$wrap($unsafe['map']);
   dynamic /*MVCArray.<LatLng>|Array.<LatLng>*/ get path {
     final result = $unsafe['path'];
     if (MVCArray.isInstance(result)) {
-      return MVCArray.castListOfSerializables(result, LatLng.cast);
+      return MVCArray.$wrapSerializables(result, LatLng.$wrap);
     } else {
-      return jsw.TypedJsArray.castListOfSerializables(result, LatLng.cast);
+      return jsw.TypedJsArray.$wrapSerializables(result, LatLng.$wrap);
     }
   }
-  set path(dynamic /*MVCArray.<LatLng>|Array.<LatLng>*/ path) => $unsafe['path'] = path == null ? null : path is js.Serializable ? path : path is List ? js.jsify(path) : path;
+  set path(dynamic /*MVCArray.<LatLng>|Array.<LatLng>*/ path) => $unsafe['path'] = path == null ? null : path is js.JsArray ? path : path is List ? jsw.jsify(path) : path;
   set strokeColor(String strokeColor) => $unsafe['strokeColor'] = strokeColor;
   String get strokeColor => $unsafe['strokeColor'];
   set strokeOpacity(num strokeOpacity) => $unsafe['strokeOpacity'] = strokeOpacity;

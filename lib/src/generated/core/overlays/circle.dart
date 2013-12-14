@@ -15,7 +15,7 @@
 part of google_maps;
 
 class Circle extends MVCObject {
-  static Circle cast(js.JsObject jsObject) => jsObject == null ? null : new Circle.fromJsObject(jsObject);
+  static Circle $wrap(js.JsObject jsObject) => jsObject == null ? null : new Circle.fromJsObject(jsObject);
   static bool isInstance(js.JsObject proxy) => proxy.instanceof(maps['Circle']);
 
   jsw.SubscribeStreamProvider _onCenterChanged;
@@ -30,7 +30,7 @@ class Circle extends MVCObject {
   jsw.SubscribeStreamProvider<MouseEvent> _onRightclick;
 
   Circle([CircleOptions opts])
-      : super(maps['Circle'], [opts]) {
+      : super(maps['Circle'], [opts == null ? null : opts.$unsafe]) {
     _initStreams();
   }
   Circle.fromJsObject(js.JsObject proxy)
@@ -40,15 +40,15 @@ class Circle extends MVCObject {
 
   void _initStreams() {
     _onCenterChanged = event.getStreamProviderFor(this, "center_changed");
-    _onClick = event.getStreamProviderFor(this, "click", MouseEvent.cast);
-    _onDblClick = event.getStreamProviderFor(this, "dblclick", MouseEvent.cast);
-    _onMousedown = event.getStreamProviderFor(this, "mousedown", MouseEvent.cast);
-    _onMousemove = event.getStreamProviderFor(this, "mousemove", MouseEvent.cast);
-    _onMouseout = event.getStreamProviderFor(this, "mouseout", MouseEvent.cast);
-    _onMouseover = event.getStreamProviderFor(this, "mouseover", MouseEvent.cast);
-    _onMouseup = event.getStreamProviderFor(this, "mouseup", MouseEvent.cast);
+    _onClick = event.getStreamProviderFor(this, "click", MouseEvent.$wrap);
+    _onDblClick = event.getStreamProviderFor(this, "dblclick", MouseEvent.$wrap);
+    _onMousedown = event.getStreamProviderFor(this, "mousedown", MouseEvent.$wrap);
+    _onMousemove = event.getStreamProviderFor(this, "mousemove", MouseEvent.$wrap);
+    _onMouseout = event.getStreamProviderFor(this, "mouseout", MouseEvent.$wrap);
+    _onMouseover = event.getStreamProviderFor(this, "mouseover", MouseEvent.$wrap);
+    _onMouseup = event.getStreamProviderFor(this, "mouseup", MouseEvent.$wrap);
     _onRadiusChanged = event.getStreamProviderFor(this, "radius_changed");
-    _onRightclick = event.getStreamProviderFor(this, "rightclick", MouseEvent.cast);
+    _onRightclick = event.getStreamProviderFor(this, "rightclick", MouseEvent.$wrap);
   }
 
   Stream get onCenterChanged => _onCenterChanged.stream;
@@ -62,18 +62,18 @@ class Circle extends MVCObject {
   Stream get onRadiusChanged => _onRadiusChanged.stream;
   Stream<MouseEvent> get onRightclick => _onRightclick.stream;
 
-  LatLngBounds get bounds => LatLngBounds.cast($unsafe.callMethod('getBounds'));
-  LatLng get center => LatLng.cast($unsafe.callMethod('getCenter'));
+  LatLngBounds get bounds => LatLngBounds.$wrap($unsafe.callMethod('getBounds'));
+  LatLng get center => LatLng.$wrap($unsafe.callMethod('getCenter'));
   bool get draggable => $unsafe.callMethod('getDraggable');
   bool get editable => $unsafe.callMethod('getEditable');
-  GMap get map => GMap.cast($unsafe.callMethod('getMap'));
+  GMap get map => GMap.$wrap($unsafe.callMethod('getMap'));
   num get radius => $unsafe.callMethod('getRadius');
   bool get visible => $unsafe.callMethod('getVisible');
-  set center(LatLng center) => $unsafe.callMethod('setCenter', [center]);
+  set center(LatLng center) => $unsafe.callMethod('setCenter', [center == null ? null : center.$unsafe]);
   set draggable(bool draggable) => $unsafe.callMethod('setDraggable', [draggable]);
   set editable(bool editable) => $unsafe.callMethod('setEditable', [editable]);
-  set map(GMap map) => $unsafe.callMethod('setMap', [map]);
-  set options(CircleOptions options) => $unsafe.callMethod('setOptions', [options]);
+  set map(GMap map) => $unsafe.callMethod('setMap', [map == null ? null : map.$unsafe]);
+  set options(CircleOptions options) => $unsafe.callMethod('setOptions', [options == null ? null : options.$unsafe]);
   set radius(num radius) => $unsafe.callMethod('setRadius', [radius]);
   set visible(bool visible) => $unsafe.callMethod('setVisible', [visible]);
 }

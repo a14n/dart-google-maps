@@ -15,14 +15,13 @@
 part of google_maps;
 
 class ScaleControlOptions extends jsw.TypedJsObject {
-  static ScaleControlOptions cast(js.JsObject jsObject) => jsObject == null ? null : new ScaleControlOptions.fromJsObject(jsObject);
+  static ScaleControlOptions $wrap(js.JsObject jsObject) => jsObject == null ? null : new ScaleControlOptions.fromJsObject(jsObject);
   ScaleControlOptions.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  ScaleControlOptions()
-      : super();
+  ScaleControlOptions();
 
-  set position(ControlPosition position) => $unsafe['position'] = position;
-  ControlPosition get position => ControlPosition.find($unsafe['position']);
-  set style(ScaleControlStyle style) => $unsafe['style'] = style;
-  ScaleControlStyle get style => ScaleControlStyle.find($unsafe['style']);
+  set position(ControlPosition position) => $unsafe['position'] = position == null ? null : position.$unsafe;
+  ControlPosition get position => ControlPosition.$wrap($unsafe['position']);
+  set style(ScaleControlStyle style) => $unsafe['style'] = style == null ? null : style.$unsafe;
+  ScaleControlStyle get style => ScaleControlStyle.$wrap($unsafe['style']);
 }

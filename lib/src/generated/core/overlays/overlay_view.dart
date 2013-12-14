@@ -15,25 +15,25 @@
 part of google_maps;
 
 class OverlayView extends MVCObject {
-  static OverlayView cast(js.JsObject jsObject) => jsObject == null ? null : new OverlayView.fromJsObject(jsObject);
+  static OverlayView $wrap(js.JsObject jsObject) => jsObject == null ? null : new OverlayView.fromJsObject(jsObject);
   OverlayView.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
   OverlayView()
-      : super(maps['OverlayView']);
+      : super(maps['OverlayView'], []);
 
   void draw() {
     $unsafe.callMethod('draw');
   }
-  GMap get map => GMap.cast($unsafe.callMethod('getMap'));
-  MapPanes get panes => MapPanes.cast($unsafe.callMethod('getPanes'));
-  MapCanvasProjection get projection => MapCanvasProjection.cast($unsafe.callMethod('getProjection'));
+  GMap get map => GMap.$wrap($unsafe.callMethod('getMap'));
+  MapPanes get panes => MapPanes.$wrap($unsafe.callMethod('getPanes'));
+  MapCanvasProjection get projection => MapCanvasProjection.$wrap($unsafe.callMethod('getProjection'));
   void onAdd() {
     $unsafe.callMethod('onAdd');
   }
   void onRemove() {
     $unsafe.callMethod('onRemove');
   }
-  set map(dynamic map) => $unsafe.callMethod('setMap', [map]);
+  set map(dynamic map) => $unsafe.callMethod('setMap', [map == null ? null : map is GMap ? map.$unsafe : map is StreetViewPanorama ? map.$unsafe : throw "bad type"]);
 
   void set_onAdd(onAdd()) {
     $unsafe['onAdd'] = onAdd;

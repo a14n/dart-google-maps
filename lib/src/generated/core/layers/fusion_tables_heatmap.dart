@@ -15,11 +15,10 @@
 part of google_maps;
 
 class FusionTablesHeatmap extends jsw.TypedJsObject {
-  static FusionTablesHeatmap cast(js.JsObject jsObject) => jsObject == null ? null : new FusionTablesHeatmap.fromJsObject(jsObject);
+  static FusionTablesHeatmap $wrap(js.JsObject jsObject) => jsObject == null ? null : new FusionTablesHeatmap.fromJsObject(jsObject);
   FusionTablesHeatmap.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  FusionTablesHeatmap()
-      : super();
+  FusionTablesHeatmap();
 
   set enabled(bool enabled) => $unsafe['enabled'] = enabled;
   bool get enabled => $unsafe['enabled'];

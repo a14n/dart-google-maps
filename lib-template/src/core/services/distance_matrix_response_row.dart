@@ -15,7 +15,7 @@
 part of google_maps;
 
 @wrapper abstract class DistanceMatrixResponseRow extends jsw.TypedJsObject {
-  DistanceMatrixResponseRow() : super();
+  DistanceMatrixResponseRow();
 
   List<DistanceMatrixResponseElement> elements;
 }

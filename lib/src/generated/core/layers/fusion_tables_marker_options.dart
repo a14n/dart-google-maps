@@ -15,11 +15,10 @@
 part of google_maps;
 
 class FusionTablesMarkerOptions extends jsw.TypedJsObject {
-  static FusionTablesMarkerOptions cast(js.JsObject jsObject) => jsObject == null ? null : new FusionTablesMarkerOptions.fromJsObject(jsObject);
+  static FusionTablesMarkerOptions $wrap(js.JsObject jsObject) => jsObject == null ? null : new FusionTablesMarkerOptions.fromJsObject(jsObject);
   FusionTablesMarkerOptions.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  FusionTablesMarkerOptions()
-      : super();
+  FusionTablesMarkerOptions();
 
   set iconName(String iconName) => $unsafe['iconName'] = iconName;
   String get iconName => $unsafe['iconName'];

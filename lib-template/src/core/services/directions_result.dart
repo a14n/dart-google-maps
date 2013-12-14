@@ -15,8 +15,8 @@
 part of google_maps;
 
 @wrapper abstract class DirectionsResult extends jsw.TypedJsObject {
-  static DirectionsResult cast(js.JsObject jsObject) => null;
-  DirectionsResult() : super();
+  static DirectionsResult $wrap(js.JsObject jsObject) => null;
+  DirectionsResult();
 
   List<DirectionsRoute> routes;
 }

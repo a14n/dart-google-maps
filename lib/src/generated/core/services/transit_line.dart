@@ -15,14 +15,13 @@
 part of google_maps;
 
 class TransitLine extends jsw.TypedJsObject {
-  static TransitLine cast(js.JsObject jsObject) => jsObject == null ? null : new TransitLine.fromJsObject(jsObject);
+  static TransitLine $wrap(js.JsObject jsObject) => jsObject == null ? null : new TransitLine.fromJsObject(jsObject);
   TransitLine.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  TransitLine()
-      : super();
+  TransitLine();
 
-  set agencies(List<TransitAgency> agencies) => $unsafe['agencies'] = agencies == null ? null : agencies is js.Serializable ? agencies : js.jsify(agencies);
-  List<TransitAgency> get agencies => jsw.TypedJsArray.castListOfSerializables($unsafe['agencies'], TransitAgency.cast);
+  set agencies(List<TransitAgency> agencies) => $unsafe['agencies'] = agencies == null ? null : (agencies is jsw.TypedJsObject ? (agencies as jsw.TypedJsObject).$unsafe : jsw.jsify(agencies));
+  List<TransitAgency> get agencies => jsw.TypedJsArray.$wrapSerializables($unsafe['agencies'], TransitAgency.$wrap);
   set color(String color) => $unsafe['color'] = color;
   String get color => $unsafe['color'];
   set icon(String icon) => $unsafe['icon'] = icon;
@@ -35,6 +34,6 @@ class TransitLine extends jsw.TypedJsObject {
   String get textColor => $unsafe['text_color'];
   set url(String url) => $unsafe['url'] = url;
   String get url => $unsafe['url'];
-  set vehicle(TransitVehicle vehicle) => $unsafe['vehicle'] = vehicle;
-  TransitVehicle get vehicle => TransitVehicle.cast($unsafe['vehicle']);
+  set vehicle(TransitVehicle vehicle) => $unsafe['vehicle'] = vehicle == null ? null : vehicle.$unsafe;
+  TransitVehicle get vehicle => TransitVehicle.$wrap($unsafe['vehicle']);
 }

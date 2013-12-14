@@ -15,11 +15,10 @@
 part of google_maps;
 
 class MapTypeStyler extends jsw.TypedJsObject {
-  static MapTypeStyler cast(js.JsObject jsObject) => jsObject == null ? null : new MapTypeStyler.fromJsObject(jsObject);
+  static MapTypeStyler $wrap(js.JsObject jsObject) => jsObject == null ? null : new MapTypeStyler.fromJsObject(jsObject);
   MapTypeStyler.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  MapTypeStyler()
-      : super();
+  MapTypeStyler();
 
   set gamma(num gamma) => $unsafe['gamma'] = gamma;
   num get gamma => $unsafe['gamma'];
@@ -31,18 +30,17 @@ class MapTypeStyler extends jsw.TypedJsObject {
   num get lightness => $unsafe['lightness'];
   set saturation(num saturation) => $unsafe['saturation'] = saturation;
   num get saturation => $unsafe['saturation'];
-  set visibility(MapTypeStylerVisibility visibility) => $unsafe['visibility'] = visibility;
-  MapTypeStylerVisibility get visibility => MapTypeStylerVisibility.find($unsafe['visibility']);
+  set visibility(MapTypeStylerVisibility visibility) => $unsafe['visibility'] = visibility == null ? null : visibility.$unsafe;
+  MapTypeStylerVisibility get visibility => MapTypeStylerVisibility.$wrap($unsafe['visibility']);
 }
 
 class MapTypeStylerVisibility extends jsw.IsEnum<String> {
+  static final _FINDER = new jsw.EnumFinder<String, MapTypeStylerVisibility>([ON, OFF, SIMPLIFIED]);
+  static MapTypeStylerVisibility $wrap(String jsValue) => _FINDER.find(jsValue);
+
   static final ON = new MapTypeStylerVisibility._("on");
   static final OFF = new MapTypeStylerVisibility._("off");
   static final SIMPLIFIED = new MapTypeStylerVisibility._("simplified");
-
-  static final _FINDER = new jsw.EnumFinder<String, MapTypeStylerVisibility>([ON, OFF, SIMPLIFIED]);
-
-  static MapTypeStylerVisibility find(o) => _FINDER.find(o);
 
   MapTypeStylerVisibility._(String value)
       : super(value);

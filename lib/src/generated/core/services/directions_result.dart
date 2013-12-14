@@ -15,12 +15,11 @@
 part of google_maps;
 
 class DirectionsResult extends jsw.TypedJsObject {
-  static DirectionsResult cast(js.JsObject jsObject) => jsObject == null ? null : new DirectionsResult.fromJsObject(jsObject);
+  static DirectionsResult $wrap(js.JsObject jsObject) => jsObject == null ? null : new DirectionsResult.fromJsObject(jsObject);
   DirectionsResult.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  DirectionsResult()
-      : super();
+  DirectionsResult();
 
-  set routes(List<DirectionsRoute> routes) => $unsafe['routes'] = routes == null ? null : routes is js.Serializable ? routes : js.jsify(routes);
-  List<DirectionsRoute> get routes => jsw.TypedJsArray.castListOfSerializables($unsafe['routes'], DirectionsRoute.cast);
+  set routes(List<DirectionsRoute> routes) => $unsafe['routes'] = routes == null ? null : (routes is jsw.TypedJsObject ? (routes as jsw.TypedJsObject).$unsafe : jsw.jsify(routes));
+  List<DirectionsRoute> get routes => jsw.TypedJsArray.$wrapSerializables($unsafe['routes'], DirectionsRoute.$wrap);
 }

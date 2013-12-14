@@ -15,7 +15,7 @@
 part of google_maps;
 
 @wrapper abstract class FusionTablesHeatmap extends jsw.TypedJsObject {
-  FusionTablesHeatmap() : super();
+  FusionTablesHeatmap();
 
   bool enabled;
 }

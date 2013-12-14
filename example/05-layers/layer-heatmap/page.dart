@@ -517,7 +517,7 @@ void main() {
     ..center = new LatLng(37.774546, -122.433523)
     ..mapTypeId = MapTypeId.SATELLITE
     ;
-  map = new GMap(query("#map_canvas"), mapOptions);
+  map = new GMap(querySelector("#map_canvas"), mapOptions);
 
   pointArray = new MVCArray(taxiData);
 
@@ -527,10 +527,10 @@ void main() {
 
   heatmap.map = map;
 
-  query("#toggleHeatmap").onClick.listen((e){toggleHeatmap();});
-  query("#changeGradient").onClick.listen((e){changeGradient();});
-  query("#changeRadius").onClick.listen((e){changeRadius();});
-  query("#changeOpacity").onClick.listen((e){changeOpacity();});
+  querySelector("#toggleHeatmap").onClick.listen((e){toggleHeatmap();});
+  querySelector("#changeGradient").onClick.listen((e){changeGradient();});
+  querySelector("#changeRadius").onClick.listen((e){changeRadius();});
+  querySelector("#changeOpacity").onClick.listen((e){changeOpacity();});
 }
 
 void toggleHeatmap() {

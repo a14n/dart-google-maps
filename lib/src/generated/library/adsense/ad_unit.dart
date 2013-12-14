@@ -15,19 +15,19 @@
 part of google_maps_adsense;
 
 class AdUnit extends MVCObject {
-  static AdUnit cast(js.JsObject jsObject) => jsObject == null ? null : new AdUnit.fromJsObject(jsObject);
+  static AdUnit $wrap(js.JsObject jsObject) => jsObject == null ? null : new AdUnit.fromJsObject(jsObject);
   AdUnit.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
   AdUnit(html.Node container, AdUnitOptions opts)
-      : super(maps['adsense']['AdUnit'], [jsw.convertElementToJs(container), opts]);
+      : super(maps['adsense']['AdUnit'], [container, opts]);
 
   String get backgroundColor => $unsafe.callMethod('getBackgroundColor');
   String get borderColor => $unsafe.callMethod('getBorderColor');
   String get channelNumber => $unsafe.callMethod('getChannelNumber');
-  html.Node get container => jsw.convertElementToDart($unsafe.callMethod('getContainer'));
-  AdFormat get format => AdFormat.find($unsafe.callMethod('getFormat'));
-  GMap get map => GMap.cast($unsafe.callMethod('getMap'));
-  ControlPosition get position => ControlPosition.find($unsafe.callMethod('getPosition'));
+  html.Node get container => $unsafe.callMethod('getContainer');
+  AdFormat get format => AdFormat.$wrap($unsafe.callMethod('getFormat'));
+  GMap get map => GMap.$wrap($unsafe.callMethod('getMap'));
+  ControlPosition get position => ControlPosition.$wrap($unsafe.callMethod('getPosition'));
   String get publisherId => $unsafe.callMethod('getPublisherId');
   String get textColor => $unsafe.callMethod('getTextColor');
   String get titleColor => $unsafe.callMethod('getTitleColor');
@@ -35,9 +35,9 @@ class AdUnit extends MVCObject {
   set backgroundColor(String backgroundColor) => $unsafe.callMethod('setBackgroundColor', [backgroundColor]);
   set borderColor(String borderColor) => $unsafe.callMethod('setBorderColor', [borderColor]);
   set channelNumber(String channelNumber) => $unsafe.callMethod('setChannelNumber', [channelNumber]);
-  set format(AdFormat format) => $unsafe.callMethod('setFormat', [format]);
-  set map(GMap map) => $unsafe.callMethod('setMap', [map]);
-  set position(ControlPosition position) => $unsafe.callMethod('setPosition', [position]);
+  set format(AdFormat format) => $unsafe.callMethod('setFormat', [format == null ? null : format.$unsafe]);
+  set map(GMap map) => $unsafe.callMethod('setMap', [map == null ? null : map.$unsafe]);
+  set position(ControlPosition position) => $unsafe.callMethod('setPosition', [position == null ? null : position.$unsafe]);
   set textColor(String textColor) => $unsafe.callMethod('setTextColor', [textColor]);
   set titleColor(String titleColor) => $unsafe.callMethod('setTitleColor', [titleColor]);
   set urlColor(String urlColor) => $unsafe.callMethod('setUrlColor', [urlColor]);

@@ -15,7 +15,7 @@
 part of google_maps_visualization;
 
 class DemographicsLayerOptions extends jsw.TypedJsObject {
-  static DemographicsLayerOptions cast(js.JsObject jsObject) => jsObject == null ? null : new DemographicsLayerOptions.fromJsObject(jsObject);
+  static DemographicsLayerOptions $wrap(js.JsObject jsObject) => jsObject == null ? null : new DemographicsLayerOptions.fromJsObject(jsObject);
   DemographicsLayerOptions.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
   DemographicsLayerOptions()
@@ -23,12 +23,12 @@ class DemographicsLayerOptions extends jsw.TypedJsObject {
 
   set clickable(bool clickable) => $unsafe['clickable'] = clickable;
   bool get clickable => $unsafe['clickable'];
-  set map(GMap map) => $unsafe['map'] = map;
-  GMap get map => GMap.cast($unsafe['map']);
-  set query(DemographicsQuery query) => $unsafe['query'] = query;
-  DemographicsQuery get query => DemographicsQuery.cast($unsafe['query']);
-  set style(List<DemographicsStyle> style) => $unsafe['style'] = style == null ? null : style is js.Serializable ? style : js.jsify(style);
-  List<DemographicsStyle> get style => jsw.TypedJsArray.castListOfSerializables($unsafe['style'], DemographicsStyle.cast);
+  set map(GMap map) => $unsafe['map'] = map == null ? null : map.$unsafe;
+  GMap get map => GMap.$wrap($unsafe['map']);
+  set query(DemographicsQuery query) => $unsafe['query'] = query == null ? null : query.$unsafe;
+  DemographicsQuery get query => DemographicsQuery.$wrap($unsafe['query']);
+  set style(List<DemographicsStyle> style) => $unsafe['style'] = style == null ? null : (style is jsw.TypedJsObject ? (style as jsw.TypedJsObject).$unsafe : jsw.jsify(style));
+  List<DemographicsStyle> get style => jsw.TypedJsArray.$wrapSerializables($unsafe['style'], DemographicsStyle.$wrap);
   set suppressInfoWindows(bool suppressInfoWindows) => $unsafe['suppressInfoWindows'] = suppressInfoWindows;
   bool get suppressInfoWindows => $unsafe['suppressInfoWindows'];
 }

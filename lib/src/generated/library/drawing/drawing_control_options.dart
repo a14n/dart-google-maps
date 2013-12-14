@@ -15,14 +15,14 @@
 part of google_maps_drawing;
 
 class DrawingControlOptions extends jsw.TypedJsObject {
-  static DrawingControlOptions cast(js.JsObject jsObject) => jsObject == null ? null : new DrawingControlOptions.fromJsObject(jsObject);
+  static DrawingControlOptions $wrap(js.JsObject jsObject) => jsObject == null ? null : new DrawingControlOptions.fromJsObject(jsObject);
   DrawingControlOptions.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
   DrawingControlOptions()
       : super();
 
-  List<OverlayType> get drawingModes => jsw.TypedJsArray.castListOfSerializables($unsafe['drawingModes'], OverlayType.find);
-  set drawingModes(List<OverlayType> drawingModes) => $unsafe['drawingModes'] = drawingModes == null ? null : drawingModes is js.Serializable ? drawingModes : js.jsify(drawingModes);
-  set position(ControlPosition position) => $unsafe['position'] = position;
-  ControlPosition get position => ControlPosition.find($unsafe['position']);
+  List<OverlayType> get drawingModes => jsw.TypedJsArray.$wrapSerializables($unsafe['drawingModes'], OverlayType.$wrap);
+  set drawingModes(List drawingModes) => $unsafe['drawingModes'] = drawingModes == null ? null : (drawingModes is jsw.TypedJsObject ? (drawingModes as jsw.TypedJsObject).$unsafe : jsw.jsify(drawingModes));
+  set position(ControlPosition position) => $unsafe['position'] = position == null ? null : position.$unsafe;
+  ControlPosition get position => ControlPosition.$wrap($unsafe['position']);
 }

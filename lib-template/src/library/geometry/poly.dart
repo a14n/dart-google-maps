@@ -20,5 +20,5 @@ final Poly poly = new Poly();
   Poly() : super.fromJsObject(maps['geometry']['poly']);
 
   @generate bool containsLocation(LatLng point, Polygon polygon) => null;
-  @generate bool isLocationOnEdge(LatLng point, dynamic/*Polygon|Polyline*/ poly, [num tolerance]) => null;
+  @generate bool isLocationOnEdge(LatLng point, @Types(const [Polygon, Polyline]) dynamic/*Polygon|Polyline*/ poly, [num tolerance]) => null;
 }

@@ -15,16 +15,15 @@
 part of google_maps;
 
 class GroundOverlayOptions extends jsw.TypedJsObject {
-  static GroundOverlayOptions cast(js.JsObject jsObject) => jsObject == null ? null : new GroundOverlayOptions.fromJsObject(jsObject);
+  static GroundOverlayOptions $wrap(js.JsObject jsObject) => jsObject == null ? null : new GroundOverlayOptions.fromJsObject(jsObject);
   GroundOverlayOptions.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  GroundOverlayOptions()
-      : super();
+  GroundOverlayOptions();
 
   set clickable(bool clickable) => $unsafe['clickable'] = clickable;
   bool get clickable => $unsafe['clickable'];
-  set map(GMap map) => $unsafe['map'] = map;
-  GMap get map => GMap.cast($unsafe['map']);
+  set map(GMap map) => $unsafe['map'] = map == null ? null : map.$unsafe;
+  GMap get map => GMap.$wrap($unsafe['map']);
   set opacity(num opacity) => $unsafe['opacity'] = opacity;
   num get opacity => $unsafe['opacity'];
 }

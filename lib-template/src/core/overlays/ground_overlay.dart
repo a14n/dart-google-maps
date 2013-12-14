@@ -18,12 +18,12 @@ part of google_maps;
   jsw.SubscribeStreamProvider<MouseEvent> _onClick;
   jsw.SubscribeStreamProvider<MouseEvent> _onDblClick;
 
-  GroundOverlay(String url, LatLngBounds bounds, [GroundOverlayOptions opts]) : super(maps['GroundOverlay'], [url, bounds, opts]) { _initStreams(); }
+  @generate GroundOverlay(String url, LatLngBounds bounds, [GroundOverlayOptions opts]) { _initStreams(); }
   GroundOverlay.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) { _initStreams(); }
 
   void _initStreams() {
-    _onClick = event.getStreamProviderFor(this, "click", MouseEvent.cast);
-    _onDblClick = event.getStreamProviderFor(this, "dblclick", MouseEvent.cast);
+    _onClick = event.getStreamProviderFor(this, "click", MouseEvent.$wrap);
+    _onDblClick = event.getStreamProviderFor(this, "dblclick", MouseEvent.$wrap);
   }
 
   Stream<MouseEvent> get onClick => _onClick.stream;

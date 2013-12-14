@@ -15,7 +15,7 @@
 part of google_maps;
 
 @wrapper abstract class TransitStop extends jsw.TypedJsObject {
-  TransitStop() : super();
+  TransitStop();
 
   LatLng location;
   String name;

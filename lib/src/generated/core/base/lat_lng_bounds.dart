@@ -15,22 +15,22 @@
 part of google_maps;
 
 class LatLngBounds extends jsw.TypedJsObject {
-  static LatLngBounds cast(js.JsObject jsObject) => jsObject == null ? null : new LatLngBounds.fromJsObject(jsObject);
+  static LatLngBounds $wrap(js.JsObject jsObject) => jsObject == null ? null : new LatLngBounds.fromJsObject(jsObject);
   LatLngBounds.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
   LatLngBounds([LatLng sw, LatLng ne])
-      : super(maps['LatLngBounds'], [sw, ne]);
+      : super(maps['LatLngBounds'], [sw == null ? null : sw.$unsafe, ne == null ? null : ne.$unsafe]);
 
-  bool contains(LatLng latLng) => $unsafe.callMethod('contains', [latLng]);
-  bool equals(LatLngBounds other) => $unsafe.callMethod('equals', [other]);
-  LatLngBounds extend(LatLng point) => LatLngBounds.cast($unsafe.callMethod('extend', [point]));
-  LatLng get center => LatLng.cast($unsafe.callMethod('getCenter'));
-  LatLng get northEast => LatLng.cast($unsafe.callMethod('getNorthEast'));
-  LatLng get southWest => LatLng.cast($unsafe.callMethod('getSouthWest'));
-  bool intersects(LatLngBounds other) => $unsafe.callMethod('intersects', [other]);
+  bool contains(LatLng latLng) => $unsafe.callMethod('contains', [latLng == null ? null : latLng.$unsafe]);
+  bool equals(LatLngBounds other) => $unsafe.callMethod('equals', [other == null ? null : other.$unsafe]);
+  LatLngBounds extend(LatLng point) => LatLngBounds.$wrap($unsafe.callMethod('extend', [point == null ? null : point.$unsafe]));
+  LatLng get center => LatLng.$wrap($unsafe.callMethod('getCenter'));
+  LatLng get northEast => LatLng.$wrap($unsafe.callMethod('getNorthEast'));
+  LatLng get southWest => LatLng.$wrap($unsafe.callMethod('getSouthWest'));
+  bool intersects(LatLngBounds other) => $unsafe.callMethod('intersects', [other == null ? null : other.$unsafe]);
   bool isEmpty() => $unsafe.callMethod('isEmpty');
-  LatLng toSpan() => LatLng.cast($unsafe.callMethod('toSpan'));
+  LatLng toSpan() => LatLng.$wrap($unsafe.callMethod('toSpan'));
   String toString() => $unsafe.callMethod('toString');
   String toUrlValue([num precision]) => $unsafe.callMethod('toUrlValue', [precision]);
-  bool union(LatLngBounds other) => $unsafe.callMethod('union', [other]);
+  LatLngBounds union(LatLngBounds other) => LatLngBounds.$wrap($unsafe.callMethod('union', [other == null ? null : other.$unsafe]));
 }

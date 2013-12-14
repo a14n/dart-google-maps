@@ -17,7 +17,7 @@ part of google_maps_places;
 @wrapper @forMethods @skipConstructor abstract class Autocomplete extends MVCObject {
   jsw.SubscribeStreamProvider _onPlaceChanged;
 
-  Autocomplete(html.InputElement inputField, [AutocompleteOptions opts]) : super(maps['places']['Autocomplete'], [jsw.convertElementToJs(inputField), opts]) { _initStreams(); }
+  Autocomplete(html.InputElement inputField, [AutocompleteOptions opts]) : super(maps['places']['Autocomplete'], [inputField, jsw.Serializable.$unwrap(opts)]) { _initStreams(); }
   Autocomplete.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) { _initStreams(); }
 
   void _initStreams() {

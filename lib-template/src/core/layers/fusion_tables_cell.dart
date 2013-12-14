@@ -15,7 +15,7 @@
 part of google_maps;
 
 @wrapper abstract class FusionTablesCell extends jsw.TypedJsObject {
-  FusionTablesCell() : super();
+  FusionTablesCell();
 
   String columnName;
   String value;

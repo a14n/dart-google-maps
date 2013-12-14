@@ -15,11 +15,11 @@
 part of google_maps_places;
 
 class SearchBox extends MVCObject {
-  static SearchBox cast(js.JsObject jsObject) => jsObject == null ? null : new SearchBox.fromJsObject(jsObject);
+  static SearchBox $wrap(js.JsObject jsObject) => jsObject == null ? null : new SearchBox.fromJsObject(jsObject);
   jsw.SubscribeStreamProvider _onPlaceChanged;
 
   SearchBox(html.InputElement inputField, [SearchBoxOptions opts])
-      : super(maps['places']['SearchBox'], [jsw.convertElementToJs(inputField), opts]) {
+      : super(maps['places']['SearchBox'], [inputField, jsw.Serializable.$unwrap(opts)]) {
     _initStreams();
   }
   SearchBox.fromJsObject(js.JsObject proxy)
@@ -33,7 +33,7 @@ class SearchBox extends MVCObject {
 
   Stream get onPlaceChanged => _onPlaceChanged.stream;
 
-  LatLngBounds get bounds => LatLngBounds.cast($unsafe.callMethod('getBounds'));
-  List<PlaceResult> get places => jsw.TypedJsArray.castListOfSerializables($unsafe.callMethod('getPlaces'), PlaceResult.cast);
-  set bounds(LatLngBounds bounds) => $unsafe.callMethod('setBounds', [bounds]);
+  LatLngBounds get bounds => LatLngBounds.$wrap($unsafe.callMethod('getBounds'));
+  List<PlaceResult> get places => jsw.TypedJsArray.$wrapSerializables($unsafe.callMethod('getPlaces'), PlaceResult.$wrap);
+  set bounds(LatLngBounds bounds) => $unsafe.callMethod('setBounds', [bounds == null ? null : bounds.$unsafe]);
 }

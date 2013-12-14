@@ -15,7 +15,7 @@
 part of google_maps;
 
 @wrapper abstract class FusionTablesQuery extends jsw.TypedJsObject {
-  FusionTablesQuery() : super();
+  FusionTablesQuery();
 
   String from;
   num limit;

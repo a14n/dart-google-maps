@@ -15,11 +15,8 @@
 part of google_maps;
 
 class MouseEvent extends jsw.TypedJsObject {
-  static MouseEvent cast(js.JsObject jsObject) => jsObject == null ? null : new MouseEvent.fromJsObject(jsObject);
+  static MouseEvent $wrap(js.JsObject jsObject) => jsObject == null ? null : new MouseEvent.fromJsObject(jsObject);
   MouseEvent.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  MouseEvent()
-      : super();
-
-  LatLng get latLng => LatLng.cast($unsafe['latLng']);
+  LatLng get latLng => LatLng.$wrap($unsafe['latLng']);
 }

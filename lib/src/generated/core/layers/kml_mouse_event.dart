@@ -15,15 +15,13 @@
 part of google_maps;
 
 class KmlMouseEvent extends jsw.TypedJsObject {
-  static KmlMouseEvent cast(js.JsObject jsObject) => jsObject == null ? null : new KmlMouseEvent.fromJsObject(jsObject);
+  static KmlMouseEvent $wrap(js.JsObject jsObject) => jsObject == null ? null : new KmlMouseEvent.fromJsObject(jsObject);
   KmlMouseEvent.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  KmlMouseEvent();
-
-  set featureData(KmlFeatureData featureData) => $unsafe['featureData'] = featureData;
-  KmlFeatureData get featureData => KmlFeatureData.cast($unsafe['featureData']);
-  set latLng(LatLng latLng) => $unsafe['latLng'] = latLng;
-  LatLng get latLng => LatLng.cast($unsafe['latLng']);
-  set pixelOffset(Size pixelOffset) => $unsafe['pixelOffset'] = pixelOffset;
-  Size get pixelOffset => Size.cast($unsafe['pixelOffset']);
+  set featureData(KmlFeatureData featureData) => $unsafe['featureData'] = featureData == null ? null : featureData.$unsafe;
+  KmlFeatureData get featureData => KmlFeatureData.$wrap($unsafe['featureData']);
+  set latLng(LatLng latLng) => $unsafe['latLng'] = latLng == null ? null : latLng.$unsafe;
+  LatLng get latLng => LatLng.$wrap($unsafe['latLng']);
+  set pixelOffset(Size pixelOffset) => $unsafe['pixelOffset'] = pixelOffset == null ? null : pixelOffset.$unsafe;
+  Size get pixelOffset => Size.$wrap($unsafe['pixelOffset']);
 }

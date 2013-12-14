@@ -15,7 +15,7 @@
 part of google_maps;
 
 @wrapper abstract class GroundOverlayOptions extends jsw.TypedJsObject {
-  GroundOverlayOptions() : super();
+  GroundOverlayOptions();
 
   bool clickable;
   GMap map;

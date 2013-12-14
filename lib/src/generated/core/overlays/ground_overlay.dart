@@ -15,12 +15,12 @@
 part of google_maps;
 
 class GroundOverlay extends MVCObject {
-  static GroundOverlay cast(js.JsObject jsObject) => jsObject == null ? null : new GroundOverlay.fromJsObject(jsObject);
+  static GroundOverlay $wrap(js.JsObject jsObject) => jsObject == null ? null : new GroundOverlay.fromJsObject(jsObject);
   jsw.SubscribeStreamProvider<MouseEvent> _onClick;
   jsw.SubscribeStreamProvider<MouseEvent> _onDblClick;
 
   GroundOverlay(String url, LatLngBounds bounds, [GroundOverlayOptions opts])
-      : super(maps['GroundOverlay'], [url, bounds, opts]) {
+      : super(maps['GroundOverlay'], [url, bounds == null ? null : bounds.$unsafe, opts == null ? null : opts.$unsafe]) {
     _initStreams();
   }
   GroundOverlay.fromJsObject(js.JsObject proxy)
@@ -29,17 +29,17 @@ class GroundOverlay extends MVCObject {
   }
 
   void _initStreams() {
-    _onClick = event.getStreamProviderFor(this, "click", MouseEvent.cast);
-    _onDblClick = event.getStreamProviderFor(this, "dblclick", MouseEvent.cast);
+    _onClick = event.getStreamProviderFor(this, "click", MouseEvent.$wrap);
+    _onDblClick = event.getStreamProviderFor(this, "dblclick", MouseEvent.$wrap);
   }
 
   Stream<MouseEvent> get onClick => _onClick.stream;
   Stream<MouseEvent> get onDblClick => _onDblClick.stream;
 
-  LatLngBounds get bounds => LatLngBounds.cast($unsafe.callMethod('getBounds'));
-  GMap get map => GMap.cast($unsafe.callMethod('getMap'));
+  LatLngBounds get bounds => LatLngBounds.$wrap($unsafe.callMethod('getBounds'));
+  GMap get map => GMap.$wrap($unsafe.callMethod('getMap'));
   num get opacity => $unsafe.callMethod('getOpacity');
   String get url => $unsafe.callMethod('getUrl');
-  set map(GMap map) => $unsafe.callMethod('setMap', [map]);
+  set map(GMap map) => $unsafe.callMethod('setMap', [map == null ? null : map.$unsafe]);
   set opacity(num opacity) => $unsafe.callMethod('setOpacity', [opacity]);
 }

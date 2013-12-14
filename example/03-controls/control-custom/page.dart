@@ -48,7 +48,7 @@ class HomeControl {
 }
 
 void main() {
-  final mapDiv = query("#map_canvas");
+  final mapDiv = querySelector("#map_canvas");
   final mapOptions = new MapOptions()
     ..zoom = 12
     ..center = chicago

@@ -15,10 +15,27 @@
 part of google_maps;
 
 @wrapper abstract class MapTypeControlOptions extends jsw.TypedJsObject {
-  MapTypeControlOptions() : super();
+  MapTypeControlOptions();
 
-  List get mapTypeIds => jsw.TypedJsArray.castListOfSerializables($unsafe['mapTypeIds'], (e) => [MapTypeId.find(e), e].firstWhere((e) => e != null, orElse: () => null));
-  set mapTypeIds(List mapTypeIds);
-  @isEnum ControlPosition position;
-  @isEnum MapTypeControlStyle style;
+  // TODO replace with :
+  // List<dynamic/*String|MapTypeId*/> mapTypeIds;
+  List<dynamic/*String|MapTypeId*/> get mapTypeIds => jsw.TypedJsArray.$wrap($unsafe['mapTypeIds'],
+      wrap: (js) {
+        if (js == null) return null;
+        final o1 = MapTypeId.$wrap(js);
+        if (o1 != null) return o1;
+        if (js is String) return js;
+        throw 'unsupported type';
+      },
+      unwrap: (dart) {
+        if (dart == null) return null;
+        if (dart is MapTypeId) return dart.$unsafe;
+        if (dart is String) return dart;
+        throw 'unsupported type';
+      });
+  void set mapTypeIds(List<dynamic/*String|MapTypeId*/> mapTypeIds) {
+    $unsafe['mapTypeIds'] = new js.JsArray.from(mapTypeIds.map((e) => e == null ? null : e is MapTypeId ? e.$unsafe : e is String ? e : throw 'bad type'));
+  }
+  ControlPosition position;
+  MapTypeControlStyle style;
 }

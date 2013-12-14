@@ -15,7 +15,7 @@
 part of google_maps;
 
 @wrapper @forMethods abstract class OverlayView extends MVCObject {
-  OverlayView() : super(maps['OverlayView']);
+  @generate OverlayView();
 
   void draw();
   GMap get map;
@@ -23,7 +23,7 @@ part of google_maps;
   MapCanvasProjection get projection;
   void onAdd();
   void onRemove();
-  set map(dynamic/*Map|StreetViewPanorama*/ map);
+  set map(@Types(const [GMap,StreetViewPanorama]) dynamic map);
 
   void set_onAdd(onAdd()) { $unsafe['onAdd'] = onAdd; }
   void set_onRemove(onRemove()) { $unsafe['onRemove'] = onRemove; }

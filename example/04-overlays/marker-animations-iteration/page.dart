@@ -20,9 +20,9 @@ void main() {
     ..zoom = 12
     ..mapTypeId = MapTypeId.ROADMAP
     ..center = berlin;
-  map = new GMap(query("#map_canvas"), mapOptions);
+  map = new GMap(querySelector("#map_canvas"), mapOptions);
 
-  query("#drop").onClick.listen(drop);
+  querySelector("#drop").onClick.listen(drop);
 }
 
 void drop(e) {

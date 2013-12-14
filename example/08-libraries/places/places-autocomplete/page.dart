@@ -9,9 +9,9 @@ void main() {
     ..zoom = 13
     ..mapTypeId = MapTypeId.ROADMAP
     ;
-  final map = new GMap(query("#map_canvas"), mapOptions);
+  final map = new GMap(querySelector("#map_canvas"), mapOptions);
 
-  final input = query('#searchTextField') as InputElement;
+  final input = querySelector('#searchTextField') as InputElement;
   final autocomplete = new Autocomplete(input);
 
   autocomplete.bindTo('bounds', map);
@@ -58,7 +58,7 @@ void main() {
   // Sets a listener on a radio button to change the filter type on Places
   // Autocomplete.
   void setupClickListener(id, types) {
-    final radioButton = query('#${id}');
+    final radioButton = querySelector('#${id}');
     event.addDomListener(radioButton, 'click', () {
       autocomplete.types = types;
     });

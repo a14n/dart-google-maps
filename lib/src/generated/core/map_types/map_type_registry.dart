@@ -15,13 +15,13 @@
 part of google_maps;
 
 class MapTypeRegistry extends MVCObject {
-  static MapTypeRegistry cast(js.JsObject jsObject) => jsObject == null ? null : new MapTypeRegistry.fromJsObject(jsObject);
+  static MapTypeRegistry $wrap(js.JsObject jsObject) => jsObject == null ? null : new MapTypeRegistry.fromJsObject(jsObject);
   MapTypeRegistry.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
   MapTypeRegistry()
-      : super(maps['MapTypeRegistry']);
+      : super(maps['MapTypeRegistry'], []);
 
   void set(String id, MapType mapType) {
-    $unsafe.callMethod('set', [id, mapType]);
+    $unsafe.callMethod('set', [id, mapType == null ? null : mapType.$unsafe]);
   }
 }

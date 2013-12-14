@@ -15,7 +15,7 @@
 part of google_maps_places;
 
 @wrapper @namesWithUnderscores abstract class AutocompletePrediction extends jsw.TypedJsObject {
-  static AutocompletePrediction cast(js.JsObject jsObject) => null;
+  static AutocompletePrediction $wrap(js.JsObject jsObject) => null;
 
   AutocompletePrediction() : super();
 

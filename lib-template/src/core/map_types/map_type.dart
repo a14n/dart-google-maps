@@ -15,13 +15,13 @@
 part of google_maps;
 
 @wrapper @skipConstructor abstract class MapType extends jsw.TypedJsObject {
-  static MapType cast(js.JsObject proxy) => null;
+  static MapType $wrap(js.JsObject proxy) => null;
 
-  MapType([js.Serializable<js.JsFunction> constructor, List args]) : super(constructor, args);
+  MapType([js.JsFunction constructor, List args]) : super(constructor, args);
   MapType.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy);
 
-  html.Node getTile(Point tileCoord, num zoom, js.JsObject/*html.Document*/ ownerDocument) => jsw.convertElementToDart($unsafe.callMethod('getTile', [tileCoord, zoom, ownerDocument]));
-  void releaseTile(html.Node tile) => $unsafe.callMethod('releaseTile', [jsw.convertElementToJs(tile)]);
+  html.Node getTile(Point tileCoord, num zoom, js.JsObject/*html.Document*/ ownerDocument);
+  void releaseTile(html.Node tile);
 
   String alt;
   num maxZoom;

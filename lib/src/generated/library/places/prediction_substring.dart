@@ -15,7 +15,7 @@
 part of google_maps_places;
 
 class PredictionSubstring extends jsw.TypedJsObject {
-  static PredictionSubstring cast(js.JsObject jsObject) => jsObject == null ? null : new PredictionSubstring.fromJsObject(jsObject);
+  static PredictionSubstring $wrap(js.JsObject jsObject) => jsObject == null ? null : new PredictionSubstring.fromJsObject(jsObject);
   PredictionSubstring.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
   PredictionSubstring()

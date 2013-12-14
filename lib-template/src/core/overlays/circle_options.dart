@@ -15,7 +15,7 @@
 part of google_maps;
 
 @wrapper abstract class CircleOptions extends jsw.TypedJsObject {
-  CircleOptions() : super();
+  CircleOptions();
 
   LatLng center;
   bool clickable;
@@ -27,7 +27,7 @@ part of google_maps;
   num radius;
   String strokeColor;
   num strokeOpacity;
-  @isEnum StrokePosition strokePosition;
+  StrokePosition strokePosition;
   num strokeWeight;
   bool visible;
   num zIndex;

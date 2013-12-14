@@ -15,7 +15,7 @@
 part of google_maps;
 
 @wrapper abstract class PolygonOptions extends jsw.TypedJsObject {
-  PolygonOptions() : super();
+  PolygonOptions();
 
   bool clickable;
   bool draggable;
@@ -27,14 +27,14 @@ part of google_maps;
   dynamic/*MVCArray.<MVCArray.<LatLng>>|MVCArray.<LatLng>|Array.<Array.<LatLng>>|Array.<LatLng>*/ get paths {
     final result = $unsafe['paths'];
     if (MVCArray.isInstance(result)) {
-      return MVCArray.castListOfSerializables(result, (e) => LatLng.isInstance(e) ? LatLng.cast(e) : MVCArray.castListOfSerializables(e, LatLng.cast));
+      return MVCArray.$wrapSerializables(result, (e) => LatLng.isInstance(e) ? LatLng.$wrap(e) : MVCArray.$wrapSerializables(e, LatLng.$wrap));
     }
-    return jsw.TypedJsArray.castListOfSerializables(result, (e) => LatLng.isInstance(e) ? LatLng.cast(e) : jsw.TypedJsArray.castListOfSerializables(e, LatLng.cast));
+    return jsw.TypedJsArray.$wrapSerializables(result, (e) => LatLng.isInstance(e) ? LatLng.$wrap(e) : jsw.TypedJsArray.$wrapSerializables(e, LatLng.$wrap));
   }
-  set paths(dynamic/*MVCArray.<MVCArray.<LatLng>>|MVCArray.<LatLng>|Array.<Array.<LatLng>>|Array.<LatLng>*/ paths) => $unsafe['paths'] = paths == null ? null : paths is js.Serializable ? paths : paths is List ? js.jsify(paths) : paths;
+  set paths(dynamic/*MVCArray.<MVCArray.<LatLng>>|MVCArray.<LatLng>|Array.<Array.<LatLng>>|Array.<LatLng>*/ paths) => $unsafe['paths'] = paths == null ? null : paths is js.JsArray ? paths : paths is List ? jsw.jsify(paths) : paths;
   String strokeColor;
   num strokeOpacity;
-  @isEnum StrokePosition strokePosition;
+  StrokePosition strokePosition;
   num strokeWeight;
   bool visible;
   num zIndex;

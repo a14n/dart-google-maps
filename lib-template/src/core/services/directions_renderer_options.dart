@@ -15,7 +15,7 @@
 part of google_maps;
 
 @wrapper abstract class DirectionsRendererOptions extends jsw.TypedJsObject {
-  DirectionsRendererOptions() : super();
+  DirectionsRendererOptions();
 
   DirectionsResult directions;
   bool draggable;
@@ -23,8 +23,8 @@ part of google_maps;
   InfoWindow infoWindow;
   GMap map;
   MarkerOptions markerOptions;
-  html.Node get panel => jsw.convertElementToDart($unsafe['panel']);
-  set panel(html.Node panel) => $unsafe['panel'] = jsw.convertElementToJs(panel);
+  html.Node get panel;
+  set panel(html.Node panel);
   PolylineOptions polylineOptions;
   bool preserveViewport;
   num routeIndex;

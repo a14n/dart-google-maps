@@ -15,7 +15,7 @@
 part of google_maps_visualization;
 
 class DemographicsQuery extends jsw.TypedJsObject {
-  static DemographicsQuery cast(js.JsObject jsObject) => jsObject == null ? null : new DemographicsQuery.fromJsObject(jsObject);
+  static DemographicsQuery $wrap(js.JsObject jsObject) => jsObject == null ? null : new DemographicsQuery.fromJsObject(jsObject);
   DemographicsQuery.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
   DemographicsQuery()

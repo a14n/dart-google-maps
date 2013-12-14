@@ -15,10 +15,10 @@ void main() {
     ..mapTypeId = MapTypeId.ROADMAP
     ;
 
-  final map = new GMap(query("#map_canvas"), mapOptions);
+  final map = new GMap(querySelector("#map_canvas"), mapOptions);
 
   // TODO ControlPosition.TOP does not exists
-  map.controls[ControlPosition.TOP_CENTER].push(query('#info'));
+  map.controls[ControlPosition.TOP_CENTER].push(querySelector('#info'));
 
 
   marker1 = new Marker(new MarkerOptions()
@@ -64,7 +64,7 @@ void update() {
   poly.path = path;
   geodesicPoly.path = path;
   final heading = spherical.computeHeading(path[0], path[1]);
-  (query('#heading') as InputElement).value = heading.toString();
-  (query('#origin') as InputElement).value = path[0].toString();
-  (query('#destination') as InputElement).value = path[1].toString();
+  (querySelector('#heading') as InputElement).value = heading.toString();
+  (querySelector('#origin') as InputElement).value = path[0].toString();
+  (querySelector('#destination') as InputElement).value = path[1].toString();
 }

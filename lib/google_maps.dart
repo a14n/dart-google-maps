@@ -19,7 +19,6 @@ import 'dart:html' as html;
 import 'dart:js' as js;
 
 import 'package:js_wrapping/js_wrapping.dart' as jsw;
-import 'package:meta/meta.dart';
 
 part 'src/generated/core/map/map.dart';
 part 'src/generated/core/map/map_options.dart';
@@ -172,7 +171,7 @@ bool get visualRefresh => maps['visualRefresh'];
 set visualRefresh(bool visualRefresh) => maps['visualRefresh'] = visualRefresh;
 
 class NativeEvent extends jsw.TypedJsObject {
-  static NativeEvent cast(js.JsObject proxy) => proxy == null ? null : new NativeEvent.fromJsObject(proxy);
+  static NativeEvent $wrap(js.JsObject proxy) => proxy == null ? null : new NativeEvent.fromJsObject(proxy);
 
   NativeEvent() : super();
   NativeEvent.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy);

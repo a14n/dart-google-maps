@@ -15,7 +15,7 @@
 part of google_maps;
 
 class GMap extends MVCObject {
-  static GMap cast(js.JsObject jsObject) => jsObject == null ? null : new GMap.fromJsObject(jsObject);
+  static GMap $wrap(js.JsObject jsObject) => jsObject == null ? null : new GMap.fromJsObject(jsObject);
   static bool isInstance(js.JsObject proxy) => proxy.instanceof(maps['Map']);
 
   jsw.SubscribeStreamProvider _onBoundsChanged;
@@ -39,7 +39,7 @@ class GMap extends MVCObject {
   jsw.SubscribeStreamProvider _onZoomChanged;
 
   GMap(html.Node mapDiv, [MapOptions opts])
-      : super(maps['Map'], [jsw.convertElementToJs(mapDiv), opts]) {
+      : super(maps['Map'], [mapDiv, jsw.Serializable.$unwrap(opts)]) {
     _initStreams();
   }
   GMap.fromJsObject(js.JsObject proxy)
@@ -50,20 +50,20 @@ class GMap extends MVCObject {
   void _initStreams() {
     _onBoundsChanged = event.getStreamProviderFor(this, "bounds_changed");
     _onCenterChanged = event.getStreamProviderFor(this, "center_changed");
-    _onClick = event.getStreamProviderFor(this, "click", MouseEvent.cast);
-    _onDblClick = event.getStreamProviderFor(this, "dblclick", MouseEvent.cast);
+    _onClick = event.getStreamProviderFor(this, "click", MouseEvent.$wrap);
+    _onDblClick = event.getStreamProviderFor(this, "dblclick", MouseEvent.$wrap);
     _onDrag = event.getStreamProviderFor(this, "drag");
     _onDragend = event.getStreamProviderFor(this, "dragend");
     _onDragstart = event.getStreamProviderFor(this, "dragstart");
     _onHeadingChanged = event.getStreamProviderFor(this, "heading_changed");
     _onIdle = event.getStreamProviderFor(this, "idle");
     _onMaptypeidChanged = event.getStreamProviderFor(this, "maptypeid_changed");
-    _onMousemove = event.getStreamProviderFor(this, "mousemove", MouseEvent.cast);
-    _onMouseout = event.getStreamProviderFor(this, "mouseout", MouseEvent.cast);
-    _onMouseover = event.getStreamProviderFor(this, "mouseover", MouseEvent.cast);
+    _onMousemove = event.getStreamProviderFor(this, "mousemove", MouseEvent.$wrap);
+    _onMouseout = event.getStreamProviderFor(this, "mouseout", MouseEvent.$wrap);
+    _onMouseover = event.getStreamProviderFor(this, "mouseover", MouseEvent.$wrap);
     _onProjectionChanged = event.getStreamProviderFor(this, "projection_changed");
     _onResize = event.getStreamProviderFor(this, "resize");
-    _onRightclick = event.getStreamProviderFor(this, "rightclick", MouseEvent.cast);
+    _onRightclick = event.getStreamProviderFor(this, "rightclick", MouseEvent.$wrap);
     _onTilesloaded = event.getStreamProviderFor(this, "tilesloaded");
     _onTiltChanged = event.getStreamProviderFor(this, "tilt_changed");
     _onZoomChanged = event.getStreamProviderFor(this, "zoom_changed");
@@ -90,61 +90,52 @@ class GMap extends MVCObject {
   Stream get onZoomChanged => _onZoomChanged.stream;
 
   void fitBounds(LatLngBounds bounds) {
-    $unsafe.callMethod('fitBounds', [bounds]);
+    $unsafe.callMethod('fitBounds', [bounds == null ? null : bounds.$unsafe]);
   }
-  LatLngBounds get bounds => LatLngBounds.cast($unsafe.callMethod('getBounds'));
-  LatLng get center => LatLng.cast($unsafe.callMethod('getCenter'));
-  html.Node get div => jsw.convertElementToDart($unsafe.callMethod('getDiv'));
+  LatLngBounds get bounds => LatLngBounds.$wrap($unsafe.callMethod('getBounds'));
+  LatLng get center => LatLng.$wrap($unsafe.callMethod('getCenter'));
+  html.Node get div => $unsafe.callMethod('getDiv');
   num get heading => $unsafe.callMethod('getHeading');
-  dynamic /*MapTypeId|String*/ get mapTypeId {
-    final result = $unsafe.callMethod('getMapTypeId');
-    return [MapTypeId.find(result), result].firstWhere((e) => e != null, orElse: () => null);
-  }
-  Projection get projection => Projection.cast($unsafe.callMethod('getProjection'));
-  StreetViewPanorama get streetView => StreetViewPanorama.cast($unsafe.callMethod('getStreetView'));
+  dynamic get mapTypeId => ((v3) => ((v2) => v2 != null ? v2 : ((v1) => v1 is String ? v1 : ((v0) => v0)(v1))(v3))(MapTypeId.$wrap(v3)))($unsafe['mapTypeId']);
+  Projection get projection => Projection.$wrap($unsafe.callMethod('getProjection'));
+  StreetViewPanorama get streetView => StreetViewPanorama.$wrap($unsafe.callMethod('getStreetView'));
   num get tilt => $unsafe.callMethod('getTilt');
   num get zoom => $unsafe.callMethod('getZoom');
   void panBy(num x, num y) {
     $unsafe.callMethod('panBy', [x, y]);
   }
   void panTo(LatLng latLng) {
-    $unsafe.callMethod('panTo', [latLng]);
+    $unsafe.callMethod('panTo', [latLng == null ? null : latLng.$unsafe]);
   }
   void panToBounds(LatLngBounds latLngBounds) {
-    $unsafe.callMethod('panToBounds', [latLngBounds]);
+    $unsafe.callMethod('panToBounds', [latLngBounds == null ? null : latLngBounds.$unsafe]);
   }
-  set center(LatLng latLng) => $unsafe.callMethod('setCenter', [latLng]);
+  set center(LatLng latLng) => $unsafe.callMethod('setCenter', [latLng == null ? null : latLng.$unsafe]);
   set heading(num heading) => $unsafe.callMethod('setHeading', [heading]);
-  set mapTypeId(dynamic mapTypeId) => $unsafe.callMethod('setMapTypeId', [mapTypeId]);
-  set options(MapOptions options) => $unsafe.callMethod('setOptions', [options]);
-  set streetView(StreetViewPanorama panorama) => $unsafe.callMethod('setStreetView', [panorama]);
+  set mapTypeId(dynamic mapTypeId) => $unsafe.callMethod('setMapTypeId', [mapTypeId == null ? null : mapTypeId is MapTypeId ? mapTypeId.$unsafe : mapTypeId is String ? mapTypeId : throw "bad type"]);
+  set options(MapOptions options) => $unsafe.callMethod('setOptions', [options == null ? null : options.$unsafe]);
+  set streetView(StreetViewPanorama panorama) => $unsafe.callMethod('setStreetView', [panorama == null ? null : panorama.$unsafe]);
   set tilt(num tilt) => $unsafe.callMethod('setTilt', [tilt]);
   set zoom(num zoom) => $unsafe.callMethod('setZoom', [zoom]);
 
-  Controls get controls => Controls.cast($unsafe['controls']);
-  MapTypeRegistry get mapTypes => MapTypeRegistry.cast($unsafe['mapTypes']);
-  MVCArray<MapType> get overlayMapTypes => MVCArray.castListOfSerializables($unsafe['overlayMapTypes'], MapType.cast);
-  set controls(Controls controls) => $unsafe['controls'] = controls;
-  set mapTypes(MapTypeRegistry mapTypes) => $unsafe['mapTypes'] = mapTypes;
-  set overlayMapTypes(MVCArray<MapType> overlayMapTypes) => $unsafe['overlayMapTypes'] = overlayMapTypes;
+  Controls get controls => Controls.$wrap($unsafe['controls']);
+  MapTypeRegistry get mapTypes => MapTypeRegistry.$wrap($unsafe['mapTypes']);
+  MVCArray<MapType> get overlayMapTypes => MVCArray.$wrapSerializables($unsafe['overlayMapTypes'], MapType.$wrap);
+  set controls(Controls controls) => $unsafe['controls'] = controls == null ? null : controls.$unsafe;
+  set mapTypes(MapTypeRegistry mapTypes) => $unsafe['mapTypes'] = mapTypes == null ? null : mapTypes.$unsafe;
+  set overlayMapTypes(MVCArray overlayMapTypes) => $unsafe['overlayMapTypes'] = overlayMapTypes == null ? null : overlayMapTypes.$unsafe;
 }
 
 // TODO make this a Map
 class Controls extends jsw.TypedJsObject {
-  static Controls cast(js.JsObject jsObject) => jsObject == null ? null : new Controls.fromJsObject(jsObject);
+  static Controls $wrap(js.JsObject jsObject) => jsObject == null ? null : new Controls.fromJsObject(jsObject);
   Controls.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
   Controls()
-      : super.fromJsObject(js.jsify([]));
+      : super.fromJsObject(new js.JsArray());
 
-  MVCArray<html.Node> operator [](ControlPosition controlPosition) => MVCArray.cast($unsafe[controlPosition], _nodeTranslator);
+  MVCArray<html.Node> operator [](ControlPosition controlPosition) => MVCArray.$wrap($unsafe[jsw.Serializable.$unwrap(controlPosition)]);
   void operator []=(ControlPosition controlPosition, MVCArray<html.Node> nodes) {
-    $unsafe[controlPosition] = nodes;
+    $unsafe[jsw.Serializable.$unwrap(controlPosition)] = jsw.Serializable.$unwrap(nodes);
   }
-}
-
-final _nodeTranslator = new _NodeTranslator();
-class _NodeTranslator extends jsw.Translator<html.Node> {
-  _NodeTranslator()
-      : super(jsw.convertElementToDart, jsw.convertElementToJs);
 }

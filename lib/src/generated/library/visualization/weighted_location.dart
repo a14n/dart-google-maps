@@ -15,14 +15,14 @@
 part of google_maps_visualization;
 
 class WeightedLocation extends jsw.TypedJsObject {
-  static WeightedLocation cast(js.JsObject jsObject) => jsObject == null ? null : new WeightedLocation.fromJsObject(jsObject);
+  static WeightedLocation $wrap(js.JsObject jsObject) => jsObject == null ? null : new WeightedLocation.fromJsObject(jsObject);
   WeightedLocation.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
   WeightedLocation()
       : super();
 
-  set location(LatLng location) => $unsafe['location'] = location;
-  LatLng get location => LatLng.cast($unsafe['location']);
+  set location(LatLng location) => $unsafe['location'] = location == null ? null : location.$unsafe;
+  LatLng get location => LatLng.$wrap($unsafe['location']);
   set weight(num weight) => $unsafe['weight'] = weight;
   num get weight => $unsafe['weight'];
 }

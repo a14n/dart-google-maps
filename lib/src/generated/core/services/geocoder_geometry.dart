@@ -15,18 +15,17 @@
 part of google_maps;
 
 class GeocoderGeometry extends jsw.TypedJsObject {
-  static GeocoderGeometry cast(js.JsObject jsObject) => jsObject == null ? null : new GeocoderGeometry.fromJsObject(jsObject);
+  static GeocoderGeometry $wrap(js.JsObject jsObject) => jsObject == null ? null : new GeocoderGeometry.fromJsObject(jsObject);
   GeocoderGeometry.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  GeocoderGeometry()
-      : super();
+  GeocoderGeometry();
 
-  set bounds(LatLngBounds bounds) => $unsafe['bounds'] = bounds;
-  LatLngBounds get bounds => LatLngBounds.cast($unsafe['bounds']);
-  set location(LatLng location) => $unsafe['location'] = location;
-  LatLng get location => LatLng.cast($unsafe['location']);
-  set locationType(GeocoderLocationType locationType) => $unsafe['location_type'] = locationType;
-  GeocoderLocationType get locationType => GeocoderLocationType.find($unsafe['location_type']);
-  set viewport(LatLngBounds viewport) => $unsafe['viewport'] = viewport;
-  LatLngBounds get viewport => LatLngBounds.cast($unsafe['viewport']);
+  set bounds(LatLngBounds bounds) => $unsafe['bounds'] = bounds == null ? null : bounds.$unsafe;
+  LatLngBounds get bounds => LatLngBounds.$wrap($unsafe['bounds']);
+  set location(LatLng location) => $unsafe['location'] = location == null ? null : location.$unsafe;
+  LatLng get location => LatLng.$wrap($unsafe['location']);
+  set locationType(GeocoderLocationType locationType) => $unsafe['location_type'] = locationType == null ? null : locationType.$unsafe;
+  GeocoderLocationType get locationType => GeocoderLocationType.$wrap($unsafe['location_type']);
+  set viewport(LatLngBounds viewport) => $unsafe['viewport'] = viewport == null ? null : viewport.$unsafe;
+  LatLngBounds get viewport => LatLngBounds.$wrap($unsafe['viewport']);
 }

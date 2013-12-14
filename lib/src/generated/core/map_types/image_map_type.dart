@@ -16,11 +16,11 @@ part of google_maps;
 
 // TODO extends MVCObject mixin MapType
 class ImageMapType extends MapType {
-  static ImageMapType cast(js.JsObject jsObject) => jsObject == null ? null : new ImageMapType.fromJsObject(jsObject);
+  static ImageMapType $wrap(js.JsObject jsObject) => jsObject == null ? null : new ImageMapType.fromJsObject(jsObject);
   jsw.SubscribeStreamProvider _onTilesloaded;
 
   ImageMapType(ImageMapTypeOptions opts)
-      : super(maps['ImageMapType'], [opts]) {
+      : super(maps['ImageMapType'], [opts == null ? null : opts.$unsafe]) {
     _initStreams();
   }
   ImageMapType.fromJsObject(js.JsObject proxy)

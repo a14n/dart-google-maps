@@ -15,7 +15,7 @@
 part of google_maps;
 
 @wrapper abstract class StreetViewLocation extends jsw.TypedJsObject {
-  StreetViewLocation() : super();
+  StreetViewLocation();
 
   String description;
   LatLng latLng;

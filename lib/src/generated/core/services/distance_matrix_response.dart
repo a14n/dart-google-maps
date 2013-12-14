@@ -15,16 +15,15 @@
 part of google_maps;
 
 class DistanceMatrixResponse extends jsw.TypedJsObject {
-  static DistanceMatrixResponse cast(js.JsObject jsObject) => jsObject == null ? null : new DistanceMatrixResponse.fromJsObject(jsObject);
+  static DistanceMatrixResponse $wrap(js.JsObject jsObject) => jsObject == null ? null : new DistanceMatrixResponse.fromJsObject(jsObject);
   DistanceMatrixResponse.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  DistanceMatrixResponse()
-      : super();
+  DistanceMatrixResponse();
 
-  set destinationAddresses(List<String> destinationAddresses) => $unsafe['destinationAddresses'] = destinationAddresses == null ? null : destinationAddresses is js.Serializable ? destinationAddresses : js.jsify(destinationAddresses);
-  List<String> get destinationAddresses => jsw.TypedJsArray.cast($unsafe['destinationAddresses']);
-  set originAddresses(List<String> originAddresses) => $unsafe['originAddresses'] = originAddresses == null ? null : originAddresses is js.Serializable ? originAddresses : js.jsify(originAddresses);
-  List<String> get originAddresses => jsw.TypedJsArray.cast($unsafe['originAddresses']);
-  set rows(List<DistanceMatrixResponseRow> rows) => $unsafe['rows'] = rows == null ? null : rows is js.Serializable ? rows : js.jsify(rows);
-  List<DistanceMatrixResponseRow> get rows => jsw.TypedJsArray.castListOfSerializables($unsafe['rows'], DistanceMatrixResponseRow.cast);
+  set destinationAddresses(List<String> destinationAddresses) => $unsafe['destinationAddresses'] = destinationAddresses == null ? null : (destinationAddresses is jsw.TypedJsObject ? (destinationAddresses as jsw.TypedJsObject).$unsafe : jsw.jsify(destinationAddresses));
+  List<String> get destinationAddresses => jsw.TypedJsArray.$wrap($unsafe['destinationAddresses']);
+  set originAddresses(List<String> originAddresses) => $unsafe['originAddresses'] = originAddresses == null ? null : (originAddresses is jsw.TypedJsObject ? (originAddresses as jsw.TypedJsObject).$unsafe : jsw.jsify(originAddresses));
+  List<String> get originAddresses => jsw.TypedJsArray.$wrap($unsafe['originAddresses']);
+  set rows(List<DistanceMatrixResponseRow> rows) => $unsafe['rows'] = rows == null ? null : (rows is jsw.TypedJsObject ? (rows as jsw.TypedJsObject).$unsafe : jsw.jsify(rows));
+  List<DistanceMatrixResponseRow> get rows => jsw.TypedJsArray.$wrapSerializables($unsafe['rows'], DistanceMatrixResponseRow.$wrap);
 }

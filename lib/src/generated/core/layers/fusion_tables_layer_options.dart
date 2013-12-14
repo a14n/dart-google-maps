@@ -15,22 +15,21 @@
 part of google_maps;
 
 class FusionTablesLayerOptions extends jsw.TypedJsObject {
-  static FusionTablesLayerOptions cast(js.JsObject jsObject) => jsObject == null ? null : new FusionTablesLayerOptions.fromJsObject(jsObject);
+  static FusionTablesLayerOptions $wrap(js.JsObject jsObject) => jsObject == null ? null : new FusionTablesLayerOptions.fromJsObject(jsObject);
   FusionTablesLayerOptions.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  FusionTablesLayerOptions()
-      : super();
+  FusionTablesLayerOptions();
 
   set clickable(bool clickable) => $unsafe['clickable'] = clickable;
   bool get clickable => $unsafe['clickable'];
-  set heatmap(FusionTablesHeatmap heatmap) => $unsafe['heatmap'] = heatmap;
-  FusionTablesHeatmap get heatmap => FusionTablesHeatmap.cast($unsafe['heatmap']);
-  set map(GMap map) => $unsafe['map'] = map;
-  GMap get map => GMap.cast($unsafe['map']);
-  set query(FusionTablesQuery query) => $unsafe['query'] = query;
-  FusionTablesQuery get query => FusionTablesQuery.cast($unsafe['query']);
-  set styles(List<FusionTablesStyle> styles) => $unsafe['styles'] = styles == null ? null : styles is js.Serializable ? styles : js.jsify(styles);
-  List<FusionTablesStyle> get styles => jsw.TypedJsArray.castListOfSerializables($unsafe['styles'], FusionTablesStyle.cast);
+  set heatmap(FusionTablesHeatmap heatmap) => $unsafe['heatmap'] = heatmap == null ? null : heatmap.$unsafe;
+  FusionTablesHeatmap get heatmap => FusionTablesHeatmap.$wrap($unsafe['heatmap']);
+  set map(GMap map) => $unsafe['map'] = map == null ? null : map.$unsafe;
+  GMap get map => GMap.$wrap($unsafe['map']);
+  set query(FusionTablesQuery query) => $unsafe['query'] = query == null ? null : query.$unsafe;
+  FusionTablesQuery get query => FusionTablesQuery.$wrap($unsafe['query']);
+  set styles(List<FusionTablesStyle> styles) => $unsafe['styles'] = styles == null ? null : (styles is jsw.TypedJsObject ? (styles as jsw.TypedJsObject).$unsafe : jsw.jsify(styles));
+  List<FusionTablesStyle> get styles => jsw.TypedJsArray.$wrapSerializables($unsafe['styles'], FusionTablesStyle.$wrap);
   set suppressInfoWindows(bool suppressInfoWindows) => $unsafe['suppressInfoWindows'] = suppressInfoWindows;
   bool get suppressInfoWindows => $unsafe['suppressInfoWindows'];
 }

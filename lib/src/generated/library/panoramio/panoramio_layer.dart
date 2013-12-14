@@ -15,11 +15,11 @@
 part of google_maps_panoramio;
 
 class PanoramioLayer extends MVCObject {
-  static PanoramioLayer cast(js.JsObject jsObject) => jsObject == null ? null : new PanoramioLayer.fromJsObject(jsObject);
+  static PanoramioLayer $wrap(js.JsObject jsObject) => jsObject == null ? null : new PanoramioLayer.fromJsObject(jsObject);
   jsw.SubscribeStreamProvider<PanoramioMouseEvent> _onClick;
 
   PanoramioLayer([PanoramioLayerOptions opts])
-      : super(maps['panoramio']['PanoramioLayer'], [opts]) {
+      : super(maps['panoramio']['PanoramioLayer'], [jsw.Serializable.$unwrap(opts)]) {
     _initStreams();
   }
   PanoramioLayer.fromJsObject(js.JsObject proxy)
@@ -28,16 +28,16 @@ class PanoramioLayer extends MVCObject {
   }
 
   void _initStreams() {
-    _onClick = event.getStreamProviderFor(this, "click", PanoramioMouseEvent.cast);
+    _onClick = event.getStreamProviderFor(this, "click", PanoramioMouseEvent.$wrap);
   }
 
   Stream<PanoramioMouseEvent> get onClick => _onClick.stream;
 
-  GMap get map => GMap.cast($unsafe.callMethod('getMap'));
+  GMap get map => GMap.$wrap($unsafe.callMethod('getMap'));
   String get tag => $unsafe.callMethod('getTag');
   String get userId => $unsafe.callMethod('getUserId');
-  set map(GMap map) => $unsafe.callMethod('setMap', [map]);
-  set options(PanoramioLayerOptions options) => $unsafe.callMethod('setOptions', [options]);
+  set map(GMap map) => $unsafe.callMethod('setMap', [map == null ? null : map.$unsafe]);
+  set options(PanoramioLayerOptions options) => $unsafe.callMethod('setOptions', [options == null ? null : options.$unsafe]);
   set tag(String tag) => $unsafe.callMethod('setTag', [tag]);
   set userId(String userId) => $unsafe.callMethod('setUserId', [userId]);
 }

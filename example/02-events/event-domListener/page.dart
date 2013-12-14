@@ -8,7 +8,7 @@ void main() {
     ..mapTypeId = MapTypeId.ROADMAP
   ;
 
-  final mapDiv = query("#map_canvas");
+  final mapDiv = querySelector("#map_canvas");
   final map = new GMap(mapDiv, mapOptions);
 
   // We add a DOM event here to show an alert if the DIV containing the

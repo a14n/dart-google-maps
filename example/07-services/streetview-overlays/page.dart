@@ -17,7 +17,7 @@ void main() {
     ..mapTypeId = MapTypeId.ROADMAP
     ..streetViewControl = false
     ;
-  map = new GMap(query('#map_canvas'), mapOptions);
+  map = new GMap(querySelector('#map_canvas'), mapOptions);
 
   // Setup the markers on the map
   // TODO issue for MarkerImage deprecated
@@ -60,7 +60,7 @@ void main() {
     ..pitch = 0
   ;
 
-  query("#toggleStreetView").onClick.listen((e) => toggleStreetView());
+  querySelector("#toggleStreetView").onClick.listen((e) => toggleStreetView());
 }
 
 void toggleStreetView() {

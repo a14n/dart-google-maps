@@ -19,7 +19,7 @@ void main() {
     ..mapTypeId = MapTypeId.ROADMAP
     ..center = manhattan
     ;
-  map = new GMap(query("#map_canvas"), mapOptions);
+  map = new GMap(querySelector("#map_canvas"), mapOptions);
 
   // Create a renderer for directions and bind it to the map.
   final rendererOptions = new DirectionsRendererOptions()
@@ -30,8 +30,8 @@ void main() {
   // Instantiate an info window to hold step text.
   stepDisplay = new InfoWindow();
 
-  query('#start').onChange.listen((e) => calcRoute());
-  query('#end').onChange.listen((e) => calcRoute());
+  querySelector('#start').onChange.listen((e) => calcRoute());
+  querySelector('#end').onChange.listen((e) => calcRoute());
 }
 
 void calcRoute() {
@@ -43,8 +43,8 @@ void calcRoute() {
 
   // Retrieve the start and end locations and create
   // a DirectionsRequest using WALKING directions.
-  final start = (query('#start') as SelectElement).value;
-  final end = (query('#end') as SelectElement).value;
+  final start = (querySelector('#start') as SelectElement).value;
+  final end = (querySelector('#end') as SelectElement).value;
   final request = new DirectionsRequest()
     ..origin = start
     ..destination = end
@@ -55,7 +55,7 @@ void calcRoute() {
   // function to create markers for each step.
   directionsService.route(request, (DirectionsResult response, DirectionsStatus status) {
     if (status == DirectionsStatus.OK) {
-      final warnings = query('#warnings_panel');
+      final warnings = querySelector('#warnings_panel');
       warnings.innerHtml = '<b>${response.routes[0].warnings}</b>';
       directionsDisplay.directions = response;
       showSteps(response);

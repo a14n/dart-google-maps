@@ -15,7 +15,7 @@
 part of google_maps;
 
 @wrapper abstract class KmlLayerMetadata extends jsw.TypedJsObject {
-  KmlLayerMetadata() : super();
+  KmlLayerMetadata();
 
   KmlAuthor author;
   String description;

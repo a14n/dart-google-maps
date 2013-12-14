@@ -15,13 +15,13 @@
 part of google_maps;
 
 class Geocoder extends jsw.TypedJsObject {
-  static Geocoder cast(js.JsObject jsObject) => jsObject == null ? null : new Geocoder.fromJsObject(jsObject);
+  static Geocoder $wrap(js.JsObject jsObject) => jsObject == null ? null : new Geocoder.fromJsObject(jsObject);
   Geocoder.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
   Geocoder()
-      : super(maps['Geocoder']);
+      : super(maps['Geocoder'], []);
 
   void geocode(GeocoderRequest request, void callback(List<GeocoderResult> results, GeocoderStatus status)) {
-    $unsafe.callMethod('geocode', [request, (js.JsObject results, String status) => callback(jsw.TypedJsArray.castListOfSerializables(results, GeocoderResult.cast), GeocoderStatus.find(status))]);
+    $unsafe.callMethod('geocode', [jsw.Serializable.$unwrap(request), (js.JsObject results, String status) => callback(jsw.TypedJsArray.$wrapSerializables(results, GeocoderResult.$wrap), GeocoderStatus.$wrap(status))]);
   }
 }

@@ -15,7 +15,7 @@
 part of google_maps;
 
 @wrapper abstract class LocationElevationRequest extends jsw.TypedJsObject {
-  LocationElevationRequest() : super();
+  LocationElevationRequest();
 
   List<LatLng> locations;
 }

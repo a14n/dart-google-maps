@@ -15,11 +15,10 @@
 part of google_maps;
 
 class KmlAuthor extends jsw.TypedJsObject {
-  static KmlAuthor cast(js.JsObject jsObject) => jsObject == null ? null : new KmlAuthor.fromJsObject(jsObject);
+  static KmlAuthor $wrap(js.JsObject jsObject) => jsObject == null ? null : new KmlAuthor.fromJsObject(jsObject);
   KmlAuthor.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  KmlAuthor()
-      : super();
+  KmlAuthor();
 
   set email(String email) => $unsafe['email'] = email;
   String get email => $unsafe['email'];

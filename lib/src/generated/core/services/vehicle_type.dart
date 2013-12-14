@@ -15,6 +15,9 @@
 part of google_maps;
 
 class VehicleType extends jsw.IsEnum<String> {
+  static final _FINDER = new jsw.EnumFinder<String, VehicleType>([BUS, CABLE_CAR, COMMUTER_TRAIN, FERRY, FUNICULAR, GONDOLA_LIFT, HEAVY_RAIL, HIGH_SPEED_TRAIN, INTERCITY_BUS, METRO_RAIL, MONORAIL, OTHER, RAIL, SHARE_TAXI, SUBWAY, TRAM, TROLLEYBUS]);
+  static VehicleType $wrap(String jsValue) => _FINDER.find(jsValue);
+
   static final BUS = new VehicleType._("BUS");
   static final CABLE_CAR = new VehicleType._("CABLE_CAR");
   static final COMMUTER_TRAIN = new VehicleType._("COMMUTER_TRAIN");
@@ -32,10 +35,6 @@ class VehicleType extends jsw.IsEnum<String> {
   static final SUBWAY = new VehicleType._("SUBWAY");
   static final TRAM = new VehicleType._("TRAM");
   static final TROLLEYBUS = new VehicleType._("TROLLEYBUS");
-
-  static final _FINDER = new jsw.EnumFinder<String, VehicleType>([BUS, CABLE_CAR, COMMUTER_TRAIN, FERRY, FUNICULAR, GONDOLA_LIFT, HEAVY_RAIL, HIGH_SPEED_TRAIN, INTERCITY_BUS, METRO_RAIL, MONORAIL, OTHER, RAIL, SHARE_TAXI, SUBWAY, TRAM, TROLLEYBUS]);
-
-  static VehicleType find(o) => _FINDER.find(o);
 
   VehicleType._(String value)
       : super(value);

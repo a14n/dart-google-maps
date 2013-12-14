@@ -15,7 +15,7 @@
 part of google_maps;
 
 @wrapper abstract class RotateControlOptions extends jsw.TypedJsObject {
-  RotateControlOptions() : super();
+  RotateControlOptions();
 
-  @isEnum ControlPosition position;
+  ControlPosition position;
 }

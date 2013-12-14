@@ -15,28 +15,27 @@
 part of google_maps;
 
 class DirectionsStep extends jsw.TypedJsObject {
-  static DirectionsStep cast(js.JsObject jsObject) => jsObject == null ? null : new DirectionsStep.fromJsObject(jsObject);
+  static DirectionsStep $wrap(js.JsObject jsObject) => jsObject == null ? null : new DirectionsStep.fromJsObject(jsObject);
   DirectionsStep.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  DirectionsStep()
-      : super();
+  DirectionsStep();
 
-  set distance(Distance distance) => $unsafe['distance'] = distance;
-  Distance get distance => Distance.cast($unsafe['distance']);
-  set duration(GDuration duration) => $unsafe['duration'] = duration;
-  GDuration get duration => GDuration.cast($unsafe['duration']);
-  set endLocation(LatLng endLocation) => $unsafe['end_location'] = endLocation;
-  LatLng get endLocation => LatLng.cast($unsafe['end_location']);
+  set distance(Distance distance) => $unsafe['distance'] = distance == null ? null : distance.$unsafe;
+  Distance get distance => Distance.$wrap($unsafe['distance']);
+  set duration(GDuration duration) => $unsafe['duration'] = duration == null ? null : duration.$unsafe;
+  GDuration get duration => GDuration.$wrap($unsafe['duration']);
+  set endLocation(LatLng endLocation) => $unsafe['end_location'] = endLocation == null ? null : endLocation.$unsafe;
+  LatLng get endLocation => LatLng.$wrap($unsafe['end_location']);
   set instructions(String instructions) => $unsafe['instructions'] = instructions;
   String get instructions => $unsafe['instructions'];
-  set path(List<LatLng> path) => $unsafe['path'] = path == null ? null : path is js.Serializable ? path : js.jsify(path);
-  List<LatLng> get path => jsw.TypedJsArray.castListOfSerializables($unsafe['path'], LatLng.cast);
-  set startLocation(LatLng startLocation) => $unsafe['start_location'] = startLocation;
-  LatLng get startLocation => LatLng.cast($unsafe['start_location']);
-  set steps(List<DirectionsStep> steps) => $unsafe['steps'] = steps == null ? null : steps is js.Serializable ? steps : js.jsify(steps);
-  List<DirectionsStep> get steps => jsw.TypedJsArray.castListOfSerializables($unsafe['steps'], DirectionsStep.cast);
-  set transit(TransitDetails transit) => $unsafe['transit'] = transit;
-  TransitDetails get transit => TransitDetails.cast($unsafe['transit']);
-  set travelMode(TravelMode travelMode) => $unsafe['travel_mode'] = travelMode;
-  TravelMode get travelMode => TravelMode.find($unsafe['travel_mode']);
+  set path(List<LatLng> path) => $unsafe['path'] = path == null ? null : (path is jsw.TypedJsObject ? (path as jsw.TypedJsObject).$unsafe : jsw.jsify(path));
+  List<LatLng> get path => jsw.TypedJsArray.$wrapSerializables($unsafe['path'], LatLng.$wrap);
+  set startLocation(LatLng startLocation) => $unsafe['start_location'] = startLocation == null ? null : startLocation.$unsafe;
+  LatLng get startLocation => LatLng.$wrap($unsafe['start_location']);
+  set steps(List<DirectionsStep> steps) => $unsafe['steps'] = steps == null ? null : (steps is jsw.TypedJsObject ? (steps as jsw.TypedJsObject).$unsafe : jsw.jsify(steps));
+  List<DirectionsStep> get steps => jsw.TypedJsArray.$wrapSerializables($unsafe['steps'], DirectionsStep.$wrap);
+  set transit(TransitDetails transit) => $unsafe['transit'] = transit == null ? null : transit.$unsafe;
+  TransitDetails get transit => TransitDetails.$wrap($unsafe['transit']);
+  set travelMode(TravelMode travelMode) => $unsafe['travel_mode'] = travelMode == null ? null : travelMode.$unsafe;
+  TravelMode get travelMode => TravelMode.$wrap($unsafe['travel_mode']);
 }

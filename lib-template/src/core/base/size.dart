@@ -15,7 +15,7 @@
 part of google_maps;
 
 @wrapper abstract class Size extends jsw.TypedJsObject {
-  Size(num width, num height, [String widthUnit, String heightUnit]) : super(maps['Size'], [width, height, widthUnit, heightUnit]);
+  @generate Size(num width, num height, [String widthUnit, String heightUnit]);
 
   bool equals(Size other);
   String toString();

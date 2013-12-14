@@ -15,7 +15,7 @@
 part of google_maps_visualization;
 
 @wrapper abstract class MapsEngineMouseEvent extends jsw.TypedJsObject {
-  static MapsEngineMouseEvent cast(js.JsObject jsObject) => null;
+  static MapsEngineMouseEvent $wrap(js.JsObject jsObject) => null;
 
   MapsEngineMouseEvent() : super();
 

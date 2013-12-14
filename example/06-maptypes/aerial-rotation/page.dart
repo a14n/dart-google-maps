@@ -12,10 +12,10 @@ void main() {
     ..heading = 90
     ..tilt = 45
     ;
-  map = new GMap(query("#map_canvas"), mapOptions);
+  map = new GMap(querySelector("#map_canvas"), mapOptions);
   map.tilt = 45;
 
-  query("#autoRotate").onClick.listen((e) => autoRotate());
+  querySelector("#autoRotate").onClick.listen((e) => autoRotate());
 }
 
 void rotate90(_) {

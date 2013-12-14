@@ -15,13 +15,12 @@
 part of google_maps_visualization;
 
 class MapsEngineStatus extends jsw.IsEnum<String> {
+  static final _FINDER = new jsw.EnumFinder<String, MapsEngineStatus>([INVALID_LAYER, OK, UNKNOWN_ERROR]);
+  static MapsEngineStatus $wrap(String jsValue) => _FINDER.find(jsValue);
+
   static final INVALID_LAYER = new MapsEngineStatus._(maps['places']['PlacesServiceStatus']['INVALID_LAYER']);
   static final OK = new MapsEngineStatus._(maps['places']['PlacesServiceStatus']['OK']);
   static final UNKNOWN_ERROR = new MapsEngineStatus._(maps['places']['PlacesServiceStatus']['UNKNOWN_ERROR']);
-
-  static final _FINDER = new jsw.EnumFinder<String, MapsEngineStatus>([INVALID_LAYER, OK, UNKNOWN_ERROR]);
-
-  static MapsEngineStatus find(o) => _FINDER.find(o);
 
   MapsEngineStatus._(String value)
       : super(value);

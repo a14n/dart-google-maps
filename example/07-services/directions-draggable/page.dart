@@ -16,9 +16,9 @@ void main() {
     ..mapTypeId = MapTypeId.ROADMAP
     ..center = australia
     ;
-  map = new GMap(query("#map_canvas"), mapOptions);
+  map = new GMap(querySelector("#map_canvas"), mapOptions);
   directionsDisplay.map = map;
-  directionsDisplay.panel = query('#directionsPanel');
+  directionsDisplay.panel = querySelector('#directionsPanel');
 
   directionsDisplay.onDirectionsChanged.listen((_) {
     computeTotalDistance(directionsDisplay.directions);
@@ -51,5 +51,5 @@ void computeTotalDistance(DirectionsResult result) {
     total += myroute.legs[i].distance.value;
   }
   total = total / 1000.0;  // TODO bad synthax in example
-  query('#total').innerHtml = '${total} km';
+  querySelector('#total').innerHtml = '${total} km';
 }

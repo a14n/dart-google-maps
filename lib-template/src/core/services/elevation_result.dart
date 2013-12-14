@@ -15,9 +15,9 @@
 part of google_maps;
 
 @wrapper abstract class ElevationResult extends jsw.TypedJsObject {
-  static ElevationResult cast(js.JsObject jsObject) => null;
+  static ElevationResult $wrap(js.JsObject jsObject) => null;
 
-  ElevationResult() : super();
+  ElevationResult();
 
   num elevation;
   LatLng location;

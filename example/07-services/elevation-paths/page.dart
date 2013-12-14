@@ -5,16 +5,16 @@ import 'package:js_wrapping/js_wrapping.dart' as jsw;
 import 'package:google_maps/google_maps.dart';
 
 class ColumnChart extends jsw.TypedJsObject {
-  ColumnChart(Node div) : super(js.context['google']['visualization']['ColumnChart'], [jsw.convertElementToJs(div)]);
+  ColumnChart(Node div) : super(js.context['google']['visualization']['ColumnChart'], [div]);
 
-  void draw(DataTable data, [js.JsObject options]) { $unsafe.callMethod('draw', [data, options]); }
+  void draw(DataTable data, [js.JsObject options]) { $unsafe.callMethod('draw', [jsw.Serializable.$unwrap(data), options]); }
 }
 
 class DataTable extends jsw.TypedJsObject {
   DataTable() : super(js.context['google']['visualization']['DataTable']);
 
   void addColumn(String type, [String label, String id]) { $unsafe.callMethod('addColumn', [type, label, id]); }
-  void addRow([List<Object> cellArray]) { $unsafe.callMethod('addRow', [cellArray == null ? null : cellArray is js.Serializable ? cellArray : js.jsify(cellArray)]); }
+  void addRow([List<Object> cellArray]) { $unsafe.callMethod('addRow', [cellArray == null ? null : cellArray is js.JsArray ? cellArray : jsw.jsify(cellArray)]); }
 }
 
 ElevationService elevator;
@@ -39,7 +39,7 @@ void main() {
     ..center = lonepine
     ..mapTypeId = MapTypeId.TERRAIN
     ;
-  map = new GMap(query('#map_canvas'), mapOptions);
+  map = new GMap(querySelector('#map_canvas'), mapOptions);
 
   // Create an ElevationService.
   elevator = new ElevationService();
@@ -51,7 +51,7 @@ void main() {
 void drawPath() {
 
   // Create a new chart in the elevation_chart DIV.
-  chart = new ColumnChart(query('#elevation_chart'));
+  chart = new ColumnChart(querySelector('#elevation_chart'));
 
   final path = [ whitney, lonepine, owenslake, panamintsprings, beattyjunction, badwater];
 
@@ -98,8 +98,8 @@ void plotElevation(List<ElevationResult> results, ElevationStatus status) {
     }
 
     // Draw the chart using the data within its DIV.
-    query('#elevation_chart').style.display = 'block';
-    chart.draw(data, js.jsify({})
+    querySelector('#elevation_chart').style.display = 'block';
+    chart.draw(data, jsw.jsify({})
       ..['width'] = 640
       ..['height'] = 200
       ..['legend'] = 'none'

@@ -15,11 +15,11 @@
 part of google_maps;
 
 class FusionTablesLayer extends MVCObject {
-  static FusionTablesLayer cast(js.JsObject jsObject) => jsObject == null ? null : new FusionTablesLayer.fromJsObject(jsObject);
+  static FusionTablesLayer $wrap(js.JsObject jsObject) => jsObject == null ? null : new FusionTablesLayer.fromJsObject(jsObject);
   jsw.SubscribeStreamProvider<FusionTablesMouseEvent> _onClick;
 
   FusionTablesLayer(FusionTablesLayerOptions options)
-      : super(maps['FusionTablesLayer'], [options]) {
+      : super(maps['FusionTablesLayer'], [options == null ? null : options.$unsafe]) {
     _initStreams();
   }
   FusionTablesLayer.fromJsObject(js.JsObject proxy)
@@ -28,12 +28,12 @@ class FusionTablesLayer extends MVCObject {
   }
 
   void _initStreams() {
-    _onClick = event.getStreamProviderFor(this, "click", FusionTablesMouseEvent.cast);
+    _onClick = event.getStreamProviderFor(this, "click", FusionTablesMouseEvent.$wrap);
   }
 
   Stream<FusionTablesMouseEvent> get onClick => _onClick.stream;
 
-  GMap get map => GMap.cast($unsafe.callMethod('getMap'));
-  set map(GMap map) => $unsafe.callMethod('setMap', [map]);
-  set options(FusionTablesLayerOptions options) => $unsafe.callMethod('setOptions', [options]);
+  GMap get map => GMap.$wrap($unsafe.callMethod('getMap'));
+  set map(GMap map) => $unsafe.callMethod('setMap', [map == null ? null : map.$unsafe]);
+  set options(FusionTablesLayerOptions options) => $unsafe.callMethod('setOptions', [options == null ? null : options.$unsafe]);
 }

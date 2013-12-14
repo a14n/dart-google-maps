@@ -15,16 +15,16 @@
 part of google_maps;
 
 class StreetViewService extends jsw.TypedJsObject {
-  static StreetViewService cast(js.JsObject jsObject) => jsObject == null ? null : new StreetViewService.fromJsObject(jsObject);
+  static StreetViewService $wrap(js.JsObject jsObject) => jsObject == null ? null : new StreetViewService.fromJsObject(jsObject);
   StreetViewService.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
   StreetViewService()
-      : super(maps['StreetViewService']);
+      : super(maps['StreetViewService'], []);
 
   void getPanoramaById(String pano, void callback(StreetViewPanoramaData streetViewPanoramaData, StreetViewStatus streetViewStatus)) {
-    $unsafe.callMethod('getPanoramaById', [pano, (js.JsObject streetViewPanoramaData, String streetViewStatus) => callback(StreetViewPanoramaData.cast(streetViewPanoramaData), StreetViewStatus.find(streetViewStatus))]);
+    $unsafe.callMethod('getPanoramaById', [pano, (js.JsObject streetViewPanoramaData, String streetViewStatus) => callback(StreetViewPanoramaData.$wrap(streetViewPanoramaData), StreetViewStatus.$wrap(streetViewStatus))]);
   }
   void getPanoramaByLocation(LatLng latlng, num radius, void callback(StreetViewPanoramaData streetViewPanoramaData, StreetViewStatus streetViewStatus)) {
-    $unsafe.callMethod('getPanoramaByLocation', [latlng, radius, (js.JsObject streetViewPanoramaData, String streetViewStatus) => callback(StreetViewPanoramaData.cast(streetViewPanoramaData), StreetViewStatus.find(streetViewStatus))]);
+    $unsafe.callMethod('getPanoramaByLocation', [jsw.Serializable.$unwrap(latlng), radius, (js.JsObject streetViewPanoramaData, String streetViewStatus) => callback(StreetViewPanoramaData.$wrap(streetViewPanoramaData), StreetViewStatus.$wrap(streetViewStatus))]);
   }
 }

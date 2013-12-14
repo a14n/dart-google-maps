@@ -15,6 +15,9 @@
 part of google_maps;
 
 class ControlPosition extends jsw.IsEnum<int> {
+  static final _FINDER = new jsw.EnumFinder<int, ControlPosition>([BOTTOM_CENTER, BOTTOM_LEFT, BOTTOM_RIGHT, LEFT_BOTTOM, LEFT_CENTER, LEFT_TOP, RIGHT_BOTTOM, RIGHT_CENTER, RIGHT_TOP, TOP_CENTER, TOP_LEFT, TOP_RIGHT]);
+  static ControlPosition $wrap(int jsValue) => _FINDER.find(jsValue);
+
   static final BOTTOM_CENTER = new ControlPosition._(maps['ControlPosition']['BOTTOM_CENTER']);
   static final BOTTOM_LEFT = new ControlPosition._(maps['ControlPosition']['BOTTOM_LEFT']);
   static final BOTTOM_RIGHT = new ControlPosition._(maps['ControlPosition']['BOTTOM_RIGHT']);
@@ -27,10 +30,6 @@ class ControlPosition extends jsw.IsEnum<int> {
   static final TOP_CENTER = new ControlPosition._(maps['ControlPosition']['TOP_CENTER']);
   static final TOP_LEFT = new ControlPosition._(maps['ControlPosition']['TOP_LEFT']);
   static final TOP_RIGHT = new ControlPosition._(maps['ControlPosition']['TOP_RIGHT']);
-
-  static final _FINDER = new jsw.EnumFinder<int, ControlPosition>([BOTTOM_CENTER, BOTTOM_LEFT, BOTTOM_RIGHT, LEFT_BOTTOM, LEFT_CENTER, LEFT_TOP, RIGHT_BOTTOM, RIGHT_CENTER, RIGHT_TOP, TOP_CENTER, TOP_LEFT, TOP_RIGHT]);
-
-  static ControlPosition find(Object o) => _FINDER.find(o);
 
   ControlPosition._(int value) : super(value);
 }

@@ -15,10 +15,10 @@
 part of google_maps;
 
 @wrapper abstract class TransitVehicle extends jsw.TypedJsObject {
-  TransitVehicle() : super();
+  TransitVehicle();
 
   String icon;
   String localIcon;
   String name;
-  @isEnum VehicleType type;
+  VehicleType type;
 }

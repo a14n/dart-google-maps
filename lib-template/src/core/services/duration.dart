@@ -15,7 +15,7 @@
 part of google_maps;
 
 @wrapper abstract class GDuration extends jsw.TypedJsObject {
-  GDuration() : super();
+  GDuration();
 
   String text;
   num value;

@@ -16,7 +16,7 @@ void main() {
     ..zoom = 16
     ..mapTypeId = MapTypeId.ROADMAP
     ;
-  final map = new GMap(query('#map_canvas'), mapOptions);
+  final map = new GMap(querySelector('#map_canvas'), mapOptions);
 
   panorama = map.streetView;
   // Set up Street View and initially set it visible. Register the
@@ -26,7 +26,7 @@ void main() {
     ..visible = true
     ..panoProvider =  getCustomPanorama
     ;
-  panorama.$unsafe.callMethod('setOptions', [panoOptions]); //TODO undocumented method
+  panorama.$unsafe.callMethod('setOptions', [panoOptions.$unsafe]); //TODO undocumented method
 
   // Create a StreetViewService object.
   final streetviewService = new StreetViewService();

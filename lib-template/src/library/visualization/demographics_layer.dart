@@ -15,7 +15,7 @@
 part of google_maps_visualization;
 
 @wrapper @forMethods abstract class DemographicsLayer extends jsw.TypedJsObject {
-  DemographicsLayer([DemographicsLayerOptions opts]) : super(maps['visualization']['DemographicsLayer'], [opts]);
+  DemographicsLayer([DemographicsLayerOptions opts]) : super(maps['visualization']['DemographicsLayer'], [jsw.Serializable.$unwrap(opts)]);
 
   GMap get map;
   DemographicsQuery get query;

@@ -15,20 +15,19 @@
 part of google_maps;
 
 class StreetViewPanoramaData extends jsw.TypedJsObject {
-  static StreetViewPanoramaData cast(js.JsObject jsObject) => jsObject == null ? null : new StreetViewPanoramaData.fromJsObject(jsObject);
+  static StreetViewPanoramaData $wrap(js.JsObject jsObject) => jsObject == null ? null : new StreetViewPanoramaData.fromJsObject(jsObject);
   StreetViewPanoramaData.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  StreetViewPanoramaData()
-      : super();
+  StreetViewPanoramaData();
 
   set copyright(String copyright) => $unsafe['copyright'] = copyright;
   String get copyright => $unsafe['copyright'];
   set imageDate(String imageDate) => $unsafe['imageDate'] = imageDate;
   String get imageDate => $unsafe['imageDate'];
-  set links(List<StreetViewLink> links) => $unsafe['links'] = links == null ? null : links is js.Serializable ? links : js.jsify(links);
-  List<StreetViewLink> get links => jsw.TypedJsArray.castListOfSerializables($unsafe['links'], StreetViewLink.cast);
-  set location(StreetViewLocation location) => $unsafe['location'] = location;
-  StreetViewLocation get location => StreetViewLocation.cast($unsafe['location']);
-  set tiles(StreetViewTileData tiles) => $unsafe['tiles'] = tiles;
-  StreetViewTileData get tiles => StreetViewTileData.cast($unsafe['tiles']);
+  set links(List<StreetViewLink> links) => $unsafe['links'] = links == null ? null : (links is jsw.TypedJsObject ? (links as jsw.TypedJsObject).$unsafe : jsw.jsify(links));
+  List<StreetViewLink> get links => jsw.TypedJsArray.$wrapSerializables($unsafe['links'], StreetViewLink.$wrap);
+  set location(StreetViewLocation location) => $unsafe['location'] = location == null ? null : location.$unsafe;
+  StreetViewLocation get location => StreetViewLocation.$wrap($unsafe['location']);
+  set tiles(StreetViewTileData tiles) => $unsafe['tiles'] = tiles == null ? null : tiles.$unsafe;
+  StreetViewTileData get tiles => StreetViewTileData.$wrap($unsafe['tiles']);
 }

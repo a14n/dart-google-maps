@@ -15,36 +15,13 @@
 part of google_maps_drawing;
 
 class OverlayCompleteEvent extends jsw.TypedJsObject {
-  static OverlayCompleteEvent cast(js.JsObject jsObject) => jsObject == null ? null : new OverlayCompleteEvent.fromJsObject(jsObject);
+  static OverlayCompleteEvent $wrap(js.JsObject jsObject) => jsObject == null ? null : new OverlayCompleteEvent.fromJsObject(jsObject);
   OverlayCompleteEvent.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
   OverlayCompleteEvent();
 
-  dynamic /*Marker|Polygon|Polyline|Rectangle|Circle*/ get overlay {
-    final result = $unsafe['overlay'];
-    if (Marker.isInstance(result)) {
-      return Marker.cast(result);
-    } else {
-      if (Polygon.isInstance(result)) {
-        return Polygon.cast(result);
-      } else {
-        if (Polyline.isInstance(result)) {
-          return Polyline.cast(result);
-        } else {
-          if (Rectangle.isInstance(result)) {
-            return Rectangle.cast(result);
-          } else {
-            if (Circle.isInstance(result)) {
-              return Circle.cast(result);
-            } else {
-              return result;
-            }
-          }
-        }
-      }
-    }
-  }
-  set overlay(dynamic overlay) => $unsafe['overlay'] = overlay;
-  set type(OverlayType type) => $unsafe['type'] = type;
-  OverlayType get type => OverlayType.find($unsafe['type']);
+  set overlay(dynamic overlay) => $unsafe['overlay'] = overlay == null ? null : overlay is Marker ? overlay.$unsafe : overlay is Polygon ? overlay.$unsafe : overlay is Polyline ? overlay.$unsafe : overlay is Rectangle ? overlay.$unsafe : overlay is Circle ? overlay.$unsafe : throw "bad type";
+  dynamic get overlay => ((v5) => Marker.isInstance(v5) ? Marker.$wrap(v5) : ((v4) => Polygon.isInstance(v4) ? Polygon.$wrap(v4) : ((v3) => Polyline.isInstance(v3) ? Polyline.$wrap(v3) : ((v2) => Rectangle.isInstance(v2) ? Rectangle.$wrap(v2) : ((v1) => Circle.isInstance(v1) ? Circle.$wrap(v1) : ((v0) => v0)(v1))(v2))(v3))(v4))(v5))($unsafe['overlay']);
+  set type(OverlayType type) => $unsafe['type'] = type == null ? null : type.$unsafe;
+  OverlayType get type => OverlayType.$wrap($unsafe['type']);
 }

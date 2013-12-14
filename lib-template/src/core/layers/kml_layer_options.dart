@@ -15,7 +15,7 @@
 part of google_maps;
 
 @wrapper abstract class KmlLayerOptions extends jsw.TypedJsObject {
-  KmlLayerOptions() : super();
+  KmlLayerOptions();
 
   bool clickable;
   GMap map;

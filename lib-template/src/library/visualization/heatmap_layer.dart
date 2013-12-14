@@ -15,12 +15,12 @@
 part of google_maps_visualization;
 
 @wrapper @forMethods abstract class HeatmapLayer extends MVCObject {
-  HeatmapLayer([HeatmapLayerOptions opts]) : super(maps['visualization']['HeatmapLayer'], [opts]);
+  HeatmapLayer([HeatmapLayerOptions opts]) : super(maps['visualization']['HeatmapLayer'], [jsw.Serializable.$unwrap(opts)]);
 
-  MVCArray<dynamic/*LatLng|WeightedLocation*/> get data => MVCArray.castListOfSerializables($unsafe.callMethod('getData'), (e) => LatLng.isInstance(e) ? LatLng.cast(e) : WeightedLocation.cast(e));
+  MVCArray<dynamic/*LatLng|WeightedLocation*/> get data => MVCArray.$wrapSerializables($unsafe.callMethod('getData'), (e) => LatLng.isInstance(e) ? LatLng.$wrap(e) : WeightedLocation.$wrap(e));
   GMap get map;
   set data(dynamic/*MVCArray.<LatLng|WeightedLocation>|Array.<LatLng|WeightedLocation>*/ data) {
-    $unsafe.callMethod('setData', [data == null ? null : data is js.Serializable ? data : js.jsify(data)]);
+    $unsafe.callMethod('setData', [data == null ? null : data is js.JsArray ? data : jsw.jsify(data)]);
   }
   set map(GMap map);
   set options(HeatmapLayerOptions options);

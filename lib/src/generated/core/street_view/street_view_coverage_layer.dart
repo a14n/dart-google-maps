@@ -15,13 +15,13 @@
 part of google_maps;
 
 class StreetViewCoverageLayer extends MVCObject {
-  static StreetViewCoverageLayer cast(js.JsObject jsObject) => jsObject == null ? null : new StreetViewCoverageLayer.fromJsObject(jsObject);
+  static StreetViewCoverageLayer $wrap(js.JsObject jsObject) => jsObject == null ? null : new StreetViewCoverageLayer.fromJsObject(jsObject);
   StreetViewCoverageLayer.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
   StreetViewCoverageLayer()
-      : super(maps['StreetViewCoverageLayer']);
+      : super(maps['StreetViewCoverageLayer'], []);
 
-  GMap get map => GMap.cast($unsafe.callMethod('getMap'));
-  set map(GMap map) => $unsafe.callMethod('setMap', [map]);
+  GMap get map => GMap.$wrap($unsafe.callMethod('getMap'));
+  set map(GMap map) => $unsafe.callMethod('setMap', [map == null ? null : map.$unsafe]);
 }
 

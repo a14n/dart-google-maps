@@ -15,6 +15,9 @@
 part of google_maps;
 
 class DirectionsStatus extends jsw.IsEnum<String> {
+  static final _FINDER = new jsw.EnumFinder<String, DirectionsStatus>([INVALID_REQUEST, MAX_WAYPOINTS_EXCEEDED, NOT_FOUND, OK, OVER_QUERY_LIMIT, REQUEST_DENIED, UNKNOWN_ERROR, ZERO_RESULTS]);
+  static DirectionsStatus $wrap(String jsValue) => _FINDER.find(jsValue);
+
   static final INVALID_REQUEST = new DirectionsStatus._(maps['DirectionsStatus']['INVALID_REQUEST']);
   static final MAX_WAYPOINTS_EXCEEDED = new DirectionsStatus._(maps['DirectionsStatus']['MAX_WAYPOINTS_EXCEEDED']);
   static final NOT_FOUND = new DirectionsStatus._(maps['DirectionsStatus']['NOT_FOUND']);
@@ -23,10 +26,6 @@ class DirectionsStatus extends jsw.IsEnum<String> {
   static final REQUEST_DENIED = new DirectionsStatus._(maps['DirectionsStatus']['REQUEST_DENIED']);
   static final UNKNOWN_ERROR = new DirectionsStatus._(maps['DirectionsStatus']['UNKNOWN_ERROR']);
   static final ZERO_RESULTS = new DirectionsStatus._(maps['DirectionsStatus']['ZERO_RESULTS']);
-
-  static final _FINDER = new jsw.EnumFinder<String, DirectionsStatus>([INVALID_REQUEST, MAX_WAYPOINTS_EXCEEDED, NOT_FOUND, OK, OVER_QUERY_LIMIT, REQUEST_DENIED, UNKNOWN_ERROR, ZERO_RESULTS]);
-
-  static DirectionsStatus find(o) => _FINDER.find(o);
 
   DirectionsStatus._(String value)
       : super(value);

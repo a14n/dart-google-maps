@@ -15,24 +15,24 @@
 part of google_maps_places;
 
 class AutocompletionRequest extends jsw.TypedJsObject {
-  static AutocompletionRequest cast(js.JsObject jsObject) => jsObject == null ? null : new AutocompletionRequest.fromJsObject(jsObject);
+  static AutocompletionRequest $wrap(js.JsObject jsObject) => jsObject == null ? null : new AutocompletionRequest.fromJsObject(jsObject);
   AutocompletionRequest.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
   AutocompletionRequest()
       : super();
 
-  set bounds(LatLngBounds bounds) => $unsafe['bounds'] = bounds;
-  LatLngBounds get bounds => LatLngBounds.cast($unsafe['bounds']);
-  set componentRestrictions(ComponentRestrictions componentRestrictions) => $unsafe['componentRestrictions'] = componentRestrictions;
-  ComponentRestrictions get componentRestrictions => ComponentRestrictions.cast($unsafe['componentRestrictions']);
+  set bounds(LatLngBounds bounds) => $unsafe['bounds'] = bounds == null ? null : bounds.$unsafe;
+  LatLngBounds get bounds => LatLngBounds.$wrap($unsafe['bounds']);
+  set componentRestrictions(ComponentRestrictions componentRestrictions) => $unsafe['componentRestrictions'] = componentRestrictions == null ? null : componentRestrictions.$unsafe;
+  ComponentRestrictions get componentRestrictions => ComponentRestrictions.$wrap($unsafe['componentRestrictions']);
   set input(String input) => $unsafe['input'] = input;
   String get input => $unsafe['input'];
-  set location(LatLng location) => $unsafe['location'] = location;
-  LatLng get location => LatLng.cast($unsafe['location']);
+  set location(LatLng location) => $unsafe['location'] = location == null ? null : location.$unsafe;
+  LatLng get location => LatLng.$wrap($unsafe['location']);
   set offset(num offset) => $unsafe['offset'] = offset;
   num get offset => $unsafe['offset'];
   set radius(num radius) => $unsafe['radius'] = radius;
   num get radius => $unsafe['radius'];
-  set types(List<String> types) => $unsafe['types'] = types == null ? null : types is js.Serializable ? types : js.jsify(types);
-  List<String> get types => jsw.TypedJsArray.cast($unsafe['types']);
+  set types(List<String> types) => $unsafe['types'] = types == null ? null : (types is jsw.TypedJsObject ? (types as jsw.TypedJsObject).$unsafe : jsw.jsify(types));
+  List<String> get types => jsw.TypedJsArray.$wrap($unsafe['types']);
 }

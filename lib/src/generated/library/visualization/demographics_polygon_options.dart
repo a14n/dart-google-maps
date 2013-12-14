@@ -15,7 +15,7 @@
 part of google_maps_visualization;
 
 class DemographicsPolygonOptions extends jsw.TypedJsObject {
-  static DemographicsPolygonOptions cast(js.JsObject jsObject) => jsObject == null ? null : new DemographicsPolygonOptions.fromJsObject(jsObject);
+  static DemographicsPolygonOptions $wrap(js.JsObject jsObject) => jsObject == null ? null : new DemographicsPolygonOptions.fromJsObject(jsObject);
   DemographicsPolygonOptions.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
   DemographicsPolygonOptions()
@@ -23,20 +23,20 @@ class DemographicsPolygonOptions extends jsw.TypedJsObject {
 
   set fillColor(String fillColor) => $unsafe['fillColor'] = fillColor;
   String get fillColor => $unsafe['fillColor'];
-  set fillColorStyle(DemographicsPropertyStyle fillColorStyle) => $unsafe['fillColorStyle'] = fillColorStyle;
-  DemographicsPropertyStyle get fillColorStyle => DemographicsPropertyStyle.cast($unsafe['fillColorStyle']);
+  set fillColorStyle(DemographicsPropertyStyle fillColorStyle) => $unsafe['fillColorStyle'] = fillColorStyle == null ? null : fillColorStyle.$unsafe;
+  DemographicsPropertyStyle get fillColorStyle => DemographicsPropertyStyle.$wrap($unsafe['fillColorStyle']);
   set fillOpacity(num fillOpacity) => $unsafe['fillOpacity'] = fillOpacity;
   num get fillOpacity => $unsafe['fillOpacity'];
-  set fillOpacityStyle(DemographicsPropertyStyle fillOpacityStyle) => $unsafe['fillOpacityStyle'] = fillOpacityStyle;
-  DemographicsPropertyStyle get fillOpacityStyle => DemographicsPropertyStyle.cast($unsafe['fillOpacityStyle']);
+  set fillOpacityStyle(DemographicsPropertyStyle fillOpacityStyle) => $unsafe['fillOpacityStyle'] = fillOpacityStyle == null ? null : fillOpacityStyle.$unsafe;
+  DemographicsPropertyStyle get fillOpacityStyle => DemographicsPropertyStyle.$wrap($unsafe['fillOpacityStyle']);
   set strokeColor(String strokeColor) => $unsafe['strokeColor'] = strokeColor;
   String get strokeColor => $unsafe['strokeColor'];
-  set strokeColorStyle(DemographicsPropertyStyle strokeColorStyle) => $unsafe['strokeColorStyle'] = strokeColorStyle;
-  DemographicsPropertyStyle get strokeColorStyle => DemographicsPropertyStyle.cast($unsafe['strokeColorStyle']);
+  set strokeColorStyle(DemographicsPropertyStyle strokeColorStyle) => $unsafe['strokeColorStyle'] = strokeColorStyle == null ? null : strokeColorStyle.$unsafe;
+  DemographicsPropertyStyle get strokeColorStyle => DemographicsPropertyStyle.$wrap($unsafe['strokeColorStyle']);
   set strokeOpacity(num strokeOpacity) => $unsafe['strokeOpacity'] = strokeOpacity;
   num get strokeOpacity => $unsafe['strokeOpacity'];
-  set strokeOpacityStyle(DemographicsPropertyStyle strokeOpacityStyle) => $unsafe['strokeOpacityStyle'] = strokeOpacityStyle;
-  DemographicsPropertyStyle get strokeOpacityStyle => DemographicsPropertyStyle.cast($unsafe['strokeOpacityStyle']);
+  set strokeOpacityStyle(DemographicsPropertyStyle strokeOpacityStyle) => $unsafe['strokeOpacityStyle'] = strokeOpacityStyle == null ? null : strokeOpacityStyle.$unsafe;
+  DemographicsPropertyStyle get strokeOpacityStyle => DemographicsPropertyStyle.$wrap($unsafe['strokeOpacityStyle']);
   set strokeWeight(num strokeWeight) => $unsafe['strokeWeight'] = strokeWeight;
   num get strokeWeight => $unsafe['strokeWeight'];
 }

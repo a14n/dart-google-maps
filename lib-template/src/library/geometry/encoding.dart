@@ -20,5 +20,5 @@ final Encoding encoding = new Encoding();
   Encoding() : super.fromJsObject(maps['geometry']['encoding']);
 
   @generate List<LatLng> decodePath(String encodedPath) => null;
-  String encodePath(dynamic/*Array.<LatLng>|MVCArray.<LatLng>*/ path) => $unsafe.callMethod('encodePath', [path == null ? null : path is js.Serializable ? path : js.jsify(path)]);
+  String encodePath(dynamic/*Array.<LatLng>|MVCArray.<LatLng>*/ path) => $unsafe.callMethod('encodePath', [path == null ? null : path is js.JsArray ? path : jsw.jsify(path)]);
 }

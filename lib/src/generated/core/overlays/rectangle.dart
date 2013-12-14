@@ -15,7 +15,7 @@
 part of google_maps;
 
 class Rectangle extends MVCObject {
-  static Rectangle cast(js.JsObject jsObject) => jsObject == null ? null : new Rectangle.fromJsObject(jsObject);
+  static Rectangle $wrap(js.JsObject jsObject) => jsObject == null ? null : new Rectangle.fromJsObject(jsObject);
   static bool isInstance(js.JsObject proxy) => proxy.instanceof(maps['Rectangle']);
 
   jsw.SubscribeStreamProvider _onBoundsChanged;
@@ -29,7 +29,7 @@ class Rectangle extends MVCObject {
   jsw.SubscribeStreamProvider<MouseEvent> _onRightclick;
 
   Rectangle([RectangleOptions opts])
-      : super(maps['Rectangle'], [opts]) {
+      : super(maps['Rectangle'], [opts == null ? null : opts.$unsafe]) {
     _initStreams();
   }
   Rectangle.fromJsObject(js.JsObject proxy)
@@ -39,14 +39,14 @@ class Rectangle extends MVCObject {
 
   void _initStreams() {
     _onBoundsChanged = event.getStreamProviderFor(this, "bounds_changed");
-    _onClick = event.getStreamProviderFor(this, "click", MouseEvent.cast);
-    _onDblClick = event.getStreamProviderFor(this, "dblclick", MouseEvent.cast);
-    _onMousedown = event.getStreamProviderFor(this, "mousedown", MouseEvent.cast);
-    _onMousemove = event.getStreamProviderFor(this, "mousemove", MouseEvent.cast);
-    _onMouseout = event.getStreamProviderFor(this, "mouseout", MouseEvent.cast);
-    _onMouseover = event.getStreamProviderFor(this, "mouseover", MouseEvent.cast);
-    _onMouseup = event.getStreamProviderFor(this, "mouseup", MouseEvent.cast);
-    _onRightclick = event.getStreamProviderFor(this, "rightclick", MouseEvent.cast);
+    _onClick = event.getStreamProviderFor(this, "click", MouseEvent.$wrap);
+    _onDblClick = event.getStreamProviderFor(this, "dblclick", MouseEvent.$wrap);
+    _onMousedown = event.getStreamProviderFor(this, "mousedown", MouseEvent.$wrap);
+    _onMousemove = event.getStreamProviderFor(this, "mousemove", MouseEvent.$wrap);
+    _onMouseout = event.getStreamProviderFor(this, "mouseout", MouseEvent.$wrap);
+    _onMouseover = event.getStreamProviderFor(this, "mouseover", MouseEvent.$wrap);
+    _onMouseup = event.getStreamProviderFor(this, "mouseup", MouseEvent.$wrap);
+    _onRightclick = event.getStreamProviderFor(this, "rightclick", MouseEvent.$wrap);
   }
 
   Stream get onBoundsChanged => _onBoundsChanged.stream;
@@ -59,15 +59,15 @@ class Rectangle extends MVCObject {
   Stream<MouseEvent> get onMouseup => _onMouseup.stream;
   Stream<MouseEvent> get onRightclick => _onRightclick.stream;
 
-  LatLngBounds get bounds => LatLngBounds.cast($unsafe.callMethod('getBounds'));
+  LatLngBounds get bounds => LatLngBounds.$wrap($unsafe.callMethod('getBounds'));
   bool get draggable => $unsafe.callMethod('getDraggable');
   bool get editable => $unsafe.callMethod('getEditable');
-  GMap get map => GMap.cast($unsafe.callMethod('getMap'));
+  GMap get map => GMap.$wrap($unsafe.callMethod('getMap'));
   bool get visible => $unsafe.callMethod('getVisible');
-  set bounds(LatLngBounds bounds) => $unsafe.callMethod('setBounds', [bounds]);
+  set bounds(LatLngBounds bounds) => $unsafe.callMethod('setBounds', [bounds == null ? null : bounds.$unsafe]);
   set draggable(bool draggable) => $unsafe.callMethod('setDraggable', [draggable]);
   set editable(bool editable) => $unsafe.callMethod('setEditable', [editable]);
-  set map(GMap map) => $unsafe.callMethod('setMap', [map]);
-  set options(RectangleOptions options) => $unsafe.callMethod('setOptions', [options]);
+  set map(GMap map) => $unsafe.callMethod('setMap', [map == null ? null : map.$unsafe]);
+  set options(RectangleOptions options) => $unsafe.callMethod('setOptions', [options == null ? null : options.$unsafe]);
   set visible(bool visible) => $unsafe.callMethod('setVisible', [visible]);
 }

@@ -10,7 +10,7 @@ void main() {
     ..zoom = 8
     ..mapTypeId = MapTypeId.ROADMAP
     ;
-  final map = new GMap(query("#map_canvas"), mapOptions);
+  final map = new GMap(querySelector("#map_canvas"), mapOptions);
 
   final drawingManager = new DrawingManager(new DrawingManagerOptions()
     ..drawingMode = OverlayType.MARKER

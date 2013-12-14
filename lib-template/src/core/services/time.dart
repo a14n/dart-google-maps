@@ -15,10 +15,9 @@
 part of google_maps;
 
 @wrapper abstract class Time extends jsw.TypedJsObject {
-  Time() : super();
+  Time();
 
   String text;
   String timeZone;
-  DateTime get value;
-  set value(DateTime value);
+  DateTime value;
 }

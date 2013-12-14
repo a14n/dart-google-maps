@@ -15,11 +15,10 @@
 part of google_maps;
 
 class TransitVehicle extends jsw.TypedJsObject {
-  static TransitVehicle cast(js.JsObject jsObject) => jsObject == null ? null : new TransitVehicle.fromJsObject(jsObject);
+  static TransitVehicle $wrap(js.JsObject jsObject) => jsObject == null ? null : new TransitVehicle.fromJsObject(jsObject);
   TransitVehicle.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  TransitVehicle()
-      : super();
+  TransitVehicle();
 
   set icon(String icon) => $unsafe['icon'] = icon;
   String get icon => $unsafe['icon'];
@@ -27,6 +26,6 @@ class TransitVehicle extends jsw.TypedJsObject {
   String get localIcon => $unsafe['localIcon'];
   set name(String name) => $unsafe['name'] = name;
   String get name => $unsafe['name'];
-  set type(VehicleType type) => $unsafe['type'] = type;
-  VehicleType get type => VehicleType.find($unsafe['type']);
+  set type(VehicleType type) => $unsafe['type'] = type == null ? null : type.$unsafe;
+  VehicleType get type => VehicleType.$wrap($unsafe['type']);
 }

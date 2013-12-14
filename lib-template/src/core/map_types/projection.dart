@@ -15,23 +15,23 @@
 part of google_maps;
 
 @wrapper abstract class Projection extends jsw.TypedJsObject {
-  Projection() : super();
+  Projection();
 
   void set_fromLatLngToPoint(Point fromLatLngToPoint(LatLng latLng, [Point point])) {
     $unsafe['fromLatLngToPoint'] = (js.JsObject latLng, [js.JsObject point]) {
       if (point != null) {
-        return fromLatLngToPoint(LatLng.cast(latLng), Point.cast(point));
+        return jsw.Serializable.$unwrap(fromLatLngToPoint(LatLng.$wrap(latLng), Point.$wrap(point)));
       } else {
-        return fromLatLngToPoint(LatLng.cast(latLng));
+        return jsw.Serializable.$unwrap(fromLatLngToPoint(LatLng.$wrap(latLng)));
       }
     };
   }
   void set_fromPointToLatLng(LatLng fromPointToLatLng(Point pixel, [bool nowrap])) {
     $unsafe['fromPointToLatLng'] = (js.JsObject pixel, [bool nowrap]) {
       if (nowrap != null) {
-        return fromPointToLatLng(Point.cast(pixel), nowrap);
+        return jsw.Serializable.$unwrap(fromPointToLatLng(Point.$wrap(pixel), nowrap));
       } else {
-        return fromPointToLatLng(Point.cast(pixel));
+        return jsw.Serializable.$unwrap(fromPointToLatLng(Point.$wrap(pixel)));
       }
     };
   }

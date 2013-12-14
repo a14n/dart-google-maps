@@ -15,11 +15,11 @@
 part of google_maps_weather;
 
 class WeatherLayer extends MVCObject {
-  static WeatherLayer cast(js.JsObject jsObject) => jsObject == null ? null : new WeatherLayer.fromJsObject(jsObject);
+  static WeatherLayer $wrap(js.JsObject jsObject) => jsObject == null ? null : new WeatherLayer.fromJsObject(jsObject);
   jsw.SubscribeStreamProvider<WeatherMouseEvent> _onClick;
 
   WeatherLayer([WeatherLayerOptions opts])
-      : super(maps['weather']['WeatherLayer'], [opts]) {
+      : super(maps['weather']['WeatherLayer'], [jsw.Serializable.$unwrap(opts)]) {
     _initStreams();
   }
   WeatherLayer.fromJsObject(js.JsObject proxy)
@@ -28,12 +28,12 @@ class WeatherLayer extends MVCObject {
   }
 
   void _initStreams() {
-    _onClick = event.getStreamProviderFor(this, "click", WeatherMouseEvent.cast);
+    _onClick = event.getStreamProviderFor(this, "click", WeatherMouseEvent.$wrap);
   }
 
   Stream<WeatherMouseEvent> get onClick => _onClick.stream;
 
-  GMap get map => GMap.cast($unsafe.callMethod('getMap'));
-  set map(GMap map) => $unsafe.callMethod('setMap', [map]);
-  set options(WeatherLayerOptions options) => $unsafe.callMethod('setOptions', [options]);
+  GMap get map => GMap.$wrap($unsafe.callMethod('getMap'));
+  set map(GMap map) => $unsafe.callMethod('setMap', [map == null ? null : map.$unsafe]);
+  set options(WeatherLayerOptions options) => $unsafe.callMethod('setOptions', [options == null ? null : options.$unsafe]);
 }

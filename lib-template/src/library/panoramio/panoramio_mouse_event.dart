@@ -15,7 +15,7 @@
 part of google_maps_panoramio;
 
 @wrapper abstract class PanoramioMouseEvent extends jsw.TypedJsObject {
-  static PanoramioMouseEvent cast(js.JsObject jsObject) => null;
+  static PanoramioMouseEvent $wrap(js.JsObject jsObject) => null;
 
   PanoramioMouseEvent();
 

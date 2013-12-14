@@ -14,43 +14,51 @@
 
 part of google_maps;
 
-@wrapper @skipCast @skipConstructor class MVCArray<E> extends MVCObject {
-  static MVCArray cast(js.JsObject proxy, [jsw.Translator translator]) => proxy == null ? null : new MVCArray.fromJsObject(proxy, translator);
-  static MVCArray castListOfSerializables(js.JsObject proxy, jsw.Mapper<dynamic, js.Serializable> fromJs, {mapOnlyNotNull: false}) => proxy == null ? null : new MVCArray.fromJsObject(proxy, new jsw.TranslatorForSerializable(fromJs, mapOnlyNotNull: mapOnlyNotNull));
+@wrapper @skipWrap @skipConstructor class MVCArray<E> extends MVCObject {
+  static MVCArray $wrap(js.JsObject proxy, {wrap(js), unwrap(dart)}) => proxy == null ? null : new MVCArray.fromJsObject(proxy, wrap: wrap, unwrap: unwrap);
+  static MVCArray $wrapSerializables(js.JsObject jsObject, wrap(js)) => jsObject == null ? null : new MVCArray.fromJsObject(jsObject, wrap: wrap, unwrap: jsw.Serializable.$unwrap);
   static bool isInstance(js.JsObject proxy) => proxy.instanceof(maps['MVCArray']);
 
-  final jsw.Translator<E> _translator;
+  final jsw.Mapper<E, dynamic> _unwrap;
+  final jsw.Mapper<dynamic, E> _wrap;
 
   jsw.SubscribeStreamProvider<int> _onInsertAt;
   jsw.SubscribeStreamProvider<IndexAndElement<E>> _onRemoveAt;
   jsw.SubscribeStreamProvider<IndexAndElement<E>> _onSetAt;
 
-  MVCArray([List<E> array, jsw.Translator<E> translator]) : super(maps['MVCArray'], [array is js.Serializable ? array : js.jsify(array)]), this._translator = translator { _initStreams(); }
-  MVCArray.fromJsObject(js.JsObject proxy, [jsw.Translator<E> translator]) : super.fromJsObject(proxy), this._translator = translator { _initStreams(); }
+  MVCArray(List<E> array, {jsw.Mapper<dynamic, E> wrap, jsw.Mapper<E, dynamic> unwrap})
+      : _wrap = ((e) => wrap == null ? e : wrap(e)),
+        _unwrap = ((e) => unwrap == null ? e : unwrap(e)),
+        super(maps['MVCArray'], [array is js.JsArray ? array : jsw.jsify(array)]) {
+          _initStreams();
+        }
+  MVCArray.fromJsObject(js.JsObject jsObject, {jsw.Mapper<dynamic, E> wrap, jsw.Mapper<E, dynamic> unwrap})
+      : _wrap = ((e) => wrap == null ? e : wrap(e)),
+        _unwrap = ((e) => unwrap == null ? e : unwrap(e)),
+        super.fromJsObject(jsObject) {
+          _initStreams();
+        }
 
   void _initStreams() {
     _onInsertAt = event.getStreamProviderFor(this, "insert_at");
-    _onRemoveAt = event.getStreamProviderFor(this, "remove_at", (int index, oldElement) => new IndexAndElement<E>(index, _fromJs(oldElement)));
-    _onSetAt = event.getStreamProviderFor(this, "set_at", (int index, oldElement) => new IndexAndElement<E>(index, _fromJs(oldElement)));
+    _onRemoveAt = event.getStreamProviderFor(this, "remove_at", (int index, oldElement) => new IndexAndElement<E>(index, _wrap(oldElement)));
+    _onSetAt = event.getStreamProviderFor(this, "set_at", (int index, oldElement) => new IndexAndElement<E>(index, _wrap(oldElement)));
   }
 
   Stream<int> get onInsertAt => _onInsertAt.stream;
   Stream<IndexAndElement<E>> get onRemoveAt => _onRemoveAt.stream;
   Stream<IndexAndElement<E>> get onSetAt => _onSetAt.stream;
 
-  dynamic _toJs(E e) => _translator == null ? e : _translator.toJs(e);
-  E _fromJs(dynamic value) => _translator == null ? value : _translator.fromJs(value);
-
   @generate void clear() {}
-  void forEach(void callback(E o, num index)) => $unsafe.callMethod('forEach', [(Object o, num index) => callback(_fromJs(o), index)]);
-  List<E> getArray() => jsw.TypedJsArray.cast($unsafe.callMethod('getArray'), _translator);
-  E getAt(num i) => _fromJs($unsafe.callMethod('getAt', [i]));
+  void forEach(void callback(E o, num index)) => $unsafe.callMethod('forEach', [(Object o, num index) => callback(_wrap(o), index)]);
+  List<E> getArray() => jsw.TypedJsArray.$wrap($unsafe.callMethod('getArray'), wrap: _wrap, unwrap: _unwrap);
+  E getAt(num i) => _wrap($unsafe.callMethod('getAt', [i]));
   @generate @forMethods num get length => null;
-  void insertAt(num i, E elem) { $unsafe.callMethod('insertAt', [i, _toJs(elem)]); }
-  E pop() => _fromJs($unsafe.callMethod('pop'));
-  num push(E elem) => $unsafe.callMethod('push', [_toJs(elem)]);
-  E removeAt(num i) => _fromJs($unsafe.callMethod('removeAt', [i]));
-  void setAt(num i, E elem) { $unsafe.callMethod('.setAt', [i, _toJs(elem)]); }
+  void insertAt(num i, E elem) { $unsafe.callMethod('insertAt', [i, _unwrap(elem)]); }
+  E pop() => _wrap($unsafe.callMethod('pop'));
+  num push(E elem) => $unsafe.callMethod('push', [_unwrap(elem)]);
+  E removeAt(num i) => _wrap($unsafe.callMethod('removeAt', [i]));
+  void setAt(num i, E elem) { $unsafe.callMethod('.setAt', [i, _unwrap(elem)]); }
 
   // TODO mark methods with @remove
   MapsEventListener addListener(String eventName, Function handler) => super.addListener(eventName, handler);
@@ -58,7 +66,7 @@ part of google_maps;
   void changed(String key) { super.changed(key); }
   Object get(String key) => super.get(key);
   void notify(String key) { super.notify(key); }
-  void set(String key, Object value) { super.set(key, value); }
+  void set(String key, dynamic value) { super.set(key, value); }
   void unbind(String key) { super.unbind(key); }
   void unbindAll() { super.unbindAll(); }
   set values(Map<String, Object> values) { super.values = values; }

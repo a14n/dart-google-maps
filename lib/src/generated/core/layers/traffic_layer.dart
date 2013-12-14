@@ -15,12 +15,12 @@
 part of google_maps;
 
 class TrafficLayer extends MVCObject {
-  static TrafficLayer cast(js.JsObject jsObject) => jsObject == null ? null : new TrafficLayer.fromJsObject(jsObject);
+  static TrafficLayer $wrap(js.JsObject jsObject) => jsObject == null ? null : new TrafficLayer.fromJsObject(jsObject);
   TrafficLayer.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
   TrafficLayer()
-      : super(maps['TrafficLayer']);
+      : super(maps['TrafficLayer'], []);
 
-  set map(GMap map) => $unsafe.callMethod('setMap', [map]);
-  GMap get map => GMap.cast($unsafe.callMethod('getMap'));
+  set map(GMap map) => $unsafe.callMethod('setMap', [map == null ? null : map.$unsafe]);
+  GMap get map => GMap.$wrap($unsafe.callMethod('getMap'));
 }

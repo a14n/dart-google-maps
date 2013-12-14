@@ -22,16 +22,16 @@ part of google_maps_drawing;
   jsw.SubscribeStreamProvider<Polyline> _onPolylinecomplete;
   jsw.SubscribeStreamProvider<Rectangle> _onRectanglecomplete;
 
-  DrawingManager([DrawingManagerOptions opts]) : super(maps['drawing']['DrawingManager'], [opts]) { _initStreams(); }
+  DrawingManager([DrawingManagerOptions opts]) : super(maps['drawing']['DrawingManager'], [jsw.Serializable.$unwrap(opts)]) { _initStreams(); }
   DrawingManager.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) { _initStreams(); }
 
   void _initStreams() {
-    _onCirclecomplete = event.getStreamProviderFor(this, "circlecomplete", Circle.cast);
-    _onMarkercomplete = event.getStreamProviderFor(this, "markercomplete", Marker.cast);
-    _onOverlaycomplete = event.getStreamProviderFor(this, "overlaycomplete", OverlayCompleteEvent.cast);
-    _onPolygoncomplete = event.getStreamProviderFor(this, "polygoncomplete", Polygon.cast);
-    _onPolylinecomplete = event.getStreamProviderFor(this, "polylinecomplete", Polyline.cast);
-    _onRectanglecomplete = event.getStreamProviderFor(this, "rectanglecomplete", Rectangle.cast);
+    _onCirclecomplete = event.getStreamProviderFor(this, "circlecomplete", Circle.$wrap);
+    _onMarkercomplete = event.getStreamProviderFor(this, "markercomplete", Marker.$wrap);
+    _onOverlaycomplete = event.getStreamProviderFor(this, "overlaycomplete", OverlayCompleteEvent.$wrap);
+    _onPolygoncomplete = event.getStreamProviderFor(this, "polygoncomplete", Polygon.$wrap);
+    _onPolylinecomplete = event.getStreamProviderFor(this, "polylinecomplete", Polyline.$wrap);
+    _onRectanglecomplete = event.getStreamProviderFor(this, "rectanglecomplete", Rectangle.$wrap);
   }
 
   Stream<Circle> get onCirclecomplete => _onCirclecomplete.stream;
@@ -41,7 +41,7 @@ part of google_maps_drawing;
   Stream<Polyline> get onPolylinecomplete => _onPolylinecomplete.stream;
   Stream<Rectangle> get onRectanglecomplete => _onRectanglecomplete.stream;
 
-  @isEnum OverlayType get drawingMode;
+  OverlayType get drawingMode;
   GMap get map;
   set drawingMode(OverlayType drawingMode);
   set map(GMap map);

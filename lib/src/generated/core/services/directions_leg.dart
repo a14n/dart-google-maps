@@ -15,30 +15,29 @@
 part of google_maps;
 
 class DirectionsLeg extends jsw.TypedJsObject {
-  static DirectionsLeg cast(js.JsObject jsObject) => jsObject == null ? null : new DirectionsLeg.fromJsObject(jsObject);
+  static DirectionsLeg $wrap(js.JsObject jsObject) => jsObject == null ? null : new DirectionsLeg.fromJsObject(jsObject);
   DirectionsLeg.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  DirectionsLeg()
-      : super();
+  DirectionsLeg();
 
-  set arrivalTime(Time arrivalTime) => $unsafe['arrival_time'] = arrivalTime;
-  Time get arrivalTime => Time.cast($unsafe['arrival_time']);
-  set departureTime(Time departureTime) => $unsafe['departure_time'] = departureTime;
-  Time get departureTime => Time.cast($unsafe['departure_time']);
-  set distance(Distance distance) => $unsafe['distance'] = distance;
-  Distance get distance => Distance.cast($unsafe['distance']);
-  set duration(GDuration duration) => $unsafe['duration'] = duration;
-  GDuration get duration => GDuration.cast($unsafe['duration']);
+  set arrivalTime(Time arrivalTime) => $unsafe['arrival_time'] = arrivalTime == null ? null : arrivalTime.$unsafe;
+  Time get arrivalTime => Time.$wrap($unsafe['arrival_time']);
+  set departureTime(Time departureTime) => $unsafe['departure_time'] = departureTime == null ? null : departureTime.$unsafe;
+  Time get departureTime => Time.$wrap($unsafe['departure_time']);
+  set distance(Distance distance) => $unsafe['distance'] = distance == null ? null : distance.$unsafe;
+  Distance get distance => Distance.$wrap($unsafe['distance']);
+  set duration(GDuration duration) => $unsafe['duration'] = duration == null ? null : duration.$unsafe;
+  GDuration get duration => GDuration.$wrap($unsafe['duration']);
   set endAddress(String endAddress) => $unsafe['end_address'] = endAddress;
   String get endAddress => $unsafe['end_address'];
-  set endLocation(LatLng endLocation) => $unsafe['end_location'] = endLocation;
-  LatLng get endLocation => LatLng.cast($unsafe['end_location']);
+  set endLocation(LatLng endLocation) => $unsafe['end_location'] = endLocation == null ? null : endLocation.$unsafe;
+  LatLng get endLocation => LatLng.$wrap($unsafe['end_location']);
   set startAddress(String startAddress) => $unsafe['start_address'] = startAddress;
   String get startAddress => $unsafe['start_address'];
-  set startLocation(LatLng startLocation) => $unsafe['start_location'] = startLocation;
-  LatLng get startLocation => LatLng.cast($unsafe['start_location']);
-  set steps(List<DirectionsStep> steps) => $unsafe['steps'] = steps == null ? null : steps is js.Serializable ? steps : js.jsify(steps);
-  List<DirectionsStep> get steps => jsw.TypedJsArray.castListOfSerializables($unsafe['steps'], DirectionsStep.cast);
-  set viaWaypoints(List<LatLng> viaWaypoints) => $unsafe['via_waypoints'] = viaWaypoints == null ? null : viaWaypoints is js.Serializable ? viaWaypoints : js.jsify(viaWaypoints);
-  List<LatLng> get viaWaypoints => jsw.TypedJsArray.castListOfSerializables($unsafe['via_waypoints'], LatLng.cast);
+  set startLocation(LatLng startLocation) => $unsafe['start_location'] = startLocation == null ? null : startLocation.$unsafe;
+  LatLng get startLocation => LatLng.$wrap($unsafe['start_location']);
+  set steps(List<DirectionsStep> steps) => $unsafe['steps'] = steps == null ? null : (steps is jsw.TypedJsObject ? (steps as jsw.TypedJsObject).$unsafe : jsw.jsify(steps));
+  List<DirectionsStep> get steps => jsw.TypedJsArray.$wrapSerializables($unsafe['steps'], DirectionsStep.$wrap);
+  set viaWaypoints(List<LatLng> viaWaypoints) => $unsafe['via_waypoints'] = viaWaypoints == null ? null : (viaWaypoints is jsw.TypedJsObject ? (viaWaypoints as jsw.TypedJsObject).$unsafe : jsw.jsify(viaWaypoints));
+  List<LatLng> get viaWaypoints => jsw.TypedJsArray.$wrapSerializables($unsafe['via_waypoints'], LatLng.$wrap);
 }

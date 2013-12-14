@@ -15,7 +15,7 @@
 part of google_maps_places;
 
 class PlaceSearchPagination extends jsw.TypedJsObject {
-  static PlaceSearchPagination cast(js.JsObject jsObject) => jsObject == null ? null : new PlaceSearchPagination.fromJsObject(jsObject);
+  static PlaceSearchPagination $wrap(js.JsObject jsObject) => jsObject == null ? null : new PlaceSearchPagination.fromJsObject(jsObject);
   PlaceSearchPagination.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
   PlaceSearchPagination()

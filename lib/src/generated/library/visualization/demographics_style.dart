@@ -15,14 +15,14 @@
 part of google_maps_visualization;
 
 class DemographicsStyle extends jsw.TypedJsObject {
-  static DemographicsStyle cast(js.JsObject jsObject) => jsObject == null ? null : new DemographicsStyle.fromJsObject(jsObject);
+  static DemographicsStyle $wrap(js.JsObject jsObject) => jsObject == null ? null : new DemographicsStyle.fromJsObject(jsObject);
   DemographicsStyle.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
   DemographicsStyle()
       : super();
 
-  set polygonOptions(DemographicsPolygonOptions polygonOptions) => $unsafe['polygonOptions'] = polygonOptions;
-  DemographicsPolygonOptions get polygonOptions => DemographicsPolygonOptions.cast($unsafe['polygonOptions']);
+  set polygonOptions(DemographicsPolygonOptions polygonOptions) => $unsafe['polygonOptions'] = polygonOptions == null ? null : polygonOptions.$unsafe;
+  DemographicsPolygonOptions get polygonOptions => DemographicsPolygonOptions.$wrap($unsafe['polygonOptions']);
   set where(String where) => $unsafe['where'] = where;
   String get where => $unsafe['where'];
 }

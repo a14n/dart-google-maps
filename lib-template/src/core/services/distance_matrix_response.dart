@@ -15,9 +15,9 @@
 part of google_maps;
 
 @wrapper abstract class DistanceMatrixResponse extends jsw.TypedJsObject {
-  static DistanceMatrixResponse cast(js.JsObject jsObject) => null;
+  static DistanceMatrixResponse $wrap(js.JsObject jsObject) => null;
 
-  DistanceMatrixResponse() : super();
+  DistanceMatrixResponse();
 
   List<String> destinationAddresses;
   List<String> originAddresses;

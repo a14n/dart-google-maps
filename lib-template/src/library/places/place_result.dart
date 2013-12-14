@@ -15,7 +15,7 @@
 part of google_maps_places;
 
 @wrapper @namesWithUnderscores abstract class PlaceResult extends jsw.TypedJsObject {
-  static PlaceResult cast(js.JsObject jsObject) => null;
+  static PlaceResult $wrap(js.JsObject jsObject) => null;
 
   PlaceResult() : super();
 

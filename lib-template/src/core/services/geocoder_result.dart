@@ -15,9 +15,9 @@
 part of google_maps;
 
 @wrapper @namesWithUnderscores abstract class GeocoderResult extends jsw.TypedJsObject {
-  static GeocoderResult cast(js.JsObject jsObject) => null;
+  static GeocoderResult $wrap(js.JsObject jsObject) => null;
 
-  GeocoderResult() : super();
+  GeocoderResult();
 
   List<GeocoderAddressComponent> addressComponents;
   String formattedAddress;

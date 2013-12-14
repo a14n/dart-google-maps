@@ -15,21 +15,21 @@
 part of google_maps;
 
 class MapPanes extends jsw.TypedJsObject {
-  static MapPanes cast(js.JsObject jsObject) => jsObject == null ? null : new MapPanes.fromJsObject(jsObject);
+  static MapPanes $wrap(js.JsObject jsObject) => jsObject == null ? null : new MapPanes.fromJsObject(jsObject);
   MapPanes.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  html.Node get floatPane => jsw.convertElementToDart($unsafe['floatPane']);
-  html.Node get floatShadow => jsw.convertElementToDart($unsafe['floatShadow']);
-  html.Node get mapPane => jsw.convertElementToDart($unsafe['mapPane']);
-  html.Node get overlayImage => jsw.convertElementToDart($unsafe['overlayImage']);
-  html.Node get overlayLayer => jsw.convertElementToDart($unsafe['overlayLayer']);
-  html.Node get overlayMouseTarget => jsw.convertElementToDart($unsafe['overlayMouseTarget']);
-  html.Node get overlayShadow => jsw.convertElementToDart($unsafe['overlayShadow']);
-  set floatPane(html.Node floatPane) => $unsafe['floatPane'] = jsw.convertElementToJs(floatPane);
-  set floatShadow(html.Node floatShadow) => $unsafe['floatShadow'] = jsw.convertElementToJs(floatShadow);
-  set mapPane(html.Node mapPane) => $unsafe['mapPane'] = jsw.convertElementToJs(mapPane);
-  set overlayImage(html.Node overlayImage) => $unsafe['overlayImage'] = jsw.convertElementToJs(overlayImage);
-  set overlayLayer(html.Node overlayLayer) => $unsafe['overlayLayer'] = jsw.convertElementToJs(overlayLayer);
-  set overlayMouseTarget(html.Node overlayMouseTarget) => $unsafe['overlayMouseTarget'] = jsw.convertElementToJs(overlayMouseTarget);
-  set overlayShadow(html.Node overlayShadow) => $unsafe['overlayShadow'] = jsw.convertElementToJs(overlayShadow);
+  set floatPane(html.Node floatPane) => $unsafe['floatPane'] = floatPane;
+  html.Node get floatPane => $unsafe['floatPane'];
+  set floatShadow(html.Node floatShadow) => $unsafe['floatShadow'] = floatShadow;
+  html.Node get floatShadow => $unsafe['floatShadow'];
+  set mapPane(html.Node mapPane) => $unsafe['mapPane'] = mapPane;
+  html.Node get mapPane => $unsafe['mapPane'];
+  set overlayImage(html.Node overlayImage) => $unsafe['overlayImage'] = overlayImage;
+  html.Node get overlayImage => $unsafe['overlayImage'];
+  set overlayLayer(html.Node overlayLayer) => $unsafe['overlayLayer'] = overlayLayer;
+  html.Node get overlayLayer => $unsafe['overlayLayer'];
+  set overlayMouseTarget(html.Node overlayMouseTarget) => $unsafe['overlayMouseTarget'] = overlayMouseTarget;
+  html.Node get overlayMouseTarget => $unsafe['overlayMouseTarget'];
+  set overlayShadow(html.Node overlayShadow) => $unsafe['overlayShadow'] = overlayShadow;
+  html.Node get overlayShadow => $unsafe['overlayShadow'];
 }

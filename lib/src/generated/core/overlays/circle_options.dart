@@ -15,14 +15,13 @@
 part of google_maps;
 
 class CircleOptions extends jsw.TypedJsObject {
-  static CircleOptions cast(js.JsObject jsObject) => jsObject == null ? null : new CircleOptions.fromJsObject(jsObject);
+  static CircleOptions $wrap(js.JsObject jsObject) => jsObject == null ? null : new CircleOptions.fromJsObject(jsObject);
   CircleOptions.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  CircleOptions()
-      : super();
+  CircleOptions();
 
-  set center(LatLng center) => $unsafe['center'] = center;
-  LatLng get center => LatLng.cast($unsafe['center']);
+  set center(LatLng center) => $unsafe['center'] = center == null ? null : center.$unsafe;
+  LatLng get center => LatLng.$wrap($unsafe['center']);
   set clickable(bool clickable) => $unsafe['clickable'] = clickable;
   bool get clickable => $unsafe['clickable'];
   set draggable(bool draggable) => $unsafe['draggable'] = draggable;
@@ -33,16 +32,16 @@ class CircleOptions extends jsw.TypedJsObject {
   String get fillColor => $unsafe['fillColor'];
   set fillOpacity(num fillOpacity) => $unsafe['fillOpacity'] = fillOpacity;
   num get fillOpacity => $unsafe['fillOpacity'];
-  set map(GMap map) => $unsafe['map'] = map;
-  GMap get map => GMap.cast($unsafe['map']);
+  set map(GMap map) => $unsafe['map'] = map == null ? null : map.$unsafe;
+  GMap get map => GMap.$wrap($unsafe['map']);
   set radius(num radius) => $unsafe['radius'] = radius;
   num get radius => $unsafe['radius'];
   set strokeColor(String strokeColor) => $unsafe['strokeColor'] = strokeColor;
   String get strokeColor => $unsafe['strokeColor'];
   set strokeOpacity(num strokeOpacity) => $unsafe['strokeOpacity'] = strokeOpacity;
   num get strokeOpacity => $unsafe['strokeOpacity'];
-  set strokePosition(StrokePosition strokePosition) => $unsafe['strokePosition'] = strokePosition;
-  StrokePosition get strokePosition => StrokePosition.find($unsafe['strokePosition']);
+  set strokePosition(StrokePosition strokePosition) => $unsafe['strokePosition'] = strokePosition == null ? null : strokePosition.$unsafe;
+  StrokePosition get strokePosition => StrokePosition.$wrap($unsafe['strokePosition']);
   set strokeWeight(num strokeWeight) => $unsafe['strokeWeight'] = strokeWeight;
   num get strokeWeight => $unsafe['strokeWeight'];
   set visible(bool visible) => $unsafe['visible'] = visible;

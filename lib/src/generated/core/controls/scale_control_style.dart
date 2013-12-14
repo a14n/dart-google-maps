@@ -15,11 +15,10 @@
 part of google_maps;
 
 class ScaleControlStyle extends jsw.IsEnum<String> {
-  static final DEFAULT = new ScaleControlStyle._(maps['ScaleControlStyle']['DEFAULT']);
-
   static final _FINDER = new jsw.EnumFinder<String, ScaleControlStyle>([DEFAULT]);
+  static ScaleControlStyle $wrap(String jsValue) => _FINDER.find(jsValue);
 
-  static ScaleControlStyle find(o) => _FINDER.find(o);
+  static final DEFAULT = new ScaleControlStyle._(maps['ScaleControlStyle']['DEFAULT']);
 
   ScaleControlStyle._(String value)
       : super(value);

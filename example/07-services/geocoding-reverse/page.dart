@@ -15,13 +15,13 @@ void main() {
     ..center = latlng
     ..mapTypeId = MapTypeId.ROADMAP
     ;
-  map = new GMap(query("#map_canvas"), mapOptions);
+  map = new GMap(querySelector("#map_canvas"), mapOptions);
 
-  query("#codeLatLng").onClick.listen((e) => codeLatLng());
+  querySelector("#codeLatLng").onClick.listen((e) => codeLatLng());
 }
 
 void codeLatLng() {
-  final input = (query('#latlng') as InputElement).value;
+  final input = (querySelector('#latlng') as InputElement).value;
   final latlngStr = input.split(',');
   final lat = double.parse(latlngStr[0]);
   final lng = double.parse(latlngStr[1]);

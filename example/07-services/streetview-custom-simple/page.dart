@@ -14,7 +14,7 @@ void main() {
     ..panoProvider = getCustomPanorama
     ;
 
-  final panorama = new StreetViewPanorama(query('#pano_canvas'), panoOptions);
+  final panorama = new StreetViewPanorama(querySelector('#pano_canvas'), panoOptions);
 }
 
 // Return a pano image given the panoID.

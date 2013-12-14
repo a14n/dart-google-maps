@@ -15,13 +15,13 @@
 part of google_maps;
 
 class DirectionsService extends jsw.TypedJsObject {
-  static DirectionsService cast(js.JsObject jsObject) => jsObject == null ? null : new DirectionsService.fromJsObject(jsObject);
+  static DirectionsService $wrap(js.JsObject jsObject) => jsObject == null ? null : new DirectionsService.fromJsObject(jsObject);
   DirectionsService.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
   DirectionsService()
-      : super(maps['DirectionsService']);
+      : super(maps['DirectionsService'], []);
 
   void route(DirectionsRequest request, void callback(DirectionsResult results, DirectionsStatus status)) {
-    $unsafe.callMethod('route', [request, (js.JsObject results, String status) => callback(DirectionsResult.cast(results), DirectionsStatus.find(status))]);
+    $unsafe.callMethod('route', [jsw.Serializable.$unwrap(request), (js.JsObject results, String status) => callback(DirectionsResult.$wrap(results), DirectionsStatus.$wrap(status))]);
   }
 }

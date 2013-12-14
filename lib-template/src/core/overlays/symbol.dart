@@ -15,21 +15,17 @@
 part of google_maps;
 
 @wrapper abstract class GSymbol extends jsw.TypedJsObject {
-  static GSymbol cast(js.JsObject jsObject) => null;
-  GSymbol() : super();
+  static GSymbol $wrap(js.JsObject jsObject) => null;
+  static bool isInstance(js.JsObject jsObject) => jsObject['_jsw.type'] == 'google_maps.GSymbol';
+
+  GSymbol() {
+    $unsafe['_jsw.type'] = 'google_maps.GSymbol';
+  }
 
   Point anchor;
   String fillColor;
   num fillOpacity;
-  dynamic/*SymbolPath|string*/ get path {
-    final result = $unsafe['path'];
-    if (result is int) {
-      return SymbolPath.find(result);
-    } else {
-      return result;
-    }
-  }
-  set path(dynamic/*SymbolPath|string*/ path);
+  @Types(const [SymbolPath,String]) dynamic path;
   num rotation;
   num scale;
   String strokeColor;

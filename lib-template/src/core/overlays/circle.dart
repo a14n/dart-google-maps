@@ -15,7 +15,7 @@
 part of google_maps;
 
 @wrapper @forMethods @skipConstructor abstract class Circle extends MVCObject {
-  static Circle cast(js.JsObject jsObject) => null;
+  static Circle $wrap(js.JsObject jsObject) => null;
   static bool isInstance(js.JsObject proxy) => proxy.instanceof(maps['Circle']);
 
   jsw.SubscribeStreamProvider _onCenterChanged;
@@ -29,20 +29,20 @@ part of google_maps;
   jsw.SubscribeStreamProvider _onRadiusChanged;
   jsw.SubscribeStreamProvider<MouseEvent> _onRightclick;
 
-  Circle([CircleOptions opts]) : super(maps['Circle'], [opts]) { _initStreams(); }
+  @generate Circle([CircleOptions opts]) { _initStreams(); }
   Circle.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) { _initStreams(); }
 
   void _initStreams() {
     _onCenterChanged = event.getStreamProviderFor(this, "center_changed");
-    _onClick = event.getStreamProviderFor(this, "click", MouseEvent.cast);
-    _onDblClick = event.getStreamProviderFor(this, "dblclick", MouseEvent.cast);
-    _onMousedown = event.getStreamProviderFor(this, "mousedown", MouseEvent.cast);
-    _onMousemove = event.getStreamProviderFor(this, "mousemove", MouseEvent.cast);
-    _onMouseout = event.getStreamProviderFor(this, "mouseout", MouseEvent.cast);
-    _onMouseover = event.getStreamProviderFor(this, "mouseover", MouseEvent.cast);
-    _onMouseup = event.getStreamProviderFor(this, "mouseup", MouseEvent.cast);
+    _onClick = event.getStreamProviderFor(this, "click", MouseEvent.$wrap);
+    _onDblClick = event.getStreamProviderFor(this, "dblclick", MouseEvent.$wrap);
+    _onMousedown = event.getStreamProviderFor(this, "mousedown", MouseEvent.$wrap);
+    _onMousemove = event.getStreamProviderFor(this, "mousemove", MouseEvent.$wrap);
+    _onMouseout = event.getStreamProviderFor(this, "mouseout", MouseEvent.$wrap);
+    _onMouseover = event.getStreamProviderFor(this, "mouseover", MouseEvent.$wrap);
+    _onMouseup = event.getStreamProviderFor(this, "mouseup", MouseEvent.$wrap);
     _onRadiusChanged = event.getStreamProviderFor(this, "radius_changed");
-    _onRightclick = event.getStreamProviderFor(this, "rightclick", MouseEvent.cast);
+    _onRightclick = event.getStreamProviderFor(this, "rightclick", MouseEvent.$wrap);
   }
 
   Stream get onCenterChanged => _onCenterChanged.stream;

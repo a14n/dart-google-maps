@@ -15,13 +15,13 @@
 part of google_maps;
 
 class Point extends jsw.TypedJsObject {
-  static Point cast(js.JsObject jsObject) => jsObject == null ? null : new Point.fromJsObject(jsObject);
+  static Point $wrap(js.JsObject jsObject) => jsObject == null ? null : new Point.fromJsObject(jsObject);
   Point.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
   Point(num x, num y)
       : super(maps['Point'], [x, y]);
 
-  bool equals(Point other) => $unsafe.callMethod('equals', [other]);
+  bool equals(Point other) => $unsafe.callMethod('equals', [other == null ? null : other.$unsafe]);
   String toString() => $unsafe.callMethod('toString');
 
   set x(num x) => $unsafe['x'] = x;

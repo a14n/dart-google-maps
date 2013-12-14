@@ -15,7 +15,7 @@
 part of google_maps;
 
 @wrapper abstract class BicyclingLayer extends MVCObject {
-  BicyclingLayer() : super(maps['BicyclingLayer']);
+  @generate BicyclingLayer();
 
   @forMethods GMap map;
 }

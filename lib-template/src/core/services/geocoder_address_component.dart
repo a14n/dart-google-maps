@@ -15,7 +15,7 @@
 part of google_maps;
 
 @wrapper @namesWithUnderscores abstract class GeocoderAddressComponent extends jsw.TypedJsObject {
-  GeocoderAddressComponent() : super();
+  GeocoderAddressComponent();
 
   String longName;
   String shortName;

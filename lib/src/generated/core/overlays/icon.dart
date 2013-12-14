@@ -15,20 +15,23 @@
 part of google_maps;
 
 class Icon extends jsw.TypedJsObject {
-  static Icon cast(js.JsObject jsObject) => jsObject == null ? null : new Icon.fromJsObject(jsObject);
+  static Icon $wrap(js.JsObject jsObject) => jsObject == null ? null : new Icon.fromJsObject(jsObject);
   Icon.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  Icon()
-      : super();
+  static bool isInstance(js.JsObject jsObject) => jsObject['_jsw.type'] == 'google_maps.Icon';
 
-  set anchor(Point anchor) => $unsafe['anchor'] = anchor;
-  Point get anchor => Point.cast($unsafe['anchor']);
-  set origin(Point origin) => $unsafe['origin'] = origin;
-  Point get origin => Point.cast($unsafe['origin']);
-  set scaledSize(Size scaledSize) => $unsafe['scaledSize'] = scaledSize;
-  Size get scaledSize => Size.cast($unsafe['scaledSize']);
-  set size(Size size) => $unsafe['size'] = size;
-  Size get size => Size.cast($unsafe['size']);
+  Icon() {
+    $unsafe['_jsw.type'] = 'google_maps.Icon';
+  }
+
+  set anchor(Point anchor) => $unsafe['anchor'] = anchor == null ? null : anchor.$unsafe;
+  Point get anchor => Point.$wrap($unsafe['anchor']);
+  set origin(Point origin) => $unsafe['origin'] = origin == null ? null : origin.$unsafe;
+  Point get origin => Point.$wrap($unsafe['origin']);
+  set scaledSize(Size scaledSize) => $unsafe['scaledSize'] = scaledSize == null ? null : scaledSize.$unsafe;
+  Size get scaledSize => Size.$wrap($unsafe['scaledSize']);
+  set size(Size size) => $unsafe['size'] = size == null ? null : size.$unsafe;
+  Size get size => Size.$wrap($unsafe['size']);
   set url(String url) => $unsafe['url'] = url;
   String get url => $unsafe['url'];
 }

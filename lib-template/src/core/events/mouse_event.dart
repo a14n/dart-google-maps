@@ -15,8 +15,7 @@
 part of google_maps;
 
 @wrapper abstract class MouseEvent extends jsw.TypedJsObject {
-  static MouseEvent cast(js.JsObject jsObject) => null;
-  MouseEvent() : super();
+  static MouseEvent $wrap(js.JsObject jsObject) => null;
 
   LatLng get latLng;
 }

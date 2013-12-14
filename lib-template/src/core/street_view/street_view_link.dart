@@ -15,7 +15,7 @@
 part of google_maps;
 
 @wrapper abstract class StreetViewLink extends jsw.TypedJsObject {
-  StreetViewLink() : super();
+  StreetViewLink();
 
   String description;
   num heading;

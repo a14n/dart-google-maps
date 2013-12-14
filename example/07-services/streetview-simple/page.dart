@@ -8,7 +8,7 @@ void main() {
     ..zoom = 14
     ..mapTypeId = MapTypeId.ROADMAP
     ;
-  final map = new GMap(query('#map_canvas'), mapOptions);
+  final map = new GMap(querySelector('#map_canvas'), mapOptions);
   final panoramaOptions = new StreetViewPanoramaOptions()
     ..position = fenway
     ..pov = (new StreetViewPov()
@@ -17,6 +17,6 @@ void main() {
       ..zoom = 1
     )
     ;
-  final panorama = new StreetViewPanorama(query('#pano'),panoramaOptions);
+  final panorama = new StreetViewPanorama(querySelector('#pano'),panoramaOptions);
   map.streetView = panorama;
 }

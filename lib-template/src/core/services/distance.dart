@@ -15,7 +15,7 @@
 part of google_maps;
 
 @wrapper abstract class Distance extends jsw.TypedJsObject {
-  Distance() : super();
+  Distance();
 
   String text;
   num value;

@@ -15,7 +15,7 @@
 part of google_maps;
 
 @wrapper abstract class StreetViewControlOptions extends jsw.TypedJsObject {
-  StreetViewControlOptions() : super();
+  StreetViewControlOptions();
 
-  @isEnum ControlPosition position;
+  ControlPosition position;
 }

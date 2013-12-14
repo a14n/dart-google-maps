@@ -15,7 +15,7 @@
 part of google_maps;
 
 @wrapper @namesWithUnderscores abstract class TransitLine extends jsw.TypedJsObject {
-  TransitLine() : super();
+  TransitLine();
 
   List<TransitAgency> agencies;
   String color;

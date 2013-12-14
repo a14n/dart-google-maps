@@ -15,9 +15,12 @@
 part of google_maps;
 
 @wrapper abstract class Icon extends jsw.TypedJsObject {
-  static Icon cast(js.JsObject jsObject) => null;
+  static Icon $wrap(js.JsObject jsObject) => null;
+  static bool isInstance(js.JsObject jsObject) => jsObject['_jsw.type'] == 'google_maps.Icon';
 
-  Icon() : super();
+  Icon() {
+    $unsafe['_jsw.type'] = 'google_maps.Icon';
+  }
 
   Point anchor;
   Point origin;

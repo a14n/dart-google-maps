@@ -15,14 +15,13 @@
 part of google_maps;
 
 class TravelMode extends jsw.IsEnum<String> {
+  static final _FINDER = new jsw.EnumFinder<String, TravelMode>([BICYCLING, DRIVING, TRANSIT, WALKING]);
+  static TravelMode $wrap(String jsValue) => _FINDER.find(jsValue);
+
   static final BICYCLING = new TravelMode._(maps['TravelMode']['BICYCLING']);
   static final DRIVING = new TravelMode._(maps['TravelMode']['DRIVING']);
   static final TRANSIT = new TravelMode._(maps['TravelMode']['TRANSIT']);
   static final WALKING = new TravelMode._(maps['TravelMode']['WALKING']);
-
-  static final _FINDER = new jsw.EnumFinder<String, TravelMode>([BICYCLING, DRIVING, TRANSIT, WALKING]);
-
-  static TravelMode find(o) => _FINDER.find(o);
 
   TravelMode._(String value) : super(value);
 }

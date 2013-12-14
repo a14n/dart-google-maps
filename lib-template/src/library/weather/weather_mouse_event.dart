@@ -15,7 +15,7 @@
 part of google_maps_weather;
 
 @wrapper abstract class WeatherMouseEvent extends jsw.TypedJsObject {
-  static WeatherMouseEvent cast(js.JsObject jsObject) => null;
+  static WeatherMouseEvent $wrap(js.JsObject jsObject) => null;
 
   WeatherMouseEvent();
 

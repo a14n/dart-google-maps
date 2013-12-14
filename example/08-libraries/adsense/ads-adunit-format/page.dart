@@ -75,7 +75,7 @@ void main() {
     ..zoom = 12
     ..mapTypeId = MapTypeId.ROADMAP
     ;
-  final map = new GMap(query("#map_canvas"), mapOptions);
+  final map = new GMap(querySelector("#map_canvas"), mapOptions);
 
 
   final adUnitDiv = new DivElement();
@@ -96,13 +96,13 @@ void main() {
     ;
   final adUnit = new AdUnit(adUnitDiv, adUnitOptions);
 
-  final SelectElement format = query('#format');
+  final SelectElement format = querySelector('#format');
   event.addDomListener(format, 'change', (e) {
     final String adsFormat = maps['adsense']['AdFormat'][format.value];
-    adUnit.format = AdFormat.find(adsFormat);
+    adUnit.format = AdFormat.$wrap(adsFormat);
   });
 
-  final SelectElement style = query('#style');
+  final SelectElement style = querySelector('#style');
   event.addDomListener(style, 'change', (e) {
     final adStyle = SAMPLE_AD_STYLES[style.value];
     // TODO undocumented or undefined functions
@@ -115,9 +115,9 @@ void main() {
       ;
   });
 
-  final SelectElement position = query('#position');
+  final SelectElement position = querySelector('#position');
   event.addDomListener(position, 'change', (e) {
     final int adsPosition = maps['ControlPosition'][position.value];
-    adUnit.position = ControlPosition.find(adsPosition);
+    adUnit.position = ControlPosition.$wrap(adsPosition);
   });
 }

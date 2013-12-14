@@ -15,14 +15,13 @@
 part of google_maps;
 
 class RectangleOptions extends jsw.TypedJsObject {
-  static RectangleOptions cast(js.JsObject jsObject) => jsObject == null ? null : new RectangleOptions.fromJsObject(jsObject);
+  static RectangleOptions $wrap(js.JsObject jsObject) => jsObject == null ? null : new RectangleOptions.fromJsObject(jsObject);
   RectangleOptions.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  RectangleOptions()
-      : super();
+  RectangleOptions();
 
-  set bounds(LatLngBounds bounds) => $unsafe['bounds'] = bounds;
-  LatLngBounds get bounds => LatLngBounds.cast($unsafe['bounds']);
+  set bounds(LatLngBounds bounds) => $unsafe['bounds'] = bounds == null ? null : bounds.$unsafe;
+  LatLngBounds get bounds => LatLngBounds.$wrap($unsafe['bounds']);
   set clickable(bool clickable) => $unsafe['clickable'] = clickable;
   bool get clickable => $unsafe['clickable'];
   set draggable(bool draggable) => $unsafe['draggable'] = draggable;
@@ -33,14 +32,14 @@ class RectangleOptions extends jsw.TypedJsObject {
   String get fillColor => $unsafe['fillColor'];
   set fillOpacity(num fillOpacity) => $unsafe['fillOpacity'] = fillOpacity;
   num get fillOpacity => $unsafe['fillOpacity'];
-  set map(GMap map) => $unsafe['map'] = map;
-  GMap get map => GMap.cast($unsafe['map']);
+  set map(GMap map) => $unsafe['map'] = map == null ? null : map.$unsafe;
+  GMap get map => GMap.$wrap($unsafe['map']);
   set strokeColor(String strokeColor) => $unsafe['strokeColor'] = strokeColor;
   String get strokeColor => $unsafe['strokeColor'];
   set strokeOpacity(num strokeOpacity) => $unsafe['strokeOpacity'] = strokeOpacity;
   num get strokeOpacity => $unsafe['strokeOpacity'];
-  set strokePosition(StrokePosition strokePosition) => $unsafe['strokePosition'] = strokePosition;
-  StrokePosition get strokePosition => StrokePosition.find($unsafe['strokePosition']);
+  set strokePosition(StrokePosition strokePosition) => $unsafe['strokePosition'] = strokePosition == null ? null : strokePosition.$unsafe;
+  StrokePosition get strokePosition => StrokePosition.$wrap($unsafe['strokePosition']);
   set strokeWeight(num strokeWeight) => $unsafe['strokeWeight'] = strokeWeight;
   num get strokeWeight => $unsafe['strokeWeight'];
   set visible(bool visible) => $unsafe['visible'] = visible;

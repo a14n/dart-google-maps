@@ -15,58 +15,21 @@
 part of google_maps;
 
 @wrapper abstract class MarkerOptions extends jsw.TypedJsObject {
-  MarkerOptions() : super();
+  MarkerOptions();
 
   Point anchorPoint;
-  @isEnum Animation animation;
+  Animation animation;
   bool clickable;
   String cursor;
   bool draggable;
   bool flat;
-  dynamic/*string|Icon|Symbol*/ get icon {
-    final result = $unsafe['icon'];
-    if (result is String) {
-      return result;
-    } else if (result is js.JsObject) {
-      final type = Marker._isSymbolOrIcon(result);
-      if (type == "Symbol") {
-        return GSymbol.cast(result);
-      } else if (type == "Icon") {
-        return Icon.cast(result);
-      }
-    }
-    return result;
-  }
-  set icon(dynamic/*string|Icon|Symbol*/ icon);
-  dynamic/*Map|StreetViewPanorama*/ get map {
-    final result = $unsafe['map'];
-    if (GMap.isInstance(result)) {
-      return GMap.cast(result);
-    } else if (StreetViewPanorama.isInstance(result)) {
-      return StreetViewPanorama.cast(result);
-    }
-    return result;
-  }
-  set map(dynamic/*Map|StreetViewPanorama*/ map);
+  @Types(const [String, Icon, GSymbol]) dynamic icon;
+  @Types(const [GMap, StreetViewPanorama]) dynamic map;
   bool optimized;
   LatLng position;
   bool raiseOnDrag;
   bool crossOnDrag;
-  dynamic/*string|Icon|Symbol*/ get shadow {
-    final result = $unsafe['shadow'];
-    if (result is String) {
-      return result;
-    } else if (result is js.JsObject) {
-      final type = Marker._isSymbolOrIcon(result);
-      if (type == "Symbol") {
-        return GSymbol.cast(result);
-      } else if (type == "Icon") {
-        return Icon.cast(result);
-      }
-    }
-    return result;
-  }
-  set shadow(dynamic/*string|Icon|Symbol*/ shadow);
+  @Types(const [String, Icon, GSymbol]) dynamic shadow;
   MarkerShape shape;
   String title;
   bool visible;

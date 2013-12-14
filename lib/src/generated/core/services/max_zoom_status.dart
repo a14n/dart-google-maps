@@ -15,12 +15,11 @@
 part of google_maps;
 
 class MaxZoomStatus extends jsw.IsEnum<String> {
+  static final _FINDER = new jsw.EnumFinder<String, MaxZoomStatus>([ERROR, OK]);
+  static MaxZoomStatus $wrap(String jsValue) => _FINDER.find(jsValue);
+
   static final ERROR = new MaxZoomStatus._(maps['MaxZoomStatus']['ERROR']);
   static final OK = new MaxZoomStatus._(maps['MaxZoomStatus']['OK']);
-
-  static final _FINDER = new jsw.EnumFinder<String, MaxZoomStatus>([ERROR, OK]);
-
-  static MaxZoomStatus find(o) => _FINDER.find(o);
 
   MaxZoomStatus._(String value)
       : super(value);

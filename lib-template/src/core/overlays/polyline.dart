@@ -15,7 +15,7 @@
 part of google_maps;
 
 @wrapper @forMethods @skipConstructor abstract class Polyline extends MVCObject {
-  static Polyline cast(js.JsObject jsObject) => null;
+  static Polyline $wrap(js.JsObject jsObject) => null;
   static bool isInstance(js.JsObject proxy) => proxy.instanceof(maps['Polyline']);
 
   jsw.SubscribeStreamProvider<PolyMouseEvent> _onClick;
@@ -27,18 +27,18 @@ part of google_maps;
   jsw.SubscribeStreamProvider<PolyMouseEvent> _onMouseup;
   jsw.SubscribeStreamProvider<PolyMouseEvent> _onRightclick;
 
-  Polyline([PolylineOptions opts]) : super(maps['Polyline'], [opts]) { _initStreams(); }
+  @generate Polyline([PolylineOptions opts]) { _initStreams(); }
   Polyline.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) { _initStreams(); }
 
   void _initStreams() {
-    _onClick = event.getStreamProviderFor(this, "click", PolyMouseEvent.cast);
-    _onDblClick = event.getStreamProviderFor(this, "dblclick", PolyMouseEvent.cast);
-    _onMousedown = event.getStreamProviderFor(this, "mousedown", PolyMouseEvent.cast);
-    _onMousemove = event.getStreamProviderFor(this, "mousemove", PolyMouseEvent.cast);
-    _onMouseout = event.getStreamProviderFor(this, "mouseout", PolyMouseEvent.cast);
-    _onMouseover = event.getStreamProviderFor(this, "mouseover", PolyMouseEvent.cast);
-    _onMouseup = event.getStreamProviderFor(this, "mouseup", PolyMouseEvent.cast);
-    _onRightclick = event.getStreamProviderFor(this, "rightclick", PolyMouseEvent.cast);
+    _onClick = event.getStreamProviderFor(this, "click", PolyMouseEvent.$wrap);
+    _onDblClick = event.getStreamProviderFor(this, "dblclick", PolyMouseEvent.$wrap);
+    _onMousedown = event.getStreamProviderFor(this, "mousedown", PolyMouseEvent.$wrap);
+    _onMousemove = event.getStreamProviderFor(this, "mousemove", PolyMouseEvent.$wrap);
+    _onMouseout = event.getStreamProviderFor(this, "mouseout", PolyMouseEvent.$wrap);
+    _onMouseover = event.getStreamProviderFor(this, "mouseover", PolyMouseEvent.$wrap);
+    _onMouseup = event.getStreamProviderFor(this, "mouseup", PolyMouseEvent.$wrap);
+    _onRightclick = event.getStreamProviderFor(this, "rightclick", PolyMouseEvent.$wrap);
   }
 
   Stream<PolyMouseEvent> get onClick => _onClick.stream;
@@ -53,12 +53,12 @@ part of google_maps;
   bool get draggable;
   bool get editable;
   GMap get map;
-  MVCArray<LatLng> get path => MVCArray.castListOfSerializables($unsafe.callMethod('getPath'), LatLng.cast);
+  MVCArray<LatLng> get path => MVCArray.$wrapSerializables($unsafe.callMethod('getPath'), LatLng.$wrap);
   bool get visible;
   set draggable(bool draggable);
   set editable(bool editable);
   set map(GMap map);
   set options(PolylineOptions options);
-  set path(dynamic/*MVCArray.<LatLng>|Array.<LatLng>*/ path) => $unsafe.callMethod('setPath', [path == null ? null : path is js.Serializable ? path : path is List ? js.jsify(path) : path]);
+  set path(dynamic/*MVCArray.<LatLng>|Array.<LatLng>*/ path) => $unsafe.callMethod('setPath', [path == null ? null : path is js.JsArray ? path : path is List ? jsw.jsify(path) : path]);
   set visible(bool visible);
 }

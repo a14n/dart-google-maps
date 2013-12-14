@@ -15,7 +15,7 @@
 part of google_maps;
 
 @wrapper abstract class TransitAgency extends jsw.TypedJsObject {
-  TransitAgency() : super();
+  TransitAgency();
 
   String name;
   String phone;

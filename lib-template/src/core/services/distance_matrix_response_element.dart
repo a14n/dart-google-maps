@@ -15,9 +15,9 @@
 part of google_maps;
 
 @wrapper abstract class DistanceMatrixResponseElement extends jsw.TypedJsObject {
-  DistanceMatrixResponseElement() : super();
+  DistanceMatrixResponseElement();
 
   Distance distance;
   GDuration duration;
-  @isEnum DistanceMatrixElementStatus status;
+  DistanceMatrixElementStatus status;
 }

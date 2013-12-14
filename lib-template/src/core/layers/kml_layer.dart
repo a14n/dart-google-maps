@@ -19,11 +19,11 @@ part of google_maps;
   jsw.SubscribeStreamProvider _onDefaultviewportChanged;
   jsw.SubscribeStreamProvider _onStatusChanged;
 
-  KmlLayer([KmlLayerOptions options]) : super(maps['KmlLayer'], [options]) { _initStreams(); }
+  @generate KmlLayer([KmlLayerOptions options]) { _initStreams(); }
   KmlLayer.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) { _initStreams(); }
 
   void _initStreams() {
-    _onClick = event.getStreamProviderFor(this, "click", KmlMouseEvent.cast);
+    _onClick = event.getStreamProviderFor(this, "click", KmlMouseEvent.$wrap);
     _onDefaultviewportChanged = event.getStreamProviderFor(this, "defaultviewport_changed");
     _onStatusChanged = event.getStreamProviderFor(this, "status_changed");
   }
@@ -35,7 +35,7 @@ part of google_maps;
   LatLngBounds get defaultViewport;
   GMap get map;
   KmlLayerMetadata get metadata;
-  @isEnum KmlLayerStatus get status;
+  KmlLayerStatus get status;
   String get url;
   set map(GMap map);
   set url(String url);

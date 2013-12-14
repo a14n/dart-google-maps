@@ -15,16 +15,15 @@
 part of google_maps;
 
 class DistanceMatrixResponseElement extends jsw.TypedJsObject {
-  static DistanceMatrixResponseElement cast(js.JsObject jsObject) => jsObject == null ? null : new DistanceMatrixResponseElement.fromJsObject(jsObject);
+  static DistanceMatrixResponseElement $wrap(js.JsObject jsObject) => jsObject == null ? null : new DistanceMatrixResponseElement.fromJsObject(jsObject);
   DistanceMatrixResponseElement.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  DistanceMatrixResponseElement()
-      : super();
+  DistanceMatrixResponseElement();
 
-  set distance(Distance distance) => $unsafe['distance'] = distance;
-  Distance get distance => Distance.cast($unsafe['distance']);
-  set duration(GDuration duration) => $unsafe['duration'] = duration;
-  GDuration get duration => GDuration.cast($unsafe['duration']);
-  set status(DistanceMatrixElementStatus status) => $unsafe['status'] = status;
-  DistanceMatrixElementStatus get status => DistanceMatrixElementStatus.find($unsafe['status']);
+  set distance(Distance distance) => $unsafe['distance'] = distance == null ? null : distance.$unsafe;
+  Distance get distance => Distance.$wrap($unsafe['distance']);
+  set duration(GDuration duration) => $unsafe['duration'] = duration == null ? null : duration.$unsafe;
+  GDuration get duration => GDuration.$wrap($unsafe['duration']);
+  set status(DistanceMatrixElementStatus status) => $unsafe['status'] = status == null ? null : status.$unsafe;
+  DistanceMatrixElementStatus get status => DistanceMatrixElementStatus.$wrap($unsafe['status']);
 }

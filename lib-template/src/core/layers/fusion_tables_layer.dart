@@ -17,11 +17,11 @@ part of google_maps;
 @wrapper @skipConstructor abstract class FusionTablesLayer extends MVCObject {
   jsw.SubscribeStreamProvider<FusionTablesMouseEvent> _onClick;
 
-  FusionTablesLayer(FusionTablesLayerOptions options) : super(maps['FusionTablesLayer'], [options]) { _initStreams(); }
+  @generate FusionTablesLayer(FusionTablesLayerOptions options) { _initStreams(); }
   FusionTablesLayer.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) { _initStreams(); }
 
   void _initStreams() {
-    _onClick = event.getStreamProviderFor(this, "click", FusionTablesMouseEvent.cast);
+    _onClick = event.getStreamProviderFor(this, "click", FusionTablesMouseEvent.$wrap);
   }
 
   Stream<FusionTablesMouseEvent> get onClick => _onClick.stream;

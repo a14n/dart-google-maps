@@ -15,5 +15,4 @@
 part of google_maps;
 
 @wrapper abstract class MapsEventListener extends jsw.TypedJsObject {
-  static MapsEventListener cast(js.JsObject jsObject) => null;
 }

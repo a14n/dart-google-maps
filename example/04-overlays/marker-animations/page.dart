@@ -12,7 +12,7 @@ void main() {
     ..mapTypeId = MapTypeId.ROADMAP
     ..center = stockholm
     ;
-  map = new GMap(query("#map_canvas"), mapOptions);
+  map = new GMap(querySelector("#map_canvas"), mapOptions);
 
   marker = new Marker(new MarkerOptions()
     ..map = map

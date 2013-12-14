@@ -15,7 +15,7 @@
 part of google_maps;
 
 @wrapper @namesWithUnderscores abstract class DirectionsRoute extends jsw.TypedJsObject {
-  DirectionsRoute() : super();
+  DirectionsRoute();
 
   LatLngBounds bounds;
   String copyrights;

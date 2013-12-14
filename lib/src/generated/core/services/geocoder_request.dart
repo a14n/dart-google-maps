@@ -15,18 +15,17 @@
 part of google_maps;
 
 class GeocoderRequest extends jsw.TypedJsObject {
-  static GeocoderRequest cast(js.JsObject jsObject) => jsObject == null ? null : new GeocoderRequest.fromJsObject(jsObject);
+  static GeocoderRequest $wrap(js.JsObject jsObject) => jsObject == null ? null : new GeocoderRequest.fromJsObject(jsObject);
   GeocoderRequest.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  GeocoderRequest()
-      : super();
+  GeocoderRequest();
 
   set address(String address) => $unsafe['address'] = address;
   String get address => $unsafe['address'];
-  set bounds(LatLngBounds bounds) => $unsafe['bounds'] = bounds;
-  LatLngBounds get bounds => LatLngBounds.cast($unsafe['bounds']);
-  set location(LatLng location) => $unsafe['location'] = location;
-  LatLng get location => LatLng.cast($unsafe['location']);
+  set bounds(LatLngBounds bounds) => $unsafe['bounds'] = bounds == null ? null : bounds.$unsafe;
+  LatLngBounds get bounds => LatLngBounds.$wrap($unsafe['bounds']);
+  set location(LatLng location) => $unsafe['location'] = location == null ? null : location.$unsafe;
+  LatLng get location => LatLng.$wrap($unsafe['location']);
   set region(String region) => $unsafe['region'] = region;
   String get region => $unsafe['region'];
 }

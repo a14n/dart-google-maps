@@ -15,18 +15,9 @@
 part of google_maps;
 
 @wrapper @forMethods @skipConstructor abstract class Marker extends MVCObject {
-  static Marker cast(js.JsObject jsObject) => null;
+  static Marker $wrap(js.JsObject jsObject) => null;
   static bool isInstance(js.JsObject proxy) => proxy.instanceof(maps['Marker']);
   static final num MAX_ZINDEX = maps['Marker']['MAX_ZINDEX'];
-
-  static String _isSymbolOrIcon(js.JsObject proxy) {
-    try {
-      final path = proxy['path'];
-      return "Symbol";
-    } on NoSuchMethodError {
-      return "Icon";
-    }
-  }
 
   jsw.SubscribeStreamProvider _onAnimationChanged;
   jsw.SubscribeStreamProvider<MouseEvent> _onClick;
@@ -51,27 +42,27 @@ part of google_maps;
   jsw.SubscribeStreamProvider _onVisibleChanged;
   jsw.SubscribeStreamProvider _onZindexChanged;
 
-  Marker([MarkerOptions opts]) : super(maps['Marker'], [opts]) { _initStreams(); }
+  @generate Marker([MarkerOptions opts]) { _initStreams(); }
   Marker.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) { _initStreams(); }
 
   void _initStreams() {
     _onAnimationChanged = event.getStreamProviderFor(this, "animation_changed");
-    _onClick = event.getStreamProviderFor(this, "click", MouseEvent.cast);
+    _onClick = event.getStreamProviderFor(this, "click", MouseEvent.$wrap);
     _onClickableChanged = event.getStreamProviderFor(this, "clickable_changed");
     _onCursorChanged = event.getStreamProviderFor(this, "cursor_changed");
-    _onDblClick = event.getStreamProviderFor(this, "dblclick", MouseEvent.cast);
-    _onDrag = event.getStreamProviderFor(this, "drag", MouseEvent.cast);
-    _onDragend = event.getStreamProviderFor(this, "dragend", MouseEvent.cast);
+    _onDblClick = event.getStreamProviderFor(this, "dblclick", MouseEvent.$wrap);
+    _onDrag = event.getStreamProviderFor(this, "drag", MouseEvent.$wrap);
+    _onDragend = event.getStreamProviderFor(this, "dragend", MouseEvent.$wrap);
     _onDraggableChanged = event.getStreamProviderFor(this, "draggable_changed");
-    _onDragstart = event.getStreamProviderFor(this, "dragstart", MouseEvent.cast);
+    _onDragstart = event.getStreamProviderFor(this, "dragstart", MouseEvent.$wrap);
     _onFlatChanged = event.getStreamProviderFor(this, "flat_changed");
     _onIconChanged = event.getStreamProviderFor(this, "icon_changed");
-    _onMousedown = event.getStreamProviderFor(this, "mousedown", MouseEvent.cast);
-    _onMouseout = event.getStreamProviderFor(this, "mouseout", MouseEvent.cast);
-    _onMouseover = event.getStreamProviderFor(this, "mouseover", MouseEvent.cast);
-    _onMouseup = event.getStreamProviderFor(this, "mouseup", MouseEvent.cast);
+    _onMousedown = event.getStreamProviderFor(this, "mousedown", MouseEvent.$wrap);
+    _onMouseout = event.getStreamProviderFor(this, "mouseout", MouseEvent.$wrap);
+    _onMouseover = event.getStreamProviderFor(this, "mouseover", MouseEvent.$wrap);
+    _onMouseup = event.getStreamProviderFor(this, "mouseup", MouseEvent.$wrap);
     _onPositionChanged = event.getStreamProviderFor(this, "position_changed");
-    _onRightclick = event.getStreamProviderFor(this, "rightclick", MouseEvent.cast);
+    _onRightclick = event.getStreamProviderFor(this, "rightclick", MouseEvent.$wrap);
     _onShadowChanged = event.getStreamProviderFor(this, "shadow_changed");
     _onShapeChanged = event.getStreamProviderFor(this, "shape_changed");
     _onTitleChanged = event.getStreamProviderFor(this, "title_changed");
@@ -102,49 +93,15 @@ part of google_maps;
   Stream get onVisibleChanged => _onVisibleChanged.stream;
   Stream get onZindexChanged => _onZindexChanged.stream;
 
-  @isEnum Animation get animation;
+  Animation get animation;
   bool get clickable;
   String get cursor;
   bool get draggable;
   bool get flat;
-  dynamic/*string|Icon|Symbol*/ get icon {
-    final result = $unsafe.callMethod('getIcon');
-    if (result is String) {
-      return result;
-    } else if (result is js.JsObject) {
-      final type = _isSymbolOrIcon(result);
-      if (type == "Symbol") {
-        return GSymbol.cast(result);
-      } else if (type == "Icon") {
-        return Icon.cast(result);
-      }
-    }
-    return result;
-  }
-  dynamic/*Map|StreetViewPanorama*/ get map {
-    final result = $unsafe.callMethod('getMap');
-    if (GMap.isInstance(result)) {
-      return GMap.cast(result);
-    } else if (StreetViewPanorama.isInstance(result)) {
-      return StreetViewPanorama.cast(result);
-    }
-    return result;
-  }
+  @Types(const [String, Icon, GSymbol]) dynamic get icon;
+  @Types(const [GMap, StreetViewPanorama]) dynamic get map;
   LatLng get position;
-  dynamic/*string|Icon|Symbol*/ get shadow {
-    final result = $unsafe.callMethod('getShadow');
-    if (result is String) {
-      return result;
-    } else if (result is js.JsObject) {
-      final type = _isSymbolOrIcon(result);
-      if (type == "Symbol") {
-        return GSymbol.cast(result);
-      } else if (type == "Icon") {
-        return Icon.cast(result);
-      }
-    }
-    return result;
-  }
+  @Types(const [String, Icon, GSymbol]) dynamic get shadow;
   MarkerShape get shape;
   String get title;
   bool get visible;
@@ -154,11 +111,11 @@ part of google_maps;
   set cursor(String cursor);
   set draggable(bool draggable);
   set flat(bool flag);
-  set icon(dynamic/*string|Icon|Symbol*/ icon);
-  set map(dynamic/*Map|StreetViewPanorama*/ map);
+  set icon(@Types(const [GSymbol,Icon,String]) dynamic icon);
+  set map(@Types(const [GMap,StreetViewPanorama]) dynamic map);
   set options(MarkerOptions options);
   set position(LatLng latlng);
-  set shadow(dynamic/*string|Icon|Symbol*/ shadow);
+  set shadow(@Types(const [GSymbol,Icon,String]) dynamic shadow);
   set title(String title);
   set visible(bool visible);
   set zIndex(num zIndex);

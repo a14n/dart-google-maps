@@ -15,7 +15,7 @@
 part of google_maps;
 
 class InfoWindow extends MVCObject {
-  static InfoWindow cast(js.JsObject jsObject) => jsObject == null ? null : new InfoWindow.fromJsObject(jsObject);
+  static InfoWindow $wrap(js.JsObject jsObject) => jsObject == null ? null : new InfoWindow.fromJsObject(jsObject);
   jsw.SubscribeStreamProvider _onCloseclick;
   jsw.SubscribeStreamProvider _onContentChanged;
   jsw.SubscribeStreamProvider _onDomready;
@@ -23,7 +23,7 @@ class InfoWindow extends MVCObject {
   jsw.SubscribeStreamProvider _onZindexChanged;
 
   InfoWindow([InfoWindowOptions opts])
-      : super(maps['InfoWindow'], [opts]) {
+      : super(maps['InfoWindow'], [opts == null ? null : opts.$unsafe]) {
     _initStreams();
   }
   InfoWindow.fromJsObject(js.JsObject proxy)
@@ -48,21 +48,14 @@ class InfoWindow extends MVCObject {
   void close() {
     $unsafe.callMethod('close');
   }
-  dynamic /*string|Node*/ get content {
-    final result = $unsafe['content'];
-    if (result is String) {
-      return result;
-    } else {
-      return jsw.convertElementToDart(result);
-    }
-  }
-  LatLng get position => LatLng.cast($unsafe.callMethod('getPosition'));
+  dynamic get content => ((v2) => v2 is String ? v2 : ((v1) => v1 is html.Node ? v1 : ((v0) => v0)(v1))(v2))($unsafe.callMethod('getContent'));
+  LatLng get position => LatLng.$wrap($unsafe.callMethod('getPosition'));
   num get zIndex => $unsafe.callMethod('getZIndex');
   void open([dynamic map, MVCObject anchor]) {
-    $unsafe.callMethod('open', [map, anchor]);
+    $unsafe.callMethod('open', [map == null ? null : map is GMap ? map.$unsafe : map is StreetViewPanorama ? map.$unsafe : throw "bad type", anchor == null ? null : anchor.$unsafe]);
   }
-  set content(dynamic /*string|Node*/ content) => $unsafe.callMethod('setContent', [content is String ? content : jsw.convertElementToJs(content)]);
-  set options(InfoWindowOptions options) => $unsafe.callMethod('setOptions', [options]);
-  set position(LatLng position) => $unsafe.callMethod('setPosition', [position]);
+  set content(dynamic content) => $unsafe.callMethod('setContent', [content == null ? null : content is String ? content : content is html.Node ? content : throw "bad type"]);
+  set options(InfoWindowOptions options) => $unsafe.callMethod('setOptions', [options == null ? null : options.$unsafe]);
+  set position(LatLng position) => $unsafe.callMethod('setPosition', [position == null ? null : position.$unsafe]);
   set zIndex(num zIndex) => $unsafe.callMethod('setZIndex', [zIndex]);
 }

@@ -15,14 +15,14 @@
 part of google_maps_places;
 
 class PlaceGeometry extends jsw.TypedJsObject {
-  static PlaceGeometry cast(js.JsObject jsObject) => jsObject == null ? null : new PlaceGeometry.fromJsObject(jsObject);
+  static PlaceGeometry $wrap(js.JsObject jsObject) => jsObject == null ? null : new PlaceGeometry.fromJsObject(jsObject);
   PlaceGeometry.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
   PlaceGeometry()
       : super();
 
-  set location(LatLng location) => $unsafe['location'] = location;
-  LatLng get location => LatLng.cast($unsafe['location']);
-  set viewport(LatLngBounds viewport) => $unsafe['viewport'] = viewport;
-  LatLngBounds get viewport => LatLngBounds.cast($unsafe['viewport']);
+  set location(LatLng location) => $unsafe['location'] = location == null ? null : location.$unsafe;
+  LatLng get location => LatLng.$wrap($unsafe['location']);
+  set viewport(LatLngBounds viewport) => $unsafe['viewport'] = viewport == null ? null : viewport.$unsafe;
+  LatLngBounds get viewport => LatLngBounds.$wrap($unsafe['viewport']);
 }

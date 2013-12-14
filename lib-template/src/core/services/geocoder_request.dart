@@ -15,7 +15,7 @@
 part of google_maps;
 
 @wrapper abstract class GeocoderRequest extends jsw.TypedJsObject {
-  GeocoderRequest() : super();
+  GeocoderRequest();
 
   String address;
   LatLngBounds bounds;

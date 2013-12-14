@@ -16,5 +16,5 @@ part of google_maps;
 
 // TODO extends MVCObject mixin MapType
 @wrapper abstract class StyledMapType extends MapType {
-  StyledMapType(List<MapTypeStyle> styles, [StyledMapTypeOptions options]) : super(maps['StyledMapType'], [styles == null ? null : styles is js.Serializable ? styles : js.jsify(styles), options]);
+  @generate StyledMapType(List<MapTypeStyle> styles, [StyledMapTypeOptions options]);
 }

@@ -15,9 +15,9 @@
 part of google_maps;
 
 @wrapper abstract class DistanceMatrixService extends jsw.TypedJsObject {
-  DistanceMatrixService() : super(maps['DistanceMatrixService']);
+  @generate DistanceMatrixService();
 
   void getDistanceMatrix(DistanceMatrixRequest request, void callback(DistanceMatrixResponse response, DistanceMatrixStatus status)) {
-    $unsafe.callMethod('getDistanceMatrix', [request, (js.JsObject response, String status) => callback(DistanceMatrixResponse.cast(response), DistanceMatrixStatus.find(status))]);
+    $unsafe.callMethod('getDistanceMatrix', [jsw.Serializable.$unwrap(request), (js.JsObject response, String status) => callback(DistanceMatrixResponse.$wrap(response), DistanceMatrixStatus.$wrap(status))]);
   }
 }

@@ -17,16 +17,15 @@ part of google_maps;
 typedef String GetTileUrl(Point point, num zoomLevel);
 
 class ImageMapTypeOptions extends jsw.TypedJsObject {
-  static ImageMapTypeOptions cast(js.JsObject jsObject) => jsObject == null ? null : new ImageMapTypeOptions.fromJsObject(jsObject);
+  static ImageMapTypeOptions $wrap(js.JsObject jsObject) => jsObject == null ? null : new ImageMapTypeOptions.fromJsObject(jsObject);
   ImageMapTypeOptions.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  ImageMapTypeOptions()
-      : super();
+  ImageMapTypeOptions();
 
   set alt(String alt) => $unsafe['alt'] = alt;
   String get alt => $unsafe['alt'];
-  set getTileUrl(GetTileUrl callback) => $unsafe['getTileUrl'] = (js.JsObject point, num zoomLevel, [dynamic wtf]) => callback(Point.cast(point), zoomLevel);
-  GetTileUrl get getTileUrl => (Point point, num zoomLevel) => $unsafe.callMethod('getTileUrl', [point, zoomLevel]);
+  set getTileUrl(GetTileUrl callback) => $unsafe['getTileUrl'] = (js.JsObject point, num zoomLevel, [dynamic wtf]) => callback(Point.$wrap(point), zoomLevel);
+  GetTileUrl get getTileUrl => (Point point, num zoomLevel) => $unsafe.callMethod('getTileUrl', [jsw.Serializable.$unwrap(point), zoomLevel]);
   set maxZoom(num maxZoom) => $unsafe['maxZoom'] = maxZoom;
   num get maxZoom => $unsafe['maxZoom'];
   set minZoom(num minZoom) => $unsafe['minZoom'] = minZoom;
@@ -35,6 +34,6 @@ class ImageMapTypeOptions extends jsw.TypedJsObject {
   String get name => $unsafe['name'];
   set opacity(num opacity) => $unsafe['opacity'] = opacity;
   num get opacity => $unsafe['opacity'];
-  set tileSize(Size tileSize) => $unsafe['tileSize'] = tileSize;
-  Size get tileSize => Size.cast($unsafe['tileSize']);
+  set tileSize(Size tileSize) => $unsafe['tileSize'] = tileSize == null ? null : tileSize.$unsafe;
+  Size get tileSize => Size.$wrap($unsafe['tileSize']);
 }

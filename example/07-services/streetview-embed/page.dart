@@ -11,6 +11,6 @@ void main() {
       ..zoom = 1
     )
     ;
-  final myPano = new StreetViewPanorama(query('#pano'),panoramaOptions);
+  final myPano = new StreetViewPanorama(querySelector('#pano'),panoramaOptions);
   myPano.visible = true;
 }

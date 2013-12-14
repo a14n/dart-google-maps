@@ -15,7 +15,7 @@
 part of google_maps_visualization;
 
 class DemographicsPropertyStyle extends jsw.TypedJsObject {
-  static DemographicsPropertyStyle cast(js.JsObject jsObject) => jsObject == null ? null : new DemographicsPropertyStyle.fromJsObject(jsObject);
+  static DemographicsPropertyStyle $wrap(js.JsObject jsObject) => jsObject == null ? null : new DemographicsPropertyStyle.fromJsObject(jsObject);
   DemographicsPropertyStyle.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
   DemographicsPropertyStyle()
@@ -23,8 +23,8 @@ class DemographicsPropertyStyle extends jsw.TypedJsObject {
 
   set expression(String expression) => $unsafe['expression'] = expression;
   String get expression => $unsafe['expression'];
-  set gradient(List<String> gradient) => $unsafe['gradient'] = gradient == null ? null : gradient is js.Serializable ? gradient : js.jsify(gradient);
-  List<String> get gradient => jsw.TypedJsArray.cast($unsafe['gradient']);
+  set gradient(List<String> gradient) => $unsafe['gradient'] = gradient == null ? null : (gradient is jsw.TypedJsObject ? (gradient as jsw.TypedJsObject).$unsafe : jsw.jsify(gradient));
+  List<String> get gradient => jsw.TypedJsArray.$wrap($unsafe['gradient']);
   set min(num min) => $unsafe['min'] = min;
   num get min => $unsafe['min'];
   set max(num max) => $unsafe['max'] = max;

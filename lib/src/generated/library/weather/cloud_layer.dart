@@ -15,12 +15,12 @@
 part of google_maps_weather;
 
 class CloudLayer extends MVCObject {
-  static CloudLayer cast(js.JsObject jsObject) => jsObject == null ? null : new CloudLayer.fromJsObject(jsObject);
+  static CloudLayer $wrap(js.JsObject jsObject) => jsObject == null ? null : new CloudLayer.fromJsObject(jsObject);
   CloudLayer.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
   CloudLayer()
       : super(maps['weather']['CloudLayer']);
 
-  set map(GMap map) => $unsafe.callMethod('setMap', [map]);
-  GMap get map => GMap.cast($unsafe.callMethod('getMap'));
+  set map(GMap map) => $unsafe.callMethod('setMap', [map == null ? null : map.$unsafe]);
+  GMap get map => GMap.$wrap($unsafe.callMethod('getMap'));
 }

@@ -17,7 +17,7 @@ part of google_maps;
 typedef StreetViewPanoramaData PanoProvider(String pano);
 
 @wrapper abstract class StreetViewPanoramaOptions extends jsw.TypedJsObject {
-  StreetViewPanoramaOptions() : super();
+  StreetViewPanoramaOptions();
 
   bool addressControl;
   StreetViewAddressControlOptions addressControlOptions;
@@ -29,8 +29,8 @@ typedef StreetViewPanoramaData PanoProvider(String pano);
   bool panControl;
   PanControlOptions panControlOptions;
   String pano;
-  PanoProvider get panoProvider => $unsafe['panoProvider'];
-  set panoProvider(PanoProvider panoProvider);
+  set panoProvider(PanoProvider panoProvider) => $unsafe['panoProvider'] = (String pano) => jsw.Serializable.$unwrap(panoProvider(pano));
+  PanoProvider get panoProvider => (String pano) => StreetViewPanoramaData.$wrap($unsafe['panoProvider'].apply(pano));
   LatLng position;
   StreetViewPov pov;
   bool scrollwheel;

@@ -15,22 +15,21 @@
 part of google_maps;
 
 class InfoWindowOptions extends jsw.TypedJsObject {
-  static InfoWindowOptions cast(js.JsObject jsObject) => jsObject == null ? null : new InfoWindowOptions.fromJsObject(jsObject);
+  static InfoWindowOptions $wrap(js.JsObject jsObject) => jsObject == null ? null : new InfoWindowOptions.fromJsObject(jsObject);
   InfoWindowOptions.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  InfoWindowOptions()
-      : super();
+  InfoWindowOptions();
 
-  set content(dynamic content) => $unsafe['content'] = content;
-  dynamic get content => $unsafe['content'];
+  set content(dynamic content) => $unsafe['content'] = content == null ? null : content is String ? content : content is html.Node ? content : throw "bad type";
+  dynamic get content => ((v2) => v2 is String ? v2 : ((v1) => v1 is html.Node ? v1 : ((v0) => v0)(v1))(v2))($unsafe['content']);
   set disableAutoPan(bool disableAutoPan) => $unsafe['disableAutoPan'] = disableAutoPan;
   bool get disableAutoPan => $unsafe['disableAutoPan'];
   set maxWidth(num maxWidth) => $unsafe['maxWidth'] = maxWidth;
   num get maxWidth => $unsafe['maxWidth'];
-  set pixelOffset(Size pixelOffset) => $unsafe['pixelOffset'] = pixelOffset;
-  Size get pixelOffset => Size.cast($unsafe['pixelOffset']);
-  set position(LatLng position) => $unsafe['position'] = position;
-  LatLng get position => LatLng.cast($unsafe['position']);
+  set pixelOffset(Size pixelOffset) => $unsafe['pixelOffset'] = pixelOffset == null ? null : pixelOffset.$unsafe;
+  Size get pixelOffset => Size.$wrap($unsafe['pixelOffset']);
+  set position(LatLng position) => $unsafe['position'] = position == null ? null : position.$unsafe;
+  LatLng get position => LatLng.$wrap($unsafe['position']);
   set zIndex(num zIndex) => $unsafe['zIndex'] = zIndex;
   num get zIndex => $unsafe['zIndex'];
 }

@@ -15,16 +15,15 @@
 part of google_maps;
 
 class IconSequence extends jsw.TypedJsObject {
-  static IconSequence cast(js.JsObject jsObject) => jsObject == null ? null : new IconSequence.fromJsObject(jsObject);
+  static IconSequence $wrap(js.JsObject jsObject) => jsObject == null ? null : new IconSequence.fromJsObject(jsObject);
   IconSequence.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  IconSequence()
-      : super();
+  IconSequence();
 
   set fixedRotation(bool fixedRotation) => $unsafe['fixedRotation'] = fixedRotation;
   bool get fixedRotation => $unsafe['fixedRotation'];
-  set icon(GSymbol icon) => $unsafe['icon'] = icon;
-  GSymbol get icon => GSymbol.cast($unsafe['icon']);
+  set icon(GSymbol icon) => $unsafe['icon'] = icon == null ? null : icon.$unsafe;
+  GSymbol get icon => GSymbol.$wrap($unsafe['icon']);
   set offset(String offset) => $unsafe['offset'] = offset;
   String get offset => $unsafe['offset'];
   set repeat(String repeat) => $unsafe['repeat'] = repeat;

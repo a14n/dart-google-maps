@@ -25,6 +25,6 @@ part of google_maps_places;
   String name;
   bool openNow;
   num radius;
-  @isEnum RankBy rankBy;
+  RankBy rankBy;
   List<String> types;
 }

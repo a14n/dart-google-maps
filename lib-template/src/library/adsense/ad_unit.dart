@@ -15,15 +15,15 @@
 part of google_maps_adsense;
 
 @wrapper @forMethods abstract class AdUnit extends MVCObject {
-  AdUnit(html.Node container, AdUnitOptions opts) : super(maps['adsense']['AdUnit'], [jsw.convertElementToJs(container), opts]);
+  AdUnit(html.Node container, AdUnitOptions opts) : super(maps['adsense']['AdUnit'], [container, opts]);
 
   String get backgroundColor;
   String get borderColor;
   String get channelNumber;
-  html.Node get container => jsw.convertElementToDart($unsafe.callMethod('getContainer'));
-  @isEnum AdFormat get format;
+  html.Node get container;
+  AdFormat get format;
   GMap get map;
-  @isEnum ControlPosition get position;
+  ControlPosition get position;
   String get publisherId;
   String get textColor;
   String get titleColor;

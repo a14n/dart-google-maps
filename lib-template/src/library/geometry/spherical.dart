@@ -19,12 +19,12 @@ final Spherical spherical = new Spherical();
 @wrapper class Spherical extends jsw.TypedJsObject {
   Spherical() : super.fromJsObject(maps['geometry']['spherical']);
 
-  num computeArea(dynamic/*Array.<LatLng>|MVCArray.<LatLng>*/ path, [num radius]) => $unsafe.callMethod('computeArea', [path == null ? null : path is js.Serializable ? path : js.jsify(path), radius]);
+  num computeArea(dynamic/*Array.<LatLng>|MVCArray.<LatLng>*/ path, [num radius]) => $unsafe.callMethod('computeArea', [path == null ? null : path is js.JsArray ? path : jsw.jsify(path), radius]);
   @generate num computeDistanceBetween(LatLng from, LatLng to, [num radius]) => null;
   @generate num computeHeading(LatLng from, LatLng to) => null;
-  num computeLength(dynamic/*Array.<LatLng>|MVCArray.<LatLng>*/ path, [num radius]) => $unsafe.callMethod('computeLength', [path == null ? null : path is js.Serializable ? path : js.jsify(path), radius]);
+  num computeLength(dynamic/*Array.<LatLng>|MVCArray.<LatLng>*/ path, [num radius]) => $unsafe.callMethod('computeLength', [path == null ? null : path is js.JsArray ? path : jsw.jsify(path), radius]);
   @generate LatLng computeOffset(LatLng from, num distance, num heading, [num radius]) => null;
   @generate LatLng computeOffsetOrigin(LatLng to, num distance, num heading, [num radius]) => null;
-  num computeSignedArea(dynamic/*Array.<LatLng>|MVCArray.<LatLng>*/ loop, [num radius]) => $unsafe.callMethod('computeSignedArea', [loop == null ? null : loop is js.Serializable ? loop : js.jsify(loop), radius]);
+  num computeSignedArea(dynamic/*Array.<LatLng>|MVCArray.<LatLng>*/ loop, [num radius]) => $unsafe.callMethod('computeSignedArea', [loop == null ? null : loop is js.JsArray ? loop : jsw.jsify(loop), radius]);
   @generate LatLng interpolate(LatLng from, LatLng to, num fraction) => null;
 }

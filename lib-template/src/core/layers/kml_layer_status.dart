@@ -15,6 +15,9 @@
 part of google_maps;
 
 class KmlLayerStatus extends jsw.IsEnum<String> {
+  static final _FINDER = new jsw.EnumFinder<String, KmlLayerStatus>([DOCUMENT_NOT_FOUND, DOCUMENT_TOO_LARGE, FETCH_ERROR, INVALID_DOCUMENT, INVALID_REQUEST, LIMITS_EXCEEDED, OK, TIMED_OUT, UNKNOWN]);
+  static KmlLayerStatus $wrap(String jsValue) => _FINDER.find(jsValue);
+
   static final DOCUMENT_NOT_FOUND = new KmlLayerStatus._(maps['KmlLayerStatus']['DOCUMENT_NOT_FOUND']);
   static final DOCUMENT_TOO_LARGE = new KmlLayerStatus._(maps['KmlLayerStatus']['DOCUMENT_TOO_LARGE']);
   static final FETCH_ERROR = new KmlLayerStatus._(maps['KmlLayerStatus']['FETCH_ERROR']);
@@ -24,10 +27,6 @@ class KmlLayerStatus extends jsw.IsEnum<String> {
   static final OK = new KmlLayerStatus._(maps['KmlLayerStatus']['OK']);
   static final TIMED_OUT = new KmlLayerStatus._(maps['KmlLayerStatus']['TIMED_OUT']);
   static final UNKNOWN = new KmlLayerStatus._(maps['KmlLayerStatus']['UNKNOWN']);
-
-  static final _FINDER = new jsw.EnumFinder<String, KmlLayerStatus>([DOCUMENT_NOT_FOUND, DOCUMENT_TOO_LARGE, FETCH_ERROR, INVALID_DOCUMENT, INVALID_REQUEST, LIMITS_EXCEEDED, OK, TIMED_OUT, UNKNOWN]);
-
-  static KmlLayerStatus find(o) => _FINDER.find(o);
 
   KmlLayerStatus._(String value) : super(value);
 }

@@ -15,13 +15,13 @@
 part of google_maps;
 
 class MaxZoomService extends jsw.TypedJsObject {
-  static MaxZoomService cast(js.JsObject jsObject) => jsObject == null ? null : new MaxZoomService.fromJsObject(jsObject);
+  static MaxZoomService $wrap(js.JsObject jsObject) => jsObject == null ? null : new MaxZoomService.fromJsObject(jsObject);
   MaxZoomService.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
   MaxZoomService()
-      : super(maps['MaxZoomService']);
+      : super(maps['MaxZoomService'], []);
 
   void getMaxZoomAtLatLng(LatLng latlng, void callback(MaxZoomResult result)) {
-    $unsafe.callMethod('getMaxZoomAtLatLng', [latlng, (js.JsObject result) => callback(MaxZoomResult.cast(result))]);
+    $unsafe.callMethod('getMaxZoomAtLatLng', [jsw.Serializable.$unwrap(latlng), (js.JsObject result) => callback(MaxZoomResult.$wrap(result))]);
   }
 }

@@ -15,7 +15,7 @@
 part of google_maps;
 
 @wrapper abstract class StreetViewTileData extends jsw.TypedJsObject {
-  StreetViewTileData() : super();
+  StreetViewTileData();
 
   void set_getTileUrl(String getTileUrl(String pano, num tileZoom, num tileX, num tileY)) {
     $unsafe['getTileUrl'] = getTileUrl;

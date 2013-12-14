@@ -15,14 +15,13 @@
 part of google_maps;
 
 class KmlLayerMetadata extends jsw.TypedJsObject {
-  static KmlLayerMetadata cast(js.JsObject jsObject) => jsObject == null ? null : new KmlLayerMetadata.fromJsObject(jsObject);
+  static KmlLayerMetadata $wrap(js.JsObject jsObject) => jsObject == null ? null : new KmlLayerMetadata.fromJsObject(jsObject);
   KmlLayerMetadata.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  KmlLayerMetadata()
-      : super();
+  KmlLayerMetadata();
 
-  set author(KmlAuthor author) => $unsafe['author'] = author;
-  KmlAuthor get author => KmlAuthor.cast($unsafe['author']);
+  set author(KmlAuthor author) => $unsafe['author'] = author == null ? null : author.$unsafe;
+  KmlAuthor get author => KmlAuthor.$wrap($unsafe['author']);
   set description(String description) => $unsafe['description'] = description;
   String get description => $unsafe['description'];
   set name(String name) => $unsafe['name'] = name;

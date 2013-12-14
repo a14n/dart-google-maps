@@ -9,7 +9,7 @@ void main() {
     ..mapTypeId = MapTypeId.ROADMAP
   ;
 
-  final map = new GMap(query("#map_canvas"), mapOptions);
+  final map = new GMap(querySelector("#map_canvas"), mapOptions);
 
   final infowindow = new InfoWindow(new InfoWindowOptions()
     ..content = "Change the zoom level"

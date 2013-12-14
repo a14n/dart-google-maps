@@ -13,15 +13,15 @@ void main() {
     ..center = haightAshbury
     ..mapTypeId = MapTypeId.TERRAIN
     ;
-  map = new GMap(query("#map-canvas"), mapOptions);
+  map = new GMap(querySelector("#map-canvas"), mapOptions);
 
   map.onClick.listen((e) {
     addMarker(e.latLng);
   });
 
-  query("#clearOverlays").onClick.listen((e) => clearOverlays());
-  query("#showOverlays").onClick.listen((e) => showOverlays());
-  query("#deleteOverlays").onClick.listen((e) => deleteOverlays());
+  querySelector("#clearOverlays").onClick.listen((e) => clearOverlays());
+  querySelector("#showOverlays").onClick.listen((e) => showOverlays());
+  querySelector("#deleteOverlays").onClick.listen((e) => deleteOverlays());
 }
 
 // Add a marker to the map and push to the array.

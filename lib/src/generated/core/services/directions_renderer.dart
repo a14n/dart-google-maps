@@ -15,11 +15,11 @@
 part of google_maps;
 
 class DirectionsRenderer extends MVCObject {
-  static DirectionsRenderer cast(js.JsObject jsObject) => jsObject == null ? null : new DirectionsRenderer.fromJsObject(jsObject);
+  static DirectionsRenderer $wrap(js.JsObject jsObject) => jsObject == null ? null : new DirectionsRenderer.fromJsObject(jsObject);
   jsw.SubscribeStreamProvider _onDirectionsChanged;
 
   DirectionsRenderer([DirectionsRendererOptions opts])
-      : super(maps['DirectionsRenderer'], [opts]) {
+      : super(maps['DirectionsRenderer'], [opts == null ? null : opts.$unsafe]) {
     _initStreams();
   }
   DirectionsRenderer.fromJsObject(js.JsObject proxy)
@@ -33,13 +33,13 @@ class DirectionsRenderer extends MVCObject {
 
   Stream get onDirectionsChanged => _onDirectionsChanged.stream;
 
-  DirectionsResult get directions => DirectionsResult.cast($unsafe.callMethod('getDirections'));
-  GMap get map => GMap.cast($unsafe.callMethod('getMap'));
-  html.Node get panel => jsw.convertElementToDart($unsafe.callMethod('getPanel'));
+  DirectionsResult get directions => DirectionsResult.$wrap($unsafe.callMethod('getDirections'));
+  GMap get map => GMap.$wrap($unsafe.callMethod('getMap'));
+  html.Node get panel => $unsafe.callMethod('getPanel');
   num get routeIndex => $unsafe.callMethod('getRouteIndex');
-  set directions(DirectionsResult directions) => $unsafe.callMethod('setDirections', [directions]);
-  set map(GMap map) => $unsafe.callMethod('setMap', [map]);
-  set options(DirectionsRendererOptions options) => $unsafe.callMethod('setOptions', [options]);
-  set panel(html.Node panel) => $unsafe.callMethod('setPanel', [jsw.convertElementToJs(panel)]);
+  set directions(DirectionsResult directions) => $unsafe.callMethod('setDirections', [directions == null ? null : directions.$unsafe]);
+  set map(GMap map) => $unsafe.callMethod('setMap', [map == null ? null : map.$unsafe]);
+  set options(DirectionsRendererOptions options) => $unsafe.callMethod('setOptions', [options == null ? null : options.$unsafe]);
+  set panel(html.Node panel) => $unsafe.callMethod('setPanel', [panel]);
   set routeIndex(num routeIndex) => $unsafe.callMethod('setRouteIndex', [routeIndex]);
 }

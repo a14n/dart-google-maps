@@ -15,18 +15,17 @@
 part of google_maps;
 
 class FusionTablesStyle extends jsw.TypedJsObject {
-  static FusionTablesStyle cast(js.JsObject jsObject) => jsObject == null ? null : new FusionTablesStyle.fromJsObject(jsObject);
+  static FusionTablesStyle $wrap(js.JsObject jsObject) => jsObject == null ? null : new FusionTablesStyle.fromJsObject(jsObject);
   FusionTablesStyle.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  FusionTablesStyle()
-      : super();
+  FusionTablesStyle();
 
-  set markerOptions(FusionTablesMarkerOptions markerOptions) => $unsafe['markerOptions'] = markerOptions;
-  FusionTablesMarkerOptions get markerOptions => FusionTablesMarkerOptions.cast($unsafe['markerOptions']);
-  set polygonOptions(FusionTablesPolygonOptions polygonOptions) => $unsafe['polygonOptions'] = polygonOptions;
-  FusionTablesPolygonOptions get polygonOptions => FusionTablesPolygonOptions.cast($unsafe['polygonOptions']);
-  set polylineOptions(FusionTablesPolylineOptions polylineOptions) => $unsafe['polylineOptions'] = polylineOptions;
-  FusionTablesPolylineOptions get polylineOptions => FusionTablesPolylineOptions.cast($unsafe['polylineOptions']);
+  set markerOptions(FusionTablesMarkerOptions markerOptions) => $unsafe['markerOptions'] = markerOptions == null ? null : markerOptions.$unsafe;
+  FusionTablesMarkerOptions get markerOptions => FusionTablesMarkerOptions.$wrap($unsafe['markerOptions']);
+  set polygonOptions(FusionTablesPolygonOptions polygonOptions) => $unsafe['polygonOptions'] = polygonOptions == null ? null : polygonOptions.$unsafe;
+  FusionTablesPolygonOptions get polygonOptions => FusionTablesPolygonOptions.$wrap($unsafe['polygonOptions']);
+  set polylineOptions(FusionTablesPolylineOptions polylineOptions) => $unsafe['polylineOptions'] = polylineOptions == null ? null : polylineOptions.$unsafe;
+  FusionTablesPolylineOptions get polylineOptions => FusionTablesPolylineOptions.$wrap($unsafe['polylineOptions']);
   set where(String where) => $unsafe['where'] = where;
   String get where => $unsafe['where'];
 }

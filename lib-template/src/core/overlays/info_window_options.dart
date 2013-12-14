@@ -15,9 +15,9 @@
 part of google_maps;
 
 @wrapper abstract class InfoWindowOptions extends jsw.TypedJsObject {
-  InfoWindowOptions() : super();
+  InfoWindowOptions();
 
-  dynamic/*string|Node*/ content;
+  @Types(const [String,html.Node]) dynamic content;
   bool disableAutoPan;
   num maxWidth;
   Size pixelOffset;

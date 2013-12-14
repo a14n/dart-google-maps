@@ -15,12 +15,12 @@
 part of google_maps;
 
 @wrapper abstract class ElevationService extends jsw.TypedJsObject {
-  ElevationService() : super(maps['ElevationService']);
+  @generate ElevationService();
 
   void getElevationAlongPath(PathElevationRequest request, void callback(List<ElevationResult> results, ElevationStatus status)) {
-    $unsafe.callMethod('getElevationAlongPath', [request, (js.JsObject results, String status) => callback(jsw.TypedJsArray.castListOfSerializables(results, ElevationResult.cast), ElevationStatus.find(status))]);
+    $unsafe.callMethod('getElevationAlongPath', [jsw.Serializable.$unwrap(request), (js.JsObject results, String status) => callback(jsw.TypedJsArray.$wrapSerializables(results, ElevationResult.$wrap), ElevationStatus.$wrap(status))]);
   }
   void getElevationForLocations(LocationElevationRequest request, void callback(List<ElevationResult> results, ElevationStatus status)) {
-    $unsafe.callMethod('getElevationForLocations', [request, (js.JsObject results, String status) => callback(jsw.TypedJsArray.castListOfSerializables(results, ElevationResult.cast), ElevationStatus.find(status))]);
+    $unsafe.callMethod('getElevationForLocations', [jsw.Serializable.$unwrap(request), (js.JsObject results, String status) => callback(jsw.TypedJsArray.$wrapSerializables(results, ElevationResult.$wrap), ElevationStatus.$wrap(status))]);
   }
 }

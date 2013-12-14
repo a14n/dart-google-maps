@@ -11,7 +11,7 @@ void main() {
     ..center = new LatLng(35.6894875, 139.6917064)
     ..mapTypeId = MapTypeId.HYBRID
     ;
-  map = new GMap(query("#map_canvas"), mapOptions);
+  map = new GMap(querySelector("#map_canvas"), mapOptions);
 
   maxZoomService = new MaxZoomService();
 

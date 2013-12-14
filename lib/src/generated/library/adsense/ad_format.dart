@@ -15,6 +15,9 @@
 part of google_maps_adsense;
 
 class AdFormat extends jsw.IsEnum<String> {
+  static final _FINDER = new jsw.EnumFinder<String, AdFormat>([BANNER, BUTTON, HALF_BANNER, LARGE_HORIZONTAL_LINK_UNIT, LARGE_RECTANGLE, LARGE_VERTICAL_LINK_UNIT, LEADERBOARD, MEDIUM_RECTANGLE, MEDIUM_VERTICAL_LINK_UNIT, SKYSCRAPER, SMALL_HORIZONTAL_LINK_UNIT, SMALL_RECTANGLE, SMALL_SQUARE, SMALL_VERTICAL_LINK_UNIT, SQUARE, VERTICAL_BANNER, WIDE_SKYSCRAPER, X_LARGE_VERTICAL_LINK_UNIT]);
+  static AdFormat $wrap(String jsValue) => _FINDER.find(jsValue);
+
   static final BANNER = new AdFormat._(maps['adsense']['AdFormat']['BANNER']);
   static final BUTTON = new AdFormat._(maps['adsense']['AdFormat']['BUTTON']);
   static final HALF_BANNER = new AdFormat._(maps['adsense']['AdFormat']['HALF_BANNER']);
@@ -33,10 +36,6 @@ class AdFormat extends jsw.IsEnum<String> {
   static final VERTICAL_BANNER = new AdFormat._(maps['adsense']['AdFormat']['VERTICAL_BANNER']);
   static final WIDE_SKYSCRAPER = new AdFormat._(maps['adsense']['AdFormat']['WIDE_SKYSCRAPER']);
   static final X_LARGE_VERTICAL_LINK_UNIT = new AdFormat._(maps['adsense']['AdFormat']['X_LARGE_VERTICAL_LINK_UNIT']);
-
-  static final _FINDER = new jsw.EnumFinder<String, AdFormat>([BANNER, BUTTON, HALF_BANNER, LARGE_HORIZONTAL_LINK_UNIT, LARGE_RECTANGLE, LARGE_VERTICAL_LINK_UNIT, LEADERBOARD, MEDIUM_RECTANGLE, MEDIUM_VERTICAL_LINK_UNIT, SKYSCRAPER, SMALL_HORIZONTAL_LINK_UNIT, SMALL_RECTANGLE, SMALL_SQUARE, SMALL_VERTICAL_LINK_UNIT, SQUARE, VERTICAL_BANNER, WIDE_SKYSCRAPER, X_LARGE_VERTICAL_LINK_UNIT]);
-
-  static AdFormat find(o) => _FINDER.find(o);
 
   AdFormat._(String value)
       : super(value);

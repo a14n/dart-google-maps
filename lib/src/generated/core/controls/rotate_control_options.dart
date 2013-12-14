@@ -15,12 +15,11 @@
 part of google_maps;
 
 class RotateControlOptions extends jsw.TypedJsObject {
-  static RotateControlOptions cast(js.JsObject jsObject) => jsObject == null ? null : new RotateControlOptions.fromJsObject(jsObject);
+  static RotateControlOptions $wrap(js.JsObject jsObject) => jsObject == null ? null : new RotateControlOptions.fromJsObject(jsObject);
   RotateControlOptions.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  RotateControlOptions()
-      : super();
+  RotateControlOptions();
 
-  set position(ControlPosition position) => $unsafe['position'] = position;
-  ControlPosition get position => ControlPosition.find($unsafe['position']);
+  set position(ControlPosition position) => $unsafe['position'] = position == null ? null : position.$unsafe;
+  ControlPosition get position => ControlPosition.$wrap($unsafe['position']);
 }

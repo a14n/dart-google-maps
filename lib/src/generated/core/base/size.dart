@@ -15,13 +15,13 @@
 part of google_maps;
 
 class Size extends jsw.TypedJsObject {
-  static Size cast(js.JsObject jsObject) => jsObject == null ? null : new Size.fromJsObject(jsObject);
+  static Size $wrap(js.JsObject jsObject) => jsObject == null ? null : new Size.fromJsObject(jsObject);
   Size.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
   Size(num width, num height, [String widthUnit, String heightUnit])
       : super(maps['Size'], [width, height, widthUnit, heightUnit]);
 
-  bool equals(Size other) => $unsafe.callMethod('equals', [other]);
+  bool equals(Size other) => $unsafe.callMethod('equals', [other == null ? null : other.$unsafe]);
   String toString() => $unsafe.callMethod('toString');
 
   set height(num height) => $unsafe['height'] = height;

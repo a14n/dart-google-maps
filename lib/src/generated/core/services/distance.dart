@@ -15,11 +15,10 @@
 part of google_maps;
 
 class Distance extends jsw.TypedJsObject {
-  static Distance cast(js.JsObject jsObject) => jsObject == null ? null : new Distance.fromJsObject(jsObject);
+  static Distance $wrap(js.JsObject jsObject) => jsObject == null ? null : new Distance.fromJsObject(jsObject);
   Distance.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  Distance()
-      : super();
+  Distance();
 
   set text(String text) => $unsafe['text'] = text;
   String get text => $unsafe['text'];

@@ -15,10 +15,10 @@
 part of google_maps;
 
 @wrapper abstract class MaxZoomResult extends jsw.TypedJsObject {
-  static MaxZoomResult cast(js.JsObject jsObject) => null;
+  static MaxZoomResult $wrap(js.JsObject jsObject) => null;
 
-  MaxZoomResult() : super();
+  MaxZoomResult();
 
-  @isEnum MaxZoomStatus status;
+  MaxZoomStatus status;
   num zoom;
 }

@@ -15,7 +15,6 @@
 part of google_maps;
 
 @wrapper @skipConstructor abstract class GMap extends MVCObject {
-  static GMap cast(js.JsObject jsObject) => null;
   static bool isInstance(js.JsObject proxy) => proxy.instanceof(maps['Map']);
 
   jsw.SubscribeStreamProvider _onBoundsChanged;
@@ -38,26 +37,26 @@ part of google_maps;
   jsw.SubscribeStreamProvider _onTiltChanged;
   jsw.SubscribeStreamProvider _onZoomChanged;
 
-  GMap(html.Node mapDiv, [MapOptions opts]) : super(maps['Map'], [jsw.convertElementToJs(mapDiv), opts]) { _initStreams(); }
+  GMap(html.Node mapDiv, [MapOptions opts]) : super(maps['Map'], [mapDiv, jsw.Serializable.$unwrap(opts)]) { _initStreams(); }
   GMap.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) { _initStreams(); }
 
   void _initStreams() {
     _onBoundsChanged = event.getStreamProviderFor(this, "bounds_changed");
     _onCenterChanged = event.getStreamProviderFor(this, "center_changed");
-    _onClick = event.getStreamProviderFor(this, "click", MouseEvent.cast);
-    _onDblClick = event.getStreamProviderFor(this, "dblclick", MouseEvent.cast);
+    _onClick = event.getStreamProviderFor(this, "click", MouseEvent.$wrap);
+    _onDblClick = event.getStreamProviderFor(this, "dblclick", MouseEvent.$wrap);
     _onDrag = event.getStreamProviderFor(this, "drag");
     _onDragend = event.getStreamProviderFor(this, "dragend");
     _onDragstart = event.getStreamProviderFor(this, "dragstart");
     _onHeadingChanged = event.getStreamProviderFor(this, "heading_changed");
     _onIdle = event.getStreamProviderFor(this, "idle");
     _onMaptypeidChanged = event.getStreamProviderFor(this, "maptypeid_changed");
-    _onMousemove = event.getStreamProviderFor(this, "mousemove", MouseEvent.cast);
-    _onMouseout = event.getStreamProviderFor(this, "mouseout", MouseEvent.cast);
-    _onMouseover = event.getStreamProviderFor(this, "mouseover", MouseEvent.cast);
+    _onMousemove = event.getStreamProviderFor(this, "mousemove", MouseEvent.$wrap);
+    _onMouseout = event.getStreamProviderFor(this, "mouseout", MouseEvent.$wrap);
+    _onMouseover = event.getStreamProviderFor(this, "mouseover", MouseEvent.$wrap);
     _onProjectionChanged = event.getStreamProviderFor(this, "projection_changed");
     _onResize = event.getStreamProviderFor(this, "resize");
-    _onRightclick = event.getStreamProviderFor(this, "rightclick", MouseEvent.cast);
+    _onRightclick = event.getStreamProviderFor(this, "rightclick", MouseEvent.$wrap);
     _onTilesloaded = event.getStreamProviderFor(this, "tilesloaded");
     _onTiltChanged = event.getStreamProviderFor(this, "tilt_changed");
     _onZoomChanged = event.getStreamProviderFor(this, "zoom_changed");
@@ -86,12 +85,9 @@ part of google_maps;
   void fitBounds(LatLngBounds bounds);
   @forMethods LatLngBounds get bounds;
   @forMethods LatLng get center;
-  html.Node get div => jsw.convertElementToDart($unsafe.callMethod('getDiv'));
+  @forMethods html.Node get div;
   @forMethods num get heading;
-  dynamic/*MapTypeId|String*/ get mapTypeId {
-    final result = $unsafe.callMethod('getMapTypeId');
-    return [MapTypeId.find(result), result].firstWhere((e) => e != null, orElse: () => null);
-  }
+  @Types(const [MapTypeId,String]) dynamic get mapTypeId;
   @forMethods Projection get projection;
   @forMethods StreetViewPanorama get streetView;
   @forMethods num get tilt;
@@ -101,7 +97,7 @@ part of google_maps;
   void panToBounds(LatLngBounds latLngBounds);
   @forMethods set center(LatLng latLng);
   @forMethods set heading(num heading);
-  @forMethods set mapTypeId(dynamic/*MapTypeId|String*/ mapTypeId);
+  @forMethods set mapTypeId(@Types(const [MapTypeId,String]) dynamic mapTypeId);
   @forMethods set options(MapOptions options);
   @forMethods set streetView(StreetViewPanorama panorama);
   @forMethods set tilt(num tilt);
@@ -109,7 +105,7 @@ part of google_maps;
 
   Controls get controls;
   MapTypeRegistry get mapTypes;
-  MVCArray<MapType> get overlayMapTypes => MVCArray.castListOfSerializables($unsafe['overlayMapTypes'], MapType.cast);
+  MVCArray<MapType> get overlayMapTypes => MVCArray.$wrapSerializables($unsafe['overlayMapTypes'], MapType.$wrap);
   set controls(Controls controls);
   set mapTypes(MapTypeRegistry mapTypes);
   set overlayMapTypes(MVCArray<MapType> overlayMapTypes);
@@ -117,15 +113,8 @@ part of google_maps;
 
 // TODO make this a Map
 @wrapper abstract class Controls extends jsw.TypedJsObject {
-  static Controls cast(js.JsObject proxy) => null;
+  Controls() : super.fromJsObject(new js.JsArray());
 
-  Controls() : super.fromJsObject(js.jsify([]));
-
-  MVCArray<html.Node> operator[](ControlPosition controlPosition) => MVCArray.cast($unsafe[controlPosition], _nodeTranslator);
-  void operator[]=(ControlPosition controlPosition, MVCArray<html.Node> nodes) { $unsafe[controlPosition] = nodes; }
-}
-
-final _nodeTranslator = new _NodeTranslator();
-class _NodeTranslator extends jsw.Translator<html.Node> {
-  _NodeTranslator() : super(jsw.convertElementToDart, jsw.convertElementToJs);
+  MVCArray<html.Node> operator[](ControlPosition controlPosition) => MVCArray.$wrap($unsafe[jsw.Serializable.$unwrap(controlPosition)]);
+  void operator[]=(ControlPosition controlPosition, MVCArray<html.Node> nodes) { $unsafe[jsw.Serializable.$unwrap(controlPosition)] = jsw.Serializable.$unwrap(nodes); }
 }

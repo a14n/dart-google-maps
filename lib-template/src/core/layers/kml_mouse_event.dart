@@ -15,9 +15,7 @@
 part of google_maps;
 
 @wrapper abstract class KmlMouseEvent extends jsw.TypedJsObject {
-  static KmlMouseEvent cast(js.JsObject proxy) => null;
-
-  KmlMouseEvent();
+  static KmlMouseEvent $wrap(js.JsObject proxy) => null;
 
   KmlFeatureData featureData;
   LatLng latLng;

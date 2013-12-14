@@ -12,7 +12,7 @@ void main() {
     ..center = myLatLng
     ..mapTypeId = MapTypeId.SATELLITE
     ;
-  final map = new GMap(query("#map_canvas"), mapOptions);
+  final map = new GMap(querySelector("#map_canvas"), mapOptions);
 
   final swBound = new LatLng(62.281819, -150.287132);
   final neBound = new LatLng(62.400471, -150.005608);
@@ -22,8 +22,8 @@ void main() {
   final srcImage = '${IMAGE_URL}/images/talkeetna.png';
   overlay = new USGSOverlay(bounds, srcImage, map);
 
-  query("#toggle").onClick.listen((e) => overlay.toggle());
-  query("#toggleDOM").onClick.listen((e) => overlay.toggleDOM());
+  querySelector("#toggle").onClick.listen((e) => overlay.toggle());
+  querySelector("#toggleDOM").onClick.listen((e) => overlay.toggleDOM());
 }
 
 class USGSOverlay extends OverlayView {

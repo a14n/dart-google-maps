@@ -20,7 +20,7 @@ part of google_maps_drawing;
   CircleOptions circleOptions;
   bool drawingControl;
   DrawingControlOptions drawingControlOptions;
-  @isEnum OverlayType drawingMode;
+  OverlayType drawingMode;
   GMap map;
   MarkerOptions markerOptions;
   PolygonOptions polygonOptions;

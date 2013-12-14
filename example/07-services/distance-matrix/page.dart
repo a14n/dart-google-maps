@@ -21,10 +21,10 @@ void main() {
     ..zoom = 10
     ..mapTypeId = MapTypeId.ROADMAP
     ;
-  map = new GMap(query("#map"), mapOptions);
+  map = new GMap(querySelector("#map"), mapOptions);
   geocoder = new Geocoder();
 
-  query('#calculateDistances').onClick.listen((e) => calculateDistances());
+  querySelector('#calculateDistances').onClick.listen((e) => calculateDistances());
 }
 
 void calculateDistances() {
@@ -56,7 +56,7 @@ void callback(DistanceMatrixResponse response, DistanceMatrixStatus status) {
         html.write('${origins[i]} to ${destinations[j]}: ${results[j].distance.text} in ${results[j].duration.text}<br>');
       }
     }
-    query('#outputDiv').innerHtml = html.toString();
+    querySelector('#outputDiv').innerHtml = html.toString();
   }
 }
 

@@ -15,9 +15,9 @@
 part of google_maps;
 
 @wrapper abstract class Point extends jsw.TypedJsObject {
-  static Point cast(js.JsObject jsObject) => null;
+  static Point $wrap(js.JsObject jsObject) => null;
 
-  Point(num x, num y) : super(maps['Point'], [x, y]);
+  @generate Point(num x, num y);
 
   bool equals(Point other);
   String toString();

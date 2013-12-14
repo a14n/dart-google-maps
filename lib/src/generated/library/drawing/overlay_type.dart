@@ -15,15 +15,14 @@
 part of google_maps_drawing;
 
 class OverlayType extends jsw.IsEnum<String> {
+  static final _FINDER = new jsw.EnumFinder<String, OverlayType>([CIRCLE, MARKER, POLYGON, POLYLINE, RECTANGLE]);
+  static OverlayType $wrap(String jsValue) => _FINDER.find(jsValue);
+
   static final CIRCLE = new OverlayType._(maps['drawing']['OverlayType']['CIRCLE']);
   static final MARKER = new OverlayType._(maps['drawing']['OverlayType']['MARKER']);
   static final POLYGON = new OverlayType._(maps['drawing']['OverlayType']['POLYGON']);
   static final POLYLINE = new OverlayType._(maps['drawing']['OverlayType']['POLYLINE']);
   static final RECTANGLE = new OverlayType._(maps['drawing']['OverlayType']['RECTANGLE']);
-
-  static final _FINDER = new jsw.EnumFinder<String, OverlayType>([CIRCLE, MARKER, POLYGON, POLYLINE, RECTANGLE]);
-
-  static OverlayType find(o) => _FINDER.find(o);
 
   OverlayType._(String value)
       : super(value);

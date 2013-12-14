@@ -15,20 +15,20 @@
 part of google_maps_weather;
 
 class WeatherFeature extends jsw.TypedJsObject {
-  static WeatherFeature cast(js.JsObject jsObject) => jsObject == null ? null : new WeatherFeature.fromJsObject(jsObject);
+  static WeatherFeature $wrap(js.JsObject jsObject) => jsObject == null ? null : new WeatherFeature.fromJsObject(jsObject);
   WeatherFeature.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
   WeatherFeature()
       : super();
 
-  set current(WeatherConditions current) => $unsafe['current'] = current;
-  WeatherConditions get current => WeatherConditions.cast($unsafe['current']);
-  set forecast(List<WeatherForecast> forecast) => $unsafe['forecast'] = forecast == null ? null : forecast is js.Serializable ? forecast : js.jsify(forecast);
-  List<WeatherForecast> get forecast => jsw.TypedJsArray.castListOfSerializables($unsafe['forecast'], WeatherForecast.cast);
+  set current(WeatherConditions current) => $unsafe['current'] = current == null ? null : current.$unsafe;
+  WeatherConditions get current => WeatherConditions.$wrap($unsafe['current']);
+  set forecast(List<WeatherForecast> forecast) => $unsafe['forecast'] = forecast == null ? null : (forecast is jsw.TypedJsObject ? (forecast as jsw.TypedJsObject).$unsafe : jsw.jsify(forecast));
+  List<WeatherForecast> get forecast => jsw.TypedJsArray.$wrapSerializables($unsafe['forecast'], WeatherForecast.$wrap);
   set location(String location) => $unsafe['location'] = location;
   String get location => $unsafe['location'];
-  set temperatureUnit(TemperatureUnit temperatureUnit) => $unsafe['temperatureUnit'] = temperatureUnit;
-  TemperatureUnit get temperatureUnit => TemperatureUnit.find($unsafe['temperatureUnit']);
-  set windSpeedUnit(WindSpeedUnit windSpeedUnit) => $unsafe['windSpeedUnit'] = windSpeedUnit;
-  WindSpeedUnit get windSpeedUnit => WindSpeedUnit.find($unsafe['windSpeedUnit']);
+  set temperatureUnit(TemperatureUnit temperatureUnit) => $unsafe['temperatureUnit'] = temperatureUnit == null ? null : temperatureUnit.$unsafe;
+  TemperatureUnit get temperatureUnit => TemperatureUnit.$wrap($unsafe['temperatureUnit']);
+  set windSpeedUnit(WindSpeedUnit windSpeedUnit) => $unsafe['windSpeedUnit'] = windSpeedUnit == null ? null : windSpeedUnit.$unsafe;
+  WindSpeedUnit get windSpeedUnit => WindSpeedUnit.$wrap($unsafe['windSpeedUnit']);
 }

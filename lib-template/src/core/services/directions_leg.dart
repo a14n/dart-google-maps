@@ -15,7 +15,7 @@
 part of google_maps;
 
 @wrapper @namesWithUnderscores abstract class DirectionsLeg extends jsw.TypedJsObject {
-  DirectionsLeg() : super();
+  DirectionsLeg();
 
   Time arrivalTime;
   Time departureTime;

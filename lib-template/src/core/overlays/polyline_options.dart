@@ -15,7 +15,7 @@
 part of google_maps;
 
 @wrapper abstract class PolylineOptions extends jsw.TypedJsObject {
-  PolylineOptions() : super();
+  PolylineOptions();
 
   bool clickable;
   bool draggable;
@@ -26,12 +26,12 @@ part of google_maps;
   dynamic/*MVCArray.<LatLng>|Array.<LatLng>*/ get path {
     final result = $unsafe['path'];
     if (MVCArray.isInstance(result)) {
-      return MVCArray.castListOfSerializables(result, LatLng.cast);
+      return MVCArray.$wrapSerializables(result, LatLng.$wrap);
     } else {
-      return jsw.TypedJsArray.castListOfSerializables(result, LatLng.cast);
+      return jsw.TypedJsArray.$wrapSerializables(result, LatLng.$wrap);
     }
   }
-  set path(dynamic/*MVCArray.<LatLng>|Array.<LatLng>*/ path) => $unsafe['path'] = path == null ? null : path is js.Serializable ? path : path is List ? js.jsify(path) : path;
+  set path(dynamic/*MVCArray.<LatLng>|Array.<LatLng>*/ path) => $unsafe['path'] = path == null ? null : path is js.JsArray ? path : path is List ? jsw.jsify(path) : path;
   String strokeColor;
   num strokeOpacity;
   num strokeWeight;

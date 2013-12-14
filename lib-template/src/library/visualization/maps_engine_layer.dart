@@ -23,7 +23,7 @@ part of google_maps_visualization;
   MapsEngineLayer.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) { _initStreams(); }
 
   void _initStreams() {
-    _onClick = event.getStreamProviderFor(this, "click", MapsEngineMouseEvent.cast);
+    _onClick = event.getStreamProviderFor(this, "click", MapsEngineMouseEvent.$wrap);
     _onPropertiesChanged = event.getStreamProviderFor(this, "properties_changed");
     _onStatusChanged = event.getStreamProviderFor(this, "status_changed");
   }
@@ -37,7 +37,7 @@ part of google_maps_visualization;
   GMap get map;
   String get mapId;
   MapsEngineLayerProperties get properties;
-  @isEnum MapsEngineStatus get status;
+  MapsEngineStatus get status;
   set layerId(String layerId);
   set layerKey(String layerKey);
   set map(GMap map);

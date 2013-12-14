@@ -15,16 +15,15 @@
 part of google_maps;
 
 class MapTypeStyle extends jsw.TypedJsObject {
-  static MapTypeStyle cast(js.JsObject jsObject) => jsObject == null ? null : new MapTypeStyle.fromJsObject(jsObject);
+  static MapTypeStyle $wrap(js.JsObject jsObject) => jsObject == null ? null : new MapTypeStyle.fromJsObject(jsObject);
   MapTypeStyle.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  MapTypeStyle()
-      : super();
+  MapTypeStyle();
 
-  set elementType(MapTypeStyleElementType elementType) => $unsafe['elementType'] = elementType;
-  MapTypeStyleElementType get elementType => MapTypeStyleElementType.find($unsafe['elementType']);
-  set featureType(MapTypeStyleFeatureType featureType) => $unsafe['featureType'] = featureType;
-  MapTypeStyleFeatureType get featureType => MapTypeStyleFeatureType.find($unsafe['featureType']);
-  set stylers(List<MapTypeStyler> stylers) => $unsafe['stylers'] = stylers == null ? null : stylers is js.Serializable ? stylers : js.jsify(stylers);
-  List<MapTypeStyler> get stylers => jsw.TypedJsArray.castListOfSerializables($unsafe['stylers'], MapTypeStyler.cast);
+  set elementType(MapTypeStyleElementType elementType) => $unsafe['elementType'] = elementType == null ? null : elementType.$unsafe;
+  MapTypeStyleElementType get elementType => MapTypeStyleElementType.$wrap($unsafe['elementType']);
+  set featureType(MapTypeStyleFeatureType featureType) => $unsafe['featureType'] = featureType == null ? null : featureType.$unsafe;
+  MapTypeStyleFeatureType get featureType => MapTypeStyleFeatureType.$wrap($unsafe['featureType']);
+  set stylers(List<MapTypeStyler> stylers) => $unsafe['stylers'] = stylers == null ? null : (stylers is jsw.TypedJsObject ? (stylers as jsw.TypedJsObject).$unsafe : jsw.jsify(stylers));
+  List<MapTypeStyler> get stylers => jsw.TypedJsArray.$wrapSerializables($unsafe['stylers'], MapTypeStyler.$wrap);
 }

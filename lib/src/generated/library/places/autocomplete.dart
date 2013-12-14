@@ -15,11 +15,11 @@
 part of google_maps_places;
 
 class Autocomplete extends MVCObject {
-  static Autocomplete cast(js.JsObject jsObject) => jsObject == null ? null : new Autocomplete.fromJsObject(jsObject);
+  static Autocomplete $wrap(js.JsObject jsObject) => jsObject == null ? null : new Autocomplete.fromJsObject(jsObject);
   jsw.SubscribeStreamProvider _onPlaceChanged;
 
   Autocomplete(html.InputElement inputField, [AutocompleteOptions opts])
-      : super(maps['places']['Autocomplete'], [jsw.convertElementToJs(inputField), opts]) {
+      : super(maps['places']['Autocomplete'], [inputField, jsw.Serializable.$unwrap(opts)]) {
     _initStreams();
   }
   Autocomplete.fromJsObject(js.JsObject proxy)
@@ -33,9 +33,9 @@ class Autocomplete extends MVCObject {
 
   Stream get onPlaceChanged => _onPlaceChanged.stream;
 
-  LatLngBounds get bounds => LatLngBounds.cast($unsafe.callMethod('getBounds'));
-  PlaceResult get place => PlaceResult.cast($unsafe.callMethod('getPlace'));
-  set bounds(LatLngBounds bounds) => $unsafe.callMethod('setBounds', [bounds]);
-  set componentRestrictions(ComponentRestrictions restrictions) => $unsafe.callMethod('setComponentRestrictions', [restrictions]);
-  set types(List<String> types) => $unsafe.callMethod('setTypes', [types == null ? null : types is js.Serializable ? types : js.jsify(types)]);
+  LatLngBounds get bounds => LatLngBounds.$wrap($unsafe.callMethod('getBounds'));
+  PlaceResult get place => PlaceResult.$wrap($unsafe.callMethod('getPlace'));
+  set bounds(LatLngBounds bounds) => $unsafe.callMethod('setBounds', [bounds == null ? null : bounds.$unsafe]);
+  set componentRestrictions(ComponentRestrictions restrictions) => $unsafe.callMethod('setComponentRestrictions', [restrictions == null ? null : restrictions.$unsafe]);
+  set types(List types) => $unsafe.callMethod('setTypes', [types == null ? null : (types is jsw.TypedJsObject ? (types as jsw.TypedJsObject).$unsafe : jsw.jsify(types))]);
 }

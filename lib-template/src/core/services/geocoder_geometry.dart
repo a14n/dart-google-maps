@@ -15,10 +15,10 @@
 part of google_maps;
 
 @wrapper @namesWithUnderscores abstract class GeocoderGeometry extends jsw.TypedJsObject {
-  GeocoderGeometry() : super();
+  GeocoderGeometry();
 
   LatLngBounds bounds;
   LatLng location;
-  @isEnum GeocoderLocationType locationType;
+  GeocoderLocationType locationType;
   LatLngBounds viewport;
 }

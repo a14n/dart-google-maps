@@ -15,16 +15,15 @@
 part of google_maps;
 
 class MapOptions extends jsw.TypedJsObject {
-  static MapOptions cast(js.JsObject jsObject) => jsObject == null ? null : new MapOptions.fromJsObject(jsObject);
+  static MapOptions $wrap(js.JsObject jsObject) => jsObject == null ? null : new MapOptions.fromJsObject(jsObject);
   MapOptions.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  MapOptions()
-      : super();
+  MapOptions();
 
   set backgroundColor(String backgroundColor) => $unsafe['backgroundColor'] = backgroundColor;
   String get backgroundColor => $unsafe['backgroundColor'];
-  set center(LatLng center) => $unsafe['center'] = center;
-  LatLng get center => LatLng.cast($unsafe['center']);
+  set center(LatLng center) => $unsafe['center'] = center == null ? null : center.$unsafe;
+  LatLng get center => LatLng.$wrap($unsafe['center']);
   set disableDefaultUI(bool disableDefaultUI) => $unsafe['disableDefaultUI'] = disableDefaultUI;
   bool get disableDefaultUI => $unsafe['disableDefaultUI'];
   set disableDoubleClickZoom(bool disableDoubleClickZoom) => $unsafe['disableDoubleClickZoom'] = disableDoubleClickZoom;
@@ -43,15 +42,10 @@ class MapOptions extends jsw.TypedJsObject {
   bool get mapMaker => $unsafe['mapMaker'];
   set mapTypeControl(bool mapTypeControl) => $unsafe['mapTypeControl'] = mapTypeControl;
   bool get mapTypeControl => $unsafe['mapTypeControl'];
-  set mapTypeControlOptions(MapTypeControlOptions mapTypeControlOptions) => $unsafe['mapTypeControlOptions'] = mapTypeControlOptions;
-  MapTypeControlOptions get mapTypeControlOptions => MapTypeControlOptions.cast($unsafe['mapTypeControlOptions']);
-  dynamic /*MapTypeId|string*/ get mapTypeId {
-    final result = $unsafe['mapTypeId'];
-    return [MapTypeId.find(result), result].firstWhere((e) => e != null, orElse: () => null);
-  }
-  void set mapTypeId(dynamic mapTypeId) {
-    $unsafe['mapTypeId'] = mapTypeId;
-  }
+  set mapTypeControlOptions(MapTypeControlOptions mapTypeControlOptions) => $unsafe['mapTypeControlOptions'] = mapTypeControlOptions == null ? null : mapTypeControlOptions.$unsafe;
+  MapTypeControlOptions get mapTypeControlOptions => MapTypeControlOptions.$wrap($unsafe['mapTypeControlOptions']);
+  set mapTypeId(dynamic mapTypeId) => $unsafe['mapTypeId'] = mapTypeId == null ? null : mapTypeId is MapTypeId ? mapTypeId.$unsafe : mapTypeId is String ? mapTypeId : throw "bad type";
+  dynamic get mapTypeId => ((v3) => ((v2) => v2 != null ? v2 : ((v1) => v1 is String ? v1 : ((v0) => v0)(v1))(v3))(MapTypeId.$wrap(v3)))($unsafe['mapTypeId']);
   set maxZoom(num maxZoom) => $unsafe['maxZoom'] = maxZoom;
   num get maxZoom => $unsafe['maxZoom'];
   set minZoom(num minZoom) => $unsafe['minZoom'] = minZoom;
@@ -60,36 +54,36 @@ class MapOptions extends jsw.TypedJsObject {
   bool get noClear => $unsafe['noClear'];
   set overviewMapControl(bool overviewMapControl) => $unsafe['overviewMapControl'] = overviewMapControl;
   bool get overviewMapControl => $unsafe['overviewMapControl'];
-  set overviewMapControlOptions(OverviewMapControlOptions overviewMapControlOptions) => $unsafe['overviewMapControlOptions'] = overviewMapControlOptions;
-  OverviewMapControlOptions get overviewMapControlOptions => OverviewMapControlOptions.cast($unsafe['overviewMapControlOptions']);
+  set overviewMapControlOptions(OverviewMapControlOptions overviewMapControlOptions) => $unsafe['overviewMapControlOptions'] = overviewMapControlOptions == null ? null : overviewMapControlOptions.$unsafe;
+  OverviewMapControlOptions get overviewMapControlOptions => OverviewMapControlOptions.$wrap($unsafe['overviewMapControlOptions']);
   set panControl(bool panControl) => $unsafe['panControl'] = panControl;
   bool get panControl => $unsafe['panControl'];
-  set panControlOptions(PanControlOptions panControlOptions) => $unsafe['panControlOptions'] = panControlOptions;
-  PanControlOptions get panControlOptions => PanControlOptions.cast($unsafe['panControlOptions']);
+  set panControlOptions(PanControlOptions panControlOptions) => $unsafe['panControlOptions'] = panControlOptions == null ? null : panControlOptions.$unsafe;
+  PanControlOptions get panControlOptions => PanControlOptions.$wrap($unsafe['panControlOptions']);
   set rotateControl(bool rotateControl) => $unsafe['rotateControl'] = rotateControl;
   bool get rotateControl => $unsafe['rotateControl'];
-  set rotateControlOptions(RotateControlOptions rotateControlOptions) => $unsafe['rotateControlOptions'] = rotateControlOptions;
-  RotateControlOptions get rotateControlOptions => RotateControlOptions.cast($unsafe['rotateControlOptions']);
+  set rotateControlOptions(RotateControlOptions rotateControlOptions) => $unsafe['rotateControlOptions'] = rotateControlOptions == null ? null : rotateControlOptions.$unsafe;
+  RotateControlOptions get rotateControlOptions => RotateControlOptions.$wrap($unsafe['rotateControlOptions']);
   set scaleControl(bool scaleControl) => $unsafe['scaleControl'] = scaleControl;
   bool get scaleControl => $unsafe['scaleControl'];
-  set scaleControlOptions(ScaleControlOptions scaleControlOptions) => $unsafe['scaleControlOptions'] = scaleControlOptions;
-  ScaleControlOptions get scaleControlOptions => ScaleControlOptions.cast($unsafe['scaleControlOptions']);
+  set scaleControlOptions(ScaleControlOptions scaleControlOptions) => $unsafe['scaleControlOptions'] = scaleControlOptions == null ? null : scaleControlOptions.$unsafe;
+  ScaleControlOptions get scaleControlOptions => ScaleControlOptions.$wrap($unsafe['scaleControlOptions']);
   set scrollwheel(bool scrollwheel) => $unsafe['scrollwheel'] = scrollwheel;
   bool get scrollwheel => $unsafe['scrollwheel'];
-  set streetView(StreetViewPanorama streetView) => $unsafe['streetView'] = streetView;
-  StreetViewPanorama get streetView => StreetViewPanorama.cast($unsafe['streetView']);
+  set streetView(StreetViewPanorama streetView) => $unsafe['streetView'] = streetView == null ? null : streetView.$unsafe;
+  StreetViewPanorama get streetView => StreetViewPanorama.$wrap($unsafe['streetView']);
   set streetViewControl(bool streetViewControl) => $unsafe['streetViewControl'] = streetViewControl;
   bool get streetViewControl => $unsafe['streetViewControl'];
-  set streetViewControlOptions(StreetViewControlOptions streetViewControlOptions) => $unsafe['streetViewControlOptions'] = streetViewControlOptions;
-  StreetViewControlOptions get streetViewControlOptions => StreetViewControlOptions.cast($unsafe['streetViewControlOptions']);
-  set styles(List<MapTypeStyle> styles) => $unsafe['styles'] = styles == null ? null : styles is js.Serializable ? styles : js.jsify(styles);
-  List<MapTypeStyle> get styles => jsw.TypedJsArray.castListOfSerializables($unsafe['styles'], MapTypeStyle.cast);
+  set streetViewControlOptions(StreetViewControlOptions streetViewControlOptions) => $unsafe['streetViewControlOptions'] = streetViewControlOptions == null ? null : streetViewControlOptions.$unsafe;
+  StreetViewControlOptions get streetViewControlOptions => StreetViewControlOptions.$wrap($unsafe['streetViewControlOptions']);
+  set styles(List<MapTypeStyle> styles) => $unsafe['styles'] = styles == null ? null : (styles is jsw.TypedJsObject ? (styles as jsw.TypedJsObject).$unsafe : jsw.jsify(styles));
+  List<MapTypeStyle> get styles => jsw.TypedJsArray.$wrapSerializables($unsafe['styles'], MapTypeStyle.$wrap);
   set tilt(num tilt) => $unsafe['tilt'] = tilt;
   num get tilt => $unsafe['tilt'];
   set zoom(num zoom) => $unsafe['zoom'] = zoom;
   num get zoom => $unsafe['zoom'];
   set zoomControl(bool zoomControl) => $unsafe['zoomControl'] = zoomControl;
   bool get zoomControl => $unsafe['zoomControl'];
-  set zoomControlOptions(ZoomControlOptions zoomControlOptions) => $unsafe['zoomControlOptions'] = zoomControlOptions;
-  ZoomControlOptions get zoomControlOptions => ZoomControlOptions.cast($unsafe['zoomControlOptions']);
+  set zoomControlOptions(ZoomControlOptions zoomControlOptions) => $unsafe['zoomControlOptions'] = zoomControlOptions == null ? null : zoomControlOptions.$unsafe;
+  ZoomControlOptions get zoomControlOptions => ZoomControlOptions.$wrap($unsafe['zoomControlOptions']);
 }

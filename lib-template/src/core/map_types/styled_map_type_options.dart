@@ -15,7 +15,7 @@
 part of google_maps;
 
 @wrapper abstract class StyledMapTypeOptions extends jsw.TypedJsObject {
-  StyledMapTypeOptions() : super();
+  StyledMapTypeOptions();
 
   String alt;
   num maxZoom;

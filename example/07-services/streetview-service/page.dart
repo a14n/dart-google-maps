@@ -9,7 +9,7 @@ final StreetViewService sv = new StreetViewService();
 StreetViewPanorama panorama;
 
 void main() {
-  panorama = new StreetViewPanorama(query('#pano'));
+  panorama = new StreetViewPanorama(querySelector('#pano'));
 
   // Set up the map
   final mapOptions = new MapOptions()
@@ -18,7 +18,7 @@ void main() {
     ..mapTypeId = MapTypeId.ROADMAP
     ..streetViewControl = false
     ;
-  map = new GMap(query('#map_canvas'), mapOptions);
+  map = new GMap(querySelector('#map_canvas'), mapOptions);
 
   // getPanoramaByLocation will return the nearest pano when the
   // given radius is 50 meters or less.

@@ -15,7 +15,7 @@
 part of google_maps_places;
 
 class PlaceAspectRating extends jsw.TypedJsObject {
-  static PlaceAspectRating cast(js.JsObject jsObject) => jsObject == null ? null : new PlaceAspectRating.fromJsObject(jsObject);
+  static PlaceAspectRating $wrap(js.JsObject jsObject) => jsObject == null ? null : new PlaceAspectRating.fromJsObject(jsObject);
   PlaceAspectRating.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
   PlaceAspectRating()

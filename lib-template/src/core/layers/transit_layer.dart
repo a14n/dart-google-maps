@@ -15,7 +15,7 @@
 part of google_maps;
 
 @wrapper @forMethods abstract class TransitLayer extends MVCObject {
-  TransitLayer() : super(maps['TransitLayer']);
+  @generate TransitLayer();
 
   GMap map;
 }

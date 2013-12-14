@@ -15,7 +15,7 @@
 part of google_maps;
 
 @wrapper abstract class StreetViewPov extends jsw.TypedJsObject {
-  StreetViewPov() : super();
+  StreetViewPov();
 
   num heading;
   num pitch;

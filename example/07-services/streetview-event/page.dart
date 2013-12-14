@@ -14,15 +14,15 @@ void main() {
     )
     ..visible = true
     ;
-  final panorama = new StreetViewPanorama(query('#pano'), panoramaOptions);
+  final panorama = new StreetViewPanorama(querySelector('#pano'), panoramaOptions);
 
   panorama.onPanoChanged.listen((_) {
-    final panoCell = query('#pano_cell');
+    final panoCell = querySelector('#pano_cell');
     panoCell.innerHtml = panorama.pano;
   });
 
   panorama.onLinksChanged.listen((_) {
-    final linksTable = query('#links_table');
+    final linksTable = querySelector('#links_table');
     linksTable.children.clear();
     final links =  panorama.links;
     for (int i = 0; i < links.length; i++) {
@@ -38,13 +38,13 @@ void main() {
   });
 
   panorama.onPositionChanged.listen((_) {
-    final positionCell = query('#position_cell');
+    final positionCell = querySelector('#position_cell');
     positionCell.innerHtml = '${panorama.position}';
   });
 
   panorama.onPovChanged.listen((_) {
-    final headingCell = query('#heading_cell');
-    final pitchCell = query('#pitch_cell');
+    final headingCell = querySelector('#heading_cell');
+    final pitchCell = querySelector('#pitch_cell');
     headingCell.innerHtml = '${panorama.pov.heading}';
     pitchCell.innerHtml = '${panorama.pov.pitch}';
   });

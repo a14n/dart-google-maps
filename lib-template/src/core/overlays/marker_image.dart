@@ -16,7 +16,7 @@ part of google_maps;
 
 @deprecated
 @wrapper abstract class MarkerImage extends jsw.TypedJsObject {
-  MarkerImage(String url, [Size size, Point origin, Point anchor, Size scaledSize]) : super(maps['MarkerImage'], [url, size, origin, anchor, scaledSize]);
+  @generate MarkerImage(String url, [Size size, Point origin, Point anchor, Size scaledSize]);
 
   Point anchor;
   Point origin;

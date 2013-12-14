@@ -15,7 +15,7 @@
 part of google_maps_places;
 
 @wrapper abstract class QueryAutocompletionRequest extends jsw.TypedJsObject {
-  static QueryAutocompletionRequest cast(js.JsObject jsObject) => null;
+  static QueryAutocompletionRequest $wrap(js.JsObject jsObject) => null;
 
   QueryAutocompletionRequest() : super();
 

@@ -15,20 +15,20 @@
 part of google_maps_places;
 
 class TextSearchRequest extends jsw.TypedJsObject {
-  static TextSearchRequest cast(js.JsObject jsObject) => jsObject == null ? null : new TextSearchRequest.fromJsObject(jsObject);
+  static TextSearchRequest $wrap(js.JsObject jsObject) => jsObject == null ? null : new TextSearchRequest.fromJsObject(jsObject);
   TextSearchRequest.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
   TextSearchRequest()
       : super();
 
-  set bounds(LatLngBounds bounds) => $unsafe['bounds'] = bounds;
-  LatLngBounds get bounds => LatLngBounds.cast($unsafe['bounds']);
-  set location(LatLng location) => $unsafe['location'] = location;
-  LatLng get location => LatLng.cast($unsafe['location']);
+  set bounds(LatLngBounds bounds) => $unsafe['bounds'] = bounds == null ? null : bounds.$unsafe;
+  LatLngBounds get bounds => LatLngBounds.$wrap($unsafe['bounds']);
+  set location(LatLng location) => $unsafe['location'] = location == null ? null : location.$unsafe;
+  LatLng get location => LatLng.$wrap($unsafe['location']);
   set query(String query) => $unsafe['query'] = query;
   String get query => $unsafe['query'];
   set radius(num radius) => $unsafe['radius'] = radius;
   num get radius => $unsafe['radius'];
-  set types(List<String> types) => $unsafe['types'] = types == null ? null : types is js.Serializable ? types : js.jsify(types);
-  List<String> get types => jsw.TypedJsArray.cast($unsafe['types']);
+  set types(List<String> types) => $unsafe['types'] = types == null ? null : (types is jsw.TypedJsObject ? (types as jsw.TypedJsObject).$unsafe : jsw.jsify(types));
+  List<String> get types => jsw.TypedJsArray.$wrap($unsafe['types']);
 }

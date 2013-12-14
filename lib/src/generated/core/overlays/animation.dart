@@ -15,12 +15,11 @@
 part of google_maps;
 
 class Animation extends jsw.IsEnum<int> {
+  static final _FINDER = new jsw.EnumFinder<int, Animation>([BOUNCE, DROP]);
+  static Animation $wrap(int jsValue) => _FINDER.find(jsValue);
+
   static final BOUNCE = new Animation._(maps['Animation']['BOUNCE']);
   static final DROP = new Animation._(maps['Animation']['DROP']);
-
-  static final _FINDER = new jsw.EnumFinder<int, Animation>([BOUNCE, DROP]);
-
-  static Animation find(o) => _FINDER.find(o);
 
   Animation._(int value)
       : super(value);

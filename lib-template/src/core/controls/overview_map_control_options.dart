@@ -15,7 +15,7 @@
 part of google_maps;
 
 @wrapper abstract class OverviewMapControlOptions extends jsw.TypedJsObject {
-  OverviewMapControlOptions() : super();
+  OverviewMapControlOptions();
 
   bool opened;
 }

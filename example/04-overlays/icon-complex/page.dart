@@ -22,17 +22,9 @@ void main() {
     ..center = new LatLng(-33.9, 151.2)
     ..mapTypeId = MapTypeId.ROADMAP
     ;
-  final map = new GMap(query("#map_canvas"), mapOptions);
+  final map = new GMap(querySelector("#map_canvas"), mapOptions);
 
   setMarkers(map, beaches);
-
-  final image = 'https://google-developers.appspot.com/maps/documentation/javascript/examples/images/beachflag.png';
-  final myLatLng = new LatLng(-33.890542, 151.274856);
-  final beachMarker = new Marker(new MarkerOptions()
-    ..position = myLatLng
-    ..map = map
-    ..icon = image
-  );
 }
 
 void setMarkers(GMap map, List locations) {

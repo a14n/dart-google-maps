@@ -15,16 +15,15 @@
 part of google_maps;
 
 class ElevationResult extends jsw.TypedJsObject {
-  static ElevationResult cast(js.JsObject jsObject) => jsObject == null ? null : new ElevationResult.fromJsObject(jsObject);
+  static ElevationResult $wrap(js.JsObject jsObject) => jsObject == null ? null : new ElevationResult.fromJsObject(jsObject);
   ElevationResult.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  ElevationResult()
-      : super();
+  ElevationResult();
 
   set elevation(num elevation) => $unsafe['elevation'] = elevation;
   num get elevation => $unsafe['elevation'];
-  set location(LatLng location) => $unsafe['location'] = location;
-  LatLng get location => LatLng.cast($unsafe['location']);
+  set location(LatLng location) => $unsafe['location'] = location == null ? null : location.$unsafe;
+  LatLng get location => LatLng.$wrap($unsafe['location']);
   set resolution(num resolution) => $unsafe['resolution'] = resolution;
   num get resolution => $unsafe['resolution'];
 }

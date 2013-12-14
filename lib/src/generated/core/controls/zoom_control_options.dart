@@ -15,14 +15,13 @@
 part of google_maps;
 
 class ZoomControlOptions extends jsw.TypedJsObject {
-  static ZoomControlOptions cast(js.JsObject jsObject) => jsObject == null ? null : new ZoomControlOptions.fromJsObject(jsObject);
+  static ZoomControlOptions $wrap(js.JsObject jsObject) => jsObject == null ? null : new ZoomControlOptions.fromJsObject(jsObject);
   ZoomControlOptions.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  ZoomControlOptions()
-      : super();
+  ZoomControlOptions();
 
-  set position(ControlPosition position) => $unsafe['position'] = position;
-  ControlPosition get position => ControlPosition.find($unsafe['position']);
-  set style(ZoomControlStyle style) => $unsafe['style'] = style;
-  ZoomControlStyle get style => ZoomControlStyle.find($unsafe['style']);
+  set position(ControlPosition position) => $unsafe['position'] = position == null ? null : position.$unsafe;
+  ControlPosition get position => ControlPosition.$wrap($unsafe['position']);
+  set style(ZoomControlStyle style) => $unsafe['style'] = style == null ? null : style.$unsafe;
+  ZoomControlStyle get style => ZoomControlStyle.$wrap($unsafe['style']);
 }

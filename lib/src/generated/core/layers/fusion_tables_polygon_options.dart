@@ -15,11 +15,10 @@
 part of google_maps;
 
 class FusionTablesPolygonOptions extends jsw.TypedJsObject {
-  static FusionTablesPolygonOptions cast(js.JsObject jsObject) => jsObject == null ? null : new FusionTablesPolygonOptions.fromJsObject(jsObject);
+  static FusionTablesPolygonOptions $wrap(js.JsObject jsObject) => jsObject == null ? null : new FusionTablesPolygonOptions.fromJsObject(jsObject);
   FusionTablesPolygonOptions.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  FusionTablesPolygonOptions()
-      : super();
+  FusionTablesPolygonOptions();
 
   set fillColor(String fillColor) => $unsafe['fillColor'] = fillColor;
   String get fillColor => $unsafe['fillColor'];

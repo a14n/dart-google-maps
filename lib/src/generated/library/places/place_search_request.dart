@@ -15,18 +15,18 @@
 part of google_maps_places;
 
 class PlaceSearchRequest extends jsw.TypedJsObject {
-  static PlaceSearchRequest cast(js.JsObject jsObject) => jsObject == null ? null : new PlaceSearchRequest.fromJsObject(jsObject);
+  static PlaceSearchRequest $wrap(js.JsObject jsObject) => jsObject == null ? null : new PlaceSearchRequest.fromJsObject(jsObject);
   PlaceSearchRequest.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
   PlaceSearchRequest()
       : super();
 
-  set bounds(LatLngBounds bounds) => $unsafe['bounds'] = bounds;
-  LatLngBounds get bounds => LatLngBounds.cast($unsafe['bounds']);
+  set bounds(LatLngBounds bounds) => $unsafe['bounds'] = bounds == null ? null : bounds.$unsafe;
+  LatLngBounds get bounds => LatLngBounds.$wrap($unsafe['bounds']);
   set keyword(String keyword) => $unsafe['keyword'] = keyword;
   String get keyword => $unsafe['keyword'];
-  set location(LatLng location) => $unsafe['location'] = location;
-  LatLng get location => LatLng.cast($unsafe['location']);
+  set location(LatLng location) => $unsafe['location'] = location == null ? null : location.$unsafe;
+  LatLng get location => LatLng.$wrap($unsafe['location']);
   set maxPriceLevel(num maxPriceLevel) => $unsafe['maxPriceLevel'] = maxPriceLevel;
   num get maxPriceLevel => $unsafe['maxPriceLevel'];
   set minPriceLevel(num minPriceLevel) => $unsafe['minPriceLevel'] = minPriceLevel;
@@ -37,8 +37,8 @@ class PlaceSearchRequest extends jsw.TypedJsObject {
   bool get openNow => $unsafe['openNow'];
   set radius(num radius) => $unsafe['radius'] = radius;
   num get radius => $unsafe['radius'];
-  set rankBy(RankBy rankBy) => $unsafe['rankBy'] = rankBy;
-  RankBy get rankBy => RankBy.find($unsafe['rankBy']);
-  set types(List<String> types) => $unsafe['types'] = types == null ? null : types is js.Serializable ? types : js.jsify(types);
-  List<String> get types => jsw.TypedJsArray.cast($unsafe['types']);
+  set rankBy(RankBy rankBy) => $unsafe['rankBy'] = rankBy == null ? null : rankBy.$unsafe;
+  RankBy get rankBy => RankBy.$wrap($unsafe['rankBy']);
+  set types(List<String> types) => $unsafe['types'] = types == null ? null : (types is jsw.TypedJsObject ? (types as jsw.TypedJsObject).$unsafe : jsw.jsify(types));
+  List<String> get types => jsw.TypedJsArray.$wrap($unsafe['types']);
 }

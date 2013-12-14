@@ -15,16 +15,15 @@
 part of google_maps;
 
 class KmlLayerOptions extends jsw.TypedJsObject {
-  static KmlLayerOptions cast(js.JsObject jsObject) => jsObject == null ? null : new KmlLayerOptions.fromJsObject(jsObject);
+  static KmlLayerOptions $wrap(js.JsObject jsObject) => jsObject == null ? null : new KmlLayerOptions.fromJsObject(jsObject);
   KmlLayerOptions.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  KmlLayerOptions()
-      : super();
+  KmlLayerOptions();
 
   set clickable(bool clickable) => $unsafe['clickable'] = clickable;
   bool get clickable => $unsafe['clickable'];
-  set map(GMap map) => $unsafe['map'] = map;
-  GMap get map => GMap.cast($unsafe['map']);
+  set map(GMap map) => $unsafe['map'] = map == null ? null : map.$unsafe;
+  GMap get map => GMap.$wrap($unsafe['map']);
   set preserveViewport(bool preserveViewport) => $unsafe['preserveViewport'] = preserveViewport;
   bool get preserveViewport => $unsafe['preserveViewport'];
   set suppressInfoWindows(bool suppressInfoWindows) => $unsafe['suppressInfoWindows'] = suppressInfoWindows;

@@ -15,7 +15,7 @@
 part of google_maps_drawing;
 
 class DrawingManager extends MVCObject {
-  static DrawingManager cast(js.JsObject jsObject) => jsObject == null ? null : new DrawingManager.fromJsObject(jsObject);
+  static DrawingManager $wrap(js.JsObject jsObject) => jsObject == null ? null : new DrawingManager.fromJsObject(jsObject);
   jsw.SubscribeStreamProvider<Circle> _onCirclecomplete;
   jsw.SubscribeStreamProvider<Marker> _onMarkercomplete;
   jsw.SubscribeStreamProvider<OverlayCompleteEvent> _onOverlaycomplete;
@@ -24,7 +24,7 @@ class DrawingManager extends MVCObject {
   jsw.SubscribeStreamProvider<Rectangle> _onRectanglecomplete;
 
   DrawingManager([DrawingManagerOptions opts])
-      : super(maps['drawing']['DrawingManager'], [opts]) {
+      : super(maps['drawing']['DrawingManager'], [jsw.Serializable.$unwrap(opts)]) {
     _initStreams();
   }
   DrawingManager.fromJsObject(js.JsObject proxy)
@@ -33,12 +33,12 @@ class DrawingManager extends MVCObject {
   }
 
   void _initStreams() {
-    _onCirclecomplete = event.getStreamProviderFor(this, "circlecomplete", Circle.cast);
-    _onMarkercomplete = event.getStreamProviderFor(this, "markercomplete", Marker.cast);
-    _onOverlaycomplete = event.getStreamProviderFor(this, "overlaycomplete", OverlayCompleteEvent.cast);
-    _onPolygoncomplete = event.getStreamProviderFor(this, "polygoncomplete", Polygon.cast);
-    _onPolylinecomplete = event.getStreamProviderFor(this, "polylinecomplete", Polyline.cast);
-    _onRectanglecomplete = event.getStreamProviderFor(this, "rectanglecomplete", Rectangle.cast);
+    _onCirclecomplete = event.getStreamProviderFor(this, "circlecomplete", Circle.$wrap);
+    _onMarkercomplete = event.getStreamProviderFor(this, "markercomplete", Marker.$wrap);
+    _onOverlaycomplete = event.getStreamProviderFor(this, "overlaycomplete", OverlayCompleteEvent.$wrap);
+    _onPolygoncomplete = event.getStreamProviderFor(this, "polygoncomplete", Polygon.$wrap);
+    _onPolylinecomplete = event.getStreamProviderFor(this, "polylinecomplete", Polyline.$wrap);
+    _onRectanglecomplete = event.getStreamProviderFor(this, "rectanglecomplete", Rectangle.$wrap);
   }
 
   Stream<Circle> get onCirclecomplete => _onCirclecomplete.stream;
@@ -48,9 +48,9 @@ class DrawingManager extends MVCObject {
   Stream<Polyline> get onPolylinecomplete => _onPolylinecomplete.stream;
   Stream<Rectangle> get onRectanglecomplete => _onRectanglecomplete.stream;
 
-  OverlayType get drawingMode => OverlayType.find($unsafe.callMethod('getDrawingMode'));
-  GMap get map => GMap.cast($unsafe.callMethod('getMap'));
-  set drawingMode(OverlayType drawingMode) => $unsafe.callMethod('setDrawingMode', [drawingMode]);
-  set map(GMap map) => $unsafe.callMethod('setMap', [map]);
-  set options(DrawingManagerOptions options) => $unsafe.callMethod('setOptions', [options]);
+  OverlayType get drawingMode => OverlayType.$wrap($unsafe.callMethod('getDrawingMode'));
+  GMap get map => GMap.$wrap($unsafe.callMethod('getMap'));
+  set drawingMode(OverlayType drawingMode) => $unsafe.callMethod('setDrawingMode', [drawingMode == null ? null : drawingMode.$unsafe]);
+  set map(GMap map) => $unsafe.callMethod('setMap', [map == null ? null : map.$unsafe]);
+  set options(DrawingManagerOptions options) => $unsafe.callMethod('setOptions', [options == null ? null : options.$unsafe]);
 }

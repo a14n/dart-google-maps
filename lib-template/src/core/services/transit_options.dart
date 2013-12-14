@@ -15,10 +15,8 @@
 part of google_maps;
 
 @wrapper abstract class TransitOptions extends jsw.TypedJsObject {
-  TransitOptions() : super();
+  TransitOptions();
 
-  DateTime get arrivalTime;
-  set arrivalTime(DateTime arrivalTime);
-  DateTime get departureTime;
-  set departureTime(DateTime departureTime);
+  DateTime arrivalTime;
+  DateTime departureTime;
 }

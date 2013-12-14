@@ -15,18 +15,11 @@
 part of google_maps;
 
 @wrapper abstract class MapPanes extends jsw.TypedJsObject {
-  html.Node get floatPane => jsw.convertElementToDart($unsafe['floatPane']);
-  html.Node get floatShadow => jsw.convertElementToDart($unsafe['floatShadow']);
-  html.Node get mapPane => jsw.convertElementToDart($unsafe['mapPane']);
-  html.Node get overlayImage => jsw.convertElementToDart($unsafe['overlayImage']);
-  html.Node get overlayLayer => jsw.convertElementToDart($unsafe['overlayLayer']);
-  html.Node get overlayMouseTarget => jsw.convertElementToDart($unsafe['overlayMouseTarget']);
-  html.Node get overlayShadow => jsw.convertElementToDart($unsafe['overlayShadow']);
-  set floatPane(html.Node floatPane) => $unsafe['floatPane'] = jsw.convertElementToJs(floatPane);
-  set floatShadow(html.Node floatShadow) => $unsafe['floatShadow'] = jsw.convertElementToJs(floatShadow);
-  set mapPane(html.Node mapPane) => $unsafe['mapPane'] = jsw.convertElementToJs(mapPane);
-  set overlayImage(html.Node overlayImage) => $unsafe['overlayImage'] = jsw.convertElementToJs(overlayImage);
-  set overlayLayer(html.Node overlayLayer) => $unsafe['overlayLayer'] = jsw.convertElementToJs(overlayLayer);
-  set overlayMouseTarget(html.Node overlayMouseTarget) => $unsafe['overlayMouseTarget'] = jsw.convertElementToJs(overlayMouseTarget);
-  set overlayShadow(html.Node overlayShadow) => $unsafe['overlayShadow'] = jsw.convertElementToJs(overlayShadow);
+  html.Node floatPane;
+  html.Node floatShadow;
+  html.Node mapPane;
+  html.Node overlayImage;
+  html.Node overlayLayer;
+  html.Node overlayMouseTarget;
+  html.Node overlayShadow;
 }

@@ -15,7 +15,7 @@
 part of google_maps_panoramio;
 
 class PanoramioLayerOptions extends jsw.TypedJsObject {
-  static PanoramioLayerOptions cast(js.JsObject jsObject) => jsObject == null ? null : new PanoramioLayerOptions.fromJsObject(jsObject);
+  static PanoramioLayerOptions $wrap(js.JsObject jsObject) => jsObject == null ? null : new PanoramioLayerOptions.fromJsObject(jsObject);
   PanoramioLayerOptions.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
   PanoramioLayerOptions()
@@ -23,8 +23,8 @@ class PanoramioLayerOptions extends jsw.TypedJsObject {
 
   set clickable(bool clickable) => $unsafe['clickable'] = clickable;
   bool get clickable => $unsafe['clickable'];
-  set map(GMap map) => $unsafe['map'] = map;
-  GMap get map => GMap.cast($unsafe['map']);
+  set map(GMap map) => $unsafe['map'] = map == null ? null : map.$unsafe;
+  GMap get map => GMap.$wrap($unsafe['map']);
   set suppressInfoWindows(bool suppressInfoWindows) => $unsafe['suppressInfoWindows'] = suppressInfoWindows;
   bool get suppressInfoWindows => $unsafe['suppressInfoWindows'];
   set tag(String tag) => $unsafe['tag'] = tag;

@@ -12,7 +12,7 @@ void main() {
     ..center = myLatLng
     ..mapTypeId = MapTypeId.TERRAIN
     ;
-  map = new GMap(query("#map_canvas"), mapOptions);
+  map = new GMap(querySelector("#map_canvas"), mapOptions);
 
   final triangleCoords = [
                         new LatLng(25.774252, -80.190262),

@@ -15,7 +15,7 @@
 part of google_maps_places;
 
 class QueryAutocompletePrediction extends jsw.TypedJsObject {
-  static QueryAutocompletePrediction cast(js.JsObject jsObject) => jsObject == null ? null : new QueryAutocompletePrediction.fromJsObject(jsObject);
+  static QueryAutocompletePrediction $wrap(js.JsObject jsObject) => jsObject == null ? null : new QueryAutocompletePrediction.fromJsObject(jsObject);
   QueryAutocompletePrediction.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
   QueryAutocompletePrediction()
@@ -23,8 +23,8 @@ class QueryAutocompletePrediction extends jsw.TypedJsObject {
 
   set description(String description) => $unsafe['description'] = description;
   String get description => $unsafe['description'];
-  set matchedSubstrings(List<PredictionSubstring> matchedSubstrings) => $unsafe['matched_substrings'] = matchedSubstrings == null ? null : matchedSubstrings is js.Serializable ? matchedSubstrings : js.jsify(matchedSubstrings);
-  List<PredictionSubstring> get matchedSubstrings => jsw.TypedJsArray.castListOfSerializables($unsafe['matched_substrings'], PredictionSubstring.cast);
-  set terms(List<PredictionTerm> terms) => $unsafe['terms'] = terms == null ? null : terms is js.Serializable ? terms : js.jsify(terms);
-  List<PredictionTerm> get terms => jsw.TypedJsArray.castListOfSerializables($unsafe['terms'], PredictionTerm.cast);
+  set matchedSubstrings(List<PredictionSubstring> matchedSubstrings) => $unsafe['matched_substrings'] = matchedSubstrings == null ? null : (matchedSubstrings is jsw.TypedJsObject ? (matchedSubstrings as jsw.TypedJsObject).$unsafe : jsw.jsify(matchedSubstrings));
+  List<PredictionSubstring> get matchedSubstrings => jsw.TypedJsArray.$wrapSerializables($unsafe['matched_substrings'], PredictionSubstring.$wrap);
+  set terms(List<PredictionTerm> terms) => $unsafe['terms'] = terms == null ? null : (terms is jsw.TypedJsObject ? (terms as jsw.TypedJsObject).$unsafe : jsw.jsify(terms));
+  List<PredictionTerm> get terms => jsw.TypedJsArray.$wrapSerializables($unsafe['terms'], PredictionTerm.$wrap);
 }

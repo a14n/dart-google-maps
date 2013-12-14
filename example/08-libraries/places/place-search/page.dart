@@ -9,7 +9,7 @@ InfoWindow infowindow;
 void main() {
   final pyrmont = new LatLng(-33.8665433, 151.1956316);
 
-  map = new GMap(query("#map"), new MapOptions()
+  map = new GMap(querySelector("#map"), new MapOptions()
     ..mapTypeId = MapTypeId.ROADMAP
     ..center = pyrmont
     ..zoom = 15

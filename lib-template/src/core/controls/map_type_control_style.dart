@@ -15,13 +15,12 @@
 part of google_maps;
 
 class MapTypeControlStyle extends jsw.IsEnum<int> {
+  static final _FINDER = new jsw.EnumFinder<int, MapTypeControlStyle>([DEFAULT, DROPDOWN_MENU, HORIZONTAL_BAR]);
+  static MapTypeControlStyle $wrap(int jsValue) => _FINDER.find(jsValue);
+
   static final DEFAULT = new MapTypeControlStyle._(maps['MapTypeControlStyle']['DEFAULT']);
   static final DROPDOWN_MENU = new MapTypeControlStyle._(maps['MapTypeControlStyle']['DROPDOWN_MENU']);
   static final HORIZONTAL_BAR = new MapTypeControlStyle._(maps['MapTypeControlStyle']['HORIZONTAL_BAR']);
-
-  static final _FINDER = new jsw.EnumFinder<int, MapTypeControlStyle>([DEFAULT, DROPDOWN_MENU, HORIZONTAL_BAR]);
-
-  static MapTypeControlStyle find(Object o) => _FINDER.find(o);
 
   MapTypeControlStyle._(int value) : super(value);
 }

@@ -15,13 +15,12 @@
 part of google_maps;
 
 class StrokePosition extends jsw.IsEnum<int> {
+  static final _FINDER = new jsw.EnumFinder<int, StrokePosition>([CENTER, INSIDE, OUTSIDE]);
+  static StrokePosition $wrap(int jsValue) => _FINDER.find(jsValue);
+
   static final CENTER = new StrokePosition._(maps['StrokePosition']['CENTER']);
   static final INSIDE = new StrokePosition._(maps['StrokePosition']['INSIDE']);
   static final OUTSIDE = new StrokePosition._(maps['StrokePosition']['OUTSIDE']);
-
-  static final _FINDER = new jsw.EnumFinder<int, StrokePosition>([CENTER, INSIDE, OUTSIDE]);
-
-  static StrokePosition find(o) => _FINDER.find(o);
 
   StrokePosition._(int value)
       : super(value);

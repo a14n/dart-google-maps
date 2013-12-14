@@ -11,7 +11,7 @@ void main() {
     ..center = chicago
     ..mapTypeId = MapTypeId.ROADMAP
     ;
-  map = new GMap(query("#map_canvas"), mapOptions);
+  map = new GMap(querySelector("#map_canvas"), mapOptions);
 
   final polyOptions = new PolylineOptions()
     ..strokeColor = '#000000'

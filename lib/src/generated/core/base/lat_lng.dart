@@ -15,7 +15,7 @@
 part of google_maps;
 
 class LatLng extends jsw.TypedJsObject {
-  static LatLng cast(js.JsObject jsObject) => jsObject == null ? null : new LatLng.fromJsObject(jsObject);
+  static LatLng $wrap(js.JsObject jsObject) => jsObject == null ? null : new LatLng.fromJsObject(jsObject);
   LatLng.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
   static bool isInstance(js.JsObject jsObject) => jsObject.instanceof(maps['LatLng']);
@@ -23,7 +23,7 @@ class LatLng extends jsw.TypedJsObject {
   LatLng(num lat, num lng, [bool noWrap])
       : super(maps['LatLng'], [lat, lng, noWrap]);
 
-  bool equals(LatLng other) => $unsafe.callMethod('equals', [other]);
+  bool equals(LatLng other) => $unsafe.callMethod('equals', [other == null ? null : other.$unsafe]);
   num get lat => $unsafe.callMethod('lat');
   num get lng => $unsafe.callMethod('lng');
   String toString() => $unsafe.callMethod('toString');

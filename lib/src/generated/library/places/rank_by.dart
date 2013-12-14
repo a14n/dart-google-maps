@@ -15,12 +15,11 @@
 part of google_maps_places;
 
 class RankBy extends jsw.IsEnum<String> {
+  static final _FINDER = new jsw.EnumFinder<String, RankBy>([DISTANCE, PROMINENCE]);
+  static RankBy $wrap(String jsValue) => _FINDER.find(jsValue);
+
   static final DISTANCE = new RankBy._(maps['places']['RankBy']['DISTANCE']);
   static final PROMINENCE = new RankBy._(maps['places']['RankBy']['PROMINENCE']);
-
-  static final _FINDER = new jsw.EnumFinder<String, RankBy>([DISTANCE, PROMINENCE]);
-
-  static RankBy find(o) => _FINDER.find(o);
 
   RankBy._(String value)
       : super(value);

@@ -15,11 +15,10 @@
 part of google_maps;
 
 class StyledMapTypeOptions extends jsw.TypedJsObject {
-  static StyledMapTypeOptions cast(js.JsObject jsObject) => jsObject == null ? null : new StyledMapTypeOptions.fromJsObject(jsObject);
+  static StyledMapTypeOptions $wrap(js.JsObject jsObject) => jsObject == null ? null : new StyledMapTypeOptions.fromJsObject(jsObject);
   StyledMapTypeOptions.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  StyledMapTypeOptions()
-      : super();
+  StyledMapTypeOptions();
 
   set alt(String alt) => $unsafe['alt'] = alt;
   String get alt => $unsafe['alt'];

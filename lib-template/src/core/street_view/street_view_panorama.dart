@@ -15,7 +15,6 @@
 part of google_maps;
 
 @wrapper @skipConstructor abstract class StreetViewPanorama extends MVCObject {
-  static StreetViewPanorama cast(js.JsObject jsObject) => null;
   static bool isInstance(js.JsObject proxy) => proxy.instanceof(maps['StreetViewPanorama']);
 
   jsw.SubscribeStreamProvider<NativeEvent> _onCloseclick;
@@ -27,11 +26,11 @@ part of google_maps;
   jsw.SubscribeStreamProvider _onVisibleChanged;
   jsw.SubscribeStreamProvider _onZoomChanged;
 
-  StreetViewPanorama(html.Node container, [StreetViewPanoramaOptions opts]) : super(maps['StreetViewPanorama'], [jsw.convertElementToJs(container), opts]) { _initStreams(); }
+  @generate StreetViewPanorama(html.Node container, [StreetViewPanoramaOptions opts]) { _initStreams(); }
   StreetViewPanorama.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) { _initStreams(); }
 
   void _initStreams() {
-    _onCloseclick = event.getStreamProviderFor(this, "closeclick", NativeEvent.cast);
+    _onCloseclick = event.getStreamProviderFor(this, "closeclick", NativeEvent.$wrap);
     _onLinksChanged = event.getStreamProviderFor(this, "links_changed");
     _onPanoChanged = event.getStreamProviderFor(this, "pano_changed");
     _onPositionChanged = event.getStreamProviderFor(this, "position_changed");
@@ -58,7 +57,7 @@ part of google_maps;
   @forMethods bool get visible;
   @forMethods num get zoom;
   void registerPanoProvider(StreetViewPanoramaData provider(String pano)) {
-    $unsafe.callMethod('registerPanoProvider', [(String pano) => provider(pano)]);
+    $unsafe.callMethod('registerPanoProvider', [(String pano) => jsw.Serializable.$unwrap(provider(pano))]);
   }
   @forMethods set pano(String pano);
   @forMethods set position(LatLng latLng);

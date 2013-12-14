@@ -21,7 +21,7 @@ part of google_maps;
   jsw.SubscribeStreamProvider _onPositionChanged;
   jsw.SubscribeStreamProvider _onZindexChanged;
 
-  InfoWindow([InfoWindowOptions opts]) : super(maps['InfoWindow'], [opts]) { _initStreams(); }
+  @generate InfoWindow([InfoWindowOptions opts]) { _initStreams(); }
   InfoWindow.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) { _initStreams(); }
 
   void _initStreams() {
@@ -39,18 +39,11 @@ part of google_maps;
   Stream get onZindexChanged => _onZindexChanged.stream;
 
   void close();
-  dynamic/*string|Node*/ get content {
-    final result = $unsafe['content'];
-    if (result is String) {
-      return result;
-    } else {
-      return jsw.convertElementToDart(result);
-    }
-  }
+  @Types(const [String, html.Node]) dynamic get content;
   LatLng get position;
   num get zIndex;
-  void open([dynamic/*Map|StreetViewPanorama*/ map, MVCObject anchor]);
-  set content(dynamic/*string|Node*/ content) => $unsafe.callMethod('setContent', [content is String ? content : jsw.convertElementToJs(content)]);
+  void open([@Types(const [GMap, StreetViewPanorama]) dynamic map, MVCObject anchor]);
+  set content(@Types(const [String, html.Node])dynamic content);
   set options(InfoWindowOptions options);
   set position(LatLng position);
   set zIndex(num zIndex);

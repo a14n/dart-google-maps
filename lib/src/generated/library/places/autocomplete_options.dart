@@ -15,16 +15,16 @@
 part of google_maps_places;
 
 class AutocompleteOptions extends jsw.TypedJsObject {
-  static AutocompleteOptions cast(js.JsObject jsObject) => jsObject == null ? null : new AutocompleteOptions.fromJsObject(jsObject);
+  static AutocompleteOptions $wrap(js.JsObject jsObject) => jsObject == null ? null : new AutocompleteOptions.fromJsObject(jsObject);
   AutocompleteOptions.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
   AutocompleteOptions()
       : super();
 
-  set bounds(LatLngBounds bounds) => $unsafe['bounds'] = bounds;
-  LatLngBounds get bounds => LatLngBounds.cast($unsafe['bounds']);
-  set componentRestrictions(ComponentRestrictions componentRestrictions) => $unsafe['componentRestrictions'] = componentRestrictions;
-  ComponentRestrictions get componentRestrictions => ComponentRestrictions.cast($unsafe['componentRestrictions']);
-  set types(List<String> types) => $unsafe['types'] = types == null ? null : types is js.Serializable ? types : js.jsify(types);
-  List<String> get types => jsw.TypedJsArray.cast($unsafe['types']);
+  set bounds(LatLngBounds bounds) => $unsafe['bounds'] = bounds == null ? null : bounds.$unsafe;
+  LatLngBounds get bounds => LatLngBounds.$wrap($unsafe['bounds']);
+  set componentRestrictions(ComponentRestrictions componentRestrictions) => $unsafe['componentRestrictions'] = componentRestrictions == null ? null : componentRestrictions.$unsafe;
+  ComponentRestrictions get componentRestrictions => ComponentRestrictions.$wrap($unsafe['componentRestrictions']);
+  set types(List<String> types) => $unsafe['types'] = types == null ? null : (types is jsw.TypedJsObject ? (types as jsw.TypedJsObject).$unsafe : jsw.jsify(types));
+  List<String> get types => jsw.TypedJsArray.$wrap($unsafe['types']);
 }
