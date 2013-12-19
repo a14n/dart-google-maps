@@ -54,13 +54,13 @@ class GEvent extends jsw.TypedJsObject {
       p5 = _undefined]) {
         var args = [p1, p2, p3, p4, p5].takeWhile((e) => e != _undefined).toList(growable: false);
         var value =
-         args.length == 0 ? null :
-         args.length == 1 ? args.first :
-         args;
+        args.length == 0 ? null :
+        args.length == 1 ? args.first :
+        args;
         eventSink.add(transformArguments == null ? value : Function.apply(transformArguments, args));
       });
     },
-     unsubscribe: (EventSink eventSink) {
+    unsubscribe: (EventSink eventSink) {
       removeListener(mapsEventListener);
     }
     );
