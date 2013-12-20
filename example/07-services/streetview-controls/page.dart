@@ -18,5 +18,5 @@ void main() {
     )
     ..enableCloseButton = false
     ;
-  final panorama = new StreetViewPanorama(query('#pano'),panoramaOptions);
+  final panorama = new StreetViewPanorama(querySelector('#pano'),panoramaOptions);
 }

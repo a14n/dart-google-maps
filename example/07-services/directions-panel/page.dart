@@ -1,32 +1,32 @@
 import 'dart:html';
-import 'package:js/js.dart' as js;
+
 import 'package:google_maps/google_maps.dart';
 
 DirectionsRenderer directionsDisplay;
-final DirectionsService directionsService = js.retain(new DirectionsService());
+final DirectionsService directionsService = new DirectionsService();
 
 void main() {
-  directionsDisplay = js.retain(new DirectionsRenderer());
+  directionsDisplay = new DirectionsRenderer();
   final mapOptions = new MapOptions()
     ..zoom = 7
     ..mapTypeId = MapTypeId.ROADMAP
     ..center = new LatLng(41.850033, -87.6500523)
     ;
-  final map = new GMap(query("#map_canvas"), mapOptions);
+  final map = new GMap(querySelector("#map_canvas"), mapOptions);
   directionsDisplay.map = map;
-  directionsDisplay.panel = query('#directions-panel');
+  directionsDisplay.panel = querySelector('#directions-panel');
 
-  final control = query('#control');
+  final control = querySelector('#control');
   control.style.display = 'block';
-  map.controls.getNodes(ControlPosition.TOP_CENTER).push(control);
+  map.controls[ControlPosition.TOP_CENTER].push(control);
 
-  query('#start').onChange.listen((e) => calcRoute());
-  query('#end').onChange.listen((e) => calcRoute());
+  querySelector('#start').onChange.listen((e) => calcRoute());
+  querySelector('#end').onChange.listen((e) => calcRoute());
 }
 
 void calcRoute() {
-  final start = (query('#start') as SelectElement).value;
-  final end = (query('#end') as SelectElement).value;
+  final start = (querySelector('#start') as SelectElement).value;
+  final end = (querySelector('#end') as SelectElement).value;
   final request = new DirectionsRequest()
     ..origin = start
     ..destination = end

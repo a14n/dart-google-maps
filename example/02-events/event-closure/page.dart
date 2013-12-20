@@ -1,6 +1,5 @@
 import 'dart:html';
 import 'dart:math' as Math;
-import 'package:js/js.dart' as js;
 import 'package:google_maps/google_maps.dart';
 
 void main() {
@@ -10,7 +9,7 @@ void main() {
     ..mapTypeId = MapTypeId.ROADMAP
   ;
 
-  final map = new GMap(query("#map_canvas"), mapOptions);
+  final map = new GMap(querySelector("#map_canvas"), mapOptions);
 
   // Add 5 markers to the map at random locations.
   final southWest = new LatLng(-31.203405,125.244141);
@@ -44,7 +43,6 @@ void attachSecretMessage(Marker marker, num number) {
   final infowindow = new InfoWindow(new InfoWindowOptions()
     ..content = message[number]
   );
-  [infowindow, marker.map, marker].forEach(js.retain);
   marker.onClick.listen((e) {
     infowindow.open(marker.map, marker);
   });

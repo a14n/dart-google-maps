@@ -9,7 +9,7 @@ void main() {
     ..center = new LatLng(-33, 151)
     ..mapTypeId = MapTypeId.ROADMAP
     ;
-  final map = new GMap(query("#map_canvas"), mapOptions);
+  final map = new GMap(querySelector("#map_canvas"), mapOptions);
 
   final image = '${IMAGE_URL}/images/beachflag.png';
   final myLatLng = new LatLng(-33.890542, 151.274856);

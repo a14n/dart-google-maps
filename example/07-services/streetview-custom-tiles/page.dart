@@ -1,5 +1,5 @@
 import 'dart:html';
-import 'package:js/js.dart' as js;
+
 import 'package:google_maps/google_maps.dart';
 
 const IMAGE_URL = "https://google-developers.appspot.com/maps/documentation/javascript/examples/full";
@@ -16,9 +16,9 @@ void main() {
     ..zoom = 16
     ..mapTypeId = MapTypeId.ROADMAP
     ;
-  final map = new GMap(query('#map_canvas'), mapOptions);
+  final map = new GMap(querySelector('#map_canvas'), mapOptions);
 
-  panorama = js.retain(map.streetView);
+  panorama = map.streetView;
   // Set up Street View and initially set it visible. Register the
   // custom panorama provider function.
   final panoOptions = new StreetViewPanoramaOptions()
@@ -26,7 +26,7 @@ void main() {
     ..visible = true
     ..panoProvider =  getCustomPanorama
     ;
-  panorama.$unsafe.setOptions(panoOptions); //TODO undocumented method
+  panorama.$unsafe.callMethod('setOptions', [panoOptions.$unsafe]); //TODO undocumented method
 
   // Create a StreetViewService object.
   final streetviewService = new StreetViewService();
@@ -34,12 +34,10 @@ void main() {
   // Compute the nearest panorama to the Google Sydney office
   // using the service and store that pano ID.
   final radius = 50;
-  js.retain(sydneyOffice);
   streetviewService.getPanoramaByLocation(sydneyOffice, radius, (StreetViewPanoramaData result, StreetViewStatus status) {
     if (status == StreetViewStatus.OK) {
       // We'll monitor the links_changed event to check if the current
       // pano is either a custom pano or our entry pano.
-      js.retain(result);
       panorama.onLinksChanged.listen((_) {
         return createCustomLinks(result.location.pano);
       });
@@ -55,7 +53,7 @@ String getCustomPanoramaTileUrl(String pano, num zoom, num tileX, num tileY) {
 StreetViewPanoramaData getCustomPanorama(String pano) {
   switch(pano) {
     case 'reception':
-      return js.retain(new StreetViewPanoramaData()
+      return new StreetViewPanoramaData()
         ..location = (new StreetViewLocation()
           ..pano = 'reception'
           ..description = 'Google Sydney - Reception'
@@ -71,8 +69,7 @@ StreetViewPanoramaData getCustomPanorama(String pano) {
           // The heading at the origin of the panorama tile set.
           ..centerHeading = 105
           ..set_getTileUrl(getCustomPanoramaTileUrl)
-        )
-      );
+        );
     default:
       return null;
   }

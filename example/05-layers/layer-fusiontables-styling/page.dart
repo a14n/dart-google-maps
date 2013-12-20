@@ -3,7 +3,7 @@ import 'package:google_maps/google_maps.dart';
 
 void main() {
   final australia = new LatLng(-25, 133);
-  final map = new GMap(query("#map_canvas"), new MapOptions()
+  final map = new GMap(querySelector("#map_canvas"), new MapOptions()
     ..center = australia
     ..zoom = 4
     ..mapTypeId = MapTypeId.ROADMAP

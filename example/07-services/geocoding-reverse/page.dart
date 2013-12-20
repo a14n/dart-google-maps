@@ -1,31 +1,31 @@
 import 'dart:html';
-import 'package:js/js.dart' as js;
+
 import 'package:google_maps/google_maps.dart';
 
 Geocoder geocoder;
 GMap map;
-final InfoWindow infowindow = js.retain(new InfoWindow());
+final InfoWindow infowindow = new InfoWindow();
 Marker marker;
 
 void main() {
-  geocoder = js.retain(new Geocoder());
+  geocoder = new Geocoder();
   final latlng = new LatLng(40.730885,-73.997383);
   final mapOptions = new MapOptions()
     ..zoom = 8
     ..center = latlng
     ..mapTypeId = MapTypeId.ROADMAP
     ;
-  map = js.retain(new GMap(query("#map_canvas"), mapOptions));
+  map = new GMap(querySelector("#map_canvas"), mapOptions);
 
-  query("#codeLatLng").onClick.listen((e) => codeLatLng());
+  querySelector("#codeLatLng").onClick.listen((e) => codeLatLng());
 }
 
 void codeLatLng() {
-  final input = (query('#latlng') as InputElement).value;
+  final input = (querySelector('#latlng') as InputElement).value;
   final latlngStr = input.split(',');
   final lat = double.parse(latlngStr[0]);
   final lng = double.parse(latlngStr[1]);
-  final LatLng latlng = js.retain(new LatLng(lat, lng));
+  final LatLng latlng = new LatLng(lat, lng);
   final request = new GeocoderRequest()
     ..location = latlng  // TODO bad variable "latlng" in example code
     ;
@@ -37,7 +37,6 @@ void codeLatLng() {
           ..position = latlng
           ..map = map
         );
-        js.release(latlng);
         infowindow.content = results[1].formattedAddress;
         infowindow.open(map, marker);
       } else {

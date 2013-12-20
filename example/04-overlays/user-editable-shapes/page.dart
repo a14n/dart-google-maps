@@ -1,4 +1,4 @@
-import 'dart:html';
+import 'dart:html' show querySelector;
 import 'package:google_maps/google_maps.dart';
 
 void main() {
@@ -7,7 +7,7 @@ void main() {
     ..zoom = 9
     ..mapTypeId = MapTypeId.ROADMAP
     ;
-  final map = new GMap(query("#map_canvas"), mapOptions);
+  final map = new GMap(querySelector("#map_canvas"), mapOptions);
 
   final bounds = new LatLngBounds(
     new LatLng(44.490, -78.649),

@@ -1,13 +1,13 @@
 import 'dart:html';
-import 'package:js/js.dart' as js;
+
 import 'package:google_maps/google_maps.dart';
 
 GMap map;
 StreetViewPanorama panorama;
-final LatLng astorPlace = js.retain(new LatLng(40.729884, -73.990988));
-final LatLng busStop = js.retain(new LatLng(40.729559678851025, -73.99074196815491));
-final LatLng cafe = js.retain(new LatLng(40.730031233910694, -73.99142861366272));
-final LatLng bank = js.retain(new LatLng(40.72968163306612, -73.9911389350891));
+final LatLng astorPlace = new LatLng(40.729884, -73.990988);
+final LatLng busStop = new LatLng(40.729559678851025, -73.99074196815491);
+final LatLng cafe = new LatLng(40.730031233910694, -73.99142861366272);
+final LatLng bank = new LatLng(40.72968163306612, -73.9911389350891);
 
 void main() {
   // Set up the map
@@ -17,7 +17,7 @@ void main() {
     ..mapTypeId = MapTypeId.ROADMAP
     ..streetViewControl = false
     ;
-  map = js.retain(new GMap(query('#map_canvas'), mapOptions));
+  map = new GMap(querySelector('#map_canvas'), mapOptions);
 
   // Setup the markers on the map
   // TODO issue for MarkerImage deprecated
@@ -52,7 +52,7 @@ void main() {
 
   // We get the map's default panorama and set up some defaults.
   // Note that we don't yet set it visible.
-  panorama = js.retain(map.streetView);
+  panorama = map.streetView;
   panorama.position = astorPlace;
   panorama.pov = new StreetViewPov()
     ..heading = 265
@@ -60,7 +60,7 @@ void main() {
     ..pitch = 0
   ;
 
-  query("#toggleStreetView").onClick.listen((e) => toggleStreetView());
+  querySelector("#toggleStreetView").onClick.listen((e) => toggleStreetView());
 }
 
 void toggleStreetView() {

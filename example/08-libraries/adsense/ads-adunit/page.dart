@@ -1,4 +1,5 @@
 import 'dart:html';
+
 import 'package:google_maps/google_maps.dart';
 import 'package:google_maps/google_maps_adsense.dart';
 
@@ -8,8 +9,7 @@ void main() {
     ..zoom = 12
     ..mapTypeId = MapTypeId.ROADMAP
     ;
-  final map = new GMap(query("#map_canvas"), mapOptions);
-
+  final map = new GMap(querySelector("#map_canvas"), mapOptions);
 
   final adUnitDiv = new DivElement();
 
@@ -20,7 +20,7 @@ void main() {
     ..position = ControlPosition.TOP_CENTER
     ..publisherId = 'ca-google-maps_apidocs'
     ..map = map
-    ..$unsafe.visible = true
+    ..$unsafe['visible'] = true
     ;
   final adUnit = new AdUnit(adUnitDiv, adUnitOptions);
 }

@@ -39,7 +39,7 @@ void main() {
       ]
     )
     ;
-  final map = new GMap(query("#map_canvas"), mapOptions);
+  final map = new GMap(querySelector("#map_canvas"), mapOptions);
 
   // Associate the styled map with the MapTypeId and set it to display.
   map.mapTypes.set('map_style', styledMapType);

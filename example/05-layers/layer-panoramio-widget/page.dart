@@ -1,36 +1,35 @@
 import 'dart:html';
-import 'package:js/js.dart' as js;
-import 'package:js/js_wrapping.dart' as jsw;
+import 'dart:js' as js;
+
+import 'package:js_wrapping/js_wrapping.dart' as jsw;
 import 'package:google_maps/google_maps.dart';
 import 'package:google_maps/google_maps_panoramio.dart';
 
-js.Serializable<js.Proxy> jsifyList(List list) => (list is js.Serializable<js.Proxy>) ? list : js.array(list);
+class PhotoWidget extends jsw.TypedJsObject {
+  PhotoWidget(DivElement div, PhotoRequestOptions photoRequestOptions, PhotoWidgetOptions photoWidgetOptions) : super(js.context['panoramio']['PhotoWidget'], [div, photoRequestOptions, photoWidgetOptions]);
 
-class PhotoWidget extends jsw.TypedProxy {
-  PhotoWidget(DivElement div, PhotoRequestOptions photoRequestOptions, PhotoWidgetOptions photoWidgetOptions) : super(js.context.panoramio.PhotoWidget, [div, photoRequestOptions, photoWidgetOptions]);
-
-  void setRequest(PhotoRequestOptions photoRequestOptions) { $unsafe.setRequest(photoRequestOptions); }
-  void setPosition(num position) { $unsafe.setPosition(position); }
+  void set request(PhotoRequestOptions photoRequestOptions) { $unsafe.callMethod('setRequest', [photoRequestOptions]); }
+  void set position(num position) { $unsafe.callMethod('setPosition', [position]); }
 }
 
-class PhotoWidgetOptions extends jsw.TypedProxy {
+class PhotoWidgetOptions extends jsw.TypedJsObject {
   PhotoWidgetOptions() : super();
 
-  set width(num width) => $unsafe.width = width;
-  set height(num height) => $unsafe.height = height;
+  set width(num width) => $unsafe['width'] = width;
+  set height(num height) => $unsafe['height'] = height;
 }
 
-class PhotoRequestOptions extends jsw.TypedProxy {
+class PhotoRequestOptions extends jsw.TypedJsObject {
   PhotoRequestOptions() : super();
 
-  set ids(List<PhotoRequestOptionsId> ids) => $unsafe.ids = jsifyList(ids);
+  set ids(List<PhotoRequestOptionsId> ids) => $unsafe['ids'] = (ids == null ? null : ids is js.JsArray ? ids : jsw.jsify(ids));
 }
 
-class PhotoRequestOptionsId extends jsw.TypedProxy {
+class PhotoRequestOptionsId extends jsw.TypedJsObject {
   PhotoRequestOptionsId() : super();
 
-  set photoId(String photoId) => $unsafe.photoId = photoId;
-  set userId(String userId) => $unsafe.userId = userId;
+  set photoId(String photoId) => $unsafe['photoId'] = photoId;
+  set userId(String userId) => $unsafe['userId'] = userId;
 }
 
 void main() {
@@ -55,7 +54,7 @@ void main() {
     ..center = monoLake
     ..mapTypeId = MapTypeId.ROADMAP
     ;
-  final map = new GMap(query("#map_canvas"), mapOptions);
+  final map = new GMap(querySelector("#map_canvas"), mapOptions);
 
   final infoWindow = new InfoWindow();
   final panoramioLayer = new PanoramioLayer(new PanoramioLayerOptions()
@@ -64,7 +63,6 @@ void main() {
 
   panoramioLayer.map = map;
 
-  [photoWidget, infoWindow, map].forEach(js.retain);
   panoramioLayer.onClick.listen((e) {
     final photoRequestOptions = new PhotoRequestOptions()
       ..ids = [new PhotoRequestOptionsId()
@@ -72,8 +70,8 @@ void main() {
         ..userId = e.featureDetails.userId
       ]
       ;
-    photoWidget.setRequest(photoRequestOptions);
-    photoWidget.setPosition(0);
+    photoWidget.request = photoRequestOptions;
+    photoWidget.position = 0;
     infoWindow.position = e.latLng;
     infoWindow.open(map);
     infoWindow.content = photoDiv;

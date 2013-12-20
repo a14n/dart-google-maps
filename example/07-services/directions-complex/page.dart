@@ -1,5 +1,5 @@
 import 'dart:html';
-import 'package:js/js.dart' as js;
+
 import 'package:google_maps/google_maps.dart';
 
 GMap map;
@@ -10,7 +10,7 @@ final markerArray = new List<Marker>();
 
 void main() {
   // Instantiate a directions service.
-  directionsService = js.retain(new DirectionsService());
+  directionsService = new DirectionsService();
 
   // Create a map and center it on Manhattan.
   final manhattan = new LatLng(40.7711329, -73.9741874);
@@ -19,33 +19,32 @@ void main() {
     ..mapTypeId = MapTypeId.ROADMAP
     ..center = manhattan
     ;
-  map = js.retain(new GMap(query("#map_canvas"), mapOptions));
+  map = new GMap(querySelector("#map_canvas"), mapOptions);
 
   // Create a renderer for directions and bind it to the map.
   final rendererOptions = new DirectionsRendererOptions()
     ..map = map
     ;
-  directionsDisplay = js.retain(new DirectionsRenderer(rendererOptions));
+  directionsDisplay = new DirectionsRenderer(rendererOptions);
 
   // Instantiate an info window to hold step text.
-  stepDisplay = js.retain(new InfoWindow());
+  stepDisplay = new InfoWindow();
 
-  query('#start').onChange.listen((e) => calcRoute());
-  query('#end').onChange.listen((e) => calcRoute());
+  querySelector('#start').onChange.listen((e) => calcRoute());
+  querySelector('#end').onChange.listen((e) => calcRoute());
 }
 
 void calcRoute() {
   // First, remove any existing markers from the map.
   markerArray.forEach((marker) => marker.map = null);
-  markerArray.forEach(js.release);
 
   // Now, clear the array itself.
   markerArray.clear();
 
   // Retrieve the start and end locations and create
   // a DirectionsRequest using WALKING directions.
-  final start = (query('#start') as SelectElement).value;
-  final end = (query('#end') as SelectElement).value;
+  final start = (querySelector('#start') as SelectElement).value;
+  final end = (querySelector('#end') as SelectElement).value;
   final request = new DirectionsRequest()
     ..origin = start
     ..destination = end
@@ -56,7 +55,7 @@ void calcRoute() {
   // function to create markers for each step.
   directionsService.route(request, (DirectionsResult response, DirectionsStatus status) {
     if (status == DirectionsStatus.OK) {
-      final warnings = query('#warnings_panel');
+      final warnings = querySelector('#warnings_panel');
       warnings.innerHtml = '<b>${response.routes[0].warnings}</b>';
       directionsDisplay.directions = response;
       showSteps(response);
@@ -77,7 +76,6 @@ void showSteps(DirectionsResult directionResult) {
       ..map = map
     );
     attachInstructionText(marker, step.instructions);
-    js.retain(marker);
     markerArray.add(marker);
   }
 }

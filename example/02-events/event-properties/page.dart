@@ -1,5 +1,4 @@
 import 'dart:html';
-import 'package:js/js.dart' as js;
 import 'package:google_maps/google_maps.dart';
 
 void main() {
@@ -10,7 +9,7 @@ void main() {
     ..mapTypeId = MapTypeId.ROADMAP
   ;
 
-  final map = new GMap(query("#map_canvas"), mapOptions);
+  final map = new GMap(querySelector("#map_canvas"), mapOptions);
 
   final infowindow = new InfoWindow(new InfoWindowOptions()
     ..content = "Change the zoom level"
@@ -18,7 +17,6 @@ void main() {
   );
   infowindow.open(map);
 
-  [map, myLatLng, infowindow].forEach(js.retain);
   map.onZoomChanged.listen((_) {
     var zoomLevel = map.zoom;
     map.center = myLatLng;

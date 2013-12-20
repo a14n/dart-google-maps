@@ -1,5 +1,4 @@
 import 'dart:html';
-import 'package:js/js.dart' as js;
 import 'package:google_maps/google_maps.dart';
 
 Polyline line;
@@ -11,7 +10,7 @@ void main() {
     ..center = myLatLng
     ..mapTypeId = MapTypeId.TERRAIN
     ;
-  final map = new GMap(query("#map_canvas"), mapOptions);
+  final map = new GMap(querySelector("#map_canvas"), mapOptions);
 
   final lineCoordinates = [
     new LatLng(22.291, 153.027),
@@ -23,7 +22,7 @@ void main() {
     ..scale = 4
     ;
 
-  line = js.retain(new Polyline(new PolylineOptions()
+  line = new Polyline(new PolylineOptions()
     ..path = lineCoordinates
     ..strokeOpacity = 0
     ..icons = [new IconSequence()
@@ -32,5 +31,5 @@ void main() {
       ..repeat = '20px'
     ]
     ..map = map
-  ));
+  );
 }

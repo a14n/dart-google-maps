@@ -84,7 +84,7 @@ void main() {
     ..content = createInfoWindowContent()
     ..position = chicago
     ..open(map)
-    ;
+  ;
 
   map.onZoomChanged.listen((_) {
     coordInfoWindow.content = createInfoWindowContent();

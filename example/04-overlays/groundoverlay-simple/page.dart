@@ -12,7 +12,7 @@ void main() {
     ..center = newark
     ..mapTypeId = MapTypeId.ROADMAP
     ;
-  final map = new GMap(query("#map_canvas"), mapOptions);
+  final map = new GMap(querySelector("#map_canvas"), mapOptions);
 
   final oldmap = new GroundOverlay(
       'https://www.lib.utexas.edu/maps/historical/newark_nj_1922.jpg',

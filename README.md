@@ -2,7 +2,6 @@ Dart Google Maps
 ================
 
 This project is a library to use [Google Maps JavaScript API v3](https://developers.google.com/maps/documentation/javascript/) from `dart` scripts.
-It uses [JS Interop library](https://github.com/dart-lang/js-interop) and its scoped approch to prevent memory leaks. You can have a look at [Js Interop documentation](http://dart-lang.github.com/js-interop/docs/js.html), or watch [Dart JavaScript Interoperability Google Developers Live episode](https://www.youtube.com/watch?v=QFuCFUd2Zsw), for more information.
 
 ## Usage ##
 To use this library in your code :
@@ -10,7 +9,7 @@ To use this library in your code :
 
 ```yaml
 dependencies:
-  google_maps: ">=1.1.0 <2.0.0"
+  google_maps: ">=2.0.0 <3.0.0"
 ```
 
 * add import in your `dart` code :
@@ -28,7 +27,7 @@ import 'package:google_maps/google_maps.dart';
 A very simple example :
 ```dart
 import 'dart:html';
-import 'package:js/js.dart' as js;
+
 import 'package:google_maps/google_maps.dart';
 
 void main() {
@@ -37,7 +36,7 @@ void main() {
     ..center = new LatLng(-34.397, 150.644)
     ..mapTypeId = MapTypeId.ROADMAP
     ;
-  final map = new GMap(query("#map_canvas"), mapOptions);
+  final map = new GMap(querySelector("#map_canvas"), mapOptions);
 }
 ```
 

@@ -15,12 +15,11 @@
 
 library google_maps_geometry;
 
-import 'package:js/js.dart' as js;
-import 'package:js/js_wrapping.dart' as jsw;
+import 'dart:js' as js;
 
-import 'google_maps.dart';
-import 'src/utils.dart';
+import 'package:google_maps/google_maps.dart';
+import 'package:js_wrapping/js_wrapping.dart' as jsw;
 
-part 'src/library/geometry/encoding.dart';
-part 'src/library/geometry/spherical.dart';
-part 'src/library/geometry/poly.dart';
+part 'src/generated/library/geometry/encoding.dart';
+part 'src/generated/library/geometry/spherical.dart';
+part 'src/generated/library/geometry/poly.dart';

@@ -1,15 +1,15 @@
 import 'dart:html';
-import 'package:js/js.dart' as js;
+
 import 'package:google_maps/google_maps.dart';
 
 GMap map;
-final LatLng berkeley = js.retain(new LatLng(37.869085,-122.254775));
-final StreetViewService sv = js.retain(new StreetViewService());
+final LatLng berkeley = new LatLng(37.869085,-122.254775);
+final StreetViewService sv = new StreetViewService();
 
 StreetViewPanorama panorama;
 
 void main() {
-  panorama = js.retain(new StreetViewPanorama(query('#pano')));
+  panorama = new StreetViewPanorama(querySelector('#pano'));
 
   // Set up the map
   final mapOptions = new MapOptions()
@@ -18,7 +18,7 @@ void main() {
     ..mapTypeId = MapTypeId.ROADMAP
     ..streetViewControl = false
     ;
-  map = js.retain(new GMap(query('#map_canvas'), mapOptions));
+  map = new GMap(querySelector('#map_canvas'), mapOptions);
 
   // getPanoramaByLocation will return the nearest pano when the
   // given radius is 50 meters or less.
@@ -43,7 +43,6 @@ void processSVData(StreetViewPanoramaData data, StreetViewStatus status) {
     ;
     panorama.visible = true;
 
-    js.retain(data);
     marker.onClick.listen((e) {
       final markerPanoID = data.location.pano;
       // Set the Pano to use the passed panoID

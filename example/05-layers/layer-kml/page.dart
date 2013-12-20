@@ -8,7 +8,7 @@ void main() {
     ..center = chicago
     ..mapTypeId = MapTypeId.ROADMAP
     ;
-  final map = new GMap(query("#map_canvas"), mapOptions);
+  final map = new GMap(querySelector("#map_canvas"), mapOptions);
 
   // TODO signature change 3.9 -> 3.10
   final ctaLayer = new KmlLayer()

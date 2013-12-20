@@ -1,25 +1,21 @@
 import 'dart:html' hide Point;
-import 'package:js/js.dart' as js;
-import 'package:js/js_wrapping.dart' as jsw;
+import 'dart:js' as js;
+
 import 'package:google_maps/google_maps.dart';
 
 class CoordMapType extends MapType {
   CoordMapType() : super() {
-    this.tileSize = js.retain(new Size(256,256));
+    this.tileSize = new Size(256,256);
     this.maxZoom = 19;
-    $unsafe.getTile = new js.Callback.many((js.Proxy tileCoord, num zoom, js.Proxy ownerDocument) {
-      if (ownerDocument.createElement("div") is js.Proxy) {
-        return _getTileFromOtherDocument(Point.cast(tileCoord), zoom, ownerDocument == null ? null : new jsw.TypedProxy.fromProxy(ownerDocument));
-      } else {
-        return _getTile(Point.cast(tileCoord), zoom);
-      }
-    });
+    $unsafe['getTile'] = (js.JsObject tileCoord, num zoom, HtmlDocument ownerDocument) {
+      return _getTile(Point.$wrap(tileCoord), zoom, ownerDocument);
+    };
     this.name = 'Tile #s';
     this.alt = 'Tile Coordinate Map Type';
   }
 
-  DivElement _getTile(Point coord, num zoom) {
-    final div = new DivElement()
+  Element _getTile(Point coord, num zoom, HtmlDocument ownerDocument) {
+    final div = ownerDocument.createElement('div')
       ..innerHtml = coord.toString()
       ;
     div.style
@@ -33,28 +29,11 @@ class CoordMapType extends MapType {
       ;
     return div;
   }
-
-  jsw.TypedProxy _getTileFromOtherDocument(Point coord, num zoom, jsw.TypedProxy ownerDocument) {
-    final div = new jsw.TypedProxy.fromProxy(ownerDocument.$unsafe.createElement("div"))
-      ..$unsafe.innerHTML = coord.toString()
-      ;
-    final style = new jsw.TypedProxy.fromProxy(div.$unsafe.style);
-    style
-      ..$unsafe.width = '${tileSize.width}px'
-      ..$unsafe.height = '${tileSize.height}px'
-      ..$unsafe.fontSize = '10'
-      ..$unsafe.borderStyle = 'solid'
-      ..$unsafe.borderWidth = '1px'
-      ..$unsafe.borderColor = '#AAAAAA'
-      ..$unsafe.backgroundColor = '#E5E3DF'
-      ;
-    return div;
-  }
 }
 
 GMap map;
-final LatLng chicago = js.retain(new LatLng(41.850033,-87.6500523));
-final CoordMapType coordinateMapType = js.retain(new CoordMapType());
+final LatLng chicago = new LatLng(41.850033,-87.6500523);
+final CoordMapType coordinateMapType = new CoordMapType();
 
 void main() {
   final mapOptions = new MapOptions()
@@ -67,7 +46,7 @@ void main() {
       ..style = MapTypeControlStyle.DROPDOWN_MENU
     )
     ;
-  map = js.retain(new GMap(query("#map_canvas"), mapOptions));
+  map = new GMap(querySelector("#map_canvas"), mapOptions);
 
   map.onMaptypeidChanged.listen((_) {
     final showStreetViewControl = map.mapTypeId != 'coordinate';

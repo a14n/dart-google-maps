@@ -1,5 +1,4 @@
 import 'dart:html';
-import 'package:js/js.dart' as js;
 import 'package:google_maps/google_maps.dart';
 
 const IMAGE_URL = "https://google-developers.appspot.com/maps/documentation/javascript/examples/full";
@@ -13,7 +12,7 @@ void main() {
     ..center = myLatLng
     ..mapTypeId = MapTypeId.SATELLITE
     ;
-  final map = new GMap(query("#map_canvas"), mapOptions);
+  final map = new GMap(querySelector("#map_canvas"), mapOptions);
 
   final swBound = new LatLng(62.281819, -150.287132);
   final neBound = new LatLng(62.400471, -150.005608);
@@ -21,7 +20,7 @@ void main() {
 
   // Photograph courtesy of the U.S. Geological Survey
   final srcImage = '${IMAGE_URL}/images/talkeetna.png';
-  overlay = js.retain(new USGSOverlay(bounds, srcImage, map));
+  overlay = new USGSOverlay(bounds, srcImage, map);
 }
 
 class USGSOverlay extends OverlayView {
@@ -37,9 +36,9 @@ class USGSOverlay extends OverlayView {
     set_onRemove(_onRemove);
 
     // Now initialize all properties.
-    _bounds = js.retain(bounds);
+    _bounds = bounds;
     _image = image;
-    _map = js.retain(map);
+    _map = map;
 
     // We define a property to hold the image's
     // div. We'll actually create this div

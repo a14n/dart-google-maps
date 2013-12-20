@@ -1,5 +1,4 @@
-import 'dart:html';
-import 'package:js/js.dart' as js;
+import 'dart:html' show querySelector;
 import 'package:google_maps/google_maps.dart';
 
 void main() {
@@ -10,11 +9,10 @@ void main() {
     ..center = coachella
     ..mapTypeId = MapTypeId.TERRAIN
     ;
-  final map = new GMap(query("#map_canvas"), mapOptions);
+  final map = new GMap(querySelector("#map_canvas"), mapOptions);
 
   final rectangle = new Rectangle();
 
-  [map, rectangle].forEach(js.retain);
   map.onZoomChanged.listen((_) {
     // Get the current bounds, which reflect the bounds before the zoom.
     final rectOptions = new RectangleOptions()

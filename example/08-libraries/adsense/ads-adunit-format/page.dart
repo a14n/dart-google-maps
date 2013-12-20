@@ -1,5 +1,5 @@
 import 'dart:html' hide Events;
-import 'package:js/js.dart' as js;
+
 import 'package:google_maps/google_maps.dart';
 import 'package:google_maps/google_maps_adsense.dart';
 
@@ -75,7 +75,7 @@ void main() {
     ..zoom = 12
     ..mapTypeId = MapTypeId.ROADMAP
     ;
-  final map = new GMap(query("#map_canvas"), mapOptions);
+  final map = new GMap(querySelector("#map_canvas"), mapOptions);
 
 
   final adUnitDiv = new DivElement();
@@ -85,26 +85,24 @@ void main() {
   final adUnitOptions = new AdUnitOptions()
     ..format = AdFormat.HALF_BANNER
     ..position = ControlPosition.TOP_CENTER
-    ..$unsafe.backgroundColor = '#c4d4f3'
-    ..$unsafe.borderColor = '#e5ecf9'
-    ..$unsafe.titleColor = '#0000cc'
-    ..$unsafe.textColor = '#000000'
-    ..$unsafe.urlColor = '#009900'
+    ..$unsafe['backgroundColor'] = '#c4d4f3'
+    ..$unsafe['borderColor'] = '#e5ecf9'
+    ..$unsafe['titleColor'] = '#0000cc'
+    ..$unsafe['textColor'] = '#000000'
+    ..$unsafe['urlColor'] = '#009900'
     ..publisherId = 'ca-google-maps_apidocs'
     ..map = map
-    ..$unsafe.visible = true
+    ..$unsafe['visible'] = true
     ;
   final adUnit = new AdUnit(adUnitDiv, adUnitOptions);
 
-  final SelectElement format = query('#format');
-  js.retain(adUnit);
+  final SelectElement format = querySelector('#format');
   event.addDomListener(format, 'change', (e) {
-    final String adsFormat = maps.adsense.AdFormat[format.value];
-    adUnit.format = AdFormat.find(adsFormat);
+    final String adsFormat = maps['adsense']['AdFormat'][format.value];
+    adUnit.format = AdFormat.$wrap(adsFormat);
   });
 
-  final SelectElement style = query('#style');
-  js.retain(adUnit);
+  final SelectElement style = querySelector('#style');
   event.addDomListener(style, 'change', (e) {
     final adStyle = SAMPLE_AD_STYLES[style.value];
     // TODO undocumented or undefined functions
@@ -117,10 +115,9 @@ void main() {
       ;
   });
 
-  final SelectElement position = query('#position');
-  js.retain(adUnit);
+  final SelectElement position = querySelector('#position');
   event.addDomListener(position, 'change', (e) {
-    final int adsPosition = maps.ControlPosition[position.value];
-    adUnit.position = ControlPosition.find(adsPosition);
+    final int adsPosition = maps['ControlPosition'][position.value];
+    adUnit.position = ControlPosition.$wrap(adsPosition);
   });
 }

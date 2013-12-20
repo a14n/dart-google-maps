@@ -1,9 +1,8 @@
 import 'dart:html' hide Events;
-import 'package:js/js.dart' as js;
 import 'package:google_maps/google_maps.dart';
 
 GMap map;
-final LatLng chicago = js.retain(new LatLng(41.850033, -87.6500523));
+final LatLng chicago = new LatLng(41.850033, -87.6500523);
 
 /**
  * The HomeControl adds a control to the map that simply
@@ -42,7 +41,6 @@ class HomeControl {
 
     // Setup the click event listeners: simply set the map to
     // Chicago
-    js.retain(map);
     event.addDomListener(controlUI, 'click', (e) {
       map.center = chicago;
     });
@@ -50,13 +48,13 @@ class HomeControl {
 }
 
 void main() {
-  final mapDiv = query("#map_canvas");
+  final mapDiv = querySelector("#map_canvas");
   final mapOptions = new MapOptions()
     ..zoom = 12
     ..center = chicago
     ..mapTypeId = MapTypeId.ROADMAP
     ;
-  map = js.retain(new GMap(mapDiv, mapOptions));
+  map = new GMap(mapDiv, mapOptions);
 
   // Create the DIV to hold the control and
   // call the HomeControl() constructor passing
@@ -65,5 +63,5 @@ void main() {
   var homeControl = new HomeControl(homeControlDiv, map);
 
   homeControlDiv.attributes["index"] = 1.toString();
-  map.controls.getNodes(ControlPosition.TOP_RIGHT).push(homeControlDiv);
+  map.controls[ControlPosition.TOP_RIGHT].push(homeControlDiv);
 }

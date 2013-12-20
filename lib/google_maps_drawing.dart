@@ -15,58 +15,13 @@
 library google_maps_drawing;
 
 import 'dart:async';
+import 'dart:js' as js;
 
-import 'package:js/js.dart' as js;
-import 'package:js/js_wrapping.dart' as jsw;
+import 'package:google_maps/google_maps.dart';
+import 'package:js_wrapping/js_wrapping.dart' as jsw;
 
-import 'google_maps.dart';
-import 'src/utils.dart';
-
-part 'src/library/drawing/drawing_manager.dart';
-part 'src/library/drawing/drawing_manager_options.dart';
-part 'src/library/drawing/drawing_control_options.dart';
-part 'src/library/drawing/overlay_complete_event.dart';
-part 'src/library/drawing/overlay_type.dart';
-
-class CircleCompleteEventListenerAdder extends EventListenerAdder {
-  CircleCompleteEventListenerAdder(jsw.TypedProxy _instance, String _eventName) : super(_instance, _eventName);
-
-  void add(void handler(Circle circle)) { super.add((o) => handler(Circle.cast(o))); }
-  MapsEventListenerRegistration addTemporary(void handler(Circle circle)) => super.addTemporary((o) => handler(Circle.cast(o)));
-}
-
-class MarkerCompleteEventListenerAdder extends EventListenerAdder {
-  MarkerCompleteEventListenerAdder(jsw.TypedProxy _instance, String _eventName) : super(_instance, _eventName);
-
-  void add(void handler(Marker marker)) { super.add((o) => handler(Marker.cast(o))); }
-  MapsEventListenerRegistration addTemporary(void handler(Marker marker)) => super.addTemporary((o) => handler(Marker.cast(o)));
-}
-
-class OverlayCompleteEventListenerAdder extends EventListenerAdder {
-  OverlayCompleteEventListenerAdder(jsw.TypedProxy _instance, String _eventName) : super(_instance, _eventName);
-
-  void add(void handler(OverlayCompleteEvent e)) { super.add((o) => handler(OverlayCompleteEvent.cast(o))); }
-  MapsEventListenerRegistration addTemporary(void handler(OverlayCompleteEvent e)) => super.addTemporary((o) => handler(OverlayCompleteEvent.cast(o)));
-}
-
-class PolygonCompleteEventListenerAdder extends EventListenerAdder {
-  PolygonCompleteEventListenerAdder(jsw.TypedProxy _instance, String _eventName) : super(_instance, _eventName);
-
-  void add(void handler(Polygon polygon)) { super.add((o) => handler(Polygon.cast(o))); }
-  MapsEventListenerRegistration addTemporary(void handler(Polygon polygon)) => super.addTemporary((o) => handler(Polygon.cast(o)));
-}
-
-class PolylineCompleteEventListenerAdder extends EventListenerAdder {
-  PolylineCompleteEventListenerAdder(jsw.TypedProxy _instance, String _eventName) : super(_instance, _eventName);
-
-  void add(void handler(Polyline polyline)) { super.add((o) => handler(Polyline.cast(o))); }
-  MapsEventListenerRegistration addTemporary(void handler(Polyline polyline)) => super.addTemporary((o) => handler(Polyline.cast(o)));
-}
-
-class RectangleCompleteEventListenerAdder extends EventListenerAdder {
-  RectangleCompleteEventListenerAdder(jsw.TypedProxy _instance, String _eventName) : super(_instance, _eventName);
-
-  void add(void handler(Rectangle rectangle)) { super.add((o) => handler(Rectangle.cast(o))); }
-  MapsEventListenerRegistration addTemporary(void handler(Rectangle rectangle)) => super.addTemporary((o) => handler(Rectangle.cast(o)));
-}
-
+part 'src/generated/library/drawing/drawing_manager.dart';
+part 'src/generated/library/drawing/drawing_manager_options.dart';
+part 'src/generated/library/drawing/drawing_control_options.dart';
+part 'src/generated/library/drawing/overlay_complete_event.dart';
+part 'src/generated/library/drawing/overlay_type.dart';

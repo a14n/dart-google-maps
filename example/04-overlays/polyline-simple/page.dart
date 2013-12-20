@@ -8,7 +8,7 @@ void main() {
     ..center = myLatLng
     ..mapTypeId = MapTypeId.TERRAIN
     ;
-  final map = new GMap(query("#map_canvas"), mapOptions);
+  final map = new GMap(querySelector("#map_canvas"), mapOptions);
 
   var flightPlanCoordinates = [
     new LatLng(37.772323, -122.214897),

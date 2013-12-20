@@ -1,5 +1,4 @@
 import 'dart:html';
-import 'package:js/js.dart' as js;
 import 'package:google_maps/google_maps.dart';
 import 'package:google_maps/google_maps_visualization.dart';
 
@@ -518,20 +517,20 @@ void main() {
     ..center = new LatLng(37.774546, -122.433523)
     ..mapTypeId = MapTypeId.SATELLITE
     ;
-  map = js.retain(new GMap(query("#map_canvas"), mapOptions));
+  map = new GMap(querySelector("#map_canvas"), mapOptions);
 
-  pointArray = js.retain(new MVCArray(taxiData));
+  pointArray = new MVCArray(taxiData);
 
-  heatmap = js.retain(new HeatmapLayer(new HeatmapLayerOptions()
+  heatmap = new HeatmapLayer(new HeatmapLayerOptions()
     ..data = pointArray
-  ));
+  );
 
   heatmap.map = map;
 
-  query("#toggleHeatmap").onClick.listen((e){toggleHeatmap();});
-  query("#changeGradient").onClick.listen((e){changeGradient();});
-  query("#changeRadius").onClick.listen((e){changeRadius();});
-  query("#changeOpacity").onClick.listen((e){changeOpacity();});
+  querySelector("#toggleHeatmap").onClick.listen((e){toggleHeatmap();});
+  querySelector("#changeGradient").onClick.listen((e){changeGradient();});
+  querySelector("#changeRadius").onClick.listen((e){changeRadius();});
+  querySelector("#changeOpacity").onClick.listen((e){changeOpacity();});
 }
 
 void toggleHeatmap() {

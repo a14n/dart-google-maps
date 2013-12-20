@@ -8,13 +8,13 @@ void main() {
     ..center = new LatLng(47.651743, -122.349243)
     ..mapTypeId = MapTypeId.ROADMAP
     ;
-  final map = new GMap(query("#map_canvas"), mapOptions);
+  final map = new GMap(querySelector("#map_canvas"), mapOptions);
 
   final panoramioLayer = new PanoramioLayer();
   panoramioLayer.map = map;
 
-  final photoPanel = query('#photo-panel');
-  map.controls.getNodes(ControlPosition.RIGHT_TOP).push(photoPanel);
+  final photoPanel = querySelector('#photo-panel');
+  map.controls[ControlPosition.RIGHT_TOP].push(photoPanel);
 
   panoramioLayer.onClick.listen((e) {
     final li = new LIElement();

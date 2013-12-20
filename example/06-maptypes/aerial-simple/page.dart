@@ -7,6 +7,6 @@ void main() {
     ..zoom = 18
     ..mapTypeId = MapTypeId.SATELLITE
     ;
-  final map = new GMap(query("#map_canvas"), mapOptions);
+  final map = new GMap(querySelector("#map_canvas"), mapOptions);
   map.tilt = 45;
 }

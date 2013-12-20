@@ -9,7 +9,7 @@ void main() {
     ..zoom = 6
     ..mapTypeId = MapTypeId.ROADMAP
     ;
-  final map = new GMap(query("#map_canvas"), mapOptions);
+  final map = new GMap(querySelector("#map_canvas"), mapOptions);
 
   final lineCoordinates = [
     new LatLng(22.291, 153.027),

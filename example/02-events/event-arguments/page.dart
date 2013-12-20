@@ -1,5 +1,4 @@
 import 'dart:html';
-import 'package:js/js.dart' as js;
 import 'package:google_maps/google_maps.dart';
 
 void main() {
@@ -8,9 +7,8 @@ void main() {
     ..center = new LatLng(-25.363882,131.044922)
     ..mapTypeId = MapTypeId.ROADMAP
   ;
-  final map = new GMap(query("#map_canvas"), mapOptions);
+  final map = new GMap(querySelector("#map_canvas"), mapOptions);
 
-  js.retain(map);
   map.onClick.listen((e) {
     placeMarker(e.latLng, map);
   });

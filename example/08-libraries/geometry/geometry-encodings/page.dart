@@ -1,5 +1,5 @@
 import 'dart:html' hide MouseEvent;
-import 'package:js/js.dart' as js;
+
 import 'package:google_maps/google_maps.dart';
 import 'package:google_maps/google_maps_geometry.dart';
 
@@ -12,7 +12,7 @@ void main() {
     ..mapTypeId = MapTypeId.ROADMAP
     ;
 
-  final map = new GMap(query("#map_canvas"), mapOptions);
+  final map = new GMap(querySelector("#map_canvas"), mapOptions);
 
   final polyOptions = new PolylineOptions()
     ..strokeColor = '#000000'
@@ -20,7 +20,7 @@ void main() {
     ..strokeWeight = 3
     ..map = map
     ;
-  poly = js.retain(new Polyline(polyOptions));
+  poly = new Polyline(polyOptions);
 
   // Add a listener for the click event
   map.onClick.listen(addLatLng);
@@ -39,6 +39,6 @@ void addLatLng(MouseEvent e) {
   // Update the text field to display the polyline encodings
   final encodeString = encoding.encodePath(path);
   if (encodeString != null) {
-    (query('#encoded-polyline') as TextAreaElement).value = encodeString;
+    (querySelector('#encoded-polyline') as TextAreaElement).value = encodeString;
   }
 }

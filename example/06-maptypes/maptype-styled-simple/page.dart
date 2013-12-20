@@ -33,7 +33,7 @@ void main() {
     ..mapTypeId = MY_MAPTYPE_ID
     ;
 
-  final map = new GMap(query('#map_canvas'), mapOptions);
+  final map = new GMap(querySelector('#map_canvas'), mapOptions);
 
   final styledMapOptions = new StyledMapTypeOptions()
     ..name = 'Hip-Hop'

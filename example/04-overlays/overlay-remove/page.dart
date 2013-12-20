@@ -1,5 +1,4 @@
 import 'dart:html';
-import 'package:js/js.dart' as js;
 import 'package:google_maps/google_maps.dart';
 
 GMap map;
@@ -14,15 +13,15 @@ void main() {
     ..center = haightAshbury
     ..mapTypeId = MapTypeId.TERRAIN
     ;
-  map = js.retain(new GMap(query("#map-canvas"), mapOptions));
+  map = new GMap(querySelector("#map-canvas"), mapOptions);
 
   map.onClick.listen((e) {
     addMarker(e.latLng);
   });
 
-  query("#clearOverlays").onClick.listen((e) => clearOverlays());
-  query("#showOverlays").onClick.listen((e) => showOverlays());
-  query("#deleteOverlays").onClick.listen((e) => deleteOverlays());
+  querySelector("#clearOverlays").onClick.listen((e) => clearOverlays());
+  querySelector("#showOverlays").onClick.listen((e) => showOverlays());
+  querySelector("#deleteOverlays").onClick.listen((e) => deleteOverlays());
 }
 
 // Add a marker to the map and push to the array.
@@ -31,7 +30,6 @@ void addMarker(LatLng location) {
     ..position = location
     ..map = map
   );
-  js.retain(marker);
   markers.add(marker);
 }
 
@@ -55,6 +53,5 @@ void showOverlays() {
 // Deletes all markers in the array by removing references to them.
 void deleteOverlays() {
   clearOverlays();
-  markers.forEach(js.release);
   markers.clear();
 }
