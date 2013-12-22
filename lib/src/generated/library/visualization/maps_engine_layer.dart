@@ -21,7 +21,7 @@ class MapsEngineLayer extends MVCObject {
   jsw.SubscribeStreamProvider _onStatusChanged;
 
   MapsEngineLayer(MapsEngineLayerOptions opts)
-      : super(maps.visualization.MapsEngineLayer, [opts]) {
+      : super(maps['visualization']['MapsEngineLayer'], [opts]) {
     _initStreams();
   }
   MapsEngineLayer.fromJsObject(js.JsObject proxy)
