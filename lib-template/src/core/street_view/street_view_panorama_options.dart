@@ -22,6 +22,7 @@ typedef StreetViewPanoramaData PanoProvider(String pano);
   bool addressControl;
   StreetViewAddressControlOptions addressControlOptions;
   bool clickToGo;
+  bool disableDefaultUI;
   bool disableDoubleClickZoom;
   bool enableCloseButton;
   bool imageDateControl;

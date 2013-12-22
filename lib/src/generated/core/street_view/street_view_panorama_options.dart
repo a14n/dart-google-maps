@@ -28,6 +28,8 @@ class StreetViewPanoramaOptions extends jsw.TypedJsObject {
   StreetViewAddressControlOptions get addressControlOptions => StreetViewAddressControlOptions.$wrap($unsafe['addressControlOptions']);
   set clickToGo(bool clickToGo) => $unsafe['clickToGo'] = clickToGo;
   bool get clickToGo => $unsafe['clickToGo'];
+  set disableDefaultUI(bool disableDefaultUI) => $unsafe['disableDefaultUI'] = disableDefaultUI;
+  bool get disableDefaultUI => $unsafe['disableDefaultUI'];
   set disableDoubleClickZoom(bool disableDoubleClickZoom) => $unsafe['disableDoubleClickZoom'] = disableDoubleClickZoom;
   bool get disableDoubleClickZoom => $unsafe['disableDoubleClickZoom'];
   set enableCloseButton(bool enableCloseButton) => $unsafe['enableCloseButton'] = enableCloseButton;
