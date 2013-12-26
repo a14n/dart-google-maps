@@ -65,7 +65,7 @@ class Polygon extends MVCObject {
   set draggable(bool draggable) => $unsafe.callMethod('setDraggable', [draggable]);
   set editable(bool editable) => $unsafe.callMethod('setEditable', [editable]);
   set map(GMap map) => $unsafe.callMethod('setMap', [map == null ? null : map.$unsafe]);
-  set options(PolylineOptions options) => $unsafe.callMethod('setOptions', [options == null ? null : options.$unsafe]);
+  set options(PolygonOptions options) => $unsafe.callMethod('setOptions', [options == null ? null : options.$unsafe]);
   set path(dynamic /*MVCArray.<LatLng>|Array.<LatLng>*/ path) => $unsafe.callMethod('setPath', [path == null ? null : path is js.JsArray ? path : path is List ? jsw.jsify(path) : path]);
   set paths(dynamic /*MVCArray.<MVCArray.<LatLng>>|MVCArray.<LatLng>|Array.<Array.<LatLng>>|Array.<LatLng>*/ paths) => $unsafe.callMethod('setPaths', [paths == null ? null : paths is js.JsArray ? paths : paths is List ? jsw.jsify(paths) : paths]);
   set visible(bool visible) => $unsafe.callMethod('setVisible', [visible]);
