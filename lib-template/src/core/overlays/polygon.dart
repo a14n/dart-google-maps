@@ -59,7 +59,7 @@ part of google_maps;
   set draggable(bool draggable);
   set editable(bool editable);
   set map(GMap map);
-  set options(PolylineOptions options);
+  set options(PolygonOptions options);
   set path(dynamic/*MVCArray.<LatLng>|Array.<LatLng>*/ path) => $unsafe.callMethod('setPath', [path == null ? null : path is js.JsArray ? path : path is List ? jsw.jsify(path) : path]);
   set paths(dynamic/*MVCArray.<MVCArray.<LatLng>>|MVCArray.<LatLng>|Array.<Array.<LatLng>>|Array.<LatLng>*/ paths) => $unsafe.callMethod('setPaths', [paths == null ? null : paths is js.JsArray ? paths : paths is List ? jsw.jsify(paths) : paths]);
   set visible(bool visible);
