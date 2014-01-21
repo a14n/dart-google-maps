@@ -16,7 +16,7 @@ part of google_maps_places;
 
 class SearchBox extends MVCObject {
   static SearchBox $wrap(js.JsObject jsObject) => jsObject == null ? null : new SearchBox.fromJsObject(jsObject);
-  jsw.SubscribeStreamProvider _onPlaceChanged;
+  jsw.SubscribeStreamProvider _onPlacesChanged;
 
   SearchBox(html.InputElement inputField, [SearchBoxOptions opts])
       : super(maps['places']['SearchBox'], [inputField, jsw.Serializable.$unwrap(opts)]) {
@@ -28,10 +28,10 @@ class SearchBox extends MVCObject {
   }
 
   void _initStreams() {
-    _onPlaceChanged = event.getStreamProviderFor(this, "place_changed");
+    _onPlacesChanged = event.getStreamProviderFor(this, "places_changed");
   }
 
-  Stream get onPlaceChanged => _onPlaceChanged.stream;
+  Stream get onPlacesChanged => _onPlacesChanged.stream;
 
   LatLngBounds get bounds => LatLngBounds.$wrap($unsafe.callMethod('getBounds'));
   List<PlaceResult> get places => jsw.TypedJsArray.$wrapSerializables($unsafe.callMethod('getPlaces'), PlaceResult.$wrap);
