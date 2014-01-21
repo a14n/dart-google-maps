@@ -15,16 +15,16 @@
 part of google_maps_places;
 
 @wrapper @forMethods @skipConstructor abstract class SearchBox extends MVCObject {
-  jsw.SubscribeStreamProvider _onPlaceChanged;
+  jsw.SubscribeStreamProvider _onPlacesChanged;
 
   SearchBox(html.InputElement inputField, [SearchBoxOptions opts]) : super(maps['places']['SearchBox'], [inputField, jsw.Serializable.$unwrap(opts)]) { _initStreams(); }
   SearchBox.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) { _initStreams(); }
 
   void _initStreams() {
-    _onPlaceChanged = event.getStreamProviderFor(this, "place_changed");
+    _onPlacesChanged = event.getStreamProviderFor(this, "places_changed");
   }
 
-  Stream get onPlaceChanged => _onPlaceChanged.stream;
+  Stream get onPlacesChanged => _onPlacesChanged.stream;
 
   LatLngBounds get bounds;
   List<PlaceResult> get places;
