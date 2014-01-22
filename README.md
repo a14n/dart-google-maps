@@ -24,7 +24,14 @@ import 'package:google_maps/google_maps.dart';
 <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 ```
 
-A very simple example :
+* Include the js-interop script using a `script` tag just after `packages/browser/dart.js`.
+
+```html
+<script src="packages/browser/dart.js"></script>
+<script src="packages/browser/interop.js"></script>
+```
+
+A very [simple example](example/01-basics/map-simple) :
 ```dart
 import 'dart:html';
 
