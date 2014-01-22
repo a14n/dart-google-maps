@@ -26,7 +26,8 @@ part of google_maps_places;
   void radarSearch(RadarSearchRequest request, void callback(List<PlaceResult> results, PlacesServiceStatus status)) {
     $unsafe.callMethod('radarSearch', [jsw.Serializable.$unwrap(request), (js.JsObject results, String status) => callback(jsw.TypedJsArray.$wrapSerializables(results, PlaceResult.$wrap), PlacesServiceStatus.$wrap(status))]);
   }
-  void textSearch(TextSearchRequest request, void callback(List<PlaceResult> results, PlacesServiceStatus status)) {
-    $unsafe.callMethod('textSearch', [jsw.Serializable.$unwrap(request), (js.JsObject results, String status) => callback(jsw.TypedJsArray.$wrapSerializables(results, PlaceResult.$wrap), PlacesServiceStatus.$wrap(status))]);
+  // TODO report missing PlaceSearchPagination argument
+  void textSearch(TextSearchRequest request, void callback(List<PlaceResult> results, PlacesServiceStatus status, PlaceSearchPagination pagination)) {
+    $unsafe.callMethod('textSearch', [jsw.Serializable.$unwrap(request), (js.JsObject results, String status, js.JsObject pagination) => callback(jsw.TypedJsArray.$wrapSerializables(results, PlaceResult.$wrap), PlacesServiceStatus.$wrap(status), PlaceSearchPagination.$wrap(pagination))]);
   }
 }
