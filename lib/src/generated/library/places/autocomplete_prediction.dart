@@ -25,12 +25,12 @@ class AutocompletePrediction extends jsw.TypedJsObject {
   String get description => $unsafe['description'];
   set id(String id) => $unsafe['id'] = id;
   String get id => $unsafe['id'];
-  set matchedSubstrings(List<PredictionSubstring> matchedSubstrings) => $unsafe['matched_substrings'] = matchedSubstrings == null ? null : (matchedSubstrings is jsw.TypedJsObject ? (matchedSubstrings as jsw.TypedJsObject).$unsafe : jsw.jsify(matchedSubstrings));
+  set matchedSubstrings(List<PredictionSubstring> matchedSubstrings) => $unsafe['matched_substrings'] = jsw.jsify(matchedSubstrings);
   List<PredictionSubstring> get matchedSubstrings => jsw.TypedJsArray.$wrapSerializables($unsafe['matched_substrings'], PredictionSubstring.$wrap);
   set reference(String reference) => $unsafe['reference'] = reference;
   String get reference => $unsafe['reference'];
-  set terms(List<PredictionTerm> terms) => $unsafe['terms'] = terms == null ? null : (terms is jsw.TypedJsObject ? (terms as jsw.TypedJsObject).$unsafe : jsw.jsify(terms));
+  set terms(List<PredictionTerm> terms) => $unsafe['terms'] = jsw.jsify(terms);
   List<PredictionTerm> get terms => jsw.TypedJsArray.$wrapSerializables($unsafe['terms'], PredictionTerm.$wrap);
-  set types(List<String> types) => $unsafe['types'] = types == null ? null : (types is jsw.TypedJsObject ? (types as jsw.TypedJsObject).$unsafe : jsw.jsify(types));
+  set types(List<String> types) => $unsafe['types'] = jsw.jsify(types);
   List<String> get types => jsw.TypedJsArray.$wrap($unsafe['types']);
 }

@@ -20,7 +20,7 @@ class MarkerShape extends jsw.TypedJsObject {
       : super.fromJsObject(jsObject);
   MarkerShape();
 
-  set coords(List<num> coords) => $unsafe['coords'] = coords == null ? null : (coords is jsw.TypedJsObject ? (coords as jsw.TypedJsObject).$unsafe : jsw.jsify(coords));
+  set coords(List<num> coords) => $unsafe['coords'] = jsw.jsify(coords);
   List<num> get coords => jsw.TypedJsArray.$wrap($unsafe['coords']);
   set type(MarkerShapeType type) => $unsafe['type'] = type == null ? null : type.$unsafe;
   MarkerShapeType get type => MarkerShapeType.$wrap($unsafe['type']);

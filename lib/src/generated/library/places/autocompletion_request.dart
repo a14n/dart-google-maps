@@ -33,6 +33,6 @@ class AutocompletionRequest extends jsw.TypedJsObject {
   num get offset => $unsafe['offset'];
   set radius(num radius) => $unsafe['radius'] = radius;
   num get radius => $unsafe['radius'];
-  set types(List<String> types) => $unsafe['types'] = types == null ? null : (types is jsw.TypedJsObject ? (types as jsw.TypedJsObject).$unsafe : jsw.jsify(types));
+  set types(List<String> types) => $unsafe['types'] = jsw.jsify(types);
   List<String> get types => jsw.TypedJsArray.$wrap($unsafe['types']);
 }

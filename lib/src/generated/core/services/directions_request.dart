@@ -24,13 +24,13 @@ class DirectionsRequest extends jsw.TypedJsObject {
   bool get avoidHighways => $unsafe['avoidHighways'];
   set avoidTolls(bool avoidTolls) => $unsafe['avoidTolls'] = avoidTolls;
   bool get avoidTolls => $unsafe['avoidTolls'];
-  set destination(dynamic destination) => $unsafe['destination'] = destination == null ? null : destination is LatLng ? destination.$unsafe : destination is String ? destination : throw "bad type";
+  set destination(dynamic destination) => $unsafe['destination'] = destination is LatLng ? destination.$unsafe : destination is String ? destination : destination == null ? null : throw "bad type";
   dynamic get destination => ((v2) => LatLng.isInstance(v2) ? LatLng.$wrap(v2) : ((v1) => v1 is String ? v1 : ((v0) => v0)(v1))(v2))($unsafe['destination']);
   set durationInTraffic(bool durationInTraffic) => $unsafe['durationInTraffic'] = durationInTraffic;
   bool get durationInTraffic => $unsafe['durationInTraffic'];
   set optimizeWaypoints(bool optimizeWaypoints) => $unsafe['optimizeWaypoints'] = optimizeWaypoints;
   bool get optimizeWaypoints => $unsafe['optimizeWaypoints'];
-  set origin(dynamic origin) => $unsafe['origin'] = origin == null ? null : origin is LatLng ? origin.$unsafe : origin is String ? origin : throw "bad type";
+  set origin(dynamic origin) => $unsafe['origin'] = origin is LatLng ? origin.$unsafe : origin is String ? origin : origin == null ? null : throw "bad type";
   dynamic get origin => ((v2) => LatLng.isInstance(v2) ? LatLng.$wrap(v2) : ((v1) => v1 is String ? v1 : ((v0) => v0)(v1))(v2))($unsafe['origin']);
   set region(String region) => $unsafe['region'] = region;
   String get region => $unsafe['region'];
@@ -40,6 +40,6 @@ class DirectionsRequest extends jsw.TypedJsObject {
   TravelMode get travelMode => TravelMode.$wrap($unsafe['travelMode']);
   set unitSystem(UnitSystem unitSystem) => $unsafe['unitSystem'] = unitSystem == null ? null : unitSystem.$unsafe;
   UnitSystem get unitSystem => UnitSystem.$wrap($unsafe['unitSystem']);
-  set waypoints(List<DirectionsWaypoint> waypoints) => $unsafe['waypoints'] = waypoints == null ? null : (waypoints is jsw.TypedJsObject ? (waypoints as jsw.TypedJsObject).$unsafe : jsw.jsify(waypoints));
+  set waypoints(List<DirectionsWaypoint> waypoints) => $unsafe['waypoints'] = jsw.jsify(waypoints);
   List<DirectionsWaypoint> get waypoints => jsw.TypedJsArray.$wrapSerializables($unsafe['waypoints'], DirectionsWaypoint.$wrap);
 }

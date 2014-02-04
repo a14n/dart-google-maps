@@ -21,7 +21,7 @@ class MVCObject extends jsw.TypedJsObject {
   MVCObject.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
 
-  MapsEventListener addListener(String eventName, Function handler) => MapsEventListener.$wrap($unsafe.callMethod('addListener', [eventName, handler]));
+  MapsEventListener addListener(String eventName, Function handler) => MapsEventListener.$wrap($unsafe.callMethod('addListener', [eventName, jsw.jsify(handler)]));
   void bindTo(String key, MVCObject target, [String targetKey, bool noNotify]) {
     $unsafe.callMethod('bindTo', [key, target == null ? null : target.$unsafe, targetKey, noNotify]);
   }
@@ -33,9 +33,9 @@ class MVCObject extends jsw.TypedJsObject {
     $unsafe.callMethod('notify', [key]);
   }
   void set(String key, dynamic value) {
-    $unsafe.callMethod('set', [key, value == null ? null : jsw.mayUnwrap(value)]);
+    $unsafe.callMethod('set', [key, jsw.jsify(value)]);
   }
-  set values(Map values) => $unsafe.callMethod('setValues', [values == null ? null : (values is jsw.TypedJsObject ? (values as jsw.TypedJsObject).$unsafe : jsw.jsify(values))]);
+  set values(Map values) => $unsafe.callMethod('setValues', [jsw.jsify(values)]);
   void unbind(String key) {
     $unsafe.callMethod('unbind', [key]);
   }

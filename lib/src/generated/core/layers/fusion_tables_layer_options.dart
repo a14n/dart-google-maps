@@ -28,7 +28,7 @@ class FusionTablesLayerOptions extends jsw.TypedJsObject {
   GMap get map => GMap.$wrap($unsafe['map']);
   set query(FusionTablesQuery query) => $unsafe['query'] = query == null ? null : query.$unsafe;
   FusionTablesQuery get query => FusionTablesQuery.$wrap($unsafe['query']);
-  set styles(List<FusionTablesStyle> styles) => $unsafe['styles'] = styles == null ? null : (styles is jsw.TypedJsObject ? (styles as jsw.TypedJsObject).$unsafe : jsw.jsify(styles));
+  set styles(List<FusionTablesStyle> styles) => $unsafe['styles'] = jsw.jsify(styles);
   List<FusionTablesStyle> get styles => jsw.TypedJsArray.$wrapSerializables($unsafe['styles'], FusionTablesStyle.$wrap);
   set suppressInfoWindows(bool suppressInfoWindows) => $unsafe['suppressInfoWindows'] = suppressInfoWindows;
   bool get suppressInfoWindows => $unsafe['suppressInfoWindows'];

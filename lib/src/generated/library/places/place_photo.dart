@@ -23,7 +23,7 @@ class PlacePhoto extends jsw.TypedJsObject {
 
   set height(num height) => $unsafe['height'] = height;
   num get height => $unsafe['height'];
-  set htmlAttributions(List<String> htmlAttributions) => $unsafe['html_attributions'] = htmlAttributions == null ? null : (htmlAttributions is jsw.TypedJsObject ? (htmlAttributions as jsw.TypedJsObject).$unsafe : jsw.jsify(htmlAttributions));
+  set htmlAttributions(List<String> htmlAttributions) => $unsafe['html_attributions'] = jsw.jsify(htmlAttributions);
   List<String> get htmlAttributions => jsw.TypedJsArray.$wrap($unsafe['html_attributions']);
   set width(num width) => $unsafe['width'] = width;
   num get width => $unsafe['width'];

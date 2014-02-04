@@ -28,11 +28,11 @@ class DirectionsStep extends jsw.TypedJsObject {
   LatLng get endLocation => LatLng.$wrap($unsafe['end_location']);
   set instructions(String instructions) => $unsafe['instructions'] = instructions;
   String get instructions => $unsafe['instructions'];
-  set path(List<LatLng> path) => $unsafe['path'] = path == null ? null : (path is jsw.TypedJsObject ? (path as jsw.TypedJsObject).$unsafe : jsw.jsify(path));
+  set path(List<LatLng> path) => $unsafe['path'] = jsw.jsify(path);
   List<LatLng> get path => jsw.TypedJsArray.$wrapSerializables($unsafe['path'], LatLng.$wrap);
   set startLocation(LatLng startLocation) => $unsafe['start_location'] = startLocation == null ? null : startLocation.$unsafe;
   LatLng get startLocation => LatLng.$wrap($unsafe['start_location']);
-  set steps(List<DirectionsStep> steps) => $unsafe['steps'] = steps == null ? null : (steps is jsw.TypedJsObject ? (steps as jsw.TypedJsObject).$unsafe : jsw.jsify(steps));
+  set steps(List<DirectionsStep> steps) => $unsafe['steps'] = jsw.jsify(steps);
   List<DirectionsStep> get steps => jsw.TypedJsArray.$wrapSerializables($unsafe['steps'], DirectionsStep.$wrap);
   set transit(TransitDetails transit) => $unsafe['transit'] = transit == null ? null : transit.$unsafe;
   TransitDetails get transit => TransitDetails.$wrap($unsafe['transit']);

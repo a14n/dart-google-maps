@@ -20,6 +20,6 @@ class LocationElevationRequest extends jsw.TypedJsObject {
       : super.fromJsObject(jsObject);
   LocationElevationRequest();
 
-  set locations(List<LatLng> locations) => $unsafe['locations'] = locations == null ? null : (locations is jsw.TypedJsObject ? (locations as jsw.TypedJsObject).$unsafe : jsw.jsify(locations));
+  set locations(List<LatLng> locations) => $unsafe['locations'] = jsw.jsify(locations);
   List<LatLng> get locations => jsw.TypedJsArray.$wrapSerializables($unsafe['locations'], LatLng.$wrap);
 }

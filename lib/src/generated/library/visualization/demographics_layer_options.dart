@@ -27,7 +27,7 @@ class DemographicsLayerOptions extends jsw.TypedJsObject {
   GMap get map => GMap.$wrap($unsafe['map']);
   set query(DemographicsQuery query) => $unsafe['query'] = query == null ? null : query.$unsafe;
   DemographicsQuery get query => DemographicsQuery.$wrap($unsafe['query']);
-  set style(List<DemographicsStyle> style) => $unsafe['style'] = style == null ? null : (style is jsw.TypedJsObject ? (style as jsw.TypedJsObject).$unsafe : jsw.jsify(style));
+  set style(List<DemographicsStyle> style) => $unsafe['style'] = jsw.jsify(style);
   List<DemographicsStyle> get style => jsw.TypedJsArray.$wrapSerializables($unsafe['style'], DemographicsStyle.$wrap);
   set suppressInfoWindows(bool suppressInfoWindows) => $unsafe['suppressInfoWindows'] = suppressInfoWindows;
   bool get suppressInfoWindows => $unsafe['suppressInfoWindows'];

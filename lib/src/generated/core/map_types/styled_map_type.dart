@@ -20,5 +20,5 @@ class StyledMapType extends MapType {
   StyledMapType.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
   StyledMapType(List<MapTypeStyle> styles, [StyledMapTypeOptions options])
-      : super(maps['StyledMapType'], [styles == null ? null : (styles is jsw.TypedJsObject ? (styles as jsw.TypedJsObject).$unsafe : jsw.jsify(styles)), options == null ? null : options.$unsafe]);
+      : super(maps['StyledMapType'], [jsw.jsify(styles), options == null ? null : options.$unsafe]);
 }

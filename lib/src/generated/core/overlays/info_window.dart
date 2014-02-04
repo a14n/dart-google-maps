@@ -52,9 +52,9 @@ class InfoWindow extends MVCObject {
   LatLng get position => LatLng.$wrap($unsafe.callMethod('getPosition'));
   num get zIndex => $unsafe.callMethod('getZIndex');
   void open([dynamic map, MVCObject anchor]) {
-    $unsafe.callMethod('open', [map == null ? null : map is GMap ? map.$unsafe : map is StreetViewPanorama ? map.$unsafe : throw "bad type", anchor == null ? null : anchor.$unsafe]);
+    $unsafe.callMethod('open', [map is GMap ? map.$unsafe : map is StreetViewPanorama ? map.$unsafe : map == null ? null : throw "bad type", anchor == null ? null : anchor.$unsafe]);
   }
-  set content(dynamic content) => $unsafe.callMethod('setContent', [content == null ? null : content is String ? content : content is html.Node ? content : throw "bad type"]);
+  set content(dynamic content) => $unsafe.callMethod('setContent', [content is String ? content : content is html.Node ? content : content == null ? null : throw "bad type"]);
   set options(InfoWindowOptions options) => $unsafe.callMethod('setOptions', [options == null ? null : options.$unsafe]);
   set position(LatLng position) => $unsafe.callMethod('setPosition', [position == null ? null : position.$unsafe]);
   set zIndex(num zIndex) => $unsafe.callMethod('setZIndex', [zIndex]);

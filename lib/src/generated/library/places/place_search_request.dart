@@ -39,6 +39,6 @@ class PlaceSearchRequest extends jsw.TypedJsObject {
   num get radius => $unsafe['radius'];
   set rankBy(RankBy rankBy) => $unsafe['rankBy'] = rankBy == null ? null : rankBy.$unsafe;
   RankBy get rankBy => RankBy.$wrap($unsafe['rankBy']);
-  set types(List<String> types) => $unsafe['types'] = types == null ? null : (types is jsw.TypedJsObject ? (types as jsw.TypedJsObject).$unsafe : jsw.jsify(types));
+  set types(List<String> types) => $unsafe['types'] = jsw.jsify(types);
   List<String> get types => jsw.TypedJsArray.$wrap($unsafe['types']);
 }

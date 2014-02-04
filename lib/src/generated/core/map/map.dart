@@ -112,7 +112,7 @@ class GMap extends MVCObject {
   }
   set center(LatLng latLng) => $unsafe.callMethod('setCenter', [latLng == null ? null : latLng.$unsafe]);
   set heading(num heading) => $unsafe.callMethod('setHeading', [heading]);
-  set mapTypeId(dynamic mapTypeId) => $unsafe.callMethod('setMapTypeId', [mapTypeId == null ? null : mapTypeId is MapTypeId ? mapTypeId.$unsafe : mapTypeId is String ? mapTypeId : throw "bad type"]);
+  set mapTypeId(dynamic mapTypeId) => $unsafe.callMethod('setMapTypeId', [mapTypeId is MapTypeId ? mapTypeId.$unsafe : mapTypeId is String ? mapTypeId : mapTypeId == null ? null : throw "bad type"]);
   set options(MapOptions options) => $unsafe.callMethod('setOptions', [options == null ? null : options.$unsafe]);
   set streetView(StreetViewPanorama panorama) => $unsafe.callMethod('setStreetView', [panorama == null ? null : panorama.$unsafe]);
   set tilt(num tilt) => $unsafe.callMethod('setTilt', [tilt]);

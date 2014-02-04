@@ -25,9 +25,9 @@ class DistanceMatrixRequest extends jsw.TypedJsObject {
   set avoidTolls(bool avoidTolls) => $unsafe['avoidTolls'] = avoidTolls;
   bool get avoidTolls => $unsafe['avoidTolls'];
   List /*Array.<LatLng>|Array.<string>*/ get destinations => jsw.TypedJsArray.$wrap($unsafe['destinations'], wrap: (e) => LatLng.isInstance(e) ? LatLng.$wrap(e) : e, unwrap: jsw.mayUnwrap);
-  set destinations(List destinations) => $unsafe['destinations'] = destinations == null ? null : (destinations is jsw.TypedJsObject ? (destinations as jsw.TypedJsObject).$unsafe : jsw.jsify(destinations));
+  set destinations(List destinations) => $unsafe['destinations'] = jsw.jsify(destinations);
   List /*Array.<LatLng>|Array.<string>*/ get origins => jsw.TypedJsArray.$wrap($unsafe['origins'], wrap: (e) => LatLng.isInstance(e) ? LatLng.$wrap(e) : e, unwrap: jsw.mayUnwrap);
-  set origins(List origins) => $unsafe['origins'] = origins == null ? null : (origins is jsw.TypedJsObject ? (origins as jsw.TypedJsObject).$unsafe : jsw.jsify(origins));
+  set origins(List origins) => $unsafe['origins'] = jsw.jsify(origins);
   set region(String region) => $unsafe['region'] = region;
   String get region => $unsafe['region'];
   set travelMode(TravelMode travelMode) => $unsafe['travelMode'] = travelMode == null ? null : travelMode.$unsafe;

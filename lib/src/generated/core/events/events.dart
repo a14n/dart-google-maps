@@ -25,15 +25,15 @@ class GEvent extends jsw.TypedJsObject {
   GEvent()
       : super.fromJsObject(maps['event']);
 
-  MapsEventListener addDomListener(dynamic instance, String eventName, Function handler, [bool capture]) => MapsEventListener.$wrap($unsafe.callMethod('addDomListener', [instance == null ? null : jsw.mayUnwrap(instance), eventName, handler, capture]));
-  MapsEventListener addDomListenerOnce(dynamic instance, String eventName, Function handler, [bool capture]) => MapsEventListener.$wrap($unsafe.callMethod('addDomListenerOnce', [instance == null ? null : jsw.mayUnwrap(instance), eventName, handler, capture]));
-  MapsEventListener addListener(dynamic instance, String eventName, Function handler) => MapsEventListener.$wrap($unsafe.callMethod('addListener', [instance == null ? null : jsw.mayUnwrap(instance), eventName, handler]));
-  MapsEventListener addListenerOnce(dynamic instance, String eventName, Function handler) => MapsEventListener.$wrap($unsafe.callMethod('addListenerOnce', [instance == null ? null : jsw.mayUnwrap(instance), eventName, handler]));
+  MapsEventListener addDomListener(dynamic instance, String eventName, Function handler, [bool capture]) => MapsEventListener.$wrap($unsafe.callMethod('addDomListener', [jsw.jsify(instance), eventName, jsw.jsify(handler), capture]));
+  MapsEventListener addDomListenerOnce(dynamic instance, String eventName, Function handler, [bool capture]) => MapsEventListener.$wrap($unsafe.callMethod('addDomListenerOnce', [jsw.jsify(instance), eventName, jsw.jsify(handler), capture]));
+  MapsEventListener addListener(dynamic instance, String eventName, Function handler) => MapsEventListener.$wrap($unsafe.callMethod('addListener', [jsw.jsify(instance), eventName, jsw.jsify(handler)]));
+  MapsEventListener addListenerOnce(dynamic instance, String eventName, Function handler) => MapsEventListener.$wrap($unsafe.callMethod('addListenerOnce', [jsw.jsify(instance), eventName, jsw.jsify(handler)]));
   void clearInstanceListeners(dynamic instance) {
-    $unsafe.callMethod('clearInstanceListeners', [instance == null ? null : jsw.mayUnwrap(instance)]);
+    $unsafe.callMethod('clearInstanceListeners', [jsw.jsify(instance)]);
   }
   void clearListeners(dynamic instance, String eventName) {
-    $unsafe.callMethod('clearListeners', [instance == null ? null : jsw.mayUnwrap(instance), eventName]);
+    $unsafe.callMethod('clearListeners', [jsw.jsify(instance), eventName]);
   }
   void removeListener(MapsEventListener listener) {
     $unsafe.callMethod('removeListener', [listener == null ? null : listener.$unsafe]);

@@ -20,7 +20,7 @@ class OverlayCompleteEvent extends jsw.TypedJsObject {
       : super.fromJsObject(jsObject);
   OverlayCompleteEvent();
 
-  set overlay(dynamic overlay) => $unsafe['overlay'] = overlay == null ? null : overlay is Marker ? overlay.$unsafe : overlay is Polygon ? overlay.$unsafe : overlay is Polyline ? overlay.$unsafe : overlay is Rectangle ? overlay.$unsafe : overlay is Circle ? overlay.$unsafe : throw "bad type";
+  set overlay(dynamic overlay) => $unsafe['overlay'] = overlay is Marker ? overlay.$unsafe : overlay is Polygon ? overlay.$unsafe : overlay is Polyline ? overlay.$unsafe : overlay is Rectangle ? overlay.$unsafe : overlay is Circle ? overlay.$unsafe : overlay == null ? null : throw "bad type";
   dynamic get overlay => ((v5) => Marker.isInstance(v5) ? Marker.$wrap(v5) : ((v4) => Polygon.isInstance(v4) ? Polygon.$wrap(v4) : ((v3) => Polyline.isInstance(v3) ? Polyline.$wrap(v3) : ((v2) => Rectangle.isInstance(v2) ? Rectangle.$wrap(v2) : ((v1) => Circle.isInstance(v1) ? Circle.$wrap(v1) : ((v0) => v0)(v1))(v2))(v3))(v4))(v5))($unsafe['overlay']);
   set type(OverlayType type) => $unsafe['type'] = type == null ? null : type.$unsafe;
   OverlayType get type => OverlayType.$wrap($unsafe['type']);

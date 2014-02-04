@@ -36,8 +36,8 @@ class DirectionsLeg extends jsw.TypedJsObject {
   String get startAddress => $unsafe['start_address'];
   set startLocation(LatLng startLocation) => $unsafe['start_location'] = startLocation == null ? null : startLocation.$unsafe;
   LatLng get startLocation => LatLng.$wrap($unsafe['start_location']);
-  set steps(List<DirectionsStep> steps) => $unsafe['steps'] = steps == null ? null : (steps is jsw.TypedJsObject ? (steps as jsw.TypedJsObject).$unsafe : jsw.jsify(steps));
+  set steps(List<DirectionsStep> steps) => $unsafe['steps'] = jsw.jsify(steps);
   List<DirectionsStep> get steps => jsw.TypedJsArray.$wrapSerializables($unsafe['steps'], DirectionsStep.$wrap);
-  set viaWaypoints(List<LatLng> viaWaypoints) => $unsafe['via_waypoints'] = viaWaypoints == null ? null : (viaWaypoints is jsw.TypedJsObject ? (viaWaypoints as jsw.TypedJsObject).$unsafe : jsw.jsify(viaWaypoints));
+  set viaWaypoints(List<LatLng> viaWaypoints) => $unsafe['via_waypoints'] = jsw.jsify(viaWaypoints);
   List<LatLng> get viaWaypoints => jsw.TypedJsArray.$wrapSerializables($unsafe['via_waypoints'], LatLng.$wrap);
 }

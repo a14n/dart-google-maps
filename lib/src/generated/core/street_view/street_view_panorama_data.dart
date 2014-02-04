@@ -24,7 +24,7 @@ class StreetViewPanoramaData extends jsw.TypedJsObject {
   String get copyright => $unsafe['copyright'];
   set imageDate(String imageDate) => $unsafe['imageDate'] = imageDate;
   String get imageDate => $unsafe['imageDate'];
-  set links(List<StreetViewLink> links) => $unsafe['links'] = links == null ? null : (links is jsw.TypedJsObject ? (links as jsw.TypedJsObject).$unsafe : jsw.jsify(links));
+  set links(List<StreetViewLink> links) => $unsafe['links'] = jsw.jsify(links);
   List<StreetViewLink> get links => jsw.TypedJsArray.$wrapSerializables($unsafe['links'], StreetViewLink.$wrap);
   set location(StreetViewLocation location) => $unsafe['location'] = location == null ? null : location.$unsafe;
   StreetViewLocation get location => StreetViewLocation.$wrap($unsafe['location']);

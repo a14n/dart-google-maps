@@ -63,7 +63,7 @@ class MVCArray<E> extends MVCObject {
   num push(E elem) => $unsafe.callMethod('push', [_unwrap(elem)]);
   E removeAt(num i) => _wrap($unsafe.callMethod('removeAt', [i]));
   void setAt(num i, E elem) {
-    $unsafe.callMethod('.setAt', [i, _unwrap(elem)]);
+    $unsafe.callMethod('setAt', [i, _unwrap(elem)]);
   }
 
   // TODO mark methods with @remove

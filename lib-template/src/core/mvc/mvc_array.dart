@@ -58,7 +58,7 @@ part of google_maps;
   E pop() => _wrap($unsafe.callMethod('pop'));
   num push(E elem) => $unsafe.callMethod('push', [_unwrap(elem)]);
   E removeAt(num i) => _wrap($unsafe.callMethod('removeAt', [i]));
-  void setAt(num i, E elem) { $unsafe.callMethod('.setAt', [i, _unwrap(elem)]); }
+  void setAt(num i, E elem) { $unsafe.callMethod('setAt', [i, _unwrap(elem)]); }
 
   // TODO mark methods with @remove
   MapsEventListener addListener(String eventName, Function handler) => super.addListener(eventName, handler);

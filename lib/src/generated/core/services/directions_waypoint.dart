@@ -20,7 +20,7 @@ class DirectionsWaypoint extends jsw.TypedJsObject {
       : super.fromJsObject(jsObject);
   DirectionsWaypoint();
 
-  set location(dynamic location) => $unsafe['location'] = location == null ? null : location is LatLng ? location.$unsafe : location is String ? location : throw "bad type";
+  set location(dynamic location) => $unsafe['location'] = location is LatLng ? location.$unsafe : location is String ? location : location == null ? null : throw "bad type";
   dynamic get location => ((v2) => LatLng.isInstance(v2) ? LatLng.$wrap(v2) : ((v1) => v1 is String ? v1 : ((v0) => v0)(v1))(v2))($unsafe['location']);
   set stopover(bool stopover) => $unsafe['stopover'] = stopover;
   bool get stopover => $unsafe['stopover'];

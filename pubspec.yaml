@@ -10,6 +10,6 @@ dependencies:
 dev_dependencies:
   browser: '>=0.9.0 <0.10.0'
   editor_build: '>=0.0.4 <0.1.0'
-  js_wrapping_generator: '0.0.2'
+  js_wrapping_generator: '0.0.3'
   path: '>=0.9.0 <0.10.0'
   unittest: '>=0.9.0 <0.10.0'

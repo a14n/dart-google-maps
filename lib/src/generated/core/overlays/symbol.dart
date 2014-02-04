@@ -30,7 +30,7 @@ class GSymbol extends jsw.TypedJsObject {
   String get fillColor => $unsafe['fillColor'];
   set fillOpacity(num fillOpacity) => $unsafe['fillOpacity'] = fillOpacity;
   num get fillOpacity => $unsafe['fillOpacity'];
-  set path(dynamic path) => $unsafe['path'] = path == null ? null : path is SymbolPath ? path.$unsafe : path is String ? path : throw "bad type";
+  set path(dynamic path) => $unsafe['path'] = path is SymbolPath ? path.$unsafe : path is String ? path : path == null ? null : throw "bad type";
   dynamic get path => ((v3) => ((v2) => v2 != null ? v2 : ((v1) => v1 is String ? v1 : ((v0) => v0)(v1))(v3))(SymbolPath.$wrap(v3)))($unsafe['path']);
   set rotation(num rotation) => $unsafe['rotation'] = rotation;
   num get rotation => $unsafe['rotation'];

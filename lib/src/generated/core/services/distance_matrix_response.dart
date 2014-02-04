@@ -20,10 +20,10 @@ class DistanceMatrixResponse extends jsw.TypedJsObject {
       : super.fromJsObject(jsObject);
   DistanceMatrixResponse();
 
-  set destinationAddresses(List<String> destinationAddresses) => $unsafe['destinationAddresses'] = destinationAddresses == null ? null : (destinationAddresses is jsw.TypedJsObject ? (destinationAddresses as jsw.TypedJsObject).$unsafe : jsw.jsify(destinationAddresses));
+  set destinationAddresses(List<String> destinationAddresses) => $unsafe['destinationAddresses'] = jsw.jsify(destinationAddresses);
   List<String> get destinationAddresses => jsw.TypedJsArray.$wrap($unsafe['destinationAddresses']);
-  set originAddresses(List<String> originAddresses) => $unsafe['originAddresses'] = originAddresses == null ? null : (originAddresses is jsw.TypedJsObject ? (originAddresses as jsw.TypedJsObject).$unsafe : jsw.jsify(originAddresses));
+  set originAddresses(List<String> originAddresses) => $unsafe['originAddresses'] = jsw.jsify(originAddresses);
   List<String> get originAddresses => jsw.TypedJsArray.$wrap($unsafe['originAddresses']);
-  set rows(List<DistanceMatrixResponseRow> rows) => $unsafe['rows'] = rows == null ? null : (rows is jsw.TypedJsObject ? (rows as jsw.TypedJsObject).$unsafe : jsw.jsify(rows));
+  set rows(List<DistanceMatrixResponseRow> rows) => $unsafe['rows'] = jsw.jsify(rows);
   List<DistanceMatrixResponseRow> get rows => jsw.TypedJsArray.$wrapSerializables($unsafe['rows'], DistanceMatrixResponseRow.$wrap);
 }

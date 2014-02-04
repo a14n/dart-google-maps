@@ -22,7 +22,7 @@ class DrawingControlOptions extends jsw.TypedJsObject {
       : super();
 
   List<OverlayType> get drawingModes => jsw.TypedJsArray.$wrapSerializables($unsafe['drawingModes'], OverlayType.$wrap);
-  set drawingModes(List drawingModes) => $unsafe['drawingModes'] = drawingModes == null ? null : (drawingModes is jsw.TypedJsObject ? (drawingModes as jsw.TypedJsObject).$unsafe : jsw.jsify(drawingModes));
+  set drawingModes(List drawingModes) => $unsafe['drawingModes'] = jsw.jsify(drawingModes);
   set position(ControlPosition position) => $unsafe['position'] = position == null ? null : position.$unsafe;
   ControlPosition get position => ControlPosition.$wrap($unsafe['position']);
 }

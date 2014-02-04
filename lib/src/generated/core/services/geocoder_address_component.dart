@@ -24,6 +24,6 @@ class GeocoderAddressComponent extends jsw.TypedJsObject {
   String get longName => $unsafe['long_name'];
   set shortName(String shortName) => $unsafe['short_name'] = shortName;
   String get shortName => $unsafe['short_name'];
-  set types(List<String> types) => $unsafe['types'] = types == null ? null : (types is jsw.TypedJsObject ? (types as jsw.TypedJsObject).$unsafe : jsw.jsify(types));
+  set types(List<String> types) => $unsafe['types'] = jsw.jsify(types);
   List<String> get types => jsw.TypedJsArray.$wrap($unsafe['types']);
 }

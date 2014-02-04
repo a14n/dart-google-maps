@@ -21,9 +21,9 @@ class PlaceResult extends jsw.TypedJsObject {
   PlaceResult()
       : super();
 
-  set addressComponents(List<GeocoderAddressComponent> addressComponents) => $unsafe['address_components'] = addressComponents == null ? null : (addressComponents is jsw.TypedJsObject ? (addressComponents as jsw.TypedJsObject).$unsafe : jsw.jsify(addressComponents));
+  set addressComponents(List<GeocoderAddressComponent> addressComponents) => $unsafe['address_components'] = jsw.jsify(addressComponents);
   List<GeocoderAddressComponent> get addressComponents => jsw.TypedJsArray.$wrapSerializables($unsafe['address_components'], GeocoderAddressComponent.$wrap);
-  set aspects(List<PlaceAspectRating> aspects) => $unsafe['aspects'] = aspects == null ? null : (aspects is jsw.TypedJsObject ? (aspects as jsw.TypedJsObject).$unsafe : jsw.jsify(aspects));
+  set aspects(List<PlaceAspectRating> aspects) => $unsafe['aspects'] = jsw.jsify(aspects);
   List<PlaceAspectRating> get aspects => jsw.TypedJsArray.$wrapSerializables($unsafe['aspects'], PlaceAspectRating.$wrap);
   set formattedAddress(String formattedAddress) => $unsafe['formatted_address'] = formattedAddress;
   String get formattedAddress => $unsafe['formatted_address'];
@@ -31,7 +31,7 @@ class PlaceResult extends jsw.TypedJsObject {
   String get formattedPhoneNumber => $unsafe['formatted_phone_number'];
   set geometry(PlaceGeometry geometry) => $unsafe['geometry'] = geometry == null ? null : geometry.$unsafe;
   PlaceGeometry get geometry => PlaceGeometry.$wrap($unsafe['geometry']);
-  set htmlAttributions(List<String> htmlAttributions) => $unsafe['html_attributions'] = htmlAttributions == null ? null : (htmlAttributions is jsw.TypedJsObject ? (htmlAttributions as jsw.TypedJsObject).$unsafe : jsw.jsify(htmlAttributions));
+  set htmlAttributions(List<String> htmlAttributions) => $unsafe['html_attributions'] = jsw.jsify(htmlAttributions);
   List<String> get htmlAttributions => jsw.TypedJsArray.$wrap($unsafe['html_attributions']);
   set icon(String icon) => $unsafe['icon'] = icon;
   String get icon => $unsafe['icon'];
@@ -43,7 +43,7 @@ class PlaceResult extends jsw.TypedJsObject {
   String get name => $unsafe['name'];
   set permanentlyClosed(bool permanentlyClosed) => $unsafe['permanently_closed'] = permanentlyClosed;
   bool get permanentlyClosed => $unsafe['permanently_closed'];
-  set photos(List<PlacePhoto> photos) => $unsafe['photos'] = photos == null ? null : (photos is jsw.TypedJsObject ? (photos as jsw.TypedJsObject).$unsafe : jsw.jsify(photos));
+  set photos(List<PlacePhoto> photos) => $unsafe['photos'] = jsw.jsify(photos);
   List<PlacePhoto> get photos => jsw.TypedJsArray.$wrapSerializables($unsafe['photos'], PlacePhoto.$wrap);
   set priceLevel(num priceLevel) => $unsafe['price_level'] = priceLevel;
   num get priceLevel => $unsafe['price_level'];
@@ -53,9 +53,9 @@ class PlaceResult extends jsw.TypedJsObject {
   String get reference => $unsafe['reference'];
   set reviewSummary(String reviewSummary) => $unsafe['review_summary'] = reviewSummary;
   String get reviewSummary => $unsafe['review_summary'];
-  set reviews(List<PlaceReview> reviews) => $unsafe['reviews'] = reviews == null ? null : (reviews is jsw.TypedJsObject ? (reviews as jsw.TypedJsObject).$unsafe : jsw.jsify(reviews));
+  set reviews(List<PlaceReview> reviews) => $unsafe['reviews'] = jsw.jsify(reviews);
   List<PlaceReview> get reviews => jsw.TypedJsArray.$wrapSerializables($unsafe['reviews'], PlaceReview.$wrap);
-  set types(List<String> types) => $unsafe['types'] = types == null ? null : (types is jsw.TypedJsObject ? (types as jsw.TypedJsObject).$unsafe : jsw.jsify(types));
+  set types(List<String> types) => $unsafe['types'] = jsw.jsify(types);
   List<String> get types => jsw.TypedJsArray.$wrap($unsafe['types']);
   set url(String url) => $unsafe['url'] = url;
   String get url => $unsafe['url'];

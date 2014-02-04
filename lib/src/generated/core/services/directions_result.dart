@@ -20,6 +20,6 @@ class DirectionsResult extends jsw.TypedJsObject {
       : super.fromJsObject(jsObject);
   DirectionsResult();
 
-  set routes(List<DirectionsRoute> routes) => $unsafe['routes'] = routes == null ? null : (routes is jsw.TypedJsObject ? (routes as jsw.TypedJsObject).$unsafe : jsw.jsify(routes));
+  set routes(List<DirectionsRoute> routes) => $unsafe['routes'] = jsw.jsify(routes);
   List<DirectionsRoute> get routes => jsw.TypedJsArray.$wrapSerializables($unsafe['routes'], DirectionsRoute.$wrap);
 }

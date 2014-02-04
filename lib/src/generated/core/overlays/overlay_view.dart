@@ -33,7 +33,7 @@ class OverlayView extends MVCObject {
   void onRemove() {
     $unsafe.callMethod('onRemove');
   }
-  set map(dynamic map) => $unsafe.callMethod('setMap', [map == null ? null : map is GMap ? map.$unsafe : map is StreetViewPanorama ? map.$unsafe : throw "bad type"]);
+  set map(dynamic map) => $unsafe.callMethod('setMap', [map is GMap ? map.$unsafe : map is StreetViewPanorama ? map.$unsafe : map == null ? null : throw "bad type"]);
 
   void set_onAdd(onAdd()) {
     $unsafe['onAdd'] = onAdd;

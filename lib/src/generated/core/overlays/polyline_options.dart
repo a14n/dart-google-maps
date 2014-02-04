@@ -28,7 +28,7 @@ class PolylineOptions extends jsw.TypedJsObject {
   bool get editable => $unsafe['editable'];
   set geodesic(bool geodesic) => $unsafe['geodesic'] = geodesic;
   bool get geodesic => $unsafe['geodesic'];
-  set icons(List<IconSequence> icons) => $unsafe['icons'] = icons == null ? null : (icons is jsw.TypedJsObject ? (icons as jsw.TypedJsObject).$unsafe : jsw.jsify(icons));
+  set icons(List<IconSequence> icons) => $unsafe['icons'] = jsw.jsify(icons);
   List<IconSequence> get icons => jsw.TypedJsArray.$wrapSerializables($unsafe['icons'], IconSequence.$wrap);
   set map(GMap map) => $unsafe['map'] = map == null ? null : map.$unsafe;
   GMap get map => GMap.$wrap($unsafe['map']);

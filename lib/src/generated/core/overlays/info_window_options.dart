@@ -20,7 +20,7 @@ class InfoWindowOptions extends jsw.TypedJsObject {
       : super.fromJsObject(jsObject);
   InfoWindowOptions();
 
-  set content(dynamic content) => $unsafe['content'] = content == null ? null : content is String ? content : content is html.Node ? content : throw "bad type";
+  set content(dynamic content) => $unsafe['content'] = content is String ? content : content is html.Node ? content : content == null ? null : throw "bad type";
   dynamic get content => ((v2) => v2 is String ? v2 : ((v1) => v1 is html.Node ? v1 : ((v0) => v0)(v1))(v2))($unsafe['content']);
   set disableAutoPan(bool disableAutoPan) => $unsafe['disableAutoPan'] = disableAutoPan;
   bool get disableAutoPan => $unsafe['disableAutoPan'];

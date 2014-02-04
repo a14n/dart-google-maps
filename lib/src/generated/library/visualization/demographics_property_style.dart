@@ -23,7 +23,7 @@ class DemographicsPropertyStyle extends jsw.TypedJsObject {
 
   set expression(String expression) => $unsafe['expression'] = expression;
   String get expression => $unsafe['expression'];
-  set gradient(List<String> gradient) => $unsafe['gradient'] = gradient == null ? null : (gradient is jsw.TypedJsObject ? (gradient as jsw.TypedJsObject).$unsafe : jsw.jsify(gradient));
+  set gradient(List<String> gradient) => $unsafe['gradient'] = jsw.jsify(gradient);
   List<String> get gradient => jsw.TypedJsArray.$wrap($unsafe['gradient']);
   set min(num min) => $unsafe['min'] = min;
   num get min => $unsafe['min'];

@@ -23,7 +23,7 @@ class WeatherFeature extends jsw.TypedJsObject {
 
   set current(WeatherConditions current) => $unsafe['current'] = current == null ? null : current.$unsafe;
   WeatherConditions get current => WeatherConditions.$wrap($unsafe['current']);
-  set forecast(List<WeatherForecast> forecast) => $unsafe['forecast'] = forecast == null ? null : (forecast is jsw.TypedJsObject ? (forecast as jsw.TypedJsObject).$unsafe : jsw.jsify(forecast));
+  set forecast(List<WeatherForecast> forecast) => $unsafe['forecast'] = jsw.jsify(forecast);
   List<WeatherForecast> get forecast => jsw.TypedJsArray.$wrapSerializables($unsafe['forecast'], WeatherForecast.$wrap);
   set location(String location) => $unsafe['location'] = location;
   String get location => $unsafe['location'];

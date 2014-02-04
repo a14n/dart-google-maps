@@ -25,6 +25,6 @@ class AutocompleteOptions extends jsw.TypedJsObject {
   LatLngBounds get bounds => LatLngBounds.$wrap($unsafe['bounds']);
   set componentRestrictions(ComponentRestrictions componentRestrictions) => $unsafe['componentRestrictions'] = componentRestrictions == null ? null : componentRestrictions.$unsafe;
   ComponentRestrictions get componentRestrictions => ComponentRestrictions.$wrap($unsafe['componentRestrictions']);
-  set types(List<String> types) => $unsafe['types'] = types == null ? null : (types is jsw.TypedJsObject ? (types as jsw.TypedJsObject).$unsafe : jsw.jsify(types));
+  set types(List<String> types) => $unsafe['types'] = jsw.jsify(types);
   List<String> get types => jsw.TypedJsArray.$wrap($unsafe['types']);
 }

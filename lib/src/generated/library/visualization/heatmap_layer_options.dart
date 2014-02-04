@@ -25,7 +25,7 @@ class HeatmapLayerOptions extends jsw.TypedJsObject {
   set data(MVCArray data) => $unsafe['data'] = data == null ? null : data.$unsafe;
   set dissipating(bool dissipating) => $unsafe['dissipating'] = dissipating;
   bool get dissipating => $unsafe['dissipating'];
-  set gradient(List<String> gradient) => $unsafe['gradient'] = gradient == null ? null : (gradient is jsw.TypedJsObject ? (gradient as jsw.TypedJsObject).$unsafe : jsw.jsify(gradient));
+  set gradient(List<String> gradient) => $unsafe['gradient'] = jsw.jsify(gradient);
   List<String> get gradient => jsw.TypedJsArray.$wrap($unsafe['gradient']);
   set map(GMap map) => $unsafe['map'] = map == null ? null : map.$unsafe;
   GMap get map => GMap.$wrap($unsafe['map']);

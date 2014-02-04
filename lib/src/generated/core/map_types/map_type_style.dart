@@ -24,6 +24,6 @@ class MapTypeStyle extends jsw.TypedJsObject {
   MapTypeStyleElementType get elementType => MapTypeStyleElementType.$wrap($unsafe['elementType']);
   set featureType(MapTypeStyleFeatureType featureType) => $unsafe['featureType'] = featureType == null ? null : featureType.$unsafe;
   MapTypeStyleFeatureType get featureType => MapTypeStyleFeatureType.$wrap($unsafe['featureType']);
-  set stylers(List<MapTypeStyler> stylers) => $unsafe['stylers'] = stylers == null ? null : (stylers is jsw.TypedJsObject ? (stylers as jsw.TypedJsObject).$unsafe : jsw.jsify(stylers));
+  set stylers(List<MapTypeStyler> stylers) => $unsafe['stylers'] = jsw.jsify(stylers);
   List<MapTypeStyler> get stylers => jsw.TypedJsArray.$wrapSerializables($unsafe['stylers'], MapTypeStyler.$wrap);
 }

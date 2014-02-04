@@ -24,12 +24,12 @@ class DirectionsRoute extends jsw.TypedJsObject {
   LatLngBounds get bounds => LatLngBounds.$wrap($unsafe['bounds']);
   set copyrights(String copyrights) => $unsafe['copyrights'] = copyrights;
   String get copyrights => $unsafe['copyrights'];
-  set legs(List<DirectionsLeg> legs) => $unsafe['legs'] = legs == null ? null : (legs is jsw.TypedJsObject ? (legs as jsw.TypedJsObject).$unsafe : jsw.jsify(legs));
+  set legs(List<DirectionsLeg> legs) => $unsafe['legs'] = jsw.jsify(legs);
   List<DirectionsLeg> get legs => jsw.TypedJsArray.$wrapSerializables($unsafe['legs'], DirectionsLeg.$wrap);
-  set overviewPath(List<LatLng> overviewPath) => $unsafe['overview_path'] = overviewPath == null ? null : (overviewPath is jsw.TypedJsObject ? (overviewPath as jsw.TypedJsObject).$unsafe : jsw.jsify(overviewPath));
+  set overviewPath(List<LatLng> overviewPath) => $unsafe['overview_path'] = jsw.jsify(overviewPath);
   List<LatLng> get overviewPath => jsw.TypedJsArray.$wrapSerializables($unsafe['overview_path'], LatLng.$wrap);
-  set warnings(List<String> warnings) => $unsafe['warnings'] = warnings == null ? null : (warnings is jsw.TypedJsObject ? (warnings as jsw.TypedJsObject).$unsafe : jsw.jsify(warnings));
+  set warnings(List<String> warnings) => $unsafe['warnings'] = jsw.jsify(warnings);
   List<String> get warnings => jsw.TypedJsArray.$wrap($unsafe['warnings']);
-  set waypointOrder(List<num> waypointOrder) => $unsafe['waypoint_order'] = waypointOrder == null ? null : (waypointOrder is jsw.TypedJsObject ? (waypointOrder as jsw.TypedJsObject).$unsafe : jsw.jsify(waypointOrder));
+  set waypointOrder(List<num> waypointOrder) => $unsafe['waypoint_order'] = jsw.jsify(waypointOrder);
   List<num> get waypointOrder => jsw.TypedJsArray.$wrap($unsafe['waypoint_order']);
 }

@@ -23,8 +23,8 @@ class QueryAutocompletePrediction extends jsw.TypedJsObject {
 
   set description(String description) => $unsafe['description'] = description;
   String get description => $unsafe['description'];
-  set matchedSubstrings(List<PredictionSubstring> matchedSubstrings) => $unsafe['matched_substrings'] = matchedSubstrings == null ? null : (matchedSubstrings is jsw.TypedJsObject ? (matchedSubstrings as jsw.TypedJsObject).$unsafe : jsw.jsify(matchedSubstrings));
+  set matchedSubstrings(List<PredictionSubstring> matchedSubstrings) => $unsafe['matched_substrings'] = jsw.jsify(matchedSubstrings);
   List<PredictionSubstring> get matchedSubstrings => jsw.TypedJsArray.$wrapSerializables($unsafe['matched_substrings'], PredictionSubstring.$wrap);
-  set terms(List<PredictionTerm> terms) => $unsafe['terms'] = terms == null ? null : (terms is jsw.TypedJsObject ? (terms as jsw.TypedJsObject).$unsafe : jsw.jsify(terms));
+  set terms(List<PredictionTerm> terms) => $unsafe['terms'] = jsw.jsify(terms);
   List<PredictionTerm> get terms => jsw.TypedJsArray.$wrapSerializables($unsafe['terms'], PredictionTerm.$wrap);
 }

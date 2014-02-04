@@ -20,12 +20,12 @@ class GeocoderResult extends jsw.TypedJsObject {
       : super.fromJsObject(jsObject);
   GeocoderResult();
 
-  set addressComponents(List<GeocoderAddressComponent> addressComponents) => $unsafe['address_components'] = addressComponents == null ? null : (addressComponents is jsw.TypedJsObject ? (addressComponents as jsw.TypedJsObject).$unsafe : jsw.jsify(addressComponents));
+  set addressComponents(List<GeocoderAddressComponent> addressComponents) => $unsafe['address_components'] = jsw.jsify(addressComponents);
   List<GeocoderAddressComponent> get addressComponents => jsw.TypedJsArray.$wrapSerializables($unsafe['address_components'], GeocoderAddressComponent.$wrap);
   set formattedAddress(String formattedAddress) => $unsafe['formatted_address'] = formattedAddress;
   String get formattedAddress => $unsafe['formatted_address'];
   set geometry(GeocoderGeometry geometry) => $unsafe['geometry'] = geometry == null ? null : geometry.$unsafe;
   GeocoderGeometry get geometry => GeocoderGeometry.$wrap($unsafe['geometry']);
-  set types(List<String> types) => $unsafe['types'] = types == null ? null : (types is jsw.TypedJsObject ? (types as jsw.TypedJsObject).$unsafe : jsw.jsify(types));
+  set types(List<String> types) => $unsafe['types'] = jsw.jsify(types);
   List<String> get types => jsw.TypedJsArray.$wrap($unsafe['types']);
 }

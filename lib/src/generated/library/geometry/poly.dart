@@ -24,5 +24,5 @@ class Poly extends jsw.TypedJsObject {
       : super.fromJsObject(maps['geometry']['poly']);
 
   bool containsLocation(LatLng point, Polygon polygon) => $unsafe.callMethod('containsLocation', [point == null ? null : point.$unsafe, polygon == null ? null : polygon.$unsafe]);
-  bool isLocationOnEdge(LatLng point, dynamic poly, [num tolerance]) => $unsafe.callMethod('isLocationOnEdge', [point == null ? null : point.$unsafe, poly == null ? null : poly is Polygon ? poly.$unsafe : poly is Polyline ? poly.$unsafe : throw "bad type", tolerance]);
+  bool isLocationOnEdge(LatLng point, dynamic poly, [num tolerance]) => $unsafe.callMethod('isLocationOnEdge', [point == null ? null : point.$unsafe, poly is Polygon ? poly.$unsafe : poly is Polyline ? poly.$unsafe : poly == null ? null : throw "bad type", tolerance]);
 }

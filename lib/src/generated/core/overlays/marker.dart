@@ -117,11 +117,11 @@ class Marker extends MVCObject {
   set cursor(String cursor) => $unsafe.callMethod('setCursor', [cursor]);
   set draggable(bool draggable) => $unsafe.callMethod('setDraggable', [draggable]);
   set flat(bool flag) => $unsafe.callMethod('setFlat', [flag]);
-  set icon(dynamic icon) => $unsafe.callMethod('setIcon', [icon == null ? null : icon is GSymbol ? icon.$unsafe : icon is Icon ? icon.$unsafe : icon is String ? icon : throw "bad type"]);
-  set map(dynamic map) => $unsafe.callMethod('setMap', [map == null ? null : map is GMap ? map.$unsafe : map is StreetViewPanorama ? map.$unsafe : throw "bad type"]);
+  set icon(dynamic icon) => $unsafe.callMethod('setIcon', [icon is GSymbol ? icon.$unsafe : icon is Icon ? icon.$unsafe : icon is String ? icon : icon == null ? null : throw "bad type"]);
+  set map(dynamic map) => $unsafe.callMethod('setMap', [map is GMap ? map.$unsafe : map is StreetViewPanorama ? map.$unsafe : map == null ? null : throw "bad type"]);
   set options(MarkerOptions options) => $unsafe.callMethod('setOptions', [options == null ? null : options.$unsafe]);
   set position(LatLng latlng) => $unsafe.callMethod('setPosition', [latlng == null ? null : latlng.$unsafe]);
-  set shadow(dynamic shadow) => $unsafe.callMethod('setShadow', [shadow == null ? null : shadow is GSymbol ? shadow.$unsafe : shadow is Icon ? shadow.$unsafe : shadow is String ? shadow : throw "bad type"]);
+  set shadow(dynamic shadow) => $unsafe.callMethod('setShadow', [shadow is GSymbol ? shadow.$unsafe : shadow is Icon ? shadow.$unsafe : shadow is String ? shadow : shadow == null ? null : throw "bad type"]);
   set title(String title) => $unsafe.callMethod('setTitle', [title]);
   set visible(bool visible) => $unsafe.callMethod('setVisible', [visible]);
   set zIndex(num zIndex) => $unsafe.callMethod('setZIndex', [zIndex]);

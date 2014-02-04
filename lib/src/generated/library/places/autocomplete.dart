@@ -37,5 +37,5 @@ class Autocomplete extends MVCObject {
   PlaceResult get place => PlaceResult.$wrap($unsafe.callMethod('getPlace'));
   set bounds(LatLngBounds bounds) => $unsafe.callMethod('setBounds', [bounds == null ? null : bounds.$unsafe]);
   set componentRestrictions(ComponentRestrictions restrictions) => $unsafe.callMethod('setComponentRestrictions', [restrictions == null ? null : restrictions.$unsafe]);
-  set types(List types) => $unsafe.callMethod('setTypes', [types == null ? null : (types is jsw.TypedJsObject ? (types as jsw.TypedJsObject).$unsafe : jsw.jsify(types))]);
+  set types(List types) => $unsafe.callMethod('setTypes', [jsw.jsify(types)]);
 }

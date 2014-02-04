@@ -44,7 +44,7 @@ class MapOptions extends jsw.TypedJsObject {
   bool get mapTypeControl => $unsafe['mapTypeControl'];
   set mapTypeControlOptions(MapTypeControlOptions mapTypeControlOptions) => $unsafe['mapTypeControlOptions'] = mapTypeControlOptions == null ? null : mapTypeControlOptions.$unsafe;
   MapTypeControlOptions get mapTypeControlOptions => MapTypeControlOptions.$wrap($unsafe['mapTypeControlOptions']);
-  set mapTypeId(dynamic mapTypeId) => $unsafe['mapTypeId'] = mapTypeId == null ? null : mapTypeId is MapTypeId ? mapTypeId.$unsafe : mapTypeId is String ? mapTypeId : throw "bad type";
+  set mapTypeId(dynamic mapTypeId) => $unsafe['mapTypeId'] = mapTypeId is MapTypeId ? mapTypeId.$unsafe : mapTypeId is String ? mapTypeId : mapTypeId == null ? null : throw "bad type";
   dynamic get mapTypeId => ((v3) => ((v2) => v2 != null ? v2 : ((v1) => v1 is String ? v1 : ((v0) => v0)(v1))(v3))(MapTypeId.$wrap(v3)))($unsafe['mapTypeId']);
   set maxZoom(num maxZoom) => $unsafe['maxZoom'] = maxZoom;
   num get maxZoom => $unsafe['maxZoom'];
@@ -76,7 +76,7 @@ class MapOptions extends jsw.TypedJsObject {
   bool get streetViewControl => $unsafe['streetViewControl'];
   set streetViewControlOptions(StreetViewControlOptions streetViewControlOptions) => $unsafe['streetViewControlOptions'] = streetViewControlOptions == null ? null : streetViewControlOptions.$unsafe;
   StreetViewControlOptions get streetViewControlOptions => StreetViewControlOptions.$wrap($unsafe['streetViewControlOptions']);
-  set styles(List<MapTypeStyle> styles) => $unsafe['styles'] = styles == null ? null : (styles is jsw.TypedJsObject ? (styles as jsw.TypedJsObject).$unsafe : jsw.jsify(styles));
+  set styles(List<MapTypeStyle> styles) => $unsafe['styles'] = jsw.jsify(styles);
   List<MapTypeStyle> get styles => jsw.TypedJsArray.$wrapSerializables($unsafe['styles'], MapTypeStyle.$wrap);
   set tilt(num tilt) => $unsafe['tilt'] = tilt;
   num get tilt => $unsafe['tilt'];

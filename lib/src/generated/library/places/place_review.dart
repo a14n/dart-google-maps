@@ -21,7 +21,7 @@ class PlaceReview extends jsw.TypedJsObject {
   PlaceReview()
       : super();
 
-  set aspects(List<PlaceAspectRating> aspects) => $unsafe['aspects'] = aspects == null ? null : (aspects is jsw.TypedJsObject ? (aspects as jsw.TypedJsObject).$unsafe : jsw.jsify(aspects));
+  set aspects(List<PlaceAspectRating> aspects) => $unsafe['aspects'] = jsw.jsify(aspects);
   List<PlaceAspectRating> get aspects => jsw.TypedJsArray.$wrapSerializables($unsafe['aspects'], PlaceAspectRating.$wrap);
   set authorName(String authorName) => $unsafe['author_name'] = authorName;
   String get authorName => $unsafe['author_name'];

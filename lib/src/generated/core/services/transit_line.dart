@@ -20,7 +20,7 @@ class TransitLine extends jsw.TypedJsObject {
       : super.fromJsObject(jsObject);
   TransitLine();
 
-  set agencies(List<TransitAgency> agencies) => $unsafe['agencies'] = agencies == null ? null : (agencies is jsw.TypedJsObject ? (agencies as jsw.TypedJsObject).$unsafe : jsw.jsify(agencies));
+  set agencies(List<TransitAgency> agencies) => $unsafe['agencies'] = jsw.jsify(agencies);
   List<TransitAgency> get agencies => jsw.TypedJsArray.$wrapSerializables($unsafe['agencies'], TransitAgency.$wrap);
   set color(String color) => $unsafe['color'] = color;
   String get color => $unsafe['color'];
