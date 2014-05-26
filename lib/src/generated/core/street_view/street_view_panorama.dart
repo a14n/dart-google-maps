@@ -16,7 +16,7 @@ part of google_maps;
 
 class StreetViewPanorama extends MVCObject {
   static StreetViewPanorama $wrap(js.JsObject jsObject) => jsObject == null ? null : new StreetViewPanorama.fromJsObject(jsObject);
-  static bool isInstance(js.JsObject proxy) => proxy.instanceof(maps['StreetViewPanorama']);
+  static bool isInstance(js.JsObject jsObject) => jsObject != null && jsObject.instanceof(maps['StreetViewPanorama']);
 
   jsw.SubscribeStreamProvider<NativeEvent> _onCloseclick;
   jsw.SubscribeStreamProvider _onLinksChanged;

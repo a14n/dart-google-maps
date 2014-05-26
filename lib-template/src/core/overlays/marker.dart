@@ -16,7 +16,7 @@ part of google_maps;
 
 @wrapper @forMethods @skipConstructor abstract class Marker extends MVCObject {
   static Marker $wrap(js.JsObject jsObject) => null;
-  static bool isInstance(js.JsObject proxy) => proxy.instanceof(maps['Marker']);
+  static bool isInstance(js.JsObject jsObject) => jsObject != null && jsObject.instanceof(maps['Marker']);
   static final num MAX_ZINDEX = maps['Marker']['MAX_ZINDEX'];
 
   jsw.SubscribeStreamProvider _onAnimationChanged;

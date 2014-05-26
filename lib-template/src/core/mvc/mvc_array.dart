@@ -17,7 +17,7 @@ part of google_maps;
 @wrapper @skipWrap @skipConstructor class MVCArray<E> extends MVCObject {
   static MVCArray $wrap(js.JsObject proxy, {wrap(js), unwrap(dart)}) => proxy == null ? null : new MVCArray.fromJsObject(proxy, wrap: wrap, unwrap: unwrap);
   static MVCArray $wrapSerializables(js.JsObject jsObject, wrap(js)) => jsObject == null ? null : new MVCArray.fromJsObject(jsObject, wrap: wrap, unwrap: jsw.Serializable.$unwrap);
-  static bool isInstance(js.JsObject proxy) => proxy.instanceof(maps['MVCArray']);
+  static bool isInstance(js.JsObject jsObject) => jsObject != null && jsObject.instanceof(maps['MVCArray']);
 
   final jsw.Mapper<E, dynamic> _unwrap;
   final jsw.Mapper<dynamic, E> _wrap;

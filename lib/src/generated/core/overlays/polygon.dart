@@ -16,7 +16,7 @@ part of google_maps;
 
 class Polygon extends MVCObject {
   static Polygon $wrap(js.JsObject jsObject) => jsObject == null ? null : new Polygon.fromJsObject(jsObject);
-  static bool isInstance(js.JsObject proxy) => proxy.instanceof(maps['Polygon']);
+  static bool isInstance(js.JsObject jsObject) => jsObject != null && jsObject.instanceof(maps['Polygon']);
 
   jsw.SubscribeStreamProvider<PolyMouseEvent> _onClick;
   jsw.SubscribeStreamProvider<PolyMouseEvent> _onDblClick;

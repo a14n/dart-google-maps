@@ -16,7 +16,7 @@ part of google_maps;
 
 @wrapper abstract class GSymbol extends jsw.TypedJsObject {
   static GSymbol $wrap(js.JsObject jsObject) => null;
-  static bool isInstance(js.JsObject jsObject) => jsObject['_jsw.type'] == 'google_maps.GSymbol';
+  static bool isInstance(js.JsObject jsObject) => jsObject != null && jsObject['_jsw.type'] == 'google_maps.GSymbol';
 
   GSymbol() {
     $unsafe['_jsw.type'] = 'google_maps.GSymbol';

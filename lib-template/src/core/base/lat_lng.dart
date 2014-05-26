@@ -16,7 +16,7 @@ part of google_maps;
 
 @wrapper abstract class LatLng extends jsw.TypedJsObject {
   static LatLng $wrap(js.JsObject jsObject) => null;
-  static bool isInstance(js.JsObject jsObject) => jsObject.instanceof(maps['LatLng']);
+  static bool isInstance(js.JsObject jsObject) => jsObject != null && jsObject.instanceof(maps['LatLng']);
 
   @generate LatLng(num lat, num lng, [bool noWrap]);
 

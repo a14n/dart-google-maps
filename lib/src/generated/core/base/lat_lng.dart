@@ -18,7 +18,7 @@ class LatLng extends jsw.TypedJsObject {
   static LatLng $wrap(js.JsObject jsObject) => jsObject == null ? null : new LatLng.fromJsObject(jsObject);
   LatLng.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  static bool isInstance(js.JsObject jsObject) => jsObject.instanceof(maps['LatLng']);
+  static bool isInstance(js.JsObject jsObject) => jsObject != null && jsObject.instanceof(maps['LatLng']);
 
   LatLng(num lat, num lng, [bool noWrap])
       : super(maps['LatLng'], [lat, lng, noWrap]);

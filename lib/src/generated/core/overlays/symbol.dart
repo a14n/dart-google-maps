@@ -18,7 +18,7 @@ class GSymbol extends jsw.TypedJsObject {
   static GSymbol $wrap(js.JsObject jsObject) => jsObject == null ? null : new GSymbol.fromJsObject(jsObject);
   GSymbol.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  static bool isInstance(js.JsObject jsObject) => jsObject['_jsw.type'] == 'google_maps.GSymbol';
+  static bool isInstance(js.JsObject jsObject) => jsObject != null && jsObject['_jsw.type'] == 'google_maps.GSymbol';
 
   GSymbol() {
     $unsafe['_jsw.type'] = 'google_maps.GSymbol';

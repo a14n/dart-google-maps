@@ -18,7 +18,7 @@ class Icon extends jsw.TypedJsObject {
   static Icon $wrap(js.JsObject jsObject) => jsObject == null ? null : new Icon.fromJsObject(jsObject);
   Icon.fromJsObject(js.JsObject jsObject)
       : super.fromJsObject(jsObject);
-  static bool isInstance(js.JsObject jsObject) => jsObject['_jsw.type'] == 'google_maps.Icon';
+  static bool isInstance(js.JsObject jsObject) => jsObject != null && jsObject['_jsw.type'] == 'google_maps.Icon';
 
   Icon() {
     $unsafe['_jsw.type'] = 'google_maps.Icon';

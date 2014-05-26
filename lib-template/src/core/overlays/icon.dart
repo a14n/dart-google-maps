@@ -16,7 +16,7 @@ part of google_maps;
 
 @wrapper abstract class Icon extends jsw.TypedJsObject {
   static Icon $wrap(js.JsObject jsObject) => null;
-  static bool isInstance(js.JsObject jsObject) => jsObject['_jsw.type'] == 'google_maps.Icon';
+  static bool isInstance(js.JsObject jsObject) => jsObject != null && jsObject['_jsw.type'] == 'google_maps.Icon';
 
   Icon() {
     $unsafe['_jsw.type'] = 'google_maps.Icon';

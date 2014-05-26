@@ -16,7 +16,7 @@ part of google_maps;
 
 class GMap extends MVCObject {
   static GMap $wrap(js.JsObject jsObject) => jsObject == null ? null : new GMap.fromJsObject(jsObject);
-  static bool isInstance(js.JsObject proxy) => proxy.instanceof(maps['Map']);
+  static bool isInstance(js.JsObject jsObject) => jsObject != null && jsObject.instanceof(maps['Map']);
 
   jsw.SubscribeStreamProvider _onBoundsChanged;
   jsw.SubscribeStreamProvider _onCenterChanged;

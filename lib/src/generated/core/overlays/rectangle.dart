@@ -16,7 +16,7 @@ part of google_maps;
 
 class Rectangle extends MVCObject {
   static Rectangle $wrap(js.JsObject jsObject) => jsObject == null ? null : new Rectangle.fromJsObject(jsObject);
-  static bool isInstance(js.JsObject proxy) => proxy.instanceof(maps['Rectangle']);
+  static bool isInstance(js.JsObject jsObject) => jsObject != null && jsObject.instanceof(maps['Rectangle']);
 
   jsw.SubscribeStreamProvider _onBoundsChanged;
   jsw.SubscribeStreamProvider<MouseEvent> _onClick;

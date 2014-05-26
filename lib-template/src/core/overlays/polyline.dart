@@ -16,7 +16,7 @@ part of google_maps;
 
 @wrapper @forMethods @skipConstructor abstract class Polyline extends MVCObject {
   static Polyline $wrap(js.JsObject jsObject) => null;
-  static bool isInstance(js.JsObject proxy) => proxy.instanceof(maps['Polyline']);
+  static bool isInstance(js.JsObject jsObject) => jsObject != null && jsObject.instanceof(maps['Polyline']);
 
   jsw.SubscribeStreamProvider<PolyMouseEvent> _onClick;
   jsw.SubscribeStreamProvider<PolyMouseEvent> _onDblClick;

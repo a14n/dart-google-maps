@@ -16,7 +16,7 @@ part of google_maps;
 
 class Circle extends MVCObject {
   static Circle $wrap(js.JsObject jsObject) => jsObject == null ? null : new Circle.fromJsObject(jsObject);
-  static bool isInstance(js.JsObject proxy) => proxy.instanceof(maps['Circle']);
+  static bool isInstance(js.JsObject jsObject) => jsObject != null && jsObject.instanceof(maps['Circle']);
 
   jsw.SubscribeStreamProvider _onCenterChanged;
   jsw.SubscribeStreamProvider<MouseEvent> _onClick;
