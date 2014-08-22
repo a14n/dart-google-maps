@@ -13,7 +13,7 @@ class Library {
   Library(this.fileName, this.directory, {this.dartConstructorNS});
 }
 
-final LIBS = [
+final LIBS = <Library>[
     new Library('google_maps.dart', 'core', dartConstructorNS: 'maps'),
     new Library('google_maps_adsense.dart', 'library/adsense'),
     new Library('google_maps_drawing.dart', 'library/drawing'),
