@@ -28,7 +28,6 @@ import 'package:google_maps/google_maps.dart';
 
 ```html
 <script src="packages/browser/dart.js"></script>
-<script src="packages/browser/interop.js"></script>
 ```
 
 A very [simple example](example/01-basics/map-simple) :
