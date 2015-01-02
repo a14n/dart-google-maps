@@ -47,4 +47,5 @@ StreetViewPanoramaData getCustomPanorama(String pano) { // TODO bad parameters
         ..set_getTileUrl(getCustomPanoramaTileUrl)
       );
   }
+  return null;
 }
