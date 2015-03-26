@@ -10,7 +10,7 @@ void main() {
     ;
   final map = new GMap(querySelector("#map_canvas"), mapOptions);
 
-  final marker = new Marker(new MarkerOptions()
+  new Marker(new MarkerOptions()
     ..position = myLatlng
     ..map = map
     ..title = "Hello World!"

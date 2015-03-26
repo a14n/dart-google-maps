@@ -15,11 +15,11 @@
 library google_maps_adsense;
 
 import 'dart:html' as html;
-import 'dart:js' as js;
 
 import 'package:google_maps/google_maps.dart';
+import 'package:js_wrapping_generator/dart_generator.dart';
 import 'package:js_wrapping/js_wrapping.dart' as jsw;
 
-part 'src/generated/library/adsense/ad_unit.dart';
-part 'src/generated/library/adsense/ad_unit_options.dart';
-part 'src/generated/library/adsense/ad_format.dart';
+part 'src/library/adsense/ad_unit.dart';
+part 'src/library/adsense/ad_unit_options.dart';
+part 'src/library/adsense/ad_format.dart';

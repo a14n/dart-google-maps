@@ -1,0 +1,37 @@
+// Copyright (c) 2012, Alexandre Ardhuin
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+part of google_maps;
+
+@anonymous
+abstract class _MarkerShape implements JsInterface {
+  external factory _MarkerShape();
+
+  List<num> coords;
+  // MarkerShapeType type
+  String _type;
+  MarkerShapeType get type => markerShapeTypeCodec.decode(_type);
+  void set type(MarkerShapeType type) {
+    _type = markerShapeTypeCodec.encode(type);
+  }
+}
+
+enum MarkerShapeType { CIRCLE, POLY, RECT }
+
+final markerShapeTypeCodec = new BiMapCodec<MarkerShapeType, String>(
+    <MarkerShapeType, String>{
+  MarkerShapeType.CIRCLE: 'circle',
+  MarkerShapeType.POLY: 'poly',
+  MarkerShapeType.RECT: 'rect',
+});

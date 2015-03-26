@@ -18,8 +18,9 @@ library google_maps_geometry;
 import 'dart:js' as js;
 
 import 'package:google_maps/google_maps.dart';
+import 'package:js_wrapping_generator/dart_generator.dart';
 import 'package:js_wrapping/js_wrapping.dart' as jsw;
 
-part 'src/generated/library/geometry/encoding.dart';
-part 'src/generated/library/geometry/spherical.dart';
-part 'src/generated/library/geometry/poly.dart';
+part 'src/library/geometry/encoding.dart';
+part 'src/library/geometry/spherical.dart';
+part 'src/library/geometry/poly.dart';

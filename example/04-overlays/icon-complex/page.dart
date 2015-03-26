@@ -65,7 +65,7 @@ void setMarkers(GMap map, List locations) {
     ;
   for (final beach in locations) {
     var myLatLng = new LatLng(beach[1], beach[2]);
-    var marker = new Marker(new MarkerOptions()
+    new Marker(new MarkerOptions()
       ..position = myLatLng
       ..map = map
       ..shadow = shadow

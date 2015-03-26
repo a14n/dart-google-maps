@@ -8,8 +8,7 @@ void main() {
   final mapOptions = new MapOptions()
     ..zoom = 6
     ..center = myLatLng
-    ..mapTypeId = MapTypeId.TERRAIN
-    ;
+    ..mapTypeId = MapTypeId.TERRAIN;
   final map = new GMap(querySelector("#map_canvas"), mapOptions);
 
   final lineCoordinates = [
@@ -19,17 +18,16 @@ void main() {
   final lineSymbol = new GSymbol()
     ..path = 'M 0,-1 0,1'
     ..strokeOpacity = 1
-    ..scale = 4
-    ;
+    ..scale = 4;
 
   line = new Polyline(new PolylineOptions()
     ..path = lineCoordinates
     ..strokeOpacity = 0
-    ..icons = [new IconSequence()
-      ..icon = lineSymbol
-      ..offset = '0'
-      ..repeat = '20px'
+    ..icons = [
+      new IconSequence()
+        ..icon = lineSymbol
+        ..offset = '0'
+        ..repeat = '20px'
     ]
-    ..map = map
-  );
+    ..map = map);
 }

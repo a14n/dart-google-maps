@@ -6,8 +6,7 @@ void main() {
   final mapOptions = new MapOptions()
     ..zoom = 6
     ..center = myLatLng
-    ..mapTypeId = MapTypeId.TERRAIN
-    ;
+    ..mapTypeId = MapTypeId.TERRAIN;
   final map = new GMap(querySelector("#map_canvas"), mapOptions);
 
   final lineCoordinates = [
@@ -19,22 +18,20 @@ void main() {
     ..path = 'M -2,0 0,-2 2,0 0,2 z'
     ..strokeColor = '#F00'
     ..fillColor = '#F00'
-    ..fillOpacity = 1
-    ;
+    ..fillOpacity = 1;
 
   final symbolTwo = new GSymbol()
     ..path = 'M -2,-2 2,2 M 2,-2 -2,2'
     ..strokeColor = '#292'
-    ..strokeWeight = 4
-    ;
+    ..strokeWeight = 4;
 
   final symbolThree = new GSymbol()
-    ..path = 'M -1,0 A 1,1 0 0 0 -3,0 1,1 0 0 0 -1,0M 1,0 A 1,1 0 0 0 3,0 1,1 0 0 0 1,0M -3,3 Q 0,5 3,3'
+    ..path =
+    'M -1,0 A 1,1 0 0 0 -3,0 1,1 0 0 0 -1,0M 1,0 A 1,1 0 0 0 3,0 1,1 0 0 0 1,0M -3,3 Q 0,5 3,3'
     ..strokeColor = '#00F'
-    ..rotation = 0
-    ;
+    ..rotation = 0;
 
-  final line = new Polyline(new PolylineOptions()
+  new Polyline(new PolylineOptions()
     ..path = lineCoordinates
     ..icons = [
       new IconSequence()
@@ -47,6 +44,5 @@ void main() {
         ..icon = symbolThree
         ..offset = '100%',
     ]
-    ..map = map
-  );
+    ..map = map);
 }

@@ -15,7 +15,7 @@ void main() {
 }
 
 void placeMarker(LatLng position, GMap map) {
-  var marker = new Marker(new MarkerOptions()
+  new Marker(new MarkerOptions()
     ..position = position
     ..map = map
   );

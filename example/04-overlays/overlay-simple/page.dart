@@ -5,6 +5,7 @@ const IMAGE_URL = "https://google-developers.appspot.com/maps/documentation/java
 
 USGSOverlay overlay;
 
+// TODO (aa) this example does not work
 void main() {
   final myLatLng = new LatLng(62.323907, -150.109291);
   final mapOptions = new MapOptions()
@@ -26,7 +27,6 @@ void main() {
 class USGSOverlay extends OverlayView {
   LatLngBounds _bounds;
   String _image;
-  GMap _map;
 
   DivElement _div;
 
@@ -38,7 +38,6 @@ class USGSOverlay extends OverlayView {
     // Now initialize all properties.
     _bounds = bounds;
     _image = image;
-    _map = map;
 
     // We define a property to hold the image's
     // div. We'll actually create this div

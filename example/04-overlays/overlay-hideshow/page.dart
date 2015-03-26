@@ -1,17 +1,18 @@
 import 'dart:html';
 import 'package:google_maps/google_maps.dart';
 
-const IMAGE_URL = "https://google-developers.appspot.com/maps/documentation/javascript/examples/full";
+const IMAGE_URL =
+    "https://google-developers.appspot.com/maps/documentation/javascript/examples/full";
 
 USGSOverlay overlay;
 
+// TODO (aa) this example does not work
 void main() {
   final myLatLng = new LatLng(62.323907, -150.109291);
   final mapOptions = new MapOptions()
     ..zoom = 11
     ..center = myLatLng
-    ..mapTypeId = MapTypeId.SATELLITE
-    ;
+    ..mapTypeId = MapTypeId.SATELLITE;
   final map = new GMap(querySelector("#map_canvas"), mapOptions);
 
   final swBound = new LatLng(62.281819, -150.287132);
@@ -54,7 +55,6 @@ class USGSOverlay extends OverlayView {
   }
 
   void _onAdd() {
-
     // Note: an overlay's receipt of add() indicates that
     // the map's panes are now available for attaching
     // the overlay to the map via the DOM.
@@ -64,17 +64,13 @@ class USGSOverlay extends OverlayView {
     div.style
       ..border = 'none'
       ..borderWidth = '0px'
-      ..position = 'absolute'
-      ;
+      ..position = 'absolute';
 
     // Create an IMG element and attach it to the DIV.
-    final img = new ImageElement()
-      ..src = _image
-      ;
+    final img = new ImageElement()..src = _image;
     img.style
       ..width = '100%'
-      ..height = '100%'
-      ;
+      ..height = '100%';
     div.children.add(img);
 
     // Set the overlay's div_ property to this DIV
@@ -103,8 +99,7 @@ class USGSOverlay extends OverlayView {
       ..left = '${sw.x}px'
       ..top = '${ne.y}px'
       ..width = '${ne.x - sw.x}px'
-      ..height = '${sw.y - ne.y}px'
-      ;
+      ..height = '${sw.y - ne.y}px';
   }
 
   void _onRemove() {

@@ -60,8 +60,10 @@ void main() {
   // call the HomeControl() constructor passing
   // in this DIV.
   var homeControlDiv = new DivElement();
-  var homeControl = new HomeControl(homeControlDiv, map);
+  new HomeControl(homeControlDiv, map);
 
   homeControlDiv.attributes["index"] = 1.toString();
   map.controls[ControlPosition.TOP_RIGHT].push(homeControlDiv);
+
+  print(map.controls.length);
 }

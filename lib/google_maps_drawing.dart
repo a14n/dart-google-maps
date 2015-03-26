@@ -18,10 +18,11 @@ import 'dart:async';
 import 'dart:js' as js;
 
 import 'package:google_maps/google_maps.dart';
+import 'package:js_wrapping_generator/dart_generator.dart';
 import 'package:js_wrapping/js_wrapping.dart' as jsw;
 
-part 'src/generated/library/drawing/drawing_manager.dart';
-part 'src/generated/library/drawing/drawing_manager_options.dart';
-part 'src/generated/library/drawing/drawing_control_options.dart';
-part 'src/generated/library/drawing/overlay_complete_event.dart';
-part 'src/generated/library/drawing/overlay_type.dart';
+part 'src/library/drawing/drawing_manager.dart';
+part 'src/library/drawing/drawing_manager_options.dart';
+part 'src/library/drawing/drawing_control_options.dart';
+part 'src/library/drawing/overlay_complete_event.dart';
+part 'src/library/drawing/overlay_type.dart';

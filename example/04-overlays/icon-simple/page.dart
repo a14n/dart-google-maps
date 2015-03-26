@@ -13,7 +13,7 @@ void main() {
 
   final image = '${IMAGE_URL}/images/beachflag.png';
   final myLatLng = new LatLng(-33.890542, 151.274856);
-  final beachMarker = new Marker(new MarkerOptions()
+  new Marker(new MarkerOptions()
     ..position = myLatLng
     ..map = map
     ..icon = image

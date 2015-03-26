@@ -9,7 +9,7 @@ void main() {
   ;
 
   final mapDiv = querySelector("#map_canvas");
-  final map = new GMap(mapDiv, mapOptions);
+  new GMap(mapDiv, mapOptions);
 
   // We add a DOM event here to show an alert if the DIV containing the
   // map is clicked. Note that we do this within the intialize function

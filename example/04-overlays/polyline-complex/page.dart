@@ -37,7 +37,7 @@ void addLatLng(MouseEvent e) {
   path.push(e.latLng);
 
   // Add a new marker at the new plotted point on the polyline.
-  var marker = new Marker(new MarkerOptions()
+  new Marker(new MarkerOptions()
     ..position = e.latLng
     ..title = '#${path.length}'
     ..map = map

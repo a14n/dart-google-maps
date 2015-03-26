@@ -16,5 +16,5 @@ void main() {
     ..mapTypeId = MapTypeId.ROADMAP
     ;
 
-  final map = new GMap(querySelector("#map_canvas"), mapOptions);
+  new GMap(querySelector("#map_canvas"), mapOptions);
 }

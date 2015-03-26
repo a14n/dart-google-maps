@@ -18,9 +18,10 @@ import 'dart:async';
 import 'dart:js' as js;
 
 import 'package:google_maps/google_maps.dart';
+import 'package:js_wrapping_generator/dart_generator.dart';
 import 'package:js_wrapping/js_wrapping.dart' as jsw;
 
-part 'src/generated/library/panoramio/panoramio_layer.dart';
-part 'src/generated/library/panoramio/panoramio_layer_options.dart';
-part 'src/generated/library/panoramio/panoramio_feature.dart';
-part 'src/generated/library/panoramio/panoramio_mouse_event.dart';
+part 'src/library/panoramio/panoramio_layer.dart';
+part 'src/library/panoramio/panoramio_layer_options.dart';
+part 'src/library/panoramio/panoramio_feature.dart';
+part 'src/library/panoramio/panoramio_mouse_event.dart';

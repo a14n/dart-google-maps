@@ -10,7 +10,7 @@ void main() {
     ;
   final map = new GMap(querySelector("#map_canvas"), mapOptions);
 
-  final triangleCoords = [
+  final triangleCoords = <LatLng>[
     new LatLng(25.774252, -80.190262),
     new LatLng(18.466465, -66.118292),
     new LatLng(32.321384, -64.75737)
