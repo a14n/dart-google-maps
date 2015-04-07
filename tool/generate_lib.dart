@@ -105,15 +105,81 @@ import 'package:google_maps/util/async.dart';
 '''
 };
 
+final additionalContentByLib = <String, String>{
+  'google_maps': '''
+
+abstract class _Controls extends JsInterface
+    with MapMixin<ControlPosition, MVCArray<Node>> {
+  _Controls() : super.created(new JsArray());
+
+  MVCArray<Node> operator [](ControlPosition controlPosition) {
+    var value = asJsObject(this)[_toJsControlPosition(controlPosition)];
+    if (value == null) return null;
+    return new MVCArray<Node>.created(value);
+  }
+  void operator []=(ControlPosition controlPosition, MVCArray<Node> nodes) {
+    asJsObject(this)[_toJsControlPosition(controlPosition)] = toJs(nodes);
+  }
+  Iterable<ControlPosition> get keys {
+    var result = <ControlPosition>[];
+    for (final control in ControlPosition.values) {
+      if (this[control] != null) result.add(control);
+    }
+    return result;
+  }
+  MVCArray<Node> remove(Object key) {
+    var result = this[key];
+    this[key] = null;
+    return result;
+  }
+  void clear() => (asJsObject(this) as JsArray).clear();
+
+  _toJsControlPosition(ControlPosition controlPosition) => ((e) {
+    if (e == null) return null;
+    final path = getPath('google.maps.ControlPosition');
+    if (e == ControlPosition.BOTTOM_CENTER) return path['BOTTOM_CENTER'];
+    if (e == ControlPosition.BOTTOM_LEFT) return path['BOTTOM_LEFT'];
+    if (e == ControlPosition.BOTTOM_RIGHT) return path['BOTTOM_RIGHT'];
+    if (e == ControlPosition.LEFT_BOTTOM) return path['LEFT_BOTTOM'];
+    if (e == ControlPosition.LEFT_CENTER) return path['LEFT_CENTER'];
+    if (e == ControlPosition.LEFT_TOP) return path['LEFT_TOP'];
+    if (e == ControlPosition.RIGHT_BOTTOM) return path['RIGHT_BOTTOM'];
+    if (e == ControlPosition.RIGHT_CENTER) return path['RIGHT_CENTER'];
+    if (e == ControlPosition.RIGHT_TOP) return path['RIGHT_TOP'];
+    if (e == ControlPosition.TOP_CENTER) return path['TOP_CENTER'];
+    if (e == ControlPosition.TOP_LEFT) return path['TOP_LEFT'];
+    if (e == ControlPosition.TOP_RIGHT) return path['TOP_RIGHT'];
+  })(controlPosition);
+}
+
+'''
+};
+
+final ignoredClasses = <String>['LatLngLiteral', 'undefined'];
+
+final declarationSubstitutions = <String, Map<String, Map<String, String>>>{
+  'google_maps': {
+    'GMap': {'controls': 'Controls controls',},
+    'LatLng': {
+      'lat': '''
+num get lat => _lat();
+num _lat();''',
+      'lng': '''
+num get lng => _lng();
+num _lng();''',
+    }
+  }
+};
+
 main() async {
   final genFolder = 'lib/src/generated';
-  final request = await new HttpClient().getUrl(Uri.parse(
-      'https://developers.google.com/maps/documentation/javascript/reference'));
-  final response = await request.close();
-  final content = await UTF8.decodeStream(response);
-//  final content =
-//      new File('/home/aar-dw/perso/dev/dartStuff/dart-google-maps/api/api.html')
-//          .readAsStringSync();
+//  final request = await new HttpClient().getUrl(Uri.parse(
+//      'https://developers.google.com/maps/documentation/javascript/reference'));
+//  final response = await request.close();
+//  final content = await UTF8.decodeStream(response);
+  final content =
+      new File('/home/aar-dw/perso/dev/dartStuff/dart-google-maps/api/api.html')
+          .readAsStringSync();
   final document = parse(content);
   final libraries = <String, List<JsElement>>{};
   document.querySelectorAll("#gc-content>div>ul").forEach((ul) {
@@ -157,9 +223,14 @@ part '${libraryName.replaceAll('.', '_')}.g.dart';
 
 ''';
     libContents += libraries[libraryName]
+        .where((e) => !ignoredClasses.contains(e.name))
         .map((e) => e.file.path.substring(genFolder.length + 1))
         .map((path) => "part '$path';")
         .join('\n');
+
+    if (additionalContentByLib.containsKey(libraryName)) {
+      libContents += additionalContentByLib[libraryName];
+    }
 
     libContents = new DartFormatter().format(libContents);
     new File('$genFolder/${libraryName.replaceAll('.', '_')}.dart')
@@ -168,7 +239,9 @@ part '${libraryName.replaceAll('.', '_')}.g.dart';
 
     final jsElements = libraries.values.expand((e) => e).toList();
 
-    libraries[libraryName].forEach((jsElmt) {
+    libraries[libraryName]
+        .where((e) => !ignoredClasses.contains(e.name))
+        .forEach((jsElmt) {
       var partContents = '''
 $LICENCE
 
@@ -179,10 +252,22 @@ part of $libraryName;
       if (customContent.containsKey(jsElmt.id)) {
         partContents += customContent[jsElmt.id];
       } else if (jsElmt.isEnum) {
-        final values = jsElmt.constants
-            .map((tr) => tr.getElementsByTagName('td')[0].text.trim())
-            .join(',');
-        partContents += 'enum ${jsElmt.name}{$values}';
+        final constants = jsElmt.constants
+            .map((tr) => tr.getElementsByTagName('td')[0].text.trim());
+        partContents += "@JsEnum() @JsName('${jsElmt.fullName}') "
+            'enum ${jsElmt.name}{${constants.join(',')}}\n\n';
+
+        // codec
+//        partContents += 'final ' +
+//            getCodecName(jsElmt) +
+//            ' = ' +
+//            'new BiMapCodec<${jsElmt.name}, dynamic>' +
+//            '(<${jsElmt.name}, dynamic>{';
+//        for (final c in constants) {
+//          partContents +=
+//              "${jsElmt.name}.$c: getPath('${jsElmt.fullName}')['$c'],";
+//        }
+//        partContents += '});\n';
       } else if (jsElmt.isNamespace ||
           jsElmt.isAnonymousObject ||
           jsElmt.isClass) {
@@ -212,6 +297,17 @@ part of $libraryName;
           String returnType =
               methodTr.getElementsByTagName('td')[1].text.trim();
           final methodName = decl.substring(0, decl.indexOf('('));
+
+          if (declarationSubstitutions.containsKey(libraryName) &&
+              declarationSubstitutions[libraryName].containsKey(jsElmt.name) &&
+              declarationSubstitutions[libraryName][jsElmt.name]
+                  .containsKey(methodName)) {
+            partContents += declarationSubstitutions[libraryName][jsElmt.name][
+                methodName] +
+                '\n';
+            return;
+          }
+
           final parameters =
               decl.substring(decl.indexOf('(') + 1, decl.lastIndexOf(')'));
           final params = convertParameters(parameters, jsElements);
@@ -236,8 +332,16 @@ part of $libraryName;
         jsElmt.properties.forEach((propertiesTr) {
           final name = propertiesTr.getElementsByTagName('td')[0].text.trim();
           String type = propertiesTr.getElementsByTagName('td')[1].text.trim();
-          type = convertType(type, jsElements);
-          partContents += '  $type $name;\n';
+          if (declarationSubstitutions.containsKey(libraryName) &&
+              declarationSubstitutions[libraryName].containsKey(jsElmt.name) &&
+              declarationSubstitutions[libraryName][jsElmt.name]
+                  .containsKey(name)) {
+            partContents +=
+                '  ${declarationSubstitutions[libraryName][jsElmt.name][name]};\n';
+          } else {
+            type = convertType(type, jsElements);
+            partContents += '  $type $name;\n';
+          }
         });
         partContents += '\n';
 
@@ -282,22 +386,11 @@ Stream<$type> get $streamName => getStream(
   });
 }
 
+String getCodecName(JsElement jsElmt) =>
+    jsElmt.name[0].toLowerCase() + jsElmt.name.substring(1) + 'Codec';
+
 String convertParameters(String parameters, List<JsElement> jsElements) {
-  final paramsParts = <String>[];
-  var parenthesisDeepth = 0;
-  final buffer = new StringBuffer();
-  for (int i = 0; i < parameters.length; i++) {
-    var c = parameters[i];
-    if (c == ',' && parenthesisDeepth == 0) {
-      paramsParts.add(buffer.toString());
-      buffer.clear();
-      continue;
-    }
-    if (c == '(') parenthesisDeepth++;
-    else if (c == ')') parenthesisDeepth--;
-    buffer.write(c);
-  }
-  if (buffer.isNotEmpty) paramsParts.add(buffer.toString());
+  var paramsParts = splitParameters(parameters);
 
   bool flagOpt = false;
   var params = paramsParts.map((p) => p.split(':')).map((e) {
@@ -320,6 +413,25 @@ String convertParameters(String parameters, List<JsElement> jsElements) {
   return params;
 }
 
+List<String> splitParameters(String parameters) {
+  final paramsParts = <String>[];
+  var parenthesisDeepth = 0;
+  final buffer = new StringBuffer();
+  for (int i = 0; i < parameters.length; i++) {
+    var c = parameters[i];
+    if (c == ',' && parenthesisDeepth == 0) {
+      paramsParts.add(buffer.toString());
+      buffer.clear();
+      continue;
+    }
+    if (c == '(') parenthesisDeepth++;
+    else if (c == ')') parenthesisDeepth--;
+    buffer.write(c);
+  }
+  if (buffer.isNotEmpty) paramsParts.add(buffer.toString());
+  return paramsParts;
+}
+
 String convertParam(String type, List<JsElement> jsElements, String name) {
   if (type.startsWith('function(')) {
     return convertType(type, jsElements, name: name);
@@ -330,26 +442,45 @@ String convertParam(String type, List<JsElement> jsElements, String name) {
 
 String convertType(String type, List<JsElement> jsElements, {String name}) {
   type = type.trim();
-  if (type == 'boolean') type = 'bool';
-  else if (type == 'number') type = 'num';
-  else if (type == 'string') type = 'String';
-  else if (type == 'Date') type = 'DateTime';
-  else if (type == 'HTMLInputElement') type = 'InputElement';
-  else if (type == 'Event') type = 'JsObject';
-  else if (type == 'Array') type = 'List';
-  else if (type == 'None') type = 'void';
-  else if (type == '*') type = 'dynamic';
-  else if (type.contains('|')) type = 'dynamic/*$type*/';
-  else if (type.startsWith('Object<') && type.endsWith('>')) {
+  if (type == 'boolean') return 'bool';
+  else if (type == 'number') return 'num';
+  else if (type == 'string') return 'String';
+  else if (type == 'Date') return 'DateTime';
+  else if (type == 'HTMLInputElement') return 'InputElement';
+  else if (type == 'Event') return 'JsObject';
+  else if (type == 'Array') return 'List';
+  else if (type == 'None') return 'void';
+  else if (type == '*') return 'dynamic';
+  else if (splitUnionTypes(type).length > 1) {
+    for (String ignoredClass in ignoredClasses) {
+      if (type.startsWith('$ignoredClass|')) {
+        return convertType(type.substring('$ignoredClass|'.length), jsElements,
+            name: name);
+      }
+      if (type.endsWith('|$ignoredClass')) {
+        return convertType(
+            type.substring(0, type.lastIndexOf('|$ignoredClass')), jsElements,
+            name: name);
+      }
+      if (type.contains('|$ignoredClass|')) {
+        return convertType(type.replaceAll('|$ignoredClass|', '|'), jsElements,
+            name: name);
+      }
+    }
+    final typeUnion = splitUnionTypes(type);
+    final dartUnion =
+        typeUnion.map((t) => convertType(t, jsElements)).join('|');
+    return 'dynamic/*$type :: $dartUnion*/';
+  } else if (type.startsWith('Object<') && type.endsWith('>')) {
     final innerType = convertType(
         type.substring('Object<'.length, type.length - 1), jsElements,
         name: name);
-    type = 'Map<String, $innerType>';
+    return 'Map<String, $innerType>';
   } else if (type.startsWith('Array<') && type.endsWith('>')) {
     final innerType = convertType(
         type.substring('Array<'.length, type.length - 1), jsElements,
         name: name);
-    type = 'List<$innerType>';
+    return 'List<$innerType>';
   } else if (type.startsWith('function(')) {
     final functionParams =
         type.substring('function('.length, type.length - 1).split(',');
@@ -359,11 +490,40 @@ String convertType(String type, List<JsElement> jsElements, {String name}) {
         .map((p) => '$p p${i++}')
         .join(',');
     type = '$name($params)';
-    if (name == null) 'dynamic/*$type*/';
+    if (name == null) type = 'dynamic/*$type*/';
+    return type;
   } else if (jsElements.any((e) => e.id == type)) {
-    type = jsElements.firstWhere((e) => e.id == type).name;
+    return jsElements.firstWhere((e) => e.id == type).name;
+  } else if (type.startsWith('MVCArray<') && type.endsWith('>')) {
+    final innerType = convertType(
+        type.substring('MVCArray<'.length, type.length - 1), jsElements,
+        name: name);
+    return 'MVCArray<$innerType>';
+  } else {
+    return type;
   }
-  return type;
+}
+
+List<String> splitUnionTypes(String type) {
+  final typeParts = <String>[];
+  var parenthesisDeepth = 0;
+  var genericDeepth = 0;
+  final buffer = new StringBuffer();
+  for (int i = 0; i < type.length; i++) {
+    var c = type[i];
+    if (c == '|' && parenthesisDeepth == 0 && genericDeepth == 0) {
+      typeParts.add(buffer.toString());
+      buffer.clear();
+      continue;
+    }
+    if (c == '(') parenthesisDeepth++;
+    if (c == ')') parenthesisDeepth--;
+    if (c == '<') genericDeepth++;
+    if (c == '>') genericDeepth--;
+    buffer.write(c);
+  }
+  if (buffer.isNotEmpty) typeParts.add(buffer.toString());
+  return typeParts;
 }
 
 String getExtends(Element title) {
