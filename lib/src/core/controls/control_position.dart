@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,6 +14,8 @@
 
 part of google_maps;
 
+@JsEnum()
+@JsName('google.maps.ControlPosition')
 enum ControlPosition {
   BOTTOM_CENTER,
   BOTTOM_LEFT,
@@ -28,31 +30,3 @@ enum ControlPosition {
   TOP_LEFT,
   TOP_RIGHT
 }
-
-final controlPositionCodec = new BiMapCodec<ControlPosition, int>(
-    <ControlPosition, int>{
-  ControlPosition.BOTTOM_CENTER:
-      getPath('google.maps.ControlPosition')['BOTTOM_CENTER'],
-  ControlPosition.BOTTOM_LEFT:
-      getPath('google.maps.ControlPosition')['BOTTOM_LEFT'],
-  ControlPosition.BOTTOM_RIGHT:
-      getPath('google.maps.ControlPosition')['BOTTOM_RIGHT'],
-  ControlPosition.LEFT_BOTTOM:
-      getPath('google.maps.ControlPosition')['LEFT_BOTTOM'],
-  ControlPosition.LEFT_CENTER:
-      getPath('google.maps.ControlPosition')['LEFT_CENTER'],
-  ControlPosition.LEFT_TOP:
-      getPath('google.maps.ControlPosition')['LEFT_TOP'],
-  ControlPosition.RIGHT_BOTTOM:
-      getPath('google.maps.ControlPosition')['RIGHT_BOTTOM'],
-  ControlPosition.RIGHT_CENTER:
-      getPath('google.maps.ControlPosition')['RIGHT_CENTER'],
-  ControlPosition.RIGHT_TOP:
-      getPath('google.maps.ControlPosition')['RIGHT_TOP'],
-  ControlPosition.TOP_CENTER:
-      getPath('google.maps.ControlPosition')['TOP_CENTER'],
-  ControlPosition.TOP_LEFT:
-      getPath('google.maps.ControlPosition')['TOP_LEFT'],
-  ControlPosition.TOP_RIGHT:
-      getPath('google.maps.ControlPosition')['TOP_RIGHT'],
-});

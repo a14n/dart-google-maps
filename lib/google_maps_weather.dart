@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,20 +14,4 @@
 
 library google_maps_weather;
 
-import 'dart:async';
-import 'dart:js' as js;
-
-import 'package:google_maps/google_maps.dart';
-import 'package:js_wrapping_generator/dart_generator.dart';
-import 'package:js_wrapping/js_wrapping.dart' as jsw;
-
-part 'src/library/weather/cloud_layer.dart';
-part 'src/library/weather/weather_layer.dart';
-part 'src/library/weather/weather_layer_options.dart';
-part 'src/library/weather/temperature_unit.dart';
-part 'src/library/weather/wind_speed_unit.dart';
-part 'src/library/weather/label_color.dart';
-part 'src/library/weather/weather_mouse_event.dart';
-part 'src/library/weather/weather_feature.dart';
-part 'src/library/weather/weather_conditions.dart';
-part 'src/library/weather/weather_forecast.dart';
+export 'src/google_maps_weather.dart';

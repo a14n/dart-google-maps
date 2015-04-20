@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,21 +12,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-part of google_maps_places;
+part of google_maps.places;
 
-@wrapper @forMethods @skipConstructor abstract class SearchBox extends MVCObject {
-  jsw.SubscribeStreamProvider _onPlacesChanged;
+@JsName('google.maps.places.SearchBox')
+abstract class _SearchBox extends MVCObject {
+  external factory _SearchBox(InputElement inputField, [SearchBoxOptions opts]);
 
-  SearchBox(html.InputElement inputField, [SearchBoxOptions opts]) : super(maps['places']['SearchBox'], [inputField, jsw.Serializable.$unwrap(opts)]) { _initStreams(); }
-  SearchBox.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) { _initStreams(); }
+  LatLngBounds get bounds => _getBounds();
+  LatLngBounds _getBounds();
+  List<PlaceResult> get places => _getPlaces();
+  List<PlaceResult> _getPlaces();
+  void set bounds(LatLngBounds bounds) => _setBounds(bounds);
+  void _setBounds(LatLngBounds bounds);
 
-  void _initStreams() {
-    _onPlacesChanged = event.getStreamProviderFor(this, "places_changed");
-  }
-
-  Stream get onPlacesChanged => _onPlacesChanged.stream;
-
-  LatLngBounds get bounds;
-  List<PlaceResult> get places;
-  set bounds(LatLngBounds bounds);
+  Stream get onPlacesChanged =>
+      getStream(this, #onPlacesChanged, "places_changed");
 }

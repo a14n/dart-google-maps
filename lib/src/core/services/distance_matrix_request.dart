@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,16 +14,46 @@
 
 part of google_maps;
 
-@wrapper abstract class DistanceMatrixRequest extends jsw.TypedJsObject {
-  DistanceMatrixRequest();
+@anonymous
+abstract class _DistanceMatrixRequest implements JsInterface {
+  external factory _DistanceMatrixRequest();
 
+  bool avoidFerries;
   bool avoidHighways;
   bool avoidTolls;
-  List/*Array.<LatLng>|Array.<string>*/ get destinations => jsw.TypedJsArray.$wrap($unsafe['destinations'], wrap: (e) => LatLng.isInstance(e) ? LatLng.$wrap(e) : e, unwrap: jsw.mayUnwrap);
-  set destinations(List/*Array.<LatLng>|Array.<string>*/ destinations);
-  List/*Array.<LatLng>|Array.<string>*/ get origins => jsw.TypedJsArray.$wrap($unsafe['origins'], wrap: (e) => LatLng.isInstance(e) ? LatLng.$wrap(e) : e, unwrap: jsw.mayUnwrap);
-  set origins(List/*Array.<LatLng>|Array.<string>*/ origins);
+  dynamic _destinations;
+  dynamic /*List<LatLng>|List<String>*/ get destinations => (new ChainedCodec()
+    ..add(new JsListCodec<LatLng>(new JsInterfaceCodec<LatLng>(
+        (o) => new LatLng.created(o),
+        (o) => o != null && o.instanceof(getPath("google.maps.LatLng")))))
+    ..add(new JsListCodec<String>(new IdentityCodec<String>())))
+      .decode(_destinations);
+  void set destinations(dynamic /*List<LatLng>|List<String>*/ destinations) {
+    _destinations = (new ChainedCodec()
+      ..add(new JsListCodec<LatLng>(new JsInterfaceCodec<LatLng>(
+          (o) => new LatLng.created(o),
+          (o) => o != null && o.instanceof(getPath("google.maps.LatLng")))))
+      ..add(new JsListCodec<String>(new IdentityCodec<String>())))
+        .encode(destinations);
+  }
+  bool durationInTraffic;
+  dynamic _origins;
+  dynamic /*List<LatLng>|List<String>*/ get origins => (new ChainedCodec()
+    ..add(new JsListCodec<LatLng>(new JsInterfaceCodec<LatLng>(
+        (o) => new LatLng.created(o),
+        (o) => o != null && o.instanceof(getPath("google.maps.LatLng")))))
+    ..add(new JsListCodec<String>(new IdentityCodec<String>())))
+      .decode(_origins);
+  void set origins(dynamic /*List<LatLng>|List<String>*/ origins) {
+    _origins = (new ChainedCodec()
+      ..add(new JsListCodec<LatLng>(new JsInterfaceCodec<LatLng>(
+          (o) => new LatLng.created(o),
+          (o) => o != null && o.instanceof(getPath("google.maps.LatLng")))))
+      ..add(new JsListCodec<String>(new IdentityCodec<String>())))
+        .encode(origins);
+  }
   String region;
+  TransitOptions transitOptions;
   TravelMode travelMode;
   UnitSystem unitSystem;
 }

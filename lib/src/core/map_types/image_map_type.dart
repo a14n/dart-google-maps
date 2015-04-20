@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,18 +14,24 @@
 
 part of google_maps;
 
-// TODO extends MVCObject mixin MapType
-@wrapper @forMethods @skipConstructor abstract class ImageMapType extends MapType {
-  jsw.SubscribeStreamProvider _onTilesloaded;
+@JsName('google.maps.ImageMapType')
+abstract class _ImageMapType extends MVCObject implements MapType {
+  external factory _ImageMapType(ImageMapTypeOptions opts);
 
-  @generate ImageMapType(ImageMapTypeOptions opts) { _initStreams(); }
-  ImageMapType.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) { _initStreams(); }
+  num get opacity => _getOpacity();
+  num _getOpacity();
+  Node getTile(Point tileCoord, num zoom, Document ownerDocument);
+  void releaseTile(Node tile);
+  void set opacity(num opacity) => _setOpacity(opacity);
+  void _setOpacity(num opacity);
 
-  void _initStreams() {
-    _onTilesloaded = event.getStreamProviderFor(this, "tilesloaded");
-  }
+  String alt;
+  num maxZoom;
+  num minZoom;
+  String name;
+  Projection projection;
+  num radius;
+  Size tileSize;
 
-  Stream get onTilesloaded => _onTilesloaded.stream;
-
-  num opacity;
+  Stream get onTilesloaded => getStream(this, #onTilesloaded, "tilesloaded");
 }

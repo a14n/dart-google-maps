@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -25,54 +25,65 @@ abstract class _PolygonOptions implements JsInterface {
   num fillOpacity;
   bool geodesic;
   GMap map;
-  dynamic /*MVCArray.<MVCArray.<LatLng>>|MVCArray.<LatLng>|Array.<Array.<LatLng>>|Array.<LatLng>*/ _paths;
-  void set paths(dynamic paths) {
-    if (paths == null) _paths = null;
-    else if (paths is MVCArray<MVCArray<LatLng>>) _paths = paths;
-    else if (paths is List<List<LatLng>>) _paths =
-        new JsArray.from(paths.map((o) => new JsArray.from(o.map(toJs))));
-    else if (paths is MVCArray<LatLng>) _paths = paths;
-    else if (paths is List<LatLng>) _paths = new JsArray.from(paths.map(toJs));
-    else throw 'bad type';
-  }
-  get paths {
-    final value = _paths;
-    if (value == null) return null;
-    if (value is JsObject &&
-        value.instanceof(getPath('google.maps.MVCArray'))) {
-      final firstElement = new MVCArray.created(value);
-      if (firstElement is JsObject &&
-          firstElement.instanceof(getPath('google.maps.MVCArray'))) {
-        return new MVCArray.created(value, new JsInterfaceCodec(
-            (o) => new MVCArray.created(
-                o, new JsInterfaceCodec((o) => new LatLng.created(o)))));
-      } else {
-        new MVCArray.created(
-            value, new JsInterfaceCodec((o) => new LatLng.created(o)));
-      }
-    }
-    if (value is JsArray) {
-      final firstElement = value.first;
-      if (firstElement is JsArray) {
-        return new JsList.created(value, new JsInterfaceCodec(
-            (o) => new JsList.created(
-                o, new JsInterfaceCodec((o) => new LatLng.created(o)))));
-      } else {
-        new JsList.created(
-            value, new JsInterfaceCodec((o) => new LatLng.created(o)));
-      }
-    }
-    throw 'bad type';
+  dynamic _paths;
+  dynamic /*MVCArray<MVCArray<LatLng>>|MVCArray<LatLng>|List<List<LatLng>>|List<LatLng>*/ get paths =>
+      (new ChainedCodec()
+    ..add(
+        new JsInterfaceCodec<MVCArray<MVCArray<LatLng>>>(
+            (o) =>
+                new MVCArray<MVCArray<LatLng>>.created(
+                    o,
+                    new JsInterfaceCodec<MVCArray<LatLng>>(
+                        (o) => new MVCArray<LatLng>.created(o,
+                            new JsInterfaceCodec<LatLng>(
+                                (o) => new LatLng.created(o),
+                                (o) => o != null &&
+                                    o.instanceof(
+                                        getPath("google.maps.LatLng"))))))))
+    ..add(
+        new JsInterfaceCodec<MVCArray<LatLng>>(
+            (o) => new MVCArray<LatLng>.created(o, new JsInterfaceCodec<LatLng>(
+                (o) => new LatLng.created(o), (o) =>
+                    o != null && o.instanceof(getPath("google.maps.LatLng"))))))
+    ..add(new JsListCodec<List<LatLng>>(new JsListCodec<LatLng>(
+        new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
+            (o) => o != null && o.instanceof(getPath("google.maps.LatLng"))))))
+    ..add(new JsListCodec<LatLng>(new JsInterfaceCodec<LatLng>(
+            (o) => new LatLng.created(o),
+            (o) => o != null && o.instanceof(getPath("google.maps.LatLng"))))))
+      .decode(_paths);
+  void set paths(
+      dynamic /*MVCArray<MVCArray<LatLng>>|MVCArray<LatLng>|List<List<LatLng>>|List<LatLng>*/ paths) {
+    _paths = (new ChainedCodec()
+      ..add(
+          new JsInterfaceCodec<MVCArray<MVCArray<LatLng>>>(
+              (o) =>
+                  new MVCArray<MVCArray<LatLng>>.created(
+                      o,
+                      new JsInterfaceCodec<MVCArray<LatLng>>(
+                          (o) => new MVCArray<LatLng>.created(o,
+                              new JsInterfaceCodec<LatLng>(
+                                  (o) => new LatLng.created(o),
+                                  (o) => o != null &&
+                                      o.instanceof(
+                                          getPath("google.maps.LatLng"))))))))
+      ..add(
+          new JsInterfaceCodec<MVCArray<LatLng>>(
+              (o) => new MVCArray<LatLng>.created(o,
+                  new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
+                      (o) => o != null &&
+                          o.instanceof(getPath("google.maps.LatLng"))))))
+      ..add(new JsListCodec<List<LatLng>>(new JsListCodec<LatLng>(
+          new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o), (o) =>
+              o != null && o.instanceof(getPath("google.maps.LatLng"))))))
+      ..add(new JsListCodec<LatLng>(new JsInterfaceCodec<LatLng>(
+              (o) => new LatLng.created(o), (o) =>
+                  o != null && o.instanceof(getPath("google.maps.LatLng"))))))
+        .encode(paths);
   }
   String strokeColor;
   num strokeOpacity;
-  // StrokePosition strokePosition;
-  int _strokePosition;
-  StrokePosition get strokePosition =>
-      strokePositionCodec.decode(_strokePosition);
-  void set strokePosition(StrokePosition strokePosition) {
-    _strokePosition = strokePositionCodec.encode(strokePosition);
-  }
+  StrokePosition strokePosition;
   num strokeWeight;
   bool visible;
   num zIndex;

@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,23 +18,31 @@ part of google_maps;
 abstract class _MapTypeControlOptions implements JsInterface {
   external factory _MapTypeControlOptions();
 
-  // List<String|MapTypeId> mapTypeIds
-  JsArray<String> _mapTypeIds;
-  List<dynamic/*String|MapTypeId*/> get mapTypeIds =>
-     new JsList.created(_mapTypeIds, mapTypeIdOrStringCodec);
-  void set mapTypeIds(List<dynamic/*String|MapTypeId*/> mapTypeIds) {
-    _mapTypeIds = new JsArray.from(mapTypeIds.map(mapTypeIdOrStringCodec.encoder));
+  dynamic get _mapTypeIds => asJsObject(this)['mapTypeIds'];
+  List<dynamic /*MapTypeId|String*/ > get mapTypeIds =>
+      (new JsListCodec<dynamic /*MapTypeId|String*/ >(new ChainedCodec()
+    ..add(new BiMapCodec<MapTypeId, dynamic>({
+      MapTypeId.HYBRID: getPath('google.maps.MapTypeId')['HYBRID'],
+      MapTypeId.ROADMAP: getPath('google.maps.MapTypeId')['ROADMAP'],
+      MapTypeId.SATELLITE: getPath('google.maps.MapTypeId')['SATELLITE'],
+      MapTypeId.TERRAIN: getPath('google.maps.MapTypeId')['TERRAIN']
+    }))
+    ..add(new IdentityCodec<String>()))).decode(_mapTypeIds);
+  void set _mapTypeIds(dynamic mapTypeIds) {
+    asJsObject(this)['mapTypeIds'] = mapTypeIds;
   }
-  // ControlPosition position;
-  int _position;
-  ControlPosition get position => controlPositionCodec.decode(_position);
-  void set position(ControlPosition position) {
-    _position = controlPositionCodec.encode(position);
+  void set mapTypeIds(List<dynamic /*MapTypeId|String*/ > mapTypeIds) {
+    _mapTypeIds = (new JsListCodec<dynamic /*MapTypeId|String*/ >(
+        new ChainedCodec()
+      ..add(new BiMapCodec<MapTypeId, dynamic>({
+        MapTypeId.HYBRID: getPath('google.maps.MapTypeId')['HYBRID'],
+        MapTypeId.ROADMAP: getPath('google.maps.MapTypeId')['ROADMAP'],
+        MapTypeId.SATELLITE: getPath('google.maps.MapTypeId')['SATELLITE'],
+        MapTypeId.TERRAIN: getPath('google.maps.MapTypeId')['TERRAIN']
+      }))
+      ..add(new IdentityCodec<String>()))).encode(mapTypeIds);
   }
-  // MapTypeControlStyle style;
-  int _style;
-  MapTypeControlStyle get style => mapTypeControlStyleCodec.decode(_style);
-  void set style(MapTypeControlStyle style) {
-    _style = mapTypeControlStyleCodec.encode(style);
-  }
+
+  ControlPosition position;
+  MapTypeControlStyle style;
 }

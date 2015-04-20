@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,10 +14,15 @@
 
 part of google_maps;
 
-@wrapper abstract class Time extends jsw.TypedJsObject {
-  Time();
+@anonymous
+abstract class _Time implements JsInterface {
+  external factory _Time();
 
   String text;
-  String timeZone;
+  String _time_zone;
+  String get timeZone => _time_zone;
+  void set timeZone(String timeZone) {
+    _time_zone = timeZone;
+  }
   DateTime value;
 }

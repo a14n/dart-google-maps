@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,11 +14,11 @@
 
 part of google_maps;
 
-typedef StreetViewPanoramaData PanoProvider(String pano);
-
 @anonymous
 abstract class _StreetViewPanoramaOptions implements JsInterface {
   external factory _StreetViewPanoramaOptions();
+
+  StreetViewPanoramaData panoProvider(String panoId);
 
   bool addressControl;
   StreetViewAddressControlOptions addressControlOptions;
@@ -31,13 +31,6 @@ abstract class _StreetViewPanoramaOptions implements JsInterface {
   bool panControl;
   PanControlOptions panControlOptions;
   String pano;
-  void set panoProvider(PanoProvider panoProvider) {
-    _panoProvider = (String pano) => toJs(panoProvider(pano));
-  }
-  void set _panoProvider(panoProvider);
-  PanoProvider get panoProvider => (String pano) =>
-      new StreetViewPanoramaData.created(_panoProvider.apply([pano]));
-  JsFunction get _panoProvider;
   LatLng position;
   StreetViewPov pov;
   bool scrollwheel;

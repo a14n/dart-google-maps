@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,15 +14,36 @@
 
 part of google_maps;
 
-@wrapper abstract class TransitDetails extends jsw.TypedJsObject {
-  TransitDetails();
+@anonymous
+abstract class _TransitDetails implements JsInterface {
+  external factory _TransitDetails();
 
-  TransitStop arrivalStop;
-  Time arrivalTime;
-  TransitStop departureStop;
-  Time departureTime;
+  TransitStop _arrival_stop;
+  TransitStop get arrivalStop => _arrival_stop;
+  void set arrivalStop(TransitStop arrivalStop) {
+    _arrival_stop = arrivalStop;
+  }
+  Time _arrival_time;
+  Time get arrivalTime => _arrival_time;
+  void set arrivalTime(Time arrivalTime) {
+    _arrival_time = arrivalTime;
+  }
+  TransitStop _departure_stop;
+  TransitStop get departureStop => _departure_stop;
+  void set departureStop(TransitStop departureStop) {
+    _departure_stop = departureStop;
+  }
+  Time _departure_time;
+  Time get departureTime => _departure_time;
+  void set departureTime(Time departureTime) {
+    _departure_time = departureTime;
+  }
   String headsign;
   num headway;
   TransitLine line;
-  num numStops;
+  num _num_stops;
+  num get numStops => _num_stops;
+  void set numStops(num numStops) {
+    _num_stops = numStops;
+  }
 }

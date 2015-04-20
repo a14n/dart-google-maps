@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,10 +18,5 @@ part of google_maps;
 abstract class _PanControlOptions implements JsInterface {
   external factory _PanControlOptions();
 
-  // ControlPosition position;
-  int _position;
-  ControlPosition get position => controlPositionCodec.decode(_position);
-  void set position(ControlPosition position) {
-    _position = controlPositionCodec.encode(position);
-  }
+  ControlPosition position;
 }

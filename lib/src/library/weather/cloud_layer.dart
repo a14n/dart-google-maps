@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,10 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-part of google_maps_weather;
+part of google_maps.weather;
 
-@wrapper @forMethods abstract class CloudLayer extends MVCObject {
-  CloudLayer() : super(maps['weather']['CloudLayer']);
+@JsName('google.maps.weather.CloudLayer')
+abstract class _CloudLayer extends MVCObject {
+  external factory _CloudLayer();
 
-  GMap map;
+  GMap get map => _getMap();
+  GMap _getMap();
+  void set map(GMap map) => _setMap(map);
+  void _setMap(GMap map);
 }

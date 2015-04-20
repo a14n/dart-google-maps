@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,8 +14,12 @@
 
 part of google_maps;
 
-@wrapper @forMethods abstract class TransitLayer extends MVCObject {
-  @generate TransitLayer();
+@JsName('google.maps.TransitLayer')
+abstract class _TransitLayer extends MVCObject {
+  external factory _TransitLayer();
 
-  GMap map;
+  GMap get map => _getMap();
+  GMap _getMap();
+  void set map(GMap map) => _setMap(map);
+  void _setMap(GMap map);
 }

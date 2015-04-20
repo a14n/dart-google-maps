@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,4 +14,7 @@
 
 part of google_maps;
 
-abstract class _MapsEventListener implements JsInterface {}
+@anonymous
+abstract class _MapsEventListener implements JsInterface {
+  external factory _MapsEventListener();
+}

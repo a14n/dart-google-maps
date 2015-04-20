@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,13 +17,6 @@ part of google_maps;
 @anonymous
 abstract class _StreetViewTileData implements JsInterface {
   external factory _StreetViewTileData();
-
-  void set_getTileUrl(
-      String getTileUrl(String pano, num tileZoom, num tileX, num tileY)) {
-    _getTileUrl = getTileUrl;
-  }
-  void set _getTileUrl(
-      String getTileUrl(String pano, num tileZoom, num tileX, num tileY));
 
   String getTileUrl(String pano, num tileZoom, num tileX, num tileY);
 

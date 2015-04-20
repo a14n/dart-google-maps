@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,14 +14,6 @@
 
 part of google_maps;
 
+@JsEnum()
+@JsName('google.maps.MapTypeControlStyle')
 enum MapTypeControlStyle { DEFAULT, DROPDOWN_MENU, HORIZONTAL_BAR }
-
-final mapTypeControlStyleCodec = new BiMapCodec<MapTypeControlStyle, int>(
-    <MapTypeControlStyle, int>{
-  MapTypeControlStyle.DEFAULT:
-      getPath('google.maps.MapTypeControlStyle')['DEFAULT'],
-  MapTypeControlStyle.DROPDOWN_MENU:
-      getPath('google.maps.MapTypeControlStyle')['DROPDOWN_MENU'],
-  MapTypeControlStyle.HORIZONTAL_BAR:
-      getPath('google.maps.MapTypeControlStyle')['HORIZONTAL_BAR'],
-});

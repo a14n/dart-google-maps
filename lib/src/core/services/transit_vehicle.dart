@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,11 +14,16 @@
 
 part of google_maps;
 
-@wrapper abstract class TransitVehicle extends jsw.TypedJsObject {
-  TransitVehicle();
+@anonymous
+abstract class _TransitVehicle implements JsInterface {
+  external factory _TransitVehicle();
 
   String icon;
-  String localIcon;
+  String _local_icon;
+  String get localIcon => _local_icon;
+  void set localIcon(String localIcon) {
+    _local_icon = localIcon;
+  }
   String name;
   VehicleType type;
 }

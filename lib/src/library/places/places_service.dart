@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,22 +12,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-part of google_maps_places;
+part of google_maps.places;
 
-@wrapper abstract class PlacesService extends jsw.TypedJsObject {
-  PlacesService(dynamic/*HTMLDivElement|GMap*/ attrContainer) : super(maps['places']['PlacesService'], [jsw.mayUnwrap(attrContainer)]);
+@JsName('google.maps.places.PlacesService')
+abstract class _PlacesService implements JsInterface {
+  external factory _PlacesService(
+      dynamic /*HTMLDivElement|GMap*/ attrContainer);
 
-  void getDetails(PlaceDetailsRequest request, void callback(PlaceResult results, PlacesServiceStatus status)) {
-    $unsafe.callMethod('getDetails', [jsw.Serializable.$unwrap(request), (js.JsObject result, String status) => callback(PlaceResult.$wrap(result), PlacesServiceStatus.$wrap(status))]);
-  }
-  void nearbySearch(PlaceSearchRequest request, void callback(List<PlaceResult> results, PlacesServiceStatus status, PlaceSearchPagination pagination)) {
-    $unsafe.callMethod('nearbySearch', [jsw.Serializable.$unwrap(request), (js.JsObject results, String status, js.JsObject pagination) => callback(jsw.TypedJsArray.$wrapSerializables(results, PlaceResult.$wrap), PlacesServiceStatus.$wrap(status), PlaceSearchPagination.$wrap(pagination))]);
-  }
-  void radarSearch(RadarSearchRequest request, void callback(List<PlaceResult> results, PlacesServiceStatus status)) {
-    $unsafe.callMethod('radarSearch', [jsw.Serializable.$unwrap(request), (js.JsObject results, String status) => callback(jsw.TypedJsArray.$wrapSerializables(results, PlaceResult.$wrap), PlacesServiceStatus.$wrap(status))]);
-  }
-  // TODO report missing PlaceSearchPagination argument
-  void textSearch(TextSearchRequest request, void callback(List<PlaceResult> results, PlacesServiceStatus status, PlaceSearchPagination pagination)) {
-    $unsafe.callMethod('textSearch', [jsw.Serializable.$unwrap(request), (js.JsObject results, String status, js.JsObject pagination) => callback(jsw.TypedJsArray.$wrapSerializables(results, PlaceResult.$wrap), PlacesServiceStatus.$wrap(status), PlaceSearchPagination.$wrap(pagination))]);
-  }
+  void getDetails(PlaceDetailsRequest request,
+      callback(PlaceResult p1, PlacesServiceStatus p2));
+  void nearbySearch(PlaceSearchRequest request, callback(
+      List<PlaceResult> p1, PlacesServiceStatus p2, PlaceSearchPagination p3));
+  void radarSearch(RadarSearchRequest request,
+      callback(List<PlaceResult> p1, PlacesServiceStatus p2));
+  void textSearch(TextSearchRequest request,
+      callback(List<PlaceResult> p1, PlacesServiceStatus p2));
 }

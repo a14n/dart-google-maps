@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,11 +14,16 @@
 
 part of google_maps;
 
-@wrapper @namesWithUnderscores abstract class GeocoderGeometry extends jsw.TypedJsObject {
-  GeocoderGeometry();
+@anonymous
+abstract class _GeocoderGeometry implements JsInterface {
+  external factory _GeocoderGeometry();
 
   LatLngBounds bounds;
   LatLng location;
-  GeocoderLocationType locationType;
+  GeocoderLocationType _location_type;
+  GeocoderLocationType get locationType => _location_type;
+  void set locationType(GeocoderLocationType locationType) {
+    _location_type = locationType;
+  }
   LatLngBounds viewport;
 }

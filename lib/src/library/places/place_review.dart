@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,13 +12,23 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-part of google_maps_places;
+part of google_maps.places;
 
-@wrapper @namesWithUnderscores abstract class PlaceReview extends jsw.TypedJsObject {
-  PlaceReview() : super();
+@anonymous
+abstract class _PlaceReview implements JsInterface {
+  external factory _PlaceReview();
 
   List<PlaceAspectRating> aspects;
-  String authorName;
-  String authorUrl;
+  String _author_name;
+  String get authorName => _author_name;
+  void set authorName(String authorName) {
+    _author_name = authorName;
+  }
+  String _author_url;
+  String get authorUrl => _author_url;
+  void set authorUrl(String authorUrl) {
+    _author_url = authorUrl;
+  }
+  String language;
   String text;
 }

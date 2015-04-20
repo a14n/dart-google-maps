@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,11 +14,6 @@
 
 part of google_maps;
 
-enum StrokePosition { CENTER, INSIDE, OUTSIDE, }
-
-final strokePositionCodec = new BiMapCodec<StrokePosition, int>(
-    <StrokePosition, int>{
-  StrokePosition.CENTER: getPath('google.maps.StrokePosition')['CENTER'],
-  StrokePosition.INSIDE: getPath('google.maps.StrokePosition')['INSIDE'],
-  StrokePosition.OUTSIDE: getPath('google.maps.StrokePosition')['OUTSIDE'],
-});
+@JsEnum()
+@JsName('google.maps.StrokePosition')
+enum StrokePosition { CENTER, INSIDE, OUTSIDE }

@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,14 +14,10 @@
 
 part of google_maps;
 
+@JsName('google.maps.GroundOverlay')
 abstract class _GroundOverlay extends MVCObject {
   external factory _GroundOverlay(String url, LatLngBounds bounds,
       [GroundOverlayOptions opts]);
-
-  Stream<MouseEvent> get onClick => getStream(
-      this, #onClick, "click", (JsObject o) => new MouseEvent.created(o));
-  Stream<MouseEvent> get onDblClick => getStream(
-      this, #onDblClick, "dblclick", (JsObject o) => new MouseEvent.created(o));
 
   LatLngBounds get bounds => _getBounds();
   LatLngBounds _getBounds();
@@ -35,4 +31,9 @@ abstract class _GroundOverlay extends MVCObject {
   void _setMap(GMap map);
   void set opacity(num opacity) => _setOpacity(opacity);
   void _setOpacity(num opacity);
+
+  Stream<MouseEvent> get onClick => getStream(
+      this, #onClick, "click", (JsObject o) => new MouseEvent.created(o));
+  Stream<MouseEvent> get onDblclick => getStream(
+      this, #onDblclick, "dblclick", (JsObject o) => new MouseEvent.created(o));
 }

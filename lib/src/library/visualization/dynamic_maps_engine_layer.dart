@@ -1,4 +1,4 @@
-// Copyright (c) 2013, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,56 +12,65 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-part of google_maps_visualization;
+part of google_maps.visualization;
 
-@wrapper @forMethods @skipConstructor abstract class DynamicMapsEngineLayer extends MVCObject {
-  jsw.SubscribeStreamProvider<DynamicMapsEngineMouseEvent> _onClick;
-  jsw.SubscribeStreamProvider<DynamicMapsEngineMouseEvent> _onDblclick;
-  jsw.SubscribeStreamProvider<DynamicMapsEngineMouseEvent> _onMousedown;
-  jsw.SubscribeStreamProvider<DynamicMapsEngineMouseEvent> _onMousemove;
-  jsw.SubscribeStreamProvider<DynamicMapsEngineMouseEvent> _onMouseout;
-  jsw.SubscribeStreamProvider<DynamicMapsEngineMouseEvent> _onMouseover;
-  jsw.SubscribeStreamProvider<DynamicMapsEngineMouseEvent> _onMouseup;
-  jsw.SubscribeStreamProvider _onPropertiesChanged;
-  jsw.SubscribeStreamProvider<DynamicMapsEngineMouseEvent> _onRightclick;
-  jsw.SubscribeStreamProvider _onStatusChanged;
-
-  DynamicMapsEngineLayer(DynamicMapsEngineLayerOptions opts) : super(maps['visualization']['DynamicMapsEngineLayer'], [opts]) { _initStreams(); }
-  DynamicMapsEngineLayer.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) { _initStreams(); }
-
-  void _initStreams() {
-    _onClick = event.getStreamProviderFor(this, "click", DynamicMapsEngineMouseEvent.$wrap);
-    _onDblclick = event.getStreamProviderFor(this, "dblclick", DynamicMapsEngineMouseEvent.$wrap);
-    _onMousedown = event.getStreamProviderFor(this, "mousedown", DynamicMapsEngineMouseEvent.$wrap);
-    _onMousemove = event.getStreamProviderFor(this, "mousemove", DynamicMapsEngineMouseEvent.$wrap);
-    _onMouseout = event.getStreamProviderFor(this, "mouseout", DynamicMapsEngineMouseEvent.$wrap);
-    _onMouseover = event.getStreamProviderFor(this, "mouseover", DynamicMapsEngineMouseEvent.$wrap);
-    _onMouseup = event.getStreamProviderFor(this, "mouseup", DynamicMapsEngineMouseEvent.$wrap);
-    _onPropertiesChanged = event.getStreamProviderFor(this, "properties_changed");
-    _onRightclick = event.getStreamProviderFor(this, "rightclick", DynamicMapsEngineMouseEvent.$wrap);
-    _onStatusChanged = event.getStreamProviderFor(this, "status_changed");
-  }
-
-  Stream<DynamicMapsEngineMouseEvent> get onClick => _onClick.stream;
-  Stream<DynamicMapsEngineMouseEvent> get onDblclick => _onDblclick.stream;
-  Stream<DynamicMapsEngineMouseEvent> get onMousedown => _onMousedown.stream;
-  Stream<DynamicMapsEngineMouseEvent> get onMousemove => _onMousemove.stream;
-  Stream<DynamicMapsEngineMouseEvent> get onMouseout => _onMouseout.stream;
-  Stream<DynamicMapsEngineMouseEvent> get onMouseover => _onMouseover.stream;
-  Stream<DynamicMapsEngineMouseEvent> get onMouseup => _onMouseup.stream;
-  Stream get onPropertiesChanged => _onPropertiesChanged.stream;
-  Stream<DynamicMapsEngineMouseEvent> get onRightclick => _onRightclick.stream;
-  Stream get onStatusChanged => _onStatusChanged.stream;
+@JsName('google.maps.visualization.DynamicMapsEngineLayer')
+abstract class _DynamicMapsEngineLayer extends MVCObject {
+  external factory _DynamicMapsEngineLayer(
+      DynamicMapsEngineLayerOptions options);
 
   FeatureStyle getFeatureStyle(String featureId);
-  String get layerId;
-  String get layerKey;
-  GMap get map;
-  String get mapId;
-  MapsEngineStatus get status;
-  set layerId(String layerId);
-  set layerKey(String layerKey);
-  set map(GMap map);
-  set mapId(String mapId);
-  set options(DynamicMapsEngineLayerOptions options);
+  String get layerId => _getLayerId();
+  String _getLayerId();
+  String get layerKey => _getLayerKey();
+  String _getLayerKey();
+  GMap get map => _getMap();
+  GMap _getMap();
+  String get mapId => _getMapId();
+  String _getMapId();
+  num get opacity => _getOpacity();
+  num _getOpacity();
+  MapsEngineStatus get status => _getStatus();
+  MapsEngineStatus _getStatus();
+  void set layerId(String layerId) => _setLayerId(layerId);
+  void _setLayerId(String layerId);
+  void set layerKey(String layerKey) => _setLayerKey(layerKey);
+  void _setLayerKey(String layerKey);
+  void set map(GMap map) => _setMap(map);
+  void _setMap(GMap map);
+  void set mapId(String mapId) => _setMapId(mapId);
+  void _setMapId(String mapId);
+  void set opacity(num opacity) => _setOpacity(opacity);
+  void _setOpacity(num opacity);
+  void set options(DynamicMapsEngineLayerOptions options) =>
+      _setOptions(options);
+  void _setOptions(DynamicMapsEngineLayerOptions options);
+
+  Stream<DynamicMapsEngineMouseEvent> get onClick => getStream(this, #onClick,
+      "click", (JsObject o) => new DynamicMapsEngineMouseEvent.created(o));
+  Stream<DynamicMapsEngineMouseEvent> get onDblclick => getStream(this,
+      #onDblclick, "dblclick",
+      (JsObject o) => new DynamicMapsEngineMouseEvent.created(o));
+  Stream<DynamicMapsEngineMouseEvent> get onMousedown => getStream(this,
+      #onMousedown, "mousedown",
+      (JsObject o) => new DynamicMapsEngineMouseEvent.created(o));
+  Stream<DynamicMapsEngineMouseEvent> get onMousemove => getStream(this,
+      #onMousemove, "mousemove",
+      (JsObject o) => new DynamicMapsEngineMouseEvent.created(o));
+  Stream<DynamicMapsEngineMouseEvent> get onMouseout => getStream(this,
+      #onMouseout, "mouseout",
+      (JsObject o) => new DynamicMapsEngineMouseEvent.created(o));
+  Stream<DynamicMapsEngineMouseEvent> get onMouseover => getStream(this,
+      #onMouseover, "mouseover",
+      (JsObject o) => new DynamicMapsEngineMouseEvent.created(o));
+  Stream<DynamicMapsEngineMouseEvent> get onMouseup => getStream(this,
+      #onMouseup, "mouseup",
+      (JsObject o) => new DynamicMapsEngineMouseEvent.created(o));
+  Stream get onPropertiesChanged =>
+      getStream(this, #onPropertiesChanged, "properties_changed");
+  Stream<DynamicMapsEngineMouseEvent> get onRightclick => getStream(this,
+      #onRightclick, "rightclick",
+      (JsObject o) => new DynamicMapsEngineMouseEvent.created(o));
+  Stream get onStatusChanged =>
+      getStream(this, #onStatusChanged, "status_changed");
 }

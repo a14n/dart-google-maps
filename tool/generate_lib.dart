@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:convert';
 
 import 'package:dart_style/src/dart_formatter.dart';
 import 'package:html/parser.dart' show parse;
@@ -21,22 +20,28 @@ final LICENCE = '''
 // limitations under the License.
 ''';
 
-final customClassName = <String, String>{'Map': 'GMap', 'Symbol': 'GSymbol',};
+final customClassName = <String, String>{
+  'Map': 'GMap',
+  'Symbol': 'GSymbol',
+  'Duration': 'GDuration',
+};
 
 final customContent = <String, String>{
+  'Data.StylingFunction':
+      'typedef DataStyleOptions DataStylingFunction(DataFeature dataFeature);',
   'MVCArray': '''
-
+@JsName('google.maps.MVCArray')
 abstract class _MVCArray<E> extends MVCObject {
   Codec<E, dynamic> _codec = null;
 
-  _MVCArray({List<E> elements, Codec<E, dynamic> codec: const IdentityCodec()})
+  _MVCArray({List<E> elements, Codec<E, dynamic> codec})
       : this.created(elements == null
           ? new JsArray()
           : new JsArray.from(elements.map(codec.encode)), codec);
 
   _MVCArray.created(JsObject o,
-      [Codec<E, dynamic> codec = const IdentityCodec()])
-      : _codec = codec,
+      [Codec<E, dynamic> codec])
+      : _codec = codec != null ? codec : new IdentityCodec(),
         super.created(o);
 
   void clear();
@@ -74,7 +79,29 @@ class IndexAndElement<E> {
   final E element;
   IndexAndElement(this.index, this.element);
 }
+''',
+  'ImageMapType': '''
+@JsName('google.maps.ImageMapType')
+abstract class _ImageMapType extends MVCObject implements MapType {
+  external factory _ImageMapType(ImageMapTypeOptions opts);
 
+  num get opacity => _getOpacity();
+  num _getOpacity();
+  Node getTile(Point tileCoord, num zoom, Document ownerDocument);
+  void releaseTile(Node tile);
+  void set opacity(num opacity) => _setOpacity(opacity);
+  void _setOpacity(num opacity);
+
+  String alt;
+  num maxZoom;
+  num minZoom;
+  String name;
+  Projection projection;
+  num radius;
+  Size tileSize;
+
+  Stream get onTilesloaded => getStream(this, #onTilesloaded, "tilesloaded");
+}
 '''
 };
 
@@ -88,7 +115,7 @@ import 'package:js/adapter/js_list.dart';
 import 'package:js/util/codec.dart';
 
 import 'package:google_maps/util/async.dart';
-import 'package:google_maps/src/generated/google_maps.dart';
+import 'package:google_maps/src/google_maps.dart';
 ''';
 
 final importsByLib = <String, String>{
@@ -159,7 +186,7 @@ final ignoredClasses = <String>['LatLngLiteral', 'undefined'];
 
 final declarationSubstitutions = <String, Map<String, Map<String, String>>>{
   'google_maps': {
-    'GMap': {'controls': 'Controls controls',},
+    'GMap': {'controls': 'Controls controls;',},
     'LatLng': {
       'lat': '''
 num get lat => _lat();
@@ -167,19 +194,170 @@ num _lat();''',
       'lng': '''
 num get lng => _lng();
 num _lng();''',
-    }
+    },
+    'LatLngBounds': {
+      'isEmpty': '''
+bool get isEmpty => _isEmpty();
+bool _isEmpty();''',
+    },
+    'Data': {
+      'getStyle': '''
+  dynamic /*DataStylingFunction|DataStyleOptions*/ get style =>
+      (new ChainedCodec()
+    ..add(new FunctionCodec<DataStylingFunction>((o) => ((f) {
+      if (f == null) return null;
+      return (p_dataFeature) {
+        p_dataFeature = new JsInterfaceCodec<DataFeature>((o) =>
+                ((e) => e == null ? null : new DataFeature.created(e))(o))
+            .decode(p_dataFeature);
+        final result = f(p_dataFeature);
+        return new JsInterfaceCodec<DataStyleOptions>((o) =>
+                ((e) => e == null ? null : new DataStyleOptions.created(e))(o))
+            .encode(result);
+      };
+    })(o), (o) => ((JsFunction f) {
+      if (f == null) return null;
+      return (p_dataFeature) {
+        p_dataFeature = new JsInterfaceCodec<DataFeature>((o) =>
+                ((e) => e == null ? null : new DataFeature.created(e))(o))
+            .encode(p_dataFeature);
+        final result = f.apply([p_dataFeature]);
+        return new JsInterfaceCodec<DataStyleOptions>((o) =>
+                ((e) => e == null ? null : new DataStyleOptions.created(e))(o))
+            .decode(result);
+      };
+    })(o)))
+    ..add(new JsInterfaceCodec<DataStyleOptions>(
+        (o) => new DataStyleOptions.created(o)))).decode(_getStyle());
+  _getStyle();''',
+      'setStyle': '''
+  void set style(dynamic /*DataStylingFunction|DataStyleOptions*/ style) =>
+      _setStyle((new ChainedCodec()
+    ..add(new FunctionCodec<DataStylingFunction>((o) => ((f) {
+      if (f == null) return null;
+      return (p_dataFeature) {
+        p_dataFeature = new JsInterfaceCodec<DataFeature>((o) =>
+                ((e) => e == null ? null : new DataFeature.created(e))(o))
+            .decode(p_dataFeature);
+        final result = f(p_dataFeature);
+        return new JsInterfaceCodec<DataStyleOptions>((o) =>
+                ((e) => e == null ? null : new DataStyleOptions.created(e))(o))
+            .encode(result);
+      };
+    })(o), (o) => ((JsFunction f) {
+      if (f == null) return null;
+      return (p_dataFeature) {
+        p_dataFeature = new JsInterfaceCodec<DataFeature>((o) =>
+                ((e) => e == null ? null : new DataFeature.created(e))(o))
+            .encode(p_dataFeature);
+        final result = f.apply([p_dataFeature]);
+        return new JsInterfaceCodec<DataStyleOptions>((o) =>
+                ((e) => e == null ? null : new DataStyleOptions.created(e))(o))
+            .decode(result);
+      };
+    })(o)))
+    ..add(new JsInterfaceCodec<DataStyleOptions>(
+        (o) => new DataStyleOptions.created(o)))).encode(style));
+  void _setStyle(dynamic /*DataStylingFunction|DataStyleOptions*/ style);''',
+    },
+    'DataDataOptions': {
+      'style': '''
+  dynamic /*DataStylingFunction|DataStyleOptions*/ get style =>
+      (new ChainedCodec()
+    ..add(new FunctionCodec<DataStylingFunction>((o) => ((f) {
+      if (f == null) return null;
+      return (p_dataFeature) {
+        p_dataFeature = new JsInterfaceCodec<DataFeature>((o) =>
+                ((e) => e == null ? null : new DataFeature.created(e))(o))
+            .decode(p_dataFeature);
+        final result = f(p_dataFeature);
+        return new JsInterfaceCodec<DataStyleOptions>((o) =>
+                ((e) => e == null ? null : new DataStyleOptions.created(e))(o))
+            .encode(result);
+      };
+    })(o), (o) => ((JsFunction f) {
+      if (f == null) return null;
+      return (p_dataFeature) {
+        p_dataFeature = new JsInterfaceCodec<DataFeature>((o) =>
+                ((e) => e == null ? null : new DataFeature.created(e))(o))
+            .encode(p_dataFeature);
+        final result = f.apply([p_dataFeature]);
+        return new JsInterfaceCodec<DataStyleOptions>((o) =>
+                ((e) => e == null ? null : new DataStyleOptions.created(e))(o))
+            .decode(result);
+      };
+    })(o)))
+    ..add(new JsInterfaceCodec<DataStyleOptions>(
+        (o) => new DataStyleOptions.created(o)))).decode(_style);
+  void set style(dynamic /*DataStylingFunction|DataStyleOptions*/ style) =>
+      _style = (new ChainedCodec()
+    ..add(new FunctionCodec<DataStylingFunction>((o) => ((f) {
+      if (f == null) return null;
+      return (p_dataFeature) {
+        p_dataFeature = new JsInterfaceCodec<DataFeature>((o) =>
+                ((e) => e == null ? null : new DataFeature.created(e))(o))
+            .decode(p_dataFeature);
+        final result = f(p_dataFeature);
+        return new JsInterfaceCodec<DataStyleOptions>((o) =>
+                ((e) => e == null ? null : new DataStyleOptions.created(e))(o))
+            .encode(result);
+      };
+    })(o), (o) => ((JsFunction f) {
+      if (f == null) return null;
+      return (p_dataFeature) {
+        p_dataFeature = new JsInterfaceCodec<DataFeature>((o) =>
+                ((e) => e == null ? null : new DataFeature.created(e))(o))
+            .encode(p_dataFeature);
+        final result = f.apply([p_dataFeature]);
+        return new JsInterfaceCodec<DataStyleOptions>((o) =>
+                ((e) => e == null ? null : new DataStyleOptions.created(e))(o))
+            .decode(result);
+      };
+    })(o)))
+    ..add(new JsInterfaceCodec<DataStyleOptions>(
+        (o) => new DataStyleOptions.created(o)))).encode(_style);
+  dynamic /*DataStylingFunction|DataStyleOptions*/ _style;''',
+    },
+
+    // FIXME https://code.google.com/p/gmaps-api-issues/issues/detail?id=7910
+    'MapTypeControlOptions': {
+      'mapTypeIds': '''
+  dynamic get _mapTypeIds => asJsObject(this)['mapTypeIds'];
+  List<dynamic /*MapTypeId|String*/ > get mapTypeIds =>
+      (new JsListCodec<dynamic /*MapTypeId|String*/ >(new ChainedCodec()
+    ..add(new BiMapCodec<MapTypeId, dynamic>({
+      MapTypeId.HYBRID: getPath('google.maps.MapTypeId')['HYBRID'],
+      MapTypeId.ROADMAP: getPath('google.maps.MapTypeId')['ROADMAP'],
+      MapTypeId.SATELLITE: getPath('google.maps.MapTypeId')['SATELLITE'],
+      MapTypeId.TERRAIN: getPath('google.maps.MapTypeId')['TERRAIN']
+    }))
+    ..add(new IdentityCodec<String>()))).decode(_mapTypeIds);
+  void set _mapTypeIds(dynamic mapTypeIds) {
+    asJsObject(this)['mapTypeIds'] = mapTypeIds;
+  }
+  void set mapTypeIds(List<dynamic /*MapTypeId|String*/ > mapTypeIds) {
+    _mapTypeIds = (new JsListCodec<dynamic /*MapTypeId|String*/ >(
+        new ChainedCodec()
+      ..add(new BiMapCodec<MapTypeId, dynamic>({
+        MapTypeId.HYBRID: getPath('google.maps.MapTypeId')['HYBRID'],
+        MapTypeId.ROADMAP: getPath('google.maps.MapTypeId')['ROADMAP'],
+        MapTypeId.SATELLITE: getPath('google.maps.MapTypeId')['SATELLITE'],
+        MapTypeId.TERRAIN: getPath('google.maps.MapTypeId')['TERRAIN']
+      }))
+      ..add(new IdentityCodec<String>()))).encode(mapTypeIds);
+  }
+''',
+    },
   }
 };
 
 main() async {
-  final genFolder = 'lib/src/generated';
+  final genFolder = 'lib/src';
 //  final request = await new HttpClient().getUrl(Uri.parse(
 //      'https://developers.google.com/maps/documentation/javascript/reference'));
 //  final response = await request.close();
 //  final content = await UTF8.decodeStream(response);
-  final content =
-      new File('/home/aar-dw/perso/dev/dartStuff/dart-google-maps/api/api.html')
-          .readAsStringSync();
+  final content = new File('api/api.html').readAsStringSync();
   final document = parse(content);
   final libraries = <String, List<JsElement>>{};
   document.querySelectorAll("#gc-content>div>ul").forEach((ul) {
@@ -254,8 +432,9 @@ part of $libraryName;
       } else if (jsElmt.isEnum) {
         final constants = jsElmt.constants
             .map((tr) => tr.getElementsByTagName('td')[0].text.trim());
+        // TODO(aa) mapping MapTypeStyleElementType.all vs. MapTypeStyleElementType.ALL
         partContents += "@JsEnum() @JsName('${jsElmt.fullName}') "
-            'enum ${jsElmt.name}{${constants.join(',')}}\n\n';
+            'enum ${jsElmt.name}{${constants.map((String e) => e.replaceAll('.', '_').toUpperCase()).join(',')}}\n\n';
 
         // codec
 //        partContents += 'final ' +
@@ -271,10 +450,17 @@ part of $libraryName;
       } else if (jsElmt.isNamespace ||
           jsElmt.isAnonymousObject ||
           jsElmt.isClass) {
+        final className = jsElmt.isNamespace
+            ? jsElmt.name[0].toUpperCase() + jsElmt.name.substring(1)
+            : jsElmt.name;
         final inherit = getExtends(jsElmt.element.querySelector('h2'));
         if (jsElmt.isAnonymousObject) partContents += '@anonymous\n';
         if (jsElmt.isClass) partContents += "@JsName('${jsElmt.fullName}')\n";
-        partContents += 'abstract class _${jsElmt.name} ' +
+        if (jsElmt.isNamespace) {
+          partContents +=
+              "final ${jsElmt.name} = new $className.created(getPath('${jsElmt.fullName}'));";
+        }
+        partContents += 'abstract class _$className ' +
             (inherit != null
                 ? 'extends ${inherit.replaceAll('.', '')}'
                 : 'implements JsInterface') +
@@ -286,16 +472,18 @@ part of $libraryName;
           final decl = constr.getElementsByTagName('td')[0].text.trim();
           final parameters =
               decl.substring(decl.indexOf('(') + 1, decl.lastIndexOf(')'));
-          final params = convertParameters(parameters, jsElements);
-          partContents += '  external factory _${jsElmt.name}($params);\n';
+          final params = splitParameters(parameters);
+          partContents += '  external factory '
+              '_$className(${params.toSignature(jsElements)});\n';
+        } else if (jsElmt.isAnonymousObject) {
+          partContents += '  external factory _$className();\n';
         }
         partContents += '\n';
 
         // add methods
         jsElmt.methods.forEach((methodTr) {
           final decl = methodTr.getElementsByTagName('td')[0].text.trim();
-          String returnType =
-              methodTr.getElementsByTagName('td')[1].text.trim();
+          final returnType = methodTr.getElementsByTagName('td')[1].text.trim();
           final methodName = decl.substring(0, decl.indexOf('('));
 
           if (declarationSubstitutions.containsKey(libraryName) &&
@@ -310,20 +498,70 @@ part of $libraryName;
 
           final parameters =
               decl.substring(decl.indexOf('(') + 1, decl.lastIndexOf(')'));
-          final params = convertParameters(parameters, jsElements);
-          returnType = convertType(returnType, jsElements);
-          if (methodName.startsWith(new RegExp('get[A-Z]')) && params.isEmpty) {
+          final params = splitParameters(parameters);
+          final allParams = ({}
+            ..addAll(params.mandatory)
+            ..addAll(params.optional));
+          final paramsCodecs = new Map.fromIterable(allParams.keys,
+              value: (k) => getCodec(allParams[k], jsElements));
+          final returnCodec = getCodec(returnType, jsElements);
+          final convertedReturnType = convertType(returnType, jsElements);
+          if (methodName.startsWith(new RegExp('get[A-Z]')) &&
+              params.mandatory.isEmpty &&
+              params.optional.isEmpty) {
             final name = methodName[3].toLowerCase() + methodName.substring(4);
-            partContents += '  $returnType get $name => _$methodName();\n';
-            partContents += '  $returnType _$methodName();\n';
+            partContents += '  $convertedReturnType get $name => ';
+            if (returnCodec.canBeNativelyHandled) {
+              partContents += '_$methodName();\n';
+              partContents += '  $convertedReturnType _$methodName();\n';
+            } else {
+              partContents +=
+                  '(${returnCodec.codec}).decode(_$methodName());\n';
+              partContents += '  _$methodName();\n';
+            }
           } else if (methodName.startsWith(new RegExp('set[A-Z]')) &&
-              !params.contains(',')) {
+              params.mandatory.length == 1 &&
+              params.optional.isEmpty) {
             final name = methodName[3].toLowerCase() + methodName.substring(4);
-            final p = params.substring(params.lastIndexOf(' '));
-            partContents += '  void set $name($params) => _$methodName($p);\n';
-            partContents += '  void _$methodName($params);\n';
+            final p = params.mandatory.keys.first;
+            partContents +=
+                '  void set $name(${params.toSignature(jsElements)}) => ';
+            if (paramsCodecs.values.first.canBeNativelyHandled) {
+              partContents += '_$methodName($p);\n';
+            } else {
+              partContents +=
+                  '_$methodName((${paramsCodecs.values.first.codec}).encode($p));\n';
+            }
+            partContents +=
+                '  void _$methodName(${params.toSignature(jsElements)});\n';
           } else {
-            partContents += '  $returnType $methodName($params);\n';
+            if (paramsCodecs.values.every((p) => p.canBeNativelyHandled) &&
+                returnCodec.canBeNativelyHandled) {
+              partContents +=
+                  '  $convertedReturnType $methodName(${params.toSignature(jsElements)});\n';
+            } else {
+              final returnVoid = convertedReturnType == 'void';
+              partContents +=
+                  '  $convertedReturnType $methodName(${params.toSignature(jsElements)})';
+              partContents += returnVoid ? '{' : ' => ';
+              if (!returnCodec.canBeNativelyHandled) {
+                partContents += '(${returnCodec.codec}).decode(';
+              }
+              partContents += '_$methodName(' +
+                  paramsCodecs.keys
+                      .map((p) => paramsCodecs[p].canBeNativelyHandled
+                          ? p
+                          : '(${paramsCodecs[p].codec}).encode($p)')
+                      .join(',') +
+                  ')';
+              if (!returnCodec.canBeNativelyHandled) {
+                partContents += ')';
+              }
+              partContents += ';';
+              if (returnVoid) partContents += '}';
+              partContents +=
+                  '  _$methodName(${params.toSignature(jsElements)});\n';
+            }
           }
         });
         partContents += '\n';
@@ -331,16 +569,37 @@ part of $libraryName;
         // add properties
         jsElmt.properties.forEach((propertiesTr) {
           final name = propertiesTr.getElementsByTagName('td')[0].text.trim();
-          String type = propertiesTr.getElementsByTagName('td')[1].text.trim();
+          final type = propertiesTr.getElementsByTagName('td')[1].text.trim();
           if (declarationSubstitutions.containsKey(libraryName) &&
               declarationSubstitutions[libraryName].containsKey(jsElmt.name) &&
               declarationSubstitutions[libraryName][jsElmt.name]
                   .containsKey(name)) {
             partContents +=
-                '  ${declarationSubstitutions[libraryName][jsElmt.name][name]};\n';
+                declarationSubstitutions[libraryName][jsElmt.name][name] + '\n';
           } else {
-            type = convertType(type, jsElements);
-            partContents += '  $type $name;\n';
+            final typeCodec = getCodec(type, jsElements);
+            final convertedType = convertType(type, jsElements);
+            final dartName = !name.contains('_')
+                ? name
+                : name.replaceAllMapped(
+                    new RegExp('_([a-z])'), (m) => m[1].toUpperCase());
+            if (typeCodec.canBeNativelyHandled) {
+              if (dartName == name) {
+                partContents += '  $convertedType $name;\n';
+              } else {
+                partContents += '  $convertedType _$name;\n';
+                partContents += '  $convertedType get $dartName => _$name;\n';
+                partContents +=
+                    '  void set $dartName($convertedType $dartName) { _$name = $dartName; }\n';
+              }
+            } else {
+              partContents += '''
+  dynamic _$name;
+  $convertedType get $dartName => (${typeCodec.codec}).decode(_$name);
+  void set $dartName($convertedType $dartName) {
+    _$name = (${typeCodec.codec}).encode($dartName);
+  }''';
+            }
           }
         });
         partContents += '\n';
@@ -389,31 +648,38 @@ Stream<$type> get $streamName => getStream(
 String getCodecName(JsElement jsElmt) =>
     jsElmt.name[0].toLowerCase() + jsElmt.name.substring(1) + 'Codec';
 
-String convertParameters(String parameters, List<JsElement> jsElements) {
-  var paramsParts = splitParameters(parameters);
+class Parameters {
+  final mandatory = <String, String>{};
+  final optional = <String, String>{};
 
-  bool flagOpt = false;
-  var params = paramsParts.map((p) => p.split(':')).map((e) {
-    var result = '';
-    var name = e[0];
-    var type = (e.length == 1) ? '' : e[1];
-
+  void add(String name, String type) {
     if (name.endsWith('?')) {
       name = name.substring(0, name.length - 1);
-      if (flagOpt == false) {
-        flagOpt = true;
-        result += '[';
-      }
+      optional[name] = type;
+    } else {
+      mandatory[name] = type;
     }
+  }
 
-    result += convertParam(type, jsElements, name);
+  String toSignature(List<JsElement> jsElements) {
+    var result = mandatory.keys
+        .map((name) => convertParam(mandatory[name], jsElements, name))
+        .join(',');
+    if (optional.isNotEmpty) {
+      if (result.isNotEmpty) result += ',';
+      result += '[' +
+          optional.keys
+              .map((name) => convertParam(optional[name], jsElements, name))
+              .join(',') +
+          ']';
+    }
     return result;
-  }).join(', ');
-  if (flagOpt) params += ']';
-  return params;
+  }
 }
 
-List<String> splitParameters(String parameters) {
+Parameters splitParameters(String parameters) {
+  final result = new Parameters();
+
   final paramsParts = <String>[];
   var parenthesisDeepth = 0;
   final buffer = new StringBuffer();
@@ -429,7 +695,12 @@ List<String> splitParameters(String parameters) {
     buffer.write(c);
   }
   if (buffer.isNotEmpty) paramsParts.add(buffer.toString());
-  return paramsParts;
+
+  paramsParts.map((p) => p.split(':')).forEach((e) {
+    result.add(e[0], (e.length == 1) ? '' : e[1]);
+  });
+
+  return result;
 }
 
 String convertParam(String type, List<JsElement> jsElements, String name) {
@@ -437,6 +708,82 @@ String convertParam(String type, List<JsElement> jsElements, String name) {
     return convertType(type, jsElements, name: name);
   } else {
     return convertType(type, jsElements) + ' $name';
+  }
+}
+
+class CodecInfo {
+  final String codec;
+  final bool canBeNativelyHandled;
+  final bool isIdentity;
+  CodecInfo(this.codec, this.canBeNativelyHandled, this.isIdentity);
+}
+
+CodecInfo getCodec(String type, List<JsElement> jsElements) {
+  type = type.trim();
+  if (splitUnionTypes(type).length > 1) {
+    for (String ignoredClass in ignoredClasses) {
+      if (type.startsWith('$ignoredClass|')) {
+        return getCodec(type.substring('$ignoredClass|'.length), jsElements);
+      }
+      if (type.endsWith('|$ignoredClass')) {
+        return getCodec(
+            type.substring(0, type.lastIndexOf('|$ignoredClass')), jsElements);
+      }
+      if (type.contains('|$ignoredClass|')) {
+        return getCodec(type.replaceAll('|$ignoredClass|', '|'), jsElements);
+      }
+    }
+    final typeUnion = splitUnionTypes(type);
+    final codecInfos = typeUnion.map((t) => getCodec(t, jsElements));
+    if (codecInfos.any((ci) => !ci.isIdentity)) {
+      return new CodecInfo('new ChainedCodec()' +
+              codecInfos.map((ci) => '..add(' + ci.codec + ')').join(), false,
+          false);
+    } else {
+      return new CodecInfo('new IdentityCodec()', true, true);
+    }
+  } else if (type.startsWith('Object<') && type.endsWith('>')) {
+    return new CodecInfo('FUCK', true, true);
+  } else if (type.startsWith('Array<') && type.endsWith('>')) {
+    final innerType = type.substring('Array<'.length, type.length - 1);
+    final convertedInnerType = convertType(innerType, jsElements);
+    final innerCodecInfo = getCodec(innerType, jsElements);
+    return new CodecInfo('new JsListCodec<$convertedInnerType>'
+        '(${innerCodecInfo.codec})', innerCodecInfo.canBeNativelyHandled,
+        false);
+  } else if (type.startsWith('function(')) {
+    return new CodecInfo('PLEASE_IMPLEMENT_MANUALLY', true, true);
+  } else if (jsElements.any((e) => e.id == type)) {
+    final jsElmt = jsElements.firstWhere((e) => e.id == type);
+    final convertedType = convertType(type, jsElements);
+    if (jsElmt.isEnum) {
+      final constants = jsElmt.constants
+          .map((tr) => tr.getElementsByTagName('td')[0].text.trim());
+      return new CodecInfo('new BiMapCodec<$convertedType, dynamic>({' +
+          constants
+              .map((e) =>
+                  "${jsElmt.name}.$e: getPath('${jsElmt.fullName}')['$e']")
+              .join(',') +
+          '})', true, false);
+    } else if (jsElmt.isAnonymousObject) {
+      return new CodecInfo('new JsInterfaceCodec<$convertedType>'
+          '((o) => new $convertedType.created(o))', true, false);
+    } else {
+      return new CodecInfo('new JsInterfaceCodec<$convertedType>'
+          '((o) => new $convertedType.created(o), '
+          '(o) => o != null && o.instanceof(getPath("${jsElmt.fullName}")))',
+          true, false);
+    }
+  } else if (type.startsWith('MVCArray<') && type.endsWith('>')) {
+    final innerType = type.substring('MVCArray<'.length, type.length - 1);
+    final convertedInnerType = convertType(innerType, jsElements);
+    final innerCodecInfo = getCodec(innerType, jsElements);
+    return new CodecInfo('new JsInterfaceCodec<MVCArray<$convertedInnerType>>'
+        '((o) => new MVCArray<$convertedInnerType>.created(o, ${innerCodecInfo.codec}))',
+        false, false);
+  } else {
+    final convertedType = convertType(type, jsElements);
+    return new CodecInfo('new IdentityCodec<$convertedType>()', true, true);
   }
 }
 
@@ -470,7 +817,7 @@ String convertType(String type, List<JsElement> jsElements, {String name}) {
     final typeUnion = splitUnionTypes(type);
     final dartUnion =
         typeUnion.map((t) => convertType(t, jsElements)).join('|');
-    return 'dynamic/*$type :: $dartUnion*/';
+    return 'dynamic/*$dartUnion*/';
   } else if (type.startsWith('Object<') && type.endsWith('>')) {
     final innerType = convertType(
         type.substring('Object<'.length, type.length - 1), jsElements,
@@ -534,6 +881,9 @@ String getExtends(Element title) {
     if (e.text.startsWith('This class extends')) {
       return e.querySelector('a').attributes['href'].substring(1);
     }
+    if (e.text.startsWith('This object extends')) {
+      return e.querySelector('a').attributes['href'].substring(1);
+    }
   }
 }
 
@@ -575,14 +925,12 @@ class JsElement {
 
   bool get isNamespace =>
       element.querySelector('h2').text.trim().endsWith('namespace');
-  bool get isEnum => element.querySelector('h2').text
-          .trim()
-          .endsWith('class') &&
-      element.querySelectorAll('h3').every((e) => e.text.trim() == 'Constant');
-  bool get isClass => element.querySelector('h2').text
-          .trim()
-          .endsWith('class') &&
-      !element.querySelectorAll('h3').every((e) => e.text.trim() == 'Constant');
+  bool get isEnum => (isClass || isAnonymousObject) &&
+      element.querySelectorAll('h3').isNotEmpty &&
+      element
+          .querySelectorAll('h3')
+          .every((e) => ['Constant', 'Library'].contains(e.text.trim()));
+  bool get isClass => element.querySelector('h2').text.trim().endsWith('class');
   bool get isAnonymousObject =>
       element.querySelector('h2').text.trim().endsWith('object specification');
   bool get isTypeDef =>

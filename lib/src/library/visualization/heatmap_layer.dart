@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,16 +12,41 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-part of google_maps_visualization;
+part of google_maps.visualization;
 
-@wrapper @forMethods abstract class HeatmapLayer extends MVCObject {
-  HeatmapLayer([HeatmapLayerOptions opts]) : super(maps['visualization']['HeatmapLayer'], [jsw.Serializable.$unwrap(opts)]);
+@JsName('google.maps.visualization.HeatmapLayer')
+abstract class _HeatmapLayer extends MVCObject {
+  external factory _HeatmapLayer([HeatmapLayerOptions opts]);
 
-  MVCArray<dynamic/*LatLng|WeightedLocation*/> get data => MVCArray.$wrapSerializables($unsafe.callMethod('getData'), (e) => LatLng.isInstance(e) ? LatLng.$wrap(e) : WeightedLocation.$wrap(e));
-  GMap get map;
-  set data(dynamic/*MVCArray.<LatLng|WeightedLocation>|Array.<LatLng|WeightedLocation>*/ data) {
-    $unsafe.callMethod('setData', [data == null ? null : data is js.JsArray ? data : jsw.jsify(data)]);
-  }
-  set map(GMap map);
-  set options(HeatmapLayerOptions options);
+  MVCArray<dynamic /*LatLng|WeightedLocation*/ > get data =>
+      (new JsInterfaceCodec<MVCArray<dynamic /*LatLng|WeightedLocation*/ >>(
+          (o) => new MVCArray<dynamic /*LatLng|WeightedLocation*/ >.created(o,
+              new ChainedCodec()
+    ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
+        (o) => o != null && o.instanceof(getPath("google.maps.LatLng"))))
+    ..add(new JsInterfaceCodec<WeightedLocation>(
+        (o) => new WeightedLocation.created(o)))))).decode(_getData());
+  _getData();
+  GMap get map => _getMap();
+  GMap _getMap();
+  void set data(
+          dynamic /*MVCArray<dynamic/*LatLng|WeightedLocation*/>|List<dynamic/*LatLng|WeightedLocation*/>*/ data) =>
+      _setData((new ChainedCodec()
+    ..add(new JsInterfaceCodec<MVCArray<dynamic /*LatLng|WeightedLocation*/ >>(
+        (o) => new MVCArray<dynamic /*LatLng|WeightedLocation*/ >.created(o,
+            new ChainedCodec()
+      ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
+          (o) => o != null && o.instanceof(getPath("google.maps.LatLng"))))
+      ..add(new JsInterfaceCodec<WeightedLocation>(
+          (o) => new WeightedLocation.created(o))))))
+    ..add(new JsListCodec<dynamic /*LatLng|WeightedLocation*/ >(
+        new ChainedCodec()
+      ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
+          (o) => o != null && o.instanceof(getPath("google.maps.LatLng"))))
+      ..add(new JsInterfaceCodec<WeightedLocation>(
+          (o) => new WeightedLocation.created(o)))))).encode(data));
+  void _setData(
+      dynamic /*MVCArray<dynamic/*LatLng|WeightedLocation*/>|List<dynamic/*LatLng|WeightedLocation*/>*/ data);
+  void set map(GMap map) => _setMap(map);
+  void _setMap(GMap map);
 }

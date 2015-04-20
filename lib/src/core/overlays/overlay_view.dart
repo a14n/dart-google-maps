@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,30 +14,32 @@
 
 part of google_maps;
 
-abstract class _OverlayView extends MVCObject {
+@JsName('google.maps.OverlayView')
+abstract class _OverlayView implements JsInterface {
   external factory _OverlayView();
 
   void draw();
-  GMap get map => _getMap();
-  GMap _getMap();
+  dynamic /*GMap|StreetViewPanorama*/ get map => (new ChainedCodec()
+    ..add(new JsInterfaceCodec<GMap>((o) => new GMap.created(o),
+        (o) => o != null && o.instanceof(getPath("google.maps.Map"))))
+    ..add(new JsInterfaceCodec<StreetViewPanorama>(
+            (o) => new StreetViewPanorama.created(o), (o) => o != null &&
+                o.instanceof(getPath("google.maps.StreetViewPanorama")))))
+      .decode(_getMap());
+  _getMap();
   MapPanes get panes => _getPanes();
   MapPanes _getPanes();
   MapCanvasProjection get projection => _getProjection();
   MapCanvasProjection _getProjection();
   void onAdd();
   void onRemove();
-  set map(/*GMap|StreetViewPanorama*/ dynamic map);
-
-  void set_onAdd(onAdd()) {
-    _onAdd = onAdd;
-  }
-  void set _onAdd(onAdd());
-  void set_onRemove(onRemove()) {
-    _onRemove = onRemove;
-  }
-  void set _onRemove(onRemove());
-  void set_draw(draw()) {
-    _draw = draw;
-  }
-  void set _draw(draw());
+  void set map(dynamic /*GMap|StreetViewPanorama*/ map) => _setMap(
+      (new ChainedCodec()
+    ..add(new JsInterfaceCodec<GMap>((o) => new GMap.created(o),
+        (o) => o != null && o.instanceof(getPath("google.maps.Map"))))
+    ..add(new JsInterfaceCodec<StreetViewPanorama>(
+        (o) => new StreetViewPanorama.created(o), (o) => o != null &&
+                o.instanceof(getPath("google.maps.StreetViewPanorama")))))
+          .encode(map));
+  void _setMap(dynamic /*GMap|StreetViewPanorama*/ map);
 }

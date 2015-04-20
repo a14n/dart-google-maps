@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,11 +14,6 @@
 
 part of google_maps;
 
-enum ZoomControlStyle { DEFAULT, LARGE, SMALL, }
-
-final zoomControlStyleCodec = new BiMapCodec<ZoomControlStyle, int>(
-    <ZoomControlStyle, int>{
-  ZoomControlStyle.DEFAULT: getPath('google.maps.ZoomControlStyle')['DEFAULT'],
-  ZoomControlStyle.LARGE: getPath('google.maps.ZoomControlStyle')['LARGE'],
-  ZoomControlStyle.SMALL: getPath('google.maps.ZoomControlStyle')['SMALL'],
-});
+@JsEnum()
+@JsName('google.maps.ZoomControlStyle')
+enum ZoomControlStyle { DEFAULT, LARGE, SMALL }

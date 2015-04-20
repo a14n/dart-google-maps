@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,10 +14,9 @@
 
 part of google_maps;
 
-@wrapper abstract class MaxZoomService extends jsw.TypedJsObject {
-  @generate MaxZoomService();
+@JsName('google.maps.MaxZoomService')
+abstract class _MaxZoomService implements JsInterface {
+  external factory _MaxZoomService();
 
-  void getMaxZoomAtLatLng(LatLng latlng, void callback(MaxZoomResult result)) {
-    $unsafe.callMethod('getMaxZoomAtLatLng', [jsw.Serializable.$unwrap(latlng), (js.JsObject result) => callback(MaxZoomResult.$wrap(result))]);
-  }
+  void getMaxZoomAtLatLng(LatLng latlng, callback(MaxZoomResult p1));
 }

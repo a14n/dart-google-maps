@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -20,24 +20,33 @@ abstract class _PolylineOptions implements JsInterface {
 
   bool clickable;
   bool draggable;
-  bool  editable;
+  bool editable;
   bool geodesic;
   List<IconSequence> icons;
   GMap map;
-  //MVCArray<LatLng>|List<LatLng> path
   dynamic _path;
-  /*MVCArray<LatLng>|List<LatLng>*/ get path {
-    final result = _path;
-    if (result == null) return null;
-    if (result is JsArray) return new JsList.created(result, new JsInterfaceCodec((o) => new LatLng.created(o)));
-    if (result is JsObject && result.instanceof(getPath('google.maps.MVCArray'))) return new MVCArray.created(result, new JsInterfaceCodec((o) => new LatLng.created(o)));
-    throw 'bad type';
-  }
-  void set path(dynamic /*MVCArray.<LatLng>|Array.<LatLng>*/ path){
-    if (path == null) _path = null;
-    else if (path is MVCArray<LatLng>) _path = path;
-    else if (path is List<LatLng>) _path = new JsArray.from(path.map(toJs));
-    else throw 'bad type';
+  dynamic /*MVCArray<LatLng>|List<LatLng>*/ get path => (new ChainedCodec()
+    ..add(
+        new JsInterfaceCodec<MVCArray<LatLng>>(
+            (o) => new MVCArray<LatLng>.created(o, new JsInterfaceCodec<LatLng>(
+                (o) => new LatLng.created(o), (o) =>
+                    o != null && o.instanceof(getPath("google.maps.LatLng"))))))
+    ..add(new JsListCodec<LatLng>(new JsInterfaceCodec<LatLng>(
+            (o) => new LatLng.created(o),
+            (o) => o != null && o.instanceof(getPath("google.maps.LatLng"))))))
+      .decode(_path);
+  void set path(dynamic /*MVCArray<LatLng>|List<LatLng>*/ path) {
+    _path = (new ChainedCodec()
+      ..add(
+          new JsInterfaceCodec<MVCArray<LatLng>>(
+              (o) => new MVCArray<LatLng>.created(o,
+                  new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
+                      (o) => o != null &&
+                          o.instanceof(getPath("google.maps.LatLng"))))))
+      ..add(new JsListCodec<LatLng>(new JsInterfaceCodec<LatLng>(
+              (o) => new LatLng.created(o), (o) =>
+                  o != null && o.instanceof(getPath("google.maps.LatLng"))))))
+        .encode(path);
   }
   String strokeColor;
   num strokeOpacity;

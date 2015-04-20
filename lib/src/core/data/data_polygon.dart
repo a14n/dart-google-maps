@@ -1,4 +1,4 @@
-// Copyright (c) 2013, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,11 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-part of google_maps_visualization;
+part of google_maps;
 
-@wrapper abstract class DemographicsQuery extends jsw.TypedJsObject {
-  DemographicsQuery() : super();
+@JsName('google.maps.Data.Polygon')
+abstract class _DataPolygon extends DataGeometry {
+  external factory _DataPolygon(
+      List<dynamic /*DataLinearRing|List<LatLng>*/ > elements);
 
-  String from;
-  String where;
+  List<DataLinearRing> get array => _getArray();
+  List<DataLinearRing> _getArray();
+  DataLinearRing getAt(num n);
+  num get length => _getLength();
+  num _getLength();
+  String get type => _getType();
+  String _getType();
 }

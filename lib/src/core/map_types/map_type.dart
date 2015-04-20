@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,8 +16,10 @@ part of google_maps;
 
 @anonymous
 abstract class _MapType implements JsInterface {
-  html.Node getTile(Point tileCoord, num zoom, JsObject/*html.Document*/ ownerDocument);
-  void releaseTile(html.Node tile);
+  external factory _MapType();
+
+  Node getTile(Point tileCoord, num zoom, Document ownerDocument);
+  void releaseTile(Node tile);
 
   String alt;
   num maxZoom;

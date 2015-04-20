@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,10 +14,10 @@
 
 part of google_maps;
 
-@wrapper abstract class DistanceMatrixService extends jsw.TypedJsObject {
-  @generate DistanceMatrixService();
+@JsName('google.maps.DistanceMatrixService')
+abstract class _DistanceMatrixService implements JsInterface {
+  external factory _DistanceMatrixService();
 
-  void getDistanceMatrix(DistanceMatrixRequest request, void callback(DistanceMatrixResponse response, DistanceMatrixStatus status)) {
-    $unsafe.callMethod('getDistanceMatrix', [jsw.Serializable.$unwrap(request), (js.JsObject response, String status) => callback(DistanceMatrixResponse.$wrap(response), DistanceMatrixStatus.$wrap(status))]);
-  }
+  void getDistanceMatrix(DistanceMatrixRequest request,
+      callback(DistanceMatrixResponse p1, DistanceMatrixStatus p2));
 }

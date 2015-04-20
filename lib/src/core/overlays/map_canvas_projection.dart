@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,7 +14,10 @@
 
 part of google_maps;
 
+@anonymous
 abstract class _MapCanvasProjection extends MVCObject {
+  external factory _MapCanvasProjection();
+
   LatLng fromContainerPixelToLatLng(Point pixel, [bool nowrap]);
   LatLng fromDivPixelToLatLng(Point pixel, [bool nowrap]);
   Point fromLatLngToContainerPixel(LatLng latLng);

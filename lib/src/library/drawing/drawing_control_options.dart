@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,12 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-part of google_maps_drawing;
+part of google_maps.drawing;
 
-@wrapper abstract class DrawingControlOptions extends jsw.TypedJsObject {
-  DrawingControlOptions() : super();
+@anonymous
+abstract class _DrawingControlOptions implements JsInterface {
+  external factory _DrawingControlOptions();
 
-  List<OverlayType> get drawingModes => jsw.TypedJsArray.$wrapSerializables($unsafe['drawingModes'], OverlayType.$wrap);
-  set drawingModes(List<OverlayType> drawingModes);
+  List<OverlayType> drawingModes;
   ControlPosition position;
 }

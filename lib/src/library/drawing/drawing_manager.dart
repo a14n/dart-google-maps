@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,38 +12,36 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-part of google_maps_drawing;
+part of google_maps.drawing;
 
-@wrapper @forMethods @skipConstructor abstract class DrawingManager extends MVCObject {
-  jsw.SubscribeStreamProvider<Circle> _onCirclecomplete;
-  jsw.SubscribeStreamProvider<Marker> _onMarkercomplete;
-  jsw.SubscribeStreamProvider<OverlayCompleteEvent> _onOverlaycomplete;
-  jsw.SubscribeStreamProvider<Polygon> _onPolygoncomplete;
-  jsw.SubscribeStreamProvider<Polyline> _onPolylinecomplete;
-  jsw.SubscribeStreamProvider<Rectangle> _onRectanglecomplete;
+@JsName('google.maps.drawing.DrawingManager')
+abstract class _DrawingManager extends MVCObject {
+  external factory _DrawingManager([DrawingManagerOptions options]);
 
-  DrawingManager([DrawingManagerOptions opts]) : super(maps['drawing']['DrawingManager'], [jsw.Serializable.$unwrap(opts)]) { _initStreams(); }
-  DrawingManager.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) { _initStreams(); }
+  OverlayType get drawingMode => _getDrawingMode();
+  OverlayType _getDrawingMode();
+  GMap get map => _getMap();
+  GMap _getMap();
+  void set drawingMode(OverlayType drawingMode) => _setDrawingMode(drawingMode);
+  void _setDrawingMode(OverlayType drawingMode);
+  void set map(GMap map) => _setMap(map);
+  void _setMap(GMap map);
+  void set options(DrawingManagerOptions options) => _setOptions(options);
+  void _setOptions(DrawingManagerOptions options);
 
-  void _initStreams() {
-    _onCirclecomplete = event.getStreamProviderFor(this, "circlecomplete", Circle.$wrap);
-    _onMarkercomplete = event.getStreamProviderFor(this, "markercomplete", Marker.$wrap);
-    _onOverlaycomplete = event.getStreamProviderFor(this, "overlaycomplete", OverlayCompleteEvent.$wrap);
-    _onPolygoncomplete = event.getStreamProviderFor(this, "polygoncomplete", Polygon.$wrap);
-    _onPolylinecomplete = event.getStreamProviderFor(this, "polylinecomplete", Polyline.$wrap);
-    _onRectanglecomplete = event.getStreamProviderFor(this, "rectanglecomplete", Rectangle.$wrap);
-  }
-
-  Stream<Circle> get onCirclecomplete => _onCirclecomplete.stream;
-  Stream<Marker> get onMarkercomplete => _onMarkercomplete.stream;
-  Stream<OverlayCompleteEvent> get onOverlaycomplete => _onOverlaycomplete.stream;
-  Stream<Polygon> get onPolygoncomplete => _onPolygoncomplete.stream;
-  Stream<Polyline> get onPolylinecomplete => _onPolylinecomplete.stream;
-  Stream<Rectangle> get onRectanglecomplete => _onRectanglecomplete.stream;
-
-  OverlayType get drawingMode;
-  GMap get map;
-  set drawingMode(OverlayType drawingMode);
-  set map(GMap map);
-  set options(DrawingManagerOptions options);
+  Stream<Circle> get onCirclecomplete => getStream(this, #onCirclecomplete,
+      "circlecomplete", (JsObject o) => new Circle.created(o));
+  Stream<Marker> get onMarkercomplete => getStream(this, #onMarkercomplete,
+      "markercomplete", (JsObject o) => new Marker.created(o));
+  Stream<OverlayCompleteEvent> get onOverlaycomplete => getStream(this,
+      #onOverlaycomplete, "overlaycomplete",
+      (JsObject o) => new OverlayCompleteEvent.created(o));
+  Stream<Polygon> get onPolygoncomplete => getStream(this, #onPolygoncomplete,
+      "polygoncomplete", (JsObject o) => new Polygon.created(o));
+  Stream<Polyline> get onPolylinecomplete => getStream(this,
+      #onPolylinecomplete, "polylinecomplete",
+      (JsObject o) => new Polyline.created(o));
+  Stream<Rectangle> get onRectanglecomplete => getStream(this,
+      #onRectanglecomplete, "rectanglecomplete",
+      (JsObject o) => new Rectangle.created(o));
 }

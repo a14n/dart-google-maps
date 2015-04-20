@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,11 +14,9 @@
 
 part of google_maps;
 
+@JsName('google.maps.FusionTablesLayer')
 abstract class _FusionTablesLayer extends MVCObject {
   external factory _FusionTablesLayer(FusionTablesLayerOptions options);
-
-  Stream<FusionTablesMouseEvent> get onClick => getStream(this, #onClick,
-      "click", (JsObject o) => new FusionTablesMouseEvent.created(o));
 
   GMap get map => _getMap();
   GMap _getMap();
@@ -26,4 +24,7 @@ abstract class _FusionTablesLayer extends MVCObject {
   void _setMap(GMap map);
   void set options(FusionTablesLayerOptions options) => _setOptions(options);
   void _setOptions(FusionTablesLayerOptions options);
+
+  Stream<FusionTablesMouseEvent> get onClick => getStream(this, #onClick,
+      "click", (JsObject o) => new FusionTablesMouseEvent.created(o));
 }

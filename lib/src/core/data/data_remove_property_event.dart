@@ -1,4 +1,4 @@
- // Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,17 +14,11 @@
 
 part of google_maps;
 
-abstract class _MVCObject extends JsInterface {
-  external factory _MVCObject();
+@anonymous
+abstract class _DataRemovePropertyEvent implements JsInterface {
+  external factory _DataRemovePropertyEvent();
 
-  MapsEventListener addListener(String eventName, Function handler);
-  void bindTo(String key, MVCObject target, [String targetKey, bool noNotify]);
-  void changed(String key);
-  Object get(String key);
-  void notify(String key);
-  void set(String key, dynamic value);
-  void set values(Map<String, Object> values) { _setValues(values); }
-  void _setValues(Map<String, Object> values);
-  void unbind(String key);
-  void unbindAll();
+  DataFeature feature;
+  String name;
+  dynamic oldValue;
 }

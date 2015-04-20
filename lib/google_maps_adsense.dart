@@ -1,10 +1,10 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-// http://www.apache.org/licenses/LICENSE-2.0
+//    http://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -14,12 +14,4 @@
 
 library google_maps_adsense;
 
-import 'dart:html' as html;
-
-import 'package:google_maps/google_maps.dart';
-import 'package:js_wrapping_generator/dart_generator.dart';
-import 'package:js_wrapping/js_wrapping.dart' as jsw;
-
-part 'src/library/adsense/ad_unit.dart';
-part 'src/library/adsense/ad_unit_options.dart';
-part 'src/library/adsense/ad_format.dart';
+export 'src/google_maps_adsense.dart';

@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,10 +14,10 @@
 
 part of google_maps;
 
-@wrapper abstract class Geocoder extends jsw.TypedJsObject {
-  @generate Geocoder();
+@JsName('google.maps.Geocoder')
+abstract class _Geocoder implements JsInterface {
+  external factory _Geocoder();
 
-  void geocode(GeocoderRequest request, void callback(List<GeocoderResult> results, GeocoderStatus status)) {
-    $unsafe.callMethod('geocode', [jsw.Serializable.$unwrap(request), (js.JsObject results, String status) => callback(jsw.TypedJsArray.$wrapSerializables(results, GeocoderResult.$wrap), GeocoderStatus.$wrap(status))]);
-  }
+  void geocode(GeocoderRequest request,
+      callback(List<GeocoderResult> p1, GeocoderStatus p2));
 }

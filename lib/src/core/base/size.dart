@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,6 +14,7 @@
 
 part of google_maps;
 
+@JsName('google.maps.Size')
 abstract class _Size implements JsInterface {
   external factory _Size(num width, num height,
       [String widthUnit, String heightUnit]);

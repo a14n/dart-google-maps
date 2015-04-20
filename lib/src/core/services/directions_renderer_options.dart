@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,8 +14,9 @@
 
 part of google_maps;
 
-@wrapper abstract class DirectionsRendererOptions extends jsw.TypedJsObject {
-  DirectionsRendererOptions();
+@anonymous
+abstract class _DirectionsRendererOptions implements JsInterface {
+  external factory _DirectionsRendererOptions();
 
   DirectionsResult directions;
   bool draggable;
@@ -23,8 +24,7 @@ part of google_maps;
   InfoWindow infoWindow;
   GMap map;
   MarkerOptions markerOptions;
-  html.Node get panel;
-  set panel(html.Node panel);
+  Node panel;
   PolylineOptions polylineOptions;
   bool preserveViewport;
   num routeIndex;

@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,15 +14,4 @@
 
 library google_maps_drawing;
 
-import 'dart:async';
-import 'dart:js' as js;
-
-import 'package:google_maps/google_maps.dart';
-import 'package:js_wrapping_generator/dart_generator.dart';
-import 'package:js_wrapping/js_wrapping.dart' as jsw;
-
-part 'src/library/drawing/drawing_manager.dart';
-part 'src/library/drawing/drawing_manager_options.dart';
-part 'src/library/drawing/drawing_control_options.dart';
-part 'src/library/drawing/overlay_complete_event.dart';
-part 'src/library/drawing/overlay_type.dart';
+export 'src/google_maps_drawing.dart';

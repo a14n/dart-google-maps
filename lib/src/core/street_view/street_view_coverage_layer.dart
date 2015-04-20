@@ -1,4 +1,4 @@
-// Copyright (c) 2013, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,10 +14,12 @@
 
 part of google_maps;
 
-@wrapper @forMethods abstract class StreetViewCoverageLayer extends MVCObject {
-  @generate StreetViewCoverageLayer();
+@JsName('google.maps.StreetViewCoverageLayer')
+abstract class _StreetViewCoverageLayer extends MVCObject {
+  external factory _StreetViewCoverageLayer();
 
-  GMap get map;
-  set map(GMap map);
+  GMap get map => _getMap();
+  GMap _getMap();
+  void set map(GMap map) => _setMap(map);
+  void _setMap(GMap map);
 }
-

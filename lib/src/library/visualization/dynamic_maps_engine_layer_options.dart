@@ -1,4 +1,4 @@
-// Copyright (c) 2013, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,10 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-part of google_maps_visualization;
+part of google_maps.visualization;
 
-@wrapper abstract class DynamicMapsEngineLayerOptions extends jsw.TypedJsObject {
-  DynamicMapsEngineLayerOptions() : super();
+@anonymous
+abstract class _DynamicMapsEngineLayerOptions implements JsInterface {
+  external factory _DynamicMapsEngineLayerOptions();
 
   String accessToken;
   bool clickable;
@@ -23,5 +24,6 @@ part of google_maps_visualization;
   String layerKey;
   GMap map;
   String mapId;
+  num opacity;
   bool suppressInfoWindows;
 }

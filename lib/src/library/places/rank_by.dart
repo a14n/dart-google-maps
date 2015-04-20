@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,14 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-part of google_maps_places;
+part of google_maps.places;
 
-class RankBy extends jsw.IsEnum<String> {
-  static final _FINDER = new jsw.EnumFinder<String, RankBy>([DISTANCE, PROMINENCE]);
-  static RankBy $wrap(String jsValue) => _FINDER.find(jsValue);
-
-  static final DISTANCE= new RankBy._(maps['places']['RankBy']['DISTANCE']);
-  static final PROMINENCE= new RankBy._(maps['places']['RankBy']['PROMINENCE']);
-
-  RankBy._(String value) : super(value);
-}
+@JsEnum()
+@JsName('google.maps.places.RankBy')
+enum RankBy { DISTANCE, PROMINENCE }

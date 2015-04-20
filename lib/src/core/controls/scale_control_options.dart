@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,17 +18,5 @@ part of google_maps;
 abstract class _ScaleControlOptions implements JsInterface {
   external factory _ScaleControlOptions();
 
-  // TODO (aa) missing in doc... report ?
-  // ControlPosition position;
-  int _position;
-  ControlPosition get position => controlPositionCodec.decode(_position);
-  void set position(ControlPosition position) {
-    _position = controlPositionCodec.encode(position);
-  }
-  // ScaleControlStyle style;
-  String _style;
-  ScaleControlStyle get style => scaleControlStyleCodec.decode(_style);
-  void set style(ScaleControlStyle style) {
-    _style = scaleControlStyleCodec.encode(style);
-  }
+  ScaleControlStyle style;
 }

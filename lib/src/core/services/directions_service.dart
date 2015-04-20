@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,10 +14,10 @@
 
 part of google_maps;
 
-@wrapper abstract class DirectionsService extends jsw.TypedJsObject {
-  @generate DirectionsService();
+@JsName('google.maps.DirectionsService')
+abstract class _DirectionsService implements JsInterface {
+  external factory _DirectionsService();
 
-  void route(DirectionsRequest request, void callback(DirectionsResult results, DirectionsStatus status)) {
-    $unsafe.callMethod('route', [jsw.Serializable.$unwrap(request), (js.JsObject results, String status) => callback(DirectionsResult.$wrap(results), DirectionsStatus.$wrap(status))]);
-  }
+  void route(DirectionsRequest request,
+      callback(DirectionsResult p1, DirectionsStatus p2));
 }

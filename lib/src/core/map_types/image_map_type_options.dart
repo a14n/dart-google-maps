@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,15 +14,13 @@
 
 part of google_maps;
 
-typedef String GetTileUrl(Point point, num zoomLevel);
+@anonymous
+abstract class _ImageMapTypeOptions implements JsInterface {
+  external factory _ImageMapTypeOptions();
 
-@wrapper abstract class ImageMapTypeOptions extends jsw.TypedJsObject {
-  ImageMapTypeOptions();
+  String getTileUrl(Point coordinate, num zoom);
 
   String alt;
-  // REPORTED report wtf arg : http://code.google.com/p/gmaps-api-issues/issues/detail?id=4573
-  set getTileUrl(GetTileUrl callback) => $unsafe['getTileUrl'] = (js.JsObject point, num zoomLevel, [dynamic wtf]) => callback(Point.$wrap(point), zoomLevel);
-  GetTileUrl get getTileUrl => (Point point, num zoomLevel) => $unsafe.callMethod('getTileUrl', [jsw.Serializable.$unwrap(point), zoomLevel]);
   num maxZoom;
   num minZoom;
   String name;

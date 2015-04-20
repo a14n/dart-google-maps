@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,11 +16,11 @@ part of google_maps;
 
 @anonymous
 abstract class _MapPanes implements JsInterface {
-  html.Node floatPane;
-  html.Node floatShadow;
-  html.Node mapPane;
-  html.Node overlayImage;
-  html.Node overlayLayer;
-  html.Node overlayMouseTarget;
-  html.Node overlayShadow;
+  external factory _MapPanes();
+
+  Node floatPane;
+  Node mapPane;
+  Node markerLayer;
+  Node overlayLayer;
+  Node overlayMouseTarget;
 }

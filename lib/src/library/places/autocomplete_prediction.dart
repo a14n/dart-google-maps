@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,17 +12,23 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-part of google_maps_places;
+part of google_maps.places;
 
-@wrapper @namesWithUnderscores abstract class AutocompletePrediction extends jsw.TypedJsObject {
-  static AutocompletePrediction $wrap(js.JsObject jsObject) => null;
-
-  AutocompletePrediction() : super();
+@anonymous
+abstract class _AutocompletePrediction implements JsInterface {
+  external factory _AutocompletePrediction();
 
   String description;
-  String id;
-  List<PredictionSubstring> matchedSubstrings;
-  String reference;
+  List<PredictionSubstring> _matched_substrings;
+  List<PredictionSubstring> get matchedSubstrings => _matched_substrings;
+  void set matchedSubstrings(List<PredictionSubstring> matchedSubstrings) {
+    _matched_substrings = matchedSubstrings;
+  }
+  String _place_id;
+  String get placeId => _place_id;
+  void set placeId(String placeId) {
+    _place_id = placeId;
+  }
   List<PredictionTerm> terms;
   List<String> types;
 }

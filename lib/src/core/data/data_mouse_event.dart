@@ -1,4 +1,4 @@
-// Copyright (c) 2013, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,15 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-part of google_maps_visualization;
+part of google_maps;
 
-@wrapper abstract class DemographicsLayerOptions extends jsw.TypedJsObject {
-  DemographicsLayerOptions() : super();
+@anonymous
+abstract class _DataMouseEvent extends MouseEvent {
+  external factory _DataMouseEvent();
 
-  bool clickable;
-  GMap map;
-  DemographicsQuery query;
-  List<DemographicsStyle> style;
-  // TODO bad type in doc
-  bool suppressInfoWindows;
+  DataFeature feature;
 }

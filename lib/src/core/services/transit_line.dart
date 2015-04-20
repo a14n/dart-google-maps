@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,15 +14,24 @@
 
 part of google_maps;
 
-@wrapper @namesWithUnderscores abstract class TransitLine extends jsw.TypedJsObject {
-  TransitLine();
+@anonymous
+abstract class _TransitLine implements JsInterface {
+  external factory _TransitLine();
 
   List<TransitAgency> agencies;
   String color;
   String icon;
   String name;
-  String shortName;
-  String textColor;
+  String _short_name;
+  String get shortName => _short_name;
+  void set shortName(String shortName) {
+    _short_name = shortName;
+  }
+  String _text_color;
+  String get textColor => _text_color;
+  void set textColor(String textColor) {
+    _text_color = textColor;
+  }
   String url;
   TransitVehicle vehicle;
 }

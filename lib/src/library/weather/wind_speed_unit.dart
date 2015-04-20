@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,15 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-part of google_maps_weather;
+part of google_maps.weather;
 
-class WindSpeedUnit extends jsw.IsEnum<String> {
-  static final _FINDER = new jsw.EnumFinder<String, WindSpeedUnit>([KILOMETERS_PER_HOUR, METERS_PER_SECOND, MILES_PER_HOUR]);
-  static WindSpeedUnit $wrap(String jsValue) => _FINDER.find(jsValue);
-
-  static final KILOMETERS_PER_HOUR = new WindSpeedUnit._(maps['weather']['WindSpeedUnit']['KILOMETERS_PER_HOUR']);
-  static final METERS_PER_SECOND = new WindSpeedUnit._(maps['weather']['WindSpeedUnit']['METERS_PER_SECOND']);
-  static final MILES_PER_HOUR = new WindSpeedUnit._(maps['weather']['WindSpeedUnit']['MILES_PER_HOUR']);
-
-  WindSpeedUnit._(String value) : super(value);
-}
+@JsEnum()
+@JsName('google.maps.weather.WindSpeedUnit')
+enum WindSpeedUnit { KILOMETERS_PER_HOUR, METERS_PER_SECOND, MILES_PER_HOUR }

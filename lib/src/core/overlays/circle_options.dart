@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -28,13 +28,7 @@ abstract class _CircleOptions implements JsInterface {
   num radius;
   String strokeColor;
   num strokeOpacity;
-  // StrokePosition strokePosition;
-  int _strokePosition;
-  StrokePosition get strokePosition =>
-      strokePositionCodec.decode(_strokePosition);
-  void set strokePosition(StrokePosition strokePosition) {
-    _strokePosition = strokePositionCodec.encode(strokePosition);
-  }
+  StrokePosition strokePosition;
   num strokeWeight;
   bool visible;
   num zIndex;

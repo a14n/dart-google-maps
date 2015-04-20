@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,8 +14,35 @@
 
 part of google_maps;
 
+@JsName('google.maps.InfoWindow')
 abstract class _InfoWindow extends MVCObject {
   external factory _InfoWindow([InfoWindowOptions opts]);
+
+  void close();
+  dynamic /*String|Node*/ get content => _getContent();
+  dynamic /*String|Node*/ _getContent();
+  LatLng get position => _getPosition();
+  LatLng _getPosition();
+  num get zIndex => _getZIndex();
+  num _getZIndex();
+  void open([dynamic /*GMap|StreetViewPanorama*/ map, MVCObject anchor]) {
+    _open((new ChainedCodec()
+      ..add(new JsInterfaceCodec<GMap>((o) => new GMap.created(o),
+          (o) => o != null && o.instanceof(getPath("google.maps.Map"))))
+      ..add(new JsInterfaceCodec<StreetViewPanorama>(
+          (o) => new StreetViewPanorama.created(o), (o) => o != null &&
+                  o.instanceof(getPath("google.maps.StreetViewPanorama")))))
+            .encode(map), anchor);
+  }
+  _open([dynamic /*GMap|StreetViewPanorama*/ map, MVCObject anchor]);
+  void set content(dynamic /*String|Node*/ content) => _setContent(content);
+  void _setContent(dynamic /*String|Node*/ content);
+  void set options(InfoWindowOptions options) => _setOptions(options);
+  void _setOptions(InfoWindowOptions options);
+  void set position(LatLng position) => _setPosition(position);
+  void _setPosition(LatLng position);
+  void set zIndex(num zIndex) => _setZIndex(zIndex);
+  void _setZIndex(num zIndex);
 
   Stream get onCloseclick => getStream(this, #onCloseclick, "closeclick");
   Stream get onContentChanged =>
@@ -25,21 +52,4 @@ abstract class _InfoWindow extends MVCObject {
       getStream(this, #onPositionChanged, "position_changed");
   Stream get onZindexChanged =>
       getStream(this, #onZindexChanged, "zindex_changed");
-
-  void close();
-  /*String|html.Node*/ get content => _getContent();
-  _getContent();
-  LatLng get position => _getPosition();
-  LatLng _getPosition();
-  num get zIndex => _getZIndex();
-  num _getZIndex();
-  void open([/*GMap|StreetViewPanorama*/ map, MVCObject anchor]);
-  void set content(/*String|html.Node*/ content) => _setContent(content);
-  void _setContent(/*String|html.Node*/ content);
-  void set options(InfoWindowOptions options) => _setOptions(options);
-  void _setOptions(InfoWindowOptions options);
-  void set position(LatLng position) => _setPosition(position);
-  void _setPosition(LatLng position);
-  void set zIndex(num zIndex) => _setZIndex(zIndex);
-  void _setZIndex(num zIndex);
 }

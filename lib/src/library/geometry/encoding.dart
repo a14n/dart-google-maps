@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,13 +12,21 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-part of google_maps_geometry;
+part of google_maps.geometry;
 
-final Encoding encoding = new Encoding();
-
-@wrapper class Encoding extends jsw.TypedJsObject {
-  Encoding() : super.fromJsObject(maps['geometry']['encoding']);
-
-  @generate List<LatLng> decodePath(String encodedPath) => null;
-  String encodePath(dynamic/*Array.<LatLng>|MVCArray.<LatLng>*/ path) => $unsafe.callMethod('encodePath', [path == null ? null : path is js.JsArray ? path : jsw.jsify(path)]);
+final encoding = new Encoding.created(getPath('google.maps.geometry.encoding'));
+abstract class _Encoding implements JsInterface {
+  List<LatLng> decodePath(String encodedPath);
+  String encodePath(dynamic /*List<LatLng>|MVCArray<LatLng>*/ path) =>
+      _encodePath((new ChainedCodec()
+    ..add(new JsListCodec<LatLng>(new JsInterfaceCodec<LatLng>(
+        (o) => new LatLng.created(o),
+        (o) => o != null && o.instanceof(getPath("google.maps.LatLng")))))
+    ..add(
+        new JsInterfaceCodec<MVCArray<LatLng>>(
+            (o) => new MVCArray<LatLng>.created(o, new JsInterfaceCodec<LatLng>(
+                    (o) => new LatLng.created(o), (o) => o != null &&
+                        o.instanceof(getPath("google.maps.LatLng")))))))
+              .encode(path));
+  _encodePath(dynamic /*List<LatLng>|MVCArray<LatLng>*/ path);
 }

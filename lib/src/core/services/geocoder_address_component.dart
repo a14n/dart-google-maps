@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,10 +14,19 @@
 
 part of google_maps;
 
-@wrapper @namesWithUnderscores abstract class GeocoderAddressComponent extends jsw.TypedJsObject {
-  GeocoderAddressComponent();
+@anonymous
+abstract class _GeocoderAddressComponent implements JsInterface {
+  external factory _GeocoderAddressComponent();
 
-  String longName;
-  String shortName;
+  String _long_name;
+  String get longName => _long_name;
+  void set longName(String longName) {
+    _long_name = longName;
+  }
+  String _short_name;
+  String get shortName => _short_name;
+  void set shortName(String shortName) {
+    _short_name = shortName;
+  }
   List<String> types;
 }

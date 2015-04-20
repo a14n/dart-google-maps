@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,13 +14,16 @@
 
 part of google_maps;
 
-class MapTypeStyleElementType extends jsw.IsEnum<String> {
-  static final _FINDER = new jsw.EnumFinder<String, MapTypeStyleElementType>([ALL, GEOMETRY, LABELS]);
-  static MapTypeStyleElementType $wrap(String jsValue) => _FINDER.find(jsValue);
-
-  static final ALL = new MapTypeStyleElementType._("all");
-  static final GEOMETRY = new MapTypeStyleElementType._("geometry");
-  static final LABELS = new MapTypeStyleElementType._("labels");
-
-  MapTypeStyleElementType._(String value) : super(value);
+@JsEnum()
+@JsName('google.maps.MapTypeStyleElementType')
+enum MapTypeStyleElementType {
+  ALL,
+  GEOMETRY,
+  GEOMETRY_FILL,
+  GEOMETRY_STROKE,
+  LABELS,
+  LABELS_ICON,
+  LABELS_TEXT,
+  LABELS_TEXT_FILL,
+  LABELS_TEXT_STROKE
 }

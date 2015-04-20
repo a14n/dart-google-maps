@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,14 +14,6 @@
 
 part of google_maps;
 
-class TravelMode extends jsw.IsEnum<String> {
-  static final _FINDER = new jsw.EnumFinder<String, TravelMode>([BICYCLING, DRIVING, TRANSIT, WALKING]);
-  static TravelMode $wrap(String jsValue) => _FINDER.find(jsValue);
-
-  static final BICYCLING = new TravelMode._(maps['TravelMode']['BICYCLING']);
-  static final DRIVING = new TravelMode._(maps['TravelMode']['DRIVING']);
-  static final TRANSIT = new TravelMode._(maps['TravelMode']['TRANSIT']);
-  static final WALKING = new TravelMode._(maps['TravelMode']['WALKING']);
-
-  TravelMode._(String value) : super(value);
-}
+@JsEnum()
+@JsName('google.maps.TravelMode')
+enum TravelMode { BICYCLING, DRIVING, TRANSIT, WALKING }

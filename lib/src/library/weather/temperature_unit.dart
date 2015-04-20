@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,14 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-part of google_maps_weather;
+part of google_maps.weather;
 
-class TemperatureUnit extends jsw.IsEnum<String> {
-  static final _FINDER = new jsw.EnumFinder<String, TemperatureUnit>([CELSIUS, FAHRENHEIT]);
-  static TemperatureUnit $wrap(String jsValue) => _FINDER.find(jsValue);
-
-  static final CELSIUS = new TemperatureUnit._(maps['weather']['TemperatureUnit']['CELSIUS']);
-  static final FAHRENHEIT = new TemperatureUnit._(maps['weather']['TemperatureUnit']['FAHRENHEIT']);
-
-  TemperatureUnit._(String value) : super(value);
-}
+@JsEnum()
+@JsName('google.maps.weather.TemperatureUnit')
+enum TemperatureUnit { CELSIUS, FAHRENHEIT }

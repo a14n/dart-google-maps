@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,13 +14,10 @@
 
 part of google_maps;
 
-@wrapper abstract class StreetViewService extends jsw.TypedJsObject {
-  @generate StreetViewService();
-
-  void getPanoramaById(String pano, void callback(StreetViewPanoramaData streetViewPanoramaData, StreetViewStatus streetViewStatus)) {
-    $unsafe.callMethod('getPanoramaById', [pano, (js.JsObject streetViewPanoramaData, String streetViewStatus) => callback(StreetViewPanoramaData.$wrap(streetViewPanoramaData), StreetViewStatus.$wrap(streetViewStatus))]);
-  }
-  void getPanoramaByLocation(LatLng latlng, num radius, void callback(StreetViewPanoramaData streetViewPanoramaData, StreetViewStatus streetViewStatus)) {
-    $unsafe.callMethod('getPanoramaByLocation', [jsw.Serializable.$unwrap(latlng), radius, (js.JsObject streetViewPanoramaData, String streetViewStatus) => callback(StreetViewPanoramaData.$wrap(streetViewPanoramaData), StreetViewStatus.$wrap(streetViewStatus))]);
-  }
+@JsName('google.maps.StreetViewService')
+abstract class _StreetViewService implements JsInterface {
+  void getPanoramaById(
+      String pano, callback(StreetViewPanoramaData p1, StreetViewStatus p2));
+  void getPanoramaByLocation(LatLng latlng, num radius,
+      callback(StreetViewPanoramaData p1, StreetViewStatus p2));
 }

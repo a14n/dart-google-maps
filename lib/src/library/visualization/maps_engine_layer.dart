@@ -1,4 +1,4 @@
-// Copyright (c) 2013, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,35 +12,47 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-part of google_maps_visualization;
+part of google_maps.visualization;
 
-@wrapper @forMethods @skipConstructor abstract class MapsEngineLayer extends MVCObject {
-  jsw.SubscribeStreamProvider<MapsEngineMouseEvent> _onClick;
-  jsw.SubscribeStreamProvider _onPropertiesChanged;
-  jsw.SubscribeStreamProvider _onStatusChanged;
+@JsName('google.maps.visualization.MapsEngineLayer')
+abstract class _MapsEngineLayer extends MVCObject {
+  external factory _MapsEngineLayer(MapsEngineLayerOptions options);
 
-  MapsEngineLayer(MapsEngineLayerOptions opts) : super(maps['visualization']['MapsEngineLayer'], [opts]) { _initStreams(); }
-  MapsEngineLayer.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) { _initStreams(); }
+  String get layerId => _getLayerId();
+  String _getLayerId();
+  String get layerKey => _getLayerKey();
+  String _getLayerKey();
+  GMap get map => _getMap();
+  GMap _getMap();
+  String get mapId => _getMapId();
+  String _getMapId();
+  num get opacity => _getOpacity();
+  num _getOpacity();
+  MapsEngineLayerProperties get properties => _getProperties();
+  MapsEngineLayerProperties _getProperties();
+  MapsEngineStatus get status => _getStatus();
+  MapsEngineStatus _getStatus();
+  num get zIndex => _getZIndex();
+  num _getZIndex();
+  void set layerId(String layerId) => _setLayerId(layerId);
+  void _setLayerId(String layerId);
+  void set layerKey(String layerKey) => _setLayerKey(layerKey);
+  void _setLayerKey(String layerKey);
+  void set map(GMap map) => _setMap(map);
+  void _setMap(GMap map);
+  void set mapId(String mapId) => _setMapId(mapId);
+  void _setMapId(String mapId);
+  void set opacity(num opacity) => _setOpacity(opacity);
+  void _setOpacity(num opacity);
+  void set options(MapsEngineLayerOptions options) => _setOptions(options);
+  void _setOptions(MapsEngineLayerOptions options);
+  void set zIndex(num zIndex) => _setZIndex(zIndex);
+  void _setZIndex(num zIndex);
 
-  void _initStreams() {
-    _onClick = event.getStreamProviderFor(this, "click", MapsEngineMouseEvent.$wrap);
-    _onPropertiesChanged = event.getStreamProviderFor(this, "properties_changed");
-    _onStatusChanged = event.getStreamProviderFor(this, "status_changed");
-  }
-
-  Stream<MapsEngineMouseEvent> get onClick => _onClick.stream;
-  Stream get onPropertiesChanged => _onPropertiesChanged.stream;
-  Stream get onStatusChanged => _onStatusChanged.stream;
-
-  String get layerId;
-  String get layerKey;
-  GMap get map;
-  String get mapId;
-  MapsEngineLayerProperties get properties;
-  MapsEngineStatus get status;
-  set layerId(String layerId);
-  set layerKey(String layerKey);
-  set map(GMap map);
-  set mapId(String mapId);
-  set options(MapsEngineLayerOptions options);
+  Stream<MapsEngineMouseEvent> get onClick => getStream(this, #onClick, "click",
+      (JsObject o) => new MapsEngineMouseEvent.created(o));
+  Stream get onPropertiesChanged =>
+      getStream(this, #onPropertiesChanged, "properties_changed");
+  Stream get onStatusChanged =>
+      getStream(this, #onStatusChanged, "status_changed");
 }

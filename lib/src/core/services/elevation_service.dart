@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,13 +14,12 @@
 
 part of google_maps;
 
-@wrapper abstract class ElevationService extends jsw.TypedJsObject {
-  @generate ElevationService();
+@JsName('google.maps.ElevationService')
+abstract class _ElevationService implements JsInterface {
+  external factory _ElevationService();
 
-  void getElevationAlongPath(PathElevationRequest request, void callback(List<ElevationResult> results, ElevationStatus status)) {
-    $unsafe.callMethod('getElevationAlongPath', [jsw.Serializable.$unwrap(request), (js.JsObject results, String status) => callback(jsw.TypedJsArray.$wrapSerializables(results, ElevationResult.$wrap), ElevationStatus.$wrap(status))]);
-  }
-  void getElevationForLocations(LocationElevationRequest request, void callback(List<ElevationResult> results, ElevationStatus status)) {
-    $unsafe.callMethod('getElevationForLocations', [jsw.Serializable.$unwrap(request), (js.JsObject results, String status) => callback(jsw.TypedJsArray.$wrapSerializables(results, ElevationResult.$wrap), ElevationStatus.$wrap(status))]);
-  }
+  void getElevationAlongPath(PathElevationRequest request,
+      callback(List<ElevationResult> p1, ElevationStatus p2));
+  void getElevationForLocations(LocationElevationRequest request,
+      callback(List<ElevationResult> p1, ElevationStatus p2));
 }

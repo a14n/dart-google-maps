@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -21,20 +21,34 @@ abstract class _GSymbol implements JsInterface {
   Point anchor;
   String fillColor;
   num fillOpacity;
-  // SymbolPath|String path
   dynamic _path;
-  /*SymbolPath|String*/ get path {
-    final value = _path;
-    if (value == null) return null;
-    if (value is int) return symbolPathCodec.decode(value);
-    if (value is String) return value;
-    throw 'bad type';
-  }
-  void set path(/*SymbolPath|String*/ path) {
-    if (path == null) _path = null;
-    else if (path is SymbolPath) _path = symbolPathCodec.encode(path);
-    else if (path is String) _path = path;
-    else throw 'bad type';
+  dynamic /*SymbolPath|String*/ get path => (new ChainedCodec()
+    ..add(new BiMapCodec<SymbolPath, dynamic>({
+      SymbolPath.BACKWARD_CLOSED_ARROW:
+          getPath('google.maps.SymbolPath')['BACKWARD_CLOSED_ARROW'],
+      SymbolPath.BACKWARD_OPEN_ARROW:
+          getPath('google.maps.SymbolPath')['BACKWARD_OPEN_ARROW'],
+      SymbolPath.CIRCLE: getPath('google.maps.SymbolPath')['CIRCLE'],
+      SymbolPath.FORWARD_CLOSED_ARROW:
+          getPath('google.maps.SymbolPath')['FORWARD_CLOSED_ARROW'],
+      SymbolPath.FORWARD_OPEN_ARROW:
+          getPath('google.maps.SymbolPath')['FORWARD_OPEN_ARROW']
+    }))
+    ..add(new IdentityCodec<String>())).decode(_path);
+  void set path(dynamic /*SymbolPath|String*/ path) {
+    _path = (new ChainedCodec()
+      ..add(new BiMapCodec<SymbolPath, dynamic>({
+        SymbolPath.BACKWARD_CLOSED_ARROW:
+            getPath('google.maps.SymbolPath')['BACKWARD_CLOSED_ARROW'],
+        SymbolPath.BACKWARD_OPEN_ARROW:
+            getPath('google.maps.SymbolPath')['BACKWARD_OPEN_ARROW'],
+        SymbolPath.CIRCLE: getPath('google.maps.SymbolPath')['CIRCLE'],
+        SymbolPath.FORWARD_CLOSED_ARROW:
+            getPath('google.maps.SymbolPath')['FORWARD_CLOSED_ARROW'],
+        SymbolPath.FORWARD_OPEN_ARROW:
+            getPath('google.maps.SymbolPath')['FORWARD_OPEN_ARROW']
+      }))
+      ..add(new IdentityCodec<String>())).encode(path);
   }
   num rotation;
   num scale;

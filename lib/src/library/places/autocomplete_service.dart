@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,15 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-part of google_maps_places;
+part of google_maps.places;
 
-@wrapper abstract class AutocompleteService extends jsw.TypedJsObject {
-  AutocompleteService() : super(maps['places']['AutocompleteService']);
+@JsName('google.maps.places.AutocompleteService')
+abstract class _AutocompleteService implements JsInterface {
+  external factory _AutocompleteService();
 
-  void getPlacePredictions(AutocompletionRequest request, void callback(List<AutocompletePrediction> results, PlacesServiceStatus status)) {
-    $unsafe.callMethod('getPlacePredictions', [jsw.Serializable.$unwrap(request), (js.JsObject results, String status) => callback(jsw.TypedJsArray.$wrapSerializables(results, AutocompletePrediction.$wrap), PlacesServiceStatus.$wrap(status))]);
-  }
-  void getQueryPredictions(QueryAutocompletionRequest request, void callback(List<QueryAutocompletePrediction> results, PlacesServiceStatus status)) {
-    $unsafe.callMethod('getQueryPredictions', [jsw.Serializable.$unwrap(request), (js.JsObject results, String status) => callback(jsw.TypedJsArray.$wrapSerializables(results, QueryAutocompletionRequest.$wrap), PlacesServiceStatus.$wrap(status))]);
-  }
+  void getPlacePredictions(AutocompletionRequest request,
+      callback(List<AutocompletePrediction> p1, PlacesServiceStatus p2));
+  void getQueryPredictions(QueryAutocompletionRequest request,
+      callback(List<QueryAutocompletePrediction> p1, PlacesServiceStatus p2));
 }

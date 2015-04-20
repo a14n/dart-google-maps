@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,15 +14,38 @@
 
 part of google_maps;
 
-@wrapper abstract class DirectionsRequest extends jsw.TypedJsObject {
-  DirectionsRequest();
+@anonymous
+abstract class _DirectionsRequest implements JsInterface {
+  external factory _DirectionsRequest();
 
+  bool avoidFerries;
   bool avoidHighways;
   bool avoidTolls;
-  @Types(const [LatLng,String]) dynamic destination;
+  dynamic _destination;
+  dynamic /*LatLng|String*/ get destination => (new ChainedCodec()
+    ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
+        (o) => o != null && o.instanceof(getPath("google.maps.LatLng"))))
+    ..add(new IdentityCodec<String>())).decode(_destination);
+  void set destination(dynamic /*LatLng|String*/ destination) {
+    _destination = (new ChainedCodec()
+      ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
+          (o) => o != null && o.instanceof(getPath("google.maps.LatLng"))))
+      ..add(new IdentityCodec<String>())).encode(destination);
+  }
   bool durationInTraffic;
   bool optimizeWaypoints;
-  @Types(const [LatLng,String]) dynamic origin;
+  dynamic _origin;
+  dynamic /*LatLng|String*/ get origin => (new ChainedCodec()
+    ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
+        (o) => o != null && o.instanceof(getPath("google.maps.LatLng"))))
+    ..add(new IdentityCodec<String>())).decode(_origin);
+  void set origin(dynamic /*LatLng|String*/ origin) {
+    _origin = (new ChainedCodec()
+      ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
+          (o) => o != null && o.instanceof(getPath("google.maps.LatLng"))))
+      ..add(new IdentityCodec<String>())).encode(origin);
+  }
+  bool provideRouteAlternatives;
   String region;
   TransitOptions transitOptions;
   TravelMode travelMode;

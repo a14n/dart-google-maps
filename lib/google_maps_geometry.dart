@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,15 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 library google_maps_geometry;
 
-import 'dart:js' as js;
-
-import 'package:google_maps/google_maps.dart';
-import 'package:js_wrapping_generator/dart_generator.dart';
-import 'package:js_wrapping/js_wrapping.dart' as jsw;
-
-part 'src/library/geometry/encoding.dart';
-part 'src/library/geometry/spherical.dart';
-part 'src/library/geometry/poly.dart';
+export 'src/google_maps_geometry.dart';

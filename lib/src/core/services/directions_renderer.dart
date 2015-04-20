@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,25 +14,30 @@
 
 part of google_maps;
 
-@wrapper @forMethods @skipConstructor abstract class DirectionsRenderer extends MVCObject {
-  jsw.SubscribeStreamProvider _onDirectionsChanged;
+@JsName('google.maps.DirectionsRenderer')
+abstract class _DirectionsRenderer extends MVCObject {
+  external factory _DirectionsRenderer([DirectionsRendererOptions opts]);
 
-  @generate DirectionsRenderer([DirectionsRendererOptions opts]) { _initStreams(); }
-  DirectionsRenderer.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) { _initStreams(); }
+  DirectionsResult get directions => _getDirections();
+  DirectionsResult _getDirections();
+  GMap get map => _getMap();
+  GMap _getMap();
+  Node get panel => _getPanel();
+  Node _getPanel();
+  num get routeIndex => _getRouteIndex();
+  num _getRouteIndex();
+  void set directions(DirectionsResult directions) =>
+      _setDirections(directions);
+  void _setDirections(DirectionsResult directions);
+  void set map(GMap map) => _setMap(map);
+  void _setMap(GMap map);
+  void set options(DirectionsRendererOptions options) => _setOptions(options);
+  void _setOptions(DirectionsRendererOptions options);
+  void set panel(Node panel) => _setPanel(panel);
+  void _setPanel(Node panel);
+  void set routeIndex(num routeIndex) => _setRouteIndex(routeIndex);
+  void _setRouteIndex(num routeIndex);
 
-  void _initStreams() {
-    _onDirectionsChanged = event.getStreamProviderFor(this, "directions_changed");
-  }
-
-  Stream get onDirectionsChanged => _onDirectionsChanged.stream;
-
-  DirectionsResult get directions;
-  GMap get map;
-  html.Node get panel;
-  num get routeIndex;
-  set directions(DirectionsResult directions);
-  set map(GMap map);
-  set options(DirectionsRendererOptions options);
-  set panel(html.Node panel);
-  set routeIndex(num routeIndex);
+  Stream get onDirectionsChanged =>
+      getStream(this, #onDirectionsChanged, "directions_changed");
 }

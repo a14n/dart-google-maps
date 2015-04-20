@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,10 +14,6 @@
 
 part of google_maps;
 
-enum ScaleControlStyle { DEFAULT, }
-
-final scaleControlStyleCodec = new BiMapCodec<ScaleControlStyle, String>(
-    <ScaleControlStyle, String>{
-  ScaleControlStyle.DEFAULT:
-      getPath('google.maps.ScaleControlStyle')['DEFAULT'],
-});
+@JsEnum()
+@JsName('google.maps.ScaleControlStyle')
+enum ScaleControlStyle { DEFAULT }

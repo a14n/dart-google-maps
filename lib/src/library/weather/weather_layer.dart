@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,21 +12,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-part of google_maps_weather;
+part of google_maps.weather;
 
-@wrapper @forMethods @skipConstructor abstract class WeatherLayer extends MVCObject {
-  jsw.SubscribeStreamProvider<WeatherMouseEvent> _onClick;
+@JsName('google.maps.weather.WeatherLayer')
+abstract class _WeatherLayer extends MVCObject {
+  external factory _WeatherLayer([WeatherLayerOptions opts]);
 
-  WeatherLayer([WeatherLayerOptions opts]) : super(maps['weather']['WeatherLayer'], [jsw.Serializable.$unwrap(opts)]) { _initStreams(); }
-  WeatherLayer.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) { _initStreams(); }
+  GMap get map => _getMap();
+  GMap _getMap();
+  void set map(GMap map) => _setMap(map);
+  void _setMap(GMap map);
+  void set options(WeatherLayerOptions options) => _setOptions(options);
+  void _setOptions(WeatherLayerOptions options);
 
-  void _initStreams() {
-    _onClick = event.getStreamProviderFor(this, "click", WeatherMouseEvent.$wrap);
-  }
-
-  Stream<WeatherMouseEvent> get onClick => _onClick.stream;
-
-  GMap get map;
-  set map(GMap map);
-  set options(WeatherLayerOptions options);
+  Stream<WeatherMouseEvent> get onClick => getStream(this, #onClick, "click",
+      (JsObject o) => new WeatherMouseEvent.created(o));
 }

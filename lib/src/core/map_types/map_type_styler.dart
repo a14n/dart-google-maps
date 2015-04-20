@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,24 +14,20 @@
 
 part of google_maps;
 
-@wrapper abstract class MapTypeStyler extends jsw.TypedJsObject {
-  MapTypeStyler();
+@anonymous
+abstract class _MapTypeStyler implements JsInterface {
+  external factory _MapTypeStyler();
 
+  String color;
   num gamma;
   String hue;
-  bool invertLightness;
+  bool _invert_lightness;
+  bool get invertLightness => _invert_lightness;
+  void set invertLightness(bool invertLightness) {
+    _invert_lightness = invertLightness;
+  }
   num lightness;
   num saturation;
-  MapTypeStylerVisibility visibility;
-}
-
-class MapTypeStylerVisibility extends jsw.IsEnum<String> {
-  static final _FINDER = new jsw.EnumFinder<String, MapTypeStylerVisibility>([ON, OFF, SIMPLIFIED]);
-  static MapTypeStylerVisibility $wrap(String jsValue) => _FINDER.find(jsValue);
-
-  static final ON = new MapTypeStylerVisibility._("on");
-  static final OFF = new MapTypeStylerVisibility._("off");
-  static final SIMPLIFIED = new MapTypeStylerVisibility._("simplified");
-
-  MapTypeStylerVisibility._(String value) : super(value);
+  String visibility;
+  num weight;
 }

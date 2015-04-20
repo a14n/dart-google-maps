@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,13 +14,30 @@
 
 part of google_maps;
 
-@wrapper @namesWithUnderscores abstract class GeocoderResult extends jsw.TypedJsObject {
-  static GeocoderResult $wrap(js.JsObject jsObject) => null;
+@anonymous
+abstract class _GeocoderResult implements JsInterface {
+  external factory _GeocoderResult();
 
-  GeocoderResult();
-
-  List<GeocoderAddressComponent> addressComponents;
-  String formattedAddress;
+  List<GeocoderAddressComponent> _address_components;
+  List<GeocoderAddressComponent> get addressComponents => _address_components;
+  void set addressComponents(List<GeocoderAddressComponent> addressComponents) {
+    _address_components = addressComponents;
+  }
+  String _formatted_address;
+  String get formattedAddress => _formatted_address;
+  void set formattedAddress(String formattedAddress) {
+    _formatted_address = formattedAddress;
+  }
   GeocoderGeometry geometry;
+  bool _partial_match;
+  bool get partialMatch => _partial_match;
+  void set partialMatch(bool partialMatch) {
+    _partial_match = partialMatch;
+  }
+  List<String> _postcode_localities;
+  List<String> get postcodeLocalities => _postcode_localities;
+  void set postcodeLocalities(List<String> postcodeLocalities) {
+    _postcode_localities = postcodeLocalities;
+  }
   List<String> types;
 }

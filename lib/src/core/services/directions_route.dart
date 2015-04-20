@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,13 +14,28 @@
 
 part of google_maps;
 
-@wrapper @namesWithUnderscores abstract class DirectionsRoute extends jsw.TypedJsObject {
-  DirectionsRoute();
+@anonymous
+abstract class _DirectionsRoute implements JsInterface {
+  external factory _DirectionsRoute();
 
   LatLngBounds bounds;
   String copyrights;
+  TransitFare fare;
   List<DirectionsLeg> legs;
-  List<LatLng> overviewPath;
+  List<LatLng> _overview_path;
+  List<LatLng> get overviewPath => _overview_path;
+  void set overviewPath(List<LatLng> overviewPath) {
+    _overview_path = overviewPath;
+  }
+  String _overview_polyline;
+  String get overviewPolyline => _overview_polyline;
+  void set overviewPolyline(String overviewPolyline) {
+    _overview_polyline = overviewPolyline;
+  }
   List<String> warnings;
-  List<num> waypointOrder;
+  List<num> _waypoint_order;
+  List<num> get waypointOrder => _waypoint_order;
+  void set waypointOrder(List<num> waypointOrder) {
+    _waypoint_order = waypointOrder;
+  }
 }

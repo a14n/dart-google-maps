@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,24 +14,28 @@
 
 part of google_maps;
 
-@JsName('Map')
-abstract class _GMap implements JsInterface {
-  external factory _GMap(html.Node mapDiv, [MapOptions opts]);
-
-  // methods
+@JsName('google.maps.Map')
+abstract class _GMap extends MVCObject {
+  external factory _GMap(Node mapDiv, [MapOptions opts]);
 
   void fitBounds(LatLngBounds bounds);
   LatLngBounds get bounds => _getBounds();
   LatLngBounds _getBounds();
   LatLng get center => _getCenter();
   LatLng _getCenter();
-  html.Node get div => _getDiv();
-  html.Node _getDiv();
+  Node get div => _getDiv();
+  Node _getDiv();
   num get heading => _getHeading();
   num _getHeading();
-  // TODO (aa) MapTypeId|String mapTypeId;
-  dynamic get mapTypeId => mapTypeIdOrStringCodec.decode(_getMapTypeId());
-  String _getMapTypeId();
+  dynamic /*MapTypeId|String*/ get mapTypeId => (new ChainedCodec()
+    ..add(new BiMapCodec<MapTypeId, dynamic>({
+      MapTypeId.HYBRID: getPath('google.maps.MapTypeId')['HYBRID'],
+      MapTypeId.ROADMAP: getPath('google.maps.MapTypeId')['ROADMAP'],
+      MapTypeId.SATELLITE: getPath('google.maps.MapTypeId')['SATELLITE'],
+      MapTypeId.TERRAIN: getPath('google.maps.MapTypeId')['TERRAIN']
+    }))
+    ..add(new IdentityCodec<String>())).decode(_getMapTypeId());
+  _getMapTypeId();
   Projection get projection => _getProjection();
   Projection _getProjection();
   StreetViewPanorama get streetView => _getStreetView();
@@ -43,14 +47,20 @@ abstract class _GMap implements JsInterface {
   void panBy(num x, num y);
   void panTo(LatLng latLng);
   void panToBounds(LatLngBounds latLngBounds);
-  void set center(LatLng latLng) => _setCenter(latLng);
-  void _setCenter(LatLng latLng);
+  void set center(LatLng latlng) => _setCenter(latlng);
+  void _setCenter(LatLng latlng);
   void set heading(num heading) => _setHeading(heading);
   void _setHeading(num heading);
-  // TODO (aa) MapTypeId|String mapTypeId;
-  void set mapTypeId(dynamic mapTypeId) =>
-      _setMapTypeId(mapTypeIdOrStringCodec.encode(mapTypeId));
-  void _setMapTypeId(String mapTypeId);
+  void set mapTypeId(dynamic /*MapTypeId|String*/ mapTypeId) => _setMapTypeId(
+      (new ChainedCodec()
+    ..add(new BiMapCodec<MapTypeId, dynamic>({
+      MapTypeId.HYBRID: getPath('google.maps.MapTypeId')['HYBRID'],
+      MapTypeId.ROADMAP: getPath('google.maps.MapTypeId')['ROADMAP'],
+      MapTypeId.SATELLITE: getPath('google.maps.MapTypeId')['SATELLITE'],
+      MapTypeId.TERRAIN: getPath('google.maps.MapTypeId')['TERRAIN']
+    }))
+    ..add(new IdentityCodec<String>())).encode(mapTypeId));
+  void _setMapTypeId(dynamic /*MapTypeId|String*/ mapTypeId);
   void set options(MapOptions options) => _setOptions(options);
   void _setOptions(MapOptions options);
   void set streetView(StreetViewPanorama panorama) => _setStreetView(panorama);
@@ -60,29 +70,28 @@ abstract class _GMap implements JsInterface {
   void set zoom(num zoom) => _setZoom(zoom);
   void _setZoom(num zoom);
 
-  // properties
-
   Controls controls;
   Data data;
   MapTypeRegistry mapTypes;
-  MVCArray<MapType> get overlayMapTypes => ((o) {
-    if (o == null) return null;
-    return new MVCArray.created(
-        o, new JsInterfaceCodec((o) => new MapType.created(o)));
-  })(_overlayMapTypes);
-  JsObject get _overlayMapTypes;
-  set overlayMapTypes(MVCArray<MapType> overlayMapTypes);
-
-  // events
-
+  dynamic _overlayMapTypes;
+  MVCArray<MapType> get overlayMapTypes =>
+      (new JsInterfaceCodec<MVCArray<MapType>>(
+          (o) => new MVCArray<MapType>.created(o, new JsInterfaceCodec<MapType>(
+              (o) => new MapType.created(o))))).decode(_overlayMapTypes);
+  void set overlayMapTypes(MVCArray<MapType> overlayMapTypes) {
+    _overlayMapTypes = (new JsInterfaceCodec<MVCArray<MapType>>(
+            (o) => new MVCArray<MapType>.created(o,
+                new JsInterfaceCodec<MapType>((o) => new MapType.created(o)))))
+        .encode(overlayMapTypes);
+  }
   Stream get onBoundsChanged =>
       getStream(this, #onBoundsChanged, "bounds_changed");
   Stream get onCenterChanged =>
       getStream(this, #onCenterChanged, "center_changed");
   Stream<MouseEvent> get onClick => getStream(
       this, #onClick, "click", (JsObject o) => new MouseEvent.created(o));
-  Stream<MouseEvent> get onDblClick => getStream(
-      this, #onDblClick, "dblclick", (JsObject o) => new MouseEvent.created(o));
+  Stream<MouseEvent> get onDblclick => getStream(
+      this, #onDblclick, "dblclick", (JsObject o) => new MouseEvent.created(o));
   Stream get onDrag => getStream(this, #onDrag, "drag");
   Stream get onDragend => getStream(this, #onDragend, "dragend");
   Stream get onDragstart => getStream(this, #onDragstart, "dragstart");
@@ -105,33 +114,4 @@ abstract class _GMap implements JsInterface {
   Stream get onTilesloaded => getStream(this, #onTilesloaded, "tilesloaded");
   Stream get onTiltChanged => getStream(this, #onTiltChanged, "tilt_changed");
   Stream get onZoomChanged => getStream(this, #onZoomChanged, "zoom_changed");
-}
-
-abstract class _Controls extends JsInterface
-    with MapMixin<ControlPosition, MVCArray<html.Node>> {
-  _Controls() : super.created(new JsArray());
-
-  MVCArray<html.Node> operator [](ControlPosition controlPosition) {
-    var value = asJsObject(this)[controlPositionCodec.encode(controlPosition)];
-    if (value == null) return null;
-    return new MVCArray<html.Node>.created(value);
-  }
-  void operator []=(
-      ControlPosition controlPosition, MVCArray<html.Node> nodes) {
-    asJsObject(this)[controlPositionCodec.encode(controlPosition)] =
-        toJs(nodes);
-  }
-  Iterable<ControlPosition> get keys {
-    var result = <ControlPosition>[];
-    for (final control in ControlPosition.values) {
-      if (this[control] != null) result.add(control);
-    }
-    return result;
-  }
-  MVCArray<html.Node> remove(Object key) {
-    var result = this[key];
-    this[key] = null;
-    return result;
-  }
-  void clear() => (asJsObject(this) as JsArray).clear();
 }

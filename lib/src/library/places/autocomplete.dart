@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,23 +12,25 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-part of google_maps_places;
+part of google_maps.places;
 
-@wrapper @forMethods @skipConstructor abstract class Autocomplete extends MVCObject {
-  jsw.SubscribeStreamProvider _onPlaceChanged;
+@JsName('google.maps.places.Autocomplete')
+abstract class _Autocomplete extends MVCObject {
+  external factory _Autocomplete(InputElement inputField,
+      [AutocompleteOptions opts]);
 
-  Autocomplete(html.InputElement inputField, [AutocompleteOptions opts]) : super(maps['places']['Autocomplete'], [inputField, jsw.Serializable.$unwrap(opts)]) { _initStreams(); }
-  Autocomplete.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) { _initStreams(); }
+  LatLngBounds get bounds => _getBounds();
+  LatLngBounds _getBounds();
+  PlaceResult get place => _getPlace();
+  PlaceResult _getPlace();
+  void set bounds(LatLngBounds bounds) => _setBounds(bounds);
+  void _setBounds(LatLngBounds bounds);
+  void set componentRestrictions(ComponentRestrictions restrictions) =>
+      _setComponentRestrictions(restrictions);
+  void _setComponentRestrictions(ComponentRestrictions restrictions);
+  void set types(List<String> types) => _setTypes(types);
+  void _setTypes(List<String> types);
 
-  void _initStreams() {
-    _onPlaceChanged = event.getStreamProviderFor(this, "place_changed");
-  }
-
-  Stream get onPlaceChanged => _onPlaceChanged.stream;
-
-  LatLngBounds get bounds;
-  PlaceResult get place;
-  set bounds(LatLngBounds bounds);
-  set componentRestrictions(ComponentRestrictions restrictions);
-  set types(List<String> types);
+  Stream get onPlaceChanged =>
+      getStream(this, #onPlaceChanged, "place_changed");
 }

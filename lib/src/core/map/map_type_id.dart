@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,15 +14,6 @@
 
 part of google_maps;
 
+@JsEnum()
+@JsName('google.maps.MapTypeId')
 enum MapTypeId { HYBRID, ROADMAP, SATELLITE, TERRAIN }
-
-final mapTypeIdCodec = new BiMapCodec<MapTypeId, String>(<MapTypeId, String>{
-  MapTypeId.HYBRID: getPath('google.maps.MapTypeId')['HYBRID'],
-  MapTypeId.ROADMAP: getPath('google.maps.MapTypeId')['ROADMAP'],
-  MapTypeId.SATELLITE: getPath('google.maps.MapTypeId')['SATELLITE'],
-  MapTypeId.TERRAIN: getPath('google.maps.MapTypeId')['TERRAIN'],
-});
-
-final mapTypeIdOrStringCodec = new ChainedCodec()
-  ..add((o) => o is String, (o) => o is MapTypeId, mapTypeIdCodec)
-  ..add((o) => true, (o) => true, const IdentityCodec<String>());

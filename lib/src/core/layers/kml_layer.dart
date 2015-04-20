@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,29 +14,33 @@
 
 part of google_maps;
 
-@wrapper @forMethods @skipConstructor abstract class KmlLayer extends MVCObject {
-  jsw.SubscribeStreamProvider<KmlMouseEvent> _onClick;
-  jsw.SubscribeStreamProvider _onDefaultviewportChanged;
-  jsw.SubscribeStreamProvider _onStatusChanged;
+@JsName('google.maps.KmlLayer')
+abstract class _KmlLayer extends MVCObject {
+  external factory _KmlLayer([KmlLayerOptions opts]);
 
-  @generate KmlLayer([KmlLayerOptions options]) { _initStreams(); }
-  KmlLayer.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) { _initStreams(); }
+  LatLngBounds get defaultViewport => _getDefaultViewport();
+  LatLngBounds _getDefaultViewport();
+  GMap get map => _getMap();
+  GMap _getMap();
+  KmlLayerMetadata get metadata => _getMetadata();
+  KmlLayerMetadata _getMetadata();
+  KmlLayerStatus get status => _getStatus();
+  KmlLayerStatus _getStatus();
+  String get url => _getUrl();
+  String _getUrl();
+  num get zIndex => _getZIndex();
+  num _getZIndex();
+  void set map(GMap map) => _setMap(map);
+  void _setMap(GMap map);
+  void set url(String url) => _setUrl(url);
+  void _setUrl(String url);
+  void set zIndex(num zIndex) => _setZIndex(zIndex);
+  void _setZIndex(num zIndex);
 
-  void _initStreams() {
-    _onClick = event.getStreamProviderFor(this, "click", KmlMouseEvent.$wrap);
-    _onDefaultviewportChanged = event.getStreamProviderFor(this, "defaultviewport_changed");
-    _onStatusChanged = event.getStreamProviderFor(this, "status_changed");
-  }
-
-  Stream<KmlMouseEvent> get onClick => _onClick.stream;
-  Stream get onDefaultviewportChanged => _onDefaultviewportChanged.stream;
-  Stream get onStatusChanged => _onStatusChanged.stream;
-
-  LatLngBounds get defaultViewport;
-  GMap get map;
-  KmlLayerMetadata get metadata;
-  KmlLayerStatus get status;
-  String get url;
-  set map(GMap map);
-  set url(String url);
+  Stream<KmlMouseEvent> get onClick => getStream(
+      this, #onClick, "click", (JsObject o) => new KmlMouseEvent.created(o));
+  Stream get onDefaultviewportChanged =>
+      getStream(this, #onDefaultviewportChanged, "defaultviewport_changed");
+  Stream get onStatusChanged =>
+      getStream(this, #onStatusChanged, "status_changed");
 }

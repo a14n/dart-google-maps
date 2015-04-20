@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -22,17 +22,6 @@ abstract class _FusionTablesLayerOptions implements JsInterface {
   FusionTablesHeatmap heatmap;
   GMap map;
   FusionTablesQuery query;
-  //List<FusionTablesStyle> styles;
-  JsArray _styles;
-  List<FusionTablesStyle> get styles {
-    final value = _styles;
-    if (value == null) return null;
-    return new JsList.created(
-        value, new JsInterfaceCodec((o) => new FusionTablesStyle(o)));
-  }
-  void set styles(List<FusionTablesStyle> styles){
-    if (styles == null) _styles =null;
-    _styles = new JsArray.from(styles.map(toJs));
-  }
+  List<FusionTablesStyle> styles;
   bool suppressInfoWindows;
 }

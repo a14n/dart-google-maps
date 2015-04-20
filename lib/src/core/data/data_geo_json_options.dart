@@ -1,4 +1,4 @@
-// Copyright (c) 2013, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,16 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-part of google_maps_visualization;
+part of google_maps;
 
-@wrapper @forMethods abstract class DemographicsLayer extends jsw.TypedJsObject {
-  DemographicsLayer([DemographicsLayerOptions opts]) : super(maps['visualization']['DemographicsLayer'], [jsw.Serializable.$unwrap(opts)]);
+@anonymous
+abstract class _DataGeoJsonOptions implements JsInterface {
+  external factory _DataGeoJsonOptions();
 
-  GMap get map;
-  DemographicsQuery get query;
-  List<DemographicsStyle> get styles;
-  set map(GMap map);
-  set options(DemographicsLayerOptions options);
-  set query(DemographicsQuery query);
-  set style(List<DemographicsStyle> style);
+  String idPropertyName;
 }

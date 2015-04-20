@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,10 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-part of google_maps_panoramio;
+part of google_maps.panoramio;
 
-@wrapper abstract class PanoramioFeature extends jsw.TypedJsObject {
-  PanoramioFeature() : super();
+@anonymous
+abstract class _PanoramioFeature implements JsInterface {
+  external factory _PanoramioFeature();
 
   String author;
   String photoId;

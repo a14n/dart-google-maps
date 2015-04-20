@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -19,19 +19,5 @@ abstract class _MarkerShape implements JsInterface {
   external factory _MarkerShape();
 
   List<num> coords;
-  // MarkerShapeType type
-  String _type;
-  MarkerShapeType get type => markerShapeTypeCodec.decode(_type);
-  void set type(MarkerShapeType type) {
-    _type = markerShapeTypeCodec.encode(type);
-  }
+  String type;
 }
-
-enum MarkerShapeType { CIRCLE, POLY, RECT }
-
-final markerShapeTypeCodec = new BiMapCodec<MarkerShapeType, String>(
-    <MarkerShapeType, String>{
-  MarkerShapeType.CIRCLE: 'circle',
-  MarkerShapeType.POLY: 'poly',
-  MarkerShapeType.RECT: 'rect',
-});

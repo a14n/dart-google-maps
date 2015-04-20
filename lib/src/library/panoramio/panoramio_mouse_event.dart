@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,12 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-part of google_maps_panoramio;
+part of google_maps.panoramio;
 
-@wrapper abstract class PanoramioMouseEvent extends jsw.TypedJsObject {
-  static PanoramioMouseEvent $wrap(js.JsObject jsObject) => null;
-
-  PanoramioMouseEvent();
+@anonymous
+abstract class _PanoramioMouseEvent implements JsInterface {
+  external factory _PanoramioMouseEvent();
 
   PanoramioFeature featureDetails;
   String infoWindowHtml;

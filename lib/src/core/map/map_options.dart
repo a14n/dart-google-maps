@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -30,13 +30,7 @@ abstract class _MapOptions implements JsInterface {
   bool mapMaker;
   bool mapTypeControl;
   MapTypeControlOptions mapTypeControlOptions;
-  // TODO (aa) report bad doc
-  // TODO (aa) MapTypeId|String mapTypeId;
-  String _mapTypeId;
-  dynamic get mapTypeId => mapTypeIdOrStringCodec.decode(_mapTypeId);
-  void set mapTypeId(dynamic mapTypeId) {
-    _mapTypeId = mapTypeIdOrStringCodec.encode(mapTypeId);
-  }
+  MapTypeId mapTypeId;
   num maxZoom;
   num minZoom;
   bool noClear;

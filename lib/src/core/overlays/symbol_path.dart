@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,6 +14,8 @@
 
 part of google_maps;
 
+@JsEnum()
+@JsName('google.maps.SymbolPath')
 enum SymbolPath {
   BACKWARD_CLOSED_ARROW,
   BACKWARD_OPEN_ARROW,
@@ -21,15 +23,3 @@ enum SymbolPath {
   FORWARD_CLOSED_ARROW,
   FORWARD_OPEN_ARROW
 }
-
-final symbolPathCodec = new BiMapCodec<SymbolPath, int>(<SymbolPath, int>{
-  SymbolPath.BACKWARD_CLOSED_ARROW:
-      getPath('google.maps.SymbolPath')['BACKWARD_CLOSED_ARROW'],
-  SymbolPath.BACKWARD_OPEN_ARROW:
-      getPath('google.maps.SymbolPath')['BACKWARD_OPEN_ARROW'],
-  SymbolPath.CIRCLE: getPath('google.maps.SymbolPath')['CIRCLE'],
-  SymbolPath.FORWARD_CLOSED_ARROW:
-      getPath('google.maps.SymbolPath')['FORWARD_CLOSED_ARROW'],
-  SymbolPath.FORWARD_OPEN_ARROW:
-      getPath('google.maps.SymbolPath')['FORWARD_OPEN_ARROW'],
-});

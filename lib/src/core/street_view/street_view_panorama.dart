@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,25 +14,15 @@
 
 part of google_maps;
 
+@JsName('google.maps.StreetViewPanorama')
 abstract class _StreetViewPanorama extends MVCObject {
-  external factory _StreetViewPanorama(html.Node container,
+  external factory _StreetViewPanorama(Node container,
       [StreetViewPanoramaOptions opts]);
-
-  Stream<JsObject> get onCloseclick =>
-      getStream(this, #onCloseclick, "closeclick");
-  Stream get onLinksChanged =>
-      getStream(this, #onLinksChanged, "links_changed");
-  Stream get onPanoChanged => getStream(this, #onPanoChanged, "pano_changed");
-  Stream get onPositionChanged =>
-      getStream(this, #onPositionChanged, "position_changed");
-  Stream get onPovChanged => getStream(this, #onPovChanged, "pov_changed");
-  Stream get onResize => getStream(this, #onResize, "resize");
-  Stream get onVisibleChanged =>
-      getStream(this, #onVisibleChanged, "visible_changed");
-  Stream get onZoomChanged => getStream(this, #onZoomChanged, "zoom_changed");
 
   List<StreetViewLink> get links => _getLinks();
   List<StreetViewLink> _getLinks();
+  StreetViewLocation get location => _getLocation();
+  StreetViewLocation _getLocation();
   String get pano => _getPano();
   String _getPano();
   StreetViewPov get photographerPov => _getPhotographerPov();
@@ -41,13 +31,17 @@ abstract class _StreetViewPanorama extends MVCObject {
   LatLng _getPosition();
   StreetViewPov get pov => _getPov();
   StreetViewPov _getPov();
+  StreetViewStatus get status => _getStatus();
+  StreetViewStatus _getStatus();
   bool get visible => _getVisible();
   bool _getVisible();
   num get zoom => _getZoom();
   num _getZoom();
-  void registerPanoProvider(StreetViewPanoramaData provider(String pano)) =>
-      _registerPanoProvider((pano) => toJs(provider(pano)));
-  void _registerPanoProvider(JsObject provider(String pano));
+  void registerPanoProvider(provider(String p1));
+  void set links(List<StreetViewLink> links) => _setLinks(links);
+  void _setLinks(List<StreetViewLink> links);
+  void set options(StreetViewPanoramaOptions options) => _setOptions(options);
+  void _setOptions(StreetViewPanoramaOptions options);
   void set pano(String pano) => _setPano(pano);
   void _setPano(String pano);
   void set position(LatLng latLng) => _setPosition(latLng);
@@ -59,5 +53,33 @@ abstract class _StreetViewPanorama extends MVCObject {
   void set zoom(num zoom) => _setZoom(zoom);
   void _setZoom(num zoom);
 
-  Controls controls;
+  dynamic _controls;
+  List<MVCArray<Node>> get controls => (new JsListCodec<MVCArray<Node>>(
+          new JsInterfaceCodec<MVCArray<Node>>(
+              (o) => new MVCArray<Node>.created(o, new IdentityCodec<Node>()))))
+      .decode(_controls);
+  void set controls(List<MVCArray<Node>> controls) {
+    _controls = (new JsListCodec<MVCArray<Node>>(
+            new JsInterfaceCodec<MVCArray<Node>>((o) =>
+                new MVCArray<Node>.created(o, new IdentityCodec<Node>()))))
+        .encode(controls);
+  }
+  Stream get onClicktogoChanged =>
+      getStream(this, #onClicktogoChanged, "clicktogo_changed");
+  Stream<JsObject> get onCloseclick =>
+      getStream(this, #onCloseclick, "closeclick");
+  Stream get onLinksChanged =>
+      getStream(this, #onLinksChanged, "links_changed");
+  Stream get onPanoChanged => getStream(this, #onPanoChanged, "pano_changed");
+  Stream get onPositionChanged =>
+      getStream(this, #onPositionChanged, "position_changed");
+  Stream get onPovChanged => getStream(this, #onPovChanged, "pov_changed");
+  Stream get onResize => getStream(this, #onResize, "resize");
+  Stream get onScrollwheelChanged =>
+      getStream(this, #onScrollwheelChanged, "scrollwheel_changed");
+  Stream get onStatusChanged =>
+      getStream(this, #onStatusChanged, "status_changed");
+  Stream get onVisibleChanged =>
+      getStream(this, #onVisibleChanged, "visible_changed");
+  Stream get onZoomChanged => getStream(this, #onZoomChanged, "zoom_changed");
 }

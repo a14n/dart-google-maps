@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,14 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-part of google_maps_weather;
+part of google_maps.weather;
 
-class LabelColor extends jsw.IsEnum<String> {
-  static final _FINDER = new jsw.EnumFinder<String, LabelColor>([BLACK, WHITE]);
-  static LabelColor $wrap(String jsValue) => _FINDER.find(jsValue);
-
-  static final BLACK = new LabelColor._(maps['weather']['LabelColor']['BLACK']);
-  static final WHITE = new LabelColor._(maps['weather']['LabelColor']['WHITE']);
-
-  LabelColor._(String value) : super(value);
-}
+@JsEnum()
+@JsName('google.maps.weather.LabelColor')
+enum LabelColor { BLACK, WHITE }

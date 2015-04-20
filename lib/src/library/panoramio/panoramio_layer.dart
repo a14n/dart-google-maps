@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,25 +12,27 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-part of google_maps_panoramio;
+part of google_maps.panoramio;
 
-@wrapper @forMethods @skipConstructor abstract class PanoramioLayer extends MVCObject {
-  jsw.SubscribeStreamProvider<PanoramioMouseEvent> _onClick;
+@JsName('google.maps.panoramio.PanoramioLayer')
+abstract class _PanoramioLayer extends MVCObject {
+  external factory _PanoramioLayer([PanoramioLayerOptions opts]);
 
-  PanoramioLayer([PanoramioLayerOptions opts]) : super(maps['panoramio']['PanoramioLayer'], [jsw.Serializable.$unwrap(opts)]) { _initStreams(); }
-  PanoramioLayer.fromJsObject(js.JsObject proxy) : super.fromJsObject(proxy) { _initStreams(); }
+  GMap get map => _getMap();
+  GMap _getMap();
+  String get tag => _getTag();
+  String _getTag();
+  String get userId => _getUserId();
+  String _getUserId();
+  void set map(GMap map) => _setMap(map);
+  void _setMap(GMap map);
+  void set options(PanoramioLayerOptions options) => _setOptions(options);
+  void _setOptions(PanoramioLayerOptions options);
+  void set tag(String tag) => _setTag(tag);
+  void _setTag(String tag);
+  void set userId(String userId) => _setUserId(userId);
+  void _setUserId(String userId);
 
-  void _initStreams() {
-    _onClick = event.getStreamProviderFor(this, "click", PanoramioMouseEvent.$wrap);
-  }
-
-  Stream<PanoramioMouseEvent> get onClick => _onClick.stream;
-
-  GMap get map;
-  String get tag;
-  String get userId;
-  set map(GMap map);
-  set options(PanoramioLayerOptions options);
-  set tag(String tag);
-  set userId(String userId);
+  Stream<PanoramioMouseEvent> get onClick => getStream(this, #onClick, "click",
+      (JsObject o) => new PanoramioMouseEvent.created(o));
 }

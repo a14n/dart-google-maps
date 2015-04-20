@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,10 +14,9 @@
 
 part of google_maps;
 
-@wrapper abstract class MaxZoomResult extends jsw.TypedJsObject {
-  static MaxZoomResult $wrap(js.JsObject jsObject) => null;
-
-  MaxZoomResult();
+@anonymous
+abstract class _MaxZoomResult implements JsInterface {
+  external factory _MaxZoomResult();
 
   MaxZoomStatus status;
   num zoom;

@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,13 +12,40 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-part of google_maps_drawing;
+part of google_maps.drawing;
 
-@wrapper abstract class OverlayCompleteEvent extends jsw.TypedJsObject {
-  static OverlayCompleteEvent $wrap(js.JsObject proxy) => null;
+@anonymous
+abstract class _OverlayCompleteEvent implements JsInterface {
+  external factory _OverlayCompleteEvent();
 
-  OverlayCompleteEvent();
-
-  @Types(const [Marker,Polygon,Polyline,Rectangle,Circle]) dynamic overlay;
+  dynamic _overlay;
+  dynamic /*Marker|Polygon|Polyline|Rectangle|Circle*/ get overlay =>
+      (new ChainedCodec()
+    ..add(new JsInterfaceCodec<Marker>((o) => new Marker.created(o),
+        (o) => o != null && o.instanceof(getPath("google.maps.Marker"))))
+    ..add(new JsInterfaceCodec<Polygon>((o) => new Polygon.created(o),
+        (o) => o != null && o.instanceof(getPath("google.maps.Polygon"))))
+    ..add(new JsInterfaceCodec<Polyline>((o) => new Polyline.created(o),
+        (o) => o != null && o.instanceof(getPath("google.maps.Polyline"))))
+    ..add(new JsInterfaceCodec<Rectangle>((o) => new Rectangle.created(o),
+        (o) => o != null && o.instanceof(getPath("google.maps.Rectangle"))))
+    ..add(new JsInterfaceCodec<Circle>((o) => new Circle.created(o),
+            (o) => o != null && o.instanceof(getPath("google.maps.Circle")))))
+      .decode(_overlay);
+  void set overlay(
+      dynamic /*Marker|Polygon|Polyline|Rectangle|Circle*/ overlay) {
+    _overlay = (new ChainedCodec()
+      ..add(new JsInterfaceCodec<Marker>((o) => new Marker.created(o),
+          (o) => o != null && o.instanceof(getPath("google.maps.Marker"))))
+      ..add(new JsInterfaceCodec<Polygon>((o) => new Polygon.created(o),
+          (o) => o != null && o.instanceof(getPath("google.maps.Polygon"))))
+      ..add(new JsInterfaceCodec<Polyline>((o) => new Polyline.created(o),
+          (o) => o != null && o.instanceof(getPath("google.maps.Polyline"))))
+      ..add(new JsInterfaceCodec<Rectangle>((o) => new Rectangle.created(o),
+          (o) => o != null && o.instanceof(getPath("google.maps.Rectangle"))))
+      ..add(new JsInterfaceCodec<Circle>((o) => new Circle.created(o),
+              (o) => o != null && o.instanceof(getPath("google.maps.Circle")))))
+        .encode(overlay);
+  }
   OverlayType type;
 }

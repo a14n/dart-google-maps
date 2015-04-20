@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,16 +14,29 @@
 
 part of google_maps;
 
-@wrapper @namesWithUnderscores abstract class DirectionsStep extends jsw.TypedJsObject {
-  DirectionsStep();
+@anonymous
+abstract class _DirectionsStep implements JsInterface {
+  external factory _DirectionsStep();
 
   Distance distance;
   GDuration duration;
-  LatLng endLocation;
+  LatLng _end_location;
+  LatLng get endLocation => _end_location;
+  void set endLocation(LatLng endLocation) {
+    _end_location = endLocation;
+  }
   String instructions;
   List<LatLng> path;
-  LatLng startLocation;
+  LatLng _start_location;
+  LatLng get startLocation => _start_location;
+  void set startLocation(LatLng startLocation) {
+    _start_location = startLocation;
+  }
   List<DirectionsStep> steps;
   TransitDetails transit;
-  TravelMode travelMode;
+  TravelMode _travel_mode;
+  TravelMode get travelMode => _travel_mode;
+  void set travelMode(TravelMode travelMode) {
+    _travel_mode = travelMode;
+  }
 }

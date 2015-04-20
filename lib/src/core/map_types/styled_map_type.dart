@@ -1,4 +1,4 @@
-// Copyright (c) 2012, Alexandre Ardhuin
+// Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,7 +14,19 @@
 
 part of google_maps;
 
-// TODO extends MVCObject mixin MapType
-@wrapper abstract class StyledMapType extends MapType {
-  @generate StyledMapType(List<MapTypeStyle> styles, [StyledMapTypeOptions options]);
+@JsName('google.maps.StyledMapType')
+abstract class _StyledMapType extends MVCObject {
+  external factory _StyledMapType(List<MapTypeStyle> styles,
+      [StyledMapTypeOptions options]);
+
+  Node getTile(Point tileCoord, num zoom, Document ownerDocument);
+  void releaseTile(Node tile);
+
+  String alt;
+  num maxZoom;
+  num minZoom;
+  String name;
+  Projection projection;
+  num radius;
+  Size tileSize;
 }
