@@ -14,8 +14,8 @@
 
 part of google_maps;
 
-@JsEnum()
-@JsName('google.maps.VehicleType')
+final vehicleTypeCodec = new BiMapCodec<VehicleType, dynamic>({});
+@JsCodec(#vehicleTypeCodec)
 enum VehicleType {
   BUS,
   CABLE_CAR,

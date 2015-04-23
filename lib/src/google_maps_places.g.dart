@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// 2015-04-20T20:55:07.570Z
+// 2015-04-22T20:39:35.185Z
 
 part of google_maps.places;
 
@@ -104,7 +104,9 @@ class AutocompletePrediction extends JsInterface
     asJsObject(this)['matched_substrings'] = ((e) {
       if (e == null) return null;
       if (e is JsInterface) return asJsObject(e);
-      return new JsArray.from(e.map(toJs));
+      return new JsArray.from(e.map(new JsInterfaceCodec<PredictionSubstring>(
+          (o) => ((e) => e == null ? null : new PredictionSubstring.created(e))(
+              o)).encode));
     })(__matched_substrings);
   }
   List<PredictionSubstring> get _matched_substrings => ((e) {
@@ -129,7 +131,9 @@ class AutocompletePrediction extends JsInterface
     asJsObject(this)['terms'] = ((e) {
       if (e == null) return null;
       if (e is JsInterface) return asJsObject(e);
-      return new JsArray.from(e.map(toJs));
+      return new JsArray.from(e.map(new JsInterfaceCodec<PredictionTerm>(
+          (o) => ((e) => e == null ? null : new PredictionTerm.created(e))(
+              o)).encode));
     })(_terms);
   }
   List<PredictionTerm> get terms => ((e) {
@@ -475,7 +479,11 @@ class PlaceResult extends JsInterface implements _PlaceResult {
     asJsObject(this)['address_components'] = ((e) {
       if (e == null) return null;
       if (e is JsInterface) return asJsObject(e);
-      return new JsArray.from(e.map(toJs));
+      return new JsArray.from(e.map(
+          new JsInterfaceCodec<GeocoderAddressComponent>(
+              (o) => ((e) => e == null
+                  ? null
+                  : new GeocoderAddressComponent.created(e))(o)).encode));
     })(__address_components);
   }
   List<GeocoderAddressComponent> get _address_components => ((e) {
@@ -492,7 +500,9 @@ class PlaceResult extends JsInterface implements _PlaceResult {
     asJsObject(this)['aspects'] = ((e) {
       if (e == null) return null;
       if (e is JsInterface) return asJsObject(e);
-      return new JsArray.from(e.map(toJs));
+      return new JsArray.from(e.map(new JsInterfaceCodec<PlaceAspectRating>(
+          (o) => ((e) => e == null ? null : new PlaceAspectRating.created(e))(
+              o)).encode));
     })(_aspects);
   }
   List<PlaceAspectRating> get aspects => ((e) {
@@ -568,7 +578,8 @@ class PlaceResult extends JsInterface implements _PlaceResult {
     asJsObject(this)['photos'] = ((e) {
       if (e == null) return null;
       if (e is JsInterface) return asJsObject(e);
-      return new JsArray.from(e.map(toJs));
+      return new JsArray.from(e.map(new JsInterfaceCodec<PlacePhoto>((o) =>
+          ((e) => e == null ? null : new PlacePhoto.created(e))(o)).encode));
     })(_photos);
   }
   List<PlacePhoto> get photos => ((e) {
@@ -600,7 +611,8 @@ class PlaceResult extends JsInterface implements _PlaceResult {
     asJsObject(this)['reviews'] = ((e) {
       if (e == null) return null;
       if (e is JsInterface) return asJsObject(e);
-      return new JsArray.from(e.map(toJs));
+      return new JsArray.from(e.map(new JsInterfaceCodec<PlaceReview>((o) =>
+          ((e) => e == null ? null : new PlaceReview.created(e))(o)).encode));
     })(_reviews);
   }
   List<PlaceReview> get reviews => ((e) {
@@ -644,7 +656,9 @@ class PlaceReview extends JsInterface implements _PlaceReview {
     asJsObject(this)['aspects'] = ((e) {
       if (e == null) return null;
       if (e is JsInterface) return asJsObject(e);
-      return new JsArray.from(e.map(toJs));
+      return new JsArray.from(e.map(new JsInterfaceCodec<PlaceAspectRating>(
+          (o) => ((e) => e == null ? null : new PlaceAspectRating.created(e))(
+              o)).encode));
     })(_aspects);
   }
   List<PlaceAspectRating> get aspects => ((e) {
@@ -943,7 +957,9 @@ class QueryAutocompletePrediction extends JsInterface
     asJsObject(this)['matched_substrings'] = ((e) {
       if (e == null) return null;
       if (e is JsInterface) return asJsObject(e);
-      return new JsArray.from(e.map(toJs));
+      return new JsArray.from(e.map(new JsInterfaceCodec<PredictionSubstring>(
+          (o) => ((e) => e == null ? null : new PredictionSubstring.created(e))(
+              o)).encode));
     })(__matched_substrings);
   }
   List<PredictionSubstring> get _matched_substrings => ((e) {
@@ -968,7 +984,9 @@ class QueryAutocompletePrediction extends JsInterface
     asJsObject(this)['terms'] = ((e) {
       if (e == null) return null;
       if (e is JsInterface) return asJsObject(e);
-      return new JsArray.from(e.map(toJs));
+      return new JsArray.from(e.map(new JsInterfaceCodec<PredictionTerm>(
+          (o) => ((e) => e == null ? null : new PredictionTerm.created(e))(
+              o)).encode));
     })(_terms);
   }
   List<PredictionTerm> get terms => ((e) {

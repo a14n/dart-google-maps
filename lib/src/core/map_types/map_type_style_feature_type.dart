@@ -14,8 +14,48 @@
 
 part of google_maps;
 
-@JsEnum()
-@JsName('google.maps.MapTypeStyleFeatureType')
+final mapTypeStyleFeatureTypeCodec =
+    new BiMapCodec<MapTypeStyleFeatureType, dynamic>({
+  MapTypeStyleFeatureType.ADMINISTRATIVE: 'administrative',
+  MapTypeStyleFeatureType.ADMINISTRATIVE_COUNTRY: 'administrative.country',
+  MapTypeStyleFeatureType.ADMINISTRATIVE_LAND_PARCEL:
+      'administrative.land_parcel',
+  MapTypeStyleFeatureType.ADMINISTRATIVE_LOCALITY: 'administrative.locality',
+  MapTypeStyleFeatureType.ADMINISTRATIVE_NEIGHBORHOOD:
+      'administrative.neighborhood',
+  MapTypeStyleFeatureType.ADMINISTRATIVE_PROVINCE: 'administrative.province',
+  MapTypeStyleFeatureType.ALL: 'all',
+  MapTypeStyleFeatureType.LANDSCAPE: 'landscape',
+  MapTypeStyleFeatureType.LANDSCAPE_MAN_MADE: 'landscape.man_made',
+  MapTypeStyleFeatureType.LANDSCAPE_NATURAL: 'landscape.natural',
+  MapTypeStyleFeatureType.LANDSCAPE_NATURAL_LANDCOVER:
+      'landscape.natural.landcover',
+  MapTypeStyleFeatureType.LANDSCAPE_NATURAL_TERRAIN:
+      'landscape.natural.terrain',
+  MapTypeStyleFeatureType.POI: 'poi',
+  MapTypeStyleFeatureType.POI_ATTRACTION: 'poi.attraction',
+  MapTypeStyleFeatureType.POI_BUSINESS: 'poi.business',
+  MapTypeStyleFeatureType.POI_GOVERNMENT: 'poi.government',
+  MapTypeStyleFeatureType.POI_MEDICAL: 'poi.medical',
+  MapTypeStyleFeatureType.POI_PARK: 'poi.park',
+  MapTypeStyleFeatureType.POI_PLACE_OF_WORSHIP: 'poi.place_of_worship',
+  MapTypeStyleFeatureType.POI_SCHOOL: 'poi.school',
+  MapTypeStyleFeatureType.POI_SPORTS_COMPLEX: 'poi.sports_complex',
+  MapTypeStyleFeatureType.ROAD: 'road',
+  MapTypeStyleFeatureType.ROAD_ARTERIAL: 'road.arterial',
+  MapTypeStyleFeatureType.ROAD_HIGHWAY: 'road.highway',
+  MapTypeStyleFeatureType.ROAD_HIGHWAY_CONTROLLED_ACCESS:
+      'road.highway.controlled_access',
+  MapTypeStyleFeatureType.ROAD_LOCAL: 'road.local',
+  MapTypeStyleFeatureType.TRANSIT: 'transit',
+  MapTypeStyleFeatureType.TRANSIT_LINE: 'transit.line',
+  MapTypeStyleFeatureType.TRANSIT_STATION: 'transit.station',
+  MapTypeStyleFeatureType.TRANSIT_STATION_AIRPORT: 'transit.station.airport',
+  MapTypeStyleFeatureType.TRANSIT_STATION_BUS: 'transit.station.bus',
+  MapTypeStyleFeatureType.TRANSIT_STATION_RAIL: 'transit.station.rail',
+  MapTypeStyleFeatureType.WATER: 'water',
+});
+@JsCodec(#mapTypeStyleFeatureTypeCodec)
 enum MapTypeStyleFeatureType {
   ADMINISTRATIVE,
   ADMINISTRATIVE_COUNTRY,

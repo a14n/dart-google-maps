@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// 2015-04-20T21:05:34.914Z
+// 2015-04-23T13:41:10.939Z
 
 part of google_maps;
 
@@ -383,7 +383,8 @@ class MapOptions extends JsInterface implements _MapOptions {
     asJsObject(this)['styles'] = ((e) {
       if (e == null) return null;
       if (e is JsInterface) return asJsObject(e);
-      return new JsArray.from(e.map(toJs));
+      return new JsArray.from(e.map(new JsInterfaceCodec<MapTypeStyle>((o) =>
+          ((e) => e == null ? null : new MapTypeStyle.created(e))(o)).encode));
     })(_styles);
   }
   List<MapTypeStyle> get styles => ((e) {
@@ -1224,7 +1225,8 @@ class DataMultiPoint extends DataGeometry implements _DataMultiPoint {
         ((e) {
           if (e == null) return null;
           if (e is JsInterface) return asJsObject(e);
-          return new JsArray.from(e.map(toJs));
+          return new JsArray.from(e.map(new JsInterfaceCodec<LatLng>((o) =>
+              ((e) => e == null ? null : new LatLng.created(e))(o)).encode));
         })(elements)
       ]));
 
@@ -1255,7 +1257,8 @@ class DataLineString extends DataGeometry implements _DataLineString {
         ((e) {
           if (e == null) return null;
           if (e is JsInterface) return asJsObject(e);
-          return new JsArray.from(e.map(toJs));
+          return new JsArray.from(e.map(new JsInterfaceCodec<LatLng>((o) =>
+              ((e) => e == null ? null : new LatLng.created(e))(o)).encode));
         })(elements)
       ]));
 
@@ -1319,7 +1322,8 @@ class DataLinearRing extends DataGeometry implements _DataLinearRing {
         ((e) {
           if (e == null) return null;
           if (e is JsInterface) return asJsObject(e);
-          return new JsArray.from(e.map(toJs));
+          return new JsArray.from(e.map(new JsInterfaceCodec<LatLng>((o) =>
+              ((e) => e == null ? null : new LatLng.created(e))(o)).encode));
         })(elements)
       ]));
 
@@ -2275,7 +2279,8 @@ class PolylineOptions extends JsInterface implements _PolylineOptions {
     asJsObject(this)['icons'] = ((e) {
       if (e == null) return null;
       if (e is JsInterface) return asJsObject(e);
-      return new JsArray.from(e.map(toJs));
+      return new JsArray.from(e.map(new JsInterfaceCodec<IconSequence>((o) =>
+          ((e) => e == null ? null : new IconSequence.created(e))(o)).encode));
     })(_icons);
   }
   List<IconSequence> get icons => ((e) {
@@ -3311,7 +3316,11 @@ class GeocoderResult extends JsInterface implements _GeocoderResult {
     asJsObject(this)['address_components'] = ((e) {
       if (e == null) return null;
       if (e is JsInterface) return asJsObject(e);
-      return new JsArray.from(e.map(toJs));
+      return new JsArray.from(e.map(
+          new JsInterfaceCodec<GeocoderAddressComponent>(
+              (o) => ((e) => e == null
+                  ? null
+                  : new GeocoderAddressComponent.created(e))(o)).encode));
     })(__address_components);
   }
   List<GeocoderAddressComponent> get _address_components => ((e) {
@@ -3756,7 +3765,9 @@ class DirectionsRequest extends JsInterface implements _DirectionsRequest {
     asJsObject(this)['waypoints'] = ((e) {
       if (e == null) return null;
       if (e is JsInterface) return asJsObject(e);
-      return new JsArray.from(e.map(toJs));
+      return new JsArray.from(e.map(new JsInterfaceCodec<DirectionsWaypoint>(
+          (o) => ((e) => e == null ? null : new DirectionsWaypoint.created(e))(
+              o)).encode));
     })(_waypoints);
   }
   List<DirectionsWaypoint> get waypoints => ((e) {
@@ -3789,7 +3800,13 @@ class TransitOptions extends JsInterface implements _TransitOptions {
     asJsObject(this)['modes'] = ((e) {
       if (e == null) return null;
       if (e is JsInterface) return asJsObject(e);
-      return new JsArray.from(e.map(toJs));
+      return new JsArray.from(e.map(new BiMapCodec<TransitMode, dynamic>({
+        TransitMode.BUS: getPath('google.maps.TransitMode')['BUS'],
+        TransitMode.RAIL: getPath('google.maps.TransitMode')['RAIL'],
+        TransitMode.SUBWAY: getPath('google.maps.TransitMode')['SUBWAY'],
+        TransitMode.TRAIN: getPath('google.maps.TransitMode')['TRAIN'],
+        TransitMode.TRAM: getPath('google.maps.TransitMode')['TRAM']
+      }).encode));
     })(_modes);
   }
   List<TransitMode> get modes => ((e) {
@@ -3876,7 +3893,9 @@ class DirectionsResult extends JsInterface implements _DirectionsResult {
     asJsObject(this)['routes'] = ((e) {
       if (e == null) return null;
       if (e is JsInterface) return asJsObject(e);
-      return new JsArray.from(e.map(toJs));
+      return new JsArray.from(e.map(new JsInterfaceCodec<DirectionsRoute>(
+          (o) => ((e) => e == null ? null : new DirectionsRoute.created(e))(
+              o)).encode));
     })(_routes);
   }
   List<DirectionsRoute> get routes => ((e) {
@@ -3917,7 +3936,8 @@ class DirectionsRoute extends JsInterface implements _DirectionsRoute {
     asJsObject(this)['legs'] = ((e) {
       if (e == null) return null;
       if (e is JsInterface) return asJsObject(e);
-      return new JsArray.from(e.map(toJs));
+      return new JsArray.from(e.map(new JsInterfaceCodec<DirectionsLeg>((o) =>
+          ((e) => e == null ? null : new DirectionsLeg.created(e))(o)).encode));
     })(_legs);
   }
   List<DirectionsLeg> get legs => ((e) {
@@ -3930,7 +3950,8 @@ class DirectionsRoute extends JsInterface implements _DirectionsRoute {
     asJsObject(this)['overview_path'] = ((e) {
       if (e == null) return null;
       if (e is JsInterface) return asJsObject(e);
-      return new JsArray.from(e.map(toJs));
+      return new JsArray.from(e.map(new JsInterfaceCodec<LatLng>(
+          (o) => ((e) => e == null ? null : new LatLng.created(e))(o)).encode));
     })(__overview_path);
   }
   List<LatLng> get _overview_path => ((e) {
@@ -4068,7 +4089,9 @@ class DirectionsLeg extends JsInterface implements _DirectionsLeg {
     asJsObject(this)['steps'] = ((e) {
       if (e == null) return null;
       if (e is JsInterface) return asJsObject(e);
-      return new JsArray.from(e.map(toJs));
+      return new JsArray.from(e.map(new JsInterfaceCodec<DirectionsStep>(
+          (o) => ((e) => e == null ? null : new DirectionsStep.created(e))(
+              o)).encode));
     })(_steps);
   }
   List<DirectionsStep> get steps => ((e) {
@@ -4081,7 +4104,8 @@ class DirectionsLeg extends JsInterface implements _DirectionsLeg {
     asJsObject(this)['via_waypoints'] = ((e) {
       if (e == null) return null;
       if (e is JsInterface) return asJsObject(e);
-      return new JsArray.from(e.map(toJs));
+      return new JsArray.from(e.map(new JsInterfaceCodec<LatLng>(
+          (o) => ((e) => e == null ? null : new LatLng.created(e))(o)).encode));
     })(__via_waypoints);
   }
   List<LatLng> get _via_waypoints => ((e) {
@@ -4136,7 +4160,8 @@ class DirectionsStep extends JsInterface implements _DirectionsStep {
     asJsObject(this)['path'] = ((e) {
       if (e == null) return null;
       if (e is JsInterface) return asJsObject(e);
-      return new JsArray.from(e.map(toJs));
+      return new JsArray.from(e.map(new JsInterfaceCodec<LatLng>(
+          (o) => ((e) => e == null ? null : new LatLng.created(e))(o)).encode));
     })(_path);
   }
   List<LatLng> get path => ((e) {
@@ -4159,7 +4184,9 @@ class DirectionsStep extends JsInterface implements _DirectionsStep {
     asJsObject(this)['steps'] = ((e) {
       if (e == null) return null;
       if (e is JsInterface) return asJsObject(e);
-      return new JsArray.from(e.map(toJs));
+      return new JsArray.from(e.map(new JsInterfaceCodec<DirectionsStep>(
+          (o) => ((e) => e == null ? null : new DirectionsStep.created(e))(
+              o)).encode));
     })(_steps);
   }
   List<DirectionsStep> get steps => ((e) {
@@ -4378,7 +4405,8 @@ class TransitLine extends JsInterface implements _TransitLine {
     asJsObject(this)['agencies'] = ((e) {
       if (e == null) return null;
       if (e is JsInterface) return asJsObject(e);
-      return new JsArray.from(e.map(toJs));
+      return new JsArray.from(e.map(new JsInterfaceCodec<TransitAgency>((o) =>
+          ((e) => e == null ? null : new TransitAgency.created(e))(o)).encode));
     })(_agencies);
   }
   List<TransitAgency> get agencies => ((e) {
@@ -4479,49 +4507,9 @@ class TransitVehicle extends JsInterface implements _TransitVehicle {
   }
   String get name => asJsObject(this)['name'];
   void set type(VehicleType _type) {
-    asJsObject(this)['type'] = ((e) {
-      if (e == null) return null;
-      final path = getPath('google.maps.VehicleType');
-      if (e == VehicleType.BUS) return path['BUS'];
-      if (e == VehicleType.CABLE_CAR) return path['CABLE_CAR'];
-      if (e == VehicleType.COMMUTER_TRAIN) return path['COMMUTER_TRAIN'];
-      if (e == VehicleType.FERRY) return path['FERRY'];
-      if (e == VehicleType.FUNICULAR) return path['FUNICULAR'];
-      if (e == VehicleType.GONDOLA_LIFT) return path['GONDOLA_LIFT'];
-      if (e == VehicleType.HEAVY_RAIL) return path['HEAVY_RAIL'];
-      if (e == VehicleType.HIGH_SPEED_TRAIN) return path['HIGH_SPEED_TRAIN'];
-      if (e == VehicleType.INTERCITY_BUS) return path['INTERCITY_BUS'];
-      if (e == VehicleType.METRO_RAIL) return path['METRO_RAIL'];
-      if (e == VehicleType.MONORAIL) return path['MONORAIL'];
-      if (e == VehicleType.OTHER) return path['OTHER'];
-      if (e == VehicleType.RAIL) return path['RAIL'];
-      if (e == VehicleType.SHARE_TAXI) return path['SHARE_TAXI'];
-      if (e == VehicleType.SUBWAY) return path['SUBWAY'];
-      if (e == VehicleType.TRAM) return path['TRAM'];
-      if (e == VehicleType.TROLLEYBUS) return path['TROLLEYBUS'];
-    })(_type);
+    asJsObject(this)['type'] = vehicleTypeCodec.encode(_type);
   }
-  VehicleType get type => ((e) {
-    if (e == null) return null;
-    final path = getPath('google.maps.VehicleType');
-    if (e == path['BUS']) return VehicleType.BUS;
-    if (e == path['CABLE_CAR']) return VehicleType.CABLE_CAR;
-    if (e == path['COMMUTER_TRAIN']) return VehicleType.COMMUTER_TRAIN;
-    if (e == path['FERRY']) return VehicleType.FERRY;
-    if (e == path['FUNICULAR']) return VehicleType.FUNICULAR;
-    if (e == path['GONDOLA_LIFT']) return VehicleType.GONDOLA_LIFT;
-    if (e == path['HEAVY_RAIL']) return VehicleType.HEAVY_RAIL;
-    if (e == path['HIGH_SPEED_TRAIN']) return VehicleType.HIGH_SPEED_TRAIN;
-    if (e == path['INTERCITY_BUS']) return VehicleType.INTERCITY_BUS;
-    if (e == path['METRO_RAIL']) return VehicleType.METRO_RAIL;
-    if (e == path['MONORAIL']) return VehicleType.MONORAIL;
-    if (e == path['OTHER']) return VehicleType.OTHER;
-    if (e == path['RAIL']) return VehicleType.RAIL;
-    if (e == path['SHARE_TAXI']) return VehicleType.SHARE_TAXI;
-    if (e == path['SUBWAY']) return VehicleType.SUBWAY;
-    if (e == path['TRAM']) return VehicleType.TRAM;
-    if (e == path['TROLLEYBUS']) return VehicleType.TROLLEYBUS;
-  })(asJsObject(this)['type']);
+  VehicleType get type => vehicleTypeCodec.decode(asJsObject(this)['type']);
 }
 
 // **************************************************************************
@@ -4606,7 +4594,8 @@ class LocationElevationRequest extends JsInterface
     asJsObject(this)['locations'] = ((e) {
       if (e == null) return null;
       if (e is JsInterface) return asJsObject(e);
-      return new JsArray.from(e.map(toJs));
+      return new JsArray.from(e.map(new JsInterfaceCodec<LatLng>(
+          (o) => ((e) => e == null ? null : new LatLng.created(e))(o)).encode));
     })(_locations);
   }
   List<LatLng> get locations => ((e) {
@@ -4631,7 +4620,8 @@ class PathElevationRequest extends JsInterface
     asJsObject(this)['path'] = ((e) {
       if (e == null) return null;
       if (e is JsInterface) return asJsObject(e);
-      return new JsArray.from(e.map(toJs));
+      return new JsArray.from(e.map(new JsInterfaceCodec<LatLng>(
+          (o) => ((e) => e == null ? null : new LatLng.created(e))(o)).encode));
     })(_path);
   }
   List<LatLng> get path => ((e) {
@@ -4916,7 +4906,11 @@ class DistanceMatrixResponse extends JsInterface
     asJsObject(this)['rows'] = ((e) {
       if (e == null) return null;
       if (e is JsInterface) return asJsObject(e);
-      return new JsArray.from(e.map(toJs));
+      return new JsArray.from(e.map(
+          new JsInterfaceCodec<DistanceMatrixResponseRow>(
+              (o) => ((e) => e == null
+                  ? null
+                  : new DistanceMatrixResponseRow.created(e))(o)).encode));
     })(_rows);
   }
   List<DistanceMatrixResponseRow> get rows => ((e) {
@@ -4942,7 +4936,11 @@ class DistanceMatrixResponseRow extends JsInterface
     asJsObject(this)['elements'] = ((e) {
       if (e == null) return null;
       if (e is JsInterface) return asJsObject(e);
-      return new JsArray.from(e.map(toJs));
+      return new JsArray.from(e.map(
+          new JsInterfaceCodec<DistanceMatrixResponseElement>(
+              (o) => ((e) => e == null
+                  ? null
+                  : new DistanceMatrixResponseElement.created(e))(o)).encode));
     })(_elements);
   }
   List<DistanceMatrixResponseElement> get elements => ((e) {
@@ -5334,7 +5332,9 @@ class StyledMapType extends MVCObject implements _StyledMapType {
         ((e) {
           if (e == null) return null;
           if (e is JsInterface) return asJsObject(e);
-          return new JsArray.from(e.map(toJs));
+          return new JsArray.from(e.map(new JsInterfaceCodec<MapTypeStyle>(
+              (o) => ((e) => e == null ? null : new MapTypeStyle.created(e))(
+                  o)).encode));
         })(styles),
         ((e) => e == null ? null : asJsObject(e))(options)
       ]));
@@ -5424,183 +5424,23 @@ class MapTypeStyle extends JsInterface implements _MapTypeStyle {
   MapTypeStyle() : this.created(new JsObject(context['Object']));
 
   void set elementType(MapTypeStyleElementType _elementType) {
-    asJsObject(this)['elementType'] = ((e) {
-      if (e == null) return null;
-      final path = getPath('google.maps.MapTypeStyleElementType');
-      if (e == MapTypeStyleElementType.ALL) return path['ALL'];
-      if (e == MapTypeStyleElementType.GEOMETRY) return path['GEOMETRY'];
-      if (e == MapTypeStyleElementType.GEOMETRY_FILL) return path[
-          'GEOMETRY_FILL'];
-      if (e == MapTypeStyleElementType.GEOMETRY_STROKE) return path[
-          'GEOMETRY_STROKE'];
-      if (e == MapTypeStyleElementType.LABELS) return path['LABELS'];
-      if (e == MapTypeStyleElementType.LABELS_ICON) return path['LABELS_ICON'];
-      if (e == MapTypeStyleElementType.LABELS_TEXT) return path['LABELS_TEXT'];
-      if (e == MapTypeStyleElementType.LABELS_TEXT_FILL) return path[
-          'LABELS_TEXT_FILL'];
-      if (e == MapTypeStyleElementType.LABELS_TEXT_STROKE) return path[
-          'LABELS_TEXT_STROKE'];
-    })(_elementType);
+    asJsObject(this)['elementType'] =
+        mapTypeStyleElementTypeCodec.encode(_elementType);
   }
-  MapTypeStyleElementType get elementType => ((e) {
-    if (e == null) return null;
-    final path = getPath('google.maps.MapTypeStyleElementType');
-    if (e == path['ALL']) return MapTypeStyleElementType.ALL;
-    if (e == path['GEOMETRY']) return MapTypeStyleElementType.GEOMETRY;
-    if (e ==
-        path['GEOMETRY_FILL']) return MapTypeStyleElementType.GEOMETRY_FILL;
-    if (e ==
-        path['GEOMETRY_STROKE']) return MapTypeStyleElementType.GEOMETRY_STROKE;
-    if (e == path['LABELS']) return MapTypeStyleElementType.LABELS;
-    if (e == path['LABELS_ICON']) return MapTypeStyleElementType.LABELS_ICON;
-    if (e == path['LABELS_TEXT']) return MapTypeStyleElementType.LABELS_TEXT;
-    if (e ==
-        path[
-        'LABELS_TEXT_FILL']) return MapTypeStyleElementType.LABELS_TEXT_FILL;
-    if (e ==
-        path[
-        'LABELS_TEXT_STROKE']) return MapTypeStyleElementType.LABELS_TEXT_STROKE;
-  })(asJsObject(this)['elementType']);
+  MapTypeStyleElementType get elementType =>
+      mapTypeStyleElementTypeCodec.decode(asJsObject(this)['elementType']);
   void set featureType(MapTypeStyleFeatureType _featureType) {
-    asJsObject(this)['featureType'] = ((e) {
-      if (e == null) return null;
-      final path = getPath('google.maps.MapTypeStyleFeatureType');
-      if (e == MapTypeStyleFeatureType.ADMINISTRATIVE) return path[
-          'ADMINISTRATIVE'];
-      if (e == MapTypeStyleFeatureType.ADMINISTRATIVE_COUNTRY) return path[
-          'ADMINISTRATIVE_COUNTRY'];
-      if (e == MapTypeStyleFeatureType.ADMINISTRATIVE_LAND_PARCEL) return path[
-          'ADMINISTRATIVE_LAND_PARCEL'];
-      if (e == MapTypeStyleFeatureType.ADMINISTRATIVE_LOCALITY) return path[
-          'ADMINISTRATIVE_LOCALITY'];
-      if (e == MapTypeStyleFeatureType.ADMINISTRATIVE_NEIGHBORHOOD) return path[
-          'ADMINISTRATIVE_NEIGHBORHOOD'];
-      if (e == MapTypeStyleFeatureType.ADMINISTRATIVE_PROVINCE) return path[
-          'ADMINISTRATIVE_PROVINCE'];
-      if (e == MapTypeStyleFeatureType.ALL) return path['ALL'];
-      if (e == MapTypeStyleFeatureType.LANDSCAPE) return path['LANDSCAPE'];
-      if (e == MapTypeStyleFeatureType.LANDSCAPE_MAN_MADE) return path[
-          'LANDSCAPE_MAN_MADE'];
-      if (e == MapTypeStyleFeatureType.LANDSCAPE_NATURAL) return path[
-          'LANDSCAPE_NATURAL'];
-      if (e == MapTypeStyleFeatureType.LANDSCAPE_NATURAL_LANDCOVER) return path[
-          'LANDSCAPE_NATURAL_LANDCOVER'];
-      if (e == MapTypeStyleFeatureType.LANDSCAPE_NATURAL_TERRAIN) return path[
-          'LANDSCAPE_NATURAL_TERRAIN'];
-      if (e == MapTypeStyleFeatureType.POI) return path['POI'];
-      if (e == MapTypeStyleFeatureType.POI_ATTRACTION) return path[
-          'POI_ATTRACTION'];
-      if (e == MapTypeStyleFeatureType.POI_BUSINESS) return path[
-          'POI_BUSINESS'];
-      if (e == MapTypeStyleFeatureType.POI_GOVERNMENT) return path[
-          'POI_GOVERNMENT'];
-      if (e == MapTypeStyleFeatureType.POI_MEDICAL) return path['POI_MEDICAL'];
-      if (e == MapTypeStyleFeatureType.POI_PARK) return path['POI_PARK'];
-      if (e == MapTypeStyleFeatureType.POI_PLACE_OF_WORSHIP) return path[
-          'POI_PLACE_OF_WORSHIP'];
-      if (e == MapTypeStyleFeatureType.POI_SCHOOL) return path['POI_SCHOOL'];
-      if (e == MapTypeStyleFeatureType.POI_SPORTS_COMPLEX) return path[
-          'POI_SPORTS_COMPLEX'];
-      if (e == MapTypeStyleFeatureType.ROAD) return path['ROAD'];
-      if (e == MapTypeStyleFeatureType.ROAD_ARTERIAL) return path[
-          'ROAD_ARTERIAL'];
-      if (e == MapTypeStyleFeatureType.ROAD_HIGHWAY) return path[
-          'ROAD_HIGHWAY'];
-      if (e ==
-          MapTypeStyleFeatureType.ROAD_HIGHWAY_CONTROLLED_ACCESS) return path[
-          'ROAD_HIGHWAY_CONTROLLED_ACCESS'];
-      if (e == MapTypeStyleFeatureType.ROAD_LOCAL) return path['ROAD_LOCAL'];
-      if (e == MapTypeStyleFeatureType.TRANSIT) return path['TRANSIT'];
-      if (e == MapTypeStyleFeatureType.TRANSIT_LINE) return path[
-          'TRANSIT_LINE'];
-      if (e == MapTypeStyleFeatureType.TRANSIT_STATION) return path[
-          'TRANSIT_STATION'];
-      if (e == MapTypeStyleFeatureType.TRANSIT_STATION_AIRPORT) return path[
-          'TRANSIT_STATION_AIRPORT'];
-      if (e == MapTypeStyleFeatureType.TRANSIT_STATION_BUS) return path[
-          'TRANSIT_STATION_BUS'];
-      if (e == MapTypeStyleFeatureType.TRANSIT_STATION_RAIL) return path[
-          'TRANSIT_STATION_RAIL'];
-      if (e == MapTypeStyleFeatureType.WATER) return path['WATER'];
-    })(_featureType);
+    asJsObject(this)['featureType'] =
+        mapTypeStyleFeatureTypeCodec.encode(_featureType);
   }
-  MapTypeStyleFeatureType get featureType => ((e) {
-    if (e == null) return null;
-    final path = getPath('google.maps.MapTypeStyleFeatureType');
-    if (e ==
-        path['ADMINISTRATIVE']) return MapTypeStyleFeatureType.ADMINISTRATIVE;
-    if (e ==
-        path[
-        'ADMINISTRATIVE_COUNTRY']) return MapTypeStyleFeatureType.ADMINISTRATIVE_COUNTRY;
-    if (e ==
-        path[
-        'ADMINISTRATIVE_LAND_PARCEL']) return MapTypeStyleFeatureType.ADMINISTRATIVE_LAND_PARCEL;
-    if (e ==
-        path[
-        'ADMINISTRATIVE_LOCALITY']) return MapTypeStyleFeatureType.ADMINISTRATIVE_LOCALITY;
-    if (e ==
-        path[
-        'ADMINISTRATIVE_NEIGHBORHOOD']) return MapTypeStyleFeatureType.ADMINISTRATIVE_NEIGHBORHOOD;
-    if (e ==
-        path[
-        'ADMINISTRATIVE_PROVINCE']) return MapTypeStyleFeatureType.ADMINISTRATIVE_PROVINCE;
-    if (e == path['ALL']) return MapTypeStyleFeatureType.ALL;
-    if (e == path['LANDSCAPE']) return MapTypeStyleFeatureType.LANDSCAPE;
-    if (e ==
-        path[
-        'LANDSCAPE_MAN_MADE']) return MapTypeStyleFeatureType.LANDSCAPE_MAN_MADE;
-    if (e ==
-        path[
-        'LANDSCAPE_NATURAL']) return MapTypeStyleFeatureType.LANDSCAPE_NATURAL;
-    if (e ==
-        path[
-        'LANDSCAPE_NATURAL_LANDCOVER']) return MapTypeStyleFeatureType.LANDSCAPE_NATURAL_LANDCOVER;
-    if (e ==
-        path[
-        'LANDSCAPE_NATURAL_TERRAIN']) return MapTypeStyleFeatureType.LANDSCAPE_NATURAL_TERRAIN;
-    if (e == path['POI']) return MapTypeStyleFeatureType.POI;
-    if (e ==
-        path['POI_ATTRACTION']) return MapTypeStyleFeatureType.POI_ATTRACTION;
-    if (e == path['POI_BUSINESS']) return MapTypeStyleFeatureType.POI_BUSINESS;
-    if (e ==
-        path['POI_GOVERNMENT']) return MapTypeStyleFeatureType.POI_GOVERNMENT;
-    if (e == path['POI_MEDICAL']) return MapTypeStyleFeatureType.POI_MEDICAL;
-    if (e == path['POI_PARK']) return MapTypeStyleFeatureType.POI_PARK;
-    if (e ==
-        path[
-        'POI_PLACE_OF_WORSHIP']) return MapTypeStyleFeatureType.POI_PLACE_OF_WORSHIP;
-    if (e == path['POI_SCHOOL']) return MapTypeStyleFeatureType.POI_SCHOOL;
-    if (e ==
-        path[
-        'POI_SPORTS_COMPLEX']) return MapTypeStyleFeatureType.POI_SPORTS_COMPLEX;
-    if (e == path['ROAD']) return MapTypeStyleFeatureType.ROAD;
-    if (e ==
-        path['ROAD_ARTERIAL']) return MapTypeStyleFeatureType.ROAD_ARTERIAL;
-    if (e == path['ROAD_HIGHWAY']) return MapTypeStyleFeatureType.ROAD_HIGHWAY;
-    if (e ==
-        path[
-        'ROAD_HIGHWAY_CONTROLLED_ACCESS']) return MapTypeStyleFeatureType.ROAD_HIGHWAY_CONTROLLED_ACCESS;
-    if (e == path['ROAD_LOCAL']) return MapTypeStyleFeatureType.ROAD_LOCAL;
-    if (e == path['TRANSIT']) return MapTypeStyleFeatureType.TRANSIT;
-    if (e == path['TRANSIT_LINE']) return MapTypeStyleFeatureType.TRANSIT_LINE;
-    if (e ==
-        path['TRANSIT_STATION']) return MapTypeStyleFeatureType.TRANSIT_STATION;
-    if (e ==
-        path[
-        'TRANSIT_STATION_AIRPORT']) return MapTypeStyleFeatureType.TRANSIT_STATION_AIRPORT;
-    if (e ==
-        path[
-        'TRANSIT_STATION_BUS']) return MapTypeStyleFeatureType.TRANSIT_STATION_BUS;
-    if (e ==
-        path[
-        'TRANSIT_STATION_RAIL']) return MapTypeStyleFeatureType.TRANSIT_STATION_RAIL;
-    if (e == path['WATER']) return MapTypeStyleFeatureType.WATER;
-  })(asJsObject(this)['featureType']);
+  MapTypeStyleFeatureType get featureType =>
+      mapTypeStyleFeatureTypeCodec.decode(asJsObject(this)['featureType']);
   void set stylers(List<MapTypeStyler> _stylers) {
     asJsObject(this)['stylers'] = ((e) {
       if (e == null) return null;
       if (e is JsInterface) return asJsObject(e);
-      return new JsArray.from(e.map(toJs));
+      return new JsArray.from(e.map(new JsInterfaceCodec<MapTypeStyler>((o) =>
+          ((e) => e == null ? null : new MapTypeStyler.created(e))(o)).encode));
     })(_stylers);
   }
   List<MapTypeStyler> get stylers => ((e) {
@@ -5748,7 +5588,9 @@ class FusionTablesLayerOptions extends JsInterface
     asJsObject(this)['styles'] = ((e) {
       if (e == null) return null;
       if (e is JsInterface) return asJsObject(e);
-      return new JsArray.from(e.map(toJs));
+      return new JsArray.from(e.map(new JsInterfaceCodec<FusionTablesStyle>(
+          (o) => ((e) => e == null ? null : new FusionTablesStyle.created(e))(
+              o)).encode));
     })(_styles);
   }
   List<FusionTablesStyle> get styles => ((e) {
@@ -6314,7 +6156,9 @@ class StreetViewPanorama extends MVCObject implements _StreetViewPanorama {
       ((e) {
         if (e == null) return null;
         if (e is JsInterface) return asJsObject(e);
-        return new JsArray.from(e.map(toJs));
+        return new JsArray.from(e.map(new JsInterfaceCodec<StreetViewLink>(
+            (o) => ((e) => e == null ? null : new StreetViewLink.created(e))(
+                o)).encode));
       })(links)
     ]);
   }
@@ -6593,7 +6437,9 @@ class StreetViewPanoramaData extends JsInterface
     asJsObject(this)['links'] = ((e) {
       if (e == null) return null;
       if (e is JsInterface) return asJsObject(e);
-      return new JsArray.from(e.map(toJs));
+      return new JsArray.from(e.map(new JsInterfaceCodec<StreetViewLink>(
+          (o) => ((e) => e == null ? null : new StreetViewLink.created(e))(
+              o)).encode));
     })(_links);
   }
   List<StreetViewLink> get links => ((e) {

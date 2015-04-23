@@ -102,6 +102,16 @@ abstract class _ImageMapType extends MVCObject implements MapType {
 
   Stream get onTilesloaded => getStream(this, #onTilesloaded, "tilesloaded");
 }
+''',
+  'StrokePosition': '''
+@JsEnum()
+@JsName('google.maps.StrokePosition')
+enum StrokePosition { CENTER, INSIDE, OUTSIDE }
+''',
+  'MapsEngineStatus': '''
+@JsEnum()
+@JsName('google.maps.visualization.MapsEngineStatus')
+enum MapsEngineStatus { INVALID_LAYER, OK, UNKNOWN_ERROR }
 '''
 };
 
@@ -432,9 +442,39 @@ part of $libraryName;
       } else if (jsElmt.isEnum) {
         final constants = jsElmt.constants
             .map((tr) => tr.getElementsByTagName('td')[0].text.trim());
-        // TODO(aa) mapping MapTypeStyleElementType.all vs. MapTypeStyleElementType.ALL
-        partContents += "@JsEnum() @JsName('${jsElmt.fullName}') "
-            'enum ${jsElmt.name}{${constants.map((String e) => e.replaceAll('.', '_').toUpperCase()).join(',')}}\n\n';
+
+        String toEnumValue(String v) => v.replaceAll('.', '_').toUpperCase();
+
+        final names = {};
+        for (final e in constants) {
+          final dartName = toEnumValue(e);
+          if (dartName != e) names[dartName] = e;
+        }
+
+        if (jsElmt.isAnonymousObject) {
+          final codecName =
+              jsElmt.name[0].toLowerCase() + jsElmt.name.substring(1) + 'Codec';
+          partContents +=
+              "final $codecName = new BiMapCodec<${jsElmt.name}, dynamic>({";
+          names.forEach((k, v) {
+            partContents += "${jsElmt.name}.$k: '$v',";
+          });
+          partContents += "}); ";
+          partContents += "@JsCodec(#$codecName) ";
+        } else {
+          if (names.isEmpty) partContents += "@JsEnum()";
+          else {
+            partContents += "@JsEnum(names: const {";
+            names.forEach((k, v) {
+              partContents += "${jsElmt.name}.$k: '$v',";
+            });
+            partContents += "})";
+          }
+          partContents += " @JsName('${jsElmt.fullName}') ";
+        }
+
+        partContents +=
+            'enum ${jsElmt.name}{${constants.map(toEnumValue).join(',')}}\n\n';
 
         // codec
 //        partContents += 'final ' +

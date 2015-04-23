@@ -14,8 +14,19 @@
 
 part of google_maps;
 
-@JsEnum()
-@JsName('google.maps.MapTypeStyleElementType')
+final mapTypeStyleElementTypeCodec =
+    new BiMapCodec<MapTypeStyleElementType, dynamic>({
+  MapTypeStyleElementType.ALL: 'all',
+  MapTypeStyleElementType.GEOMETRY: 'geometry',
+  MapTypeStyleElementType.GEOMETRY_FILL: 'geometry.fill',
+  MapTypeStyleElementType.GEOMETRY_STROKE: 'geometry.stroke',
+  MapTypeStyleElementType.LABELS: 'labels',
+  MapTypeStyleElementType.LABELS_ICON: 'labels.icon',
+  MapTypeStyleElementType.LABELS_TEXT: 'labels.text',
+  MapTypeStyleElementType.LABELS_TEXT_FILL: 'labels.text.fill',
+  MapTypeStyleElementType.LABELS_TEXT_STROKE: 'labels.text.stroke',
+});
+@JsCodec(#mapTypeStyleElementTypeCodec)
 enum MapTypeStyleElementType {
   ALL,
   GEOMETRY,

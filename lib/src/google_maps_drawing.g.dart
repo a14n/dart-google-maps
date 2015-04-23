@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// 2015-04-20T20:55:07.312Z
+// 2015-04-22T20:32:12.432Z
 
 part of google_maps.drawing;
 
@@ -169,7 +169,18 @@ class DrawingControlOptions extends JsInterface
     asJsObject(this)['drawingModes'] = ((e) {
       if (e == null) return null;
       if (e is JsInterface) return asJsObject(e);
-      return new JsArray.from(e.map(toJs));
+      return new JsArray.from(e.map(new BiMapCodec<OverlayType, dynamic>({
+        OverlayType.CIRCLE:
+            getPath('google.maps.drawing.OverlayType')['CIRCLE'],
+        OverlayType.MARKER:
+            getPath('google.maps.drawing.OverlayType')['MARKER'],
+        OverlayType.POLYGON:
+            getPath('google.maps.drawing.OverlayType')['POLYGON'],
+        OverlayType.POLYLINE:
+            getPath('google.maps.drawing.OverlayType')['POLYLINE'],
+        OverlayType.RECTANGLE:
+            getPath('google.maps.drawing.OverlayType')['RECTANGLE']
+      }).encode));
     })(_drawingModes);
   }
   List<OverlayType> get drawingModes => ((e) {
