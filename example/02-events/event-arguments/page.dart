@@ -4,10 +4,8 @@ import 'package:google_maps/google_maps.dart';
 void main() {
   final mapOptions = new MapOptions()
     ..zoom = 4
-    ..center = new LatLng(-25.363882,131.044922)
-    ..mapTypeId = MapTypeId.ROADMAP
-  ;
-  final map = new GMap(querySelector("#map_canvas"), mapOptions);
+    ..center = new LatLng(-25.363882, 131.044922);
+  final map = new GMap(document.getElementById('map-canvas'), mapOptions);
 
   map.onClick.listen((e) {
     placeMarker(e.latLng, map);
@@ -17,8 +15,7 @@ void main() {
 void placeMarker(LatLng position, GMap map) {
   new Marker(new MarkerOptions()
     ..position = position
-    ..map = map
-  );
+    ..map = map);
 
   map.panTo(position);
 }

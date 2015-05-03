@@ -5,16 +5,13 @@ void main() {
   var myLatLng = new LatLng(-25.363882, 131.044922);
   final mapOptions = new MapOptions()
     ..zoom = 4
-    ..center = myLatLng
-    ..mapTypeId = MapTypeId.ROADMAP
-  ;
+    ..center = myLatLng;
 
-  final map = new GMap(querySelector("#map_canvas"), mapOptions);
+  final map = new GMap(document.getElementById('map-canvas'), mapOptions);
 
   final infowindow = new InfoWindow(new InfoWindowOptions()
     ..content = "Change the zoom level"
-    ..position = myLatLng
-  );
+    ..position = myLatLng);
   infowindow.open(map);
 
   map.onZoomChanged.listen((_) {
