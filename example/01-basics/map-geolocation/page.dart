@@ -4,26 +4,23 @@ import 'package:google_maps/google_maps.dart';
 GMap map;
 
 void main() {
-  final mapOptions = new MapOptions()
-    ..zoom = 6
-    ..mapTypeId = MapTypeId.ROADMAP
-    ;
-  map = new GMap(querySelector("#map_canvas"), mapOptions);
+  final mapOptions = new MapOptions()..zoom = 6;
+  map = new GMap(document.getElementById("map-canvas"), mapOptions);
 
   // Try HTML5 geolocation
   if (window.navigator.geolocation != null) {
     window.navigator.geolocation.getCurrentPosition().then((position) {
-      final pos = new LatLng(position.coords.latitude,
-          position.coords.longitude);
+      final pos =
+          new LatLng(position.coords.latitude, position.coords.longitude);
 
       final infowindow = new InfoWindow(new InfoWindowOptions()
         ..position = pos
-        ..content = 'Location found using HTML5.'
-      );
+        ..content = 'Location found using HTML5.');
+      // FIXME https://code.google.com/p/gmaps-api-issues/issues/detail?id=7908
       infowindow.open(map);
 
       map.center = pos;
-    }, onError : (error) {
+    }, onError: (error) {
       handleNoGeolocation(true);
     });
   } else {
@@ -42,10 +39,11 @@ void handleNoGeolocation(bool errorFlag) {
 
   final options = new InfoWindowOptions()
     ..position = new LatLng(60, 105)
-    ..content = content
-    ;
+    ..content = content;
 
   final infowindow = new InfoWindow(options);
+  // FIXME https://code.google.com/p/gmaps-api-issues/issues/detail?id=7908
   infowindow.open(map);
+
   map.center = options.position;
 }

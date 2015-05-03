@@ -5,18 +5,13 @@ void main() {
   final mapOptions = new MapOptions()
     ..scaleControl = true
     ..center = new LatLng(30.064742, 31.249509)
-    ..zoom = 10
-    ..mapTypeId = MapTypeId.ROADMAP
-    ;
-  final map = new GMap(querySelector("#map_canvas"), mapOptions);
+    ..zoom = 10;
+  final map = new GMap(document.getElementById("map-canvas"), mapOptions);
 
   final marker = new Marker(new MarkerOptions()
     ..map = map
-    ..position = map.center
-  );
-  final InfoWindow infowindow = new InfoWindow();
-  infowindow.content = '<b>القاهرة</b>';
-
+    ..position = map.center);
+  final InfoWindow infowindow = new InfoWindow()..content = '<b>القاهرة</b>';
   marker.onClick.listen((e) {
     infowindow.open(map, marker);
   });
