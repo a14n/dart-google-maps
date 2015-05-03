@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// 2015-04-22T20:32:12.432Z
+// 2015-05-03T20:27:06.559Z
 
 part of google_maps.drawing;
 
@@ -13,44 +13,25 @@ class DrawingManager extends MVCObject implements _DrawingManager {
   DrawingManager.created(JsObject o) : super.created(o);
   DrawingManager([DrawingManagerOptions options]) : this.created(new JsObject(
           getPath('google.maps.drawing.DrawingManager'),
-          [((e) => e == null ? null : asJsObject(e))(options)]));
+          [__codec164.encode(options)]));
 
   OverlayType get drawingMode => _getDrawingMode();
-  OverlayType _getDrawingMode() => ((e) {
-    if (e == null) return null;
-    final path = getPath('google.maps.drawing.OverlayType');
-    if (e == path['CIRCLE']) return OverlayType.CIRCLE;
-    if (e == path['MARKER']) return OverlayType.MARKER;
-    if (e == path['POLYGON']) return OverlayType.POLYGON;
-    if (e == path['POLYLINE']) return OverlayType.POLYLINE;
-    if (e == path['RECTANGLE']) return OverlayType.RECTANGLE;
-  })(asJsObject(this).callMethod('getDrawingMode'));
+  OverlayType _getDrawingMode() =>
+      __codec165.decode(asJsObject(this).callMethod('getDrawingMode'));
   GMap get map => _getMap();
-  GMap _getMap() => ((e) => e == null ? null : new GMap.created(e))(
-      asJsObject(this).callMethod('getMap'));
+  GMap _getMap() => __codec166.decode(asJsObject(this).callMethod('getMap'));
   void set drawingMode(OverlayType drawingMode) => _setDrawingMode(drawingMode);
   void _setDrawingMode(OverlayType drawingMode) {
-    asJsObject(this).callMethod('setDrawingMode', [
-      ((e) {
-        if (e == null) return null;
-        final path = getPath('google.maps.drawing.OverlayType');
-        if (e == OverlayType.CIRCLE) return path['CIRCLE'];
-        if (e == OverlayType.MARKER) return path['MARKER'];
-        if (e == OverlayType.POLYGON) return path['POLYGON'];
-        if (e == OverlayType.POLYLINE) return path['POLYLINE'];
-        if (e == OverlayType.RECTANGLE) return path['RECTANGLE'];
-      })(drawingMode)
-    ]);
+    asJsObject(this).callMethod(
+        'setDrawingMode', [__codec165.encode(drawingMode)]);
   }
   void set map(GMap map) => _setMap(map);
   void _setMap(GMap map) {
-    asJsObject(this).callMethod(
-        'setMap', [((e) => e == null ? null : asJsObject(e))(map)]);
+    asJsObject(this).callMethod('setMap', [__codec166.encode(map)]);
   }
   void set options(DrawingManagerOptions options) => _setOptions(options);
   void _setOptions(DrawingManagerOptions options) {
-    asJsObject(this).callMethod(
-        'setOptions', [((e) => e == null ? null : asJsObject(e))(options)]);
+    asJsObject(this).callMethod('setOptions', [__codec164.encode(options)]);
   }
 
   Stream<Circle> get onCirclecomplete => getStream(this, #onCirclecomplete,
@@ -69,6 +50,21 @@ class DrawingManager extends MVCObject implements _DrawingManager {
       #onRectanglecomplete, "rectanglecomplete",
       (JsObject o) => new Rectangle.created(o));
 }
+/// codec for DrawingManagerOptions
+final __codec164 = new JsInterfaceCodec<DrawingManagerOptions>(
+    (o) => new DrawingManagerOptions.created(o));
+
+/// codec for OverlayType
+final __codec165 = new BiMapCodec<OverlayType, dynamic>({
+  OverlayType.CIRCLE: getPath('google.maps.drawing.OverlayType')['CIRCLE'],
+  OverlayType.MARKER: getPath('google.maps.drawing.OverlayType')['MARKER'],
+  OverlayType.POLYGON: getPath('google.maps.drawing.OverlayType')['POLYGON'],
+  OverlayType.POLYLINE: getPath('google.maps.drawing.OverlayType')['POLYLINE'],
+  OverlayType.RECTANGLE: getPath('google.maps.drawing.OverlayType')['RECTANGLE']
+});
+
+/// codec for GMap
+final __codec166 = new JsInterfaceCodec<GMap>((o) => new GMap.created(o));
 
 // **************************************************************************
 // Generator: JsInterfaceGenerator
@@ -82,77 +78,73 @@ class DrawingManagerOptions extends JsInterface
   DrawingManagerOptions() : this.created(new JsObject(context['Object']));
 
   void set circleOptions(CircleOptions _circleOptions) {
-    asJsObject(this)['circleOptions'] =
-        ((e) => e == null ? null : asJsObject(e))(_circleOptions);
+    asJsObject(this)['circleOptions'] = __codec167.encode(_circleOptions);
   }
-  CircleOptions get circleOptions => ((e) => e == null
-      ? null
-      : new CircleOptions.created(e))(asJsObject(this)['circleOptions']);
+  CircleOptions get circleOptions =>
+      __codec167.decode(asJsObject(this)['circleOptions']);
   void set drawingControl(bool _drawingControl) {
     asJsObject(this)['drawingControl'] = _drawingControl;
   }
   bool get drawingControl => asJsObject(this)['drawingControl'];
   void set drawingControlOptions(DrawingControlOptions _drawingControlOptions) {
     asJsObject(this)['drawingControlOptions'] =
-        ((e) => e == null ? null : asJsObject(e))(_drawingControlOptions);
+        __codec168.encode(_drawingControlOptions);
   }
   DrawingControlOptions get drawingControlOptions =>
-      ((e) => e == null ? null : new DrawingControlOptions.created(e))(
-          asJsObject(this)['drawingControlOptions']);
+      __codec168.decode(asJsObject(this)['drawingControlOptions']);
   void set drawingMode(OverlayType _drawingMode) {
-    asJsObject(this)['drawingMode'] = ((e) {
-      if (e == null) return null;
-      final path = getPath('google.maps.drawing.OverlayType');
-      if (e == OverlayType.CIRCLE) return path['CIRCLE'];
-      if (e == OverlayType.MARKER) return path['MARKER'];
-      if (e == OverlayType.POLYGON) return path['POLYGON'];
-      if (e == OverlayType.POLYLINE) return path['POLYLINE'];
-      if (e == OverlayType.RECTANGLE) return path['RECTANGLE'];
-    })(_drawingMode);
+    asJsObject(this)['drawingMode'] = __codec165.encode(_drawingMode);
   }
-  OverlayType get drawingMode => ((e) {
-    if (e == null) return null;
-    final path = getPath('google.maps.drawing.OverlayType');
-    if (e == path['CIRCLE']) return OverlayType.CIRCLE;
-    if (e == path['MARKER']) return OverlayType.MARKER;
-    if (e == path['POLYGON']) return OverlayType.POLYGON;
-    if (e == path['POLYLINE']) return OverlayType.POLYLINE;
-    if (e == path['RECTANGLE']) return OverlayType.RECTANGLE;
-  })(asJsObject(this)['drawingMode']);
+  OverlayType get drawingMode =>
+      __codec165.decode(asJsObject(this)['drawingMode']);
   void set map(GMap _map) {
-    asJsObject(this)['map'] = ((e) => e == null ? null : asJsObject(e))(_map);
+    asJsObject(this)['map'] = __codec166.encode(_map);
   }
-  GMap get map =>
-      ((e) => e == null ? null : new GMap.created(e))(asJsObject(this)['map']);
+  GMap get map => __codec166.decode(asJsObject(this)['map']);
   void set markerOptions(MarkerOptions _markerOptions) {
-    asJsObject(this)['markerOptions'] =
-        ((e) => e == null ? null : asJsObject(e))(_markerOptions);
+    asJsObject(this)['markerOptions'] = __codec169.encode(_markerOptions);
   }
-  MarkerOptions get markerOptions => ((e) => e == null
-      ? null
-      : new MarkerOptions.created(e))(asJsObject(this)['markerOptions']);
+  MarkerOptions get markerOptions =>
+      __codec169.decode(asJsObject(this)['markerOptions']);
   void set polygonOptions(PolygonOptions _polygonOptions) {
-    asJsObject(this)['polygonOptions'] =
-        ((e) => e == null ? null : asJsObject(e))(_polygonOptions);
+    asJsObject(this)['polygonOptions'] = __codec170.encode(_polygonOptions);
   }
-  PolygonOptions get polygonOptions => ((e) => e == null
-      ? null
-      : new PolygonOptions.created(e))(asJsObject(this)['polygonOptions']);
+  PolygonOptions get polygonOptions =>
+      __codec170.decode(asJsObject(this)['polygonOptions']);
   void set polylineOptions(PolylineOptions _polylineOptions) {
-    asJsObject(this)['polylineOptions'] =
-        ((e) => e == null ? null : asJsObject(e))(_polylineOptions);
+    asJsObject(this)['polylineOptions'] = __codec171.encode(_polylineOptions);
   }
-  PolylineOptions get polylineOptions => ((e) => e == null
-      ? null
-      : new PolylineOptions.created(e))(asJsObject(this)['polylineOptions']);
+  PolylineOptions get polylineOptions =>
+      __codec171.decode(asJsObject(this)['polylineOptions']);
   void set rectangleOptions(RectangleOptions _rectangleOptions) {
-    asJsObject(this)['rectangleOptions'] =
-        ((e) => e == null ? null : asJsObject(e))(_rectangleOptions);
+    asJsObject(this)['rectangleOptions'] = __codec172.encode(_rectangleOptions);
   }
-  RectangleOptions get rectangleOptions => ((e) => e == null
-      ? null
-      : new RectangleOptions.created(e))(asJsObject(this)['rectangleOptions']);
+  RectangleOptions get rectangleOptions =>
+      __codec172.decode(asJsObject(this)['rectangleOptions']);
 }
+/// codec for CircleOptions
+final __codec167 =
+    new JsInterfaceCodec<CircleOptions>((o) => new CircleOptions.created(o));
+
+/// codec for DrawingControlOptions
+final __codec168 = new JsInterfaceCodec<DrawingControlOptions>(
+    (o) => new DrawingControlOptions.created(o));
+
+/// codec for MarkerOptions
+final __codec169 =
+    new JsInterfaceCodec<MarkerOptions>((o) => new MarkerOptions.created(o));
+
+/// codec for PolygonOptions
+final __codec170 =
+    new JsInterfaceCodec<PolygonOptions>((o) => new PolygonOptions.created(o));
+
+/// codec for PolylineOptions
+final __codec171 = new JsInterfaceCodec<PolylineOptions>(
+    (o) => new PolylineOptions.created(o));
+
+/// codec for RectangleOptions
+final __codec172 = new JsInterfaceCodec<RectangleOptions>(
+    (o) => new RectangleOptions.created(o));
 
 // **************************************************************************
 // Generator: JsInterfaceGenerator
@@ -166,72 +158,43 @@ class DrawingControlOptions extends JsInterface
   DrawingControlOptions() : this.created(new JsObject(context['Object']));
 
   void set drawingModes(List<OverlayType> _drawingModes) {
-    asJsObject(this)['drawingModes'] = ((e) {
-      if (e == null) return null;
-      if (e is JsInterface) return asJsObject(e);
-      return new JsArray.from(e.map(new BiMapCodec<OverlayType, dynamic>({
-        OverlayType.CIRCLE:
-            getPath('google.maps.drawing.OverlayType')['CIRCLE'],
-        OverlayType.MARKER:
-            getPath('google.maps.drawing.OverlayType')['MARKER'],
-        OverlayType.POLYGON:
-            getPath('google.maps.drawing.OverlayType')['POLYGON'],
-        OverlayType.POLYLINE:
-            getPath('google.maps.drawing.OverlayType')['POLYLINE'],
-        OverlayType.RECTANGLE:
-            getPath('google.maps.drawing.OverlayType')['RECTANGLE']
-      }).encode));
-    })(_drawingModes);
+    asJsObject(this)['drawingModes'] = __codec173.encode(_drawingModes);
   }
-  List<OverlayType> get drawingModes => ((e) {
-    if (e == null) return null;
-    return new JsList<OverlayType>.created(e,
-        new BiMapCodec<OverlayType, dynamic>({
-      OverlayType.CIRCLE: getPath('google.maps.drawing.OverlayType')['CIRCLE'],
-      OverlayType.MARKER: getPath('google.maps.drawing.OverlayType')['MARKER'],
-      OverlayType.POLYGON:
-          getPath('google.maps.drawing.OverlayType')['POLYGON'],
-      OverlayType.POLYLINE:
-          getPath('google.maps.drawing.OverlayType')['POLYLINE'],
-      OverlayType.RECTANGLE:
-          getPath('google.maps.drawing.OverlayType')['RECTANGLE']
-    }));
-  })(asJsObject(this)['drawingModes']);
+  List<OverlayType> get drawingModes =>
+      __codec173.decode(asJsObject(this)['drawingModes']);
   void set position(ControlPosition _position) {
-    asJsObject(this)['position'] = ((e) {
-      if (e == null) return null;
-      final path = getPath('google.maps.ControlPosition');
-      if (e == ControlPosition.BOTTOM_CENTER) return path['BOTTOM_CENTER'];
-      if (e == ControlPosition.BOTTOM_LEFT) return path['BOTTOM_LEFT'];
-      if (e == ControlPosition.BOTTOM_RIGHT) return path['BOTTOM_RIGHT'];
-      if (e == ControlPosition.LEFT_BOTTOM) return path['LEFT_BOTTOM'];
-      if (e == ControlPosition.LEFT_CENTER) return path['LEFT_CENTER'];
-      if (e == ControlPosition.LEFT_TOP) return path['LEFT_TOP'];
-      if (e == ControlPosition.RIGHT_BOTTOM) return path['RIGHT_BOTTOM'];
-      if (e == ControlPosition.RIGHT_CENTER) return path['RIGHT_CENTER'];
-      if (e == ControlPosition.RIGHT_TOP) return path['RIGHT_TOP'];
-      if (e == ControlPosition.TOP_CENTER) return path['TOP_CENTER'];
-      if (e == ControlPosition.TOP_LEFT) return path['TOP_LEFT'];
-      if (e == ControlPosition.TOP_RIGHT) return path['TOP_RIGHT'];
-    })(_position);
+    asJsObject(this)['position'] = __codec174.encode(_position);
   }
-  ControlPosition get position => ((e) {
-    if (e == null) return null;
-    final path = getPath('google.maps.ControlPosition');
-    if (e == path['BOTTOM_CENTER']) return ControlPosition.BOTTOM_CENTER;
-    if (e == path['BOTTOM_LEFT']) return ControlPosition.BOTTOM_LEFT;
-    if (e == path['BOTTOM_RIGHT']) return ControlPosition.BOTTOM_RIGHT;
-    if (e == path['LEFT_BOTTOM']) return ControlPosition.LEFT_BOTTOM;
-    if (e == path['LEFT_CENTER']) return ControlPosition.LEFT_CENTER;
-    if (e == path['LEFT_TOP']) return ControlPosition.LEFT_TOP;
-    if (e == path['RIGHT_BOTTOM']) return ControlPosition.RIGHT_BOTTOM;
-    if (e == path['RIGHT_CENTER']) return ControlPosition.RIGHT_CENTER;
-    if (e == path['RIGHT_TOP']) return ControlPosition.RIGHT_TOP;
-    if (e == path['TOP_CENTER']) return ControlPosition.TOP_CENTER;
-    if (e == path['TOP_LEFT']) return ControlPosition.TOP_LEFT;
-    if (e == path['TOP_RIGHT']) return ControlPosition.TOP_RIGHT;
-  })(asJsObject(this)['position']);
+  ControlPosition get position =>
+      __codec174.decode(asJsObject(this)['position']);
 }
+/// codec for List<OverlayType>
+final __codec173 = new JsListCodec<OverlayType>(__codec165);
+
+/// codec for ControlPosition
+final __codec174 = new BiMapCodec<ControlPosition, dynamic>({
+  ControlPosition.BOTTOM_CENTER:
+      getPath('google.maps.ControlPosition')['BOTTOM_CENTER'],
+  ControlPosition.BOTTOM_LEFT:
+      getPath('google.maps.ControlPosition')['BOTTOM_LEFT'],
+  ControlPosition.BOTTOM_RIGHT:
+      getPath('google.maps.ControlPosition')['BOTTOM_RIGHT'],
+  ControlPosition.LEFT_BOTTOM:
+      getPath('google.maps.ControlPosition')['LEFT_BOTTOM'],
+  ControlPosition.LEFT_CENTER:
+      getPath('google.maps.ControlPosition')['LEFT_CENTER'],
+  ControlPosition.LEFT_TOP: getPath('google.maps.ControlPosition')['LEFT_TOP'],
+  ControlPosition.RIGHT_BOTTOM:
+      getPath('google.maps.ControlPosition')['RIGHT_BOTTOM'],
+  ControlPosition.RIGHT_CENTER:
+      getPath('google.maps.ControlPosition')['RIGHT_CENTER'],
+  ControlPosition.RIGHT_TOP:
+      getPath('google.maps.ControlPosition')['RIGHT_TOP'],
+  ControlPosition.TOP_CENTER:
+      getPath('google.maps.ControlPosition')['TOP_CENTER'],
+  ControlPosition.TOP_LEFT: getPath('google.maps.ControlPosition')['TOP_LEFT'],
+  ControlPosition.TOP_RIGHT: getPath('google.maps.ControlPosition')['TOP_RIGHT']
+});
 
 // **************************************************************************
 // Generator: JsInterfaceGenerator
@@ -245,7 +208,7 @@ class OverlayCompleteEvent extends JsInterface
   OverlayCompleteEvent() : this.created(new JsObject(context['Object']));
 
   void set _overlay(dynamic __overlay) {
-    asJsObject(this)['overlay'] = toJs(__overlay);
+    asJsObject(this)['overlay'] = __overlay;
   }
   dynamic get _overlay => asJsObject(this)['overlay'];
   dynamic /*Marker|Polygon|Polyline|Rectangle|Circle*/ get overlay =>
@@ -277,23 +240,7 @@ class OverlayCompleteEvent extends JsInterface
         .encode(overlay);
   }
   void set type(OverlayType _type) {
-    asJsObject(this)['type'] = ((e) {
-      if (e == null) return null;
-      final path = getPath('google.maps.drawing.OverlayType');
-      if (e == OverlayType.CIRCLE) return path['CIRCLE'];
-      if (e == OverlayType.MARKER) return path['MARKER'];
-      if (e == OverlayType.POLYGON) return path['POLYGON'];
-      if (e == OverlayType.POLYLINE) return path['POLYLINE'];
-      if (e == OverlayType.RECTANGLE) return path['RECTANGLE'];
-    })(_type);
+    asJsObject(this)['type'] = __codec165.encode(_type);
   }
-  OverlayType get type => ((e) {
-    if (e == null) return null;
-    final path = getPath('google.maps.drawing.OverlayType');
-    if (e == path['CIRCLE']) return OverlayType.CIRCLE;
-    if (e == path['MARKER']) return OverlayType.MARKER;
-    if (e == path['POLYGON']) return OverlayType.POLYGON;
-    if (e == path['POLYLINE']) return OverlayType.POLYLINE;
-    if (e == path['RECTANGLE']) return OverlayType.RECTANGLE;
-  })(asJsObject(this)['type']);
+  OverlayType get type => __codec165.decode(asJsObject(this)['type']);
 }

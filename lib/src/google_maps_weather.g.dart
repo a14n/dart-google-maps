@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// 2015-04-22T20:32:12.765Z
+// 2015-05-03T20:27:06.885Z
 
 part of google_maps.weather;
 
@@ -15,14 +15,14 @@ class CloudLayer extends MVCObject implements _CloudLayer {
       : this.created(new JsObject(getPath('google.maps.weather.CloudLayer')));
 
   GMap get map => _getMap();
-  GMap _getMap() => ((e) => e == null ? null : new GMap.created(e))(
-      asJsObject(this).callMethod('getMap'));
+  GMap _getMap() => __codec235.decode(asJsObject(this).callMethod('getMap'));
   void set map(GMap map) => _setMap(map);
   void _setMap(GMap map) {
-    asJsObject(this).callMethod(
-        'setMap', [((e) => e == null ? null : asJsObject(e))(map)]);
+    asJsObject(this).callMethod('setMap', [__codec235.encode(map)]);
   }
 }
+/// codec for GMap
+final __codec235 = new JsInterfaceCodec<GMap>((o) => new GMap.created(o));
 
 // **************************************************************************
 // Generator: JsInterfaceGenerator
@@ -34,25 +34,25 @@ class WeatherLayer extends MVCObject implements _WeatherLayer {
   WeatherLayer.created(JsObject o) : super.created(o);
   WeatherLayer([WeatherLayerOptions opts]) : this.created(new JsObject(
           getPath('google.maps.weather.WeatherLayer'),
-          [((e) => e == null ? null : asJsObject(e))(opts)]));
+          [__codec236.encode(opts)]));
 
   GMap get map => _getMap();
-  GMap _getMap() => ((e) => e == null ? null : new GMap.created(e))(
-      asJsObject(this).callMethod('getMap'));
+  GMap _getMap() => __codec235.decode(asJsObject(this).callMethod('getMap'));
   void set map(GMap map) => _setMap(map);
   void _setMap(GMap map) {
-    asJsObject(this).callMethod(
-        'setMap', [((e) => e == null ? null : asJsObject(e))(map)]);
+    asJsObject(this).callMethod('setMap', [__codec235.encode(map)]);
   }
   void set options(WeatherLayerOptions options) => _setOptions(options);
   void _setOptions(WeatherLayerOptions options) {
-    asJsObject(this).callMethod(
-        'setOptions', [((e) => e == null ? null : asJsObject(e))(options)]);
+    asJsObject(this).callMethod('setOptions', [__codec236.encode(options)]);
   }
 
   Stream<WeatherMouseEvent> get onClick => getStream(this, #onClick, "click",
       (JsObject o) => new WeatherMouseEvent.created(o));
 }
+/// codec for WeatherLayerOptions
+final __codec236 = new JsInterfaceCodec<WeatherLayerOptions>(
+    (o) => new WeatherLayerOptions.created(o));
 
 // **************************************************************************
 // Generator: JsInterfaceGenerator
@@ -69,62 +69,52 @@ class WeatherLayerOptions extends JsInterface implements _WeatherLayerOptions {
   }
   bool get clickable => asJsObject(this)['clickable'];
   void set labelColor(LabelColor _labelColor) {
-    asJsObject(this)['labelColor'] = ((e) {
-      if (e == null) return null;
-      final path = getPath('google.maps.weather.LabelColor');
-      if (e == LabelColor.BLACK) return path['BLACK'];
-      if (e == LabelColor.WHITE) return path['WHITE'];
-    })(_labelColor);
+    asJsObject(this)['labelColor'] = __codec237.encode(_labelColor);
   }
-  LabelColor get labelColor => ((e) {
-    if (e == null) return null;
-    final path = getPath('google.maps.weather.LabelColor');
-    if (e == path['BLACK']) return LabelColor.BLACK;
-    if (e == path['WHITE']) return LabelColor.WHITE;
-  })(asJsObject(this)['labelColor']);
+  LabelColor get labelColor =>
+      __codec237.decode(asJsObject(this)['labelColor']);
   void set map(GMap _map) {
-    asJsObject(this)['map'] = ((e) => e == null ? null : asJsObject(e))(_map);
+    asJsObject(this)['map'] = __codec235.encode(_map);
   }
-  GMap get map =>
-      ((e) => e == null ? null : new GMap.created(e))(asJsObject(this)['map']);
+  GMap get map => __codec235.decode(asJsObject(this)['map']);
   void set suppressInfoWindows(bool _suppressInfoWindows) {
     asJsObject(this)['suppressInfoWindows'] = _suppressInfoWindows;
   }
   bool get suppressInfoWindows => asJsObject(this)['suppressInfoWindows'];
   void set temperatureUnits(TemperatureUnit _temperatureUnits) {
-    asJsObject(this)['temperatureUnits'] = ((e) {
-      if (e == null) return null;
-      final path = getPath('google.maps.weather.TemperatureUnit');
-      if (e == TemperatureUnit.CELSIUS) return path['CELSIUS'];
-      if (e == TemperatureUnit.FAHRENHEIT) return path['FAHRENHEIT'];
-    })(_temperatureUnits);
+    asJsObject(this)['temperatureUnits'] = __codec238.encode(_temperatureUnits);
   }
-  TemperatureUnit get temperatureUnits => ((e) {
-    if (e == null) return null;
-    final path = getPath('google.maps.weather.TemperatureUnit');
-    if (e == path['CELSIUS']) return TemperatureUnit.CELSIUS;
-    if (e == path['FAHRENHEIT']) return TemperatureUnit.FAHRENHEIT;
-  })(asJsObject(this)['temperatureUnits']);
+  TemperatureUnit get temperatureUnits =>
+      __codec238.decode(asJsObject(this)['temperatureUnits']);
   void set windSpeedUnits(WindSpeedUnit _windSpeedUnits) {
-    asJsObject(this)['windSpeedUnits'] = ((e) {
-      if (e == null) return null;
-      final path = getPath('google.maps.weather.WindSpeedUnit');
-      if (e == WindSpeedUnit.KILOMETERS_PER_HOUR) return path[
-          'KILOMETERS_PER_HOUR'];
-      if (e == WindSpeedUnit.METERS_PER_SECOND) return path[
-          'METERS_PER_SECOND'];
-      if (e == WindSpeedUnit.MILES_PER_HOUR) return path['MILES_PER_HOUR'];
-    })(_windSpeedUnits);
+    asJsObject(this)['windSpeedUnits'] = __codec239.encode(_windSpeedUnits);
   }
-  WindSpeedUnit get windSpeedUnits => ((e) {
-    if (e == null) return null;
-    final path = getPath('google.maps.weather.WindSpeedUnit');
-    if (e ==
-        path['KILOMETERS_PER_HOUR']) return WindSpeedUnit.KILOMETERS_PER_HOUR;
-    if (e == path['METERS_PER_SECOND']) return WindSpeedUnit.METERS_PER_SECOND;
-    if (e == path['MILES_PER_HOUR']) return WindSpeedUnit.MILES_PER_HOUR;
-  })(asJsObject(this)['windSpeedUnits']);
+  WindSpeedUnit get windSpeedUnits =>
+      __codec239.decode(asJsObject(this)['windSpeedUnits']);
 }
+/// codec for LabelColor
+final __codec237 = new BiMapCodec<LabelColor, dynamic>({
+  LabelColor.BLACK: getPath('google.maps.weather.LabelColor')['BLACK'],
+  LabelColor.WHITE: getPath('google.maps.weather.LabelColor')['WHITE']
+});
+
+/// codec for TemperatureUnit
+final __codec238 = new BiMapCodec<TemperatureUnit, dynamic>({
+  TemperatureUnit.CELSIUS:
+      getPath('google.maps.weather.TemperatureUnit')['CELSIUS'],
+  TemperatureUnit.FAHRENHEIT:
+      getPath('google.maps.weather.TemperatureUnit')['FAHRENHEIT']
+});
+
+/// codec for WindSpeedUnit
+final __codec239 = new BiMapCodec<WindSpeedUnit, dynamic>({
+  WindSpeedUnit.KILOMETERS_PER_HOUR:
+      getPath('google.maps.weather.WindSpeedUnit')['KILOMETERS_PER_HOUR'],
+  WindSpeedUnit.METERS_PER_SECOND:
+      getPath('google.maps.weather.WindSpeedUnit')['METERS_PER_SECOND'],
+  WindSpeedUnit.MILES_PER_HOUR:
+      getPath('google.maps.weather.WindSpeedUnit')['MILES_PER_HOUR']
+});
 
 // **************************************************************************
 // Generator: JsInterfaceGenerator
@@ -137,29 +127,32 @@ class WeatherMouseEvent extends JsInterface implements _WeatherMouseEvent {
   WeatherMouseEvent() : this.created(new JsObject(context['Object']));
 
   void set featureDetails(WeatherFeature _featureDetails) {
-    asJsObject(this)['featureDetails'] =
-        ((e) => e == null ? null : asJsObject(e))(_featureDetails);
+    asJsObject(this)['featureDetails'] = __codec240.encode(_featureDetails);
   }
-  WeatherFeature get featureDetails => ((e) => e == null
-      ? null
-      : new WeatherFeature.created(e))(asJsObject(this)['featureDetails']);
+  WeatherFeature get featureDetails =>
+      __codec240.decode(asJsObject(this)['featureDetails']);
   void set infoWindowHtml(String _infoWindowHtml) {
     asJsObject(this)['infoWindowHtml'] = _infoWindowHtml;
   }
   String get infoWindowHtml => asJsObject(this)['infoWindowHtml'];
   void set latLng(LatLng _latLng) {
-    asJsObject(this)['latLng'] =
-        ((e) => e == null ? null : asJsObject(e))(_latLng);
+    asJsObject(this)['latLng'] = __codec241.encode(_latLng);
   }
-  LatLng get latLng => ((e) => e == null ? null : new LatLng.created(e))(
-      asJsObject(this)['latLng']);
+  LatLng get latLng => __codec241.decode(asJsObject(this)['latLng']);
   void set pixelOffset(Size _pixelOffset) {
-    asJsObject(this)['pixelOffset'] =
-        ((e) => e == null ? null : asJsObject(e))(_pixelOffset);
+    asJsObject(this)['pixelOffset'] = __codec242.encode(_pixelOffset);
   }
-  Size get pixelOffset => ((e) => e == null ? null : new Size.created(e))(
-      asJsObject(this)['pixelOffset']);
+  Size get pixelOffset => __codec242.decode(asJsObject(this)['pixelOffset']);
 }
+/// codec for WeatherFeature
+final __codec240 =
+    new JsInterfaceCodec<WeatherFeature>((o) => new WeatherFeature.created(o));
+
+/// codec for LatLng
+final __codec241 = new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o));
+
+/// codec for Size
+final __codec242 = new JsInterfaceCodec<Size>((o) => new Size.created(o));
 
 // **************************************************************************
 // Generator: JsInterfaceGenerator
@@ -172,65 +165,40 @@ class WeatherFeature extends JsInterface implements _WeatherFeature {
   WeatherFeature() : this.created(new JsObject(context['Object']));
 
   void set current(WeatherConditions _current) {
-    asJsObject(this)['current'] =
-        ((e) => e == null ? null : asJsObject(e))(_current);
+    asJsObject(this)['current'] = __codec243.encode(_current);
   }
-  WeatherConditions get current => ((e) => e == null
-      ? null
-      : new WeatherConditions.created(e))(asJsObject(this)['current']);
+  WeatherConditions get current =>
+      __codec243.decode(asJsObject(this)['current']);
   void set forecast(List<WeatherForecast> _forecast) {
-    asJsObject(this)['forecast'] = ((e) {
-      if (e == null) return null;
-      if (e is JsInterface) return asJsObject(e);
-      return new JsArray.from(e.map(new JsInterfaceCodec<WeatherForecast>(
-          (o) => ((e) => e == null ? null : new WeatherForecast.created(e))(
-              o)).encode));
-    })(_forecast);
+    asJsObject(this)['forecast'] = __codec245.encode(_forecast);
   }
-  List<WeatherForecast> get forecast => ((e) {
-    if (e == null) return null;
-    return new JsList<WeatherForecast>.created(e,
-        new JsInterfaceCodec<WeatherForecast>((o) =>
-            ((e) => e == null ? null : new WeatherForecast.created(e))(o)));
-  })(asJsObject(this)['forecast']);
+  List<WeatherForecast> get forecast =>
+      __codec245.decode(asJsObject(this)['forecast']);
   void set location(String _location) {
     asJsObject(this)['location'] = _location;
   }
   String get location => asJsObject(this)['location'];
   void set temperatureUnit(TemperatureUnit _temperatureUnit) {
-    asJsObject(this)['temperatureUnit'] = ((e) {
-      if (e == null) return null;
-      final path = getPath('google.maps.weather.TemperatureUnit');
-      if (e == TemperatureUnit.CELSIUS) return path['CELSIUS'];
-      if (e == TemperatureUnit.FAHRENHEIT) return path['FAHRENHEIT'];
-    })(_temperatureUnit);
+    asJsObject(this)['temperatureUnit'] = __codec238.encode(_temperatureUnit);
   }
-  TemperatureUnit get temperatureUnit => ((e) {
-    if (e == null) return null;
-    final path = getPath('google.maps.weather.TemperatureUnit');
-    if (e == path['CELSIUS']) return TemperatureUnit.CELSIUS;
-    if (e == path['FAHRENHEIT']) return TemperatureUnit.FAHRENHEIT;
-  })(asJsObject(this)['temperatureUnit']);
+  TemperatureUnit get temperatureUnit =>
+      __codec238.decode(asJsObject(this)['temperatureUnit']);
   void set windSpeedUnit(WindSpeedUnit _windSpeedUnit) {
-    asJsObject(this)['windSpeedUnit'] = ((e) {
-      if (e == null) return null;
-      final path = getPath('google.maps.weather.WindSpeedUnit');
-      if (e == WindSpeedUnit.KILOMETERS_PER_HOUR) return path[
-          'KILOMETERS_PER_HOUR'];
-      if (e == WindSpeedUnit.METERS_PER_SECOND) return path[
-          'METERS_PER_SECOND'];
-      if (e == WindSpeedUnit.MILES_PER_HOUR) return path['MILES_PER_HOUR'];
-    })(_windSpeedUnit);
+    asJsObject(this)['windSpeedUnit'] = __codec239.encode(_windSpeedUnit);
   }
-  WindSpeedUnit get windSpeedUnit => ((e) {
-    if (e == null) return null;
-    final path = getPath('google.maps.weather.WindSpeedUnit');
-    if (e ==
-        path['KILOMETERS_PER_HOUR']) return WindSpeedUnit.KILOMETERS_PER_HOUR;
-    if (e == path['METERS_PER_SECOND']) return WindSpeedUnit.METERS_PER_SECOND;
-    if (e == path['MILES_PER_HOUR']) return WindSpeedUnit.MILES_PER_HOUR;
-  })(asJsObject(this)['windSpeedUnit']);
+  WindSpeedUnit get windSpeedUnit =>
+      __codec239.decode(asJsObject(this)['windSpeedUnit']);
 }
+/// codec for WeatherConditions
+final __codec243 = new JsInterfaceCodec<WeatherConditions>(
+    (o) => new WeatherConditions.created(o));
+
+/// codec for WeatherForecast
+final __codec244 = new JsInterfaceCodec<WeatherForecast>(
+    (o) => new WeatherForecast.created(o));
+
+/// codec for List<WeatherForecast>
+final __codec245 = new JsListCodec<WeatherForecast>(__codec244);
 
 // **************************************************************************
 // Generator: JsInterfaceGenerator

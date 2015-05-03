@@ -201,7 +201,7 @@ abstract class _Controls extends JsInterface
     return new MVCArray<Node>.created(value);
   }
   void operator []=(ControlPosition controlPosition, MVCArray<Node> nodes) {
-    asJsObject(this)[_toJsControlPosition(controlPosition)] = toJs(nodes);
+    asJsObject(this)[_toJsControlPosition(controlPosition)] = asJsObject(nodes);
   }
   Iterable<ControlPosition> get keys {
     var result = <ControlPosition>[];

@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// 2015-04-15T21:07:11.754Z
+// 2015-05-03T20:27:06.621Z
 
 part of google_maps.panoramio;
 
@@ -13,24 +13,21 @@ class PanoramioLayer extends MVCObject implements _PanoramioLayer {
   PanoramioLayer.created(JsObject o) : super.created(o);
   PanoramioLayer([PanoramioLayerOptions opts]) : this.created(new JsObject(
           getPath('google.maps.panoramio.PanoramioLayer'),
-          [((e) => e == null ? null : asJsObject(e))(opts)]));
+          [__codec178.encode(opts)]));
 
   GMap get map => _getMap();
-  GMap _getMap() => ((e) => e == null ? null : new GMap.created(e))(
-      asJsObject(this).callMethod('getMap'));
+  GMap _getMap() => __codec179.decode(asJsObject(this).callMethod('getMap'));
   String get tag => _getTag();
   String _getTag() => asJsObject(this).callMethod('getTag');
   String get userId => _getUserId();
   String _getUserId() => asJsObject(this).callMethod('getUserId');
   void set map(GMap map) => _setMap(map);
   void _setMap(GMap map) {
-    asJsObject(this).callMethod(
-        'setMap', [((e) => e == null ? null : asJsObject(e))(map)]);
+    asJsObject(this).callMethod('setMap', [__codec179.encode(map)]);
   }
   void set options(PanoramioLayerOptions options) => _setOptions(options);
   void _setOptions(PanoramioLayerOptions options) {
-    asJsObject(this).callMethod(
-        'setOptions', [((e) => e == null ? null : asJsObject(e))(options)]);
+    asJsObject(this).callMethod('setOptions', [__codec178.encode(options)]);
   }
   void set tag(String tag) => _setTag(tag);
   void _setTag(String tag) {
@@ -44,6 +41,12 @@ class PanoramioLayer extends MVCObject implements _PanoramioLayer {
   Stream<PanoramioMouseEvent> get onClick => getStream(this, #onClick, "click",
       (JsObject o) => new PanoramioMouseEvent.created(o));
 }
+/// codec for PanoramioLayerOptions
+final __codec178 = new JsInterfaceCodec<PanoramioLayerOptions>(
+    (o) => new PanoramioLayerOptions.created(o));
+
+/// codec for GMap
+final __codec179 = new JsInterfaceCodec<GMap>((o) => new GMap.created(o));
 
 // **************************************************************************
 // Generator: JsInterfaceGenerator
@@ -61,10 +64,9 @@ class PanoramioLayerOptions extends JsInterface
   }
   bool get clickable => asJsObject(this)['clickable'];
   void set map(GMap _map) {
-    asJsObject(this)['map'] = ((e) => e == null ? null : asJsObject(e))(_map);
+    asJsObject(this)['map'] = __codec179.encode(_map);
   }
-  GMap get map =>
-      ((e) => e == null ? null : new GMap.created(e))(asJsObject(this)['map']);
+  GMap get map => __codec179.decode(asJsObject(this)['map']);
   void set suppressInfoWindows(bool _suppressInfoWindows) {
     asJsObject(this)['suppressInfoWindows'] = _suppressInfoWindows;
   }
@@ -122,26 +124,29 @@ class PanoramioMouseEvent extends JsInterface implements _PanoramioMouseEvent {
   PanoramioMouseEvent() : this.created(new JsObject(context['Object']));
 
   void set featureDetails(PanoramioFeature _featureDetails) {
-    asJsObject(this)['featureDetails'] =
-        ((e) => e == null ? null : asJsObject(e))(_featureDetails);
+    asJsObject(this)['featureDetails'] = __codec180.encode(_featureDetails);
   }
-  PanoramioFeature get featureDetails => ((e) => e == null
-      ? null
-      : new PanoramioFeature.created(e))(asJsObject(this)['featureDetails']);
+  PanoramioFeature get featureDetails =>
+      __codec180.decode(asJsObject(this)['featureDetails']);
   void set infoWindowHtml(String _infoWindowHtml) {
     asJsObject(this)['infoWindowHtml'] = _infoWindowHtml;
   }
   String get infoWindowHtml => asJsObject(this)['infoWindowHtml'];
   void set latLng(LatLng _latLng) {
-    asJsObject(this)['latLng'] =
-        ((e) => e == null ? null : asJsObject(e))(_latLng);
+    asJsObject(this)['latLng'] = __codec181.encode(_latLng);
   }
-  LatLng get latLng => ((e) => e == null ? null : new LatLng.created(e))(
-      asJsObject(this)['latLng']);
+  LatLng get latLng => __codec181.decode(asJsObject(this)['latLng']);
   void set pixelOffset(Size _pixelOffset) {
-    asJsObject(this)['pixelOffset'] =
-        ((e) => e == null ? null : asJsObject(e))(_pixelOffset);
+    asJsObject(this)['pixelOffset'] = __codec182.encode(_pixelOffset);
   }
-  Size get pixelOffset => ((e) => e == null ? null : new Size.created(e))(
-      asJsObject(this)['pixelOffset']);
+  Size get pixelOffset => __codec182.decode(asJsObject(this)['pixelOffset']);
 }
+/// codec for PanoramioFeature
+final __codec180 = new JsInterfaceCodec<PanoramioFeature>(
+    (o) => new PanoramioFeature.created(o));
+
+/// codec for LatLng
+final __codec181 = new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o));
+
+/// codec for Size
+final __codec182 = new JsInterfaceCodec<Size>((o) => new Size.created(o));
