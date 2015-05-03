@@ -34,10 +34,13 @@ final customContent = <String, String>{
 abstract class _MVCArray<E> extends MVCObject {
   Codec<E, dynamic> _codec = null;
 
-  _MVCArray({List<E> elements, Codec<E, dynamic> codec})
-      : this.created(elements == null
-          ? new JsArray()
-          : new JsArray.from(elements.map(codec.encode)), codec);
+  _MVCArray({List<E> elements, Codec<E, dynamic> codec}) : this.created(
+          new JsObject(getPath('google.maps.MVCArray'), [
+        elements == null
+            ? new JsArray()
+            : new JsArray.from(
+                codec == null ? elements : elements.map(codec.encode))
+      ]), codec);
 
   _MVCArray.created(JsObject o,
       [Codec<E, dynamic> codec])
@@ -155,7 +158,7 @@ abstract class _Controls extends JsInterface
     return new MVCArray<Node>.created(value);
   }
   void operator []=(ControlPosition controlPosition, MVCArray<Node> nodes) {
-    asJsObject(this)[_toJsControlPosition(controlPosition)] = toJs(nodes);
+    asJsObject(this)[_toJsControlPosition(controlPosition)] = asJsObject(nodes);
   }
   Iterable<ControlPosition> get keys {
     var result = <ControlPosition>[];

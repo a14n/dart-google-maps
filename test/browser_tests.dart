@@ -30,7 +30,7 @@ main() {
   });
 
   test('MVCArray works', () {
-    final mvcArray = new MVCArray([]);
+    final mvcArray = new MVCArray();
     mvcArray.onInsertAt.listen((int i) => print("inserted at $i"));
     mvcArray.onRemoveAt.listen((IndexAndElement e) => print("removed ${e.element} at ${e.index}"));
     mvcArray.onSetAt.listen((IndexAndElement e) => print("set ${e.element} at ${e.index}"));
