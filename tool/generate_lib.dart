@@ -509,6 +509,21 @@ part of $libraryName;
                 : 'implements JsInterface') +
             ' {\n';
 
+        // add constants
+        jsElmt.constants.forEach((constantTr) {
+          final name = constantTr.getElementsByTagName('td')[0].text.trim();
+          if (declarationSubstitutions.containsKey(libraryName) &&
+              declarationSubstitutions[libraryName].containsKey(jsElmt.name) &&
+              declarationSubstitutions[libraryName][jsElmt.name]
+                  .containsKey(name)) {
+            partContents +=
+                declarationSubstitutions[libraryName][jsElmt.name][name] + '\n';
+          } else {
+            partContents += 'external static get $name;\n';
+          }
+        });
+        partContents += '\n';
+
         // add constructors
         final constr = jsElmt.constructor;
         if (constr != null) {
@@ -610,9 +625,9 @@ part of $libraryName;
         partContents += '\n';
 
         // add properties
-        jsElmt.properties.forEach((propertiesTr) {
-          final name = propertiesTr.getElementsByTagName('td')[0].text.trim();
-          final type = propertiesTr.getElementsByTagName('td')[1].text.trim();
+        jsElmt.properties.forEach((propertyTr) {
+          final name = propertyTr.getElementsByTagName('td')[0].text.trim();
+          final type = propertyTr.getElementsByTagName('td')[1].text.trim();
           if (declarationSubstitutions.containsKey(libraryName) &&
               declarationSubstitutions[libraryName].containsKey(jsElmt.name) &&
               declarationSubstitutions[libraryName][jsElmt.name]

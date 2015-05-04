@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// 2015-05-03T20:26:18.508Z
+// 2015-05-04T19:49:13.314Z
 
 part of google_maps;
 
@@ -1446,6 +1446,8 @@ class DataRemovePropertyEvent extends JsInterface
 
 @JsName('google.maps.Marker')
 class Marker extends MVCObject implements _Marker {
+  static get MAX_ZINDEX => getPath('google.maps.Marker')['MAX_ZINDEX'];
+
   Marker.created(JsObject o) : super.created(o);
   Marker([MarkerOptions opts]) : this.created(new JsObject(
           getPath('google.maps.Marker'), [__codec45.encode(opts)]));

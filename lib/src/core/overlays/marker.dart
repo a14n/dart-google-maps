@@ -16,6 +16,8 @@ part of google_maps;
 
 @JsName('google.maps.Marker')
 abstract class _Marker extends MVCObject {
+  external static get MAX_ZINDEX;
+
   external factory _Marker([MarkerOptions opts]);
 
   Animation get animation => _getAnimation();
