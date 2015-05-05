@@ -7,14 +7,11 @@ void main() {
     ..center = new LatLng(-33, 151)
     ..mapTypeControl = true
     ..mapTypeControlOptions = (new MapTypeControlOptions()
-      ..style = MapTypeControlStyle.DROPDOWN_MENU
-    )
+      ..style = MapTypeControlStyle.DEFAULT
+      ..mapTypeIds = [MapTypeId.ROADMAP, MapTypeId.TERRAIN])
     ..zoomControl = true
     ..zoomControlOptions = (new ZoomControlOptions()
-      ..style = ZoomControlStyle.SMALL
-    )
-    ..mapTypeId = MapTypeId.ROADMAP
-    ;
+      ..style = ZoomControlStyle.SMALL);
 
-  new GMap(querySelector("#map_canvas"), mapOptions);
+  new GMap(document.getElementById('map-canvas'), mapOptions);
 }

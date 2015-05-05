@@ -5,38 +5,36 @@ GMap map;
 final LatLng chicago = new LatLng(41.850033, -87.6500523);
 
 /**
- * The HomeControl adds a control to the map that simply
- * returns the user to Chicago. This constructor takes
- * the control DIV as an argument.
+ * The CenterControl adds a control to the map that recenters the map on
+ * Chicago.
+ * This constructor takes the control DIV as an argument.
  */
-class HomeControl {
-  HomeControl(Element controlDiv, GMap map) {
-    // Set CSS styles for the DIV containing the control
-    // Setting padding to 5 px will offset the control
-    // from the edge of the map
-    controlDiv.style.padding = '5px';
+class CenterControl {
+  CenterControl(Element controlDiv, GMap map) {
 
     // Set CSS for the control border
     final controlUI = new DivElement();
     controlUI.style
-      ..backgroundColor = 'white'
-      ..borderStyle = 'solid'
-      ..borderWidth = '2px'
+      ..backgroundColor = '#fff'
+      ..border = '2px solid #fff'
+      ..borderRadius = '3px'
+      ..boxShadow = '0 2px 6px rgba(0,0,0,.3)'
       ..cursor = 'pointer'
-      ..textAlign = 'center'
-      ;
-    controlUI.title = 'Click to set the map to Home';
+      ..marginBottom = '22px'
+      ..textAlign = 'center';
+    controlUI.title = 'Click to recenter the map';
     controlDiv.children.add(controlUI);
 
     // Set CSS for the control interior
     final controlText = new DivElement();
     controlText.style
-      ..fontFamily = 'Arial,sans-serif'
-      ..fontSize = '12px'
-      ..paddingLeft = '4px'
-      ..paddingRight = '4px'
-      ;
-    controlText.innerHtml = '<b>Home</b>';
+      ..color = 'rgb(25,25,25)'
+      ..fontFamily = 'Roboto,Arial,sans-serif'
+      ..fontSize = '16px'
+      ..lineHeight = '38px'
+      ..paddingLeft = '5px'
+      ..paddingRight = '5px';
+    controlText.innerHtml = 'Center Map';
     controlUI.children.add(controlText);
 
     // Setup the click event listeners: simply set the map to
@@ -48,22 +46,20 @@ class HomeControl {
 }
 
 void main() {
-  final mapDiv = querySelector("#map_canvas");
+  final mapDiv = document.getElementById('map-canvas');
   final mapOptions = new MapOptions()
     ..zoom = 12
-    ..center = chicago
-    ..mapTypeId = MapTypeId.ROADMAP
-    ;
+    ..center = chicago;
   map = new GMap(mapDiv, mapOptions);
 
   // Create the DIV to hold the control and
   // call the HomeControl() constructor passing
   // in this DIV.
-  var homeControlDiv = new DivElement();
-  new HomeControl(homeControlDiv, map);
+  var centerControlDiv = new DivElement();
+  new CenterControl(centerControlDiv, map);
 
-  homeControlDiv.attributes["index"] = 1.toString();
-  map.controls[ControlPosition.TOP_RIGHT].push(homeControlDiv);
+  centerControlDiv.attributes["index"] = '1';
+  map.controls[ControlPosition.BOTTOM_LEFT].push(centerControlDiv);
 
   print(map.controls.length);
 }

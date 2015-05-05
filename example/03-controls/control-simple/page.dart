@@ -7,8 +7,6 @@ void main() {
     ..center = new LatLng(-33, 151)
     ..panControl = false
     ..zoomControl = false
-    ..scaleControl = true
-    ..mapTypeId = MapTypeId.ROADMAP
-  ;
-  new GMap(querySelector("#map_canvas"), mapOptions);
+    ..scaleControl = true;
+  new GMap(document.getElementById('map-canvas'), mapOptions);
 }
