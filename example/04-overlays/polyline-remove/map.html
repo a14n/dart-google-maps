@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
-    <title>Marker animations with setTimeout()</title>
+    <title>Remove a Polyline</title>
     <style>
       html, body, #map-canvas {
         height: 100%;
@@ -22,9 +23,10 @@
     </style>
   </head>
   <body>
-    <div id="panel" style="margin-left: -52px">
-      <button id="drop">Drop Markers</button>
-     </div>
+    <div id="panel">
+      <input id="removeLine" type=button value="Remove line">
+      <input id="addLine" type=button value="Restore line">
+    </div>
     <div id="map-canvas"></div>
 
     <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>

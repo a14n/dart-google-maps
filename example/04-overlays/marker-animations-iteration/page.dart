@@ -10,33 +10,38 @@ final List<LatLng> neighborhoods = [
   new LatLng(52.517683, 13.394393)
 ];
 
-final markers = new List<Marker>();
-int iterator = 0;
+final markers = <Marker>[];
 
 GMap map;
 
 void main() {
   final mapOptions = new MapOptions()
     ..zoom = 12
-    ..mapTypeId = MapTypeId.ROADMAP
     ..center = berlin;
-  map = new GMap(querySelector("#map_canvas"), mapOptions);
+  map = new GMap(document.getElementById('map-canvas'), mapOptions);
 
-  querySelector("#drop").onClick.listen(drop);
+  document.getElementById('drop').onClick.listen(drop);
 }
 
-void drop(e) {
+void drop(_) {
+  clearMarkers();
   for (var i = 0; i < neighborhoods.length; i++) {
-    new Timer(new Duration(milliseconds: i * 200), addMarker);
+    new Timer(new Duration(milliseconds: i * 200), () {
+      addMarker(neighborhoods[i]);
+    });
   }
 }
 
-void addMarker() {
+void addMarker(LatLng position) {
   markers.add(new Marker(new MarkerOptions()
-    ..position = neighborhoods[iterator % neighborhoods.length]
+    ..position = position
     ..map = map
-    ..draggable = false
-    ..animation = Animation.DROP
-  ));
-  iterator++;
+    ..animation = Animation.DROP));
+}
+
+void clearMarkers() {
+  for (var i = 0; i < markers.length; i++) {
+    markers[i].map = null;
+  }
+  markers.clear();
 }

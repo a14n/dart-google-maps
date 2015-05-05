@@ -5,13 +5,12 @@ Polyline poly;
 GMap map;
 
 void main() {
-  final chicago = new LatLng(41.879535, -87.624333);
   final mapOptions = new MapOptions()
     ..zoom = 7
-    ..center = chicago
-    ..mapTypeId = MapTypeId.ROADMAP
+        // Center the map on Chicago, USA.
+    ..center = new LatLng(41.879535, -87.624333)
     ;
-  map = new GMap(querySelector("#map_canvas"), mapOptions);
+  map = new GMap(document.getElementById('map-canvas'), mapOptions);
 
   final polyOptions = new PolylineOptions()
     ..strokeColor = '#000000'

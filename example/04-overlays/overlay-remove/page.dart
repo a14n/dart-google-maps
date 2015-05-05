@@ -1,57 +1,33 @@
 import 'dart:html';
 import 'package:google_maps/google_maps.dart';
 
+GroundOverlay historicalOverlay;
 GMap map;
-List<Marker> markers;
 
-void main() {
-  markers = new List<Marker>();
+main() {
+  final newark = new LatLng(40.740, -74.18);
+  final imageBounds = new LatLngBounds(
+      new LatLng(40.712216, -74.22655), new LatLng(40.773941, -74.12544));
 
-  final haightAshbury = new LatLng(37.7699298, -122.4469157);
   final mapOptions = new MapOptions()
-    ..zoom = 12
-    ..center = haightAshbury
-    ..mapTypeId = MapTypeId.TERRAIN
-    ;
-  map = new GMap(querySelector("#map-canvas"), mapOptions);
+    ..zoom = 13
+    ..center = newark;
 
-  map.onClick.listen((e) {
-    addMarker(e.latLng);
-  });
+  map = new GMap(document.getElementById('map-canvas'), mapOptions);
 
-  querySelector("#clearOverlays").onClick.listen((e) => clearOverlays());
-  querySelector("#showOverlays").onClick.listen((e) => showOverlays());
-  querySelector("#deleteOverlays").onClick.listen((e) => deleteOverlays());
+  historicalOverlay = new GroundOverlay(
+      'https://www.lib.utexas.edu/maps/historical/newark_nj_1922.jpg',
+      imageBounds);
+
+  addOverlay();
+
+  document.getElementById('removeOverlay').onClick
+      .listen((_) => removeOverlay());
+  document.getElementById('addOverlay').onClick.listen((_) => addOverlay());
 }
 
-// Add a marker to the map and push to the array.
-void addMarker(LatLng location) {
-  final marker = new Marker(new MarkerOptions()
-    ..position = location
-    ..map = map
-  );
-  markers.add(marker);
+void addOverlay() {
+  historicalOverlay.map = map;
 }
 
-// Sets the map on all markers in the array.
-void setAllMap(GMap map) {
-  for (final marker in markers) {
-    marker.map = map;
-  }
-}
-
-// Removes the overlays from the map, but keeps them in the array.
-void clearOverlays() {
-  setAllMap(null);
-}
-
-// Shows any overlays currently in the array.
-void showOverlays() {
-  setAllMap(map);
-}
-
-// Deletes all markers in the array by removing references to them.
-void deleteOverlays() {
-  clearOverlays();
-  markers.clear();
-}
+void removeOverlay() => historicalOverlay.map = null;

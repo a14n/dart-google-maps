@@ -1,28 +1,30 @@
 import 'dart:html';
+import 'dart:math' show sqrt;
 import 'package:google_maps/google_maps.dart';
 
-void main() {
-  // Create an object containing LatLng, population.
-  final citymap = {};
-  citymap['chicago'] = {
-    "center" : new LatLng(41.878113, -87.629798),
-    "population" : 2842518
-  };
-  citymap['newyork'] = {
-    "center" : new LatLng(40.714352, -74.005973),
-    "population" : 8143197
-  };
-  citymap['losangeles'] = {
-    "center" : new LatLng(34.052234, -118.243684),
-    "population" : 3844829
-  };
+// First, create an object containing LatLng and population for each city.
+final citymap = {
+  'chicago': {
+    'center': new LatLng(41.878113, -87.629798),
+    'population': 2842518
+  },
+  'newyork': {
+    'center': new LatLng(40.714352, -74.005973),
+    'population': 8143197
+  },
+  'losangeles': {
+    'center': new LatLng(34.052234, -118.243684),
+    'population': 3844829
+  },
+  'vancouver': {'center': new LatLng(49.25, -123.1), 'population': 603502}
+};
 
+void main() {
   final mapOptions = new MapOptions()
     ..zoom = 4
     ..center = new LatLng(37.09024, -95.712891)
-    ..mapTypeId = MapTypeId.TERRAIN
-    ;
-  final map = new GMap(querySelector("#map_canvas"), mapOptions);
+    ..mapTypeId = MapTypeId.TERRAIN;
+  final map = new GMap(document.getElementById('map-canvas'), mapOptions);
 
   citymap.forEach((String name, Map city) {
     // Construct the circle for each value in citymap. We scale population by 20.
@@ -33,9 +35,8 @@ void main() {
       ..fillColor = '#FF0000'
       ..fillOpacity = 0.35
       ..map = map
-      ..center = city["center"]
-      ..radius = city["population"] / 20
-      ;
+      ..center = city['center']
+      ..radius = sqrt(city['population']) * 100;
     new Circle(populationOptions);
   });
 }

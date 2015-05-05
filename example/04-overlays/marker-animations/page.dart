@@ -9,17 +9,14 @@ GMap map;
 void main() {
   final mapOptions = new MapOptions()
     ..zoom = 13
-    ..mapTypeId = MapTypeId.ROADMAP
-    ..center = stockholm
-    ;
-  map = new GMap(querySelector("#map_canvas"), mapOptions);
+    ..center = stockholm;
+  map = new GMap(document.getElementById('map-canvas'), mapOptions);
 
   marker = new Marker(new MarkerOptions()
     ..map = map
     ..draggable = true
     ..animation = Animation.DROP
-    ..position = parliament
-  );
+    ..position = parliament);
   marker.onClick.listen((e) => toggleBounce());
 }
 

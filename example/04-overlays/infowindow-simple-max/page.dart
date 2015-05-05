@@ -2,13 +2,11 @@ import 'dart:html';
 import 'package:google_maps/google_maps.dart';
 
 void main() {
-  var myLatlng = new LatLng(-25.363882,131.044922);
+  var myLatlng = new LatLng(-25.363882, 131.044922);
   final mapOptions = new MapOptions()
     ..zoom = 4
-    ..center = myLatlng
-    ..mapTypeId = MapTypeId.ROADMAP
-    ;
-  final map = new GMap(querySelector("#map_canvas"), mapOptions);
+    ..center = myLatlng;
+  final map = new GMap(document.getElementById('map-canvas'), mapOptions);
 
   final contentString = '<div id="content">'
       '<div id="siteNotice">'
@@ -33,14 +31,12 @@ void main() {
 
   final infowindow = new InfoWindow(new InfoWindowOptions()
     ..content = contentString
-    ..maxWidth = 200
-  );
+    ..maxWidth = 200);
 
   final marker = new Marker(new MarkerOptions()
     ..position = myLatlng
     ..map = map
-    ..title = 'Uluru (Ayers Rock)'
-  );
+    ..title = 'Uluru (Ayers Rock)');
   marker.onClick.listen((e) {
     infowindow.open(map, marker);
   });

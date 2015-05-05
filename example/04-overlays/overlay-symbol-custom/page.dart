@@ -7,12 +7,8 @@ void main() {
     ..zoom = 6
     ..center = myLatLng
     ..mapTypeId = MapTypeId.TERRAIN;
-  final map = new GMap(querySelector("#map_canvas"), mapOptions);
 
-  final lineCoordinates = [
-    new LatLng(22.291, 153.027),
-    new LatLng(18.291, 153.027)
-  ];
+  final map = new GMap(document.getElementById('map-canvas'), mapOptions);
 
   final symbolOne = new GSymbol()
     ..path = 'M -2,0 0,-2 2,0 0,2 z'
@@ -21,15 +17,20 @@ void main() {
     ..fillOpacity = 1;
 
   final symbolTwo = new GSymbol()
+    ..path =
+    'M -1,0 A 1,1 0 0 0 -3,0 1,1 0 0 0 -1,0M 1,0 A 1,1 0 0 0 3,0 1,1 0 0 0 1,0M -3,3 Q 0,5 3,3'
+    ..strokeColor = '#00F'
+    ..rotation = 45;
+
+  final symbolThree = new GSymbol()
     ..path = 'M -2,-2 2,2 M 2,-2 -2,2'
     ..strokeColor = '#292'
     ..strokeWeight = 4;
 
-  final symbolThree = new GSymbol()
-    ..path =
-    'M -1,0 A 1,1 0 0 0 -3,0 1,1 0 0 0 -1,0M 1,0 A 1,1 0 0 0 3,0 1,1 0 0 0 1,0M -3,3 Q 0,5 3,3'
-    ..strokeColor = '#00F'
-    ..rotation = 0;
+  final lineCoordinates = [
+    new LatLng(22.291, 153.027),
+    new LatLng(18.291, 153.027)
+  ];
 
   new Polyline(new PolylineOptions()
     ..path = lineCoordinates

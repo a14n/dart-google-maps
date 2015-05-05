@@ -5,20 +5,21 @@ Polyline line;
 
 void main() {
   final mapOptions = new MapOptions()
-    ..center = new LatLng(20.291, 153.027)
     ..zoom = 6
-    ..mapTypeId = MapTypeId.ROADMAP;
-  final map = new GMap(querySelector("#map_canvas"), mapOptions);
+    ..center = new LatLng(20.291, 153.027)
+    ..mapTypeId = MapTypeId.TERRAIN;
+  final map = new GMap(document.getElementById('map-canvas'), mapOptions);
 
-  final lineCoordinates = [
+  final lineSymbol = new GSymbol()..path = SymbolPath.FORWARD_CLOSED_ARROW;
+
+  final lineCoordinates = <LatLng>[
     new LatLng(22.291, 153.027),
     new LatLng(18.291, 153.027)
   ];
-  final lineSymbol = new GSymbol()..path = SymbolPath.FORWARD_CLOSED_ARROW;
 
   line = new Polyline(new PolylineOptions()
     ..path = lineCoordinates
-    ..icons = [
+    ..icons = <IconSequence>[
       new IconSequence()
         ..icon = lineSymbol
         ..offset = '100%'

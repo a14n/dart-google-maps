@@ -1,19 +1,31 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-    <style type="text/css">
-      #map-canvas {
-        width: 600px;
-        height: 500px
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Remove an overlay</title>
+    <style>
+      html, body, #map-canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+      #panel {
+        position: absolute;
+        top: 5px;
+        left: 50%;
+        margin-left: -180px;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
       }
     </style>
   </head>
   <body>
-    <div>
-      <input id="clearOverlays" type="button" value="Clear Overlays">
-      <input id="showOverlays" type="button" value="Show All Overlays">
-      <input id="deleteOverlays" type="button" value="Delete Overlays">
+    <div id="panel">
+      <input id="removeOverlay" type=button value="Remove overlay">
+      <input id="addOverlay" type=button value="Restore overlay">
     </div>
     <div id="map-canvas"></div>
 
