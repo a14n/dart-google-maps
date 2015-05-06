@@ -15,7 +15,7 @@
 part of google_maps;
 
 @JsName('google.maps.StyledMapType')
-abstract class _StyledMapType extends MVCObject {
+abstract class _StyledMapType extends MVCObject implements MapType {
   external factory _StyledMapType(List<MapTypeStyle> styles,
       [StyledMapTypeOptions options]);
 

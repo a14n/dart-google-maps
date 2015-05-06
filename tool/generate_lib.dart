@@ -106,6 +106,24 @@ abstract class _ImageMapType extends MVCObject implements MapType {
   Stream get onTilesloaded => getStream(this, #onTilesloaded, "tilesloaded");
 }
 ''',
+  'StyledMapType': '''
+@JsName('google.maps.StyledMapType')
+abstract class _StyledMapType extends MVCObject implements MapType {
+  external factory _StyledMapType(List<MapTypeStyle> styles,
+      [StyledMapTypeOptions options]);
+
+  Node getTile(Point tileCoord, num zoom, Document ownerDocument);
+  void releaseTile(Node tile);
+
+  String alt;
+  num maxZoom;
+  num minZoom;
+  String name;
+  Projection projection;
+  num radius;
+  Size tileSize;
+}
+''',
   'StrokePosition': '''
 @JsEnum()
 @JsName('google.maps.StrokePosition')
@@ -358,6 +376,31 @@ bool _isEmpty();''',
         MapTypeId.TERRAIN: getPath('google.maps.MapTypeId')['TERRAIN']
       }))
       ..add(new IdentityCodec<String>()))).encode(mapTypeIds);
+  }
+''',
+    },
+
+    // FIXME https://code.google.com/p/gmaps-api-issues/issues/detail?id=7994
+    'MapOptions': {
+      'mapTypeId': '''
+  dynamic _mapTypeId;
+  dynamic /*MapTypeId|String*/ get mapTypeId => (new ChainedCodec()
+    ..add(new BiMapCodec<MapTypeId, dynamic>({
+      MapTypeId.HYBRID: getPath('google.maps.MapTypeId')['HYBRID'],
+      MapTypeId.ROADMAP: getPath('google.maps.MapTypeId')['ROADMAP'],
+      MapTypeId.SATELLITE: getPath('google.maps.MapTypeId')['SATELLITE'],
+      MapTypeId.TERRAIN: getPath('google.maps.MapTypeId')['TERRAIN']
+    }))
+    ..add(new IdentityCodec<String>())).decode(_mapTypeId);
+  void set mapTypeId(dynamic /*MapTypeId|String*/ mapTypeId) {
+    _mapTypeId = (new ChainedCodec()
+      ..add(new BiMapCodec<MapTypeId, dynamic>({
+        MapTypeId.HYBRID: getPath('google.maps.MapTypeId')['HYBRID'],
+        MapTypeId.ROADMAP: getPath('google.maps.MapTypeId')['ROADMAP'],
+        MapTypeId.SATELLITE: getPath('google.maps.MapTypeId')['SATELLITE'],
+        MapTypeId.TERRAIN: getPath('google.maps.MapTypeId')['TERRAIN']
+      }))
+      ..add(new IdentityCodec<String>())).encode(mapTypeId);
   }
 ''',
     },
