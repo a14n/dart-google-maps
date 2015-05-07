@@ -3,17 +3,27 @@
   <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
-    <title>GeoRSS Layers</title>
+    <title>Data Layer: Event Handling</title>
     <style>
       html, body, #map-canvas {
         height: 100%;
         margin: 0px;
         padding: 0px
       }
+      #info-box {
+        background-color: white;
+        border: 1px solid black;
+        bottom: 30px;
+        height: 20px;
+        padding: 10px;
+        position: absolute;
+        left: 30px;
+      }
     </style>
   </head>
   <body>
     <div id="map-canvas"></div>
+    <div id="info-box">?</div>
 
     <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
     <script type="application/dart" src="page.dart"></script>

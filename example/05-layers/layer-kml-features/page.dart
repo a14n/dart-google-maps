@@ -5,18 +5,14 @@ void main() {
   final myLatlng = new LatLng(37.06, -95.68);
   final mapOptions = new MapOptions()
     ..zoom = 12
-    ..center = myLatlng
-    ..mapTypeId = MapTypeId.ROADMAP
-    ;
-  final map = new GMap(querySelector("#map_canvas"), mapOptions);
+    ..center = myLatlng;
+  final map = new GMap(document.getElementById('map-canvas'), mapOptions);
 
-  // TODO signature change 3.9 -> 3.10
-  final kmlLayer = new KmlLayer(
-      new KmlLayerOptions()
-        ..suppressInfoWindows = true
-        ..map = map
-      )
-      ..url = 'http://kml-samples.googlecode.com/svn/trunk/kml/Placemark/placemark.kml';
+  final kmlLayer = new KmlLayer(new KmlLayerOptions()
+    ..url =
+    'http://kml-samples.googlecode.com/svn/trunk/kml/Placemark/placemark.kml'
+    ..suppressInfoWindows = true
+    ..map = map);
 
   kmlLayer.onClick.listen((e) {
     final text = e.featureData.description;
@@ -25,6 +21,6 @@ void main() {
 }
 
 void showInContentWindow(text) {
-  final sidediv = document.querySelector('#content_window');
+  final sidediv = document.getElementById('content-window');
   sidediv.innerHtml = text;
 }

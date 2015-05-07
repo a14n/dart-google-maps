@@ -1,6 +1,7 @@
 import 'dart:html';
 import 'package:google_maps/google_maps.dart';
 import 'package:google_maps/google_maps_visualization.dart';
+import 'package:js/js.dart';
 
 // Adding 500 Data Points
 GMap map;
@@ -511,26 +512,32 @@ final taxiData = [
 ];
 
 void main() {
-  final chicago = new LatLng(41.875696,-87.624207);
   final mapOptions = new MapOptions()
     ..zoom = 13
     ..center = new LatLng(37.774546, -122.433523)
-    ..mapTypeId = MapTypeId.SATELLITE
-    ;
-  map = new GMap(querySelector("#map_canvas"), mapOptions);
+    ..mapTypeId = MapTypeId.SATELLITE;
+  map = new GMap(document.getElementById('map-canvas'), mapOptions);
 
-  pointArray = new MVCArray(taxiData);
+  pointArray = new MVCArray(
+      elements: taxiData,
+      codec: new JsInterfaceCodec((o) => new LatLng.created(o)));
 
-  heatmap = new HeatmapLayer(new HeatmapLayerOptions()
-    ..data = pointArray
-  );
+  heatmap = new HeatmapLayer(new HeatmapLayerOptions()..data = pointArray);
 
   heatmap.map = map;
 
-  querySelector("#toggleHeatmap").onClick.listen((e){toggleHeatmap();});
-  querySelector("#changeGradient").onClick.listen((e){changeGradient();});
-  querySelector("#changeRadius").onClick.listen((e){changeRadius();});
-  querySelector("#changeOpacity").onClick.listen((e){changeOpacity();});
+  querySelector("#toggleHeatmap").onClick.listen((e) {
+    toggleHeatmap();
+  });
+  querySelector("#changeGradient").onClick.listen((e) {
+    changeGradient();
+  });
+  querySelector("#changeRadius").onClick.listen((e) {
+    changeRadius();
+  });
+  querySelector("#changeOpacity").onClick.listen((e) {
+    changeOpacity();
+  });
 }
 
 void toggleHeatmap() {
@@ -538,7 +545,7 @@ void toggleHeatmap() {
 }
 
 void changeGradient() {
-  final gradient = [
+  final gradient = new JsArray.from([
     'rgba(0, 255, 255, 0)',
     'rgba(0, 255, 255, 1)',
     'rgba(0, 191, 255, 1)',
@@ -553,20 +560,14 @@ void changeGradient() {
     'rgba(127, 0, 63, 1)',
     'rgba(191, 0, 31, 1)',
     'rgba(255, 0, 0, 1)'
-  ];
-  heatmap.options = new HeatmapLayerOptions()
-    ..gradient = heatmap.get('gradient') != null ? null : gradient
-  ;
+  ]);
+  heatmap.set('gradient', heatmap.get('gradient') != null ? null : gradient);
 }
 
 void changeRadius() {
-  heatmap.options = new HeatmapLayerOptions()
-    ..radius = heatmap.get('radius') != null ? null : 20
-    ;
+  heatmap.set('radius', heatmap.get('radius') != null ? null : 20);
 }
 
 void changeOpacity() {
-  heatmap.options = new HeatmapLayerOptions()
-    ..opacity = heatmap.get('opacity') != null ? null : 0.2
-    ;
+  heatmap.set('opacity', heatmap.get('opacity') != null ? null : 0.2);
 }

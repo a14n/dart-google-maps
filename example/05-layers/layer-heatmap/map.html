@@ -2,21 +2,33 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Google Maps JavaScript API v3 Example: Heatmap Layer</title>
+    <title>Heatmaps</title>
     <style>
-      html, body, #map_canvas {
+      html, body, #map-canvas {
         height: 100%;
         margin: 0px;
         padding: 0px
       }
+      #panel {
+        position: absolute;
+        top: 5px;
+        left: 50%;
+        margin-left: -180px;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+      }
     </style>
   </head>
   <body>
-    <div id="map_canvas" style="height: 600px; width: 800px;"></div>
-    <button id="toggleHeatmap">Toggle Heatmap</button>
-    <button id="changeGradient">Change gradient</button>
-    <button id="changeRadius">Change radius</button>
-    <button id="changeOpacity">Change opacity</button>
+    <div id="panel">
+      <button id="toggleHeatmap">Toggle Heatmap</button>
+      <button id="changeGradient">Change gradient</button>
+      <button id="changeRadius">Change radius</button>
+      <button id="changeOpacity">Change opacity</button>
+    </div>
+    <div id="map-canvas"></div>
 
     <script src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=visualization"></script>
     <script type="application/dart" src="page.dart"></script>
