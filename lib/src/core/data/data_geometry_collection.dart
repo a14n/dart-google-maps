@@ -19,9 +19,63 @@ abstract class _DataGeometryCollection extends DataGeometry {
   external factory _DataGeometryCollection(
       List<dynamic /*DataGeometry|LatLng*/ > elements);
 
-  List<DataGeometry> get array => _getArray();
-  List<DataGeometry> _getArray();
-  DataGeometry getAt(num n);
+  List<dynamic /*DataGeometryCollection|DataMultiPolygon|DataPolygon|DataLinearRing|DataMultiLineString|DataLineString|DataMultiPoint|DataPoint*/ > get array =>
+      (new JsListCodec<dynamic /*DataGeometryCollection|DataMultiPolygon|DataPolygon|DataLinearRing|DataMultiLineString|DataLineString|DataMultiPoint|DataPoint*/ >(
+          new ChainedCodec()
+    ..add(new JsInterfaceCodec<DataGeometryCollection>(
+        (o) => new DataGeometryCollection.created(o), (o) => o != null &&
+            o.instanceof(getPath("google.maps.Data.GeometryCollection"))))
+    ..add(new JsInterfaceCodec<DataMultiPolygon>(
+        (o) => new DataMultiPolygon.created(o), (o) => o != null &&
+            o.instanceof(getPath("google.maps.Data.MultiPolygon"))))
+    ..add(new JsInterfaceCodec<DataPolygon>((o) => new DataPolygon.created(o),
+        (o) => o != null && o.instanceof(getPath("google.maps.Data.Polygon"))))
+    ..add(new JsInterfaceCodec<DataLinearRing>(
+        (o) => new DataLinearRing.created(o), (o) =>
+            o != null && o.instanceof(getPath("google.maps.Data.LinearRing"))))
+    ..add(new JsInterfaceCodec<DataMultiLineString>(
+        (o) => new DataMultiLineString.created(o), (o) => o != null &&
+            o.instanceof(getPath("google.maps.Data.MultiLineString"))))
+    ..add(new JsInterfaceCodec<DataLineString>(
+        (o) => new DataLineString.created(o), (o) =>
+            o != null && o.instanceof(getPath("google.maps.Data.LineString"))))
+    ..add(new JsInterfaceCodec<DataMultiPoint>(
+        (o) => new DataMultiPoint.created(o), (o) =>
+            o != null && o.instanceof(getPath("google.maps.Data.MultiPoint"))))
+    ..add(new JsInterfaceCodec<DataPoint>((o) => new DataPoint.created(o),
+            (o) =>
+                o != null && o.instanceof(getPath("google.maps.Data.Point"))))))
+      .decode(_getArray());
+  _getArray();
+
+  dynamic /*DataGeometryCollection|DataMultiPolygon|DataPolygon|DataLinearRing|DataMultiLineString|DataLineString|DataMultiPoint|DataPoint*/ getAt(
+      num n) => (new ChainedCodec()
+    ..add(new JsInterfaceCodec<DataGeometryCollection>(
+        (o) => new DataGeometryCollection.created(o), (o) => o != null &&
+            o.instanceof(getPath("google.maps.Data.GeometryCollection"))))
+    ..add(new JsInterfaceCodec<DataMultiPolygon>(
+        (o) => new DataMultiPolygon.created(o), (o) => o != null &&
+            o.instanceof(getPath("google.maps.Data.MultiPolygon"))))
+    ..add(new JsInterfaceCodec<DataPolygon>((o) => new DataPolygon.created(o),
+        (o) => o != null && o.instanceof(getPath("google.maps.Data.Polygon"))))
+    ..add(new JsInterfaceCodec<DataLinearRing>(
+        (o) => new DataLinearRing.created(o), (o) =>
+            o != null && o.instanceof(getPath("google.maps.Data.LinearRing"))))
+    ..add(new JsInterfaceCodec<DataMultiLineString>(
+        (o) => new DataMultiLineString.created(o), (o) => o != null &&
+            o.instanceof(getPath("google.maps.Data.MultiLineString"))))
+    ..add(new JsInterfaceCodec<DataLineString>(
+        (o) => new DataLineString.created(o), (o) =>
+            o != null && o.instanceof(getPath("google.maps.Data.LineString"))))
+    ..add(new JsInterfaceCodec<DataMultiPoint>(
+        (o) => new DataMultiPoint.created(o), (o) =>
+            o != null && o.instanceof(getPath("google.maps.Data.MultiPoint"))))
+    ..add(new JsInterfaceCodec<DataPoint>((o) => new DataPoint.created(o),
+            (o) =>
+                o != null && o.instanceof(getPath("google.maps.Data.Point")))))
+      .decode(_getAt(n));
+  _getAt(num n);
+
   num get length => _getLength();
   num _getLength();
   String get type => _getType();

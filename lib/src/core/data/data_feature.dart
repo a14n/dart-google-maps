@@ -19,20 +19,69 @@ abstract class _DataFeature implements JsInterface {
   external factory _DataFeature([DataFeatureOptions options]);
 
   void forEachProperty(callback(dynamic p1, String p2));
-  DataGeometry get geometry => _getGeometry();
-  DataGeometry _getGeometry();
+  dynamic /*DataGeometryCollection|DataMultiPolygon|DataPolygon|DataLinearRing|DataMultiLineString|DataLineString|DataMultiPoint|DataPoint*/ get geometry =>
+      (new ChainedCodec()
+    ..add(new JsInterfaceCodec<DataGeometryCollection>(
+        (o) => new DataGeometryCollection.created(o), (o) => o != null &&
+            o.instanceof(getPath("google.maps.Data.GeometryCollection"))))
+    ..add(new JsInterfaceCodec<DataMultiPolygon>(
+        (o) => new DataMultiPolygon.created(o), (o) => o != null &&
+            o.instanceof(getPath("google.maps.Data.MultiPolygon"))))
+    ..add(new JsInterfaceCodec<DataPolygon>((o) => new DataPolygon.created(o),
+        (o) => o != null && o.instanceof(getPath("google.maps.Data.Polygon"))))
+    ..add(new JsInterfaceCodec<DataLinearRing>(
+        (o) => new DataLinearRing.created(o), (o) =>
+            o != null && o.instanceof(getPath("google.maps.Data.LinearRing"))))
+    ..add(new JsInterfaceCodec<DataMultiLineString>(
+        (o) => new DataMultiLineString.created(o), (o) => o != null &&
+            o.instanceof(getPath("google.maps.Data.MultiLineString"))))
+    ..add(new JsInterfaceCodec<DataLineString>(
+        (o) => new DataLineString.created(o), (o) =>
+            o != null && o.instanceof(getPath("google.maps.Data.LineString"))))
+    ..add(new JsInterfaceCodec<DataMultiPoint>(
+        (o) => new DataMultiPoint.created(o), (o) =>
+            o != null && o.instanceof(getPath("google.maps.Data.MultiPoint"))))
+    ..add(new JsInterfaceCodec<DataPoint>((o) => new DataPoint.created(o),
+            (o) =>
+                o != null && o.instanceof(getPath("google.maps.Data.Point")))))
+      .decode(_getGeometry());
+  _getGeometry();
+
   dynamic /*num|String*/ get id => _getId();
   dynamic /*num|String*/ _getId();
   dynamic getProperty(String name);
   void removeProperty(String name);
-  void set geometry(dynamic /*DataGeometry|LatLng*/ newGeometry) =>
+  void set geometry(
+          dynamic /*DataGeometryCollection|DataMultiPolygon|DataPolygon|DataLinearRing|DataMultiLineString|DataLineString|DataMultiPoint|DataPoint|LatLng*/ newGeometry) =>
       _setGeometry((new ChainedCodec()
-    ..add(new JsInterfaceCodec<DataGeometry>((o) => new DataGeometry.created(o),
-        (o) => o != null && o.instanceof(getPath("google.maps.Data.Geometry"))))
+    ..add(new JsInterfaceCodec<DataGeometryCollection>(
+        (o) => new DataGeometryCollection.created(o), (o) => o != null &&
+            o.instanceof(getPath("google.maps.Data.GeometryCollection"))))
+    ..add(new JsInterfaceCodec<DataMultiPolygon>(
+        (o) => new DataMultiPolygon.created(o), (o) => o != null &&
+            o.instanceof(getPath("google.maps.Data.MultiPolygon"))))
+    ..add(new JsInterfaceCodec<DataPolygon>((o) => new DataPolygon.created(o),
+        (o) => o != null && o.instanceof(getPath("google.maps.Data.Polygon"))))
+    ..add(new JsInterfaceCodec<DataLinearRing>(
+        (o) => new DataLinearRing.created(o), (o) =>
+            o != null && o.instanceof(getPath("google.maps.Data.LinearRing"))))
+    ..add(new JsInterfaceCodec<DataMultiLineString>(
+        (o) => new DataMultiLineString.created(o), (o) => o != null &&
+            o.instanceof(getPath("google.maps.Data.MultiLineString"))))
+    ..add(new JsInterfaceCodec<DataLineString>(
+        (o) => new DataLineString.created(o), (o) =>
+            o != null && o.instanceof(getPath("google.maps.Data.LineString"))))
+    ..add(new JsInterfaceCodec<DataMultiPoint>(
+        (o) => new DataMultiPoint.created(o), (o) =>
+            o != null && o.instanceof(getPath("google.maps.Data.MultiPoint"))))
+    ..add(new JsInterfaceCodec<DataPoint>((o) => new DataPoint.created(o),
+        (o) => o != null && o.instanceof(getPath("google.maps.Data.Point"))))
     ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
         (o) => o != null && o.instanceof(getPath("google.maps.LatLng")))))
           .encode(newGeometry));
-  void _setGeometry(dynamic /*DataGeometry|LatLng*/ newGeometry);
+  void _setGeometry(
+      dynamic /*DataGeometryCollection|DataMultiPolygon|DataPolygon|DataLinearRing|DataMultiLineString|DataLineString|DataMultiPoint|DataPoint|LatLng*/ newGeometry);
+
   void setProperty(String name, dynamic newValue);
   void toGeoJson(callback(Object p1));
 

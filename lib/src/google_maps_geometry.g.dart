@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// 2015-05-06T19:57:01.131Z
+// 2015-05-07T16:00:36.009Z
 
 part of google_maps.geometry;
 
@@ -11,7 +11,7 @@ part of google_maps.geometry;
 class Encoding extends JsInterface implements _Encoding {
   Encoding.created(JsObject o) : super.created(o);
 
-  List<LatLng> decodePath(String encodedPath) => __codec175
+  List<LatLng> decodePath(String encodedPath) => __codec173
       .decode(asJsObject(this).callMethod('decodePath', [encodedPath]));
   String encodePath(dynamic /*List<LatLng>|MVCArray<LatLng>*/ path) =>
       _encodePath((new ChainedCodec()
@@ -28,10 +28,10 @@ class Encoding extends JsInterface implements _Encoding {
       asJsObject(this).callMethod('encodePath', [path]);
 }
 /// codec for LatLng
-final __codec174 = new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o));
+final __codec172 = new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o));
 
 /// codec for List<LatLng>
-final __codec175 = new JsListCodec<LatLng>(__codec174);
+final __codec173 = new JsListCodec<LatLng>(__codec172);
 
 // **************************************************************************
 // Generator: JsInterfaceGenerator
@@ -56,12 +56,12 @@ class Spherical extends JsInterface implements _Spherical {
       asJsObject(this).callMethod('computeArea', [path, radius]);
   num computeDistanceBetween(LatLng from, LatLng to, [num radius]) =>
       asJsObject(this).callMethod('computeDistanceBetween', [
-    __codec174.encode(from),
-    __codec174.encode(to),
+    __codec172.encode(from),
+    __codec172.encode(to),
     radius
   ]);
   num computeHeading(LatLng from, LatLng to) => asJsObject(this).callMethod(
-      'computeHeading', [__codec174.encode(from), __codec174.encode(to)]);
+      'computeHeading', [__codec172.encode(from), __codec172.encode(to)]);
   num computeLength(dynamic /*List<LatLng>|MVCArray<LatLng>*/ path,
       [num radius]) => _computeLength((new ChainedCodec()
     ..add(new JsListCodec<LatLng>(new JsInterfaceCodec<LatLng>(
@@ -77,16 +77,16 @@ class Spherical extends JsInterface implements _Spherical {
           [num radius]) =>
       asJsObject(this).callMethod('computeLength', [path, radius]);
   LatLng computeOffset(LatLng from, num distance, num heading, [num radius]) =>
-      __codec174.decode(asJsObject(this).callMethod('computeOffset', [
-    __codec174.encode(from),
+      __codec172.decode(asJsObject(this).callMethod('computeOffset', [
+    __codec172.encode(from),
     distance,
     heading,
     radius
   ]));
   LatLng computeOffsetOrigin(LatLng to, num distance, num heading,
-      [num radius]) => __codec174.decode(asJsObject(this).callMethod(
+      [num radius]) => __codec172.decode(asJsObject(this).callMethod(
           'computeOffsetOrigin', [
-    __codec174.encode(to),
+    __codec172.encode(to),
     distance,
     heading,
     radius
@@ -105,10 +105,10 @@ class Spherical extends JsInterface implements _Spherical {
   _computeSignedArea(dynamic /*List<LatLng>|MVCArray<LatLng>*/ loop,
           [num radius]) =>
       asJsObject(this).callMethod('computeSignedArea', [loop, radius]);
-  LatLng interpolate(LatLng from, LatLng to, num fraction) => __codec174.decode(
+  LatLng interpolate(LatLng from, LatLng to, num fraction) => __codec172.decode(
       asJsObject(this).callMethod('interpolate', [
-    __codec174.encode(from),
-    __codec174.encode(to),
+    __codec172.encode(from),
+    __codec172.encode(to),
     fraction
   ]));
 }
@@ -123,8 +123,8 @@ class Poly extends JsInterface implements _Poly {
 
   bool containsLocation(LatLng point, Polygon polygon) => asJsObject(this)
       .callMethod('containsLocation', [
-    __codec174.encode(point),
-    __codec176.encode(polygon)
+    __codec172.encode(point),
+    __codec174.encode(polygon)
   ]);
   bool isLocationOnEdge(LatLng point, dynamic /*Polygon|Polyline*/ poly,
       [num tolerance]) => _isLocationOnEdge(point, (new ChainedCodec()
@@ -135,7 +135,7 @@ class Poly extends JsInterface implements _Poly {
           .encode(poly), tolerance);
   _isLocationOnEdge(LatLng point, dynamic /*Polygon|Polyline*/ poly,
       [num tolerance]) => asJsObject(this).callMethod(
-          'isLocationOnEdge', [__codec174.encode(point), poly, tolerance]);
+          'isLocationOnEdge', [__codec172.encode(point), poly, tolerance]);
 }
 /// codec for Polygon
-final __codec176 = new JsInterfaceCodec<Polygon>((o) => new Polygon.created(o));
+final __codec174 = new JsInterfaceCodec<Polygon>((o) => new Polygon.created(o));
