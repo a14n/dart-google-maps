@@ -2,37 +2,35 @@ import 'dart:html' hide Point;
 import 'dart:math' as Math;
 
 import 'package:google_maps/google_maps.dart';
-
-final moonTypeOptions = new ImageMapTypeOptions()
-  ..tileSize = new Size(256, 256)
-  ..maxZoom = 9
-  ..minZoom = 0
-  // TODO undocumented
-  ..$unsafe['radius'] = 1738000
-  ..name = 'Moon'
-  ..getTileUrl = (Point point, num zoomLevel) {
-    final normalizedCoord = getNormalizedCoord(point, zoomLevel);
-    if (normalizedCoord == null) {
-      return null;
-    }
-    final bound = Math.pow(2, zoomLevel);
-    return 'http://mw1.google.com/mw-planetary/lunar/lunarmaps_v1/clem_bw/${zoomLevel}/${normalizedCoord.x}/${bound - normalizedCoord.y - 1}.jpg';
-  };
-
-final moonMapType = new ImageMapType(moonTypeOptions);
+import 'package:js/js.dart';
 
 void main() {
+  final moonTypeOptions = new ImageMapTypeOptions()
+    ..tileSize = new Size(256, 256)
+    ..maxZoom = 9
+    ..minZoom = 0
+    ..name = 'Moon';
+  asJsObject(moonTypeOptions)
+    ..['radius'] = 1738000
+    ..['getTileUrl'] = (JsObject point, num zoomLevel, _) {
+      final normalizedCoord =
+          getNormalizedCoord(new Point.created(point), zoomLevel);
+      if (normalizedCoord == null) return null;
+      final bound = Math.pow(2, zoomLevel);
+      return 'http://mw1.google.com/mw-planetary/lunar/lunarmaps_v1/clem_bw/${zoomLevel}/${normalizedCoord.x}/${bound - normalizedCoord.y - 1}.jpg';
+    };
+
+  final moonMapType = new ImageMapType(moonTypeOptions);
+
   final myLatlng = new LatLng(0, 0);
   final mapOptions = new MapOptions()
     ..center = myLatlng
     ..zoom = 1
     ..streetViewControl = false
     ..mapTypeControlOptions = (new MapTypeControlOptions()
-      ..mapTypeIds = ['moon']
-    )
-    ;
+      ..mapTypeIds = ['moon']);
 
-  final map = new GMap(querySelector('#map_canvas'), mapOptions);
+  final map = new GMap(document.getElementById('map-canvas'), mapOptions);
   map.mapTypes.set('moon', moonMapType);
   map.mapTypeId = 'moon';
 }

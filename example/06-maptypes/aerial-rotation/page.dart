@@ -10,12 +10,11 @@ void main() {
     ..zoom = 18
     ..mapTypeId = MapTypeId.SATELLITE
     ..heading = 90
-    ..tilt = 45
-    ;
-  map = new GMap(querySelector("#map_canvas"), mapOptions);
+    ..tilt = 45;
+  map = new GMap(document.getElementById('map-canvas'), mapOptions);
   map.tilt = 45;
 
-  querySelector("#autoRotate").onClick.listen((e) => autoRotate());
+  document.getElementById('autoRotate').onClick.listen(autoRotate);
 }
 
 void rotate90(_) {
@@ -24,7 +23,7 @@ void rotate90(_) {
   map.heading = heading + 90;
 }
 
-void autoRotate() {
+void autoRotate(_) {
   // Determine if we're showing aerial imagery
   if (map.tilt != 0) {
     new Timer.periodic(new Duration(seconds: 3), rotate90);
