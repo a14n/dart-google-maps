@@ -10,19 +10,19 @@ void main() {
     ..center = new LatLng(59.322506, 18.010025);
   final map = new GMap(document.getElementById('map-canvas'), mapOptions);
 
-  final layer = new MapsEngineLayer(new MapsEngineLayerOptions()
+  final layer = new DynamicMapsEngineLayer(new DynamicMapsEngineLayerOptions()
     ..layerId = '06673056454046135537-08896501997766553811'
     ..map = map
     ..suppressInfoWindows = true
-    ..clickable=true);
+    ..clickable = true);
 
-  layer.onMouseOver.listen((event) {
+  layer.onMouseover.listen((event) {
     final style = layer.getFeatureStyle(event.featureId);
-    style.fillColor = fillArray[event.featureId - 1];
+    style.fillColor = fillArray[int.parse(event.featureId) - 1];
     style.fillOpacity = '0.8';
   });
 
-  layer.onMouseOut.listen((event) {
+  layer.onMouseout.listen((event) {
     layer.getFeatureStyle(event.featureId).resetAll();
   });
 }
