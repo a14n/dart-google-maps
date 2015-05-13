@@ -14,6 +14,6 @@
 
 part of google_maps;
 
-@JsEnum()
+@jsEnum
 @JsName('google.maps.Animation')
-enum Animation { BOUNCE, DROP }
+enum _Animation { BOUNCE, DROP }

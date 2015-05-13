@@ -14,9 +14,9 @@
 
 part of google_maps;
 
-@JsEnum()
+@jsEnum
 @JsName('google.maps.DirectionsStatus')
-enum DirectionsStatus {
+enum _DirectionsStatus {
   INVALID_REQUEST,
   MAX_WAYPOINTS_EXCEEDED,
   NOT_FOUND,

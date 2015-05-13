@@ -14,6 +14,6 @@
 
 part of google_maps.visualization;
 
-@JsEnum()
+@jsEnum
 @JsName('google.maps.visualization.MapsEngineStatus')
-enum MapsEngineStatus { INVALID_LAYER, OK, UNKNOWN_ERROR }
+enum _MapsEngineStatus { INVALID_LAYER, OK, UNKNOWN_ERROR }

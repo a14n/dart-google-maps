@@ -14,9 +14,9 @@
 
 part of google_maps.places;
 
-@JsEnum()
+@jsEnum
 @JsName('google.maps.places.PlacesServiceStatus')
-enum PlacesServiceStatus {
+enum _PlacesServiceStatus {
   INVALID_REQUEST,
   OK,
   OVER_QUERY_LIMIT,

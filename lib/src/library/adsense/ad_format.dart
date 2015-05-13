@@ -14,9 +14,9 @@
 
 part of google_maps.adsense;
 
-@JsEnum()
+@jsEnum
 @JsName('google.maps.adsense.AdFormat')
-enum AdFormat {
+enum _AdFormat {
   BANNER,
   BUTTON,
   HALF_BANNER,

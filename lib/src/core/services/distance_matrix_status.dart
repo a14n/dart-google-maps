@@ -14,9 +14,9 @@
 
 part of google_maps;
 
-@JsEnum()
+@jsEnum
 @JsName('google.maps.DistanceMatrixStatus')
-enum DistanceMatrixStatus {
+enum _DistanceMatrixStatus {
   INVALID_REQUEST,
   MAX_DIMENSIONS_EXCEEDED,
   MAX_ELEMENTS_EXCEEDED,

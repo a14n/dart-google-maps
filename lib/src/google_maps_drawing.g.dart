@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// 2015-05-07T16:00:35.978Z
+// 2015-05-13T17:06:36.360Z
 
 part of google_maps.drawing;
 
@@ -55,13 +55,9 @@ final __codec161 = new JsInterfaceCodec<DrawingManagerOptions>(
     (o) => new DrawingManagerOptions.created(o));
 
 /// codec for OverlayType
-final __codec162 = new BiMapCodec<OverlayType, dynamic>({
-  OverlayType.CIRCLE: getPath('google.maps.drawing.OverlayType')['CIRCLE'],
-  OverlayType.MARKER: getPath('google.maps.drawing.OverlayType')['MARKER'],
-  OverlayType.POLYGON: getPath('google.maps.drawing.OverlayType')['POLYGON'],
-  OverlayType.POLYLINE: getPath('google.maps.drawing.OverlayType')['POLYLINE'],
-  OverlayType.RECTANGLE: getPath('google.maps.drawing.OverlayType')['RECTANGLE']
-});
+final __codec162 = new BiMapCodec<OverlayType, dynamic>(
+    new Map<OverlayType, dynamic>.fromIterable(OverlayType.values,
+        value: asJs));
 
 /// codec for GMap
 final __codec163 = new JsInterfaceCodec<GMap>((o) => new GMap.created(o));
@@ -172,29 +168,9 @@ class DrawingControlOptions extends JsInterface
 final __codec170 = new JsListCodec<OverlayType>(__codec162);
 
 /// codec for ControlPosition
-final __codec171 = new BiMapCodec<ControlPosition, dynamic>({
-  ControlPosition.BOTTOM_CENTER:
-      getPath('google.maps.ControlPosition')['BOTTOM_CENTER'],
-  ControlPosition.BOTTOM_LEFT:
-      getPath('google.maps.ControlPosition')['BOTTOM_LEFT'],
-  ControlPosition.BOTTOM_RIGHT:
-      getPath('google.maps.ControlPosition')['BOTTOM_RIGHT'],
-  ControlPosition.LEFT_BOTTOM:
-      getPath('google.maps.ControlPosition')['LEFT_BOTTOM'],
-  ControlPosition.LEFT_CENTER:
-      getPath('google.maps.ControlPosition')['LEFT_CENTER'],
-  ControlPosition.LEFT_TOP: getPath('google.maps.ControlPosition')['LEFT_TOP'],
-  ControlPosition.RIGHT_BOTTOM:
-      getPath('google.maps.ControlPosition')['RIGHT_BOTTOM'],
-  ControlPosition.RIGHT_CENTER:
-      getPath('google.maps.ControlPosition')['RIGHT_CENTER'],
-  ControlPosition.RIGHT_TOP:
-      getPath('google.maps.ControlPosition')['RIGHT_TOP'],
-  ControlPosition.TOP_CENTER:
-      getPath('google.maps.ControlPosition')['TOP_CENTER'],
-  ControlPosition.TOP_LEFT: getPath('google.maps.ControlPosition')['TOP_LEFT'],
-  ControlPosition.TOP_RIGHT: getPath('google.maps.ControlPosition')['TOP_RIGHT']
-});
+final __codec171 = new BiMapCodec<ControlPosition, dynamic>(
+    new Map<ControlPosition, dynamic>.fromIterable(ControlPosition.values,
+        value: asJs));
 
 // **************************************************************************
 // Generator: JsInterfaceGenerator
@@ -208,9 +184,9 @@ class OverlayCompleteEvent extends JsInterface
   OverlayCompleteEvent() : this.created(new JsObject(context['Object']));
 
   void set _overlay(dynamic __overlay) {
-    asJsObject(this)['overlay'] = __overlay;
+    asJsObject(this)['overlay'] = __codec172.encode(__overlay);
   }
-  dynamic get _overlay => asJsObject(this)['overlay'];
+  dynamic get _overlay => __codec172.decode(asJsObject(this)['overlay']);
   dynamic /*Marker|Polygon|Polyline|Rectangle|Circle*/ get overlay =>
       (new ChainedCodec()
     ..add(new JsInterfaceCodec<Marker>((o) => new Marker.created(o),
@@ -243,4 +219,32 @@ class OverlayCompleteEvent extends JsInterface
     asJsObject(this)['type'] = __codec162.encode(_type);
   }
   OverlayType get type => __codec162.decode(asJsObject(this)['type']);
+}
+/// codec for dynamic
+final __codec172 = new DynamicCodec();
+
+// **************************************************************************
+// Generator: JsInterfaceGenerator
+// Target: class _OverlayType
+// **************************************************************************
+
+class OverlayType extends JsEnum {
+  static final values = <OverlayType>[
+    CIRCLE,
+    MARKER,
+    POLYGON,
+    POLYLINE,
+    RECTANGLE
+  ];
+  static final CIRCLE =
+      new OverlayType._(getPath('google.maps.drawing.OverlayType')['CIRCLE']);
+  static final MARKER =
+      new OverlayType._(getPath('google.maps.drawing.OverlayType')['MARKER']);
+  static final POLYGON =
+      new OverlayType._(getPath('google.maps.drawing.OverlayType')['POLYGON']);
+  static final POLYLINE =
+      new OverlayType._(getPath('google.maps.drawing.OverlayType')['POLYLINE']);
+  static final RECTANGLE = new OverlayType._(
+      getPath('google.maps.drawing.OverlayType')['RECTANGLE']);
+  OverlayType._(o) : super.created(o);
 }

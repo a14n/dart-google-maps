@@ -14,6 +14,6 @@
 
 part of google_maps;
 
-@JsEnum()
+@jsEnum
 @JsName('google.maps.DistanceMatrixElementStatus')
-enum DistanceMatrixElementStatus { NOT_FOUND, OK, ZERO_RESULTS }
+enum _DistanceMatrixElementStatus { NOT_FOUND, OK, ZERO_RESULTS }

@@ -14,80 +14,91 @@
 
 part of google_maps;
 
-final mapTypeStyleFeatureTypeCodec =
-    new BiMapCodec<MapTypeStyleFeatureType, dynamic>({
-  MapTypeStyleFeatureType.ADMINISTRATIVE: 'administrative',
-  MapTypeStyleFeatureType.ADMINISTRATIVE_COUNTRY: 'administrative.country',
-  MapTypeStyleFeatureType.ADMINISTRATIVE_LAND_PARCEL:
-      'administrative.land_parcel',
-  MapTypeStyleFeatureType.ADMINISTRATIVE_LOCALITY: 'administrative.locality',
-  MapTypeStyleFeatureType.ADMINISTRATIVE_NEIGHBORHOOD:
-      'administrative.neighborhood',
-  MapTypeStyleFeatureType.ADMINISTRATIVE_PROVINCE: 'administrative.province',
-  MapTypeStyleFeatureType.ALL: 'all',
-  MapTypeStyleFeatureType.LANDSCAPE: 'landscape',
-  MapTypeStyleFeatureType.LANDSCAPE_MAN_MADE: 'landscape.man_made',
-  MapTypeStyleFeatureType.LANDSCAPE_NATURAL: 'landscape.natural',
-  MapTypeStyleFeatureType.LANDSCAPE_NATURAL_LANDCOVER:
-      'landscape.natural.landcover',
-  MapTypeStyleFeatureType.LANDSCAPE_NATURAL_TERRAIN:
-      'landscape.natural.terrain',
-  MapTypeStyleFeatureType.POI: 'poi',
-  MapTypeStyleFeatureType.POI_ATTRACTION: 'poi.attraction',
-  MapTypeStyleFeatureType.POI_BUSINESS: 'poi.business',
-  MapTypeStyleFeatureType.POI_GOVERNMENT: 'poi.government',
-  MapTypeStyleFeatureType.POI_MEDICAL: 'poi.medical',
-  MapTypeStyleFeatureType.POI_PARK: 'poi.park',
-  MapTypeStyleFeatureType.POI_PLACE_OF_WORSHIP: 'poi.place_of_worship',
-  MapTypeStyleFeatureType.POI_SCHOOL: 'poi.school',
-  MapTypeStyleFeatureType.POI_SPORTS_COMPLEX: 'poi.sports_complex',
-  MapTypeStyleFeatureType.ROAD: 'road',
-  MapTypeStyleFeatureType.ROAD_ARTERIAL: 'road.arterial',
-  MapTypeStyleFeatureType.ROAD_HIGHWAY: 'road.highway',
-  MapTypeStyleFeatureType.ROAD_HIGHWAY_CONTROLLED_ACCESS:
-      'road.highway.controlled_access',
-  MapTypeStyleFeatureType.ROAD_LOCAL: 'road.local',
-  MapTypeStyleFeatureType.TRANSIT: 'transit',
-  MapTypeStyleFeatureType.TRANSIT_LINE: 'transit.line',
-  MapTypeStyleFeatureType.TRANSIT_STATION: 'transit.station',
-  MapTypeStyleFeatureType.TRANSIT_STATION_AIRPORT: 'transit.station.airport',
-  MapTypeStyleFeatureType.TRANSIT_STATION_BUS: 'transit.station.bus',
-  MapTypeStyleFeatureType.TRANSIT_STATION_RAIL: 'transit.station.rail',
-  MapTypeStyleFeatureType.WATER: 'water',
-});
-@JsCodec(#mapTypeStyleFeatureTypeCodec)
-enum MapTypeStyleFeatureType {
-  ADMINISTRATIVE,
-  ADMINISTRATIVE_COUNTRY,
-  ADMINISTRATIVE_LAND_PARCEL,
-  ADMINISTRATIVE_LOCALITY,
-  ADMINISTRATIVE_NEIGHBORHOOD,
-  ADMINISTRATIVE_PROVINCE,
-  ALL,
-  LANDSCAPE,
-  LANDSCAPE_MAN_MADE,
-  LANDSCAPE_NATURAL,
-  LANDSCAPE_NATURAL_LANDCOVER,
-  LANDSCAPE_NATURAL_TERRAIN,
-  POI,
-  POI_ATTRACTION,
-  POI_BUSINESS,
-  POI_GOVERNMENT,
-  POI_MEDICAL,
-  POI_PARK,
-  POI_PLACE_OF_WORSHIP,
-  POI_SCHOOL,
-  POI_SPORTS_COMPLEX,
-  ROAD,
-  ROAD_ARTERIAL,
-  ROAD_HIGHWAY,
-  ROAD_HIGHWAY_CONTROLLED_ACCESS,
-  ROAD_LOCAL,
-  TRANSIT,
-  TRANSIT_LINE,
-  TRANSIT_STATION,
-  TRANSIT_STATION_AIRPORT,
-  TRANSIT_STATION_BUS,
-  TRANSIT_STATION_RAIL,
-  WATER
+@jsEnum
+class MapTypeStyleFeatureType extends JsEnum {
+  static final values = <MapTypeStyleFeatureType>[
+    ADMINISTRATIVE,
+    ADMINISTRATIVE_COUNTRY,
+    ADMINISTRATIVE_LAND_PARCEL,
+    ADMINISTRATIVE_LOCALITY,
+    ADMINISTRATIVE_NEIGHBORHOOD,
+    ADMINISTRATIVE_PROVINCE,
+    ALL,
+    LANDSCAPE,
+    LANDSCAPE_MAN_MADE,
+    LANDSCAPE_NATURAL,
+    LANDSCAPE_NATURAL_LANDCOVER,
+    LANDSCAPE_NATURAL_TERRAIN,
+    POI,
+    POI_ATTRACTION,
+    POI_BUSINESS,
+    POI_GOVERNMENT,
+    POI_MEDICAL,
+    POI_PARK,
+    POI_PLACE_OF_WORSHIP,
+    POI_SCHOOL,
+    POI_SPORTS_COMPLEX,
+    ROAD,
+    ROAD_ARTERIAL,
+    ROAD_HIGHWAY,
+    ROAD_HIGHWAY_CONTROLLED_ACCESS,
+    ROAD_LOCAL,
+    TRANSIT,
+    TRANSIT_LINE,
+    TRANSIT_STATION,
+    TRANSIT_STATION_AIRPORT,
+    TRANSIT_STATION_BUS,
+    TRANSIT_STATION_RAIL,
+    WATER
+  ];
+  static final ADMINISTRATIVE = new MapTypeStyleFeatureType._('administrative');
+  static final ADMINISTRATIVE_COUNTRY =
+      new MapTypeStyleFeatureType._('administrative.country');
+  static final ADMINISTRATIVE_LAND_PARCEL =
+      new MapTypeStyleFeatureType._('administrative.land_parcel');
+  static final ADMINISTRATIVE_LOCALITY =
+      new MapTypeStyleFeatureType._('administrative.locality');
+  static final ADMINISTRATIVE_NEIGHBORHOOD =
+      new MapTypeStyleFeatureType._('administrative.neighborhood');
+  static final ADMINISTRATIVE_PROVINCE =
+      new MapTypeStyleFeatureType._('administrative.province');
+  static final ALL = new MapTypeStyleFeatureType._('all');
+  static final LANDSCAPE = new MapTypeStyleFeatureType._('landscape');
+  static final LANDSCAPE_MAN_MADE =
+      new MapTypeStyleFeatureType._('landscape.man_made');
+  static final LANDSCAPE_NATURAL =
+      new MapTypeStyleFeatureType._('landscape.natural');
+  static final LANDSCAPE_NATURAL_LANDCOVER =
+      new MapTypeStyleFeatureType._('landscape.natural.landcover');
+  static final LANDSCAPE_NATURAL_TERRAIN =
+      new MapTypeStyleFeatureType._('landscape.natural.terrain');
+  static final POI = new MapTypeStyleFeatureType._('poi');
+  static final POI_ATTRACTION = new MapTypeStyleFeatureType._('poi.attraction');
+  static final POI_BUSINESS = new MapTypeStyleFeatureType._('poi.business');
+  static final POI_GOVERNMENT = new MapTypeStyleFeatureType._('poi.government');
+  static final POI_MEDICAL = new MapTypeStyleFeatureType._('poi.medical');
+  static final POI_PARK = new MapTypeStyleFeatureType._('poi.park');
+  static final POI_PLACE_OF_WORSHIP =
+      new MapTypeStyleFeatureType._('poi.place_of_worship');
+  static final POI_SCHOOL = new MapTypeStyleFeatureType._('poi.school');
+  static final POI_SPORTS_COMPLEX =
+      new MapTypeStyleFeatureType._('poi.sports_complex');
+  static final ROAD = new MapTypeStyleFeatureType._('road');
+  static final ROAD_ARTERIAL = new MapTypeStyleFeatureType._('road.arterial');
+  static final ROAD_HIGHWAY = new MapTypeStyleFeatureType._('road.highway');
+  static final ROAD_HIGHWAY_CONTROLLED_ACCESS =
+      new MapTypeStyleFeatureType._('road.highway.controlled_access');
+  static final ROAD_LOCAL = new MapTypeStyleFeatureType._('road.local');
+  static final TRANSIT = new MapTypeStyleFeatureType._('transit');
+  static final TRANSIT_LINE = new MapTypeStyleFeatureType._('transit.line');
+  static final TRANSIT_STATION =
+      new MapTypeStyleFeatureType._('transit.station');
+  static final TRANSIT_STATION_AIRPORT =
+      new MapTypeStyleFeatureType._('transit.station.airport');
+  static final TRANSIT_STATION_BUS =
+      new MapTypeStyleFeatureType._('transit.station.bus');
+  static final TRANSIT_STATION_RAIL =
+      new MapTypeStyleFeatureType._('transit.station.rail');
+  static final WATER = new MapTypeStyleFeatureType._('water');
+  MapTypeStyleFeatureType._(o) : super.created(o);
 }

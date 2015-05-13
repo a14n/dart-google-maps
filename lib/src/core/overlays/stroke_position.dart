@@ -14,6 +14,6 @@
 
 part of google_maps;
 
-@JsEnum()
+@jsEnum
 @JsName('google.maps.StrokePosition')
-enum StrokePosition { CENTER, INSIDE, OUTSIDE }
+enum _StrokePosition { CENTER, INSIDE, OUTSIDE }

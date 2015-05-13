@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// 2015-05-07T16:00:35.946Z
+// 2015-05-13T17:06:36.331Z
 
 part of google_maps.adsense;
 
@@ -86,66 +86,16 @@ final __codec157 =
     new JsInterfaceCodec<AdUnitOptions>((o) => new AdUnitOptions.created(o));
 
 /// codec for AdFormat
-final __codec158 = new BiMapCodec<AdFormat, dynamic>({
-  AdFormat.BANNER: getPath('google.maps.adsense.AdFormat')['BANNER'],
-  AdFormat.BUTTON: getPath('google.maps.adsense.AdFormat')['BUTTON'],
-  AdFormat.HALF_BANNER: getPath('google.maps.adsense.AdFormat')['HALF_BANNER'],
-  AdFormat.LARGE_HORIZONTAL_LINK_UNIT:
-      getPath('google.maps.adsense.AdFormat')['LARGE_HORIZONTAL_LINK_UNIT'],
-  AdFormat.LARGE_RECTANGLE:
-      getPath('google.maps.adsense.AdFormat')['LARGE_RECTANGLE'],
-  AdFormat.LARGE_VERTICAL_LINK_UNIT:
-      getPath('google.maps.adsense.AdFormat')['LARGE_VERTICAL_LINK_UNIT'],
-  AdFormat.LEADERBOARD: getPath('google.maps.adsense.AdFormat')['LEADERBOARD'],
-  AdFormat.MEDIUM_RECTANGLE:
-      getPath('google.maps.adsense.AdFormat')['MEDIUM_RECTANGLE'],
-  AdFormat.MEDIUM_VERTICAL_LINK_UNIT:
-      getPath('google.maps.adsense.AdFormat')['MEDIUM_VERTICAL_LINK_UNIT'],
-  AdFormat.SKYSCRAPER: getPath('google.maps.adsense.AdFormat')['SKYSCRAPER'],
-  AdFormat.SMALL_HORIZONTAL_LINK_UNIT:
-      getPath('google.maps.adsense.AdFormat')['SMALL_HORIZONTAL_LINK_UNIT'],
-  AdFormat.SMALL_RECTANGLE:
-      getPath('google.maps.adsense.AdFormat')['SMALL_RECTANGLE'],
-  AdFormat.SMALL_SQUARE:
-      getPath('google.maps.adsense.AdFormat')['SMALL_SQUARE'],
-  AdFormat.SMALL_VERTICAL_LINK_UNIT:
-      getPath('google.maps.adsense.AdFormat')['SMALL_VERTICAL_LINK_UNIT'],
-  AdFormat.SQUARE: getPath('google.maps.adsense.AdFormat')['SQUARE'],
-  AdFormat.VERTICAL_BANNER:
-      getPath('google.maps.adsense.AdFormat')['VERTICAL_BANNER'],
-  AdFormat.WIDE_SKYSCRAPER:
-      getPath('google.maps.adsense.AdFormat')['WIDE_SKYSCRAPER'],
-  AdFormat.X_LARGE_VERTICAL_LINK_UNIT:
-      getPath('google.maps.adsense.AdFormat')['X_LARGE_VERTICAL_LINK_UNIT']
-});
+final __codec158 = new BiMapCodec<AdFormat, dynamic>(
+    new Map<AdFormat, dynamic>.fromIterable(AdFormat.values, value: asJs));
 
 /// codec for GMap
 final __codec159 = new JsInterfaceCodec<GMap>((o) => new GMap.created(o));
 
 /// codec for ControlPosition
-final __codec160 = new BiMapCodec<ControlPosition, dynamic>({
-  ControlPosition.BOTTOM_CENTER:
-      getPath('google.maps.ControlPosition')['BOTTOM_CENTER'],
-  ControlPosition.BOTTOM_LEFT:
-      getPath('google.maps.ControlPosition')['BOTTOM_LEFT'],
-  ControlPosition.BOTTOM_RIGHT:
-      getPath('google.maps.ControlPosition')['BOTTOM_RIGHT'],
-  ControlPosition.LEFT_BOTTOM:
-      getPath('google.maps.ControlPosition')['LEFT_BOTTOM'],
-  ControlPosition.LEFT_CENTER:
-      getPath('google.maps.ControlPosition')['LEFT_CENTER'],
-  ControlPosition.LEFT_TOP: getPath('google.maps.ControlPosition')['LEFT_TOP'],
-  ControlPosition.RIGHT_BOTTOM:
-      getPath('google.maps.ControlPosition')['RIGHT_BOTTOM'],
-  ControlPosition.RIGHT_CENTER:
-      getPath('google.maps.ControlPosition')['RIGHT_CENTER'],
-  ControlPosition.RIGHT_TOP:
-      getPath('google.maps.ControlPosition')['RIGHT_TOP'],
-  ControlPosition.TOP_CENTER:
-      getPath('google.maps.ControlPosition')['TOP_CENTER'],
-  ControlPosition.TOP_LEFT: getPath('google.maps.ControlPosition')['TOP_LEFT'],
-  ControlPosition.TOP_RIGHT: getPath('google.maps.ControlPosition')['TOP_RIGHT']
-});
+final __codec160 = new BiMapCodec<ControlPosition, dynamic>(
+    new Map<ControlPosition, dynamic>.fromIterable(ControlPosition.values,
+        value: asJs));
 
 // **************************************************************************
 // Generator: JsInterfaceGenerator
@@ -198,4 +148,69 @@ class AdUnitOptions extends JsInterface implements _AdUnitOptions {
     asJsObject(this)['urlColor'] = _urlColor;
   }
   String get urlColor => asJsObject(this)['urlColor'];
+}
+
+// **************************************************************************
+// Generator: JsInterfaceGenerator
+// Target: class _AdFormat
+// **************************************************************************
+
+class AdFormat extends JsEnum {
+  static final values = <AdFormat>[
+    BANNER,
+    BUTTON,
+    HALF_BANNER,
+    LARGE_HORIZONTAL_LINK_UNIT,
+    LARGE_RECTANGLE,
+    LARGE_VERTICAL_LINK_UNIT,
+    LEADERBOARD,
+    MEDIUM_RECTANGLE,
+    MEDIUM_VERTICAL_LINK_UNIT,
+    SKYSCRAPER,
+    SMALL_HORIZONTAL_LINK_UNIT,
+    SMALL_RECTANGLE,
+    SMALL_SQUARE,
+    SMALL_VERTICAL_LINK_UNIT,
+    SQUARE,
+    VERTICAL_BANNER,
+    WIDE_SKYSCRAPER,
+    X_LARGE_VERTICAL_LINK_UNIT
+  ];
+  static final BANNER =
+      new AdFormat._(getPath('google.maps.adsense.AdFormat')['BANNER']);
+  static final BUTTON =
+      new AdFormat._(getPath('google.maps.adsense.AdFormat')['BUTTON']);
+  static final HALF_BANNER =
+      new AdFormat._(getPath('google.maps.adsense.AdFormat')['HALF_BANNER']);
+  static final LARGE_HORIZONTAL_LINK_UNIT = new AdFormat._(
+      getPath('google.maps.adsense.AdFormat')['LARGE_HORIZONTAL_LINK_UNIT']);
+  static final LARGE_RECTANGLE = new AdFormat._(
+      getPath('google.maps.adsense.AdFormat')['LARGE_RECTANGLE']);
+  static final LARGE_VERTICAL_LINK_UNIT = new AdFormat._(
+      getPath('google.maps.adsense.AdFormat')['LARGE_VERTICAL_LINK_UNIT']);
+  static final LEADERBOARD =
+      new AdFormat._(getPath('google.maps.adsense.AdFormat')['LEADERBOARD']);
+  static final MEDIUM_RECTANGLE = new AdFormat._(
+      getPath('google.maps.adsense.AdFormat')['MEDIUM_RECTANGLE']);
+  static final MEDIUM_VERTICAL_LINK_UNIT = new AdFormat._(
+      getPath('google.maps.adsense.AdFormat')['MEDIUM_VERTICAL_LINK_UNIT']);
+  static final SKYSCRAPER =
+      new AdFormat._(getPath('google.maps.adsense.AdFormat')['SKYSCRAPER']);
+  static final SMALL_HORIZONTAL_LINK_UNIT = new AdFormat._(
+      getPath('google.maps.adsense.AdFormat')['SMALL_HORIZONTAL_LINK_UNIT']);
+  static final SMALL_RECTANGLE = new AdFormat._(
+      getPath('google.maps.adsense.AdFormat')['SMALL_RECTANGLE']);
+  static final SMALL_SQUARE =
+      new AdFormat._(getPath('google.maps.adsense.AdFormat')['SMALL_SQUARE']);
+  static final SMALL_VERTICAL_LINK_UNIT = new AdFormat._(
+      getPath('google.maps.adsense.AdFormat')['SMALL_VERTICAL_LINK_UNIT']);
+  static final SQUARE =
+      new AdFormat._(getPath('google.maps.adsense.AdFormat')['SQUARE']);
+  static final VERTICAL_BANNER = new AdFormat._(
+      getPath('google.maps.adsense.AdFormat')['VERTICAL_BANNER']);
+  static final WIDE_SKYSCRAPER = new AdFormat._(
+      getPath('google.maps.adsense.AdFormat')['WIDE_SKYSCRAPER']);
+  static final X_LARGE_VERTICAL_LINK_UNIT = new AdFormat._(
+      getPath('google.maps.adsense.AdFormat')['X_LARGE_VERTICAL_LINK_UNIT']);
+  AdFormat._(o) : super.created(o);
 }

@@ -14,6 +14,6 @@
 
 part of google_maps.weather;
 
-@JsEnum()
+@jsEnum
 @JsName('google.maps.weather.LabelColor')
-enum LabelColor { BLACK, WHITE }
+enum _LabelColor { BLACK, WHITE }

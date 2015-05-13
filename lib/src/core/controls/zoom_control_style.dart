@@ -14,6 +14,6 @@
 
 part of google_maps;
 
-@JsEnum()
+@jsEnum
 @JsName('google.maps.ZoomControlStyle')
-enum ZoomControlStyle { DEFAULT, LARGE, SMALL }
+enum _ZoomControlStyle { DEFAULT, LARGE, SMALL }

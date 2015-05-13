@@ -14,27 +14,30 @@
 
 part of google_maps;
 
-final mapTypeStyleElementTypeCodec =
-    new BiMapCodec<MapTypeStyleElementType, dynamic>({
-  MapTypeStyleElementType.ALL: 'all',
-  MapTypeStyleElementType.GEOMETRY: 'geometry',
-  MapTypeStyleElementType.GEOMETRY_FILL: 'geometry.fill',
-  MapTypeStyleElementType.GEOMETRY_STROKE: 'geometry.stroke',
-  MapTypeStyleElementType.LABELS: 'labels',
-  MapTypeStyleElementType.LABELS_ICON: 'labels.icon',
-  MapTypeStyleElementType.LABELS_TEXT: 'labels.text',
-  MapTypeStyleElementType.LABELS_TEXT_FILL: 'labels.text.fill',
-  MapTypeStyleElementType.LABELS_TEXT_STROKE: 'labels.text.stroke',
-});
-@JsCodec(#mapTypeStyleElementTypeCodec)
-enum MapTypeStyleElementType {
-  ALL,
-  GEOMETRY,
-  GEOMETRY_FILL,
-  GEOMETRY_STROKE,
-  LABELS,
-  LABELS_ICON,
-  LABELS_TEXT,
-  LABELS_TEXT_FILL,
-  LABELS_TEXT_STROKE
+@jsEnum
+class MapTypeStyleElementType extends JsEnum {
+  static final values = <MapTypeStyleElementType>[
+    ALL,
+    GEOMETRY,
+    GEOMETRY_FILL,
+    GEOMETRY_STROKE,
+    LABELS,
+    LABELS_ICON,
+    LABELS_TEXT,
+    LABELS_TEXT_FILL,
+    LABELS_TEXT_STROKE
+  ];
+  static final ALL = new MapTypeStyleElementType._('all');
+  static final GEOMETRY = new MapTypeStyleElementType._('geometry');
+  static final GEOMETRY_FILL = new MapTypeStyleElementType._('geometry.fill');
+  static final GEOMETRY_STROKE =
+      new MapTypeStyleElementType._('geometry.stroke');
+  static final LABELS = new MapTypeStyleElementType._('labels');
+  static final LABELS_ICON = new MapTypeStyleElementType._('labels.icon');
+  static final LABELS_TEXT = new MapTypeStyleElementType._('labels.text');
+  static final LABELS_TEXT_FILL =
+      new MapTypeStyleElementType._('labels.text.fill');
+  static final LABELS_TEXT_STROKE =
+      new MapTypeStyleElementType._('labels.text.stroke');
+  MapTypeStyleElementType._(o) : super.created(o);
 }

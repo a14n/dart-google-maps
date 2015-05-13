@@ -14,6 +14,6 @@
 
 part of google_maps;
 
-@JsEnum()
+@jsEnum
 @JsName('google.maps.StreetViewStatus')
-enum StreetViewStatus { OK, UNKNOWN_ERROR, ZERO_RESULTS }
+enum _StreetViewStatus { OK, UNKNOWN_ERROR, ZERO_RESULTS }

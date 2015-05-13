@@ -14,6 +14,6 @@
 
 part of google_maps.drawing;
 
-@JsEnum()
+@jsEnum
 @JsName('google.maps.drawing.OverlayType')
-enum OverlayType { CIRCLE, MARKER, POLYGON, POLYLINE, RECTANGLE }
+enum _OverlayType { CIRCLE, MARKER, POLYGON, POLYLINE, RECTANGLE }

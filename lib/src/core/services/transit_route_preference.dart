@@ -14,6 +14,6 @@
 
 part of google_maps;
 
-@JsEnum()
+@jsEnum
 @JsName('google.maps.TransitRoutePreference')
-enum TransitRoutePreference { FEWER_TRANSFERS, LESS_WALKING }
+enum _TransitRoutePreference { FEWER_TRANSFERS, LESS_WALKING }

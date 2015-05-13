@@ -14,6 +14,6 @@
 
 part of google_maps;
 
-@JsEnum()
+@jsEnum
 @JsName('google.maps.MaxZoomStatus')
-enum MaxZoomStatus { ERROR, OK }
+enum _MaxZoomStatus { ERROR, OK }

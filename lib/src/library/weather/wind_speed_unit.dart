@@ -14,6 +14,6 @@
 
 part of google_maps.weather;
 
-@JsEnum()
+@jsEnum
 @JsName('google.maps.weather.WindSpeedUnit')
-enum WindSpeedUnit { KILOMETERS_PER_HOUR, METERS_PER_SECOND, MILES_PER_HOUR }
+enum _WindSpeedUnit { KILOMETERS_PER_HOUR, METERS_PER_SECOND, MILES_PER_HOUR }

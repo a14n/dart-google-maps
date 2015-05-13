@@ -14,9 +14,9 @@
 
 part of google_maps;
 
-@JsEnum()
+@jsEnum
 @JsName('google.maps.GeocoderStatus')
-enum GeocoderStatus {
+enum _GeocoderStatus {
   ERROR,
   INVALID_REQUEST,
   OK,

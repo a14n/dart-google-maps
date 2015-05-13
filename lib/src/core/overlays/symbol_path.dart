@@ -14,9 +14,9 @@
 
 part of google_maps;
 
-@JsEnum()
+@jsEnum
 @JsName('google.maps.SymbolPath')
-enum SymbolPath {
+enum _SymbolPath {
   BACKWARD_CLOSED_ARROW,
   BACKWARD_OPEN_ARROW,
   CIRCLE,

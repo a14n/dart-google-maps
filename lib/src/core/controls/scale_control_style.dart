@@ -14,6 +14,6 @@
 
 part of google_maps;
 
-@JsEnum()
+@jsEnum
 @JsName('google.maps.ScaleControlStyle')
-enum ScaleControlStyle { DEFAULT }
+enum _ScaleControlStyle { DEFAULT }

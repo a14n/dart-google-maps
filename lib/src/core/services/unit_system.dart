@@ -14,6 +14,6 @@
 
 part of google_maps;
 
-@JsEnum()
+@jsEnum
 @JsName('google.maps.UnitSystem')
-enum UnitSystem { IMPERIAL, METRIC }
+enum _UnitSystem { IMPERIAL, METRIC }

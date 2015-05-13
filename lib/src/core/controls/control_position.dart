@@ -14,9 +14,9 @@
 
 part of google_maps;
 
-@JsEnum()
+@jsEnum
 @JsName('google.maps.ControlPosition')
-enum ControlPosition {
+enum _ControlPosition {
   BOTTOM_CENTER,
   BOTTOM_LEFT,
   BOTTOM_RIGHT,

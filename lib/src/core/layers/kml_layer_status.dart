@@ -14,9 +14,9 @@
 
 part of google_maps;
 
-@JsEnum()
+@jsEnum
 @JsName('google.maps.KmlLayerStatus')
-enum KmlLayerStatus {
+enum _KmlLayerStatus {
   DOCUMENT_NOT_FOUND,
   DOCUMENT_TOO_LARGE,
   FETCH_ERROR,

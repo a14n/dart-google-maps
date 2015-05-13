@@ -14,9 +14,9 @@
 
 part of google_maps;
 
-@JsEnum()
+@jsEnum
 @JsName('google.maps.ElevationStatus')
-enum ElevationStatus {
+enum _ElevationStatus {
   INVALID_REQUEST,
   OK,
   OVER_QUERY_LIMIT,

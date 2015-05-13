@@ -14,9 +14,9 @@
 
 part of google_maps;
 
-@JsEnum()
+@jsEnum
 @JsName('google.maps.GeocoderLocationType')
-enum GeocoderLocationType {
+enum _GeocoderLocationType {
   APPROXIMATE,
   GEOMETRIC_CENTER,
   RANGE_INTERPOLATED,

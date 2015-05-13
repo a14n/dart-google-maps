@@ -14,6 +14,6 @@
 
 part of google_maps;
 
-@JsEnum()
+@jsEnum
 @JsName('google.maps.MapTypeId')
-enum MapTypeId { HYBRID, ROADMAP, SATELLITE, TERRAIN }
+enum _MapTypeId { HYBRID, ROADMAP, SATELLITE, TERRAIN }

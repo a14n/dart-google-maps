@@ -14,6 +14,6 @@
 
 part of google_maps.weather;
 
-@JsEnum()
+@jsEnum
 @JsName('google.maps.weather.TemperatureUnit')
-enum TemperatureUnit { CELSIUS, FAHRENHEIT }
+enum _TemperatureUnit { CELSIUS, FAHRENHEIT }

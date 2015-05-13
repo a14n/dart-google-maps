@@ -14,6 +14,6 @@
 
 part of google_maps;
 
-@JsEnum()
+@jsEnum
 @JsName('google.maps.TransitMode')
-enum TransitMode { BUS, RAIL, SUBWAY, TRAIN, TRAM }
+enum _TransitMode { BUS, RAIL, SUBWAY, TRAIN, TRAM }

@@ -125,14 +125,14 @@ abstract class _StyledMapType extends MVCObject implements MapType {
 }
 ''',
   'StrokePosition': '''
-@JsEnum()
+@jsEnum
 @JsName('google.maps.StrokePosition')
-enum StrokePosition { CENTER, INSIDE, OUTSIDE }
+enum _StrokePosition { CENTER, INSIDE, OUTSIDE }
 ''',
   'MapsEngineStatus': '''
-@JsEnum()
+@jsEnum
 @JsName('google.maps.visualization.MapsEngineStatus')
-enum MapsEngineStatus { INVALID_LAYER, OK, UNKNOWN_ERROR }
+enum _MapsEngineStatus { INVALID_LAYER, OK, UNKNOWN_ERROR }
 '''
 };
 
@@ -404,7 +404,6 @@ bool _isEmpty();''',
   }
 ''',
     },
-
     'DataFeature': {
       'getGeometry': '''
   dynamic /*DataGeometryCollection|DataMultiPolygon|DataPolygon|DataLinearRing|DataMultiLineString|DataLineString|DataMultiPoint|DataPoint*/ get geometry =>
@@ -468,7 +467,6 @@ bool _isEmpty();''',
       dynamic /*DataGeometryCollection|DataMultiPolygon|DataPolygon|DataLinearRing|DataMultiLineString|DataLineString|DataMultiPoint|DataPoint|LatLng*/ newGeometry);
 '''
     },
-
     'DataFeatureOptions': {
       'geometry': '''
   dynamic _geometry;
@@ -797,36 +795,21 @@ part of $libraryName;
 
         String toEnumValue(String v) => v.replaceAll('.', '_').toUpperCase();
 
-        final names = {};
-        for (final e in constants) {
-          final dartName = toEnumValue(e);
-          if (dartName != e) names[dartName] = e;
-        }
-
         if (jsElmt.isAnonymousObject) {
-          final codecName =
-              jsElmt.name[0].toLowerCase() + jsElmt.name.substring(1) + 'Codec';
-          partContents +=
-              "final $codecName = new BiMapCodec<${jsElmt.name}, dynamic>({";
-          names.forEach((k, v) {
-            partContents += "${jsElmt.name}.$k: '$v',";
-          });
-          partContents += "}); ";
-          partContents += "@JsCodec(#$codecName) ";
-        } else {
-          if (names.isEmpty) partContents += "@JsEnum()";
-          else {
-            partContents += "@JsEnum(names: const {";
-            names.forEach((k, v) {
-              partContents += "${jsElmt.name}.$k: '$v',";
-            });
-            partContents += "})";
+          partContents += "@jsEnum ";
+          partContents += 'class ${jsElmt.name} extends JsEnum {';
+          partContents += '  static final values = <${jsElmt.name}>'
+              '[${constants.map(toEnumValue).join(',')}];\n';
+          for (final value in constants) {
+            partContents += "  static final ${toEnumValue(value)} = "
+                "new ${jsElmt.name}._('$value');\n";
           }
-          partContents += " @JsName('${jsElmt.fullName}') ";
+          partContents += '  ${jsElmt.name}._(o) : super.created(o);';
+          partContents += '}\n\n';
+        } else {
+          partContents += "@jsEnum @JsName('${jsElmt.fullName}') ";
+          partContents += 'enum _${jsElmt.name}{${constants.join(',')}}\n\n';
         }
-
-        partContents +=
-            'enum ${jsElmt.name}{${constants.map(toEnumValue).join(',')}}\n\n';
       } else if (jsElmt.isNamespace ||
           jsElmt.isAnonymousObject ||
           jsElmt.isClass) {

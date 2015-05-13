@@ -14,6 +14,6 @@
 
 part of google_maps;
 
-@JsEnum()
+@jsEnum
 @JsName('google.maps.TravelMode')
-enum TravelMode { BICYCLING, DRIVING, TRANSIT, WALKING }
+enum _TravelMode { BICYCLING, DRIVING, TRANSIT, WALKING }

@@ -14,6 +14,6 @@
 
 part of google_maps.places;
 
-@JsEnum()
+@jsEnum
 @JsName('google.maps.places.RankBy')
-enum RankBy { DISTANCE, PROMINENCE }
+enum _RankBy { DISTANCE, PROMINENCE }
