@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// 2015-05-13T17:06:36.331Z
+// 2015-05-15T14:27:03.440Z
 
 part of google_maps.adsense;
 
@@ -14,7 +14,7 @@ class AdUnit extends MVCObject implements _AdUnit {
   AdUnit(Node container, AdUnitOptions opts) : this.created(new JsObject(
           getPath('google.maps.adsense.AdUnit'), [
         container,
-        __codec157.encode(opts)
+        __codec158.encode(opts)
       ]));
 
   String get backgroundColor => _getBackgroundColor();
@@ -28,12 +28,12 @@ class AdUnit extends MVCObject implements _AdUnit {
   Node _getContainer() => asJsObject(this).callMethod('getContainer');
   AdFormat get format => _getFormat();
   AdFormat _getFormat() =>
-      __codec158.decode(asJsObject(this).callMethod('getFormat'));
+      __codec159.decode(asJsObject(this).callMethod('getFormat'));
   GMap get map => _getMap();
-  GMap _getMap() => __codec159.decode(asJsObject(this).callMethod('getMap'));
+  GMap _getMap() => __codec160.decode(asJsObject(this).callMethod('getMap'));
   ControlPosition get position => _getPosition();
   ControlPosition _getPosition() =>
-      __codec160.decode(asJsObject(this).callMethod('getPosition'));
+      __codec161.decode(asJsObject(this).callMethod('getPosition'));
   String get publisherId => _getPublisherId();
   String _getPublisherId() => asJsObject(this).callMethod('getPublisherId');
   String get textColor => _getTextColor();
@@ -58,15 +58,15 @@ class AdUnit extends MVCObject implements _AdUnit {
   }
   void set format(AdFormat format) => _setFormat(format);
   void _setFormat(AdFormat format) {
-    asJsObject(this).callMethod('setFormat', [__codec158.encode(format)]);
+    asJsObject(this).callMethod('setFormat', [__codec159.encode(format)]);
   }
   void set map(GMap map) => _setMap(map);
   void _setMap(GMap map) {
-    asJsObject(this).callMethod('setMap', [__codec159.encode(map)]);
+    asJsObject(this).callMethod('setMap', [__codec160.encode(map)]);
   }
   void set position(ControlPosition position) => _setPosition(position);
   void _setPosition(ControlPosition position) {
-    asJsObject(this).callMethod('setPosition', [__codec160.encode(position)]);
+    asJsObject(this).callMethod('setPosition', [__codec161.encode(position)]);
   }
   void set textColor(String textColor) => _setTextColor(textColor);
   void _setTextColor(String textColor) {
@@ -82,18 +82,18 @@ class AdUnit extends MVCObject implements _AdUnit {
   }
 }
 /// codec for AdUnitOptions
-final __codec157 =
+final __codec158 =
     new JsInterfaceCodec<AdUnitOptions>((o) => new AdUnitOptions.created(o));
 
 /// codec for AdFormat
-final __codec158 = new BiMapCodec<AdFormat, dynamic>(
+final __codec159 = new BiMapCodec<AdFormat, dynamic>(
     new Map<AdFormat, dynamic>.fromIterable(AdFormat.values, value: asJs));
 
 /// codec for GMap
-final __codec159 = new JsInterfaceCodec<GMap>((o) => new GMap.created(o));
+final __codec160 = new JsInterfaceCodec<GMap>((o) => new GMap.created(o));
 
 /// codec for ControlPosition
-final __codec160 = new BiMapCodec<ControlPosition, dynamic>(
+final __codec161 = new BiMapCodec<ControlPosition, dynamic>(
     new Map<ControlPosition, dynamic>.fromIterable(ControlPosition.values,
         value: asJs));
 
@@ -120,18 +120,18 @@ class AdUnitOptions extends JsInterface implements _AdUnitOptions {
   }
   String get channelNumber => asJsObject(this)['channelNumber'];
   void set format(AdFormat _format) {
-    asJsObject(this)['format'] = __codec158.encode(_format);
+    asJsObject(this)['format'] = __codec159.encode(_format);
   }
-  AdFormat get format => __codec158.decode(asJsObject(this)['format']);
+  AdFormat get format => __codec159.decode(asJsObject(this)['format']);
   void set map(GMap _map) {
-    asJsObject(this)['map'] = __codec159.encode(_map);
+    asJsObject(this)['map'] = __codec160.encode(_map);
   }
-  GMap get map => __codec159.decode(asJsObject(this)['map']);
+  GMap get map => __codec160.decode(asJsObject(this)['map']);
   void set position(ControlPosition _position) {
-    asJsObject(this)['position'] = __codec160.encode(_position);
+    asJsObject(this)['position'] = __codec161.encode(_position);
   }
   ControlPosition get position =>
-      __codec160.decode(asJsObject(this)['position']);
+      __codec161.decode(asJsObject(this)['position']);
   void set publisherId(String _publisherId) {
     asJsObject(this)['publisherId'] = _publisherId;
   }
@@ -176,41 +176,49 @@ class AdFormat extends JsEnum {
     WIDE_SKYSCRAPER,
     X_LARGE_VERTICAL_LINK_UNIT
   ];
-  static final BANNER =
-      new AdFormat._(getPath('google.maps.adsense.AdFormat')['BANNER']);
-  static final BUTTON =
-      new AdFormat._(getPath('google.maps.adsense.AdFormat')['BUTTON']);
-  static final HALF_BANNER =
-      new AdFormat._(getPath('google.maps.adsense.AdFormat')['HALF_BANNER']);
+  static final BANNER = new AdFormat._(
+      'BANNER', getPath('google.maps.adsense.AdFormat')['BANNER']);
+  static final BUTTON = new AdFormat._(
+      'BUTTON', getPath('google.maps.adsense.AdFormat')['BUTTON']);
+  static final HALF_BANNER = new AdFormat._(
+      'HALF_BANNER', getPath('google.maps.adsense.AdFormat')['HALF_BANNER']);
   static final LARGE_HORIZONTAL_LINK_UNIT = new AdFormat._(
+      'LARGE_HORIZONTAL_LINK_UNIT',
       getPath('google.maps.adsense.AdFormat')['LARGE_HORIZONTAL_LINK_UNIT']);
-  static final LARGE_RECTANGLE = new AdFormat._(
+  static final LARGE_RECTANGLE = new AdFormat._('LARGE_RECTANGLE',
       getPath('google.maps.adsense.AdFormat')['LARGE_RECTANGLE']);
   static final LARGE_VERTICAL_LINK_UNIT = new AdFormat._(
+      'LARGE_VERTICAL_LINK_UNIT',
       getPath('google.maps.adsense.AdFormat')['LARGE_VERTICAL_LINK_UNIT']);
-  static final LEADERBOARD =
-      new AdFormat._(getPath('google.maps.adsense.AdFormat')['LEADERBOARD']);
-  static final MEDIUM_RECTANGLE = new AdFormat._(
+  static final LEADERBOARD = new AdFormat._(
+      'LEADERBOARD', getPath('google.maps.adsense.AdFormat')['LEADERBOARD']);
+  static final MEDIUM_RECTANGLE = new AdFormat._('MEDIUM_RECTANGLE',
       getPath('google.maps.adsense.AdFormat')['MEDIUM_RECTANGLE']);
   static final MEDIUM_VERTICAL_LINK_UNIT = new AdFormat._(
+      'MEDIUM_VERTICAL_LINK_UNIT',
       getPath('google.maps.adsense.AdFormat')['MEDIUM_VERTICAL_LINK_UNIT']);
-  static final SKYSCRAPER =
-      new AdFormat._(getPath('google.maps.adsense.AdFormat')['SKYSCRAPER']);
+  static final SKYSCRAPER = new AdFormat._(
+      'SKYSCRAPER', getPath('google.maps.adsense.AdFormat')['SKYSCRAPER']);
   static final SMALL_HORIZONTAL_LINK_UNIT = new AdFormat._(
+      'SMALL_HORIZONTAL_LINK_UNIT',
       getPath('google.maps.adsense.AdFormat')['SMALL_HORIZONTAL_LINK_UNIT']);
-  static final SMALL_RECTANGLE = new AdFormat._(
+  static final SMALL_RECTANGLE = new AdFormat._('SMALL_RECTANGLE',
       getPath('google.maps.adsense.AdFormat')['SMALL_RECTANGLE']);
-  static final SMALL_SQUARE =
-      new AdFormat._(getPath('google.maps.adsense.AdFormat')['SMALL_SQUARE']);
+  static final SMALL_SQUARE = new AdFormat._(
+      'SMALL_SQUARE', getPath('google.maps.adsense.AdFormat')['SMALL_SQUARE']);
   static final SMALL_VERTICAL_LINK_UNIT = new AdFormat._(
+      'SMALL_VERTICAL_LINK_UNIT',
       getPath('google.maps.adsense.AdFormat')['SMALL_VERTICAL_LINK_UNIT']);
-  static final SQUARE =
-      new AdFormat._(getPath('google.maps.adsense.AdFormat')['SQUARE']);
-  static final VERTICAL_BANNER = new AdFormat._(
+  static final SQUARE = new AdFormat._(
+      'SQUARE', getPath('google.maps.adsense.AdFormat')['SQUARE']);
+  static final VERTICAL_BANNER = new AdFormat._('VERTICAL_BANNER',
       getPath('google.maps.adsense.AdFormat')['VERTICAL_BANNER']);
-  static final WIDE_SKYSCRAPER = new AdFormat._(
+  static final WIDE_SKYSCRAPER = new AdFormat._('WIDE_SKYSCRAPER',
       getPath('google.maps.adsense.AdFormat')['WIDE_SKYSCRAPER']);
   static final X_LARGE_VERTICAL_LINK_UNIT = new AdFormat._(
+      'X_LARGE_VERTICAL_LINK_UNIT',
       getPath('google.maps.adsense.AdFormat')['X_LARGE_VERTICAL_LINK_UNIT']);
-  AdFormat._(o) : super.created(o);
+  final String _name;
+  AdFormat._(this._name, o) : super.created(o);
+  String toString() => 'AdFormat.$_name';
 }

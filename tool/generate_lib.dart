@@ -133,6 +133,17 @@ enum _StrokePosition { CENTER, INSIDE, OUTSIDE }
 @jsEnum
 @JsName('google.maps.visualization.MapsEngineStatus')
 enum _MapsEngineStatus { INVALID_LAYER, OK, UNKNOWN_ERROR }
+''',
+  'StreetViewService': '''
+@JsName('google.maps.StreetViewService')
+abstract class _StreetViewService implements JsInterface {
+  external factory _StreetViewService();
+
+  void getPanoramaById(
+      String pano, callback(StreetViewPanoramaData p1, StreetViewStatus p2));
+  void getPanoramaByLocation(LatLng latlng, num radius,
+      callback(StreetViewPanoramaData p1, StreetViewStatus p2));
+}
 '''
 };
 
@@ -707,6 +718,48 @@ bool _isEmpty();''',
         .encode(oldGeometry);
   }
 '''
+    },
+    'DistanceMatrixRequest': {
+      'destinations': '''
+  dynamic _destinations;
+  List<dynamic /*LatLng|String*/ > get destinations =>
+      (new JsListCodec<dynamic /*LatLng|String*/ >(new ChainedCodec()
+    ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
+        (o) => o != null && o.instanceof(getPath("google.maps.LatLng"))))
+    ..add(new IdentityCodec<String>()))).decode(_destinations);
+  void set destinations(List<dynamic /*LatLng|String*/ > destinations) {
+    _destinations = (new JsListCodec<dynamic /*LatLng|String*/ >(
+        new ChainedCodec()
+      ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
+          (o) => o != null && o.instanceof(getPath("google.maps.LatLng"))))
+      ..add(new IdentityCodec<String>()))).encode(destinations);
+  }
+''',
+      'origins': '''
+  dynamic _origins;
+  List<dynamic /*LatLng|String*/ > get origins =>
+      (new JsListCodec<dynamic /*LatLng|String*/ >(new ChainedCodec()
+    ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
+        (o) => o != null && o.instanceof(getPath("google.maps.LatLng"))))
+    ..add(new IdentityCodec<String>()))).decode(_origins);
+  void set origins(List<dynamic /*LatLng|String*/ > origins) {
+    _origins = (new JsListCodec<dynamic /*LatLng|String*/ >(new ChainedCodec()
+      ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
+          (o) => o != null && o.instanceof(getPath("google.maps.LatLng"))))
+      ..add(new IdentityCodec<String>()))).encode(origins);
+  }
+''',
+    }
+  },
+  'google_maps.places': {
+    'PlacesService': {
+      'radarSearch': '''
+  void _radarSearch(RadarSearchRequest request,
+      callback(List<PlaceResult> p1, PlacesServiceStatus p2, [_]));
+  void radarSearch(RadarSearchRequest request,
+          callback(List<PlaceResult> p1, PlacesServiceStatus p2)) =>
+      _radarSearch(request, (p1, p2, [_]) => callback(p1, p2));
+''',
     }
   }
 };

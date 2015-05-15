@@ -23,8 +23,12 @@ abstract class _PlacesService implements JsInterface {
       callback(PlaceResult p1, PlacesServiceStatus p2));
   void nearbySearch(PlaceSearchRequest request, callback(
       List<PlaceResult> p1, PlacesServiceStatus p2, PlaceSearchPagination p3));
+  void _radarSearch(RadarSearchRequest request,
+      callback(List<PlaceResult> p1, PlacesServiceStatus p2, [_]));
   void radarSearch(RadarSearchRequest request,
-      callback(List<PlaceResult> p1, PlacesServiceStatus p2));
+          callback(List<PlaceResult> p1, PlacesServiceStatus p2)) =>
+      _radarSearch(request, (p1, p2, [_]) => callback(p1, p2));
+
   void textSearch(TextSearchRequest request,
       callback(List<PlaceResult> p1, PlacesServiceStatus p2));
 }
