@@ -16,22 +16,18 @@ void main() {
   final manhattan = new LatLng(40.7711329, -73.9741874);
   final mapOptions = new MapOptions()
     ..zoom = 13
-    ..mapTypeId = MapTypeId.ROADMAP
-    ..center = manhattan
-    ;
-  map = new GMap(querySelector("#map_canvas"), mapOptions);
+    ..center = manhattan;
+  map = new GMap(document.getElementById('map-canvas'), mapOptions);
 
   // Create a renderer for directions and bind it to the map.
-  final rendererOptions = new DirectionsRendererOptions()
-    ..map = map
-    ;
+  final rendererOptions = new DirectionsRendererOptions()..map = map;
   directionsDisplay = new DirectionsRenderer(rendererOptions);
 
   // Instantiate an info window to hold step text.
   stepDisplay = new InfoWindow();
 
-  querySelector('#start').onChange.listen((e) => calcRoute());
-  querySelector('#end').onChange.listen((e) => calcRoute());
+  document.getElementById('start').onChange.listen((e) => calcRoute());
+  document.getElementById('end').onChange.listen((e) => calcRoute());
 }
 
 void calcRoute() {
@@ -43,17 +39,16 @@ void calcRoute() {
 
   // Retrieve the start and end locations and create
   // a DirectionsRequest using WALKING directions.
-  final start = (querySelector('#start') as SelectElement).value;
-  final end = (querySelector('#end') as SelectElement).value;
+  final start = (document.getElementById('start') as SelectElement).value;
+  final end = (document.getElementById('end') as SelectElement).value;
   final request = new DirectionsRequest()
     ..origin = start
     ..destination = end
-    ..travelMode = TravelMode.WALKING // TODO bad object in example DirectionsTravelMode
-    ;
+    ..travelMode = TravelMode.WALKING;
 
   // Route the directions and pass the response to a
   // function to create markers for each step.
-  directionsService.route(request, (DirectionsResult response, DirectionsStatus status) {
+  directionsService.route(request, (response, status) {
     if (status == DirectionsStatus.OK) {
       final warnings = querySelector('#warnings_panel');
       warnings.innerHtml = '<b>${response.routes[0].warnings}</b>';
@@ -70,11 +65,10 @@ void showSteps(DirectionsResult directionResult) {
   // routes.
   final myRoute = directionResult.routes[0].legs[0];
 
-  for(final step in myRoute.steps) {
+  for (final step in myRoute.steps) {
     final marker = new Marker(new MarkerOptions()
-      ..position = step.startLocation // TODO bad attribut in example "start_point"
-      ..map = map
-    );
+      ..position = step.startLocation
+      ..map = map);
     attachInstructionText(marker, step.instructions);
     markerArray.add(marker);
   }

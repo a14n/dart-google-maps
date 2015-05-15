@@ -3,49 +3,59 @@
   <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
-    <title>Google Maps JavaScript API v3 Example: Directions Simple</title>
+    <title>Directions service</title>
     <style>
-      html, body, #map_canvas {
+      html, body, #map-canvas {
         height: 100%;
         margin: 0px;
         padding: 0px
       }
+      #panel {
+        position: absolute;
+        top: 5px;
+        left: 50%;
+        margin-left: -180px;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+      }
     </style>
   </head>
   <body>
-    <div>
-    <b>Start: </b>
-    <select id="start">
-      <option value="chicago, il">Chicago</option>
-      <option value="st louis, mo">St Louis</option>
-      <option value="joplin, mo">Joplin, MO</option>
-      <option value="oklahoma city, ok">Oklahoma City</option>
-      <option value="amarillo, tx">Amarillo</option>
-      <option value="gallup, nm">Gallup, NM</option>
-      <option value="flagstaff, az">Flagstaff, AZ</option>
-      <option value="winona, az">Winona</option>
-      <option value="kingman, az">Kingman</option>
-      <option value="barstow, ca">Barstow</option>
-      <option value="san bernardino, ca">San Bernardino</option>
-      <option value="los angeles, ca">Los Angeles</option>
-    </select>
-    <b>End: </b>
-    <select id="end">
-      <option value="chicago, il">Chicago</option>
-      <option value="st louis, mo">St Louis</option>
-      <option value="joplin, mo">Joplin, MO</option>
-      <option value="oklahoma city, ok">Oklahoma City</option>
-      <option value="amarillo, tx">Amarillo</option>
-      <option value="gallup, nm">Gallup, NM</option>
-      <option value="flagstaff, az">Flagstaff, AZ</option>
-      <option value="winona, az">Winona</option>
-      <option value="kingman, az">Kingman</option>
-      <option value="barstow, ca">Barstow</option>
-      <option value="san bernardino, ca">San Bernardino</option>
-      <option value="los angeles, ca">Los Angeles</option>
-    </select>
+    <div id="panel">
+      <b>Start: </b>
+      <select id="start">
+        <option value="chicago, il">Chicago</option>
+        <option value="st louis, mo">St Louis</option>
+        <option value="joplin, mo">Joplin, MO</option>
+        <option value="oklahoma city, ok">Oklahoma City</option>
+        <option value="amarillo, tx">Amarillo</option>
+        <option value="gallup, nm">Gallup, NM</option>
+        <option value="flagstaff, az">Flagstaff, AZ</option>
+        <option value="winona, az">Winona</option>
+        <option value="kingman, az">Kingman</option>
+        <option value="barstow, ca">Barstow</option>
+        <option value="san bernardino, ca">San Bernardino</option>
+        <option value="los angeles, ca">Los Angeles</option>
+      </select>
+      <b>End: </b>
+      <select id="end">
+        <option value="chicago, il">Chicago</option>
+        <option value="st louis, mo">St Louis</option>
+        <option value="joplin, mo">Joplin, MO</option>
+        <option value="oklahoma city, ok">Oklahoma City</option>
+        <option value="amarillo, tx">Amarillo</option>
+        <option value="gallup, nm">Gallup, NM</option>
+        <option value="flagstaff, az">Flagstaff, AZ</option>
+        <option value="winona, az">Winona</option>
+        <option value="kingman, az">Kingman</option>
+        <option value="barstow, ca">Barstow</option>
+        <option value="san bernardino, ca">San Bernardino</option>
+        <option value="los angeles, ca">Los Angeles</option>
+      </select>
     </div>
-    <div id="map_canvas" style="top:30px;"></div>
+    <div id="map-canvas"></div>
 
     <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
     <script type="application/dart" src="page.dart"></script>

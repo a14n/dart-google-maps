@@ -1,34 +1,44 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Google Maps API v3 Example: Distance Matrix</title>
+    <title>Distance Matrix service</title>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
     <style>
-      body {
-        margin: 20px;
-        font-family: courier, sans-serif;
-        font-size: 12px;
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
       }
-      #map {
-        height: 480px;
-        width: 640px;
-        border: solid thin #333;
-        margin-top: 20px;
+
+      #map-canvas {
+        height: 100%;
+        width: 50%;
+      }
+      #content-pane {
+        float:right;
+        width:48%;
+        padding-left: 2%;
+      }
+      #outputDiv {
+        font-size: 11px;
       }
     </style>
   </head>
   <body>
-    <div id="inputs">
-      <pre class="prettyprint">
-var origin1 = new google.maps.LatLng(55.930385, -3.118425);
+    <div id="content-pane">
+      <div id="inputs">
+        <pre class="prettyprint">
+var origin1 = new LatLng(55.930385, -3.118425);
 var origin2 = 'Greenwich, England';
 var destinationA = 'Stockholm, Sweden';
-var destinationB = new google.maps.LatLng(50.087692, 14.421150);
-      </pre>
-      <p><button type="button" id="calculateDistances">Calculate
-        distances</button></p>
+var destinationB = new LatLng(50.087692, 14.421150);
+        </pre>
+        <p><button type="button" id="calculateDistances">Calculate
+          distances</button></p>
+      </div>
+      <div id="outputDiv"></div>
     </div>
-    <div id="outputDiv"></div>
-    <div id="map"></div>
+    <div id="map-canvas"></div>
 
     <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
     <script type="application/dart" src="page.dart"></script>

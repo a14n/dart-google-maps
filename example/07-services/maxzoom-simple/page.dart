@@ -9,9 +9,8 @@ void main() {
   final mapOptions = new MapOptions()
     ..zoom = 11
     ..center = new LatLng(35.6894875, 139.6917064)
-    ..mapTypeId = MapTypeId.HYBRID
-    ;
-  map = new GMap(querySelector("#map_canvas"), mapOptions);
+    ..mapTypeId = MapTypeId.HYBRID;
+  map = new GMap(document.getElementById('map-canvas'), mapOptions);
 
   maxZoomService = new MaxZoomService();
 

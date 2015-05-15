@@ -3,12 +3,22 @@
   <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
-    <title>Google Maps JavaScript API v3 Example: Directions Complex</title>
+    <title>Displaying text directions with setPanel()</title>
     <style>
-      html, body, #map_canvas {
+      html, body, #map-canvas {
         height: 100%;
         margin: 0px;
         padding: 0px
+      }
+      #panel {
+        position: absolute;
+        top: 5px;
+        left: 50%;
+        margin-left: -180px;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
       }
     </style>
     <style>
@@ -18,7 +28,7 @@
         width: 390px;
         overflow: auto;
       }
-/* TODO bad reference */
+
       #map-canvas {
         margin-right: 400px;
       }
@@ -80,7 +90,7 @@
       </select>
     </div>
     <div id="directions-panel"></div>
-    <div id="map_canvas"></div>
+    <div id="map-canvas"></div>
 
     <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
     <script type="application/dart" src="page.dart"></script>

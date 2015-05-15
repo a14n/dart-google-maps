@@ -1,26 +1,31 @@
-import 'dart:html';
-import 'dart:js' as js;
+library example;
 
-import 'package:js_wrapping/js_wrapping.dart' as jsw;
+import 'dart:html';
+
+import 'package:js/js.dart';
 import 'package:google_maps/google_maps.dart';
 
-class ColumnChart extends jsw.TypedJsObject {
-  ColumnChart(Node div) : super(js.context['google']['visualization']['ColumnChart'], [div]);
+part 'page.g.dart';
 
-  void draw(DataTable data, [js.JsObject options]) { $unsafe.callMethod('draw', [jsw.Serializable.$unwrap(data), options]); }
+@JsName('google.visualization.ColumnChart')
+abstract class _ColumnChart extends JsInterface {
+  external factory _ColumnChart(Node div);
+
+  void draw(DataTable data, [JsObject options]);
 }
 
-class DataTable extends jsw.TypedJsObject {
-  DataTable() : super(js.context['google']['visualization']['DataTable']);
+@JsName('google.visualization.DataTable')
+abstract class _DataTable extends JsInterface {
+  external factory _DataTable();
 
-  void addColumn(String type, [String label, String id]) { $unsafe.callMethod('addColumn', [type, label, id]); }
-  void addRow([List<Object> cellArray]) { $unsafe.callMethod('addRow', [cellArray == null ? null : cellArray is js.JsArray ? cellArray : jsw.jsify(cellArray)]); }
+  void addColumn(String type, [String label, String id]);
+  void addRow([JsArray cellArray]);
 }
 
 ElevationService elevator;
 GMap map;
 ColumnChart chart;
-final InfoWindow infowindow = new InfoWindow();
+final infowindow = new InfoWindow();
 Polyline polyline;
 
 // The following path marks a general path from Mt.
@@ -37,9 +42,8 @@ void main() {
   final mapOptions = new MapOptions()
     ..zoom = 8
     ..center = lonepine
-    ..mapTypeId = MapTypeId.TERRAIN
-    ;
-  map = new GMap(querySelector('#map_canvas'), mapOptions);
+    ..mapTypeId = MapTypeId.TERRAIN;
+  map = new GMap(document.getElementById('map-canvas'), mapOptions);
 
   // Create an ElevationService.
   elevator = new ElevationService();
@@ -51,16 +55,22 @@ void main() {
 void drawPath() {
 
   // Create a new chart in the elevation_chart DIV.
-  chart = new ColumnChart(querySelector('#elevation_chart'));
+  chart = new ColumnChart(document.getElementById('elevation_chart'));
 
-  final path = [ whitney, lonepine, owenslake, panamintsprings, beattyjunction, badwater];
+  final path = [
+    whitney,
+    lonepine,
+    owenslake,
+    panamintsprings,
+    beattyjunction,
+    badwater
+  ];
 
   // Create a PathElevationRequest object using this array.
   // Ask for 256 samples along that path.
   final pathRequest = new PathElevationRequest()
     ..path = path
-    ..samples = 256
-    ;
+    ..samples = 256;
 
   // Initiate the path request.
   elevator.getElevationAlongPath(pathRequest, plotElevation);
@@ -81,9 +91,11 @@ void plotElevation(List<ElevationResult> results, ElevationStatus status) {
     final pathOptions = new PolylineOptions()
       ..path = elevationPath
       ..strokeColor = '#0000CC'
-      ..$unsafe['opacity'] = 0.4  // TODO not in doc
-      ..map = map
-      ;
+      ..map = map;
+
+    // TODO(aa) https://code.google.com/p/gmaps-api-issues/issues/detail?id=8046
+    asJsObject(pathOptions)['opacity'] = 0.4;
+
     polyline = new Polyline(pathOptions);
 
     // Extract the data from which to populate the chart.
@@ -94,16 +106,12 @@ void plotElevation(List<ElevationResult> results, ElevationStatus status) {
     data.addColumn('string', 'Sample');
     data.addColumn('number', 'Elevation');
     for (final elevation in results) {
-      data.addRow(['', elevation.elevation]);
+      data.addRow(new JsArray.from(['', elevation.elevation]));
     }
 
     // Draw the chart using the data within its DIV.
     querySelector('#elevation_chart').style.display = 'block';
-    chart.draw(data, jsw.jsify({})
-      ..['width'] = 640
-      ..['height'] = 200
-      ..['legend'] = 'none'
-      ..['titleY'] = 'Elevation (m)'
-    );
+    chart.draw(data, new JsObject.jsify(
+        {'height': 150, 'legend': 'none', 'titleY': 'Elevation (m)'}));
   }
 }
