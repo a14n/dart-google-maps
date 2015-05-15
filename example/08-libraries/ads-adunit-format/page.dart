@@ -2,6 +2,7 @@ import 'dart:html' hide Events;
 
 import 'package:google_maps/google_maps.dart';
 import 'package:google_maps/google_maps_adsense.dart';
+import 'package:js/js.dart';
 
 final SAMPLE_AD_STYLES = {
   'default': {
@@ -72,11 +73,8 @@ final SAMPLE_AD_STYLES = {
 void main() {
   final mapOptions = new MapOptions()
     ..center = new LatLng(36.5987, -121.8950)
-    ..zoom = 12
-    ..mapTypeId = MapTypeId.ROADMAP
-    ;
-  final map = new GMap(querySelector("#map_canvas"), mapOptions);
-
+    ..zoom = 12;
+  final map = new GMap(document.getElementById('map-canvas'), mapOptions);
 
   final adUnitDiv = new DivElement();
 
@@ -85,39 +83,42 @@ void main() {
   final adUnitOptions = new AdUnitOptions()
     ..format = AdFormat.HALF_BANNER
     ..position = ControlPosition.TOP_CENTER
-    ..$unsafe['backgroundColor'] = '#c4d4f3'
-    ..$unsafe['borderColor'] = '#e5ecf9'
-    ..$unsafe['titleColor'] = '#0000cc'
-    ..$unsafe['textColor'] = '#000000'
-    ..$unsafe['urlColor'] = '#009900'
+    ..backgroundColor = '#c4d4f3'
+    ..borderColor = '#e5ecf9'
+    ..titleColor = '#0000cc'
+    ..textColor = '#000000'
+    ..urlColor = '#009900'
     ..publisherId = 'ca-google-maps_apidocs'
-    ..map = map
-    ..$unsafe['visible'] = true
-    ;
+    ..map = map;
+  asJsObject(adUnitOptions)['visible'] = true;
   final adUnit = new AdUnit(adUnitDiv, adUnitOptions);
 
-  final SelectElement format = querySelector('#format');
+  final SelectElement format = document.getElementById('format');
   event.addDomListener(format, 'change', (e) {
-    final String adsFormat = maps['adsense']['AdFormat'][format.value];
-    adUnit.format = AdFormat.$wrap(adsFormat);
+    for (final f in AdFormat.values) {
+      if ('AdFormat.${format.value}' == f.toString()) {
+        adUnit.format = f;
+      }
+    }
   });
 
-  final SelectElement style = querySelector('#style');
+  final SelectElement style = document.getElementById('style');
   event.addDomListener(style, 'change', (e) {
     final adStyle = SAMPLE_AD_STYLES[style.value];
-    // TODO undocumented or undefined functions
-    adUnit.$unsafe
-      //..call("setBackgroundColor", [adStyle['color_bg']])
-      //..call("setBorderColor", [adStyle['color_border']])
-      //..call("setTitleColor", [adStyle['color_link']])
-      //..call("setTextColor", [adStyle['color_text']])
-      //..call("setUrlColor", [adStyle['color_url']])
-      ;
+    adUnit
+      ..backgroundColor = adStyle['color_bg']
+      ..borderColor = adStyle['color_border']
+      ..titleColor = adStyle['color_link']
+      ..textColor = adStyle['color_text']
+      ..urlColor = adStyle['color_url'];
   });
 
-  final SelectElement position = querySelector('#position');
+  final SelectElement position = document.getElementById('position');
   event.addDomListener(position, 'change', (e) {
-    final int adsPosition = maps['ControlPosition'][position.value];
-    adUnit.position = ControlPosition.$wrap(adsPosition);
+    for (final cp in ControlPosition.values) {
+      if ('ControlPosition.${position.value}' == cp.toString()) {
+        adUnit.position = cp;
+      }
+    }
   });
 }

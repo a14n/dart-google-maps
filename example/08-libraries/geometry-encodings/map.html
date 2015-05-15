@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Google Maps JavaScript API v3 Example: Encoded Polylines</title>
+    <title>Encoding methods</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <style>
-      html, body, #map_canvas {
+      html, body, #map-canvas {
         height: 100%;
         margin: 0px;
         padding: 0px
@@ -13,12 +13,10 @@
     </style>
   </head>
   <body>
-    <div id="map_canvas" style="height:640px;"></div>
-    <div><em>Click to draw a polyline</em></div>
-    <div style="padding: 5px">
+    <div id="map-canvas" style="width: 50%; float:left"></div>
+    <div style="width:46%; float:left">
       <div>Encoding:</div>
-      <textarea id="encoded-polyline"
-        style="width: 400px; height: 100px"></textarea>
+      <textarea id="encoded-polyline" style="height: 100px; width: 100%"></textarea>
     </div>
 
     <script src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=geometry"></script>

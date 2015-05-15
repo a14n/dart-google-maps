@@ -8,18 +8,15 @@ Polyline poly;
 void main() {
   final mapOptions = new MapOptions()
     ..zoom = 14
-    ..center = new LatLng(34.3664951, -89.5192484)
-    ..mapTypeId = MapTypeId.ROADMAP
-    ;
+    ..center = new LatLng(34.3664951, -89.5192484);
 
-  final map = new GMap(querySelector("#map_canvas"), mapOptions);
+  final map = new GMap(document.getElementById('map-canvas'), mapOptions);
 
   final polyOptions = new PolylineOptions()
     ..strokeColor = '#000000'
     ..strokeOpacity = 1.0
     ..strokeWeight = 3
-    ..map = map
-    ;
+    ..map = map;
   poly = new Polyline(polyOptions);
 
   // Add a listener for the click event
@@ -39,6 +36,7 @@ void addLatLng(MouseEvent e) {
   // Update the text field to display the polyline encodings
   final encodeString = encoding.encodePath(path);
   if (encodeString != null) {
-    (querySelector('#encoded-polyline') as TextAreaElement).value = encodeString;
+    (document.getElementById('encoded-polyline') as TextAreaElement).value =
+        encodeString;
   }
 }

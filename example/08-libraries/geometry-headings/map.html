@@ -1,28 +1,30 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Google Maps JavaScript API v3 Example: Geometry Headings</title>
+    <title>Navigation functions (heading)</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <style>
-      html, body, #map_canvas {
+      html, body, #map-canvas {
         height: 100%;
         margin: 0px;
         padding: 0px
       }
-    </style>
-    <style>
-      #info {
-        background: #fff;
+      #panel {
+        position: absolute;
+        top: 5px;
+        left: 50%;
+        margin-left: -180px;
+        z-index: 5;
+        background-color: #fff;
         padding: 5px;
-        font-size: 14px;
-        font-family: arial;
+        border: 1px solid #999;
       }
     </style>
   </head>
   <body>
-    <div id="map_canvas"></div>
-    <div id="info">
+    <div id="map-canvas"></div>
+    <div id="panel" style="margin-left:-320px">
       Origin: <input type="text" readonly id="origin">
       Destination: <input type="text" readonly id="destination">
       Heading: <input type="text" readonly id="heading"> degrees
