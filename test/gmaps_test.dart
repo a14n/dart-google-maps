@@ -1,8 +1,8 @@
 library tests;
 
 import 'dart:html';
-import 'package:unittest/unittest.dart';
-import 'package:unittest/html_config.dart';
+
+import 'package:test/test.dart';
 
 import 'package:google_maps/google_maps.dart';
 
@@ -14,8 +14,6 @@ injectSource(code) {
 }
 
 main() {
-  useHtmlConfiguration();
-
   test('LatLng.toString call js', () {
     final latLng = new LatLng(2, 8);
     expect(latLng.toString(), equals("(2, 8)"));
@@ -32,8 +30,10 @@ main() {
   test('MVCArray works', () {
     final mvcArray = new MVCArray();
     mvcArray.onInsertAt.listen((int i) => print("inserted at $i"));
-    mvcArray.onRemoveAt.listen((IndexAndElement e) => print("removed ${e.element} at ${e.index}"));
-    mvcArray.onSetAt.listen((IndexAndElement e) => print("set ${e.element} at ${e.index}"));
+    mvcArray.onRemoveAt.listen(
+        (IndexAndElement e) => print("removed ${e.element} at ${e.index}"));
+    mvcArray.onSetAt
+        .listen((IndexAndElement e) => print("set ${e.element} at ${e.index}"));
     mvcArray.push("aa");
     expect(mvcArray.length, equals(1));
     mvcArray.setAt(0, "bb");
