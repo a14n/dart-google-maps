@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// 2015-05-15T14:27:03.440Z
+// 2015-05-17T19:43:32.659Z
 
 part of google_maps.adsense;
 
@@ -14,7 +14,7 @@ class AdUnit extends MVCObject implements _AdUnit {
   AdUnit(Node container, AdUnitOptions opts) : this.created(new JsObject(
           getPath('google.maps.adsense.AdUnit'), [
         container,
-        __codec158.encode(opts)
+        __codec160.encode(opts)
       ]));
 
   String get backgroundColor => _getBackgroundColor();
@@ -28,12 +28,12 @@ class AdUnit extends MVCObject implements _AdUnit {
   Node _getContainer() => asJsObject(this).callMethod('getContainer');
   AdFormat get format => _getFormat();
   AdFormat _getFormat() =>
-      __codec159.decode(asJsObject(this).callMethod('getFormat'));
+      __codec161.decode(asJsObject(this).callMethod('getFormat'));
   GMap get map => _getMap();
-  GMap _getMap() => __codec160.decode(asJsObject(this).callMethod('getMap'));
+  GMap _getMap() => __codec162.decode(asJsObject(this).callMethod('getMap'));
   ControlPosition get position => _getPosition();
   ControlPosition _getPosition() =>
-      __codec161.decode(asJsObject(this).callMethod('getPosition'));
+      __codec163.decode(asJsObject(this).callMethod('getPosition'));
   String get publisherId => _getPublisherId();
   String _getPublisherId() => asJsObject(this).callMethod('getPublisherId');
   String get textColor => _getTextColor();
@@ -58,15 +58,15 @@ class AdUnit extends MVCObject implements _AdUnit {
   }
   void set format(AdFormat format) => _setFormat(format);
   void _setFormat(AdFormat format) {
-    asJsObject(this).callMethod('setFormat', [__codec159.encode(format)]);
+    asJsObject(this).callMethod('setFormat', [__codec161.encode(format)]);
   }
   void set map(GMap map) => _setMap(map);
   void _setMap(GMap map) {
-    asJsObject(this).callMethod('setMap', [__codec160.encode(map)]);
+    asJsObject(this).callMethod('setMap', [__codec162.encode(map)]);
   }
   void set position(ControlPosition position) => _setPosition(position);
   void _setPosition(ControlPosition position) {
-    asJsObject(this).callMethod('setPosition', [__codec161.encode(position)]);
+    asJsObject(this).callMethod('setPosition', [__codec163.encode(position)]);
   }
   void set textColor(String textColor) => _setTextColor(textColor);
   void _setTextColor(String textColor) {
@@ -82,18 +82,18 @@ class AdUnit extends MVCObject implements _AdUnit {
   }
 }
 /// codec for AdUnitOptions
-final __codec158 =
+final __codec160 =
     new JsInterfaceCodec<AdUnitOptions>((o) => new AdUnitOptions.created(o));
 
 /// codec for AdFormat
-final __codec159 = new BiMapCodec<AdFormat, dynamic>(
+final __codec161 = new BiMapCodec<AdFormat, dynamic>(
     new Map<AdFormat, dynamic>.fromIterable(AdFormat.values, value: asJs));
 
 /// codec for GMap
-final __codec160 = new JsInterfaceCodec<GMap>((o) => new GMap.created(o));
+final __codec162 = new JsInterfaceCodec<GMap>((o) => new GMap.created(o));
 
 /// codec for ControlPosition
-final __codec161 = new BiMapCodec<ControlPosition, dynamic>(
+final __codec163 = new BiMapCodec<ControlPosition, dynamic>(
     new Map<ControlPosition, dynamic>.fromIterable(ControlPosition.values,
         value: asJs));
 
@@ -120,18 +120,18 @@ class AdUnitOptions extends JsInterface implements _AdUnitOptions {
   }
   String get channelNumber => asJsObject(this)['channelNumber'];
   void set format(AdFormat _format) {
-    asJsObject(this)['format'] = __codec159.encode(_format);
+    asJsObject(this)['format'] = __codec161.encode(_format);
   }
-  AdFormat get format => __codec159.decode(asJsObject(this)['format']);
+  AdFormat get format => __codec161.decode(asJsObject(this)['format']);
   void set map(GMap _map) {
-    asJsObject(this)['map'] = __codec160.encode(_map);
+    asJsObject(this)['map'] = __codec162.encode(_map);
   }
-  GMap get map => __codec160.decode(asJsObject(this)['map']);
+  GMap get map => __codec162.decode(asJsObject(this)['map']);
   void set position(ControlPosition _position) {
-    asJsObject(this)['position'] = __codec161.encode(_position);
+    asJsObject(this)['position'] = __codec163.encode(_position);
   }
   ControlPosition get position =>
-      __codec161.decode(asJsObject(this)['position']);
+      __codec163.decode(asJsObject(this)['position']);
   void set publisherId(String _publisherId) {
     asJsObject(this)['publisherId'] = _publisherId;
   }

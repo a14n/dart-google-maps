@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// 2015-05-15T14:27:40.563Z
+// 2015-05-17T19:43:32.758Z
 
 part of google_maps.panoramio;
 
@@ -13,21 +13,21 @@ class PanoramioLayer extends MVCObject implements _PanoramioLayer {
   PanoramioLayer.created(JsObject o) : super.created(o);
   PanoramioLayer([PanoramioLayerOptions opts]) : this.created(new JsObject(
           getPath('google.maps.panoramio.PanoramioLayer'),
-          [__codec178.encode(opts)]));
+          [__codec180.encode(opts)]));
 
   GMap get map => _getMap();
-  GMap _getMap() => __codec179.decode(asJsObject(this).callMethod('getMap'));
+  GMap _getMap() => __codec181.decode(asJsObject(this).callMethod('getMap'));
   String get tag => _getTag();
   String _getTag() => asJsObject(this).callMethod('getTag');
   String get userId => _getUserId();
   String _getUserId() => asJsObject(this).callMethod('getUserId');
   void set map(GMap map) => _setMap(map);
   void _setMap(GMap map) {
-    asJsObject(this).callMethod('setMap', [__codec179.encode(map)]);
+    asJsObject(this).callMethod('setMap', [__codec181.encode(map)]);
   }
   void set options(PanoramioLayerOptions options) => _setOptions(options);
   void _setOptions(PanoramioLayerOptions options) {
-    asJsObject(this).callMethod('setOptions', [__codec178.encode(options)]);
+    asJsObject(this).callMethod('setOptions', [__codec180.encode(options)]);
   }
   void set tag(String tag) => _setTag(tag);
   void _setTag(String tag) {
@@ -42,11 +42,11 @@ class PanoramioLayer extends MVCObject implements _PanoramioLayer {
       (JsObject o) => new PanoramioMouseEvent.created(o));
 }
 /// codec for PanoramioLayerOptions
-final __codec178 = new JsInterfaceCodec<PanoramioLayerOptions>(
+final __codec180 = new JsInterfaceCodec<PanoramioLayerOptions>(
     (o) => new PanoramioLayerOptions.created(o));
 
 /// codec for GMap
-final __codec179 = new JsInterfaceCodec<GMap>((o) => new GMap.created(o));
+final __codec181 = new JsInterfaceCodec<GMap>((o) => new GMap.created(o));
 
 // **************************************************************************
 // Generator: JsInterfaceGenerator
@@ -64,9 +64,9 @@ class PanoramioLayerOptions extends JsInterface
   }
   bool get clickable => asJsObject(this)['clickable'];
   void set map(GMap _map) {
-    asJsObject(this)['map'] = __codec179.encode(_map);
+    asJsObject(this)['map'] = __codec181.encode(_map);
   }
-  GMap get map => __codec179.decode(asJsObject(this)['map']);
+  GMap get map => __codec181.decode(asJsObject(this)['map']);
   void set suppressInfoWindows(bool _suppressInfoWindows) {
     asJsObject(this)['suppressInfoWindows'] = _suppressInfoWindows;
   }
@@ -124,29 +124,29 @@ class PanoramioMouseEvent extends JsInterface implements _PanoramioMouseEvent {
   PanoramioMouseEvent() : this.created(new JsObject(context['Object']));
 
   void set featureDetails(PanoramioFeature _featureDetails) {
-    asJsObject(this)['featureDetails'] = __codec180.encode(_featureDetails);
+    asJsObject(this)['featureDetails'] = __codec182.encode(_featureDetails);
   }
   PanoramioFeature get featureDetails =>
-      __codec180.decode(asJsObject(this)['featureDetails']);
+      __codec182.decode(asJsObject(this)['featureDetails']);
   void set infoWindowHtml(String _infoWindowHtml) {
     asJsObject(this)['infoWindowHtml'] = _infoWindowHtml;
   }
   String get infoWindowHtml => asJsObject(this)['infoWindowHtml'];
   void set latLng(LatLng _latLng) {
-    asJsObject(this)['latLng'] = __codec181.encode(_latLng);
+    asJsObject(this)['latLng'] = __codec183.encode(_latLng);
   }
-  LatLng get latLng => __codec181.decode(asJsObject(this)['latLng']);
+  LatLng get latLng => __codec183.decode(asJsObject(this)['latLng']);
   void set pixelOffset(Size _pixelOffset) {
-    asJsObject(this)['pixelOffset'] = __codec182.encode(_pixelOffset);
+    asJsObject(this)['pixelOffset'] = __codec184.encode(_pixelOffset);
   }
-  Size get pixelOffset => __codec182.decode(asJsObject(this)['pixelOffset']);
+  Size get pixelOffset => __codec184.decode(asJsObject(this)['pixelOffset']);
 }
 /// codec for PanoramioFeature
-final __codec180 = new JsInterfaceCodec<PanoramioFeature>(
+final __codec182 = new JsInterfaceCodec<PanoramioFeature>(
     (o) => new PanoramioFeature.created(o));
 
 /// codec for LatLng
-final __codec181 = new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o));
+final __codec183 = new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o));
 
 /// codec for Size
-final __codec182 = new JsInterfaceCodec<Size>((o) => new Size.created(o));
+final __codec184 = new JsInterfaceCodec<Size>((o) => new Size.created(o));

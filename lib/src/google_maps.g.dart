@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// 2015-05-15T14:27:03.403Z
+// 2015-05-18T06:13:54.744Z
 
 part of google_maps;
 
@@ -5986,10 +5986,17 @@ class FusionTablesMouseEvent extends JsInterface
   }
   Size get pixelOffset => __codec48.decode(asJsObject(this)['pixelOffset']);
   void set row(Map<String, FusionTablesCell> _row) {
-    asJsObject(this)['row'] = _row;
+    asJsObject(this)['row'] = __codec140.encode(_row);
   }
-  Map<String, FusionTablesCell> get row => asJsObject(this)['row'];
+  Map<String, FusionTablesCell> get row =>
+      __codec140.decode(asJsObject(this)['row']);
 }
+/// codec for FusionTablesCell
+final __codec139 = new JsInterfaceCodec<FusionTablesCell>(
+    (o) => new FusionTablesCell.created(o));
+
+/// codec for Map<String, FusionTablesCell>
+final __codec140 = new JsObjectAsMapCodec<FusionTablesCell>(__codec139);
 
 // **************************************************************************
 // Generator: JsInterfaceGenerator
@@ -6020,7 +6027,7 @@ class FusionTablesCell extends JsInterface implements _FusionTablesCell {
 class KmlLayer extends MVCObject implements _KmlLayer {
   KmlLayer.created(JsObject o) : super.created(o);
   KmlLayer([KmlLayerOptions opts]) : this.created(new JsObject(
-          getPath('google.maps.KmlLayer'), [__codec139.encode(opts)]));
+          getPath('google.maps.KmlLayer'), [__codec141.encode(opts)]));
 
   LatLngBounds get defaultViewport => _getDefaultViewport();
   LatLngBounds _getDefaultViewport() =>
@@ -6029,10 +6036,10 @@ class KmlLayer extends MVCObject implements _KmlLayer {
   GMap _getMap() => __codec28.decode(asJsObject(this).callMethod('getMap'));
   KmlLayerMetadata get metadata => _getMetadata();
   KmlLayerMetadata _getMetadata() =>
-      __codec140.decode(asJsObject(this).callMethod('getMetadata'));
+      __codec142.decode(asJsObject(this).callMethod('getMetadata'));
   KmlLayerStatus get status => _getStatus();
   KmlLayerStatus _getStatus() =>
-      __codec141.decode(asJsObject(this).callMethod('getStatus'));
+      __codec143.decode(asJsObject(this).callMethod('getStatus'));
   String get url => _getUrl();
   String _getUrl() => asJsObject(this).callMethod('getUrl');
   num get zIndex => _getZIndex();
@@ -6058,15 +6065,15 @@ class KmlLayer extends MVCObject implements _KmlLayer {
       getStream(this, #onStatusChanged, "status_changed");
 }
 /// codec for KmlLayerOptions
-final __codec139 = new JsInterfaceCodec<KmlLayerOptions>(
+final __codec141 = new JsInterfaceCodec<KmlLayerOptions>(
     (o) => new KmlLayerOptions.created(o));
 
 /// codec for KmlLayerMetadata
-final __codec140 = new JsInterfaceCodec<KmlLayerMetadata>(
+final __codec142 = new JsInterfaceCodec<KmlLayerMetadata>(
     (o) => new KmlLayerMetadata.created(o));
 
 /// codec for KmlLayerStatus
-final __codec141 = new BiMapCodec<KmlLayerStatus, dynamic>(
+final __codec143 = new BiMapCodec<KmlLayerStatus, dynamic>(
     new Map<KmlLayerStatus, dynamic>.fromIterable(KmlLayerStatus.values,
         value: asJs));
 
@@ -6121,9 +6128,9 @@ class KmlLayerMetadata extends JsInterface implements _KmlLayerMetadata {
   KmlLayerMetadata() : this.created(new JsObject(context['Object']));
 
   void set author(KmlAuthor _author) {
-    asJsObject(this)['author'] = __codec142.encode(_author);
+    asJsObject(this)['author'] = __codec144.encode(_author);
   }
-  KmlAuthor get author => __codec142.decode(asJsObject(this)['author']);
+  KmlAuthor get author => __codec144.decode(asJsObject(this)['author']);
   void set description(String _description) {
     asJsObject(this)['description'] = _description;
   }
@@ -6142,7 +6149,7 @@ class KmlLayerMetadata extends JsInterface implements _KmlLayerMetadata {
   String get snippet => asJsObject(this)['snippet'];
 }
 /// codec for KmlAuthor
-final __codec142 =
+final __codec144 =
     new JsInterfaceCodec<KmlAuthor>((o) => new KmlAuthor.created(o));
 
 // **************************************************************************
@@ -6196,10 +6203,10 @@ class KmlMouseEvent extends JsInterface implements _KmlMouseEvent {
   KmlMouseEvent() : this.created(new JsObject(context['Object']));
 
   void set featureData(KmlFeatureData _featureData) {
-    asJsObject(this)['featureData'] = __codec143.encode(_featureData);
+    asJsObject(this)['featureData'] = __codec145.encode(_featureData);
   }
   KmlFeatureData get featureData =>
-      __codec143.decode(asJsObject(this)['featureData']);
+      __codec145.decode(asJsObject(this)['featureData']);
   void set latLng(LatLng _latLng) {
     asJsObject(this)['latLng'] = __codec7.encode(_latLng);
   }
@@ -6210,7 +6217,7 @@ class KmlMouseEvent extends JsInterface implements _KmlMouseEvent {
   Size get pixelOffset => __codec48.decode(asJsObject(this)['pixelOffset']);
 }
 /// codec for KmlFeatureData
-final __codec143 =
+final __codec145 =
     new JsInterfaceCodec<KmlFeatureData>((o) => new KmlFeatureData.created(o));
 
 // **************************************************************************
@@ -6224,9 +6231,9 @@ class KmlFeatureData extends JsInterface implements _KmlFeatureData {
   KmlFeatureData() : this.created(new JsObject(context['Object']));
 
   void set author(KmlAuthor _author) {
-    asJsObject(this)['author'] = __codec142.encode(_author);
+    asJsObject(this)['author'] = __codec144.encode(_author);
   }
-  KmlAuthor get author => __codec142.decode(asJsObject(this)['author']);
+  KmlAuthor get author => __codec144.decode(asJsObject(this)['author']);
   void set description(String _description) {
     asJsObject(this)['description'] = _description;
   }
@@ -6322,44 +6329,44 @@ class StreetViewPanorama extends MVCObject implements _StreetViewPanorama {
   StreetViewPanorama(Node container, [StreetViewPanoramaOptions opts])
       : this.created(new JsObject(getPath('google.maps.StreetViewPanorama'), [
         container,
-        __codec144.encode(opts)
+        __codec146.encode(opts)
       ]));
 
   List<StreetViewLink> get links => _getLinks();
   List<StreetViewLink> _getLinks() =>
-      __codec146.decode(asJsObject(this).callMethod('getLinks'));
+      __codec148.decode(asJsObject(this).callMethod('getLinks'));
   StreetViewLocation get location => _getLocation();
   StreetViewLocation _getLocation() =>
-      __codec147.decode(asJsObject(this).callMethod('getLocation'));
+      __codec149.decode(asJsObject(this).callMethod('getLocation'));
   String get pano => _getPano();
   String _getPano() => asJsObject(this).callMethod('getPano');
   StreetViewPov get photographerPov => _getPhotographerPov();
   StreetViewPov _getPhotographerPov() =>
-      __codec148.decode(asJsObject(this).callMethod('getPhotographerPov'));
+      __codec150.decode(asJsObject(this).callMethod('getPhotographerPov'));
   LatLng get position => _getPosition();
   LatLng _getPosition() =>
       __codec7.decode(asJsObject(this).callMethod('getPosition'));
   StreetViewPov get pov => _getPov();
   StreetViewPov _getPov() =>
-      __codec148.decode(asJsObject(this).callMethod('getPov'));
+      __codec150.decode(asJsObject(this).callMethod('getPov'));
   StreetViewStatus get status => _getStatus();
   StreetViewStatus _getStatus() =>
-      __codec149.decode(asJsObject(this).callMethod('getStatus'));
+      __codec151.decode(asJsObject(this).callMethod('getStatus'));
   bool get visible => _getVisible();
   bool _getVisible() => asJsObject(this).callMethod('getVisible');
   num get zoom => _getZoom();
   num _getZoom() => asJsObject(this).callMethod('getZoom');
   void registerPanoProvider(provider(String p1)) {
     asJsObject(this).callMethod(
-        'registerPanoProvider', [__codec150.encode(provider)]);
+        'registerPanoProvider', [__codec152.encode(provider)]);
   }
   void set links(List<StreetViewLink> links) => _setLinks(links);
   void _setLinks(List<StreetViewLink> links) {
-    asJsObject(this).callMethod('setLinks', [__codec146.encode(links)]);
+    asJsObject(this).callMethod('setLinks', [__codec148.encode(links)]);
   }
   void set options(StreetViewPanoramaOptions options) => _setOptions(options);
   void _setOptions(StreetViewPanoramaOptions options) {
-    asJsObject(this).callMethod('setOptions', [__codec144.encode(options)]);
+    asJsObject(this).callMethod('setOptions', [__codec146.encode(options)]);
   }
   void set pano(String pano) => _setPano(pano);
   void _setPano(String pano) {
@@ -6371,7 +6378,7 @@ class StreetViewPanorama extends MVCObject implements _StreetViewPanorama {
   }
   void set pov(StreetViewPov pov) => _setPov(pov);
   void _setPov(StreetViewPov pov) {
-    asJsObject(this).callMethod('setPov', [__codec148.encode(pov)]);
+    asJsObject(this).callMethod('setPov', [__codec150.encode(pov)]);
   }
   void set visible(bool flag) => _setVisible(flag);
   void _setVisible(bool flag) {
@@ -6416,31 +6423,31 @@ class StreetViewPanorama extends MVCObject implements _StreetViewPanorama {
   Stream get onZoomChanged => getStream(this, #onZoomChanged, "zoom_changed");
 }
 /// codec for StreetViewPanoramaOptions
-final __codec144 = new JsInterfaceCodec<StreetViewPanoramaOptions>(
+final __codec146 = new JsInterfaceCodec<StreetViewPanoramaOptions>(
     (o) => new StreetViewPanoramaOptions.created(o));
 
 /// codec for StreetViewLink
-final __codec145 =
+final __codec147 =
     new JsInterfaceCodec<StreetViewLink>((o) => new StreetViewLink.created(o));
 
 /// codec for List<StreetViewLink>
-final __codec146 = new JsListCodec<StreetViewLink>(__codec145);
+final __codec148 = new JsListCodec<StreetViewLink>(__codec147);
 
 /// codec for StreetViewLocation
-final __codec147 = new JsInterfaceCodec<StreetViewLocation>(
+final __codec149 = new JsInterfaceCodec<StreetViewLocation>(
     (o) => new StreetViewLocation.created(o));
 
 /// codec for StreetViewPov
-final __codec148 =
+final __codec150 =
     new JsInterfaceCodec<StreetViewPov>((o) => new StreetViewPov.created(o));
 
 /// codec for StreetViewStatus
-final __codec149 = new BiMapCodec<StreetViewStatus, dynamic>(
+final __codec151 = new BiMapCodec<StreetViewStatus, dynamic>(
     new Map<StreetViewStatus, dynamic>.fromIterable(StreetViewStatus.values,
         value: asJs));
 
 /// codec for (String) → dynamic
-final __codec150 = new FunctionCodec /*<(String) → dynamic>*/ ((f) => (p_p1) {
+final __codec152 = new FunctionCodec /*<(String) → dynamic>*/ ((f) => (p_p1) {
   final result = f(p_p1);
   return __codec5.encode(result);
 }, (JsFunction f) => (p_p1) {
@@ -6460,7 +6467,7 @@ class StreetViewPanoramaOptions extends JsInterface
   StreetViewPanoramaOptions() : this.created(new JsObject(context['Object']));
 
   StreetViewPanoramaData panoProvider(String panoId) =>
-      __codec152.decode(asJsObject(this).callMethod('panoProvider', [panoId]));
+      __codec154.decode(asJsObject(this).callMethod('panoProvider', [panoId]));
 
   void set addressControl(bool _addressControl) {
     asJsObject(this)['addressControl'] = _addressControl;
@@ -6469,10 +6476,10 @@ class StreetViewPanoramaOptions extends JsInterface
   void set addressControlOptions(
       StreetViewAddressControlOptions _addressControlOptions) {
     asJsObject(this)['addressControlOptions'] =
-        __codec151.encode(_addressControlOptions);
+        __codec153.encode(_addressControlOptions);
   }
   StreetViewAddressControlOptions get addressControlOptions =>
-      __codec151.decode(asJsObject(this)['addressControlOptions']);
+      __codec153.decode(asJsObject(this)['addressControlOptions']);
   void set clickToGo(bool _clickToGo) {
     asJsObject(this)['clickToGo'] = _clickToGo;
   }
@@ -6516,9 +6523,9 @@ class StreetViewPanoramaOptions extends JsInterface
   }
   LatLng get position => __codec7.decode(asJsObject(this)['position']);
   void set pov(StreetViewPov _pov) {
-    asJsObject(this)['pov'] = __codec148.encode(_pov);
+    asJsObject(this)['pov'] = __codec150.encode(_pov);
   }
-  StreetViewPov get pov => __codec148.decode(asJsObject(this)['pov']);
+  StreetViewPov get pov => __codec150.decode(asJsObject(this)['pov']);
   void set scrollwheel(bool _scrollwheel) {
     asJsObject(this)['scrollwheel'] = _scrollwheel;
   }
@@ -6539,11 +6546,11 @@ class StreetViewPanoramaOptions extends JsInterface
       __codec18.decode(asJsObject(this)['zoomControlOptions']);
 }
 /// codec for StreetViewAddressControlOptions
-final __codec151 = new JsInterfaceCodec<StreetViewAddressControlOptions>(
+final __codec153 = new JsInterfaceCodec<StreetViewAddressControlOptions>(
     (o) => new StreetViewAddressControlOptions.created(o));
 
 /// codec for StreetViewPanoramaData
-final __codec152 = new JsInterfaceCodec<StreetViewPanoramaData>(
+final __codec154 = new JsInterfaceCodec<StreetViewPanoramaData>(
     (o) => new StreetViewPanoramaData.created(o));
 
 // **************************************************************************
@@ -6629,22 +6636,22 @@ class StreetViewPanoramaData extends JsInterface
   }
   String get imageDate => asJsObject(this)['imageDate'];
   void set links(List<StreetViewLink> _links) {
-    asJsObject(this)['links'] = __codec146.encode(_links);
+    asJsObject(this)['links'] = __codec148.encode(_links);
   }
   List<StreetViewLink> get links =>
-      __codec146.decode(asJsObject(this)['links']);
+      __codec148.decode(asJsObject(this)['links']);
   void set location(StreetViewLocation _location) {
-    asJsObject(this)['location'] = __codec147.encode(_location);
+    asJsObject(this)['location'] = __codec149.encode(_location);
   }
   StreetViewLocation get location =>
-      __codec147.decode(asJsObject(this)['location']);
+      __codec149.decode(asJsObject(this)['location']);
   void set tiles(StreetViewTileData _tiles) {
-    asJsObject(this)['tiles'] = __codec153.encode(_tiles);
+    asJsObject(this)['tiles'] = __codec155.encode(_tiles);
   }
-  StreetViewTileData get tiles => __codec153.decode(asJsObject(this)['tiles']);
+  StreetViewTileData get tiles => __codec155.decode(asJsObject(this)['tiles']);
 }
 /// codec for StreetViewTileData
-final __codec153 = new JsInterfaceCodec<StreetViewTileData>(
+final __codec155 = new JsInterfaceCodec<StreetViewTileData>(
     (o) => new StreetViewTileData.created(o));
 
 // **************************************************************************
@@ -6716,28 +6723,28 @@ class StreetViewService extends JsInterface implements _StreetViewService {
   void getPanoramaById(
       String pano, callback(StreetViewPanoramaData p1, StreetViewStatus p2)) {
     asJsObject(this).callMethod(
-        'getPanoramaById', [pano, __codec154.encode(callback)]);
+        'getPanoramaById', [pano, __codec156.encode(callback)]);
   }
   void getPanoramaByLocation(LatLng latlng, num radius,
       callback(StreetViewPanoramaData p1, StreetViewStatus p2)) {
     asJsObject(this).callMethod('getPanoramaByLocation', [
       __codec7.encode(latlng),
       radius,
-      __codec154.encode(callback)
+      __codec156.encode(callback)
     ]);
   }
 }
 /// codec for (StreetViewPanoramaData, StreetViewStatus) → dynamic
-final __codec154 =
+final __codec156 =
     new FunctionCodec /*<(StreetViewPanoramaData, StreetViewStatus) → dynamic>*/ (
         (f) => (p_p1, p_p2) {
-  p_p1 = __codec152.decode(p_p1);
-  p_p2 = __codec149.decode(p_p2);
+  p_p1 = __codec154.decode(p_p1);
+  p_p2 = __codec151.decode(p_p2);
   final result = f(p_p1, p_p2);
   return __codec5.encode(result);
 }, (JsFunction f) => (p_p1, p_p2) {
-  p_p1 = __codec152.encode(p_p1);
-  p_p2 = __codec149.encode(p_p2);
+  p_p1 = __codec154.encode(p_p1);
+  p_p2 = __codec151.encode(p_p2);
   final result = f.apply([p_p1, p_p2]);
   return __codec5.decode(result);
 });
@@ -6801,18 +6808,18 @@ class Event extends JsInterface implements _Event {
 
   MapsEventListener addDomListener(
       Object instance, String eventName, Function handler,
-      [bool capture]) => __codec155.decode(asJsObject(this).callMethod(
+      [bool capture]) => __codec157.decode(asJsObject(this).callMethod(
           'addDomListener', [instance, eventName, handler, capture]));
   MapsEventListener addDomListenerOnce(
       Object instance, String eventName, Function handler,
-      [bool capture]) => __codec155.decode(asJsObject(this).callMethod(
+      [bool capture]) => __codec157.decode(asJsObject(this).callMethod(
           'addDomListenerOnce', [instance, eventName, handler, capture]));
   MapsEventListener addListener(
-      Object instance, String eventName, Function handler) => __codec155.decode(
+      Object instance, String eventName, Function handler) => __codec157.decode(
           asJsObject(this).callMethod(
               'addListener', [instance, eventName, handler]));
   MapsEventListener addListenerOnce(
-      Object instance, String eventName, Function handler) => __codec155.decode(
+      Object instance, String eventName, Function handler) => __codec157.decode(
           asJsObject(this).callMethod(
               'addListenerOnce', [instance, eventName, handler]));
   void clearInstanceListeners(Object instance) {
@@ -6823,7 +6830,7 @@ class Event extends JsInterface implements _Event {
   }
   void removeListener(MapsEventListener listener) {
     asJsObject(this).callMethod(
-        'removeListener', [__codec155.encode(listener)]);
+        'removeListener', [__codec157.encode(listener)]);
   }
   void trigger(Object instance, String eventName, dynamic var_args) {
     asJsObject(this).callMethod(
@@ -6831,7 +6838,7 @@ class Event extends JsInterface implements _Event {
   }
 }
 /// codec for MapsEventListener
-final __codec155 = new JsInterfaceCodec<MapsEventListener>(
+final __codec157 = new JsInterfaceCodec<MapsEventListener>(
     (o) => new MapsEventListener.created(o));
 
 // **************************************************************************
@@ -6979,7 +6986,7 @@ class MVCObject extends JsInterface implements _MVCObject {
   MVCObject() : this.created(new JsObject(getPath('google.maps.MVCObject')));
 
   MapsEventListener addListener(
-      String eventName, Function handler) => __codec155
+      String eventName, Function handler) => __codec157
       .decode(asJsObject(this).callMethod('addListener', [eventName, handler]));
   void bindTo(String key, MVCObject target, [String targetKey, bool noNotify]) {
     asJsObject(this).callMethod(
@@ -7035,11 +7042,11 @@ class MVCArray<E> extends MVCObject implements _MVCArray {
   void forEach(void callback(E o, num index)) =>
       _forEach((o, num index) => callback(_codec.decode(o), index));
   void _forEach(void callback(o, num index)) {
-    asJsObject(this).callMethod('forEach', [__codec156.encode(callback)]);
+    asJsObject(this).callMethod('forEach', [__codec158.encode(callback)]);
   }
   List<E> getArray() => new JsList.created(_getArray(), _codec);
   JsArray _getArray() =>
-      __codec157.decode(asJsObject(this).callMethod('getArray'));
+      __codec159.decode(asJsObject(this).callMethod('getArray'));
   E getAt(num i) => _codec.decode(_getAt(i));
   _getAt(num i) => __codec5.decode(asJsObject(this).callMethod('getAt', [i]));
   num get length => _getLength();
@@ -7070,7 +7077,7 @@ class MVCArray<E> extends MVCObject implements _MVCArray {
           new IndexAndElement<E>(index, _codec.decode(oldElement)));
 }
 /// codec for (dynamic, num) → void
-final __codec156 = new FunctionCodec /*<(dynamic, num) → void>*/ (
+final __codec158 = new FunctionCodec /*<(dynamic, num) → void>*/ (
     (f) => (p_o, p_index) {
   p_o = __codec5.decode(p_o);
   f(p_o, p_index);
@@ -7080,4 +7087,4 @@ final __codec156 = new FunctionCodec /*<(dynamic, num) → void>*/ (
 });
 
 /// codec for JsArray<dynamic>
-final __codec157 = new JsListCodec<dynamic>(__codec5);
+final __codec159 = new JsListCodec<dynamic>(__codec5);
