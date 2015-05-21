@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// 2015-05-18T06:13:54.744Z
+// 2015-05-21T17:14:49.004Z
 
 part of google_maps;
 
@@ -37,7 +37,7 @@ class Controls extends JsInterface
 
   _toJsControlPosition(ControlPosition controlPosition) => ((e) {
     if (e == null) return null;
-    final path = getPath('google.maps.ControlPosition');
+    final path = context['google']['maps']['ControlPosition'];
     if (e == ControlPosition.BOTTOM_CENTER) return path['BOTTOM_CENTER'];
     if (e == ControlPosition.BOTTOM_LEFT) return path['BOTTOM_LEFT'];
     if (e == ControlPosition.BOTTOM_RIGHT) return path['BOTTOM_RIGHT'];
@@ -62,7 +62,7 @@ class Controls extends JsInterface
 class GMap extends MVCObject implements _GMap {
   GMap.created(JsObject o) : super.created(o);
   GMap(Node mapDiv, [MapOptions opts]) : this.created(new JsObject(
-          getPath('google.maps.Map'), [mapDiv, __codec1.encode(opts)]));
+          context['google']['maps']['Map'], [mapDiv, __codec1.encode(opts)]));
 
   void fitBounds(LatLngBounds bounds) {
     asJsObject(this).callMethod('fitBounds', [__codec6.encode(bounds)]);
@@ -79,10 +79,10 @@ class GMap extends MVCObject implements _GMap {
   num _getHeading() => asJsObject(this).callMethod('getHeading');
   dynamic /*MapTypeId|String*/ get mapTypeId => (new ChainedCodec()
     ..add(new BiMapCodec<MapTypeId, dynamic>({
-      MapTypeId.HYBRID: getPath('google.maps.MapTypeId')['HYBRID'],
-      MapTypeId.ROADMAP: getPath('google.maps.MapTypeId')['ROADMAP'],
-      MapTypeId.SATELLITE: getPath('google.maps.MapTypeId')['SATELLITE'],
-      MapTypeId.TERRAIN: getPath('google.maps.MapTypeId')['TERRAIN']
+      MapTypeId.HYBRID: context['google']['maps']['MapTypeId']['HYBRID'],
+      MapTypeId.ROADMAP: context['google']['maps']['MapTypeId']['ROADMAP'],
+      MapTypeId.SATELLITE: context['google']['maps']['MapTypeId']['SATELLITE'],
+      MapTypeId.TERRAIN: context['google']['maps']['MapTypeId']['TERRAIN']
     }))
     ..add(new IdentityCodec<String>())).decode(_getMapTypeId());
   _getMapTypeId() =>
@@ -117,10 +117,10 @@ class GMap extends MVCObject implements _GMap {
   void set mapTypeId(dynamic /*MapTypeId|String*/ mapTypeId) => _setMapTypeId(
       (new ChainedCodec()
     ..add(new BiMapCodec<MapTypeId, dynamic>({
-      MapTypeId.HYBRID: getPath('google.maps.MapTypeId')['HYBRID'],
-      MapTypeId.ROADMAP: getPath('google.maps.MapTypeId')['ROADMAP'],
-      MapTypeId.SATELLITE: getPath('google.maps.MapTypeId')['SATELLITE'],
-      MapTypeId.TERRAIN: getPath('google.maps.MapTypeId')['TERRAIN']
+      MapTypeId.HYBRID: context['google']['maps']['MapTypeId']['HYBRID'],
+      MapTypeId.ROADMAP: context['google']['maps']['MapTypeId']['ROADMAP'],
+      MapTypeId.SATELLITE: context['google']['maps']['MapTypeId']['SATELLITE'],
+      MapTypeId.TERRAIN: context['google']['maps']['MapTypeId']['TERRAIN']
     }))
     ..add(new IdentityCodec<String>())).encode(mapTypeId));
   void _setMapTypeId(dynamic /*MapTypeId|String*/ mapTypeId) {
@@ -299,19 +299,20 @@ class MapOptions extends JsInterface implements _MapOptions {
   dynamic get _mapTypeId => __codec5.decode(asJsObject(this)['mapTypeId']);
   dynamic /*MapTypeId|String*/ get mapTypeId => (new ChainedCodec()
     ..add(new BiMapCodec<MapTypeId, dynamic>({
-      MapTypeId.HYBRID: getPath('google.maps.MapTypeId')['HYBRID'],
-      MapTypeId.ROADMAP: getPath('google.maps.MapTypeId')['ROADMAP'],
-      MapTypeId.SATELLITE: getPath('google.maps.MapTypeId')['SATELLITE'],
-      MapTypeId.TERRAIN: getPath('google.maps.MapTypeId')['TERRAIN']
+      MapTypeId.HYBRID: context['google']['maps']['MapTypeId']['HYBRID'],
+      MapTypeId.ROADMAP: context['google']['maps']['MapTypeId']['ROADMAP'],
+      MapTypeId.SATELLITE: context['google']['maps']['MapTypeId']['SATELLITE'],
+      MapTypeId.TERRAIN: context['google']['maps']['MapTypeId']['TERRAIN']
     }))
     ..add(new IdentityCodec<String>())).decode(_mapTypeId);
   void set mapTypeId(dynamic /*MapTypeId|String*/ mapTypeId) {
     _mapTypeId = (new ChainedCodec()
       ..add(new BiMapCodec<MapTypeId, dynamic>({
-        MapTypeId.HYBRID: getPath('google.maps.MapTypeId')['HYBRID'],
-        MapTypeId.ROADMAP: getPath('google.maps.MapTypeId')['ROADMAP'],
-        MapTypeId.SATELLITE: getPath('google.maps.MapTypeId')['SATELLITE'],
-        MapTypeId.TERRAIN: getPath('google.maps.MapTypeId')['TERRAIN']
+        MapTypeId.HYBRID: context['google']['maps']['MapTypeId']['HYBRID'],
+        MapTypeId.ROADMAP: context['google']['maps']['MapTypeId']['ROADMAP'],
+        MapTypeId.SATELLITE:
+            context['google']['maps']['MapTypeId']['SATELLITE'],
+        MapTypeId.TERRAIN: context['google']['maps']['MapTypeId']['TERRAIN']
       }))
       ..add(new IdentityCodec<String>())).encode(mapTypeId);
   }
@@ -454,17 +455,23 @@ final __codec18 = new JsInterfaceCodec<ZoomControlOptions>(
 
 class MapTypeId extends JsEnum {
   static final values = <MapTypeId>[HYBRID, ROADMAP, SATELLITE, TERRAIN];
-  static final HYBRID =
-      new MapTypeId._('HYBRID', getPath('google.maps.MapTypeId')['HYBRID']);
-  static final ROADMAP =
-      new MapTypeId._('ROADMAP', getPath('google.maps.MapTypeId')['ROADMAP']);
+  static final HYBRID = new MapTypeId._(
+      'HYBRID', context['google']['maps']['MapTypeId']['HYBRID']);
+  static final ROADMAP = new MapTypeId._(
+      'ROADMAP', context['google']['maps']['MapTypeId']['ROADMAP']);
   static final SATELLITE = new MapTypeId._(
-      'SATELLITE', getPath('google.maps.MapTypeId')['SATELLITE']);
-  static final TERRAIN =
-      new MapTypeId._('TERRAIN', getPath('google.maps.MapTypeId')['TERRAIN']);
+      'SATELLITE', context['google']['maps']['MapTypeId']['SATELLITE']);
+  static final TERRAIN = new MapTypeId._(
+      'TERRAIN', context['google']['maps']['MapTypeId']['TERRAIN']);
+
   final String _name;
   MapTypeId._(this._name, o) : super.created(o);
+
   String toString() => 'MapTypeId.$_name';
+
+  // dumb code to remove analyzer hint for unused _MapTypeId
+  _MapTypeId _dumbMethod1() => _dumbMethod2();
+  _MapTypeId _dumbMethod2() => _dumbMethod1();
 }
 
 // **************************************************************************
@@ -482,10 +489,10 @@ class MapTypeControlOptions extends JsInterface
   List<dynamic /*MapTypeId|String*/ > get mapTypeIds =>
       (new JsListCodec<dynamic /*MapTypeId|String*/ >(new ChainedCodec()
     ..add(new BiMapCodec<MapTypeId, dynamic>({
-      MapTypeId.HYBRID: getPath('google.maps.MapTypeId')['HYBRID'],
-      MapTypeId.ROADMAP: getPath('google.maps.MapTypeId')['ROADMAP'],
-      MapTypeId.SATELLITE: getPath('google.maps.MapTypeId')['SATELLITE'],
-      MapTypeId.TERRAIN: getPath('google.maps.MapTypeId')['TERRAIN']
+      MapTypeId.HYBRID: context['google']['maps']['MapTypeId']['HYBRID'],
+      MapTypeId.ROADMAP: context['google']['maps']['MapTypeId']['ROADMAP'],
+      MapTypeId.SATELLITE: context['google']['maps']['MapTypeId']['SATELLITE'],
+      MapTypeId.TERRAIN: context['google']['maps']['MapTypeId']['TERRAIN']
     }))
     ..add(new IdentityCodec<String>()))).decode(_mapTypeIds);
   void set _mapTypeIds(dynamic mapTypeIds) {
@@ -495,10 +502,11 @@ class MapTypeControlOptions extends JsInterface
     _mapTypeIds = (new JsListCodec<dynamic /*MapTypeId|String*/ >(
         new ChainedCodec()
       ..add(new BiMapCodec<MapTypeId, dynamic>({
-        MapTypeId.HYBRID: getPath('google.maps.MapTypeId')['HYBRID'],
-        MapTypeId.ROADMAP: getPath('google.maps.MapTypeId')['ROADMAP'],
-        MapTypeId.SATELLITE: getPath('google.maps.MapTypeId')['SATELLITE'],
-        MapTypeId.TERRAIN: getPath('google.maps.MapTypeId')['TERRAIN']
+        MapTypeId.HYBRID: context['google']['maps']['MapTypeId']['HYBRID'],
+        MapTypeId.ROADMAP: context['google']['maps']['MapTypeId']['ROADMAP'],
+        MapTypeId.SATELLITE:
+            context['google']['maps']['MapTypeId']['SATELLITE'],
+        MapTypeId.TERRAIN: context['google']['maps']['MapTypeId']['TERRAIN']
       }))
       ..add(new IdentityCodec<String>()))).encode(mapTypeIds);
   }
@@ -535,14 +543,20 @@ class MapTypeControlStyle extends JsEnum {
     HORIZONTAL_BAR
   ];
   static final DEFAULT = new MapTypeControlStyle._(
-      'DEFAULT', getPath('google.maps.MapTypeControlStyle')['DEFAULT']);
+      'DEFAULT', context['google']['maps']['MapTypeControlStyle']['DEFAULT']);
   static final DROPDOWN_MENU = new MapTypeControlStyle._('DROPDOWN_MENU',
-      getPath('google.maps.MapTypeControlStyle')['DROPDOWN_MENU']);
+      context['google']['maps']['MapTypeControlStyle']['DROPDOWN_MENU']);
   static final HORIZONTAL_BAR = new MapTypeControlStyle._('HORIZONTAL_BAR',
-      getPath('google.maps.MapTypeControlStyle')['HORIZONTAL_BAR']);
+      context['google']['maps']['MapTypeControlStyle']['HORIZONTAL_BAR']);
+
   final String _name;
   MapTypeControlStyle._(this._name, o) : super.created(o);
+
   String toString() => 'MapTypeControlStyle.$_name';
+
+  // dumb code to remove analyzer hint for unused _MapTypeControlStyle
+  _MapTypeControlStyle _dumbMethod1() => _dumbMethod2();
+  _MapTypeControlStyle _dumbMethod2() => _dumbMethod1();
 }
 
 // **************************************************************************
@@ -625,10 +639,16 @@ final __codec21 = new BiMapCodec<ScaleControlStyle, dynamic>(
 class ScaleControlStyle extends JsEnum {
   static final values = <ScaleControlStyle>[DEFAULT];
   static final DEFAULT = new ScaleControlStyle._(
-      'DEFAULT', getPath('google.maps.ScaleControlStyle')['DEFAULT']);
+      'DEFAULT', context['google']['maps']['ScaleControlStyle']['DEFAULT']);
+
   final String _name;
   ScaleControlStyle._(this._name, o) : super.created(o);
+
   String toString() => 'ScaleControlStyle.$_name';
+
+  // dumb code to remove analyzer hint for unused _ScaleControlStyle
+  _ScaleControlStyle _dumbMethod1() => _dumbMethod2();
+  _ScaleControlStyle _dumbMethod2() => _dumbMethod1();
 }
 
 // **************************************************************************
@@ -682,14 +702,20 @@ final __codec22 = new BiMapCodec<ZoomControlStyle, dynamic>(
 class ZoomControlStyle extends JsEnum {
   static final values = <ZoomControlStyle>[DEFAULT, LARGE, SMALL];
   static final DEFAULT = new ZoomControlStyle._(
-      'DEFAULT', getPath('google.maps.ZoomControlStyle')['DEFAULT']);
+      'DEFAULT', context['google']['maps']['ZoomControlStyle']['DEFAULT']);
   static final LARGE = new ZoomControlStyle._(
-      'LARGE', getPath('google.maps.ZoomControlStyle')['LARGE']);
+      'LARGE', context['google']['maps']['ZoomControlStyle']['LARGE']);
   static final SMALL = new ZoomControlStyle._(
-      'SMALL', getPath('google.maps.ZoomControlStyle')['SMALL']);
+      'SMALL', context['google']['maps']['ZoomControlStyle']['SMALL']);
+
   final String _name;
   ZoomControlStyle._(this._name, o) : super.created(o);
+
   String toString() => 'ZoomControlStyle.$_name';
+
+  // dumb code to remove analyzer hint for unused _ZoomControlStyle
+  _ZoomControlStyle _dumbMethod1() => _dumbMethod2();
+  _ZoomControlStyle _dumbMethod2() => _dumbMethod1();
 }
 
 // **************************************************************************
@@ -712,33 +738,39 @@ class ControlPosition extends JsEnum {
     TOP_LEFT,
     TOP_RIGHT
   ];
-  static final BOTTOM_CENTER = new ControlPosition._(
-      'BOTTOM_CENTER', getPath('google.maps.ControlPosition')['BOTTOM_CENTER']);
-  static final BOTTOM_LEFT = new ControlPosition._(
-      'BOTTOM_LEFT', getPath('google.maps.ControlPosition')['BOTTOM_LEFT']);
-  static final BOTTOM_RIGHT = new ControlPosition._(
-      'BOTTOM_RIGHT', getPath('google.maps.ControlPosition')['BOTTOM_RIGHT']);
-  static final LEFT_BOTTOM = new ControlPosition._(
-      'LEFT_BOTTOM', getPath('google.maps.ControlPosition')['LEFT_BOTTOM']);
-  static final LEFT_CENTER = new ControlPosition._(
-      'LEFT_CENTER', getPath('google.maps.ControlPosition')['LEFT_CENTER']);
+  static final BOTTOM_CENTER = new ControlPosition._('BOTTOM_CENTER',
+      context['google']['maps']['ControlPosition']['BOTTOM_CENTER']);
+  static final BOTTOM_LEFT = new ControlPosition._('BOTTOM_LEFT',
+      context['google']['maps']['ControlPosition']['BOTTOM_LEFT']);
+  static final BOTTOM_RIGHT = new ControlPosition._('BOTTOM_RIGHT',
+      context['google']['maps']['ControlPosition']['BOTTOM_RIGHT']);
+  static final LEFT_BOTTOM = new ControlPosition._('LEFT_BOTTOM',
+      context['google']['maps']['ControlPosition']['LEFT_BOTTOM']);
+  static final LEFT_CENTER = new ControlPosition._('LEFT_CENTER',
+      context['google']['maps']['ControlPosition']['LEFT_CENTER']);
   static final LEFT_TOP = new ControlPosition._(
-      'LEFT_TOP', getPath('google.maps.ControlPosition')['LEFT_TOP']);
-  static final RIGHT_BOTTOM = new ControlPosition._(
-      'RIGHT_BOTTOM', getPath('google.maps.ControlPosition')['RIGHT_BOTTOM']);
-  static final RIGHT_CENTER = new ControlPosition._(
-      'RIGHT_CENTER', getPath('google.maps.ControlPosition')['RIGHT_CENTER']);
+      'LEFT_TOP', context['google']['maps']['ControlPosition']['LEFT_TOP']);
+  static final RIGHT_BOTTOM = new ControlPosition._('RIGHT_BOTTOM',
+      context['google']['maps']['ControlPosition']['RIGHT_BOTTOM']);
+  static final RIGHT_CENTER = new ControlPosition._('RIGHT_CENTER',
+      context['google']['maps']['ControlPosition']['RIGHT_CENTER']);
   static final RIGHT_TOP = new ControlPosition._(
-      'RIGHT_TOP', getPath('google.maps.ControlPosition')['RIGHT_TOP']);
+      'RIGHT_TOP', context['google']['maps']['ControlPosition']['RIGHT_TOP']);
   static final TOP_CENTER = new ControlPosition._(
-      'TOP_CENTER', getPath('google.maps.ControlPosition')['TOP_CENTER']);
+      'TOP_CENTER', context['google']['maps']['ControlPosition']['TOP_CENTER']);
   static final TOP_LEFT = new ControlPosition._(
-      'TOP_LEFT', getPath('google.maps.ControlPosition')['TOP_LEFT']);
+      'TOP_LEFT', context['google']['maps']['ControlPosition']['TOP_LEFT']);
   static final TOP_RIGHT = new ControlPosition._(
-      'TOP_RIGHT', getPath('google.maps.ControlPosition')['TOP_RIGHT']);
+      'TOP_RIGHT', context['google']['maps']['ControlPosition']['TOP_RIGHT']);
+
   final String _name;
   ControlPosition._(this._name, o) : super.created(o);
+
   String toString() => 'ControlPosition.$_name';
+
+  // dumb code to remove analyzer hint for unused _ControlPosition
+  _ControlPosition _dumbMethod1() => _dumbMethod2();
+  _ControlPosition _dumbMethod2() => _dumbMethod1();
 }
 
 // **************************************************************************
@@ -750,12 +782,13 @@ class ControlPosition extends JsEnum {
 class Data extends JsInterface implements _Data {
   Data.created(JsObject o) : super.created(o);
   Data([DataDataOptions options]) : this.created(new JsObject(
-          getPath('google.maps.Data'), [__codec23.encode(options)]));
+          context['google']['maps']['Data'], [__codec23.encode(options)]));
 
   DataFeature add(dynamic /*DataFeature|DataFeatureOptions*/ feature) => _add(
       (new ChainedCodec()
     ..add(new JsInterfaceCodec<DataFeature>((o) => new DataFeature.created(o),
-        (o) => o != null && o.instanceof(getPath("google.maps.Data.Feature"))))
+        (o) => o != null &&
+            o.instanceof(context['google']['maps']['Data']['Feature'])))
     ..add(new JsInterfaceCodec<DataFeatureOptions>(
         (o) => new DataFeatureOptions.created(o)))).encode(feature));
   _add(dynamic /*DataFeature|DataFeatureOptions*/ feature) => __codec5
@@ -1114,7 +1147,8 @@ final __codec32 =
 class DataFeature extends JsInterface implements _DataFeature {
   DataFeature.created(JsObject o) : super.created(o);
   DataFeature([DataFeatureOptions options]) : this.created(new JsObject(
-          getPath('google.maps.Data.Feature'), [__codec33.encode(options)]));
+          context['google']['maps']['Data']['Feature'],
+          [__codec33.encode(options)]));
 
   void forEachProperty(callback(dynamic p1, String p2)) {
     asJsObject(this).callMethod(
@@ -1124,27 +1158,29 @@ class DataFeature extends JsInterface implements _DataFeature {
       (new ChainedCodec()
     ..add(new JsInterfaceCodec<DataGeometryCollection>(
         (o) => new DataGeometryCollection.created(o), (o) => o != null &&
-            o.instanceof(getPath("google.maps.Data.GeometryCollection"))))
+            o.instanceof(
+                context['google']['maps']['Data']['GeometryCollection'])))
     ..add(new JsInterfaceCodec<DataMultiPolygon>(
         (o) => new DataMultiPolygon.created(o), (o) => o != null &&
-            o.instanceof(getPath("google.maps.Data.MultiPolygon"))))
+            o.instanceof(context['google']['maps']['Data']['MultiPolygon'])))
     ..add(new JsInterfaceCodec<DataPolygon>((o) => new DataPolygon.created(o),
-        (o) => o != null && o.instanceof(getPath("google.maps.Data.Polygon"))))
+        (o) => o != null &&
+            o.instanceof(context['google']['maps']['Data']['Polygon'])))
     ..add(new JsInterfaceCodec<DataLinearRing>(
-        (o) => new DataLinearRing.created(o), (o) =>
-            o != null && o.instanceof(getPath("google.maps.Data.LinearRing"))))
+        (o) => new DataLinearRing.created(o), (o) => o != null &&
+            o.instanceof(context['google']['maps']['Data']['LinearRing'])))
     ..add(new JsInterfaceCodec<DataMultiLineString>(
         (o) => new DataMultiLineString.created(o), (o) => o != null &&
-            o.instanceof(getPath("google.maps.Data.MultiLineString"))))
+            o.instanceof(context['google']['maps']['Data']['MultiLineString'])))
     ..add(new JsInterfaceCodec<DataLineString>(
-        (o) => new DataLineString.created(o), (o) =>
-            o != null && o.instanceof(getPath("google.maps.Data.LineString"))))
+        (o) => new DataLineString.created(o), (o) => o != null &&
+            o.instanceof(context['google']['maps']['Data']['LineString'])))
     ..add(new JsInterfaceCodec<DataMultiPoint>(
-        (o) => new DataMultiPoint.created(o), (o) =>
-            o != null && o.instanceof(getPath("google.maps.Data.MultiPoint"))))
+        (o) => new DataMultiPoint.created(o), (o) => o != null &&
+            o.instanceof(context['google']['maps']['Data']['MultiPoint'])))
     ..add(new JsInterfaceCodec<DataPoint>((o) => new DataPoint.created(o),
-            (o) =>
-                o != null && o.instanceof(getPath("google.maps.Data.Point")))))
+            (o) => o != null &&
+                o.instanceof(context['google']['maps']['Data']['Point']))))
       .decode(_getGeometry());
   _getGeometry() => __codec5.decode(asJsObject(this).callMethod('getGeometry'));
 
@@ -1161,28 +1197,31 @@ class DataFeature extends JsInterface implements _DataFeature {
       _setGeometry((new ChainedCodec()
     ..add(new JsInterfaceCodec<DataGeometryCollection>(
         (o) => new DataGeometryCollection.created(o), (o) => o != null &&
-            o.instanceof(getPath("google.maps.Data.GeometryCollection"))))
+            o.instanceof(
+                context['google']['maps']['Data']['GeometryCollection'])))
     ..add(new JsInterfaceCodec<DataMultiPolygon>(
         (o) => new DataMultiPolygon.created(o), (o) => o != null &&
-            o.instanceof(getPath("google.maps.Data.MultiPolygon"))))
+            o.instanceof(context['google']['maps']['Data']['MultiPolygon'])))
     ..add(new JsInterfaceCodec<DataPolygon>((o) => new DataPolygon.created(o),
-        (o) => o != null && o.instanceof(getPath("google.maps.Data.Polygon"))))
+        (o) => o != null &&
+            o.instanceof(context['google']['maps']['Data']['Polygon'])))
     ..add(new JsInterfaceCodec<DataLinearRing>(
-        (o) => new DataLinearRing.created(o), (o) =>
-            o != null && o.instanceof(getPath("google.maps.Data.LinearRing"))))
+        (o) => new DataLinearRing.created(o), (o) => o != null &&
+            o.instanceof(context['google']['maps']['Data']['LinearRing'])))
     ..add(new JsInterfaceCodec<DataMultiLineString>(
         (o) => new DataMultiLineString.created(o), (o) => o != null &&
-            o.instanceof(getPath("google.maps.Data.MultiLineString"))))
+            o.instanceof(context['google']['maps']['Data']['MultiLineString'])))
     ..add(new JsInterfaceCodec<DataLineString>(
-        (o) => new DataLineString.created(o), (o) =>
-            o != null && o.instanceof(getPath("google.maps.Data.LineString"))))
+        (o) => new DataLineString.created(o), (o) => o != null &&
+            o.instanceof(context['google']['maps']['Data']['LineString'])))
     ..add(new JsInterfaceCodec<DataMultiPoint>(
-        (o) => new DataMultiPoint.created(o), (o) =>
-            o != null && o.instanceof(getPath("google.maps.Data.MultiPoint"))))
+        (o) => new DataMultiPoint.created(o), (o) => o != null &&
+            o.instanceof(context['google']['maps']['Data']['MultiPoint'])))
     ..add(new JsInterfaceCodec<DataPoint>((o) => new DataPoint.created(o),
-        (o) => o != null && o.instanceof(getPath("google.maps.Data.Point"))))
+        (o) => o != null &&
+            o.instanceof(context['google']['maps']['Data']['Point'])))
     ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
-        (o) => o != null && o.instanceof(getPath("google.maps.LatLng")))))
+        (o) => o != null && o.instanceof(context['google']['maps']['LatLng']))))
           .encode(newGeometry));
   void _setGeometry(
       dynamic /*DataGeometryCollection|DataMultiPolygon|DataPolygon|DataLinearRing|DataMultiLineString|DataLineString|DataMultiPoint|DataPoint|LatLng*/ newGeometry) {
@@ -1241,57 +1280,63 @@ class DataFeatureOptions extends JsInterface implements _DataFeatureOptions {
       (new ChainedCodec()
     ..add(new JsInterfaceCodec<DataGeometryCollection>(
         (o) => new DataGeometryCollection.created(o), (o) => o != null &&
-            o.instanceof(getPath("google.maps.Data.GeometryCollection"))))
+            o.instanceof(
+                context['google']['maps']['Data']['GeometryCollection'])))
     ..add(new JsInterfaceCodec<DataMultiPolygon>(
         (o) => new DataMultiPolygon.created(o), (o) => o != null &&
-            o.instanceof(getPath("google.maps.Data.MultiPolygon"))))
+            o.instanceof(context['google']['maps']['Data']['MultiPolygon'])))
     ..add(new JsInterfaceCodec<DataPolygon>((o) => new DataPolygon.created(o),
-        (o) => o != null && o.instanceof(getPath("google.maps.Data.Polygon"))))
+        (o) => o != null &&
+            o.instanceof(context['google']['maps']['Data']['Polygon'])))
     ..add(new JsInterfaceCodec<DataLinearRing>(
-        (o) => new DataLinearRing.created(o), (o) =>
-            o != null && o.instanceof(getPath("google.maps.Data.LinearRing"))))
+        (o) => new DataLinearRing.created(o), (o) => o != null &&
+            o.instanceof(context['google']['maps']['Data']['LinearRing'])))
     ..add(new JsInterfaceCodec<DataMultiLineString>(
         (o) => new DataMultiLineString.created(o), (o) => o != null &&
-            o.instanceof(getPath("google.maps.Data.MultiLineString"))))
+            o.instanceof(context['google']['maps']['Data']['MultiLineString'])))
     ..add(new JsInterfaceCodec<DataLineString>(
-        (o) => new DataLineString.created(o), (o) =>
-            o != null && o.instanceof(getPath("google.maps.Data.LineString"))))
+        (o) => new DataLineString.created(o), (o) => o != null &&
+            o.instanceof(context['google']['maps']['Data']['LineString'])))
     ..add(new JsInterfaceCodec<DataMultiPoint>(
-        (o) => new DataMultiPoint.created(o), (o) =>
-            o != null && o.instanceof(getPath("google.maps.Data.MultiPoint"))))
+        (o) => new DataMultiPoint.created(o), (o) => o != null &&
+            o.instanceof(context['google']['maps']['Data']['MultiPoint'])))
     ..add(new JsInterfaceCodec<DataPoint>((o) => new DataPoint.created(o),
-        (o) => o != null && o.instanceof(getPath("google.maps.Data.Point"))))
-    ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
-            (o) => o != null && o.instanceof(getPath("google.maps.LatLng")))))
+        (o) => o != null &&
+            o.instanceof(context['google']['maps']['Data']['Point'])))
+    ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o), (o) =>
+            o != null && o.instanceof(context['google']['maps']['LatLng']))))
       .decode(_geometry);
   void set geometry(
       dynamic /*DataGeometryCollection|DataMultiPolygon|DataPolygon|DataLinearRing|DataMultiLineString|DataLineString|DataMultiPoint|DataPoint|LatLng*/ geometry) {
     _geometry = (new ChainedCodec()
       ..add(new JsInterfaceCodec<DataGeometryCollection>(
           (o) => new DataGeometryCollection.created(o), (o) => o != null &&
-              o.instanceof(getPath("google.maps.Data.GeometryCollection"))))
+              o.instanceof(
+                  context['google']['maps']['Data']['GeometryCollection'])))
       ..add(new JsInterfaceCodec<DataMultiPolygon>(
           (o) => new DataMultiPolygon.created(o), (o) => o != null &&
-              o.instanceof(getPath("google.maps.Data.MultiPolygon"))))
+              o.instanceof(context['google']['maps']['Data']['MultiPolygon'])))
       ..add(new JsInterfaceCodec<DataPolygon>((o) => new DataPolygon.created(o),
-          (o) =>
-              o != null && o.instanceof(getPath("google.maps.Data.Polygon"))))
+          (o) => o != null &&
+              o.instanceof(context['google']['maps']['Data']['Polygon'])))
       ..add(new JsInterfaceCodec<DataLinearRing>(
           (o) => new DataLinearRing.created(o), (o) => o != null &&
-              o.instanceof(getPath("google.maps.Data.LinearRing"))))
+              o.instanceof(context['google']['maps']['Data']['LinearRing'])))
       ..add(new JsInterfaceCodec<DataMultiLineString>(
           (o) => new DataMultiLineString.created(o), (o) => o != null &&
-              o.instanceof(getPath("google.maps.Data.MultiLineString"))))
+              o.instanceof(
+                  context['google']['maps']['Data']['MultiLineString'])))
       ..add(new JsInterfaceCodec<DataLineString>(
           (o) => new DataLineString.created(o), (o) => o != null &&
-              o.instanceof(getPath("google.maps.Data.LineString"))))
+              o.instanceof(context['google']['maps']['Data']['LineString'])))
       ..add(new JsInterfaceCodec<DataMultiPoint>(
           (o) => new DataMultiPoint.created(o), (o) => o != null &&
-              o.instanceof(getPath("google.maps.Data.MultiPoint"))))
+              o.instanceof(context['google']['maps']['Data']['MultiPoint'])))
       ..add(new JsInterfaceCodec<DataPoint>((o) => new DataPoint.created(o),
-          (o) => o != null && o.instanceof(getPath("google.maps.Data.Point"))))
-      ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
-              (o) => o != null && o.instanceof(getPath("google.maps.LatLng")))))
+          (o) => o != null &&
+              o.instanceof(context['google']['maps']['Data']['Point'])))
+      ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o), (o) =>
+              o != null && o.instanceof(context['google']['maps']['LatLng']))))
         .encode(geometry);
   }
 
@@ -1327,7 +1372,8 @@ class DataGeometry extends JsInterface implements _DataGeometry {
 class DataPoint extends DataGeometry implements _DataPoint {
   DataPoint.created(JsObject o) : super.created(o);
   DataPoint(LatLng latLng) : this.created(new JsObject(
-          getPath('google.maps.Data.Point'), [__codec7.encode(latLng)]));
+          context['google']['maps']['Data']['Point'],
+          [__codec7.encode(latLng)]));
 
   LatLng get() => __codec7.decode(asJsObject(this).callMethod('get'));
   String get type => _getType();
@@ -1343,7 +1389,7 @@ class DataPoint extends DataGeometry implements _DataPoint {
 class DataMultiPoint extends DataGeometry implements _DataMultiPoint {
   DataMultiPoint.created(JsObject o) : super.created(o);
   DataMultiPoint(List<LatLng> elements) : this.created(new JsObject(
-          getPath('google.maps.Data.MultiPoint'),
+          context['google']['maps']['Data']['MultiPoint'],
           [__codec35.encode(elements)]));
 
   List<LatLng> get array => _getArray();
@@ -1368,7 +1414,7 @@ final __codec35 = new JsListCodec<LatLng>(__codec7);
 class DataLineString extends DataGeometry implements _DataLineString {
   DataLineString.created(JsObject o) : super.created(o);
   DataLineString(List<LatLng> elements) : this.created(new JsObject(
-          getPath('google.maps.Data.LineString'),
+          context['google']['maps']['Data']['LineString'],
           [__codec35.encode(elements)]));
 
   List<LatLng> get array => _getArray();
@@ -1391,7 +1437,8 @@ class DataLineString extends DataGeometry implements _DataLineString {
 class DataMultiLineString extends DataGeometry implements _DataMultiLineString {
   DataMultiLineString.created(JsObject o) : super.created(o);
   DataMultiLineString(List<dynamic /*DataLineString|List<LatLng>*/ > elements)
-      : this.created(new JsObject(getPath('google.maps.Data.MultiLineString'),
+      : this.created(new JsObject(
+          context['google']['maps']['Data']['MultiLineString'],
           [__codec36.encode(elements)]));
 
   List<DataLineString> get array => _getArray();
@@ -1423,7 +1470,7 @@ final __codec38 = new JsListCodec<DataLineString>(__codec37);
 class DataLinearRing extends DataGeometry implements _DataLinearRing {
   DataLinearRing.created(JsObject o) : super.created(o);
   DataLinearRing(List<LatLng> elements) : this.created(new JsObject(
-          getPath('google.maps.Data.LinearRing'),
+          context['google']['maps']['Data']['LinearRing'],
           [__codec35.encode(elements)]));
 
   List<LatLng> get array => _getArray();
@@ -1446,8 +1493,8 @@ class DataLinearRing extends DataGeometry implements _DataLinearRing {
 class DataPolygon extends DataGeometry implements _DataPolygon {
   DataPolygon.created(JsObject o) : super.created(o);
   DataPolygon(List<dynamic /*DataLinearRing|List<LatLng>*/ > elements)
-      : this.created(new JsObject(
-          getPath('google.maps.Data.Polygon'), [__codec36.encode(elements)]));
+      : this.created(new JsObject(context['google']['maps']['Data']['Polygon'],
+          [__codec36.encode(elements)]));
 
   List<DataLinearRing> get array => _getArray();
   List<DataLinearRing> _getArray() =>
@@ -1476,7 +1523,8 @@ class DataMultiPolygon extends DataGeometry implements _DataMultiPolygon {
   DataMultiPolygon.created(JsObject o) : super.created(o);
   DataMultiPolygon(
       List<dynamic /*DataPolygon|List<dynamic/*DataLinearRing|List<LatLng>*/>*/ > elements)
-      : this.created(new JsObject(getPath('google.maps.Data.MultiPolygon'),
+      : this.created(new JsObject(
+          context['google']['maps']['Data']['MultiPolygon'],
           [__codec36.encode(elements)]));
 
   List<DataPolygon> get array => _getArray();
@@ -1507,7 +1555,7 @@ class DataGeometryCollection extends DataGeometry
   DataGeometryCollection.created(JsObject o) : super.created(o);
   DataGeometryCollection(List<dynamic /*DataGeometry|LatLng*/ > elements)
       : this.created(new JsObject(
-          getPath('google.maps.Data.GeometryCollection'),
+          context['google']['maps']['Data']['GeometryCollection'],
           [__codec36.encode(elements)]));
 
   List<dynamic /*DataGeometryCollection|DataMultiPolygon|DataPolygon|DataLinearRing|DataMultiLineString|DataLineString|DataMultiPoint|DataPoint*/ > get array =>
@@ -1515,27 +1563,29 @@ class DataGeometryCollection extends DataGeometry
           new ChainedCodec()
     ..add(new JsInterfaceCodec<DataGeometryCollection>(
         (o) => new DataGeometryCollection.created(o), (o) => o != null &&
-            o.instanceof(getPath("google.maps.Data.GeometryCollection"))))
+            o.instanceof(
+                context['google']['maps']['Data']['GeometryCollection'])))
     ..add(new JsInterfaceCodec<DataMultiPolygon>(
         (o) => new DataMultiPolygon.created(o), (o) => o != null &&
-            o.instanceof(getPath("google.maps.Data.MultiPolygon"))))
+            o.instanceof(context['google']['maps']['Data']['MultiPolygon'])))
     ..add(new JsInterfaceCodec<DataPolygon>((o) => new DataPolygon.created(o),
-        (o) => o != null && o.instanceof(getPath("google.maps.Data.Polygon"))))
+        (o) => o != null &&
+            o.instanceof(context['google']['maps']['Data']['Polygon'])))
     ..add(new JsInterfaceCodec<DataLinearRing>(
-        (o) => new DataLinearRing.created(o), (o) =>
-            o != null && o.instanceof(getPath("google.maps.Data.LinearRing"))))
+        (o) => new DataLinearRing.created(o), (o) => o != null &&
+            o.instanceof(context['google']['maps']['Data']['LinearRing'])))
     ..add(new JsInterfaceCodec<DataMultiLineString>(
         (o) => new DataMultiLineString.created(o), (o) => o != null &&
-            o.instanceof(getPath("google.maps.Data.MultiLineString"))))
+            o.instanceof(context['google']['maps']['Data']['MultiLineString'])))
     ..add(new JsInterfaceCodec<DataLineString>(
-        (o) => new DataLineString.created(o), (o) =>
-            o != null && o.instanceof(getPath("google.maps.Data.LineString"))))
+        (o) => new DataLineString.created(o), (o) => o != null &&
+            o.instanceof(context['google']['maps']['Data']['LineString'])))
     ..add(new JsInterfaceCodec<DataMultiPoint>(
-        (o) => new DataMultiPoint.created(o), (o) =>
-            o != null && o.instanceof(getPath("google.maps.Data.MultiPoint"))))
+        (o) => new DataMultiPoint.created(o), (o) => o != null &&
+            o.instanceof(context['google']['maps']['Data']['MultiPoint'])))
     ..add(new JsInterfaceCodec<DataPoint>((o) => new DataPoint.created(o),
-            (o) =>
-                o != null && o.instanceof(getPath("google.maps.Data.Point"))))))
+            (o) => o != null &&
+                o.instanceof(context['google']['maps']['Data']['Point'])))))
       .decode(_getArray());
   _getArray() => __codec5.decode(asJsObject(this).callMethod('getArray'));
 
@@ -1543,27 +1593,29 @@ class DataGeometryCollection extends DataGeometry
       num n) => (new ChainedCodec()
     ..add(new JsInterfaceCodec<DataGeometryCollection>(
         (o) => new DataGeometryCollection.created(o), (o) => o != null &&
-            o.instanceof(getPath("google.maps.Data.GeometryCollection"))))
+            o.instanceof(
+                context['google']['maps']['Data']['GeometryCollection'])))
     ..add(new JsInterfaceCodec<DataMultiPolygon>(
         (o) => new DataMultiPolygon.created(o), (o) => o != null &&
-            o.instanceof(getPath("google.maps.Data.MultiPolygon"))))
+            o.instanceof(context['google']['maps']['Data']['MultiPolygon'])))
     ..add(new JsInterfaceCodec<DataPolygon>((o) => new DataPolygon.created(o),
-        (o) => o != null && o.instanceof(getPath("google.maps.Data.Polygon"))))
+        (o) => o != null &&
+            o.instanceof(context['google']['maps']['Data']['Polygon'])))
     ..add(new JsInterfaceCodec<DataLinearRing>(
-        (o) => new DataLinearRing.created(o), (o) =>
-            o != null && o.instanceof(getPath("google.maps.Data.LinearRing"))))
+        (o) => new DataLinearRing.created(o), (o) => o != null &&
+            o.instanceof(context['google']['maps']['Data']['LinearRing'])))
     ..add(new JsInterfaceCodec<DataMultiLineString>(
         (o) => new DataMultiLineString.created(o), (o) => o != null &&
-            o.instanceof(getPath("google.maps.Data.MultiLineString"))))
+            o.instanceof(context['google']['maps']['Data']['MultiLineString'])))
     ..add(new JsInterfaceCodec<DataLineString>(
-        (o) => new DataLineString.created(o), (o) =>
-            o != null && o.instanceof(getPath("google.maps.Data.LineString"))))
+        (o) => new DataLineString.created(o), (o) => o != null &&
+            o.instanceof(context['google']['maps']['Data']['LineString'])))
     ..add(new JsInterfaceCodec<DataMultiPoint>(
-        (o) => new DataMultiPoint.created(o), (o) =>
-            o != null && o.instanceof(getPath("google.maps.Data.MultiPoint"))))
+        (o) => new DataMultiPoint.created(o), (o) => o != null &&
+            o.instanceof(context['google']['maps']['Data']['MultiPoint'])))
     ..add(new JsInterfaceCodec<DataPoint>((o) => new DataPoint.created(o),
-            (o) =>
-                o != null && o.instanceof(getPath("google.maps.Data.Point")))))
+            (o) => o != null &&
+                o.instanceof(context['google']['maps']['Data']['Point']))))
       .decode(_getAt(n));
   _getAt(num n) => __codec5.decode(asJsObject(this).callMethod('getAt', [n]));
 
@@ -1645,55 +1697,59 @@ class DataSetGeometryEvent extends JsInterface
       (new ChainedCodec()
     ..add(new JsInterfaceCodec<DataGeometryCollection>(
         (o) => new DataGeometryCollection.created(o), (o) => o != null &&
-            o.instanceof(getPath("google.maps.Data.GeometryCollection"))))
+            o.instanceof(
+                context['google']['maps']['Data']['GeometryCollection'])))
     ..add(new JsInterfaceCodec<DataMultiPolygon>(
         (o) => new DataMultiPolygon.created(o), (o) => o != null &&
-            o.instanceof(getPath("google.maps.Data.MultiPolygon"))))
+            o.instanceof(context['google']['maps']['Data']['MultiPolygon'])))
     ..add(new JsInterfaceCodec<DataPolygon>((o) => new DataPolygon.created(o),
-        (o) => o != null && o.instanceof(getPath("google.maps.Data.Polygon"))))
+        (o) => o != null &&
+            o.instanceof(context['google']['maps']['Data']['Polygon'])))
     ..add(new JsInterfaceCodec<DataLinearRing>(
-        (o) => new DataLinearRing.created(o), (o) =>
-            o != null && o.instanceof(getPath("google.maps.Data.LinearRing"))))
+        (o) => new DataLinearRing.created(o), (o) => o != null &&
+            o.instanceof(context['google']['maps']['Data']['LinearRing'])))
     ..add(new JsInterfaceCodec<DataMultiLineString>(
         (o) => new DataMultiLineString.created(o), (o) => o != null &&
-            o.instanceof(getPath("google.maps.Data.MultiLineString"))))
+            o.instanceof(context['google']['maps']['Data']['MultiLineString'])))
     ..add(new JsInterfaceCodec<DataLineString>(
-        (o) => new DataLineString.created(o), (o) =>
-            o != null && o.instanceof(getPath("google.maps.Data.LineString"))))
+        (o) => new DataLineString.created(o), (o) => o != null &&
+            o.instanceof(context['google']['maps']['Data']['LineString'])))
     ..add(new JsInterfaceCodec<DataMultiPoint>(
-        (o) => new DataMultiPoint.created(o), (o) =>
-            o != null && o.instanceof(getPath("google.maps.Data.MultiPoint"))))
+        (o) => new DataMultiPoint.created(o), (o) => o != null &&
+            o.instanceof(context['google']['maps']['Data']['MultiPoint'])))
     ..add(new JsInterfaceCodec<DataPoint>((o) => new DataPoint.created(o),
-            (o) =>
-                o != null && o.instanceof(getPath("google.maps.Data.Point")))))
+            (o) => o != null &&
+                o.instanceof(context['google']['maps']['Data']['Point']))))
       .decode(_newGeometry);
   void set newGeometry(
       dynamic /*DataGeometryCollection|DataMultiPolygon|DataPolygon|DataLinearRing|DataMultiLineString|DataLineString|DataMultiPoint|DataPoint*/ newGeometry) {
     _newGeometry = (new ChainedCodec()
       ..add(new JsInterfaceCodec<DataGeometryCollection>(
           (o) => new DataGeometryCollection.created(o), (o) => o != null &&
-              o.instanceof(getPath("google.maps.Data.GeometryCollection"))))
+              o.instanceof(
+                  context['google']['maps']['Data']['GeometryCollection'])))
       ..add(new JsInterfaceCodec<DataMultiPolygon>(
           (o) => new DataMultiPolygon.created(o), (o) => o != null &&
-              o.instanceof(getPath("google.maps.Data.MultiPolygon"))))
+              o.instanceof(context['google']['maps']['Data']['MultiPolygon'])))
       ..add(new JsInterfaceCodec<DataPolygon>((o) => new DataPolygon.created(o),
-          (o) =>
-              o != null && o.instanceof(getPath("google.maps.Data.Polygon"))))
+          (o) => o != null &&
+              o.instanceof(context['google']['maps']['Data']['Polygon'])))
       ..add(new JsInterfaceCodec<DataLinearRing>(
           (o) => new DataLinearRing.created(o), (o) => o != null &&
-              o.instanceof(getPath("google.maps.Data.LinearRing"))))
+              o.instanceof(context['google']['maps']['Data']['LinearRing'])))
       ..add(new JsInterfaceCodec<DataMultiLineString>(
           (o) => new DataMultiLineString.created(o), (o) => o != null &&
-              o.instanceof(getPath("google.maps.Data.MultiLineString"))))
+              o.instanceof(
+                  context['google']['maps']['Data']['MultiLineString'])))
       ..add(new JsInterfaceCodec<DataLineString>(
           (o) => new DataLineString.created(o), (o) => o != null &&
-              o.instanceof(getPath("google.maps.Data.LineString"))))
+              o.instanceof(context['google']['maps']['Data']['LineString'])))
       ..add(new JsInterfaceCodec<DataMultiPoint>(
           (o) => new DataMultiPoint.created(o), (o) => o != null &&
-              o.instanceof(getPath("google.maps.Data.MultiPoint"))))
+              o.instanceof(context['google']['maps']['Data']['MultiPoint'])))
       ..add(new JsInterfaceCodec<DataPoint>((o) => new DataPoint.created(o),
               (o) => o != null &&
-                  o.instanceof(getPath("google.maps.Data.Point")))))
+                  o.instanceof(context['google']['maps']['Data']['Point']))))
         .encode(newGeometry);
   }
 
@@ -1705,55 +1761,59 @@ class DataSetGeometryEvent extends JsInterface
       (new ChainedCodec()
     ..add(new JsInterfaceCodec<DataGeometryCollection>(
         (o) => new DataGeometryCollection.created(o), (o) => o != null &&
-            o.instanceof(getPath("google.maps.Data.GeometryCollection"))))
+            o.instanceof(
+                context['google']['maps']['Data']['GeometryCollection'])))
     ..add(new JsInterfaceCodec<DataMultiPolygon>(
         (o) => new DataMultiPolygon.created(o), (o) => o != null &&
-            o.instanceof(getPath("google.maps.Data.MultiPolygon"))))
+            o.instanceof(context['google']['maps']['Data']['MultiPolygon'])))
     ..add(new JsInterfaceCodec<DataPolygon>((o) => new DataPolygon.created(o),
-        (o) => o != null && o.instanceof(getPath("google.maps.Data.Polygon"))))
+        (o) => o != null &&
+            o.instanceof(context['google']['maps']['Data']['Polygon'])))
     ..add(new JsInterfaceCodec<DataLinearRing>(
-        (o) => new DataLinearRing.created(o), (o) =>
-            o != null && o.instanceof(getPath("google.maps.Data.LinearRing"))))
+        (o) => new DataLinearRing.created(o), (o) => o != null &&
+            o.instanceof(context['google']['maps']['Data']['LinearRing'])))
     ..add(new JsInterfaceCodec<DataMultiLineString>(
         (o) => new DataMultiLineString.created(o), (o) => o != null &&
-            o.instanceof(getPath("google.maps.Data.MultiLineString"))))
+            o.instanceof(context['google']['maps']['Data']['MultiLineString'])))
     ..add(new JsInterfaceCodec<DataLineString>(
-        (o) => new DataLineString.created(o), (o) =>
-            o != null && o.instanceof(getPath("google.maps.Data.LineString"))))
+        (o) => new DataLineString.created(o), (o) => o != null &&
+            o.instanceof(context['google']['maps']['Data']['LineString'])))
     ..add(new JsInterfaceCodec<DataMultiPoint>(
-        (o) => new DataMultiPoint.created(o), (o) =>
-            o != null && o.instanceof(getPath("google.maps.Data.MultiPoint"))))
+        (o) => new DataMultiPoint.created(o), (o) => o != null &&
+            o.instanceof(context['google']['maps']['Data']['MultiPoint'])))
     ..add(new JsInterfaceCodec<DataPoint>((o) => new DataPoint.created(o),
-            (o) =>
-                o != null && o.instanceof(getPath("google.maps.Data.Point")))))
+            (o) => o != null &&
+                o.instanceof(context['google']['maps']['Data']['Point']))))
       .decode(_oldGeometry);
   void set oldGeometry(
       dynamic /*DataGeometryCollection|DataMultiPolygon|DataPolygon|DataLinearRing|DataMultiLineString|DataLineString|DataMultiPoint|DataPoint*/ oldGeometry) {
     _oldGeometry = (new ChainedCodec()
       ..add(new JsInterfaceCodec<DataGeometryCollection>(
           (o) => new DataGeometryCollection.created(o), (o) => o != null &&
-              o.instanceof(getPath("google.maps.Data.GeometryCollection"))))
+              o.instanceof(
+                  context['google']['maps']['Data']['GeometryCollection'])))
       ..add(new JsInterfaceCodec<DataMultiPolygon>(
           (o) => new DataMultiPolygon.created(o), (o) => o != null &&
-              o.instanceof(getPath("google.maps.Data.MultiPolygon"))))
+              o.instanceof(context['google']['maps']['Data']['MultiPolygon'])))
       ..add(new JsInterfaceCodec<DataPolygon>((o) => new DataPolygon.created(o),
-          (o) =>
-              o != null && o.instanceof(getPath("google.maps.Data.Polygon"))))
+          (o) => o != null &&
+              o.instanceof(context['google']['maps']['Data']['Polygon'])))
       ..add(new JsInterfaceCodec<DataLinearRing>(
           (o) => new DataLinearRing.created(o), (o) => o != null &&
-              o.instanceof(getPath("google.maps.Data.LinearRing"))))
+              o.instanceof(context['google']['maps']['Data']['LinearRing'])))
       ..add(new JsInterfaceCodec<DataMultiLineString>(
           (o) => new DataMultiLineString.created(o), (o) => o != null &&
-              o.instanceof(getPath("google.maps.Data.MultiLineString"))))
+              o.instanceof(
+                  context['google']['maps']['Data']['MultiLineString'])))
       ..add(new JsInterfaceCodec<DataLineString>(
           (o) => new DataLineString.created(o), (o) => o != null &&
-              o.instanceof(getPath("google.maps.Data.LineString"))))
+              o.instanceof(context['google']['maps']['Data']['LineString'])))
       ..add(new JsInterfaceCodec<DataMultiPoint>(
           (o) => new DataMultiPoint.created(o), (o) => o != null &&
-              o.instanceof(getPath("google.maps.Data.MultiPoint"))))
+              o.instanceof(context['google']['maps']['Data']['MultiPoint'])))
       ..add(new JsInterfaceCodec<DataPoint>((o) => new DataPoint.created(o),
               (o) => o != null &&
-                  o.instanceof(getPath("google.maps.Data.Point")))))
+                  o.instanceof(context['google']['maps']['Data']['Point']))))
         .encode(oldGeometry);
   }
 }
@@ -1820,11 +1880,11 @@ class DataRemovePropertyEvent extends JsInterface
 @JsName('google.maps.Marker')
 class Marker extends MVCObject implements _Marker {
   static get MAX_ZINDEX =>
-      __codec5.decode(getPath('google.maps.Marker')['MAX_ZINDEX']);
+      __codec5.decode(context['google']['maps']['Marker']['MAX_ZINDEX']);
 
   Marker.created(JsObject o) : super.created(o);
   Marker([MarkerOptions opts]) : this.created(new JsObject(
-          getPath('google.maps.Marker'), [__codec43.encode(opts)]));
+          context['google']['maps']['Marker'], [__codec43.encode(opts)]));
 
   Animation get animation => _getAnimation();
   Animation _getAnimation() =>
@@ -1846,10 +1906,10 @@ class Marker extends MVCObject implements _Marker {
   _getIcon() => __codec5.decode(asJsObject(this).callMethod('getIcon'));
   dynamic /*GMap|StreetViewPanorama*/ get map => (new ChainedCodec()
     ..add(new JsInterfaceCodec<GMap>((o) => new GMap.created(o),
-        (o) => o != null && o.instanceof(getPath("google.maps.Map"))))
+        (o) => o != null && o.instanceof(context['google']['maps']['Map'])))
     ..add(new JsInterfaceCodec<StreetViewPanorama>(
             (o) => new StreetViewPanorama.created(o), (o) => o != null &&
-                o.instanceof(getPath("google.maps.StreetViewPanorama")))))
+                o.instanceof(context['google']['maps']['StreetViewPanorama']))))
       .decode(_getMap());
   _getMap() => __codec5.decode(asJsObject(this).callMethod('getMap'));
   num get opacity => _getOpacity();
@@ -1902,10 +1962,10 @@ class Marker extends MVCObject implements _Marker {
   void set map(dynamic /*GMap|StreetViewPanorama*/ map) => _setMap(
       (new ChainedCodec()
     ..add(new JsInterfaceCodec<GMap>((o) => new GMap.created(o),
-        (o) => o != null && o.instanceof(getPath("google.maps.Map"))))
+        (o) => o != null && o.instanceof(context['google']['maps']['Map'])))
     ..add(new JsInterfaceCodec<StreetViewPanorama>(
         (o) => new StreetViewPanorama.created(o), (o) => o != null &&
-                o.instanceof(getPath("google.maps.StreetViewPanorama")))))
+                o.instanceof(context['google']['maps']['StreetViewPanorama']))))
           .encode(map));
   void _setMap(dynamic /*GMap|StreetViewPanorama*/ map) {
     asJsObject(this).callMethod('setMap', [__codec5.encode(map)]);
@@ -2060,18 +2120,19 @@ class MarkerOptions extends JsInterface implements _MarkerOptions {
   dynamic get _map => __codec5.decode(asJsObject(this)['map']);
   dynamic /*GMap|StreetViewPanorama*/ get map => (new ChainedCodec()
     ..add(new JsInterfaceCodec<GMap>((o) => new GMap.created(o),
-        (o) => o != null && o.instanceof(getPath("google.maps.Map"))))
+        (o) => o != null && o.instanceof(context['google']['maps']['Map'])))
     ..add(new JsInterfaceCodec<StreetViewPanorama>(
             (o) => new StreetViewPanorama.created(o), (o) => o != null &&
-                o.instanceof(getPath("google.maps.StreetViewPanorama")))))
+                o.instanceof(context['google']['maps']['StreetViewPanorama']))))
       .decode(_map);
   void set map(dynamic /*GMap|StreetViewPanorama*/ map) {
     _map = (new ChainedCodec()
       ..add(new JsInterfaceCodec<GMap>((o) => new GMap.created(o),
-          (o) => o != null && o.instanceof(getPath("google.maps.Map"))))
+          (o) => o != null && o.instanceof(context['google']['maps']['Map'])))
       ..add(new JsInterfaceCodec<StreetViewPanorama>(
               (o) => new StreetViewPanorama.created(o), (o) => o != null &&
-                  o.instanceof(getPath("google.maps.StreetViewPanorama")))))
+                  o.instanceof(
+                      context['google']['maps']['StreetViewPanorama']))))
         .encode(map);
   }
   void set opacity(num _opacity) {
@@ -2195,28 +2256,28 @@ class GSymbol extends JsInterface implements _GSymbol {
   dynamic /*SymbolPath|String*/ get path => (new ChainedCodec()
     ..add(new BiMapCodec<SymbolPath, dynamic>({
       SymbolPath.BACKWARD_CLOSED_ARROW:
-          getPath('google.maps.SymbolPath')['BACKWARD_CLOSED_ARROW'],
+          context['google']['maps']['SymbolPath']['BACKWARD_CLOSED_ARROW'],
       SymbolPath.BACKWARD_OPEN_ARROW:
-          getPath('google.maps.SymbolPath')['BACKWARD_OPEN_ARROW'],
-      SymbolPath.CIRCLE: getPath('google.maps.SymbolPath')['CIRCLE'],
+          context['google']['maps']['SymbolPath']['BACKWARD_OPEN_ARROW'],
+      SymbolPath.CIRCLE: context['google']['maps']['SymbolPath']['CIRCLE'],
       SymbolPath.FORWARD_CLOSED_ARROW:
-          getPath('google.maps.SymbolPath')['FORWARD_CLOSED_ARROW'],
+          context['google']['maps']['SymbolPath']['FORWARD_CLOSED_ARROW'],
       SymbolPath.FORWARD_OPEN_ARROW:
-          getPath('google.maps.SymbolPath')['FORWARD_OPEN_ARROW']
+          context['google']['maps']['SymbolPath']['FORWARD_OPEN_ARROW']
     }))
     ..add(new IdentityCodec<String>())).decode(_path);
   void set path(dynamic /*SymbolPath|String*/ path) {
     _path = (new ChainedCodec()
       ..add(new BiMapCodec<SymbolPath, dynamic>({
         SymbolPath.BACKWARD_CLOSED_ARROW:
-            getPath('google.maps.SymbolPath')['BACKWARD_CLOSED_ARROW'],
+            context['google']['maps']['SymbolPath']['BACKWARD_CLOSED_ARROW'],
         SymbolPath.BACKWARD_OPEN_ARROW:
-            getPath('google.maps.SymbolPath')['BACKWARD_OPEN_ARROW'],
-        SymbolPath.CIRCLE: getPath('google.maps.SymbolPath')['CIRCLE'],
+            context['google']['maps']['SymbolPath']['BACKWARD_OPEN_ARROW'],
+        SymbolPath.CIRCLE: context['google']['maps']['SymbolPath']['CIRCLE'],
         SymbolPath.FORWARD_CLOSED_ARROW:
-            getPath('google.maps.SymbolPath')['FORWARD_CLOSED_ARROW'],
+            context['google']['maps']['SymbolPath']['FORWARD_CLOSED_ARROW'],
         SymbolPath.FORWARD_OPEN_ARROW:
-            getPath('google.maps.SymbolPath')['FORWARD_OPEN_ARROW']
+            context['google']['maps']['SymbolPath']['FORWARD_OPEN_ARROW']
       }))
       ..add(new IdentityCodec<String>())).encode(path);
   }
@@ -2256,18 +2317,24 @@ class SymbolPath extends JsEnum {
     FORWARD_OPEN_ARROW
   ];
   static final BACKWARD_CLOSED_ARROW = new SymbolPath._('BACKWARD_CLOSED_ARROW',
-      getPath('google.maps.SymbolPath')['BACKWARD_CLOSED_ARROW']);
+      context['google']['maps']['SymbolPath']['BACKWARD_CLOSED_ARROW']);
   static final BACKWARD_OPEN_ARROW = new SymbolPath._('BACKWARD_OPEN_ARROW',
-      getPath('google.maps.SymbolPath')['BACKWARD_OPEN_ARROW']);
-  static final CIRCLE =
-      new SymbolPath._('CIRCLE', getPath('google.maps.SymbolPath')['CIRCLE']);
+      context['google']['maps']['SymbolPath']['BACKWARD_OPEN_ARROW']);
+  static final CIRCLE = new SymbolPath._(
+      'CIRCLE', context['google']['maps']['SymbolPath']['CIRCLE']);
   static final FORWARD_CLOSED_ARROW = new SymbolPath._('FORWARD_CLOSED_ARROW',
-      getPath('google.maps.SymbolPath')['FORWARD_CLOSED_ARROW']);
+      context['google']['maps']['SymbolPath']['FORWARD_CLOSED_ARROW']);
   static final FORWARD_OPEN_ARROW = new SymbolPath._('FORWARD_OPEN_ARROW',
-      getPath('google.maps.SymbolPath')['FORWARD_OPEN_ARROW']);
+      context['google']['maps']['SymbolPath']['FORWARD_OPEN_ARROW']);
+
   final String _name;
   SymbolPath._(this._name, o) : super.created(o);
+
   String toString() => 'SymbolPath.$_name';
+
+  // dumb code to remove analyzer hint for unused _SymbolPath
+  _SymbolPath _dumbMethod1() => _dumbMethod2();
+  _SymbolPath _dumbMethod2() => _dumbMethod1();
 }
 
 // **************************************************************************
@@ -2277,13 +2344,19 @@ class SymbolPath extends JsEnum {
 
 class Animation extends JsEnum {
   static final values = <Animation>[BOUNCE, DROP];
-  static final BOUNCE =
-      new Animation._('BOUNCE', getPath('google.maps.Animation')['BOUNCE']);
+  static final BOUNCE = new Animation._(
+      'BOUNCE', context['google']['maps']['Animation']['BOUNCE']);
   static final DROP =
-      new Animation._('DROP', getPath('google.maps.Animation')['DROP']);
+      new Animation._('DROP', context['google']['maps']['Animation']['DROP']);
+
   final String _name;
   Animation._(this._name, o) : super.created(o);
+
   String toString() => 'Animation.$_name';
+
+  // dumb code to remove analyzer hint for unused _Animation
+  _Animation _dumbMethod1() => _dumbMethod2();
+  _Animation _dumbMethod2() => _dumbMethod1();
 }
 
 // **************************************************************************
@@ -2295,7 +2368,7 @@ class Animation extends JsEnum {
 class InfoWindow extends MVCObject implements _InfoWindow {
   InfoWindow.created(JsObject o) : super.created(o);
   InfoWindow([InfoWindowOptions opts]) : this.created(new JsObject(
-          getPath('google.maps.InfoWindow'), [__codec50.encode(opts)]));
+          context['google']['maps']['InfoWindow'], [__codec50.encode(opts)]));
 
   void close() {
     asJsObject(this).callMethod('close');
@@ -2311,11 +2384,11 @@ class InfoWindow extends MVCObject implements _InfoWindow {
   void open([dynamic /*GMap|StreetViewPanorama*/ map, MVCObject anchor]) {
     _open((new ChainedCodec()
       ..add(new JsInterfaceCodec<GMap>((o) => new GMap.created(o),
-          (o) => o != null && o.instanceof(getPath("google.maps.Map"))))
-      ..add(new JsInterfaceCodec<StreetViewPanorama>(
-          (o) => new StreetViewPanorama.created(o), (o) => o != null &&
-                  o.instanceof(getPath("google.maps.StreetViewPanorama")))))
-            .encode(map), anchor);
+          (o) => o != null && o.instanceof(context['google']['maps']['Map'])))
+      ..add(new JsInterfaceCodec<StreetViewPanorama>((o) =>
+          new StreetViewPanorama.created(o), (o) => o != null &&
+              o.instanceof(context['google']['maps']['StreetViewPanorama']))))
+        .encode(map), anchor);
   }
   _open([dynamic /*GMap|StreetViewPanorama*/ map, MVCObject anchor]) => __codec5
       .decode(asJsObject(this).callMethod(
@@ -2399,7 +2472,7 @@ class InfoWindowOptions extends JsInterface implements _InfoWindowOptions {
 class Polyline extends MVCObject implements _Polyline {
   Polyline.created(JsObject o) : super.created(o);
   Polyline([PolylineOptions opts]) : this.created(new JsObject(
-          getPath('google.maps.Polyline'), [__codec52.encode(opts)]));
+          context['google']['maps']['Polyline'], [__codec52.encode(opts)]));
 
   bool get draggable => _getDraggable();
   bool _getDraggable() => asJsObject(this).callMethod('getDraggable');
@@ -2412,9 +2485,8 @@ class Polyline extends MVCObject implements _Polyline {
               (o) => new MVCArray<LatLng>.created(o,
                   new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
                       (o) => o != null &&
-                          o.instanceof(getPath("google.maps.LatLng"))))))
-          .decode(
-              _getPath());
+                          o.instanceof(context['google']['maps']['LatLng'])))))
+          .decode(_getPath());
   _getPath() => __codec5.decode(asJsObject(this).callMethod('getPath'));
   bool get visible => _getVisible();
   bool _getVisible() => asJsObject(this).callMethod('getVisible');
@@ -2436,14 +2508,13 @@ class Polyline extends MVCObject implements _Polyline {
   }
   void set path(dynamic /*MVCArray<LatLng>|List<LatLng>*/ path) => _setPath(
       (new ChainedCodec()
-    ..add(
-        new JsInterfaceCodec<MVCArray<LatLng>>(
-            (o) => new MVCArray<LatLng>.created(o, new JsInterfaceCodec<LatLng>(
-                (o) => new LatLng.created(o), (o) =>
-                    o != null && o.instanceof(getPath("google.maps.LatLng"))))))
+    ..add(new JsInterfaceCodec<MVCArray<LatLng>>(
+        (o) => new MVCArray<LatLng>.created(o, new JsInterfaceCodec<LatLng>(
+            (o) => new LatLng.created(o), (o) => o != null &&
+                o.instanceof(context['google']['maps']['LatLng'])))))
     ..add(new JsListCodec<LatLng>(new JsInterfaceCodec<LatLng>(
-        (o) => new LatLng.created(o),
-        (o) => o != null && o.instanceof(getPath("google.maps.LatLng"))))))
+        (o) => new LatLng.created(o), (o) =>
+            o != null && o.instanceof(context['google']['maps']['LatLng'])))))
       .encode(path));
   void _setPath(dynamic /*MVCArray<LatLng>|List<LatLng>*/ path) {
     asJsObject(this).callMethod('setPath', [__codec5.encode(path)]);
@@ -2519,26 +2590,22 @@ class PolylineOptions extends JsInterface implements _PolylineOptions {
   }
   dynamic get _path => __codec5.decode(asJsObject(this)['path']);
   dynamic /*MVCArray<LatLng>|List<LatLng>*/ get path => (new ChainedCodec()
-    ..add(
-        new JsInterfaceCodec<MVCArray<LatLng>>(
-            (o) => new MVCArray<LatLng>.created(o, new JsInterfaceCodec<LatLng>(
-                (o) => new LatLng.created(o), (o) =>
-                    o != null && o.instanceof(getPath("google.maps.LatLng"))))))
+    ..add(new JsInterfaceCodec<MVCArray<LatLng>>(
+        (o) => new MVCArray<LatLng>.created(o, new JsInterfaceCodec<LatLng>(
+            (o) => new LatLng.created(o), (o) => o != null &&
+                o.instanceof(context['google']['maps']['LatLng'])))))
     ..add(new JsListCodec<LatLng>(new JsInterfaceCodec<LatLng>(
-            (o) => new LatLng.created(o),
-            (o) => o != null && o.instanceof(getPath("google.maps.LatLng"))))))
-      .decode(_path);
+        (o) => new LatLng.created(o), (o) => o != null &&
+            o.instanceof(context['google']['maps']['LatLng']))))).decode(_path);
   void set path(dynamic /*MVCArray<LatLng>|List<LatLng>*/ path) {
     _path = (new ChainedCodec()
-      ..add(
-          new JsInterfaceCodec<MVCArray<LatLng>>(
-              (o) => new MVCArray<LatLng>.created(o,
-                  new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
-                      (o) => o != null &&
-                          o.instanceof(getPath("google.maps.LatLng"))))))
+      ..add(new JsInterfaceCodec<MVCArray<LatLng>>(
+          (o) => new MVCArray<LatLng>.created(o, new JsInterfaceCodec<LatLng>(
+              (o) => new LatLng.created(o), (o) => o != null &&
+                  o.instanceof(context['google']['maps']['LatLng'])))))
       ..add(new JsListCodec<LatLng>(new JsInterfaceCodec<LatLng>(
-              (o) => new LatLng.created(o), (o) =>
-                  o != null && o.instanceof(getPath("google.maps.LatLng"))))))
+              (o) => new LatLng.created(o), (o) => o != null &&
+                  o.instanceof(context['google']['maps']['LatLng'])))))
         .encode(path);
   }
   void set strokeColor(String _strokeColor) {
@@ -2608,7 +2675,7 @@ final __codec55 = new JsInterfaceCodec<GSymbol>((o) => new GSymbol.created(o));
 class Polygon extends MVCObject implements _Polygon {
   Polygon.created(JsObject o) : super.created(o);
   Polygon([PolygonOptions opts]) : this.created(new JsObject(
-          getPath('google.maps.Polygon'), [__codec56.encode(opts)]));
+          context['google']['maps']['Polygon'], [__codec56.encode(opts)]));
 
   bool get draggable => _getDraggable();
   bool _getDraggable() => asJsObject(this).callMethod('getDraggable');
@@ -2621,22 +2688,20 @@ class Polygon extends MVCObject implements _Polygon {
               (o) => new MVCArray<LatLng>.created(o,
                   new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
                       (o) => o != null &&
-                          o.instanceof(getPath("google.maps.LatLng"))))))
-          .decode(
-              _getPath());
+                          o.instanceof(context['google']['maps']['LatLng'])))))
+          .decode(_getPath());
   _getPath() => __codec5.decode(asJsObject(this).callMethod('getPath'));
   MVCArray<MVCArray<LatLng>> get paths =>
       (new JsInterfaceCodec<MVCArray<MVCArray<LatLng>>>(
               (o) =>
-                  new MVCArray<MVCArray<LatLng>>.created(
-                      o,
+                  new MVCArray<MVCArray<LatLng>>.created(o,
                       new JsInterfaceCodec<MVCArray<LatLng>>(
                           (o) => new MVCArray<LatLng>.created(o,
                               new JsInterfaceCodec<LatLng>(
                                   (o) => new LatLng.created(o),
                                   (o) => o != null &&
-                                      o.instanceof(
-                                          getPath("google.maps.LatLng"))))))))
+                                      o.instanceof(context['google']['maps'][
+                                          'LatLng'])))))))
           .decode(
               _getPaths());
   _getPaths() => __codec5.decode(asJsObject(this).callMethod('getPaths'));
@@ -2660,14 +2725,13 @@ class Polygon extends MVCObject implements _Polygon {
   }
   void set path(dynamic /*MVCArray<LatLng>|List<LatLng>*/ path) => _setPath(
       (new ChainedCodec()
-    ..add(
-        new JsInterfaceCodec<MVCArray<LatLng>>(
-            (o) => new MVCArray<LatLng>.created(o, new JsInterfaceCodec<LatLng>(
-                (o) => new LatLng.created(o), (o) =>
-                    o != null && o.instanceof(getPath("google.maps.LatLng"))))))
+    ..add(new JsInterfaceCodec<MVCArray<LatLng>>(
+        (o) => new MVCArray<LatLng>.created(o, new JsInterfaceCodec<LatLng>(
+            (o) => new LatLng.created(o), (o) => o != null &&
+                o.instanceof(context['google']['maps']['LatLng'])))))
     ..add(new JsListCodec<LatLng>(new JsInterfaceCodec<LatLng>(
-        (o) => new LatLng.created(o),
-        (o) => o != null && o.instanceof(getPath("google.maps.LatLng"))))))
+        (o) => new LatLng.created(o), (o) =>
+            o != null && o.instanceof(context['google']['maps']['LatLng'])))))
       .encode(path));
   void _setPath(dynamic /*MVCArray<LatLng>|List<LatLng>*/ path) {
     asJsObject(this).callMethod('setPath', [__codec5.encode(path)]);
@@ -2678,26 +2742,24 @@ class Polygon extends MVCObject implements _Polygon {
     ..add(
         new JsInterfaceCodec<MVCArray<MVCArray<LatLng>>>(
             (o) =>
-                new MVCArray<MVCArray<LatLng>>.created(
-                    o,
+                new MVCArray<MVCArray<LatLng>>.created(o,
                     new JsInterfaceCodec<MVCArray<LatLng>>(
                         (o) => new MVCArray<LatLng>.created(o,
                             new JsInterfaceCodec<LatLng>(
                                 (o) => new LatLng.created(o),
                                 (o) => o != null &&
-                                    o.instanceof(
-                                        getPath("google.maps.LatLng"))))))))
-    ..add(
-        new JsInterfaceCodec<MVCArray<LatLng>>(
-            (o) => new MVCArray<LatLng>.created(o, new JsInterfaceCodec<LatLng>(
-                (o) => new LatLng.created(o), (o) =>
-                    o != null && o.instanceof(getPath("google.maps.LatLng"))))))
+                                    o.instanceof(context['google']['maps'][
+                                        'LatLng'])))))))
+    ..add(new JsInterfaceCodec<MVCArray<LatLng>>(
+        (o) => new MVCArray<LatLng>.created(o, new JsInterfaceCodec<LatLng>(
+            (o) => new LatLng.created(o), (o) => o != null &&
+                o.instanceof(context['google']['maps']['LatLng'])))))
     ..add(new JsListCodec<List<LatLng>>(new JsListCodec<LatLng>(
-        new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
-            (o) => o != null && o.instanceof(getPath("google.maps.LatLng"))))))
+        new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o), (o) =>
+            o != null && o.instanceof(context['google']['maps']['LatLng'])))))
     ..add(new JsListCodec<LatLng>(new JsInterfaceCodec<LatLng>(
-        (o) => new LatLng.created(o),
-        (o) => o != null && o.instanceof(getPath("google.maps.LatLng"))))))
+        (o) => new LatLng.created(o), (o) =>
+            o != null && o.instanceof(context['google']['maps']['LatLng'])))))
       .encode(paths));
   void _setPaths(
       dynamic /*MVCArray<MVCArray<LatLng>>|MVCArray<LatLng>|List<List<LatLng>>|List<LatLng>*/ paths) {
@@ -2782,26 +2844,24 @@ class PolygonOptions extends JsInterface implements _PolygonOptions {
     ..add(
         new JsInterfaceCodec<MVCArray<MVCArray<LatLng>>>(
             (o) =>
-                new MVCArray<MVCArray<LatLng>>.created(
-                    o,
+                new MVCArray<MVCArray<LatLng>>.created(o,
                     new JsInterfaceCodec<MVCArray<LatLng>>(
                         (o) => new MVCArray<LatLng>.created(o,
                             new JsInterfaceCodec<LatLng>(
                                 (o) => new LatLng.created(o),
                                 (o) => o != null &&
-                                    o.instanceof(
-                                        getPath("google.maps.LatLng"))))))))
-    ..add(
-        new JsInterfaceCodec<MVCArray<LatLng>>(
-            (o) => new MVCArray<LatLng>.created(o, new JsInterfaceCodec<LatLng>(
-                (o) => new LatLng.created(o), (o) =>
-                    o != null && o.instanceof(getPath("google.maps.LatLng"))))))
+                                    o.instanceof(context['google']['maps'][
+                                        'LatLng'])))))))
+    ..add(new JsInterfaceCodec<MVCArray<LatLng>>(
+        (o) => new MVCArray<LatLng>.created(o, new JsInterfaceCodec<LatLng>(
+            (o) => new LatLng.created(o), (o) => o != null &&
+                o.instanceof(context['google']['maps']['LatLng'])))))
     ..add(new JsListCodec<List<LatLng>>(new JsListCodec<LatLng>(
-        new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
-            (o) => o != null && o.instanceof(getPath("google.maps.LatLng"))))))
+        new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o), (o) =>
+            o != null && o.instanceof(context['google']['maps']['LatLng'])))))
     ..add(new JsListCodec<LatLng>(new JsInterfaceCodec<LatLng>(
-            (o) => new LatLng.created(o),
-            (o) => o != null && o.instanceof(getPath("google.maps.LatLng"))))))
+            (o) => new LatLng.created(o), (o) => o != null &&
+                o.instanceof(context['google']['maps']['LatLng'])))))
       .decode(_paths);
   void set paths(
       dynamic /*MVCArray<MVCArray<LatLng>>|MVCArray<LatLng>|List<List<LatLng>>|List<LatLng>*/ paths) {
@@ -2809,27 +2869,24 @@ class PolygonOptions extends JsInterface implements _PolygonOptions {
       ..add(
           new JsInterfaceCodec<MVCArray<MVCArray<LatLng>>>(
               (o) =>
-                  new MVCArray<MVCArray<LatLng>>.created(
-                      o,
+                  new MVCArray<MVCArray<LatLng>>.created(o,
                       new JsInterfaceCodec<MVCArray<LatLng>>(
                           (o) => new MVCArray<LatLng>.created(o,
                               new JsInterfaceCodec<LatLng>(
                                   (o) => new LatLng.created(o),
                                   (o) => o != null &&
-                                      o.instanceof(
-                                          getPath("google.maps.LatLng"))))))))
-      ..add(
-          new JsInterfaceCodec<MVCArray<LatLng>>(
-              (o) => new MVCArray<LatLng>.created(o,
-                  new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
-                      (o) => o != null &&
-                          o.instanceof(getPath("google.maps.LatLng"))))))
+                                      o.instanceof(context['google']['maps'][
+                                          'LatLng'])))))))
+      ..add(new JsInterfaceCodec<MVCArray<LatLng>>(
+          (o) => new MVCArray<LatLng>.created(o, new JsInterfaceCodec<LatLng>(
+              (o) => new LatLng.created(o), (o) => o != null &&
+                  o.instanceof(context['google']['maps']['LatLng'])))))
       ..add(new JsListCodec<List<LatLng>>(new JsListCodec<LatLng>(
           new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o), (o) =>
-              o != null && o.instanceof(getPath("google.maps.LatLng"))))))
+              o != null && o.instanceof(context['google']['maps']['LatLng'])))))
       ..add(new JsListCodec<LatLng>(new JsInterfaceCodec<LatLng>(
-              (o) => new LatLng.created(o), (o) =>
-                  o != null && o.instanceof(getPath("google.maps.LatLng"))))))
+              (o) => new LatLng.created(o), (o) => o != null &&
+                  o.instanceof(context['google']['maps']['LatLng'])))))
         .encode(paths);
   }
   void set strokeColor(String _strokeColor) {
@@ -2896,7 +2953,7 @@ class PolyMouseEvent extends MouseEvent implements _PolyMouseEvent {
 class Rectangle extends MVCObject implements _Rectangle {
   Rectangle.created(JsObject o) : super.created(o);
   Rectangle([RectangleOptions opts]) : this.created(new JsObject(
-          getPath('google.maps.Rectangle'), [__codec58.encode(opts)]));
+          context['google']['maps']['Rectangle'], [__codec58.encode(opts)]));
 
   LatLngBounds get bounds => _getBounds();
   LatLngBounds _getBounds() =>
@@ -3037,7 +3094,7 @@ class RectangleOptions extends JsInterface implements _RectangleOptions {
 class Circle extends MVCObject implements _Circle {
   Circle.created(JsObject o) : super.created(o);
   Circle([CircleOptions opts]) : this.created(new JsObject(
-          getPath('google.maps.Circle'), [__codec59.encode(opts)]));
+          context['google']['maps']['Circle'], [__codec59.encode(opts)]));
 
   LatLngBounds get bounds => _getBounds();
   LatLngBounds _getBounds() =>
@@ -3192,14 +3249,20 @@ class CircleOptions extends JsInterface implements _CircleOptions {
 class StrokePosition extends JsEnum {
   static final values = <StrokePosition>[CENTER, INSIDE, OUTSIDE];
   static final CENTER = new StrokePosition._(
-      'CENTER', getPath('google.maps.StrokePosition')['CENTER']);
+      'CENTER', context['google']['maps']['StrokePosition']['CENTER']);
   static final INSIDE = new StrokePosition._(
-      'INSIDE', getPath('google.maps.StrokePosition')['INSIDE']);
+      'INSIDE', context['google']['maps']['StrokePosition']['INSIDE']);
   static final OUTSIDE = new StrokePosition._(
-      'OUTSIDE', getPath('google.maps.StrokePosition')['OUTSIDE']);
+      'OUTSIDE', context['google']['maps']['StrokePosition']['OUTSIDE']);
+
   final String _name;
   StrokePosition._(this._name, o) : super.created(o);
+
   String toString() => 'StrokePosition.$_name';
+
+  // dumb code to remove analyzer hint for unused _StrokePosition
+  _StrokePosition _dumbMethod1() => _dumbMethod2();
+  _StrokePosition _dumbMethod2() => _dumbMethod1();
 }
 
 // **************************************************************************
@@ -3211,7 +3274,7 @@ class StrokePosition extends JsEnum {
 class GroundOverlay extends MVCObject implements _GroundOverlay {
   GroundOverlay.created(JsObject o) : super.created(o);
   GroundOverlay(String url, LatLngBounds bounds, [GroundOverlayOptions opts])
-      : this.created(new JsObject(getPath('google.maps.GroundOverlay'), [
+      : this.created(new JsObject(context['google']['maps']['GroundOverlay'], [
         url,
         __codec6.encode(bounds),
         __codec60.encode(opts)
@@ -3278,17 +3341,17 @@ class GroundOverlayOptions extends JsInterface
 class OverlayView extends JsInterface implements _OverlayView {
   OverlayView.created(JsObject o) : super.created(o);
   OverlayView()
-      : this.created(new JsObject(getPath('google.maps.OverlayView')));
+      : this.created(new JsObject(context['google']['maps']['OverlayView']));
 
   void draw() {
     asJsObject(this).callMethod('draw');
   }
   dynamic /*GMap|StreetViewPanorama*/ get map => (new ChainedCodec()
     ..add(new JsInterfaceCodec<GMap>((o) => new GMap.created(o),
-        (o) => o != null && o.instanceof(getPath("google.maps.Map"))))
+        (o) => o != null && o.instanceof(context['google']['maps']['Map'])))
     ..add(new JsInterfaceCodec<StreetViewPanorama>(
             (o) => new StreetViewPanorama.created(o), (o) => o != null &&
-                o.instanceof(getPath("google.maps.StreetViewPanorama")))))
+                o.instanceof(context['google']['maps']['StreetViewPanorama']))))
       .decode(_getMap());
   _getMap() => __codec5.decode(asJsObject(this).callMethod('getMap'));
   MapPanes get panes => _getPanes();
@@ -3306,10 +3369,10 @@ class OverlayView extends JsInterface implements _OverlayView {
   void set map(dynamic /*GMap|StreetViewPanorama*/ map) => _setMap(
       (new ChainedCodec()
     ..add(new JsInterfaceCodec<GMap>((o) => new GMap.created(o),
-        (o) => o != null && o.instanceof(getPath("google.maps.Map"))))
+        (o) => o != null && o.instanceof(context['google']['maps']['Map'])))
     ..add(new JsInterfaceCodec<StreetViewPanorama>(
         (o) => new StreetViewPanorama.created(o), (o) => o != null &&
-                o.instanceof(getPath("google.maps.StreetViewPanorama")))))
+                o.instanceof(context['google']['maps']['StreetViewPanorama']))))
           .encode(map));
   void _setMap(dynamic /*GMap|StreetViewPanorama*/ map) {
     asJsObject(this).callMethod('setMap', [__codec5.encode(map)]);
@@ -3388,7 +3451,8 @@ class MapCanvasProjection extends MVCObject implements _MapCanvasProjection {
 @JsName('google.maps.Geocoder')
 class Geocoder extends JsInterface implements _Geocoder {
   Geocoder.created(JsObject o) : super.created(o);
-  Geocoder() : this.created(new JsObject(getPath('google.maps.Geocoder')));
+  Geocoder()
+      : this.created(new JsObject(context['google']['maps']['Geocoder']));
 
   void geocode(GeocoderRequest request,
       callback(List<GeocoderResult> p1, GeocoderStatus p2)) {
@@ -3515,22 +3579,28 @@ class GeocoderStatus extends JsEnum {
     ZERO_RESULTS
   ];
   static final ERROR = new GeocoderStatus._(
-      'ERROR', getPath('google.maps.GeocoderStatus')['ERROR']);
+      'ERROR', context['google']['maps']['GeocoderStatus']['ERROR']);
   static final INVALID_REQUEST = new GeocoderStatus._('INVALID_REQUEST',
-      getPath('google.maps.GeocoderStatus')['INVALID_REQUEST']);
-  static final OK =
-      new GeocoderStatus._('OK', getPath('google.maps.GeocoderStatus')['OK']);
+      context['google']['maps']['GeocoderStatus']['INVALID_REQUEST']);
+  static final OK = new GeocoderStatus._(
+      'OK', context['google']['maps']['GeocoderStatus']['OK']);
   static final OVER_QUERY_LIMIT = new GeocoderStatus._('OVER_QUERY_LIMIT',
-      getPath('google.maps.GeocoderStatus')['OVER_QUERY_LIMIT']);
+      context['google']['maps']['GeocoderStatus']['OVER_QUERY_LIMIT']);
   static final REQUEST_DENIED = new GeocoderStatus._('REQUEST_DENIED',
-      getPath('google.maps.GeocoderStatus')['REQUEST_DENIED']);
-  static final UNKNOWN_ERROR = new GeocoderStatus._(
-      'UNKNOWN_ERROR', getPath('google.maps.GeocoderStatus')['UNKNOWN_ERROR']);
-  static final ZERO_RESULTS = new GeocoderStatus._(
-      'ZERO_RESULTS', getPath('google.maps.GeocoderStatus')['ZERO_RESULTS']);
+      context['google']['maps']['GeocoderStatus']['REQUEST_DENIED']);
+  static final UNKNOWN_ERROR = new GeocoderStatus._('UNKNOWN_ERROR',
+      context['google']['maps']['GeocoderStatus']['UNKNOWN_ERROR']);
+  static final ZERO_RESULTS = new GeocoderStatus._('ZERO_RESULTS',
+      context['google']['maps']['GeocoderStatus']['ZERO_RESULTS']);
+
   final String _name;
   GeocoderStatus._(this._name, o) : super.created(o);
+
   String toString() => 'GeocoderStatus.$_name';
+
+  // dumb code to remove analyzer hint for unused _GeocoderStatus
+  _GeocoderStatus _dumbMethod1() => _dumbMethod2();
+  _GeocoderStatus _dumbMethod2() => _dumbMethod1();
 }
 
 // **************************************************************************
@@ -3687,17 +3757,23 @@ class GeocoderLocationType extends JsEnum {
     ROOFTOP
   ];
   static final APPROXIMATE = new GeocoderLocationType._('APPROXIMATE',
-      getPath('google.maps.GeocoderLocationType')['APPROXIMATE']);
+      context['google']['maps']['GeocoderLocationType']['APPROXIMATE']);
   static final GEOMETRIC_CENTER = new GeocoderLocationType._('GEOMETRIC_CENTER',
-      getPath('google.maps.GeocoderLocationType')['GEOMETRIC_CENTER']);
+      context['google']['maps']['GeocoderLocationType']['GEOMETRIC_CENTER']);
   static final RANGE_INTERPOLATED = new GeocoderLocationType._(
       'RANGE_INTERPOLATED',
-      getPath('google.maps.GeocoderLocationType')['RANGE_INTERPOLATED']);
+      context['google']['maps']['GeocoderLocationType']['RANGE_INTERPOLATED']);
   static final ROOFTOP = new GeocoderLocationType._(
-      'ROOFTOP', getPath('google.maps.GeocoderLocationType')['ROOFTOP']);
+      'ROOFTOP', context['google']['maps']['GeocoderLocationType']['ROOFTOP']);
+
   final String _name;
   GeocoderLocationType._(this._name, o) : super.created(o);
+
   String toString() => 'GeocoderLocationType.$_name';
+
+  // dumb code to remove analyzer hint for unused _GeocoderLocationType
+  _GeocoderLocationType _dumbMethod1() => _dumbMethod2();
+  _GeocoderLocationType _dumbMethod2() => _dumbMethod1();
 }
 
 // **************************************************************************
@@ -3708,9 +3784,9 @@ class GeocoderLocationType extends JsEnum {
 @JsName('google.maps.DirectionsRenderer')
 class DirectionsRenderer extends MVCObject implements _DirectionsRenderer {
   DirectionsRenderer.created(JsObject o) : super.created(o);
-  DirectionsRenderer([DirectionsRendererOptions opts])
-      : this.created(new JsObject(
-          getPath('google.maps.DirectionsRenderer'), [__codec74.encode(opts)]));
+  DirectionsRenderer([DirectionsRendererOptions opts]) : this.created(
+          new JsObject(context['google']['maps']['DirectionsRenderer'],
+              [__codec74.encode(opts)]));
 
   DirectionsResult get directions => _getDirections();
   DirectionsResult _getDirections() =>
@@ -3838,8 +3914,8 @@ final __codec76 =
 @JsName('google.maps.DirectionsService')
 class DirectionsService extends JsInterface implements _DirectionsService {
   DirectionsService.created(JsObject o) : super.created(o);
-  DirectionsService()
-      : this.created(new JsObject(getPath('google.maps.DirectionsService')));
+  DirectionsService() : this.created(
+          new JsObject(context['google']['maps']['DirectionsService']));
 
   void route(DirectionsRequest request,
       callback(DirectionsResult p1, DirectionsStatus p2)) {
@@ -3899,12 +3975,12 @@ class DirectionsRequest extends JsInterface implements _DirectionsRequest {
   dynamic get _destination => __codec5.decode(asJsObject(this)['destination']);
   dynamic /*LatLng|String*/ get destination => (new ChainedCodec()
     ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
-        (o) => o != null && o.instanceof(getPath("google.maps.LatLng"))))
+        (o) => o != null && o.instanceof(context['google']['maps']['LatLng'])))
     ..add(new IdentityCodec<String>())).decode(_destination);
   void set destination(dynamic /*LatLng|String*/ destination) {
     _destination = (new ChainedCodec()
-      ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
-          (o) => o != null && o.instanceof(getPath("google.maps.LatLng"))))
+      ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o), (o) =>
+          o != null && o.instanceof(context['google']['maps']['LatLng'])))
       ..add(new IdentityCodec<String>())).encode(destination);
   }
   void set durationInTraffic(bool _durationInTraffic) {
@@ -3921,12 +3997,12 @@ class DirectionsRequest extends JsInterface implements _DirectionsRequest {
   dynamic get _origin => __codec5.decode(asJsObject(this)['origin']);
   dynamic /*LatLng|String*/ get origin => (new ChainedCodec()
     ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
-        (o) => o != null && o.instanceof(getPath("google.maps.LatLng"))))
+        (o) => o != null && o.instanceof(context['google']['maps']['LatLng'])))
     ..add(new IdentityCodec<String>())).decode(_origin);
   void set origin(dynamic /*LatLng|String*/ origin) {
     _origin = (new ChainedCodec()
-      ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
-          (o) => o != null && o.instanceof(getPath("google.maps.LatLng"))))
+      ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o), (o) =>
+          o != null && o.instanceof(context['google']['maps']['LatLng'])))
       ..add(new IdentityCodec<String>())).encode(origin);
   }
   void set provideRouteAlternatives(bool _provideRouteAlternatives) {
@@ -3984,16 +4060,22 @@ final __codec84 = new JsListCodec<DirectionsWaypoint>(__codec83);
 class TravelMode extends JsEnum {
   static final values = <TravelMode>[BICYCLING, DRIVING, TRANSIT, WALKING];
   static final BICYCLING = new TravelMode._(
-      'BICYCLING', getPath('google.maps.TravelMode')['BICYCLING']);
-  static final DRIVING =
-      new TravelMode._('DRIVING', getPath('google.maps.TravelMode')['DRIVING']);
-  static final TRANSIT =
-      new TravelMode._('TRANSIT', getPath('google.maps.TravelMode')['TRANSIT']);
-  static final WALKING =
-      new TravelMode._('WALKING', getPath('google.maps.TravelMode')['WALKING']);
+      'BICYCLING', context['google']['maps']['TravelMode']['BICYCLING']);
+  static final DRIVING = new TravelMode._(
+      'DRIVING', context['google']['maps']['TravelMode']['DRIVING']);
+  static final TRANSIT = new TravelMode._(
+      'TRANSIT', context['google']['maps']['TravelMode']['TRANSIT']);
+  static final WALKING = new TravelMode._(
+      'WALKING', context['google']['maps']['TravelMode']['WALKING']);
+
   final String _name;
   TravelMode._(this._name, o) : super.created(o);
+
   String toString() => 'TravelMode.$_name';
+
+  // dumb code to remove analyzer hint for unused _TravelMode
+  _TravelMode _dumbMethod1() => _dumbMethod2();
+  _TravelMode _dumbMethod2() => _dumbMethod1();
 }
 
 // **************************************************************************
@@ -4004,12 +4086,18 @@ class TravelMode extends JsEnum {
 class UnitSystem extends JsEnum {
   static final values = <UnitSystem>[IMPERIAL, METRIC];
   static final IMPERIAL = new UnitSystem._(
-      'IMPERIAL', getPath('google.maps.UnitSystem')['IMPERIAL']);
-  static final METRIC =
-      new UnitSystem._('METRIC', getPath('google.maps.UnitSystem')['METRIC']);
+      'IMPERIAL', context['google']['maps']['UnitSystem']['IMPERIAL']);
+  static final METRIC = new UnitSystem._(
+      'METRIC', context['google']['maps']['UnitSystem']['METRIC']);
+
   final String _name;
   UnitSystem._(this._name, o) : super.created(o);
+
   String toString() => 'UnitSystem.$_name';
+
+  // dumb code to remove analyzer hint for unused _UnitSystem
+  _UnitSystem _dumbMethod1() => _dumbMethod2();
+  _UnitSystem _dumbMethod2() => _dumbMethod1();
 }
 
 // **************************************************************************
@@ -4062,18 +4150,24 @@ final __codec87 = new BiMapCodec<TransitRoutePreference, dynamic>(
 class TransitMode extends JsEnum {
   static final values = <TransitMode>[BUS, RAIL, SUBWAY, TRAIN, TRAM];
   static final BUS =
-      new TransitMode._('BUS', getPath('google.maps.TransitMode')['BUS']);
-  static final RAIL =
-      new TransitMode._('RAIL', getPath('google.maps.TransitMode')['RAIL']);
-  static final SUBWAY =
-      new TransitMode._('SUBWAY', getPath('google.maps.TransitMode')['SUBWAY']);
-  static final TRAIN =
-      new TransitMode._('TRAIN', getPath('google.maps.TransitMode')['TRAIN']);
-  static final TRAM =
-      new TransitMode._('TRAM', getPath('google.maps.TransitMode')['TRAM']);
+      new TransitMode._('BUS', context['google']['maps']['TransitMode']['BUS']);
+  static final RAIL = new TransitMode._(
+      'RAIL', context['google']['maps']['TransitMode']['RAIL']);
+  static final SUBWAY = new TransitMode._(
+      'SUBWAY', context['google']['maps']['TransitMode']['SUBWAY']);
+  static final TRAIN = new TransitMode._(
+      'TRAIN', context['google']['maps']['TransitMode']['TRAIN']);
+  static final TRAM = new TransitMode._(
+      'TRAM', context['google']['maps']['TransitMode']['TRAM']);
+
   final String _name;
   TransitMode._(this._name, o) : super.created(o);
+
   String toString() => 'TransitMode.$_name';
+
+  // dumb code to remove analyzer hint for unused _TransitMode
+  _TransitMode _dumbMethod1() => _dumbMethod2();
+  _TransitMode _dumbMethod2() => _dumbMethod1();
 }
 
 // **************************************************************************
@@ -4084,12 +4178,18 @@ class TransitMode extends JsEnum {
 class TransitRoutePreference extends JsEnum {
   static final values = <TransitRoutePreference>[FEWER_TRANSFERS, LESS_WALKING];
   static final FEWER_TRANSFERS = new TransitRoutePreference._('FEWER_TRANSFERS',
-      getPath('google.maps.TransitRoutePreference')['FEWER_TRANSFERS']);
+      context['google']['maps']['TransitRoutePreference']['FEWER_TRANSFERS']);
   static final LESS_WALKING = new TransitRoutePreference._('LESS_WALKING',
-      getPath('google.maps.TransitRoutePreference')['LESS_WALKING']);
+      context['google']['maps']['TransitRoutePreference']['LESS_WALKING']);
+
   final String _name;
   TransitRoutePreference._(this._name, o) : super.created(o);
+
   String toString() => 'TransitRoutePreference.$_name';
+
+  // dumb code to remove analyzer hint for unused _TransitRoutePreference
+  _TransitRoutePreference _dumbMethod1() => _dumbMethod2();
+  _TransitRoutePreference _dumbMethod2() => _dumbMethod1();
 }
 
 // **************************************************************************
@@ -4119,12 +4219,12 @@ class DirectionsWaypoint extends JsInterface implements _DirectionsWaypoint {
   dynamic get _location => __codec5.decode(asJsObject(this)['location']);
   dynamic /*LatLng|String*/ get location => (new ChainedCodec()
     ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
-        (o) => o != null && o.instanceof(getPath("google.maps.LatLng"))))
+        (o) => o != null && o.instanceof(context['google']['maps']['LatLng'])))
     ..add(new IdentityCodec<String>())).decode(_location);
   void set location(dynamic /*LatLng|String*/ location) {
     _location = (new ChainedCodec()
-      ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
-          (o) => o != null && o.instanceof(getPath("google.maps.LatLng"))))
+      ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o), (o) =>
+          o != null && o.instanceof(context['google']['maps']['LatLng'])))
       ..add(new IdentityCodec<String>())).encode(location);
   }
   void set stopover(bool _stopover) {
@@ -4150,25 +4250,31 @@ class DirectionsStatus extends JsEnum {
     ZERO_RESULTS
   ];
   static final INVALID_REQUEST = new DirectionsStatus._('INVALID_REQUEST',
-      getPath('google.maps.DirectionsStatus')['INVALID_REQUEST']);
+      context['google']['maps']['DirectionsStatus']['INVALID_REQUEST']);
   static final MAX_WAYPOINTS_EXCEEDED = new DirectionsStatus._(
       'MAX_WAYPOINTS_EXCEEDED',
-      getPath('google.maps.DirectionsStatus')['MAX_WAYPOINTS_EXCEEDED']);
+      context['google']['maps']['DirectionsStatus']['MAX_WAYPOINTS_EXCEEDED']);
   static final NOT_FOUND = new DirectionsStatus._(
-      'NOT_FOUND', getPath('google.maps.DirectionsStatus')['NOT_FOUND']);
+      'NOT_FOUND', context['google']['maps']['DirectionsStatus']['NOT_FOUND']);
   static final OK = new DirectionsStatus._(
-      'OK', getPath('google.maps.DirectionsStatus')['OK']);
+      'OK', context['google']['maps']['DirectionsStatus']['OK']);
   static final OVER_QUERY_LIMIT = new DirectionsStatus._('OVER_QUERY_LIMIT',
-      getPath('google.maps.DirectionsStatus')['OVER_QUERY_LIMIT']);
+      context['google']['maps']['DirectionsStatus']['OVER_QUERY_LIMIT']);
   static final REQUEST_DENIED = new DirectionsStatus._('REQUEST_DENIED',
-      getPath('google.maps.DirectionsStatus')['REQUEST_DENIED']);
+      context['google']['maps']['DirectionsStatus']['REQUEST_DENIED']);
   static final UNKNOWN_ERROR = new DirectionsStatus._('UNKNOWN_ERROR',
-      getPath('google.maps.DirectionsStatus')['UNKNOWN_ERROR']);
-  static final ZERO_RESULTS = new DirectionsStatus._(
-      'ZERO_RESULTS', getPath('google.maps.DirectionsStatus')['ZERO_RESULTS']);
+      context['google']['maps']['DirectionsStatus']['UNKNOWN_ERROR']);
+  static final ZERO_RESULTS = new DirectionsStatus._('ZERO_RESULTS',
+      context['google']['maps']['DirectionsStatus']['ZERO_RESULTS']);
+
   final String _name;
   DirectionsStatus._(this._name, o) : super.created(o);
+
   String toString() => 'DirectionsStatus.$_name';
+
+  // dumb code to remove analyzer hint for unused _DirectionsStatus
+  _DirectionsStatus _dumbMethod1() => _dumbMethod2();
+  _DirectionsStatus _dumbMethod2() => _dumbMethod1();
 }
 
 // **************************************************************************
@@ -4730,8 +4836,8 @@ final __codec104 = new BiMapCodec<VehicleType, dynamic>(
 @JsName('google.maps.ElevationService')
 class ElevationService extends JsInterface implements _ElevationService {
   ElevationService.created(JsObject o) : super.created(o);
-  ElevationService()
-      : this.created(new JsObject(getPath('google.maps.ElevationService')));
+  ElevationService() : this.created(
+          new JsObject(context['google']['maps']['ElevationService']));
 
   void getElevationAlongPath(PathElevationRequest request,
       callback(List<ElevationResult> p1, ElevationStatus p2)) {
@@ -4859,18 +4965,24 @@ class ElevationStatus extends JsEnum {
     UNKNOWN_ERROR
   ];
   static final INVALID_REQUEST = new ElevationStatus._('INVALID_REQUEST',
-      getPath('google.maps.ElevationStatus')['INVALID_REQUEST']);
-  static final OK =
-      new ElevationStatus._('OK', getPath('google.maps.ElevationStatus')['OK']);
+      context['google']['maps']['ElevationStatus']['INVALID_REQUEST']);
+  static final OK = new ElevationStatus._(
+      'OK', context['google']['maps']['ElevationStatus']['OK']);
   static final OVER_QUERY_LIMIT = new ElevationStatus._('OVER_QUERY_LIMIT',
-      getPath('google.maps.ElevationStatus')['OVER_QUERY_LIMIT']);
+      context['google']['maps']['ElevationStatus']['OVER_QUERY_LIMIT']);
   static final REQUEST_DENIED = new ElevationStatus._('REQUEST_DENIED',
-      getPath('google.maps.ElevationStatus')['REQUEST_DENIED']);
-  static final UNKNOWN_ERROR = new ElevationStatus._(
-      'UNKNOWN_ERROR', getPath('google.maps.ElevationStatus')['UNKNOWN_ERROR']);
+      context['google']['maps']['ElevationStatus']['REQUEST_DENIED']);
+  static final UNKNOWN_ERROR = new ElevationStatus._('UNKNOWN_ERROR',
+      context['google']['maps']['ElevationStatus']['UNKNOWN_ERROR']);
+
   final String _name;
   ElevationStatus._(this._name, o) : super.created(o);
+
   String toString() => 'ElevationStatus.$_name';
+
+  // dumb code to remove analyzer hint for unused _ElevationStatus
+  _ElevationStatus _dumbMethod1() => _dumbMethod2();
+  _ElevationStatus _dumbMethod2() => _dumbMethod1();
 }
 
 // **************************************************************************
@@ -4882,7 +4994,7 @@ class ElevationStatus extends JsEnum {
 class MaxZoomService extends JsInterface implements _MaxZoomService {
   MaxZoomService.created(JsObject o) : super.created(o);
   MaxZoomService()
-      : this.created(new JsObject(getPath('google.maps.MaxZoomService')));
+      : this.created(new JsObject(context['google']['maps']['MaxZoomService']));
 
   void getMaxZoomAtLatLng(LatLng latlng, callback(MaxZoomResult p1)) {
     asJsObject(this).callMethod('getMaxZoomAtLatLng', [
@@ -4939,12 +5051,18 @@ final __codec113 = new BiMapCodec<MaxZoomStatus, dynamic>(
 class MaxZoomStatus extends JsEnum {
   static final values = <MaxZoomStatus>[ERROR, OK];
   static final ERROR = new MaxZoomStatus._(
-      'ERROR', getPath('google.maps.MaxZoomStatus')['ERROR']);
-  static final OK =
-      new MaxZoomStatus._('OK', getPath('google.maps.MaxZoomStatus')['OK']);
+      'ERROR', context['google']['maps']['MaxZoomStatus']['ERROR']);
+  static final OK = new MaxZoomStatus._(
+      'OK', context['google']['maps']['MaxZoomStatus']['OK']);
+
   final String _name;
   MaxZoomStatus._(this._name, o) : super.created(o);
+
   String toString() => 'MaxZoomStatus.$_name';
+
+  // dumb code to remove analyzer hint for unused _MaxZoomStatus
+  _MaxZoomStatus _dumbMethod1() => _dumbMethod2();
+  _MaxZoomStatus _dumbMethod2() => _dumbMethod1();
 }
 
 // **************************************************************************
@@ -4957,7 +5075,7 @@ class DistanceMatrixService extends JsInterface
     implements _DistanceMatrixService {
   DistanceMatrixService.created(JsObject o) : super.created(o);
   DistanceMatrixService() : this.created(
-          new JsObject(getPath('google.maps.DistanceMatrixService')));
+          new JsObject(context['google']['maps']['DistanceMatrixService']));
 
   void getDistanceMatrix(DistanceMatrixRequest request,
       callback(DistanceMatrixResponse p1, DistanceMatrixStatus p2)) {
@@ -5026,13 +5144,13 @@ class DistanceMatrixRequest extends JsInterface
   List<dynamic /*LatLng|String*/ > get destinations =>
       (new JsListCodec<dynamic /*LatLng|String*/ >(new ChainedCodec()
     ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
-        (o) => o != null && o.instanceof(getPath("google.maps.LatLng"))))
+        (o) => o != null && o.instanceof(context['google']['maps']['LatLng'])))
     ..add(new IdentityCodec<String>()))).decode(_destinations);
   void set destinations(List<dynamic /*LatLng|String*/ > destinations) {
     _destinations = (new JsListCodec<dynamic /*LatLng|String*/ >(
         new ChainedCodec()
-      ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
-          (o) => o != null && o.instanceof(getPath("google.maps.LatLng"))))
+      ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o), (o) =>
+          o != null && o.instanceof(context['google']['maps']['LatLng'])))
       ..add(new IdentityCodec<String>()))).encode(destinations);
   }
 
@@ -5047,12 +5165,12 @@ class DistanceMatrixRequest extends JsInterface
   List<dynamic /*LatLng|String*/ > get origins =>
       (new JsListCodec<dynamic /*LatLng|String*/ >(new ChainedCodec()
     ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
-        (o) => o != null && o.instanceof(getPath("google.maps.LatLng"))))
+        (o) => o != null && o.instanceof(context['google']['maps']['LatLng'])))
     ..add(new IdentityCodec<String>()))).decode(_origins);
   void set origins(List<dynamic /*LatLng|String*/ > origins) {
     _origins = (new JsListCodec<dynamic /*LatLng|String*/ >(new ChainedCodec()
-      ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
-          (o) => o != null && o.instanceof(getPath("google.maps.LatLng"))))
+      ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o), (o) =>
+          o != null && o.instanceof(context['google']['maps']['LatLng'])))
       ..add(new IdentityCodec<String>()))).encode(origins);
   }
 
@@ -5185,24 +5303,30 @@ class DistanceMatrixStatus extends JsEnum {
     UNKNOWN_ERROR
   ];
   static final INVALID_REQUEST = new DistanceMatrixStatus._('INVALID_REQUEST',
-      getPath('google.maps.DistanceMatrixStatus')['INVALID_REQUEST']);
+      context['google']['maps']['DistanceMatrixStatus']['INVALID_REQUEST']);
   static final MAX_DIMENSIONS_EXCEEDED = new DistanceMatrixStatus._(
-      'MAX_DIMENSIONS_EXCEEDED',
-      getPath('google.maps.DistanceMatrixStatus')['MAX_DIMENSIONS_EXCEEDED']);
+      'MAX_DIMENSIONS_EXCEEDED', context['google']['maps'][
+      'DistanceMatrixStatus']['MAX_DIMENSIONS_EXCEEDED']);
   static final MAX_ELEMENTS_EXCEEDED = new DistanceMatrixStatus._(
-      'MAX_ELEMENTS_EXCEEDED',
-      getPath('google.maps.DistanceMatrixStatus')['MAX_ELEMENTS_EXCEEDED']);
+      'MAX_ELEMENTS_EXCEEDED', context['google']['maps'][
+      'DistanceMatrixStatus']['MAX_ELEMENTS_EXCEEDED']);
   static final OK = new DistanceMatrixStatus._(
-      'OK', getPath('google.maps.DistanceMatrixStatus')['OK']);
+      'OK', context['google']['maps']['DistanceMatrixStatus']['OK']);
   static final OVER_QUERY_LIMIT = new DistanceMatrixStatus._('OVER_QUERY_LIMIT',
-      getPath('google.maps.DistanceMatrixStatus')['OVER_QUERY_LIMIT']);
+      context['google']['maps']['DistanceMatrixStatus']['OVER_QUERY_LIMIT']);
   static final REQUEST_DENIED = new DistanceMatrixStatus._('REQUEST_DENIED',
-      getPath('google.maps.DistanceMatrixStatus')['REQUEST_DENIED']);
+      context['google']['maps']['DistanceMatrixStatus']['REQUEST_DENIED']);
   static final UNKNOWN_ERROR = new DistanceMatrixStatus._('UNKNOWN_ERROR',
-      getPath('google.maps.DistanceMatrixStatus')['UNKNOWN_ERROR']);
+      context['google']['maps']['DistanceMatrixStatus']['UNKNOWN_ERROR']);
+
   final String _name;
   DistanceMatrixStatus._(this._name, o) : super.created(o);
+
   String toString() => 'DistanceMatrixStatus.$_name';
+
+  // dumb code to remove analyzer hint for unused _DistanceMatrixStatus
+  _DistanceMatrixStatus _dumbMethod1() => _dumbMethod2();
+  _DistanceMatrixStatus _dumbMethod2() => _dumbMethod1();
 }
 
 // **************************************************************************
@@ -5217,14 +5341,20 @@ class DistanceMatrixElementStatus extends JsEnum {
     ZERO_RESULTS
   ];
   static final NOT_FOUND = new DistanceMatrixElementStatus._('NOT_FOUND',
-      getPath('google.maps.DistanceMatrixElementStatus')['NOT_FOUND']);
+      context['google']['maps']['DistanceMatrixElementStatus']['NOT_FOUND']);
   static final OK = new DistanceMatrixElementStatus._(
-      'OK', getPath('google.maps.DistanceMatrixElementStatus')['OK']);
+      'OK', context['google']['maps']['DistanceMatrixElementStatus']['OK']);
   static final ZERO_RESULTS = new DistanceMatrixElementStatus._('ZERO_RESULTS',
-      getPath('google.maps.DistanceMatrixElementStatus')['ZERO_RESULTS']);
+      context['google']['maps']['DistanceMatrixElementStatus']['ZERO_RESULTS']);
+
   final String _name;
   DistanceMatrixElementStatus._(this._name, o) : super.created(o);
+
   String toString() => 'DistanceMatrixElementStatus.$_name';
+
+  // dumb code to remove analyzer hint for unused _DistanceMatrixElementStatus
+  _DistanceMatrixElementStatus _dumbMethod1() => _dumbMethod2();
+  _DistanceMatrixElementStatus _dumbMethod2() => _dumbMethod1();
 }
 
 // **************************************************************************
@@ -5284,7 +5414,7 @@ class Place extends JsInterface implements _Place {
 class SaveWidget extends JsInterface implements _SaveWidget {
   SaveWidget.created(JsObject o) : super.created(o);
   SaveWidget(Node container, [SaveWidgetOptions opts]) : this.created(
-          new JsObject(getPath('google.maps.SaveWidget'), [
+          new JsObject(context['google']['maps']['SaveWidget'], [
         container,
         __codec123.encode(opts)
       ]));
@@ -5389,8 +5519,8 @@ class MapType extends JsInterface implements _MapType {
 @JsName('google.maps.MapTypeRegistry')
 class MapTypeRegistry extends MVCObject implements _MapTypeRegistry {
   MapTypeRegistry.created(JsObject o) : super.created(o);
-  MapTypeRegistry()
-      : this.created(new JsObject(getPath('google.maps.MapTypeRegistry')));
+  MapTypeRegistry() : this.created(
+          new JsObject(context['google']['maps']['MapTypeRegistry']));
 
   void set(String id, MapType mapType) {
     asJsObject(this).callMethod('set', [id, __codec124.encode(mapType)]);
@@ -5428,7 +5558,8 @@ class Projection extends JsInterface implements _Projection {
 class ImageMapType extends MVCObject implements MapType, _ImageMapType {
   ImageMapType.created(JsObject o) : super.created(o);
   ImageMapType(ImageMapTypeOptions opts) : this.created(new JsObject(
-          getPath('google.maps.ImageMapType'), [__codec125.encode(opts)]));
+          context['google']['maps']['ImageMapType'],
+          [__codec125.encode(opts)]));
 
   num get opacity => _getOpacity();
   num _getOpacity() => asJsObject(this).callMethod('getOpacity');
@@ -5526,7 +5657,7 @@ class ImageMapTypeOptions extends JsInterface implements _ImageMapTypeOptions {
 class StyledMapType extends MVCObject implements MapType, _StyledMapType {
   StyledMapType.created(JsObject o) : super.created(o);
   StyledMapType(List<MapTypeStyle> styles, [StyledMapTypeOptions options])
-      : this.created(new JsObject(getPath('google.maps.StyledMapType'), [
+      : this.created(new JsObject(context['google']['maps']['StyledMapType'], [
         __codec17.encode(styles),
         __codec126.encode(options)
       ]));
@@ -5700,7 +5831,7 @@ class MapTypeStyler extends JsInterface implements _MapTypeStyler {
 class BicyclingLayer extends MVCObject implements _BicyclingLayer {
   BicyclingLayer.created(JsObject o) : super.created(o);
   BicyclingLayer()
-      : this.created(new JsObject(getPath('google.maps.BicyclingLayer')));
+      : this.created(new JsObject(context['google']['maps']['BicyclingLayer']));
 
   GMap get map => _getMap();
   GMap _getMap() => __codec28.decode(asJsObject(this).callMethod('getMap'));
@@ -5719,7 +5850,7 @@ class BicyclingLayer extends MVCObject implements _BicyclingLayer {
 class FusionTablesLayer extends MVCObject implements _FusionTablesLayer {
   FusionTablesLayer.created(JsObject o) : super.created(o);
   FusionTablesLayer(FusionTablesLayerOptions options) : this.created(
-          new JsObject(getPath('google.maps.FusionTablesLayer'),
+          new JsObject(context['google']['maps']['FusionTablesLayer'],
               [__codec131.encode(options)]));
 
   GMap get map => _getMap();
@@ -6027,7 +6158,7 @@ class FusionTablesCell extends JsInterface implements _FusionTablesCell {
 class KmlLayer extends MVCObject implements _KmlLayer {
   KmlLayer.created(JsObject o) : super.created(o);
   KmlLayer([KmlLayerOptions opts]) : this.created(new JsObject(
-          getPath('google.maps.KmlLayer'), [__codec141.encode(opts)]));
+          context['google']['maps']['KmlLayer'], [__codec141.encode(opts)]));
 
   LatLngBounds get defaultViewport => _getDefaultViewport();
   LatLngBounds _getDefaultViewport() =>
@@ -6170,26 +6301,32 @@ class KmlLayerStatus extends JsEnum {
     UNKNOWN
   ];
   static final DOCUMENT_NOT_FOUND = new KmlLayerStatus._('DOCUMENT_NOT_FOUND',
-      getPath('google.maps.KmlLayerStatus')['DOCUMENT_NOT_FOUND']);
+      context['google']['maps']['KmlLayerStatus']['DOCUMENT_NOT_FOUND']);
   static final DOCUMENT_TOO_LARGE = new KmlLayerStatus._('DOCUMENT_TOO_LARGE',
-      getPath('google.maps.KmlLayerStatus')['DOCUMENT_TOO_LARGE']);
-  static final FETCH_ERROR = new KmlLayerStatus._(
-      'FETCH_ERROR', getPath('google.maps.KmlLayerStatus')['FETCH_ERROR']);
+      context['google']['maps']['KmlLayerStatus']['DOCUMENT_TOO_LARGE']);
+  static final FETCH_ERROR = new KmlLayerStatus._('FETCH_ERROR',
+      context['google']['maps']['KmlLayerStatus']['FETCH_ERROR']);
   static final INVALID_DOCUMENT = new KmlLayerStatus._('INVALID_DOCUMENT',
-      getPath('google.maps.KmlLayerStatus')['INVALID_DOCUMENT']);
+      context['google']['maps']['KmlLayerStatus']['INVALID_DOCUMENT']);
   static final INVALID_REQUEST = new KmlLayerStatus._('INVALID_REQUEST',
-      getPath('google.maps.KmlLayerStatus')['INVALID_REQUEST']);
+      context['google']['maps']['KmlLayerStatus']['INVALID_REQUEST']);
   static final LIMITS_EXCEEDED = new KmlLayerStatus._('LIMITS_EXCEEDED',
-      getPath('google.maps.KmlLayerStatus')['LIMITS_EXCEEDED']);
-  static final OK =
-      new KmlLayerStatus._('OK', getPath('google.maps.KmlLayerStatus')['OK']);
+      context['google']['maps']['KmlLayerStatus']['LIMITS_EXCEEDED']);
+  static final OK = new KmlLayerStatus._(
+      'OK', context['google']['maps']['KmlLayerStatus']['OK']);
   static final TIMED_OUT = new KmlLayerStatus._(
-      'TIMED_OUT', getPath('google.maps.KmlLayerStatus')['TIMED_OUT']);
+      'TIMED_OUT', context['google']['maps']['KmlLayerStatus']['TIMED_OUT']);
   static final UNKNOWN = new KmlLayerStatus._(
-      'UNKNOWN', getPath('google.maps.KmlLayerStatus')['UNKNOWN']);
+      'UNKNOWN', context['google']['maps']['KmlLayerStatus']['UNKNOWN']);
+
   final String _name;
   KmlLayerStatus._(this._name, o) : super.created(o);
+
   String toString() => 'KmlLayerStatus.$_name';
+
+  // dumb code to remove analyzer hint for unused _KmlLayerStatus
+  _KmlLayerStatus _dumbMethod1() => _dumbMethod2();
+  _KmlLayerStatus _dumbMethod2() => _dumbMethod1();
 }
 
 // **************************************************************************
@@ -6289,7 +6426,7 @@ class KmlAuthor extends JsInterface implements _KmlAuthor {
 class TrafficLayer extends MVCObject implements _TrafficLayer {
   TrafficLayer.created(JsObject o) : super.created(o);
   TrafficLayer()
-      : this.created(new JsObject(getPath('google.maps.TrafficLayer')));
+      : this.created(new JsObject(context['google']['maps']['TrafficLayer']));
 
   GMap get map => _getMap();
   GMap _getMap() => __codec28.decode(asJsObject(this).callMethod('getMap'));
@@ -6308,7 +6445,7 @@ class TrafficLayer extends MVCObject implements _TrafficLayer {
 class TransitLayer extends MVCObject implements _TransitLayer {
   TransitLayer.created(JsObject o) : super.created(o);
   TransitLayer()
-      : this.created(new JsObject(getPath('google.maps.TransitLayer')));
+      : this.created(new JsObject(context['google']['maps']['TransitLayer']));
 
   GMap get map => _getMap();
   GMap _getMap() => __codec28.decode(asJsObject(this).callMethod('getMap'));
@@ -6327,7 +6464,8 @@ class TransitLayer extends MVCObject implements _TransitLayer {
 class StreetViewPanorama extends MVCObject implements _StreetViewPanorama {
   StreetViewPanorama.created(JsObject o) : super.created(o);
   StreetViewPanorama(Node container, [StreetViewPanoramaOptions opts])
-      : this.created(new JsObject(getPath('google.maps.StreetViewPanorama'), [
+      : this.created(new JsObject(
+          context['google']['maps']['StreetViewPanorama'], [
         container,
         __codec146.encode(opts)
       ]));
@@ -6717,8 +6855,8 @@ class StreetViewTileData extends JsInterface implements _StreetViewTileData {
 @JsName('google.maps.StreetViewService')
 class StreetViewService extends JsInterface implements _StreetViewService {
   StreetViewService.created(JsObject o) : super.created(o);
-  StreetViewService()
-      : this.created(new JsObject(getPath('google.maps.StreetViewService')));
+  StreetViewService() : this.created(
+          new JsObject(context['google']['maps']['StreetViewService']));
 
   void getPanoramaById(
       String pano, callback(StreetViewPanoramaData p1, StreetViewStatus p2)) {
@@ -6757,14 +6895,20 @@ final __codec156 =
 class StreetViewStatus extends JsEnum {
   static final values = <StreetViewStatus>[OK, UNKNOWN_ERROR, ZERO_RESULTS];
   static final OK = new StreetViewStatus._(
-      'OK', getPath('google.maps.StreetViewStatus')['OK']);
+      'OK', context['google']['maps']['StreetViewStatus']['OK']);
   static final UNKNOWN_ERROR = new StreetViewStatus._('UNKNOWN_ERROR',
-      getPath('google.maps.StreetViewStatus')['UNKNOWN_ERROR']);
-  static final ZERO_RESULTS = new StreetViewStatus._(
-      'ZERO_RESULTS', getPath('google.maps.StreetViewStatus')['ZERO_RESULTS']);
+      context['google']['maps']['StreetViewStatus']['UNKNOWN_ERROR']);
+  static final ZERO_RESULTS = new StreetViewStatus._('ZERO_RESULTS',
+      context['google']['maps']['StreetViewStatus']['ZERO_RESULTS']);
+
   final String _name;
   StreetViewStatus._(this._name, o) : super.created(o);
+
   String toString() => 'StreetViewStatus.$_name';
+
+  // dumb code to remove analyzer hint for unused _StreetViewStatus
+  _StreetViewStatus _dumbMethod1() => _dumbMethod2();
+  _StreetViewStatus _dumbMethod2() => _dumbMethod1();
 }
 
 // **************************************************************************
@@ -6777,7 +6921,7 @@ class StreetViewCoverageLayer extends MVCObject
     implements _StreetViewCoverageLayer {
   StreetViewCoverageLayer.created(JsObject o) : super.created(o);
   StreetViewCoverageLayer() : this.created(
-          new JsObject(getPath('google.maps.StreetViewCoverageLayer')));
+          new JsObject(context['google']['maps']['StreetViewCoverageLayer']));
 
   GMap get map => _getMap();
   GMap _getMap() => __codec28.decode(asJsObject(this).callMethod('getMap'));
@@ -6869,8 +7013,8 @@ class MouseEvent extends JsInterface implements _MouseEvent {
 @JsName('google.maps.LatLng')
 class LatLng extends JsInterface implements _LatLng {
   LatLng.created(JsObject o) : super.created(o);
-  LatLng(num lat, num lng, [bool noWrap]) : this.created(
-          new JsObject(getPath('google.maps.LatLng'), [lat, lng, noWrap]));
+  LatLng(num lat, num lng, [bool noWrap]) : this.created(new JsObject(
+          context['google']['maps']['LatLng'], [lat, lng, noWrap]));
 
   bool equals(LatLng other) =>
       asJsObject(this).callMethod('equals', [__codec7.encode(other)]);
@@ -6892,7 +7036,7 @@ class LatLng extends JsInterface implements _LatLng {
 class LatLngBounds extends JsInterface implements _LatLngBounds {
   LatLngBounds.created(JsObject o) : super.created(o);
   LatLngBounds([LatLng sw, LatLng ne]) : this.created(new JsObject(
-          getPath('google.maps.LatLngBounds'), [
+          context['google']['maps']['LatLngBounds'], [
         __codec7.encode(sw),
         __codec7.encode(ne)
       ]));
@@ -6933,7 +7077,7 @@ class LatLngBounds extends JsInterface implements _LatLngBounds {
 class Point extends JsInterface implements _Point {
   Point.created(JsObject o) : super.created(o);
   Point(num x, num y)
-      : this.created(new JsObject(getPath('google.maps.Point'), [x, y]));
+      : this.created(new JsObject(context['google']['maps']['Point'], [x, y]));
 
   bool equals(Point other) =>
       asJsObject(this).callMethod('equals', [__codec47.encode(other)]);
@@ -6958,8 +7102,12 @@ class Point extends JsInterface implements _Point {
 class Size extends JsInterface implements _Size {
   Size.created(JsObject o) : super.created(o);
   Size(num width, num height, [String widthUnit, String heightUnit])
-      : this.created(new JsObject(
-          getPath('google.maps.Size'), [width, height, widthUnit, heightUnit]));
+      : this.created(new JsObject(context['google']['maps']['Size'], [
+        width,
+        height,
+        widthUnit,
+        heightUnit
+      ]));
 
   bool equals(Size other) =>
       asJsObject(this).callMethod('equals', [__codec48.encode(other)]);
@@ -6983,7 +7131,8 @@ class Size extends JsInterface implements _Size {
 @JsName('google.maps.MVCObject')
 class MVCObject extends JsInterface implements _MVCObject {
   MVCObject.created(JsObject o) : super.created(o);
-  MVCObject() : this.created(new JsObject(getPath('google.maps.MVCObject')));
+  MVCObject()
+      : this.created(new JsObject(context['google']['maps']['MVCObject']));
 
   MapsEventListener addListener(
       String eventName, Function handler) => __codec157
@@ -7025,7 +7174,7 @@ class MVCArray<E> extends MVCObject implements _MVCArray {
   Codec<E, dynamic> _codec = null;
 
   MVCArray({List<E> elements, Codec<E, dynamic> codec}) : this.created(
-          new JsObject(getPath('google.maps.MVCArray'), [
+          new JsObject(context['google']['maps']['MVCArray'], [
         elements == null
             ? new JsArray()
             : new JsArray.from(

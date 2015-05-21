@@ -26,26 +26,22 @@ abstract class _PolylineOptions implements JsInterface {
   GMap map;
   dynamic _path;
   dynamic /*MVCArray<LatLng>|List<LatLng>*/ get path => (new ChainedCodec()
-    ..add(
-        new JsInterfaceCodec<MVCArray<LatLng>>(
-            (o) => new MVCArray<LatLng>.created(o, new JsInterfaceCodec<LatLng>(
-                (o) => new LatLng.created(o), (o) =>
-                    o != null && o.instanceof(getPath("google.maps.LatLng"))))))
+    ..add(new JsInterfaceCodec<MVCArray<LatLng>>(
+        (o) => new MVCArray<LatLng>.created(o, new JsInterfaceCodec<LatLng>(
+            (o) => new LatLng.created(o), (o) => o != null &&
+                o.instanceof(context['google']['maps']['LatLng'])))))
     ..add(new JsListCodec<LatLng>(new JsInterfaceCodec<LatLng>(
-            (o) => new LatLng.created(o),
-            (o) => o != null && o.instanceof(getPath("google.maps.LatLng"))))))
-      .decode(_path);
+        (o) => new LatLng.created(o), (o) => o != null &&
+            o.instanceof(context['google']['maps']['LatLng']))))).decode(_path);
   void set path(dynamic /*MVCArray<LatLng>|List<LatLng>*/ path) {
     _path = (new ChainedCodec()
-      ..add(
-          new JsInterfaceCodec<MVCArray<LatLng>>(
-              (o) => new MVCArray<LatLng>.created(o,
-                  new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
-                      (o) => o != null &&
-                          o.instanceof(getPath("google.maps.LatLng"))))))
+      ..add(new JsInterfaceCodec<MVCArray<LatLng>>(
+          (o) => new MVCArray<LatLng>.created(o, new JsInterfaceCodec<LatLng>(
+              (o) => new LatLng.created(o), (o) => o != null &&
+                  o.instanceof(context['google']['maps']['LatLng'])))))
       ..add(new JsListCodec<LatLng>(new JsInterfaceCodec<LatLng>(
-              (o) => new LatLng.created(o), (o) =>
-                  o != null && o.instanceof(getPath("google.maps.LatLng"))))))
+              (o) => new LatLng.created(o), (o) => o != null &&
+                  o.instanceof(context['google']['maps']['LatLng'])))))
         .encode(path);
   }
   String strokeColor;

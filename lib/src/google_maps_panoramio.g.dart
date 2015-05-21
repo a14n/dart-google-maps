@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// 2015-05-17T19:43:32.758Z
+// 2015-05-21T17:14:49.203Z
 
 part of google_maps.panoramio;
 
@@ -12,7 +12,7 @@ part of google_maps.panoramio;
 class PanoramioLayer extends MVCObject implements _PanoramioLayer {
   PanoramioLayer.created(JsObject o) : super.created(o);
   PanoramioLayer([PanoramioLayerOptions opts]) : this.created(new JsObject(
-          getPath('google.maps.panoramio.PanoramioLayer'),
+          context['google']['maps']['panoramio']['PanoramioLayer'],
           [__codec180.encode(opts)]));
 
   GMap get map => _getMap();

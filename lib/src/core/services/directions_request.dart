@@ -24,12 +24,12 @@ abstract class _DirectionsRequest implements JsInterface {
   dynamic _destination;
   dynamic /*LatLng|String*/ get destination => (new ChainedCodec()
     ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
-        (o) => o != null && o.instanceof(getPath("google.maps.LatLng"))))
+        (o) => o != null && o.instanceof(context['google']['maps']['LatLng'])))
     ..add(new IdentityCodec<String>())).decode(_destination);
   void set destination(dynamic /*LatLng|String*/ destination) {
     _destination = (new ChainedCodec()
-      ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
-          (o) => o != null && o.instanceof(getPath("google.maps.LatLng"))))
+      ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o), (o) =>
+          o != null && o.instanceof(context['google']['maps']['LatLng'])))
       ..add(new IdentityCodec<String>())).encode(destination);
   }
   bool durationInTraffic;
@@ -37,12 +37,12 @@ abstract class _DirectionsRequest implements JsInterface {
   dynamic _origin;
   dynamic /*LatLng|String*/ get origin => (new ChainedCodec()
     ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
-        (o) => o != null && o.instanceof(getPath("google.maps.LatLng"))))
+        (o) => o != null && o.instanceof(context['google']['maps']['LatLng'])))
     ..add(new IdentityCodec<String>())).decode(_origin);
   void set origin(dynamic /*LatLng|String*/ origin) {
     _origin = (new ChainedCodec()
-      ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
-          (o) => o != null && o.instanceof(getPath("google.maps.LatLng"))))
+      ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o), (o) =>
+          o != null && o.instanceof(context['google']['maps']['LatLng'])))
       ..add(new IdentityCodec<String>())).encode(origin);
   }
   bool provideRouteAlternatives;

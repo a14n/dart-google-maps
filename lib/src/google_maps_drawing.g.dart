@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// 2015-05-17T19:43:32.688Z
+// 2015-05-21T17:14:49.095Z
 
 part of google_maps.drawing;
 
@@ -12,7 +12,7 @@ part of google_maps.drawing;
 class DrawingManager extends MVCObject implements _DrawingManager {
   DrawingManager.created(JsObject o) : super.created(o);
   DrawingManager([DrawingManagerOptions options]) : this.created(new JsObject(
-          getPath('google.maps.drawing.DrawingManager'),
+          context['google']['maps']['drawing']['DrawingManager'],
           [__codec164.encode(options)]));
 
   OverlayType get drawingMode => _getDrawingMode();
@@ -190,29 +190,32 @@ class OverlayCompleteEvent extends JsInterface
   dynamic /*Marker|Polygon|Polyline|Rectangle|Circle*/ get overlay =>
       (new ChainedCodec()
     ..add(new JsInterfaceCodec<Marker>((o) => new Marker.created(o),
-        (o) => o != null && o.instanceof(getPath("google.maps.Marker"))))
+        (o) => o != null && o.instanceof(context['google']['maps']['Marker'])))
     ..add(new JsInterfaceCodec<Polygon>((o) => new Polygon.created(o),
-        (o) => o != null && o.instanceof(getPath("google.maps.Polygon"))))
-    ..add(new JsInterfaceCodec<Polyline>((o) => new Polyline.created(o),
-        (o) => o != null && o.instanceof(getPath("google.maps.Polyline"))))
+        (o) => o != null && o.instanceof(context['google']['maps']['Polygon'])))
+    ..add(new JsInterfaceCodec<Polyline>((o) => new Polyline.created(o), (o) =>
+        o != null && o.instanceof(context['google']['maps']['Polyline'])))
     ..add(new JsInterfaceCodec<Rectangle>((o) => new Rectangle.created(o),
-        (o) => o != null && o.instanceof(getPath("google.maps.Rectangle"))))
-    ..add(new JsInterfaceCodec<Circle>((o) => new Circle.created(o),
-            (o) => o != null && o.instanceof(getPath("google.maps.Circle")))))
+        (o) =>
+            o != null && o.instanceof(context['google']['maps']['Rectangle'])))
+    ..add(new JsInterfaceCodec<Circle>((o) => new Circle.created(o), (o) =>
+            o != null && o.instanceof(context['google']['maps']['Circle']))))
       .decode(_overlay);
   void set overlay(
       dynamic /*Marker|Polygon|Polyline|Rectangle|Circle*/ overlay) {
     _overlay = (new ChainedCodec()
-      ..add(new JsInterfaceCodec<Marker>((o) => new Marker.created(o),
-          (o) => o != null && o.instanceof(getPath("google.maps.Marker"))))
-      ..add(new JsInterfaceCodec<Polygon>((o) => new Polygon.created(o),
-          (o) => o != null && o.instanceof(getPath("google.maps.Polygon"))))
+      ..add(new JsInterfaceCodec<Marker>((o) => new Marker.created(o), (o) =>
+          o != null && o.instanceof(context['google']['maps']['Marker'])))
+      ..add(new JsInterfaceCodec<Polygon>((o) => new Polygon.created(o), (o) =>
+          o != null && o.instanceof(context['google']['maps']['Polygon'])))
       ..add(new JsInterfaceCodec<Polyline>((o) => new Polyline.created(o),
-          (o) => o != null && o.instanceof(getPath("google.maps.Polyline"))))
+          (o) =>
+              o != null && o.instanceof(context['google']['maps']['Polyline'])))
       ..add(new JsInterfaceCodec<Rectangle>((o) => new Rectangle.created(o),
-          (o) => o != null && o.instanceof(getPath("google.maps.Rectangle"))))
-      ..add(new JsInterfaceCodec<Circle>((o) => new Circle.created(o),
-              (o) => o != null && o.instanceof(getPath("google.maps.Circle")))))
+          (o) => o != null &&
+              o.instanceof(context['google']['maps']['Rectangle'])))
+      ..add(new JsInterfaceCodec<Circle>((o) => new Circle.created(o), (o) =>
+              o != null && o.instanceof(context['google']['maps']['Circle']))))
         .encode(overlay);
   }
   void set type(OverlayType _type) {
@@ -237,16 +240,22 @@ class OverlayType extends JsEnum {
     RECTANGLE
   ];
   static final CIRCLE = new OverlayType._(
-      'CIRCLE', getPath('google.maps.drawing.OverlayType')['CIRCLE']);
+      'CIRCLE', context['google']['maps']['drawing']['OverlayType']['CIRCLE']);
   static final MARKER = new OverlayType._(
-      'MARKER', getPath('google.maps.drawing.OverlayType')['MARKER']);
-  static final POLYGON = new OverlayType._(
-      'POLYGON', getPath('google.maps.drawing.OverlayType')['POLYGON']);
-  static final POLYLINE = new OverlayType._(
-      'POLYLINE', getPath('google.maps.drawing.OverlayType')['POLYLINE']);
-  static final RECTANGLE = new OverlayType._(
-      'RECTANGLE', getPath('google.maps.drawing.OverlayType')['RECTANGLE']);
+      'MARKER', context['google']['maps']['drawing']['OverlayType']['MARKER']);
+  static final POLYGON = new OverlayType._('POLYGON',
+      context['google']['maps']['drawing']['OverlayType']['POLYGON']);
+  static final POLYLINE = new OverlayType._('POLYLINE',
+      context['google']['maps']['drawing']['OverlayType']['POLYLINE']);
+  static final RECTANGLE = new OverlayType._('RECTANGLE',
+      context['google']['maps']['drawing']['OverlayType']['RECTANGLE']);
+
   final String _name;
   OverlayType._(this._name, o) : super.created(o);
+
   String toString() => 'OverlayType.$_name';
+
+  // dumb code to remove analyzer hint for unused _OverlayType
+  _OverlayType _dumbMethod1() => _dumbMethod2();
+  _OverlayType _dumbMethod2() => _dumbMethod1();
 }

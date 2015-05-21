@@ -31,26 +31,24 @@ abstract class _PolygonOptions implements JsInterface {
     ..add(
         new JsInterfaceCodec<MVCArray<MVCArray<LatLng>>>(
             (o) =>
-                new MVCArray<MVCArray<LatLng>>.created(
-                    o,
+                new MVCArray<MVCArray<LatLng>>.created(o,
                     new JsInterfaceCodec<MVCArray<LatLng>>(
                         (o) => new MVCArray<LatLng>.created(o,
                             new JsInterfaceCodec<LatLng>(
                                 (o) => new LatLng.created(o),
                                 (o) => o != null &&
-                                    o.instanceof(
-                                        getPath("google.maps.LatLng"))))))))
-    ..add(
-        new JsInterfaceCodec<MVCArray<LatLng>>(
-            (o) => new MVCArray<LatLng>.created(o, new JsInterfaceCodec<LatLng>(
-                (o) => new LatLng.created(o), (o) =>
-                    o != null && o.instanceof(getPath("google.maps.LatLng"))))))
+                                    o.instanceof(context['google']['maps'][
+                                        'LatLng'])))))))
+    ..add(new JsInterfaceCodec<MVCArray<LatLng>>(
+        (o) => new MVCArray<LatLng>.created(o, new JsInterfaceCodec<LatLng>(
+            (o) => new LatLng.created(o), (o) => o != null &&
+                o.instanceof(context['google']['maps']['LatLng'])))))
     ..add(new JsListCodec<List<LatLng>>(new JsListCodec<LatLng>(
-        new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
-            (o) => o != null && o.instanceof(getPath("google.maps.LatLng"))))))
+        new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o), (o) =>
+            o != null && o.instanceof(context['google']['maps']['LatLng'])))))
     ..add(new JsListCodec<LatLng>(new JsInterfaceCodec<LatLng>(
-            (o) => new LatLng.created(o),
-            (o) => o != null && o.instanceof(getPath("google.maps.LatLng"))))))
+            (o) => new LatLng.created(o), (o) => o != null &&
+                o.instanceof(context['google']['maps']['LatLng'])))))
       .decode(_paths);
   void set paths(
       dynamic /*MVCArray<MVCArray<LatLng>>|MVCArray<LatLng>|List<List<LatLng>>|List<LatLng>*/ paths) {
@@ -58,27 +56,24 @@ abstract class _PolygonOptions implements JsInterface {
       ..add(
           new JsInterfaceCodec<MVCArray<MVCArray<LatLng>>>(
               (o) =>
-                  new MVCArray<MVCArray<LatLng>>.created(
-                      o,
+                  new MVCArray<MVCArray<LatLng>>.created(o,
                       new JsInterfaceCodec<MVCArray<LatLng>>(
                           (o) => new MVCArray<LatLng>.created(o,
                               new JsInterfaceCodec<LatLng>(
                                   (o) => new LatLng.created(o),
                                   (o) => o != null &&
-                                      o.instanceof(
-                                          getPath("google.maps.LatLng"))))))))
-      ..add(
-          new JsInterfaceCodec<MVCArray<LatLng>>(
-              (o) => new MVCArray<LatLng>.created(o,
-                  new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
-                      (o) => o != null &&
-                          o.instanceof(getPath("google.maps.LatLng"))))))
+                                      o.instanceof(context['google']['maps'][
+                                          'LatLng'])))))))
+      ..add(new JsInterfaceCodec<MVCArray<LatLng>>(
+          (o) => new MVCArray<LatLng>.created(o, new JsInterfaceCodec<LatLng>(
+              (o) => new LatLng.created(o), (o) => o != null &&
+                  o.instanceof(context['google']['maps']['LatLng'])))))
       ..add(new JsListCodec<List<LatLng>>(new JsListCodec<LatLng>(
           new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o), (o) =>
-              o != null && o.instanceof(getPath("google.maps.LatLng"))))))
+              o != null && o.instanceof(context['google']['maps']['LatLng'])))))
       ..add(new JsListCodec<LatLng>(new JsInterfaceCodec<LatLng>(
-              (o) => new LatLng.created(o), (o) =>
-                  o != null && o.instanceof(getPath("google.maps.LatLng"))))))
+              (o) => new LatLng.created(o), (o) => o != null &&
+                  o.instanceof(context['google']['maps']['LatLng'])))))
         .encode(paths);
   }
   String strokeColor;

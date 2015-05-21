@@ -23,7 +23,7 @@ abstract class _HeatmapLayer extends MVCObject {
           (o) => new MVCArray<dynamic /*LatLng|WeightedLocation*/ >.created(o,
               new ChainedCodec()
     ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
-        (o) => o != null && o.instanceof(getPath("google.maps.LatLng"))))
+        (o) => o != null && o.instanceof(context['google']['maps']['LatLng'])))
     ..add(new JsInterfaceCodec<WeightedLocation>(
         (o) => new WeightedLocation.created(o)))))).decode(_getData());
   _getData();
@@ -35,14 +35,14 @@ abstract class _HeatmapLayer extends MVCObject {
     ..add(new JsInterfaceCodec<MVCArray<dynamic /*LatLng|WeightedLocation*/ >>(
         (o) => new MVCArray<dynamic /*LatLng|WeightedLocation*/ >.created(o,
             new ChainedCodec()
-      ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
-          (o) => o != null && o.instanceof(getPath("google.maps.LatLng"))))
+      ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o), (o) =>
+          o != null && o.instanceof(context['google']['maps']['LatLng'])))
       ..add(new JsInterfaceCodec<WeightedLocation>(
           (o) => new WeightedLocation.created(o))))))
     ..add(new JsListCodec<dynamic /*LatLng|WeightedLocation*/ >(
         new ChainedCodec()
-      ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
-          (o) => o != null && o.instanceof(getPath("google.maps.LatLng"))))
+      ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o), (o) =>
+          o != null && o.instanceof(context['google']['maps']['LatLng'])))
       ..add(new JsInterfaceCodec<WeightedLocation>(
           (o) => new WeightedLocation.created(o)))))).encode(data));
   void _setData(

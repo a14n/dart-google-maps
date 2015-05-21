@@ -219,7 +219,7 @@ abstract class _Controls extends JsInterface
 
   _toJsControlPosition(ControlPosition controlPosition) => ((e) {
     if (e == null) return null;
-    final path = getPath('google.maps.ControlPosition');
+    final path = context['google']['maps']['ControlPosition'];
     if (e == ControlPosition.BOTTOM_CENTER) return path['BOTTOM_CENTER'];
     if (e == ControlPosition.BOTTOM_LEFT) return path['BOTTOM_LEFT'];
     if (e == ControlPosition.BOTTOM_RIGHT) return path['BOTTOM_RIGHT'];

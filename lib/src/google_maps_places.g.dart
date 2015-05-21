@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// 2015-05-17T19:43:32.862Z
+// 2015-05-21T17:14:49.327Z
 
 part of google_maps.places;
 
@@ -12,7 +12,8 @@ part of google_maps.places;
 class Autocomplete extends MVCObject implements _Autocomplete {
   Autocomplete.created(JsObject o) : super.created(o);
   Autocomplete(InputElement inputField, [AutocompleteOptions opts])
-      : this.created(new JsObject(getPath('google.maps.places.Autocomplete'), [
+      : this.created(new JsObject(
+          context['google']['maps']['places']['Autocomplete'], [
         inputField,
         __codec185.encode(opts)
       ]));
@@ -191,8 +192,8 @@ class PredictionSubstring extends JsInterface implements _PredictionSubstring {
 @JsName('google.maps.places.AutocompleteService')
 class AutocompleteService extends JsInterface implements _AutocompleteService {
   AutocompleteService.created(JsObject o) : super.created(o);
-  AutocompleteService() : this.created(
-          new JsObject(getPath('google.maps.places.AutocompleteService')));
+  AutocompleteService() : this.created(new JsObject(
+          context['google']['maps']['places']['AutocompleteService']));
 
   void getPlacePredictions(AutocompletionRequest request,
       callback(List<AutocompletePrediction> p1, PlacesServiceStatus p2)) {
@@ -730,7 +731,7 @@ final __codec215 = new BiMapCodec<RankBy, dynamic>(
 class PlacesService extends JsInterface implements _PlacesService {
   PlacesService.created(JsObject o) : super.created(o);
   PlacesService(dynamic /*HTMLDivElement|GMap*/ attrContainer) : this.created(
-          new JsObject(getPath('google.maps.places.PlacesService'),
+          new JsObject(context['google']['maps']['places']['PlacesService'],
               [__codec195.encode(attrContainer)]));
 
   void getDetails(PlaceDetailsRequest request,
@@ -868,20 +869,30 @@ class PlacesServiceStatus extends JsEnum {
     ZERO_RESULTS
   ];
   static final INVALID_REQUEST = new PlacesServiceStatus._('INVALID_REQUEST',
-      getPath('google.maps.places.PlacesServiceStatus')['INVALID_REQUEST']);
+      context['google']['maps']['places']['PlacesServiceStatus'][
+      'INVALID_REQUEST']);
   static final OK = new PlacesServiceStatus._(
-      'OK', getPath('google.maps.places.PlacesServiceStatus')['OK']);
+      'OK', context['google']['maps']['places']['PlacesServiceStatus']['OK']);
   static final OVER_QUERY_LIMIT = new PlacesServiceStatus._('OVER_QUERY_LIMIT',
-      getPath('google.maps.places.PlacesServiceStatus')['OVER_QUERY_LIMIT']);
+      context['google']['maps']['places']['PlacesServiceStatus'][
+      'OVER_QUERY_LIMIT']);
   static final REQUEST_DENIED = new PlacesServiceStatus._('REQUEST_DENIED',
-      getPath('google.maps.places.PlacesServiceStatus')['REQUEST_DENIED']);
+      context['google']['maps']['places']['PlacesServiceStatus'][
+      'REQUEST_DENIED']);
   static final UNKNOWN_ERROR = new PlacesServiceStatus._('UNKNOWN_ERROR',
-      getPath('google.maps.places.PlacesServiceStatus')['UNKNOWN_ERROR']);
-  static final ZERO_RESULTS = new PlacesServiceStatus._('ZERO_RESULTS',
-      getPath('google.maps.places.PlacesServiceStatus')['ZERO_RESULTS']);
+      context['google']['maps']['places']['PlacesServiceStatus'][
+      'UNKNOWN_ERROR']);
+  static final ZERO_RESULTS = new PlacesServiceStatus._('ZERO_RESULTS', context[
+      'google']['maps']['places']['PlacesServiceStatus']['ZERO_RESULTS']);
+
   final String _name;
   PlacesServiceStatus._(this._name, o) : super.created(o);
+
   String toString() => 'PlacesServiceStatus.$_name';
+
+  // dumb code to remove analyzer hint for unused _PlacesServiceStatus
+  _PlacesServiceStatus _dumbMethod1() => _dumbMethod2();
+  _PlacesServiceStatus _dumbMethod2() => _dumbMethod1();
 }
 
 // **************************************************************************
@@ -1001,12 +1012,18 @@ class RadarSearchRequest extends JsInterface implements _RadarSearchRequest {
 class RankBy extends JsEnum {
   static final values = <RankBy>[DISTANCE, PROMINENCE];
   static final DISTANCE = new RankBy._(
-      'DISTANCE', getPath('google.maps.places.RankBy')['DISTANCE']);
-  static final PROMINENCE = new RankBy._(
-      'PROMINENCE', getPath('google.maps.places.RankBy')['PROMINENCE']);
+      'DISTANCE', context['google']['maps']['places']['RankBy']['DISTANCE']);
+  static final PROMINENCE = new RankBy._('PROMINENCE',
+      context['google']['maps']['places']['RankBy']['PROMINENCE']);
+
   final String _name;
   RankBy._(this._name, o) : super.created(o);
+
   String toString() => 'RankBy.$_name';
+
+  // dumb code to remove analyzer hint for unused _RankBy
+  _RankBy _dumbMethod1() => _dumbMethod2();
+  _RankBy _dumbMethod2() => _dumbMethod1();
 }
 
 // **************************************************************************
@@ -1018,7 +1035,7 @@ class RankBy extends JsEnum {
 class SearchBox extends MVCObject implements _SearchBox {
   SearchBox.created(JsObject o) : super.created(o);
   SearchBox(InputElement inputField, [SearchBoxOptions opts]) : this.created(
-          new JsObject(getPath('google.maps.places.SearchBox'), [
+          new JsObject(context['google']['maps']['places']['SearchBox'], [
         inputField,
         __codec226.encode(opts)
       ]));

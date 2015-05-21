@@ -21,7 +21,8 @@ abstract class _Data implements JsInterface {
   DataFeature add(dynamic /*DataFeature|DataFeatureOptions*/ feature) => _add(
       (new ChainedCodec()
     ..add(new JsInterfaceCodec<DataFeature>((o) => new DataFeature.created(o),
-        (o) => o != null && o.instanceof(getPath("google.maps.Data.Feature"))))
+        (o) => o != null &&
+            o.instanceof(context['google']['maps']['Data']['Feature'])))
     ..add(new JsInterfaceCodec<DataFeatureOptions>(
         (o) => new DataFeatureOptions.created(o)))).encode(feature));
   _add(dynamic /*DataFeature|DataFeatureOptions*/ feature);

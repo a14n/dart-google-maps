@@ -28,11 +28,11 @@ abstract class _InfoWindow extends MVCObject {
   void open([dynamic /*GMap|StreetViewPanorama*/ map, MVCObject anchor]) {
     _open((new ChainedCodec()
       ..add(new JsInterfaceCodec<GMap>((o) => new GMap.created(o),
-          (o) => o != null && o.instanceof(getPath("google.maps.Map"))))
-      ..add(new JsInterfaceCodec<StreetViewPanorama>(
-          (o) => new StreetViewPanorama.created(o), (o) => o != null &&
-                  o.instanceof(getPath("google.maps.StreetViewPanorama")))))
-            .encode(map), anchor);
+          (o) => o != null && o.instanceof(context['google']['maps']['Map'])))
+      ..add(new JsInterfaceCodec<StreetViewPanorama>((o) =>
+          new StreetViewPanorama.created(o), (o) => o != null &&
+              o.instanceof(context['google']['maps']['StreetViewPanorama']))))
+        .encode(map), anchor);
   }
   _open([dynamic /*GMap|StreetViewPanorama*/ map, MVCObject anchor]);
   void set content(dynamic /*String|Node*/ content) => _setContent(content);

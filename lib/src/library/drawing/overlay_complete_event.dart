@@ -22,29 +22,32 @@ abstract class _OverlayCompleteEvent implements JsInterface {
   dynamic /*Marker|Polygon|Polyline|Rectangle|Circle*/ get overlay =>
       (new ChainedCodec()
     ..add(new JsInterfaceCodec<Marker>((o) => new Marker.created(o),
-        (o) => o != null && o.instanceof(getPath("google.maps.Marker"))))
+        (o) => o != null && o.instanceof(context['google']['maps']['Marker'])))
     ..add(new JsInterfaceCodec<Polygon>((o) => new Polygon.created(o),
-        (o) => o != null && o.instanceof(getPath("google.maps.Polygon"))))
-    ..add(new JsInterfaceCodec<Polyline>((o) => new Polyline.created(o),
-        (o) => o != null && o.instanceof(getPath("google.maps.Polyline"))))
+        (o) => o != null && o.instanceof(context['google']['maps']['Polygon'])))
+    ..add(new JsInterfaceCodec<Polyline>((o) => new Polyline.created(o), (o) =>
+        o != null && o.instanceof(context['google']['maps']['Polyline'])))
     ..add(new JsInterfaceCodec<Rectangle>((o) => new Rectangle.created(o),
-        (o) => o != null && o.instanceof(getPath("google.maps.Rectangle"))))
-    ..add(new JsInterfaceCodec<Circle>((o) => new Circle.created(o),
-            (o) => o != null && o.instanceof(getPath("google.maps.Circle")))))
+        (o) =>
+            o != null && o.instanceof(context['google']['maps']['Rectangle'])))
+    ..add(new JsInterfaceCodec<Circle>((o) => new Circle.created(o), (o) =>
+            o != null && o.instanceof(context['google']['maps']['Circle']))))
       .decode(_overlay);
   void set overlay(
       dynamic /*Marker|Polygon|Polyline|Rectangle|Circle*/ overlay) {
     _overlay = (new ChainedCodec()
-      ..add(new JsInterfaceCodec<Marker>((o) => new Marker.created(o),
-          (o) => o != null && o.instanceof(getPath("google.maps.Marker"))))
-      ..add(new JsInterfaceCodec<Polygon>((o) => new Polygon.created(o),
-          (o) => o != null && o.instanceof(getPath("google.maps.Polygon"))))
+      ..add(new JsInterfaceCodec<Marker>((o) => new Marker.created(o), (o) =>
+          o != null && o.instanceof(context['google']['maps']['Marker'])))
+      ..add(new JsInterfaceCodec<Polygon>((o) => new Polygon.created(o), (o) =>
+          o != null && o.instanceof(context['google']['maps']['Polygon'])))
       ..add(new JsInterfaceCodec<Polyline>((o) => new Polyline.created(o),
-          (o) => o != null && o.instanceof(getPath("google.maps.Polyline"))))
+          (o) =>
+              o != null && o.instanceof(context['google']['maps']['Polyline'])))
       ..add(new JsInterfaceCodec<Rectangle>((o) => new Rectangle.created(o),
-          (o) => o != null && o.instanceof(getPath("google.maps.Rectangle"))))
-      ..add(new JsInterfaceCodec<Circle>((o) => new Circle.created(o),
-              (o) => o != null && o.instanceof(getPath("google.maps.Circle")))))
+          (o) => o != null &&
+              o.instanceof(context['google']['maps']['Rectangle'])))
+      ..add(new JsInterfaceCodec<Circle>((o) => new Circle.created(o), (o) =>
+              o != null && o.instanceof(context['google']['maps']['Circle']))))
         .encode(overlay);
   }
   OverlayType type;

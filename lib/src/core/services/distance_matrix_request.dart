@@ -25,13 +25,13 @@ abstract class _DistanceMatrixRequest implements JsInterface {
   List<dynamic /*LatLng|String*/ > get destinations =>
       (new JsListCodec<dynamic /*LatLng|String*/ >(new ChainedCodec()
     ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
-        (o) => o != null && o.instanceof(getPath("google.maps.LatLng"))))
+        (o) => o != null && o.instanceof(context['google']['maps']['LatLng'])))
     ..add(new IdentityCodec<String>()))).decode(_destinations);
   void set destinations(List<dynamic /*LatLng|String*/ > destinations) {
     _destinations = (new JsListCodec<dynamic /*LatLng|String*/ >(
         new ChainedCodec()
-      ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
-          (o) => o != null && o.instanceof(getPath("google.maps.LatLng"))))
+      ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o), (o) =>
+          o != null && o.instanceof(context['google']['maps']['LatLng'])))
       ..add(new IdentityCodec<String>()))).encode(destinations);
   }
 
@@ -40,12 +40,12 @@ abstract class _DistanceMatrixRequest implements JsInterface {
   List<dynamic /*LatLng|String*/ > get origins =>
       (new JsListCodec<dynamic /*LatLng|String*/ >(new ChainedCodec()
     ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
-        (o) => o != null && o.instanceof(getPath("google.maps.LatLng"))))
+        (o) => o != null && o.instanceof(context['google']['maps']['LatLng'])))
     ..add(new IdentityCodec<String>()))).decode(_origins);
   void set origins(List<dynamic /*LatLng|String*/ > origins) {
     _origins = (new JsListCodec<dynamic /*LatLng|String*/ >(new ChainedCodec()
-      ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
-          (o) => o != null && o.instanceof(getPath("google.maps.LatLng"))))
+      ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o), (o) =>
+          o != null && o.instanceof(context['google']['maps']['LatLng'])))
       ..add(new IdentityCodec<String>()))).encode(origins);
   }
 

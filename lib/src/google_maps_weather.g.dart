@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// 2015-05-17T19:43:33.042Z
+// 2015-05-21T17:14:49.531Z
 
 part of google_maps.weather;
 
@@ -11,8 +11,8 @@ part of google_maps.weather;
 @JsName('google.maps.weather.CloudLayer')
 class CloudLayer extends MVCObject implements _CloudLayer {
   CloudLayer.created(JsObject o) : super.created(o);
-  CloudLayer()
-      : this.created(new JsObject(getPath('google.maps.weather.CloudLayer')));
+  CloudLayer() : this.created(
+          new JsObject(context['google']['maps']['weather']['CloudLayer']));
 
   GMap get map => _getMap();
   GMap _getMap() => __codec240.decode(asJsObject(this).callMethod('getMap'));
@@ -33,7 +33,7 @@ final __codec240 = new JsInterfaceCodec<GMap>((o) => new GMap.created(o));
 class WeatherLayer extends MVCObject implements _WeatherLayer {
   WeatherLayer.created(JsObject o) : super.created(o);
   WeatherLayer([WeatherLayerOptions opts]) : this.created(new JsObject(
-          getPath('google.maps.weather.WeatherLayer'),
+          context['google']['maps']['weather']['WeatherLayer'],
           [__codec241.encode(opts)]));
 
   GMap get map => _getMap();
@@ -113,13 +113,19 @@ final __codec244 = new BiMapCodec<WindSpeedUnit, dynamic>(
 
 class TemperatureUnit extends JsEnum {
   static final values = <TemperatureUnit>[CELSIUS, FAHRENHEIT];
-  static final CELSIUS = new TemperatureUnit._(
-      'CELSIUS', getPath('google.maps.weather.TemperatureUnit')['CELSIUS']);
+  static final CELSIUS = new TemperatureUnit._('CELSIUS',
+      context['google']['maps']['weather']['TemperatureUnit']['CELSIUS']);
   static final FAHRENHEIT = new TemperatureUnit._('FAHRENHEIT',
-      getPath('google.maps.weather.TemperatureUnit')['FAHRENHEIT']);
+      context['google']['maps']['weather']['TemperatureUnit']['FAHRENHEIT']);
+
   final String _name;
   TemperatureUnit._(this._name, o) : super.created(o);
+
   String toString() => 'TemperatureUnit.$_name';
+
+  // dumb code to remove analyzer hint for unused _TemperatureUnit
+  _TemperatureUnit _dumbMethod1() => _dumbMethod2();
+  _TemperatureUnit _dumbMethod2() => _dumbMethod1();
 }
 
 // **************************************************************************
@@ -134,14 +140,22 @@ class WindSpeedUnit extends JsEnum {
     MILES_PER_HOUR
   ];
   static final KILOMETERS_PER_HOUR = new WindSpeedUnit._('KILOMETERS_PER_HOUR',
-      getPath('google.maps.weather.WindSpeedUnit')['KILOMETERS_PER_HOUR']);
+      context['google']['maps']['weather']['WindSpeedUnit'][
+      'KILOMETERS_PER_HOUR']);
   static final METERS_PER_SECOND = new WindSpeedUnit._('METERS_PER_SECOND',
-      getPath('google.maps.weather.WindSpeedUnit')['METERS_PER_SECOND']);
+      context['google']['maps']['weather']['WindSpeedUnit'][
+      'METERS_PER_SECOND']);
   static final MILES_PER_HOUR = new WindSpeedUnit._('MILES_PER_HOUR',
-      getPath('google.maps.weather.WindSpeedUnit')['MILES_PER_HOUR']);
+      context['google']['maps']['weather']['WindSpeedUnit']['MILES_PER_HOUR']);
+
   final String _name;
   WindSpeedUnit._(this._name, o) : super.created(o);
+
   String toString() => 'WindSpeedUnit.$_name';
+
+  // dumb code to remove analyzer hint for unused _WindSpeedUnit
+  _WindSpeedUnit _dumbMethod1() => _dumbMethod2();
+  _WindSpeedUnit _dumbMethod2() => _dumbMethod1();
 }
 
 // **************************************************************************
@@ -152,12 +166,18 @@ class WindSpeedUnit extends JsEnum {
 class LabelColor extends JsEnum {
   static final values = <LabelColor>[BLACK, WHITE];
   static final BLACK = new LabelColor._(
-      'BLACK', getPath('google.maps.weather.LabelColor')['BLACK']);
+      'BLACK', context['google']['maps']['weather']['LabelColor']['BLACK']);
   static final WHITE = new LabelColor._(
-      'WHITE', getPath('google.maps.weather.LabelColor')['WHITE']);
+      'WHITE', context['google']['maps']['weather']['LabelColor']['WHITE']);
+
   final String _name;
   LabelColor._(this._name, o) : super.created(o);
+
   String toString() => 'LabelColor.$_name';
+
+  // dumb code to remove analyzer hint for unused _LabelColor
+  _LabelColor _dumbMethod1() => _dumbMethod2();
+  _LabelColor _dumbMethod2() => _dumbMethod1();
 }
 
 // **************************************************************************

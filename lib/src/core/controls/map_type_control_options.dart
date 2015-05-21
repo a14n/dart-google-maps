@@ -22,10 +22,10 @@ abstract class _MapTypeControlOptions implements JsInterface {
   List<dynamic /*MapTypeId|String*/ > get mapTypeIds =>
       (new JsListCodec<dynamic /*MapTypeId|String*/ >(new ChainedCodec()
     ..add(new BiMapCodec<MapTypeId, dynamic>({
-      MapTypeId.HYBRID: getPath('google.maps.MapTypeId')['HYBRID'],
-      MapTypeId.ROADMAP: getPath('google.maps.MapTypeId')['ROADMAP'],
-      MapTypeId.SATELLITE: getPath('google.maps.MapTypeId')['SATELLITE'],
-      MapTypeId.TERRAIN: getPath('google.maps.MapTypeId')['TERRAIN']
+      MapTypeId.HYBRID: context['google']['maps']['MapTypeId']['HYBRID'],
+      MapTypeId.ROADMAP: context['google']['maps']['MapTypeId']['ROADMAP'],
+      MapTypeId.SATELLITE: context['google']['maps']['MapTypeId']['SATELLITE'],
+      MapTypeId.TERRAIN: context['google']['maps']['MapTypeId']['TERRAIN']
     }))
     ..add(new IdentityCodec<String>()))).decode(_mapTypeIds);
   void set _mapTypeIds(dynamic mapTypeIds) {
@@ -35,10 +35,11 @@ abstract class _MapTypeControlOptions implements JsInterface {
     _mapTypeIds = (new JsListCodec<dynamic /*MapTypeId|String*/ >(
         new ChainedCodec()
       ..add(new BiMapCodec<MapTypeId, dynamic>({
-        MapTypeId.HYBRID: getPath('google.maps.MapTypeId')['HYBRID'],
-        MapTypeId.ROADMAP: getPath('google.maps.MapTypeId')['ROADMAP'],
-        MapTypeId.SATELLITE: getPath('google.maps.MapTypeId')['SATELLITE'],
-        MapTypeId.TERRAIN: getPath('google.maps.MapTypeId')['TERRAIN']
+        MapTypeId.HYBRID: context['google']['maps']['MapTypeId']['HYBRID'],
+        MapTypeId.ROADMAP: context['google']['maps']['MapTypeId']['ROADMAP'],
+        MapTypeId.SATELLITE:
+            context['google']['maps']['MapTypeId']['SATELLITE'],
+        MapTypeId.TERRAIN: context['google']['maps']['MapTypeId']['TERRAIN']
       }))
       ..add(new IdentityCodec<String>()))).encode(mapTypeIds);
   }

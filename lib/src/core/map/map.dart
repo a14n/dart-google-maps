@@ -29,10 +29,10 @@ abstract class _GMap extends MVCObject {
   num _getHeading();
   dynamic /*MapTypeId|String*/ get mapTypeId => (new ChainedCodec()
     ..add(new BiMapCodec<MapTypeId, dynamic>({
-      MapTypeId.HYBRID: getPath('google.maps.MapTypeId')['HYBRID'],
-      MapTypeId.ROADMAP: getPath('google.maps.MapTypeId')['ROADMAP'],
-      MapTypeId.SATELLITE: getPath('google.maps.MapTypeId')['SATELLITE'],
-      MapTypeId.TERRAIN: getPath('google.maps.MapTypeId')['TERRAIN']
+      MapTypeId.HYBRID: context['google']['maps']['MapTypeId']['HYBRID'],
+      MapTypeId.ROADMAP: context['google']['maps']['MapTypeId']['ROADMAP'],
+      MapTypeId.SATELLITE: context['google']['maps']['MapTypeId']['SATELLITE'],
+      MapTypeId.TERRAIN: context['google']['maps']['MapTypeId']['TERRAIN']
     }))
     ..add(new IdentityCodec<String>())).decode(_getMapTypeId());
   _getMapTypeId();
@@ -54,10 +54,10 @@ abstract class _GMap extends MVCObject {
   void set mapTypeId(dynamic /*MapTypeId|String*/ mapTypeId) => _setMapTypeId(
       (new ChainedCodec()
     ..add(new BiMapCodec<MapTypeId, dynamic>({
-      MapTypeId.HYBRID: getPath('google.maps.MapTypeId')['HYBRID'],
-      MapTypeId.ROADMAP: getPath('google.maps.MapTypeId')['ROADMAP'],
-      MapTypeId.SATELLITE: getPath('google.maps.MapTypeId')['SATELLITE'],
-      MapTypeId.TERRAIN: getPath('google.maps.MapTypeId')['TERRAIN']
+      MapTypeId.HYBRID: context['google']['maps']['MapTypeId']['HYBRID'],
+      MapTypeId.ROADMAP: context['google']['maps']['MapTypeId']['ROADMAP'],
+      MapTypeId.SATELLITE: context['google']['maps']['MapTypeId']['SATELLITE'],
+      MapTypeId.TERRAIN: context['google']['maps']['MapTypeId']['TERRAIN']
     }))
     ..add(new IdentityCodec<String>())).encode(mapTypeId));
   void _setMapTypeId(dynamic /*MapTypeId|String*/ mapTypeId);

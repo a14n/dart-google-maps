@@ -25,28 +25,28 @@ abstract class _GSymbol implements JsInterface {
   dynamic /*SymbolPath|String*/ get path => (new ChainedCodec()
     ..add(new BiMapCodec<SymbolPath, dynamic>({
       SymbolPath.BACKWARD_CLOSED_ARROW:
-          getPath('google.maps.SymbolPath')['BACKWARD_CLOSED_ARROW'],
+          context['google']['maps']['SymbolPath']['BACKWARD_CLOSED_ARROW'],
       SymbolPath.BACKWARD_OPEN_ARROW:
-          getPath('google.maps.SymbolPath')['BACKWARD_OPEN_ARROW'],
-      SymbolPath.CIRCLE: getPath('google.maps.SymbolPath')['CIRCLE'],
+          context['google']['maps']['SymbolPath']['BACKWARD_OPEN_ARROW'],
+      SymbolPath.CIRCLE: context['google']['maps']['SymbolPath']['CIRCLE'],
       SymbolPath.FORWARD_CLOSED_ARROW:
-          getPath('google.maps.SymbolPath')['FORWARD_CLOSED_ARROW'],
+          context['google']['maps']['SymbolPath']['FORWARD_CLOSED_ARROW'],
       SymbolPath.FORWARD_OPEN_ARROW:
-          getPath('google.maps.SymbolPath')['FORWARD_OPEN_ARROW']
+          context['google']['maps']['SymbolPath']['FORWARD_OPEN_ARROW']
     }))
     ..add(new IdentityCodec<String>())).decode(_path);
   void set path(dynamic /*SymbolPath|String*/ path) {
     _path = (new ChainedCodec()
       ..add(new BiMapCodec<SymbolPath, dynamic>({
         SymbolPath.BACKWARD_CLOSED_ARROW:
-            getPath('google.maps.SymbolPath')['BACKWARD_CLOSED_ARROW'],
+            context['google']['maps']['SymbolPath']['BACKWARD_CLOSED_ARROW'],
         SymbolPath.BACKWARD_OPEN_ARROW:
-            getPath('google.maps.SymbolPath')['BACKWARD_OPEN_ARROW'],
-        SymbolPath.CIRCLE: getPath('google.maps.SymbolPath')['CIRCLE'],
+            context['google']['maps']['SymbolPath']['BACKWARD_OPEN_ARROW'],
+        SymbolPath.CIRCLE: context['google']['maps']['SymbolPath']['CIRCLE'],
         SymbolPath.FORWARD_CLOSED_ARROW:
-            getPath('google.maps.SymbolPath')['FORWARD_CLOSED_ARROW'],
+            context['google']['maps']['SymbolPath']['FORWARD_CLOSED_ARROW'],
         SymbolPath.FORWARD_OPEN_ARROW:
-            getPath('google.maps.SymbolPath')['FORWARD_OPEN_ARROW']
+            context['google']['maps']['SymbolPath']['FORWARD_OPEN_ARROW']
       }))
       ..add(new IdentityCodec<String>())).encode(path);
   }

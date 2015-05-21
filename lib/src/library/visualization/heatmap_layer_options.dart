@@ -24,18 +24,15 @@ abstract class _HeatmapLayerOptions implements JsInterface {
               (o) => new MVCArray<LatLng>.created(o,
                   new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
                       (o) => o != null &&
-                          o.instanceof(getPath("google.maps.LatLng"))))))
-          .decode(
-              _data);
+                          o.instanceof(context['google']['maps']['LatLng'])))))
+          .decode(_data);
   void set data(MVCArray<LatLng> data) {
     _data =
-        (new JsInterfaceCodec<MVCArray<LatLng>>(
-                (o) => new MVCArray<LatLng>.created(o,
-                    new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
-                        (o) => o != null &&
-                            o.instanceof(getPath("google.maps.LatLng"))))))
-            .encode(
-                data);
+        (new JsInterfaceCodec<MVCArray<LatLng>>((o) =>
+                new MVCArray<LatLng>.created(o, new JsInterfaceCodec<LatLng>(
+                    (o) => new LatLng.created(o), (o) => o != null &&
+                        o.instanceof(context['google']['maps']['LatLng'])))))
+            .encode(data);
   }
   bool dissipating;
   List<String> gradient;

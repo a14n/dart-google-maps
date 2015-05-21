@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// 2015-05-17T19:43:32.659Z
+// 2015-05-21T17:14:49.062Z
 
 part of google_maps.adsense;
 
@@ -12,7 +12,7 @@ part of google_maps.adsense;
 class AdUnit extends MVCObject implements _AdUnit {
   AdUnit.created(JsObject o) : super.created(o);
   AdUnit(Node container, AdUnitOptions opts) : this.created(new JsObject(
-          getPath('google.maps.adsense.AdUnit'), [
+          context['google']['maps']['adsense']['AdUnit'], [
         container,
         __codec160.encode(opts)
       ]));
@@ -177,48 +177,54 @@ class AdFormat extends JsEnum {
     X_LARGE_VERTICAL_LINK_UNIT
   ];
   static final BANNER = new AdFormat._(
-      'BANNER', getPath('google.maps.adsense.AdFormat')['BANNER']);
+      'BANNER', context['google']['maps']['adsense']['AdFormat']['BANNER']);
   static final BUTTON = new AdFormat._(
-      'BUTTON', getPath('google.maps.adsense.AdFormat')['BUTTON']);
-  static final HALF_BANNER = new AdFormat._(
-      'HALF_BANNER', getPath('google.maps.adsense.AdFormat')['HALF_BANNER']);
+      'BUTTON', context['google']['maps']['adsense']['AdFormat']['BUTTON']);
+  static final HALF_BANNER = new AdFormat._('HALF_BANNER',
+      context['google']['maps']['adsense']['AdFormat']['HALF_BANNER']);
   static final LARGE_HORIZONTAL_LINK_UNIT = new AdFormat._(
-      'LARGE_HORIZONTAL_LINK_UNIT',
-      getPath('google.maps.adsense.AdFormat')['LARGE_HORIZONTAL_LINK_UNIT']);
+      'LARGE_HORIZONTAL_LINK_UNIT', context['google']['maps']['adsense'][
+      'AdFormat']['LARGE_HORIZONTAL_LINK_UNIT']);
   static final LARGE_RECTANGLE = new AdFormat._('LARGE_RECTANGLE',
-      getPath('google.maps.adsense.AdFormat')['LARGE_RECTANGLE']);
+      context['google']['maps']['adsense']['AdFormat']['LARGE_RECTANGLE']);
   static final LARGE_VERTICAL_LINK_UNIT = new AdFormat._(
-      'LARGE_VERTICAL_LINK_UNIT',
-      getPath('google.maps.adsense.AdFormat')['LARGE_VERTICAL_LINK_UNIT']);
-  static final LEADERBOARD = new AdFormat._(
-      'LEADERBOARD', getPath('google.maps.adsense.AdFormat')['LEADERBOARD']);
+      'LARGE_VERTICAL_LINK_UNIT', context['google']['maps']['adsense'][
+      'AdFormat']['LARGE_VERTICAL_LINK_UNIT']);
+  static final LEADERBOARD = new AdFormat._('LEADERBOARD',
+      context['google']['maps']['adsense']['AdFormat']['LEADERBOARD']);
   static final MEDIUM_RECTANGLE = new AdFormat._('MEDIUM_RECTANGLE',
-      getPath('google.maps.adsense.AdFormat')['MEDIUM_RECTANGLE']);
+      context['google']['maps']['adsense']['AdFormat']['MEDIUM_RECTANGLE']);
   static final MEDIUM_VERTICAL_LINK_UNIT = new AdFormat._(
-      'MEDIUM_VERTICAL_LINK_UNIT',
-      getPath('google.maps.adsense.AdFormat')['MEDIUM_VERTICAL_LINK_UNIT']);
-  static final SKYSCRAPER = new AdFormat._(
-      'SKYSCRAPER', getPath('google.maps.adsense.AdFormat')['SKYSCRAPER']);
+      'MEDIUM_VERTICAL_LINK_UNIT', context['google']['maps']['adsense'][
+      'AdFormat']['MEDIUM_VERTICAL_LINK_UNIT']);
+  static final SKYSCRAPER = new AdFormat._('SKYSCRAPER',
+      context['google']['maps']['adsense']['AdFormat']['SKYSCRAPER']);
   static final SMALL_HORIZONTAL_LINK_UNIT = new AdFormat._(
-      'SMALL_HORIZONTAL_LINK_UNIT',
-      getPath('google.maps.adsense.AdFormat')['SMALL_HORIZONTAL_LINK_UNIT']);
+      'SMALL_HORIZONTAL_LINK_UNIT', context['google']['maps']['adsense'][
+      'AdFormat']['SMALL_HORIZONTAL_LINK_UNIT']);
   static final SMALL_RECTANGLE = new AdFormat._('SMALL_RECTANGLE',
-      getPath('google.maps.adsense.AdFormat')['SMALL_RECTANGLE']);
-  static final SMALL_SQUARE = new AdFormat._(
-      'SMALL_SQUARE', getPath('google.maps.adsense.AdFormat')['SMALL_SQUARE']);
+      context['google']['maps']['adsense']['AdFormat']['SMALL_RECTANGLE']);
+  static final SMALL_SQUARE = new AdFormat._('SMALL_SQUARE',
+      context['google']['maps']['adsense']['AdFormat']['SMALL_SQUARE']);
   static final SMALL_VERTICAL_LINK_UNIT = new AdFormat._(
-      'SMALL_VERTICAL_LINK_UNIT',
-      getPath('google.maps.adsense.AdFormat')['SMALL_VERTICAL_LINK_UNIT']);
+      'SMALL_VERTICAL_LINK_UNIT', context['google']['maps']['adsense'][
+      'AdFormat']['SMALL_VERTICAL_LINK_UNIT']);
   static final SQUARE = new AdFormat._(
-      'SQUARE', getPath('google.maps.adsense.AdFormat')['SQUARE']);
+      'SQUARE', context['google']['maps']['adsense']['AdFormat']['SQUARE']);
   static final VERTICAL_BANNER = new AdFormat._('VERTICAL_BANNER',
-      getPath('google.maps.adsense.AdFormat')['VERTICAL_BANNER']);
+      context['google']['maps']['adsense']['AdFormat']['VERTICAL_BANNER']);
   static final WIDE_SKYSCRAPER = new AdFormat._('WIDE_SKYSCRAPER',
-      getPath('google.maps.adsense.AdFormat')['WIDE_SKYSCRAPER']);
+      context['google']['maps']['adsense']['AdFormat']['WIDE_SKYSCRAPER']);
   static final X_LARGE_VERTICAL_LINK_UNIT = new AdFormat._(
-      'X_LARGE_VERTICAL_LINK_UNIT',
-      getPath('google.maps.adsense.AdFormat')['X_LARGE_VERTICAL_LINK_UNIT']);
+      'X_LARGE_VERTICAL_LINK_UNIT', context['google']['maps']['adsense'][
+      'AdFormat']['X_LARGE_VERTICAL_LINK_UNIT']);
+
   final String _name;
   AdFormat._(this._name, o) : super.created(o);
+
   String toString() => 'AdFormat.$_name';
+
+  // dumb code to remove analyzer hint for unused _AdFormat
+  _AdFormat _dumbMethod1() => _dumbMethod2();
+  _AdFormat _dumbMethod2() => _dumbMethod1();
 }

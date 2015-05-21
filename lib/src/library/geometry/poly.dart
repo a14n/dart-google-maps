@@ -14,16 +14,16 @@
 
 part of google_maps.geometry;
 
-final poly = new Poly.created(getPath('google.maps.geometry.poly'));
+final poly = new Poly.created(context['google']['maps']['geometry']['poly']);
 abstract class _Poly implements JsInterface {
   bool containsLocation(LatLng point, Polygon polygon);
   bool isLocationOnEdge(LatLng point, dynamic /*Polygon|Polyline*/ poly,
       [num tolerance]) => _isLocationOnEdge(point, (new ChainedCodec()
     ..add(new JsInterfaceCodec<Polygon>((o) => new Polygon.created(o),
-        (o) => o != null && o.instanceof(getPath("google.maps.Polygon"))))
-    ..add(new JsInterfaceCodec<Polyline>((o) => new Polyline.created(o),
-        (o) => o != null && o.instanceof(getPath("google.maps.Polyline")))))
-          .encode(poly), tolerance);
+        (o) => o != null && o.instanceof(context['google']['maps']['Polygon'])))
+    ..add(new JsInterfaceCodec<Polyline>((o) => new Polyline.created(o), (o) =>
+        o != null && o.instanceof(context['google']['maps']['Polyline']))))
+      .encode(poly), tolerance);
   _isLocationOnEdge(LatLng point, dynamic /*Polygon|Polyline*/ poly,
       [num tolerance]);
 }

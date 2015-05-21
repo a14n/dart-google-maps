@@ -19,7 +19,7 @@ abstract class _MVCArray<E> extends MVCObject {
   Codec<E, dynamic> _codec = null;
 
   _MVCArray({List<E> elements, Codec<E, dynamic> codec}) : this.created(
-          new JsObject(getPath('google.maps.MVCArray'), [
+          new JsObject(context['google']['maps']['MVCArray'], [
         elements == null
             ? new JsArray()
             : new JsArray.from(

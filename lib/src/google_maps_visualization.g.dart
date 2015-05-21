@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// 2015-05-17T19:43:32.989Z
+// 2015-05-21T17:14:49.486Z
 
 part of google_maps.visualization;
 
@@ -12,7 +12,7 @@ part of google_maps.visualization;
 class MapsEngineLayer extends MVCObject implements _MapsEngineLayer {
   MapsEngineLayer.created(JsObject o) : super.created(o);
   MapsEngineLayer(MapsEngineLayerOptions options) : this.created(new JsObject(
-          getPath('google.maps.visualization.MapsEngineLayer'),
+          context['google']['maps']['visualization']['MapsEngineLayer'],
           [__codec227.encode(options)]));
 
   String get layerId => _getLayerId();
@@ -196,15 +196,21 @@ final __codec232 = new JsInterfaceCodec<Size>((o) => new Size.created(o));
 
 class MapsEngineStatus extends JsEnum {
   static final values = <MapsEngineStatus>[INVALID_LAYER, OK, UNKNOWN_ERROR];
-  static final INVALID_LAYER = new MapsEngineStatus._('INVALID_LAYER',
-      getPath('google.maps.visualization.MapsEngineStatus')['INVALID_LAYER']);
-  static final OK = new MapsEngineStatus._(
-      'OK', getPath('google.maps.visualization.MapsEngineStatus')['OK']);
-  static final UNKNOWN_ERROR = new MapsEngineStatus._('UNKNOWN_ERROR',
-      getPath('google.maps.visualization.MapsEngineStatus')['UNKNOWN_ERROR']);
+  static final INVALID_LAYER = new MapsEngineStatus._('INVALID_LAYER', context[
+      'google']['maps']['visualization']['MapsEngineStatus']['INVALID_LAYER']);
+  static final OK = new MapsEngineStatus._('OK',
+      context['google']['maps']['visualization']['MapsEngineStatus']['OK']);
+  static final UNKNOWN_ERROR = new MapsEngineStatus._('UNKNOWN_ERROR', context[
+      'google']['maps']['visualization']['MapsEngineStatus']['UNKNOWN_ERROR']);
+
   final String _name;
   MapsEngineStatus._(this._name, o) : super.created(o);
+
   String toString() => 'MapsEngineStatus.$_name';
+
+  // dumb code to remove analyzer hint for unused _MapsEngineStatus
+  _MapsEngineStatus _dumbMethod1() => _dumbMethod2();
+  _MapsEngineStatus _dumbMethod2() => _dumbMethod1();
 }
 
 // **************************************************************************
@@ -216,10 +222,10 @@ class MapsEngineStatus extends JsEnum {
 class DynamicMapsEngineLayer extends MVCObject
     implements _DynamicMapsEngineLayer {
   DynamicMapsEngineLayer.created(JsObject o) : super.created(o);
-  DynamicMapsEngineLayer(DynamicMapsEngineLayerOptions options) : this.created(
-          new JsObject(
-              getPath('google.maps.visualization.DynamicMapsEngineLayer'),
-              [__codec233.encode(options)]));
+  DynamicMapsEngineLayer(DynamicMapsEngineLayerOptions options)
+      : this.created(new JsObject(
+          context['google']['maps']['visualization']['DynamicMapsEngineLayer'],
+          [__codec233.encode(options)]));
 
   FeatureStyle getFeatureStyle(String featureId) => __codec234
       .decode(asJsObject(this).callMethod('getFeatureStyle', [featureId]));
@@ -459,7 +465,7 @@ class FeatureStyle extends JsInterface implements _FeatureStyle {
 class HeatmapLayer extends MVCObject implements _HeatmapLayer {
   HeatmapLayer.created(JsObject o) : super.created(o);
   HeatmapLayer([HeatmapLayerOptions opts]) : this.created(new JsObject(
-          getPath('google.maps.visualization.HeatmapLayer'),
+          context['google']['maps']['visualization']['HeatmapLayer'],
           [__codec238.encode(opts)]));
 
   MVCArray<dynamic /*LatLng|WeightedLocation*/ > get data =>
@@ -467,7 +473,7 @@ class HeatmapLayer extends MVCObject implements _HeatmapLayer {
           (o) => new MVCArray<dynamic /*LatLng|WeightedLocation*/ >.created(o,
               new ChainedCodec()
     ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
-        (o) => o != null && o.instanceof(getPath("google.maps.LatLng"))))
+        (o) => o != null && o.instanceof(context['google']['maps']['LatLng'])))
     ..add(new JsInterfaceCodec<WeightedLocation>(
         (o) => new WeightedLocation.created(o)))))).decode(_getData());
   _getData() => __codec235.decode(asJsObject(this).callMethod('getData'));
@@ -479,14 +485,14 @@ class HeatmapLayer extends MVCObject implements _HeatmapLayer {
     ..add(new JsInterfaceCodec<MVCArray<dynamic /*LatLng|WeightedLocation*/ >>(
         (o) => new MVCArray<dynamic /*LatLng|WeightedLocation*/ >.created(o,
             new ChainedCodec()
-      ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
-          (o) => o != null && o.instanceof(getPath("google.maps.LatLng"))))
+      ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o), (o) =>
+          o != null && o.instanceof(context['google']['maps']['LatLng'])))
       ..add(new JsInterfaceCodec<WeightedLocation>(
           (o) => new WeightedLocation.created(o))))))
     ..add(new JsListCodec<dynamic /*LatLng|WeightedLocation*/ >(
         new ChainedCodec()
-      ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
-          (o) => o != null && o.instanceof(getPath("google.maps.LatLng"))))
+      ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o), (o) =>
+          o != null && o.instanceof(context['google']['maps']['LatLng'])))
       ..add(new JsInterfaceCodec<WeightedLocation>(
           (o) => new WeightedLocation.created(o)))))).encode(data));
   void _setData(
@@ -521,18 +527,15 @@ class HeatmapLayerOptions extends JsInterface implements _HeatmapLayerOptions {
               (o) => new MVCArray<LatLng>.created(o,
                   new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
                       (o) => o != null &&
-                          o.instanceof(getPath("google.maps.LatLng"))))))
-          .decode(
-              _data);
+                          o.instanceof(context['google']['maps']['LatLng'])))))
+          .decode(_data);
   void set data(MVCArray<LatLng> data) {
     _data =
-        (new JsInterfaceCodec<MVCArray<LatLng>>(
-                (o) => new MVCArray<LatLng>.created(o,
-                    new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
-                        (o) => o != null &&
-                            o.instanceof(getPath("google.maps.LatLng"))))))
-            .encode(
-                data);
+        (new JsInterfaceCodec<MVCArray<LatLng>>((o) =>
+                new MVCArray<LatLng>.created(o, new JsInterfaceCodec<LatLng>(
+                    (o) => new LatLng.created(o), (o) => o != null &&
+                        o.instanceof(context['google']['maps']['LatLng'])))))
+            .encode(data);
   }
   void set dissipating(bool _dissipating) {
     asJsObject(this)['dissipating'] = _dissipating;

@@ -33,19 +33,20 @@ abstract class _MapOptions implements JsInterface {
   dynamic _mapTypeId;
   dynamic /*MapTypeId|String*/ get mapTypeId => (new ChainedCodec()
     ..add(new BiMapCodec<MapTypeId, dynamic>({
-      MapTypeId.HYBRID: getPath('google.maps.MapTypeId')['HYBRID'],
-      MapTypeId.ROADMAP: getPath('google.maps.MapTypeId')['ROADMAP'],
-      MapTypeId.SATELLITE: getPath('google.maps.MapTypeId')['SATELLITE'],
-      MapTypeId.TERRAIN: getPath('google.maps.MapTypeId')['TERRAIN']
+      MapTypeId.HYBRID: context['google']['maps']['MapTypeId']['HYBRID'],
+      MapTypeId.ROADMAP: context['google']['maps']['MapTypeId']['ROADMAP'],
+      MapTypeId.SATELLITE: context['google']['maps']['MapTypeId']['SATELLITE'],
+      MapTypeId.TERRAIN: context['google']['maps']['MapTypeId']['TERRAIN']
     }))
     ..add(new IdentityCodec<String>())).decode(_mapTypeId);
   void set mapTypeId(dynamic /*MapTypeId|String*/ mapTypeId) {
     _mapTypeId = (new ChainedCodec()
       ..add(new BiMapCodec<MapTypeId, dynamic>({
-        MapTypeId.HYBRID: getPath('google.maps.MapTypeId')['HYBRID'],
-        MapTypeId.ROADMAP: getPath('google.maps.MapTypeId')['ROADMAP'],
-        MapTypeId.SATELLITE: getPath('google.maps.MapTypeId')['SATELLITE'],
-        MapTypeId.TERRAIN: getPath('google.maps.MapTypeId')['TERRAIN']
+        MapTypeId.HYBRID: context['google']['maps']['MapTypeId']['HYBRID'],
+        MapTypeId.ROADMAP: context['google']['maps']['MapTypeId']['ROADMAP'],
+        MapTypeId.SATELLITE:
+            context['google']['maps']['MapTypeId']['SATELLITE'],
+        MapTypeId.TERRAIN: context['google']['maps']['MapTypeId']['TERRAIN']
       }))
       ..add(new IdentityCodec<String>())).encode(mapTypeId);
   }
