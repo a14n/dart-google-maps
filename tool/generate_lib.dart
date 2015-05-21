@@ -147,19 +147,6 @@ abstract class _StreetViewService implements JsInterface {
 '''
 };
 
-final defaultImports = '''
-import 'dart:async' show Stream;
-import 'dart:collection' show MapMixin;
-import 'dart:html' show Node, Document, InputElement;
-
-import 'package:js/js.dart';
-import 'package:js/adapter/js_list.dart';
-import 'package:js/util/codec.dart';
-
-import 'package:google_maps/util/async.dart';
-import 'package:google_maps/src/google_maps.dart';
-''';
-
 final importsByLib = <String, String>{
   'google_maps': '''
 import 'dart:async' show Stream;
@@ -167,11 +154,62 @@ import 'dart:collection' show MapMixin;
 import 'dart:html' show Node, Document;
 
 import 'package:js/js.dart';
-import 'package:js/adapter/js_list.dart';
-import 'package:js/util/codec.dart';
 
 import 'package:google_maps/util/async.dart';
-'''
+''',
+  'google_maps.adsense': '''
+import 'dart:html' show Node;
+
+import 'package:js/js.dart';
+
+import 'package:google_maps/src/google_maps.dart';
+''',
+  'google_maps.drawing': '''
+import 'dart:async' show Stream;
+
+import 'package:js/js.dart';
+
+import 'package:google_maps/util/async.dart';
+import 'package:google_maps/src/google_maps.dart';
+''',
+  'google_maps.geometry': '''
+import 'package:js/js.dart';
+
+import 'package:google_maps/src/google_maps.dart';
+''',
+  'google_maps.panoramio': '''
+import 'dart:async' show Stream;
+
+import 'package:js/js.dart';
+
+import 'package:google_maps/util/async.dart';
+import 'package:google_maps/src/google_maps.dart';
+''',
+  'google_maps.places': '''
+import 'dart:async' show Stream;
+import 'dart:html' show InputElement;
+
+import 'package:js/js.dart';
+
+import 'package:google_maps/util/async.dart';
+import 'package:google_maps/src/google_maps.dart';
+''',
+  'google_maps.visualization': '''
+import 'dart:async' show Stream;
+
+import 'package:js/js.dart';
+
+import 'package:google_maps/util/async.dart';
+import 'package:google_maps/src/google_maps.dart';
+''',
+  'google_maps.weather': '''
+import 'dart:async' show Stream;
+
+import 'package:js/js.dart';
+
+import 'package:google_maps/util/async.dart';
+import 'package:google_maps/src/google_maps.dart';
+''',
 };
 
 final additionalContentByLib = <String, String>{
@@ -802,7 +840,7 @@ main() async {
   // generate contents
   libraries.keys.forEach((libraryName) {
     var imports = importsByLib[libraryName];
-    if (imports == null) imports = defaultImports;
+    if (imports == null) throw '$libraryName has no import';
     var libContents = '''
 $LICENCE
 
@@ -1192,8 +1230,8 @@ CodecInfo getCodec(String type, List<JsElement> jsElements) {
           .map((tr) => tr.getElementsByTagName('td')[0].text.trim());
       return new CodecInfo('new BiMapCodec<$convertedType, dynamic>({' +
           constants
-              .map((e) =>
-                  "${jsElmt.name}.$e: ${getPath(jsElmt.fullName)}['$e']")
+              .map(
+                  (e) => "${jsElmt.name}.$e: ${getPath(jsElmt.fullName)}['$e']")
               .join(',') +
           '})', true, false);
     } else if (jsElmt.isAnonymousObject) {

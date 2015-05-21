@@ -15,12 +15,9 @@
 library google_maps.places;
 
 import 'dart:async' show Stream;
-import 'dart:collection' show MapMixin;
-import 'dart:html' show Node, Document, InputElement;
+import 'dart:html' show InputElement;
 
 import 'package:js/js.dart';
-import 'package:js/adapter/js_list.dart';
-import 'package:js/util/codec.dart';
 
 import 'package:google_maps/util/async.dart';
 import 'package:google_maps/src/google_maps.dart';

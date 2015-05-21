@@ -19,8 +19,6 @@ import 'dart:collection' show MapMixin;
 import 'dart:html' show Node, Document;
 
 import 'package:js/js.dart';
-import 'package:js/adapter/js_list.dart';
-import 'package:js/util/codec.dart';
 
 import 'package:google_maps/util/async.dart';
 
