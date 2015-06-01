@@ -14,7 +14,7 @@
 
 library google_maps.geometry;
 
-import 'package:js/js.dart';
+import 'package:js_wrapping/js_wrapping.dart';
 
 import 'package:google_maps/src/google_maps.dart';
 

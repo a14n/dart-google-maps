@@ -2,7 +2,7 @@ library example;
 
 import 'dart:html';
 
-import 'package:js/js.dart';
+import 'package:js_wrapping/js_wrapping.dart';
 import 'package:google_maps/google_maps.dart';
 
 part 'page.g.dart';

@@ -2,7 +2,7 @@ import 'dart:html' hide Point;
 import 'dart:math' as Math;
 
 import 'package:google_maps/google_maps.dart';
-import 'package:js/js.dart';
+import 'package:js_wrapping/js_wrapping.dart';
 
 const IMAGE_URL =
     "https://google-developers.appspot.com/maps/documentation/javascript/examples/full";
@@ -134,18 +134,16 @@ void main() {
 
   gallPetersMapType.projection = new GallPetersProjection();
   context['a'] = (asJsObject(new MapTypeControlOptions()
-      ..mapTypeIds = [MapTypeId.ROADMAP, 'gallPetersMap']));
+    ..mapTypeIds = [MapTypeId.ROADMAP, 'gallPetersMap']));
   final mapOptions = new MapOptions()
     ..zoom = 0
     ..center = new LatLng(0, 0)
     ..mapTypeControlOptions = (new MapTypeControlOptions()
-      ..mapTypeIds = [MapTypeId.ROADMAP, 'gallPetersMap'])
-      ;
+      ..mapTypeIds = [MapTypeId.ROADMAP, 'gallPetersMap']);
   final gallPetersMap = new GMap(
       document.getElementById('map-canvas'), mapOptions)
     ..mapTypes.set('gallPetersMap', gallPetersMapType)
-    ..mapTypeId = 'gallPetersMap'
-    ;
+    ..mapTypeId = 'gallPetersMap';
 
   for (var i = 0; i < locationArray.length; i++) {
     new Marker(new MarkerOptions()

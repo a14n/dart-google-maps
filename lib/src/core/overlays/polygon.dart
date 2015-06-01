@@ -56,8 +56,8 @@ abstract class _Polygon extends MVCObject {
   void _setMap(GMap map);
   void set options(PolygonOptions options) => _setOptions(options);
   void _setOptions(PolygonOptions options);
-  void set path(dynamic /*MVCArray<LatLng>|List<LatLng>*/ path) => _setPath(
-      (new ChainedCodec()
+  void set path(dynamic /*MVCArray<LatLng>|List<LatLng>*/ path) =>
+      _setPath((new ChainedCodec()
     ..add(new JsInterfaceCodec<MVCArray<LatLng>>(
         (o) => new MVCArray<LatLng>.created(o, new JsInterfaceCodec<LatLng>(
             (o) => new LatLng.created(o), (o) => o != null &&
@@ -69,7 +69,8 @@ abstract class _Polygon extends MVCObject {
   void _setPath(dynamic /*MVCArray<LatLng>|List<LatLng>*/ path);
   void set paths(
           dynamic /*MVCArray<MVCArray<LatLng>>|MVCArray<LatLng>|List<List<LatLng>>|List<LatLng>*/ paths) =>
-      _setPaths((new ChainedCodec()
+      _setPaths(
+          (new ChainedCodec()
     ..add(
         new JsInterfaceCodec<MVCArray<MVCArray<LatLng>>>(
             (o) =>
@@ -81,17 +82,25 @@ abstract class _Polygon extends MVCObject {
                                 (o) => o != null &&
                                     o.instanceof(context['google']['maps'][
                                         'LatLng'])))))))
-    ..add(new JsInterfaceCodec<MVCArray<LatLng>>(
-        (o) => new MVCArray<LatLng>.created(o, new JsInterfaceCodec<LatLng>(
-            (o) => new LatLng.created(o), (o) => o != null &&
-                o.instanceof(context['google']['maps']['LatLng'])))))
-    ..add(new JsListCodec<List<LatLng>>(new JsListCodec<LatLng>(
-        new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o), (o) =>
-            o != null && o.instanceof(context['google']['maps']['LatLng'])))))
-    ..add(new JsListCodec<LatLng>(new JsInterfaceCodec<LatLng>(
-        (o) => new LatLng.created(o), (o) =>
-            o != null && o.instanceof(context['google']['maps']['LatLng'])))))
-      .encode(paths));
+    ..add(
+        new JsInterfaceCodec<MVCArray<LatLng>>(
+            (o) =>
+                new MVCArray<LatLng>.created(o, new JsInterfaceCodec<LatLng>(
+                    (o) => new LatLng.created(o), (o) => o != null &&
+                        o.instanceof(context['google']['maps']['LatLng'])))))
+    ..add(
+        new JsListCodec<List<LatLng>>(
+            new JsListCodec<LatLng>(
+                new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
+                    (o) => o != null &&
+                        o.instanceof(context['google']['maps']['LatLng'])))))
+    ..add(
+        new JsListCodec<LatLng>(
+            new JsInterfaceCodec<LatLng>(
+                (o) => new LatLng.created(o),
+                (o) => o != null &&
+                    o.instanceof(context['google']['maps']['LatLng'])))))
+              .encode(paths));
   void _setPaths(
       dynamic /*MVCArray<MVCArray<LatLng>>|MVCArray<LatLng>|List<List<LatLng>>|List<LatLng>*/ paths);
   void set visible(bool visible) => _setVisible(visible);

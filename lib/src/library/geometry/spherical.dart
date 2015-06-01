@@ -18,7 +18,8 @@ final spherical =
     new Spherical.created(context['google']['maps']['geometry']['spherical']);
 abstract class _Spherical implements JsInterface {
   num computeArea(dynamic /*List<LatLng>|MVCArray<LatLng>*/ path,
-      [num radius]) => _computeArea((new ChainedCodec()
+          [num radius]) =>
+      _computeArea((new ChainedCodec()
     ..add(new JsListCodec<LatLng>(new JsInterfaceCodec<LatLng>(
         (o) => new LatLng.created(o),
         (o) => o != null && o.instanceof(context['google']['maps']['LatLng']))))
@@ -31,7 +32,8 @@ abstract class _Spherical implements JsInterface {
   num computeDistanceBetween(LatLng from, LatLng to, [num radius]);
   num computeHeading(LatLng from, LatLng to);
   num computeLength(dynamic /*List<LatLng>|MVCArray<LatLng>*/ path,
-      [num radius]) => _computeLength((new ChainedCodec()
+          [num radius]) =>
+      _computeLength((new ChainedCodec()
     ..add(new JsListCodec<LatLng>(new JsInterfaceCodec<LatLng>(
         (o) => new LatLng.created(o),
         (o) => o != null && o.instanceof(context['google']['maps']['LatLng']))))
@@ -45,7 +47,8 @@ abstract class _Spherical implements JsInterface {
   LatLng computeOffsetOrigin(LatLng to, num distance, num heading,
       [num radius]);
   num computeSignedArea(dynamic /*List<LatLng>|MVCArray<LatLng>*/ loop,
-      [num radius]) => _computeSignedArea((new ChainedCodec()
+          [num radius]) =>
+      _computeSignedArea((new ChainedCodec()
     ..add(new JsListCodec<LatLng>(new JsInterfaceCodec<LatLng>(
         (o) => new LatLng.created(o),
         (o) => o != null && o.instanceof(context['google']['maps']['LatLng']))))

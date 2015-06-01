@@ -6,14 +6,8 @@ homepage: https://github.com/a14n/dart-google-maps
 environment:
   sdk: '>=1.0.0 <2.0.0'
 dependencies:
-  js:
-    git:
-      ref: source_gen
-      url: git@github.com:a14n/js-interop.git
+  js_wrapping: ^0.2.0
 dev_dependencies:
   browser: ^0.10.0
   test: ^0.12.0
   html: ^0.12.0
-dependency_overrides:
-  js:
-    path: ../js-interop-generator

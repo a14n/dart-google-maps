@@ -2,7 +2,7 @@ import 'dart:html';
 
 import 'package:google_maps/google_maps.dart';
 import 'package:google_maps/google_maps_adsense.dart';
-import 'package:js/js.dart';
+import 'package:js_wrapping/js_wrapping.dart';
 
 void main() {
   final mapOptions = new MapOptions()

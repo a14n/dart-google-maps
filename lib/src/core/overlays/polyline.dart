@@ -42,8 +42,8 @@ abstract class _Polyline extends MVCObject {
   void _setMap(GMap map);
   void set options(PolylineOptions options) => _setOptions(options);
   void _setOptions(PolylineOptions options);
-  void set path(dynamic /*MVCArray<LatLng>|List<LatLng>*/ path) => _setPath(
-      (new ChainedCodec()
+  void set path(dynamic /*MVCArray<LatLng>|List<LatLng>*/ path) =>
+      _setPath((new ChainedCodec()
     ..add(new JsInterfaceCodec<MVCArray<LatLng>>(
         (o) => new MVCArray<LatLng>.created(o, new JsInterfaceCodec<LatLng>(
             (o) => new LatLng.created(o), (o) => o != null &&

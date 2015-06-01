@@ -1,7 +1,7 @@
 import 'dart:html';
 import 'dart:math';
 import 'package:google_maps/google_maps.dart';
-import 'package:js/js.dart';
+import 'package:js_wrapping/js_wrapping.dart';
 
 GMap map;
 final mapStyle = <MapTypeStyle>[

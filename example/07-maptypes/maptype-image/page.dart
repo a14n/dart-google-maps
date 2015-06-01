@@ -2,7 +2,7 @@ import 'dart:html' hide Point;
 import 'dart:math' as Math;
 
 import 'package:google_maps/google_maps.dart';
-import 'package:js/js.dart';
+import 'package:js_wrapping/js_wrapping.dart';
 
 void main() {
   final moonTypeOptions = new ImageMapTypeOptions()

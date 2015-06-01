@@ -3,7 +3,7 @@ import 'dart:html' as html show MouseEvent;
 import 'dart:convert';
 
 import 'package:google_maps/google_maps.dart';
-import 'package:js/js.dart';
+import 'package:js_wrapping/js_wrapping.dart';
 
 GMap map;
 

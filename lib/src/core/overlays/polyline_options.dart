@@ -25,7 +25,8 @@ abstract class _PolylineOptions implements JsInterface {
   List<IconSequence> icons;
   GMap map;
   dynamic _path;
-  dynamic /*MVCArray<LatLng>|List<LatLng>*/ get path => (new ChainedCodec()
+  dynamic /*MVCArray<LatLng>|List<LatLng>*/ get path =>
+      (new ChainedCodec()
     ..add(new JsInterfaceCodec<MVCArray<LatLng>>(
         (o) => new MVCArray<LatLng>.created(o, new JsInterfaceCodec<LatLng>(
             (o) => new LatLng.created(o), (o) => o != null &&
@@ -34,7 +35,8 @@ abstract class _PolylineOptions implements JsInterface {
         (o) => new LatLng.created(o), (o) => o != null &&
             o.instanceof(context['google']['maps']['LatLng']))))).decode(_path);
   void set path(dynamic /*MVCArray<LatLng>|List<LatLng>*/ path) {
-    _path = (new ChainedCodec()
+    _path =
+        (new ChainedCodec()
       ..add(new JsInterfaceCodec<MVCArray<LatLng>>(
           (o) => new MVCArray<LatLng>.created(o, new JsInterfaceCodec<LatLng>(
               (o) => new LatLng.created(o), (o) => o != null &&

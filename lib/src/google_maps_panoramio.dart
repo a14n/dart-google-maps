@@ -16,7 +16,7 @@ library google_maps.panoramio;
 
 import 'dart:async' show Stream;
 
-import 'package:js/js.dart';
+import 'package:js_wrapping/js_wrapping.dart';
 
 import 'package:google_maps/util/async.dart';
 import 'package:google_maps/src/google_maps.dart';

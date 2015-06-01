@@ -1,7 +1,7 @@
 import 'dart:html' hide Point;
 
 import 'package:google_maps/google_maps.dart';
-import 'package:js/js.dart';
+import 'package:js_wrapping/js_wrapping.dart';
 
 class CoordMapType extends MapType {
   CoordMapType(Size tileSize) : super() {

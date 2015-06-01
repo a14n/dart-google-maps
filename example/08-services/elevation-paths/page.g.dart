@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// 2015-05-21T17:01:56.283Z
+// 2015-05-29T08:29:10.856Z
 
 part of example;
 
@@ -15,11 +15,11 @@ class ColumnChart extends JsInterface implements _ColumnChart {
           context['google']['visualization']['ColumnChart'], [div]));
 
   void draw(DataTable data, [JsObject options]) {
-    asJsObject(this).callMethod('draw', [__codec251.encode(data), options]);
+    asJsObject(this).callMethod('draw', [__codec252.encode(data), options]);
   }
 }
-/// codec for DataTable
-final __codec251 =
+/// codec for example.DataTable
+final __codec252 =
     new JsInterfaceCodec<DataTable>((o) => new DataTable.created(o));
 
 // **************************************************************************
@@ -37,11 +37,11 @@ class DataTable extends JsInterface implements _DataTable {
     asJsObject(this).callMethod('addColumn', [type, label, id]);
   }
   void addRow([JsArray cellArray]) {
-    asJsObject(this).callMethod('addRow', [__codec253.encode(cellArray)]);
+    asJsObject(this).callMethod('addRow', [__codec254.encode(cellArray)]);
   }
 }
-/// codec for dynamic
-final __codec252 = new DynamicCodec();
+/// codec for null.dynamic
+final __codec253 = new DynamicCodec();
 
-/// codec for JsArray<dynamic>
-final __codec253 = new JsListCodec<dynamic>(__codec252);
+/// codec for dart.js.JsArray<dynamic>
+final __codec254 = new JsListCodec<dynamic>(__codec253);

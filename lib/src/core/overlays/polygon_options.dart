@@ -39,20 +39,30 @@ abstract class _PolygonOptions implements JsInterface {
                                 (o) => o != null &&
                                     o.instanceof(context['google']['maps'][
                                         'LatLng'])))))))
-    ..add(new JsInterfaceCodec<MVCArray<LatLng>>(
-        (o) => new MVCArray<LatLng>.created(o, new JsInterfaceCodec<LatLng>(
-            (o) => new LatLng.created(o), (o) => o != null &&
-                o.instanceof(context['google']['maps']['LatLng'])))))
-    ..add(new JsListCodec<List<LatLng>>(new JsListCodec<LatLng>(
-        new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o), (o) =>
-            o != null && o.instanceof(context['google']['maps']['LatLng'])))))
-    ..add(new JsListCodec<LatLng>(new JsInterfaceCodec<LatLng>(
-            (o) => new LatLng.created(o), (o) => o != null &&
-                o.instanceof(context['google']['maps']['LatLng'])))))
-      .decode(_paths);
+    ..add(
+        new JsInterfaceCodec<MVCArray<LatLng>>(
+            (o) =>
+                new MVCArray<LatLng>.created(o, new JsInterfaceCodec<LatLng>(
+                    (o) => new LatLng.created(o), (o) => o != null &&
+                        o.instanceof(context['google']['maps']['LatLng'])))))
+    ..add(
+        new JsListCodec<List<LatLng>>(
+            new JsListCodec<LatLng>(
+                new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
+                    (o) => o != null &&
+                        o.instanceof(context['google']['maps']['LatLng'])))))
+    ..add(
+        new JsListCodec<LatLng>(
+            new JsInterfaceCodec<LatLng>(
+                (o) => new LatLng.created(o),
+                (o) => o != null &&
+                    o.instanceof(context['google']['maps']['LatLng'])))))
+      .decode(
+          _paths);
   void set paths(
       dynamic /*MVCArray<MVCArray<LatLng>>|MVCArray<LatLng>|List<List<LatLng>>|List<LatLng>*/ paths) {
-    _paths = (new ChainedCodec()
+    _paths =
+        (new ChainedCodec()
       ..add(
           new JsInterfaceCodec<MVCArray<MVCArray<LatLng>>>(
               (o) =>
@@ -64,17 +74,26 @@ abstract class _PolygonOptions implements JsInterface {
                                   (o) => o != null &&
                                       o.instanceof(context['google']['maps'][
                                           'LatLng'])))))))
-      ..add(new JsInterfaceCodec<MVCArray<LatLng>>(
-          (o) => new MVCArray<LatLng>.created(o, new JsInterfaceCodec<LatLng>(
-              (o) => new LatLng.created(o), (o) => o != null &&
-                  o.instanceof(context['google']['maps']['LatLng'])))))
-      ..add(new JsListCodec<List<LatLng>>(new JsListCodec<LatLng>(
-          new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o), (o) =>
-              o != null && o.instanceof(context['google']['maps']['LatLng'])))))
-      ..add(new JsListCodec<LatLng>(new JsInterfaceCodec<LatLng>(
-              (o) => new LatLng.created(o), (o) => o != null &&
-                  o.instanceof(context['google']['maps']['LatLng'])))))
-        .encode(paths);
+      ..add(
+          new JsInterfaceCodec<MVCArray<LatLng>>(
+              (o) =>
+                  new MVCArray<LatLng>.created(o, new JsInterfaceCodec<LatLng>(
+                      (o) => new LatLng.created(o), (o) => o != null &&
+                          o.instanceof(context['google']['maps']['LatLng'])))))
+      ..add(
+          new JsListCodec<List<LatLng>>(
+              new JsListCodec<LatLng>(
+                  new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
+                      (o) => o != null &&
+                          o.instanceof(context['google']['maps']['LatLng'])))))
+      ..add(
+          new JsListCodec<LatLng>(
+              new JsInterfaceCodec<LatLng>(
+                  (o) => new LatLng.created(o),
+                  (o) => o != null &&
+                      o.instanceof(context['google']['maps']['LatLng'])))))
+        .encode(
+            paths);
   }
   String strokeColor;
   num strokeOpacity;
