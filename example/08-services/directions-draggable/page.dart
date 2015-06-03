@@ -43,9 +43,9 @@ void calcRoute() {
 void computeTotalDistance(DirectionsResult result) {
   num total = 0;
   final myroute = result.routes[0];
-  for (int i = 0; i < myroute.legs.length; i++) {
-    total += myroute.legs[i].distance.value;
+  for (final leg in myroute.legs) {
+    total += leg.distance.value;
   }
-  total = total / 1000.0; // TODO bad synthax in example
+  total = total / 1000.0;
   document.getElementById('total').innerHtml = '${total} km';
 }

@@ -62,7 +62,7 @@ class GallPetersProjection extends Projection {
   // This constant merely reflects that latitudes vary from +90 to -90 degrees.
   static const _worldCoordinateLatRange = GALL_PETERS_RANGE_Y / 2;
 
-  // TODO make a constructor with optionals
+  // TODO(aa) make a constructor with optionals
   GallPetersProjection() : super() {
     asJsObject(this)['fromLatLngToPoint'] = (JsObject latLng,
         [JsObject point]) => asJsObject(_fromLatLngToPoint(
