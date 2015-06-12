@@ -1,4 +1,8 @@
 
+# v3.0.1 (2015-06-12)
+
+- fix [issue #31: duplicated google_maps library name](https://github.com/a14n/dart-google-maps/issues/31).
+
 # v3.0.0 (2015-06-05)
 
 - support of the Google Maps API 3.20
