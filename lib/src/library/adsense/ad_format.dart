@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-part of google_maps.adsense;
+part of google_maps.src.adsense;
 
 @jsEnum
 @JsName('google.maps.adsense.AdFormat')

@@ -14,4 +14,4 @@
 
 library google_maps_adsense;
 
-export 'src/google_maps_adsense.dart';
+export 'src/google_maps_src_adsense.dart';

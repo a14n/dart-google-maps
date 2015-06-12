@@ -14,4 +14,4 @@
 
 library google_maps_drawing;
 
-export 'src/google_maps_drawing.dart';
+export 'src/google_maps_src_drawing.dart';

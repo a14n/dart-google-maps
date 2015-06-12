@@ -14,4 +14,4 @@
 
 library google_maps_geometry;
 
-export 'src/google_maps_geometry.dart';
+export 'src/google_maps_src_geometry.dart';

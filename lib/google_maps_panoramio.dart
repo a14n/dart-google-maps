@@ -14,4 +14,4 @@
 
 library google_maps_panoramio;
 
-export 'src/google_maps_panoramio.dart';
+export 'src/google_maps_src_panoramio.dart';

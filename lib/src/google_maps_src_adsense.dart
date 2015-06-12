@@ -12,18 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-library google_maps.panoramio;
+library google_maps.src.adsense;
 
-import 'dart:async' show Stream;
+import 'dart:html' show Node;
 
 import 'package:js_wrapping/js_wrapping.dart';
 
-import 'package:google_maps/util/async.dart';
-import 'package:google_maps/src/google_maps.dart';
+import 'package:google_maps/google_maps.dart';
 
-part 'google_maps_panoramio.g.dart';
+part 'google_maps_src_adsense.g.dart';
 
-part 'library/panoramio/panoramio_layer.dart';
-part 'library/panoramio/panoramio_layer_options.dart';
-part 'library/panoramio/panoramio_feature.dart';
-part 'library/panoramio/panoramio_mouse_event.dart';
+part 'library/adsense/ad_unit.dart';
+part 'library/adsense/ad_unit_options.dart';
+part 'library/adsense/ad_format.dart';

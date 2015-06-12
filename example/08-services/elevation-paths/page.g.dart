@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// 2015-05-29T08:29:10.856Z
+// 2015-06-12T14:11:53.003Z
 
 part of example;
 
@@ -15,11 +15,11 @@ class ColumnChart extends JsInterface implements _ColumnChart {
           context['google']['visualization']['ColumnChart'], [div]));
 
   void draw(DataTable data, [JsObject options]) {
-    asJsObject(this).callMethod('draw', [__codec252.encode(data), options]);
+    asJsObject(this).callMethod('draw', [__codec248.encode(data), options]);
   }
 }
 /// codec for example.DataTable
-final __codec252 =
+final __codec248 =
     new JsInterfaceCodec<DataTable>((o) => new DataTable.created(o));
 
 // **************************************************************************
@@ -37,11 +37,8 @@ class DataTable extends JsInterface implements _DataTable {
     asJsObject(this).callMethod('addColumn', [type, label, id]);
   }
   void addRow([JsArray cellArray]) {
-    asJsObject(this).callMethod('addRow', [__codec254.encode(cellArray)]);
+    asJsObject(this).callMethod('addRow', [__codec249.encode(cellArray)]);
   }
 }
-/// codec for null.dynamic
-final __codec253 = new DynamicCodec();
-
 /// codec for dart.js.JsArray<dynamic>
-final __codec254 = new JsListCodec<dynamic>(__codec253);
+final __codec249 = new JsListCodec<dynamic>(null);

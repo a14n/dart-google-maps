@@ -148,7 +148,7 @@ abstract class _StreetViewService implements JsInterface {
 };
 
 final importsByLib = <String, String>{
-  'google_maps': '''
+  'google_maps.src': '''
 import 'dart:async' show Stream;
 import 'dart:collection' show MapMixin;
 import 'dart:html' show Node, Document;
@@ -157,63 +157,63 @@ import 'package:js_wrapping/js_wrapping.dart';
 
 import 'package:google_maps/util/async.dart';
 ''',
-  'google_maps.adsense': '''
+  'google_maps.src.adsense': '''
 import 'dart:html' show Node;
 
 import 'package:js_wrapping/js_wrapping.dart';
 
-import 'package:google_maps/src/google_maps.dart';
+import 'package:google_maps/google_maps.dart';
 ''',
-  'google_maps.drawing': '''
+  'google_maps.src.drawing': '''
 import 'dart:async' show Stream;
 
 import 'package:js_wrapping/js_wrapping.dart';
 
 import 'package:google_maps/util/async.dart';
-import 'package:google_maps/src/google_maps.dart';
+import 'package:google_maps/google_maps.dart';
 ''',
-  'google_maps.geometry': '''
+  'google_maps.src.geometry': '''
 import 'package:js_wrapping/js_wrapping.dart';
 
-import 'package:google_maps/src/google_maps.dart';
+import 'package:google_maps/google_maps.dart';
 ''',
-  'google_maps.panoramio': '''
+  'google_maps.src.panoramio': '''
 import 'dart:async' show Stream;
 
 import 'package:js_wrapping/js_wrapping.dart';
 
 import 'package:google_maps/util/async.dart';
-import 'package:google_maps/src/google_maps.dart';
+import 'package:google_maps/google_maps.dart';
 ''',
-  'google_maps.places': '''
+  'google_maps.src.places': '''
 import 'dart:async' show Stream;
 import 'dart:html' show InputElement;
 
 import 'package:js_wrapping/js_wrapping.dart';
 
 import 'package:google_maps/util/async.dart';
-import 'package:google_maps/src/google_maps.dart';
+import 'package:google_maps/google_maps.dart';
 ''',
-  'google_maps.visualization': '''
+  'google_maps.src.visualization': '''
 import 'dart:async' show Stream;
 
 import 'package:js_wrapping/js_wrapping.dart';
 
 import 'package:google_maps/util/async.dart';
-import 'package:google_maps/src/google_maps.dart';
+import 'package:google_maps/google_maps.dart';
 ''',
-  'google_maps.weather': '''
+  'google_maps.src.weather': '''
 import 'dart:async' show Stream;
 
 import 'package:js_wrapping/js_wrapping.dart';
 
 import 'package:google_maps/util/async.dart';
-import 'package:google_maps/src/google_maps.dart';
+import 'package:google_maps/google_maps.dart';
 ''',
 };
 
 final additionalContentByLib = <String, String>{
-  'google_maps': '''
+  'google_maps.src': '''
 
 abstract class _Controls extends JsInterface
     with MapMixin<ControlPosition, MVCArray<Node>> {
@@ -265,7 +265,7 @@ abstract class _Controls extends JsInterface
 final ignoredClasses = <String>['LatLngLiteral', 'undefined'];
 
 final declarationSubstitutions = <String, Map<String, Map<String, String>>>{
-  'google_maps': {
+  'google_maps.src': {
     'GMap': {'controls': 'Controls controls;',},
     'LatLng': {
       'lat': '''
@@ -789,7 +789,7 @@ bool _isEmpty();''',
 ''',
     }
   },
-  'google_maps.places': {
+  'google_maps.src.places': {
     'PlacesService': {
       'radarSearch': '''
   void _radarSearch(RadarSearchRequest request,
@@ -814,7 +814,7 @@ main() async {
   document.querySelectorAll("#gc-content>div>ul").forEach((ul) {
     var folder = underscores(ul.previousElementSibling.attributes['id']);
 
-    var libraryName = 'google_maps';
+    var libraryName = 'google_maps.src';
     if (folder.endsWith('_library')) {
       final lib = folder.substring(0, folder.length - '_library'.length);
       folder = 'library/$lib';

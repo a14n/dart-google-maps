@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-library google_maps;
+library google_maps.src;
 
 import 'dart:async' show Stream;
 import 'dart:collection' show MapMixin;
@@ -22,7 +22,7 @@ import 'package:js_wrapping/js_wrapping.dart';
 
 import 'package:google_maps/util/async.dart';
 
-part 'google_maps.g.dart';
+part 'google_maps_src.g.dart';
 
 part 'core/map/map.dart';
 part 'core/map/map_options.dart';

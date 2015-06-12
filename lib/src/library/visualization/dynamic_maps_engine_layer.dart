@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-part of google_maps.visualization;
+part of google_maps.src.visualization;
 
 @JsName('google.maps.visualization.DynamicMapsEngineLayer')
 abstract class _DynamicMapsEngineLayer extends MVCObject {

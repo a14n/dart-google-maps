@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-library google_maps.places;
+library google_maps.src.places;
 
 import 'dart:async' show Stream;
 import 'dart:html' show InputElement;
@@ -20,9 +20,9 @@ import 'dart:html' show InputElement;
 import 'package:js_wrapping/js_wrapping.dart';
 
 import 'package:google_maps/util/async.dart';
-import 'package:google_maps/src/google_maps.dart';
+import 'package:google_maps/google_maps.dart';
 
-part 'google_maps_places.g.dart';
+part 'google_maps_src_places.g.dart';
 
 part 'library/places/autocomplete.dart';
 part 'library/places/autocomplete_options.dart';

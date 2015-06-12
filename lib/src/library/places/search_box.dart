@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-part of google_maps.places;
+part of google_maps.src.places;
 
 @JsName('google.maps.places.SearchBox')
 abstract class _SearchBox extends MVCObject {

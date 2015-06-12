@@ -12,16 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-library google_maps.visualization;
+library google_maps.src.visualization;
 
 import 'dart:async' show Stream;
 
 import 'package:js_wrapping/js_wrapping.dart';
 
 import 'package:google_maps/util/async.dart';
-import 'package:google_maps/src/google_maps.dart';
+import 'package:google_maps/google_maps.dart';
 
-part 'google_maps_visualization.g.dart';
+part 'google_maps_src_visualization.g.dart';
 
 part 'library/visualization/maps_engine_layer.dart';
 part 'library/visualization/maps_engine_layer_options.dart';

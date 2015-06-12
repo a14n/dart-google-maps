@@ -12,16 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-library google_maps.weather;
+library google_maps.src.weather;
 
 import 'dart:async' show Stream;
 
 import 'package:js_wrapping/js_wrapping.dart';
 
 import 'package:google_maps/util/async.dart';
-import 'package:google_maps/src/google_maps.dart';
+import 'package:google_maps/google_maps.dart';
 
-part 'google_maps_weather.g.dart';
+part 'google_maps_src_weather.g.dart';
 
 part 'library/weather/cloud_layer.dart';
 part 'library/weather/weather_layer.dart';

@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-part of google_maps.weather;
+part of google_maps.src.weather;
 
 @anonymous
 abstract class _WeatherFeature implements JsInterface {

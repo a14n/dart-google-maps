@@ -14,4 +14,4 @@
 
 library google_maps_weather;
 
-export 'src/google_maps_weather.dart';
+export 'src/google_maps_src_weather.dart';

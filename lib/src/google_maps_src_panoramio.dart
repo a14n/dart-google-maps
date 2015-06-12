@@ -12,19 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-library google_maps.drawing;
+library google_maps.src.panoramio;
 
 import 'dart:async' show Stream;
 
 import 'package:js_wrapping/js_wrapping.dart';
 
 import 'package:google_maps/util/async.dart';
-import 'package:google_maps/src/google_maps.dart';
+import 'package:google_maps/google_maps.dart';
 
-part 'google_maps_drawing.g.dart';
+part 'google_maps_src_panoramio.g.dart';
 
-part 'library/drawing/drawing_manager.dart';
-part 'library/drawing/drawing_manager_options.dart';
-part 'library/drawing/drawing_control_options.dart';
-part 'library/drawing/overlay_complete_event.dart';
-part 'library/drawing/overlay_type.dart';
+part 'library/panoramio/panoramio_layer.dart';
+part 'library/panoramio/panoramio_layer_options.dart';
+part 'library/panoramio/panoramio_feature.dart';
+part 'library/panoramio/panoramio_mouse_event.dart';

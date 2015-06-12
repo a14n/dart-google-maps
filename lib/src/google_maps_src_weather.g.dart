@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// 2015-06-01T07:36:09.494Z
+// 2015-06-12T14:11:55.484Z
 
-part of google_maps.weather;
+part of google_maps.src.weather;
 
 // **************************************************************************
 // Generator: JsInterfaceGenerator
@@ -15,14 +15,14 @@ class CloudLayer extends MVCObject implements _CloudLayer {
           new JsObject(context['google']['maps']['weather']['CloudLayer']));
 
   GMap get map => _getMap();
-  GMap _getMap() => __codec480.decode(asJsObject(this).callMethod('getMap'));
+  GMap _getMap() => __codec408.decode(asJsObject(this).callMethod('getMap'));
   void set map(GMap map) => _setMap(map);
   void _setMap(GMap map) {
-    asJsObject(this).callMethod('setMap', [__codec480.encode(map)]);
+    asJsObject(this).callMethod('setMap', [__codec408.encode(map)]);
   }
 }
-/// codec for google_maps.GMap
-final __codec480 = new JsInterfaceCodec<GMap>((o) => new GMap.created(o));
+/// codec for google_maps.src.GMap
+final __codec408 = new JsInterfaceCodec<GMap>((o) => new GMap.created(o));
 
 // **************************************************************************
 // Generator: JsInterfaceGenerator
@@ -34,24 +34,24 @@ class WeatherLayer extends MVCObject implements _WeatherLayer {
   WeatherLayer.created(JsObject o) : super.created(o);
   WeatherLayer([WeatherLayerOptions opts]) : this.created(new JsObject(
           context['google']['maps']['weather']['WeatherLayer'],
-          [__codec481.encode(opts)]));
+          [__codec409.encode(opts)]));
 
   GMap get map => _getMap();
-  GMap _getMap() => __codec480.decode(asJsObject(this).callMethod('getMap'));
+  GMap _getMap() => __codec408.decode(asJsObject(this).callMethod('getMap'));
   void set map(GMap map) => _setMap(map);
   void _setMap(GMap map) {
-    asJsObject(this).callMethod('setMap', [__codec480.encode(map)]);
+    asJsObject(this).callMethod('setMap', [__codec408.encode(map)]);
   }
   void set options(WeatherLayerOptions options) => _setOptions(options);
   void _setOptions(WeatherLayerOptions options) {
-    asJsObject(this).callMethod('setOptions', [__codec481.encode(options)]);
+    asJsObject(this).callMethod('setOptions', [__codec409.encode(options)]);
   }
 
   Stream<WeatherMouseEvent> get onClick => getStream(this, #onClick, "click",
       (JsObject o) => new WeatherMouseEvent.created(o));
 }
-/// codec for google_maps.weather.WeatherLayerOptions
-final __codec481 = new JsInterfaceCodec<WeatherLayerOptions>(
+/// codec for google_maps.src.weather.WeatherLayerOptions
+final __codec409 = new JsInterfaceCodec<WeatherLayerOptions>(
     (o) => new WeatherLayerOptions.created(o));
 
 // **************************************************************************
@@ -69,40 +69,40 @@ class WeatherLayerOptions extends JsInterface implements _WeatherLayerOptions {
   }
   bool get clickable => asJsObject(this)['clickable'];
   void set labelColor(LabelColor _labelColor) {
-    asJsObject(this)['labelColor'] = __codec482.encode(_labelColor);
+    asJsObject(this)['labelColor'] = __codec410.encode(_labelColor);
   }
   LabelColor get labelColor =>
-      __codec482.decode(asJsObject(this)['labelColor']);
+      __codec410.decode(asJsObject(this)['labelColor']);
   void set map(GMap _map) {
-    asJsObject(this)['map'] = __codec480.encode(_map);
+    asJsObject(this)['map'] = __codec408.encode(_map);
   }
-  GMap get map => __codec480.decode(asJsObject(this)['map']);
+  GMap get map => __codec408.decode(asJsObject(this)['map']);
   void set suppressInfoWindows(bool _suppressInfoWindows) {
     asJsObject(this)['suppressInfoWindows'] = _suppressInfoWindows;
   }
   bool get suppressInfoWindows => asJsObject(this)['suppressInfoWindows'];
   void set temperatureUnits(TemperatureUnit _temperatureUnits) {
-    asJsObject(this)['temperatureUnits'] = __codec483.encode(_temperatureUnits);
+    asJsObject(this)['temperatureUnits'] = __codec411.encode(_temperatureUnits);
   }
   TemperatureUnit get temperatureUnits =>
-      __codec483.decode(asJsObject(this)['temperatureUnits']);
+      __codec411.decode(asJsObject(this)['temperatureUnits']);
   void set windSpeedUnits(WindSpeedUnit _windSpeedUnits) {
-    asJsObject(this)['windSpeedUnits'] = __codec484.encode(_windSpeedUnits);
+    asJsObject(this)['windSpeedUnits'] = __codec412.encode(_windSpeedUnits);
   }
   WindSpeedUnit get windSpeedUnits =>
-      __codec484.decode(asJsObject(this)['windSpeedUnits']);
+      __codec412.decode(asJsObject(this)['windSpeedUnits']);
 }
-/// codec for google_maps.weather.LabelColor
-final __codec482 = new BiMapCodec<LabelColor, dynamic>(
+/// codec for google_maps.src.weather.LabelColor
+final __codec410 = new BiMapCodec<LabelColor, dynamic>(
     new Map<LabelColor, dynamic>.fromIterable(LabelColor.values, value: asJs));
 
-/// codec for google_maps.weather.TemperatureUnit
-final __codec483 = new BiMapCodec<TemperatureUnit, dynamic>(
+/// codec for google_maps.src.weather.TemperatureUnit
+final __codec411 = new BiMapCodec<TemperatureUnit, dynamic>(
     new Map<TemperatureUnit, dynamic>.fromIterable(TemperatureUnit.values,
         value: asJs));
 
-/// codec for google_maps.weather.WindSpeedUnit
-final __codec484 = new BiMapCodec<WindSpeedUnit, dynamic>(
+/// codec for google_maps.src.weather.WindSpeedUnit
+final __codec412 = new BiMapCodec<WindSpeedUnit, dynamic>(
     new Map<WindSpeedUnit, dynamic>.fromIterable(WindSpeedUnit.values,
         value: asJs));
 
@@ -191,32 +191,32 @@ class WeatherMouseEvent extends JsInterface implements _WeatherMouseEvent {
   WeatherMouseEvent() : this.created(new JsObject(context['Object']));
 
   void set featureDetails(WeatherFeature _featureDetails) {
-    asJsObject(this)['featureDetails'] = __codec485.encode(_featureDetails);
+    asJsObject(this)['featureDetails'] = __codec413.encode(_featureDetails);
   }
   WeatherFeature get featureDetails =>
-      __codec485.decode(asJsObject(this)['featureDetails']);
+      __codec413.decode(asJsObject(this)['featureDetails']);
   void set infoWindowHtml(String _infoWindowHtml) {
     asJsObject(this)['infoWindowHtml'] = _infoWindowHtml;
   }
   String get infoWindowHtml => asJsObject(this)['infoWindowHtml'];
   void set latLng(LatLng _latLng) {
-    asJsObject(this)['latLng'] = __codec486.encode(_latLng);
+    asJsObject(this)['latLng'] = __codec414.encode(_latLng);
   }
-  LatLng get latLng => __codec486.decode(asJsObject(this)['latLng']);
+  LatLng get latLng => __codec414.decode(asJsObject(this)['latLng']);
   void set pixelOffset(Size _pixelOffset) {
-    asJsObject(this)['pixelOffset'] = __codec487.encode(_pixelOffset);
+    asJsObject(this)['pixelOffset'] = __codec415.encode(_pixelOffset);
   }
-  Size get pixelOffset => __codec487.decode(asJsObject(this)['pixelOffset']);
+  Size get pixelOffset => __codec415.decode(asJsObject(this)['pixelOffset']);
 }
-/// codec for google_maps.weather.WeatherFeature
-final __codec485 =
+/// codec for google_maps.src.weather.WeatherFeature
+final __codec413 =
     new JsInterfaceCodec<WeatherFeature>((o) => new WeatherFeature.created(o));
 
-/// codec for google_maps.LatLng
-final __codec486 = new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o));
+/// codec for google_maps.src.LatLng
+final __codec414 = new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o));
 
-/// codec for google_maps.Size
-final __codec487 = new JsInterfaceCodec<Size>((o) => new Size.created(o));
+/// codec for google_maps.src.Size
+final __codec415 = new JsInterfaceCodec<Size>((o) => new Size.created(o));
 
 // **************************************************************************
 // Generator: JsInterfaceGenerator
@@ -229,40 +229,40 @@ class WeatherFeature extends JsInterface implements _WeatherFeature {
   WeatherFeature() : this.created(new JsObject(context['Object']));
 
   void set current(WeatherConditions _current) {
-    asJsObject(this)['current'] = __codec488.encode(_current);
+    asJsObject(this)['current'] = __codec416.encode(_current);
   }
   WeatherConditions get current =>
-      __codec488.decode(asJsObject(this)['current']);
+      __codec416.decode(asJsObject(this)['current']);
   void set forecast(List<WeatherForecast> _forecast) {
-    asJsObject(this)['forecast'] = __codec490.encode(_forecast);
+    asJsObject(this)['forecast'] = __codec418.encode(_forecast);
   }
   List<WeatherForecast> get forecast =>
-      __codec490.decode(asJsObject(this)['forecast']);
+      __codec418.decode(asJsObject(this)['forecast']);
   void set location(String _location) {
     asJsObject(this)['location'] = _location;
   }
   String get location => asJsObject(this)['location'];
   void set temperatureUnit(TemperatureUnit _temperatureUnit) {
-    asJsObject(this)['temperatureUnit'] = __codec483.encode(_temperatureUnit);
+    asJsObject(this)['temperatureUnit'] = __codec411.encode(_temperatureUnit);
   }
   TemperatureUnit get temperatureUnit =>
-      __codec483.decode(asJsObject(this)['temperatureUnit']);
+      __codec411.decode(asJsObject(this)['temperatureUnit']);
   void set windSpeedUnit(WindSpeedUnit _windSpeedUnit) {
-    asJsObject(this)['windSpeedUnit'] = __codec484.encode(_windSpeedUnit);
+    asJsObject(this)['windSpeedUnit'] = __codec412.encode(_windSpeedUnit);
   }
   WindSpeedUnit get windSpeedUnit =>
-      __codec484.decode(asJsObject(this)['windSpeedUnit']);
+      __codec412.decode(asJsObject(this)['windSpeedUnit']);
 }
-/// codec for google_maps.weather.WeatherConditions
-final __codec488 = new JsInterfaceCodec<WeatherConditions>(
+/// codec for google_maps.src.weather.WeatherConditions
+final __codec416 = new JsInterfaceCodec<WeatherConditions>(
     (o) => new WeatherConditions.created(o));
 
-/// codec for google_maps.weather.WeatherForecast
-final __codec489 = new JsInterfaceCodec<WeatherForecast>(
+/// codec for google_maps.src.weather.WeatherForecast
+final __codec417 = new JsInterfaceCodec<WeatherForecast>(
     (o) => new WeatherForecast.created(o));
 
 /// codec for dart.core.List<WeatherForecast>
-final __codec490 = new JsListCodec<WeatherForecast>(__codec489);
+final __codec418 = new JsListCodec<WeatherForecast>(__codec417);
 
 // **************************************************************************
 // Generator: JsInterfaceGenerator

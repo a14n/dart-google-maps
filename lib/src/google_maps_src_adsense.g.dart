@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// 2015-06-01T07:36:08.950Z
+// 2015-06-12T14:11:55.870Z
 
-part of google_maps.adsense;
+part of google_maps.src.adsense;
 
 // **************************************************************************
 // Generator: JsInterfaceGenerator
@@ -14,7 +14,7 @@ class AdUnit extends MVCObject implements _AdUnit {
   AdUnit(Node container, AdUnitOptions opts) : this.created(new JsObject(
           context['google']['maps']['adsense']['AdUnit'], [
         container,
-        __codec404.encode(opts)
+        __codec474.encode(opts)
       ]));
 
   String get backgroundColor => _getBackgroundColor();
@@ -28,12 +28,12 @@ class AdUnit extends MVCObject implements _AdUnit {
   Node _getContainer() => asJsObject(this).callMethod('getContainer');
   AdFormat get format => _getFormat();
   AdFormat _getFormat() =>
-      __codec405.decode(asJsObject(this).callMethod('getFormat'));
+      __codec475.decode(asJsObject(this).callMethod('getFormat'));
   GMap get map => _getMap();
-  GMap _getMap() => __codec406.decode(asJsObject(this).callMethod('getMap'));
+  GMap _getMap() => __codec476.decode(asJsObject(this).callMethod('getMap'));
   ControlPosition get position => _getPosition();
   ControlPosition _getPosition() =>
-      __codec407.decode(asJsObject(this).callMethod('getPosition'));
+      __codec477.decode(asJsObject(this).callMethod('getPosition'));
   String get publisherId => _getPublisherId();
   String _getPublisherId() => asJsObject(this).callMethod('getPublisherId');
   String get textColor => _getTextColor();
@@ -58,15 +58,15 @@ class AdUnit extends MVCObject implements _AdUnit {
   }
   void set format(AdFormat format) => _setFormat(format);
   void _setFormat(AdFormat format) {
-    asJsObject(this).callMethod('setFormat', [__codec405.encode(format)]);
+    asJsObject(this).callMethod('setFormat', [__codec475.encode(format)]);
   }
   void set map(GMap map) => _setMap(map);
   void _setMap(GMap map) {
-    asJsObject(this).callMethod('setMap', [__codec406.encode(map)]);
+    asJsObject(this).callMethod('setMap', [__codec476.encode(map)]);
   }
   void set position(ControlPosition position) => _setPosition(position);
   void _setPosition(ControlPosition position) {
-    asJsObject(this).callMethod('setPosition', [__codec407.encode(position)]);
+    asJsObject(this).callMethod('setPosition', [__codec477.encode(position)]);
   }
   void set textColor(String textColor) => _setTextColor(textColor);
   void _setTextColor(String textColor) {
@@ -81,19 +81,19 @@ class AdUnit extends MVCObject implements _AdUnit {
     asJsObject(this).callMethod('setUrlColor', [urlColor]);
   }
 }
-/// codec for google_maps.adsense.AdUnitOptions
-final __codec404 =
+/// codec for google_maps.src.adsense.AdUnitOptions
+final __codec474 =
     new JsInterfaceCodec<AdUnitOptions>((o) => new AdUnitOptions.created(o));
 
-/// codec for google_maps.adsense.AdFormat
-final __codec405 = new BiMapCodec<AdFormat, dynamic>(
+/// codec for google_maps.src.adsense.AdFormat
+final __codec475 = new BiMapCodec<AdFormat, dynamic>(
     new Map<AdFormat, dynamic>.fromIterable(AdFormat.values, value: asJs));
 
-/// codec for google_maps.GMap
-final __codec406 = new JsInterfaceCodec<GMap>((o) => new GMap.created(o));
+/// codec for google_maps.src.GMap
+final __codec476 = new JsInterfaceCodec<GMap>((o) => new GMap.created(o));
 
-/// codec for google_maps.ControlPosition
-final __codec407 = new BiMapCodec<ControlPosition, dynamic>(
+/// codec for google_maps.src.ControlPosition
+final __codec477 = new BiMapCodec<ControlPosition, dynamic>(
     new Map<ControlPosition, dynamic>.fromIterable(ControlPosition.values,
         value: asJs));
 
@@ -120,18 +120,18 @@ class AdUnitOptions extends JsInterface implements _AdUnitOptions {
   }
   String get channelNumber => asJsObject(this)['channelNumber'];
   void set format(AdFormat _format) {
-    asJsObject(this)['format'] = __codec405.encode(_format);
+    asJsObject(this)['format'] = __codec475.encode(_format);
   }
-  AdFormat get format => __codec405.decode(asJsObject(this)['format']);
+  AdFormat get format => __codec475.decode(asJsObject(this)['format']);
   void set map(GMap _map) {
-    asJsObject(this)['map'] = __codec406.encode(_map);
+    asJsObject(this)['map'] = __codec476.encode(_map);
   }
-  GMap get map => __codec406.decode(asJsObject(this)['map']);
+  GMap get map => __codec476.decode(asJsObject(this)['map']);
   void set position(ControlPosition _position) {
-    asJsObject(this)['position'] = __codec407.encode(_position);
+    asJsObject(this)['position'] = __codec477.encode(_position);
   }
   ControlPosition get position =>
-      __codec407.decode(asJsObject(this)['position']);
+      __codec477.decode(asJsObject(this)['position']);
   void set publisherId(String _publisherId) {
     asJsObject(this)['publisherId'] = _publisherId;
   }

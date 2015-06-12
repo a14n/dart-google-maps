@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-part of google_maps.geometry;
+part of google_maps.src.geometry;
 
 final spherical =
     new Spherical.created(context['google']['maps']['geometry']['spherical']);
