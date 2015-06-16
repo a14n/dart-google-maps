@@ -1,4 +1,8 @@
 
+# v3.0.2 (2015-06-16)
+
+- fix [issue #32: fail to create PlacesService](https://github.com/a14n/dart-google-maps/issues/32).
+
 # v3.0.1 (2015-06-12)
 
 - fix [issue #31: duplicated google_maps library name](https://github.com/a14n/dart-google-maps/issues/31).
