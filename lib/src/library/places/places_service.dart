@@ -15,10 +15,16 @@
 part of google_maps.src.places;
 
 @JsName('google.maps.places.PlacesService')
-abstract class _PlacesService implements JsInterface {
-  external factory _PlacesService(
-      dynamic /*HTMLDivElement|GMap*/ attrContainer);
-
+abstract class _PlacesService extends JsInterface {
+  _PlacesService.created(JsObject o) : super.created(o);
+  _PlacesService(dynamic /*DivElement|GMap*/ attrContainer) : this.created(
+          new JsObject(context['google']['maps']['places']['PlacesService'], [
+        (new ChainedCodec()
+          ..add(new IdentityCodec<DivElement>())
+          ..add(new JsInterfaceCodec<GMap>((o) => new GMap.created(o), (o) =>
+                  o != null && o.instanceof(context['google']['maps']['Map']))))
+            .encode(attrContainer)
+      ]));
   void getDetails(PlaceDetailsRequest request,
       callback(PlaceResult p1, PlacesServiceStatus p2));
   void nearbySearch(PlaceSearchRequest request, callback(

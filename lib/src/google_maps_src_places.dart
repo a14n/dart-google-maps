@@ -15,7 +15,7 @@
 library google_maps.src.places;
 
 import 'dart:async' show Stream;
-import 'dart:html' show InputElement;
+import 'dart:html' show DivElement, InputElement;
 
 import 'package:js_wrapping/js_wrapping.dart';
 

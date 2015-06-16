@@ -16,9 +16,21 @@ part of google_maps.src;
 
 @JsName('google.maps.Data.MultiLineString')
 abstract class _DataMultiLineString extends DataGeometry {
-  external factory _DataMultiLineString(
-      List<dynamic /*DataLineString|List<LatLng>*/ > elements);
-
+  _DataMultiLineString.created(JsObject o) : super.created(o);
+  _DataMultiLineString(List<dynamic /*DataLineString|List<LatLng>*/ > elements)
+      : this.created(new JsObject(
+          context['google']['maps']['Data']['MultiLineString'], [
+        (new JsListCodec<dynamic /*DataLineString|List<LatLng>*/ >(
+            new ChainedCodec()
+          ..add(new JsInterfaceCodec<DataLineString>(
+              (o) => new DataLineString.created(o), (o) => o != null &&
+                  o.instanceof(
+                      context['google']['maps']['Data']['LineString'])))
+          ..add(new JsListCodec<LatLng>(new JsInterfaceCodec<LatLng>(
+                  (o) => new LatLng.created(o), (o) => o != null &&
+                      o.instanceof(context['google']['maps']['LatLng']))))))
+            .encode(elements)
+      ]));
   List<DataLineString> get array => _getArray();
   List<DataLineString> _getArray();
   DataLineString getAt(num n);

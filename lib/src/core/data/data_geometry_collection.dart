@@ -16,9 +16,19 @@ part of google_maps.src;
 
 @JsName('google.maps.Data.GeometryCollection')
 abstract class _DataGeometryCollection extends DataGeometry {
-  external factory _DataGeometryCollection(
-      List<dynamic /*DataGeometry|LatLng*/ > elements);
-
+  _DataGeometryCollection.created(JsObject o) : super.created(o);
+  _DataGeometryCollection(List<dynamic /*DataGeometry|LatLng*/ > elements)
+      : this.created(new JsObject(
+          context['google']['maps']['Data']['GeometryCollection'], [
+        (new JsListCodec<dynamic /*DataGeometry|LatLng*/ >(new ChainedCodec()
+          ..add(new JsInterfaceCodec<DataGeometry>(
+              (o) => new DataGeometry.created(o), (o) => o != null &&
+                  o.instanceof(context['google']['maps']['Data']['Geometry'])))
+          ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
+                  (o) => o != null &&
+                      o.instanceof(context['google']['maps']['LatLng'])))))
+            .encode(elements)
+      ]));
   List<dynamic /*DataGeometryCollection|DataMultiPolygon|DataPolygon|DataLinearRing|DataMultiLineString|DataLineString|DataMultiPoint|DataPoint*/ > get array =>
       (new JsListCodec<dynamic /*DataGeometryCollection|DataMultiPolygon|DataPolygon|DataLinearRing|DataMultiLineString|DataLineString|DataMultiPoint|DataPoint*/ >(
           new ChainedCodec()

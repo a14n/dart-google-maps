@@ -187,7 +187,7 @@ import 'package:google_maps/google_maps.dart';
 ''',
   'google_maps.src.places': '''
 import 'dart:async' show Stream;
-import 'dart:html' show InputElement;
+import 'dart:html' show DivElement, InputElement;
 
 import 'package:js_wrapping/js_wrapping.dart';
 
@@ -907,6 +907,44 @@ part of $libraryName;
         final className = jsElmt.isNamespace
             ? jsElmt.name[0].toUpperCase() + jsElmt.name.substring(1)
             : jsElmt.name;
+
+        // constructor
+        bool needExtends = false;
+        String constructorSection = '';
+        final constr = jsElmt.constructor;
+        if (constr != null) {
+          final decl = constr.getElementsByTagName('td')[0].text.trim();
+          final parameters =
+              decl.substring(decl.indexOf('(') + 1, decl.lastIndexOf(')'));
+          final params = splitParameters(parameters);
+          final allParams = ({}
+            ..addAll(params.mandatory)
+            ..addAll(params.optional));
+          final paramsCodecs = new Map.fromIterable(allParams.keys,
+              value: (k) => getCodec(allParams[k], jsElements));
+          if (paramsCodecs.values.every((p) => p.canBeNativelyHandled)) {
+            constructorSection += '  external factory '
+                '_$className(${params.toSignature(jsElements)});\n';
+          } else {
+            needExtends = true;
+            constructorSection +=
+                '  _$className.created(JsObject o): super.created(o);\n';
+            constructorSection +=
+                '  _$className(${params.toSignature(jsElements)}) : '
+                'this.created(new JsObject(${getPath(jsElmt.fullName)},[';
+            constructorSection += paramsCodecs.keys
+                .map((p) => paramsCodecs[p].canBeNativelyHandled
+                    ? p
+                    : '(${paramsCodecs[p].codec}).encode($p)')
+                .join(',');
+            constructorSection += ']));';
+          }
+        } else if (jsElmt.isAnonymousObject) {
+          constructorSection += '  external factory _$className();\n';
+        }
+        constructorSection += '\n';
+
+        // class def
         final inherit = getExtends(jsElmt.element.querySelector('h2'));
         if (jsElmt.isAnonymousObject) partContents += '@anonymous\n';
         if (jsElmt.isClass) partContents += "@JsName('${jsElmt.fullName}')\n";
@@ -917,7 +955,7 @@ part of $libraryName;
         partContents += 'abstract class _$className ' +
             (inherit != null
                 ? 'extends ${inherit.replaceAll('.', '')}'
-                : 'implements JsInterface') +
+                : (needExtends ? 'extends' : 'implements') + ' JsInterface') +
             ' {\n';
 
         // add constants
@@ -936,18 +974,7 @@ part of $libraryName;
         partContents += '\n';
 
         // add constructors
-        final constr = jsElmt.constructor;
-        if (constr != null) {
-          final decl = constr.getElementsByTagName('td')[0].text.trim();
-          final parameters =
-              decl.substring(decl.indexOf('(') + 1, decl.lastIndexOf(')'));
-          final params = splitParameters(parameters);
-          partContents += '  external factory '
-              '_$className(${params.toSignature(jsElements)});\n';
-        } else if (jsElmt.isAnonymousObject) {
-          partContents += '  external factory _$className();\n';
-        }
-        partContents += '\n';
+        partContents += constructorSection;
 
         // add methods
         jsElmt.methods.forEach((methodTr) {
@@ -1263,6 +1290,7 @@ String convertType(String type, List<JsElement> jsElements, {String name}) {
   else if (type == 'string') return 'String';
   else if (type == 'Date') return 'DateTime';
   else if (type == 'HTMLInputElement') return 'InputElement';
+  else if (type == 'HTMLDivElement') return 'DivElement';
   else if (type == 'Event') return 'JsObject';
   else if (type == 'Array') return 'List';
   else if (type == 'None') return 'void';
