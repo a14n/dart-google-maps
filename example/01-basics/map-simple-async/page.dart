@@ -16,6 +16,6 @@ void main() {
   final script = new ScriptElement()
     ..type = 'text/javascript'
     ..src =
-    'https://maps.googleapis.com/maps/api/js?sensor=false&callback=initialize';
+    'https://maps.googleapis.com/maps/api/js?callback=initialize';
   document.body.children.add(script);
 }
