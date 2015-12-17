@@ -2,50 +2,52 @@ import 'dart:html';
 
 import 'package:google_maps/google_maps.dart';
 
-final rendererOptions = new DirectionsRendererOptions()..draggable = true;
-final directionsDisplay = new DirectionsRenderer(rendererOptions);
-final directionsService = new DirectionsService();
-GMap map;
+main() {
+  var map = new GMap(document.getElementById('map'), new MapOptions()
+        ..zoom = 4
+        ..center = new LatLng(-24.345, 134.46) // Australia.
+      );
 
-final australia = new LatLng(-25.274398, 133.775136);
-
-void main() {
-  final mapOptions = new MapOptions()
-    ..zoom = 7
-    ..center = australia;
-  map = new GMap(document.getElementById('map-canvas'), mapOptions);
-  directionsDisplay.map = map;
-  directionsDisplay.panel = document.getElementById('directionsPanel');
+  var directionsService = new DirectionsService();
+  var directionsDisplay = new DirectionsRenderer(new DirectionsRendererOptions()
+    ..draggable = true
+    ..map = map
+    ..panel = document.getElementById('right-panel'));
 
   directionsDisplay.onDirectionsChanged.listen((_) {
     computeTotalDistance(directionsDisplay.directions);
   });
 
-  calcRoute();
+  displayRoute(
+      'Perth, WA', 'Sydney, NSW', directionsService, directionsDisplay);
 }
 
-void calcRoute() {
-  final request = new DirectionsRequest()
-    ..origin = 'Sydney, NSW'
-    ..destination = 'Sydney, NSW'
-    ..waypoints = [
-      new DirectionsWaypoint()..location = 'Bourke, NSW',
-      new DirectionsWaypoint()..location = 'Broken Hill, NSW'
-    ]
-    ..travelMode = TravelMode.DRIVING;
-  directionsService.route(request, (response, status) {
+displayRoute(String origin, String destination, DirectionsService service,
+    DirectionsRenderer display) {
+  service.route(
+      new DirectionsRequest()
+        ..origin = origin
+        ..destination = destination
+        ..waypoints = [
+          new DirectionsWaypoint()..location = 'Cocklebiddy, WA',
+          new DirectionsWaypoint()..location = 'Broken Hill, NSW'
+        ]
+        ..travelMode = TravelMode.DRIVING
+        ..avoidTolls = true, (response, status) {
     if (status == DirectionsStatus.OK) {
-      directionsDisplay.directions = response;
+      display.directions = response;
+    } else {
+      window.alert('Could not display directions due to: ' + status);
     }
   });
 }
 
-void computeTotalDistance(DirectionsResult result) {
-  num total = 0;
-  final myroute = result.routes[0];
-  for (final leg in myroute.legs) {
-    total += leg.distance.value;
+computeTotalDistance(result) {
+  var total = 0;
+  var myroute = result.routes[0];
+  for (var i = 0; i < myroute.legs.length; i++) {
+    total += myroute.legs[i].distance.value;
   }
-  total = total / 1000.0;
-  document.getElementById('total').innerHtml = '${total} km';
+  total = total / 1000;
+  document.getElementById('total').innerHtml = '$total km';
 }
