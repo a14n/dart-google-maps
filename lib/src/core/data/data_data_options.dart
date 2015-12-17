@@ -18,6 +18,10 @@ part of google_maps.src;
 abstract class _DataDataOptions implements JsInterface {
   external factory _DataDataOptions();
 
+  ControlPosition controlPosition;
+  List<String> controls;
+  String drawingMode;
+  dynamic /*null(Data.Geometry): Data.Featur p1)*/ featureFactory;
   GMap map;
   dynamic /*DataStylingFunction|DataStyleOptions*/ get style =>
       (new ChainedCodec()

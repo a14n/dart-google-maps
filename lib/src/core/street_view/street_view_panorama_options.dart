@@ -18,8 +18,6 @@ part of google_maps.src;
 abstract class _StreetViewPanoramaOptions implements JsInterface {
   external factory _StreetViewPanoramaOptions();
 
-  StreetViewPanoramaData panoProvider(String panoId);
-
   bool addressControl;
   StreetViewAddressControlOptions addressControlOptions;
   bool clickToGo;
@@ -31,6 +29,7 @@ abstract class _StreetViewPanoramaOptions implements JsInterface {
   bool panControl;
   PanControlOptions panControlOptions;
   String pano;
+  dynamic /*null(string): StreetViewPanoramaDat p1)*/ panoProvider;
   LatLng position;
   StreetViewPov pov;
   bool scrollwheel;

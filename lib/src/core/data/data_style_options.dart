@@ -20,6 +20,8 @@ abstract class _DataStyleOptions implements JsInterface {
 
   bool clickable;
   String cursor;
+  bool draggable;
+  bool editable;
   String fillColor;
   num fillOpacity;
   dynamic _icon;

@@ -19,6 +19,7 @@ abstract class _Icon implements JsInterface {
   external factory _Icon();
 
   Point anchor;
+  Point labelOrigin;
   Point origin;
   Size scaledSize;
   Size size;

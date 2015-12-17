@@ -15,13 +15,18 @@
 part of google_maps.src;
 
 @anonymous
-abstract class _GeocoderRequest implements JsInterface {
-  external factory _GeocoderRequest();
+abstract class _DirectionsGeocodedWaypoint implements JsInterface {
+  external factory _DirectionsGeocodedWaypoint();
 
-  String address;
-  LatLngBounds bounds;
-  GeocoderComponentRestrictions componentRestrictions;
-  LatLng location;
-  String placeId;
-  String region;
+  bool _partial_match;
+  bool get partialMatch => _partial_match;
+  void set partialMatch(bool partialMatch) {
+    _partial_match = partialMatch;
+  }
+  String _place_id;
+  String get placeId => _place_id;
+  void set placeId(String placeId) {
+    _place_id = placeId;
+  }
+  List<String> types;
 }

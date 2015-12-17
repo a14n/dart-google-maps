@@ -38,6 +38,18 @@ abstract class _MarkerOptions implements JsInterface {
       ..add(new JsInterfaceCodec<GSymbol>((o) => new GSymbol.created(o))))
         .encode(icon);
   }
+  dynamic _label;
+  dynamic /*String|MarkerLabel*/ get label => (new ChainedCodec()
+    ..add(new IdentityCodec<String>())
+    ..add(new JsInterfaceCodec<MarkerLabel>((o) => new MarkerLabel.created(o))))
+      .decode(_label);
+  void set label(dynamic /*String|MarkerLabel*/ label) {
+    _label = (new ChainedCodec()
+      ..add(new IdentityCodec<String>())
+      ..add(
+          new JsInterfaceCodec<MarkerLabel>((o) => new MarkerLabel.created(o))))
+        .encode(label);
+  }
   dynamic _map;
   dynamic /*GMap|StreetViewPanorama*/ get map => (new ChainedCodec()
     ..add(new JsInterfaceCodec<GMap>((o) => new GMap.created(o),
@@ -58,7 +70,7 @@ abstract class _MarkerOptions implements JsInterface {
   }
   num opacity;
   bool optimized;
-  Place place;
+  MarkerPlace place;
   LatLng position;
   MarkerShape shape;
   String title;

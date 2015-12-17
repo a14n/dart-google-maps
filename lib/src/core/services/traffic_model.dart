@@ -14,14 +14,6 @@
 
 part of google_maps.src;
 
-@anonymous
-abstract class _GeocoderRequest implements JsInterface {
-  external factory _GeocoderRequest();
-
-  String address;
-  LatLngBounds bounds;
-  GeocoderComponentRestrictions componentRestrictions;
-  LatLng location;
-  String placeId;
-  String region;
-}
+@jsEnum
+@JsName('google.maps.TrafficModel')
+enum _TrafficModel { BEST_GUESS, OPTIMISTIC, PESSIMISTIC }

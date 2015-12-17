@@ -20,6 +20,11 @@ abstract class _DistanceMatrixResponseElement implements JsInterface {
 
   Distance distance;
   GDuration duration;
+  GDuration _duration_in_traffic;
+  GDuration get durationInTraffic => _duration_in_traffic;
+  void set durationInTraffic(GDuration durationInTraffic) {
+    _duration_in_traffic = durationInTraffic;
+  }
   TransitFare fare;
   DistanceMatrixElementStatus status;
 }

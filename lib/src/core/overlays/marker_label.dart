@@ -15,13 +15,12 @@
 part of google_maps.src;
 
 @anonymous
-abstract class _GeocoderRequest implements JsInterface {
-  external factory _GeocoderRequest();
+abstract class _MarkerLabel implements JsInterface {
+  external factory _MarkerLabel();
 
-  String address;
-  LatLngBounds bounds;
-  GeocoderComponentRestrictions componentRestrictions;
-  LatLng location;
-  String placeId;
-  String region;
+  String color;
+  String fontFamily;
+  String fontSize;
+  String fontWeight;
+  String text;
 }

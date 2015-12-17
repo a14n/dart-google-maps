@@ -19,5 +19,5 @@ abstract class _SaveWidgetOptions implements JsInterface {
   external factory _SaveWidgetOptions();
 
   Attribution attribution;
-  Place place;
+  MarkerPlace place;
 }

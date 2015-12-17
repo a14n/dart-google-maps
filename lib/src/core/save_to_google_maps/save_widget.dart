@@ -15,17 +15,17 @@
 part of google_maps.src;
 
 @JsName('google.maps.SaveWidget')
-abstract class _SaveWidget implements JsInterface {
+abstract class _SaveWidget extends MVCObject {
   external factory _SaveWidget(Node container, [SaveWidgetOptions opts]);
 
   Attribution get attribution => _getAttribution();
   Attribution _getAttribution();
-  Place get place => _getPlace();
-  Place _getPlace();
+  MarkerPlace get place => _getPlace();
+  MarkerPlace _getPlace();
   void set attribution(Attribution attribution) => _setAttribution(attribution);
   void _setAttribution(Attribution attribution);
   void set options(SaveWidgetOptions opts) => _setOptions(opts);
   void _setOptions(SaveWidgetOptions opts);
-  void set place(Place place) => _setPlace(place);
-  void _setPlace(Place place);
+  void set place(MarkerPlace place) => _setPlace(place);
+  void _setPlace(MarkerPlace place);
 }

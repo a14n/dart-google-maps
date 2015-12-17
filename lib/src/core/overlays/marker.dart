@@ -36,6 +36,8 @@ abstract class _Marker extends MVCObject {
     ..add(new JsInterfaceCodec<GSymbol>((o) => new GSymbol.created(o))))
       .decode(_getIcon());
   _getIcon();
+  MarkerLabel get label => _getLabel();
+  MarkerLabel _getLabel();
   dynamic /*GMap|StreetViewPanorama*/ get map => (new ChainedCodec()
     ..add(new JsInterfaceCodec<GMap>((o) => new GMap.created(o),
         (o) => o != null && o.instanceof(context['google']['maps']['Map'])))
@@ -46,8 +48,8 @@ abstract class _Marker extends MVCObject {
   _getMap();
   num get opacity => _getOpacity();
   num _getOpacity();
-  Place get place => _getPlace();
-  Place _getPlace();
+  MarkerPlace get place => _getPlace();
+  MarkerPlace _getPlace();
   LatLng get position => _getPosition();
   LatLng _getPosition();
   MarkerShape get shape => _getShape();
@@ -75,6 +77,12 @@ abstract class _Marker extends MVCObject {
     ..add(new JsInterfaceCodec<GSymbol>((o) => new GSymbol.created(o))))
       .encode(icon));
   void _setIcon(dynamic /*String|Icon|GSymbol*/ icon);
+  void set label(dynamic /*String|MarkerLabel*/ label) => _setLabel(
+      (new ChainedCodec()
+    ..add(new IdentityCodec<String>())
+    ..add(new JsInterfaceCodec<MarkerLabel>((o) => new MarkerLabel.created(o))))
+      .encode(label));
+  void _setLabel(dynamic /*String|MarkerLabel*/ label);
   void set map(dynamic /*GMap|StreetViewPanorama*/ map) => _setMap(
       (new ChainedCodec()
     ..add(new JsInterfaceCodec<GMap>((o) => new GMap.created(o),
@@ -88,8 +96,8 @@ abstract class _Marker extends MVCObject {
   void _setOpacity(num opacity);
   void set options(MarkerOptions options) => _setOptions(options);
   void _setOptions(MarkerOptions options);
-  void set place(Place place) => _setPlace(place);
-  void _setPlace(Place place);
+  void set place(MarkerPlace place) => _setPlace(place);
+  void _setPlace(MarkerPlace place);
   void set position(LatLng latlng) => _setPosition(latlng);
   void _setPosition(LatLng latlng);
   void set shape(MarkerShape shape) => _setShape(shape);

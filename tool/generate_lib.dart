@@ -26,6 +26,14 @@ final customClassName = <String, String>{
   'Duration': 'GDuration',
 };
 
+final overridenPropertyTypes = {
+  'DirectionsRequest': {
+    'origin': 'LatLng|Place|string',
+    'destination': 'LatLng|Place|string',
+  },
+  'DirectionsWaypoint': {'location': 'LatLng|Place|string',},
+};
+
 final customContent = <String, String>{
   'Data.StylingFunction':
       'typedef DataStyleOptions DataStylingFunction(DataFeature dataFeature);',
@@ -262,7 +270,11 @@ abstract class _Controls extends JsInterface
 '''
 };
 
-final ignoredClasses = <String>['LatLngLiteral', 'undefined'];
+final ignoredClasses = <String>[
+  'LatLngLiteral',
+  'LatLngBoundsLiteral',
+  'undefined'
+];
 
 final declarationSubstitutions = <String, Map<String, Map<String, String>>>{
   'google_maps.src': {
@@ -804,14 +816,15 @@ bool _isEmpty();''',
 
 main() async {
   final genFolder = 'lib/src';
-//  final request = await new HttpClient().getUrl(Uri.parse(
-//      'https://developers.google.com/maps/documentation/javascript/reference'));
-//  final response = await request.close();
-//  final content = await UTF8.decodeStream(response);
+  // final request = await new HttpClient().getUrl(Uri.parse(
+  //     'https://developers.google.com/maps/documentation/javascript/reference'));
+  // final response = await request.close();
+  // final content = await UTF8.decodeStream(response);
+  // new File('api/api.html').writeAsStringSync(content);
   final content = new File('api/api.html').readAsStringSync();
   final document = parse(content);
   final libraries = <String, List<JsElement>>{};
-  document.querySelectorAll("#gc-content>div>ul").forEach((ul) {
+  document.querySelectorAll(".toc>ul").forEach((ul) {
     var folder = underscores(ul.previousElementSibling.attributes['id']);
 
     var libraryName = 'google_maps.src';
@@ -829,7 +842,8 @@ main() async {
       final file = new File('$genFolder/$folder/$fileName')
         ..createSync(recursive: true);
 
-      final title = document.querySelector("#gc-content h2[id='$h2id']");
+      final title =
+          document.querySelectorAll('[id]').firstWhere((e) => e.id == h2id);
 
       libraries
           .putIfAbsent(libraryName, () => <JsElement>[])
@@ -871,6 +885,7 @@ part '${libraryName.replaceAll('.', '_')}.g.dart';
     libraries[libraryName]
         .where((e) => !ignoredClasses.contains(e.name))
         .forEach((jsElmt) {
+      print(jsElmt.fullName);
       var partContents = '''
 $LICENCE
 
@@ -979,15 +994,15 @@ part of $libraryName;
         // add methods
         jsElmt.methods.forEach((methodTr) {
           final decl = methodTr.getElementsByTagName('td')[0].text.trim();
-          final returnType = methodTr.getElementsByTagName('td')[1].text.trim();
+          final returnType = methodTr.querySelector('td>div>code').text.trim();
           final methodName = decl.substring(0, decl.indexOf('('));
 
           if (declarationSubstitutions.containsKey(libraryName) &&
               declarationSubstitutions[libraryName].containsKey(jsElmt.name) &&
               declarationSubstitutions[libraryName][jsElmt.name]
                   .containsKey(methodName)) {
-            partContents += declarationSubstitutions[libraryName][jsElmt.name][
-                methodName] +
+            partContents += declarationSubstitutions[libraryName][jsElmt.name]
+                    [methodName] +
                 '\n';
             return;
           }
@@ -1065,7 +1080,8 @@ part of $libraryName;
         // add properties
         jsElmt.properties.forEach((propertyTr) {
           final name = propertyTr.getElementsByTagName('td')[0].text.trim();
-          final type = propertyTr.getElementsByTagName('td')[1].text.trim();
+          final type = (overridenPropertyTypes[jsElmt.name] ?? {})[name] ??
+              propertyTr.querySelector('td>div>code').text.trim();
           if (declarationSubstitutions.containsKey(libraryName) &&
               declarationSubstitutions[libraryName].containsKey(jsElmt.name) &&
               declarationSubstitutions[libraryName][jsElmt.name]
@@ -1103,7 +1119,7 @@ part of $libraryName;
         // add events
         jsElmt.events.forEach((eventsTr) {
           String name = eventsTr.getElementsByTagName('td')[0].text.trim();
-          String type = eventsTr.getElementsByTagName('td')[1].text.trim();
+          String type = eventsTr.querySelector('td>div>code').text.trim();
           if (type.contains(',')) throw 'multiple args on event not supported';
           type = convertType(type, jsElements);
 
@@ -1115,12 +1131,8 @@ part of $libraryName;
             partContents += '''
 Stream get $streamName => getStream(this, #$streamName, "$name");
 ''';
-          } else if (<String>[
-            'num',
-            'JsObject',
-            'String',
-            'bool'
-          ].contains(type)) {
+          } else if (<String>['num', 'JsObject', 'String', 'bool']
+              .contains(type)) {
             partContents += '''
 Stream<$type> get $streamName => getStream(this, #$streamName, "$name");
 ''';
@@ -1134,7 +1146,8 @@ Stream<$type> get $streamName => getStream(
 
         partContents += '}\n';
       }
-
+      print('---------------------------------------------------------');
+      print(partContents);
       partContents = new DartFormatter().format(partContents);
       jsElmt.file.writeAsStringSync(partContents);
     });
@@ -1232,8 +1245,10 @@ CodecInfo getCodec(String type, List<JsElement> jsElements) {
     final typeUnion = splitUnionTypes(type);
     final codecInfos = typeUnion.map((t) => getCodec(t, jsElements));
     if (codecInfos.any((ci) => !ci.isIdentity)) {
-      return new CodecInfo('new ChainedCodec()' +
-              codecInfos.map((ci) => '..add(' + ci.codec + ')').join(), false,
+      return new CodecInfo(
+          'new ChainedCodec()' +
+              codecInfos.map((ci) => '..add(' + ci.codec + ')').join(),
+          false,
           false);
     } else {
       return new CodecInfo('new IdentityCodec()', true, true);
@@ -1244,8 +1259,10 @@ CodecInfo getCodec(String type, List<JsElement> jsElements) {
     final innerType = type.substring('Array<'.length, type.length - 1);
     final convertedInnerType = convertType(innerType, jsElements);
     final innerCodecInfo = getCodec(innerType, jsElements);
-    return new CodecInfo('new JsListCodec<$convertedInnerType>'
-        '(${innerCodecInfo.codec})', innerCodecInfo.canBeNativelyHandled,
+    return new CodecInfo(
+        'new JsListCodec<$convertedInnerType>'
+        '(${innerCodecInfo.codec})',
+        innerCodecInfo.canBeNativelyHandled,
         false);
   } else if (type.startsWith('function(')) {
     return new CodecInfo('PLEASE_IMPLEMENT_MANUALLY', true, true);
@@ -1255,28 +1272,38 @@ CodecInfo getCodec(String type, List<JsElement> jsElements) {
     if (jsElmt.isEnum) {
       final constants = jsElmt.constants
           .map((tr) => tr.getElementsByTagName('td')[0].text.trim());
-      return new CodecInfo('new BiMapCodec<$convertedType, dynamic>({' +
-          constants
-              .map(
-                  (e) => "${jsElmt.name}.$e: ${getPath(jsElmt.fullName)}['$e']")
-              .join(',') +
-          '})', true, false);
+      return new CodecInfo(
+          'new BiMapCodec<$convertedType, dynamic>({' +
+              constants
+                  .map((e) =>
+                      "${jsElmt.name}.$e: ${getPath(jsElmt.fullName)}['$e']")
+                  .join(',') +
+              '})',
+          true,
+          false);
     } else if (jsElmt.isAnonymousObject) {
-      return new CodecInfo('new JsInterfaceCodec<$convertedType>'
-          '((o) => new $convertedType.created(o))', true, false);
+      return new CodecInfo(
+          'new JsInterfaceCodec<$convertedType>'
+          '((o) => new $convertedType.created(o))',
+          true,
+          false);
     } else {
-      return new CodecInfo('new JsInterfaceCodec<$convertedType>'
+      return new CodecInfo(
+          'new JsInterfaceCodec<$convertedType>'
           '((o) => new $convertedType.created(o), '
           '(o) => o != null && o.instanceof(${getPath(jsElmt.fullName)}))',
-          true, false);
+          true,
+          false);
     }
   } else if (type.startsWith('MVCArray<') && type.endsWith('>')) {
     final innerType = type.substring('MVCArray<'.length, type.length - 1);
     final convertedInnerType = convertType(innerType, jsElements);
     final innerCodecInfo = getCodec(innerType, jsElements);
-    return new CodecInfo('new JsInterfaceCodec<MVCArray<$convertedInnerType>>'
+    return new CodecInfo(
+        'new JsInterfaceCodec<MVCArray<$convertedInnerType>>'
         '((o) => new MVCArray<$convertedInnerType>.created(o, ${innerCodecInfo.codec}))',
-        false, false);
+        false,
+        false);
   } else {
     final convertedType = convertType(type, jsElements);
     return new CodecInfo('new IdentityCodec<$convertedType>()', true, true);
@@ -1295,6 +1322,7 @@ String convertType(String type, List<JsElement> jsElements, {String name}) {
   else if (type == 'Array') return 'List';
   else if (type == 'None') return 'void';
   else if (type == '*') return 'dynamic';
+  else if (type == '?') return 'dynamic';
   else if (splitUnionTypes(type).length > 1) {
     for (String ignoredClass in ignoredClasses) {
       if (type.startsWith('$ignoredClass|')) {
@@ -1396,9 +1424,8 @@ class JsElement {
       : id.replaceAll('.', '');
 
   String get fullName {
-    final title = element.querySelector('h2');
-    final path = title.querySelector('span[itemprop="path"]');
-    var name = title.querySelector('span[itemprop="name"]').text.trim();
+    final path = element.querySelector('p span[itemprop="path"]');
+    var name = element.querySelector('p span[itemprop="name"]').text.trim();
     if (path != null && path.text.trim().isNotEmpty) {
       name = path.text.trim() + '.' + name;
     }
@@ -1423,10 +1450,8 @@ class JsElement {
   bool get isNamespace =>
       element.querySelector('h2').text.trim().endsWith('namespace');
   bool get isEnum => (isClass || isAnonymousObject) &&
-      element.querySelectorAll('h3').isNotEmpty &&
-      element
-          .querySelectorAll('h3')
-          .every((e) => ['Constant', 'Library'].contains(e.text.trim()));
+      element.querySelectorAll('table').length == 1 &&
+      element.querySelectorAll('table.constants').length == 1;
   bool get isClass => element.querySelector('h2').text.trim().endsWith('class');
   bool get isAnonymousObject =>
       element.querySelector('h2').text.trim().endsWith('object specification');

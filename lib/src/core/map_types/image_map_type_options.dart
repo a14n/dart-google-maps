@@ -18,9 +18,8 @@ part of google_maps.src;
 abstract class _ImageMapTypeOptions implements JsInterface {
   external factory _ImageMapTypeOptions();
 
-  String getTileUrl(Point coordinate, num zoom);
-
   String alt;
+  dynamic /*null(Point p1,number): strin p2)*/ getTileUrl;
   num maxZoom;
   num minZoom;
   String name;

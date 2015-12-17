@@ -29,6 +29,12 @@ abstract class _Data implements JsInterface {
   List<DataFeature> addGeoJson(Object geoJson, [DataGeoJsonOptions options]);
   bool contains(DataFeature feature);
   void forEach(callback(DataFeature p1));
+  ControlPosition get controlPosition => _getControlPosition();
+  ControlPosition _getControlPosition();
+  List<String> get controls => _getControls();
+  List<String> _getControls();
+  String get drawingMode => _getDrawingMode();
+  String _getDrawingMode();
   DataFeature getFeatureById(dynamic /*num|String*/ id);
   GMap get map => _getMap();
   GMap _getMap();
@@ -65,6 +71,13 @@ abstract class _Data implements JsInterface {
   void overrideStyle(DataFeature feature, DataStyleOptions style);
   void remove(DataFeature feature);
   void revertStyle([DataFeature feature]);
+  void set controlPosition(ControlPosition controlPosition) =>
+      _setControlPosition(controlPosition);
+  void _setControlPosition(ControlPosition controlPosition);
+  void set controls(List<String> controls) => _setControls(controls);
+  void _setControls(List<String> controls);
+  void set drawingMode(String drawingMode) => _setDrawingMode(drawingMode);
+  void _setDrawingMode(String drawingMode);
   void set map(GMap map) => _setMap(map);
   void _setMap(GMap map);
   void set style(dynamic /*DataStylingFunction|DataStyleOptions*/ style) =>

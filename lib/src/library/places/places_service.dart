@@ -35,6 +35,6 @@ abstract class _PlacesService extends JsInterface {
           callback(List<PlaceResult> p1, PlacesServiceStatus p2)) =>
       _radarSearch(request, (p1, p2, [_]) => callback(p1, p2));
 
-  void textSearch(TextSearchRequest request,
-      callback(List<PlaceResult> p1, PlacesServiceStatus p2));
+  void textSearch(TextSearchRequest request, callback(
+      List<PlaceResult> p1, PlacesServiceStatus p2, PlaceSearchPagination p3));
 }

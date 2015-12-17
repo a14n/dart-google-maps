@@ -67,6 +67,11 @@ abstract class _PlaceResult implements JsInterface {
   List<PlaceReview> reviews;
   List<String> types;
   String url;
+  num _utc_offset;
+  num get utcOffset => _utc_offset;
+  void set utcOffset(num utcOffset) {
+    _utc_offset = utcOffset;
+  }
   String vicinity;
   String website;
 }

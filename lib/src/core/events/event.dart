@@ -17,13 +17,13 @@ part of google_maps.src;
 final event = new Event.created(context['google']['maps']['event']);
 abstract class _Event implements JsInterface {
   MapsEventListener addDomListener(
-      Object instance, String eventName, Function handler, [bool capture]);
+      Object instance, String eventName, handler(dynamic p1), [bool capture]);
   MapsEventListener addDomListenerOnce(
-      Object instance, String eventName, Function handler, [bool capture]);
+      Object instance, String eventName, handler(dynamic p1), [bool capture]);
   MapsEventListener addListener(
-      Object instance, String eventName, Function handler);
+      Object instance, String eventName, handler(dynamic p1));
   MapsEventListener addListenerOnce(
-      Object instance, String eventName, Function handler);
+      Object instance, String eventName, handler(dynamic p1));
   void clearInstanceListeners(Object instance);
   void clearListeners(Object instance, String eventName);
   void removeListener(MapsEventListener listener);

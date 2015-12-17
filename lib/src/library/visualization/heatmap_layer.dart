@@ -49,4 +49,6 @@ abstract class _HeatmapLayer extends MVCObject {
       dynamic /*MVCArray<dynamic/*LatLng|WeightedLocation*/>|List<dynamic/*LatLng|WeightedLocation*/>*/ data);
   void set map(GMap map) => _setMap(map);
   void _setMap(GMap map);
+  void set options(HeatmapLayerOptions options) => _setOptions(options);
+  void _setOptions(HeatmapLayerOptions options);
 }

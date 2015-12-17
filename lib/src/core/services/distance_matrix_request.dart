@@ -35,7 +35,7 @@ abstract class _DistanceMatrixRequest implements JsInterface {
       ..add(new IdentityCodec<String>()))).encode(destinations);
   }
 
-  bool durationInTraffic;
+  DrivingOptions drivingOptions;
   dynamic _origins;
   List<dynamic /*LatLng|String*/ > get origins =>
       (new JsListCodec<dynamic /*LatLng|String*/ >(new ChainedCodec()

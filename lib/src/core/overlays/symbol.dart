@@ -21,6 +21,7 @@ abstract class _GSymbol implements JsInterface {
   Point anchor;
   String fillColor;
   num fillOpacity;
+  Point labelOrigin;
   dynamic _path;
   dynamic /*SymbolPath|String*/ get path => (new ChainedCodec()
     ..add(new BiMapCodec<SymbolPath, dynamic>({

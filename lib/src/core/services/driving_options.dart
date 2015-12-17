@@ -15,13 +15,9 @@
 part of google_maps.src;
 
 @anonymous
-abstract class _GeocoderRequest implements JsInterface {
-  external factory _GeocoderRequest();
+abstract class _DrivingOptions implements JsInterface {
+  external factory _DrivingOptions();
 
-  String address;
-  LatLngBounds bounds;
-  GeocoderComponentRestrictions componentRestrictions;
-  LatLng location;
-  String placeId;
-  String region;
+  DateTime departureTime;
+  TrafficModel trafficModel;
 }

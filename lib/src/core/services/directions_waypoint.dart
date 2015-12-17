@@ -19,14 +19,16 @@ abstract class _DirectionsWaypoint implements JsInterface {
   external factory _DirectionsWaypoint();
 
   dynamic _location;
-  dynamic /*LatLng|String*/ get location => (new ChainedCodec()
+  dynamic /*LatLng|Place|String*/ get location => (new ChainedCodec()
     ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
         (o) => o != null && o.instanceof(context['google']['maps']['LatLng'])))
+    ..add(new JsInterfaceCodec<Place>((o) => new Place.created(o)))
     ..add(new IdentityCodec<String>())).decode(_location);
-  void set location(dynamic /*LatLng|String*/ location) {
+  void set location(dynamic /*LatLng|Place|String*/ location) {
     _location = (new ChainedCodec()
       ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o), (o) =>
           o != null && o.instanceof(context['google']['maps']['LatLng'])))
+      ..add(new JsInterfaceCodec<Place>((o) => new Place.created(o)))
       ..add(new IdentityCodec<String>())).encode(location);
   }
   bool stopover;

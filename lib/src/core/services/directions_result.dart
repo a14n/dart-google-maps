@@ -18,5 +18,11 @@ part of google_maps.src;
 abstract class _DirectionsResult implements JsInterface {
   external factory _DirectionsResult();
 
+  List<DirectionsGeocodedWaypoint> _geocoded_waypoints;
+  List<DirectionsGeocodedWaypoint> get geocodedWaypoints => _geocoded_waypoints;
+  void set geocodedWaypoints(
+      List<DirectionsGeocodedWaypoint> geocodedWaypoints) {
+    _geocoded_waypoints = geocodedWaypoints;
+  }
   List<DirectionsRoute> routes;
 }
