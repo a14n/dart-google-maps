@@ -1,4 +1,8 @@
 
+# v3.1.0 (2015-12-17)
+
+- support of the Google Maps API 3.22
+
 # v3.0.2 (2015-06-16)
 
 - fix [issue #32: fail to create PlacesService](https://github.com/a14n/dart-google-maps/issues/32).
