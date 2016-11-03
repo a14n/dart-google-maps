@@ -13,7 +13,7 @@ class Controls extends JsInterface
   Controls.created(JsObject o) : super.created(o);
   Controls() : super.created(new JsArray());
 
-  MVCArray<Node> operator [](ControlPosition controlPosition) {
+  MVCArray<Node> operator [](@checked ControlPosition controlPosition) {
     var value = asJsObject(this)[_toJsControlPosition(controlPosition)];
     if (value == null) return null;
     return new MVCArray<Node>.created(value);
@@ -814,29 +814,29 @@ class Data extends JsInterface implements _Data {
   GMap _getMap() => __codec283.decode(asJsObject(this).callMethod('getMap'));
   dynamic /*DataStylingFunction|DataStyleOptions*/ get style =>
       (new ChainedCodec()
-    ..add(new FunctionCodec<DataStylingFunction>((o) => ((f) {
+    ..add(new FunctionCodec<DataStylingFunction>((f) {
       if (f == null) return null;
       return (p_dataFeature) {
-        p_dataFeature = new JsInterfaceCodec<DataFeature>((o) =>
+        final dataFeature = new JsInterfaceCodec<DataFeature>((o) =>
                 ((e) => e == null ? null : new DataFeature.created(e))(o))
             .decode(p_dataFeature);
-        final result = f(p_dataFeature);
+        final result = f(dataFeature);
         return new JsInterfaceCodec<DataStyleOptions>((o) =>
                 ((e) => e == null ? null : new DataStyleOptions.created(e))(o))
             .encode(result);
       };
-    })(o), (o) => ((JsFunction f) {
+    }, (JsFunction f) {
       if (f == null) return null;
       return (p_dataFeature) {
-        p_dataFeature = new JsInterfaceCodec<DataFeature>((o) =>
+        final dataFeature = new JsInterfaceCodec<DataFeature>((o) =>
                 ((e) => e == null ? null : new DataFeature.created(e))(o))
             .encode(p_dataFeature);
-        final result = f.apply([p_dataFeature]);
+        final result = f.apply([dataFeature]);
         return new JsInterfaceCodec<DataStyleOptions>((o) =>
                 ((e) => e == null ? null : new DataStyleOptions.created(e))(o))
             .decode(result);
       };
-    })(o)))
+    }))
     ..add(new JsInterfaceCodec<DataStyleOptions>(
         (o) => new DataStyleOptions.created(o)))).decode(_getStyle());
   _getStyle() => asJsObject(this).callMethod('getStyle');
@@ -880,7 +880,7 @@ class Data extends JsInterface implements _Data {
   }
   void set style(dynamic /*DataStylingFunction|DataStyleOptions*/ style) =>
       _setStyle((new ChainedCodec()
-    ..add(new FunctionCodec<DataStylingFunction>((o) => ((f) {
+    ..add(new FunctionCodec<DataStylingFunction>((f) {
       if (f == null) return null;
       return (p_dataFeature) {
         p_dataFeature = new JsInterfaceCodec<DataFeature>((o) =>
@@ -891,18 +891,18 @@ class Data extends JsInterface implements _Data {
                 ((e) => e == null ? null : new DataStyleOptions.created(e))(o))
             .encode(result);
       };
-    })(o), (o) => ((JsFunction f) {
+    }, (JsFunction f) {
       if (f == null) return null;
       return (p_dataFeature) {
-        p_dataFeature = new JsInterfaceCodec<DataFeature>((o) =>
+        final dataFeature = new JsInterfaceCodec<DataFeature>((o) =>
                 ((e) => e == null ? null : new DataFeature.created(e))(o))
             .encode(p_dataFeature);
-        final result = f.apply([p_dataFeature]);
+        final result = f.apply([dataFeature]);
         return new JsInterfaceCodec<DataStyleOptions>((o) =>
                 ((e) => e == null ? null : new DataStyleOptions.created(e))(o))
             .decode(result);
       };
-    })(o)))
+    }))
     ..add(new JsInterfaceCodec<DataStyleOptions>(
         (o) => new DataStyleOptions.created(o)))).encode(style));
   void _setStyle(dynamic /*DataStylingFunction|DataStyleOptions*/ style) {
@@ -1025,7 +1025,7 @@ class DataDataOptions extends JsInterface implements _DataDataOptions {
   GMap get map => __codec283.decode(asJsObject(this)['map']);
   dynamic /*DataStylingFunction|DataStyleOptions*/ get style =>
       (new ChainedCodec()
-    ..add(new FunctionCodec<DataStylingFunction>((o) => ((f) {
+    ..add(new FunctionCodec<DataStylingFunction>((f) {
       if (f == null) return null;
       return (p_dataFeature) {
         p_dataFeature = new JsInterfaceCodec<DataFeature>((o) =>
@@ -1036,23 +1036,23 @@ class DataDataOptions extends JsInterface implements _DataDataOptions {
                 ((e) => e == null ? null : new DataStyleOptions.created(e))(o))
             .encode(result);
       };
-    })(o), (o) => ((JsFunction f) {
+    }, (JsFunction f) {
       if (f == null) return null;
       return (p_dataFeature) {
-        p_dataFeature = new JsInterfaceCodec<DataFeature>((o) =>
+        final dataFeature = new JsInterfaceCodec<DataFeature>((o) =>
                 ((e) => e == null ? null : new DataFeature.created(e))(o))
             .encode(p_dataFeature);
-        final result = f.apply([p_dataFeature]);
+        final result = f.apply([dataFeature]);
         return new JsInterfaceCodec<DataStyleOptions>((o) =>
                 ((e) => e == null ? null : new DataStyleOptions.created(e))(o))
             .decode(result);
       };
-    })(o)))
+    }))
     ..add(new JsInterfaceCodec<DataStyleOptions>(
         (o) => new DataStyleOptions.created(o)))).decode(_style);
   void set style(dynamic /*DataStylingFunction|DataStyleOptions*/ style) =>
       _style = (new ChainedCodec()
-    ..add(new FunctionCodec<DataStylingFunction>((o) => ((f) {
+    ..add(new FunctionCodec<DataStylingFunction>((f) {
       if (f == null) return null;
       return (p_dataFeature) {
         p_dataFeature = new JsInterfaceCodec<DataFeature>((o) =>
@@ -1063,18 +1063,18 @@ class DataDataOptions extends JsInterface implements _DataDataOptions {
                 ((e) => e == null ? null : new DataStyleOptions.created(e))(o))
             .encode(result);
       };
-    })(o), (o) => ((JsFunction f) {
+    }, (JsFunction f) {
       if (f == null) return null;
       return (p_dataFeature) {
-        p_dataFeature = new JsInterfaceCodec<DataFeature>((o) =>
+        final dataFeature = new JsInterfaceCodec<DataFeature>((o) =>
                 ((e) => e == null ? null : new DataFeature.created(e))(o))
             .encode(p_dataFeature);
-        final result = f.apply([p_dataFeature]);
+        final result = f.apply([dataFeature]);
         return new JsInterfaceCodec<DataStyleOptions>((o) =>
                 ((e) => e == null ? null : new DataStyleOptions.created(e))(o))
             .decode(result);
       };
-    })(o)))
+    }))
     ..add(new JsInterfaceCodec<DataStyleOptions>(
         (o) => new DataStyleOptions.created(o)))).encode(_style);
   void set _style(dynamic __style) {
@@ -7615,7 +7615,7 @@ class MVCObject extends JsInterface implements _MVCObject {
 // **************************************************************************
 
 @JsName('google.maps.MVCArray')
-class MVCArray<E> extends MVCObject implements _MVCArray {
+class MVCArray<E> extends MVCObject implements _MVCArray<E> {
   Codec<E, dynamic> _codec = null;
 
   MVCArray({List<E> elements, Codec<E, dynamic> codec}) : this.created(

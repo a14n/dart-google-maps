@@ -19,6 +19,7 @@ import 'dart:collection' show MapMixin;
 import 'dart:html' show Node, Document;
 
 import 'package:js_wrapping/js_wrapping.dart';
+import 'package:meta/meta.dart' show checked;
 
 import 'package:google_maps/util/async.dart';
 
@@ -202,7 +203,7 @@ abstract class _Controls extends JsInterface
     with MapMixin<ControlPosition, MVCArray<Node>> {
   _Controls() : super.created(new JsArray());
 
-  MVCArray<Node> operator [](ControlPosition controlPosition) {
+  MVCArray<Node> operator [](@checked ControlPosition controlPosition) {
     var value = asJsObject(this)[_toJsControlPosition(controlPosition)];
     if (value == null) return null;
     return new MVCArray<Node>.created(value);

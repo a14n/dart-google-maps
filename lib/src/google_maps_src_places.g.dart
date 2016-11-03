@@ -228,15 +228,15 @@ final __codec444 = new BiMapCodec<PlacesServiceStatus, dynamic>(
 
 /// codec for google_maps.src.places.(List<AutocompletePrediction>, PlacesServiceStatus) → dynamic
 final __codec445 =
-    new FunctionCodec /*<(List<AutocompletePrediction>, PlacesServiceStatus) → dynamic>*/ (
+    new FunctionCodec<Func2<List<AutocompletePrediction>, PlacesServiceStatus, dynamic>>(
         (f) => (p_p1, p_p2) {
-  p_p1 = __codec443.decode(p_p1);
+  final p1 = __codec443.decode(p_p1);
   p_p2 = __codec444.decode(p_p2);
-  return f(p_p1, p_p2);
+  return f(p1, p_p2);
 }, (JsFunction f) => (p_p1, p_p2) {
-  p_p1 = __codec443.encode(p_p1);
+  final p1 = __codec443.encode(p_p1);
   p_p2 = __codec444.encode(p_p2);
-  return f.apply([p_p1, p_p2]);
+  return f.apply([p1, p_p2]);
 });
 
 /// codec for google_maps.src.places.QueryAutocompletionRequest
@@ -258,9 +258,9 @@ final __codec449 =
   p_p2 = __codec444.decode(p_p2);
   return f(p_p1, p_p2);
 }, (JsFunction f) => (p_p1, p_p2) {
-  p_p1 = __codec448.encode(p_p1);
+  final p1 = __codec448.encode(p_p1 as List<QueryAutocompletePrediction>);
   p_p2 = __codec444.encode(p_p2);
-  return f.apply([p_p1, p_p2]);
+  return f.apply([p1, p_p2]);
 });
 
 // **************************************************************************
@@ -802,17 +802,17 @@ final __codec466 = new JsInterfaceCodec<PlaceSearchPagination>(
 
 /// codec for google_maps.src.places.(List<PlaceResult>, PlacesServiceStatus, PlaceSearchPagination) → dynamic
 final __codec467 =
-    new FunctionCodec /*<(List<PlaceResult>, PlacesServiceStatus, PlaceSearchPagination) → dynamic>*/ (
+    new FunctionCodec<Func3<List<PlaceResult>, PlacesServiceStatus, PlaceSearchPagination, dynamic>>(
         (f) => (p_p1, p_p2, p_p3) {
-  p_p1 = __codec465.decode(p_p1);
+  final p1 = __codec465.decode(p_p1);
   p_p2 = __codec444.decode(p_p2);
   p_p3 = __codec466.decode(p_p3);
-  return f(p_p1, p_p2, p_p3);
+  return f(p1, p_p2, p_p3);
 }, (JsFunction f) => (p_p1, p_p2, p_p3) {
-  p_p1 = __codec465.encode(p_p1);
+  final p1 = __codec465.encode(p_p1);
   p_p2 = __codec444.encode(p_p2);
-  p_p3 = __codec466.encode(p_p3);
-  return f.apply([p_p1, p_p2, p_p3]);
+  final p3 = __codec466.encode(p_p3);
+  return f.apply([p1, p_p2, p3]);
 });
 
 /// codec for google_maps.src.places.RadarSearchRequest
@@ -827,9 +827,9 @@ final __codec469 =
   p_p2 = __codec444.decode(p_p2);
   return f(p_p1, p_p2, p__);
 }, (JsFunction f) => (p_p1, p_p2, [p__]) {
-  p_p1 = __codec465.encode(p_p1);
+  final p1 = __codec465.encode(p_p1 as List<PlaceResult>);
   p_p2 = __codec444.encode(p_p2);
-  return f.apply([p_p1, p_p2, p__]);
+  return f.apply([p1, p_p2, p__]);
 });
 
 /// codec for google_maps.src.places.TextSearchRequest

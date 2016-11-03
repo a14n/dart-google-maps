@@ -5,7 +5,7 @@ import 'package:js_wrapping/js_wrapping.dart';
 
 // Adding 500 Data Points
 GMap map;
-MVCArray pointArray;
+MVCArray<LatLng> pointArray;
 HeatmapLayer heatmap;
 
 final taxiData = [

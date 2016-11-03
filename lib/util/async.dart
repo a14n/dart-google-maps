@@ -12,7 +12,7 @@ class _Undefined {
   const _Undefined();
 }
 
-SubscribeStreamProvider getStreamProviderFor(dynamic instance, String eventName,
+SubscribeStreamProvider/*<T>*/ getStreamProviderFor/*<T>*/(dynamic instance, String eventName,
     [Function transformArguments]) {
   MapsEventListener mapsEventListener = null;
   return new SubscribeStreamProvider(subscribe: (EventSink eventSink) {
@@ -37,7 +37,7 @@ SubscribeStreamProvider getStreamProviderFor(dynamic instance, String eventName,
   });
 }
 
-Stream getStream(JsInterface o, Symbol s, String eventName,
+Stream/*<T>*/ getStream/*<T>*/(JsInterface o, Symbol s, String eventName,
     [Function transformArguments]) => getState(o).putIfAbsent(s,
-        () => getStreamProviderFor(
-            asJsObject(o), eventName, transformArguments)).stream;
+        () => getStreamProviderFor/*<T>*/(asJsObject(o),
+        eventName, transformArguments)).stream as Stream/*<T>*/;

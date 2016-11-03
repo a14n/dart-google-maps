@@ -32,7 +32,7 @@ void callback(List<PlaceResult> results, PlacesServiceStatus status,
     createMarkers(results);
 
     if (pagination.hasNextPage) {
-      final moreButton = document.getElementById('more');
+      final moreButton = document.getElementById('more') as ButtonElement;
 
       moreButton.disabled = false;
 

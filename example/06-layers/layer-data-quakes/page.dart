@@ -31,10 +31,12 @@ final mapStyle = <MapTypeStyle>[
 ];
 
 main() {
-  map = new GMap(document.getElementById('map-canvas'), new MapOptions()
-    ..center = new LatLng(20, -160)
-    ..zoom = 3
-    ..styles = mapStyle);
+  map = new GMap(
+      document.getElementById('map-canvas'),
+      new MapOptions()
+        ..center = new LatLng(20, -160)
+        ..zoom = 3
+        ..styles = mapStyle);
 
   map.data.style = styleFeature;
 
@@ -62,8 +64,8 @@ DataStyleOptions styleFeature(DataFeature feature) {
   var maxMag = 6.0;
 
   // fraction represents where the value sits between the min and max
-  var fraction =
-      (min(feature.getProperty('mag'), maxMag) - minMag) / (maxMag - minMag);
+  var fraction = (min/*<num>*/(feature.getProperty('mag'), maxMag) - minMag) /
+      (maxMag - minMag);
 
   var color = interpolateHsl(low, high, fraction);
 

@@ -37,13 +37,13 @@ displayRoute(String origin, String destination, DirectionsService service,
     if (status == DirectionsStatus.OK) {
       display.directions = response;
     } else {
-      window.alert('Could not display directions due to: ' + status);
+      window.alert('Could not display directions due to: $status');
     }
   });
 }
 
 computeTotalDistance(result) {
-  var total = 0;
+  var total = 0.0;
   var myroute = result.routes[0];
   for (var i = 0; i < myroute.legs.length; i++) {
     total += myroute.legs[i].distance.value;
