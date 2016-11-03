@@ -973,13 +973,13 @@ final __codec282 = new JsListCodec<String>(null);
 final __codec283 = new JsInterfaceCodec<GMap>((o) => new GMap.created(o));
 
 /// codec for google_maps.src.(List<DataFeature>) → dynamic
-final __codec284 = new FunctionCodec /*<(List<DataFeature>) → dynamic>*/ (
+final __codec284 = new FunctionCodec<Func1<List<DataFeature>, dynamic>>(
     (f) => (p_p1) {
-  p_p1 = __codec280.decode(p_p1);
-  return f(p_p1);
+  final p1 = __codec280.decode(p_p1);
+  return f(p1);
 }, (JsFunction f) => (p_p1) {
-  p_p1 = __codec280.encode(p_p1);
-  return f.apply([p_p1]);
+  final p1 = __codec280.encode(p_p1);
+  return f.apply([p1]);
 });
 
 /// codec for google_maps.src.DataStyleOptions
@@ -3651,15 +3651,15 @@ final __codec321 = new BiMapCodec<GeocoderStatus, dynamic>(
 
 /// codec for google_maps.src.(List<GeocoderResult>, GeocoderStatus) → dynamic
 final __codec322 =
-    new FunctionCodec /*<(List<GeocoderResult>, GeocoderStatus) → dynamic>*/ (
+    new FunctionCodec<Func2<List<GeocoderResult>, GeocoderStatus, dynamic>>(
         (f) => (p_p1, p_p2) {
-  p_p1 = __codec320.decode(p_p1);
+  final p1 = __codec320.decode(p_p1);
   p_p2 = __codec321.decode(p_p2);
-  return f(p_p1, p_p2);
+  return f(p1, p_p2);
 }, (JsFunction f) => (p_p1, p_p2) {
-  p_p1 = __codec320.encode(p_p1);
+  final p1 = __codec320.encode(p_p1);
   p_p2 = __codec321.encode(p_p2);
-  return f.apply([p_p1, p_p2]);
+  return f.apply([p1, p_p2]);
 });
 
 // **************************************************************************
@@ -5193,15 +5193,15 @@ final __codec366 = new BiMapCodec<ElevationStatus, dynamic>(
 
 /// codec for google_maps.src.(List<ElevationResult>, ElevationStatus) → dynamic
 final __codec367 =
-    new FunctionCodec /*<(List<ElevationResult>, ElevationStatus) → dynamic>*/ (
+    new FunctionCodec<Func2<List<ElevationResult>, ElevationStatus, dynamic>>(
         (f) => (p_p1, p_p2) {
-  p_p1 = __codec365.decode(p_p1);
+  final p1 = __codec365.decode(p_p1);
   p_p2 = __codec366.decode(p_p2);
-  return f(p_p1, p_p2);
+  return f(p1, p_p2);
 }, (JsFunction f) => (p_p1, p_p2) {
-  p_p1 = __codec365.encode(p_p1);
+  final p1 = __codec365.encode(p_p1);
   p_p2 = __codec366.encode(p_p2);
-  return f.apply([p_p1, p_p2]);
+  return f.apply([p1, p_p2]);
 });
 
 /// codec for google_maps.src.LocationElevationRequest

@@ -18,6 +18,7 @@ import 'dart:async' show Stream;
 import 'dart:collection' show MapMixin;
 import 'dart:html' show Node, Document;
 
+import 'package:func/func.dart';
 import 'package:js_wrapping/js_wrapping.dart';
 import 'package:meta/meta.dart' show checked;
 
