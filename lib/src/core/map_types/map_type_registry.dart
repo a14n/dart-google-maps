@@ -18,5 +18,5 @@ part of google_maps.src;
 abstract class _MapTypeRegistry extends MVCObject {
   external factory _MapTypeRegistry();
 
-  void set(String id, MapType mapType);
+  void set(String id, @checked MapType mapType);
 }

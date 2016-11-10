@@ -25,34 +25,34 @@ abstract class _DataDataOptions implements JsInterface {
   GMap map;
   dynamic /*DataStylingFunction|DataStyleOptions*/ get style =>
       (new ChainedCodec()
-    ..add(new FunctionCodec<DataStylingFunction>((o) => ((f) {
+    ..add(new FunctionCodec<DataStylingFunction>((f) {
       if (f == null) return null;
       return (p_dataFeature) {
-        p_dataFeature = new JsInterfaceCodec<DataFeature>((o) =>
+        final dataFeature = new JsInterfaceCodec<DataFeature>((o) =>
                 ((e) => e == null ? null : new DataFeature.created(e))(o))
             .decode(p_dataFeature);
-        final result = f(p_dataFeature);
+        final result = f(dataFeature);
         return new JsInterfaceCodec<DataStyleOptions>((o) =>
                 ((e) => e == null ? null : new DataStyleOptions.created(e))(o))
             .encode(result);
       };
-    })(o), (o) => ((JsFunction f) {
+    }, (JsFunction f) {
       if (f == null) return null;
       return (p_dataFeature) {
-        p_dataFeature = new JsInterfaceCodec<DataFeature>((o) =>
+        final dataFeature = new JsInterfaceCodec<DataFeature>((o) =>
                 ((e) => e == null ? null : new DataFeature.created(e))(o))
             .encode(p_dataFeature);
-        final result = f.apply([p_dataFeature]);
+        final result = f.apply([dataFeature]);
         return new JsInterfaceCodec<DataStyleOptions>((o) =>
                 ((e) => e == null ? null : new DataStyleOptions.created(e))(o))
             .decode(result);
       };
-    })(o)))
+    }))
     ..add(new JsInterfaceCodec<DataStyleOptions>(
         (o) => new DataStyleOptions.created(o)))).decode(_style);
   void set style(dynamic /*DataStylingFunction|DataStyleOptions*/ style) =>
       _style = (new ChainedCodec()
-    ..add(new FunctionCodec<DataStylingFunction>((o) => ((f) {
+    ..add(new FunctionCodec<DataStylingFunction>((f) {
       if (f == null) return null;
       return (p_dataFeature) {
         p_dataFeature = new JsInterfaceCodec<DataFeature>((o) =>
@@ -63,18 +63,18 @@ abstract class _DataDataOptions implements JsInterface {
                 ((e) => e == null ? null : new DataStyleOptions.created(e))(o))
             .encode(result);
       };
-    })(o), (o) => ((JsFunction f) {
+    }, (JsFunction f) {
       if (f == null) return null;
       return (p_dataFeature) {
-        p_dataFeature = new JsInterfaceCodec<DataFeature>((o) =>
+        final dataFeature = new JsInterfaceCodec<DataFeature>((o) =>
                 ((e) => e == null ? null : new DataFeature.created(e))(o))
             .encode(p_dataFeature);
-        final result = f.apply([p_dataFeature]);
+        final result = f.apply([dataFeature]);
         return new JsInterfaceCodec<DataStyleOptions>((o) =>
                 ((e) => e == null ? null : new DataStyleOptions.created(e))(o))
             .decode(result);
       };
-    })(o)))
+    }))
     ..add(new JsInterfaceCodec<DataStyleOptions>(
         (o) => new DataStyleOptions.created(o)))).encode(_style);
   dynamic /*DataStylingFunction|DataStyleOptions*/ _style;

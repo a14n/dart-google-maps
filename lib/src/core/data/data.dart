@@ -40,29 +40,29 @@ abstract class _Data implements JsInterface {
   GMap _getMap();
   dynamic /*DataStylingFunction|DataStyleOptions*/ get style =>
       (new ChainedCodec()
-    ..add(new FunctionCodec<DataStylingFunction>((o) => ((f) {
+    ..add(new FunctionCodec<DataStylingFunction>((f) {
       if (f == null) return null;
       return (p_dataFeature) {
-        p_dataFeature = new JsInterfaceCodec<DataFeature>((o) =>
-                ((e) => e == null ? null : new DataFeature.created(e))(o))
+        p_dataFeature = new JsInterfaceCodec<DataFeature>(
+                (e) => e == null ? null : new DataFeature.created(e))
             .decode(p_dataFeature);
         final result = f(p_dataFeature);
-        return new JsInterfaceCodec<DataStyleOptions>((o) =>
-                ((e) => e == null ? null : new DataStyleOptions.created(e))(o))
+        return new JsInterfaceCodec<DataStyleOptions>(
+                (e) => e == null ? null : new DataStyleOptions.created(e))
             .encode(result);
       };
-    })(o), (o) => ((JsFunction f) {
+    }, (JsFunction f) {
       if (f == null) return null;
       return (p_dataFeature) {
-        p_dataFeature = new JsInterfaceCodec<DataFeature>((o) =>
-                ((e) => e == null ? null : new DataFeature.created(e))(o))
+        final dataFeature = new JsInterfaceCodec<DataFeature>(
+                (e) => e == null ? null : new DataFeature.created(e))
             .encode(p_dataFeature);
-        final result = f.apply([p_dataFeature]);
-        return new JsInterfaceCodec<DataStyleOptions>((o) =>
-                ((e) => e == null ? null : new DataStyleOptions.created(e))(o))
+        final result = f.apply([dataFeature]);
+        return new JsInterfaceCodec<DataStyleOptions>(
+                (e) => e == null ? null : new DataStyleOptions.created(e))
             .decode(result);
       };
-    })(o)))
+    }))
     ..add(new JsInterfaceCodec<DataStyleOptions>(
         (o) => new DataStyleOptions.created(o)))).decode(_getStyle());
   _getStyle();
@@ -82,29 +82,29 @@ abstract class _Data implements JsInterface {
   void _setMap(GMap map);
   void set style(dynamic /*DataStylingFunction|DataStyleOptions*/ style) =>
       _setStyle((new ChainedCodec()
-    ..add(new FunctionCodec<DataStylingFunction>((o) => ((f) {
+    ..add(new FunctionCodec<DataStylingFunction>((f) {
       if (f == null) return null;
       return (p_dataFeature) {
-        p_dataFeature = new JsInterfaceCodec<DataFeature>((o) =>
-                ((e) => e == null ? null : new DataFeature.created(e))(o))
+        p_dataFeature = new JsInterfaceCodec<DataFeature>(
+                ((e) => e == null ? null : new DataFeature.created(e)))
             .decode(p_dataFeature);
         final result = f(p_dataFeature);
-        return new JsInterfaceCodec<DataStyleOptions>((o) =>
-                ((e) => e == null ? null : new DataStyleOptions.created(e))(o))
+        return new JsInterfaceCodec<DataStyleOptions>(
+                ((e) => e == null ? null : new DataStyleOptions.created(e)))
             .encode(result);
       };
-    })(o), (o) => ((JsFunction f) {
+    }, (JsFunction f) {
       if (f == null) return null;
       return (p_dataFeature) {
-        p_dataFeature = new JsInterfaceCodec<DataFeature>((o) =>
-                ((e) => e == null ? null : new DataFeature.created(e))(o))
+        final dataFeature = new JsInterfaceCodec<DataFeature>(
+                ((e) => e == null ? null : new DataFeature.created(e)))
             .encode(p_dataFeature);
-        final result = f.apply([p_dataFeature]);
-        return new JsInterfaceCodec<DataStyleOptions>((o) =>
-                ((e) => e == null ? null : new DataStyleOptions.created(e))(o))
+        final result = f.apply([dataFeature]);
+        return new JsInterfaceCodec<DataStyleOptions>(
+                ((e) => e == null ? null : new DataStyleOptions.created(e)))
             .decode(result);
       };
-    })(o)))
+    }))
     ..add(new JsInterfaceCodec<DataStyleOptions>(
         (o) => new DataStyleOptions.created(o)))).encode(style));
   void _setStyle(dynamic /*DataStylingFunction|DataStyleOptions*/ style);

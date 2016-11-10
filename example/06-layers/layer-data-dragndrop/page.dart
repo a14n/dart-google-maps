@@ -92,7 +92,7 @@ void handleDrop(html.MouseEvent e) {
     for (final file in files) {
       var reader = new FileReader();
       reader.onLoad.listen((e) {
-        loadGeoJsonString(e.target.result);
+        loadGeoJsonString((e.target as FileReader).result);
       });
       reader.onError.listen((e) {
         window.console.error('reading failed');
@@ -103,7 +103,7 @@ void handleDrop(html.MouseEvent e) {
     // process non-file (e.g. text or html) content being dropped
     // grab the plain text version of the data
     var plainText = e.dataTransfer.getData('text/plain');
-    if (plainText) {
+    if (plainText != null) {
       loadGeoJsonString(plainText);
     }
   }

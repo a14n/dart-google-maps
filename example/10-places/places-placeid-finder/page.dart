@@ -41,7 +41,7 @@ void main() {
     }
 
     // Set the position of the marker using the place ID and location
-    marker.place = new Place()
+    marker.place = new MarkerPlace()
       ..placeId = place.placeId
       ..location = place.geometry.location;
     marker.visible = true;

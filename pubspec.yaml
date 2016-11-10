@@ -6,7 +6,9 @@ homepage: https://github.com/a14n/dart-google-maps
 environment:
   sdk: '>=1.9.0 <2.0.0'
 dependencies:
+  func: ^0.1.0
   js_wrapping: ^0.2.0
+  meta: ^1.0.3
 dev_dependencies:
   browser: ^0.10.0
   html: ^0.12.0

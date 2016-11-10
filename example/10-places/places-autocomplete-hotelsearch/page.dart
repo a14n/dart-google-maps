@@ -1,7 +1,8 @@
 import 'dart:async';
-import 'dart:html' hide Animation;
+import 'dart:html' hide Animation, MouseEvent;
 
-import 'package:google_maps/google_maps.dart' hide MouseEvent;
+import 'package:func/func.dart' show VoidFunc0, VoidFunc1;
+import 'package:google_maps/google_maps.dart';
 import 'package:google_maps/google_maps_places.dart';
 import 'package:js_wrapping/js_wrapping.dart';
 
@@ -128,7 +129,7 @@ void setAutocompleteCountry(_) {
   clearMarkers();
 }
 
-Function dropMarker(int i) {
+VoidFunc0 dropMarker(int i) {
   return () {
     markers[i].map = map;
   };
@@ -147,7 +148,7 @@ void addResult(PlaceResult result, int i) {
 
   final iconTd = document.createElement('td');
   final nameTd = document.createElement('td');
-  final icon = document.createElement('img');
+  final icon = new ImageElement();
   icon.src = markerIcon;
   icon.setAttribute('class', 'placeIcon');
   icon.setAttribute('className', 'placeIcon');
@@ -165,7 +166,7 @@ void clearResults() {
 
 // Get the place details for a hotel. Show the information in an info window,
 // anchored on the marker for the hotel that the user selected.
-Function showInfoWindow(Marker marker, PlaceResult placeResult) {
+VoidFunc1<MouseEvent> showInfoWindow(Marker marker, PlaceResult placeResult) {
   return (_) => places.getDetails(new PlaceDetailsRequest()
     ..placeId = placeResult.placeId, (place, status) {
     if (status != PlacesServiceStatus.OK) {
