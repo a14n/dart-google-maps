@@ -10,7 +10,7 @@ void main() {
 
   final kmlLayer = new KmlLayer(new KmlLayerOptions()
     ..url =
-    'http://kml-samples.googlecode.com/svn/trunk/kml/Placemark/placemark.kml'
+    'http://googlemaps.github.io/kml-samples/kml/Placemark/placemark.kml'
     ..suppressInfoWindows = true
     ..map = map);
 
@@ -20,7 +20,7 @@ void main() {
   });
 }
 
-void showInContentWindow(text) {
+void showInContentWindow(String text) {
   final sidediv = document.getElementById('content-window');
   sidediv.innerHtml = text;
 }

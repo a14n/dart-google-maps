@@ -21,27 +21,37 @@ abstract class _MapTypeControlOptions implements JsInterface {
   dynamic get _mapTypeIds => asJsObject(this)['mapTypeIds'];
   List<dynamic /*MapTypeId|String*/ > get mapTypeIds =>
       (new JsListCodec<dynamic /*MapTypeId|String*/ >(new ChainedCodec()
-    ..add(new BiMapCodec<MapTypeId, dynamic>({
-      MapTypeId.HYBRID: context['google']['maps']['MapTypeId']['HYBRID'],
-      MapTypeId.ROADMAP: context['google']['maps']['MapTypeId']['ROADMAP'],
-      MapTypeId.SATELLITE: context['google']['maps']['MapTypeId']['SATELLITE'],
-      MapTypeId.TERRAIN: context['google']['maps']['MapTypeId']['TERRAIN']
-    }))
-    ..add(new IdentityCodec<String>()))).decode(_mapTypeIds);
+            ..add(new BiMapCodec<MapTypeId, dynamic>({
+              MapTypeId.HYBRID: context['google']['maps']['MapTypeId']
+                  ['HYBRID'],
+              MapTypeId.ROADMAP: context['google']['maps']['MapTypeId']
+                  ['ROADMAP'],
+              MapTypeId.SATELLITE: context['google']['maps']['MapTypeId']
+                  ['SATELLITE'],
+              MapTypeId.TERRAIN: context['google']['maps']['MapTypeId']
+                  ['TERRAIN']
+            }))
+            ..add(new IdentityCodec<String>())))
+          .decode(_mapTypeIds as JsArray);
   void set _mapTypeIds(dynamic mapTypeIds) {
     asJsObject(this)['mapTypeIds'] = mapTypeIds;
   }
+
   void set mapTypeIds(List<dynamic /*MapTypeId|String*/ > mapTypeIds) {
-    _mapTypeIds = (new JsListCodec<dynamic /*MapTypeId|String*/ >(
-        new ChainedCodec()
-      ..add(new BiMapCodec<MapTypeId, dynamic>({
-        MapTypeId.HYBRID: context['google']['maps']['MapTypeId']['HYBRID'],
-        MapTypeId.ROADMAP: context['google']['maps']['MapTypeId']['ROADMAP'],
-        MapTypeId.SATELLITE:
-            context['google']['maps']['MapTypeId']['SATELLITE'],
-        MapTypeId.TERRAIN: context['google']['maps']['MapTypeId']['TERRAIN']
-      }))
-      ..add(new IdentityCodec<String>()))).encode(mapTypeIds);
+    _mapTypeIds =
+        (new JsListCodec<dynamic /*MapTypeId|String*/ >(new ChainedCodec()
+              ..add(new BiMapCodec<MapTypeId, dynamic>({
+                MapTypeId.HYBRID: context['google']['maps']['MapTypeId']
+                    ['HYBRID'],
+                MapTypeId.ROADMAP: context['google']['maps']['MapTypeId']
+                    ['ROADMAP'],
+                MapTypeId.SATELLITE: context['google']['maps']['MapTypeId']
+                    ['SATELLITE'],
+                MapTypeId.TERRAIN: context['google']['maps']['MapTypeId']
+                    ['TERRAIN']
+              }))
+              ..add(new IdentityCodec<String>())))
+            .encode(mapTypeIds);
   }
 
   ControlPosition position;

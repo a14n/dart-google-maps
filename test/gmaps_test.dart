@@ -6,7 +6,7 @@ import 'package:test/test.dart';
 
 import 'package:google_maps/google_maps.dart';
 
-injectSource(code) {
+void injectSource(String code) {
   final script = new ScriptElement();
   script.type = 'text/javascript';
   script.innerHtml = code;

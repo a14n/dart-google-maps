@@ -1,4 +1,5 @@
 import 'dart:html' hide Point;
+
 import 'package:google_maps/google_maps.dart';
 import 'package:js_wrapping/js_wrapping.dart';
 
@@ -19,7 +20,7 @@ void main() {
     ..tileSize = new Size(256, 256);
 
   asJsObject(imageMapTypeOptions)['getTileUrl'] = (JsObject pointJs,
-      num zoomLevel, _) {
+      num zoomLevel) {
     final point = new Point.created(pointJs);
     if (zoomLevel < 17 ||
         zoomLevel > 20 ||

@@ -18,7 +18,6 @@ import 'dart:async' show Stream;
 import 'dart:collection' show MapMixin;
 import 'dart:html' show Node, Document;
 
-import 'package:func/func.dart';
 import 'package:js_wrapping/js_wrapping.dart';
 import 'package:meta/meta.dart' show checked;
 
@@ -207,7 +206,7 @@ abstract class _Controls extends JsInterface
   MVCArray<Node> operator [](@checked ControlPosition controlPosition) {
     var value = asJsObject(this)[_toJsControlPosition(controlPosition)];
     if (value == null) return null;
-    return new MVCArray<Node>.created(value);
+    return new MVCArray<Node>.created(value as JsObject);
   }
   void operator []=(ControlPosition controlPosition, MVCArray<Node> nodes) {
     asJsObject(this)[_toJsControlPosition(controlPosition)] = asJsObject(nodes);
@@ -220,8 +219,8 @@ abstract class _Controls extends JsInterface
     return result;
   }
   MVCArray<Node> remove(Object key) {
-    var result = this[key];
-    this[key] = null;
+    var result = this[key as ControlPosition];
+    this[key as ControlPosition] = null;
     return result;
   }
   void clear() => (asJsObject(this) as JsArray).clear();

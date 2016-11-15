@@ -5,7 +5,7 @@ import 'package:google_maps/google_maps_places.dart';
 import 'package:js_wrapping/js_wrapping.dart';
 
 Autocomplete autocomplete;
-final componentForm = {
+final componentForm = <String, String>{
   'street_number': 'short_name',
   'route': 'long_name',
   'locality': 'long_name',
@@ -17,7 +17,8 @@ final componentForm = {
 void main() {
   // Create the autocomplete object, restricting the search
   // to geographical location types.
-  autocomplete = new Autocomplete(document.getElementById('autocomplete'),
+  autocomplete = new Autocomplete(
+      document.getElementById('autocomplete') as InputElement,
       new AutocompleteOptions()..types = ['geocode']);
   // When the user selects an address from the dropdown,
   // populate the address fields in the form.
@@ -42,7 +43,7 @@ void fillInAddress(_) {
     final addressType = addressComponent.types[0];
     final prop = componentForm[addressType];
     if (prop != null) {
-      final val = asJsObject(addressComponent)[prop];
+      final val = asJsObject(addressComponent)[prop] as String;
       (document.getElementById(addressType) as InputElement).value = val;
     }
   }

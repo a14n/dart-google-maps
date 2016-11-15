@@ -1,6 +1,6 @@
+import 'dart:convert';
 import 'dart:html';
 import 'dart:html' as html show MouseEvent;
-import 'dart:convert';
 
 import 'package:google_maps/google_maps.dart';
 import 'package:js_wrapping/js_wrapping.dart';
@@ -14,9 +14,11 @@ void main() {
 
 void initMap() {
   // set up the map
-  map = new GMap(document.getElementById('map-canvas'), new MapOptions()
-    ..zoom = 2
-    ..center = new LatLng(0, 0));
+  map = new GMap(
+      document.getElementById('map-canvas'),
+      new MapOptions()
+        ..zoom = 2
+        ..center = new LatLng(0, 0));
 }
 
 void loadGeoJsonString(String geoString) {
@@ -33,7 +35,7 @@ void loadGeoJsonString(String geoString) {
 void zoom(GMap map) {
   var bounds = new LatLngBounds();
   map.data.forEach((feature) {
-    processPoints(feature.geometry, bounds.extend);
+    processPoints(feature.geometry as DataGeometry, bounds.extend);
   });
   map.fitBounds(bounds);
 }
@@ -49,7 +51,7 @@ void processPoints(DataGeometry geometry, LatLngBounds callback(LatLng point)) {
     callback(geometry.get());
   } else if (geometry is DataGeometryCollection) {
     geometry.array.forEach((g) {
-      processPoints(g, callback);
+      processPoints(g as DataGeometry, callback);
     });
   }
 }
@@ -92,7 +94,7 @@ void handleDrop(html.MouseEvent e) {
     for (final file in files) {
       var reader = new FileReader();
       reader.onLoad.listen((e) {
-        loadGeoJsonString((e.target as FileReader).result);
+        loadGeoJsonString((e.target as FileReader).result as String);
       });
       reader.onError.listen((e) {
         window.console.error('reading failed');

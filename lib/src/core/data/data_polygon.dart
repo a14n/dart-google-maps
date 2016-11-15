@@ -18,17 +18,17 @@ part of google_maps.src;
 abstract class _DataPolygon extends DataGeometry {
   _DataPolygon.created(JsObject o) : super.created(o);
   _DataPolygon(List<dynamic /*DataLinearRing|List<LatLng>*/ > elements)
-      : this.created(new JsObject(context['google']['maps']['Data']['Polygon'],
+      : this.created(new JsObject(context['google']['maps']['Data']['Polygon'] as JsFunction,
           [
         (new JsListCodec<dynamic /*DataLinearRing|List<LatLng>*/ >(
             new ChainedCodec()
           ..add(new JsInterfaceCodec<DataLinearRing>(
               (o) => new DataLinearRing.created(o), (o) => o != null &&
                   o.instanceof(
-                      context['google']['maps']['Data']['LinearRing'])))
+                      context['google']['maps']['Data']['LinearRing'] as JsFunction)))
           ..add(new JsListCodec<LatLng>(new JsInterfaceCodec<LatLng>(
                   (o) => new LatLng.created(o), (o) => o != null &&
-                      o.instanceof(context['google']['maps']['LatLng']))))))
+                      o.instanceof(context['google']['maps']['LatLng'] as JsFunction))))))
             .encode(elements)
       ]));
   List<DataLinearRing> get array => _getArray();

@@ -21,13 +21,13 @@ abstract class _DirectionsWaypoint implements JsInterface {
   dynamic _location;
   dynamic /*LatLng|Place|String*/ get location => (new ChainedCodec()
     ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
-        (o) => o != null && o.instanceof(context['google']['maps']['LatLng'])))
+        (o) => o != null && o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))
     ..add(new JsInterfaceCodec<Place>((o) => new Place.created(o)))
     ..add(new IdentityCodec<String>())).decode(_location);
   void set location(dynamic /*LatLng|Place|String*/ location) {
     _location = (new ChainedCodec()
       ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o), (o) =>
-          o != null && o.instanceof(context['google']['maps']['LatLng'])))
+          o != null && o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))
       ..add(new JsInterfaceCodec<Place>((o) => new Place.created(o)))
       ..add(new IdentityCodec<String>())).encode(location);
   }

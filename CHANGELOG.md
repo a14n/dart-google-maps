@@ -1,4 +1,9 @@
 
+# v3.2.0 (2016-11-15)
+
+- use js_wrapping-0.3.0
+- no more generator dependencies grabbed
+
 # v3.1.0 (2015-12-17)
 
 - support of the Google Maps API 3.22

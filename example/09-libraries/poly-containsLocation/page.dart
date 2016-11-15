@@ -21,7 +21,7 @@ void main() {
       new Polygon(new PolygonOptions()..paths = triangleCoords);
 
   map.onClick.listen((e) {
-    var result;
+    String result;
     if (poly.containsLocation(e.latLng, bermudaTriangle)) {
       result = 'red';
     } else {

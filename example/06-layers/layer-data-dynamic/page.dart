@@ -14,7 +14,7 @@ void main() {
   map.data.style = (DataFeature feature) {
     var color = 'gray';
     if (feature.getProperty('isColorful') == true) {
-      color = feature.getProperty('color');
+      color = feature.getProperty('color') as String;
     }
     return new DataStyleOptions()
       ..fillColor = color

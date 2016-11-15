@@ -12,7 +12,7 @@ void main() {
     ..name = 'Moon';
   asJsObject(moonTypeOptions)
     ..['radius'] = 1738000
-    ..['getTileUrl'] = (JsObject point, num zoomLevel, _) {
+    ..['getTileUrl'] = (JsObject point, int zoomLevel) {
       final normalizedCoord =
           getNormalizedCoord(new Point.created(point), zoomLevel);
       if (normalizedCoord == null) return null;
@@ -37,7 +37,7 @@ void main() {
 
 // Normalizes the coords that tiles repeat across the x axis (horizontally)
 // like the standard Google map tiles.
-Point getNormalizedCoord(Point coord, num zoom) {
+Point getNormalizedCoord(Point coord, int zoom) {
   final y = coord.y;
   var x = coord.x;
 

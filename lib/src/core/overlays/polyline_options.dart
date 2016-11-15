@@ -30,20 +30,20 @@ abstract class _PolylineOptions implements JsInterface {
     ..add(new JsInterfaceCodec<MVCArray<LatLng>>(
         (o) => new MVCArray<LatLng>.created(o, new JsInterfaceCodec<LatLng>(
             (o) => new LatLng.created(o), (o) => o != null &&
-                o.instanceof(context['google']['maps']['LatLng'])))))
+                o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))))
     ..add(new JsListCodec<LatLng>(new JsInterfaceCodec<LatLng>(
         (o) => new LatLng.created(o), (o) => o != null &&
-            o.instanceof(context['google']['maps']['LatLng']))))).decode(_path);
+            o.instanceof(context['google']['maps']['LatLng'] as JsFunction))))).decode(_path);
   void set path(dynamic /*MVCArray<LatLng>|List<LatLng>*/ path) {
     _path =
         (new ChainedCodec()
       ..add(new JsInterfaceCodec<MVCArray<LatLng>>(
           (o) => new MVCArray<LatLng>.created(o, new JsInterfaceCodec<LatLng>(
               (o) => new LatLng.created(o), (o) => o != null &&
-                  o.instanceof(context['google']['maps']['LatLng'])))))
+                  o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))))
       ..add(new JsListCodec<LatLng>(new JsInterfaceCodec<LatLng>(
               (o) => new LatLng.created(o), (o) => o != null &&
-                  o.instanceof(context['google']['maps']['LatLng'])))))
+                  o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))))
         .encode(path);
   }
   String strokeColor;

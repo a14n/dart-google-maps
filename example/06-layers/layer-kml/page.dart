@@ -9,6 +9,6 @@ void main() {
   final map = new GMap(document.getElementById('map-canvas'), mapOptions);
 
   final ctaLayer = new KmlLayer()
-    ..url = 'http://gmaps-samples.googlecode.com/svn/trunk/ggeoxml/cta.kml';
+    ..url = 'http://googlemaps.github.io/js-v2-samples/ggeoxml/cta.kml';
   ctaLayer.map = map;
 }

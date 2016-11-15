@@ -22,7 +22,7 @@ main() {
       'Perth, WA', 'Sydney, NSW', directionsService, directionsDisplay);
 }
 
-displayRoute(String origin, String destination, DirectionsService service,
+void displayRoute(String origin, String destination, DirectionsService service,
     DirectionsRenderer display) {
   service.route(
       new DirectionsRequest()
@@ -42,7 +42,7 @@ displayRoute(String origin, String destination, DirectionsService service,
   });
 }
 
-computeTotalDistance(result) {
+void computeTotalDistance(DirectionsResult result) {
   var total = 0.0;
   var myroute = result.routes[0];
   for (var i = 0; i < myroute.legs.length; i++) {

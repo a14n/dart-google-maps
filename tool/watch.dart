@@ -1,4 +1,4 @@
-// Copyright (c) 2015, Alexandre Ardhuin
+// Copyright (c) 2016, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,6 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-library google_maps_geometry;
+library js_wrapping_generator.tool.watch;
 
-export 'src/google_maps_src_geometry.dart';
+import 'package:build/build.dart';
+
+import 'phases.dart';
+
+main() {
+  watch(phases, deleteFilesByDefault: true);
+}

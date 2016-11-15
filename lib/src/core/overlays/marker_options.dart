@@ -53,19 +53,19 @@ abstract class _MarkerOptions implements JsInterface {
   dynamic _map;
   dynamic /*GMap|StreetViewPanorama*/ get map => (new ChainedCodec()
     ..add(new JsInterfaceCodec<GMap>((o) => new GMap.created(o),
-        (o) => o != null && o.instanceof(context['google']['maps']['Map'])))
+        (o) => o != null && o.instanceof(context['google']['maps']['Map'] as JsFunction)))
     ..add(new JsInterfaceCodec<StreetViewPanorama>(
             (o) => new StreetViewPanorama.created(o), (o) => o != null &&
-                o.instanceof(context['google']['maps']['StreetViewPanorama']))))
+                o.instanceof(context['google']['maps']['StreetViewPanorama'] as JsFunction))))
       .decode(_map);
   void set map(dynamic /*GMap|StreetViewPanorama*/ map) {
     _map = (new ChainedCodec()
       ..add(new JsInterfaceCodec<GMap>((o) => new GMap.created(o),
-          (o) => o != null && o.instanceof(context['google']['maps']['Map'])))
+          (o) => o != null && o.instanceof(context['google']['maps']['Map'] as JsFunction)))
       ..add(new JsInterfaceCodec<StreetViewPanorama>(
               (o) => new StreetViewPanorama.created(o), (o) => o != null &&
                   o.instanceof(
-                      context['google']['maps']['StreetViewPanorama']))))
+                      context['google']['maps']['StreetViewPanorama'] as JsFunction))))
         .encode(map);
   }
   num opacity;

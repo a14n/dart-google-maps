@@ -25,13 +25,13 @@ abstract class _DistanceMatrixRequest implements JsInterface {
   List<dynamic /*LatLng|String*/ > get destinations =>
       (new JsListCodec<dynamic /*LatLng|String*/ >(new ChainedCodec()
     ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
-        (o) => o != null && o.instanceof(context['google']['maps']['LatLng'])))
-    ..add(new IdentityCodec<String>()))).decode(_destinations);
+        (o) => o != null && o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))
+    ..add(new IdentityCodec<String>()))).decode(_destinations as JsArray);
   void set destinations(List<dynamic /*LatLng|String*/ > destinations) {
     _destinations = (new JsListCodec<dynamic /*LatLng|String*/ >(
         new ChainedCodec()
       ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o), (o) =>
-          o != null && o.instanceof(context['google']['maps']['LatLng'])))
+          o != null && o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))
       ..add(new IdentityCodec<String>()))).encode(destinations);
   }
 
@@ -40,12 +40,12 @@ abstract class _DistanceMatrixRequest implements JsInterface {
   List<dynamic /*LatLng|String*/ > get origins =>
       (new JsListCodec<dynamic /*LatLng|String*/ >(new ChainedCodec()
     ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
-        (o) => o != null && o.instanceof(context['google']['maps']['LatLng'])))
-    ..add(new IdentityCodec<String>()))).decode(_origins);
+        (o) => o != null && o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))
+    ..add(new IdentityCodec<String>()))).decode(_origins as JsArray);
   void set origins(List<dynamic /*LatLng|String*/ > origins) {
     _origins = (new JsListCodec<dynamic /*LatLng|String*/ >(new ChainedCodec()
       ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o), (o) =>
-          o != null && o.instanceof(context['google']['maps']['LatLng'])))
+          o != null && o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))
       ..add(new IdentityCodec<String>()))).encode(origins);
   }
 

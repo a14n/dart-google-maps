@@ -33,8 +33,8 @@ var countries = {
 
 void main() {
   final myOptions = new MapOptions()
-    ..zoom = countries['us']['zoom']
-    ..center = countries['us']['center']
+    ..zoom = countries['us']['zoom'] as int
+    ..center = countries['us']['center'] as LatLng
     ..mapTypeControl = false
     ..panControl = false
     ..zoomControl = false
@@ -47,10 +47,11 @@ void main() {
 
   // Create the autocomplete object and associate it with the UI input control.
   // Restrict the search to the default country, and to place type "cities".
-  autocomplete = new Autocomplete(document.getElementById('autocomplete'),
+  autocomplete = new Autocomplete(
+      document.getElementById('autocomplete') as InputElement,
       new AutocompleteOptions()
-    ..types = ['(cities)']
-    ..componentRestrictions = countryRestrict);
+        ..types = ['(cities)']
+        ..componentRestrictions = countryRestrict);
   places = new PlacesService(map);
 
   autocomplete.onPlaceChanged.listen(onPlaceChanged);
@@ -122,8 +123,8 @@ void setAutocompleteCountry(_) {
   } else {
     autocomplete.componentRestrictions = new ComponentRestrictions()
       ..country = country;
-    map.center = countries[country]['center'];
-    map.zoom = countries[country]['zoom'];
+    map.center = countries[country]['center'] as LatLng;
+    map.zoom = countries[country]['zoom'] as int;
   }
   clearResults();
   clearMarkers();
@@ -167,14 +168,15 @@ void clearResults() {
 // Get the place details for a hotel. Show the information in an info window,
 // anchored on the marker for the hotel that the user selected.
 VoidFunc1<MouseEvent> showInfoWindow(Marker marker, PlaceResult placeResult) {
-  return (_) => places.getDetails(new PlaceDetailsRequest()
-    ..placeId = placeResult.placeId, (place, status) {
-    if (status != PlacesServiceStatus.OK) {
-      return;
-    }
-    infoWindow.open(map, marker);
-    buildIWContent(place);
-  });
+  return (_) => places
+          .getDetails(new PlaceDetailsRequest()..placeId = placeResult.placeId,
+              (place, status) {
+        if (status != PlacesServiceStatus.OK) {
+          return;
+        }
+        infoWindow.open(map, marker);
+        buildIWContent(place);
+      });
 }
 
 class _NullTreeSanitizer implements NodeTreeSanitizer {

@@ -29,8 +29,8 @@ abstract class _Polyline extends MVCObject {
               (o) => new MVCArray<LatLng>.created(o,
                   new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
                       (o) => o != null &&
-                          o.instanceof(context['google']['maps']['LatLng'])))))
-          .decode(_getPath());
+                          o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))))
+          .decode(_getPath() as JsObject);
   _getPath();
   bool get visible => _getVisible();
   bool _getVisible();
@@ -47,10 +47,10 @@ abstract class _Polyline extends MVCObject {
     ..add(new JsInterfaceCodec<MVCArray<LatLng>>(
         (o) => new MVCArray<LatLng>.created(o, new JsInterfaceCodec<LatLng>(
             (o) => new LatLng.created(o), (o) => o != null &&
-                o.instanceof(context['google']['maps']['LatLng'])))))
+                o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))))
     ..add(new JsListCodec<LatLng>(new JsInterfaceCodec<LatLng>(
         (o) => new LatLng.created(o), (o) =>
-            o != null && o.instanceof(context['google']['maps']['LatLng'])))))
+            o != null && o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))))
       .encode(path));
   void _setPath(dynamic /*MVCArray<LatLng>|List<LatLng>*/ path);
   void set visible(bool visible) => _setVisible(visible);

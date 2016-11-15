@@ -35,8 +35,8 @@ void main() {
       ..fillColor = '#FF0000'
       ..fillOpacity = 0.35
       ..map = map
-      ..center = city['center']
-      ..radius = sqrt(city['population']) * 100;
+      ..center = city['center'] as LatLng
+      ..radius = sqrt(city['population'] as int) * 100;
     new Circle(populationOptions);
   });
 }

@@ -18,7 +18,7 @@ void main() {
     ..radius = 500
     ..types = ['store'];
 
-  placesList = document.getElementById('places');
+  placesList = document.getElementById('places') as UListElement;
 
   final service = new PlacesService(map);
   service.nearbySearch(request, callback);

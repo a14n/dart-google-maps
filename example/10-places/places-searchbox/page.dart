@@ -5,15 +5,15 @@ import 'package:google_maps/google_maps_places.dart';
 
 void main() {
   final markers = <Marker>[];
-  final map = new GMap(document.getElementById('map-canvas'), new MapOptions()
-    ..mapTypeId = MapTypeId.ROADMAP);
+  final map = new GMap(document.getElementById('map-canvas'),
+      new MapOptions()..mapTypeId = MapTypeId.ROADMAP);
 
   final defaultBounds = new LatLngBounds(
       new LatLng(-33.8902, 151.1759), new LatLng(-33.8474, 151.2631));
   map.fitBounds(defaultBounds);
 
   // Create the search box and link it to the UI element.
-  final InputElement input = document.getElementById('pac-input');
+  final input = document.getElementById('pac-input') as InputElement;
   map.controls[ControlPosition.TOP_LEFT].push(input);
 
   final searchBox = new SearchBox(input);

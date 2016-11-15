@@ -20,31 +20,37 @@ abstract class _HeatmapLayer extends MVCObject {
 
   MVCArray<dynamic /*LatLng|WeightedLocation*/ > get data =>
       (new JsInterfaceCodec<MVCArray<dynamic /*LatLng|WeightedLocation*/ >>(
-          (o) => new MVCArray<dynamic /*LatLng|WeightedLocation*/ >.created(o,
-              new ChainedCodec()
-    ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
-        (o) => o != null && o.instanceof(context['google']['maps']['LatLng'])))
-    ..add(new JsInterfaceCodec<WeightedLocation>(
-        (o) => new WeightedLocation.created(o)))))).decode(_getData());
+              (o) => new MVCArray<dynamic /*LatLng|WeightedLocation*/ >.created(
+                  o,
+                  new ChainedCodec()
+                    ..add(new JsInterfaceCodec<LatLng>(
+                        (o) => new LatLng.created(o),
+                        (o) =>
+                            o != null &&
+                            o.instanceof(context['google']['maps']['LatLng']
+                                as JsFunction)))
+                    ..add(new JsInterfaceCodec<WeightedLocation>(
+                        (o) => new WeightedLocation.created(o))))))
+          .decode(_getData() as JsObject);
   _getData();
   GMap get map => _getMap();
   GMap _getMap();
   void set data(
           dynamic /*MVCArray<dynamic/*LatLng|WeightedLocation*/>|List<dynamic/*LatLng|WeightedLocation*/>*/ data) =>
       _setData((new ChainedCodec()
-    ..add(new JsInterfaceCodec<MVCArray<dynamic /*LatLng|WeightedLocation*/ >>(
-        (o) => new MVCArray<dynamic /*LatLng|WeightedLocation*/ >.created(o,
-            new ChainedCodec()
-      ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o), (o) =>
-          o != null && o.instanceof(context['google']['maps']['LatLng'])))
-      ..add(new JsInterfaceCodec<WeightedLocation>(
-          (o) => new WeightedLocation.created(o))))))
-    ..add(new JsListCodec<dynamic /*LatLng|WeightedLocation*/ >(
-        new ChainedCodec()
-      ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o), (o) =>
-          o != null && o.instanceof(context['google']['maps']['LatLng'])))
-      ..add(new JsInterfaceCodec<WeightedLocation>(
-          (o) => new WeightedLocation.created(o)))))).encode(data));
+            ..add(new JsInterfaceCodec<MVCArray<dynamic /*LatLng|WeightedLocation*/ >>(
+                (o) => new MVCArray<dynamic /*LatLng|WeightedLocation*/ >.created(
+                    o,
+                    new ChainedCodec()
+                      ..add(new JsInterfaceCodec<LatLng>(
+                          (o) => new LatLng.created(o),
+                          (o) =>
+                              o != null &&
+                              o.instanceof(context['google']['maps']['LatLng']
+                                  as JsFunction)))
+                      ..add(new JsInterfaceCodec<WeightedLocation>((o) => new WeightedLocation.created(o))))))
+            ..add(new JsListCodec<dynamic /*LatLng|WeightedLocation*/ >(new ChainedCodec()..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o), (o) => o != null && o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))..add(new JsInterfaceCodec<WeightedLocation>((o) => new WeightedLocation.created(o))))))
+          .encode(data));
   void _setData(
       dynamic /*MVCArray<dynamic/*LatLng|WeightedLocation*/>|List<dynamic/*LatLng|WeightedLocation*/>*/ data);
   void set map(GMap map) => _setMap(map);

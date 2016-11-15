@@ -17,24 +17,34 @@ part of google_maps.src.places;
 @JsName('google.maps.places.PlacesService')
 abstract class _PlacesService extends JsInterface {
   _PlacesService.created(JsObject o) : super.created(o);
-  _PlacesService(dynamic /*DivElement|GMap*/ attrContainer) : this.created(
-          new JsObject(context['google']['maps']['places']['PlacesService'], [
-        (new ChainedCodec()
-          ..add(new IdentityCodec<DivElement>())
-          ..add(new JsInterfaceCodec<GMap>((o) => new GMap.created(o), (o) =>
-                  o != null && o.instanceof(context['google']['maps']['Map']))))
-            .encode(attrContainer)
-      ]));
+  _PlacesService(dynamic /*DivElement|GMap*/ attrContainer)
+      : this.created(new JsObject(
+            context['google']['maps']['places']['PlacesService'] as JsFunction,
+            [
+              (new ChainedCodec()
+                    ..add(new IdentityCodec<DivElement>())
+                    ..add(new JsInterfaceCodec<GMap>(
+                        (o) => new GMap.created(o),
+                        (o) =>
+                            o != null &&
+                            o.instanceof(context['google']['maps']['Map']
+                                as JsFunction))))
+                  .encode(attrContainer)
+            ]));
   void getDetails(PlaceDetailsRequest request,
       callback(PlaceResult p1, PlacesServiceStatus p2));
-  void nearbySearch(PlaceSearchRequest request, callback(
-      List<PlaceResult> p1, PlacesServiceStatus p2, PlaceSearchPagination p3));
+  void nearbySearch(
+      PlaceSearchRequest request,
+      callback(List<PlaceResult> p1, PlacesServiceStatus p2,
+          PlaceSearchPagination p3));
   void _radarSearch(RadarSearchRequest request,
       callback(List<PlaceResult> p1, PlacesServiceStatus p2, [_]));
   void radarSearch(RadarSearchRequest request,
           callback(List<PlaceResult> p1, PlacesServiceStatus p2)) =>
       _radarSearch(request, (p1, p2, [_]) => callback(p1, p2));
 
-  void textSearch(TextSearchRequest request, callback(
-      List<PlaceResult> p1, PlacesServiceStatus p2, PlaceSearchPagination p3));
+  void textSearch(
+      TextSearchRequest request,
+      callback(List<PlaceResult> p1, PlacesServiceStatus p2,
+          PlaceSearchPagination p3));
 }

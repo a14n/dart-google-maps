@@ -53,7 +53,7 @@ import 'package:google_maps/google_maps_LIBRARY2.dart';
 * Include the Maps API JavaScript using a `script` tag.
 
   ```html
-<script src="http://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&key=YOUR_API_KEY&sensor=false&libraries=LIBRARY1,LIBRARY2"></script>
+<script src="http://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=LIBRARY1,LIBRARY2"></script>
 ```
 
 ## Examples ##

@@ -112,7 +112,7 @@ void main() {
     ..minZoom = 0
     ..maxZoom = 1
     ..name = 'Gall-Peters';
-  asJsObject(imageTypeOption)['getTileUrl'] = (JsObject coordJs, num zoom,
+  asJsObject(imageTypeOption)['getTileUrl'] = (JsObject coordJs, int zoom,
       [_]) {
     final coord = new Point.created(coordJs);
     final numTiles = 1 << zoom;

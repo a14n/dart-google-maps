@@ -25,57 +25,74 @@ abstract class _DataDataOptions implements JsInterface {
   GMap map;
   dynamic /*DataStylingFunction|DataStyleOptions*/ get style =>
       (new ChainedCodec()
-    ..add(new FunctionCodec<DataStylingFunction>((f) {
-      if (f == null) return null;
-      return (p_dataFeature) {
-        final dataFeature = new JsInterfaceCodec<DataFeature>((o) =>
-                ((e) => e == null ? null : new DataFeature.created(e))(o))
-            .decode(p_dataFeature);
-        final result = f(dataFeature);
-        return new JsInterfaceCodec<DataStyleOptions>((o) =>
-                ((e) => e == null ? null : new DataStyleOptions.created(e))(o))
-            .encode(result);
-      };
-    }, (JsFunction f) {
-      if (f == null) return null;
-      return (p_dataFeature) {
-        final dataFeature = new JsInterfaceCodec<DataFeature>((o) =>
-                ((e) => e == null ? null : new DataFeature.created(e))(o))
-            .encode(p_dataFeature);
-        final result = f.apply([dataFeature]);
-        return new JsInterfaceCodec<DataStyleOptions>((o) =>
-                ((e) => e == null ? null : new DataStyleOptions.created(e))(o))
-            .decode(result);
-      };
-    }))
-    ..add(new JsInterfaceCodec<DataStyleOptions>(
-        (o) => new DataStyleOptions.created(o)))).decode(_style);
+            ..add(new FunctionCodec<DataStylingFunction>((f) {
+              if (f == null) return null;
+              return (p_dataFeature) {
+                final dataFeature = new JsInterfaceCodec<DataFeature>((o) =>
+                        ((e) => e == null
+                            ? null
+                            : new DataFeature.created(e as JsObject))(o))
+                    .decode(p_dataFeature as JsObject);
+                final result = f(dataFeature);
+                return new JsInterfaceCodec<DataStyleOptions>((o) => ((e) =>
+                        e == null
+                            ? null
+                            : new DataStyleOptions.created(e as JsObject))(o))
+                    .encode(result);
+              };
+            }, (JsFunction f) {
+              if (f == null) return null;
+              return (p_dataFeature) {
+                final dataFeature = new JsInterfaceCodec<DataFeature>((o) =>
+                        ((e) => e == null
+                            ? null
+                            : new DataFeature.created(e as JsObject))(o))
+                    .encode(p_dataFeature);
+                final result = f.apply([dataFeature]);
+                return new JsInterfaceCodec<DataStyleOptions>((o) => ((e) =>
+                        e == null
+                            ? null
+                            : new DataStyleOptions.created(e as JsObject))(o))
+                    .decode(result as JsObject);
+              };
+            }))
+            ..add(new JsInterfaceCodec<DataStyleOptions>(
+                (o) => new DataStyleOptions.created(o))))
+          .decode(_style);
   void set style(dynamic /*DataStylingFunction|DataStyleOptions*/ style) =>
       _style = (new ChainedCodec()
-    ..add(new FunctionCodec<DataStylingFunction>((f) {
-      if (f == null) return null;
-      return (p_dataFeature) {
-        p_dataFeature = new JsInterfaceCodec<DataFeature>((o) =>
-                ((e) => e == null ? null : new DataFeature.created(e))(o))
-            .decode(p_dataFeature);
-        final result = f(p_dataFeature);
-        return new JsInterfaceCodec<DataStyleOptions>((o) =>
-                ((e) => e == null ? null : new DataStyleOptions.created(e))(o))
-            .encode(result);
-      };
-    }, (JsFunction f) {
-      if (f == null) return null;
-      return (p_dataFeature) {
-        final dataFeature = new JsInterfaceCodec<DataFeature>((o) =>
-                ((e) => e == null ? null : new DataFeature.created(e))(o))
-            .encode(p_dataFeature);
-        final result = f.apply([dataFeature]);
-        return new JsInterfaceCodec<DataStyleOptions>((o) =>
-                ((e) => e == null ? null : new DataStyleOptions.created(e))(o))
-            .decode(result);
-      };
-    }))
-    ..add(new JsInterfaceCodec<DataStyleOptions>(
-        (o) => new DataStyleOptions.created(o)))).encode(_style);
+            ..add(new FunctionCodec<DataStylingFunction>((f) {
+              if (f == null) return null;
+              return (p_dataFeature) {
+                final result = f(new JsInterfaceCodec<DataFeature>((o) =>
+                        ((e) => e == null
+                            ? null
+                            : new DataFeature.created(e as JsObject))(o))
+                    .decode(p_dataFeature as JsObject));
+                return new JsInterfaceCodec<DataStyleOptions>((o) => ((e) =>
+                        e == null
+                            ? null
+                            : new DataStyleOptions.created(e as JsObject))(o))
+                    .encode(result);
+              };
+            }, (JsFunction f) {
+              if (f == null) return null;
+              return (p_dataFeature) {
+                final dataFeature = new JsInterfaceCodec<DataFeature>((o) =>
+                        ((e) => e == null
+                            ? null
+                            : new DataFeature.created(e as JsObject))(o))
+                    .encode(p_dataFeature);
+                final result = f.apply([dataFeature]);
+                return new JsInterfaceCodec<DataStyleOptions>((o) => ((e) =>
+                        e == null
+                            ? null
+                            : new DataStyleOptions.created(e as JsObject))(o))
+                    .decode(result as JsObject);
+              };
+            }))
+            ..add(new JsInterfaceCodec<DataStyleOptions>(
+                (o) => new DataStyleOptions.created(o))))
+          .encode(_style);
   dynamic /*DataStylingFunction|DataStyleOptions*/ _style;
 }

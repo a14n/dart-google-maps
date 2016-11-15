@@ -53,13 +53,13 @@ void setMarkers(GMap map, List locations) {
     ..coords = [1, 1, 1, 20, 18, 20, 18, 1]
     ..type = 'poly';
   for (final beach in locations) {
-    var myLatLng = new LatLng(beach[1], beach[2]);
+    var myLatLng = new LatLng(beach[1] as num, beach[2] as num);
     new Marker(new MarkerOptions()
       ..position = myLatLng
       ..map = map
       ..icon = image
       ..shape = shape
-      ..title = beach[0]
-      ..zIndex = beach[3]);
+      ..title = beach[0] as String
+      ..zIndex = beach[3] as int);
   }
 }

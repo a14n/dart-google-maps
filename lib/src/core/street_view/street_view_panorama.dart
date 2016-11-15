@@ -57,7 +57,7 @@ abstract class _StreetViewPanorama extends MVCObject {
   List<MVCArray<Node>> get controls => (new JsListCodec<MVCArray<Node>>(
           new JsInterfaceCodec<MVCArray<Node>>(
               (o) => new MVCArray<Node>.created(o, new IdentityCodec<Node>()))))
-      .decode(_controls);
+      .decode(_controls as JsArray);
   void set controls(List<MVCArray<Node>> controls) {
     _controls = (new JsListCodec<MVCArray<Node>>(
             new JsInterfaceCodec<MVCArray<Node>>((o) =>

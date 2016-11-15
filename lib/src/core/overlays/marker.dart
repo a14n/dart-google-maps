@@ -40,10 +40,10 @@ abstract class _Marker extends MVCObject {
   MarkerLabel _getLabel();
   dynamic /*GMap|StreetViewPanorama*/ get map => (new ChainedCodec()
     ..add(new JsInterfaceCodec<GMap>((o) => new GMap.created(o),
-        (o) => o != null && o.instanceof(context['google']['maps']['Map'])))
+        (o) => o != null && o.instanceof(context['google']['maps']['Map'] as JsFunction)))
     ..add(new JsInterfaceCodec<StreetViewPanorama>(
             (o) => new StreetViewPanorama.created(o), (o) => o != null &&
-                o.instanceof(context['google']['maps']['StreetViewPanorama']))))
+                o.instanceof(context['google']['maps']['StreetViewPanorama'] as JsFunction))))
       .decode(_getMap());
   _getMap();
   num get opacity => _getOpacity();
@@ -86,10 +86,10 @@ abstract class _Marker extends MVCObject {
   void set map(dynamic /*GMap|StreetViewPanorama*/ map) => _setMap(
       (new ChainedCodec()
     ..add(new JsInterfaceCodec<GMap>((o) => new GMap.created(o),
-        (o) => o != null && o.instanceof(context['google']['maps']['Map'])))
+        (o) => o != null && o.instanceof(context['google']['maps']['Map'] as JsFunction)))
     ..add(new JsInterfaceCodec<StreetViewPanorama>(
         (o) => new StreetViewPanorama.created(o), (o) => o != null &&
-                o.instanceof(context['google']['maps']['StreetViewPanorama']))))
+                o.instanceof(context['google']['maps']['StreetViewPanorama'] as JsFunction))))
           .encode(map));
   void _setMap(dynamic /*GMap|StreetViewPanorama*/ map);
   void set opacity(num opacity) => _setOpacity(opacity);

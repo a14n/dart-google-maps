@@ -34,7 +34,7 @@ void main() {
 
 // The five markers show a secret message when clicked
 // but that message is not within the marker's instance data.
-void attachSecretMessage(Marker marker, num number) {
+void attachSecretMessage(Marker marker, int number) {
   final message = ["This", "is", "the", "secret", "message"];
   final infowindow =
       new InfoWindow(new InfoWindowOptions()..content = message[number]);

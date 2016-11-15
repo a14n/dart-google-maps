@@ -19,7 +19,7 @@ abstract class _MVCArray<E> extends MVCObject {
   Codec<E, dynamic> _codec = null;
 
   _MVCArray({List<E> elements, Codec<E, dynamic> codec}) : this.created(
-          new JsObject(context['google']['maps']['MVCArray'], [
+          new JsObject(context['google']['maps']['MVCArray'] as JsFunction, [
         elements == null
             ? new JsArray()
             : new JsArray.from(
@@ -34,8 +34,8 @@ abstract class _MVCArray<E> extends MVCObject {
   void forEach(void callback(E o, num index)) =>
       _forEach((o, num index) => callback(_codec.decode(o), index));
   void _forEach(void callback(o, num index));
-  List<E> getArray() => new JsList.created(_getArray(), _codec);
-  JsArray _getArray();
+  List<E> getArray() => new JsList.created(_getArray() as JsArray, _codec);
+  _getArray();
   E getAt(num i) => _codec.decode(_getAt(i));
   _getAt(num i);
   num get length => _getLength();

@@ -42,8 +42,8 @@ abstract class _GMap extends MVCObject {
   StreetViewPanorama _getStreetView();
   num get tilt => _getTilt();
   num _getTilt();
-  num get zoom => _getZoom();
-  num _getZoom();
+  int get zoom => _getZoom();
+  int _getZoom();
   void panBy(num x, num y);
   void panTo(LatLng latLng);
   void panToBounds(LatLngBounds latLngBounds);
@@ -77,7 +77,7 @@ abstract class _GMap extends MVCObject {
   MVCArray<MapType> get overlayMapTypes =>
       (new JsInterfaceCodec<MVCArray<MapType>>(
           (o) => new MVCArray<MapType>.created(o, new JsInterfaceCodec<MapType>(
-              (o) => new MapType.created(o))))).decode(_overlayMapTypes);
+              (o) => new MapType.created(o))))).decode(_overlayMapTypes as JsObject);
   void set overlayMapTypes(MVCArray<MapType> overlayMapTypes) {
     _overlayMapTypes = (new JsInterfaceCodec<MVCArray<MapType>>(
             (o) => new MVCArray<MapType>.created(o,

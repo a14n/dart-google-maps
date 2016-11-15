@@ -24,13 +24,13 @@ abstract class _DirectionsRequest implements JsInterface {
   dynamic _destination;
   dynamic /*LatLng|Place|String*/ get destination => (new ChainedCodec()
     ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
-        (o) => o != null && o.instanceof(context['google']['maps']['LatLng'])))
+        (o) => o != null && o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))
     ..add(new JsInterfaceCodec<Place>((o) => new Place.created(o)))
     ..add(new IdentityCodec<String>())).decode(_destination);
   void set destination(dynamic /*LatLng|Place|String*/ destination) {
     _destination = (new ChainedCodec()
       ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o), (o) =>
-          o != null && o.instanceof(context['google']['maps']['LatLng'])))
+          o != null && o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))
       ..add(new JsInterfaceCodec<Place>((o) => new Place.created(o)))
       ..add(new IdentityCodec<String>())).encode(destination);
   }
@@ -39,13 +39,13 @@ abstract class _DirectionsRequest implements JsInterface {
   dynamic _origin;
   dynamic /*LatLng|Place|String*/ get origin => (new ChainedCodec()
     ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
-        (o) => o != null && o.instanceof(context['google']['maps']['LatLng'])))
+        (o) => o != null && o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))
     ..add(new JsInterfaceCodec<Place>((o) => new Place.created(o)))
     ..add(new IdentityCodec<String>())).decode(_origin);
   void set origin(dynamic /*LatLng|Place|String*/ origin) {
     _origin = (new ChainedCodec()
       ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o), (o) =>
-          o != null && o.instanceof(context['google']['maps']['LatLng'])))
+          o != null && o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))
       ..add(new JsInterfaceCodec<Place>((o) => new Place.created(o)))
       ..add(new IdentityCodec<String>())).encode(origin);
   }

@@ -14,19 +14,28 @@
 
 part of google_maps.src.geometry;
 
-final encoding =
-    new Encoding.created(context['google']['maps']['geometry']['encoding']);
+final encoding = new Encoding.created(
+    context['google']['maps']['geometry']['encoding'] as JsObject);
+
 abstract class _Encoding implements JsInterface {
   List<LatLng> decodePath(String encodedPath);
   String encodePath(dynamic /*List<LatLng>|MVCArray<LatLng>*/ path) =>
       _encodePath((new ChainedCodec()
-    ..add(new JsListCodec<LatLng>(new JsInterfaceCodec<LatLng>(
-        (o) => new LatLng.created(o),
-        (o) => o != null && o.instanceof(context['google']['maps']['LatLng']))))
-    ..add(new JsInterfaceCodec<MVCArray<LatLng>>(
-        (o) => new MVCArray<LatLng>.created(o, new JsInterfaceCodec<LatLng>(
-                (o) => new LatLng.created(o), (o) => o != null &&
-                    o.instanceof(context['google']['maps']['LatLng']))))))
-          .encode(path));
+            ..add(new JsListCodec<LatLng>(new JsInterfaceCodec<LatLng>(
+                (o) => new LatLng.created(o),
+                (o) =>
+                    o != null &&
+                    o.instanceof(
+                        context['google']['maps']['LatLng'] as JsFunction))))
+            ..add(new JsInterfaceCodec<MVCArray<LatLng>>((o) =>
+                new MVCArray<LatLng>.created(
+                    o,
+                    new JsInterfaceCodec<LatLng>(
+                        (o) => new LatLng.created(o),
+                        (o) =>
+                            o != null &&
+                            o.instanceof(
+                                context['google']['maps']['LatLng'] as JsFunction))))))
+          .encode(path)) as String;
   _encodePath(dynamic /*List<LatLng>|MVCArray<LatLng>*/ path);
 }

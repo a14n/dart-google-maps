@@ -14,16 +14,30 @@
 
 part of google_maps.src.geometry;
 
-final poly = new Poly.created(context['google']['maps']['geometry']['poly']);
+final poly = new Poly.created(
+    context['google']['maps']['geometry']['poly'] as JsObject);
+
 abstract class _Poly implements JsInterface {
   bool containsLocation(LatLng point, Polygon polygon);
   bool isLocationOnEdge(LatLng point, dynamic /*Polygon|Polyline*/ poly,
-      [num tolerance]) => _isLocationOnEdge(point, (new ChainedCodec()
-    ..add(new JsInterfaceCodec<Polygon>((o) => new Polygon.created(o),
-        (o) => o != null && o.instanceof(context['google']['maps']['Polygon'])))
-    ..add(new JsInterfaceCodec<Polyline>((o) => new Polyline.created(o), (o) =>
-        o != null && o.instanceof(context['google']['maps']['Polyline']))))
-      .encode(poly), tolerance);
+          [num tolerance]) =>
+      _isLocationOnEdge(
+          point,
+          (new ChainedCodec()
+                ..add(new JsInterfaceCodec<Polygon>(
+                    (o) => new Polygon.created(o),
+                    (o) =>
+                        o != null &&
+                        o.instanceof(context['google']['maps']['Polygon']
+                            as JsFunction)))
+                ..add(new JsInterfaceCodec<Polyline>(
+                    (o) => new Polyline.created(o),
+                    (o) =>
+                        o != null &&
+                        o.instanceof(context['google']['maps']['Polyline']
+                            as JsFunction))))
+              .encode(poly),
+          tolerance) as bool;
   _isLocationOnEdge(LatLng point, dynamic /*Polygon|Polyline*/ poly,
       [num tolerance]);
 }

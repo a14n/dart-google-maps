@@ -19,7 +19,7 @@ void callback(
     return;
   }
 
-  final UListElement results = document.getElementById('results');
+  final results = document.getElementById('results') as UListElement;
 
   for (final prediction in predictions) {
     results.innerHtml += '<li>' + prediction.description + '</li>';

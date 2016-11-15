@@ -936,7 +936,7 @@ part of $libraryName;
             ..addAll(params.mandatory)
             ..addAll(params.optional));
           final paramsCodecs = new Map.fromIterable(allParams.keys,
-              value: (k) => getCodec(allParams[k], jsElements));
+              value: (k) => getCodec(allParams[k] as String, jsElements));
           if (paramsCodecs.values.every((p) => p.canBeNativelyHandled)) {
             constructorSection += '  external factory '
                 '_$className(${params.toSignature(jsElements)});\n';
@@ -1014,7 +1014,7 @@ part of $libraryName;
             ..addAll(params.mandatory)
             ..addAll(params.optional));
           final paramsCodecs = new Map.fromIterable(allParams.keys,
-              value: (k) => getCodec(allParams[k], jsElements));
+              value: (k) => getCodec(allParams[k] as String, jsElements));
           final returnCodec = getCodec(returnType, jsElements);
           final convertedReturnType = convertType(returnType, jsElements);
           if (methodName.startsWith(new RegExp('get[A-Z]')) &&

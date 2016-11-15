@@ -13,7 +13,7 @@ void main() {
 
   map = new GMap(document.getElementById('map-canvas'), mapOptions);
 
-  final InputElement input = document.getElementById('pac-input');
+  final input = document.getElementById('pac-input') as InputElement;
 
   final autocomplete = new Autocomplete(input);
   autocomplete.bindTo('bounds', map);

@@ -1,5 +1,6 @@
 import 'dart:html';
 import 'dart:math';
+
 import 'package:google_maps/google_maps.dart';
 import 'package:js_wrapping/js_wrapping.dart';
 
@@ -64,7 +65,7 @@ DataStyleOptions styleFeature(DataFeature feature) {
   var maxMag = 6.0;
 
   // fraction represents where the value sits between the min and max
-  var fraction = (min/*<num>*/(feature.getProperty('mag'), maxMag) - minMag) /
+  var fraction = (min(feature.getProperty('mag') as num, maxMag) - minMag) /
       (maxMag - minMag);
 
   var color = interpolateHsl(low, high, fraction);
@@ -75,9 +76,9 @@ DataStyleOptions styleFeature(DataFeature feature) {
       ..strokeWeight = 0.5
       ..strokeColor = '#fff'
       ..fillColor = color
-      ..fillOpacity = 2 / feature.getProperty('mag')
+      ..fillOpacity = 2 / (feature.getProperty('mag') as num)
       // while an exponent would technically be correct, quadratic looks nicer
-      ..scale = pow(feature.getProperty('mag'), 2))
+      ..scale = pow(feature.getProperty('mag') as num, 2))
     ..zIndex = (feature.getProperty('mag') as num).floor();
 }
 

@@ -93,7 +93,7 @@ void main() {
   asJsObject(adUnitOptions)['visible'] = true;
   final adUnit = new AdUnit(adUnitDiv, adUnitOptions);
 
-  final SelectElement format = document.getElementById('format');
+  final format = document.getElementById('format') as SelectElement;
   event.addDomListener(format, 'change', (e) {
     for (final f in AdFormat.values) {
       if ('AdFormat.${format.value}' == f.toString()) {
@@ -102,7 +102,7 @@ void main() {
     }
   });
 
-  final SelectElement style = document.getElementById('style');
+  final style = document.getElementById('style') as SelectElement;
   event.addDomListener(style, 'change', (e) {
     final adStyle = SAMPLE_AD_STYLES[style.value];
     adUnit
@@ -113,7 +113,7 @@ void main() {
       ..urlColor = adStyle['color_url'];
   });
 
-  final SelectElement position = document.getElementById('position');
+  final position = document.getElementById('position') as SelectElement;
   event.addDomListener(position, 'change', (e) {
     for (final cp in ControlPosition.values) {
       if ('ControlPosition.${position.value}' == cp.toString()) {
