@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _MapCanvasProjection extends MVCObject {
-  external factory _MapCanvasProjection();
+  factory _MapCanvasProjection() => null;
 
   LatLng fromContainerPixelToLatLng(Point pixel, [bool nowrap]);
   LatLng fromDivPixelToLatLng(Point pixel, [bool nowrap]);

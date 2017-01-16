@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _GeocoderRequest implements JsInterface {
-  external factory _GeocoderRequest();
+  factory _GeocoderRequest() => null;
 
   String address;
   LatLngBounds bounds;

@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _Distance implements JsInterface {
-  external factory _Distance();
+  factory _Distance() => null;
 
   String text;
   num value;

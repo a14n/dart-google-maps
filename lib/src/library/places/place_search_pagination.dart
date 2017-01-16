@@ -16,7 +16,7 @@ part of google_maps.src.places;
 
 @anonymous
 abstract class _PlaceSearchPagination implements JsInterface {
-  external factory _PlaceSearchPagination();
+  factory _PlaceSearchPagination() => null;
 
   void nextPage();
 

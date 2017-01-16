@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _GeocoderComponentRestrictions implements JsInterface {
-  external factory _GeocoderComponentRestrictions();
+  factory _GeocoderComponentRestrictions() => null;
 
   String administrativeArea;
   String country;

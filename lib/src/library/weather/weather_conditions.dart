@@ -16,7 +16,7 @@ part of google_maps.src.weather;
 
 @anonymous
 abstract class _WeatherConditions implements JsInterface {
-  external factory _WeatherConditions();
+  factory _WeatherConditions() => null;
 
   String day;
   String description;

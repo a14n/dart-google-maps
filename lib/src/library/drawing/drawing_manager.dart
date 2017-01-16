@@ -16,7 +16,7 @@ part of google_maps.src.drawing;
 
 @JsName('google.maps.drawing.DrawingManager')
 abstract class _DrawingManager extends MVCObject {
-  external factory _DrawingManager([DrawingManagerOptions options]);
+  factory _DrawingManager([DrawingManagerOptions options]) => null;
 
   OverlayType get drawingMode => _getDrawingMode();
   OverlayType _getDrawingMode();

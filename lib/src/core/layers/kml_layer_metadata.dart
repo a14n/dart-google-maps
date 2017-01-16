@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _KmlLayerMetadata implements JsInterface {
-  external factory _KmlLayerMetadata();
+  factory _KmlLayerMetadata() => null;
 
   KmlAuthor author;
   String description;

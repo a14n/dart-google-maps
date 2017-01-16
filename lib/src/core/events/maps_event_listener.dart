@@ -16,5 +16,5 @@ part of google_maps.src;
 
 @anonymous
 abstract class _MapsEventListener implements JsInterface {
-  external factory _MapsEventListener();
+  factory _MapsEventListener() => null;
 }

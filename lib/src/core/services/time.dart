@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _Time implements JsInterface {
-  external factory _Time();
+  factory _Time() => null;
 
   String text;
   String _time_zone;

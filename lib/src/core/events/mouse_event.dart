@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _MouseEvent implements JsInterface {
-  external factory _MouseEvent();
+  factory _MouseEvent() => null;
 
   void stop();
 

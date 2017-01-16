@@ -16,7 +16,7 @@ part of google_maps.src.panoramio;
 
 @anonymous
 abstract class _PanoramioMouseEvent implements JsInterface {
-  external factory _PanoramioMouseEvent();
+  factory _PanoramioMouseEvent() => null;
 
   PanoramioFeature featureDetails;
   String infoWindowHtml;

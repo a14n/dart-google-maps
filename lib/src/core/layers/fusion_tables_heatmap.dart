@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _FusionTablesHeatmap implements JsInterface {
-  external factory _FusionTablesHeatmap();
+  factory _FusionTablesHeatmap() => null;
 
   bool enabled;
 }

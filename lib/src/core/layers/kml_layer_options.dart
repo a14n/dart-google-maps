@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _KmlLayerOptions implements JsInterface {
-  external factory _KmlLayerOptions();
+  factory _KmlLayerOptions() => null;
 
   bool clickable;
   GMap map;

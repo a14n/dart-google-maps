@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _GeocoderResult implements JsInterface {
-  external factory _GeocoderResult();
+  factory _GeocoderResult() => null;
 
   List<GeocoderAddressComponent> _address_components;
   List<GeocoderAddressComponent> get addressComponents => _address_components;

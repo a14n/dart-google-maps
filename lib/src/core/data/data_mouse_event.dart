@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _DataMouseEvent extends MouseEvent {
-  external factory _DataMouseEvent();
+  factory _DataMouseEvent() => null;
 
   DataFeature feature;
 }

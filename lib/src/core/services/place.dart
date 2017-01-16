@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _Place implements JsInterface {
-  external factory _Place();
+  factory _Place() => null;
 
   LatLng location;
   String placeId;

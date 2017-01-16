@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _StreetViewPanoramaOptions implements JsInterface {
-  external factory _StreetViewPanoramaOptions();
+  factory _StreetViewPanoramaOptions() => null;
 
   bool addressControl;
   StreetViewAddressControlOptions addressControlOptions;

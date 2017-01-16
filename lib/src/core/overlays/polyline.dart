@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @JsName('google.maps.Polyline')
 abstract class _Polyline extends MVCObject {
-  external factory _Polyline([PolylineOptions opts]);
+  factory _Polyline([PolylineOptions opts]) => null;
 
   bool get draggable => _getDraggable();
   bool _getDraggable();

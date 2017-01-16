@@ -16,7 +16,7 @@ part of google_maps.src.places;
 
 @JsName('google.maps.places.AutocompleteService')
 abstract class _AutocompleteService implements JsInterface {
-  external factory _AutocompleteService();
+  factory _AutocompleteService() => null;
 
   void getPlacePredictions(AutocompletionRequest request,
       callback(List<AutocompletePrediction> p1, PlacesServiceStatus p2));

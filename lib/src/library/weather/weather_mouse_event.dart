@@ -16,7 +16,7 @@ part of google_maps.src.weather;
 
 @anonymous
 abstract class _WeatherMouseEvent implements JsInterface {
-  external factory _WeatherMouseEvent();
+  factory _WeatherMouseEvent() => null;
 
   WeatherFeature featureDetails;
   String infoWindowHtml;

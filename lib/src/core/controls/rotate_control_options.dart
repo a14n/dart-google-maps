@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _RotateControlOptions implements JsInterface {
-  external factory _RotateControlOptions();
+  factory _RotateControlOptions() => null;
 
   ControlPosition position;
 }

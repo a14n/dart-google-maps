@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _StreetViewAddressControlOptions implements JsInterface {
-  external factory _StreetViewAddressControlOptions();
+  factory _StreetViewAddressControlOptions() => null;
 
   ControlPosition position;
 }

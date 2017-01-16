@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _PanControlOptions implements JsInterface {
-  external factory _PanControlOptions();
+  factory _PanControlOptions() => null;
 
   ControlPosition position;
 }

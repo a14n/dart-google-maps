@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _MapTypeStyler implements JsInterface {
-  external factory _MapTypeStyler();
+  factory _MapTypeStyler() => null;
 
   String color;
   num gamma;

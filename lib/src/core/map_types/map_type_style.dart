@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _MapTypeStyle implements JsInterface {
-  external factory _MapTypeStyle();
+  factory _MapTypeStyle() => null;
 
   MapTypeStyleElementType elementType;
   MapTypeStyleFeatureType featureType;

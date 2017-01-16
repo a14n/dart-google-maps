@@ -16,7 +16,7 @@ part of google_maps.src.places;
 
 @anonymous
 abstract class _PlaceSearchRequest implements JsInterface {
-  external factory _PlaceSearchRequest();
+  factory _PlaceSearchRequest() => null;
 
   LatLngBounds bounds;
   String keyword;

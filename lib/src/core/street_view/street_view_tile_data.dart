@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _StreetViewTileData implements JsInterface {
-  external factory _StreetViewTileData();
+  factory _StreetViewTileData() => null;
 
   String getTileUrl(String pano, num tileZoom, num tileX, num tileY);
 

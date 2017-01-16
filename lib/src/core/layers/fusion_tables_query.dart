@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _FusionTablesQuery implements JsInterface {
-  external factory _FusionTablesQuery();
+  factory _FusionTablesQuery() => null;
 
   String from;
   num limit;

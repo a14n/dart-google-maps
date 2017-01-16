@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _GeocoderGeometry implements JsInterface {
-  external factory _GeocoderGeometry();
+  factory _GeocoderGeometry() => null;
 
   LatLngBounds bounds;
   LatLng location;

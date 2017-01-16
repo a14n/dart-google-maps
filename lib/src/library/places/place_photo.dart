@@ -16,7 +16,7 @@ part of google_maps.src.places;
 
 @anonymous
 abstract class _PlacePhoto implements JsInterface {
-  external factory _PlacePhoto();
+  factory _PlacePhoto() => null;
 
   String getUrl(PhotoOptions opts);
 

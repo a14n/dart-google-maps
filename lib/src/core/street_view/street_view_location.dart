@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _StreetViewLocation implements JsInterface {
-  external factory _StreetViewLocation();
+  factory _StreetViewLocation() => null;
 
   String description;
   LatLng latLng;

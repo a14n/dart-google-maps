@@ -16,7 +16,7 @@ part of google_maps.src.places;
 
 @anonymous
 abstract class _PlaceReview implements JsInterface {
-  external factory _PlaceReview();
+  factory _PlaceReview() => null;
 
   List<PlaceAspectRating> aspects;
   String _author_name;

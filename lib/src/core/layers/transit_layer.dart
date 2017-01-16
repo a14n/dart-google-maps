@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @JsName('google.maps.TransitLayer')
 abstract class _TransitLayer extends MVCObject {
-  external factory _TransitLayer();
+  factory _TransitLayer() => null;
 
   GMap get map => _getMap();
   GMap _getMap();

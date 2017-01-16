@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @JsName('google.maps.Data.Point')
 abstract class _DataPoint extends DataGeometry {
-  external factory _DataPoint(LatLng latLng);
+  factory _DataPoint(LatLng latLng) => null;
 
   LatLng get();
   String get type => _getType();

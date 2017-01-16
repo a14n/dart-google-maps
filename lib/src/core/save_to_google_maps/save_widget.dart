@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @JsName('google.maps.SaveWidget')
 abstract class _SaveWidget extends MVCObject {
-  external factory _SaveWidget(Node container, [SaveWidgetOptions opts]);
+  factory _SaveWidget(Node container, [SaveWidgetOptions opts]) => null;
 
   Attribution get attribution => _getAttribution();
   Attribution _getAttribution();

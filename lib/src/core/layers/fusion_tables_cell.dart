@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _FusionTablesCell implements JsInterface {
-  external factory _FusionTablesCell();
+  factory _FusionTablesCell() => null;
 
   String columnName;
   String value;

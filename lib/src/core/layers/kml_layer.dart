@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @JsName('google.maps.KmlLayer')
 abstract class _KmlLayer extends MVCObject {
-  external factory _KmlLayer([KmlLayerOptions opts]);
+  factory _KmlLayer([KmlLayerOptions opts]) => null;
 
   LatLngBounds get defaultViewport => _getDefaultViewport();
   LatLngBounds _getDefaultViewport();

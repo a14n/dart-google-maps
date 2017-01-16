@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _DirectionsGeocodedWaypoint implements JsInterface {
-  external factory _DirectionsGeocodedWaypoint();
+  factory _DirectionsGeocodedWaypoint() => null;
 
   bool _partial_match;
   bool get partialMatch => _partial_match;

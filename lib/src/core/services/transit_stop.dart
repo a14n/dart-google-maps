@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _TransitStop implements JsInterface {
-  external factory _TransitStop();
+  factory _TransitStop() => null;
 
   LatLng location;
   String name;

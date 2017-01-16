@@ -16,7 +16,7 @@ part of google_maps.src.places;
 
 @anonymous
 abstract class _PlaceAspectRating implements JsInterface {
-  external factory _PlaceAspectRating();
+  factory _PlaceAspectRating() => null;
 
   num rating;
   String type;

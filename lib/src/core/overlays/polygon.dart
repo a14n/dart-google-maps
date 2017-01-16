@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @JsName('google.maps.Polygon')
 abstract class _Polygon extends MVCObject {
-  external factory _Polygon([PolygonOptions opts]);
+  factory _Polygon([PolygonOptions opts]) => null;
 
   bool get draggable => _getDraggable();
   bool _getDraggable();

@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _IconSequence implements JsInterface {
-  external factory _IconSequence();
+  factory _IconSequence() => null;
 
   bool fixedRotation;
   GSymbol icon;

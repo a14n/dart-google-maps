@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _GroundOverlayOptions implements JsInterface {
-  external factory _GroundOverlayOptions();
+  factory _GroundOverlayOptions() => null;
 
   bool clickable;
   GMap map;

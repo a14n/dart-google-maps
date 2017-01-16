@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @JsName('google.maps.StreetViewService')
 abstract class _StreetViewService implements JsInterface {
-  external factory _StreetViewService();
+  factory _StreetViewService() => null;
 
   void getPanoramaById(
       String pano, callback(StreetViewPanoramaData p1, StreetViewStatus p2));

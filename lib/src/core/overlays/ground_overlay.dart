@@ -16,8 +16,9 @@ part of google_maps.src;
 
 @JsName('google.maps.GroundOverlay')
 abstract class _GroundOverlay extends MVCObject {
-  external factory _GroundOverlay(String url, LatLngBounds bounds,
-      [GroundOverlayOptions opts]);
+  factory _GroundOverlay(String url, LatLngBounds bounds,
+          [GroundOverlayOptions opts]) =>
+      null;
 
   LatLngBounds get bounds => _getBounds();
   LatLngBounds _getBounds();

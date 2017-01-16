@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @JsName('google.maps.BicyclingLayer')
 abstract class _BicyclingLayer extends MVCObject {
-  external factory _BicyclingLayer();
+  factory _BicyclingLayer() => null;
 
   GMap get map => _getMap();
   GMap _getMap();

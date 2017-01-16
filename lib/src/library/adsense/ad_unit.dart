@@ -16,7 +16,7 @@ part of google_maps.src.adsense;
 
 @JsName('google.maps.adsense.AdUnit')
 abstract class _AdUnit extends MVCObject {
-  external factory _AdUnit(Node container, AdUnitOptions opts);
+  factory _AdUnit(Node container, AdUnitOptions opts) => null;
 
   String get backgroundColor => _getBackgroundColor();
   String _getBackgroundColor();

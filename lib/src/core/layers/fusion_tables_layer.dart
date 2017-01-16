@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @JsName('google.maps.FusionTablesLayer')
 abstract class _FusionTablesLayer extends MVCObject {
-  external factory _FusionTablesLayer(FusionTablesLayerOptions options);
+  factory _FusionTablesLayer(FusionTablesLayerOptions options) => null;
 
   GMap get map => _getMap();
   GMap _getMap();

@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @JsName('google.maps.Data')
 abstract class _Data implements JsInterface {
-  external factory _Data([DataDataOptions options]);
+  factory _Data([DataDataOptions options]) => null;
 
   DataFeature add(dynamic /*DataFeature|DataFeatureOptions*/ feature) =>
       _add((new ChainedCodec()

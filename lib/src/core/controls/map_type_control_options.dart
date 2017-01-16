@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _MapTypeControlOptions implements JsInterface {
-  external factory _MapTypeControlOptions();
+  factory _MapTypeControlOptions() => null;
 
   dynamic get _mapTypeIds => asJsObject(this)['mapTypeIds'];
   List<dynamic /*MapTypeId|String*/ > get mapTypeIds =>

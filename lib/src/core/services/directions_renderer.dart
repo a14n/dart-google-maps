@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @JsName('google.maps.DirectionsRenderer')
 abstract class _DirectionsRenderer extends MVCObject {
-  external factory _DirectionsRenderer([DirectionsRendererOptions opts]);
+  factory _DirectionsRenderer([DirectionsRendererOptions opts]) => null;
 
   DirectionsResult get directions => _getDirections();
   DirectionsResult _getDirections();

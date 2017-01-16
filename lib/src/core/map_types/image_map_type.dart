@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @JsName('google.maps.ImageMapType')
 abstract class _ImageMapType extends MVCObject implements MapType {
-  external factory _ImageMapType(ImageMapTypeOptions opts);
+  factory _ImageMapType(ImageMapTypeOptions opts) => null;
 
   num get opacity => _getOpacity();
   num _getOpacity();

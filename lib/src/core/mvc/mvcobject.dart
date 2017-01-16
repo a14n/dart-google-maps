@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @JsName('google.maps.MVCObject')
 abstract class _MVCObject implements JsInterface {
-  external factory _MVCObject();
+  factory _MVCObject() => null;
 
   MapsEventListener addListener(String eventName, Function handler);
   void bindTo(String key, MVCObject target, [String targetKey, bool noNotify]);

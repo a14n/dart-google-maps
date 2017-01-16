@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _MapType implements JsInterface {
-  external factory _MapType();
+  factory _MapType() => null;
 
   Node getTile(Point tileCoord, num zoom, Document ownerDocument);
   void releaseTile(Node tile);

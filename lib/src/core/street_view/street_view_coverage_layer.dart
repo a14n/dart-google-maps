@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @JsName('google.maps.StreetViewCoverageLayer')
 abstract class _StreetViewCoverageLayer extends MVCObject {
-  external factory _StreetViewCoverageLayer();
+  factory _StreetViewCoverageLayer() => null;
 
   GMap get map => _getMap();
   GMap _getMap();

@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @JsName('google.maps.Circle')
 abstract class _Circle extends MVCObject {
-  external factory _Circle([CircleOptions opts]);
+  factory _Circle([CircleOptions opts]) => null;
 
   LatLngBounds get bounds => _getBounds();
   LatLngBounds _getBounds();

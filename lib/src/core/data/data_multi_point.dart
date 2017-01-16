@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @JsName('google.maps.Data.MultiPoint')
 abstract class _DataMultiPoint extends DataGeometry {
-  external factory _DataMultiPoint(List<LatLng> elements);
+  factory _DataMultiPoint(List<LatLng> elements) => null;
 
   List<LatLng> get array => _getArray();
   List<LatLng> _getArray();

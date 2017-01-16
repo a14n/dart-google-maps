@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _DataRemoveFeatureEvent implements JsInterface {
-  external factory _DataRemoveFeatureEvent();
+  factory _DataRemoveFeatureEvent() => null;
 
   DataFeature feature;
 }

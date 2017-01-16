@@ -16,5 +16,5 @@ part of google_maps.src;
 
 @anonymous
 abstract class _TransitFare implements JsInterface {
-  external factory _TransitFare();
+  factory _TransitFare() => null;
 }

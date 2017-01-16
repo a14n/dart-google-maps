@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _StyledMapTypeOptions implements JsInterface {
-  external factory _StyledMapTypeOptions();
+  factory _StyledMapTypeOptions() => null;
 
   String alt;
   num maxZoom;

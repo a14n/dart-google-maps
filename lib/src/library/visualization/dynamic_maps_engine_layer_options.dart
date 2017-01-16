@@ -16,7 +16,7 @@ part of google_maps.src.visualization;
 
 @anonymous
 abstract class _DynamicMapsEngineLayerOptions implements JsInterface {
-  external factory _DynamicMapsEngineLayerOptions();
+  factory _DynamicMapsEngineLayerOptions() => null;
 
   String accessToken;
   bool clickable;

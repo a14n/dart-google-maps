@@ -16,7 +16,7 @@ part of google_maps.src.visualization;
 
 @anonymous
 abstract class _MapsEngineLayerProperties implements JsInterface {
-  external factory _MapsEngineLayerProperties();
+  factory _MapsEngineLayerProperties() => null;
 
   String name;
 }

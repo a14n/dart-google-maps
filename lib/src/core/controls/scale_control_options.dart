@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _ScaleControlOptions implements JsInterface {
-  external factory _ScaleControlOptions();
+  factory _ScaleControlOptions() => null;
 
   ScaleControlStyle style;
 }

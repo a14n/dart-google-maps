@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @JsName('google.maps.Rectangle')
 abstract class _Rectangle extends MVCObject {
-  external factory _Rectangle([RectangleOptions opts]);
+  factory _Rectangle([RectangleOptions opts]) => null;
 
   LatLngBounds get bounds => _getBounds();
   LatLngBounds _getBounds();

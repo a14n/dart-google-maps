@@ -16,7 +16,7 @@ part of google_maps.src.weather;
 
 @anonymous
 abstract class _WeatherFeature implements JsInterface {
-  external factory _WeatherFeature();
+  factory _WeatherFeature() => null;
 
   WeatherConditions current;
   List<WeatherForecast> forecast;

@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _DirectionsRoute implements JsInterface {
-  external factory _DirectionsRoute();
+  factory _DirectionsRoute() => null;
 
   LatLngBounds bounds;
   String copyrights;

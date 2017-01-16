@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _RectangleOptions implements JsInterface {
-  external factory _RectangleOptions();
+  factory _RectangleOptions() => null;
 
   LatLngBounds bounds;
   bool clickable;

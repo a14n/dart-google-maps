@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _SaveWidgetOptions implements JsInterface {
-  external factory _SaveWidgetOptions();
+  factory _SaveWidgetOptions() => null;
 
   Attribution attribution;
   MarkerPlace place;

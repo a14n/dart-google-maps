@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _FusionTablesStyle implements JsInterface {
-  external factory _FusionTablesStyle();
+  factory _FusionTablesStyle() => null;
 
   FusionTablesMarkerOptions markerOptions;
   FusionTablesPolygonOptions polygonOptions;

@@ -16,7 +16,7 @@ part of google_maps.src.places;
 
 @anonymous
 abstract class _PlaceResult implements JsInterface {
-  external factory _PlaceResult();
+  factory _PlaceResult() => null;
 
   List<GeocoderAddressComponent> _address_components;
   List<GeocoderAddressComponent> get addressComponents => _address_components;

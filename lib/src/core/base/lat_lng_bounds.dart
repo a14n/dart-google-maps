@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @JsName('google.maps.LatLngBounds')
 abstract class _LatLngBounds implements JsInterface {
-  external factory _LatLngBounds([LatLng sw, LatLng ne]);
+  factory _LatLngBounds([LatLng sw, LatLng ne]) => null;
 
   bool contains(LatLng latLng);
   bool equals(LatLngBounds other);

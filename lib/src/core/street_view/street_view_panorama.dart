@@ -16,8 +16,9 @@ part of google_maps.src;
 
 @JsName('google.maps.StreetViewPanorama')
 abstract class _StreetViewPanorama extends MVCObject {
-  external factory _StreetViewPanorama(Node container,
-      [StreetViewPanoramaOptions opts]);
+  factory _StreetViewPanorama(Node container,
+          [StreetViewPanoramaOptions opts]) =>
+      null;
 
   List<StreetViewLink> get links => _getLinks();
   List<StreetViewLink> _getLinks();
@@ -54,16 +55,17 @@ abstract class _StreetViewPanorama extends MVCObject {
   void _setZoom(num zoom);
 
   dynamic _controls;
-  List<MVCArray<Node>> get controls => (new JsListCodec<MVCArray<Node>>(
-          new JsInterfaceCodec<MVCArray<Node>>(
+  List<MVCArray<Node>> get controls =>
+      (new JsListCodec<MVCArray<Node>>(new JsInterfaceCodec<MVCArray<Node>>(
               (o) => new MVCArray<Node>.created(o, new IdentityCodec<Node>()))))
-      .decode(_controls as JsArray);
+          .decode(_controls as JsArray);
   void set controls(List<MVCArray<Node>> controls) {
     _controls = (new JsListCodec<MVCArray<Node>>(
             new JsInterfaceCodec<MVCArray<Node>>((o) =>
                 new MVCArray<Node>.created(o, new IdentityCodec<Node>()))))
         .encode(controls);
   }
+
   Stream get onClicktogoChanged =>
       getStream(this, #onClicktogoChanged, "clicktogo_changed");
   Stream<JsObject> get onCloseclick =>

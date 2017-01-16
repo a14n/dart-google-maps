@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @JsName('google.maps.OverlayView')
 abstract class _OverlayView implements JsInterface {
-  external factory _OverlayView();
+  factory _OverlayView() => null;
 
   void draw();
   dynamic /*GMap|StreetViewPanorama*/ get map => (new ChainedCodec()

@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _DirectionsRendererOptions implements JsInterface {
-  external factory _DirectionsRendererOptions();
+  factory _DirectionsRendererOptions() => null;
 
   DirectionsResult directions;
   bool draggable;

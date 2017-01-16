@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _InfoWindowOptions implements JsInterface {
-  external factory _InfoWindowOptions();
+  factory _InfoWindowOptions() => null;
 
   dynamic /*String|Node*/ content;
   bool disableAutoPan;

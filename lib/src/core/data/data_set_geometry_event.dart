@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _DataSetGeometryEvent implements JsInterface {
-  external factory _DataSetGeometryEvent();
+  factory _DataSetGeometryEvent() => null;
 
   DataFeature feature;
   dynamic _newGeometry;

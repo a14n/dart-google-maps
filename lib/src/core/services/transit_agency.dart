@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _TransitAgency implements JsInterface {
-  external factory _TransitAgency();
+  factory _TransitAgency() => null;
 
   String name;
   String phone;

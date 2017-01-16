@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _DirectionsRequest implements JsInterface {
-  external factory _DirectionsRequest();
+  factory _DirectionsRequest() => null;
 
   bool avoidFerries;
   bool avoidHighways;

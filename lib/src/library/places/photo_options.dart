@@ -16,7 +16,7 @@ part of google_maps.src.places;
 
 @anonymous
 abstract class _PhotoOptions implements JsInterface {
-  external factory _PhotoOptions();
+  factory _PhotoOptions() => null;
 
   num maxHeight;
   num maxWidth;

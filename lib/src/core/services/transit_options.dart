@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _TransitOptions implements JsInterface {
-  external factory _TransitOptions();
+  factory _TransitOptions() => null;
 
   DateTime arrivalTime;
   DateTime departureTime;

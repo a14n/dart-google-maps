@@ -16,7 +16,7 @@ part of google_maps.src.visualization;
 
 @anonymous
 abstract class _WeightedLocation implements JsInterface {
-  external factory _WeightedLocation();
+  factory _WeightedLocation() => null;
 
   LatLng location;
   num weight;

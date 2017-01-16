@@ -16,7 +16,7 @@ part of google_maps.src.places;
 
 @anonymous
 abstract class _PredictionTerm implements JsInterface {
-  external factory _PredictionTerm();
+  factory _PredictionTerm() => null;
 
   num offset;
   String value;

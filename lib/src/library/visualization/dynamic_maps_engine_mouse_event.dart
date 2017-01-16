@@ -16,7 +16,7 @@ part of google_maps.src.visualization;
 
 @anonymous
 abstract class _DynamicMapsEngineMouseEvent implements JsInterface {
-  external factory _DynamicMapsEngineMouseEvent();
+  factory _DynamicMapsEngineMouseEvent() => null;
 
   void getDetails(callback(MapsEngineMouseEvent p1));
 

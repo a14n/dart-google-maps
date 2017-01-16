@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _DataSetPropertyEvent implements JsInterface {
-  external factory _DataSetPropertyEvent();
+  factory _DataSetPropertyEvent() => null;
 
   DataFeature feature;
   String name;

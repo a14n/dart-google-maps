@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _DistanceMatrixResponseElement implements JsInterface {
-  external factory _DistanceMatrixResponseElement();
+  factory _DistanceMatrixResponseElement() => null;
 
   Distance distance;
   GDuration duration;

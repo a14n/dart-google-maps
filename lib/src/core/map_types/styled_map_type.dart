@@ -16,8 +16,9 @@ part of google_maps.src;
 
 @JsName('google.maps.StyledMapType')
 abstract class _StyledMapType extends MVCObject implements MapType {
-  external factory _StyledMapType(List<MapTypeStyle> styles,
-      [StyledMapTypeOptions options]);
+  factory _StyledMapType(List<MapTypeStyle> styles,
+          [StyledMapTypeOptions options]) =>
+      null;
 
   Node getTile(Point tileCoord, num zoom, Document ownerDocument);
   void releaseTile(Node tile);

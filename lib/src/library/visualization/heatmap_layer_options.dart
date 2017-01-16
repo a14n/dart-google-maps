@@ -16,7 +16,7 @@ part of google_maps.src.visualization;
 
 @anonymous
 abstract class _HeatmapLayerOptions implements JsInterface {
-  external factory _HeatmapLayerOptions();
+  factory _HeatmapLayerOptions() => null;
 
   dynamic _data;
   MVCArray<LatLng> get data => (new JsInterfaceCodec<MVCArray<LatLng>>((o) =>

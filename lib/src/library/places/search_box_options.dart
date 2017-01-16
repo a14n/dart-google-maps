@@ -16,7 +16,7 @@ part of google_maps.src.places;
 
 @anonymous
 abstract class _SearchBoxOptions implements JsInterface {
-  external factory _SearchBoxOptions();
+  factory _SearchBoxOptions() => null;
 
   LatLngBounds bounds;
 }

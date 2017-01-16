@@ -16,8 +16,8 @@ part of google_maps.src;
 
 @JsName('google.maps.Size')
 abstract class _Size implements JsInterface {
-  external factory _Size(num width, num height,
-      [String widthUnit, String heightUnit]);
+  factory _Size(num width, num height, [String widthUnit, String heightUnit]) =>
+      null;
 
   bool equals(Size other);
   String toString();

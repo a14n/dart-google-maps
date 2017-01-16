@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _CircleOptions implements JsInterface {
-  external factory _CircleOptions();
+  factory _CircleOptions() => null;
 
   LatLng center;
   bool clickable;

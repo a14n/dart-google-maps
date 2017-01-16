@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _StreetViewPanoramaData implements JsInterface {
-  external factory _StreetViewPanoramaData();
+  factory _StreetViewPanoramaData() => null;
 
   String copyright;
   String imageDate;

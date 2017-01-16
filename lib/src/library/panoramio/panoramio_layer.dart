@@ -16,7 +16,7 @@ part of google_maps.src.panoramio;
 
 @JsName('google.maps.panoramio.PanoramioLayer')
 abstract class _PanoramioLayer extends MVCObject {
-  external factory _PanoramioLayer([PanoramioLayerOptions opts]);
+  factory _PanoramioLayer([PanoramioLayerOptions opts]) => null;
 
   GMap get map => _getMap();
   GMap _getMap();

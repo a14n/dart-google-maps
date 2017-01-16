@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _PolylineOptions implements JsInterface {
-  external factory _PolylineOptions();
+  factory _PolylineOptions() => null;
 
   bool clickable;
   bool draggable;

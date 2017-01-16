@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _KmlMouseEvent implements JsInterface {
-  external factory _KmlMouseEvent();
+  factory _KmlMouseEvent() => null;
 
   KmlFeatureData featureData;
   LatLng latLng;

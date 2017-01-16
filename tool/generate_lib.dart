@@ -94,7 +94,7 @@ class IndexAndElement<E> {
   'ImageMapType': '''
 @JsName('google.maps.ImageMapType')
 abstract class _ImageMapType extends MVCObject implements MapType {
-  external factory _ImageMapType(ImageMapTypeOptions opts);
+  factory _ImageMapType(ImageMapTypeOptions opts) => null;
 
   num get opacity => _getOpacity();
   num _getOpacity();
@@ -117,8 +117,8 @@ abstract class _ImageMapType extends MVCObject implements MapType {
   'StyledMapType': '''
 @JsName('google.maps.StyledMapType')
 abstract class _StyledMapType extends MVCObject implements MapType {
-  external factory _StyledMapType(List<MapTypeStyle> styles,
-      [StyledMapTypeOptions options]);
+  factory _StyledMapType(List<MapTypeStyle> styles,
+      [StyledMapTypeOptions options]) => null;
 
   Node getTile(Point tileCoord, num zoom, Document ownerDocument);
   void releaseTile(Node tile);
@@ -145,7 +145,7 @@ enum _MapsEngineStatus { INVALID_LAYER, OK, UNKNOWN_ERROR }
   'StreetViewService': '''
 @JsName('google.maps.StreetViewService')
 abstract class _StreetViewService implements JsInterface {
-  external factory _StreetViewService();
+  factory _StreetViewService() => null;
 
   void getPanoramaById(
       String pano, callback(StreetViewPanoramaData p1, StreetViewStatus p2));
@@ -938,8 +938,8 @@ part of $libraryName;
           final paramsCodecs = new Map.fromIterable(allParams.keys,
               value: (k) => getCodec(allParams[k] as String, jsElements));
           if (paramsCodecs.values.every((p) => p.canBeNativelyHandled)) {
-            constructorSection += '  external factory '
-                '_$className(${params.toSignature(jsElements)});\n';
+            constructorSection += '  factory '
+                '_$className(${params.toSignature(jsElements)}) => null;\n';
           } else {
             needExtends = true;
             constructorSection +=
@@ -955,7 +955,7 @@ part of $libraryName;
             constructorSection += ']));';
           }
         } else if (jsElmt.isAnonymousObject) {
-          constructorSection += '  external factory _$className();\n';
+          constructorSection += '  factory _$className() => null;\n';
         }
         constructorSection += '\n';
 
@@ -983,7 +983,7 @@ part of $libraryName;
             partContents +=
                 declarationSubstitutions[libraryName][jsElmt.name][name] + '\n';
           } else {
-            partContents += 'external static get $name;\n';
+            partContents += 'static get $name => null;\n';
           }
         });
         partContents += '\n';

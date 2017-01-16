@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _StreetViewPov implements JsInterface {
-  external factory _StreetViewPov();
+  factory _StreetViewPov() => null;
 
   num heading;
   num pitch;

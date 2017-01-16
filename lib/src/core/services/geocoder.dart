@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @JsName('google.maps.Geocoder')
 abstract class _Geocoder implements JsInterface {
-  external factory _Geocoder();
+  factory _Geocoder() => null;
 
   void geocode(GeocoderRequest request,
       callback(List<GeocoderResult> p1, GeocoderStatus p2));

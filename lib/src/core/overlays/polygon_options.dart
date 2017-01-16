@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _PolygonOptions implements JsInterface {
-  external factory _PolygonOptions();
+  factory _PolygonOptions() => null;
 
   bool clickable;
   bool draggable;

@@ -16,7 +16,7 @@ part of google_maps.src.visualization;
 
 @anonymous
 abstract class _FeatureStyle implements JsInterface {
-  external factory _FeatureStyle();
+  factory _FeatureStyle() => null;
 
   void reset(String property);
   void resetAll();

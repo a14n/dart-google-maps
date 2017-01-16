@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @JsName('google.maps.DirectionsService')
 abstract class _DirectionsService implements JsInterface {
-  external factory _DirectionsService();
+  factory _DirectionsService() => null;
 
   void route(DirectionsRequest request,
       callback(DirectionsResult p1, DirectionsStatus p2));

@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _StreetViewPanoRequest implements JsInterface {
-  external factory _StreetViewPanoRequest();
+  factory _StreetViewPanoRequest() => null;
 
   String pano;
 }

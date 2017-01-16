@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _GSymbol implements JsInterface {
-  external factory _GSymbol();
+  factory _GSymbol() => null;
 
   Point anchor;
   String fillColor;

@@ -16,7 +16,7 @@ part of google_maps.src.weather;
 
 @anonymous
 abstract class _WeatherLayerOptions implements JsInterface {
-  external factory _WeatherLayerOptions();
+  factory _WeatherLayerOptions() => null;
 
   bool clickable;
   LabelColor labelColor;

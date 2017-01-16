@@ -16,8 +16,8 @@ part of google_maps.src.places;
 
 @JsName('google.maps.places.Autocomplete')
 abstract class _Autocomplete extends MVCObject {
-  external factory _Autocomplete(InputElement inputField,
-      [AutocompleteOptions opts]);
+  factory _Autocomplete(InputElement inputField, [AutocompleteOptions opts]) =>
+      null;
 
   LatLngBounds get bounds => _getBounds();
   LatLngBounds _getBounds();

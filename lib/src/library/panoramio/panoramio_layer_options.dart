@@ -16,7 +16,7 @@ part of google_maps.src.panoramio;
 
 @anonymous
 abstract class _PanoramioLayerOptions implements JsInterface {
-  external factory _PanoramioLayerOptions();
+  factory _PanoramioLayerOptions() => null;
 
   bool clickable;
   GMap map;

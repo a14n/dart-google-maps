@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @JsName('google.maps.Point')
 abstract class _Point implements JsInterface {
-  external factory _Point(num x, num y);
+  factory _Point(num x, num y) => null;
 
   bool equals(Point other);
   String toString();

@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _FusionTablesMouseEvent implements JsInterface {
-  external factory _FusionTablesMouseEvent();
+  factory _FusionTablesMouseEvent() => null;
 
   String infoWindowHtml;
   LatLng latLng;

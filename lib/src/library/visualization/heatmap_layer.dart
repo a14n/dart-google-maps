@@ -16,7 +16,7 @@ part of google_maps.src.visualization;
 
 @JsName('google.maps.visualization.HeatmapLayer')
 abstract class _HeatmapLayer extends MVCObject {
-  external factory _HeatmapLayer([HeatmapLayerOptions opts]);
+  factory _HeatmapLayer([HeatmapLayerOptions opts]) => null;
 
   MVCArray<dynamic /*LatLng|WeightedLocation*/ > get data =>
       (new JsInterfaceCodec<MVCArray<dynamic /*LatLng|WeightedLocation*/ >>(

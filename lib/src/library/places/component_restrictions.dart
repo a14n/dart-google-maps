@@ -16,7 +16,7 @@ part of google_maps.src.places;
 
 @anonymous
 abstract class _ComponentRestrictions implements JsInterface {
-  external factory _ComponentRestrictions();
+  factory _ComponentRestrictions() => null;
 
   String country;
 }

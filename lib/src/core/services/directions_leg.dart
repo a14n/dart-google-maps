@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _DirectionsLeg implements JsInterface {
-  external factory _DirectionsLeg();
+  factory _DirectionsLeg() => null;
 
   Time _arrival_time;
   Time get arrivalTime => _arrival_time;

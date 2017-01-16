@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _MapOptions implements JsInterface {
-  external factory _MapOptions();
+  factory _MapOptions() => null;
 
   String backgroundColor;
   LatLng center;

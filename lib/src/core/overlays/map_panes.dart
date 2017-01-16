@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _MapPanes implements JsInterface {
-  external factory _MapPanes();
+  factory _MapPanes() => null;
 
   Node floatPane;
   Node mapPane;

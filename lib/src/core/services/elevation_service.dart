@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @JsName('google.maps.ElevationService')
 abstract class _ElevationService implements JsInterface {
-  external factory _ElevationService();
+  factory _ElevationService() => null;
 
   void getElevationAlongPath(PathElevationRequest request,
       callback(List<ElevationResult> p1, ElevationStatus p2));

@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _DirectionsStep implements JsInterface {
-  external factory _DirectionsStep();
+  factory _DirectionsStep() => null;
 
   Distance distance;
   GDuration duration;

@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @JsName('google.maps.LatLng')
 abstract class _LatLng implements JsInterface {
-  external factory _LatLng(num lat, num lng, [bool noWrap]);
+  factory _LatLng(num lat, num lng, [bool noWrap]) => null;
 
   bool equals(LatLng other);
   num get lat => _lat();

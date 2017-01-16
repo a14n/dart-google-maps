@@ -16,7 +16,7 @@ part of google_maps.src.places;
 
 @anonymous
 abstract class _AutocompletionRequest implements JsInterface {
-  external factory _AutocompletionRequest();
+  factory _AutocompletionRequest() => null;
 
   LatLngBounds bounds;
   ComponentRestrictions componentRestrictions;

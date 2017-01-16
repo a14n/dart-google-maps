@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _DataFeatureOptions implements JsInterface {
-  external factory _DataFeatureOptions();
+  factory _DataFeatureOptions() => null;
 
   dynamic _geometry;
   dynamic /*DataGeometryCollection|DataMultiPolygon|DataPolygon|DataLinearRing|DataMultiLineString|DataLineString|DataMultiPoint|DataPoint|LatLng*/ get geometry =>

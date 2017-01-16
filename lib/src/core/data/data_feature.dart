@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @JsName('google.maps.Data.Feature')
 abstract class _DataFeature implements JsInterface {
-  external factory _DataFeature([DataFeatureOptions options]);
+  factory _DataFeature([DataFeatureOptions options]) => null;
 
   void forEachProperty(callback(dynamic p1, String p2));
   dynamic /*DataGeometryCollection|DataMultiPolygon|DataPolygon|DataLinearRing|DataMultiLineString|DataLineString|DataMultiPoint|DataPoint*/ get geometry =>

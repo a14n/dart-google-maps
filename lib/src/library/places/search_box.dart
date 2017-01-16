@@ -16,7 +16,7 @@ part of google_maps.src.places;
 
 @JsName('google.maps.places.SearchBox')
 abstract class _SearchBox extends MVCObject {
-  external factory _SearchBox(InputElement inputField, [SearchBoxOptions opts]);
+  factory _SearchBox(InputElement inputField, [SearchBoxOptions opts]) => null;
 
   LatLngBounds get bounds => _getBounds();
   LatLngBounds _getBounds();

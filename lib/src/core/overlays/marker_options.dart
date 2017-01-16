@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _MarkerOptions implements JsInterface {
-  external factory _MarkerOptions();
+  factory _MarkerOptions() => null;
 
   Point anchorPoint;
   Animation animation;

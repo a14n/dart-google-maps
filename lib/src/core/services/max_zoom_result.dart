@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _MaxZoomResult implements JsInterface {
-  external factory _MaxZoomResult();
+  factory _MaxZoomResult() => null;
 
   MaxZoomStatus status;
   num zoom;

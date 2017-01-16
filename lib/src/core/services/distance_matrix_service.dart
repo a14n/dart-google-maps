@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @JsName('google.maps.DistanceMatrixService')
 abstract class _DistanceMatrixService implements JsInterface {
-  external factory _DistanceMatrixService();
+  factory _DistanceMatrixService() => null;
 
   void getDistanceMatrix(DistanceMatrixRequest request,
       callback(DistanceMatrixResponse p1, DistanceMatrixStatus p2));

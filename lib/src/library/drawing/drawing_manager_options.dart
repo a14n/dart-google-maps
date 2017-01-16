@@ -16,7 +16,7 @@ part of google_maps.src.drawing;
 
 @anonymous
 abstract class _DrawingManagerOptions implements JsInterface {
-  external factory _DrawingManagerOptions();
+  factory _DrawingManagerOptions() => null;
 
   CircleOptions circleOptions;
   bool drawingControl;

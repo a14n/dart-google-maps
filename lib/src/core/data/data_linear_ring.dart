@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @JsName('google.maps.Data.LinearRing')
 abstract class _DataLinearRing extends DataGeometry {
-  external factory _DataLinearRing(List<LatLng> elements);
+  factory _DataLinearRing(List<LatLng> elements) => null;
 
   List<LatLng> get array => _getArray();
   List<LatLng> _getArray();

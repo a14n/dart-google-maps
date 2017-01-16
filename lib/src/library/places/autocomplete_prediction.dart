@@ -16,7 +16,7 @@ part of google_maps.src.places;
 
 @anonymous
 abstract class _AutocompletePrediction implements JsInterface {
-  external factory _AutocompletePrediction();
+  factory _AutocompletePrediction() => null;
 
   String description;
   List<PredictionSubstring> _matched_substrings;

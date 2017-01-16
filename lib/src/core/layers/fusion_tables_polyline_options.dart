@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _FusionTablesPolylineOptions implements JsInterface {
-  external factory _FusionTablesPolylineOptions();
+  factory _FusionTablesPolylineOptions() => null;
 
   String strokeColor;
   num strokeOpacity;

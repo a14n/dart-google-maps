@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _DistanceMatrixRequest implements JsInterface {
-  external factory _DistanceMatrixRequest();
+  factory _DistanceMatrixRequest() => null;
 
   bool avoidFerries;
   bool avoidHighways;

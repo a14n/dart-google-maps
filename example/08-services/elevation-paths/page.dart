@@ -9,14 +9,14 @@ part 'page.g.dart';
 
 @JsName('google.visualization.ColumnChart')
 abstract class _ColumnChart extends JsInterface {
-  external factory _ColumnChart(Node div);
+  factory _ColumnChart(Node div) => null;
 
   void draw(DataTable data, [JsObject options]);
 }
 
 @JsName('google.visualization.DataTable')
 abstract class _DataTable extends JsInterface {
-  external factory _DataTable();
+  factory _DataTable() => null;
 
   void addColumn(String type, [String label, String id]);
   void addRow([JsArray cellArray]);

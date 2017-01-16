@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _TransitDetails implements JsInterface {
-  external factory _TransitDetails();
+  factory _TransitDetails() => null;
 
   TransitStop _arrival_stop;
   TransitStop get arrivalStop => _arrival_stop;

@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _PathElevationRequest implements JsInterface {
-  external factory _PathElevationRequest();
+  factory _PathElevationRequest() => null;
 
   List<LatLng> path;
   num samples;

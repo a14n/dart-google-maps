@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _DataStyleOptions implements JsInterface {
-  external factory _DataStyleOptions();
+  factory _DataStyleOptions() => null;
 
   bool clickable;
   String cursor;

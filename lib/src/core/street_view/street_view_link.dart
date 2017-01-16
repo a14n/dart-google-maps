@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _StreetViewLink implements JsInterface {
-  external factory _StreetViewLink();
+  factory _StreetViewLink() => null;
 
   String description;
   num heading;

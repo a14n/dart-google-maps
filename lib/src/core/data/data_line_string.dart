@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @JsName('google.maps.Data.LineString')
 abstract class _DataLineString extends DataGeometry {
-  external factory _DataLineString(List<LatLng> elements);
+  factory _DataLineString(List<LatLng> elements) => null;
 
   List<LatLng> get array => _getArray();
   List<LatLng> _getArray();

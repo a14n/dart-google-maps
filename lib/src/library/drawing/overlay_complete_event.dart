@@ -16,7 +16,7 @@ part of google_maps.src.drawing;
 
 @anonymous
 abstract class _OverlayCompleteEvent implements JsInterface {
-  external factory _OverlayCompleteEvent();
+  factory _OverlayCompleteEvent() => null;
 
   dynamic _overlay;
   dynamic /*Marker|Polygon|Polyline|Rectangle|Circle*/ get overlay =>

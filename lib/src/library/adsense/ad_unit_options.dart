@@ -16,7 +16,7 @@ part of google_maps.src.adsense;
 
 @anonymous
 abstract class _AdUnitOptions implements JsInterface {
-  external factory _AdUnitOptions();
+  factory _AdUnitOptions() => null;
 
   String backgroundColor;
   String borderColor;

@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _DirectionsResult implements JsInterface {
-  external factory _DirectionsResult();
+  factory _DirectionsResult() => null;
 
   List<DirectionsGeocodedWaypoint> _geocoded_waypoints;
   List<DirectionsGeocodedWaypoint> get geocodedWaypoints => _geocoded_waypoints;

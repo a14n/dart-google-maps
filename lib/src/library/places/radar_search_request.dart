@@ -16,7 +16,7 @@ part of google_maps.src.places;
 
 @anonymous
 abstract class _RadarSearchRequest implements JsInterface {
-  external factory _RadarSearchRequest();
+  factory _RadarSearchRequest() => null;
 
   LatLngBounds bounds;
   String keyword;

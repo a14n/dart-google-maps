@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _LocationElevationRequest implements JsInterface {
-  external factory _LocationElevationRequest();
+  factory _LocationElevationRequest() => null;
 
   List<LatLng> locations;
 }

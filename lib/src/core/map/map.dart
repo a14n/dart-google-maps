@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @JsName('google.maps.Map')
 abstract class _GMap extends MVCObject {
-  external factory _GMap(Node mapDiv, [MapOptions opts]);
+  factory _GMap(Node mapDiv, [MapOptions opts]) => null;
 
   void fitBounds(LatLngBounds bounds);
   LatLngBounds get bounds => _getBounds();

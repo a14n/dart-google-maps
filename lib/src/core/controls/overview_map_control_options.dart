@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _OverviewMapControlOptions implements JsInterface {
-  external factory _OverviewMapControlOptions();
+  factory _OverviewMapControlOptions() => null;
 
   bool opened;
 }

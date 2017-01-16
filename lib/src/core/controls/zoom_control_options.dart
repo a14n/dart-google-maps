@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _ZoomControlOptions implements JsInterface {
-  external factory _ZoomControlOptions();
+  factory _ZoomControlOptions() => null;
 
   ControlPosition position;
   ZoomControlStyle style;

@@ -16,7 +16,7 @@ part of google_maps.src.places;
 
 @anonymous
 abstract class _PlaceGeometry implements JsInterface {
-  external factory _PlaceGeometry();
+  factory _PlaceGeometry() => null;
 
   LatLng location;
   LatLngBounds viewport;

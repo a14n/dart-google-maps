@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _KmlAuthor implements JsInterface {
-  external factory _KmlAuthor();
+  factory _KmlAuthor() => null;
 
   String email;
   String name;

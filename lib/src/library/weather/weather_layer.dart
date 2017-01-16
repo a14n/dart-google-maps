@@ -16,7 +16,7 @@ part of google_maps.src.weather;
 
 @JsName('google.maps.weather.WeatherLayer')
 abstract class _WeatherLayer extends MVCObject {
-  external factory _WeatherLayer([WeatherLayerOptions opts]);
+  factory _WeatherLayer([WeatherLayerOptions opts]) => null;
 
   GMap get map => _getMap();
   GMap _getMap();

@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @JsName('google.maps.MapTypeRegistry')
 abstract class _MapTypeRegistry extends MVCObject {
-  external factory _MapTypeRegistry();
+  factory _MapTypeRegistry() => null;
 
   void set(String id, @checked MapType mapType);
 }

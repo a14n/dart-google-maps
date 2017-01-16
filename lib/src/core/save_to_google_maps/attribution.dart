@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _Attribution implements JsInterface {
-  external factory _Attribution();
+  factory _Attribution() => null;
 
   String iosDeepLinkId;
   String source;

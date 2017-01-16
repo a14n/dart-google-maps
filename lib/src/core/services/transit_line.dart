@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _TransitLine implements JsInterface {
-  external factory _TransitLine();
+  factory _TransitLine() => null;
 
   List<TransitAgency> agencies;
   String color;

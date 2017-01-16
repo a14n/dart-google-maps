@@ -16,7 +16,7 @@ part of google_maps.src.places;
 
 @anonymous
 abstract class _QueryAutocompletionRequest implements JsInterface {
-  external factory _QueryAutocompletionRequest();
+  factory _QueryAutocompletionRequest() => null;
 
   LatLngBounds bounds;
   String input;

@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _FusionTablesLayerOptions implements JsInterface {
-  external factory _FusionTablesLayerOptions();
+  factory _FusionTablesLayerOptions() => null;
 
   bool clickable;
   FusionTablesHeatmap heatmap;

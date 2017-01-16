@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _GDuration implements JsInterface {
-  external factory _GDuration();
+  factory _GDuration() => null;
 
   String text;
   num value;

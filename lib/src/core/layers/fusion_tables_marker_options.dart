@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _FusionTablesMarkerOptions implements JsInterface {
-  external factory _FusionTablesMarkerOptions();
+  factory _FusionTablesMarkerOptions() => null;
 
   String iconName;
 }

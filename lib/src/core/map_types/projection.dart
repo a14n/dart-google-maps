@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _Projection implements JsInterface {
-  external factory _Projection();
+  factory _Projection() => null;
 
   Point fromLatLngToPoint(LatLng latLng, [Point point]);
   LatLng fromPointToLatLng(Point pixel, [bool nowrap]);

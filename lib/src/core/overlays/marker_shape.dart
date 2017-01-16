@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _MarkerShape implements JsInterface {
-  external factory _MarkerShape();
+  factory _MarkerShape() => null;
 
   List<num> coords;
   String type;

@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @JsName('google.maps.MaxZoomService')
 abstract class _MaxZoomService implements JsInterface {
-  external factory _MaxZoomService();
+  factory _MaxZoomService() => null;
 
   void getMaxZoomAtLatLng(LatLng latlng, callback(MaxZoomResult p1));
 }

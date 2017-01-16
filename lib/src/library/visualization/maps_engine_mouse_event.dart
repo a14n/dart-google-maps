@@ -16,7 +16,7 @@ part of google_maps.src.visualization;
 
 @anonymous
 abstract class _MapsEngineMouseEvent implements JsInterface {
-  external factory _MapsEngineMouseEvent();
+  factory _MapsEngineMouseEvent() => null;
 
   String featureId;
   String infoWindowHtml;

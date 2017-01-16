@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _DrivingOptions implements JsInterface {
-  external factory _DrivingOptions();
+  factory _DrivingOptions() => null;
 
   DateTime departureTime;
   TrafficModel trafficModel;

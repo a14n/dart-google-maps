@@ -16,7 +16,7 @@ part of google_maps.src.drawing;
 
 @anonymous
 abstract class _DrawingControlOptions implements JsInterface {
-  external factory _DrawingControlOptions();
+  factory _DrawingControlOptions() => null;
 
   List<OverlayType> drawingModes;
   ControlPosition position;

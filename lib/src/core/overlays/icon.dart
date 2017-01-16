@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _Icon implements JsInterface {
-  external factory _Icon();
+  factory _Icon() => null;
 
   Point anchor;
   Point labelOrigin;

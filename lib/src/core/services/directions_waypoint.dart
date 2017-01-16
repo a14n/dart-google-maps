@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _DirectionsWaypoint implements JsInterface {
-  external factory _DirectionsWaypoint();
+  factory _DirectionsWaypoint() => null;
 
   dynamic _location;
   dynamic /*LatLng|Place|String*/ get location => (new ChainedCodec()

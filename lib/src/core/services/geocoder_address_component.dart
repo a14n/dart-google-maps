@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _GeocoderAddressComponent implements JsInterface {
-  external factory _GeocoderAddressComponent();
+  factory _GeocoderAddressComponent() => null;
 
   String _long_name;
   String get longName => _long_name;

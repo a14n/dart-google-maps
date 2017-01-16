@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @JsName('google.maps.InfoWindow')
 abstract class _InfoWindow extends MVCObject {
-  external factory _InfoWindow([InfoWindowOptions opts]);
+  factory _InfoWindow([InfoWindowOptions opts]) => null;
 
   void close();
   dynamic /*String|Node*/ get content => _getContent();

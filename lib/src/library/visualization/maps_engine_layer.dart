@@ -16,7 +16,7 @@ part of google_maps.src.visualization;
 
 @JsName('google.maps.visualization.MapsEngineLayer')
 abstract class _MapsEngineLayer extends MVCObject {
-  external factory _MapsEngineLayer(MapsEngineLayerOptions options);
+  factory _MapsEngineLayer(MapsEngineLayerOptions options) => null;
 
   String get layerId => _getLayerId();
   String _getLayerId();

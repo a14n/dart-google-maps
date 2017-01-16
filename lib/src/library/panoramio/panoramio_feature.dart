@@ -16,7 +16,7 @@ part of google_maps.src.panoramio;
 
 @anonymous
 abstract class _PanoramioFeature implements JsInterface {
-  external factory _PanoramioFeature();
+  factory _PanoramioFeature() => null;
 
   String author;
   String photoId;

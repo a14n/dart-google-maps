@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _DataDataOptions implements JsInterface {
-  external factory _DataDataOptions();
+  factory _DataDataOptions() => null;
 
   ControlPosition controlPosition;
   List<String> controls;

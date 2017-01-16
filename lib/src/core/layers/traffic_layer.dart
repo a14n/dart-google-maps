@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @JsName('google.maps.TrafficLayer')
 abstract class _TrafficLayer extends MVCObject {
-  external factory _TrafficLayer();
+  factory _TrafficLayer() => null;
 
   GMap get map => _getMap();
   GMap _getMap();

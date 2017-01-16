@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _FusionTablesPolygonOptions implements JsInterface {
-  external factory _FusionTablesPolygonOptions();
+  factory _FusionTablesPolygonOptions() => null;
 
   String fillColor;
   num fillOpacity;

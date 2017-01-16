@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _PolyMouseEvent extends MouseEvent {
-  external factory _PolyMouseEvent();
+  factory _PolyMouseEvent() => null;
 
   num edge;
   num path;

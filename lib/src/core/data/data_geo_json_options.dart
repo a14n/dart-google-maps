@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _DataGeoJsonOptions implements JsInterface {
-  external factory _DataGeoJsonOptions();
+  factory _DataGeoJsonOptions() => null;
 
   String idPropertyName;
 }

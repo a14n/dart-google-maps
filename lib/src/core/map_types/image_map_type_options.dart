@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @anonymous
 abstract class _ImageMapTypeOptions implements JsInterface {
-  external factory _ImageMapTypeOptions();
+  factory _ImageMapTypeOptions() => null;
 
   String alt;
   dynamic /*null(Point p1,number): strin p2)*/ getTileUrl;
