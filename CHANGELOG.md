@@ -1,4 +1,12 @@
 
+# v3.2.0+2 (2017-01-16)
+
+- fix issue with mirrors and Dart2js (see http://dartbug.com/28371)
+
+# v3.2.0+1 (2016-11-16)
+
+- update to handle stricter markdown
+
 # v3.2.0 (2016-11-15)
 
 - use js_wrapping-0.3.0
