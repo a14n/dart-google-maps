@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @JsName('google.maps.Marker')
 abstract class _Marker extends MVCObject {
-  static get MAX_ZINDEX => null;
+  static num get MAX_ZINDEX => null;
 
   factory _Marker([MarkerOptions opts]) => null;
 

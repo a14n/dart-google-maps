@@ -227,8 +227,12 @@ class OverlayCompleteEvent extends JsInterface {
                     o != null &&
                     o.instanceof(
                         context['google']['maps']['Rectangle'] as JsFunction)))
-            ..add(
-                new JsInterfaceCodec<Circle>((o) => new Circle.created(o), (o) => o != null && o.instanceof(context['google']['maps']['Circle'] as JsFunction))))
+            ..add(new JsInterfaceCodec<Circle>(
+                (o) => new Circle.created(o),
+                (o) =>
+                    o != null &&
+                    o.instanceof(
+                        context['google']['maps']['Circle'] as JsFunction))))
           .decode(_overlay);
   void set overlay(
       dynamic /*Marker|Polygon|Polyline|Rectangle|Circle*/ overlay) {
@@ -257,8 +261,12 @@ class OverlayCompleteEvent extends JsInterface {
                   o != null &&
                   o.instanceof(
                       context['google']['maps']['Rectangle'] as JsFunction)))
-          ..add(
-              new JsInterfaceCodec<Circle>((o) => new Circle.created(o), (o) => o != null && o.instanceof(context['google']['maps']['Circle'] as JsFunction))))
+          ..add(new JsInterfaceCodec<Circle>(
+              (o) => new Circle.created(o),
+              (o) =>
+                  o != null &&
+                  o.instanceof(
+                      context['google']['maps']['Circle'] as JsFunction))))
         .encode(overlay);
   }
 

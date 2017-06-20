@@ -48,7 +48,7 @@ final __codec161 = new JsInterfaceCodec<MapTypeRegistry>(
     (o) => new MapTypeRegistry.created(o));
 
 /// codec for google_maps.src.(dynamic, num) → void
-final __codec160 = new FunctionCodec/*<(dynamic, num) → void>*/(
+final __codec160 = new FunctionCodec<Function> /*<(dynamic, num) → void>*/(
     (f) => (p_o, p_index) {
           f(__codec0.decode(p_o), p_index);
         },
@@ -61,12 +61,12 @@ final __codec159 = new JsInterfaceCodec<MapsEventListener>(
     (o) => new MapsEventListener.created(o));
 
 /// codec for google_maps.src.(StreetViewPanoramaData, StreetViewStatus) → dynamic
-final __codec158 =
-    new FunctionCodec/*<(StreetViewPanoramaData, StreetViewStatus) → dynamic>*/(
-        (f) => (p_p1, p_p2) => __codec0
-            .encode(f(__codec157.decode(p_p1), __codec151.decode(p_p2))),
-        (JsFunction f) => (p_p1, p_p2) => __codec0.decode(
-            f.apply([__codec157.encode(p_p1), __codec151.encode(p_p2)])));
+final __codec158 = new FunctionCodec<
+        Function> /*<(StreetViewPanoramaData, StreetViewStatus) → dynamic>*/(
+    (f) => (p_p1, p_p2) =>
+        __codec0.encode(f(__codec157.decode(p_p1), __codec151.decode(p_p2))),
+    (JsFunction f) => (p_p1, p_p2) => __codec0
+        .decode(f.apply([__codec157.encode(p_p1), __codec151.encode(p_p2)])));
 
 /// codec for google_maps.src.StreetViewPanoramaData
 final __codec157 = new JsInterfaceCodec<StreetViewPanoramaData>(
@@ -92,7 +92,7 @@ final __codec153 = new JsInterfaceCodec<StreetViewAddressControlOptions>(
     (o) => new StreetViewAddressControlOptions.created(o));
 
 /// codec for google_maps.src.(String) → dynamic
-final __codec152 = new FunctionCodec/*<(String) → dynamic>*/(
+final __codec152 = new FunctionCodec<Function> /*<(String) → dynamic>*/(
     (f) => (p_p1) => __codec0.encode(f(p_p1)),
     (JsFunction f) => (p_p1) => __codec0.decode(f.apply([p_p1])));
 
@@ -222,12 +222,12 @@ final __codec120 = new JsInterfaceCodec<DistanceMatrixResponseRow>(
     (o) => new DistanceMatrixResponseRow.created(o));
 
 /// codec for google_maps.src.(DistanceMatrixResponse, DistanceMatrixStatus) → dynamic
-final __codec119 =
-    new FunctionCodec/*<(DistanceMatrixResponse, DistanceMatrixStatus) → dynamic>*/(
-        (f) => (p_p1, p_p2) => __codec0
-            .encode(f(__codec117.decode(p_p1), __codec118.decode(p_p2))),
-        (JsFunction f) => (p_p1, p_p2) => __codec0.decode(
-            f.apply([__codec117.encode(p_p1), __codec118.encode(p_p2)])));
+final __codec119 = new FunctionCodec<
+        Function> /*<(DistanceMatrixResponse, DistanceMatrixStatus) → dynamic>*/(
+    (f) => (p_p1, p_p2) =>
+        __codec0.encode(f(__codec117.decode(p_p1), __codec118.decode(p_p2))),
+    (JsFunction f) => (p_p1, p_p2) => __codec0
+        .decode(f.apply([__codec117.encode(p_p1), __codec118.encode(p_p2)])));
 
 /// codec for google_maps.src.DistanceMatrixStatus
 final __codec118 = new BiMapCodec<DistanceMatrixStatus, dynamic>(
@@ -249,7 +249,7 @@ final __codec115 = new BiMapCodec<MaxZoomStatus, dynamic>(
         value: asJs));
 
 /// codec for google_maps.src.(MaxZoomResult) → dynamic
-final __codec114 = new FunctionCodec/*<(MaxZoomResult) → dynamic>*/(
+final __codec114 = new FunctionCodec<Function> /*<(MaxZoomResult) → dynamic>*/(
     (f) => (p_p1) => __codec0.encode(f(__codec113.decode(p_p1))),
     (JsFunction f) =>
         (p_p1) => __codec0.decode(f.apply([__codec113.encode(p_p1)])));
@@ -263,12 +263,12 @@ final __codec112 = new JsInterfaceCodec<LocationElevationRequest>(
     (o) => new LocationElevationRequest.created(o));
 
 /// codec for google_maps.src.(List<ElevationResult>, ElevationStatus) → dynamic
-final __codec111 =
-    new FunctionCodec/*<(List<ElevationResult>, ElevationStatus) → dynamic>*/(
-        (f) => (p_p1, p_p2) => __codec0
-            .encode(f(__codec109.decode(p_p1), __codec110.decode(p_p2))),
-        (JsFunction f) => (p_p1, p_p2) => __codec0.decode(
-            f.apply([__codec109.encode(p_p1), __codec110.encode(p_p2)])));
+final __codec111 = new FunctionCodec<
+        Function> /*<(List<ElevationResult>, ElevationStatus) → dynamic>*/(
+    (f) => (p_p1, p_p2) =>
+        __codec0.encode(f(__codec109.decode(p_p1), __codec110.decode(p_p2))),
+    (JsFunction f) => (p_p1, p_p2) => __codec0
+        .decode(f.apply([__codec109.encode(p_p1), __codec110.encode(p_p2)])));
 
 /// codec for google_maps.src.ElevationStatus
 final __codec110 = new BiMapCodec<ElevationStatus, dynamic>(
@@ -395,12 +395,12 @@ final __codec79 =
     new JsInterfaceCodec<DrivingOptions>((o) => new DrivingOptions.created(o));
 
 /// codec for google_maps.src.(DirectionsResult, DirectionsStatus) → dynamic
-final __codec78 =
-    new FunctionCodec/*<(DirectionsResult, DirectionsStatus) → dynamic>*/(
-        (f) => (p_p1, p_p2) =>
-            __codec0.encode(f(__codec75.decode(p_p1), __codec77.decode(p_p2))),
-        (JsFunction f) => (p_p1, p_p2) => __codec0
-            .decode(f.apply([__codec75.encode(p_p1), __codec77.encode(p_p2)])));
+final __codec78 = new FunctionCodec<
+        Function> /*<(DirectionsResult, DirectionsStatus) → dynamic>*/(
+    (f) => (p_p1, p_p2) =>
+        __codec0.encode(f(__codec75.decode(p_p1), __codec77.decode(p_p2))),
+    (JsFunction f) => (p_p1, p_p2) => __codec0
+        .decode(f.apply([__codec75.encode(p_p1), __codec77.encode(p_p2)])));
 
 /// codec for google_maps.src.DirectionsStatus
 final __codec77 = new BiMapCodec<DirectionsStatus, dynamic>(
@@ -441,12 +441,12 @@ final __codec69 = new JsInterfaceCodec<GeocoderComponentRestrictions>(
     (o) => new GeocoderComponentRestrictions.created(o));
 
 /// codec for google_maps.src.(List<GeocoderResult>, GeocoderStatus) → dynamic
-final __codec68 =
-    new FunctionCodec/*<(List<GeocoderResult>, GeocoderStatus) → dynamic>*/(
-        (f) => (p_p1, p_p2) =>
-            __codec0.encode(f(__codec66.decode(p_p1), __codec67.decode(p_p2))),
-        (JsFunction f) => (p_p1, p_p2) => __codec0
-            .decode(f.apply([__codec66.encode(p_p1), __codec67.encode(p_p2)])));
+final __codec68 = new FunctionCodec<
+        Function> /*<(List<GeocoderResult>, GeocoderStatus) → dynamic>*/(
+    (f) => (p_p1, p_p2) =>
+        __codec0.encode(f(__codec66.decode(p_p1), __codec67.decode(p_p2))),
+    (JsFunction f) => (p_p1, p_p2) => __codec0
+        .decode(f.apply([__codec66.encode(p_p1), __codec67.encode(p_p2)])));
 
 /// codec for google_maps.src.GeocoderStatus
 final __codec67 = new BiMapCodec<GeocoderStatus, dynamic>(
@@ -553,13 +553,14 @@ final __codec41 = new JsInterfaceCodec<DataStyleOptions>(
     (o) => new DataStyleOptions.created(o));
 
 /// codec for google_maps.src.(List<DataFeature>) → dynamic
-final __codec40 = new FunctionCodec/*<(List<DataFeature>) → dynamic>*/(
-    (f) => (p_p1) => __codec0.encode(f(__codec38.decode(p_p1))),
-    (JsFunction f) =>
-        (p_p1) => __codec0.decode(f.apply([__codec38.encode(p_p1)])));
+final __codec40 =
+    new FunctionCodec<Function> /*<(List<DataFeature>) → dynamic>*/(
+        (f) => (p_p1) => __codec0.encode(f(__codec38.decode(p_p1))),
+        (JsFunction f) =>
+            (p_p1) => __codec0.decode(f.apply([__codec38.encode(p_p1)])));
 
 /// codec for google_maps.src.(DataFeature) → dynamic
-final __codec39 = new FunctionCodec/*<(DataFeature) → dynamic>*/(
+final __codec39 = new FunctionCodec<Function> /*<(DataFeature) → dynamic>*/(
     (f) => (p_p1) => __codec0.encode(f(__codec37.decode(p_p1))),
     (JsFunction f) =>
         (p_p1) => __codec0.decode(f.apply([__codec37.encode(p_p1)])));
@@ -658,7 +659,7 @@ final __codec16 =
     new JsInterfaceCodec<MapOptions>((o) => new MapOptions.created(o));
 
 /// codec for google_maps.src.([dynamic]) → dynamic
-final __codec15 = new FunctionCodec/*<([dynamic]) → dynamic>*/(
+final __codec15 = new FunctionCodec<Function> /*<([dynamic]) → dynamic>*/(
     (f) => ([p_p1]) => __codec0.encode(f(__codec0.decode(p_p1))),
     (JsFunction f) =>
         ([p_p1]) => __codec0.decode(f.apply([__codec0.encode(p_p1)])));
@@ -684,36 +685,38 @@ final __codec11 = new BiMapCodec<VehicleType, dynamic>(
         value: asJs));
 
 /// codec for google_maps.src.(dynamic, dynamic) → dynamic
-final __codec10 = new FunctionCodec/*<(dynamic, dynamic) → dynamic>*/(
-    (f) => (p_p1, p_p2) =>
-        __codec0.encode(f(__codec0.decode(p_p1), __codec0.decode(p_p2))),
-    (JsFunction f) => (p_p1, p_p2) => __codec0
-        .decode(f.apply([__codec0.encode(p_p1), __codec0.encode(p_p2)])));
+final __codec10 =
+    new FunctionCodec<Function> /*<(dynamic, dynamic) → dynamic>*/(
+        (f) => (p_p1, p_p2) =>
+            __codec0.encode(f(__codec0.decode(p_p1), __codec0.decode(p_p2))),
+        (JsFunction f) => (p_p1, p_p2) => __codec0
+            .decode(f.apply([__codec0.encode(p_p1), __codec0.encode(p_p2)])));
 
 /// codec for google_maps.src.(List<dynamic>, dynamic) → dynamic
-final __codec9 = new FunctionCodec/*<(List<dynamic>, dynamic) → dynamic>*/(
-    (f) => (p_p1, p_p2) =>
-        __codec0.encode(f(__codec1.decode(p_p1), __codec0.decode(p_p2))),
-    (JsFunction f) => (p_p1, p_p2) => __codec0
-        .decode(f.apply([__codec1.encode(p_p1), __codec0.encode(p_p2)])));
+final __codec9 =
+    new FunctionCodec<Function> /*<(List<dynamic>, dynamic) → dynamic>*/(
+        (f) => (p_p1, p_p2) =>
+            __codec0.encode(f(__codec1.decode(p_p1), __codec0.decode(p_p2))),
+        (JsFunction f) => (p_p1, p_p2) => __codec0
+            .decode(f.apply([__codec1.encode(p_p1), __codec0.encode(p_p2)])));
 
 /// codec for dart.core.List<num>
 final __codec8 = new JsListCodec<num>(null);
 
 /// codec for google_maps.src.(dynamic, String) → dynamic
-final __codec7 = new FunctionCodec/*<(dynamic, String) → dynamic>*/(
+final __codec7 = new FunctionCodec<Function> /*<(dynamic, String) → dynamic>*/(
     (f) => (p_p1, p_p2) => __codec0.encode(f(__codec0.decode(p_p1), p_p2)),
     (JsFunction f) => (p_p1, p_p2) =>
         __codec0.decode(f.apply([__codec0.encode(p_p1), p_p2])));
 
 /// codec for google_maps.src.(Object) → dynamic
-final __codec6 = new FunctionCodec/*<(Object) → dynamic>*/(
+final __codec6 = new FunctionCodec<Function> /*<(Object) → dynamic>*/(
     (f) => (p_p1) => __codec0.encode(f(__codec2.decode(p_p1))),
     (JsFunction f) =>
         (p_p1) => __codec0.decode(f.apply([__codec2.encode(p_p1)])));
 
 /// codec for google_maps.src.(List<dynamic>) → dynamic
-final __codec5 = new FunctionCodec/*<(List<dynamic>) → dynamic>*/(
+final __codec5 = new FunctionCodec<Function> /*<(List<dynamic>) → dynamic>*/(
     (f) => (p_p1) => __codec0.encode(f(__codec1.decode(p_p1))),
     (JsFunction f) =>
         (p_p1) => __codec0.decode(f.apply([__codec1.encode(p_p1)])));
@@ -722,7 +725,7 @@ final __codec5 = new FunctionCodec/*<(List<dynamic>) → dynamic>*/(
 final __codec4 = new JsListCodec<String>(null);
 
 /// codec for google_maps.src.(dynamic) → dynamic
-final __codec3 = new FunctionCodec/*<(dynamic) → dynamic>*/(
+final __codec3 = new FunctionCodec<Function> /*<(dynamic) → dynamic>*/(
     (f) => (p_p1) => __codec0.encode(f(__codec0.decode(p_p1))),
     (JsFunction f) =>
         (p_p1) => __codec0.decode(f.apply([__codec0.encode(p_p1)])));
@@ -1962,7 +1965,8 @@ class DataFeatureOptions extends JsInterface {
         ..add(new JsInterfaceCodec<DataPolygon>(
             (o) => new DataPolygon.created(o),
             (o) =>
-                o != null && o.instanceof(context['google']['maps']['Data']['Polygon'] as JsFunction)))
+                o != null &&
+                o.instanceof(context['google']['maps']['Data']['Polygon'] as JsFunction)))
         ..add(new JsInterfaceCodec<DataLinearRing>((o) => new DataLinearRing.created(o), (o) => o != null && o.instanceof(context['google']['maps']['Data']['LinearRing'] as JsFunction)))
         ..add(new JsInterfaceCodec<DataMultiLineString>((o) => new DataMultiLineString.created(o), (o) => o != null && o.instanceof(context['google']['maps']['Data']['MultiLineString'] as JsFunction)))
         ..add(new JsInterfaceCodec<DataLineString>((o) => new DataLineString.created(o), (o) => o != null && o.instanceof(context['google']['maps']['Data']['LineString'] as JsFunction)))
@@ -2167,8 +2171,8 @@ class DataPolygon extends DataGeometry {
 class DataMultiPolygon extends DataGeometry {
   DataMultiPolygon.created(JsObject o) : super.created(o);
   DataMultiPolygon(
-      List<
-          dynamic /*DataPolygon|List<dynamic/*DataLinearRing|List<LatLng>*/>*/ > elements)
+      List<dynamic /*DataPolygon|List<dynamic/*DataLinearRing|List<LatLng>*/>*/ >
+          elements)
       : this.created(new JsObject(
             context['google']['maps']['Data']['MultiPolygon'] as JsFunction, [
           (new JsListCodec<dynamic /*DataPolygon|List<dynamic/*DataLinearRing|List<LatLng>*/>*/ >(
@@ -2208,7 +2212,7 @@ class DataGeometryCollection extends DataGeometry {
   DataGeometryCollection(List<dynamic /*DataGeometry|LatLng*/ > elements)
       : this.created(new JsObject(
             context['google']['maps']['Data']['GeometryCollection']
-            as JsFunction,
+                as JsFunction,
             [
               (new JsListCodec<dynamic /*DataGeometry|LatLng*/ >(
                       new ChainedCodec()
@@ -2248,28 +2252,30 @@ class DataGeometryCollection extends DataGeometry {
           .decode(_getArray() as JsArray);
   _getArray() => __codec0.decode(asJsObject(this).callMethod('getArray'));
 
-  dynamic /*DataGeometryCollection|DataMultiPolygon|DataPolygon|DataLinearRing|DataMultiLineString|DataLineString|DataMultiPoint|DataPoint*/ getAt(num n) => (new ChainedCodec()
-        ..add(new JsInterfaceCodec<DataGeometryCollection>(
-            (o) => new DataGeometryCollection.created(o),
-            (o) =>
-                o != null &&
-                o.instanceof(context['google']['maps']['Data']
-                    ['GeometryCollection'] as JsFunction)))
-        ..add(new JsInterfaceCodec<DataMultiPolygon>(
-            (o) => new DataMultiPolygon.created(o),
-            (o) =>
-                o != null &&
-                o.instanceof(context['google']['maps']['Data']['MultiPolygon']
-                    as JsFunction)))
-        ..add(new JsInterfaceCodec<DataPolygon>(
-            (o) => new DataPolygon.created(o),
-            (o) => o != null && o.instanceof(context['google']['maps']['Data']['Polygon'] as JsFunction)))
-        ..add(new JsInterfaceCodec<DataLinearRing>((o) => new DataLinearRing.created(o), (o) => o != null && o.instanceof(context['google']['maps']['Data']['LinearRing'] as JsFunction)))
-        ..add(new JsInterfaceCodec<DataMultiLineString>((o) => new DataMultiLineString.created(o), (o) => o != null && o.instanceof(context['google']['maps']['Data']['MultiLineString'] as JsFunction)))
-        ..add(new JsInterfaceCodec<DataLineString>((o) => new DataLineString.created(o), (o) => o != null && o.instanceof(context['google']['maps']['Data']['LineString'] as JsFunction)))
-        ..add(new JsInterfaceCodec<DataMultiPoint>((o) => new DataMultiPoint.created(o), (o) => o != null && o.instanceof(context['google']['maps']['Data']['MultiPoint'] as JsFunction)))
-        ..add(new JsInterfaceCodec<DataPoint>((o) => new DataPoint.created(o), (o) => o != null && o.instanceof(context['google']['maps']['Data']['Point'] as JsFunction))))
-      .decode(_getAt(n));
+  dynamic /*DataGeometryCollection|DataMultiPolygon|DataPolygon|DataLinearRing|DataMultiLineString|DataLineString|DataMultiPoint|DataPoint*/ getAt(
+          num n) =>
+      (new ChainedCodec()
+            ..add(new JsInterfaceCodec<DataGeometryCollection>(
+                (o) => new DataGeometryCollection.created(o),
+                (o) =>
+                    o != null &&
+                    o.instanceof(context['google']['maps']['Data']
+                        ['GeometryCollection'] as JsFunction)))
+            ..add(new JsInterfaceCodec<DataMultiPolygon>(
+                (o) => new DataMultiPolygon.created(o),
+                (o) =>
+                    o != null &&
+                    o.instanceof(context['google']['maps']['Data']
+                        ['MultiPolygon'] as JsFunction)))
+            ..add(new JsInterfaceCodec<DataPolygon>(
+                (o) => new DataPolygon.created(o),
+                (o) => o != null && o.instanceof(context['google']['maps']['Data']['Polygon'] as JsFunction)))
+            ..add(new JsInterfaceCodec<DataLinearRing>((o) => new DataLinearRing.created(o), (o) => o != null && o.instanceof(context['google']['maps']['Data']['LinearRing'] as JsFunction)))
+            ..add(new JsInterfaceCodec<DataMultiLineString>((o) => new DataMultiLineString.created(o), (o) => o != null && o.instanceof(context['google']['maps']['Data']['MultiLineString'] as JsFunction)))
+            ..add(new JsInterfaceCodec<DataLineString>((o) => new DataLineString.created(o), (o) => o != null && o.instanceof(context['google']['maps']['Data']['LineString'] as JsFunction)))
+            ..add(new JsInterfaceCodec<DataMultiPoint>((o) => new DataMultiPoint.created(o), (o) => o != null && o.instanceof(context['google']['maps']['Data']['MultiPoint'] as JsFunction)))
+            ..add(new JsInterfaceCodec<DataPoint>((o) => new DataPoint.created(o), (o) => o != null && o.instanceof(context['google']['maps']['Data']['Point'] as JsFunction))))
+          .decode(_getAt(n));
   _getAt(num n) => __codec0.decode(asJsObject(this).callMethod('getAt', [n]));
 
   num get length => _getLength();
@@ -2495,8 +2501,8 @@ class DataRemovePropertyEvent extends JsInterface {
 @GeneratedFrom(_Marker)
 @JsName('google.maps.Marker')
 class Marker extends MVCObject {
-  static get MAX_ZINDEX =>
-      __codec0.decode(context['google']['maps']['Marker']['MAX_ZINDEX']);
+  static num get MAX_ZINDEX =>
+      context['google']['maps']['Marker']['MAX_ZINDEX'];
 
   Marker.created(JsObject o) : super.created(o);
   Marker([MarkerOptions opts])
@@ -3240,19 +3246,17 @@ class Polyline extends MVCObject {
 
   void set path(dynamic /*MVCArray<LatLng>|List<LatLng>*/ path) =>
       _setPath((new ChainedCodec()
-            ..add(new JsInterfaceCodec<MVCArray<LatLng>>((o) =>
-                new MVCArray<LatLng>.created(
-                    o,
-                    new JsInterfaceCodec<LatLng>(
-                        (o) => new LatLng.created(o),
-                        (o) =>
-                            o != null &&
-                            o.instanceof(context['google']['maps']['LatLng']
-                                as JsFunction)))))
+            ..add(new JsInterfaceCodec<MVCArray<LatLng>>((o) => new MVCArray<LatLng>.created(
+                o,
+                new JsInterfaceCodec<LatLng>(
+                    (o) => new LatLng.created(o),
+                    (o) =>
+                        o != null &&
+                        o.instanceof(context['google']['maps']['LatLng']
+                            as JsFunction)))))
             ..add(new JsListCodec<LatLng>(new JsInterfaceCodec<LatLng>(
                 (o) => new LatLng.created(o),
-                (o) =>
-                    o != null && o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))))
+                (o) => o != null && o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))))
           .encode(path));
   void _setPath(dynamic /*MVCArray<LatLng>|List<LatLng>*/ path) {
     asJsObject(this).callMethod('setPath', [__codec0.encode(path)]);
@@ -3484,25 +3488,24 @@ class Polygon extends MVCObject {
 
   void set path(dynamic /*MVCArray<LatLng>|List<LatLng>*/ path) =>
       _setPath((new ChainedCodec()
-            ..add(new JsInterfaceCodec<MVCArray<LatLng>>((o) =>
-                new MVCArray<LatLng>.created(
-                    o,
-                    new JsInterfaceCodec<LatLng>(
-                        (o) => new LatLng.created(o),
-                        (o) =>
-                            o != null &&
-                            o.instanceof(context['google']['maps']['LatLng']
-                                as JsFunction)))))
+            ..add(new JsInterfaceCodec<MVCArray<LatLng>>((o) => new MVCArray<LatLng>.created(
+                o,
+                new JsInterfaceCodec<LatLng>(
+                    (o) => new LatLng.created(o),
+                    (o) =>
+                        o != null &&
+                        o.instanceof(context['google']['maps']['LatLng']
+                            as JsFunction)))))
             ..add(new JsListCodec<LatLng>(new JsInterfaceCodec<LatLng>(
                 (o) => new LatLng.created(o),
-                (o) =>
-                    o != null && o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))))
+                (o) => o != null && o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))))
           .encode(path));
   void _setPath(dynamic /*MVCArray<LatLng>|List<LatLng>*/ path) {
     asJsObject(this).callMethod('setPath', [__codec0.encode(path)]);
   }
 
-  void set paths(dynamic /*MVCArray<MVCArray<LatLng>>|MVCArray<LatLng>|List<List<LatLng>>|List<LatLng>*/ paths) =>
+  void set paths(
+          dynamic /*MVCArray<MVCArray<LatLng>>|MVCArray<LatLng>|List<List<LatLng>>|List<LatLng>*/ paths) =>
       _setPaths((new ChainedCodec()
             ..add(new JsInterfaceCodec<MVCArray<MVCArray<LatLng>>>((o) =>
                 new MVCArray<MVCArray<LatLng>>.created(
@@ -3514,8 +3517,7 @@ class Polygon extends MVCObject {
                                 (o) => new LatLng.created(o),
                                 (o) =>
                                     o != null &&
-                                    o.instanceof(
-                                        context['google']['maps']['LatLng'] as JsFunction)))))))
+                                    o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))))))
             ..add(new JsInterfaceCodec<MVCArray<LatLng>>((o) => new MVCArray<LatLng>.created(o, new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o), (o) => o != null && o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))))
             ..add(new JsListCodec<List<LatLng>>(new JsListCodec<LatLng>(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o), (o) => o != null && o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))))
             ..add(new JsListCodec<LatLng>(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o), (o) => o != null && o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))))
@@ -3625,16 +3627,17 @@ class PolygonOptions extends JsInterface {
           ..add(new JsInterfaceCodec<MVCArray<MVCArray<LatLng>>>((o) =>
               new MVCArray<MVCArray<LatLng>>.created(
                   o,
-                  new JsInterfaceCodec<MVCArray<LatLng>>((o) => new MVCArray<LatLng>.created(
-                      o,
-                      new JsInterfaceCodec<LatLng>(
-                          (o) => new LatLng.created(o),
-                          (o) =>
-                              o != null &&
-                              o.instanceof(context['google']['maps']['LatLng']
-                                  as JsFunction)))))))
-          ..add(new JsInterfaceCodec<MVCArray<LatLng>>(
-              (o) => new MVCArray<LatLng>.created(o, new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o), (o) => o != null && o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))))
+                  new JsInterfaceCodec<MVCArray<LatLng>>((o) =>
+                      new MVCArray<LatLng>.created(
+                          o,
+                          new JsInterfaceCodec<LatLng>(
+                              (o) => new LatLng.created(o),
+                              (o) =>
+                                  o != null &&
+                                  o.instanceof(context['google']['maps']
+                                      ['LatLng'] as JsFunction)))))))
+          ..add(
+              new JsInterfaceCodec<MVCArray<LatLng>>((o) => new MVCArray<LatLng>.created(o, new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o), (o) => o != null && o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))))
           ..add(new JsListCodec<List<LatLng>>(new JsListCodec<LatLng>(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o), (o) => o != null && o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))))
           ..add(new JsListCodec<LatLng>(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o), (o) => o != null && o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))))
         .encode(paths);

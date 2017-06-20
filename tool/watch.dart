@@ -14,7 +14,7 @@
 
 library js_wrapping_generator.tool.watch;
 
-import 'package:build/build.dart';
+import 'package:build_runner/build_runner.dart';
 
 import 'phases.dart';
 

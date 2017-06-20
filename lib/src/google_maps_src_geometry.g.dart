@@ -40,8 +40,7 @@ class Encoding extends JsInterface {
                         (o) => new LatLng.created(o),
                         (o) =>
                             o != null &&
-                            o.instanceof(
-                                context['google']['maps']['LatLng'] as JsFunction))))))
+                            o.instanceof(context['google']['maps']['LatLng'] as JsFunction))))))
           .encode(path)) as String;
   _encodePath(dynamic /*List<LatLng>|MVCArray<LatLng>*/ path) =>
       __codec2.decode(
@@ -52,8 +51,7 @@ class Encoding extends JsInterface {
 class Spherical extends JsInterface {
   Spherical.created(JsObject o) : super.created(o);
 
-  num computeArea(dynamic /*List<LatLng>|MVCArray<LatLng>*/ path,
-          [num radius]) =>
+  num computeArea(dynamic /*List<LatLng>|MVCArray<LatLng>*/ path, [num radius]) =>
       _computeArea(
           (new ChainedCodec()
                 ..add(new JsListCodec<LatLng>(new JsInterfaceCodec<LatLng>(
@@ -80,7 +78,8 @@ class Spherical extends JsInterface {
           [__codec0.encode(from), __codec0.encode(to), radius]);
   num computeHeading(LatLng from, LatLng to) => asJsObject(this).callMethod(
       'computeHeading', [__codec0.encode(from), __codec0.encode(to)]);
-  num computeLength(dynamic /*List<LatLng>|MVCArray<LatLng>*/ path, [num radius]) =>
+  num computeLength(dynamic /*List<LatLng>|MVCArray<LatLng>*/ path,
+          [num radius]) =>
       _computeLength(
           (new ChainedCodec()
                 ..add(new JsListCodec<LatLng>(new JsInterfaceCodec<LatLng>(
@@ -96,8 +95,7 @@ class Spherical extends JsInterface {
                             (o) => new LatLng.created(o),
                             (o) =>
                                 o != null &&
-                                o.instanceof(
-                                    context['google']['maps']['LatLng'] as JsFunction))))))
+                                o.instanceof(context['google']['maps']['LatLng'] as JsFunction))))))
               .encode(path),
           radius) as num;
   _computeLength(dynamic /*List<LatLng>|MVCArray<LatLng>*/ path,
@@ -111,8 +109,7 @@ class Spherical extends JsInterface {
           [num radius]) =>
       __codec0.decode(asJsObject(this).callMethod('computeOffsetOrigin',
           [__codec0.encode(to), distance, heading, radius]));
-  num computeSignedArea(dynamic /*List<LatLng>|MVCArray<LatLng>*/ loop,
-          [num radius]) =>
+  num computeSignedArea(dynamic /*List<LatLng>|MVCArray<LatLng>*/ loop, [num radius]) =>
       _computeSignedArea(
           (new ChainedCodec()
                 ..add(new JsListCodec<LatLng>(new JsInterfaceCodec<LatLng>(
