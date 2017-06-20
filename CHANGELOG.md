@@ -1,4 +1,8 @@
 
+# v3.2.1 (2017-06-20)
+
+- Fix [Upgrade from comment-based generics syntax](https://github.com/a14n/dart-google-maps/issues/45)
+
 # v3.2.0+2 (2017-01-16)
 
 - fix issue with mirrors and Dart2js (see http://dartbug.com/28371)
