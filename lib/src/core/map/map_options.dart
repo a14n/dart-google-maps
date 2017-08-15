@@ -20,14 +20,18 @@ abstract class _MapOptions implements JsInterface {
 
   String backgroundColor;
   LatLng center;
+  bool clickableIcons;
   bool disableDefaultUI;
   bool disableDoubleClickZoom;
+  @Deprecated("To disable dragging of the map on desktop devices, use the gestureHandling property and set it to 'none'")
   bool draggable;
   String draggableCursor;
   String draggingCursor;
+  bool fullscreenControl;
+  FullscreenControlOptions fullscreenControlOptions;
+  String gestureHandling;
   num heading;
   bool keyboardShortcuts;
-  bool mapMaker;
   bool mapTypeControl;
   MapTypeControlOptions mapTypeControlOptions;
   dynamic _mapTypeId;

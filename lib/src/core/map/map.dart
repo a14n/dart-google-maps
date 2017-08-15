@@ -23,6 +23,8 @@ abstract class _GMap extends MVCObject {
   LatLngBounds _getBounds();
   LatLng get center => _getCenter();
   LatLng _getCenter();
+  bool get clickableIcons => _getClickableIcons();
+  bool _getClickableIcons();
   Node get div => _getDiv();
   Node _getDiv();
   num get heading => _getHeading();
@@ -49,6 +51,8 @@ abstract class _GMap extends MVCObject {
   void panToBounds(LatLngBounds latLngBounds);
   void set center(LatLng latlng) => _setCenter(latlng);
   void _setCenter(LatLng latlng);
+  void set clickableIcons(bool value) => _setClickableIcons(value);
+  void _setClickableIcons(bool value);
   void set heading(num heading) => _setHeading(heading);
   void _setHeading(num heading);
   void set mapTypeId(dynamic /*MapTypeId|String*/ mapTypeId) => _setMapTypeId(

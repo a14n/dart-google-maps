@@ -28,6 +28,7 @@ part 'google_maps_src.g.dart';
 part 'core/map/map.dart';
 part 'core/map/map_options.dart';
 part 'core/map/map_type_id.dart';
+part 'core/controls/fullscreen_control_options.dart';
 part 'core/controls/map_type_control_options.dart';
 part 'core/controls/map_type_control_style.dart';
 part 'core/controls/overview_map_control_options.dart';
