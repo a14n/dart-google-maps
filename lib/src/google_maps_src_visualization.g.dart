@@ -4,7 +4,6 @@ part of google_maps.src.visualization;
 
 // **************************************************************************
 // Generator: JsInterfaceGenerator
-// Target: library google_maps.src.visualization
 // **************************************************************************
 
 /// codec for google_maps.src.visualization.HeatmapLayerOptions

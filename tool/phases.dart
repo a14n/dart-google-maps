@@ -18,27 +18,17 @@ import 'package:build_runner/build_runner.dart';
 import 'package:js_wrapping_generator/js_interface_generator.dart';
 import 'package:source_gen/source_gen.dart';
 
-final _builder = new GeneratorBuilder([
-  new JsInterfaceGenerator(),
-]);
+final _builder = new PartBuilder([new JsInterfaceGenerator()]);
 
-final PhaseGroup phases = new PhaseGroup()
-  ..addPhase(new Phase()
-    ..addAction(
-        _builder,
-        new InputSet('google_maps', const [
-          'lib/src/google_maps_src.dart',
-        ])))
-  ..addPhase(new Phase()
-    ..addAction(
-        _builder,
-        new InputSet('google_maps', const [
-          'lib/src/google_maps_src_*.dart',
-        ])))
-  ..addPhase(new Phase()
-    ..addAction(
-        _builder,
-        new InputSet('google_maps', const [
-          'example/**/*.dart',
-          'example/*.dart',
-        ])));
+final List<BuildAction> phases = <BuildAction>[
+  new BuildAction(_builder, 'google_maps', inputs: const [
+    'lib/src/google_maps_src.dart',
+  ]),
+  new BuildAction(_builder, 'google_maps', inputs: const [
+    'lib/src/google_maps_src_*.dart',
+  ]),
+  new BuildAction(_builder, 'google_maps', inputs: const [
+    'example/**/*.dart',
+    'example/*.dart',
+  ])
+];

@@ -4,7 +4,6 @@ part of google_maps.src.places;
 
 // **************************************************************************
 // Generator: JsInterfaceGenerator
-// Target: library google_maps.src.places
 // **************************************************************************
 
 /// codec for google_maps.src.places.SearchBoxOptions

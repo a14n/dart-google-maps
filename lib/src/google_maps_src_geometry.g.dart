@@ -4,7 +4,6 @@ part of google_maps.src.geometry;
 
 // **************************************************************************
 // Generator: JsInterfaceGenerator
-// Target: library google_maps.src.geometry
 // **************************************************************************
 
 /// codec for google_maps.src.Polygon

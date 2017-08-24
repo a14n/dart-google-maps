@@ -4,7 +4,6 @@ part of google_maps.src.adsense;
 
 // **************************************************************************
 // Generator: JsInterfaceGenerator
-// Target: library google_maps.src.adsense
 // **************************************************************************
 
 /// codec for google_maps.src.adsense.AdFormat

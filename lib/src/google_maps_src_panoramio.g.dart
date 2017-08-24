@@ -4,7 +4,6 @@ part of google_maps.src.panoramio;
 
 // **************************************************************************
 // Generator: JsInterfaceGenerator
-// Target: library google_maps.src.panoramio
 // **************************************************************************
 
 /// codec for google_maps.src.panoramio.PanoramioFeature
