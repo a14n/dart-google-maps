@@ -4,7 +4,6 @@ part of google_maps.src.drawing;
 
 // **************************************************************************
 // Generator: JsInterfaceGenerator
-// Target: library google_maps.src.drawing
 // **************************************************************************
 
 /// codec for dart.core.List<OverlayType>

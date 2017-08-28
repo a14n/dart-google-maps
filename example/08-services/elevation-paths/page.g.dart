@@ -4,7 +4,6 @@ part of example;
 
 // **************************************************************************
 // Generator: JsInterfaceGenerator
-// Target: library example
 // **************************************************************************
 
 /// codec for example.DataTable

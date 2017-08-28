@@ -4,7 +4,6 @@ part of google_maps.src.weather;
 
 // **************************************************************************
 // Generator: JsInterfaceGenerator
-// Target: library google_maps.src.weather
 // **************************************************************************
 
 /// codec for dart.core.List<WeatherForecast>
