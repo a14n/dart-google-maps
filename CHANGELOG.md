@@ -1,4 +1,8 @@
 
+# v3.2.2 (2017-08-28)
+
+- Support some additions from Google Maps API 3.28
+
 # v3.2.1 (2017-06-20)
 
 - Fix [Upgrade from comment-based generics syntax](https://github.com/a14n/dart-google-maps/issues/45)
