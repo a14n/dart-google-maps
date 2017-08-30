@@ -14,8 +14,9 @@ final __codec13 = new JsInterfaceCodec<HeatmapLayerOptions>(
 final __codec12 =
     new FunctionCodec<Function> /*<(MapsEngineMouseEvent) → dynamic>*/(
         (f) => (p_p1) => __codec0.encode(f(__codec11.decode(p_p1))),
-        (JsFunction f) =>
-            (p_p1) => __codec0.decode(f.apply([__codec11.encode(p_p1)])));
+        (f) => (p_p1) => __codec0.decode((f is JsFunction
+            ? f.apply([__codec11.encode(p_p1)])
+            : Function.apply(f, [__codec11.encode(p_p1)]))));
 
 /// codec for google_maps.src.visualization.MapsEngineMouseEvent
 final __codec11 = new JsInterfaceCodec<MapsEngineMouseEvent>(
@@ -48,8 +49,9 @@ final __codec5 = new JsListCodec<String>(null);
 /// codec for google_maps.src.visualization.(dynamic) → dynamic
 final __codec4 = new FunctionCodec<Function> /*<(dynamic) → dynamic>*/(
     (f) => (p_p1) => __codec0.encode(f(__codec0.decode(p_p1))),
-    (JsFunction f) =>
-        (p_p1) => __codec0.decode(f.apply([__codec0.encode(p_p1)])));
+    (f) => (p_p1) => __codec0.decode((f is JsFunction
+        ? f.apply([__codec0.encode(p_p1)])
+        : Function.apply(f, [__codec0.encode(p_p1)]))));
 
 /// codec for google_maps.src.Size
 final __codec3 = new JsInterfaceCodec<Size>((o) => new Size.created(o));

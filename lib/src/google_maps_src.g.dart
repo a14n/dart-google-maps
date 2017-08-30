@@ -51,8 +51,10 @@ final __codec161 = new FunctionCodec<Function> /*<(dynamic, num) → void>*/(
     (f) => (p_o, p_index) {
           f(__codec0.decode(p_o), p_index);
         },
-    (JsFunction f) => (p_o, p_index) {
-          f.apply([__codec0.encode(p_o), p_index]);
+    (f) => (p_o, p_index) {
+          (f is JsFunction
+              ? f.apply([__codec0.encode(p_o), p_index])
+              : Function.apply(f, [__codec0.encode(p_o), p_index]));
         });
 
 /// codec for google_maps.src.MapsEventListener
@@ -64,8 +66,10 @@ final __codec159 = new FunctionCodec<
         Function> /*<(StreetViewPanoramaData, StreetViewStatus) → dynamic>*/(
     (f) => (p_p1, p_p2) =>
         __codec0.encode(f(__codec158.decode(p_p1), __codec152.decode(p_p2))),
-    (JsFunction f) => (p_p1, p_p2) => __codec0
-        .decode(f.apply([__codec158.encode(p_p1), __codec152.encode(p_p2)])));
+    (f) => (p_p1, p_p2) => __codec0.decode((f is JsFunction
+        ? f.apply([__codec158.encode(p_p1), __codec152.encode(p_p2)])
+        : Function
+            .apply(f, [__codec158.encode(p_p1), __codec152.encode(p_p2)]))));
 
 /// codec for google_maps.src.StreetViewPanoramaData
 final __codec158 = new JsInterfaceCodec<StreetViewPanoramaData>(
@@ -93,7 +97,8 @@ final __codec154 = new JsInterfaceCodec<StreetViewAddressControlOptions>(
 /// codec for google_maps.src.(String) → dynamic
 final __codec153 = new FunctionCodec<Function> /*<(String) → dynamic>*/(
     (f) => (p_p1) => __codec0.encode(f(p_p1)),
-    (JsFunction f) => (p_p1) => __codec0.decode(f.apply([p_p1])));
+    (f) => (p_p1) => __codec0.decode(
+        (f is JsFunction ? f.apply([p_p1]) : Function.apply(f, [p_p1]))));
 
 /// codec for google_maps.src.StreetViewStatus
 final __codec152 = new BiMapCodec<StreetViewStatus, dynamic>(
@@ -225,8 +230,10 @@ final __codec120 = new FunctionCodec<
         Function> /*<(DistanceMatrixResponse, DistanceMatrixStatus) → dynamic>*/(
     (f) => (p_p1, p_p2) =>
         __codec0.encode(f(__codec118.decode(p_p1), __codec119.decode(p_p2))),
-    (JsFunction f) => (p_p1, p_p2) => __codec0
-        .decode(f.apply([__codec118.encode(p_p1), __codec119.encode(p_p2)])));
+    (f) => (p_p1, p_p2) => __codec0.decode((f is JsFunction
+        ? f.apply([__codec118.encode(p_p1), __codec119.encode(p_p2)])
+        : Function
+            .apply(f, [__codec118.encode(p_p1), __codec119.encode(p_p2)]))));
 
 /// codec for google_maps.src.DistanceMatrixStatus
 final __codec119 = new BiMapCodec<DistanceMatrixStatus, dynamic>(
@@ -250,8 +257,9 @@ final __codec116 = new BiMapCodec<MaxZoomStatus, dynamic>(
 /// codec for google_maps.src.(MaxZoomResult) → dynamic
 final __codec115 = new FunctionCodec<Function> /*<(MaxZoomResult) → dynamic>*/(
     (f) => (p_p1) => __codec0.encode(f(__codec114.decode(p_p1))),
-    (JsFunction f) =>
-        (p_p1) => __codec0.decode(f.apply([__codec114.encode(p_p1)])));
+    (f) => (p_p1) => __codec0.decode((f is JsFunction
+        ? f.apply([__codec114.encode(p_p1)])
+        : Function.apply(f, [__codec114.encode(p_p1)]))));
 
 /// codec for google_maps.src.MaxZoomResult
 final __codec114 =
@@ -266,8 +274,10 @@ final __codec112 = new FunctionCodec<
         Function> /*<(List<ElevationResult>, ElevationStatus) → dynamic>*/(
     (f) => (p_p1, p_p2) =>
         __codec0.encode(f(__codec110.decode(p_p1), __codec111.decode(p_p2))),
-    (JsFunction f) => (p_p1, p_p2) => __codec0
-        .decode(f.apply([__codec110.encode(p_p1), __codec111.encode(p_p2)])));
+    (f) => (p_p1, p_p2) => __codec0.decode((f is JsFunction
+        ? f.apply([__codec110.encode(p_p1), __codec111.encode(p_p2)])
+        : Function
+            .apply(f, [__codec110.encode(p_p1), __codec111.encode(p_p2)]))));
 
 /// codec for google_maps.src.ElevationStatus
 final __codec111 = new BiMapCodec<ElevationStatus, dynamic>(
@@ -398,8 +408,10 @@ final __codec79 = new FunctionCodec<
         Function> /*<(DirectionsResult, DirectionsStatus) → dynamic>*/(
     (f) => (p_p1, p_p2) =>
         __codec0.encode(f(__codec76.decode(p_p1), __codec78.decode(p_p2))),
-    (JsFunction f) => (p_p1, p_p2) => __codec0
-        .decode(f.apply([__codec76.encode(p_p1), __codec78.encode(p_p2)])));
+    (f) => (p_p1, p_p2) => __codec0.decode((f is JsFunction
+        ? f.apply([__codec76.encode(p_p1), __codec78.encode(p_p2)])
+        : Function
+            .apply(f, [__codec76.encode(p_p1), __codec78.encode(p_p2)]))));
 
 /// codec for google_maps.src.DirectionsStatus
 final __codec78 = new BiMapCodec<DirectionsStatus, dynamic>(
@@ -444,8 +456,10 @@ final __codec69 = new FunctionCodec<
         Function> /*<(List<GeocoderResult>, GeocoderStatus) → dynamic>*/(
     (f) => (p_p1, p_p2) =>
         __codec0.encode(f(__codec67.decode(p_p1), __codec68.decode(p_p2))),
-    (JsFunction f) => (p_p1, p_p2) => __codec0
-        .decode(f.apply([__codec67.encode(p_p1), __codec68.encode(p_p2)])));
+    (f) => (p_p1, p_p2) => __codec0.decode((f is JsFunction
+        ? f.apply([__codec67.encode(p_p1), __codec68.encode(p_p2)])
+        : Function
+            .apply(f, [__codec67.encode(p_p1), __codec68.encode(p_p2)]))));
 
 /// codec for google_maps.src.GeocoderStatus
 final __codec68 = new BiMapCodec<GeocoderStatus, dynamic>(
@@ -555,14 +569,16 @@ final __codec42 = new JsInterfaceCodec<DataStyleOptions>(
 final __codec41 =
     new FunctionCodec<Function> /*<(List<DataFeature>) → dynamic>*/(
         (f) => (p_p1) => __codec0.encode(f(__codec39.decode(p_p1))),
-        (JsFunction f) =>
-            (p_p1) => __codec0.decode(f.apply([__codec39.encode(p_p1)])));
+        (f) => (p_p1) => __codec0.decode((f is JsFunction
+            ? f.apply([__codec39.encode(p_p1)])
+            : Function.apply(f, [__codec39.encode(p_p1)]))));
 
 /// codec for google_maps.src.(DataFeature) → dynamic
 final __codec40 = new FunctionCodec<Function> /*<(DataFeature) → dynamic>*/(
     (f) => (p_p1) => __codec0.encode(f(__codec38.decode(p_p1))),
-    (JsFunction f) =>
-        (p_p1) => __codec0.decode(f.apply([__codec38.encode(p_p1)])));
+    (f) => (p_p1) => __codec0.decode((f is JsFunction
+        ? f.apply([__codec38.encode(p_p1)])
+        : Function.apply(f, [__codec38.encode(p_p1)]))));
 
 /// codec for dart.core.List<DataFeature>
 final __codec39 = new JsListCodec<DataFeature>(__codec38);
@@ -664,8 +680,9 @@ final __codec16 =
 /// codec for google_maps.src.([dynamic]) → dynamic
 final __codec15 = new FunctionCodec<Function> /*<([dynamic]) → dynamic>*/(
     (f) => ([p_p1]) => __codec0.encode(f(__codec0.decode(p_p1))),
-    (JsFunction f) =>
-        ([p_p1]) => __codec0.decode(f.apply([__codec0.encode(p_p1)])));
+    (f) => ([p_p1]) => __codec0.decode((f is JsFunction
+        ? f.apply([__codec0.encode(p_p1)])
+        : Function.apply(f, [__codec0.encode(p_p1)]))));
 
 /// codec for dart.core.Map<String, dynamic>
 final __codec14 = new JsObjectAsMapCodec<dynamic>(__codec0);
@@ -692,16 +709,20 @@ final __codec10 =
     new FunctionCodec<Function> /*<(dynamic, dynamic) → dynamic>*/(
         (f) => (p_p1, p_p2) =>
             __codec0.encode(f(__codec0.decode(p_p1), __codec0.decode(p_p2))),
-        (JsFunction f) => (p_p1, p_p2) => __codec0
-            .decode(f.apply([__codec0.encode(p_p1), __codec0.encode(p_p2)])));
+        (f) => (p_p1, p_p2) => __codec0.decode((f is JsFunction
+            ? f.apply([__codec0.encode(p_p1), __codec0.encode(p_p2)])
+            : Function
+                .apply(f, [__codec0.encode(p_p1), __codec0.encode(p_p2)]))));
 
 /// codec for google_maps.src.(List<dynamic>, dynamic) → dynamic
 final __codec9 =
     new FunctionCodec<Function> /*<(List<dynamic>, dynamic) → dynamic>*/(
         (f) => (p_p1, p_p2) =>
             __codec0.encode(f(__codec1.decode(p_p1), __codec0.decode(p_p2))),
-        (JsFunction f) => (p_p1, p_p2) => __codec0
-            .decode(f.apply([__codec1.encode(p_p1), __codec0.encode(p_p2)])));
+        (f) => (p_p1, p_p2) => __codec0.decode((f is JsFunction
+            ? f.apply([__codec1.encode(p_p1), __codec0.encode(p_p2)])
+            : Function
+                .apply(f, [__codec1.encode(p_p1), __codec0.encode(p_p2)]))));
 
 /// codec for dart.core.List<num>
 final __codec8 = new JsListCodec<num>(null);
@@ -709,20 +730,23 @@ final __codec8 = new JsListCodec<num>(null);
 /// codec for google_maps.src.(dynamic, String) → dynamic
 final __codec7 = new FunctionCodec<Function> /*<(dynamic, String) → dynamic>*/(
     (f) => (p_p1, p_p2) => __codec0.encode(f(__codec0.decode(p_p1), p_p2)),
-    (JsFunction f) => (p_p1, p_p2) =>
-        __codec0.decode(f.apply([__codec0.encode(p_p1), p_p2])));
+    (f) => (p_p1, p_p2) => __codec0.decode((f is JsFunction
+        ? f.apply([__codec0.encode(p_p1), p_p2])
+        : Function.apply(f, [__codec0.encode(p_p1), p_p2]))));
 
 /// codec for google_maps.src.(Object) → dynamic
 final __codec6 = new FunctionCodec<Function> /*<(Object) → dynamic>*/(
     (f) => (p_p1) => __codec0.encode(f(__codec2.decode(p_p1))),
-    (JsFunction f) =>
-        (p_p1) => __codec0.decode(f.apply([__codec2.encode(p_p1)])));
+    (f) => (p_p1) => __codec0.decode((f is JsFunction
+        ? f.apply([__codec2.encode(p_p1)])
+        : Function.apply(f, [__codec2.encode(p_p1)]))));
 
 /// codec for google_maps.src.(List<dynamic>) → dynamic
 final __codec5 = new FunctionCodec<Function> /*<(List<dynamic>) → dynamic>*/(
     (f) => (p_p1) => __codec0.encode(f(__codec1.decode(p_p1))),
-    (JsFunction f) =>
-        (p_p1) => __codec0.decode(f.apply([__codec1.encode(p_p1)])));
+    (f) => (p_p1) => __codec0.decode((f is JsFunction
+        ? f.apply([__codec1.encode(p_p1)])
+        : Function.apply(f, [__codec1.encode(p_p1)]))));
 
 /// codec for dart.core.List<String>
 final __codec4 = new JsListCodec<String>(null);
@@ -730,8 +754,9 @@ final __codec4 = new JsListCodec<String>(null);
 /// codec for google_maps.src.(dynamic) → dynamic
 final __codec3 = new FunctionCodec<Function> /*<(dynamic) → dynamic>*/(
     (f) => (p_p1) => __codec0.encode(f(__codec0.decode(p_p1))),
-    (JsFunction f) =>
-        (p_p1) => __codec0.decode(f.apply([__codec0.encode(p_p1)])));
+    (f) => (p_p1) => __codec0.decode((f is JsFunction
+        ? f.apply([__codec0.encode(p_p1)])
+        : Function.apply(f, [__codec0.encode(p_p1)]))));
 
 /// codec for dart.core.Object
 final __codec2 = new DynamicCodec();
