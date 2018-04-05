@@ -40,7 +40,7 @@ abstract class _DataDataOptions implements JsInterface {
                             : new DataStyleOptions.created(e as JsObject))(o))
                     .encode(result);
               };
-            }, (JsFunction f) {
+            }, (f) {
               if (f == null) return null;
               return (p_dataFeature) {
                 final dataFeature = new JsInterfaceCodec<DataFeature>((o) =>
@@ -48,7 +48,9 @@ abstract class _DataDataOptions implements JsInterface {
                             ? null
                             : new DataFeature.created(e as JsObject))(o))
                     .encode(p_dataFeature);
-                final result = f.apply([dataFeature]);
+                final result = f is JsFunction
+                    ? f.apply([dataFeature])
+                    : Function.apply(f, [dataFeature]);
                 return new JsInterfaceCodec<DataStyleOptions>((o) => ((e) =>
                         e == null
                             ? null
@@ -75,7 +77,7 @@ abstract class _DataDataOptions implements JsInterface {
                             : new DataStyleOptions.created(e as JsObject))(o))
                     .encode(result);
               };
-            }, (JsFunction f) {
+            }, (f) {
               if (f == null) return null;
               return (p_dataFeature) {
                 final dataFeature = new JsInterfaceCodec<DataFeature>((o) =>
@@ -83,7 +85,9 @@ abstract class _DataDataOptions implements JsInterface {
                             ? null
                             : new DataFeature.created(e as JsObject))(o))
                     .encode(p_dataFeature);
-                final result = f.apply([dataFeature]);
+                final result = f is JsFunction
+                    ? f.apply([dataFeature])
+                    : Function.apply(f, [dataFeature]);
                 return new JsInterfaceCodec<DataStyleOptions>((o) => ((e) =>
                         e == null
                             ? null
