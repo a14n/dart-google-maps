@@ -3,7 +3,7 @@
 part of example;
 
 // **************************************************************************
-// Generator: JsInterfaceGenerator
+// Generator: JsWrappingGenerator
 // **************************************************************************
 
 /// codec for example.DataTable

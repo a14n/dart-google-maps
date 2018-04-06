@@ -3,7 +3,7 @@
 part of google_maps.src.weather;
 
 // **************************************************************************
-// Generator: JsInterfaceGenerator
+// Generator: JsWrappingGenerator
 // **************************************************************************
 
 /// codec for dart.core.List<WeatherForecast>

@@ -3,7 +3,7 @@
 part of google_maps.src.panoramio;
 
 // **************************************************************************
-// Generator: JsInterfaceGenerator
+// Generator: JsWrappingGenerator
 // **************************************************************************
 
 /// codec for google_maps.src.panoramio.PanoramioFeature

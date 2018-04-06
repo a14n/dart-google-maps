@@ -1,0 +1,6 @@
+targets:
+  $default:
+    builders:
+      js_wrapping_generator|js_wrapping:
+        generate_for:
+        - 'example/**.dart'
