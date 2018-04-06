@@ -22,7 +22,7 @@ void initMap() {
 }
 
 void loadGeoJsonString(String geoString) {
-  var geojson = JSON.decode(geoString);
+  var geojson = json.decode(geoString);
   // TODO(aa) addGeoJson should take a Map
   map.data.addGeoJson(new JsObject.jsify(geojson));
   zoom(map);

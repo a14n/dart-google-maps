@@ -45,9 +45,9 @@ const GALL_PETERS_RANGE_X = 800;
 // we will use the tile size.
 const GALL_PETERS_RANGE_Y = 510;
 
-num degreesToRadians(num deg) => deg * (Math.PI / 180);
+num degreesToRadians(num deg) => deg * (Math.pi / 180);
 
-num radiansToDegrees(num rad) => rad / (Math.PI / 180);
+num radiansToDegrees(num rad) => rad / (Math.pi / 180);
 
 class GallPetersProjection extends Projection {
 

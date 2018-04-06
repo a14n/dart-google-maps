@@ -7,14 +7,14 @@ GMap map;
 const TILE_SIZE = 256;
 final LatLng chicago = new LatLng(41.850033, -87.6500523);
 
-num degreesToRadians(num deg) => deg * (Math.PI / 180);
+num degreesToRadians(num deg) => deg * (Math.pi / 180);
 
-num radiansToDegrees(num rad) => rad / (Math.PI / 180);
+num radiansToDegrees(num rad) => rad / (Math.pi / 180);
 
 class MercatorProjection {
   final _pixelOrigin = new Point(TILE_SIZE / 2, TILE_SIZE / 2);
   static const _pixelsPerLonDegree = TILE_SIZE / 360;
-  static const _pixelsPerLonRadian = TILE_SIZE / (2 * Math.PI);
+  static const _pixelsPerLonRadian = TILE_SIZE / (2 * Math.pi);
 
   Point fromLatLngToPoint(LatLng latLng, [Point point]) {
     if (point == null) point = new Point(0, 0);
@@ -37,7 +37,7 @@ class MercatorProjection {
     var lng = (point.x - origin.x) / _pixelsPerLonDegree;
     var latRadians = (point.y - origin.y) / -_pixelsPerLonRadian;
     var lat =
-        radiansToDegrees(2 * Math.atan(Math.exp(latRadians)) - Math.PI / 2);
+        radiansToDegrees(2 * Math.atan(Math.exp(latRadians)) - Math.pi / 2);
     return new LatLng(lat, lng);
   }
 }
