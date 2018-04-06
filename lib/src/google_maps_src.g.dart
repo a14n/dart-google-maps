@@ -1574,16 +1574,21 @@ class Data extends JsInterface {
                   .encode(f(new JsInterfaceCodec<DataFeature>(
                           (e) => e == null ? null : new DataFeature.created(e))
                       .decode(p_dataFeature as JsObject)));
-            }, (JsFunction f) {
+            }, (f) {
               if (f == null) return null;
-              return (p_dataFeature) =>
-                  new JsInterfaceCodec<DataStyleOptions>((e) =>
-                          e == null ? null : new DataStyleOptions.created(e))
-                      .decode(f.apply([
-                    new JsInterfaceCodec<DataFeature>((e) =>
-                            e == null ? null : new DataFeature.created(e))
-                        .encode(p_dataFeature)
-                  ]) as JsObject);
+              return (p_dataFeature) => new JsInterfaceCodec<DataStyleOptions>(
+                      (e) => e == null ? null : new DataStyleOptions.created(e))
+                  .decode((f is JsFunction
+                      ? f.apply([
+                          new JsInterfaceCodec<DataFeature>((e) =>
+                                  e == null ? null : new DataFeature.created(e))
+                              .encode(p_dataFeature)
+                        ]) as JsObject
+                      : Function.apply(f, [
+                          new JsInterfaceCodec<DataFeature>((e) =>
+                                  e == null ? null : new DataFeature.created(e))
+                              .encode(p_dataFeature)
+                        ]) as JsObject));
             }))
             ..add(new JsInterfaceCodec<DataStyleOptions>(
                 (o) => new DataStyleOptions.created(o))))
@@ -1640,16 +1645,24 @@ class Data extends JsInterface {
                   .encode(f(new JsInterfaceCodec<DataFeature>(((e) =>
                           e == null ? null : new DataFeature.created(e)))
                       .decode(p_dataFeature as JsObject)));
-            }, (JsFunction f) {
+            }, (f) {
               if (f == null) return null;
-              return (p_dataFeature) =>
-                  new JsInterfaceCodec<DataStyleOptions>(((e) =>
+              return (p_dataFeature) => new JsInterfaceCodec<DataStyleOptions>(
+                      ((e) =>
                           e == null ? null : new DataStyleOptions.created(e)))
-                      .decode(f.apply([
-                    new JsInterfaceCodec<DataFeature>(((e) =>
-                            e == null ? null : new DataFeature.created(e)))
-                        .encode(p_dataFeature)
-                  ]) as JsObject);
+                  .decode((f is JsFunction
+                      ? f.apply([
+                          new JsInterfaceCodec<DataFeature>(((e) => e == null
+                                  ? null
+                                  : new DataFeature.created(e)))
+                              .encode(p_dataFeature)
+                        ]) as JsObject
+                      : Function.apply(f, [
+                          new JsInterfaceCodec<DataFeature>(((e) => e == null
+                                  ? null
+                                  : new DataFeature.created(e)))
+                              .encode(p_dataFeature)
+                        ]) as JsObject));
             }))
             ..add(new JsInterfaceCodec<DataStyleOptions>(
                 (o) => new DataStyleOptions.created(o))))
@@ -1750,7 +1763,7 @@ class DataDataOptions extends JsInterface {
                             : new DataStyleOptions.created(e as JsObject))(o))
                     .encode(result);
               };
-            }, (JsFunction f) {
+            }, (f) {
               if (f == null) return null;
               return (p_dataFeature) {
                 final dataFeature = new JsInterfaceCodec<DataFeature>((o) =>
@@ -1758,7 +1771,9 @@ class DataDataOptions extends JsInterface {
                             ? null
                             : new DataFeature.created(e as JsObject))(o))
                     .encode(p_dataFeature);
-                final result = f.apply([dataFeature]);
+                final result = f is JsFunction
+                    ? f.apply([dataFeature])
+                    : Function.apply(f, [dataFeature]);
                 return new JsInterfaceCodec<DataStyleOptions>((o) => ((e) =>
                         e == null
                             ? null
@@ -1785,7 +1800,7 @@ class DataDataOptions extends JsInterface {
                             : new DataStyleOptions.created(e as JsObject))(o))
                     .encode(result);
               };
-            }, (JsFunction f) {
+            }, (f) {
               if (f == null) return null;
               return (p_dataFeature) {
                 final dataFeature = new JsInterfaceCodec<DataFeature>((o) =>
@@ -1793,7 +1808,9 @@ class DataDataOptions extends JsInterface {
                             ? null
                             : new DataFeature.created(e as JsObject))(o))
                     .encode(p_dataFeature);
-                final result = f.apply([dataFeature]);
+                final result = f is JsFunction
+                    ? f.apply([dataFeature])
+                    : Function.apply(f, [dataFeature]);
                 return new JsInterfaceCodec<DataStyleOptions>((o) => ((e) =>
                         e == null
                             ? null
