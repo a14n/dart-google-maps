@@ -6,67 +6,6 @@ part of google_maps.src.visualization;
 // Generator: JsWrappingGenerator
 // **************************************************************************
 
-/// codec for google_maps.src.visualization.HeatmapLayerOptions
-final __codec13 = new JsInterfaceCodec<HeatmapLayerOptions>(
-    (o) => new HeatmapLayerOptions.created(o));
-
-/// codec for google_maps.src.visualization.(MapsEngineMouseEvent) → dynamic
-final __codec12 =
-    new FunctionCodec<Function> /*<(MapsEngineMouseEvent) → dynamic>*/(
-  (f) => (p_p1) => __codec0.encode(f(__codec11.decode(p_p1))),
-  (f) => (p_p1) => __codec0.decode(f is JsFunction
-      ? f.apply([__codec11.encode(p_p1)])
-      : Function.apply(f, [__codec11.encode(p_p1)])),
-);
-
-/// codec for google_maps.src.visualization.MapsEngineMouseEvent
-final __codec11 = new JsInterfaceCodec<MapsEngineMouseEvent>(
-    (o) => new MapsEngineMouseEvent.created(o));
-
-/// codec for google_maps.src.visualization.FeatureStyle
-final __codec10 =
-    new JsInterfaceCodec<FeatureStyle>((o) => new FeatureStyle.created(o));
-
-/// codec for google_maps.src.visualization.DynamicMapsEngineLayerOptions
-final __codec9 = new JsInterfaceCodec<DynamicMapsEngineLayerOptions>(
-    (o) => new DynamicMapsEngineLayerOptions.created(o));
-
-/// codec for google_maps.src.visualization.MapsEngineStatus
-final __codec8 = new BiMapCodec<MapsEngineStatus, dynamic>(
-    new Map<MapsEngineStatus, dynamic>.fromIterable(MapsEngineStatus.values,
-        value: asJs));
-
-/// codec for google_maps.src.visualization.MapsEngineLayerProperties
-final __codec7 = new JsInterfaceCodec<MapsEngineLayerProperties>(
-    (o) => new MapsEngineLayerProperties.created(o));
-
-/// codec for google_maps.src.visualization.MapsEngineLayerOptions
-final __codec6 = new JsInterfaceCodec<MapsEngineLayerOptions>(
-    (o) => new MapsEngineLayerOptions.created(o));
-
-/// codec for dart.core.List<String>
-final __codec5 = new JsListCodec<String>(null);
-
-/// codec for google_maps.src.visualization.(dynamic) → dynamic
-final __codec4 = new FunctionCodec<Function> /*<(dynamic) → dynamic>*/(
-  (f) => (p_p1) => __codec0.encode(f(__codec0.decode(p_p1))),
-  (f) => (p_p1) => __codec0.decode(f is JsFunction
-      ? f.apply([__codec0.encode(p_p1)])
-      : Function.apply(f, [__codec0.encode(p_p1)])),
-);
-
-/// codec for google_maps.src.Size
-final __codec3 = new JsInterfaceCodec<Size>((o) => new Size.created(o));
-
-/// codec for google_maps.src.LatLng
-final __codec2 = new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o));
-
-/// codec for google_maps.src.GMap
-final __codec1 = new JsInterfaceCodec<GMap>((o) => new GMap.created(o));
-
-/// codec for null.dynamic
-final __codec0 = new DynamicCodec();
-
 @GeneratedFrom(_MapsEngineLayer)
 @JsName('google.maps.visualization.MapsEngineLayer')
 class MapsEngineLayer extends MVCObject {
@@ -74,7 +13,7 @@ class MapsEngineLayer extends MVCObject {
   MapsEngineLayer(MapsEngineLayerOptions options)
       : this.created(new JsObject(
             context['google']['maps']['visualization']['MapsEngineLayer'],
-            [__codec6.encode(options)]));
+            [__codec0.encode(options)]));
 
   String get layerId => _getLayerId();
   String _getLayerId() => asJsObject(this).callMethod('getLayerId');
@@ -88,10 +27,10 @@ class MapsEngineLayer extends MVCObject {
   num _getOpacity() => asJsObject(this).callMethod('getOpacity');
   MapsEngineLayerProperties get properties => _getProperties();
   MapsEngineLayerProperties _getProperties() =>
-      __codec7.decode(asJsObject(this).callMethod('getProperties'));
+      __codec2.decode(asJsObject(this).callMethod('getProperties'));
   MapsEngineStatus get status => _getStatus();
   MapsEngineStatus _getStatus() =>
-      __codec8.decode(asJsObject(this).callMethod('getStatus'));
+      __codec3.decode(asJsObject(this).callMethod('getStatus'));
   num get zIndex => _getZIndex();
   num _getZIndex() => asJsObject(this).callMethod('getZIndex');
   void set layerId(String layerId) => _setLayerId(layerId);
@@ -121,7 +60,7 @@ class MapsEngineLayer extends MVCObject {
 
   void set options(MapsEngineLayerOptions options) => _setOptions(options);
   void _setOptions(MapsEngineLayerOptions options) {
-    asJsObject(this).callMethod('setOptions', [__codec6.encode(options)]);
+    asJsObject(this).callMethod('setOptions', [__codec0.encode(options)]);
   }
 
   void set zIndex(num zIndex) => _setZIndex(zIndex);
@@ -225,15 +164,15 @@ class MapsEngineMouseEvent extends JsInterface {
 
   String get infoWindowHtml => asJsObject(this)['infoWindowHtml'];
   void set latLng(LatLng _latLng) {
-    asJsObject(this)['latLng'] = __codec2.encode(_latLng);
+    asJsObject(this)['latLng'] = __codec4.encode(_latLng);
   }
 
-  LatLng get latLng => __codec2.decode(asJsObject(this)['latLng']);
+  LatLng get latLng => __codec4.decode(asJsObject(this)['latLng']);
   void set pixelOffset(Size _pixelOffset) {
-    asJsObject(this)['pixelOffset'] = __codec3.encode(_pixelOffset);
+    asJsObject(this)['pixelOffset'] = __codec5.encode(_pixelOffset);
   }
 
-  Size get pixelOffset => __codec3.decode(asJsObject(this)['pixelOffset']);
+  Size get pixelOffset => __codec5.decode(asJsObject(this)['pixelOffset']);
 }
 
 class MapsEngineStatus extends JsEnum {
@@ -267,9 +206,9 @@ class DynamicMapsEngineLayer extends MVCObject {
       : this.created(new JsObject(
             context['google']['maps']['visualization']
                 ['DynamicMapsEngineLayer'],
-            [__codec9.encode(options)]));
+            [__codec6.encode(options)]));
 
-  FeatureStyle getFeatureStyle(String featureId) => __codec10
+  FeatureStyle getFeatureStyle(String featureId) => __codec7
       .decode(asJsObject(this).callMethod('getFeatureStyle', [featureId]));
   String get layerId => _getLayerId();
   String _getLayerId() => asJsObject(this).callMethod('getLayerId');
@@ -283,7 +222,7 @@ class DynamicMapsEngineLayer extends MVCObject {
   num _getOpacity() => asJsObject(this).callMethod('getOpacity');
   MapsEngineStatus get status => _getStatus();
   MapsEngineStatus _getStatus() =>
-      __codec8.decode(asJsObject(this).callMethod('getStatus'));
+      __codec3.decode(asJsObject(this).callMethod('getStatus'));
   void set layerId(String layerId) => _setLayerId(layerId);
   void _setLayerId(String layerId) {
     asJsObject(this).callMethod('setLayerId', [layerId]);
@@ -312,7 +251,7 @@ class DynamicMapsEngineLayer extends MVCObject {
   void set options(DynamicMapsEngineLayerOptions options) =>
       _setOptions(options);
   void _setOptions(DynamicMapsEngineLayerOptions options) {
-    asJsObject(this).callMethod('setOptions', [__codec9.encode(options)]);
+    asJsObject(this).callMethod('setOptions', [__codec6.encode(options)]);
   }
 
   Stream<DynamicMapsEngineMouseEvent> get onClick => getStream(this, #onClick,
@@ -414,7 +353,7 @@ class DynamicMapsEngineMouseEvent extends JsInterface {
   DynamicMapsEngineMouseEvent() : this.created(new JsObject(context['Object']));
 
   void getDetails(callback(MapsEngineMouseEvent p1)) {
-    asJsObject(this).callMethod('getDetails', [__codec12.encode(callback)]);
+    asJsObject(this).callMethod('getDetails', [__codec10.encode(callback)]);
   }
 
   void set featureId(String _featureId) {
@@ -423,10 +362,10 @@ class DynamicMapsEngineMouseEvent extends JsInterface {
 
   String get featureId => asJsObject(this)['featureId'];
   void set latLng(LatLng _latLng) {
-    asJsObject(this)['latLng'] = __codec2.encode(_latLng);
+    asJsObject(this)['latLng'] = __codec4.encode(_latLng);
   }
 
-  LatLng get latLng => __codec2.decode(asJsObject(this)['latLng']);
+  LatLng get latLng => __codec4.decode(asJsObject(this)['latLng']);
 }
 
 @GeneratedFrom(_FeatureStyle)
@@ -507,7 +446,7 @@ class HeatmapLayer extends MVCObject {
   HeatmapLayer([HeatmapLayerOptions opts])
       : this.created(new JsObject(
             context['google']['maps']['visualization']['HeatmapLayer'],
-            [__codec13.encode(opts)]));
+            [__codec11.encode(opts)]));
 
   MVCArray<dynamic /*LatLng|WeightedLocation*/ > get data =>
       (new JsInterfaceCodec<MVCArray<dynamic /*LatLng|WeightedLocation*/ >>(
@@ -523,7 +462,7 @@ class HeatmapLayer extends MVCObject {
                     ..add(new JsInterfaceCodec<WeightedLocation>(
                         (o) => new WeightedLocation.created(o))))))
           .decode(_getData() as JsObject);
-  _getData() => __codec0.decode(asJsObject(this).callMethod('getData'));
+  _getData() => __codec8.decode(asJsObject(this).callMethod('getData'));
   GMap get map => _getMap();
   GMap _getMap() => __codec1.decode(asJsObject(this).callMethod('getMap'));
   void set data(
@@ -544,7 +483,7 @@ class HeatmapLayer extends MVCObject {
           .encode(data));
   void _setData(
       dynamic /*MVCArray<dynamic/*LatLng|WeightedLocation*/>|List<dynamic/*LatLng|WeightedLocation*/>*/ data) {
-    asJsObject(this).callMethod('setData', [__codec0.encode(data)]);
+    asJsObject(this).callMethod('setData', [__codec8.encode(data)]);
   }
 
   void set map(GMap map) => _setMap(map);
@@ -554,7 +493,7 @@ class HeatmapLayer extends MVCObject {
 
   void set options(HeatmapLayerOptions options) => _setOptions(options);
   void _setOptions(HeatmapLayerOptions options) {
-    asJsObject(this).callMethod('setOptions', [__codec13.encode(options)]);
+    asJsObject(this).callMethod('setOptions', [__codec11.encode(options)]);
   }
 }
 
@@ -565,10 +504,10 @@ class HeatmapLayerOptions extends JsInterface {
   HeatmapLayerOptions() : this.created(new JsObject(context['Object']));
 
   void set _data(dynamic __data) {
-    asJsObject(this)['data'] = __codec0.encode(__data);
+    asJsObject(this)['data'] = __codec8.encode(__data);
   }
 
-  dynamic get _data => __codec0.decode(asJsObject(this)['data']);
+  dynamic get _data => __codec8.decode(asJsObject(this)['data']);
   MVCArray<LatLng> get data => (new JsInterfaceCodec<MVCArray<LatLng>>((o) =>
           new MVCArray<LatLng>.created(
               o,
@@ -598,10 +537,10 @@ class HeatmapLayerOptions extends JsInterface {
 
   bool get dissipating => asJsObject(this)['dissipating'];
   void set gradient(List<String> _gradient) {
-    asJsObject(this)['gradient'] = __codec5.encode(_gradient);
+    asJsObject(this)['gradient'] = __codec12.encode(_gradient);
   }
 
-  List<String> get gradient => __codec5.decode(asJsObject(this)['gradient']);
+  List<String> get gradient => __codec12.decode(asJsObject(this)['gradient']);
   void set map(GMap _map) {
     asJsObject(this)['map'] = __codec1.encode(_map);
   }
@@ -631,13 +570,66 @@ class WeightedLocation extends JsInterface {
   WeightedLocation() : this.created(new JsObject(context['Object']));
 
   void set location(LatLng _location) {
-    asJsObject(this)['location'] = __codec2.encode(_location);
+    asJsObject(this)['location'] = __codec4.encode(_location);
   }
 
-  LatLng get location => __codec2.decode(asJsObject(this)['location']);
+  LatLng get location => __codec4.decode(asJsObject(this)['location']);
   void set weight(num _weight) {
     asJsObject(this)['weight'] = _weight;
   }
 
   num get weight => asJsObject(this)['weight'];
 }
+
+/// codec for google_maps.src.visualization.MapsEngineLayerOptions
+final __codec0 = new JsInterfaceCodec<MapsEngineLayerOptions>(
+    (o) => new MapsEngineLayerOptions.created(o));
+
+/// codec for google_maps.src.GMap
+final __codec1 = new JsInterfaceCodec<GMap>((o) => new GMap.created(o));
+
+/// codec for google_maps.src.visualization.MapsEngineLayerProperties
+final __codec2 = new JsInterfaceCodec<MapsEngineLayerProperties>(
+    (o) => new MapsEngineLayerProperties.created(o));
+
+/// codec for google_maps.src.visualization.MapsEngineStatus
+final __codec3 = new BiMapCodec<MapsEngineStatus, dynamic>(
+    new Map<MapsEngineStatus, dynamic>.fromIterable(MapsEngineStatus.values,
+        value: asJs));
+
+/// codec for google_maps.src.LatLng
+final __codec4 = new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o));
+
+/// codec for google_maps.src.Size
+final __codec5 = new JsInterfaceCodec<Size>((o) => new Size.created(o));
+
+/// codec for google_maps.src.visualization.DynamicMapsEngineLayerOptions
+final __codec6 = new JsInterfaceCodec<DynamicMapsEngineLayerOptions>(
+    (o) => new DynamicMapsEngineLayerOptions.created(o));
+
+/// codec for google_maps.src.visualization.FeatureStyle
+final __codec7 =
+    new JsInterfaceCodec<FeatureStyle>((o) => new FeatureStyle.created(o));
+
+/// codec for null.dynamic
+final __codec8 = new DynamicCodec();
+
+/// codec for google_maps.src.visualization.MapsEngineMouseEvent
+final __codec9 = new JsInterfaceCodec<MapsEngineMouseEvent>(
+    (o) => new MapsEngineMouseEvent.created(o));
+
+/// codec for google_maps.src.visualization.(MapsEngineMouseEvent) → dynamic
+final __codec10 =
+    new FunctionCodec<Function> /*<(MapsEngineMouseEvent) → dynamic>*/(
+  (f) => (p_p1) => __codec8.encode(f(__codec9.decode(p_p1))),
+  (f) => (p_p1) => __codec8.decode(f is JsFunction
+      ? f.apply([__codec9.encode(p_p1)])
+      : Function.apply(f, [__codec9.encode(p_p1)])),
+);
+
+/// codec for google_maps.src.visualization.HeatmapLayerOptions
+final __codec11 = new JsInterfaceCodec<HeatmapLayerOptions>(
+    (o) => new HeatmapLayerOptions.created(o));
+
+/// codec for dart.core.List<String>
+final __codec12 = new JsListCodec<String>(null);

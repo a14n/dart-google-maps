@@ -6,56 +6,6 @@ part of google_maps.src.drawing;
 // Generator: JsWrappingGenerator
 // **************************************************************************
 
-/// codec for dart.core.List<OverlayType>
-final __codec12 = new JsListCodec<OverlayType>(__codec10);
-
-/// codec for google_maps.src.drawing.DrawingControlOptions
-final __codec11 = new JsInterfaceCodec<DrawingControlOptions>(
-    (o) => new DrawingControlOptions.created(o));
-
-/// codec for google_maps.src.drawing.OverlayType
-final __codec10 = new BiMapCodec<OverlayType, dynamic>(
-    new Map<OverlayType, dynamic>.fromIterable(OverlayType.values,
-        value: asJs));
-
-/// codec for google_maps.src.drawing.DrawingManagerOptions
-final __codec9 = new JsInterfaceCodec<DrawingManagerOptions>(
-    (o) => new DrawingManagerOptions.created(o));
-
-/// codec for google_maps.src.ControlPosition
-final __codec8 = new BiMapCodec<ControlPosition, dynamic>(
-    new Map<ControlPosition, dynamic>.fromIterable(ControlPosition.values,
-        value: asJs));
-
-/// codec for dart.core.List<dynamic>
-final __codec7 = new JsListCodec<dynamic>(__codec0);
-
-/// codec for google_maps.src.RectangleOptions
-final __codec6 = new JsInterfaceCodec<RectangleOptions>(
-    (o) => new RectangleOptions.created(o));
-
-/// codec for google_maps.src.PolylineOptions
-final __codec5 = new JsInterfaceCodec<PolylineOptions>(
-    (o) => new PolylineOptions.created(o));
-
-/// codec for google_maps.src.PolygonOptions
-final __codec4 =
-    new JsInterfaceCodec<PolygonOptions>((o) => new PolygonOptions.created(o));
-
-/// codec for google_maps.src.MarkerOptions
-final __codec3 =
-    new JsInterfaceCodec<MarkerOptions>((o) => new MarkerOptions.created(o));
-
-/// codec for google_maps.src.CircleOptions
-final __codec2 =
-    new JsInterfaceCodec<CircleOptions>((o) => new CircleOptions.created(o));
-
-/// codec for google_maps.src.GMap
-final __codec1 = new JsInterfaceCodec<GMap>((o) => new GMap.created(o));
-
-/// codec for null.dynamic
-final __codec0 = new DynamicCodec();
-
 @GeneratedFrom(_DrawingManager)
 @JsName('google.maps.drawing.DrawingManager')
 class DrawingManager extends MVCObject {
@@ -63,27 +13,27 @@ class DrawingManager extends MVCObject {
   DrawingManager([DrawingManagerOptions options])
       : this.created(new JsObject(
             context['google']['maps']['drawing']['DrawingManager'],
-            [__codec9.encode(options)]));
+            [__codec0.encode(options)]));
 
   OverlayType get drawingMode => _getDrawingMode();
   OverlayType _getDrawingMode() =>
-      __codec10.decode(asJsObject(this).callMethod('getDrawingMode'));
+      __codec1.decode(asJsObject(this).callMethod('getDrawingMode'));
   GMap get map => _getMap();
-  GMap _getMap() => __codec1.decode(asJsObject(this).callMethod('getMap'));
+  GMap _getMap() => __codec2.decode(asJsObject(this).callMethod('getMap'));
   void set drawingMode(OverlayType drawingMode) => _setDrawingMode(drawingMode);
   void _setDrawingMode(OverlayType drawingMode) {
     asJsObject(this)
-        .callMethod('setDrawingMode', [__codec10.encode(drawingMode)]);
+        .callMethod('setDrawingMode', [__codec1.encode(drawingMode)]);
   }
 
   void set map(GMap map) => _setMap(map);
   void _setMap(GMap map) {
-    asJsObject(this).callMethod('setMap', [__codec1.encode(map)]);
+    asJsObject(this).callMethod('setMap', [__codec2.encode(map)]);
   }
 
   void set options(DrawingManagerOptions options) => _setOptions(options);
   void _setOptions(DrawingManagerOptions options) {
-    asJsObject(this).callMethod('setOptions', [__codec9.encode(options)]);
+    asJsObject(this).callMethod('setOptions', [__codec0.encode(options)]);
   }
 
   Stream<Circle> get onCirclecomplete => getStream(this, #onCirclecomplete,
@@ -116,11 +66,11 @@ class DrawingManagerOptions extends JsInterface {
   DrawingManagerOptions() : this.created(new JsObject(context['Object']));
 
   void set circleOptions(CircleOptions _circleOptions) {
-    asJsObject(this)['circleOptions'] = __codec2.encode(_circleOptions);
+    asJsObject(this)['circleOptions'] = __codec3.encode(_circleOptions);
   }
 
   CircleOptions get circleOptions =>
-      __codec2.decode(asJsObject(this)['circleOptions']);
+      __codec3.decode(asJsObject(this)['circleOptions']);
   void set drawingControl(bool _drawingControl) {
     asJsObject(this)['drawingControl'] = _drawingControl;
   }
@@ -128,46 +78,46 @@ class DrawingManagerOptions extends JsInterface {
   bool get drawingControl => asJsObject(this)['drawingControl'];
   void set drawingControlOptions(DrawingControlOptions _drawingControlOptions) {
     asJsObject(this)['drawingControlOptions'] =
-        __codec11.encode(_drawingControlOptions);
+        __codec4.encode(_drawingControlOptions);
   }
 
   DrawingControlOptions get drawingControlOptions =>
-      __codec11.decode(asJsObject(this)['drawingControlOptions']);
+      __codec4.decode(asJsObject(this)['drawingControlOptions']);
   void set drawingMode(OverlayType _drawingMode) {
-    asJsObject(this)['drawingMode'] = __codec10.encode(_drawingMode);
+    asJsObject(this)['drawingMode'] = __codec1.encode(_drawingMode);
   }
 
   OverlayType get drawingMode =>
-      __codec10.decode(asJsObject(this)['drawingMode']);
+      __codec1.decode(asJsObject(this)['drawingMode']);
   void set map(GMap _map) {
-    asJsObject(this)['map'] = __codec1.encode(_map);
+    asJsObject(this)['map'] = __codec2.encode(_map);
   }
 
-  GMap get map => __codec1.decode(asJsObject(this)['map']);
+  GMap get map => __codec2.decode(asJsObject(this)['map']);
   void set markerOptions(MarkerOptions _markerOptions) {
-    asJsObject(this)['markerOptions'] = __codec3.encode(_markerOptions);
+    asJsObject(this)['markerOptions'] = __codec5.encode(_markerOptions);
   }
 
   MarkerOptions get markerOptions =>
-      __codec3.decode(asJsObject(this)['markerOptions']);
+      __codec5.decode(asJsObject(this)['markerOptions']);
   void set polygonOptions(PolygonOptions _polygonOptions) {
-    asJsObject(this)['polygonOptions'] = __codec4.encode(_polygonOptions);
+    asJsObject(this)['polygonOptions'] = __codec6.encode(_polygonOptions);
   }
 
   PolygonOptions get polygonOptions =>
-      __codec4.decode(asJsObject(this)['polygonOptions']);
+      __codec6.decode(asJsObject(this)['polygonOptions']);
   void set polylineOptions(PolylineOptions _polylineOptions) {
-    asJsObject(this)['polylineOptions'] = __codec5.encode(_polylineOptions);
+    asJsObject(this)['polylineOptions'] = __codec7.encode(_polylineOptions);
   }
 
   PolylineOptions get polylineOptions =>
-      __codec5.decode(asJsObject(this)['polylineOptions']);
+      __codec7.decode(asJsObject(this)['polylineOptions']);
   void set rectangleOptions(RectangleOptions _rectangleOptions) {
-    asJsObject(this)['rectangleOptions'] = __codec6.encode(_rectangleOptions);
+    asJsObject(this)['rectangleOptions'] = __codec8.encode(_rectangleOptions);
   }
 
   RectangleOptions get rectangleOptions =>
-      __codec6.decode(asJsObject(this)['rectangleOptions']);
+      __codec8.decode(asJsObject(this)['rectangleOptions']);
 }
 
 @GeneratedFrom(_DrawingControlOptions)
@@ -177,16 +127,17 @@ class DrawingControlOptions extends JsInterface {
   DrawingControlOptions() : this.created(new JsObject(context['Object']));
 
   void set drawingModes(List<OverlayType> _drawingModes) {
-    asJsObject(this)['drawingModes'] = __codec12.encode(_drawingModes);
+    asJsObject(this)['drawingModes'] = __codec9.encode(_drawingModes);
   }
 
   List<OverlayType> get drawingModes =>
-      __codec12.decode(asJsObject(this)['drawingModes']);
+      __codec9.decode(asJsObject(this)['drawingModes']);
   void set position(ControlPosition _position) {
-    asJsObject(this)['position'] = __codec8.encode(_position);
+    asJsObject(this)['position'] = __codec10.encode(_position);
   }
 
-  ControlPosition get position => __codec8.decode(asJsObject(this)['position']);
+  ControlPosition get position =>
+      __codec10.decode(asJsObject(this)['position']);
 }
 
 @GeneratedFrom(_OverlayCompleteEvent)
@@ -196,10 +147,10 @@ class OverlayCompleteEvent extends JsInterface {
   OverlayCompleteEvent() : this.created(new JsObject(context['Object']));
 
   void set _overlay(dynamic __overlay) {
-    asJsObject(this)['overlay'] = __codec0.encode(__overlay);
+    asJsObject(this)['overlay'] = __codec11.encode(__overlay);
   }
 
-  dynamic get _overlay => __codec0.decode(asJsObject(this)['overlay']);
+  dynamic get _overlay => __codec11.decode(asJsObject(this)['overlay']);
   dynamic /*Marker|Polygon|Polyline|Rectangle|Circle*/ get overlay =>
       (new ChainedCodec()
             ..add(new JsInterfaceCodec<Marker>(
@@ -270,10 +221,10 @@ class OverlayCompleteEvent extends JsInterface {
   }
 
   void set type(OverlayType _type) {
-    asJsObject(this)['type'] = __codec10.encode(_type);
+    asJsObject(this)['type'] = __codec1.encode(_type);
   }
 
-  OverlayType get type => __codec10.decode(asJsObject(this)['type']);
+  OverlayType get type => __codec1.decode(asJsObject(this)['type']);
 }
 
 class OverlayType extends JsEnum {
@@ -304,3 +255,50 @@ class OverlayType extends JsEnum {
   _OverlayType _dumbMethod1() => _dumbMethod2();
   _OverlayType _dumbMethod2() => _dumbMethod1();
 }
+
+/// codec for google_maps.src.drawing.DrawingManagerOptions
+final __codec0 = new JsInterfaceCodec<DrawingManagerOptions>(
+    (o) => new DrawingManagerOptions.created(o));
+
+/// codec for google_maps.src.drawing.OverlayType
+final __codec1 = new BiMapCodec<OverlayType, dynamic>(
+    new Map<OverlayType, dynamic>.fromIterable(OverlayType.values,
+        value: asJs));
+
+/// codec for google_maps.src.GMap
+final __codec2 = new JsInterfaceCodec<GMap>((o) => new GMap.created(o));
+
+/// codec for google_maps.src.CircleOptions
+final __codec3 =
+    new JsInterfaceCodec<CircleOptions>((o) => new CircleOptions.created(o));
+
+/// codec for google_maps.src.drawing.DrawingControlOptions
+final __codec4 = new JsInterfaceCodec<DrawingControlOptions>(
+    (o) => new DrawingControlOptions.created(o));
+
+/// codec for google_maps.src.MarkerOptions
+final __codec5 =
+    new JsInterfaceCodec<MarkerOptions>((o) => new MarkerOptions.created(o));
+
+/// codec for google_maps.src.PolygonOptions
+final __codec6 =
+    new JsInterfaceCodec<PolygonOptions>((o) => new PolygonOptions.created(o));
+
+/// codec for google_maps.src.PolylineOptions
+final __codec7 = new JsInterfaceCodec<PolylineOptions>(
+    (o) => new PolylineOptions.created(o));
+
+/// codec for google_maps.src.RectangleOptions
+final __codec8 = new JsInterfaceCodec<RectangleOptions>(
+    (o) => new RectangleOptions.created(o));
+
+/// codec for dart.core.List<OverlayType>
+final __codec9 = new JsListCodec<OverlayType>(__codec1);
+
+/// codec for google_maps.src.ControlPosition
+final __codec10 = new BiMapCodec<ControlPosition, dynamic>(
+    new Map<ControlPosition, dynamic>.fromIterable(ControlPosition.values,
+        value: asJs));
+
+/// codec for null.dynamic
+final __codec11 = new DynamicCodec();

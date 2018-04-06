@@ -6,16 +6,6 @@ part of example;
 // Generator: JsWrappingGenerator
 // **************************************************************************
 
-/// codec for example.DataTable
-final __codec2 =
-    new JsInterfaceCodec<DataTable>((o) => new DataTable.created(o));
-
-/// codec for dart.js.JsArray<dynamic>
-final __codec1 = new JsListCodec<dynamic>(__codec0);
-
-/// codec for null.dynamic
-final __codec0 = new DynamicCodec();
-
 @GeneratedFrom(_ColumnChart)
 @JsName('google.visualization.ColumnChart')
 class ColumnChart extends JsInterface {
@@ -25,7 +15,7 @@ class ColumnChart extends JsInterface {
             context['google']['visualization']['ColumnChart'], [div]));
 
   void draw(DataTable data, [JsObject options]) {
-    asJsObject(this).callMethod('draw', [__codec2.encode(data), options]);
+    asJsObject(this).callMethod('draw', [__codec0.encode(data), options]);
   }
 }
 
@@ -42,6 +32,16 @@ class DataTable extends JsInterface {
   }
 
   void addRow([JsArray cellArray]) {
-    asJsObject(this).callMethod('addRow', [__codec1.encode(cellArray)]);
+    asJsObject(this).callMethod('addRow', [__codec2.encode(cellArray)]);
   }
 }
+
+/// codec for example.DataTable
+final __codec0 =
+    new JsInterfaceCodec<DataTable>((o) => new DataTable.created(o));
+
+/// codec for null.dynamic
+final __codec1 = new DynamicCodec();
+
+/// codec for dart.js.JsArray<dynamic>
+final __codec2 = new JsListCodec<dynamic>(__codec1);

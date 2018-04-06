@@ -6,18 +6,6 @@ part of google_maps.src.geometry;
 // Generator: JsWrappingGenerator
 // **************************************************************************
 
-/// codec for google_maps.src.Polygon
-final __codec3 = new JsInterfaceCodec<Polygon>((o) => new Polygon.created(o));
-
-/// codec for null.dynamic
-final __codec2 = new DynamicCodec();
-
-/// codec for dart.core.List<LatLng>
-final __codec1 = new JsListCodec<LatLng>(__codec0);
-
-/// codec for google_maps.src.LatLng
-final __codec0 = new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o));
-
 @GeneratedFrom(_Encoding)
 class Encoding extends JsInterface {
   Encoding.created(JsObject o) : super.created(o);
@@ -167,3 +155,15 @@ class Poly extends JsInterface {
       __codec2.decode(asJsObject(this).callMethod('isLocationOnEdge',
           [__codec0.encode(point), __codec2.encode(poly), tolerance]));
 }
+
+/// codec for google_maps.src.LatLng
+final __codec0 = new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o));
+
+/// codec for dart.core.List<LatLng>
+final __codec1 = new JsListCodec<LatLng>(__codec0);
+
+/// codec for null.dynamic
+final __codec2 = new DynamicCodec();
+
+/// codec for google_maps.src.Polygon
+final __codec3 = new JsInterfaceCodec<Polygon>((o) => new Polygon.created(o));

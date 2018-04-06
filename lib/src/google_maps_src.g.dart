@@ -6,777 +6,6 @@ part of google_maps.src;
 // Generator: JsWrappingGenerator
 // **************************************************************************
 
-/// codec for google_maps.src.InfoWindow
-final __codec172 =
-    new JsInterfaceCodec<InfoWindow>((o) => new InfoWindow.created(o));
-
-/// codec for google_maps.src.MapCanvasProjection
-final __codec171 = new JsInterfaceCodec<MapCanvasProjection>(
-    (o) => new MapCanvasProjection.created(o));
-
-/// codec for dart.core.List<DataPolygon>
-final __codec170 = new JsListCodec<DataPolygon>(__codec169);
-
-/// codec for google_maps.src.DataPolygon
-final __codec169 =
-    new JsInterfaceCodec<DataPolygon>((o) => new DataPolygon.created(o));
-
-/// codec for dart.core.List<DataLinearRing>
-final __codec168 = new JsListCodec<DataLinearRing>(__codec167);
-
-/// codec for google_maps.src.DataLinearRing
-final __codec167 =
-    new JsInterfaceCodec<DataLinearRing>((o) => new DataLinearRing.created(o));
-
-/// codec for dart.core.List<DataLineString>
-final __codec166 = new JsListCodec<DataLineString>(__codec165);
-
-/// codec for google_maps.src.DataLineString
-final __codec165 =
-    new JsInterfaceCodec<DataLineString>((o) => new DataLineString.created(o));
-
-/// codec for google_maps.src.GMap
-final __codec164 = new JsInterfaceCodec<GMap>((o) => new GMap.created(o));
-
-/// codec for google_maps.src.StreetViewPanorama
-final __codec163 = new JsInterfaceCodec<StreetViewPanorama>(
-    (o) => new StreetViewPanorama.created(o));
-
-/// codec for google_maps.src.MapTypeRegistry
-final __codec162 = new JsInterfaceCodec<MapTypeRegistry>(
-    (o) => new MapTypeRegistry.created(o));
-
-/// codec for google_maps.src.(dynamic, num) → void
-final __codec161 = new FunctionCodec<Function> /*<(dynamic, num) → void>*/(
-  (f) => (p_o, p_index) {
-        f(__codec0.decode(p_o), p_index);
-      },
-  (f) => (p_o, p_index) {
-        f is JsFunction
-            ? f.apply([__codec0.encode(p_o), p_index])
-            : Function.apply(f, [__codec0.encode(p_o), p_index]);
-      },
-);
-
-/// codec for google_maps.src.MapsEventListener
-final __codec160 = new JsInterfaceCodec<MapsEventListener>(
-    (o) => new MapsEventListener.created(o));
-
-/// codec for google_maps.src.(StreetViewPanoramaData, StreetViewStatus) → dynamic
-final __codec159 = new FunctionCodec<
-    Function> /*<(StreetViewPanoramaData, StreetViewStatus) → dynamic>*/(
-  (f) => (p_p1, p_p2) =>
-      __codec0.encode(f(__codec158.decode(p_p1), __codec152.decode(p_p2))),
-  (f) => (p_p1, p_p2) => __codec0.decode(f is JsFunction
-      ? f.apply([__codec158.encode(p_p1), __codec152.encode(p_p2)])
-      : Function.apply(f, [__codec158.encode(p_p1), __codec152.encode(p_p2)])),
-);
-
-/// codec for google_maps.src.StreetViewPanoramaData
-final __codec158 = new JsInterfaceCodec<StreetViewPanoramaData>(
-    (o) => new StreetViewPanoramaData.created(o));
-
-/// codec for google_maps.src.StreetViewTileData
-final __codec157 = new JsInterfaceCodec<StreetViewTileData>(
-    (o) => new StreetViewTileData.created(o));
-
-/// codec for google_maps.src.StreetViewSource
-final __codec156 = new BiMapCodec<StreetViewSource, dynamic>(
-    new Map<StreetViewSource, dynamic>.fromIterable(StreetViewSource.values,
-        value: asJs));
-
-/// codec for google_maps.src.StreetViewPreference
-final __codec155 = new BiMapCodec<StreetViewPreference, dynamic>(
-    new Map<StreetViewPreference, dynamic>.fromIterable(
-        StreetViewPreference.values,
-        value: asJs));
-
-/// codec for google_maps.src.StreetViewAddressControlOptions
-final __codec154 = new JsInterfaceCodec<StreetViewAddressControlOptions>(
-    (o) => new StreetViewAddressControlOptions.created(o));
-
-/// codec for google_maps.src.(String) → dynamic
-final __codec153 = new FunctionCodec<Function> /*<(String) → dynamic>*/(
-  (f) => (p_p1) => __codec0.encode(f(p_p1)),
-  (f) => (p_p1) => __codec0
-      .decode(f is JsFunction ? f.apply([p_p1]) : Function.apply(f, [p_p1])),
-);
-
-/// codec for google_maps.src.StreetViewStatus
-final __codec152 = new BiMapCodec<StreetViewStatus, dynamic>(
-    new Map<StreetViewStatus, dynamic>.fromIterable(StreetViewStatus.values,
-        value: asJs));
-
-/// codec for google_maps.src.StreetViewPov
-final __codec151 =
-    new JsInterfaceCodec<StreetViewPov>((o) => new StreetViewPov.created(o));
-
-/// codec for google_maps.src.StreetViewLocation
-final __codec150 = new JsInterfaceCodec<StreetViewLocation>(
-    (o) => new StreetViewLocation.created(o));
-
-/// codec for dart.core.List<StreetViewLink>
-final __codec149 = new JsListCodec<StreetViewLink>(__codec148);
-
-/// codec for google_maps.src.StreetViewLink
-final __codec148 =
-    new JsInterfaceCodec<StreetViewLink>((o) => new StreetViewLink.created(o));
-
-/// codec for google_maps.src.StreetViewPanoramaOptions
-final __codec147 = new JsInterfaceCodec<StreetViewPanoramaOptions>(
-    (o) => new StreetViewPanoramaOptions.created(o));
-
-/// codec for google_maps.src.KmlFeatureData
-final __codec146 =
-    new JsInterfaceCodec<KmlFeatureData>((o) => new KmlFeatureData.created(o));
-
-/// codec for google_maps.src.KmlAuthor
-final __codec145 =
-    new JsInterfaceCodec<KmlAuthor>((o) => new KmlAuthor.created(o));
-
-/// codec for google_maps.src.KmlLayerStatus
-final __codec144 = new BiMapCodec<KmlLayerStatus, dynamic>(
-    new Map<KmlLayerStatus, dynamic>.fromIterable(KmlLayerStatus.values,
-        value: asJs));
-
-/// codec for google_maps.src.KmlLayerMetadata
-final __codec143 = new JsInterfaceCodec<KmlLayerMetadata>(
-    (o) => new KmlLayerMetadata.created(o));
-
-/// codec for google_maps.src.KmlLayerOptions
-final __codec142 = new JsInterfaceCodec<KmlLayerOptions>(
-    (o) => new KmlLayerOptions.created(o));
-
-/// codec for dart.core.Map<String, FusionTablesCell>
-final __codec141 = new JsObjectAsMapCodec<FusionTablesCell>(__codec140);
-
-/// codec for google_maps.src.FusionTablesCell
-final __codec140 = new JsInterfaceCodec<FusionTablesCell>(
-    (o) => new FusionTablesCell.created(o));
-
-/// codec for google_maps.src.FusionTablesPolylineOptions
-final __codec139 = new JsInterfaceCodec<FusionTablesPolylineOptions>(
-    (o) => new FusionTablesPolylineOptions.created(o));
-
-/// codec for google_maps.src.FusionTablesPolygonOptions
-final __codec138 = new JsInterfaceCodec<FusionTablesPolygonOptions>(
-    (o) => new FusionTablesPolygonOptions.created(o));
-
-/// codec for google_maps.src.FusionTablesMarkerOptions
-final __codec137 = new JsInterfaceCodec<FusionTablesMarkerOptions>(
-    (o) => new FusionTablesMarkerOptions.created(o));
-
-/// codec for dart.core.List<FusionTablesStyle>
-final __codec136 = new JsListCodec<FusionTablesStyle>(__codec135);
-
-/// codec for google_maps.src.FusionTablesStyle
-final __codec135 = new JsInterfaceCodec<FusionTablesStyle>(
-    (o) => new FusionTablesStyle.created(o));
-
-/// codec for google_maps.src.FusionTablesQuery
-final __codec134 = new JsInterfaceCodec<FusionTablesQuery>(
-    (o) => new FusionTablesQuery.created(o));
-
-/// codec for google_maps.src.FusionTablesHeatmap
-final __codec133 = new JsInterfaceCodec<FusionTablesHeatmap>(
-    (o) => new FusionTablesHeatmap.created(o));
-
-/// codec for google_maps.src.FusionTablesLayerOptions
-final __codec132 = new JsInterfaceCodec<FusionTablesLayerOptions>(
-    (o) => new FusionTablesLayerOptions.created(o));
-
-/// codec for dart.core.List<MapTypeStyler>
-final __codec131 = new JsListCodec<MapTypeStyler>(__codec130);
-
-/// codec for google_maps.src.MapTypeStyler
-final __codec130 =
-    new JsInterfaceCodec<MapTypeStyler>((o) => new MapTypeStyler.created(o));
-
-/// codec for google_maps.src.StyledMapTypeOptions
-final __codec129 = new JsInterfaceCodec<StyledMapTypeOptions>(
-    (o) => new StyledMapTypeOptions.created(o));
-
-/// codec for google_maps.src.ImageMapTypeOptions
-final __codec128 = new JsInterfaceCodec<ImageMapTypeOptions>(
-    (o) => new ImageMapTypeOptions.created(o));
-
-/// codec for google_maps.src.MapType
-final __codec127 = new JsInterfaceCodec<MapType>((o) => new MapType.created(o));
-
-/// codec for google_maps.src.SaveWidgetOptions
-final __codec126 = new JsInterfaceCodec<SaveWidgetOptions>(
-    (o) => new SaveWidgetOptions.created(o));
-
-/// codec for google_maps.src.DistanceMatrixElementStatus
-final __codec125 = new BiMapCodec<DistanceMatrixElementStatus, dynamic>(
-    new Map<DistanceMatrixElementStatus, dynamic>.fromIterable(
-        DistanceMatrixElementStatus.values,
-        value: asJs));
-
-/// codec for dart.core.List<DistanceMatrixResponseElement>
-final __codec124 = new JsListCodec<DistanceMatrixResponseElement>(__codec123);
-
-/// codec for google_maps.src.DistanceMatrixResponseElement
-final __codec123 = new JsInterfaceCodec<DistanceMatrixResponseElement>(
-    (o) => new DistanceMatrixResponseElement.created(o));
-
-/// codec for dart.core.List<DistanceMatrixResponseRow>
-final __codec122 = new JsListCodec<DistanceMatrixResponseRow>(__codec121);
-
-/// codec for google_maps.src.DistanceMatrixResponseRow
-final __codec121 = new JsInterfaceCodec<DistanceMatrixResponseRow>(
-    (o) => new DistanceMatrixResponseRow.created(o));
-
-/// codec for google_maps.src.(DistanceMatrixResponse, DistanceMatrixStatus) → dynamic
-final __codec120 = new FunctionCodec<
-    Function> /*<(DistanceMatrixResponse, DistanceMatrixStatus) → dynamic>*/(
-  (f) => (p_p1, p_p2) =>
-      __codec0.encode(f(__codec118.decode(p_p1), __codec119.decode(p_p2))),
-  (f) => (p_p1, p_p2) => __codec0.decode(f is JsFunction
-      ? f.apply([__codec118.encode(p_p1), __codec119.encode(p_p2)])
-      : Function.apply(f, [__codec118.encode(p_p1), __codec119.encode(p_p2)])),
-);
-
-/// codec for google_maps.src.DistanceMatrixStatus
-final __codec119 = new BiMapCodec<DistanceMatrixStatus, dynamic>(
-    new Map<DistanceMatrixStatus, dynamic>.fromIterable(
-        DistanceMatrixStatus.values,
-        value: asJs));
-
-/// codec for google_maps.src.DistanceMatrixResponse
-final __codec118 = new JsInterfaceCodec<DistanceMatrixResponse>(
-    (o) => new DistanceMatrixResponse.created(o));
-
-/// codec for google_maps.src.DistanceMatrixRequest
-final __codec117 = new JsInterfaceCodec<DistanceMatrixRequest>(
-    (o) => new DistanceMatrixRequest.created(o));
-
-/// codec for google_maps.src.MaxZoomStatus
-final __codec116 = new BiMapCodec<MaxZoomStatus, dynamic>(
-    new Map<MaxZoomStatus, dynamic>.fromIterable(MaxZoomStatus.values,
-        value: asJs));
-
-/// codec for google_maps.src.(MaxZoomResult) → dynamic
-final __codec115 = new FunctionCodec<Function> /*<(MaxZoomResult) → dynamic>*/(
-  (f) => (p_p1) => __codec0.encode(f(__codec114.decode(p_p1))),
-  (f) => (p_p1) => __codec0.decode(f is JsFunction
-      ? f.apply([__codec114.encode(p_p1)])
-      : Function.apply(f, [__codec114.encode(p_p1)])),
-);
-
-/// codec for google_maps.src.MaxZoomResult
-final __codec114 =
-    new JsInterfaceCodec<MaxZoomResult>((o) => new MaxZoomResult.created(o));
-
-/// codec for google_maps.src.LocationElevationRequest
-final __codec113 = new JsInterfaceCodec<LocationElevationRequest>(
-    (o) => new LocationElevationRequest.created(o));
-
-/// codec for google_maps.src.(List<ElevationResult>, ElevationStatus) → dynamic
-final __codec112 = new FunctionCodec<
-    Function> /*<(List<ElevationResult>, ElevationStatus) → dynamic>*/(
-  (f) => (p_p1, p_p2) =>
-      __codec0.encode(f(__codec110.decode(p_p1), __codec111.decode(p_p2))),
-  (f) => (p_p1, p_p2) => __codec0.decode(f is JsFunction
-      ? f.apply([__codec110.encode(p_p1), __codec111.encode(p_p2)])
-      : Function.apply(f, [__codec110.encode(p_p1), __codec111.encode(p_p2)])),
-);
-
-/// codec for google_maps.src.ElevationStatus
-final __codec111 = new BiMapCodec<ElevationStatus, dynamic>(
-    new Map<ElevationStatus, dynamic>.fromIterable(ElevationStatus.values,
-        value: asJs));
-
-/// codec for dart.core.List<ElevationResult>
-final __codec110 = new JsListCodec<ElevationResult>(__codec109);
-
-/// codec for google_maps.src.ElevationResult
-final __codec109 = new JsInterfaceCodec<ElevationResult>(
-    (o) => new ElevationResult.created(o));
-
-/// codec for google_maps.src.PathElevationRequest
-final __codec108 = new JsInterfaceCodec<PathElevationRequest>(
-    (o) => new PathElevationRequest.created(o));
-
-/// codec for google_maps.src.TransitVehicle
-final __codec107 =
-    new JsInterfaceCodec<TransitVehicle>((o) => new TransitVehicle.created(o));
-
-/// codec for dart.core.List<TransitAgency>
-final __codec106 = new JsListCodec<TransitAgency>(__codec105);
-
-/// codec for google_maps.src.TransitAgency
-final __codec105 =
-    new JsInterfaceCodec<TransitAgency>((o) => new TransitAgency.created(o));
-
-/// codec for google_maps.src.TransitLine
-final __codec104 =
-    new JsInterfaceCodec<TransitLine>((o) => new TransitLine.created(o));
-
-/// codec for google_maps.src.TransitStop
-final __codec103 =
-    new JsInterfaceCodec<TransitStop>((o) => new TransitStop.created(o));
-
-/// codec for google_maps.src.TransitDetails
-final __codec102 =
-    new JsInterfaceCodec<TransitDetails>((o) => new TransitDetails.created(o));
-
-/// codec for dart.core.List<DirectionsStep>
-final __codec101 = new JsListCodec<DirectionsStep>(__codec100);
-
-/// codec for google_maps.src.DirectionsStep
-final __codec100 =
-    new JsInterfaceCodec<DirectionsStep>((o) => new DirectionsStep.created(o));
-
-/// codec for google_maps.src.GDuration
-final __codec99 =
-    new JsInterfaceCodec<GDuration>((o) => new GDuration.created(o));
-
-/// codec for google_maps.src.Distance
-final __codec98 =
-    new JsInterfaceCodec<Distance>((o) => new Distance.created(o));
-
-/// codec for google_maps.src.Time
-final __codec97 = new JsInterfaceCodec<Time>((o) => new Time.created(o));
-
-/// codec for dart.core.List<DirectionsLeg>
-final __codec96 = new JsListCodec<DirectionsLeg>(__codec95);
-
-/// codec for google_maps.src.DirectionsLeg
-final __codec95 =
-    new JsInterfaceCodec<DirectionsLeg>((o) => new DirectionsLeg.created(o));
-
-/// codec for google_maps.src.TransitFare
-final __codec94 =
-    new JsInterfaceCodec<TransitFare>((o) => new TransitFare.created(o));
-
-/// codec for dart.core.List<DirectionsRoute>
-final __codec93 = new JsListCodec<DirectionsRoute>(__codec92);
-
-/// codec for google_maps.src.DirectionsRoute
-final __codec92 = new JsInterfaceCodec<DirectionsRoute>(
-    (o) => new DirectionsRoute.created(o));
-
-/// codec for dart.core.List<DirectionsGeocodedWaypoint>
-final __codec91 = new JsListCodec<DirectionsGeocodedWaypoint>(__codec90);
-
-/// codec for google_maps.src.DirectionsGeocodedWaypoint
-final __codec90 = new JsInterfaceCodec<DirectionsGeocodedWaypoint>(
-    (o) => new DirectionsGeocodedWaypoint.created(o));
-
-/// codec for google_maps.src.TrafficModel
-final __codec89 = new BiMapCodec<TrafficModel, dynamic>(
-    new Map<TrafficModel, dynamic>.fromIterable(TrafficModel.values,
-        value: asJs));
-
-/// codec for google_maps.src.TransitRoutePreference
-final __codec88 = new BiMapCodec<TransitRoutePreference, dynamic>(
-    new Map<TransitRoutePreference, dynamic>.fromIterable(
-        TransitRoutePreference.values,
-        value: asJs));
-
-/// codec for dart.core.List<TransitMode>
-final __codec87 = new JsListCodec<TransitMode>(__codec86);
-
-/// codec for google_maps.src.TransitMode
-final __codec86 = new BiMapCodec<TransitMode, dynamic>(
-    new Map<TransitMode, dynamic>.fromIterable(TransitMode.values,
-        value: asJs));
-
-/// codec for dart.core.List<DirectionsWaypoint>
-final __codec85 = new JsListCodec<DirectionsWaypoint>(__codec84);
-
-/// codec for google_maps.src.DirectionsWaypoint
-final __codec84 = new JsInterfaceCodec<DirectionsWaypoint>(
-    (o) => new DirectionsWaypoint.created(o));
-
-/// codec for google_maps.src.UnitSystem
-final __codec83 = new BiMapCodec<UnitSystem, dynamic>(
-    new Map<UnitSystem, dynamic>.fromIterable(UnitSystem.values, value: asJs));
-
-/// codec for google_maps.src.TravelMode
-final __codec82 = new BiMapCodec<TravelMode, dynamic>(
-    new Map<TravelMode, dynamic>.fromIterable(TravelMode.values, value: asJs));
-
-/// codec for google_maps.src.TransitOptions
-final __codec81 =
-    new JsInterfaceCodec<TransitOptions>((o) => new TransitOptions.created(o));
-
-/// codec for google_maps.src.DrivingOptions
-final __codec80 =
-    new JsInterfaceCodec<DrivingOptions>((o) => new DrivingOptions.created(o));
-
-/// codec for google_maps.src.(DirectionsResult, DirectionsStatus) → dynamic
-final __codec79 = new FunctionCodec<
-    Function> /*<(DirectionsResult, DirectionsStatus) → dynamic>*/(
-  (f) => (p_p1, p_p2) =>
-      __codec0.encode(f(__codec76.decode(p_p1), __codec78.decode(p_p2))),
-  (f) => (p_p1, p_p2) => __codec0.decode(f is JsFunction
-      ? f.apply([__codec76.encode(p_p1), __codec78.encode(p_p2)])
-      : Function.apply(f, [__codec76.encode(p_p1), __codec78.encode(p_p2)])),
-);
-
-/// codec for google_maps.src.DirectionsStatus
-final __codec78 = new BiMapCodec<DirectionsStatus, dynamic>(
-    new Map<DirectionsStatus, dynamic>.fromIterable(DirectionsStatus.values,
-        value: asJs));
-
-/// codec for google_maps.src.DirectionsRequest
-final __codec77 = new JsInterfaceCodec<DirectionsRequest>(
-    (o) => new DirectionsRequest.created(o));
-
-/// codec for google_maps.src.DirectionsResult
-final __codec76 = new JsInterfaceCodec<DirectionsResult>(
-    (o) => new DirectionsResult.created(o));
-
-/// codec for google_maps.src.DirectionsRendererOptions
-final __codec75 = new JsInterfaceCodec<DirectionsRendererOptions>(
-    (o) => new DirectionsRendererOptions.created(o));
-
-/// codec for google_maps.src.GeocoderLocationType
-final __codec74 = new BiMapCodec<GeocoderLocationType, dynamic>(
-    new Map<GeocoderLocationType, dynamic>.fromIterable(
-        GeocoderLocationType.values,
-        value: asJs));
-
-/// codec for google_maps.src.GeocoderGeometry
-final __codec73 = new JsInterfaceCodec<GeocoderGeometry>(
-    (o) => new GeocoderGeometry.created(o));
-
-/// codec for dart.core.List<GeocoderAddressComponent>
-final __codec72 = new JsListCodec<GeocoderAddressComponent>(__codec71);
-
-/// codec for google_maps.src.GeocoderAddressComponent
-final __codec71 = new JsInterfaceCodec<GeocoderAddressComponent>(
-    (o) => new GeocoderAddressComponent.created(o));
-
-/// codec for google_maps.src.GeocoderComponentRestrictions
-final __codec70 = new JsInterfaceCodec<GeocoderComponentRestrictions>(
-    (o) => new GeocoderComponentRestrictions.created(o));
-
-/// codec for google_maps.src.(List<GeocoderResult>, GeocoderStatus) → dynamic
-final __codec69 = new FunctionCodec<
-    Function> /*<(List<GeocoderResult>, GeocoderStatus) → dynamic>*/(
-  (f) => (p_p1, p_p2) =>
-      __codec0.encode(f(__codec67.decode(p_p1), __codec68.decode(p_p2))),
-  (f) => (p_p1, p_p2) => __codec0.decode(f is JsFunction
-      ? f.apply([__codec67.encode(p_p1), __codec68.encode(p_p2)])
-      : Function.apply(f, [__codec67.encode(p_p1), __codec68.encode(p_p2)])),
-);
-
-/// codec for google_maps.src.GeocoderStatus
-final __codec68 = new BiMapCodec<GeocoderStatus, dynamic>(
-    new Map<GeocoderStatus, dynamic>.fromIterable(GeocoderStatus.values,
-        value: asJs));
-
-/// codec for dart.core.List<GeocoderResult>
-final __codec67 = new JsListCodec<GeocoderResult>(__codec66);
-
-/// codec for google_maps.src.GeocoderResult
-final __codec66 =
-    new JsInterfaceCodec<GeocoderResult>((o) => new GeocoderResult.created(o));
-
-/// codec for google_maps.src.GeocoderRequest
-final __codec65 = new JsInterfaceCodec<GeocoderRequest>(
-    (o) => new GeocoderRequest.created(o));
-
-/// codec for google_maps.src.MapPanes
-final __codec64 =
-    new JsInterfaceCodec<MapPanes>((o) => new MapPanes.created(o));
-
-/// codec for google_maps.src.GroundOverlayOptions
-final __codec63 = new JsInterfaceCodec<GroundOverlayOptions>(
-    (o) => new GroundOverlayOptions.created(o));
-
-/// codec for google_maps.src.CircleOptions
-final __codec62 =
-    new JsInterfaceCodec<CircleOptions>((o) => new CircleOptions.created(o));
-
-/// codec for google_maps.src.RectangleOptions
-final __codec61 = new JsInterfaceCodec<RectangleOptions>(
-    (o) => new RectangleOptions.created(o));
-
-/// codec for google_maps.src.StrokePosition
-final __codec60 = new BiMapCodec<StrokePosition, dynamic>(
-    new Map<StrokePosition, dynamic>.fromIterable(StrokePosition.values,
-        value: asJs));
-
-/// codec for google_maps.src.PolygonOptions
-final __codec59 =
-    new JsInterfaceCodec<PolygonOptions>((o) => new PolygonOptions.created(o));
-
-/// codec for google_maps.src.GSymbol
-final __codec58 = new JsInterfaceCodec<GSymbol>((o) => new GSymbol.created(o));
-
-/// codec for dart.core.List<IconSequence>
-final __codec57 = new JsListCodec<IconSequence>(__codec56);
-
-/// codec for google_maps.src.IconSequence
-final __codec56 =
-    new JsInterfaceCodec<IconSequence>((o) => new IconSequence.created(o));
-
-/// codec for google_maps.src.PolylineOptions
-final __codec55 = new JsInterfaceCodec<PolylineOptions>(
-    (o) => new PolylineOptions.created(o));
-
-/// codec for google_maps.src.MVCObject
-final __codec54 =
-    new JsInterfaceCodec<MVCObject>((o) => new MVCObject.created(o));
-
-/// codec for google_maps.src.InfoWindowOptions
-final __codec53 = new JsInterfaceCodec<InfoWindowOptions>(
-    (o) => new InfoWindowOptions.created(o));
-
-/// codec for google_maps.src.Size
-final __codec52 = new JsInterfaceCodec<Size>((o) => new Size.created(o));
-
-/// codec for google_maps.src.Point
-final __codec51 = new JsInterfaceCodec<Point>((o) => new Point.created(o));
-
-/// codec for google_maps.src.MarkerPlace
-final __codec50 =
-    new JsInterfaceCodec<MarkerPlace>((o) => new MarkerPlace.created(o));
-
-/// codec for google_maps.src.MarkerLabel
-final __codec49 =
-    new JsInterfaceCodec<MarkerLabel>((o) => new MarkerLabel.created(o));
-
-/// codec for google_maps.src.Attribution
-final __codec48 =
-    new JsInterfaceCodec<Attribution>((o) => new Attribution.created(o));
-
-/// codec for google_maps.src.Animation
-final __codec47 = new BiMapCodec<Animation, dynamic>(
-    new Map<Animation, dynamic>.fromIterable(Animation.values, value: asJs));
-
-/// codec for google_maps.src.MarkerOptions
-final __codec46 =
-    new JsInterfaceCodec<MarkerOptions>((o) => new MarkerOptions.created(o));
-
-/// codec for dart.core.List<LatLng>
-final __codec45 = new JsListCodec<LatLng>(__codec20);
-
-/// codec for google_maps.src.DataFeatureOptions
-final __codec44 = new JsInterfaceCodec<DataFeatureOptions>(
-    (o) => new DataFeatureOptions.created(o));
-
-/// codec for google_maps.src.MarkerShape
-final __codec43 =
-    new JsInterfaceCodec<MarkerShape>((o) => new MarkerShape.created(o));
-
-/// codec for google_maps.src.DataStyleOptions
-final __codec42 = new JsInterfaceCodec<DataStyleOptions>(
-    (o) => new DataStyleOptions.created(o));
-
-/// codec for google_maps.src.(List<DataFeature>) → dynamic
-final __codec41 =
-    new FunctionCodec<Function> /*<(List<DataFeature>) → dynamic>*/(
-  (f) => (p_p1) => __codec0.encode(f(__codec39.decode(p_p1))),
-  (f) => (p_p1) => __codec0.decode(f is JsFunction
-      ? f.apply([__codec39.encode(p_p1)])
-      : Function.apply(f, [__codec39.encode(p_p1)])),
-);
-
-/// codec for google_maps.src.(DataFeature) → dynamic
-final __codec40 = new FunctionCodec<Function> /*<(DataFeature) → dynamic>*/(
-  (f) => (p_p1) => __codec0.encode(f(__codec38.decode(p_p1))),
-  (f) => (p_p1) => __codec0.decode(f is JsFunction
-      ? f.apply([__codec38.encode(p_p1)])
-      : Function.apply(f, [__codec38.encode(p_p1)])),
-);
-
-/// codec for dart.core.List<DataFeature>
-final __codec39 = new JsListCodec<DataFeature>(__codec38);
-
-/// codec for google_maps.src.DataFeature
-final __codec38 =
-    new JsInterfaceCodec<DataFeature>((o) => new DataFeature.created(o));
-
-/// codec for google_maps.src.DataGeoJsonOptions
-final __codec37 = new JsInterfaceCodec<DataGeoJsonOptions>(
-    (o) => new DataGeoJsonOptions.created(o));
-
-/// codec for google_maps.src.DataDataOptions
-final __codec36 = new JsInterfaceCodec<DataDataOptions>(
-    (o) => new DataDataOptions.created(o));
-
-/// codec for google_maps.src.ZoomControlStyle
-final __codec35 = new BiMapCodec<ZoomControlStyle, dynamic>(
-    new Map<ZoomControlStyle, dynamic>.fromIterable(ZoomControlStyle.values,
-        value: asJs));
-
-/// codec for google_maps.src.ScaleControlStyle
-final __codec34 = new BiMapCodec<ScaleControlStyle, dynamic>(
-    new Map<ScaleControlStyle, dynamic>.fromIterable(ScaleControlStyle.values,
-        value: asJs));
-
-/// codec for google_maps.src.MapTypeControlStyle
-final __codec33 = new BiMapCodec<MapTypeControlStyle, dynamic>(
-    new Map<MapTypeControlStyle, dynamic>.fromIterable(
-        MapTypeControlStyle.values,
-        value: asJs));
-
-/// codec for google_maps.src.ControlPosition
-final __codec32 = new BiMapCodec<ControlPosition, dynamic>(
-    new Map<ControlPosition, dynamic>.fromIterable(ControlPosition.values,
-        value: asJs));
-
-/// codec for google_maps.src.ZoomControlOptions
-final __codec31 = new JsInterfaceCodec<ZoomControlOptions>(
-    (o) => new ZoomControlOptions.created(o));
-
-/// codec for dart.core.List<MapTypeStyle>
-final __codec30 = new JsListCodec<MapTypeStyle>(__codec29);
-
-/// codec for google_maps.src.MapTypeStyle
-final __codec29 =
-    new JsInterfaceCodec<MapTypeStyle>((o) => new MapTypeStyle.created(o));
-
-/// codec for google_maps.src.StreetViewControlOptions
-final __codec28 = new JsInterfaceCodec<StreetViewControlOptions>(
-    (o) => new StreetViewControlOptions.created(o));
-
-/// codec for google_maps.src.ScaleControlOptions
-final __codec27 = new JsInterfaceCodec<ScaleControlOptions>(
-    (o) => new ScaleControlOptions.created(o));
-
-/// codec for google_maps.src.RotateControlOptions
-final __codec26 = new JsInterfaceCodec<RotateControlOptions>(
-    (o) => new RotateControlOptions.created(o));
-
-/// codec for google_maps.src.PanControlOptions
-final __codec25 = new JsInterfaceCodec<PanControlOptions>(
-    (o) => new PanControlOptions.created(o));
-
-/// codec for google_maps.src.OverviewMapControlOptions
-final __codec24 = new JsInterfaceCodec<OverviewMapControlOptions>(
-    (o) => new OverviewMapControlOptions.created(o));
-
-/// codec for google_maps.src.MapTypeControlOptions
-final __codec23 = new JsInterfaceCodec<MapTypeControlOptions>(
-    (o) => new MapTypeControlOptions.created(o));
-
-/// codec for google_maps.src.FullscreenControlOptions
-final __codec22 = new JsInterfaceCodec<FullscreenControlOptions>(
-    (o) => new FullscreenControlOptions.created(o));
-
-/// codec for google_maps.src.Projection
-final __codec21 =
-    new JsInterfaceCodec<Projection>((o) => new Projection.created(o));
-
-/// codec for google_maps.src.LatLng
-final __codec20 = new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o));
-
-/// codec for google_maps.src.LatLngBounds
-final __codec19 =
-    new JsInterfaceCodec<LatLngBounds>((o) => new LatLngBounds.created(o));
-
-/// codec for google_maps.src.Data
-final __codec18 = new JsInterfaceCodec<Data>((o) => new Data.created(o));
-
-/// codec for google_maps.src.Controls
-final __codec17 =
-    new JsInterfaceCodec<Controls>((o) => new Controls.created(o));
-
-/// codec for google_maps.src.MapOptions
-final __codec16 =
-    new JsInterfaceCodec<MapOptions>((o) => new MapOptions.created(o));
-
-/// codec for google_maps.src.([dynamic]) → dynamic
-final __codec15 = new FunctionCodec<Function> /*<([dynamic]) → dynamic>*/(
-  (f) => ([p_p1]) => __codec0.encode(f(__codec0.decode(p_p1))),
-  (f) => ([p_p1]) => __codec0.decode(f is JsFunction
-      ? f.apply([__codec0.encode(p_p1)])
-      : Function.apply(f, [__codec0.encode(p_p1)])),
-);
-
-/// codec for dart.core.Map<String, dynamic>
-final __codec14 = new JsObjectAsMapCodec<dynamic>(__codec0);
-
-/// codec for google_maps.src.MapTypeStyleFeatureType
-final __codec13 = new BiMapCodec<MapTypeStyleFeatureType, dynamic>(
-    new Map<MapTypeStyleFeatureType, dynamic>.fromIterable(
-        MapTypeStyleFeatureType.values,
-        value: asJs));
-
-/// codec for google_maps.src.MapTypeStyleElementType
-final __codec12 = new BiMapCodec<MapTypeStyleElementType, dynamic>(
-    new Map<MapTypeStyleElementType, dynamic>.fromIterable(
-        MapTypeStyleElementType.values,
-        value: asJs));
-
-/// codec for google_maps.src.VehicleType
-final __codec11 = new BiMapCodec<VehicleType, dynamic>(
-    new Map<VehicleType, dynamic>.fromIterable(VehicleType.values,
-        value: asJs));
-
-/// codec for google_maps.src.(dynamic, dynamic) → dynamic
-final __codec10 =
-    new FunctionCodec<Function> /*<(dynamic, dynamic) → dynamic>*/(
-  (f) => (p_p1, p_p2) =>
-      __codec0.encode(f(__codec0.decode(p_p1), __codec0.decode(p_p2))),
-  (f) => (p_p1, p_p2) => __codec0.decode(f is JsFunction
-      ? f.apply([__codec0.encode(p_p1), __codec0.encode(p_p2)])
-      : Function.apply(f, [__codec0.encode(p_p1), __codec0.encode(p_p2)])),
-);
-
-/// codec for google_maps.src.(List<dynamic>, dynamic) → dynamic
-final __codec9 =
-    new FunctionCodec<Function> /*<(List<dynamic>, dynamic) → dynamic>*/(
-  (f) => (p_p1, p_p2) =>
-      __codec0.encode(f(__codec1.decode(p_p1), __codec0.decode(p_p2))),
-  (f) => (p_p1, p_p2) => __codec0.decode(f is JsFunction
-      ? f.apply([__codec1.encode(p_p1), __codec0.encode(p_p2)])
-      : Function.apply(f, [__codec1.encode(p_p1), __codec0.encode(p_p2)])),
-);
-
-/// codec for dart.core.List<num>
-final __codec8 = new JsListCodec<num>(null);
-
-/// codec for google_maps.src.(dynamic, String) → dynamic
-final __codec7 = new FunctionCodec<Function> /*<(dynamic, String) → dynamic>*/(
-  (f) => (p_p1, p_p2) => __codec0.encode(f(__codec0.decode(p_p1), p_p2)),
-  (f) => (p_p1, p_p2) => __codec0.decode(f is JsFunction
-      ? f.apply([__codec0.encode(p_p1), p_p2])
-      : Function.apply(f, [__codec0.encode(p_p1), p_p2])),
-);
-
-/// codec for google_maps.src.(Object) → dynamic
-final __codec6 = new FunctionCodec<Function> /*<(Object) → dynamic>*/(
-  (f) => (p_p1) => __codec0.encode(f(__codec2.decode(p_p1))),
-  (f) => (p_p1) => __codec0.decode(f is JsFunction
-      ? f.apply([__codec2.encode(p_p1)])
-      : Function.apply(f, [__codec2.encode(p_p1)])),
-);
-
-/// codec for google_maps.src.(List<dynamic>) → dynamic
-final __codec5 = new FunctionCodec<Function> /*<(List<dynamic>) → dynamic>*/(
-  (f) => (p_p1) => __codec0.encode(f(__codec1.decode(p_p1))),
-  (f) => (p_p1) => __codec0.decode(f is JsFunction
-      ? f.apply([__codec1.encode(p_p1)])
-      : Function.apply(f, [__codec1.encode(p_p1)])),
-);
-
-/// codec for dart.core.List<String>
-final __codec4 = new JsListCodec<String>(null);
-
-/// codec for google_maps.src.(dynamic) → dynamic
-final __codec3 = new FunctionCodec<Function> /*<(dynamic) → dynamic>*/(
-  (f) => (p_p1) => __codec0.encode(f(__codec0.decode(p_p1))),
-  (f) => (p_p1) => __codec0.decode(f is JsFunction
-      ? f.apply([__codec0.encode(p_p1)])
-      : Function.apply(f, [__codec0.encode(p_p1)])),
-);
-
-/// codec for dart.core.Object
-final __codec2 = new DynamicCodec();
-
-/// codec for dart.core.List<dynamic>
-final __codec1 = new JsListCodec<dynamic>(__codec0);
-
-/// codec for null.dynamic
-final __codec0 = new DynamicCodec();
-
 @GeneratedFrom(_Controls)
 class Controls extends JsInterface
     with MapMixin<ControlPosition, MVCArray<Node>> {
@@ -832,19 +61,19 @@ class Controls extends JsInterface
 class GMap extends MVCObject {
   GMap.created(JsObject o) : super.created(o);
   GMap(Node mapDiv, [MapOptions opts])
-      : this.created(new JsObject(context['google']['maps']['Map'],
-            [mapDiv, __codec16.encode(opts)]));
+      : this.created(new JsObject(
+            context['google']['maps']['Map'], [mapDiv, __codec0.encode(opts)]));
 
   void fitBounds(LatLngBounds bounds) {
-    asJsObject(this).callMethod('fitBounds', [__codec19.encode(bounds)]);
+    asJsObject(this).callMethod('fitBounds', [__codec5.encode(bounds)]);
   }
 
   LatLngBounds get bounds => _getBounds();
   LatLngBounds _getBounds() =>
-      __codec19.decode(asJsObject(this).callMethod('getBounds'));
+      __codec5.decode(asJsObject(this).callMethod('getBounds'));
   LatLng get center => _getCenter();
   LatLng _getCenter() =>
-      __codec20.decode(asJsObject(this).callMethod('getCenter'));
+      __codec6.decode(asJsObject(this).callMethod('getCenter'));
   bool get clickableIcons => _getClickableIcons();
   bool _getClickableIcons() => asJsObject(this).callMethod('getClickableIcons');
   Node get div => _getDiv();
@@ -862,13 +91,13 @@ class GMap extends MVCObject {
         ..add(new IdentityCodec<String>()))
       .decode(_getMapTypeId());
   _getMapTypeId() =>
-      __codec0.decode(asJsObject(this).callMethod('getMapTypeId'));
+      __codec4.decode(asJsObject(this).callMethod('getMapTypeId'));
   Projection get projection => _getProjection();
   Projection _getProjection() =>
-      __codec21.decode(asJsObject(this).callMethod('getProjection'));
+      __codec7.decode(asJsObject(this).callMethod('getProjection'));
   StreetViewPanorama get streetView => _getStreetView();
   StreetViewPanorama _getStreetView() =>
-      __codec163.decode(asJsObject(this).callMethod('getStreetView'));
+      __codec8.decode(asJsObject(this).callMethod('getStreetView'));
   num get tilt => _getTilt();
   num _getTilt() => asJsObject(this).callMethod('getTilt');
   int get zoom => _getZoom();
@@ -878,17 +107,16 @@ class GMap extends MVCObject {
   }
 
   void panTo(LatLng latLng) {
-    asJsObject(this).callMethod('panTo', [__codec20.encode(latLng)]);
+    asJsObject(this).callMethod('panTo', [__codec6.encode(latLng)]);
   }
 
   void panToBounds(LatLngBounds latLngBounds) {
-    asJsObject(this)
-        .callMethod('panToBounds', [__codec19.encode(latLngBounds)]);
+    asJsObject(this).callMethod('panToBounds', [__codec5.encode(latLngBounds)]);
   }
 
   void set center(LatLng latlng) => _setCenter(latlng);
   void _setCenter(LatLng latlng) {
-    asJsObject(this).callMethod('setCenter', [__codec20.encode(latlng)]);
+    asJsObject(this).callMethod('setCenter', [__codec6.encode(latlng)]);
   }
 
   void set clickableIcons(bool value) => _setClickableIcons(value);
@@ -916,17 +144,17 @@ class GMap extends MVCObject {
             ..add(new IdentityCodec<String>()))
           .encode(mapTypeId));
   void _setMapTypeId(dynamic /*MapTypeId|String*/ mapTypeId) {
-    asJsObject(this).callMethod('setMapTypeId', [__codec0.encode(mapTypeId)]);
+    asJsObject(this).callMethod('setMapTypeId', [__codec4.encode(mapTypeId)]);
   }
 
   void set options(MapOptions options) => _setOptions(options);
   void _setOptions(MapOptions options) {
-    asJsObject(this).callMethod('setOptions', [__codec16.encode(options)]);
+    asJsObject(this).callMethod('setOptions', [__codec0.encode(options)]);
   }
 
   void set streetView(StreetViewPanorama panorama) => _setStreetView(panorama);
   void _setStreetView(StreetViewPanorama panorama) {
-    asJsObject(this).callMethod('setStreetView', [__codec163.encode(panorama)]);
+    asJsObject(this).callMethod('setStreetView', [__codec8.encode(panorama)]);
   }
 
   void set tilt(num tilt) => _setTilt(tilt);
@@ -940,27 +168,26 @@ class GMap extends MVCObject {
   }
 
   void set controls(Controls _controls) {
-    asJsObject(this)['controls'] = __codec17.encode(_controls);
+    asJsObject(this)['controls'] = __codec1.encode(_controls);
   }
 
-  Controls get controls => __codec17.decode(asJsObject(this)['controls']);
+  Controls get controls => __codec1.decode(asJsObject(this)['controls']);
   void set data(Data _data) {
-    asJsObject(this)['data'] = __codec18.encode(_data);
+    asJsObject(this)['data'] = __codec2.encode(_data);
   }
 
-  Data get data => __codec18.decode(asJsObject(this)['data']);
+  Data get data => __codec2.decode(asJsObject(this)['data']);
   void set mapTypes(MapTypeRegistry _mapTypes) {
-    asJsObject(this)['mapTypes'] = __codec162.encode(_mapTypes);
+    asJsObject(this)['mapTypes'] = __codec3.encode(_mapTypes);
   }
 
-  MapTypeRegistry get mapTypes =>
-      __codec162.decode(asJsObject(this)['mapTypes']);
+  MapTypeRegistry get mapTypes => __codec3.decode(asJsObject(this)['mapTypes']);
   void set _overlayMapTypes(dynamic __overlayMapTypes) {
-    asJsObject(this)['overlayMapTypes'] = __codec0.encode(__overlayMapTypes);
+    asJsObject(this)['overlayMapTypes'] = __codec4.encode(__overlayMapTypes);
   }
 
   dynamic get _overlayMapTypes =>
-      __codec0.decode(asJsObject(this)['overlayMapTypes']);
+      __codec4.decode(asJsObject(this)['overlayMapTypes']);
   MVCArray<MapType> get overlayMapTypes =>
       (new JsInterfaceCodec<MVCArray<MapType>>((o) =>
               new MVCArray<MapType>.created(
@@ -1019,10 +246,10 @@ class MapOptions extends JsInterface {
 
   String get backgroundColor => asJsObject(this)['backgroundColor'];
   void set center(LatLng _center) {
-    asJsObject(this)['center'] = __codec20.encode(_center);
+    asJsObject(this)['center'] = __codec6.encode(_center);
   }
 
-  LatLng get center => __codec20.decode(asJsObject(this)['center']);
+  LatLng get center => __codec6.decode(asJsObject(this)['center']);
   void set clickableIcons(bool _clickableIcons) {
     asJsObject(this)['clickableIcons'] = _clickableIcons;
   }
@@ -1061,11 +288,11 @@ class MapOptions extends JsInterface {
   void set fullscreenControlOptions(
       FullscreenControlOptions _fullscreenControlOptions) {
     asJsObject(this)['fullscreenControlOptions'] =
-        __codec22.encode(_fullscreenControlOptions);
+        __codec9.encode(_fullscreenControlOptions);
   }
 
   FullscreenControlOptions get fullscreenControlOptions =>
-      __codec22.decode(asJsObject(this)['fullscreenControlOptions']);
+      __codec9.decode(asJsObject(this)['fullscreenControlOptions']);
   void set gestureHandling(String _gestureHandling) {
     asJsObject(this)['gestureHandling'] = _gestureHandling;
   }
@@ -1088,16 +315,16 @@ class MapOptions extends JsInterface {
   bool get mapTypeControl => asJsObject(this)['mapTypeControl'];
   void set mapTypeControlOptions(MapTypeControlOptions _mapTypeControlOptions) {
     asJsObject(this)['mapTypeControlOptions'] =
-        __codec23.encode(_mapTypeControlOptions);
+        __codec10.encode(_mapTypeControlOptions);
   }
 
   MapTypeControlOptions get mapTypeControlOptions =>
-      __codec23.decode(asJsObject(this)['mapTypeControlOptions']);
+      __codec10.decode(asJsObject(this)['mapTypeControlOptions']);
   void set _mapTypeId(dynamic __mapTypeId) {
-    asJsObject(this)['mapTypeId'] = __codec0.encode(__mapTypeId);
+    asJsObject(this)['mapTypeId'] = __codec4.encode(__mapTypeId);
   }
 
-  dynamic get _mapTypeId => __codec0.decode(asJsObject(this)['mapTypeId']);
+  dynamic get _mapTypeId => __codec4.decode(asJsObject(this)['mapTypeId']);
   dynamic /*MapTypeId|String*/ get mapTypeId => (new ChainedCodec()
         ..add(new BiMapCodec<MapTypeId, dynamic>({
           MapTypeId.HYBRID: context['google']['maps']['MapTypeId']['HYBRID'],
@@ -1145,11 +372,11 @@ class MapOptions extends JsInterface {
   void set overviewMapControlOptions(
       OverviewMapControlOptions _overviewMapControlOptions) {
     asJsObject(this)['overviewMapControlOptions'] =
-        __codec24.encode(_overviewMapControlOptions);
+        __codec11.encode(_overviewMapControlOptions);
   }
 
   OverviewMapControlOptions get overviewMapControlOptions =>
-      __codec24.decode(asJsObject(this)['overviewMapControlOptions']);
+      __codec11.decode(asJsObject(this)['overviewMapControlOptions']);
   void set panControl(bool _panControl) {
     asJsObject(this)['panControl'] = _panControl;
   }
@@ -1157,11 +384,11 @@ class MapOptions extends JsInterface {
   bool get panControl => asJsObject(this)['panControl'];
   void set panControlOptions(PanControlOptions _panControlOptions) {
     asJsObject(this)['panControlOptions'] =
-        __codec25.encode(_panControlOptions);
+        __codec12.encode(_panControlOptions);
   }
 
   PanControlOptions get panControlOptions =>
-      __codec25.decode(asJsObject(this)['panControlOptions']);
+      __codec12.decode(asJsObject(this)['panControlOptions']);
   void set rotateControl(bool _rotateControl) {
     asJsObject(this)['rotateControl'] = _rotateControl;
   }
@@ -1169,11 +396,11 @@ class MapOptions extends JsInterface {
   bool get rotateControl => asJsObject(this)['rotateControl'];
   void set rotateControlOptions(RotateControlOptions _rotateControlOptions) {
     asJsObject(this)['rotateControlOptions'] =
-        __codec26.encode(_rotateControlOptions);
+        __codec13.encode(_rotateControlOptions);
   }
 
   RotateControlOptions get rotateControlOptions =>
-      __codec26.decode(asJsObject(this)['rotateControlOptions']);
+      __codec13.decode(asJsObject(this)['rotateControlOptions']);
   void set scaleControl(bool _scaleControl) {
     asJsObject(this)['scaleControl'] = _scaleControl;
   }
@@ -1181,22 +408,22 @@ class MapOptions extends JsInterface {
   bool get scaleControl => asJsObject(this)['scaleControl'];
   void set scaleControlOptions(ScaleControlOptions _scaleControlOptions) {
     asJsObject(this)['scaleControlOptions'] =
-        __codec27.encode(_scaleControlOptions);
+        __codec14.encode(_scaleControlOptions);
   }
 
   ScaleControlOptions get scaleControlOptions =>
-      __codec27.decode(asJsObject(this)['scaleControlOptions']);
+      __codec14.decode(asJsObject(this)['scaleControlOptions']);
   void set scrollwheel(bool _scrollwheel) {
     asJsObject(this)['scrollwheel'] = _scrollwheel;
   }
 
   bool get scrollwheel => asJsObject(this)['scrollwheel'];
   void set streetView(StreetViewPanorama _streetView) {
-    asJsObject(this)['streetView'] = __codec163.encode(_streetView);
+    asJsObject(this)['streetView'] = __codec8.encode(_streetView);
   }
 
   StreetViewPanorama get streetView =>
-      __codec163.decode(asJsObject(this)['streetView']);
+      __codec8.decode(asJsObject(this)['streetView']);
   void set streetViewControl(bool _streetViewControl) {
     asJsObject(this)['streetViewControl'] = _streetViewControl;
   }
@@ -1205,16 +432,16 @@ class MapOptions extends JsInterface {
   void set streetViewControlOptions(
       StreetViewControlOptions _streetViewControlOptions) {
     asJsObject(this)['streetViewControlOptions'] =
-        __codec28.encode(_streetViewControlOptions);
+        __codec15.encode(_streetViewControlOptions);
   }
 
   StreetViewControlOptions get streetViewControlOptions =>
-      __codec28.decode(asJsObject(this)['streetViewControlOptions']);
+      __codec15.decode(asJsObject(this)['streetViewControlOptions']);
   void set styles(List<MapTypeStyle> _styles) {
-    asJsObject(this)['styles'] = __codec30.encode(_styles);
+    asJsObject(this)['styles'] = __codec17.encode(_styles);
   }
 
-  List<MapTypeStyle> get styles => __codec30.decode(asJsObject(this)['styles']);
+  List<MapTypeStyle> get styles => __codec17.decode(asJsObject(this)['styles']);
   void set tilt(num _tilt) {
     asJsObject(this)['tilt'] = _tilt;
   }
@@ -1232,11 +459,11 @@ class MapOptions extends JsInterface {
   bool get zoomControl => asJsObject(this)['zoomControl'];
   void set zoomControlOptions(ZoomControlOptions _zoomControlOptions) {
     asJsObject(this)['zoomControlOptions'] =
-        __codec31.encode(_zoomControlOptions);
+        __codec18.encode(_zoomControlOptions);
   }
 
   ZoomControlOptions get zoomControlOptions =>
-      __codec31.decode(asJsObject(this)['zoomControlOptions']);
+      __codec18.decode(asJsObject(this)['zoomControlOptions']);
 }
 
 class MapTypeId extends JsEnum {
@@ -1267,11 +494,11 @@ class FullscreenControlOptions extends JsInterface {
   FullscreenControlOptions() : this.created(new JsObject(context['Object']));
 
   void set position(ControlPosition _position) {
-    asJsObject(this)['position'] = __codec32.encode(_position);
+    asJsObject(this)['position'] = __codec19.encode(_position);
   }
 
   ControlPosition get position =>
-      __codec32.decode(asJsObject(this)['position']);
+      __codec19.decode(asJsObject(this)['position']);
 }
 
 @GeneratedFrom(_MapTypeControlOptions)
@@ -1317,16 +544,16 @@ class MapTypeControlOptions extends JsInterface {
   }
 
   void set position(ControlPosition _position) {
-    asJsObject(this)['position'] = __codec32.encode(_position);
+    asJsObject(this)['position'] = __codec19.encode(_position);
   }
 
   ControlPosition get position =>
-      __codec32.decode(asJsObject(this)['position']);
+      __codec19.decode(asJsObject(this)['position']);
   void set style(MapTypeControlStyle _style) {
-    asJsObject(this)['style'] = __codec33.encode(_style);
+    asJsObject(this)['style'] = __codec20.encode(_style);
   }
 
-  MapTypeControlStyle get style => __codec33.decode(asJsObject(this)['style']);
+  MapTypeControlStyle get style => __codec20.decode(asJsObject(this)['style']);
 }
 
 class MapTypeControlStyle extends JsEnum {
@@ -1372,11 +599,11 @@ class PanControlOptions extends JsInterface {
   PanControlOptions() : this.created(new JsObject(context['Object']));
 
   void set position(ControlPosition _position) {
-    asJsObject(this)['position'] = __codec32.encode(_position);
+    asJsObject(this)['position'] = __codec19.encode(_position);
   }
 
   ControlPosition get position =>
-      __codec32.decode(asJsObject(this)['position']);
+      __codec19.decode(asJsObject(this)['position']);
 }
 
 @GeneratedFrom(_RotateControlOptions)
@@ -1386,11 +613,11 @@ class RotateControlOptions extends JsInterface {
   RotateControlOptions() : this.created(new JsObject(context['Object']));
 
   void set position(ControlPosition _position) {
-    asJsObject(this)['position'] = __codec32.encode(_position);
+    asJsObject(this)['position'] = __codec19.encode(_position);
   }
 
   ControlPosition get position =>
-      __codec32.decode(asJsObject(this)['position']);
+      __codec19.decode(asJsObject(this)['position']);
 }
 
 @GeneratedFrom(_ScaleControlOptions)
@@ -1400,10 +627,10 @@ class ScaleControlOptions extends JsInterface {
   ScaleControlOptions() : this.created(new JsObject(context['Object']));
 
   void set style(ScaleControlStyle _style) {
-    asJsObject(this)['style'] = __codec34.encode(_style);
+    asJsObject(this)['style'] = __codec21.encode(_style);
   }
 
-  ScaleControlStyle get style => __codec34.decode(asJsObject(this)['style']);
+  ScaleControlStyle get style => __codec21.decode(asJsObject(this)['style']);
 }
 
 class ScaleControlStyle extends JsEnum {
@@ -1428,11 +655,11 @@ class StreetViewControlOptions extends JsInterface {
   StreetViewControlOptions() : this.created(new JsObject(context['Object']));
 
   void set position(ControlPosition _position) {
-    asJsObject(this)['position'] = __codec32.encode(_position);
+    asJsObject(this)['position'] = __codec19.encode(_position);
   }
 
   ControlPosition get position =>
-      __codec32.decode(asJsObject(this)['position']);
+      __codec19.decode(asJsObject(this)['position']);
 }
 
 @GeneratedFrom(_ZoomControlOptions)
@@ -1442,16 +669,16 @@ class ZoomControlOptions extends JsInterface {
   ZoomControlOptions() : this.created(new JsObject(context['Object']));
 
   void set position(ControlPosition _position) {
-    asJsObject(this)['position'] = __codec32.encode(_position);
+    asJsObject(this)['position'] = __codec19.encode(_position);
   }
 
   ControlPosition get position =>
-      __codec32.decode(asJsObject(this)['position']);
+      __codec19.decode(asJsObject(this)['position']);
   void set style(ZoomControlStyle _style) {
-    asJsObject(this)['style'] = __codec35.encode(_style);
+    asJsObject(this)['style'] = __codec22.encode(_style);
   }
 
-  ZoomControlStyle get style => __codec35.decode(asJsObject(this)['style']);
+  ZoomControlStyle get style => __codec22.decode(asJsObject(this)['style']);
 }
 
 class ZoomControlStyle extends JsEnum {
@@ -1529,7 +756,7 @@ class Data extends JsInterface {
   Data.created(JsObject o) : super.created(o);
   Data([DataDataOptions options])
       : this.created(new JsObject(
-            context['google']['maps']['Data'], [__codec36.encode(options)]));
+            context['google']['maps']['Data'], [__codec23.encode(options)]));
 
   DataFeature add(dynamic /*DataFeature|DataFeatureOptions*/ feature) =>
       _add((new ChainedCodec()
@@ -1542,29 +769,29 @@ class Data extends JsInterface {
             ..add(new JsInterfaceCodec<DataFeatureOptions>(
                 (o) => new DataFeatureOptions.created(o))))
           .encode(feature)) as DataFeature;
-  _add(dynamic /*DataFeature|DataFeatureOptions*/ feature) => __codec0
-      .decode(asJsObject(this).callMethod('add', [__codec0.encode(feature)]));
+  _add(dynamic /*DataFeature|DataFeatureOptions*/ feature) => __codec4
+      .decode(asJsObject(this).callMethod('add', [__codec4.encode(feature)]));
   List<DataFeature> addGeoJson(Object geoJson, [DataGeoJsonOptions options]) =>
-      __codec39.decode(asJsObject(this).callMethod(
-          'addGeoJson', [__codec2.encode(geoJson), __codec37.encode(options)]));
+      __codec27.decode(asJsObject(this).callMethod('addGeoJson',
+          [__codec24.encode(geoJson), __codec25.encode(options)]));
   bool contains(DataFeature feature) =>
-      asJsObject(this).callMethod('contains', [__codec38.encode(feature)]);
+      asJsObject(this).callMethod('contains', [__codec26.encode(feature)]);
   void forEach(callback(DataFeature p1)) {
-    asJsObject(this).callMethod('forEach', [__codec40.encode(callback)]);
+    asJsObject(this).callMethod('forEach', [__codec28.encode(callback)]);
   }
 
   ControlPosition get controlPosition => _getControlPosition();
   ControlPosition _getControlPosition() =>
-      __codec32.decode(asJsObject(this).callMethod('getControlPosition'));
+      __codec19.decode(asJsObject(this).callMethod('getControlPosition'));
   List<String> get controls => _getControls();
   List<String> _getControls() =>
-      __codec4.decode(asJsObject(this).callMethod('getControls'));
+      __codec29.decode(asJsObject(this).callMethod('getControls'));
   String get drawingMode => _getDrawingMode();
   String _getDrawingMode() => asJsObject(this).callMethod('getDrawingMode');
-  DataFeature getFeatureById(dynamic /*num|String*/ id) => __codec38.decode(
-      asJsObject(this).callMethod('getFeatureById', [__codec0.encode(id)]));
+  DataFeature getFeatureById(dynamic /*num|String*/ id) => __codec26.decode(
+      asJsObject(this).callMethod('getFeatureById', [__codec4.encode(id)]));
   GMap get map => _getMap();
-  GMap _getMap() => __codec164.decode(asJsObject(this).callMethod('getMap'));
+  GMap _getMap() => __codec30.decode(asJsObject(this).callMethod('getMap'));
   dynamic /*DataStylingFunction|DataStyleOptions*/ get style =>
       (new ChainedCodec()
             ..add(new FunctionCodec<DataStylingFunction>((f) {
@@ -1593,36 +820,36 @@ class Data extends JsInterface {
             ..add(new JsInterfaceCodec<DataStyleOptions>(
                 (o) => new DataStyleOptions.created(o))))
           .decode(_getStyle());
-  _getStyle() => __codec0.decode(asJsObject(this).callMethod('getStyle'));
+  _getStyle() => __codec4.decode(asJsObject(this).callMethod('getStyle'));
   void loadGeoJson(String url,
       [DataGeoJsonOptions options, callback(List<DataFeature> p1)]) {
     asJsObject(this).callMethod('loadGeoJson',
-        [url, __codec37.encode(options), __codec41.encode(callback)]);
+        [url, __codec25.encode(options), __codec31.encode(callback)]);
   }
 
   void overrideStyle(DataFeature feature, DataStyleOptions style) {
     asJsObject(this).callMethod(
-        'overrideStyle', [__codec38.encode(feature), __codec42.encode(style)]);
+        'overrideStyle', [__codec26.encode(feature), __codec32.encode(style)]);
   }
 
   void remove(DataFeature feature) {
-    asJsObject(this).callMethod('remove', [__codec38.encode(feature)]);
+    asJsObject(this).callMethod('remove', [__codec26.encode(feature)]);
   }
 
   void revertStyle([DataFeature feature]) {
-    asJsObject(this).callMethod('revertStyle', [__codec38.encode(feature)]);
+    asJsObject(this).callMethod('revertStyle', [__codec26.encode(feature)]);
   }
 
   void set controlPosition(ControlPosition controlPosition) =>
       _setControlPosition(controlPosition);
   void _setControlPosition(ControlPosition controlPosition) {
     asJsObject(this)
-        .callMethod('setControlPosition', [__codec32.encode(controlPosition)]);
+        .callMethod('setControlPosition', [__codec19.encode(controlPosition)]);
   }
 
   void set controls(List<String> controls) => _setControls(controls);
   void _setControls(List<String> controls) {
-    asJsObject(this).callMethod('setControls', [__codec4.encode(controls)]);
+    asJsObject(this).callMethod('setControls', [__codec29.encode(controls)]);
   }
 
   void set drawingMode(String drawingMode) => _setDrawingMode(drawingMode);
@@ -1632,7 +859,7 @@ class Data extends JsInterface {
 
   void set map(GMap map) => _setMap(map);
   void _setMap(GMap map) {
-    asJsObject(this).callMethod('setMap', [__codec164.encode(map)]);
+    asJsObject(this).callMethod('setMap', [__codec30.encode(map)]);
   }
 
   void set style(dynamic /*DataStylingFunction|DataStyleOptions*/ style) =>
@@ -1668,11 +895,11 @@ class Data extends JsInterface {
                 (o) => new DataStyleOptions.created(o))))
           .encode(style));
   void _setStyle(dynamic /*DataStylingFunction|DataStyleOptions*/ style) {
-    asJsObject(this).callMethod('setStyle', [__codec0.encode(style)]);
+    asJsObject(this).callMethod('setStyle', [__codec4.encode(style)]);
   }
 
   void toGeoJson(callback(Object p1)) {
-    asJsObject(this).callMethod('toGeoJson', [__codec6.encode(callback)]);
+    asJsObject(this).callMethod('toGeoJson', [__codec33.encode(callback)]);
   }
 
   Stream<DataAddFeatureEvent> get onAddfeature => getStream(this, #onAddfeature,
@@ -1720,32 +947,32 @@ class DataDataOptions extends JsInterface {
   DataDataOptions() : this.created(new JsObject(context['Object']));
 
   void set controlPosition(ControlPosition _controlPosition) {
-    asJsObject(this)['controlPosition'] = __codec32.encode(_controlPosition);
+    asJsObject(this)['controlPosition'] = __codec19.encode(_controlPosition);
   }
 
   ControlPosition get controlPosition =>
-      __codec32.decode(asJsObject(this)['controlPosition']);
+      __codec19.decode(asJsObject(this)['controlPosition']);
   void set controls(List<String> _controls) {
-    asJsObject(this)['controls'] = __codec4.encode(_controls);
+    asJsObject(this)['controls'] = __codec29.encode(_controls);
   }
 
-  List<String> get controls => __codec4.decode(asJsObject(this)['controls']);
+  List<String> get controls => __codec29.decode(asJsObject(this)['controls']);
   void set drawingMode(String _drawingMode) {
     asJsObject(this)['drawingMode'] = _drawingMode;
   }
 
   String get drawingMode => asJsObject(this)['drawingMode'];
   void set featureFactory(dynamic _featureFactory) {
-    asJsObject(this)['featureFactory'] = __codec0.encode(_featureFactory);
+    asJsObject(this)['featureFactory'] = __codec4.encode(_featureFactory);
   }
 
   dynamic get featureFactory =>
-      __codec0.decode(asJsObject(this)['featureFactory']);
+      __codec4.decode(asJsObject(this)['featureFactory']);
   void set map(GMap _map) {
-    asJsObject(this)['map'] = __codec164.encode(_map);
+    asJsObject(this)['map'] = __codec30.encode(_map);
   }
 
-  GMap get map => __codec164.decode(asJsObject(this)['map']);
+  GMap get map => __codec30.decode(asJsObject(this)['map']);
   dynamic /*DataStylingFunction|DataStyleOptions*/ get style =>
       (new ChainedCodec()
             ..add(new FunctionCodec<DataStylingFunction>((f) {
@@ -1822,10 +1049,10 @@ class DataDataOptions extends JsInterface {
                 (o) => new DataStyleOptions.created(o))))
           .encode(_style);
   void set _style(dynamic __style) {
-    asJsObject(this)['style'] = __codec0.encode(__style);
+    asJsObject(this)['style'] = __codec4.encode(__style);
   }
 
-  dynamic get _style => __codec0.decode(asJsObject(this)['style']);
+  dynamic get _style => __codec4.decode(asJsObject(this)['style']);
 }
 
 @GeneratedFrom(_DataGeoJsonOptions)
@@ -1878,10 +1105,10 @@ class DataStyleOptions extends JsInterface {
 
   num get fillOpacity => asJsObject(this)['fillOpacity'];
   void set _icon(dynamic __icon) {
-    asJsObject(this)['icon'] = __codec0.encode(__icon);
+    asJsObject(this)['icon'] = __codec4.encode(__icon);
   }
 
-  dynamic get _icon => __codec0.decode(asJsObject(this)['icon']);
+  dynamic get _icon => __codec4.decode(asJsObject(this)['icon']);
   dynamic /*String|Icon|GSymbol*/ get icon => (new ChainedCodec()
         ..add(new IdentityCodec<String>())
         ..add(new JsInterfaceCodec<Icon>((o) => new Icon.created(o)))
@@ -1896,10 +1123,10 @@ class DataStyleOptions extends JsInterface {
   }
 
   void set shape(MarkerShape _shape) {
-    asJsObject(this)['shape'] = __codec43.encode(_shape);
+    asJsObject(this)['shape'] = __codec34.encode(_shape);
   }
 
-  MarkerShape get shape => __codec43.decode(asJsObject(this)['shape']);
+  MarkerShape get shape => __codec34.decode(asJsObject(this)['shape']);
   void set strokeColor(String _strokeColor) {
     asJsObject(this)['strokeColor'] = _strokeColor;
   }
@@ -1938,10 +1165,11 @@ class DataFeature extends JsInterface {
   DataFeature.created(JsObject o) : super.created(o);
   DataFeature([DataFeatureOptions options])
       : this.created(new JsObject(context['google']['maps']['Data']['Feature'],
-            [__codec44.encode(options)]));
+            [__codec35.encode(options)]));
 
   void forEachProperty(callback(dynamic p1, String p2)) {
-    asJsObject(this).callMethod('forEachProperty', [__codec7.encode(callback)]);
+    asJsObject(this)
+        .callMethod('forEachProperty', [__codec36.encode(callback)]);
   }
 
   dynamic /*DataGeometryCollection|DataMultiPolygon|DataPolygon|DataLinearRing|DataMultiLineString|DataLineString|DataMultiPoint|DataPoint*/ get geometry => (new ChainedCodec()
@@ -1968,13 +1196,13 @@ class DataFeature extends JsInterface {
         ..add(new JsInterfaceCodec<DataMultiPoint>((o) => new DataMultiPoint.created(o), (o) => o != null && o.instanceof(context['google']['maps']['Data']['MultiPoint'] as JsFunction)))
         ..add(new JsInterfaceCodec<DataPoint>((o) => new DataPoint.created(o), (o) => o != null && o.instanceof(context['google']['maps']['Data']['Point'] as JsFunction))))
       .decode(_getGeometry());
-  _getGeometry() => __codec0.decode(asJsObject(this).callMethod('getGeometry'));
+  _getGeometry() => __codec4.decode(asJsObject(this).callMethod('getGeometry'));
 
   dynamic /*num|String*/ get id => _getId();
   dynamic /*num|String*/ _getId() =>
-      __codec0.decode(asJsObject(this).callMethod('getId'));
+      __codec4.decode(asJsObject(this).callMethod('getId'));
   dynamic getProperty(String name) =>
-      __codec0.decode(asJsObject(this).callMethod('getProperty', [name]));
+      __codec4.decode(asJsObject(this).callMethod('getProperty', [name]));
   void removeProperty(String name) {
     asJsObject(this).callMethod('removeProperty', [name]);
   }
@@ -2003,16 +1231,16 @@ class DataFeature extends JsInterface {
           .encode(newGeometry));
   void _setGeometry(
       dynamic /*DataGeometryCollection|DataMultiPolygon|DataPolygon|DataLinearRing|DataMultiLineString|DataLineString|DataMultiPoint|DataPoint|LatLng*/ newGeometry) {
-    asJsObject(this).callMethod('setGeometry', [__codec0.encode(newGeometry)]);
+    asJsObject(this).callMethod('setGeometry', [__codec4.encode(newGeometry)]);
   }
 
   void setProperty(String name, dynamic newValue) {
     asJsObject(this)
-        .callMethod('setProperty', [name, __codec0.encode(newValue)]);
+        .callMethod('setProperty', [name, __codec4.encode(newValue)]);
   }
 
   void toGeoJson(callback(Object p1)) {
-    asJsObject(this).callMethod('toGeoJson', [__codec6.encode(callback)]);
+    asJsObject(this).callMethod('toGeoJson', [__codec33.encode(callback)]);
   }
 
   Stream<DataRemovePropertyEvent> get onRemoveproperty => getStream(
@@ -2039,10 +1267,10 @@ class DataFeatureOptions extends JsInterface {
   DataFeatureOptions() : this.created(new JsObject(context['Object']));
 
   void set _geometry(dynamic __geometry) {
-    asJsObject(this)['geometry'] = __codec0.encode(__geometry);
+    asJsObject(this)['geometry'] = __codec4.encode(__geometry);
   }
 
-  dynamic get _geometry => __codec0.decode(asJsObject(this)['geometry']);
+  dynamic get _geometry => __codec4.decode(asJsObject(this)['geometry']);
   dynamic /*DataGeometryCollection|DataMultiPolygon|DataPolygon|DataLinearRing|DataMultiLineString|DataLineString|DataMultiPoint|DataPoint|LatLng*/ get geometry => (new ChainedCodec()
         ..add(new JsInterfaceCodec<DataGeometryCollection>(
             (o) => new DataGeometryCollection.created(o),
@@ -2097,15 +1325,15 @@ class DataFeatureOptions extends JsInterface {
   }
 
   void set id(dynamic _id) {
-    asJsObject(this)['id'] = __codec0.encode(_id);
+    asJsObject(this)['id'] = __codec4.encode(_id);
   }
 
-  dynamic get id => __codec0.decode(asJsObject(this)['id']);
+  dynamic get id => __codec4.decode(asJsObject(this)['id']);
   void set properties(Object _properties) {
-    asJsObject(this)['properties'] = __codec2.encode(_properties);
+    asJsObject(this)['properties'] = __codec24.encode(_properties);
   }
 
-  Object get properties => __codec2.decode(asJsObject(this)['properties']);
+  Object get properties => __codec24.decode(asJsObject(this)['properties']);
 }
 
 @GeneratedFrom(_DataGeometry)
@@ -2123,9 +1351,9 @@ class DataPoint extends DataGeometry {
   DataPoint.created(JsObject o) : super.created(o);
   DataPoint(LatLng latLng)
       : this.created(new JsObject(context['google']['maps']['Data']['Point'],
-            [__codec20.encode(latLng)]));
+            [__codec6.encode(latLng)]));
 
-  LatLng get() => __codec20.decode(asJsObject(this).callMethod('get'));
+  LatLng get() => __codec6.decode(asJsObject(this).callMethod('get'));
   String get type => _getType();
   String _getType() => asJsObject(this).callMethod('getType');
 }
@@ -2137,13 +1365,13 @@ class DataMultiPoint extends DataGeometry {
   DataMultiPoint(List<LatLng> elements)
       : this.created(new JsObject(
             context['google']['maps']['Data']['MultiPoint'],
-            [__codec45.encode(elements)]));
+            [__codec37.encode(elements)]));
 
   List<LatLng> get array => _getArray();
   List<LatLng> _getArray() =>
-      __codec45.decode(asJsObject(this).callMethod('getArray'));
+      __codec37.decode(asJsObject(this).callMethod('getArray'));
   LatLng getAt(num n) =>
-      __codec20.decode(asJsObject(this).callMethod('getAt', [n]));
+      __codec6.decode(asJsObject(this).callMethod('getAt', [n]));
   num get length => _getLength();
   num _getLength() => asJsObject(this).callMethod('getLength');
   String get type => _getType();
@@ -2157,13 +1385,13 @@ class DataLineString extends DataGeometry {
   DataLineString(List<LatLng> elements)
       : this.created(new JsObject(
             context['google']['maps']['Data']['LineString'],
-            [__codec45.encode(elements)]));
+            [__codec37.encode(elements)]));
 
   List<LatLng> get array => _getArray();
   List<LatLng> _getArray() =>
-      __codec45.decode(asJsObject(this).callMethod('getArray'));
+      __codec37.decode(asJsObject(this).callMethod('getArray'));
   LatLng getAt(num n) =>
-      __codec20.decode(asJsObject(this).callMethod('getAt', [n]));
+      __codec6.decode(asJsObject(this).callMethod('getAt', [n]));
   num get length => _getLength();
   num _getLength() => asJsObject(this).callMethod('getLength');
   String get type => _getType();
@@ -2197,9 +1425,9 @@ class DataMultiLineString extends DataGeometry {
             ]));
   List<DataLineString> get array => _getArray();
   List<DataLineString> _getArray() =>
-      __codec166.decode(asJsObject(this).callMethod('getArray'));
+      __codec39.decode(asJsObject(this).callMethod('getArray'));
   DataLineString getAt(num n) =>
-      __codec165.decode(asJsObject(this).callMethod('getAt', [n]));
+      __codec38.decode(asJsObject(this).callMethod('getAt', [n]));
   num get length => _getLength();
   num _getLength() => asJsObject(this).callMethod('getLength');
   String get type => _getType();
@@ -2213,13 +1441,13 @@ class DataLinearRing extends DataGeometry {
   DataLinearRing(List<LatLng> elements)
       : this.created(new JsObject(
             context['google']['maps']['Data']['LinearRing'],
-            [__codec45.encode(elements)]));
+            [__codec37.encode(elements)]));
 
   List<LatLng> get array => _getArray();
   List<LatLng> _getArray() =>
-      __codec45.decode(asJsObject(this).callMethod('getArray'));
+      __codec37.decode(asJsObject(this).callMethod('getArray'));
   LatLng getAt(num n) =>
-      __codec20.decode(asJsObject(this).callMethod('getAt', [n]));
+      __codec6.decode(asJsObject(this).callMethod('getAt', [n]));
   num get length => _getLength();
   num _getLength() => asJsObject(this).callMethod('getLength');
   String get type => _getType();
@@ -2251,9 +1479,9 @@ class DataPolygon extends DataGeometry {
         ]));
   List<DataLinearRing> get array => _getArray();
   List<DataLinearRing> _getArray() =>
-      __codec168.decode(asJsObject(this).callMethod('getArray'));
+      __codec41.decode(asJsObject(this).callMethod('getArray'));
   DataLinearRing getAt(num n) =>
-      __codec167.decode(asJsObject(this).callMethod('getAt', [n]));
+      __codec40.decode(asJsObject(this).callMethod('getAt', [n]));
   num get length => _getLength();
   num _getLength() => asJsObject(this).callMethod('getLength');
   String get type => _getType();
@@ -2290,9 +1518,9 @@ class DataMultiPolygon extends DataGeometry {
         ]));
   List<DataPolygon> get array => _getArray();
   List<DataPolygon> _getArray() =>
-      __codec170.decode(asJsObject(this).callMethod('getArray'));
+      __codec43.decode(asJsObject(this).callMethod('getArray'));
   DataPolygon getAt(num n) =>
-      __codec169.decode(asJsObject(this).callMethod('getAt', [n]));
+      __codec42.decode(asJsObject(this).callMethod('getAt', [n]));
   num get length => _getLength();
   num _getLength() => asJsObject(this).callMethod('getLength');
   String get type => _getType();
@@ -2344,7 +1572,7 @@ class DataGeometryCollection extends DataGeometry {
             ..add(new JsInterfaceCodec<DataMultiPoint>((o) => new DataMultiPoint.created(o), (o) => o != null && o.instanceof(context['google']['maps']['Data']['MultiPoint'] as JsFunction)))
             ..add(new JsInterfaceCodec<DataPoint>((o) => new DataPoint.created(o), (o) => o != null && o.instanceof(context['google']['maps']['Data']['Point'] as JsFunction)))))
           .decode(_getArray() as JsArray);
-  _getArray() => __codec0.decode(asJsObject(this).callMethod('getArray'));
+  _getArray() => __codec4.decode(asJsObject(this).callMethod('getArray'));
 
   dynamic /*DataGeometryCollection|DataMultiPolygon|DataPolygon|DataLinearRing|DataMultiLineString|DataLineString|DataMultiPoint|DataPoint*/ getAt(
           num n) =>
@@ -2370,7 +1598,7 @@ class DataGeometryCollection extends DataGeometry {
             ..add(new JsInterfaceCodec<DataMultiPoint>((o) => new DataMultiPoint.created(o), (o) => o != null && o.instanceof(context['google']['maps']['Data']['MultiPoint'] as JsFunction)))
             ..add(new JsInterfaceCodec<DataPoint>((o) => new DataPoint.created(o), (o) => o != null && o.instanceof(context['google']['maps']['Data']['Point'] as JsFunction))))
           .decode(_getAt(n));
-  _getAt(num n) => __codec0.decode(asJsObject(this).callMethod('getAt', [n]));
+  _getAt(num n) => __codec4.decode(asJsObject(this).callMethod('getAt', [n]));
 
   num get length => _getLength();
   num _getLength() => asJsObject(this).callMethod('getLength');
@@ -2385,10 +1613,10 @@ class DataMouseEvent extends MouseEvent {
   DataMouseEvent() : this.created(new JsObject(context['Object']));
 
   void set feature(DataFeature _feature) {
-    asJsObject(this)['feature'] = __codec38.encode(_feature);
+    asJsObject(this)['feature'] = __codec26.encode(_feature);
   }
 
-  DataFeature get feature => __codec38.decode(asJsObject(this)['feature']);
+  DataFeature get feature => __codec26.decode(asJsObject(this)['feature']);
 }
 
 @GeneratedFrom(_DataAddFeatureEvent)
@@ -2398,10 +1626,10 @@ class DataAddFeatureEvent extends JsInterface {
   DataAddFeatureEvent() : this.created(new JsObject(context['Object']));
 
   void set feature(DataFeature _feature) {
-    asJsObject(this)['feature'] = __codec38.encode(_feature);
+    asJsObject(this)['feature'] = __codec26.encode(_feature);
   }
 
-  DataFeature get feature => __codec38.decode(asJsObject(this)['feature']);
+  DataFeature get feature => __codec26.decode(asJsObject(this)['feature']);
 }
 
 @GeneratedFrom(_DataRemoveFeatureEvent)
@@ -2411,10 +1639,10 @@ class DataRemoveFeatureEvent extends JsInterface {
   DataRemoveFeatureEvent() : this.created(new JsObject(context['Object']));
 
   void set feature(DataFeature _feature) {
-    asJsObject(this)['feature'] = __codec38.encode(_feature);
+    asJsObject(this)['feature'] = __codec26.encode(_feature);
   }
 
-  DataFeature get feature => __codec38.decode(asJsObject(this)['feature']);
+  DataFeature get feature => __codec26.decode(asJsObject(this)['feature']);
 }
 
 @GeneratedFrom(_DataSetGeometryEvent)
@@ -2424,15 +1652,15 @@ class DataSetGeometryEvent extends JsInterface {
   DataSetGeometryEvent() : this.created(new JsObject(context['Object']));
 
   void set feature(DataFeature _feature) {
-    asJsObject(this)['feature'] = __codec38.encode(_feature);
+    asJsObject(this)['feature'] = __codec26.encode(_feature);
   }
 
-  DataFeature get feature => __codec38.decode(asJsObject(this)['feature']);
+  DataFeature get feature => __codec26.decode(asJsObject(this)['feature']);
   void set _newGeometry(dynamic __newGeometry) {
-    asJsObject(this)['newGeometry'] = __codec0.encode(__newGeometry);
+    asJsObject(this)['newGeometry'] = __codec4.encode(__newGeometry);
   }
 
-  dynamic get _newGeometry => __codec0.decode(asJsObject(this)['newGeometry']);
+  dynamic get _newGeometry => __codec4.decode(asJsObject(this)['newGeometry']);
   dynamic /*DataGeometryCollection|DataMultiPolygon|DataPolygon|DataLinearRing|DataMultiLineString|DataLineString|DataMultiPoint|DataPoint*/ get newGeometry => (new ChainedCodec()
         ..add(new JsInterfaceCodec<DataGeometryCollection>(
             (o) => new DataGeometryCollection.created(o),
@@ -2485,10 +1713,10 @@ class DataSetGeometryEvent extends JsInterface {
   }
 
   void set _oldGeometry(dynamic __oldGeometry) {
-    asJsObject(this)['oldGeometry'] = __codec0.encode(__oldGeometry);
+    asJsObject(this)['oldGeometry'] = __codec4.encode(__oldGeometry);
   }
 
-  dynamic get _oldGeometry => __codec0.decode(asJsObject(this)['oldGeometry']);
+  dynamic get _oldGeometry => __codec4.decode(asJsObject(this)['oldGeometry']);
   dynamic /*DataGeometryCollection|DataMultiPolygon|DataPolygon|DataLinearRing|DataMultiLineString|DataLineString|DataMultiPoint|DataPoint*/ get oldGeometry => (new ChainedCodec()
         ..add(new JsInterfaceCodec<DataGeometryCollection>(
             (o) => new DataGeometryCollection.created(o),
@@ -2548,25 +1776,25 @@ class DataSetPropertyEvent extends JsInterface {
   DataSetPropertyEvent() : this.created(new JsObject(context['Object']));
 
   void set feature(DataFeature _feature) {
-    asJsObject(this)['feature'] = __codec38.encode(_feature);
+    asJsObject(this)['feature'] = __codec26.encode(_feature);
   }
 
-  DataFeature get feature => __codec38.decode(asJsObject(this)['feature']);
+  DataFeature get feature => __codec26.decode(asJsObject(this)['feature']);
   void set name(String _name) {
     asJsObject(this)['name'] = _name;
   }
 
   String get name => asJsObject(this)['name'];
   void set newValue(dynamic _newValue) {
-    asJsObject(this)['newValue'] = __codec0.encode(_newValue);
+    asJsObject(this)['newValue'] = __codec4.encode(_newValue);
   }
 
-  dynamic get newValue => __codec0.decode(asJsObject(this)['newValue']);
+  dynamic get newValue => __codec4.decode(asJsObject(this)['newValue']);
   void set oldValue(dynamic _oldValue) {
-    asJsObject(this)['oldValue'] = __codec0.encode(_oldValue);
+    asJsObject(this)['oldValue'] = __codec4.encode(_oldValue);
   }
 
-  dynamic get oldValue => __codec0.decode(asJsObject(this)['oldValue']);
+  dynamic get oldValue => __codec4.decode(asJsObject(this)['oldValue']);
 }
 
 @GeneratedFrom(_DataRemovePropertyEvent)
@@ -2576,20 +1804,20 @@ class DataRemovePropertyEvent extends JsInterface {
   DataRemovePropertyEvent() : this.created(new JsObject(context['Object']));
 
   void set feature(DataFeature _feature) {
-    asJsObject(this)['feature'] = __codec38.encode(_feature);
+    asJsObject(this)['feature'] = __codec26.encode(_feature);
   }
 
-  DataFeature get feature => __codec38.decode(asJsObject(this)['feature']);
+  DataFeature get feature => __codec26.decode(asJsObject(this)['feature']);
   void set name(String _name) {
     asJsObject(this)['name'] = _name;
   }
 
   String get name => asJsObject(this)['name'];
   void set oldValue(dynamic _oldValue) {
-    asJsObject(this)['oldValue'] = __codec0.encode(_oldValue);
+    asJsObject(this)['oldValue'] = __codec4.encode(_oldValue);
   }
 
-  dynamic get oldValue => __codec0.decode(asJsObject(this)['oldValue']);
+  dynamic get oldValue => __codec4.decode(asJsObject(this)['oldValue']);
 }
 
 @GeneratedFrom(_Marker)
@@ -2601,14 +1829,14 @@ class Marker extends MVCObject {
   Marker.created(JsObject o) : super.created(o);
   Marker([MarkerOptions opts])
       : this.created(new JsObject(
-            context['google']['maps']['Marker'], [__codec46.encode(opts)]));
+            context['google']['maps']['Marker'], [__codec44.encode(opts)]));
 
   Animation get animation => _getAnimation();
   Animation _getAnimation() =>
-      __codec47.decode(asJsObject(this).callMethod('getAnimation'));
+      __codec45.decode(asJsObject(this).callMethod('getAnimation'));
   Attribution get attribution => _getAttribution();
   Attribution _getAttribution() =>
-      __codec48.decode(asJsObject(this).callMethod('getAttribution'));
+      __codec46.decode(asJsObject(this).callMethod('getAttribution'));
   bool get clickable => _getClickable();
   bool _getClickable() => asJsObject(this).callMethod('getClickable');
   String get cursor => _getCursor();
@@ -2620,10 +1848,10 @@ class Marker extends MVCObject {
         ..add(new JsInterfaceCodec<Icon>((o) => new Icon.created(o)))
         ..add(new JsInterfaceCodec<GSymbol>((o) => new GSymbol.created(o))))
       .decode(_getIcon());
-  _getIcon() => __codec0.decode(asJsObject(this).callMethod('getIcon'));
+  _getIcon() => __codec4.decode(asJsObject(this).callMethod('getIcon'));
   MarkerLabel get label => _getLabel();
   MarkerLabel _getLabel() =>
-      __codec49.decode(asJsObject(this).callMethod('getLabel'));
+      __codec47.decode(asJsObject(this).callMethod('getLabel'));
   dynamic /*GMap|StreetViewPanorama*/ get map => (new ChainedCodec()
         ..add(new JsInterfaceCodec<GMap>(
             (o) => new GMap.created(o),
@@ -2637,18 +1865,18 @@ class Marker extends MVCObject {
                 o.instanceof(context['google']['maps']['StreetViewPanorama']
                     as JsFunction))))
       .decode(_getMap());
-  _getMap() => __codec0.decode(asJsObject(this).callMethod('getMap'));
+  _getMap() => __codec4.decode(asJsObject(this).callMethod('getMap'));
   num get opacity => _getOpacity();
   num _getOpacity() => asJsObject(this).callMethod('getOpacity');
   MarkerPlace get place => _getPlace();
   MarkerPlace _getPlace() =>
-      __codec50.decode(asJsObject(this).callMethod('getPlace'));
+      __codec48.decode(asJsObject(this).callMethod('getPlace'));
   LatLng get position => _getPosition();
   LatLng _getPosition() =>
-      __codec20.decode(asJsObject(this).callMethod('getPosition'));
+      __codec6.decode(asJsObject(this).callMethod('getPosition'));
   MarkerShape get shape => _getShape();
   MarkerShape _getShape() =>
-      __codec43.decode(asJsObject(this).callMethod('getShape'));
+      __codec34.decode(asJsObject(this).callMethod('getShape'));
   String get title => _getTitle();
   String _getTitle() => asJsObject(this).callMethod('getTitle');
   bool get visible => _getVisible();
@@ -2657,13 +1885,13 @@ class Marker extends MVCObject {
   num _getZIndex() => asJsObject(this).callMethod('getZIndex');
   void set animation(Animation animation) => _setAnimation(animation);
   void _setAnimation(Animation animation) {
-    asJsObject(this).callMethod('setAnimation', [__codec47.encode(animation)]);
+    asJsObject(this).callMethod('setAnimation', [__codec45.encode(animation)]);
   }
 
   void set attribution(Attribution attribution) => _setAttribution(attribution);
   void _setAttribution(Attribution attribution) {
     asJsObject(this)
-        .callMethod('setAttribution', [__codec48.encode(attribution)]);
+        .callMethod('setAttribution', [__codec46.encode(attribution)]);
   }
 
   void set clickable(bool flag) => _setClickable(flag);
@@ -2688,7 +1916,7 @@ class Marker extends MVCObject {
             ..add(new JsInterfaceCodec<GSymbol>((o) => new GSymbol.created(o))))
           .encode(icon));
   void _setIcon(dynamic /*String|Icon|GSymbol*/ icon) {
-    asJsObject(this).callMethod('setIcon', [__codec0.encode(icon)]);
+    asJsObject(this).callMethod('setIcon', [__codec4.encode(icon)]);
   }
 
   void set label(dynamic /*String|MarkerLabel*/ label) =>
@@ -2698,7 +1926,7 @@ class Marker extends MVCObject {
                 (o) => new MarkerLabel.created(o))))
           .encode(label));
   void _setLabel(dynamic /*String|MarkerLabel*/ label) {
-    asJsObject(this).callMethod('setLabel', [__codec0.encode(label)]);
+    asJsObject(this).callMethod('setLabel', [__codec4.encode(label)]);
   }
 
   void set map(dynamic /*GMap|StreetViewPanorama*/ map) => _setMap(
@@ -2717,7 +1945,7 @@ class Marker extends MVCObject {
                         as JsFunction))))
           .encode(map));
   void _setMap(dynamic /*GMap|StreetViewPanorama*/ map) {
-    asJsObject(this).callMethod('setMap', [__codec0.encode(map)]);
+    asJsObject(this).callMethod('setMap', [__codec4.encode(map)]);
   }
 
   void set opacity(num opacity) => _setOpacity(opacity);
@@ -2727,22 +1955,22 @@ class Marker extends MVCObject {
 
   void set options(MarkerOptions options) => _setOptions(options);
   void _setOptions(MarkerOptions options) {
-    asJsObject(this).callMethod('setOptions', [__codec46.encode(options)]);
+    asJsObject(this).callMethod('setOptions', [__codec44.encode(options)]);
   }
 
   void set place(MarkerPlace place) => _setPlace(place);
   void _setPlace(MarkerPlace place) {
-    asJsObject(this).callMethod('setPlace', [__codec50.encode(place)]);
+    asJsObject(this).callMethod('setPlace', [__codec48.encode(place)]);
   }
 
   void set position(LatLng latlng) => _setPosition(latlng);
   void _setPosition(LatLng latlng) {
-    asJsObject(this).callMethod('setPosition', [__codec20.encode(latlng)]);
+    asJsObject(this).callMethod('setPosition', [__codec6.encode(latlng)]);
   }
 
   void set shape(MarkerShape shape) => _setShape(shape);
   void _setShape(MarkerShape shape) {
-    asJsObject(this).callMethod('setShape', [__codec43.encode(shape)]);
+    asJsObject(this).callMethod('setShape', [__codec34.encode(shape)]);
   }
 
   void set title(String title) => _setTitle(title);
@@ -2809,21 +2037,21 @@ class MarkerOptions extends JsInterface {
   MarkerOptions() : this.created(new JsObject(context['Object']));
 
   void set anchorPoint(Point _anchorPoint) {
-    asJsObject(this)['anchorPoint'] = __codec51.encode(_anchorPoint);
+    asJsObject(this)['anchorPoint'] = __codec49.encode(_anchorPoint);
   }
 
-  Point get anchorPoint => __codec51.decode(asJsObject(this)['anchorPoint']);
+  Point get anchorPoint => __codec49.decode(asJsObject(this)['anchorPoint']);
   void set animation(Animation _animation) {
-    asJsObject(this)['animation'] = __codec47.encode(_animation);
+    asJsObject(this)['animation'] = __codec45.encode(_animation);
   }
 
-  Animation get animation => __codec47.decode(asJsObject(this)['animation']);
+  Animation get animation => __codec45.decode(asJsObject(this)['animation']);
   void set attribution(Attribution _attribution) {
-    asJsObject(this)['attribution'] = __codec48.encode(_attribution);
+    asJsObject(this)['attribution'] = __codec46.encode(_attribution);
   }
 
   Attribution get attribution =>
-      __codec48.decode(asJsObject(this)['attribution']);
+      __codec46.decode(asJsObject(this)['attribution']);
   void set clickable(bool _clickable) {
     asJsObject(this)['clickable'] = _clickable;
   }
@@ -2845,10 +2073,10 @@ class MarkerOptions extends JsInterface {
 
   bool get draggable => asJsObject(this)['draggable'];
   void set _icon(dynamic __icon) {
-    asJsObject(this)['icon'] = __codec0.encode(__icon);
+    asJsObject(this)['icon'] = __codec4.encode(__icon);
   }
 
-  dynamic get _icon => __codec0.decode(asJsObject(this)['icon']);
+  dynamic get _icon => __codec4.decode(asJsObject(this)['icon']);
   dynamic /*String|Icon|GSymbol*/ get icon => (new ChainedCodec()
         ..add(new IdentityCodec<String>())
         ..add(new JsInterfaceCodec<Icon>((o) => new Icon.created(o)))
@@ -2863,10 +2091,10 @@ class MarkerOptions extends JsInterface {
   }
 
   void set _label(dynamic __label) {
-    asJsObject(this)['label'] = __codec0.encode(__label);
+    asJsObject(this)['label'] = __codec4.encode(__label);
   }
 
-  dynamic get _label => __codec0.decode(asJsObject(this)['label']);
+  dynamic get _label => __codec4.decode(asJsObject(this)['label']);
   dynamic /*String|MarkerLabel*/ get label => (new ChainedCodec()
         ..add(new IdentityCodec<String>())
         ..add(new JsInterfaceCodec<MarkerLabel>(
@@ -2881,10 +2109,10 @@ class MarkerOptions extends JsInterface {
   }
 
   void set _map(dynamic __map) {
-    asJsObject(this)['map'] = __codec0.encode(__map);
+    asJsObject(this)['map'] = __codec4.encode(__map);
   }
 
-  dynamic get _map => __codec0.decode(asJsObject(this)['map']);
+  dynamic get _map => __codec4.decode(asJsObject(this)['map']);
   dynamic /*GMap|StreetViewPanorama*/ get map => (new ChainedCodec()
         ..add(new JsInterfaceCodec<GMap>(
             (o) => new GMap.created(o),
@@ -2925,20 +2153,20 @@ class MarkerOptions extends JsInterface {
 
   bool get optimized => asJsObject(this)['optimized'];
   void set place(MarkerPlace _place) {
-    asJsObject(this)['place'] = __codec50.encode(_place);
+    asJsObject(this)['place'] = __codec48.encode(_place);
   }
 
-  MarkerPlace get place => __codec50.decode(asJsObject(this)['place']);
+  MarkerPlace get place => __codec48.decode(asJsObject(this)['place']);
   void set position(LatLng _position) {
-    asJsObject(this)['position'] = __codec20.encode(_position);
+    asJsObject(this)['position'] = __codec6.encode(_position);
   }
 
-  LatLng get position => __codec20.decode(asJsObject(this)['position']);
+  LatLng get position => __codec6.decode(asJsObject(this)['position']);
   void set shape(MarkerShape _shape) {
-    asJsObject(this)['shape'] = __codec43.encode(_shape);
+    asJsObject(this)['shape'] = __codec34.encode(_shape);
   }
 
-  MarkerShape get shape => __codec43.decode(asJsObject(this)['shape']);
+  MarkerShape get shape => __codec34.decode(asJsObject(this)['shape']);
   void set title(String _title) {
     asJsObject(this)['title'] = _title;
   }
@@ -2963,30 +2191,30 @@ class Icon extends JsInterface {
   Icon() : this.created(new JsObject(context['Object']));
 
   void set anchor(Point _anchor) {
-    asJsObject(this)['anchor'] = __codec51.encode(_anchor);
+    asJsObject(this)['anchor'] = __codec49.encode(_anchor);
   }
 
-  Point get anchor => __codec51.decode(asJsObject(this)['anchor']);
+  Point get anchor => __codec49.decode(asJsObject(this)['anchor']);
   void set labelOrigin(Point _labelOrigin) {
-    asJsObject(this)['labelOrigin'] = __codec51.encode(_labelOrigin);
+    asJsObject(this)['labelOrigin'] = __codec49.encode(_labelOrigin);
   }
 
-  Point get labelOrigin => __codec51.decode(asJsObject(this)['labelOrigin']);
+  Point get labelOrigin => __codec49.decode(asJsObject(this)['labelOrigin']);
   void set origin(Point _origin) {
-    asJsObject(this)['origin'] = __codec51.encode(_origin);
+    asJsObject(this)['origin'] = __codec49.encode(_origin);
   }
 
-  Point get origin => __codec51.decode(asJsObject(this)['origin']);
+  Point get origin => __codec49.decode(asJsObject(this)['origin']);
   void set scaledSize(Size _scaledSize) {
-    asJsObject(this)['scaledSize'] = __codec52.encode(_scaledSize);
+    asJsObject(this)['scaledSize'] = __codec50.encode(_scaledSize);
   }
 
-  Size get scaledSize => __codec52.decode(asJsObject(this)['scaledSize']);
+  Size get scaledSize => __codec50.decode(asJsObject(this)['scaledSize']);
   void set size(Size _size) {
-    asJsObject(this)['size'] = __codec52.encode(_size);
+    asJsObject(this)['size'] = __codec50.encode(_size);
   }
 
-  Size get size => __codec52.decode(asJsObject(this)['size']);
+  Size get size => __codec50.decode(asJsObject(this)['size']);
   void set url(String _url) {
     asJsObject(this)['url'] = _url;
   }
@@ -3034,10 +2262,10 @@ class MarkerShape extends JsInterface {
   MarkerShape() : this.created(new JsObject(context['Object']));
 
   void set coords(List<num> _coords) {
-    asJsObject(this)['coords'] = __codec8.encode(_coords);
+    asJsObject(this)['coords'] = __codec51.encode(_coords);
   }
 
-  List<num> get coords => __codec8.decode(asJsObject(this)['coords']);
+  List<num> get coords => __codec51.decode(asJsObject(this)['coords']);
   void set type(String _type) {
     asJsObject(this)['type'] = _type;
   }
@@ -3052,10 +2280,10 @@ class GSymbol extends JsInterface {
   GSymbol() : this.created(new JsObject(context['Object']));
 
   void set anchor(Point _anchor) {
-    asJsObject(this)['anchor'] = __codec51.encode(_anchor);
+    asJsObject(this)['anchor'] = __codec49.encode(_anchor);
   }
 
-  Point get anchor => __codec51.decode(asJsObject(this)['anchor']);
+  Point get anchor => __codec49.decode(asJsObject(this)['anchor']);
   void set fillColor(String _fillColor) {
     asJsObject(this)['fillColor'] = _fillColor;
   }
@@ -3067,15 +2295,15 @@ class GSymbol extends JsInterface {
 
   num get fillOpacity => asJsObject(this)['fillOpacity'];
   void set labelOrigin(Point _labelOrigin) {
-    asJsObject(this)['labelOrigin'] = __codec51.encode(_labelOrigin);
+    asJsObject(this)['labelOrigin'] = __codec49.encode(_labelOrigin);
   }
 
-  Point get labelOrigin => __codec51.decode(asJsObject(this)['labelOrigin']);
+  Point get labelOrigin => __codec49.decode(asJsObject(this)['labelOrigin']);
   void set _path(dynamic __path) {
-    asJsObject(this)['path'] = __codec0.encode(__path);
+    asJsObject(this)['path'] = __codec4.encode(__path);
   }
 
-  dynamic get _path => __codec0.decode(asJsObject(this)['path']);
+  dynamic get _path => __codec4.decode(asJsObject(this)['path']);
   dynamic /*SymbolPath|String*/ get path => (new ChainedCodec()
         ..add(new BiMapCodec<SymbolPath, dynamic>({
           SymbolPath.BACKWARD_CLOSED_ARROW: context['google']['maps']
@@ -3187,7 +2415,7 @@ class InfoWindow extends MVCObject {
   InfoWindow.created(JsObject o) : super.created(o);
   InfoWindow([InfoWindowOptions opts])
       : this.created(new JsObject(
-            context['google']['maps']['InfoWindow'], [__codec53.encode(opts)]));
+            context['google']['maps']['InfoWindow'], [__codec52.encode(opts)]));
 
   void close() {
     asJsObject(this).callMethod('close');
@@ -3195,10 +2423,10 @@ class InfoWindow extends MVCObject {
 
   dynamic /*String|Node*/ get content => _getContent();
   dynamic /*String|Node*/ _getContent() =>
-      __codec0.decode(asJsObject(this).callMethod('getContent'));
+      __codec4.decode(asJsObject(this).callMethod('getContent'));
   LatLng get position => _getPosition();
   LatLng _getPosition() =>
-      __codec20.decode(asJsObject(this).callMethod('getPosition'));
+      __codec6.decode(asJsObject(this).callMethod('getPosition'));
   num get zIndex => _getZIndex();
   num _getZIndex() => asJsObject(this).callMethod('getZIndex');
   void open([dynamic /*GMap|StreetViewPanorama*/ map, MVCObject anchor]) {
@@ -3221,21 +2449,21 @@ class InfoWindow extends MVCObject {
   }
 
   _open([dynamic /*GMap|StreetViewPanorama*/ map, MVCObject anchor]) =>
-      __codec0.decode(asJsObject(this).callMethod(
-          'open', [__codec0.encode(map), __codec54.encode(anchor)]));
+      __codec4.decode(asJsObject(this).callMethod(
+          'open', [__codec4.encode(map), __codec53.encode(anchor)]));
   void set content(dynamic /*String|Node*/ content) => _setContent(content);
   void _setContent(dynamic /*String|Node*/ content) {
-    asJsObject(this).callMethod('setContent', [__codec0.encode(content)]);
+    asJsObject(this).callMethod('setContent', [__codec4.encode(content)]);
   }
 
   void set options(InfoWindowOptions options) => _setOptions(options);
   void _setOptions(InfoWindowOptions options) {
-    asJsObject(this).callMethod('setOptions', [__codec53.encode(options)]);
+    asJsObject(this).callMethod('setOptions', [__codec52.encode(options)]);
   }
 
   void set position(LatLng position) => _setPosition(position);
   void _setPosition(LatLng position) {
-    asJsObject(this).callMethod('setPosition', [__codec20.encode(position)]);
+    asJsObject(this).callMethod('setPosition', [__codec6.encode(position)]);
   }
 
   void set zIndex(num zIndex) => _setZIndex(zIndex);
@@ -3260,10 +2488,10 @@ class InfoWindowOptions extends JsInterface {
   InfoWindowOptions() : this.created(new JsObject(context['Object']));
 
   void set content(dynamic _content) {
-    asJsObject(this)['content'] = __codec0.encode(_content);
+    asJsObject(this)['content'] = __codec4.encode(_content);
   }
 
-  dynamic get content => __codec0.decode(asJsObject(this)['content']);
+  dynamic get content => __codec4.decode(asJsObject(this)['content']);
   void set disableAutoPan(bool _disableAutoPan) {
     asJsObject(this)['disableAutoPan'] = _disableAutoPan;
   }
@@ -3275,15 +2503,15 @@ class InfoWindowOptions extends JsInterface {
 
   num get maxWidth => asJsObject(this)['maxWidth'];
   void set pixelOffset(Size _pixelOffset) {
-    asJsObject(this)['pixelOffset'] = __codec52.encode(_pixelOffset);
+    asJsObject(this)['pixelOffset'] = __codec50.encode(_pixelOffset);
   }
 
-  Size get pixelOffset => __codec52.decode(asJsObject(this)['pixelOffset']);
+  Size get pixelOffset => __codec50.decode(asJsObject(this)['pixelOffset']);
   void set position(LatLng _position) {
-    asJsObject(this)['position'] = __codec20.encode(_position);
+    asJsObject(this)['position'] = __codec6.encode(_position);
   }
 
-  LatLng get position => __codec20.decode(asJsObject(this)['position']);
+  LatLng get position => __codec6.decode(asJsObject(this)['position']);
   void set zIndex(num _zIndex) {
     asJsObject(this)['zIndex'] = _zIndex;
   }
@@ -3297,14 +2525,14 @@ class Polyline extends MVCObject {
   Polyline.created(JsObject o) : super.created(o);
   Polyline([PolylineOptions opts])
       : this.created(new JsObject(
-            context['google']['maps']['Polyline'], [__codec55.encode(opts)]));
+            context['google']['maps']['Polyline'], [__codec54.encode(opts)]));
 
   bool get draggable => _getDraggable();
   bool _getDraggable() => asJsObject(this).callMethod('getDraggable');
   bool get editable => _getEditable();
   bool _getEditable() => asJsObject(this).callMethod('getEditable');
   GMap get map => _getMap();
-  GMap _getMap() => __codec164.decode(asJsObject(this).callMethod('getMap'));
+  GMap _getMap() => __codec30.decode(asJsObject(this).callMethod('getMap'));
   MVCArray<LatLng> get path => (new JsInterfaceCodec<MVCArray<LatLng>>((o) =>
           new MVCArray<LatLng>.created(
               o,
@@ -3315,7 +2543,7 @@ class Polyline extends MVCObject {
                       o.instanceof(
                           context['google']['maps']['LatLng'] as JsFunction)))))
       .decode(_getPath() as JsObject);
-  _getPath() => __codec0.decode(asJsObject(this).callMethod('getPath'));
+  _getPath() => __codec4.decode(asJsObject(this).callMethod('getPath'));
   bool get visible => _getVisible();
   bool _getVisible() => asJsObject(this).callMethod('getVisible');
   void set draggable(bool draggable) => _setDraggable(draggable);
@@ -3330,12 +2558,12 @@ class Polyline extends MVCObject {
 
   void set map(GMap map) => _setMap(map);
   void _setMap(GMap map) {
-    asJsObject(this).callMethod('setMap', [__codec164.encode(map)]);
+    asJsObject(this).callMethod('setMap', [__codec30.encode(map)]);
   }
 
   void set options(PolylineOptions options) => _setOptions(options);
   void _setOptions(PolylineOptions options) {
-    asJsObject(this).callMethod('setOptions', [__codec55.encode(options)]);
+    asJsObject(this).callMethod('setOptions', [__codec54.encode(options)]);
   }
 
   void set path(dynamic /*MVCArray<LatLng>|List<LatLng>*/ path) =>
@@ -3353,7 +2581,7 @@ class Polyline extends MVCObject {
                 (o) => o != null && o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))))
           .encode(path));
   void _setPath(dynamic /*MVCArray<LatLng>|List<LatLng>*/ path) {
-    asJsObject(this).callMethod('setPath', [__codec0.encode(path)]);
+    asJsObject(this).callMethod('setPath', [__codec4.encode(path)]);
   }
 
   void set visible(bool visible) => _setVisible(visible);
@@ -3412,20 +2640,20 @@ class PolylineOptions extends JsInterface {
 
   bool get geodesic => asJsObject(this)['geodesic'];
   void set icons(List<IconSequence> _icons) {
-    asJsObject(this)['icons'] = __codec57.encode(_icons);
+    asJsObject(this)['icons'] = __codec56.encode(_icons);
   }
 
-  List<IconSequence> get icons => __codec57.decode(asJsObject(this)['icons']);
+  List<IconSequence> get icons => __codec56.decode(asJsObject(this)['icons']);
   void set map(GMap _map) {
-    asJsObject(this)['map'] = __codec164.encode(_map);
+    asJsObject(this)['map'] = __codec30.encode(_map);
   }
 
-  GMap get map => __codec164.decode(asJsObject(this)['map']);
+  GMap get map => __codec30.decode(asJsObject(this)['map']);
   void set _path(dynamic __path) {
-    asJsObject(this)['path'] = __codec0.encode(__path);
+    asJsObject(this)['path'] = __codec4.encode(__path);
   }
 
-  dynamic get _path => __codec0.decode(asJsObject(this)['path']);
+  dynamic get _path => __codec4.decode(asJsObject(this)['path']);
   dynamic /*MVCArray<LatLng>|List<LatLng>*/ get path => (new ChainedCodec()
         ..add(new JsInterfaceCodec<MVCArray<LatLng>>((o) =>
             new MVCArray<LatLng>.created(
@@ -3502,10 +2730,10 @@ class IconSequence extends JsInterface {
 
   bool get fixedRotation => asJsObject(this)['fixedRotation'];
   void set icon(GSymbol _icon) {
-    asJsObject(this)['icon'] = __codec58.encode(_icon);
+    asJsObject(this)['icon'] = __codec57.encode(_icon);
   }
 
-  GSymbol get icon => __codec58.decode(asJsObject(this)['icon']);
+  GSymbol get icon => __codec57.decode(asJsObject(this)['icon']);
   void set offset(String _offset) {
     asJsObject(this)['offset'] = _offset;
   }
@@ -3524,14 +2752,14 @@ class Polygon extends MVCObject {
   Polygon.created(JsObject o) : super.created(o);
   Polygon([PolygonOptions opts])
       : this.created(new JsObject(
-            context['google']['maps']['Polygon'], [__codec59.encode(opts)]));
+            context['google']['maps']['Polygon'], [__codec58.encode(opts)]));
 
   bool get draggable => _getDraggable();
   bool _getDraggable() => asJsObject(this).callMethod('getDraggable');
   bool get editable => _getEditable();
   bool _getEditable() => asJsObject(this).callMethod('getEditable');
   GMap get map => _getMap();
-  GMap _getMap() => __codec164.decode(asJsObject(this).callMethod('getMap'));
+  GMap _getMap() => __codec30.decode(asJsObject(this).callMethod('getMap'));
   MVCArray<LatLng> get path => (new JsInterfaceCodec<MVCArray<LatLng>>((o) =>
           new MVCArray<LatLng>.created(
               o,
@@ -3542,7 +2770,7 @@ class Polygon extends MVCObject {
                       o.instanceof(
                           context['google']['maps']['LatLng'] as JsFunction)))))
       .decode(_getPath() as JsObject);
-  _getPath() => __codec0.decode(asJsObject(this).callMethod('getPath'));
+  _getPath() => __codec4.decode(asJsObject(this).callMethod('getPath'));
   MVCArray<MVCArray<LatLng>> get paths =>
       (new JsInterfaceCodec<MVCArray<MVCArray<LatLng>>>((o) =>
               new MVCArray<MVCArray<LatLng>>.created(
@@ -3557,7 +2785,7 @@ class Polygon extends MVCObject {
                                   o.instanceof(context['google']['maps']
                                       ['LatLng'] as JsFunction)))))))
           .decode(_getPaths() as JsObject);
-  _getPaths() => __codec0.decode(asJsObject(this).callMethod('getPaths'));
+  _getPaths() => __codec4.decode(asJsObject(this).callMethod('getPaths'));
   bool get visible => _getVisible();
   bool _getVisible() => asJsObject(this).callMethod('getVisible');
   void set draggable(bool draggable) => _setDraggable(draggable);
@@ -3572,12 +2800,12 @@ class Polygon extends MVCObject {
 
   void set map(GMap map) => _setMap(map);
   void _setMap(GMap map) {
-    asJsObject(this).callMethod('setMap', [__codec164.encode(map)]);
+    asJsObject(this).callMethod('setMap', [__codec30.encode(map)]);
   }
 
   void set options(PolygonOptions options) => _setOptions(options);
   void _setOptions(PolygonOptions options) {
-    asJsObject(this).callMethod('setOptions', [__codec59.encode(options)]);
+    asJsObject(this).callMethod('setOptions', [__codec58.encode(options)]);
   }
 
   void set path(dynamic /*MVCArray<LatLng>|List<LatLng>*/ path) =>
@@ -3595,7 +2823,7 @@ class Polygon extends MVCObject {
                 (o) => o != null && o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))))
           .encode(path));
   void _setPath(dynamic /*MVCArray<LatLng>|List<LatLng>*/ path) {
-    asJsObject(this).callMethod('setPath', [__codec0.encode(path)]);
+    asJsObject(this).callMethod('setPath', [__codec4.encode(path)]);
   }
 
   void set paths(
@@ -3618,7 +2846,7 @@ class Polygon extends MVCObject {
           .encode(paths));
   void _setPaths(
       dynamic /*MVCArray<MVCArray<LatLng>>|MVCArray<LatLng>|List<List<LatLng>>|List<LatLng>*/ paths) {
-    asJsObject(this).callMethod('setPaths', [__codec0.encode(paths)]);
+    asJsObject(this).callMethod('setPaths', [__codec4.encode(paths)]);
   }
 
   void set visible(bool visible) => _setVisible(visible);
@@ -3687,15 +2915,15 @@ class PolygonOptions extends JsInterface {
 
   bool get geodesic => asJsObject(this)['geodesic'];
   void set map(GMap _map) {
-    asJsObject(this)['map'] = __codec164.encode(_map);
+    asJsObject(this)['map'] = __codec30.encode(_map);
   }
 
-  GMap get map => __codec164.decode(asJsObject(this)['map']);
+  GMap get map => __codec30.decode(asJsObject(this)['map']);
   void set _paths(dynamic __paths) {
-    asJsObject(this)['paths'] = __codec0.encode(__paths);
+    asJsObject(this)['paths'] = __codec4.encode(__paths);
   }
 
-  dynamic get _paths => __codec0.decode(asJsObject(this)['paths']);
+  dynamic get _paths => __codec4.decode(asJsObject(this)['paths']);
   dynamic /*MVCArray<MVCArray<LatLng>>|MVCArray<LatLng>|List<List<LatLng>>|List<LatLng>*/ get paths =>
       (new ChainedCodec()
             ..add(new JsInterfaceCodec<MVCArray<MVCArray<LatLng>>>((o) =>
@@ -3748,11 +2976,11 @@ class PolygonOptions extends JsInterface {
 
   num get strokeOpacity => asJsObject(this)['strokeOpacity'];
   void set strokePosition(StrokePosition _strokePosition) {
-    asJsObject(this)['strokePosition'] = __codec60.encode(_strokePosition);
+    asJsObject(this)['strokePosition'] = __codec59.encode(_strokePosition);
   }
 
   StrokePosition get strokePosition =>
-      __codec60.decode(asJsObject(this)['strokePosition']);
+      __codec59.decode(asJsObject(this)['strokePosition']);
   void set strokeWeight(num _strokeWeight) {
     asJsObject(this)['strokeWeight'] = _strokeWeight;
   }
@@ -3799,22 +3027,22 @@ class Rectangle extends MVCObject {
   Rectangle.created(JsObject o) : super.created(o);
   Rectangle([RectangleOptions opts])
       : this.created(new JsObject(
-            context['google']['maps']['Rectangle'], [__codec61.encode(opts)]));
+            context['google']['maps']['Rectangle'], [__codec60.encode(opts)]));
 
   LatLngBounds get bounds => _getBounds();
   LatLngBounds _getBounds() =>
-      __codec19.decode(asJsObject(this).callMethod('getBounds'));
+      __codec5.decode(asJsObject(this).callMethod('getBounds'));
   bool get draggable => _getDraggable();
   bool _getDraggable() => asJsObject(this).callMethod('getDraggable');
   bool get editable => _getEditable();
   bool _getEditable() => asJsObject(this).callMethod('getEditable');
   GMap get map => _getMap();
-  GMap _getMap() => __codec164.decode(asJsObject(this).callMethod('getMap'));
+  GMap _getMap() => __codec30.decode(asJsObject(this).callMethod('getMap'));
   bool get visible => _getVisible();
   bool _getVisible() => asJsObject(this).callMethod('getVisible');
   void set bounds(LatLngBounds bounds) => _setBounds(bounds);
   void _setBounds(LatLngBounds bounds) {
-    asJsObject(this).callMethod('setBounds', [__codec19.encode(bounds)]);
+    asJsObject(this).callMethod('setBounds', [__codec5.encode(bounds)]);
   }
 
   void set draggable(bool draggable) => _setDraggable(draggable);
@@ -3829,12 +3057,12 @@ class Rectangle extends MVCObject {
 
   void set map(GMap map) => _setMap(map);
   void _setMap(GMap map) {
-    asJsObject(this).callMethod('setMap', [__codec164.encode(map)]);
+    asJsObject(this).callMethod('setMap', [__codec30.encode(map)]);
   }
 
   void set options(RectangleOptions options) => _setOptions(options);
   void _setOptions(RectangleOptions options) {
-    asJsObject(this).callMethod('setOptions', [__codec61.encode(options)]);
+    asJsObject(this).callMethod('setOptions', [__codec60.encode(options)]);
   }
 
   void set visible(bool visible) => _setVisible(visible);
@@ -3875,10 +3103,10 @@ class RectangleOptions extends JsInterface {
   RectangleOptions() : this.created(new JsObject(context['Object']));
 
   void set bounds(LatLngBounds _bounds) {
-    asJsObject(this)['bounds'] = __codec19.encode(_bounds);
+    asJsObject(this)['bounds'] = __codec5.encode(_bounds);
   }
 
-  LatLngBounds get bounds => __codec19.decode(asJsObject(this)['bounds']);
+  LatLngBounds get bounds => __codec5.decode(asJsObject(this)['bounds']);
   void set clickable(bool _clickable) {
     asJsObject(this)['clickable'] = _clickable;
   }
@@ -3905,10 +3133,10 @@ class RectangleOptions extends JsInterface {
 
   num get fillOpacity => asJsObject(this)['fillOpacity'];
   void set map(GMap _map) {
-    asJsObject(this)['map'] = __codec164.encode(_map);
+    asJsObject(this)['map'] = __codec30.encode(_map);
   }
 
-  GMap get map => __codec164.decode(asJsObject(this)['map']);
+  GMap get map => __codec30.decode(asJsObject(this)['map']);
   void set strokeColor(String _strokeColor) {
     asJsObject(this)['strokeColor'] = _strokeColor;
   }
@@ -3920,11 +3148,11 @@ class RectangleOptions extends JsInterface {
 
   num get strokeOpacity => asJsObject(this)['strokeOpacity'];
   void set strokePosition(StrokePosition _strokePosition) {
-    asJsObject(this)['strokePosition'] = __codec60.encode(_strokePosition);
+    asJsObject(this)['strokePosition'] = __codec59.encode(_strokePosition);
   }
 
   StrokePosition get strokePosition =>
-      __codec60.decode(asJsObject(this)['strokePosition']);
+      __codec59.decode(asJsObject(this)['strokePosition']);
   void set strokeWeight(num _strokeWeight) {
     asJsObject(this)['strokeWeight'] = _strokeWeight;
   }
@@ -3948,27 +3176,27 @@ class Circle extends MVCObject {
   Circle.created(JsObject o) : super.created(o);
   Circle([CircleOptions opts])
       : this.created(new JsObject(
-            context['google']['maps']['Circle'], [__codec62.encode(opts)]));
+            context['google']['maps']['Circle'], [__codec61.encode(opts)]));
 
   LatLngBounds get bounds => _getBounds();
   LatLngBounds _getBounds() =>
-      __codec19.decode(asJsObject(this).callMethod('getBounds'));
+      __codec5.decode(asJsObject(this).callMethod('getBounds'));
   LatLng get center => _getCenter();
   LatLng _getCenter() =>
-      __codec20.decode(asJsObject(this).callMethod('getCenter'));
+      __codec6.decode(asJsObject(this).callMethod('getCenter'));
   bool get draggable => _getDraggable();
   bool _getDraggable() => asJsObject(this).callMethod('getDraggable');
   bool get editable => _getEditable();
   bool _getEditable() => asJsObject(this).callMethod('getEditable');
   GMap get map => _getMap();
-  GMap _getMap() => __codec164.decode(asJsObject(this).callMethod('getMap'));
+  GMap _getMap() => __codec30.decode(asJsObject(this).callMethod('getMap'));
   num get radius => _getRadius();
   num _getRadius() => asJsObject(this).callMethod('getRadius');
   bool get visible => _getVisible();
   bool _getVisible() => asJsObject(this).callMethod('getVisible');
   void set center(LatLng center) => _setCenter(center);
   void _setCenter(LatLng center) {
-    asJsObject(this).callMethod('setCenter', [__codec20.encode(center)]);
+    asJsObject(this).callMethod('setCenter', [__codec6.encode(center)]);
   }
 
   void set draggable(bool draggable) => _setDraggable(draggable);
@@ -3983,12 +3211,12 @@ class Circle extends MVCObject {
 
   void set map(GMap map) => _setMap(map);
   void _setMap(GMap map) {
-    asJsObject(this).callMethod('setMap', [__codec164.encode(map)]);
+    asJsObject(this).callMethod('setMap', [__codec30.encode(map)]);
   }
 
   void set options(CircleOptions options) => _setOptions(options);
   void _setOptions(CircleOptions options) {
-    asJsObject(this).callMethod('setOptions', [__codec62.encode(options)]);
+    asJsObject(this).callMethod('setOptions', [__codec61.encode(options)]);
   }
 
   void set radius(num radius) => _setRadius(radius);
@@ -4036,10 +3264,10 @@ class CircleOptions extends JsInterface {
   CircleOptions() : this.created(new JsObject(context['Object']));
 
   void set center(LatLng _center) {
-    asJsObject(this)['center'] = __codec20.encode(_center);
+    asJsObject(this)['center'] = __codec6.encode(_center);
   }
 
-  LatLng get center => __codec20.decode(asJsObject(this)['center']);
+  LatLng get center => __codec6.decode(asJsObject(this)['center']);
   void set clickable(bool _clickable) {
     asJsObject(this)['clickable'] = _clickable;
   }
@@ -4066,10 +3294,10 @@ class CircleOptions extends JsInterface {
 
   num get fillOpacity => asJsObject(this)['fillOpacity'];
   void set map(GMap _map) {
-    asJsObject(this)['map'] = __codec164.encode(_map);
+    asJsObject(this)['map'] = __codec30.encode(_map);
   }
 
-  GMap get map => __codec164.decode(asJsObject(this)['map']);
+  GMap get map => __codec30.decode(asJsObject(this)['map']);
   void set radius(num _radius) {
     asJsObject(this)['radius'] = _radius;
   }
@@ -4086,11 +3314,11 @@ class CircleOptions extends JsInterface {
 
   num get strokeOpacity => asJsObject(this)['strokeOpacity'];
   void set strokePosition(StrokePosition _strokePosition) {
-    asJsObject(this)['strokePosition'] = __codec60.encode(_strokePosition);
+    asJsObject(this)['strokePosition'] = __codec59.encode(_strokePosition);
   }
 
   StrokePosition get strokePosition =>
-      __codec60.decode(asJsObject(this)['strokePosition']);
+      __codec59.decode(asJsObject(this)['strokePosition']);
   void set strokeWeight(num _strokeWeight) {
     asJsObject(this)['strokeWeight'] = _strokeWeight;
   }
@@ -4133,20 +3361,20 @@ class GroundOverlay extends MVCObject {
   GroundOverlay.created(JsObject o) : super.created(o);
   GroundOverlay(String url, LatLngBounds bounds, [GroundOverlayOptions opts])
       : this.created(new JsObject(context['google']['maps']['GroundOverlay'],
-            [url, __codec19.encode(bounds), __codec63.encode(opts)]));
+            [url, __codec5.encode(bounds), __codec62.encode(opts)]));
 
   LatLngBounds get bounds => _getBounds();
   LatLngBounds _getBounds() =>
-      __codec19.decode(asJsObject(this).callMethod('getBounds'));
+      __codec5.decode(asJsObject(this).callMethod('getBounds'));
   GMap get map => _getMap();
-  GMap _getMap() => __codec164.decode(asJsObject(this).callMethod('getMap'));
+  GMap _getMap() => __codec30.decode(asJsObject(this).callMethod('getMap'));
   num get opacity => _getOpacity();
   num _getOpacity() => asJsObject(this).callMethod('getOpacity');
   String get url => _getUrl();
   String _getUrl() => asJsObject(this).callMethod('getUrl');
   void set map(GMap map) => _setMap(map);
   void _setMap(GMap map) {
-    asJsObject(this).callMethod('setMap', [__codec164.encode(map)]);
+    asJsObject(this).callMethod('setMap', [__codec30.encode(map)]);
   }
 
   void set opacity(num opacity) => _setOpacity(opacity);
@@ -4172,10 +3400,10 @@ class GroundOverlayOptions extends JsInterface {
 
   bool get clickable => asJsObject(this)['clickable'];
   void set map(GMap _map) {
-    asJsObject(this)['map'] = __codec164.encode(_map);
+    asJsObject(this)['map'] = __codec30.encode(_map);
   }
 
-  GMap get map => __codec164.decode(asJsObject(this)['map']);
+  GMap get map => __codec30.decode(asJsObject(this)['map']);
   void set opacity(num _opacity) {
     asJsObject(this)['opacity'] = _opacity;
   }
@@ -4207,13 +3435,13 @@ class OverlayView extends JsInterface {
                 o.instanceof(context['google']['maps']['StreetViewPanorama']
                     as JsFunction))))
       .decode(_getMap());
-  _getMap() => __codec0.decode(asJsObject(this).callMethod('getMap'));
+  _getMap() => __codec4.decode(asJsObject(this).callMethod('getMap'));
   MapPanes get panes => _getPanes();
   MapPanes _getPanes() =>
-      __codec64.decode(asJsObject(this).callMethod('getPanes'));
+      __codec63.decode(asJsObject(this).callMethod('getPanes'));
   MapCanvasProjection get projection => _getProjection();
   MapCanvasProjection _getProjection() =>
-      __codec171.decode(asJsObject(this).callMethod('getProjection'));
+      __codec64.decode(asJsObject(this).callMethod('getProjection'));
   void onAdd() {
     asJsObject(this).callMethod('onAdd');
   }
@@ -4238,7 +3466,7 @@ class OverlayView extends JsInterface {
                         as JsFunction))))
           .encode(map));
   void _setMap(dynamic /*GMap|StreetViewPanorama*/ map) {
-    asJsObject(this).callMethod('setMap', [__codec0.encode(map)]);
+    asJsObject(this).callMethod('setMap', [__codec4.encode(map)]);
   }
 }
 
@@ -4282,16 +3510,16 @@ class MapCanvasProjection extends MVCObject {
   MapCanvasProjection() : this.created(new JsObject(context['Object']));
 
   LatLng fromContainerPixelToLatLng(Point pixel, [bool nowrap]) =>
-      __codec20.decode(asJsObject(this).callMethod(
-          'fromContainerPixelToLatLng', [__codec51.encode(pixel), nowrap]));
+      __codec6.decode(asJsObject(this).callMethod(
+          'fromContainerPixelToLatLng', [__codec49.encode(pixel), nowrap]));
   LatLng fromDivPixelToLatLng(Point pixel, [bool nowrap]) =>
-      __codec20.decode(asJsObject(this).callMethod(
-          'fromDivPixelToLatLng', [__codec51.encode(pixel), nowrap]));
+      __codec6.decode(asJsObject(this).callMethod(
+          'fromDivPixelToLatLng', [__codec49.encode(pixel), nowrap]));
   Point fromLatLngToContainerPixel(LatLng latLng) =>
-      __codec51.decode(asJsObject(this).callMethod(
-          'fromLatLngToContainerPixel', [__codec20.encode(latLng)]));
-  Point fromLatLngToDivPixel(LatLng latLng) => __codec51.decode(asJsObject(this)
-      .callMethod('fromLatLngToDivPixel', [__codec20.encode(latLng)]));
+      __codec49.decode(asJsObject(this)
+          .callMethod('fromLatLngToContainerPixel', [__codec6.encode(latLng)]));
+  Point fromLatLngToDivPixel(LatLng latLng) => __codec49.decode(asJsObject(this)
+      .callMethod('fromLatLngToDivPixel', [__codec6.encode(latLng)]));
   num get worldWidth => _getWorldWidth();
   num _getWorldWidth() => asJsObject(this).callMethod('getWorldWidth');
 }
@@ -4322,10 +3550,10 @@ class GeocoderRequest extends JsInterface {
 
   String get address => asJsObject(this)['address'];
   void set bounds(LatLngBounds _bounds) {
-    asJsObject(this)['bounds'] = __codec19.encode(_bounds);
+    asJsObject(this)['bounds'] = __codec5.encode(_bounds);
   }
 
-  LatLngBounds get bounds => __codec19.decode(asJsObject(this)['bounds']);
+  LatLngBounds get bounds => __codec5.decode(asJsObject(this)['bounds']);
   void set componentRestrictions(
       GeocoderComponentRestrictions _componentRestrictions) {
     asJsObject(this)['componentRestrictions'] =
@@ -4335,10 +3563,10 @@ class GeocoderRequest extends JsInterface {
   GeocoderComponentRestrictions get componentRestrictions =>
       __codec70.decode(asJsObject(this)['componentRestrictions']);
   void set location(LatLng _location) {
-    asJsObject(this)['location'] = __codec20.encode(_location);
+    asJsObject(this)['location'] = __codec6.encode(_location);
   }
 
-  LatLng get location => __codec20.decode(asJsObject(this)['location']);
+  LatLng get location => __codec6.decode(asJsObject(this)['location']);
   void set placeId(String _placeId) {
     asJsObject(this)['placeId'] = _placeId;
   }
@@ -4477,21 +3705,21 @@ class GeocoderResult extends JsInterface {
 
   void set _postcode_localities(List<String> __postcode_localities) {
     asJsObject(this)['postcode_localities'] =
-        __codec4.encode(__postcode_localities);
+        __codec29.encode(__postcode_localities);
   }
 
   List<String> get _postcode_localities =>
-      __codec4.decode(asJsObject(this)['postcode_localities']);
+      __codec29.decode(asJsObject(this)['postcode_localities']);
   List<String> get postcodeLocalities => _postcode_localities;
   void set postcodeLocalities(List<String> postcodeLocalities) {
     _postcode_localities = postcodeLocalities;
   }
 
   void set types(List<String> _types) {
-    asJsObject(this)['types'] = __codec4.encode(_types);
+    asJsObject(this)['types'] = __codec29.encode(_types);
   }
 
-  List<String> get types => __codec4.decode(asJsObject(this)['types']);
+  List<String> get types => __codec29.decode(asJsObject(this)['types']);
 }
 
 @GeneratedFrom(_GeocoderAddressComponent)
@@ -4521,10 +3749,10 @@ class GeocoderAddressComponent extends JsInterface {
   }
 
   void set types(List<String> _types) {
-    asJsObject(this)['types'] = __codec4.encode(_types);
+    asJsObject(this)['types'] = __codec29.encode(_types);
   }
 
-  List<String> get types => __codec4.decode(asJsObject(this)['types']);
+  List<String> get types => __codec29.decode(asJsObject(this)['types']);
 }
 
 @GeneratedFrom(_GeocoderGeometry)
@@ -4534,15 +3762,15 @@ class GeocoderGeometry extends JsInterface {
   GeocoderGeometry() : this.created(new JsObject(context['Object']));
 
   void set bounds(LatLngBounds _bounds) {
-    asJsObject(this)['bounds'] = __codec19.encode(_bounds);
+    asJsObject(this)['bounds'] = __codec5.encode(_bounds);
   }
 
-  LatLngBounds get bounds => __codec19.decode(asJsObject(this)['bounds']);
+  LatLngBounds get bounds => __codec5.decode(asJsObject(this)['bounds']);
   void set location(LatLng _location) {
-    asJsObject(this)['location'] = __codec20.encode(_location);
+    asJsObject(this)['location'] = __codec6.encode(_location);
   }
 
-  LatLng get location => __codec20.decode(asJsObject(this)['location']);
+  LatLng get location => __codec6.decode(asJsObject(this)['location']);
   void set _location_type(GeocoderLocationType __location_type) {
     asJsObject(this)['location_type'] = __codec74.encode(__location_type);
   }
@@ -4555,10 +3783,10 @@ class GeocoderGeometry extends JsInterface {
   }
 
   void set viewport(LatLngBounds _viewport) {
-    asJsObject(this)['viewport'] = __codec19.encode(_viewport);
+    asJsObject(this)['viewport'] = __codec5.encode(_viewport);
   }
 
-  LatLngBounds get viewport => __codec19.decode(asJsObject(this)['viewport']);
+  LatLngBounds get viewport => __codec5.decode(asJsObject(this)['viewport']);
 }
 
 class GeocoderLocationType extends JsEnum {
@@ -4601,7 +3829,7 @@ class DirectionsRenderer extends MVCObject {
   DirectionsResult _getDirections() =>
       __codec76.decode(asJsObject(this).callMethod('getDirections'));
   GMap get map => _getMap();
-  GMap _getMap() => __codec164.decode(asJsObject(this).callMethod('getMap'));
+  GMap _getMap() => __codec30.decode(asJsObject(this).callMethod('getMap'));
   Node get panel => _getPanel();
   Node _getPanel() => asJsObject(this).callMethod('getPanel');
   num get routeIndex => _getRouteIndex();
@@ -4615,7 +3843,7 @@ class DirectionsRenderer extends MVCObject {
 
   void set map(GMap map) => _setMap(map);
   void _setMap(GMap map) {
-    asJsObject(this).callMethod('setMap', [__codec164.encode(map)]);
+    asJsObject(this).callMethod('setMap', [__codec30.encode(map)]);
   }
 
   void set options(DirectionsRendererOptions options) => _setOptions(options);
@@ -4660,33 +3888,32 @@ class DirectionsRendererOptions extends JsInterface {
 
   bool get hideRouteList => asJsObject(this)['hideRouteList'];
   void set infoWindow(InfoWindow _infoWindow) {
-    asJsObject(this)['infoWindow'] = __codec172.encode(_infoWindow);
+    asJsObject(this)['infoWindow'] = __codec77.encode(_infoWindow);
   }
 
-  InfoWindow get infoWindow =>
-      __codec172.decode(asJsObject(this)['infoWindow']);
+  InfoWindow get infoWindow => __codec77.decode(asJsObject(this)['infoWindow']);
   void set map(GMap _map) {
-    asJsObject(this)['map'] = __codec164.encode(_map);
+    asJsObject(this)['map'] = __codec30.encode(_map);
   }
 
-  GMap get map => __codec164.decode(asJsObject(this)['map']);
+  GMap get map => __codec30.decode(asJsObject(this)['map']);
   void set markerOptions(MarkerOptions _markerOptions) {
-    asJsObject(this)['markerOptions'] = __codec46.encode(_markerOptions);
+    asJsObject(this)['markerOptions'] = __codec44.encode(_markerOptions);
   }
 
   MarkerOptions get markerOptions =>
-      __codec46.decode(asJsObject(this)['markerOptions']);
+      __codec44.decode(asJsObject(this)['markerOptions']);
   void set panel(Node _panel) {
     asJsObject(this)['panel'] = _panel;
   }
 
   Node get panel => asJsObject(this)['panel'];
   void set polylineOptions(PolylineOptions _polylineOptions) {
-    asJsObject(this)['polylineOptions'] = __codec55.encode(_polylineOptions);
+    asJsObject(this)['polylineOptions'] = __codec54.encode(_polylineOptions);
   }
 
   PolylineOptions get polylineOptions =>
-      __codec55.decode(asJsObject(this)['polylineOptions']);
+      __codec54.decode(asJsObject(this)['polylineOptions']);
   void set preserveViewport(bool _preserveViewport) {
     asJsObject(this)['preserveViewport'] = _preserveViewport;
   }
@@ -4730,7 +3957,7 @@ class DirectionsService extends JsInterface {
   void route(DirectionsRequest request,
       callback(DirectionsResult p1, DirectionsStatus p2)) {
     asJsObject(this).callMethod(
-        'route', [__codec77.encode(request), __codec79.encode(callback)]);
+        'route', [__codec78.encode(request), __codec80.encode(callback)]);
   }
 }
 
@@ -4756,10 +3983,10 @@ class DirectionsRequest extends JsInterface {
 
   bool get avoidTolls => asJsObject(this)['avoidTolls'];
   void set _destination(dynamic __destination) {
-    asJsObject(this)['destination'] = __codec0.encode(__destination);
+    asJsObject(this)['destination'] = __codec4.encode(__destination);
   }
 
-  dynamic get _destination => __codec0.decode(asJsObject(this)['destination']);
+  dynamic get _destination => __codec4.decode(asJsObject(this)['destination']);
   dynamic /*LatLng|Place|String*/ get destination => (new ChainedCodec()
         ..add(new JsInterfaceCodec<LatLng>(
             (o) => new LatLng.created(o),
@@ -4784,21 +4011,21 @@ class DirectionsRequest extends JsInterface {
   }
 
   void set drivingOptions(DrivingOptions _drivingOptions) {
-    asJsObject(this)['drivingOptions'] = __codec80.encode(_drivingOptions);
+    asJsObject(this)['drivingOptions'] = __codec81.encode(_drivingOptions);
   }
 
   DrivingOptions get drivingOptions =>
-      __codec80.decode(asJsObject(this)['drivingOptions']);
+      __codec81.decode(asJsObject(this)['drivingOptions']);
   void set optimizeWaypoints(bool _optimizeWaypoints) {
     asJsObject(this)['optimizeWaypoints'] = _optimizeWaypoints;
   }
 
   bool get optimizeWaypoints => asJsObject(this)['optimizeWaypoints'];
   void set _origin(dynamic __origin) {
-    asJsObject(this)['origin'] = __codec0.encode(__origin);
+    asJsObject(this)['origin'] = __codec4.encode(__origin);
   }
 
-  dynamic get _origin => __codec0.decode(asJsObject(this)['origin']);
+  dynamic get _origin => __codec4.decode(asJsObject(this)['origin']);
   dynamic /*LatLng|Place|String*/ get origin => (new ChainedCodec()
         ..add(new JsInterfaceCodec<LatLng>(
             (o) => new LatLng.created(o),
@@ -4834,27 +4061,27 @@ class DirectionsRequest extends JsInterface {
 
   String get region => asJsObject(this)['region'];
   void set transitOptions(TransitOptions _transitOptions) {
-    asJsObject(this)['transitOptions'] = __codec81.encode(_transitOptions);
+    asJsObject(this)['transitOptions'] = __codec82.encode(_transitOptions);
   }
 
   TransitOptions get transitOptions =>
-      __codec81.decode(asJsObject(this)['transitOptions']);
+      __codec82.decode(asJsObject(this)['transitOptions']);
   void set travelMode(TravelMode _travelMode) {
-    asJsObject(this)['travelMode'] = __codec82.encode(_travelMode);
+    asJsObject(this)['travelMode'] = __codec83.encode(_travelMode);
   }
 
-  TravelMode get travelMode => __codec82.decode(asJsObject(this)['travelMode']);
+  TravelMode get travelMode => __codec83.decode(asJsObject(this)['travelMode']);
   void set unitSystem(UnitSystem _unitSystem) {
-    asJsObject(this)['unitSystem'] = __codec83.encode(_unitSystem);
+    asJsObject(this)['unitSystem'] = __codec84.encode(_unitSystem);
   }
 
-  UnitSystem get unitSystem => __codec83.decode(asJsObject(this)['unitSystem']);
+  UnitSystem get unitSystem => __codec84.decode(asJsObject(this)['unitSystem']);
   void set waypoints(List<DirectionsWaypoint> _waypoints) {
-    asJsObject(this)['waypoints'] = __codec85.encode(_waypoints);
+    asJsObject(this)['waypoints'] = __codec86.encode(_waypoints);
   }
 
   List<DirectionsWaypoint> get waypoints =>
-      __codec85.decode(asJsObject(this)['waypoints']);
+      __codec86.decode(asJsObject(this)['waypoints']);
 }
 
 @GeneratedFrom(_Place)
@@ -4864,10 +4091,10 @@ class Place extends JsInterface {
   Place() : this.created(new JsObject(context['Object']));
 
   void set location(LatLng _location) {
-    asJsObject(this)['location'] = __codec20.encode(_location);
+    asJsObject(this)['location'] = __codec6.encode(_location);
   }
 
-  LatLng get location => __codec20.decode(asJsObject(this)['location']);
+  LatLng get location => __codec6.decode(asJsObject(this)['location']);
   void set placeId(String _placeId) {
     asJsObject(this)['placeId'] = _placeId;
   }
@@ -4935,17 +4162,17 @@ class TransitOptions extends JsInterface {
 
   DateTime get departureTime => asJsObject(this)['departureTime'];
   void set modes(List<TransitMode> _modes) {
-    asJsObject(this)['modes'] = __codec87.encode(_modes);
+    asJsObject(this)['modes'] = __codec88.encode(_modes);
   }
 
-  List<TransitMode> get modes => __codec87.decode(asJsObject(this)['modes']);
+  List<TransitMode> get modes => __codec88.decode(asJsObject(this)['modes']);
   void set routingPreference(TransitRoutePreference _routingPreference) {
     asJsObject(this)['routingPreference'] =
-        __codec88.encode(_routingPreference);
+        __codec89.encode(_routingPreference);
   }
 
   TransitRoutePreference get routingPreference =>
-      __codec88.decode(asJsObject(this)['routingPreference']);
+      __codec89.decode(asJsObject(this)['routingPreference']);
 }
 
 class TransitMode extends JsEnum {
@@ -5007,11 +4234,11 @@ class DrivingOptions extends JsInterface {
 
   DateTime get departureTime => asJsObject(this)['departureTime'];
   void set trafficModel(TrafficModel _trafficModel) {
-    asJsObject(this)['trafficModel'] = __codec89.encode(_trafficModel);
+    asJsObject(this)['trafficModel'] = __codec90.encode(_trafficModel);
   }
 
   TrafficModel get trafficModel =>
-      __codec89.decode(asJsObject(this)['trafficModel']);
+      __codec90.decode(asJsObject(this)['trafficModel']);
 }
 
 class TrafficModel extends JsEnum {
@@ -5040,10 +4267,10 @@ class DirectionsWaypoint extends JsInterface {
   DirectionsWaypoint() : this.created(new JsObject(context['Object']));
 
   void set _location(dynamic __location) {
-    asJsObject(this)['location'] = __codec0.encode(__location);
+    asJsObject(this)['location'] = __codec4.encode(__location);
   }
 
-  dynamic get _location => __codec0.decode(asJsObject(this)['location']);
+  dynamic get _location => __codec4.decode(asJsObject(this)['location']);
   dynamic /*LatLng|Place|String*/ get location => (new ChainedCodec()
         ..add(new JsInterfaceCodec<LatLng>(
             (o) => new LatLng.created(o),
@@ -5122,11 +4349,11 @@ class DirectionsResult extends JsInterface {
   void set _geocoded_waypoints(
       List<DirectionsGeocodedWaypoint> __geocoded_waypoints) {
     asJsObject(this)['geocoded_waypoints'] =
-        __codec91.encode(__geocoded_waypoints);
+        __codec92.encode(__geocoded_waypoints);
   }
 
   List<DirectionsGeocodedWaypoint> get _geocoded_waypoints =>
-      __codec91.decode(asJsObject(this)['geocoded_waypoints']);
+      __codec92.decode(asJsObject(this)['geocoded_waypoints']);
   List<DirectionsGeocodedWaypoint> get geocodedWaypoints => _geocoded_waypoints;
   void set geocodedWaypoints(
       List<DirectionsGeocodedWaypoint> geocodedWaypoints) {
@@ -5134,11 +4361,11 @@ class DirectionsResult extends JsInterface {
   }
 
   void set routes(List<DirectionsRoute> _routes) {
-    asJsObject(this)['routes'] = __codec93.encode(_routes);
+    asJsObject(this)['routes'] = __codec94.encode(_routes);
   }
 
   List<DirectionsRoute> get routes =>
-      __codec93.decode(asJsObject(this)['routes']);
+      __codec94.decode(asJsObject(this)['routes']);
 }
 
 @GeneratedFrom(_DirectionsGeocodedWaypoint)
@@ -5168,10 +4395,10 @@ class DirectionsGeocodedWaypoint extends JsInterface {
   }
 
   void set types(List<String> _types) {
-    asJsObject(this)['types'] = __codec4.encode(_types);
+    asJsObject(this)['types'] = __codec29.encode(_types);
   }
 
-  List<String> get types => __codec4.decode(asJsObject(this)['types']);
+  List<String> get types => __codec29.decode(asJsObject(this)['types']);
 }
 
 @GeneratedFrom(_DirectionsRoute)
@@ -5181,31 +4408,31 @@ class DirectionsRoute extends JsInterface {
   DirectionsRoute() : this.created(new JsObject(context['Object']));
 
   void set bounds(LatLngBounds _bounds) {
-    asJsObject(this)['bounds'] = __codec19.encode(_bounds);
+    asJsObject(this)['bounds'] = __codec5.encode(_bounds);
   }
 
-  LatLngBounds get bounds => __codec19.decode(asJsObject(this)['bounds']);
+  LatLngBounds get bounds => __codec5.decode(asJsObject(this)['bounds']);
   void set copyrights(String _copyrights) {
     asJsObject(this)['copyrights'] = _copyrights;
   }
 
   String get copyrights => asJsObject(this)['copyrights'];
   void set fare(TransitFare _fare) {
-    asJsObject(this)['fare'] = __codec94.encode(_fare);
+    asJsObject(this)['fare'] = __codec95.encode(_fare);
   }
 
-  TransitFare get fare => __codec94.decode(asJsObject(this)['fare']);
+  TransitFare get fare => __codec95.decode(asJsObject(this)['fare']);
   void set legs(List<DirectionsLeg> _legs) {
-    asJsObject(this)['legs'] = __codec96.encode(_legs);
+    asJsObject(this)['legs'] = __codec97.encode(_legs);
   }
 
-  List<DirectionsLeg> get legs => __codec96.decode(asJsObject(this)['legs']);
+  List<DirectionsLeg> get legs => __codec97.decode(asJsObject(this)['legs']);
   void set _overview_path(List<LatLng> __overview_path) {
-    asJsObject(this)['overview_path'] = __codec45.encode(__overview_path);
+    asJsObject(this)['overview_path'] = __codec37.encode(__overview_path);
   }
 
   List<LatLng> get _overview_path =>
-      __codec45.decode(asJsObject(this)['overview_path']);
+      __codec37.decode(asJsObject(this)['overview_path']);
   List<LatLng> get overviewPath => _overview_path;
   void set overviewPath(List<LatLng> overviewPath) {
     _overview_path = overviewPath;
@@ -5222,16 +4449,16 @@ class DirectionsRoute extends JsInterface {
   }
 
   void set warnings(List<String> _warnings) {
-    asJsObject(this)['warnings'] = __codec4.encode(_warnings);
+    asJsObject(this)['warnings'] = __codec29.encode(_warnings);
   }
 
-  List<String> get warnings => __codec4.decode(asJsObject(this)['warnings']);
+  List<String> get warnings => __codec29.decode(asJsObject(this)['warnings']);
   void set _waypoint_order(List<num> __waypoint_order) {
-    asJsObject(this)['waypoint_order'] = __codec8.encode(__waypoint_order);
+    asJsObject(this)['waypoint_order'] = __codec51.encode(__waypoint_order);
   }
 
   List<num> get _waypoint_order =>
-      __codec8.decode(asJsObject(this)['waypoint_order']);
+      __codec51.decode(asJsObject(this)['waypoint_order']);
   List<num> get waypointOrder => _waypoint_order;
   void set waypointOrder(List<num> waypointOrder) {
     _waypoint_order = waypointOrder;
@@ -5245,43 +4472,43 @@ class DirectionsLeg extends JsInterface {
   DirectionsLeg() : this.created(new JsObject(context['Object']));
 
   void set _arrival_time(Time __arrival_time) {
-    asJsObject(this)['arrival_time'] = __codec97.encode(__arrival_time);
+    asJsObject(this)['arrival_time'] = __codec98.encode(__arrival_time);
   }
 
-  Time get _arrival_time => __codec97.decode(asJsObject(this)['arrival_time']);
+  Time get _arrival_time => __codec98.decode(asJsObject(this)['arrival_time']);
   Time get arrivalTime => _arrival_time;
   void set arrivalTime(Time arrivalTime) {
     _arrival_time = arrivalTime;
   }
 
   void set _departure_time(Time __departure_time) {
-    asJsObject(this)['departure_time'] = __codec97.encode(__departure_time);
+    asJsObject(this)['departure_time'] = __codec98.encode(__departure_time);
   }
 
   Time get _departure_time =>
-      __codec97.decode(asJsObject(this)['departure_time']);
+      __codec98.decode(asJsObject(this)['departure_time']);
   Time get departureTime => _departure_time;
   void set departureTime(Time departureTime) {
     _departure_time = departureTime;
   }
 
   void set distance(Distance _distance) {
-    asJsObject(this)['distance'] = __codec98.encode(_distance);
+    asJsObject(this)['distance'] = __codec99.encode(_distance);
   }
 
-  Distance get distance => __codec98.decode(asJsObject(this)['distance']);
+  Distance get distance => __codec99.decode(asJsObject(this)['distance']);
   void set duration(GDuration _duration) {
-    asJsObject(this)['duration'] = __codec99.encode(_duration);
+    asJsObject(this)['duration'] = __codec100.encode(_duration);
   }
 
-  GDuration get duration => __codec99.decode(asJsObject(this)['duration']);
+  GDuration get duration => __codec100.decode(asJsObject(this)['duration']);
   void set _duration_in_traffic(GDuration __duration_in_traffic) {
     asJsObject(this)['duration_in_traffic'] =
-        __codec99.encode(__duration_in_traffic);
+        __codec100.encode(__duration_in_traffic);
   }
 
   GDuration get _duration_in_traffic =>
-      __codec99.decode(asJsObject(this)['duration_in_traffic']);
+      __codec100.decode(asJsObject(this)['duration_in_traffic']);
   GDuration get durationInTraffic => _duration_in_traffic;
   void set durationInTraffic(GDuration durationInTraffic) {
     _duration_in_traffic = durationInTraffic;
@@ -5298,11 +4525,10 @@ class DirectionsLeg extends JsInterface {
   }
 
   void set _end_location(LatLng __end_location) {
-    asJsObject(this)['end_location'] = __codec20.encode(__end_location);
+    asJsObject(this)['end_location'] = __codec6.encode(__end_location);
   }
 
-  LatLng get _end_location =>
-      __codec20.decode(asJsObject(this)['end_location']);
+  LatLng get _end_location => __codec6.decode(asJsObject(this)['end_location']);
   LatLng get endLocation => _end_location;
   void set endLocation(LatLng endLocation) {
     _end_location = endLocation;
@@ -5319,28 +4545,28 @@ class DirectionsLeg extends JsInterface {
   }
 
   void set _start_location(LatLng __start_location) {
-    asJsObject(this)['start_location'] = __codec20.encode(__start_location);
+    asJsObject(this)['start_location'] = __codec6.encode(__start_location);
   }
 
   LatLng get _start_location =>
-      __codec20.decode(asJsObject(this)['start_location']);
+      __codec6.decode(asJsObject(this)['start_location']);
   LatLng get startLocation => _start_location;
   void set startLocation(LatLng startLocation) {
     _start_location = startLocation;
   }
 
   void set steps(List<DirectionsStep> _steps) {
-    asJsObject(this)['steps'] = __codec101.encode(_steps);
+    asJsObject(this)['steps'] = __codec102.encode(_steps);
   }
 
   List<DirectionsStep> get steps =>
-      __codec101.decode(asJsObject(this)['steps']);
+      __codec102.decode(asJsObject(this)['steps']);
   void set _via_waypoints(List<LatLng> __via_waypoints) {
-    asJsObject(this)['via_waypoints'] = __codec45.encode(__via_waypoints);
+    asJsObject(this)['via_waypoints'] = __codec37.encode(__via_waypoints);
   }
 
   List<LatLng> get _via_waypoints =>
-      __codec45.decode(asJsObject(this)['via_waypoints']);
+      __codec37.decode(asJsObject(this)['via_waypoints']);
   List<LatLng> get viaWaypoints => _via_waypoints;
   void set viaWaypoints(List<LatLng> viaWaypoints) {
     _via_waypoints = viaWaypoints;
@@ -5354,21 +4580,20 @@ class DirectionsStep extends JsInterface {
   DirectionsStep() : this.created(new JsObject(context['Object']));
 
   void set distance(Distance _distance) {
-    asJsObject(this)['distance'] = __codec98.encode(_distance);
+    asJsObject(this)['distance'] = __codec99.encode(_distance);
   }
 
-  Distance get distance => __codec98.decode(asJsObject(this)['distance']);
+  Distance get distance => __codec99.decode(asJsObject(this)['distance']);
   void set duration(GDuration _duration) {
-    asJsObject(this)['duration'] = __codec99.encode(_duration);
+    asJsObject(this)['duration'] = __codec100.encode(_duration);
   }
 
-  GDuration get duration => __codec99.decode(asJsObject(this)['duration']);
+  GDuration get duration => __codec100.decode(asJsObject(this)['duration']);
   void set _end_location(LatLng __end_location) {
-    asJsObject(this)['end_location'] = __codec20.encode(__end_location);
+    asJsObject(this)['end_location'] = __codec6.encode(__end_location);
   }
 
-  LatLng get _end_location =>
-      __codec20.decode(asJsObject(this)['end_location']);
+  LatLng get _end_location => __codec6.decode(asJsObject(this)['end_location']);
   LatLng get endLocation => _end_location;
   void set endLocation(LatLng endLocation) {
     _end_location = endLocation;
@@ -5380,38 +4605,38 @@ class DirectionsStep extends JsInterface {
 
   String get instructions => asJsObject(this)['instructions'];
   void set path(List<LatLng> _path) {
-    asJsObject(this)['path'] = __codec45.encode(_path);
+    asJsObject(this)['path'] = __codec37.encode(_path);
   }
 
-  List<LatLng> get path => __codec45.decode(asJsObject(this)['path']);
+  List<LatLng> get path => __codec37.decode(asJsObject(this)['path']);
   void set _start_location(LatLng __start_location) {
-    asJsObject(this)['start_location'] = __codec20.encode(__start_location);
+    asJsObject(this)['start_location'] = __codec6.encode(__start_location);
   }
 
   LatLng get _start_location =>
-      __codec20.decode(asJsObject(this)['start_location']);
+      __codec6.decode(asJsObject(this)['start_location']);
   LatLng get startLocation => _start_location;
   void set startLocation(LatLng startLocation) {
     _start_location = startLocation;
   }
 
   void set steps(List<DirectionsStep> _steps) {
-    asJsObject(this)['steps'] = __codec101.encode(_steps);
+    asJsObject(this)['steps'] = __codec102.encode(_steps);
   }
 
   List<DirectionsStep> get steps =>
-      __codec101.decode(asJsObject(this)['steps']);
+      __codec102.decode(asJsObject(this)['steps']);
   void set transit(TransitDetails _transit) {
-    asJsObject(this)['transit'] = __codec102.encode(_transit);
+    asJsObject(this)['transit'] = __codec103.encode(_transit);
   }
 
-  TransitDetails get transit => __codec102.decode(asJsObject(this)['transit']);
+  TransitDetails get transit => __codec103.decode(asJsObject(this)['transit']);
   void set _travel_mode(TravelMode __travel_mode) {
-    asJsObject(this)['travel_mode'] = __codec82.encode(__travel_mode);
+    asJsObject(this)['travel_mode'] = __codec83.encode(__travel_mode);
   }
 
   TravelMode get _travel_mode =>
-      __codec82.decode(asJsObject(this)['travel_mode']);
+      __codec83.decode(asJsObject(this)['travel_mode']);
   TravelMode get travelMode => _travel_mode;
   void set travelMode(TravelMode travelMode) {
     _travel_mode = travelMode;
@@ -5489,43 +4714,43 @@ class TransitDetails extends JsInterface {
   TransitDetails() : this.created(new JsObject(context['Object']));
 
   void set _arrival_stop(TransitStop __arrival_stop) {
-    asJsObject(this)['arrival_stop'] = __codec103.encode(__arrival_stop);
+    asJsObject(this)['arrival_stop'] = __codec104.encode(__arrival_stop);
   }
 
   TransitStop get _arrival_stop =>
-      __codec103.decode(asJsObject(this)['arrival_stop']);
+      __codec104.decode(asJsObject(this)['arrival_stop']);
   TransitStop get arrivalStop => _arrival_stop;
   void set arrivalStop(TransitStop arrivalStop) {
     _arrival_stop = arrivalStop;
   }
 
   void set _arrival_time(Time __arrival_time) {
-    asJsObject(this)['arrival_time'] = __codec97.encode(__arrival_time);
+    asJsObject(this)['arrival_time'] = __codec98.encode(__arrival_time);
   }
 
-  Time get _arrival_time => __codec97.decode(asJsObject(this)['arrival_time']);
+  Time get _arrival_time => __codec98.decode(asJsObject(this)['arrival_time']);
   Time get arrivalTime => _arrival_time;
   void set arrivalTime(Time arrivalTime) {
     _arrival_time = arrivalTime;
   }
 
   void set _departure_stop(TransitStop __departure_stop) {
-    asJsObject(this)['departure_stop'] = __codec103.encode(__departure_stop);
+    asJsObject(this)['departure_stop'] = __codec104.encode(__departure_stop);
   }
 
   TransitStop get _departure_stop =>
-      __codec103.decode(asJsObject(this)['departure_stop']);
+      __codec104.decode(asJsObject(this)['departure_stop']);
   TransitStop get departureStop => _departure_stop;
   void set departureStop(TransitStop departureStop) {
     _departure_stop = departureStop;
   }
 
   void set _departure_time(Time __departure_time) {
-    asJsObject(this)['departure_time'] = __codec97.encode(__departure_time);
+    asJsObject(this)['departure_time'] = __codec98.encode(__departure_time);
   }
 
   Time get _departure_time =>
-      __codec97.decode(asJsObject(this)['departure_time']);
+      __codec98.decode(asJsObject(this)['departure_time']);
   Time get departureTime => _departure_time;
   void set departureTime(Time departureTime) {
     _departure_time = departureTime;
@@ -5542,10 +4767,10 @@ class TransitDetails extends JsInterface {
 
   num get headway => asJsObject(this)['headway'];
   void set line(TransitLine _line) {
-    asJsObject(this)['line'] = __codec104.encode(_line);
+    asJsObject(this)['line'] = __codec105.encode(_line);
   }
 
-  TransitLine get line => __codec104.decode(asJsObject(this)['line']);
+  TransitLine get line => __codec105.decode(asJsObject(this)['line']);
   void set _num_stops(num __num_stops) {
     asJsObject(this)['num_stops'] = __num_stops;
   }
@@ -5564,10 +4789,10 @@ class TransitStop extends JsInterface {
   TransitStop() : this.created(new JsObject(context['Object']));
 
   void set location(LatLng _location) {
-    asJsObject(this)['location'] = __codec20.encode(_location);
+    asJsObject(this)['location'] = __codec6.encode(_location);
   }
 
-  LatLng get location => __codec20.decode(asJsObject(this)['location']);
+  LatLng get location => __codec6.decode(asJsObject(this)['location']);
   void set name(String _name) {
     asJsObject(this)['name'] = _name;
   }
@@ -5582,11 +4807,11 @@ class TransitLine extends JsInterface {
   TransitLine() : this.created(new JsObject(context['Object']));
 
   void set agencies(List<TransitAgency> _agencies) {
-    asJsObject(this)['agencies'] = __codec106.encode(_agencies);
+    asJsObject(this)['agencies'] = __codec107.encode(_agencies);
   }
 
   List<TransitAgency> get agencies =>
-      __codec106.decode(asJsObject(this)['agencies']);
+      __codec107.decode(asJsObject(this)['agencies']);
   void set color(String _color) {
     asJsObject(this)['color'] = _color;
   }
@@ -5628,10 +4853,10 @@ class TransitLine extends JsInterface {
 
   String get url => asJsObject(this)['url'];
   void set vehicle(TransitVehicle _vehicle) {
-    asJsObject(this)['vehicle'] = __codec107.encode(_vehicle);
+    asJsObject(this)['vehicle'] = __codec108.encode(_vehicle);
   }
 
-  TransitVehicle get vehicle => __codec107.decode(asJsObject(this)['vehicle']);
+  TransitVehicle get vehicle => __codec108.decode(asJsObject(this)['vehicle']);
 }
 
 @GeneratedFrom(_TransitAgency)
@@ -5684,10 +4909,10 @@ class TransitVehicle extends JsInterface {
 
   String get name => asJsObject(this)['name'];
   void set type(VehicleType _type) {
-    asJsObject(this)['type'] = __codec11.encode(_type);
+    asJsObject(this)['type'] = __codec109.encode(_type);
   }
 
-  VehicleType get type => __codec11.decode(asJsObject(this)['type']);
+  VehicleType get type => __codec109.decode(asJsObject(this)['type']);
 }
 
 @GeneratedFrom(_ElevationService)
@@ -5701,13 +4926,13 @@ class ElevationService extends JsInterface {
   void getElevationAlongPath(PathElevationRequest request,
       callback(List<ElevationResult> p1, ElevationStatus p2)) {
     asJsObject(this).callMethod('getElevationAlongPath',
-        [__codec108.encode(request), __codec112.encode(callback)]);
+        [__codec110.encode(request), __codec114.encode(callback)]);
   }
 
   void getElevationForLocations(LocationElevationRequest request,
       callback(List<ElevationResult> p1, ElevationStatus p2)) {
     asJsObject(this).callMethod('getElevationForLocations',
-        [__codec113.encode(request), __codec112.encode(callback)]);
+        [__codec115.encode(request), __codec114.encode(callback)]);
   }
 }
 
@@ -5718,10 +4943,10 @@ class LocationElevationRequest extends JsInterface {
   LocationElevationRequest() : this.created(new JsObject(context['Object']));
 
   void set locations(List<LatLng> _locations) {
-    asJsObject(this)['locations'] = __codec45.encode(_locations);
+    asJsObject(this)['locations'] = __codec37.encode(_locations);
   }
 
-  List<LatLng> get locations => __codec45.decode(asJsObject(this)['locations']);
+  List<LatLng> get locations => __codec37.decode(asJsObject(this)['locations']);
 }
 
 @GeneratedFrom(_PathElevationRequest)
@@ -5731,10 +4956,10 @@ class PathElevationRequest extends JsInterface {
   PathElevationRequest() : this.created(new JsObject(context['Object']));
 
   void set path(List<LatLng> _path) {
-    asJsObject(this)['path'] = __codec45.encode(_path);
+    asJsObject(this)['path'] = __codec37.encode(_path);
   }
 
-  List<LatLng> get path => __codec45.decode(asJsObject(this)['path']);
+  List<LatLng> get path => __codec37.decode(asJsObject(this)['path']);
   void set samples(num _samples) {
     asJsObject(this)['samples'] = _samples;
   }
@@ -5754,10 +4979,10 @@ class ElevationResult extends JsInterface {
 
   num get elevation => asJsObject(this)['elevation'];
   void set location(LatLng _location) {
-    asJsObject(this)['location'] = __codec20.encode(_location);
+    asJsObject(this)['location'] = __codec6.encode(_location);
   }
 
-  LatLng get location => __codec20.decode(asJsObject(this)['location']);
+  LatLng get location => __codec6.decode(asJsObject(this)['location']);
   void set resolution(num _resolution) {
     asJsObject(this)['resolution'] = _resolution;
   }
@@ -5803,7 +5028,7 @@ class MaxZoomService extends JsInterface {
 
   void getMaxZoomAtLatLng(LatLng latlng, callback(MaxZoomResult p1)) {
     asJsObject(this).callMethod('getMaxZoomAtLatLng',
-        [__codec20.encode(latlng), __codec115.encode(callback)]);
+        [__codec6.encode(latlng), __codec117.encode(callback)]);
   }
 }
 
@@ -5814,10 +5039,10 @@ class MaxZoomResult extends JsInterface {
   MaxZoomResult() : this.created(new JsObject(context['Object']));
 
   void set status(MaxZoomStatus _status) {
-    asJsObject(this)['status'] = __codec116.encode(_status);
+    asJsObject(this)['status'] = __codec118.encode(_status);
   }
 
-  MaxZoomStatus get status => __codec116.decode(asJsObject(this)['status']);
+  MaxZoomStatus get status => __codec118.decode(asJsObject(this)['status']);
   void set zoom(num _zoom) {
     asJsObject(this)['zoom'] = _zoom;
   }
@@ -5853,7 +5078,7 @@ class DistanceMatrixService extends JsInterface {
   void getDistanceMatrix(DistanceMatrixRequest request,
       callback(DistanceMatrixResponse p1, DistanceMatrixStatus p2)) {
     asJsObject(this).callMethod('getDistanceMatrix',
-        [__codec117.encode(request), __codec120.encode(callback)]);
+        [__codec119.encode(request), __codec122.encode(callback)]);
   }
 }
 
@@ -5879,11 +5104,11 @@ class DistanceMatrixRequest extends JsInterface {
 
   bool get avoidTolls => asJsObject(this)['avoidTolls'];
   void set _destinations(dynamic __destinations) {
-    asJsObject(this)['destinations'] = __codec0.encode(__destinations);
+    asJsObject(this)['destinations'] = __codec4.encode(__destinations);
   }
 
   dynamic get _destinations =>
-      __codec0.decode(asJsObject(this)['destinations']);
+      __codec4.decode(asJsObject(this)['destinations']);
   List<dynamic /*LatLng|String*/ > get destinations =>
       (new JsListCodec<dynamic /*LatLng|String*/ >(new ChainedCodec()
             ..add(new JsInterfaceCodec<LatLng>(
@@ -5908,16 +5133,16 @@ class DistanceMatrixRequest extends JsInterface {
   }
 
   void set drivingOptions(DrivingOptions _drivingOptions) {
-    asJsObject(this)['drivingOptions'] = __codec80.encode(_drivingOptions);
+    asJsObject(this)['drivingOptions'] = __codec81.encode(_drivingOptions);
   }
 
   DrivingOptions get drivingOptions =>
-      __codec80.decode(asJsObject(this)['drivingOptions']);
+      __codec81.decode(asJsObject(this)['drivingOptions']);
   void set _origins(dynamic __origins) {
-    asJsObject(this)['origins'] = __codec0.encode(__origins);
+    asJsObject(this)['origins'] = __codec4.encode(__origins);
   }
 
-  dynamic get _origins => __codec0.decode(asJsObject(this)['origins']);
+  dynamic get _origins => __codec4.decode(asJsObject(this)['origins']);
   List<dynamic /*LatLng|String*/ > get origins =>
       (new JsListCodec<dynamic /*LatLng|String*/ >(new ChainedCodec()
             ..add(new JsInterfaceCodec<LatLng>(
@@ -5946,21 +5171,21 @@ class DistanceMatrixRequest extends JsInterface {
 
   String get region => asJsObject(this)['region'];
   void set transitOptions(TransitOptions _transitOptions) {
-    asJsObject(this)['transitOptions'] = __codec81.encode(_transitOptions);
+    asJsObject(this)['transitOptions'] = __codec82.encode(_transitOptions);
   }
 
   TransitOptions get transitOptions =>
-      __codec81.decode(asJsObject(this)['transitOptions']);
+      __codec82.decode(asJsObject(this)['transitOptions']);
   void set travelMode(TravelMode _travelMode) {
-    asJsObject(this)['travelMode'] = __codec82.encode(_travelMode);
+    asJsObject(this)['travelMode'] = __codec83.encode(_travelMode);
   }
 
-  TravelMode get travelMode => __codec82.decode(asJsObject(this)['travelMode']);
+  TravelMode get travelMode => __codec83.decode(asJsObject(this)['travelMode']);
   void set unitSystem(UnitSystem _unitSystem) {
-    asJsObject(this)['unitSystem'] = __codec83.encode(_unitSystem);
+    asJsObject(this)['unitSystem'] = __codec84.encode(_unitSystem);
   }
 
-  UnitSystem get unitSystem => __codec83.decode(asJsObject(this)['unitSystem']);
+  UnitSystem get unitSystem => __codec84.decode(asJsObject(this)['unitSystem']);
 }
 
 @GeneratedFrom(_DistanceMatrixResponse)
@@ -5971,23 +5196,23 @@ class DistanceMatrixResponse extends JsInterface {
 
   void set destinationAddresses(List<String> _destinationAddresses) {
     asJsObject(this)['destinationAddresses'] =
-        __codec4.encode(_destinationAddresses);
+        __codec29.encode(_destinationAddresses);
   }
 
   List<String> get destinationAddresses =>
-      __codec4.decode(asJsObject(this)['destinationAddresses']);
+      __codec29.decode(asJsObject(this)['destinationAddresses']);
   void set originAddresses(List<String> _originAddresses) {
-    asJsObject(this)['originAddresses'] = __codec4.encode(_originAddresses);
+    asJsObject(this)['originAddresses'] = __codec29.encode(_originAddresses);
   }
 
   List<String> get originAddresses =>
-      __codec4.decode(asJsObject(this)['originAddresses']);
+      __codec29.decode(asJsObject(this)['originAddresses']);
   void set rows(List<DistanceMatrixResponseRow> _rows) {
-    asJsObject(this)['rows'] = __codec122.encode(_rows);
+    asJsObject(this)['rows'] = __codec124.encode(_rows);
   }
 
   List<DistanceMatrixResponseRow> get rows =>
-      __codec122.decode(asJsObject(this)['rows']);
+      __codec124.decode(asJsObject(this)['rows']);
 }
 
 @GeneratedFrom(_DistanceMatrixResponseRow)
@@ -5997,11 +5222,11 @@ class DistanceMatrixResponseRow extends JsInterface {
   DistanceMatrixResponseRow() : this.created(new JsObject(context['Object']));
 
   void set elements(List<DistanceMatrixResponseElement> _elements) {
-    asJsObject(this)['elements'] = __codec124.encode(_elements);
+    asJsObject(this)['elements'] = __codec126.encode(_elements);
   }
 
   List<DistanceMatrixResponseElement> get elements =>
-      __codec124.decode(asJsObject(this)['elements']);
+      __codec126.decode(asJsObject(this)['elements']);
 }
 
 @GeneratedFrom(_DistanceMatrixResponseElement)
@@ -6012,38 +5237,38 @@ class DistanceMatrixResponseElement extends JsInterface {
       : this.created(new JsObject(context['Object']));
 
   void set distance(Distance _distance) {
-    asJsObject(this)['distance'] = __codec98.encode(_distance);
+    asJsObject(this)['distance'] = __codec99.encode(_distance);
   }
 
-  Distance get distance => __codec98.decode(asJsObject(this)['distance']);
+  Distance get distance => __codec99.decode(asJsObject(this)['distance']);
   void set duration(GDuration _duration) {
-    asJsObject(this)['duration'] = __codec99.encode(_duration);
+    asJsObject(this)['duration'] = __codec100.encode(_duration);
   }
 
-  GDuration get duration => __codec99.decode(asJsObject(this)['duration']);
+  GDuration get duration => __codec100.decode(asJsObject(this)['duration']);
   void set _duration_in_traffic(GDuration __duration_in_traffic) {
     asJsObject(this)['duration_in_traffic'] =
-        __codec99.encode(__duration_in_traffic);
+        __codec100.encode(__duration_in_traffic);
   }
 
   GDuration get _duration_in_traffic =>
-      __codec99.decode(asJsObject(this)['duration_in_traffic']);
+      __codec100.decode(asJsObject(this)['duration_in_traffic']);
   GDuration get durationInTraffic => _duration_in_traffic;
   void set durationInTraffic(GDuration durationInTraffic) {
     _duration_in_traffic = durationInTraffic;
   }
 
   void set fare(TransitFare _fare) {
-    asJsObject(this)['fare'] = __codec94.encode(_fare);
+    asJsObject(this)['fare'] = __codec95.encode(_fare);
   }
 
-  TransitFare get fare => __codec94.decode(asJsObject(this)['fare']);
+  TransitFare get fare => __codec95.decode(asJsObject(this)['fare']);
   void set status(DistanceMatrixElementStatus _status) {
-    asJsObject(this)['status'] = __codec125.encode(_status);
+    asJsObject(this)['status'] = __codec127.encode(_status);
   }
 
   DistanceMatrixElementStatus get status =>
-      __codec125.decode(asJsObject(this)['status']);
+      __codec127.decode(asJsObject(this)['status']);
 }
 
 class DistanceMatrixStatus extends JsEnum {
@@ -6138,10 +5363,10 @@ class MarkerPlace extends JsInterface {
   MarkerPlace() : this.created(new JsObject(context['Object']));
 
   void set location(LatLng _location) {
-    asJsObject(this)['location'] = __codec20.encode(_location);
+    asJsObject(this)['location'] = __codec6.encode(_location);
   }
 
-  LatLng get location => __codec20.decode(asJsObject(this)['location']);
+  LatLng get location => __codec6.decode(asJsObject(this)['location']);
   void set placeId(String _placeId) {
     asJsObject(this)['placeId'] = _placeId;
   }
@@ -6160,28 +5385,28 @@ class SaveWidget extends MVCObject {
   SaveWidget.created(JsObject o) : super.created(o);
   SaveWidget(Node container, [SaveWidgetOptions opts])
       : this.created(new JsObject(context['google']['maps']['SaveWidget'],
-            [container, __codec126.encode(opts)]));
+            [container, __codec128.encode(opts)]));
 
   Attribution get attribution => _getAttribution();
   Attribution _getAttribution() =>
-      __codec48.decode(asJsObject(this).callMethod('getAttribution'));
+      __codec46.decode(asJsObject(this).callMethod('getAttribution'));
   MarkerPlace get place => _getPlace();
   MarkerPlace _getPlace() =>
-      __codec50.decode(asJsObject(this).callMethod('getPlace'));
+      __codec48.decode(asJsObject(this).callMethod('getPlace'));
   void set attribution(Attribution attribution) => _setAttribution(attribution);
   void _setAttribution(Attribution attribution) {
     asJsObject(this)
-        .callMethod('setAttribution', [__codec48.encode(attribution)]);
+        .callMethod('setAttribution', [__codec46.encode(attribution)]);
   }
 
   void set options(SaveWidgetOptions opts) => _setOptions(opts);
   void _setOptions(SaveWidgetOptions opts) {
-    asJsObject(this).callMethod('setOptions', [__codec126.encode(opts)]);
+    asJsObject(this).callMethod('setOptions', [__codec128.encode(opts)]);
   }
 
   void set place(MarkerPlace place) => _setPlace(place);
   void _setPlace(MarkerPlace place) {
-    asJsObject(this).callMethod('setPlace', [__codec50.encode(place)]);
+    asJsObject(this).callMethod('setPlace', [__codec48.encode(place)]);
   }
 }
 
@@ -6192,16 +5417,16 @@ class SaveWidgetOptions extends JsInterface {
   SaveWidgetOptions() : this.created(new JsObject(context['Object']));
 
   void set attribution(Attribution _attribution) {
-    asJsObject(this)['attribution'] = __codec48.encode(_attribution);
+    asJsObject(this)['attribution'] = __codec46.encode(_attribution);
   }
 
   Attribution get attribution =>
-      __codec48.decode(asJsObject(this)['attribution']);
+      __codec46.decode(asJsObject(this)['attribution']);
   void set place(MarkerPlace _place) {
-    asJsObject(this)['place'] = __codec50.encode(_place);
+    asJsObject(this)['place'] = __codec48.encode(_place);
   }
 
-  MarkerPlace get place => __codec50.decode(asJsObject(this)['place']);
+  MarkerPlace get place => __codec48.decode(asJsObject(this)['place']);
 }
 
 @GeneratedFrom(_MapType)
@@ -6212,7 +5437,7 @@ class MapType extends JsInterface {
 
   Node getTile(Point tileCoord, num zoom, Document ownerDocument) =>
       asJsObject(this).callMethod(
-          'getTile', [__codec51.encode(tileCoord), zoom, ownerDocument]);
+          'getTile', [__codec49.encode(tileCoord), zoom, ownerDocument]);
   void releaseTile(Node tile) {
     asJsObject(this).callMethod('releaseTile', [tile]);
   }
@@ -6238,20 +5463,20 @@ class MapType extends JsInterface {
 
   String get name => asJsObject(this)['name'];
   void set projection(Projection _projection) {
-    asJsObject(this)['projection'] = __codec21.encode(_projection);
+    asJsObject(this)['projection'] = __codec7.encode(_projection);
   }
 
-  Projection get projection => __codec21.decode(asJsObject(this)['projection']);
+  Projection get projection => __codec7.decode(asJsObject(this)['projection']);
   void set radius(num _radius) {
     asJsObject(this)['radius'] = _radius;
   }
 
   num get radius => asJsObject(this)['radius'];
   void set tileSize(Size _tileSize) {
-    asJsObject(this)['tileSize'] = __codec52.encode(_tileSize);
+    asJsObject(this)['tileSize'] = __codec50.encode(_tileSize);
   }
 
-  Size get tileSize => __codec52.decode(asJsObject(this)['tileSize']);
+  Size get tileSize => __codec50.decode(asJsObject(this)['tileSize']);
 }
 
 @GeneratedFrom(_MapTypeRegistry)
@@ -6263,7 +5488,7 @@ class MapTypeRegistry extends MVCObject {
             new JsObject(context['google']['maps']['MapTypeRegistry']));
 
   void set(String id, @checked MapType mapType) {
-    asJsObject(this).callMethod('set', [id, __codec127.encode(mapType)]);
+    asJsObject(this).callMethod('set', [id, __codec129.encode(mapType)]);
   }
 }
 
@@ -6274,11 +5499,11 @@ class Projection extends JsInterface {
   Projection() : this.created(new JsObject(context['Object']));
 
   Point fromLatLngToPoint(LatLng latLng, [Point point]) =>
-      __codec51.decode(asJsObject(this).callMethod('fromLatLngToPoint',
-          [__codec20.encode(latLng), __codec51.encode(point)]));
+      __codec49.decode(asJsObject(this).callMethod('fromLatLngToPoint',
+          [__codec6.encode(latLng), __codec49.encode(point)]));
   LatLng fromPointToLatLng(Point pixel, [bool nowrap]) =>
-      __codec20.decode(asJsObject(this)
-          .callMethod('fromPointToLatLng', [__codec51.encode(pixel), nowrap]));
+      __codec6.decode(asJsObject(this)
+          .callMethod('fromPointToLatLng', [__codec49.encode(pixel), nowrap]));
 }
 
 @GeneratedFrom(_ImageMapType)
@@ -6287,13 +5512,13 @@ class ImageMapType extends MVCObject implements MapType {
   ImageMapType.created(JsObject o) : super.created(o);
   ImageMapType(ImageMapTypeOptions opts)
       : this.created(new JsObject(context['google']['maps']['ImageMapType'],
-            [__codec128.encode(opts)]));
+            [__codec130.encode(opts)]));
 
   num get opacity => _getOpacity();
   num _getOpacity() => asJsObject(this).callMethod('getOpacity');
   Node getTile(Point tileCoord, num zoom, Document ownerDocument) =>
       asJsObject(this).callMethod(
-          'getTile', [__codec51.encode(tileCoord), zoom, ownerDocument]);
+          'getTile', [__codec49.encode(tileCoord), zoom, ownerDocument]);
   void releaseTile(Node tile) {
     asJsObject(this).callMethod('releaseTile', [tile]);
   }
@@ -6324,20 +5549,20 @@ class ImageMapType extends MVCObject implements MapType {
 
   String get name => asJsObject(this)['name'];
   void set projection(Projection _projection) {
-    asJsObject(this)['projection'] = __codec21.encode(_projection);
+    asJsObject(this)['projection'] = __codec7.encode(_projection);
   }
 
-  Projection get projection => __codec21.decode(asJsObject(this)['projection']);
+  Projection get projection => __codec7.decode(asJsObject(this)['projection']);
   void set radius(num _radius) {
     asJsObject(this)['radius'] = _radius;
   }
 
   num get radius => asJsObject(this)['radius'];
   void set tileSize(Size _tileSize) {
-    asJsObject(this)['tileSize'] = __codec52.encode(_tileSize);
+    asJsObject(this)['tileSize'] = __codec50.encode(_tileSize);
   }
 
-  Size get tileSize => __codec52.decode(asJsObject(this)['tileSize']);
+  Size get tileSize => __codec50.decode(asJsObject(this)['tileSize']);
 
   Stream get onTilesloaded => getStream(this, #onTilesloaded, "tilesloaded");
 }
@@ -6354,10 +5579,10 @@ class ImageMapTypeOptions extends JsInterface {
 
   String get alt => asJsObject(this)['alt'];
   void set getTileUrl(dynamic _getTileUrl) {
-    asJsObject(this)['getTileUrl'] = __codec0.encode(_getTileUrl);
+    asJsObject(this)['getTileUrl'] = __codec4.encode(_getTileUrl);
   }
 
-  dynamic get getTileUrl => __codec0.decode(asJsObject(this)['getTileUrl']);
+  dynamic get getTileUrl => __codec4.decode(asJsObject(this)['getTileUrl']);
   void set maxZoom(num _maxZoom) {
     asJsObject(this)['maxZoom'] = _maxZoom;
   }
@@ -6379,10 +5604,10 @@ class ImageMapTypeOptions extends JsInterface {
 
   num get opacity => asJsObject(this)['opacity'];
   void set tileSize(Size _tileSize) {
-    asJsObject(this)['tileSize'] = __codec52.encode(_tileSize);
+    asJsObject(this)['tileSize'] = __codec50.encode(_tileSize);
   }
 
-  Size get tileSize => __codec52.decode(asJsObject(this)['tileSize']);
+  Size get tileSize => __codec50.decode(asJsObject(this)['tileSize']);
 }
 
 @GeneratedFrom(_StyledMapType)
@@ -6391,11 +5616,11 @@ class StyledMapType extends MVCObject implements MapType {
   StyledMapType.created(JsObject o) : super.created(o);
   StyledMapType(List<MapTypeStyle> styles, [StyledMapTypeOptions options])
       : this.created(new JsObject(context['google']['maps']['StyledMapType'],
-            [__codec30.encode(styles), __codec129.encode(options)]));
+            [__codec17.encode(styles), __codec131.encode(options)]));
 
   Node getTile(Point tileCoord, num zoom, Document ownerDocument) =>
       asJsObject(this).callMethod(
-          'getTile', [__codec51.encode(tileCoord), zoom, ownerDocument]);
+          'getTile', [__codec49.encode(tileCoord), zoom, ownerDocument]);
   void releaseTile(Node tile) {
     asJsObject(this).callMethod('releaseTile', [tile]);
   }
@@ -6421,20 +5646,20 @@ class StyledMapType extends MVCObject implements MapType {
 
   String get name => asJsObject(this)['name'];
   void set projection(Projection _projection) {
-    asJsObject(this)['projection'] = __codec21.encode(_projection);
+    asJsObject(this)['projection'] = __codec7.encode(_projection);
   }
 
-  Projection get projection => __codec21.decode(asJsObject(this)['projection']);
+  Projection get projection => __codec7.decode(asJsObject(this)['projection']);
   void set radius(num _radius) {
     asJsObject(this)['radius'] = _radius;
   }
 
   num get radius => asJsObject(this)['radius'];
   void set tileSize(Size _tileSize) {
-    asJsObject(this)['tileSize'] = __codec52.encode(_tileSize);
+    asJsObject(this)['tileSize'] = __codec50.encode(_tileSize);
   }
 
-  Size get tileSize => __codec52.decode(asJsObject(this)['tileSize']);
+  Size get tileSize => __codec50.decode(asJsObject(this)['tileSize']);
 }
 
 @GeneratedFrom(_StyledMapTypeOptions)
@@ -6472,23 +5697,23 @@ class MapTypeStyle extends JsInterface {
   MapTypeStyle() : this.created(new JsObject(context['Object']));
 
   void set elementType(MapTypeStyleElementType _elementType) {
-    asJsObject(this)['elementType'] = __codec12.encode(_elementType);
+    asJsObject(this)['elementType'] = __codec132.encode(_elementType);
   }
 
   MapTypeStyleElementType get elementType =>
-      __codec12.decode(asJsObject(this)['elementType']);
+      __codec132.decode(asJsObject(this)['elementType']);
   void set featureType(MapTypeStyleFeatureType _featureType) {
-    asJsObject(this)['featureType'] = __codec13.encode(_featureType);
+    asJsObject(this)['featureType'] = __codec133.encode(_featureType);
   }
 
   MapTypeStyleFeatureType get featureType =>
-      __codec13.decode(asJsObject(this)['featureType']);
+      __codec133.decode(asJsObject(this)['featureType']);
   void set stylers(List<MapTypeStyler> _stylers) {
-    asJsObject(this)['stylers'] = __codec131.encode(_stylers);
+    asJsObject(this)['stylers'] = __codec135.encode(_stylers);
   }
 
   List<MapTypeStyler> get stylers =>
-      __codec131.decode(asJsObject(this)['stylers']);
+      __codec135.decode(asJsObject(this)['stylers']);
 }
 
 @GeneratedFrom(_MapTypeStyler)
@@ -6552,10 +5777,10 @@ class BicyclingLayer extends MVCObject {
       : this.created(new JsObject(context['google']['maps']['BicyclingLayer']));
 
   GMap get map => _getMap();
-  GMap _getMap() => __codec164.decode(asJsObject(this).callMethod('getMap'));
+  GMap _getMap() => __codec30.decode(asJsObject(this).callMethod('getMap'));
   void set map(GMap map) => _setMap(map);
   void _setMap(GMap map) {
-    asJsObject(this).callMethod('setMap', [__codec164.encode(map)]);
+    asJsObject(this).callMethod('setMap', [__codec30.encode(map)]);
   }
 }
 
@@ -6566,18 +5791,18 @@ class FusionTablesLayer extends MVCObject {
   FusionTablesLayer(FusionTablesLayerOptions options)
       : this.created(new JsObject(
             context['google']['maps']['FusionTablesLayer'],
-            [__codec132.encode(options)]));
+            [__codec136.encode(options)]));
 
   GMap get map => _getMap();
-  GMap _getMap() => __codec164.decode(asJsObject(this).callMethod('getMap'));
+  GMap _getMap() => __codec30.decode(asJsObject(this).callMethod('getMap'));
   void set map(GMap map) => _setMap(map);
   void _setMap(GMap map) {
-    asJsObject(this).callMethod('setMap', [__codec164.encode(map)]);
+    asJsObject(this).callMethod('setMap', [__codec30.encode(map)]);
   }
 
   void set options(FusionTablesLayerOptions options) => _setOptions(options);
   void _setOptions(FusionTablesLayerOptions options) {
-    asJsObject(this).callMethod('setOptions', [__codec132.encode(options)]);
+    asJsObject(this).callMethod('setOptions', [__codec136.encode(options)]);
   }
 
   Stream<FusionTablesMouseEvent> get onClick => getStream(this, #onClick,
@@ -6596,27 +5821,27 @@ class FusionTablesLayerOptions extends JsInterface {
 
   bool get clickable => asJsObject(this)['clickable'];
   void set heatmap(FusionTablesHeatmap _heatmap) {
-    asJsObject(this)['heatmap'] = __codec133.encode(_heatmap);
+    asJsObject(this)['heatmap'] = __codec137.encode(_heatmap);
   }
 
   FusionTablesHeatmap get heatmap =>
-      __codec133.decode(asJsObject(this)['heatmap']);
+      __codec137.decode(asJsObject(this)['heatmap']);
   void set map(GMap _map) {
-    asJsObject(this)['map'] = __codec164.encode(_map);
+    asJsObject(this)['map'] = __codec30.encode(_map);
   }
 
-  GMap get map => __codec164.decode(asJsObject(this)['map']);
+  GMap get map => __codec30.decode(asJsObject(this)['map']);
   void set query(FusionTablesQuery _query) {
-    asJsObject(this)['query'] = __codec134.encode(_query);
+    asJsObject(this)['query'] = __codec138.encode(_query);
   }
 
-  FusionTablesQuery get query => __codec134.decode(asJsObject(this)['query']);
+  FusionTablesQuery get query => __codec138.decode(asJsObject(this)['query']);
   void set styles(List<FusionTablesStyle> _styles) {
-    asJsObject(this)['styles'] = __codec136.encode(_styles);
+    asJsObject(this)['styles'] = __codec140.encode(_styles);
   }
 
   List<FusionTablesStyle> get styles =>
-      __codec136.decode(asJsObject(this)['styles']);
+      __codec140.decode(asJsObject(this)['styles']);
   void set suppressInfoWindows(bool _suppressInfoWindows) {
     asJsObject(this)['suppressInfoWindows'] = _suppressInfoWindows;
   }
@@ -6669,23 +5894,23 @@ class FusionTablesStyle extends JsInterface {
   FusionTablesStyle() : this.created(new JsObject(context['Object']));
 
   void set markerOptions(FusionTablesMarkerOptions _markerOptions) {
-    asJsObject(this)['markerOptions'] = __codec137.encode(_markerOptions);
+    asJsObject(this)['markerOptions'] = __codec141.encode(_markerOptions);
   }
 
   FusionTablesMarkerOptions get markerOptions =>
-      __codec137.decode(asJsObject(this)['markerOptions']);
+      __codec141.decode(asJsObject(this)['markerOptions']);
   void set polygonOptions(FusionTablesPolygonOptions _polygonOptions) {
-    asJsObject(this)['polygonOptions'] = __codec138.encode(_polygonOptions);
+    asJsObject(this)['polygonOptions'] = __codec142.encode(_polygonOptions);
   }
 
   FusionTablesPolygonOptions get polygonOptions =>
-      __codec138.decode(asJsObject(this)['polygonOptions']);
+      __codec142.decode(asJsObject(this)['polygonOptions']);
   void set polylineOptions(FusionTablesPolylineOptions _polylineOptions) {
-    asJsObject(this)['polylineOptions'] = __codec139.encode(_polylineOptions);
+    asJsObject(this)['polylineOptions'] = __codec143.encode(_polylineOptions);
   }
 
   FusionTablesPolylineOptions get polylineOptions =>
-      __codec139.decode(asJsObject(this)['polylineOptions']);
+      __codec143.decode(asJsObject(this)['polylineOptions']);
   void set where(String _where) {
     asJsObject(this)['where'] = _where;
   }
@@ -6787,21 +6012,21 @@ class FusionTablesMouseEvent extends JsInterface {
 
   String get infoWindowHtml => asJsObject(this)['infoWindowHtml'];
   void set latLng(LatLng _latLng) {
-    asJsObject(this)['latLng'] = __codec20.encode(_latLng);
+    asJsObject(this)['latLng'] = __codec6.encode(_latLng);
   }
 
-  LatLng get latLng => __codec20.decode(asJsObject(this)['latLng']);
+  LatLng get latLng => __codec6.decode(asJsObject(this)['latLng']);
   void set pixelOffset(Size _pixelOffset) {
-    asJsObject(this)['pixelOffset'] = __codec52.encode(_pixelOffset);
+    asJsObject(this)['pixelOffset'] = __codec50.encode(_pixelOffset);
   }
 
-  Size get pixelOffset => __codec52.decode(asJsObject(this)['pixelOffset']);
+  Size get pixelOffset => __codec50.decode(asJsObject(this)['pixelOffset']);
   void set row(Map<String, FusionTablesCell> _row) {
-    asJsObject(this)['row'] = __codec141.encode(_row);
+    asJsObject(this)['row'] = __codec145.encode(_row);
   }
 
   Map<String, FusionTablesCell> get row =>
-      __codec141.decode(asJsObject(this)['row']);
+      __codec145.decode(asJsObject(this)['row']);
 }
 
 @GeneratedFrom(_FusionTablesCell)
@@ -6828,26 +6053,26 @@ class KmlLayer extends MVCObject {
   KmlLayer.created(JsObject o) : super.created(o);
   KmlLayer([KmlLayerOptions opts])
       : this.created(new JsObject(
-            context['google']['maps']['KmlLayer'], [__codec142.encode(opts)]));
+            context['google']['maps']['KmlLayer'], [__codec146.encode(opts)]));
 
   LatLngBounds get defaultViewport => _getDefaultViewport();
   LatLngBounds _getDefaultViewport() =>
-      __codec19.decode(asJsObject(this).callMethod('getDefaultViewport'));
+      __codec5.decode(asJsObject(this).callMethod('getDefaultViewport'));
   GMap get map => _getMap();
-  GMap _getMap() => __codec164.decode(asJsObject(this).callMethod('getMap'));
+  GMap _getMap() => __codec30.decode(asJsObject(this).callMethod('getMap'));
   KmlLayerMetadata get metadata => _getMetadata();
   KmlLayerMetadata _getMetadata() =>
-      __codec143.decode(asJsObject(this).callMethod('getMetadata'));
+      __codec147.decode(asJsObject(this).callMethod('getMetadata'));
   KmlLayerStatus get status => _getStatus();
   KmlLayerStatus _getStatus() =>
-      __codec144.decode(asJsObject(this).callMethod('getStatus'));
+      __codec148.decode(asJsObject(this).callMethod('getStatus'));
   String get url => _getUrl();
   String _getUrl() => asJsObject(this).callMethod('getUrl');
   num get zIndex => _getZIndex();
   num _getZIndex() => asJsObject(this).callMethod('getZIndex');
   void set map(GMap map) => _setMap(map);
   void _setMap(GMap map) {
-    asJsObject(this).callMethod('setMap', [__codec164.encode(map)]);
+    asJsObject(this).callMethod('setMap', [__codec30.encode(map)]);
   }
 
   void set url(String url) => _setUrl(url);
@@ -6880,10 +6105,10 @@ class KmlLayerOptions extends JsInterface {
 
   bool get clickable => asJsObject(this)['clickable'];
   void set map(GMap _map) {
-    asJsObject(this)['map'] = __codec164.encode(_map);
+    asJsObject(this)['map'] = __codec30.encode(_map);
   }
 
-  GMap get map => __codec164.decode(asJsObject(this)['map']);
+  GMap get map => __codec30.decode(asJsObject(this)['map']);
   void set preserveViewport(bool _preserveViewport) {
     asJsObject(this)['preserveViewport'] = _preserveViewport;
   }
@@ -6918,10 +6143,10 @@ class KmlLayerMetadata extends JsInterface {
   KmlLayerMetadata() : this.created(new JsObject(context['Object']));
 
   void set author(KmlAuthor _author) {
-    asJsObject(this)['author'] = __codec145.encode(_author);
+    asJsObject(this)['author'] = __codec149.encode(_author);
   }
 
-  KmlAuthor get author => __codec145.decode(asJsObject(this)['author']);
+  KmlAuthor get author => __codec149.decode(asJsObject(this)['author']);
   void set description(String _description) {
     asJsObject(this)['description'] = _description;
   }
@@ -6992,21 +6217,21 @@ class KmlMouseEvent extends JsInterface {
   KmlMouseEvent() : this.created(new JsObject(context['Object']));
 
   void set featureData(KmlFeatureData _featureData) {
-    asJsObject(this)['featureData'] = __codec146.encode(_featureData);
+    asJsObject(this)['featureData'] = __codec150.encode(_featureData);
   }
 
   KmlFeatureData get featureData =>
-      __codec146.decode(asJsObject(this)['featureData']);
+      __codec150.decode(asJsObject(this)['featureData']);
   void set latLng(LatLng _latLng) {
-    asJsObject(this)['latLng'] = __codec20.encode(_latLng);
+    asJsObject(this)['latLng'] = __codec6.encode(_latLng);
   }
 
-  LatLng get latLng => __codec20.decode(asJsObject(this)['latLng']);
+  LatLng get latLng => __codec6.decode(asJsObject(this)['latLng']);
   void set pixelOffset(Size _pixelOffset) {
-    asJsObject(this)['pixelOffset'] = __codec52.encode(_pixelOffset);
+    asJsObject(this)['pixelOffset'] = __codec50.encode(_pixelOffset);
   }
 
-  Size get pixelOffset => __codec52.decode(asJsObject(this)['pixelOffset']);
+  Size get pixelOffset => __codec50.decode(asJsObject(this)['pixelOffset']);
 }
 
 @GeneratedFrom(_KmlFeatureData)
@@ -7016,10 +6241,10 @@ class KmlFeatureData extends JsInterface {
   KmlFeatureData() : this.created(new JsObject(context['Object']));
 
   void set author(KmlAuthor _author) {
-    asJsObject(this)['author'] = __codec145.encode(_author);
+    asJsObject(this)['author'] = __codec149.encode(_author);
   }
 
-  KmlAuthor get author => __codec145.decode(asJsObject(this)['author']);
+  KmlAuthor get author => __codec149.decode(asJsObject(this)['author']);
   void set description(String _description) {
     asJsObject(this)['description'] = _description;
   }
@@ -7078,10 +6303,10 @@ class TrafficLayer extends MVCObject {
       : this.created(new JsObject(context['google']['maps']['TrafficLayer']));
 
   GMap get map => _getMap();
-  GMap _getMap() => __codec164.decode(asJsObject(this).callMethod('getMap'));
+  GMap _getMap() => __codec30.decode(asJsObject(this).callMethod('getMap'));
   void set map(GMap map) => _setMap(map);
   void _setMap(GMap map) {
-    asJsObject(this).callMethod('setMap', [__codec164.encode(map)]);
+    asJsObject(this).callMethod('setMap', [__codec30.encode(map)]);
   }
 }
 
@@ -7093,10 +6318,10 @@ class TransitLayer extends MVCObject {
       : this.created(new JsObject(context['google']['maps']['TransitLayer']));
 
   GMap get map => _getMap();
-  GMap _getMap() => __codec164.decode(asJsObject(this).callMethod('getMap'));
+  GMap _getMap() => __codec30.decode(asJsObject(this).callMethod('getMap'));
   void set map(GMap map) => _setMap(map);
   void _setMap(GMap map) {
-    asJsObject(this).callMethod('setMap', [__codec164.encode(map)]);
+    asJsObject(this).callMethod('setMap', [__codec30.encode(map)]);
   }
 }
 
@@ -7107,45 +6332,45 @@ class StreetViewPanorama extends MVCObject {
   StreetViewPanorama(Node container, [StreetViewPanoramaOptions opts])
       : this.created(new JsObject(
             context['google']['maps']['StreetViewPanorama'],
-            [container, __codec147.encode(opts)]));
+            [container, __codec151.encode(opts)]));
 
   List<StreetViewLink> get links => _getLinks();
   List<StreetViewLink> _getLinks() =>
-      __codec149.decode(asJsObject(this).callMethod('getLinks'));
+      __codec153.decode(asJsObject(this).callMethod('getLinks'));
   StreetViewLocation get location => _getLocation();
   StreetViewLocation _getLocation() =>
-      __codec150.decode(asJsObject(this).callMethod('getLocation'));
+      __codec154.decode(asJsObject(this).callMethod('getLocation'));
   String get pano => _getPano();
   String _getPano() => asJsObject(this).callMethod('getPano');
   StreetViewPov get photographerPov => _getPhotographerPov();
   StreetViewPov _getPhotographerPov() =>
-      __codec151.decode(asJsObject(this).callMethod('getPhotographerPov'));
+      __codec155.decode(asJsObject(this).callMethod('getPhotographerPov'));
   LatLng get position => _getPosition();
   LatLng _getPosition() =>
-      __codec20.decode(asJsObject(this).callMethod('getPosition'));
+      __codec6.decode(asJsObject(this).callMethod('getPosition'));
   StreetViewPov get pov => _getPov();
   StreetViewPov _getPov() =>
-      __codec151.decode(asJsObject(this).callMethod('getPov'));
+      __codec155.decode(asJsObject(this).callMethod('getPov'));
   StreetViewStatus get status => _getStatus();
   StreetViewStatus _getStatus() =>
-      __codec152.decode(asJsObject(this).callMethod('getStatus'));
+      __codec156.decode(asJsObject(this).callMethod('getStatus'));
   bool get visible => _getVisible();
   bool _getVisible() => asJsObject(this).callMethod('getVisible');
   num get zoom => _getZoom();
   num _getZoom() => asJsObject(this).callMethod('getZoom');
   void registerPanoProvider(provider(String p1)) {
     asJsObject(this)
-        .callMethod('registerPanoProvider', [__codec153.encode(provider)]);
+        .callMethod('registerPanoProvider', [__codec157.encode(provider)]);
   }
 
   void set links(List<StreetViewLink> links) => _setLinks(links);
   void _setLinks(List<StreetViewLink> links) {
-    asJsObject(this).callMethod('setLinks', [__codec149.encode(links)]);
+    asJsObject(this).callMethod('setLinks', [__codec153.encode(links)]);
   }
 
   void set options(StreetViewPanoramaOptions options) => _setOptions(options);
   void _setOptions(StreetViewPanoramaOptions options) {
-    asJsObject(this).callMethod('setOptions', [__codec147.encode(options)]);
+    asJsObject(this).callMethod('setOptions', [__codec151.encode(options)]);
   }
 
   void set pano(String pano) => _setPano(pano);
@@ -7155,12 +6380,12 @@ class StreetViewPanorama extends MVCObject {
 
   void set position(LatLng latLng) => _setPosition(latLng);
   void _setPosition(LatLng latLng) {
-    asJsObject(this).callMethod('setPosition', [__codec20.encode(latLng)]);
+    asJsObject(this).callMethod('setPosition', [__codec6.encode(latLng)]);
   }
 
   void set pov(StreetViewPov pov) => _setPov(pov);
   void _setPov(StreetViewPov pov) {
-    asJsObject(this).callMethod('setPov', [__codec151.encode(pov)]);
+    asJsObject(this).callMethod('setPov', [__codec155.encode(pov)]);
   }
 
   void set visible(bool flag) => _setVisible(flag);
@@ -7174,10 +6399,10 @@ class StreetViewPanorama extends MVCObject {
   }
 
   void set _controls(dynamic __controls) {
-    asJsObject(this)['controls'] = __codec0.encode(__controls);
+    asJsObject(this)['controls'] = __codec4.encode(__controls);
   }
 
-  dynamic get _controls => __codec0.decode(asJsObject(this)['controls']);
+  dynamic get _controls => __codec4.decode(asJsObject(this)['controls']);
   List<MVCArray<Node>> get controls =>
       (new JsListCodec<MVCArray<Node>>(new JsInterfaceCodec<MVCArray<Node>>(
               (o) => new MVCArray<Node>.created(o, new IdentityCodec<Node>()))))
@@ -7223,11 +6448,11 @@ class StreetViewPanoramaOptions extends JsInterface {
   void set addressControlOptions(
       StreetViewAddressControlOptions _addressControlOptions) {
     asJsObject(this)['addressControlOptions'] =
-        __codec154.encode(_addressControlOptions);
+        __codec158.encode(_addressControlOptions);
   }
 
   StreetViewAddressControlOptions get addressControlOptions =>
-      __codec154.decode(asJsObject(this)['addressControlOptions']);
+      __codec158.decode(asJsObject(this)['addressControlOptions']);
   void set clickToGo(bool _clickToGo) {
     asJsObject(this)['clickToGo'] = _clickToGo;
   }
@@ -7265,31 +6490,31 @@ class StreetViewPanoramaOptions extends JsInterface {
   bool get panControl => asJsObject(this)['panControl'];
   void set panControlOptions(PanControlOptions _panControlOptions) {
     asJsObject(this)['panControlOptions'] =
-        __codec25.encode(_panControlOptions);
+        __codec12.encode(_panControlOptions);
   }
 
   PanControlOptions get panControlOptions =>
-      __codec25.decode(asJsObject(this)['panControlOptions']);
+      __codec12.decode(asJsObject(this)['panControlOptions']);
   void set pano(String _pano) {
     asJsObject(this)['pano'] = _pano;
   }
 
   String get pano => asJsObject(this)['pano'];
   void set panoProvider(dynamic _panoProvider) {
-    asJsObject(this)['panoProvider'] = __codec0.encode(_panoProvider);
+    asJsObject(this)['panoProvider'] = __codec4.encode(_panoProvider);
   }
 
-  dynamic get panoProvider => __codec0.decode(asJsObject(this)['panoProvider']);
+  dynamic get panoProvider => __codec4.decode(asJsObject(this)['panoProvider']);
   void set position(LatLng _position) {
-    asJsObject(this)['position'] = __codec20.encode(_position);
+    asJsObject(this)['position'] = __codec6.encode(_position);
   }
 
-  LatLng get position => __codec20.decode(asJsObject(this)['position']);
+  LatLng get position => __codec6.decode(asJsObject(this)['position']);
   void set pov(StreetViewPov _pov) {
-    asJsObject(this)['pov'] = __codec151.encode(_pov);
+    asJsObject(this)['pov'] = __codec155.encode(_pov);
   }
 
-  StreetViewPov get pov => __codec151.decode(asJsObject(this)['pov']);
+  StreetViewPov get pov => __codec155.decode(asJsObject(this)['pov']);
   void set scrollwheel(bool _scrollwheel) {
     asJsObject(this)['scrollwheel'] = _scrollwheel;
   }
@@ -7307,11 +6532,11 @@ class StreetViewPanoramaOptions extends JsInterface {
   bool get zoomControl => asJsObject(this)['zoomControl'];
   void set zoomControlOptions(ZoomControlOptions _zoomControlOptions) {
     asJsObject(this)['zoomControlOptions'] =
-        __codec31.encode(_zoomControlOptions);
+        __codec18.encode(_zoomControlOptions);
   }
 
   ZoomControlOptions get zoomControlOptions =>
-      __codec31.decode(asJsObject(this)['zoomControlOptions']);
+      __codec18.decode(asJsObject(this)['zoomControlOptions']);
 }
 
 @GeneratedFrom(_StreetViewAddressControlOptions)
@@ -7322,11 +6547,11 @@ class StreetViewAddressControlOptions extends JsInterface {
       : this.created(new JsObject(context['Object']));
 
   void set position(ControlPosition _position) {
-    asJsObject(this)['position'] = __codec32.encode(_position);
+    asJsObject(this)['position'] = __codec19.encode(_position);
   }
 
   ControlPosition get position =>
-      __codec32.decode(asJsObject(this)['position']);
+      __codec19.decode(asJsObject(this)['position']);
 }
 
 @GeneratedFrom(_StreetViewLink)
@@ -7377,26 +6602,26 @@ class StreetViewLocationRequest extends JsInterface {
   StreetViewLocationRequest() : this.created(new JsObject(context['Object']));
 
   void set location(LatLng _location) {
-    asJsObject(this)['location'] = __codec20.encode(_location);
+    asJsObject(this)['location'] = __codec6.encode(_location);
   }
 
-  LatLng get location => __codec20.decode(asJsObject(this)['location']);
+  LatLng get location => __codec6.decode(asJsObject(this)['location']);
   void set preference(StreetViewPreference _preference) {
-    asJsObject(this)['preference'] = __codec155.encode(_preference);
+    asJsObject(this)['preference'] = __codec159.encode(_preference);
   }
 
   StreetViewPreference get preference =>
-      __codec155.decode(asJsObject(this)['preference']);
+      __codec159.decode(asJsObject(this)['preference']);
   void set radius(num _radius) {
     asJsObject(this)['radius'] = _radius;
   }
 
   num get radius => asJsObject(this)['radius'];
   void set source(StreetViewSource _source) {
-    asJsObject(this)['source'] = __codec156.encode(_source);
+    asJsObject(this)['source'] = __codec160.encode(_source);
   }
 
-  StreetViewSource get source => __codec156.decode(asJsObject(this)['source']);
+  StreetViewSource get source => __codec160.decode(asJsObject(this)['source']);
 }
 
 @GeneratedFrom(_StreetViewPanoRequest)
@@ -7429,22 +6654,22 @@ class StreetViewPanoramaData extends JsInterface {
 
   String get imageDate => asJsObject(this)['imageDate'];
   void set links(List<StreetViewLink> _links) {
-    asJsObject(this)['links'] = __codec149.encode(_links);
+    asJsObject(this)['links'] = __codec153.encode(_links);
   }
 
   List<StreetViewLink> get links =>
-      __codec149.decode(asJsObject(this)['links']);
+      __codec153.decode(asJsObject(this)['links']);
   void set location(StreetViewLocation _location) {
-    asJsObject(this)['location'] = __codec150.encode(_location);
+    asJsObject(this)['location'] = __codec154.encode(_location);
   }
 
   StreetViewLocation get location =>
-      __codec150.decode(asJsObject(this)['location']);
+      __codec154.decode(asJsObject(this)['location']);
   void set tiles(StreetViewTileData _tiles) {
-    asJsObject(this)['tiles'] = __codec157.encode(_tiles);
+    asJsObject(this)['tiles'] = __codec161.encode(_tiles);
   }
 
-  StreetViewTileData get tiles => __codec157.decode(asJsObject(this)['tiles']);
+  StreetViewTileData get tiles => __codec161.decode(asJsObject(this)['tiles']);
 }
 
 @GeneratedFrom(_StreetViewLocation)
@@ -7459,10 +6684,10 @@ class StreetViewLocation extends JsInterface {
 
   String get description => asJsObject(this)['description'];
   void set latLng(LatLng _latLng) {
-    asJsObject(this)['latLng'] = __codec20.encode(_latLng);
+    asJsObject(this)['latLng'] = __codec6.encode(_latLng);
   }
 
-  LatLng get latLng => __codec20.decode(asJsObject(this)['latLng']);
+  LatLng get latLng => __codec6.decode(asJsObject(this)['latLng']);
   void set pano(String _pano) {
     asJsObject(this)['pano'] = _pano;
   }
@@ -7524,15 +6749,15 @@ class StreetViewTileData extends JsInterface {
 
   num get centerHeading => asJsObject(this)['centerHeading'];
   void set tileSize(Size _tileSize) {
-    asJsObject(this)['tileSize'] = __codec52.encode(_tileSize);
+    asJsObject(this)['tileSize'] = __codec50.encode(_tileSize);
   }
 
-  Size get tileSize => __codec52.decode(asJsObject(this)['tileSize']);
+  Size get tileSize => __codec50.decode(asJsObject(this)['tileSize']);
   void set worldSize(Size _worldSize) {
-    asJsObject(this)['worldSize'] = __codec52.encode(_worldSize);
+    asJsObject(this)['worldSize'] = __codec50.encode(_worldSize);
   }
 
-  Size get worldSize => __codec52.decode(asJsObject(this)['worldSize']);
+  Size get worldSize => __codec50.decode(asJsObject(this)['worldSize']);
 }
 
 @GeneratedFrom(_StreetViewService)
@@ -7546,13 +6771,13 @@ class StreetViewService extends JsInterface {
   void getPanoramaById(
       String pano, callback(StreetViewPanoramaData p1, StreetViewStatus p2)) {
     asJsObject(this)
-        .callMethod('getPanoramaById', [pano, __codec159.encode(callback)]);
+        .callMethod('getPanoramaById', [pano, __codec163.encode(callback)]);
   }
 
   void getPanoramaByLocation(LatLng latlng, num radius,
       callback(StreetViewPanoramaData p1, StreetViewStatus p2)) {
     asJsObject(this).callMethod('getPanoramaByLocation',
-        [__codec20.encode(latlng), radius, __codec159.encode(callback)]);
+        [__codec6.encode(latlng), radius, __codec163.encode(callback)]);
   }
 }
 
@@ -7584,10 +6809,10 @@ class StreetViewCoverageLayer extends MVCObject {
             new JsObject(context['google']['maps']['StreetViewCoverageLayer']));
 
   GMap get map => _getMap();
-  GMap _getMap() => __codec164.decode(asJsObject(this).callMethod('getMap'));
+  GMap _getMap() => __codec30.decode(asJsObject(this).callMethod('getMap'));
   void set map(GMap map) => _setMap(map);
   void _setMap(GMap map) {
-    asJsObject(this).callMethod('setMap', [__codec164.encode(map)]);
+    asJsObject(this).callMethod('setMap', [__codec30.encode(map)]);
   }
 }
 
@@ -7605,47 +6830,47 @@ class Event extends JsInterface {
   MapsEventListener addDomListener(
           Object instance, String eventName, handler(dynamic p1),
           [bool capture]) =>
-      __codec160.decode(asJsObject(this).callMethod('addDomListener', [
-        __codec2.encode(instance),
+      __codec165.decode(asJsObject(this).callMethod('addDomListener', [
+        __codec24.encode(instance),
         eventName,
-        __codec3.encode(handler),
+        __codec164.encode(handler),
         capture
       ]));
   MapsEventListener addDomListenerOnce(
           Object instance, String eventName, handler(dynamic p1),
           [bool capture]) =>
-      __codec160.decode(asJsObject(this).callMethod('addDomListenerOnce', [
-        __codec2.encode(instance),
+      __codec165.decode(asJsObject(this).callMethod('addDomListenerOnce', [
+        __codec24.encode(instance),
         eventName,
-        __codec3.encode(handler),
+        __codec164.encode(handler),
         capture
       ]));
   MapsEventListener addListener(
           Object instance, String eventName, handler([dynamic p1])) =>
-      __codec160.decode(asJsObject(this).callMethod('addListener',
-          [__codec2.encode(instance), eventName, __codec15.encode(handler)]));
+      __codec165.decode(asJsObject(this).callMethod('addListener',
+          [__codec24.encode(instance), eventName, __codec166.encode(handler)]));
   MapsEventListener addListenerOnce(
           Object instance, String eventName, handler([dynamic p1])) =>
-      __codec160.decode(asJsObject(this).callMethod('addListenerOnce',
-          [__codec2.encode(instance), eventName, __codec15.encode(handler)]));
+      __codec165.decode(asJsObject(this).callMethod('addListenerOnce',
+          [__codec24.encode(instance), eventName, __codec166.encode(handler)]));
   void clearInstanceListeners(Object instance) {
     asJsObject(this)
-        .callMethod('clearInstanceListeners', [__codec2.encode(instance)]);
+        .callMethod('clearInstanceListeners', [__codec24.encode(instance)]);
   }
 
   void clearListeners(Object instance, String eventName) {
     asJsObject(this)
-        .callMethod('clearListeners', [__codec2.encode(instance), eventName]);
+        .callMethod('clearListeners', [__codec24.encode(instance), eventName]);
   }
 
   void removeListener(MapsEventListener listener) {
     asJsObject(this)
-        .callMethod('removeListener', [__codec160.encode(listener)]);
+        .callMethod('removeListener', [__codec165.encode(listener)]);
   }
 
   void trigger(Object instance, String eventName, dynamic var_args) {
     asJsObject(this).callMethod('trigger',
-        [__codec2.encode(instance), eventName, __codec0.encode(var_args)]);
+        [__codec24.encode(instance), eventName, __codec4.encode(var_args)]);
   }
 }
 
@@ -7660,10 +6885,10 @@ class MouseEvent extends JsInterface {
   }
 
   void set latLng(LatLng _latLng) {
-    asJsObject(this)['latLng'] = __codec20.encode(_latLng);
+    asJsObject(this)['latLng'] = __codec6.encode(_latLng);
   }
 
-  LatLng get latLng => __codec20.decode(asJsObject(this)['latLng']);
+  LatLng get latLng => __codec6.decode(asJsObject(this)['latLng']);
 }
 
 @GeneratedFrom(_LatLng)
@@ -7675,7 +6900,7 @@ class LatLng extends JsInterface {
             context['google']['maps']['LatLng'], [lat, lng, noWrap]));
 
   bool equals(LatLng other) =>
-      asJsObject(this).callMethod('equals', [__codec20.encode(other)]);
+      asJsObject(this).callMethod('equals', [__codec6.encode(other)]);
   num get lat => _lat();
   num _lat() => asJsObject(this).callMethod('lat');
   num get lng => _lng();
@@ -7691,33 +6916,33 @@ class LatLngBounds extends JsInterface {
   LatLngBounds.created(JsObject o) : super.created(o);
   LatLngBounds([LatLng sw, LatLng ne])
       : this.created(new JsObject(context['google']['maps']['LatLngBounds'],
-            [__codec20.encode(sw), __codec20.encode(ne)]));
+            [__codec6.encode(sw), __codec6.encode(ne)]));
 
   bool contains(LatLng latLng) =>
-      asJsObject(this).callMethod('contains', [__codec20.encode(latLng)]);
+      asJsObject(this).callMethod('contains', [__codec6.encode(latLng)]);
   bool equals(LatLngBounds other) =>
-      asJsObject(this).callMethod('equals', [__codec19.encode(other)]);
-  LatLngBounds extend(LatLng point) => __codec19
-      .decode(asJsObject(this).callMethod('extend', [__codec20.encode(point)]));
+      asJsObject(this).callMethod('equals', [__codec5.encode(other)]);
+  LatLngBounds extend(LatLng point) => __codec5
+      .decode(asJsObject(this).callMethod('extend', [__codec6.encode(point)]));
   LatLng get center => _getCenter();
   LatLng _getCenter() =>
-      __codec20.decode(asJsObject(this).callMethod('getCenter'));
+      __codec6.decode(asJsObject(this).callMethod('getCenter'));
   LatLng get northEast => _getNorthEast();
   LatLng _getNorthEast() =>
-      __codec20.decode(asJsObject(this).callMethod('getNorthEast'));
+      __codec6.decode(asJsObject(this).callMethod('getNorthEast'));
   LatLng get southWest => _getSouthWest();
   LatLng _getSouthWest() =>
-      __codec20.decode(asJsObject(this).callMethod('getSouthWest'));
+      __codec6.decode(asJsObject(this).callMethod('getSouthWest'));
   bool intersects(LatLngBounds other) =>
-      asJsObject(this).callMethod('intersects', [__codec19.encode(other)]);
+      asJsObject(this).callMethod('intersects', [__codec5.encode(other)]);
   bool get isEmpty => _isEmpty();
   bool _isEmpty() => asJsObject(this).callMethod('isEmpty');
-  LatLng toSpan() => __codec20.decode(asJsObject(this).callMethod('toSpan'));
+  LatLng toSpan() => __codec6.decode(asJsObject(this).callMethod('toSpan'));
   String toString() => asJsObject(this).callMethod('toString');
   String toUrlValue([num precision]) =>
       asJsObject(this).callMethod('toUrlValue', [precision]);
-  LatLngBounds union(LatLngBounds other) => __codec19
-      .decode(asJsObject(this).callMethod('union', [__codec19.encode(other)]));
+  LatLngBounds union(LatLngBounds other) => __codec5
+      .decode(asJsObject(this).callMethod('union', [__codec5.encode(other)]));
 }
 
 @GeneratedFrom(_Point)
@@ -7728,7 +6953,7 @@ class Point extends JsInterface {
       : this.created(new JsObject(context['google']['maps']['Point'], [x, y]));
 
   bool equals(Point other) =>
-      asJsObject(this).callMethod('equals', [__codec51.encode(other)]);
+      asJsObject(this).callMethod('equals', [__codec49.encode(other)]);
   String toString() => asJsObject(this).callMethod('toString');
 
   void set x(num _x) {
@@ -7752,7 +6977,7 @@ class Size extends JsInterface {
             [width, height, widthUnit, heightUnit]));
 
   bool equals(Size other) =>
-      asJsObject(this).callMethod('equals', [__codec52.encode(other)]);
+      asJsObject(this).callMethod('equals', [__codec50.encode(other)]);
   String toString() => asJsObject(this).callMethod('toString');
 
   void set height(num _height) {
@@ -7775,11 +7000,11 @@ class MVCObject extends JsInterface {
       : this.created(new JsObject(context['google']['maps']['MVCObject']));
 
   MapsEventListener addListener(String eventName, Function handler) =>
-      __codec160.decode(
+      __codec165.decode(
           asJsObject(this).callMethod('addListener', [eventName, handler]));
   void bindTo(String key, MVCObject target, [String targetKey, bool noNotify]) {
     asJsObject(this).callMethod(
-        'bindTo', [key, __codec54.encode(target), targetKey, noNotify]);
+        'bindTo', [key, __codec53.encode(target), targetKey, noNotify]);
   }
 
   void changed(String key) {
@@ -7787,18 +7012,18 @@ class MVCObject extends JsInterface {
   }
 
   dynamic get(String key) =>
-      __codec0.decode(asJsObject(this).callMethod('get', [key]));
+      __codec4.decode(asJsObject(this).callMethod('get', [key]));
   void notify(String key) {
     asJsObject(this).callMethod('notify', [key]);
   }
 
   void set(String key, dynamic value) {
-    asJsObject(this).callMethod('set', [key, __codec0.encode(value)]);
+    asJsObject(this).callMethod('set', [key, __codec4.encode(value)]);
   }
 
   void set values(Object values) => _setValues(values);
   void _setValues(Object values) {
-    asJsObject(this).callMethod('setValues', [__codec2.encode(values)]);
+    asJsObject(this).callMethod('setValues', [__codec24.encode(values)]);
   }
 
   void unbind(String key) {
@@ -7836,31 +7061,31 @@ class MVCArray<E> extends MVCObject {
   void forEach(void callback(E o, num index)) =>
       _forEach((o, num index) => callback(_codec.decode(o), index));
   void _forEach(void callback(o, num index)) {
-    asJsObject(this).callMethod('forEach', [__codec161.encode(callback)]);
+    asJsObject(this).callMethod('forEach', [__codec167.encode(callback)]);
   }
 
   List<E> getArray() => new JsList.created(_getArray() as JsArray, _codec);
-  _getArray() => __codec0.decode(asJsObject(this).callMethod('getArray'));
+  _getArray() => __codec4.decode(asJsObject(this).callMethod('getArray'));
   E getAt(num i) => _codec.decode(_getAt(i));
-  _getAt(num i) => __codec0.decode(asJsObject(this).callMethod('getAt', [i]));
+  _getAt(num i) => __codec4.decode(asJsObject(this).callMethod('getAt', [i]));
   num get length => _getLength();
   num _getLength() => asJsObject(this).callMethod('getLength');
   void insertAt(num i, E elem) => _insertAt(i, _codec.encode(elem));
   void _insertAt(num i, elem) {
-    asJsObject(this).callMethod('insertAt', [i, __codec0.encode(elem)]);
+    asJsObject(this).callMethod('insertAt', [i, __codec4.encode(elem)]);
   }
 
   E pop() => _codec.decode(_pop());
-  _pop() => __codec0.decode(asJsObject(this).callMethod('pop'));
+  _pop() => __codec4.decode(asJsObject(this).callMethod('pop'));
   num push(E elem) => _push(_codec.encode(elem));
   num _push(elem) =>
-      asJsObject(this).callMethod('push', [__codec0.encode(elem)]);
+      asJsObject(this).callMethod('push', [__codec4.encode(elem)]);
   E removeAt(num i) => _codec.decode(_removeAt(i));
   _removeAt(num i) =>
-      __codec0.decode(asJsObject(this).callMethod('removeAt', [i]));
+      __codec4.decode(asJsObject(this).callMethod('removeAt', [i]));
   void setAt(num i, E elem) => _setAt(i, _codec.encode(elem));
   void _setAt(num i, elem) {
-    asJsObject(this).callMethod('setAt', [i, __codec0.encode(elem)]);
+    asJsObject(this).callMethod('setAt', [i, __codec4.encode(elem)]);
   }
 
   Stream<int> get onInsertAt => getStream(this, #onInsertAt, "insert_at");
@@ -7877,3 +7102,739 @@ class MVCArray<E> extends MVCObject {
       (int index, oldElement) =>
           new IndexAndElement<E>(index, _codec.decode(oldElement)));
 }
+
+/// codec for google_maps.src.MapOptions
+final __codec0 =
+    new JsInterfaceCodec<MapOptions>((o) => new MapOptions.created(o));
+
+/// codec for google_maps.src.Controls
+final __codec1 = new JsInterfaceCodec<Controls>((o) => new Controls.created(o));
+
+/// codec for google_maps.src.Data
+final __codec2 = new JsInterfaceCodec<Data>((o) => new Data.created(o));
+
+/// codec for google_maps.src.MapTypeRegistry
+final __codec3 = new JsInterfaceCodec<MapTypeRegistry>(
+    (o) => new MapTypeRegistry.created(o));
+
+/// codec for null.dynamic
+final __codec4 = new DynamicCodec();
+
+/// codec for google_maps.src.LatLngBounds
+final __codec5 =
+    new JsInterfaceCodec<LatLngBounds>((o) => new LatLngBounds.created(o));
+
+/// codec for google_maps.src.LatLng
+final __codec6 = new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o));
+
+/// codec for google_maps.src.Projection
+final __codec7 =
+    new JsInterfaceCodec<Projection>((o) => new Projection.created(o));
+
+/// codec for google_maps.src.StreetViewPanorama
+final __codec8 = new JsInterfaceCodec<StreetViewPanorama>(
+    (o) => new StreetViewPanorama.created(o));
+
+/// codec for google_maps.src.FullscreenControlOptions
+final __codec9 = new JsInterfaceCodec<FullscreenControlOptions>(
+    (o) => new FullscreenControlOptions.created(o));
+
+/// codec for google_maps.src.MapTypeControlOptions
+final __codec10 = new JsInterfaceCodec<MapTypeControlOptions>(
+    (o) => new MapTypeControlOptions.created(o));
+
+/// codec for google_maps.src.OverviewMapControlOptions
+final __codec11 = new JsInterfaceCodec<OverviewMapControlOptions>(
+    (o) => new OverviewMapControlOptions.created(o));
+
+/// codec for google_maps.src.PanControlOptions
+final __codec12 = new JsInterfaceCodec<PanControlOptions>(
+    (o) => new PanControlOptions.created(o));
+
+/// codec for google_maps.src.RotateControlOptions
+final __codec13 = new JsInterfaceCodec<RotateControlOptions>(
+    (o) => new RotateControlOptions.created(o));
+
+/// codec for google_maps.src.ScaleControlOptions
+final __codec14 = new JsInterfaceCodec<ScaleControlOptions>(
+    (o) => new ScaleControlOptions.created(o));
+
+/// codec for google_maps.src.StreetViewControlOptions
+final __codec15 = new JsInterfaceCodec<StreetViewControlOptions>(
+    (o) => new StreetViewControlOptions.created(o));
+
+/// codec for google_maps.src.MapTypeStyle
+final __codec16 =
+    new JsInterfaceCodec<MapTypeStyle>((o) => new MapTypeStyle.created(o));
+
+/// codec for dart.core.List<MapTypeStyle>
+final __codec17 = new JsListCodec<MapTypeStyle>(__codec16);
+
+/// codec for google_maps.src.ZoomControlOptions
+final __codec18 = new JsInterfaceCodec<ZoomControlOptions>(
+    (o) => new ZoomControlOptions.created(o));
+
+/// codec for google_maps.src.ControlPosition
+final __codec19 = new BiMapCodec<ControlPosition, dynamic>(
+    new Map<ControlPosition, dynamic>.fromIterable(ControlPosition.values,
+        value: asJs));
+
+/// codec for google_maps.src.MapTypeControlStyle
+final __codec20 = new BiMapCodec<MapTypeControlStyle, dynamic>(
+    new Map<MapTypeControlStyle, dynamic>.fromIterable(
+        MapTypeControlStyle.values,
+        value: asJs));
+
+/// codec for google_maps.src.ScaleControlStyle
+final __codec21 = new BiMapCodec<ScaleControlStyle, dynamic>(
+    new Map<ScaleControlStyle, dynamic>.fromIterable(ScaleControlStyle.values,
+        value: asJs));
+
+/// codec for google_maps.src.ZoomControlStyle
+final __codec22 = new BiMapCodec<ZoomControlStyle, dynamic>(
+    new Map<ZoomControlStyle, dynamic>.fromIterable(ZoomControlStyle.values,
+        value: asJs));
+
+/// codec for google_maps.src.DataDataOptions
+final __codec23 = new JsInterfaceCodec<DataDataOptions>(
+    (o) => new DataDataOptions.created(o));
+
+/// codec for dart.core.Object
+final __codec24 = new DynamicCodec();
+
+/// codec for google_maps.src.DataGeoJsonOptions
+final __codec25 = new JsInterfaceCodec<DataGeoJsonOptions>(
+    (o) => new DataGeoJsonOptions.created(o));
+
+/// codec for google_maps.src.DataFeature
+final __codec26 =
+    new JsInterfaceCodec<DataFeature>((o) => new DataFeature.created(o));
+
+/// codec for dart.core.List<DataFeature>
+final __codec27 = new JsListCodec<DataFeature>(__codec26);
+
+/// codec for google_maps.src.(DataFeature) → dynamic
+final __codec28 = new FunctionCodec<Function> /*<(DataFeature) → dynamic>*/(
+  (f) => (p_p1) => __codec4.encode(f(__codec26.decode(p_p1))),
+  (f) => (p_p1) => __codec4.decode(f is JsFunction
+      ? f.apply([__codec26.encode(p_p1)])
+      : Function.apply(f, [__codec26.encode(p_p1)])),
+);
+
+/// codec for dart.core.List<String>
+final __codec29 = new JsListCodec<String>(null);
+
+/// codec for google_maps.src.GMap
+final __codec30 = new JsInterfaceCodec<GMap>((o) => new GMap.created(o));
+
+/// codec for google_maps.src.(List<DataFeature>) → dynamic
+final __codec31 =
+    new FunctionCodec<Function> /*<(List<DataFeature>) → dynamic>*/(
+  (f) => (p_p1) => __codec4.encode(f(__codec27.decode(p_p1))),
+  (f) => (p_p1) => __codec4.decode(f is JsFunction
+      ? f.apply([__codec27.encode(p_p1)])
+      : Function.apply(f, [__codec27.encode(p_p1)])),
+);
+
+/// codec for google_maps.src.DataStyleOptions
+final __codec32 = new JsInterfaceCodec<DataStyleOptions>(
+    (o) => new DataStyleOptions.created(o));
+
+/// codec for google_maps.src.(Object) → dynamic
+final __codec33 = new FunctionCodec<Function> /*<(Object) → dynamic>*/(
+  (f) => (p_p1) => __codec4.encode(f(__codec24.decode(p_p1))),
+  (f) => (p_p1) => __codec4.decode(f is JsFunction
+      ? f.apply([__codec24.encode(p_p1)])
+      : Function.apply(f, [__codec24.encode(p_p1)])),
+);
+
+/// codec for google_maps.src.MarkerShape
+final __codec34 =
+    new JsInterfaceCodec<MarkerShape>((o) => new MarkerShape.created(o));
+
+/// codec for google_maps.src.DataFeatureOptions
+final __codec35 = new JsInterfaceCodec<DataFeatureOptions>(
+    (o) => new DataFeatureOptions.created(o));
+
+/// codec for google_maps.src.(dynamic, String) → dynamic
+final __codec36 = new FunctionCodec<Function> /*<(dynamic, String) → dynamic>*/(
+  (f) => (p_p1, p_p2) => __codec4.encode(f(__codec4.decode(p_p1), p_p2)),
+  (f) => (p_p1, p_p2) => __codec4.decode(f is JsFunction
+      ? f.apply([__codec4.encode(p_p1), p_p2])
+      : Function.apply(f, [__codec4.encode(p_p1), p_p2])),
+);
+
+/// codec for dart.core.List<LatLng>
+final __codec37 = new JsListCodec<LatLng>(__codec6);
+
+/// codec for google_maps.src.DataLineString
+final __codec38 =
+    new JsInterfaceCodec<DataLineString>((o) => new DataLineString.created(o));
+
+/// codec for dart.core.List<DataLineString>
+final __codec39 = new JsListCodec<DataLineString>(__codec38);
+
+/// codec for google_maps.src.DataLinearRing
+final __codec40 =
+    new JsInterfaceCodec<DataLinearRing>((o) => new DataLinearRing.created(o));
+
+/// codec for dart.core.List<DataLinearRing>
+final __codec41 = new JsListCodec<DataLinearRing>(__codec40);
+
+/// codec for google_maps.src.DataPolygon
+final __codec42 =
+    new JsInterfaceCodec<DataPolygon>((o) => new DataPolygon.created(o));
+
+/// codec for dart.core.List<DataPolygon>
+final __codec43 = new JsListCodec<DataPolygon>(__codec42);
+
+/// codec for google_maps.src.MarkerOptions
+final __codec44 =
+    new JsInterfaceCodec<MarkerOptions>((o) => new MarkerOptions.created(o));
+
+/// codec for google_maps.src.Animation
+final __codec45 = new BiMapCodec<Animation, dynamic>(
+    new Map<Animation, dynamic>.fromIterable(Animation.values, value: asJs));
+
+/// codec for google_maps.src.Attribution
+final __codec46 =
+    new JsInterfaceCodec<Attribution>((o) => new Attribution.created(o));
+
+/// codec for google_maps.src.MarkerLabel
+final __codec47 =
+    new JsInterfaceCodec<MarkerLabel>((o) => new MarkerLabel.created(o));
+
+/// codec for google_maps.src.MarkerPlace
+final __codec48 =
+    new JsInterfaceCodec<MarkerPlace>((o) => new MarkerPlace.created(o));
+
+/// codec for google_maps.src.Point
+final __codec49 = new JsInterfaceCodec<Point>((o) => new Point.created(o));
+
+/// codec for google_maps.src.Size
+final __codec50 = new JsInterfaceCodec<Size>((o) => new Size.created(o));
+
+/// codec for dart.core.List<num>
+final __codec51 = new JsListCodec<num>(null);
+
+/// codec for google_maps.src.InfoWindowOptions
+final __codec52 = new JsInterfaceCodec<InfoWindowOptions>(
+    (o) => new InfoWindowOptions.created(o));
+
+/// codec for google_maps.src.MVCObject
+final __codec53 =
+    new JsInterfaceCodec<MVCObject>((o) => new MVCObject.created(o));
+
+/// codec for google_maps.src.PolylineOptions
+final __codec54 = new JsInterfaceCodec<PolylineOptions>(
+    (o) => new PolylineOptions.created(o));
+
+/// codec for google_maps.src.IconSequence
+final __codec55 =
+    new JsInterfaceCodec<IconSequence>((o) => new IconSequence.created(o));
+
+/// codec for dart.core.List<IconSequence>
+final __codec56 = new JsListCodec<IconSequence>(__codec55);
+
+/// codec for google_maps.src.GSymbol
+final __codec57 = new JsInterfaceCodec<GSymbol>((o) => new GSymbol.created(o));
+
+/// codec for google_maps.src.PolygonOptions
+final __codec58 =
+    new JsInterfaceCodec<PolygonOptions>((o) => new PolygonOptions.created(o));
+
+/// codec for google_maps.src.StrokePosition
+final __codec59 = new BiMapCodec<StrokePosition, dynamic>(
+    new Map<StrokePosition, dynamic>.fromIterable(StrokePosition.values,
+        value: asJs));
+
+/// codec for google_maps.src.RectangleOptions
+final __codec60 = new JsInterfaceCodec<RectangleOptions>(
+    (o) => new RectangleOptions.created(o));
+
+/// codec for google_maps.src.CircleOptions
+final __codec61 =
+    new JsInterfaceCodec<CircleOptions>((o) => new CircleOptions.created(o));
+
+/// codec for google_maps.src.GroundOverlayOptions
+final __codec62 = new JsInterfaceCodec<GroundOverlayOptions>(
+    (o) => new GroundOverlayOptions.created(o));
+
+/// codec for google_maps.src.MapPanes
+final __codec63 =
+    new JsInterfaceCodec<MapPanes>((o) => new MapPanes.created(o));
+
+/// codec for google_maps.src.MapCanvasProjection
+final __codec64 = new JsInterfaceCodec<MapCanvasProjection>(
+    (o) => new MapCanvasProjection.created(o));
+
+/// codec for google_maps.src.GeocoderRequest
+final __codec65 = new JsInterfaceCodec<GeocoderRequest>(
+    (o) => new GeocoderRequest.created(o));
+
+/// codec for google_maps.src.GeocoderResult
+final __codec66 =
+    new JsInterfaceCodec<GeocoderResult>((o) => new GeocoderResult.created(o));
+
+/// codec for dart.core.List<GeocoderResult>
+final __codec67 = new JsListCodec<GeocoderResult>(__codec66);
+
+/// codec for google_maps.src.GeocoderStatus
+final __codec68 = new BiMapCodec<GeocoderStatus, dynamic>(
+    new Map<GeocoderStatus, dynamic>.fromIterable(GeocoderStatus.values,
+        value: asJs));
+
+/// codec for google_maps.src.(List<GeocoderResult>, GeocoderStatus) → dynamic
+final __codec69 = new FunctionCodec<
+    Function> /*<(List<GeocoderResult>, GeocoderStatus) → dynamic>*/(
+  (f) => (p_p1, p_p2) =>
+      __codec4.encode(f(__codec67.decode(p_p1), __codec68.decode(p_p2))),
+  (f) => (p_p1, p_p2) => __codec4.decode(f is JsFunction
+      ? f.apply([__codec67.encode(p_p1), __codec68.encode(p_p2)])
+      : Function.apply(f, [__codec67.encode(p_p1), __codec68.encode(p_p2)])),
+);
+
+/// codec for google_maps.src.GeocoderComponentRestrictions
+final __codec70 = new JsInterfaceCodec<GeocoderComponentRestrictions>(
+    (o) => new GeocoderComponentRestrictions.created(o));
+
+/// codec for google_maps.src.GeocoderAddressComponent
+final __codec71 = new JsInterfaceCodec<GeocoderAddressComponent>(
+    (o) => new GeocoderAddressComponent.created(o));
+
+/// codec for dart.core.List<GeocoderAddressComponent>
+final __codec72 = new JsListCodec<GeocoderAddressComponent>(__codec71);
+
+/// codec for google_maps.src.GeocoderGeometry
+final __codec73 = new JsInterfaceCodec<GeocoderGeometry>(
+    (o) => new GeocoderGeometry.created(o));
+
+/// codec for google_maps.src.GeocoderLocationType
+final __codec74 = new BiMapCodec<GeocoderLocationType, dynamic>(
+    new Map<GeocoderLocationType, dynamic>.fromIterable(
+        GeocoderLocationType.values,
+        value: asJs));
+
+/// codec for google_maps.src.DirectionsRendererOptions
+final __codec75 = new JsInterfaceCodec<DirectionsRendererOptions>(
+    (o) => new DirectionsRendererOptions.created(o));
+
+/// codec for google_maps.src.DirectionsResult
+final __codec76 = new JsInterfaceCodec<DirectionsResult>(
+    (o) => new DirectionsResult.created(o));
+
+/// codec for google_maps.src.InfoWindow
+final __codec77 =
+    new JsInterfaceCodec<InfoWindow>((o) => new InfoWindow.created(o));
+
+/// codec for google_maps.src.DirectionsRequest
+final __codec78 = new JsInterfaceCodec<DirectionsRequest>(
+    (o) => new DirectionsRequest.created(o));
+
+/// codec for google_maps.src.DirectionsStatus
+final __codec79 = new BiMapCodec<DirectionsStatus, dynamic>(
+    new Map<DirectionsStatus, dynamic>.fromIterable(DirectionsStatus.values,
+        value: asJs));
+
+/// codec for google_maps.src.(DirectionsResult, DirectionsStatus) → dynamic
+final __codec80 = new FunctionCodec<
+    Function> /*<(DirectionsResult, DirectionsStatus) → dynamic>*/(
+  (f) => (p_p1, p_p2) =>
+      __codec4.encode(f(__codec76.decode(p_p1), __codec79.decode(p_p2))),
+  (f) => (p_p1, p_p2) => __codec4.decode(f is JsFunction
+      ? f.apply([__codec76.encode(p_p1), __codec79.encode(p_p2)])
+      : Function.apply(f, [__codec76.encode(p_p1), __codec79.encode(p_p2)])),
+);
+
+/// codec for google_maps.src.DrivingOptions
+final __codec81 =
+    new JsInterfaceCodec<DrivingOptions>((o) => new DrivingOptions.created(o));
+
+/// codec for google_maps.src.TransitOptions
+final __codec82 =
+    new JsInterfaceCodec<TransitOptions>((o) => new TransitOptions.created(o));
+
+/// codec for google_maps.src.TravelMode
+final __codec83 = new BiMapCodec<TravelMode, dynamic>(
+    new Map<TravelMode, dynamic>.fromIterable(TravelMode.values, value: asJs));
+
+/// codec for google_maps.src.UnitSystem
+final __codec84 = new BiMapCodec<UnitSystem, dynamic>(
+    new Map<UnitSystem, dynamic>.fromIterable(UnitSystem.values, value: asJs));
+
+/// codec for google_maps.src.DirectionsWaypoint
+final __codec85 = new JsInterfaceCodec<DirectionsWaypoint>(
+    (o) => new DirectionsWaypoint.created(o));
+
+/// codec for dart.core.List<DirectionsWaypoint>
+final __codec86 = new JsListCodec<DirectionsWaypoint>(__codec85);
+
+/// codec for google_maps.src.TransitMode
+final __codec87 = new BiMapCodec<TransitMode, dynamic>(
+    new Map<TransitMode, dynamic>.fromIterable(TransitMode.values,
+        value: asJs));
+
+/// codec for dart.core.List<TransitMode>
+final __codec88 = new JsListCodec<TransitMode>(__codec87);
+
+/// codec for google_maps.src.TransitRoutePreference
+final __codec89 = new BiMapCodec<TransitRoutePreference, dynamic>(
+    new Map<TransitRoutePreference, dynamic>.fromIterable(
+        TransitRoutePreference.values,
+        value: asJs));
+
+/// codec for google_maps.src.TrafficModel
+final __codec90 = new BiMapCodec<TrafficModel, dynamic>(
+    new Map<TrafficModel, dynamic>.fromIterable(TrafficModel.values,
+        value: asJs));
+
+/// codec for google_maps.src.DirectionsGeocodedWaypoint
+final __codec91 = new JsInterfaceCodec<DirectionsGeocodedWaypoint>(
+    (o) => new DirectionsGeocodedWaypoint.created(o));
+
+/// codec for dart.core.List<DirectionsGeocodedWaypoint>
+final __codec92 = new JsListCodec<DirectionsGeocodedWaypoint>(__codec91);
+
+/// codec for google_maps.src.DirectionsRoute
+final __codec93 = new JsInterfaceCodec<DirectionsRoute>(
+    (o) => new DirectionsRoute.created(o));
+
+/// codec for dart.core.List<DirectionsRoute>
+final __codec94 = new JsListCodec<DirectionsRoute>(__codec93);
+
+/// codec for google_maps.src.TransitFare
+final __codec95 =
+    new JsInterfaceCodec<TransitFare>((o) => new TransitFare.created(o));
+
+/// codec for google_maps.src.DirectionsLeg
+final __codec96 =
+    new JsInterfaceCodec<DirectionsLeg>((o) => new DirectionsLeg.created(o));
+
+/// codec for dart.core.List<DirectionsLeg>
+final __codec97 = new JsListCodec<DirectionsLeg>(__codec96);
+
+/// codec for google_maps.src.Time
+final __codec98 = new JsInterfaceCodec<Time>((o) => new Time.created(o));
+
+/// codec for google_maps.src.Distance
+final __codec99 =
+    new JsInterfaceCodec<Distance>((o) => new Distance.created(o));
+
+/// codec for google_maps.src.GDuration
+final __codec100 =
+    new JsInterfaceCodec<GDuration>((o) => new GDuration.created(o));
+
+/// codec for google_maps.src.DirectionsStep
+final __codec101 =
+    new JsInterfaceCodec<DirectionsStep>((o) => new DirectionsStep.created(o));
+
+/// codec for dart.core.List<DirectionsStep>
+final __codec102 = new JsListCodec<DirectionsStep>(__codec101);
+
+/// codec for google_maps.src.TransitDetails
+final __codec103 =
+    new JsInterfaceCodec<TransitDetails>((o) => new TransitDetails.created(o));
+
+/// codec for google_maps.src.TransitStop
+final __codec104 =
+    new JsInterfaceCodec<TransitStop>((o) => new TransitStop.created(o));
+
+/// codec for google_maps.src.TransitLine
+final __codec105 =
+    new JsInterfaceCodec<TransitLine>((o) => new TransitLine.created(o));
+
+/// codec for google_maps.src.TransitAgency
+final __codec106 =
+    new JsInterfaceCodec<TransitAgency>((o) => new TransitAgency.created(o));
+
+/// codec for dart.core.List<TransitAgency>
+final __codec107 = new JsListCodec<TransitAgency>(__codec106);
+
+/// codec for google_maps.src.TransitVehicle
+final __codec108 =
+    new JsInterfaceCodec<TransitVehicle>((o) => new TransitVehicle.created(o));
+
+/// codec for google_maps.src.VehicleType
+final __codec109 = new BiMapCodec<VehicleType, dynamic>(
+    new Map<VehicleType, dynamic>.fromIterable(VehicleType.values,
+        value: asJs));
+
+/// codec for google_maps.src.PathElevationRequest
+final __codec110 = new JsInterfaceCodec<PathElevationRequest>(
+    (o) => new PathElevationRequest.created(o));
+
+/// codec for google_maps.src.ElevationResult
+final __codec111 = new JsInterfaceCodec<ElevationResult>(
+    (o) => new ElevationResult.created(o));
+
+/// codec for dart.core.List<ElevationResult>
+final __codec112 = new JsListCodec<ElevationResult>(__codec111);
+
+/// codec for google_maps.src.ElevationStatus
+final __codec113 = new BiMapCodec<ElevationStatus, dynamic>(
+    new Map<ElevationStatus, dynamic>.fromIterable(ElevationStatus.values,
+        value: asJs));
+
+/// codec for google_maps.src.(List<ElevationResult>, ElevationStatus) → dynamic
+final __codec114 = new FunctionCodec<
+    Function> /*<(List<ElevationResult>, ElevationStatus) → dynamic>*/(
+  (f) => (p_p1, p_p2) =>
+      __codec4.encode(f(__codec112.decode(p_p1), __codec113.decode(p_p2))),
+  (f) => (p_p1, p_p2) => __codec4.decode(f is JsFunction
+      ? f.apply([__codec112.encode(p_p1), __codec113.encode(p_p2)])
+      : Function.apply(f, [__codec112.encode(p_p1), __codec113.encode(p_p2)])),
+);
+
+/// codec for google_maps.src.LocationElevationRequest
+final __codec115 = new JsInterfaceCodec<LocationElevationRequest>(
+    (o) => new LocationElevationRequest.created(o));
+
+/// codec for google_maps.src.MaxZoomResult
+final __codec116 =
+    new JsInterfaceCodec<MaxZoomResult>((o) => new MaxZoomResult.created(o));
+
+/// codec for google_maps.src.(MaxZoomResult) → dynamic
+final __codec117 = new FunctionCodec<Function> /*<(MaxZoomResult) → dynamic>*/(
+  (f) => (p_p1) => __codec4.encode(f(__codec116.decode(p_p1))),
+  (f) => (p_p1) => __codec4.decode(f is JsFunction
+      ? f.apply([__codec116.encode(p_p1)])
+      : Function.apply(f, [__codec116.encode(p_p1)])),
+);
+
+/// codec for google_maps.src.MaxZoomStatus
+final __codec118 = new BiMapCodec<MaxZoomStatus, dynamic>(
+    new Map<MaxZoomStatus, dynamic>.fromIterable(MaxZoomStatus.values,
+        value: asJs));
+
+/// codec for google_maps.src.DistanceMatrixRequest
+final __codec119 = new JsInterfaceCodec<DistanceMatrixRequest>(
+    (o) => new DistanceMatrixRequest.created(o));
+
+/// codec for google_maps.src.DistanceMatrixResponse
+final __codec120 = new JsInterfaceCodec<DistanceMatrixResponse>(
+    (o) => new DistanceMatrixResponse.created(o));
+
+/// codec for google_maps.src.DistanceMatrixStatus
+final __codec121 = new BiMapCodec<DistanceMatrixStatus, dynamic>(
+    new Map<DistanceMatrixStatus, dynamic>.fromIterable(
+        DistanceMatrixStatus.values,
+        value: asJs));
+
+/// codec for google_maps.src.(DistanceMatrixResponse, DistanceMatrixStatus) → dynamic
+final __codec122 = new FunctionCodec<
+    Function> /*<(DistanceMatrixResponse, DistanceMatrixStatus) → dynamic>*/(
+  (f) => (p_p1, p_p2) =>
+      __codec4.encode(f(__codec120.decode(p_p1), __codec121.decode(p_p2))),
+  (f) => (p_p1, p_p2) => __codec4.decode(f is JsFunction
+      ? f.apply([__codec120.encode(p_p1), __codec121.encode(p_p2)])
+      : Function.apply(f, [__codec120.encode(p_p1), __codec121.encode(p_p2)])),
+);
+
+/// codec for google_maps.src.DistanceMatrixResponseRow
+final __codec123 = new JsInterfaceCodec<DistanceMatrixResponseRow>(
+    (o) => new DistanceMatrixResponseRow.created(o));
+
+/// codec for dart.core.List<DistanceMatrixResponseRow>
+final __codec124 = new JsListCodec<DistanceMatrixResponseRow>(__codec123);
+
+/// codec for google_maps.src.DistanceMatrixResponseElement
+final __codec125 = new JsInterfaceCodec<DistanceMatrixResponseElement>(
+    (o) => new DistanceMatrixResponseElement.created(o));
+
+/// codec for dart.core.List<DistanceMatrixResponseElement>
+final __codec126 = new JsListCodec<DistanceMatrixResponseElement>(__codec125);
+
+/// codec for google_maps.src.DistanceMatrixElementStatus
+final __codec127 = new BiMapCodec<DistanceMatrixElementStatus, dynamic>(
+    new Map<DistanceMatrixElementStatus, dynamic>.fromIterable(
+        DistanceMatrixElementStatus.values,
+        value: asJs));
+
+/// codec for google_maps.src.SaveWidgetOptions
+final __codec128 = new JsInterfaceCodec<SaveWidgetOptions>(
+    (o) => new SaveWidgetOptions.created(o));
+
+/// codec for google_maps.src.MapType
+final __codec129 = new JsInterfaceCodec<MapType>((o) => new MapType.created(o));
+
+/// codec for google_maps.src.ImageMapTypeOptions
+final __codec130 = new JsInterfaceCodec<ImageMapTypeOptions>(
+    (o) => new ImageMapTypeOptions.created(o));
+
+/// codec for google_maps.src.StyledMapTypeOptions
+final __codec131 = new JsInterfaceCodec<StyledMapTypeOptions>(
+    (o) => new StyledMapTypeOptions.created(o));
+
+/// codec for google_maps.src.MapTypeStyleElementType
+final __codec132 = new BiMapCodec<MapTypeStyleElementType, dynamic>(
+    new Map<MapTypeStyleElementType, dynamic>.fromIterable(
+        MapTypeStyleElementType.values,
+        value: asJs));
+
+/// codec for google_maps.src.MapTypeStyleFeatureType
+final __codec133 = new BiMapCodec<MapTypeStyleFeatureType, dynamic>(
+    new Map<MapTypeStyleFeatureType, dynamic>.fromIterable(
+        MapTypeStyleFeatureType.values,
+        value: asJs));
+
+/// codec for google_maps.src.MapTypeStyler
+final __codec134 =
+    new JsInterfaceCodec<MapTypeStyler>((o) => new MapTypeStyler.created(o));
+
+/// codec for dart.core.List<MapTypeStyler>
+final __codec135 = new JsListCodec<MapTypeStyler>(__codec134);
+
+/// codec for google_maps.src.FusionTablesLayerOptions
+final __codec136 = new JsInterfaceCodec<FusionTablesLayerOptions>(
+    (o) => new FusionTablesLayerOptions.created(o));
+
+/// codec for google_maps.src.FusionTablesHeatmap
+final __codec137 = new JsInterfaceCodec<FusionTablesHeatmap>(
+    (o) => new FusionTablesHeatmap.created(o));
+
+/// codec for google_maps.src.FusionTablesQuery
+final __codec138 = new JsInterfaceCodec<FusionTablesQuery>(
+    (o) => new FusionTablesQuery.created(o));
+
+/// codec for google_maps.src.FusionTablesStyle
+final __codec139 = new JsInterfaceCodec<FusionTablesStyle>(
+    (o) => new FusionTablesStyle.created(o));
+
+/// codec for dart.core.List<FusionTablesStyle>
+final __codec140 = new JsListCodec<FusionTablesStyle>(__codec139);
+
+/// codec for google_maps.src.FusionTablesMarkerOptions
+final __codec141 = new JsInterfaceCodec<FusionTablesMarkerOptions>(
+    (o) => new FusionTablesMarkerOptions.created(o));
+
+/// codec for google_maps.src.FusionTablesPolygonOptions
+final __codec142 = new JsInterfaceCodec<FusionTablesPolygonOptions>(
+    (o) => new FusionTablesPolygonOptions.created(o));
+
+/// codec for google_maps.src.FusionTablesPolylineOptions
+final __codec143 = new JsInterfaceCodec<FusionTablesPolylineOptions>(
+    (o) => new FusionTablesPolylineOptions.created(o));
+
+/// codec for google_maps.src.FusionTablesCell
+final __codec144 = new JsInterfaceCodec<FusionTablesCell>(
+    (o) => new FusionTablesCell.created(o));
+
+/// codec for dart.core.Map<String, FusionTablesCell>
+final __codec145 = new JsObjectAsMapCodec<FusionTablesCell>(__codec144);
+
+/// codec for google_maps.src.KmlLayerOptions
+final __codec146 = new JsInterfaceCodec<KmlLayerOptions>(
+    (o) => new KmlLayerOptions.created(o));
+
+/// codec for google_maps.src.KmlLayerMetadata
+final __codec147 = new JsInterfaceCodec<KmlLayerMetadata>(
+    (o) => new KmlLayerMetadata.created(o));
+
+/// codec for google_maps.src.KmlLayerStatus
+final __codec148 = new BiMapCodec<KmlLayerStatus, dynamic>(
+    new Map<KmlLayerStatus, dynamic>.fromIterable(KmlLayerStatus.values,
+        value: asJs));
+
+/// codec for google_maps.src.KmlAuthor
+final __codec149 =
+    new JsInterfaceCodec<KmlAuthor>((o) => new KmlAuthor.created(o));
+
+/// codec for google_maps.src.KmlFeatureData
+final __codec150 =
+    new JsInterfaceCodec<KmlFeatureData>((o) => new KmlFeatureData.created(o));
+
+/// codec for google_maps.src.StreetViewPanoramaOptions
+final __codec151 = new JsInterfaceCodec<StreetViewPanoramaOptions>(
+    (o) => new StreetViewPanoramaOptions.created(o));
+
+/// codec for google_maps.src.StreetViewLink
+final __codec152 =
+    new JsInterfaceCodec<StreetViewLink>((o) => new StreetViewLink.created(o));
+
+/// codec for dart.core.List<StreetViewLink>
+final __codec153 = new JsListCodec<StreetViewLink>(__codec152);
+
+/// codec for google_maps.src.StreetViewLocation
+final __codec154 = new JsInterfaceCodec<StreetViewLocation>(
+    (o) => new StreetViewLocation.created(o));
+
+/// codec for google_maps.src.StreetViewPov
+final __codec155 =
+    new JsInterfaceCodec<StreetViewPov>((o) => new StreetViewPov.created(o));
+
+/// codec for google_maps.src.StreetViewStatus
+final __codec156 = new BiMapCodec<StreetViewStatus, dynamic>(
+    new Map<StreetViewStatus, dynamic>.fromIterable(StreetViewStatus.values,
+        value: asJs));
+
+/// codec for google_maps.src.(String) → dynamic
+final __codec157 = new FunctionCodec<Function> /*<(String) → dynamic>*/(
+  (f) => (p_p1) => __codec4.encode(f(p_p1)),
+  (f) => (p_p1) => __codec4
+      .decode(f is JsFunction ? f.apply([p_p1]) : Function.apply(f, [p_p1])),
+);
+
+/// codec for google_maps.src.StreetViewAddressControlOptions
+final __codec158 = new JsInterfaceCodec<StreetViewAddressControlOptions>(
+    (o) => new StreetViewAddressControlOptions.created(o));
+
+/// codec for google_maps.src.StreetViewPreference
+final __codec159 = new BiMapCodec<StreetViewPreference, dynamic>(
+    new Map<StreetViewPreference, dynamic>.fromIterable(
+        StreetViewPreference.values,
+        value: asJs));
+
+/// codec for google_maps.src.StreetViewSource
+final __codec160 = new BiMapCodec<StreetViewSource, dynamic>(
+    new Map<StreetViewSource, dynamic>.fromIterable(StreetViewSource.values,
+        value: asJs));
+
+/// codec for google_maps.src.StreetViewTileData
+final __codec161 = new JsInterfaceCodec<StreetViewTileData>(
+    (o) => new StreetViewTileData.created(o));
+
+/// codec for google_maps.src.StreetViewPanoramaData
+final __codec162 = new JsInterfaceCodec<StreetViewPanoramaData>(
+    (o) => new StreetViewPanoramaData.created(o));
+
+/// codec for google_maps.src.(StreetViewPanoramaData, StreetViewStatus) → dynamic
+final __codec163 = new FunctionCodec<
+    Function> /*<(StreetViewPanoramaData, StreetViewStatus) → dynamic>*/(
+  (f) => (p_p1, p_p2) =>
+      __codec4.encode(f(__codec162.decode(p_p1), __codec156.decode(p_p2))),
+  (f) => (p_p1, p_p2) => __codec4.decode(f is JsFunction
+      ? f.apply([__codec162.encode(p_p1), __codec156.encode(p_p2)])
+      : Function.apply(f, [__codec162.encode(p_p1), __codec156.encode(p_p2)])),
+);
+
+/// codec for google_maps.src.(dynamic) → dynamic
+final __codec164 = new FunctionCodec<Function> /*<(dynamic) → dynamic>*/(
+  (f) => (p_p1) => __codec4.encode(f(__codec4.decode(p_p1))),
+  (f) => (p_p1) => __codec4.decode(f is JsFunction
+      ? f.apply([__codec4.encode(p_p1)])
+      : Function.apply(f, [__codec4.encode(p_p1)])),
+);
+
+/// codec for google_maps.src.MapsEventListener
+final __codec165 = new JsInterfaceCodec<MapsEventListener>(
+    (o) => new MapsEventListener.created(o));
+
+/// codec for google_maps.src.([dynamic]) → dynamic
+final __codec166 = new FunctionCodec<Function> /*<([dynamic]) → dynamic>*/(
+  (f) => ([p_p1]) => __codec4.encode(f(__codec4.decode(p_p1))),
+  (f) => ([p_p1]) => __codec4.decode(f is JsFunction
+      ? f.apply([__codec4.encode(p_p1)])
+      : Function.apply(f, [__codec4.encode(p_p1)])),
+);
+
+/// codec for google_maps.src.(dynamic, num) → void
+final __codec167 = new FunctionCodec<Function> /*<(dynamic, num) → void>*/(
+  (f) => (p_o, p_index) {
+        f(__codec4.decode(p_o), p_index);
+      },
+  (f) => (p_o, p_index) {
+        f is JsFunction
+            ? f.apply([__codec4.encode(p_o), p_index])
+            : Function.apply(f, [__codec4.encode(p_o), p_index]);
+      },
+);
