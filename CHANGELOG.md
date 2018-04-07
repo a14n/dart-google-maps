@@ -1,4 +1,8 @@
 
+# v3.2.3 (2018-04-07)
+
+- Fix some issue with Dart-2
+
 # v3.2.2 (2017-08-28)
 
 - Support some additions from Google Maps API 3.28

@@ -7,13 +7,13 @@ environment:
   sdk: '>=2.0.0-dev.44.0 <2.0.0'
 dependencies:
   func: ^1.0.0
-  js_wrapping: ^0.4.4
+  js_wrapping: ^0.4.5
   meta: ^1.1.2
 dev_dependencies:
   browser: ^0.10.0
   build_runner: ^0.8.1
   html: ^0.13.3
-  js_wrapping_generator: ^0.4.4
+  js_wrapping_generator: ^0.4.5
   test: ^0.12.0
 # dependency_overrides:
 #   js_wrapping:
