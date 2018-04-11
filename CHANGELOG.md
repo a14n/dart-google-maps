@@ -1,4 +1,8 @@
 
+# v3.2.4 (2018-04-11)
+
+- Fix another issue with Dart-2
+
 # v3.2.3 (2018-04-07)
 
 - Fix some issue with Dart-2

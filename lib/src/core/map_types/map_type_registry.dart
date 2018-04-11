@@ -18,5 +18,5 @@ part of google_maps.src;
 abstract class _MapTypeRegistry extends MVCObject {
   factory _MapTypeRegistry() => null;
 
-  void set(String id, @checked MapType mapType);
+  void set(String id, covariant MapType mapType);
 }

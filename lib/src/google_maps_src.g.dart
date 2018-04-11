@@ -12,7 +12,7 @@ class Controls extends JsInterface
   Controls.created(JsObject o) : super.created(o);
   Controls() : super.created(new JsArray());
 
-  MVCArray<Node> operator [](@checked ControlPosition controlPosition) {
+  MVCArray<Node> operator [](covariant ControlPosition controlPosition) {
     var value = asJsObject(this)[_toJsControlPosition(controlPosition)];
     if (value == null) return null;
     return new MVCArray<Node>.created(value as JsObject);
@@ -5487,7 +5487,7 @@ class MapTypeRegistry extends MVCObject {
       : this.created(
             new JsObject(context['google']['maps']['MapTypeRegistry']));
 
-  void set(String id, @checked MapType mapType) {
+  void set(String id, covariant MapType mapType) {
     asJsObject(this).callMethod('set', [id, __codec129.encode(mapType)]);
   }
 }
