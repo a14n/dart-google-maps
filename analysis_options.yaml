@@ -1,3 +1,5 @@
 analyzer:
-  strong-mode: true
-    #implicit-casts: false
+#  strong-mode:
+#    implicit-casts: false
+  exclude:
+    - '**/*.g.dart'
