@@ -1,10 +1,9 @@
-library tests;
+@TestOn('browser')
 
 import 'dart:html';
 
-import 'package:test/test.dart';
-
 import 'package:google_maps/google_maps.dart';
+import 'package:test/test.dart';
 
 void injectSource(String code) {
   final script = new ScriptElement();
