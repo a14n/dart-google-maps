@@ -3,8 +3,41 @@
 part of google_maps.src.panoramio;
 
 // **************************************************************************
-// Generator: JsWrappingGenerator
+// JsWrappingGenerator
 // **************************************************************************
+
+@GeneratedFrom(_PanoramioFeature)
+@anonymous
+class PanoramioFeature extends JsInterface {
+  PanoramioFeature.created(JsObject o) : super.created(o);
+  PanoramioFeature() : this.created(new JsObject(context['Object']));
+
+  void set author(String _author) {
+    asJsObject(this)['author'] = _author;
+  }
+
+  String get author => asJsObject(this)['author'];
+  void set photoId(String _photoId) {
+    asJsObject(this)['photoId'] = _photoId;
+  }
+
+  String get photoId => asJsObject(this)['photoId'];
+  void set title(String _title) {
+    asJsObject(this)['title'] = _title;
+  }
+
+  String get title => asJsObject(this)['title'];
+  void set url(String _url) {
+    asJsObject(this)['url'] = _url;
+  }
+
+  String get url => asJsObject(this)['url'];
+  void set userId(String _userId) {
+    asJsObject(this)['userId'] = _userId;
+  }
+
+  String get userId => asJsObject(this)['userId'];
+}
 
 @GeneratedFrom(_PanoramioLayer)
 @JsName('google.maps.panoramio.PanoramioLayer')
@@ -71,39 +104,6 @@ class PanoramioLayerOptions extends JsInterface {
   }
 
   String get tag => asJsObject(this)['tag'];
-  void set userId(String _userId) {
-    asJsObject(this)['userId'] = _userId;
-  }
-
-  String get userId => asJsObject(this)['userId'];
-}
-
-@GeneratedFrom(_PanoramioFeature)
-@anonymous
-class PanoramioFeature extends JsInterface {
-  PanoramioFeature.created(JsObject o) : super.created(o);
-  PanoramioFeature() : this.created(new JsObject(context['Object']));
-
-  void set author(String _author) {
-    asJsObject(this)['author'] = _author;
-  }
-
-  String get author => asJsObject(this)['author'];
-  void set photoId(String _photoId) {
-    asJsObject(this)['photoId'] = _photoId;
-  }
-
-  String get photoId => asJsObject(this)['photoId'];
-  void set title(String _title) {
-    asJsObject(this)['title'] = _title;
-  }
-
-  String get title => asJsObject(this)['title'];
-  void set url(String _url) {
-    asJsObject(this)['url'] = _url;
-  }
-
-  String get url => asJsObject(this)['url'];
   void set userId(String _userId) {
     asJsObject(this)['userId'] = _userId;
   }

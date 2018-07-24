@@ -3,7 +3,7 @@
 part of example;
 
 // **************************************************************************
-// Generator: JsWrappingGenerator
+// JsWrappingGenerator
 // **************************************************************************
 
 @GeneratedFrom(_ColumnChart)
@@ -40,7 +40,7 @@ class DataTable extends JsInterface {
 final __codec0 =
     new JsInterfaceCodec<DataTable>((o) => new DataTable.created(o));
 
-/// codec for null.dynamic
+/// codec for dart.core.dynamic
 final __codec1 = new DynamicCodec();
 
 /// codec for dart.js.JsArray<dynamic>

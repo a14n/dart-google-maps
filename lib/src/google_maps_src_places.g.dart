@@ -3,7 +3,7 @@
 part of google_maps.src.places;
 
 // **************************************************************************
-// Generator: JsWrappingGenerator
+// JsWrappingGenerator
 // **************************************************************************
 
 @GeneratedFrom(_Autocomplete)
@@ -112,42 +112,6 @@ class AutocompletePrediction extends JsInterface {
   List<String> get types => __codec4.decode(asJsObject(this)['types']);
 }
 
-@GeneratedFrom(_PredictionTerm)
-@anonymous
-class PredictionTerm extends JsInterface {
-  PredictionTerm.created(JsObject o) : super.created(o);
-  PredictionTerm() : this.created(new JsObject(context['Object']));
-
-  void set offset(num _offset) {
-    asJsObject(this)['offset'] = _offset;
-  }
-
-  num get offset => asJsObject(this)['offset'];
-  void set value(String _value) {
-    asJsObject(this)['value'] = _value;
-  }
-
-  String get value => asJsObject(this)['value'];
-}
-
-@GeneratedFrom(_PredictionSubstring)
-@anonymous
-class PredictionSubstring extends JsInterface {
-  PredictionSubstring.created(JsObject o) : super.created(o);
-  PredictionSubstring() : this.created(new JsObject(context['Object']));
-
-  void set length(num _length) {
-    asJsObject(this)['length'] = _length;
-  }
-
-  num get length => asJsObject(this)['length'];
-  void set offset(num _offset) {
-    asJsObject(this)['offset'] = _offset;
-  }
-
-  num get offset => asJsObject(this)['offset'];
-}
-
 @GeneratedFrom(_AutocompleteService)
 @JsName('google.maps.places.AutocompleteService')
 class AutocompleteService extends JsInterface {
@@ -225,6 +189,24 @@ class ComponentRestrictions extends JsInterface {
   }
 
   String get country => asJsObject(this)['country'];
+}
+
+@GeneratedFrom(_PhotoOptions)
+@anonymous
+class PhotoOptions extends JsInterface {
+  PhotoOptions.created(JsObject o) : super.created(o);
+  PhotoOptions() : this.created(new JsObject(context['Object']));
+
+  void set maxHeight(num _maxHeight) {
+    asJsObject(this)['maxHeight'] = _maxHeight;
+  }
+
+  num get maxHeight => asJsObject(this)['maxHeight'];
+  void set maxWidth(num _maxWidth) {
+    asJsObject(this)['maxWidth'] = _maxWidth;
+  }
+
+  num get maxWidth => asJsObject(this)['maxWidth'];
 }
 
 @GeneratedFrom(_PlaceAspectRating)
@@ -307,24 +289,6 @@ class PlacePhoto extends JsInterface {
   }
 
   num get width => asJsObject(this)['width'];
-}
-
-@GeneratedFrom(_PhotoOptions)
-@anonymous
-class PhotoOptions extends JsInterface {
-  PhotoOptions.created(JsObject o) : super.created(o);
-  PhotoOptions() : this.created(new JsObject(context['Object']));
-
-  void set maxHeight(num _maxHeight) {
-    asJsObject(this)['maxHeight'] = _maxHeight;
-  }
-
-  num get maxHeight => asJsObject(this)['maxHeight'];
-  void set maxWidth(num _maxWidth) {
-    asJsObject(this)['maxWidth'] = _maxWidth;
-  }
-
-  num get maxWidth => asJsObject(this)['maxWidth'];
 }
 
 @GeneratedFrom(_PlaceResult)
@@ -702,6 +666,42 @@ class PlacesServiceStatus extends JsEnum {
   _PlacesServiceStatus _dumbMethod2() => _dumbMethod1();
 }
 
+@GeneratedFrom(_PredictionSubstring)
+@anonymous
+class PredictionSubstring extends JsInterface {
+  PredictionSubstring.created(JsObject o) : super.created(o);
+  PredictionSubstring() : this.created(new JsObject(context['Object']));
+
+  void set length(num _length) {
+    asJsObject(this)['length'] = _length;
+  }
+
+  num get length => asJsObject(this)['length'];
+  void set offset(num _offset) {
+    asJsObject(this)['offset'] = _offset;
+  }
+
+  num get offset => asJsObject(this)['offset'];
+}
+
+@GeneratedFrom(_PredictionTerm)
+@anonymous
+class PredictionTerm extends JsInterface {
+  PredictionTerm.created(JsObject o) : super.created(o);
+  PredictionTerm() : this.created(new JsObject(context['Object']));
+
+  void set offset(num _offset) {
+    asJsObject(this)['offset'] = _offset;
+  }
+
+  num get offset => asJsObject(this)['offset'];
+  void set value(String _value) {
+    asJsObject(this)['value'] = _value;
+  }
+
+  String get value => asJsObject(this)['value'];
+}
+
 @GeneratedFrom(_QueryAutocompletePrediction)
 @anonymous
 class QueryAutocompletePrediction extends JsInterface {
@@ -937,7 +937,7 @@ final __codec8 = new JsListCodec<PredictionTerm>(__codec7);
 final __codec9 = new JsInterfaceCodec<AutocompletionRequest>(
     (o) => new AutocompletionRequest.created(o));
 
-/// codec for null.dynamic
+/// codec for dart.core.dynamic
 final __codec10 = new DynamicCodec();
 
 /// codec for google_maps.src.places.AutocompletePrediction
