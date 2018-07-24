@@ -18,13 +18,12 @@ import 'dart:async' show Stream;
 
 import 'package:js_wrapping/js_wrapping.dart';
 
-import 'package:google_maps/util/async.dart';
 import 'package:google_maps/google_maps.dart';
+import 'package:google_maps/util/async.dart';
 
 part 'google_maps_src_drawing.g.dart';
-
+part 'library/drawing/drawing_control_options.dart';
 part 'library/drawing/drawing_manager.dart';
 part 'library/drawing/drawing_manager_options.dart';
-part 'library/drawing/drawing_control_options.dart';
 part 'library/drawing/overlay_complete_event.dart';
 part 'library/drawing/overlay_type.dart';

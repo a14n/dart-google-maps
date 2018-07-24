@@ -18,18 +18,17 @@ import 'dart:async' show Stream;
 
 import 'package:js_wrapping/js_wrapping.dart';
 
-import 'package:google_maps/util/async.dart';
 import 'package:google_maps/google_maps.dart';
+import 'package:google_maps/util/async.dart';
 
 part 'google_maps_src_weather.g.dart';
-
 part 'library/weather/cloud_layer.dart';
+part 'library/weather/label_color.dart';
+part 'library/weather/temperature_unit.dart';
+part 'library/weather/weather_conditions.dart';
+part 'library/weather/weather_feature.dart';
+part 'library/weather/weather_forecast.dart';
 part 'library/weather/weather_layer.dart';
 part 'library/weather/weather_layer_options.dart';
-part 'library/weather/temperature_unit.dart';
-part 'library/weather/wind_speed_unit.dart';
-part 'library/weather/label_color.dart';
 part 'library/weather/weather_mouse_event.dart';
-part 'library/weather/weather_feature.dart';
-part 'library/weather/weather_conditions.dart';
-part 'library/weather/weather_forecast.dart';
+part 'library/weather/wind_speed_unit.dart';

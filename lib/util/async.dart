@@ -2,10 +2,11 @@ library google_maps.util.async;
 
 import 'dart:async';
 
-import 'package:google_maps/google_maps.dart' show event, MapsEventListener;
 import 'package:js_wrapping/js_wrapping.dart' show asJsObject, JsInterface;
 import 'package:js_wrapping/util/async.dart' show SubscribeStreamProvider;
 import 'package:js_wrapping/util/state.dart';
+
+import 'package:google_maps/google_maps.dart' show event, MapsEventListener;
 
 const _undefined = const _Undefined();
 

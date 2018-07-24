@@ -18,12 +18,11 @@ import 'dart:async' show Stream;
 
 import 'package:js_wrapping/js_wrapping.dart';
 
-import 'package:google_maps/util/async.dart';
 import 'package:google_maps/google_maps.dart';
+import 'package:google_maps/util/async.dart';
 
 part 'google_maps_src_panoramio.g.dart';
-
+part 'library/panoramio/panoramio_feature.dart';
 part 'library/panoramio/panoramio_layer.dart';
 part 'library/panoramio/panoramio_layer_options.dart';
-part 'library/panoramio/panoramio_feature.dart';
 part 'library/panoramio/panoramio_mouse_event.dart';

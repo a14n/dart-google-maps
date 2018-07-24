@@ -19,7 +19,6 @@ import 'package:js_wrapping/js_wrapping.dart';
 import 'package:google_maps/google_maps.dart';
 
 part 'google_maps_src_geometry.g.dart';
-
 part 'library/geometry/encoding.dart';
-part 'library/geometry/spherical.dart';
 part 'library/geometry/poly.dart';
+part 'library/geometry/spherical.dart';

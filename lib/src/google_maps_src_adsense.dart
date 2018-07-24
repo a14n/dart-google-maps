@@ -21,7 +21,6 @@ import 'package:js_wrapping/js_wrapping.dart';
 import 'package:google_maps/google_maps.dart';
 
 part 'google_maps_src_adsense.g.dart';
-
+part 'library/adsense/ad_format.dart';
 part 'library/adsense/ad_unit.dart';
 part 'library/adsense/ad_unit_options.dart';
-part 'library/adsense/ad_format.dart';

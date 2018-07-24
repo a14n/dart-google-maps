@@ -18,20 +18,19 @@ import 'dart:async' show Stream;
 
 import 'package:js_wrapping/js_wrapping.dart';
 
-import 'package:google_maps/util/async.dart';
 import 'package:google_maps/google_maps.dart';
+import 'package:google_maps/util/async.dart';
 
 part 'google_maps_src_visualization.g.dart';
-
-part 'library/visualization/maps_engine_layer.dart';
-part 'library/visualization/maps_engine_layer_options.dart';
-part 'library/visualization/maps_engine_layer_properties.dart';
-part 'library/visualization/maps_engine_mouse_event.dart';
-part 'library/visualization/maps_engine_status.dart';
 part 'library/visualization/dynamic_maps_engine_layer.dart';
 part 'library/visualization/dynamic_maps_engine_layer_options.dart';
 part 'library/visualization/dynamic_maps_engine_mouse_event.dart';
 part 'library/visualization/feature_style.dart';
 part 'library/visualization/heatmap_layer.dart';
 part 'library/visualization/heatmap_layer_options.dart';
+part 'library/visualization/maps_engine_layer.dart';
+part 'library/visualization/maps_engine_layer_options.dart';
+part 'library/visualization/maps_engine_layer_properties.dart';
+part 'library/visualization/maps_engine_mouse_event.dart';
+part 'library/visualization/maps_engine_status.dart';
 part 'library/visualization/weighted_location.dart';
