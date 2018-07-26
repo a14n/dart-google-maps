@@ -7,20 +7,22 @@ GMap map;
 UListElement placesList;
 
 void main() {
-  final pyrmont = new LatLng(-33.8665433, 151.1956316);
+  final pyrmont = LatLng(-33.8665433, 151.1956316);
 
-  map = new GMap(document.getElementById('map-canvas'), new MapOptions()
-    ..center = pyrmont
-    ..zoom = 17);
+  map = GMap(
+      document.getElementById('map-canvas'),
+      MapOptions()
+        ..center = pyrmont
+        ..zoom = 17);
 
-  final request = new PlaceSearchRequest()
+  final request = PlaceSearchRequest()
     ..location = pyrmont
     ..radius = 500
     ..types = ['store'];
 
   placesList = document.getElementById('places') as UListElement;
 
-  final service = new PlacesService(map);
+  final service = PlacesService(map);
   service.nearbySearch(request, callback);
 }
 
@@ -45,17 +47,17 @@ void callback(List<PlaceResult> results, PlacesServiceStatus status,
 }
 
 void createMarkers(List<PlaceResult> places) {
-  var bounds = new LatLngBounds();
+  var bounds = LatLngBounds();
 
   for (final place in places) {
-    var image = new Icon()
+    var image = Icon()
       ..url = place.icon
-      ..size = new Size(71, 71)
-      ..origin = new Point(0, 0)
-      ..anchor = new Point(17, 34)
-      ..scaledSize = new Size(25, 25);
+      ..size = Size(71, 71)
+      ..origin = Point(0, 0)
+      ..anchor = Point(17, 34)
+      ..scaledSize = Size(25, 25);
 
-    new Marker(new MarkerOptions()
+    Marker(MarkerOptions()
       ..map = map
       ..icon = image
       ..title = place.name

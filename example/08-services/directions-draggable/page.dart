@@ -3,13 +3,15 @@ import 'dart:html';
 import 'package:google_maps/google_maps.dart';
 
 main() {
-  var map = new GMap(document.getElementById('map'), new MapOptions()
+  var map = GMap(
+      document.getElementById('map'),
+      MapOptions()
         ..zoom = 4
-        ..center = new LatLng(-24.345, 134.46) // Australia.
+        ..center = LatLng(-24.345, 134.46) // Australia.
       );
 
-  var directionsService = new DirectionsService();
-  var directionsDisplay = new DirectionsRenderer(new DirectionsRendererOptions()
+  var directionsService = DirectionsService();
+  var directionsDisplay = DirectionsRenderer(DirectionsRendererOptions()
     ..draggable = true
     ..map = map
     ..panel = document.getElementById('right-panel'));
@@ -25,12 +27,12 @@ main() {
 void displayRoute(String origin, String destination, DirectionsService service,
     DirectionsRenderer display) {
   service.route(
-      new DirectionsRequest()
+      DirectionsRequest()
         ..origin = origin
         ..destination = destination
         ..waypoints = [
-          new DirectionsWaypoint()..location = 'Cocklebiddy, WA',
-          new DirectionsWaypoint()..location = 'Broken Hill, NSW'
+          DirectionsWaypoint()..location = 'Cocklebiddy, WA',
+          DirectionsWaypoint()..location = 'Broken Hill, NSW'
         ]
         ..travelMode = TravelMode.DRIVING
         ..avoidTolls = true, (response, status) {

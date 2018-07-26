@@ -29,14 +29,16 @@ abstract class _GMap extends MVCObject {
   Node _getDiv();
   num get heading => _getHeading();
   num _getHeading();
-  dynamic /*MapTypeId|String*/ get mapTypeId => (new ChainedCodec()
-    ..add(new BiMapCodec<MapTypeId, dynamic>({
-      MapTypeId.HYBRID: context['google']['maps']['MapTypeId']['HYBRID'],
-      MapTypeId.ROADMAP: context['google']['maps']['MapTypeId']['ROADMAP'],
-      MapTypeId.SATELLITE: context['google']['maps']['MapTypeId']['SATELLITE'],
-      MapTypeId.TERRAIN: context['google']['maps']['MapTypeId']['TERRAIN']
-    }))
-    ..add(new IdentityCodec<String>())).decode(_getMapTypeId());
+  dynamic /*MapTypeId|String*/ get mapTypeId => (ChainedCodec()
+        ..add(BiMapCodec<MapTypeId, dynamic>({
+          MapTypeId.HYBRID: context['google']['maps']['MapTypeId']['HYBRID'],
+          MapTypeId.ROADMAP: context['google']['maps']['MapTypeId']['ROADMAP'],
+          MapTypeId.SATELLITE: context['google']['maps']['MapTypeId']
+              ['SATELLITE'],
+          MapTypeId.TERRAIN: context['google']['maps']['MapTypeId']['TERRAIN']
+        }))
+        ..add(IdentityCodec<String>()))
+      .decode(_getMapTypeId());
   _getMapTypeId();
   Projection get projection => _getProjection();
   Projection _getProjection();
@@ -55,15 +57,20 @@ abstract class _GMap extends MVCObject {
   void _setClickableIcons(bool value);
   void set heading(num heading) => _setHeading(heading);
   void _setHeading(num heading);
-  void set mapTypeId(dynamic /*MapTypeId|String*/ mapTypeId) => _setMapTypeId(
-      (new ChainedCodec()
-    ..add(new BiMapCodec<MapTypeId, dynamic>({
-      MapTypeId.HYBRID: context['google']['maps']['MapTypeId']['HYBRID'],
-      MapTypeId.ROADMAP: context['google']['maps']['MapTypeId']['ROADMAP'],
-      MapTypeId.SATELLITE: context['google']['maps']['MapTypeId']['SATELLITE'],
-      MapTypeId.TERRAIN: context['google']['maps']['MapTypeId']['TERRAIN']
-    }))
-    ..add(new IdentityCodec<String>())).encode(mapTypeId));
+  void set mapTypeId(dynamic /*MapTypeId|String*/ mapTypeId) =>
+      _setMapTypeId((ChainedCodec()
+            ..add(BiMapCodec<MapTypeId, dynamic>({
+              MapTypeId.HYBRID: context['google']['maps']['MapTypeId']
+                  ['HYBRID'],
+              MapTypeId.ROADMAP: context['google']['maps']['MapTypeId']
+                  ['ROADMAP'],
+              MapTypeId.SATELLITE: context['google']['maps']['MapTypeId']
+                  ['SATELLITE'],
+              MapTypeId.TERRAIN: context['google']['maps']['MapTypeId']
+                  ['TERRAIN']
+            }))
+            ..add(IdentityCodec<String>()))
+          .encode(mapTypeId));
   void _setMapTypeId(dynamic /*MapTypeId|String*/ mapTypeId);
   void set options(MapOptions options) => _setOptions(options);
   void _setOptions(MapOptions options);
@@ -79,23 +86,24 @@ abstract class _GMap extends MVCObject {
   MapTypeRegistry mapTypes;
   dynamic _overlayMapTypes;
   MVCArray<MapType> get overlayMapTypes =>
-      (new JsInterfaceCodec<MVCArray<MapType>>(
-          (o) => new MVCArray<MapType>.created(o, new JsInterfaceCodec<MapType>(
-              (o) => new MapType.created(o))))).decode(_overlayMapTypes as JsObject);
+      (JsInterfaceCodec<MVCArray<MapType>>((o) => MVCArray<MapType>.created(
+              o, JsInterfaceCodec<MapType>((o) => MapType.created(o)))))
+          .decode(_overlayMapTypes as JsObject);
   void set overlayMapTypes(MVCArray<MapType> overlayMapTypes) {
-    _overlayMapTypes = (new JsInterfaceCodec<MVCArray<MapType>>(
-            (o) => new MVCArray<MapType>.created(o,
-                new JsInterfaceCodec<MapType>((o) => new MapType.created(o)))))
+    _overlayMapTypes = (JsInterfaceCodec<MVCArray<MapType>>((o) =>
+            MVCArray<MapType>.created(
+                o, JsInterfaceCodec<MapType>((o) => MapType.created(o)))))
         .encode(overlayMapTypes);
   }
+
   Stream get onBoundsChanged =>
       getStream(this, #onBoundsChanged, "bounds_changed");
   Stream get onCenterChanged =>
       getStream(this, #onCenterChanged, "center_changed");
-  Stream<MouseEvent> get onClick => getStream(
-      this, #onClick, "click", (JsObject o) => new MouseEvent.created(o));
+  Stream<MouseEvent> get onClick =>
+      getStream(this, #onClick, "click", (JsObject o) => MouseEvent.created(o));
   Stream<MouseEvent> get onDblclick => getStream(
-      this, #onDblclick, "dblclick", (JsObject o) => new MouseEvent.created(o));
+      this, #onDblclick, "dblclick", (JsObject o) => MouseEvent.created(o));
   Stream get onDrag => getStream(this, #onDrag, "drag");
   Stream get onDragend => getStream(this, #onDragend, "dragend");
   Stream get onDragstart => getStream(this, #onDragstart, "dragstart");
@@ -104,17 +112,17 @@ abstract class _GMap extends MVCObject {
   Stream get onIdle => getStream(this, #onIdle, "idle");
   Stream get onMaptypeidChanged =>
       getStream(this, #onMaptypeidChanged, "maptypeid_changed");
-  Stream<MouseEvent> get onMousemove => getStream(this, #onMousemove,
-      "mousemove", (JsObject o) => new MouseEvent.created(o));
+  Stream<MouseEvent> get onMousemove => getStream(
+      this, #onMousemove, "mousemove", (JsObject o) => MouseEvent.created(o));
   Stream<MouseEvent> get onMouseout => getStream(
-      this, #onMouseout, "mouseout", (JsObject o) => new MouseEvent.created(o));
-  Stream<MouseEvent> get onMouseover => getStream(this, #onMouseover,
-      "mouseover", (JsObject o) => new MouseEvent.created(o));
+      this, #onMouseout, "mouseout", (JsObject o) => MouseEvent.created(o));
+  Stream<MouseEvent> get onMouseover => getStream(
+      this, #onMouseover, "mouseover", (JsObject o) => MouseEvent.created(o));
   Stream get onProjectionChanged =>
       getStream(this, #onProjectionChanged, "projection_changed");
   Stream get onResize => getStream(this, #onResize, "resize");
-  Stream<MouseEvent> get onRightclick => getStream(this, #onRightclick,
-      "rightclick", (JsObject o) => new MouseEvent.created(o));
+  Stream<MouseEvent> get onRightclick => getStream(
+      this, #onRightclick, "rightclick", (JsObject o) => MouseEvent.created(o));
   Stream get onTilesloaded => getStream(this, #onTilesloaded, "tilesloaded");
   Stream get onTiltChanged => getStream(this, #onTiltChanged, "tilt_changed");
   Stream get onZoomChanged => getStream(this, #onZoomChanged, "zoom_changed");

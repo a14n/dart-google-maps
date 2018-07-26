@@ -9,30 +9,30 @@ part of google_maps.src.panoramio;
 @GeneratedFrom(_PanoramioFeature)
 @anonymous
 class PanoramioFeature extends JsInterface {
+  PanoramioFeature() : this.created(JsObject(context['Object']));
   PanoramioFeature.created(JsObject o) : super.created(o);
-  PanoramioFeature() : this.created(new JsObject(context['Object']));
 
-  void set author(String _author) {
+  set author(String _author) {
     asJsObject(this)['author'] = _author;
   }
 
   String get author => asJsObject(this)['author'];
-  void set photoId(String _photoId) {
+  set photoId(String _photoId) {
     asJsObject(this)['photoId'] = _photoId;
   }
 
   String get photoId => asJsObject(this)['photoId'];
-  void set title(String _title) {
+  set title(String _title) {
     asJsObject(this)['title'] = _title;
   }
 
   String get title => asJsObject(this)['title'];
-  void set url(String _url) {
+  set url(String _url) {
     asJsObject(this)['url'] = _url;
   }
 
   String get url => asJsObject(this)['url'];
-  void set userId(String _userId) {
+  set userId(String _userId) {
     asJsObject(this)['userId'] = _userId;
   }
 
@@ -42,11 +42,11 @@ class PanoramioFeature extends JsInterface {
 @GeneratedFrom(_PanoramioLayer)
 @JsName('google.maps.panoramio.PanoramioLayer')
 class PanoramioLayer extends MVCObject {
-  PanoramioLayer.created(JsObject o) : super.created(o);
   PanoramioLayer([PanoramioLayerOptions opts])
-      : this.created(new JsObject(
+      : this.created(JsObject(
             context['google']['maps']['panoramio']['PanoramioLayer'],
             [__codec0.encode(opts)]));
+  PanoramioLayer.created(JsObject o) : super.created(o);
 
   GMap get map => _getMap();
   GMap _getMap() => __codec1.decode(asJsObject(this).callMethod('getMap'));
@@ -74,37 +74,37 @@ class PanoramioLayer extends MVCObject {
     asJsObject(this).callMethod('setUserId', [userId]);
   }
 
-  Stream<PanoramioMouseEvent> get onClick => getStream(this, #onClick, "click",
-      (JsObject o) => new PanoramioMouseEvent.created(o));
+  Stream<PanoramioMouseEvent> get onClick => getStream(
+      this, #onClick, "click", (JsObject o) => PanoramioMouseEvent.created(o));
 }
 
 @GeneratedFrom(_PanoramioLayerOptions)
 @anonymous
 class PanoramioLayerOptions extends JsInterface {
+  PanoramioLayerOptions() : this.created(JsObject(context['Object']));
   PanoramioLayerOptions.created(JsObject o) : super.created(o);
-  PanoramioLayerOptions() : this.created(new JsObject(context['Object']));
 
-  void set clickable(bool _clickable) {
+  set clickable(bool _clickable) {
     asJsObject(this)['clickable'] = _clickable;
   }
 
   bool get clickable => asJsObject(this)['clickable'];
-  void set map(GMap _map) {
+  set map(GMap _map) {
     asJsObject(this)['map'] = __codec1.encode(_map);
   }
 
   GMap get map => __codec1.decode(asJsObject(this)['map']);
-  void set suppressInfoWindows(bool _suppressInfoWindows) {
+  set suppressInfoWindows(bool _suppressInfoWindows) {
     asJsObject(this)['suppressInfoWindows'] = _suppressInfoWindows;
   }
 
   bool get suppressInfoWindows => asJsObject(this)['suppressInfoWindows'];
-  void set tag(String _tag) {
+  set tag(String _tag) {
     asJsObject(this)['tag'] = _tag;
   }
 
   String get tag => asJsObject(this)['tag'];
-  void set userId(String _userId) {
+  set userId(String _userId) {
     asJsObject(this)['userId'] = _userId;
   }
 
@@ -114,26 +114,26 @@ class PanoramioLayerOptions extends JsInterface {
 @GeneratedFrom(_PanoramioMouseEvent)
 @anonymous
 class PanoramioMouseEvent extends JsInterface {
+  PanoramioMouseEvent() : this.created(JsObject(context['Object']));
   PanoramioMouseEvent.created(JsObject o) : super.created(o);
-  PanoramioMouseEvent() : this.created(new JsObject(context['Object']));
 
-  void set featureDetails(PanoramioFeature _featureDetails) {
+  set featureDetails(PanoramioFeature _featureDetails) {
     asJsObject(this)['featureDetails'] = __codec2.encode(_featureDetails);
   }
 
   PanoramioFeature get featureDetails =>
       __codec2.decode(asJsObject(this)['featureDetails']);
-  void set infoWindowHtml(String _infoWindowHtml) {
+  set infoWindowHtml(String _infoWindowHtml) {
     asJsObject(this)['infoWindowHtml'] = _infoWindowHtml;
   }
 
   String get infoWindowHtml => asJsObject(this)['infoWindowHtml'];
-  void set latLng(LatLng _latLng) {
+  set latLng(LatLng _latLng) {
     asJsObject(this)['latLng'] = __codec3.encode(_latLng);
   }
 
   LatLng get latLng => __codec3.decode(asJsObject(this)['latLng']);
-  void set pixelOffset(Size _pixelOffset) {
+  set pixelOffset(Size _pixelOffset) {
     asJsObject(this)['pixelOffset'] = __codec4.encode(_pixelOffset);
   }
 
@@ -141,18 +141,18 @@ class PanoramioMouseEvent extends JsInterface {
 }
 
 /// codec for google_maps.src.panoramio.PanoramioLayerOptions
-final __codec0 = new JsInterfaceCodec<PanoramioLayerOptions>(
-    (o) => new PanoramioLayerOptions.created(o));
+final __codec0 = JsInterfaceCodec<PanoramioLayerOptions>(
+    (o) => PanoramioLayerOptions.created(o));
 
 /// codec for google_maps.src.GMap
-final __codec1 = new JsInterfaceCodec<GMap>((o) => new GMap.created(o));
+final __codec1 = JsInterfaceCodec<GMap>((o) => GMap.created(o));
 
 /// codec for google_maps.src.panoramio.PanoramioFeature
-final __codec2 = new JsInterfaceCodec<PanoramioFeature>(
-    (o) => new PanoramioFeature.created(o));
+final __codec2 =
+    JsInterfaceCodec<PanoramioFeature>((o) => PanoramioFeature.created(o));
 
 /// codec for google_maps.src.LatLng
-final __codec3 = new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o));
+final __codec3 = JsInterfaceCodec<LatLng>((o) => LatLng.created(o));
 
 /// codec for google_maps.src.Size
-final __codec4 = new JsInterfaceCodec<Size>((o) => new Size.created(o));
+final __codec4 = JsInterfaceCodec<Size>((o) => Size.created(o));

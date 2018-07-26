@@ -6,15 +6,15 @@ const IMAGE_URL =
     "https://google-developers.appspot.com/maps/documentation/javascript/examples/full";
 
 void main() {
-  final mapOptions = new MapOptions()
-    ..center = new LatLng(-34.397, 150.644)
+  final mapOptions = MapOptions()
+    ..center = LatLng(-34.397, 150.644)
     ..zoom = 8;
-  final map = new GMap(document.getElementById('map-canvas'), mapOptions);
+  final map = GMap(document.getElementById('map-canvas'), mapOptions);
 
-  final drawingManager = new DrawingManager(new DrawingManagerOptions()
+  final drawingManager = DrawingManager(DrawingManagerOptions()
     ..drawingMode = OverlayType.MARKER
     ..drawingControl = true
-    ..drawingControlOptions = (new DrawingControlOptions()
+    ..drawingControlOptions = (DrawingControlOptions()
       ..position = ControlPosition.TOP_CENTER
       ..drawingModes = [
         OverlayType.MARKER,
@@ -23,9 +23,9 @@ void main() {
         OverlayType.POLYLINE,
         OverlayType.RECTANGLE
       ])
-    ..markerOptions = (new MarkerOptions()
-      ..icon = '${IMAGE_URL}/images/beachflag.png')
-    ..circleOptions = (new CircleOptions()
+    ..markerOptions =
+        (MarkerOptions()..icon = '${IMAGE_URL}/images/beachflag.png')
+    ..circleOptions = (CircleOptions()
       ..fillColor = '#ffff00'
       ..fillOpacity = 1
       ..strokeWeight = 5

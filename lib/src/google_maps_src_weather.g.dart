@@ -9,10 +9,10 @@ part of google_maps.src.weather;
 @GeneratedFrom(_CloudLayer)
 @JsName('google.maps.weather.CloudLayer')
 class CloudLayer extends MVCObject {
-  CloudLayer.created(JsObject o) : super.created(o);
   CloudLayer()
       : this.created(
-            new JsObject(context['google']['maps']['weather']['CloudLayer']));
+            JsObject(context['google']['maps']['weather']['CloudLayer']));
+  CloudLayer.created(JsObject o) : super.created(o);
 
   GMap get map => _getMap();
   GMap _getMap() => __codec0.decode(asJsObject(this).callMethod('getMap'));
@@ -24,14 +24,14 @@ class CloudLayer extends MVCObject {
 
 class LabelColor extends JsEnum {
   static final values = <LabelColor>[BLACK, WHITE];
-  static final BLACK = new LabelColor._(
+  static final BLACK = LabelColor._(
       'BLACK', context['google']['maps']['weather']['LabelColor']['BLACK']);
-  static final WHITE = new LabelColor._(
+  static final WHITE = LabelColor._(
       'WHITE', context['google']['maps']['weather']['LabelColor']['WHITE']);
-
   final String _name;
   LabelColor._(this._name, o) : super.created(o);
 
+  @override
   String toString() => 'LabelColor.$_name';
 
   // dumb code to remove analyzer hint for unused _LabelColor
@@ -41,14 +41,14 @@ class LabelColor extends JsEnum {
 
 class TemperatureUnit extends JsEnum {
   static final values = <TemperatureUnit>[CELSIUS, FAHRENHEIT];
-  static final CELSIUS = new TemperatureUnit._('CELSIUS',
+  static final CELSIUS = TemperatureUnit._('CELSIUS',
       context['google']['maps']['weather']['TemperatureUnit']['CELSIUS']);
-  static final FAHRENHEIT = new TemperatureUnit._('FAHRENHEIT',
+  static final FAHRENHEIT = TemperatureUnit._('FAHRENHEIT',
       context['google']['maps']['weather']['TemperatureUnit']['FAHRENHEIT']);
-
   final String _name;
   TemperatureUnit._(this._name, o) : super.created(o);
 
+  @override
   String toString() => 'TemperatureUnit.$_name';
 
   // dumb code to remove analyzer hint for unused _TemperatureUnit
@@ -59,50 +59,50 @@ class TemperatureUnit extends JsEnum {
 @GeneratedFrom(_WeatherConditions)
 @anonymous
 class WeatherConditions extends JsInterface {
+  WeatherConditions() : this.created(JsObject(context['Object']));
   WeatherConditions.created(JsObject o) : super.created(o);
-  WeatherConditions() : this.created(new JsObject(context['Object']));
 
-  void set day(String _day) {
+  set day(String _day) {
     asJsObject(this)['day'] = _day;
   }
 
   String get day => asJsObject(this)['day'];
-  void set description(String _description) {
+  set description(String _description) {
     asJsObject(this)['description'] = _description;
   }
 
   String get description => asJsObject(this)['description'];
-  void set high(num _high) {
+  set high(num _high) {
     asJsObject(this)['high'] = _high;
   }
 
   num get high => asJsObject(this)['high'];
-  void set humidity(num _humidity) {
+  set humidity(num _humidity) {
     asJsObject(this)['humidity'] = _humidity;
   }
 
   num get humidity => asJsObject(this)['humidity'];
-  void set low(num _low) {
+  set low(num _low) {
     asJsObject(this)['low'] = _low;
   }
 
   num get low => asJsObject(this)['low'];
-  void set shortDay(String _shortDay) {
+  set shortDay(String _shortDay) {
     asJsObject(this)['shortDay'] = _shortDay;
   }
 
   String get shortDay => asJsObject(this)['shortDay'];
-  void set temperature(num _temperature) {
+  set temperature(num _temperature) {
     asJsObject(this)['temperature'] = _temperature;
   }
 
   num get temperature => asJsObject(this)['temperature'];
-  void set windDirection(String _windDirection) {
+  set windDirection(String _windDirection) {
     asJsObject(this)['windDirection'] = _windDirection;
   }
 
   String get windDirection => asJsObject(this)['windDirection'];
-  void set windSpeed(num _windSpeed) {
+  set windSpeed(num _windSpeed) {
     asJsObject(this)['windSpeed'] = _windSpeed;
   }
 
@@ -112,32 +112,32 @@ class WeatherConditions extends JsInterface {
 @GeneratedFrom(_WeatherFeature)
 @anonymous
 class WeatherFeature extends JsInterface {
+  WeatherFeature() : this.created(JsObject(context['Object']));
   WeatherFeature.created(JsObject o) : super.created(o);
-  WeatherFeature() : this.created(new JsObject(context['Object']));
 
-  void set current(WeatherConditions _current) {
+  set current(WeatherConditions _current) {
     asJsObject(this)['current'] = __codec1.encode(_current);
   }
 
   WeatherConditions get current => __codec1.decode(asJsObject(this)['current']);
-  void set forecast(List<WeatherForecast> _forecast) {
+  set forecast(List<WeatherForecast> _forecast) {
     asJsObject(this)['forecast'] = __codec3.encode(_forecast);
   }
 
   List<WeatherForecast> get forecast =>
       __codec3.decode(asJsObject(this)['forecast']);
-  void set location(String _location) {
+  set location(String _location) {
     asJsObject(this)['location'] = _location;
   }
 
   String get location => asJsObject(this)['location'];
-  void set temperatureUnit(TemperatureUnit _temperatureUnit) {
+  set temperatureUnit(TemperatureUnit _temperatureUnit) {
     asJsObject(this)['temperatureUnit'] = __codec4.encode(_temperatureUnit);
   }
 
   TemperatureUnit get temperatureUnit =>
       __codec4.decode(asJsObject(this)['temperatureUnit']);
-  void set windSpeedUnit(WindSpeedUnit _windSpeedUnit) {
+  set windSpeedUnit(WindSpeedUnit _windSpeedUnit) {
     asJsObject(this)['windSpeedUnit'] = __codec5.encode(_windSpeedUnit);
   }
 
@@ -148,30 +148,30 @@ class WeatherFeature extends JsInterface {
 @GeneratedFrom(_WeatherForecast)
 @anonymous
 class WeatherForecast extends JsInterface {
+  WeatherForecast() : this.created(JsObject(context['Object']));
   WeatherForecast.created(JsObject o) : super.created(o);
-  WeatherForecast() : this.created(new JsObject(context['Object']));
 
-  void set day(String _day) {
+  set day(String _day) {
     asJsObject(this)['day'] = _day;
   }
 
   String get day => asJsObject(this)['day'];
-  void set description(String _description) {
+  set description(String _description) {
     asJsObject(this)['description'] = _description;
   }
 
   String get description => asJsObject(this)['description'];
-  void set high(num _high) {
+  set high(num _high) {
     asJsObject(this)['high'] = _high;
   }
 
   num get high => asJsObject(this)['high'];
-  void set low(num _low) {
+  set low(num _low) {
     asJsObject(this)['low'] = _low;
   }
 
   num get low => asJsObject(this)['low'];
-  void set shortDay(String _shortDay) {
+  set shortDay(String _shortDay) {
     asJsObject(this)['shortDay'] = _shortDay;
   }
 
@@ -181,11 +181,11 @@ class WeatherForecast extends JsInterface {
 @GeneratedFrom(_WeatherLayer)
 @JsName('google.maps.weather.WeatherLayer')
 class WeatherLayer extends MVCObject {
-  WeatherLayer.created(JsObject o) : super.created(o);
   WeatherLayer([WeatherLayerOptions opts])
-      : this.created(new JsObject(
+      : this.created(JsObject(
             context['google']['maps']['weather']['WeatherLayer'],
             [__codec6.encode(opts)]));
+  WeatherLayer.created(JsObject o) : super.created(o);
 
   GMap get map => _getMap();
   GMap _getMap() => __codec0.decode(asJsObject(this).callMethod('getMap'));
@@ -199,43 +199,43 @@ class WeatherLayer extends MVCObject {
     asJsObject(this).callMethod('setOptions', [__codec6.encode(options)]);
   }
 
-  Stream<WeatherMouseEvent> get onClick => getStream(this, #onClick, "click",
-      (JsObject o) => new WeatherMouseEvent.created(o));
+  Stream<WeatherMouseEvent> get onClick => getStream(
+      this, #onClick, "click", (JsObject o) => WeatherMouseEvent.created(o));
 }
 
 @GeneratedFrom(_WeatherLayerOptions)
 @anonymous
 class WeatherLayerOptions extends JsInterface {
+  WeatherLayerOptions() : this.created(JsObject(context['Object']));
   WeatherLayerOptions.created(JsObject o) : super.created(o);
-  WeatherLayerOptions() : this.created(new JsObject(context['Object']));
 
-  void set clickable(bool _clickable) {
+  set clickable(bool _clickable) {
     asJsObject(this)['clickable'] = _clickable;
   }
 
   bool get clickable => asJsObject(this)['clickable'];
-  void set labelColor(LabelColor _labelColor) {
+  set labelColor(LabelColor _labelColor) {
     asJsObject(this)['labelColor'] = __codec7.encode(_labelColor);
   }
 
   LabelColor get labelColor => __codec7.decode(asJsObject(this)['labelColor']);
-  void set map(GMap _map) {
+  set map(GMap _map) {
     asJsObject(this)['map'] = __codec0.encode(_map);
   }
 
   GMap get map => __codec0.decode(asJsObject(this)['map']);
-  void set suppressInfoWindows(bool _suppressInfoWindows) {
+  set suppressInfoWindows(bool _suppressInfoWindows) {
     asJsObject(this)['suppressInfoWindows'] = _suppressInfoWindows;
   }
 
   bool get suppressInfoWindows => asJsObject(this)['suppressInfoWindows'];
-  void set temperatureUnits(TemperatureUnit _temperatureUnits) {
+  set temperatureUnits(TemperatureUnit _temperatureUnits) {
     asJsObject(this)['temperatureUnits'] = __codec4.encode(_temperatureUnits);
   }
 
   TemperatureUnit get temperatureUnits =>
       __codec4.decode(asJsObject(this)['temperatureUnits']);
-  void set windSpeedUnits(WindSpeedUnit _windSpeedUnits) {
+  set windSpeedUnits(WindSpeedUnit _windSpeedUnits) {
     asJsObject(this)['windSpeedUnits'] = __codec5.encode(_windSpeedUnits);
   }
 
@@ -246,26 +246,26 @@ class WeatherLayerOptions extends JsInterface {
 @GeneratedFrom(_WeatherMouseEvent)
 @anonymous
 class WeatherMouseEvent extends JsInterface {
+  WeatherMouseEvent() : this.created(JsObject(context['Object']));
   WeatherMouseEvent.created(JsObject o) : super.created(o);
-  WeatherMouseEvent() : this.created(new JsObject(context['Object']));
 
-  void set featureDetails(WeatherFeature _featureDetails) {
+  set featureDetails(WeatherFeature _featureDetails) {
     asJsObject(this)['featureDetails'] = __codec8.encode(_featureDetails);
   }
 
   WeatherFeature get featureDetails =>
       __codec8.decode(asJsObject(this)['featureDetails']);
-  void set infoWindowHtml(String _infoWindowHtml) {
+  set infoWindowHtml(String _infoWindowHtml) {
     asJsObject(this)['infoWindowHtml'] = _infoWindowHtml;
   }
 
   String get infoWindowHtml => asJsObject(this)['infoWindowHtml'];
-  void set latLng(LatLng _latLng) {
+  set latLng(LatLng _latLng) {
     asJsObject(this)['latLng'] = __codec9.encode(_latLng);
   }
 
   LatLng get latLng => __codec9.decode(asJsObject(this)['latLng']);
-  void set pixelOffset(Size _pixelOffset) {
+  set pixelOffset(Size _pixelOffset) {
     asJsObject(this)['pixelOffset'] = __codec10.encode(_pixelOffset);
   }
 
@@ -278,20 +278,20 @@ class WindSpeedUnit extends JsEnum {
     METERS_PER_SECOND,
     MILES_PER_HOUR
   ];
-  static final KILOMETERS_PER_HOUR = new WindSpeedUnit._(
+  static final KILOMETERS_PER_HOUR = WindSpeedUnit._(
       'KILOMETERS_PER_HOUR',
       context['google']['maps']['weather']['WindSpeedUnit']
           ['KILOMETERS_PER_HOUR']);
-  static final METERS_PER_SECOND = new WindSpeedUnit._(
+  static final METERS_PER_SECOND = WindSpeedUnit._(
       'METERS_PER_SECOND',
       context['google']['maps']['weather']['WindSpeedUnit']
           ['METERS_PER_SECOND']);
-  static final MILES_PER_HOUR = new WindSpeedUnit._('MILES_PER_HOUR',
+  static final MILES_PER_HOUR = WindSpeedUnit._('MILES_PER_HOUR',
       context['google']['maps']['weather']['WindSpeedUnit']['MILES_PER_HOUR']);
-
   final String _name;
   WindSpeedUnit._(this._name, o) : super.created(o);
 
+  @override
   String toString() => 'WindSpeedUnit.$_name';
 
   // dumb code to remove analyzer hint for unused _WindSpeedUnit
@@ -300,43 +300,43 @@ class WindSpeedUnit extends JsEnum {
 }
 
 /// codec for google_maps.src.GMap
-final __codec0 = new JsInterfaceCodec<GMap>((o) => new GMap.created(o));
+final __codec0 = JsInterfaceCodec<GMap>((o) => GMap.created(o));
 
 /// codec for google_maps.src.weather.WeatherConditions
-final __codec1 = new JsInterfaceCodec<WeatherConditions>(
-    (o) => new WeatherConditions.created(o));
+final __codec1 =
+    JsInterfaceCodec<WeatherConditions>((o) => WeatherConditions.created(o));
 
 /// codec for google_maps.src.weather.WeatherForecast
-final __codec2 = new JsInterfaceCodec<WeatherForecast>(
-    (o) => new WeatherForecast.created(o));
+final __codec2 =
+    JsInterfaceCodec<WeatherForecast>((o) => WeatherForecast.created(o));
 
 /// codec for dart.core.List<WeatherForecast>
-final __codec3 = new JsListCodec<WeatherForecast>(__codec2);
+final __codec3 = JsListCodec<WeatherForecast>(__codec2);
 
 /// codec for google_maps.src.weather.TemperatureUnit
-final __codec4 = new BiMapCodec<TemperatureUnit, dynamic>(
-    new Map<TemperatureUnit, dynamic>.fromIterable(TemperatureUnit.values,
+final __codec4 = BiMapCodec<TemperatureUnit, dynamic>(
+    Map<TemperatureUnit, dynamic>.fromIterable(TemperatureUnit.values,
         value: asJs));
 
 /// codec for google_maps.src.weather.WindSpeedUnit
-final __codec5 = new BiMapCodec<WindSpeedUnit, dynamic>(
-    new Map<WindSpeedUnit, dynamic>.fromIterable(WindSpeedUnit.values,
+final __codec5 = BiMapCodec<WindSpeedUnit, dynamic>(
+    Map<WindSpeedUnit, dynamic>.fromIterable(WindSpeedUnit.values,
         value: asJs));
 
 /// codec for google_maps.src.weather.WeatherLayerOptions
-final __codec6 = new JsInterfaceCodec<WeatherLayerOptions>(
-    (o) => new WeatherLayerOptions.created(o));
+final __codec6 = JsInterfaceCodec<WeatherLayerOptions>(
+    (o) => WeatherLayerOptions.created(o));
 
 /// codec for google_maps.src.weather.LabelColor
-final __codec7 = new BiMapCodec<LabelColor, dynamic>(
-    new Map<LabelColor, dynamic>.fromIterable(LabelColor.values, value: asJs));
+final __codec7 = BiMapCodec<LabelColor, dynamic>(
+    Map<LabelColor, dynamic>.fromIterable(LabelColor.values, value: asJs));
 
 /// codec for google_maps.src.weather.WeatherFeature
 final __codec8 =
-    new JsInterfaceCodec<WeatherFeature>((o) => new WeatherFeature.created(o));
+    JsInterfaceCodec<WeatherFeature>((o) => WeatherFeature.created(o));
 
 /// codec for google_maps.src.LatLng
-final __codec9 = new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o));
+final __codec9 = JsInterfaceCodec<LatLng>((o) => LatLng.created(o));
 
 /// codec for google_maps.src.Size
-final __codec10 = new JsInterfaceCodec<Size>((o) => new Size.created(o));
+final __codec10 = JsInterfaceCodec<Size>((o) => Size.created(o));

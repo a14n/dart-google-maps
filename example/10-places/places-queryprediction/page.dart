@@ -7,9 +7,9 @@ GMap map;
 InfoWindow infowindow;
 
 void main() {
-  final service = new AutocompleteService();
+  final service = AutocompleteService();
   service.getQueryPredictions(
-      new QueryAutocompletionRequest()..input = 'pizza near', callback);
+      QueryAutocompletionRequest()..input = 'pizza near', callback);
 }
 
 void callback(

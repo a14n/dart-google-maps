@@ -23,10 +23,12 @@ abstract class _DirectionsGeocodedWaypoint implements JsInterface {
   void set partialMatch(bool partialMatch) {
     _partial_match = partialMatch;
   }
+
   String _place_id;
   String get placeId => _place_id;
   void set placeId(String placeId) {
     _place_id = placeId;
   }
+
   List<String> types;
 }

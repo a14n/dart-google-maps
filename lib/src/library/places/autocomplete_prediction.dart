@@ -24,11 +24,13 @@ abstract class _AutocompletePrediction implements JsInterface {
   void set matchedSubstrings(List<PredictionSubstring> matchedSubstrings) {
     _matched_substrings = matchedSubstrings;
   }
+
   String _place_id;
   String get placeId => _place_id;
   void set placeId(String placeId) {
     _place_id = placeId;
   }
+
   List<PredictionTerm> terms;
   List<String> types;
 }

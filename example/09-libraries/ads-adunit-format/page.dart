@@ -71,16 +71,16 @@ final SAMPLE_AD_STYLES = {
 };
 
 void main() {
-  final mapOptions = new MapOptions()
-    ..center = new LatLng(36.5987, -121.8950)
+  final mapOptions = MapOptions()
+    ..center = LatLng(36.5987, -121.8950)
     ..zoom = 12;
-  final map = new GMap(document.getElementById('map-canvas'), mapOptions);
+  final map = GMap(document.getElementById('map-canvas'), mapOptions);
 
-  final adUnitDiv = new DivElement();
+  final adUnitDiv = DivElement();
 
   // Note: replace the publisher ID noted here with your own
   // publisher ID.
-  final adUnitOptions = new AdUnitOptions()
+  final adUnitOptions = AdUnitOptions()
     ..format = AdFormat.HALF_BANNER
     ..position = ControlPosition.TOP_CENTER
     ..backgroundColor = '#c4d4f3'
@@ -91,7 +91,7 @@ void main() {
     ..publisherId = 'ca-google-maps_apidocs'
     ..map = map;
   asJsObject(adUnitOptions)['visible'] = true;
-  final adUnit = new AdUnit(adUnitDiv, adUnitOptions);
+  final adUnit = AdUnit(adUnitDiv, adUnitOptions);
 
   final format = document.getElementById('format') as SelectElement;
   event.addDomListener(format, 'change', (e) {

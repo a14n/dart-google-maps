@@ -2,26 +2,26 @@ import 'dart:html';
 import 'package:google_maps/google_maps.dart';
 
 void main() {
-  final mapOptions = new MapOptions()
+  final mapOptions = MapOptions()
     ..zoom = 1
-    ..center = new LatLng(24.886, -70.268)
+    ..center = LatLng(24.886, -70.268)
     ..mapTypeId = MapTypeId.TERRAIN;
-  final map = new GMap(document.getElementById('map-canvas'), mapOptions);
+  final map = GMap(document.getElementById('map-canvas'), mapOptions);
 
   var blueCoords = <LatLng>[
-    new LatLng(25.774, -60.190),
-    new LatLng(18.466, -46.118),
-    new LatLng(32.321, -44.757)
+    LatLng(25.774, -60.190),
+    LatLng(18.466, -46.118),
+    LatLng(32.321, -44.757)
   ];
 
   var redCoords = <LatLng>[
-    new LatLng(25.774, -80.190),
-    new LatLng(18.466, -66.118),
-    new LatLng(32.321, -64.757)
+    LatLng(25.774, -80.190),
+    LatLng(18.466, -66.118),
+    LatLng(32.321, -64.757)
   ];
 
   // Construct a draggable red triangle with geodesic set to true.
-  new Polygon(new PolygonOptions()
+  Polygon(PolygonOptions()
     ..map = map
     ..paths = redCoords
     ..strokeColor = '#FF0000'
@@ -33,7 +33,7 @@ void main() {
     ..geodesic = true);
 
   // Construct a draggable blue triangle with geodesic set to false.
-  new Polygon(new PolygonOptions()
+  Polygon(PolygonOptions()
     ..map = map
     ..paths = blueCoords
     ..strokeColor = '#0000FF'

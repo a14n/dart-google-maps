@@ -26,48 +26,61 @@ abstract class _MarkerOptions implements JsInterface {
   String cursor;
   bool draggable;
   dynamic _icon;
-  dynamic /*String|Icon|GSymbol*/ get icon => (new ChainedCodec()
-    ..add(new IdentityCodec<String>())
-    ..add(new JsInterfaceCodec<Icon>((o) => new Icon.created(o)))
-    ..add(new JsInterfaceCodec<GSymbol>((o) => new GSymbol.created(o))))
+  dynamic /*String|Icon|GSymbol*/ get icon => (ChainedCodec()
+        ..add(IdentityCodec<String>())
+        ..add(JsInterfaceCodec<Icon>((o) => Icon.created(o)))
+        ..add(JsInterfaceCodec<GSymbol>((o) => GSymbol.created(o))))
       .decode(_icon);
   void set icon(dynamic /*String|Icon|GSymbol*/ icon) {
-    _icon = (new ChainedCodec()
-      ..add(new IdentityCodec<String>())
-      ..add(new JsInterfaceCodec<Icon>((o) => new Icon.created(o)))
-      ..add(new JsInterfaceCodec<GSymbol>((o) => new GSymbol.created(o))))
+    _icon = (ChainedCodec()
+          ..add(IdentityCodec<String>())
+          ..add(JsInterfaceCodec<Icon>((o) => Icon.created(o)))
+          ..add(JsInterfaceCodec<GSymbol>((o) => GSymbol.created(o))))
         .encode(icon);
   }
+
   dynamic _label;
-  dynamic /*String|MarkerLabel*/ get label => (new ChainedCodec()
-    ..add(new IdentityCodec<String>())
-    ..add(new JsInterfaceCodec<MarkerLabel>((o) => new MarkerLabel.created(o))))
+  dynamic /*String|MarkerLabel*/ get label => (ChainedCodec()
+        ..add(IdentityCodec<String>())
+        ..add(JsInterfaceCodec<MarkerLabel>((o) => MarkerLabel.created(o))))
       .decode(_label);
   void set label(dynamic /*String|MarkerLabel*/ label) {
-    _label = (new ChainedCodec()
-      ..add(new IdentityCodec<String>())
-      ..add(
-          new JsInterfaceCodec<MarkerLabel>((o) => new MarkerLabel.created(o))))
+    _label = (ChainedCodec()
+          ..add(IdentityCodec<String>())
+          ..add(JsInterfaceCodec<MarkerLabel>((o) => MarkerLabel.created(o))))
         .encode(label);
   }
+
   dynamic _map;
-  dynamic /*GMap|StreetViewPanorama*/ get map => (new ChainedCodec()
-    ..add(new JsInterfaceCodec<GMap>((o) => new GMap.created(o),
-        (o) => o != null && o.instanceof(context['google']['maps']['Map'] as JsFunction)))
-    ..add(new JsInterfaceCodec<StreetViewPanorama>(
-            (o) => new StreetViewPanorama.created(o), (o) => o != null &&
-                o.instanceof(context['google']['maps']['StreetViewPanorama'] as JsFunction))))
+  dynamic /*GMap|StreetViewPanorama*/ get map => (ChainedCodec()
+        ..add(JsInterfaceCodec<GMap>(
+            (o) => GMap.created(o),
+            (o) =>
+                o != null &&
+                o.instanceof(context['google']['maps']['Map'] as JsFunction)))
+        ..add(JsInterfaceCodec<StreetViewPanorama>(
+            (o) => StreetViewPanorama.created(o),
+            (o) =>
+                o != null &&
+                o.instanceof(context['google']['maps']['StreetViewPanorama']
+                    as JsFunction))))
       .decode(_map);
   void set map(dynamic /*GMap|StreetViewPanorama*/ map) {
-    _map = (new ChainedCodec()
-      ..add(new JsInterfaceCodec<GMap>((o) => new GMap.created(o),
-          (o) => o != null && o.instanceof(context['google']['maps']['Map'] as JsFunction)))
-      ..add(new JsInterfaceCodec<StreetViewPanorama>(
-              (o) => new StreetViewPanorama.created(o), (o) => o != null &&
-                  o.instanceof(
-                      context['google']['maps']['StreetViewPanorama'] as JsFunction))))
+    _map = (ChainedCodec()
+          ..add(JsInterfaceCodec<GMap>(
+              (o) => GMap.created(o),
+              (o) =>
+                  o != null &&
+                  o.instanceof(context['google']['maps']['Map'] as JsFunction)))
+          ..add(JsInterfaceCodec<StreetViewPanorama>(
+              (o) => StreetViewPanorama.created(o),
+              (o) =>
+                  o != null &&
+                  o.instanceof(context['google']['maps']['StreetViewPanorama']
+                      as JsFunction))))
         .encode(map);
   }
+
   num opacity;
   bool optimized;
   MarkerPlace place;

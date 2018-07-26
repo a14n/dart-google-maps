@@ -26,6 +26,7 @@ abstract class _MapTypeStyler implements JsInterface {
   void set invertLightness(bool invertLightness) {
     _invert_lightness = invertLightness;
   }
+
   num lightness;
   num saturation;
   String visibility;

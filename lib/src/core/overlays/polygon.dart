@@ -25,26 +25,30 @@ abstract class _Polygon extends MVCObject {
   GMap get map => _getMap();
   GMap _getMap();
   MVCArray<LatLng> get path =>
-      (new JsInterfaceCodec<MVCArray<LatLng>>(
-              (o) => new MVCArray<LatLng>.created(o,
-                  new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
-                      (o) => o != null &&
-                          o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))))
+      (JsInterfaceCodec<MVCArray<LatLng>>((o) => MVCArray<LatLng>.created(
+              o,
+              JsInterfaceCodec<LatLng>(
+                  (o) => LatLng.created(o),
+                  (o) =>
+                      o != null &&
+                      o.instanceof(
+                          context['google']['maps']['LatLng'] as JsFunction)))))
           .decode(_getPath() as JsObject);
   _getPath();
   MVCArray<MVCArray<LatLng>> get paths =>
-      (new JsInterfaceCodec<MVCArray<MVCArray<LatLng>>>(
-              (o) =>
-                  new MVCArray<MVCArray<LatLng>>.created(o,
-                      new JsInterfaceCodec<MVCArray<LatLng>>(
-                          (o) => new MVCArray<LatLng>.created(o,
-                              new JsInterfaceCodec<LatLng>(
-                                  (o) => new LatLng.created(o),
-                                  (o) => o != null &&
-                                      o.instanceof(context['google']['maps'][
-                                          'LatLng'] as JsFunction)))))))
-          .decode(
-              _getPaths() as JsObject);
+      (JsInterfaceCodec<MVCArray<MVCArray<LatLng>>>((o) =>
+              MVCArray<MVCArray<LatLng>>.created(
+                  o,
+                  JsInterfaceCodec<MVCArray<LatLng>>((o) =>
+                      MVCArray<LatLng>.created(
+                          o,
+                          JsInterfaceCodec<LatLng>(
+                              (o) => LatLng.created(o),
+                              (o) =>
+                                  o != null &&
+                                  o.instanceof(context['google']['maps']
+                                      ['LatLng'] as JsFunction)))))))
+          .decode(_getPaths() as JsObject);
   _getPaths();
   bool get visible => _getVisible();
   bool _getVisible();
@@ -56,76 +60,66 @@ abstract class _Polygon extends MVCObject {
   void _setMap(GMap map);
   void set options(PolygonOptions options) => _setOptions(options);
   void _setOptions(PolygonOptions options);
-  void set path(dynamic /*MVCArray<LatLng>|List<LatLng>*/ path) =>
-      _setPath((new ChainedCodec()
-    ..add(new JsInterfaceCodec<MVCArray<LatLng>>(
-        (o) => new MVCArray<LatLng>.created(o, new JsInterfaceCodec<LatLng>(
-            (o) => new LatLng.created(o), (o) => o != null &&
+  void set path(dynamic /*MVCArray<LatLng>|List<LatLng>*/ path) => _setPath((ChainedCodec()
+        ..add(JsInterfaceCodec<MVCArray<LatLng>>((o) => MVCArray<LatLng>.created(
+            o,
+            JsInterfaceCodec<LatLng>(
+                (o) => LatLng.created(o),
+                (o) =>
+                    o != null &&
+                    o.instanceof(
+                        context['google']['maps']['LatLng'] as JsFunction)))))
+        ..add(JsListCodec<LatLng>(JsInterfaceCodec<LatLng>(
+            (o) => LatLng.created(o),
+            (o) =>
+                o != null &&
                 o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))))
-    ..add(new JsListCodec<LatLng>(new JsInterfaceCodec<LatLng>(
-        (o) => new LatLng.created(o), (o) =>
-            o != null && o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))))
       .encode(path));
   void _setPath(dynamic /*MVCArray<LatLng>|List<LatLng>*/ path);
   void set paths(
           dynamic /*MVCArray<MVCArray<LatLng>>|MVCArray<LatLng>|List<List<LatLng>>|List<LatLng>*/ paths) =>
-      _setPaths(
-          (new ChainedCodec()
-    ..add(
-        new JsInterfaceCodec<MVCArray<MVCArray<LatLng>>>(
-            (o) =>
-                new MVCArray<MVCArray<LatLng>>.created(o,
-                    new JsInterfaceCodec<MVCArray<LatLng>>(
-                        (o) => new MVCArray<LatLng>.created(o,
-                            new JsInterfaceCodec<LatLng>(
-                                (o) => new LatLng.created(o),
-                                (o) => o != null &&
-                                    o.instanceof(context['google']['maps'][
-                                        'LatLng'] as JsFunction)))))))
-    ..add(
-        new JsInterfaceCodec<MVCArray<LatLng>>(
-            (o) =>
-                new MVCArray<LatLng>.created(o, new JsInterfaceCodec<LatLng>(
-                    (o) => new LatLng.created(o), (o) => o != null &&
-                        o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))))
-    ..add(
-        new JsListCodec<List<LatLng>>(
-            new JsListCodec<LatLng>(
-                new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
-                    (o) => o != null &&
-                        o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))))
-    ..add(
-        new JsListCodec<LatLng>(
-            new JsInterfaceCodec<LatLng>(
-                (o) => new LatLng.created(o),
-                (o) => o != null &&
-                    o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))))
-              .encode(paths));
+      _setPaths((ChainedCodec()
+            ..add(JsInterfaceCodec<MVCArray<MVCArray<LatLng>>>((o) =>
+                MVCArray<MVCArray<LatLng>>.created(
+                    o,
+                    JsInterfaceCodec<MVCArray<LatLng>>((o) =>
+                        MVCArray<LatLng>.created(
+                            o,
+                            JsInterfaceCodec<LatLng>(
+                                (o) => LatLng.created(o),
+                                (o) =>
+                                    o != null &&
+                                    o.instanceof(
+                                        context['google']['maps']['LatLng'] as JsFunction)))))))
+            ..add(JsInterfaceCodec<MVCArray<LatLng>>((o) => MVCArray<LatLng>.created(o, JsInterfaceCodec<LatLng>((o) => LatLng.created(o), (o) => o != null && o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))))
+            ..add(JsListCodec<List<LatLng>>(JsListCodec<LatLng>(JsInterfaceCodec<LatLng>((o) => LatLng.created(o), (o) => o != null && o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))))
+            ..add(JsListCodec<LatLng>(JsInterfaceCodec<LatLng>((o) => LatLng.created(o), (o) => o != null && o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))))
+          .encode(paths));
   void _setPaths(
       dynamic /*MVCArray<MVCArray<LatLng>>|MVCArray<LatLng>|List<List<LatLng>>|List<LatLng>*/ paths);
   void set visible(bool visible) => _setVisible(visible);
   void _setVisible(bool visible);
 
   Stream<PolyMouseEvent> get onClick => getStream(
-      this, #onClick, "click", (JsObject o) => new PolyMouseEvent.created(o));
-  Stream<PolyMouseEvent> get onDblclick => getStream(this, #onDblclick,
-      "dblclick", (JsObject o) => new PolyMouseEvent.created(o));
-  Stream<MouseEvent> get onDrag => getStream(
-      this, #onDrag, "drag", (JsObject o) => new MouseEvent.created(o));
+      this, #onClick, "click", (JsObject o) => PolyMouseEvent.created(o));
+  Stream<PolyMouseEvent> get onDblclick => getStream(
+      this, #onDblclick, "dblclick", (JsObject o) => PolyMouseEvent.created(o));
+  Stream<MouseEvent> get onDrag =>
+      getStream(this, #onDrag, "drag", (JsObject o) => MouseEvent.created(o));
   Stream<MouseEvent> get onDragend => getStream(
-      this, #onDragend, "dragend", (JsObject o) => new MouseEvent.created(o));
-  Stream<MouseEvent> get onDragstart => getStream(this, #onDragstart,
-      "dragstart", (JsObject o) => new MouseEvent.created(o));
+      this, #onDragend, "dragend", (JsObject o) => MouseEvent.created(o));
+  Stream<MouseEvent> get onDragstart => getStream(
+      this, #onDragstart, "dragstart", (JsObject o) => MouseEvent.created(o));
   Stream<PolyMouseEvent> get onMousedown => getStream(this, #onMousedown,
-      "mousedown", (JsObject o) => new PolyMouseEvent.created(o));
+      "mousedown", (JsObject o) => PolyMouseEvent.created(o));
   Stream<PolyMouseEvent> get onMousemove => getStream(this, #onMousemove,
-      "mousemove", (JsObject o) => new PolyMouseEvent.created(o));
-  Stream<PolyMouseEvent> get onMouseout => getStream(this, #onMouseout,
-      "mouseout", (JsObject o) => new PolyMouseEvent.created(o));
+      "mousemove", (JsObject o) => PolyMouseEvent.created(o));
+  Stream<PolyMouseEvent> get onMouseout => getStream(
+      this, #onMouseout, "mouseout", (JsObject o) => PolyMouseEvent.created(o));
   Stream<PolyMouseEvent> get onMouseover => getStream(this, #onMouseover,
-      "mouseover", (JsObject o) => new PolyMouseEvent.created(o));
-  Stream<PolyMouseEvent> get onMouseup => getStream(this, #onMouseup, "mouseup",
-      (JsObject o) => new PolyMouseEvent.created(o));
+      "mouseover", (JsObject o) => PolyMouseEvent.created(o));
+  Stream<PolyMouseEvent> get onMouseup => getStream(
+      this, #onMouseup, "mouseup", (JsObject o) => PolyMouseEvent.created(o));
   Stream<PolyMouseEvent> get onRightclick => getStream(this, #onRightclick,
-      "rightclick", (JsObject o) => new PolyMouseEvent.created(o));
+      "rightclick", (JsObject o) => PolyMouseEvent.created(o));
 }

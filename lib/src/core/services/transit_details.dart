@@ -23,21 +23,25 @@ abstract class _TransitDetails implements JsInterface {
   void set arrivalStop(TransitStop arrivalStop) {
     _arrival_stop = arrivalStop;
   }
+
   Time _arrival_time;
   Time get arrivalTime => _arrival_time;
   void set arrivalTime(Time arrivalTime) {
     _arrival_time = arrivalTime;
   }
+
   TransitStop _departure_stop;
   TransitStop get departureStop => _departure_stop;
   void set departureStop(TransitStop departureStop) {
     _departure_stop = departureStop;
   }
+
   Time _departure_time;
   Time get departureTime => _departure_time;
   void set departureTime(Time departureTime) {
     _departure_time = departureTime;
   }
+
   String headsign;
   num headway;
   TransitLine line;

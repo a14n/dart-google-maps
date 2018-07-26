@@ -24,11 +24,13 @@ abstract class _PlaceReview implements JsInterface {
   void set authorName(String authorName) {
     _author_name = authorName;
   }
+
   String _author_url;
   String get authorUrl => _author_url;
   void set authorUrl(String authorUrl) {
     _author_url = authorUrl;
   }
+
   String language;
   String text;
 }

@@ -6,16 +6,15 @@ GMap map;
 InfoWindow infoWindow;
 
 void main() {
-  final mapOptions = new MapOptions()
-    ..center = new LatLng(44.5452, -78.5389)
+  final mapOptions = MapOptions()
+    ..center = LatLng(44.5452, -78.5389)
     ..zoom = 9;
-  map = new GMap(document.getElementById('map-canvas'), mapOptions);
+  map = GMap(document.getElementById('map-canvas'), mapOptions);
 
-  final bounds = new LatLngBounds(
-      new LatLng(44.490, -78.649), new LatLng(44.599, -78.443));
+  final bounds = LatLngBounds(LatLng(44.490, -78.649), LatLng(44.599, -78.443));
 
   // Define the rectangle and set its editable property to true.
-  rectangle = new Rectangle(new RectangleOptions()
+  rectangle = Rectangle(RectangleOptions()
     ..bounds = bounds
     ..editable = true
     ..draggable = true);
@@ -26,7 +25,7 @@ void main() {
   rectangle.onBoundsChanged.listen(showNewRect);
 
   // Define an info window on the map.
-  infoWindow = new InfoWindow();
+  infoWindow = InfoWindow();
 }
 
 void showNewRect(event) {

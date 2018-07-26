@@ -3,16 +3,16 @@ import 'dart:html';
 import 'package:google_maps/google_maps.dart';
 
 DirectionsRenderer directionsDisplay;
-final directionsService = new DirectionsService();
+final directionsService = DirectionsService();
 GMap map;
 
 void main() {
-  directionsDisplay = new DirectionsRenderer();
-  final chicago = new LatLng(41.850033, -87.6500523);
-  final mapOptions = new MapOptions()
+  directionsDisplay = DirectionsRenderer();
+  final chicago = LatLng(41.850033, -87.6500523);
+  final mapOptions = MapOptions()
     ..zoom = 7
     ..center = chicago;
-  map = new GMap(document.getElementById('map-canvas'), mapOptions);
+  map = GMap(document.getElementById('map-canvas'), mapOptions);
   directionsDisplay.map = map;
 
   document.getElementById('start').onChange.listen((e) => calcRoute());
@@ -22,7 +22,7 @@ void main() {
 void calcRoute() {
   final start = (document.getElementById('start') as SelectElement).value;
   final end = (document.getElementById('end') as SelectElement).value;
-  final request = new DirectionsRequest()
+  final request = DirectionsRequest()
     ..origin = start
     ..destination = end
     ..travelMode = TravelMode.DRIVING;

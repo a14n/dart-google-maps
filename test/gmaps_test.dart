@@ -6,7 +6,7 @@ import 'package:google_maps/google_maps.dart';
 import 'package:test/test.dart';
 
 void injectSource(String code) {
-  final script = new ScriptElement();
+  final script = ScriptElement();
   script.type = 'text/javascript';
   script.innerHtml = code;
   document.body.nodes.add(script);
@@ -14,20 +14,20 @@ void injectSource(String code) {
 
 main() {
   test('LatLng.toString call js', () {
-    final latLng = new LatLng(2, 8);
+    final latLng = LatLng(2, 8);
     expect(latLng.toString(), equals("(2, 8)"));
   });
 
   test('LatLng.equals call js', () {
-    final latLng1 = new LatLng(2, 8);
-    final latLng2 = new LatLng(2, 8);
-    final latLng3 = new LatLng(2, 9);
+    final latLng1 = LatLng(2, 8);
+    final latLng2 = LatLng(2, 8);
+    final latLng3 = LatLng(2, 9);
     expect(latLng1.equals(latLng2), isTrue);
     expect(latLng1.equals(latLng3), isFalse);
   });
 
   test('MVCArray works', () {
-    final mvcArray = new MVCArray();
+    final mvcArray = MVCArray();
     mvcArray.onInsertAt.listen((int i) => print("inserted at $i"));
     mvcArray.onRemoveAt.listen(
         (IndexAndElement e) => print("removed ${e.element} at ${e.index}"));

@@ -4,16 +4,15 @@ import 'package:google_maps/google_maps.dart';
 GMap map;
 
 void main() {
-  final mapOptions = new MapOptions()..zoom = 6;
-  map = new GMap(document.getElementById("map-canvas"), mapOptions);
+  final mapOptions = MapOptions()..zoom = 6;
+  map = GMap(document.getElementById("map-canvas"), mapOptions);
 
   // Try HTML5 geolocation
   if (window.navigator.geolocation != null) {
     window.navigator.geolocation.getCurrentPosition().then((position) {
-      final pos =
-          new LatLng(position.coords.latitude, position.coords.longitude);
+      final pos = LatLng(position.coords.latitude, position.coords.longitude);
 
-      final infowindow = new InfoWindow(new InfoWindowOptions()
+      final infowindow = InfoWindow(InfoWindowOptions()
         ..position = pos
         ..content = 'Location found using HTML5.');
       // FIXME https://code.google.com/p/gmaps-api-issues/issues/detail?id=7908
@@ -37,11 +36,11 @@ void handleNoGeolocation(bool errorFlag) {
     content = 'Error: Your browser doesn\'t support geolocation.';
   }
 
-  final options = new InfoWindowOptions()
-    ..position = new LatLng(60, 105)
+  final options = InfoWindowOptions()
+    ..position = LatLng(60, 105)
     ..content = content;
 
-  final infowindow = new InfoWindow(options);
+  final infowindow = InfoWindow(options);
   // FIXME https://code.google.com/p/gmaps-api-issues/issues/detail?id=7908
   infowindow.open(map);
 

@@ -9,45 +9,45 @@ Marker marker1;
 Marker marker2;
 
 void main() {
-  final mapOptions = new MapOptions()
-    ..center = new LatLng(34, -40.605)
+  final mapOptions = MapOptions()
+    ..center = LatLng(34, -40.605)
     ..zoom = 4;
 
-  final map = new GMap(document.getElementById('map-canvas'), mapOptions);
+  final map = GMap(document.getElementById('map-canvas'), mapOptions);
 
   map.controls[ControlPosition.TOP_CENTER]
       .push(document.getElementById('info'));
 
-  marker1 = new Marker(new MarkerOptions()
+  marker1 = Marker(MarkerOptions()
     ..map = map
     ..draggable = true
-    ..position = new LatLng(40.71435280, -74.0059731));
+    ..position = LatLng(40.71435280, -74.0059731));
 
-  marker2 = new Marker(new MarkerOptions()
+  marker2 = Marker(MarkerOptions()
     ..map = map
     ..draggable = true
-    ..position = new LatLng(48.8566140, 2.35222190));
+    ..position = LatLng(48.8566140, 2.35222190));
 
-  final bounds = new LatLngBounds(marker1.position, marker2.position);
+  final bounds = LatLngBounds(marker1.position, marker2.position);
   map.fitBounds(bounds);
 
   marker1.onPositionChanged.listen((_) => update());
   marker2.onPositionChanged.listen((_) => update());
 
-  final polyOptions = new PolylineOptions()
+  final polyOptions = PolylineOptions()
     ..strokeColor = '#FF0000'
     ..strokeOpacity = 1.0
     ..strokeWeight = 3
     ..map = map;
-  poly = new Polyline(polyOptions);
+  poly = Polyline(polyOptions);
 
-  final geodesicOptions = new PolylineOptions()
+  final geodesicOptions = PolylineOptions()
     ..strokeColor = '#CC0099'
     ..strokeOpacity = 1.0
     ..strokeWeight = 3
     ..geodesic = true
     ..map = map;
-  geodesicPoly = new Polyline(geodesicOptions);
+  geodesicPoly = Polyline(geodesicOptions);
 
   update();
 }

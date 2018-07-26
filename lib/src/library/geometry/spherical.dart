@@ -14,49 +14,77 @@
 
 part of google_maps.src.geometry;
 
-final spherical =
-    new Spherical.created(context['google']['maps']['geometry']['spherical'] as JsObject);
+final spherical = Spherical.created(
+    context['google']['maps']['geometry']['spherical'] as JsObject);
+
 abstract class _Spherical implements JsInterface {
   num computeArea(dynamic /*List<LatLng>|MVCArray<LatLng>*/ path,
           [num radius]) =>
-      _computeArea((new ChainedCodec()
-    ..add(new JsListCodec<LatLng>(new JsInterfaceCodec<LatLng>(
-        (o) => new LatLng.created(o),
-        (o) => o != null && o.instanceof(context['google']['maps']['LatLng'] as JsFunction))))
-    ..add(new JsInterfaceCodec<MVCArray<LatLng>>(
-        (o) => new MVCArray<LatLng>.created(o, new JsInterfaceCodec<LatLng>(
-                (o) => new LatLng.created(o), (o) => o != null &&
-                    o.instanceof(context['google']['maps']['LatLng'] as JsFunction))))))
-          .encode(path), radius) as num;
+      _computeArea(
+          (ChainedCodec()
+                ..add(JsListCodec<LatLng>(JsInterfaceCodec<LatLng>(
+                    (o) => LatLng.created(o),
+                    (o) =>
+                        o != null &&
+                        o.instanceof(context['google']['maps']['LatLng']
+                            as JsFunction))))
+                ..add(JsInterfaceCodec<MVCArray<LatLng>>((o) =>
+                    MVCArray<LatLng>.created(
+                        o,
+                        JsInterfaceCodec<LatLng>(
+                            (o) => LatLng.created(o),
+                            (o) =>
+                                o != null &&
+                                o.instanceof(context['google']['maps']['LatLng'] as JsFunction))))))
+              .encode(path),
+          radius) as num;
   _computeArea(dynamic /*List<LatLng>|MVCArray<LatLng>*/ path, [num radius]);
   num computeDistanceBetween(LatLng from, LatLng to, [num radius]);
   num computeHeading(LatLng from, LatLng to);
-  num computeLength(dynamic /*List<LatLng>|MVCArray<LatLng>*/ path,
-          [num radius]) =>
-      _computeLength((new ChainedCodec()
-    ..add(new JsListCodec<LatLng>(new JsInterfaceCodec<LatLng>(
-        (o) => new LatLng.created(o),
-        (o) => o != null && o.instanceof(context['google']['maps']['LatLng'] as JsFunction))))
-    ..add(new JsInterfaceCodec<MVCArray<LatLng>>(
-        (o) => new MVCArray<LatLng>.created(o, new JsInterfaceCodec<LatLng>(
-                (o) => new LatLng.created(o), (o) => o != null &&
-                    o.instanceof(context['google']['maps']['LatLng'] as JsFunction))))))
-          .encode(path), radius) as num;
+  num computeLength(dynamic /*List<LatLng>|MVCArray<LatLng>*/ path, [num radius]) =>
+      _computeLength(
+          (ChainedCodec()
+                ..add(JsListCodec<LatLng>(JsInterfaceCodec<LatLng>(
+                    (o) => LatLng.created(o),
+                    (o) =>
+                        o != null &&
+                        o.instanceof(context['google']['maps']['LatLng']
+                            as JsFunction))))
+                ..add(JsInterfaceCodec<MVCArray<LatLng>>((o) =>
+                    MVCArray<LatLng>.created(
+                        o,
+                        JsInterfaceCodec<LatLng>(
+                            (o) => LatLng.created(o),
+                            (o) =>
+                                o != null &&
+                                o.instanceof(
+                                    context['google']['maps']['LatLng'] as JsFunction))))))
+              .encode(path),
+          radius) as num;
   _computeLength(dynamic /*List<LatLng>|MVCArray<LatLng>*/ path, [num radius]);
   LatLng computeOffset(LatLng from, num distance, num heading, [num radius]);
   LatLng computeOffsetOrigin(LatLng to, num distance, num heading,
       [num radius]);
   num computeSignedArea(dynamic /*List<LatLng>|MVCArray<LatLng>*/ loop,
           [num radius]) =>
-      _computeSignedArea((new ChainedCodec()
-    ..add(new JsListCodec<LatLng>(new JsInterfaceCodec<LatLng>(
-        (o) => new LatLng.created(o),
-        (o) => o != null && o.instanceof(context['google']['maps']['LatLng'] as JsFunction))))
-    ..add(new JsInterfaceCodec<MVCArray<LatLng>>(
-        (o) => new MVCArray<LatLng>.created(o, new JsInterfaceCodec<LatLng>(
-                (o) => new LatLng.created(o), (o) => o != null &&
-                    o.instanceof(context['google']['maps']['LatLng'] as JsFunction))))))
-          .encode(loop), radius) as num;
+      _computeSignedArea(
+          (ChainedCodec()
+                ..add(JsListCodec<LatLng>(JsInterfaceCodec<LatLng>(
+                    (o) => LatLng.created(o),
+                    (o) =>
+                        o != null &&
+                        o.instanceof(context['google']['maps']['LatLng']
+                            as JsFunction))))
+                ..add(JsInterfaceCodec<MVCArray<LatLng>>((o) =>
+                    MVCArray<LatLng>.created(
+                        o,
+                        JsInterfaceCodec<LatLng>(
+                            (o) => LatLng.created(o),
+                            (o) =>
+                                o != null &&
+                                o.instanceof(context['google']['maps']['LatLng'] as JsFunction))))))
+              .encode(loop),
+          radius) as num;
   _computeSignedArea(dynamic /*List<LatLng>|MVCArray<LatLng>*/ loop,
       [num radius]);
   LatLng interpolate(LatLng from, LatLng to, num fraction);

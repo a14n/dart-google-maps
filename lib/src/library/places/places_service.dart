@@ -18,13 +18,13 @@ part of google_maps.src.places;
 abstract class _PlacesService extends JsInterface {
   _PlacesService.created(JsObject o) : super.created(o);
   _PlacesService(dynamic /*DivElement|GMap*/ attrContainer)
-      : this.created(new JsObject(
+      : this.created(JsObject(
             context['google']['maps']['places']['PlacesService'] as JsFunction,
             [
-              (new ChainedCodec()
-                    ..add(new IdentityCodec<DivElement>())
-                    ..add(new JsInterfaceCodec<GMap>(
-                        (o) => new GMap.created(o),
+              (ChainedCodec()
+                    ..add(IdentityCodec<DivElement>())
+                    ..add(JsInterfaceCodec<GMap>(
+                        (o) => GMap.created(o),
                         (o) =>
                             o != null &&
                             o.instanceof(context['google']['maps']['Map']

@@ -6,9 +6,9 @@ import 'package:js_wrapping/js_wrapping.dart';
 class CoordMapType extends MapType {
   CoordMapType(Size tileSize) : super() {
     this.tileSize = tileSize;
-    asJsObject(this)['getTile'] = (JsObject tileCoord, num zoom,
-        HtmlDocument ownerDocument) {
-      return _getTile(new Point.created(tileCoord), zoom, ownerDocument);
+    asJsObject(this)['getTile'] =
+        (JsObject tileCoord, num zoom, HtmlDocument ownerDocument) {
+      return _getTile(Point.created(tileCoord), zoom, ownerDocument);
     };
   }
 
@@ -27,16 +27,16 @@ class CoordMapType extends MapType {
 }
 
 GMap map;
-final chicago = new LatLng(41.850033, -87.6500523);
+final chicago = LatLng(41.850033, -87.6500523);
 
 void main() {
-  final mapOptions = new MapOptions()
+  final mapOptions = MapOptions()
     ..zoom = 10
     ..center = chicago;
-  map = new GMap(document.getElementById('map-canvas'), mapOptions);
+  map = GMap(document.getElementById('map-canvas'), mapOptions);
 
   // Insert this overlay map type as the first overlay map type at
   // position 0. Note that all overlay map types appear on top of
   // their parent base map.
-  map.overlayMapTypes.insertAt(0, new CoordMapType(new Size(256, 256)));
+  map.overlayMapTypes.insertAt(0, CoordMapType(Size(256, 256)));
 }

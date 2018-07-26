@@ -33,6 +33,6 @@ abstract class _PanoramioLayer extends MVCObject {
   void set userId(String userId) => _setUserId(userId);
   void _setUserId(String userId);
 
-  Stream<PanoramioMouseEvent> get onClick => getStream(this, #onClick, "click",
-      (JsObject o) => new PanoramioMouseEvent.created(o));
+  Stream<PanoramioMouseEvent> get onClick => getStream(
+      this, #onClick, "click", (JsObject o) => PanoramioMouseEvent.created(o));
 }

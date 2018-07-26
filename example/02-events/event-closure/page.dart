@@ -3,27 +3,27 @@ import 'dart:math' as Math;
 import 'package:google_maps/google_maps.dart';
 
 void main() {
-  final mapOptions = new MapOptions()
+  final mapOptions = MapOptions()
     ..zoom = 4
-    ..center = new LatLng(-25.363882, 131.044922);
+    ..center = LatLng(-25.363882, 131.044922);
 
-  final map = new GMap(document.getElementById('map-canvas'), mapOptions);
+  final map = GMap(document.getElementById('map-canvas'), mapOptions);
 
   // Add 5 markers to the map at random locations.
-  final southWest = new LatLng(-31.203405, 125.244141);
-  final northEast = new LatLng(-25.363882, 131.044922);
+  final southWest = LatLng(-31.203405, 125.244141);
+  final northEast = LatLng(-25.363882, 131.044922);
 
-  final bounds = new LatLngBounds(southWest, northEast);
+  final bounds = LatLngBounds(southWest, northEast);
   map.fitBounds(bounds);
 
   final lngSpan = northEast.lng - southWest.lng;
   final latSpan = northEast.lat - southWest.lat;
 
-  final random = new Math.Random();
+  final random = Math.Random();
   for (var i = 0; i < 5; i++) {
-    final position = new LatLng(southWest.lat + latSpan * random.nextDouble(),
+    final position = LatLng(southWest.lat + latSpan * random.nextDouble(),
         southWest.lng + lngSpan * random.nextDouble());
-    final marker = new Marker(new MarkerOptions()
+    final marker = Marker(MarkerOptions()
       ..position = position
       ..map = map);
 
@@ -36,8 +36,7 @@ void main() {
 // but that message is not within the marker's instance data.
 void attachSecretMessage(Marker marker, int number) {
   final message = ["This", "is", "the", "secret", "message"];
-  final infowindow =
-      new InfoWindow(new InfoWindowOptions()..content = message[number]);
+  final infowindow = InfoWindow(InfoWindowOptions()..content = message[number]);
   marker.onClick.listen((e) {
     infowindow.open(marker.map, marker);
   });

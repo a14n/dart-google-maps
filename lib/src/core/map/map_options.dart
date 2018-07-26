@@ -23,7 +23,8 @@ abstract class _MapOptions implements JsInterface {
   bool clickableIcons;
   bool disableDefaultUI;
   bool disableDoubleClickZoom;
-  @Deprecated("To disable dragging of the map on desktop devices, use the gestureHandling property and set it to 'none'")
+  @Deprecated(
+      "To disable dragging of the map on desktop devices, use the gestureHandling property and set it to 'none'")
   bool draggable;
   String draggableCursor;
   String draggingCursor;
@@ -35,24 +36,28 @@ abstract class _MapOptions implements JsInterface {
   bool mapTypeControl;
   MapTypeControlOptions mapTypeControlOptions;
   dynamic _mapTypeId;
-  dynamic /*MapTypeId|String*/ get mapTypeId => (new ChainedCodec()
-    ..add(new BiMapCodec<MapTypeId, dynamic>({
-      MapTypeId.HYBRID: context['google']['maps']['MapTypeId']['HYBRID'],
-      MapTypeId.ROADMAP: context['google']['maps']['MapTypeId']['ROADMAP'],
-      MapTypeId.SATELLITE: context['google']['maps']['MapTypeId']['SATELLITE'],
-      MapTypeId.TERRAIN: context['google']['maps']['MapTypeId']['TERRAIN']
-    }))
-    ..add(new IdentityCodec<String>())).decode(_mapTypeId);
+  dynamic /*MapTypeId|String*/ get mapTypeId => (ChainedCodec()
+        ..add(BiMapCodec<MapTypeId, dynamic>({
+          MapTypeId.HYBRID: context['google']['maps']['MapTypeId']['HYBRID'],
+          MapTypeId.ROADMAP: context['google']['maps']['MapTypeId']['ROADMAP'],
+          MapTypeId.SATELLITE: context['google']['maps']['MapTypeId']
+              ['SATELLITE'],
+          MapTypeId.TERRAIN: context['google']['maps']['MapTypeId']['TERRAIN']
+        }))
+        ..add(IdentityCodec<String>()))
+      .decode(_mapTypeId);
   void set mapTypeId(dynamic /*MapTypeId|String*/ mapTypeId) {
-    _mapTypeId = (new ChainedCodec()
-      ..add(new BiMapCodec<MapTypeId, dynamic>({
-        MapTypeId.HYBRID: context['google']['maps']['MapTypeId']['HYBRID'],
-        MapTypeId.ROADMAP: context['google']['maps']['MapTypeId']['ROADMAP'],
-        MapTypeId.SATELLITE:
-            context['google']['maps']['MapTypeId']['SATELLITE'],
-        MapTypeId.TERRAIN: context['google']['maps']['MapTypeId']['TERRAIN']
-      }))
-      ..add(new IdentityCodec<String>())).encode(mapTypeId);
+    _mapTypeId = (ChainedCodec()
+          ..add(BiMapCodec<MapTypeId, dynamic>({
+            MapTypeId.HYBRID: context['google']['maps']['MapTypeId']['HYBRID'],
+            MapTypeId.ROADMAP: context['google']['maps']['MapTypeId']
+                ['ROADMAP'],
+            MapTypeId.SATELLITE: context['google']['maps']['MapTypeId']
+                ['SATELLITE'],
+            MapTypeId.TERRAIN: context['google']['maps']['MapTypeId']['TERRAIN']
+          }))
+          ..add(IdentityCodec<String>()))
+        .encode(mapTypeId);
   }
 
   num maxZoom;

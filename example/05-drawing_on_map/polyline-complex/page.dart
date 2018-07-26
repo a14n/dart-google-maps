@@ -5,20 +5,17 @@ Polyline poly;
 GMap map;
 
 void main() {
-  final mapOptions = new MapOptions()
+  final mapOptions = MapOptions()
     ..zoom = 7
-        // Center the map on Chicago, USA.
-    ..center = new LatLng(41.879535, -87.624333)
-    ;
-  map = new GMap(document.getElementById('map-canvas'), mapOptions);
+    // Center the map on Chicago, USA.
+    ..center = LatLng(41.879535, -87.624333);
+  map = GMap(document.getElementById('map-canvas'), mapOptions);
 
-  final polyOptions = new PolylineOptions()
+  final polyOptions = PolylineOptions()
     ..strokeColor = '#000000'
     ..strokeOpacity = 1.0
-    ..strokeWeight = 3
-    ;
-  poly = new Polyline(polyOptions)
-    ..map = map;
+    ..strokeWeight = 3;
+  poly = Polyline(polyOptions)..map = map;
 
   // Add a listener for the click event
   map.onClick.listen(addLatLng);
@@ -36,9 +33,8 @@ void addLatLng(MouseEvent e) {
   path.push(e.latLng);
 
   // Add a new marker at the new plotted point on the polyline.
-  new Marker(new MarkerOptions()
+  Marker(MarkerOptions()
     ..position = e.latLng
     ..title = '#${path.length}'
-    ..map = map
-  );
+    ..map = map);
 }

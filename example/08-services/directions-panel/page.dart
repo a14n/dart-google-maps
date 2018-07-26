@@ -3,14 +3,14 @@ import 'dart:html';
 import 'package:google_maps/google_maps.dart';
 
 DirectionsRenderer directionsDisplay;
-final directionsService = new DirectionsService();
+final directionsService = DirectionsService();
 
 void main() {
-  directionsDisplay = new DirectionsRenderer();
-  final mapOptions = new MapOptions()
+  directionsDisplay = DirectionsRenderer();
+  final mapOptions = MapOptions()
     ..zoom = 7
-    ..center = new LatLng(41.850033, -87.6500523);
-  final map = new GMap(document.getElementById('map-canvas'), mapOptions);
+    ..center = LatLng(41.850033, -87.6500523);
+  final map = GMap(document.getElementById('map-canvas'), mapOptions);
   directionsDisplay.map = map;
   directionsDisplay.panel = document.getElementById('directions-panel');
 
@@ -25,7 +25,7 @@ void main() {
 void calcRoute() {
   final start = (document.getElementById('start') as SelectElement).value;
   final end = (document.getElementById('end') as SelectElement).value;
-  final request = new DirectionsRequest()
+  final request = DirectionsRequest()
     ..origin = start
     ..destination = end
     ..travelMode = TravelMode.DRIVING;

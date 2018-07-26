@@ -2,17 +2,17 @@ import 'dart:html' hide Rectangle;
 import 'package:google_maps/google_maps.dart';
 
 void main() {
-  final coachella = new LatLng(33.6803003, -116.173894);
-  final mapOptions = new MapOptions()
+  final coachella = LatLng(33.6803003, -116.173894);
+  final mapOptions = MapOptions()
     ..zoom = 11
     ..center = coachella
     ..mapTypeId = MapTypeId.TERRAIN;
-  final map = new GMap(document.getElementById('map-canvas'), mapOptions);
+  final map = GMap(document.getElementById('map-canvas'), mapOptions);
 
-  final rectangle = new Rectangle();
+  final rectangle = Rectangle();
 
   map.onZoomChanged.listen((_) {
-    final rectOptions = new RectangleOptions()
+    final rectOptions = RectangleOptions()
       ..strokeColor = '#FF0000'
       ..strokeOpacity = 0.8
       ..strokeWeight = 2

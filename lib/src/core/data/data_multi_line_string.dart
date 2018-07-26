@@ -18,19 +18,25 @@ part of google_maps.src;
 abstract class _DataMultiLineString extends DataGeometry {
   _DataMultiLineString.created(JsObject o) : super.created(o);
   _DataMultiLineString(List<dynamic /*DataLineString|List<LatLng>*/ > elements)
-      : this.created(new JsObject(
-          context['google']['maps']['Data']['MultiLineString'] as JsFunction, [
-        (new JsListCodec<dynamic /*DataLineString|List<LatLng>*/ >(
-            new ChainedCodec()
-          ..add(new JsInterfaceCodec<DataLineString>(
-              (o) => new DataLineString.created(o), (o) => o != null &&
-                  o.instanceof(
-                      context['google']['maps']['Data']['LineString'] as JsFunction)))
-          ..add(new JsListCodec<LatLng>(new JsInterfaceCodec<LatLng>(
-                  (o) => new LatLng.created(o), (o) => o != null &&
-                      o.instanceof(context['google']['maps']['LatLng'] as JsFunction))))))
-            .encode(elements)
-      ]));
+      : this.created(JsObject(
+            context['google']['maps']['Data']['MultiLineString'] as JsFunction,
+            [
+              (JsListCodec<dynamic /*DataLineString|List<LatLng>*/ >(
+                      ChainedCodec()
+                        ..add(JsInterfaceCodec<DataLineString>(
+                            (o) => DataLineString.created(o),
+                            (o) =>
+                                o != null &&
+                                o.instanceof(context['google']['maps']['Data']
+                                    ['LineString'] as JsFunction)))
+                        ..add(JsListCodec<LatLng>(JsInterfaceCodec<LatLng>(
+                            (o) => LatLng.created(o),
+                            (o) =>
+                                o != null &&
+                                o.instanceof(context['google']['maps']['LatLng']
+                                    as JsFunction))))))
+                  .encode(elements)
+            ]));
   List<DataLineString> get array => _getArray();
   List<DataLineString> _getArray();
   DataLineString getAt(num n);

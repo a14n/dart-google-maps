@@ -5,12 +5,12 @@ GMap map;
 final markers = <Marker>[];
 
 void main() {
-  final haightAshbury = new LatLng(37.7699298, -122.4469157);
-  final mapOptions = new MapOptions()
+  final haightAshbury = LatLng(37.7699298, -122.4469157);
+  final mapOptions = MapOptions()
     ..zoom = 12
     ..center = haightAshbury
     ..mapTypeId = MapTypeId.TERRAIN;
-  map = new GMap(document.getElementById('map-canvas'), mapOptions);
+  map = GMap(document.getElementById('map-canvas'), mapOptions);
 
   // This event listener will call addMarker() when the map is clicked.
   map.onClick.listen((e) => addMarker(e.latLng));
@@ -21,13 +21,15 @@ void main() {
   // bind buttons
   document.getElementById('clearMarkers').onClick.listen((_) => clearMarkers());
   document.getElementById('showMarkers').onClick.listen((_) => showMarkers());
-  document.getElementById('deleteMarkers').onClick
+  document
+      .getElementById('deleteMarkers')
+      .onClick
       .listen((_) => deleteMarkers());
 }
 
 // Add a marker to the map and push to the array.
 void addMarker(LatLng location) {
-  var marker = new Marker(new MarkerOptions()
+  var marker = Marker(MarkerOptions()
     ..position = location
     ..map = map);
   markers.add(marker);

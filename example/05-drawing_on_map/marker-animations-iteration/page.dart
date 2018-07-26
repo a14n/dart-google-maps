@@ -2,12 +2,12 @@ import 'dart:async';
 import 'dart:html' hide Animation;
 import 'package:google_maps/google_maps.dart';
 
-final berlin = new LatLng(52.520816, 13.410186);
+final berlin = LatLng(52.520816, 13.410186);
 final List<LatLng> neighborhoods = [
-  new LatLng(52.511467, 13.447179),
-  new LatLng(52.549061, 13.422975),
-  new LatLng(52.497622, 13.396110),
-  new LatLng(52.517683, 13.394393)
+  LatLng(52.511467, 13.447179),
+  LatLng(52.549061, 13.422975),
+  LatLng(52.497622, 13.396110),
+  LatLng(52.517683, 13.394393)
 ];
 
 final markers = <Marker>[];
@@ -15,10 +15,10 @@ final markers = <Marker>[];
 GMap map;
 
 void main() {
-  final mapOptions = new MapOptions()
+  final mapOptions = MapOptions()
     ..zoom = 12
     ..center = berlin;
-  map = new GMap(document.getElementById('map-canvas'), mapOptions);
+  map = GMap(document.getElementById('map-canvas'), mapOptions);
 
   document.getElementById('drop').onClick.listen(drop);
 }
@@ -26,14 +26,14 @@ void main() {
 void drop(_) {
   clearMarkers();
   for (var i = 0; i < neighborhoods.length; i++) {
-    new Timer(new Duration(milliseconds: i * 200), () {
+    Timer(Duration(milliseconds: i * 200), () {
       addMarker(neighborhoods[i]);
     });
   }
 }
 
 void addMarker(LatLng position) {
-  markers.add(new Marker(new MarkerOptions()
+  markers.add(Marker(MarkerOptions()
     ..position = position
     ..map = map
     ..animation = Animation.DROP));

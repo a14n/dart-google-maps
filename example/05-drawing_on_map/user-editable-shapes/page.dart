@@ -2,15 +2,14 @@ import 'dart:html' hide Rectangle;
 import 'package:google_maps/google_maps.dart';
 
 void main() {
-  final mapOptions = new MapOptions()
-    ..center = new LatLng(44.5452, -78.5389)
+  final mapOptions = MapOptions()
+    ..center = LatLng(44.5452, -78.5389)
     ..zoom = 9;
-  final map = new GMap(document.getElementById('map-canvas'), mapOptions);
+  final map = GMap(document.getElementById('map-canvas'), mapOptions);
 
-  final bounds = new LatLngBounds(
-      new LatLng(44.490, -78.649), new LatLng(44.599, -78.443));
+  final bounds = LatLngBounds(LatLng(44.490, -78.649), LatLng(44.599, -78.443));
 
-  final rectangle = new Rectangle(new RectangleOptions()
+  final rectangle = Rectangle(RectangleOptions()
     ..bounds = bounds
     ..editable = true);
 

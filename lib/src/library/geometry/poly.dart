@@ -14,8 +14,8 @@
 
 part of google_maps.src.geometry;
 
-final poly = new Poly.created(
-    context['google']['maps']['geometry']['poly'] as JsObject);
+final poly =
+    Poly.created(context['google']['maps']['geometry']['poly'] as JsObject);
 
 abstract class _Poly implements JsInterface {
   bool containsLocation(LatLng point, Polygon polygon);
@@ -23,15 +23,15 @@ abstract class _Poly implements JsInterface {
           [num tolerance]) =>
       _isLocationOnEdge(
           point,
-          (new ChainedCodec()
-                ..add(new JsInterfaceCodec<Polygon>(
-                    (o) => new Polygon.created(o),
+          (ChainedCodec()
+                ..add(JsInterfaceCodec<Polygon>(
+                    (o) => Polygon.created(o),
                     (o) =>
                         o != null &&
                         o.instanceof(context['google']['maps']['Polygon']
                             as JsFunction)))
-                ..add(new JsInterfaceCodec<Polyline>(
-                    (o) => new Polyline.created(o),
+                ..add(JsInterfaceCodec<Polyline>(
+                    (o) => Polyline.created(o),
                     (o) =>
                         o != null &&
                         o.instanceof(context['google']['maps']['Polyline']

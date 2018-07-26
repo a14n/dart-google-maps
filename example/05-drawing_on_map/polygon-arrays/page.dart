@@ -6,19 +6,19 @@ InfoWindow infoWindow;
 Polygon bermudaTriangle;
 
 void main() {
-  final mapOptions = new MapOptions()
+  final mapOptions = MapOptions()
     ..zoom = 5
-    ..center = new LatLng(24.886436490787712, -70.2685546875)
+    ..center = LatLng(24.886436490787712, -70.2685546875)
     ..mapTypeId = MapTypeId.TERRAIN;
-  map = new GMap(document.getElementById('map-canvas'), mapOptions);
+  map = GMap(document.getElementById('map-canvas'), mapOptions);
 
   final triangleCoords = <LatLng>[
-    new LatLng(25.774252, -80.190262),
-    new LatLng(18.466465, -66.118292),
-    new LatLng(32.321384, -64.75737)
+    LatLng(25.774252, -80.190262),
+    LatLng(18.466465, -66.118292),
+    LatLng(32.321384, -64.75737)
   ];
 
-  bermudaTriangle = new Polygon(new PolygonOptions()
+  bermudaTriangle = Polygon(PolygonOptions()
     ..paths = triangleCoords
     ..strokeColor = '#FF0000'
     ..strokeOpacity = 0.8
@@ -31,7 +31,7 @@ void main() {
   // Add a listener for the click event
   bermudaTriangle.onClick.listen(showArrays);
 
-  infoWindow = new InfoWindow();
+  infoWindow = InfoWindow();
 }
 
 void showArrays(MouseEvent e) {

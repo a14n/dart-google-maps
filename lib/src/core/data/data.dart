@@ -19,15 +19,15 @@ abstract class _Data implements JsInterface {
   factory _Data([DataDataOptions options]) => null;
 
   DataFeature add(dynamic /*DataFeature|DataFeatureOptions*/ feature) =>
-      _add((new ChainedCodec()
-            ..add(new JsInterfaceCodec<DataFeature>(
-                (o) => new DataFeature.created(o),
+      _add((ChainedCodec()
+            ..add(JsInterfaceCodec<DataFeature>(
+                (o) => DataFeature.created(o),
                 (o) =>
                     o != null &&
                     o.instanceof(context['google']['maps']['Data']['Feature']
                         as JsFunction)))
-            ..add(new JsInterfaceCodec<DataFeatureOptions>(
-                (o) => new DataFeatureOptions.created(o))))
+            ..add(JsInterfaceCodec<DataFeatureOptions>(
+                (o) => DataFeatureOptions.created(o))))
           .encode(feature)) as DataFeature;
   _add(dynamic /*DataFeature|DataFeatureOptions*/ feature);
   List<DataFeature> addGeoJson(Object geoJson, [DataGeoJsonOptions options]);
@@ -42,34 +42,33 @@ abstract class _Data implements JsInterface {
   DataFeature getFeatureById(dynamic /*num|String*/ id);
   GMap get map => _getMap();
   GMap _getMap();
-  dynamic /*DataStylingFunction|DataStyleOptions*/ get style =>
-      (new ChainedCodec()
-            ..add(new FunctionCodec<DataStylingFunction>((f) {
-              if (f == null) return null;
-              return (p_dataFeature) => new JsInterfaceCodec<DataStyleOptions>(
-                      (e) => e == null ? null : new DataStyleOptions.created(e))
-                  .encode(f(new JsInterfaceCodec<DataFeature>(
-                          (e) => e == null ? null : new DataFeature.created(e))
-                      .decode(p_dataFeature as JsObject)));
-            }, (f) {
-              if (f == null) return null;
-              return (p_dataFeature) => new JsInterfaceCodec<DataStyleOptions>(
-                      (e) => e == null ? null : new DataStyleOptions.created(e))
-                  .decode((f is JsFunction
-                      ? f.apply([
-                          new JsInterfaceCodec<DataFeature>((e) =>
-                                  e == null ? null : new DataFeature.created(e))
-                              .encode(p_dataFeature)
-                        ]) as JsObject
-                      : Function.apply(f, [
-                          new JsInterfaceCodec<DataFeature>((e) =>
-                                  e == null ? null : new DataFeature.created(e))
-                              .encode(p_dataFeature)
-                        ]) as JsObject));
-            }))
-            ..add(new JsInterfaceCodec<DataStyleOptions>(
-                (o) => new DataStyleOptions.created(o))))
-          .decode(_getStyle());
+  dynamic /*DataStylingFunction|DataStyleOptions*/ get style => (ChainedCodec()
+        ..add(FunctionCodec<DataStylingFunction>((f) {
+          if (f == null) return null;
+          return (p_dataFeature) => JsInterfaceCodec<DataStyleOptions>(
+                  (e) => e == null ? null : DataStyleOptions.created(e))
+              .encode(f(JsInterfaceCodec<DataFeature>(
+                      (e) => e == null ? null : DataFeature.created(e))
+                  .decode(p_dataFeature as JsObject)));
+        }, (f) {
+          if (f == null) return null;
+          return (p_dataFeature) => JsInterfaceCodec<DataStyleOptions>(
+                  (e) => e == null ? null : DataStyleOptions.created(e))
+              .decode((f is JsFunction
+                  ? f.apply([
+                      JsInterfaceCodec<DataFeature>(
+                              (e) => e == null ? null : DataFeature.created(e))
+                          .encode(p_dataFeature)
+                    ]) as JsObject
+                  : Function.apply(f, [
+                      JsInterfaceCodec<DataFeature>(
+                              (e) => e == null ? null : DataFeature.created(e))
+                          .encode(p_dataFeature)
+                    ]) as JsObject));
+        }))
+        ..add(JsInterfaceCodec<DataStyleOptions>(
+            (o) => DataStyleOptions.created(o))))
+      .decode(_getStyle());
   _getStyle();
   void loadGeoJson(String url,
       [DataGeoJsonOptions options, callback(List<DataFeature> p1)]);
@@ -86,74 +85,70 @@ abstract class _Data implements JsInterface {
   void set map(GMap map) => _setMap(map);
   void _setMap(GMap map);
   void set style(dynamic /*DataStylingFunction|DataStyleOptions*/ style) =>
-      _setStyle((new ChainedCodec()
-            ..add(new FunctionCodec<DataStylingFunction>((f) {
+      _setStyle((ChainedCodec()
+            ..add(FunctionCodec<DataStylingFunction>((f) {
               if (f == null) return null;
-              return (p_dataFeature) => new JsInterfaceCodec<DataStyleOptions>(
-                      ((e) =>
-                          e == null ? null : new DataStyleOptions.created(e)))
-                  .encode(f(new JsInterfaceCodec<DataFeature>(((e) =>
-                          e == null ? null : new DataFeature.created(e)))
+              return (p_dataFeature) => JsInterfaceCodec<DataStyleOptions>(
+                      ((e) => e == null ? null : DataStyleOptions.created(e)))
+                  .encode(f(JsInterfaceCodec<DataFeature>(
+                          ((e) => e == null ? null : DataFeature.created(e)))
                       .decode(p_dataFeature as JsObject)));
             }, (f) {
               if (f == null) return null;
-              return (p_dataFeature) => new JsInterfaceCodec<DataStyleOptions>(
-                      ((e) =>
-                          e == null ? null : new DataStyleOptions.created(e)))
+              return (p_dataFeature) => JsInterfaceCodec<DataStyleOptions>(
+                      ((e) => e == null ? null : DataStyleOptions.created(e)))
                   .decode((f is JsFunction
                       ? f.apply([
-                          new JsInterfaceCodec<DataFeature>(((e) => e == null
-                                  ? null
-                                  : new DataFeature.created(e)))
+                          JsInterfaceCodec<DataFeature>(((e) =>
+                                  e == null ? null : DataFeature.created(e)))
                               .encode(p_dataFeature)
                         ]) as JsObject
                       : Function.apply(f, [
-                          new JsInterfaceCodec<DataFeature>(((e) => e == null
-                                  ? null
-                                  : new DataFeature.created(e)))
+                          JsInterfaceCodec<DataFeature>(((e) =>
+                                  e == null ? null : DataFeature.created(e)))
                               .encode(p_dataFeature)
                         ]) as JsObject));
             }))
-            ..add(new JsInterfaceCodec<DataStyleOptions>(
-                (o) => new DataStyleOptions.created(o))))
+            ..add(JsInterfaceCodec<DataStyleOptions>(
+                (o) => DataStyleOptions.created(o))))
           .encode(style));
   void _setStyle(dynamic /*DataStylingFunction|DataStyleOptions*/ style);
   void toGeoJson(callback(Object p1));
 
   Stream<DataAddFeatureEvent> get onAddfeature => getStream(this, #onAddfeature,
-      "addfeature", (JsObject o) => new DataAddFeatureEvent.created(o));
+      "addfeature", (JsObject o) => DataAddFeatureEvent.created(o));
   Stream<DataMouseEvent> get onClick => getStream(
-      this, #onClick, "click", (JsObject o) => new DataMouseEvent.created(o));
-  Stream<DataMouseEvent> get onDblclick => getStream(this, #onDblclick,
-      "dblclick", (JsObject o) => new DataMouseEvent.created(o));
+      this, #onClick, "click", (JsObject o) => DataMouseEvent.created(o));
+  Stream<DataMouseEvent> get onDblclick => getStream(
+      this, #onDblclick, "dblclick", (JsObject o) => DataMouseEvent.created(o));
   Stream<DataMouseEvent> get onMousedown => getStream(this, #onMousedown,
-      "mousedown", (JsObject o) => new DataMouseEvent.created(o));
-  Stream<DataMouseEvent> get onMouseout => getStream(this, #onMouseout,
-      "mouseout", (JsObject o) => new DataMouseEvent.created(o));
+      "mousedown", (JsObject o) => DataMouseEvent.created(o));
+  Stream<DataMouseEvent> get onMouseout => getStream(
+      this, #onMouseout, "mouseout", (JsObject o) => DataMouseEvent.created(o));
   Stream<DataMouseEvent> get onMouseover => getStream(this, #onMouseover,
-      "mouseover", (JsObject o) => new DataMouseEvent.created(o));
-  Stream<DataMouseEvent> get onMouseup => getStream(this, #onMouseup, "mouseup",
-      (JsObject o) => new DataMouseEvent.created(o));
+      "mouseover", (JsObject o) => DataMouseEvent.created(o));
+  Stream<DataMouseEvent> get onMouseup => getStream(
+      this, #onMouseup, "mouseup", (JsObject o) => DataMouseEvent.created(o));
   Stream<DataRemoveFeatureEvent> get onRemovefeature => getStream(
       this,
       #onRemovefeature,
       "removefeature",
-      (JsObject o) => new DataRemoveFeatureEvent.created(o));
+      (JsObject o) => DataRemoveFeatureEvent.created(o));
   Stream<DataRemovePropertyEvent> get onRemoveproperty => getStream(
       this,
       #onRemoveproperty,
       "removeproperty",
-      (JsObject o) => new DataRemovePropertyEvent.created(o));
+      (JsObject o) => DataRemovePropertyEvent.created(o));
   Stream<DataMouseEvent> get onRightclick => getStream(this, #onRightclick,
-      "rightclick", (JsObject o) => new DataMouseEvent.created(o));
+      "rightclick", (JsObject o) => DataMouseEvent.created(o));
   Stream<DataSetGeometryEvent> get onSetgeometry => getStream(
       this,
       #onSetgeometry,
       "setgeometry",
-      (JsObject o) => new DataSetGeometryEvent.created(o));
+      (JsObject o) => DataSetGeometryEvent.created(o));
   Stream<DataSetPropertyEvent> get onSetproperty => getStream(
       this,
       #onSetproperty,
       "setproperty",
-      (JsObject o) => new DataSetPropertyEvent.created(o));
+      (JsObject o) => DataSetPropertyEvent.created(o));
 }

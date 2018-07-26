@@ -18,25 +18,29 @@ part of google_maps.src;
 abstract class _DataMultiPolygon extends DataGeometry {
   _DataMultiPolygon.created(JsObject o) : super.created(o);
   _DataMultiPolygon(
-      List<dynamic /*DataPolygon|List<dynamic/*DataLinearRing|List<LatLng>*/>*/ > elements)
-      : this.created(new JsObject(
-          context['google']['maps']['Data']['MultiPolygon'] as JsFunction, [
-        (new JsListCodec<dynamic /*DataPolygon|List<dynamic/*DataLinearRing|List<LatLng>*/>*/ >(
-            new ChainedCodec()
-          ..add(new JsInterfaceCodec<DataPolygon>(
-              (o) => new DataPolygon.created(o), (o) => o != null &&
-                  o.instanceof(context['google']['maps']['Data']['Polygon'] as JsFunction)))
-          ..add(new JsListCodec<dynamic /*DataLinearRing|List<LatLng>*/ >(
-              new ChainedCodec()
-            ..add(new JsInterfaceCodec<DataLinearRing>(
-                (o) => new DataLinearRing.created(o), (o) => o != null &&
-                    o.instanceof(
-                        context['google']['maps']['Data']['LinearRing'] as JsFunction)))
-            ..add(new JsListCodec<LatLng>(new JsInterfaceCodec<LatLng>(
-                    (o) => new LatLng.created(o), (o) => o != null &&
-                        o.instanceof(context['google']['maps']['LatLng'] as JsFunction))))))))
-            .encode(elements)
-      ]));
+      List<dynamic /*DataPolygon|List<dynamic/*DataLinearRing|List<LatLng>*/>*/ >
+          elements)
+      : this.created(JsObject(
+            context['google']['maps']['Data']['MultiPolygon'] as JsFunction, [
+          (JsListCodec<dynamic /*DataPolygon|List<dynamic/*DataLinearRing|List<LatLng>*/>*/ >(
+                  ChainedCodec()
+                    ..add(JsInterfaceCodec<DataPolygon>(
+                        (o) => DataPolygon.created(o),
+                        (o) =>
+                            o != null &&
+                            o.instanceof(context['google']['maps']['Data']
+                                ['Polygon'] as JsFunction)))
+                    ..add(JsListCodec<dynamic /*DataLinearRing|List<LatLng>*/ >(
+                        ChainedCodec()
+                          ..add(JsInterfaceCodec<DataLinearRing>(
+                              (o) => DataLinearRing.created(o),
+                              (o) =>
+                                  o != null &&
+                                  o.instanceof(context['google']['maps']['Data']
+                                      ['LinearRing'] as JsFunction)))
+                          ..add(JsListCodec<LatLng>(JsInterfaceCodec<LatLng>((o) => LatLng.created(o), (o) => o != null && o.instanceof(context['google']['maps']['LatLng'] as JsFunction))))))))
+              .encode(elements)
+        ]));
   List<DataPolygon> get array => _getArray();
   List<DataPolygon> _getArray();
   DataPolygon getAt(num n);

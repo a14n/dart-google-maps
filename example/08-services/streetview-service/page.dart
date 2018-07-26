@@ -3,21 +3,21 @@ import 'dart:html';
 import 'package:google_maps/google_maps.dart';
 
 GMap map;
-final berkeley = new LatLng(37.869085, -122.254775);
+final berkeley = LatLng(37.869085, -122.254775);
 // TODO(aa) https://code.google.com/p/gmaps-api-issues/issues/detail?id=8048
-final sv = new StreetViewService();
+final sv = StreetViewService();
 
 StreetViewPanorama panorama;
 
 void main() {
-  panorama = new StreetViewPanorama(document.getElementById('pano'));
+  panorama = StreetViewPanorama(document.getElementById('pano'));
 
   // Set up the map
-  final mapOptions = new MapOptions()
+  final mapOptions = MapOptions()
     ..center = berkeley
     ..zoom = 16
     ..streetViewControl = false;
-  map = new GMap(document.getElementById('map-canvas'), mapOptions);
+  map = GMap(document.getElementById('map-canvas'), mapOptions);
 
   // Set the initial Street View camera to the center of the map
   sv.getPanoramaByLocation(berkeley, 50, processSVData);
@@ -32,13 +32,13 @@ void main() {
 
 void processSVData(StreetViewPanoramaData data, StreetViewStatus status) {
   if (status == StreetViewStatus.OK) {
-    final marker = new Marker(new MarkerOptions()
+    final marker = Marker(MarkerOptions()
       ..position = data.location.latLng
       ..map = map
       ..title = data.location.description);
 
     panorama.pano = data.location.pano;
-    panorama.pov = new StreetViewPov()
+    panorama.pov = StreetViewPov()
       ..heading = 270
       ..pitch = 0;
     panorama.visible = true;
@@ -47,7 +47,7 @@ void processSVData(StreetViewPanoramaData data, StreetViewStatus status) {
       final markerPanoID = data.location.pano;
       // Set the Pano to use the passed panoID
       panorama.pano = markerPanoID;
-      panorama.pov = new StreetViewPov()
+      panorama.pov = StreetViewPov()
         ..heading = 270
         ..pitch = 0;
       panorama.visible = true;

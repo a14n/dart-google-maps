@@ -9,11 +9,11 @@ part of google_maps.src.places;
 @GeneratedFrom(_Autocomplete)
 @JsName('google.maps.places.Autocomplete')
 class Autocomplete extends MVCObject {
-  Autocomplete.created(JsObject o) : super.created(o);
   Autocomplete(InputElement inputField, [AutocompleteOptions opts])
-      : this.created(new JsObject(
+      : this.created(JsObject(
             context['google']['maps']['places']['Autocomplete'],
             [inputField, __codec0.encode(opts)]));
+  Autocomplete.created(JsObject o) : super.created(o);
 
   LatLngBounds get bounds => _getBounds();
   LatLngBounds _getBounds() =>
@@ -45,22 +45,22 @@ class Autocomplete extends MVCObject {
 @GeneratedFrom(_AutocompleteOptions)
 @anonymous
 class AutocompleteOptions extends JsInterface {
+  AutocompleteOptions() : this.created(JsObject(context['Object']));
   AutocompleteOptions.created(JsObject o) : super.created(o);
-  AutocompleteOptions() : this.created(new JsObject(context['Object']));
 
-  void set bounds(LatLngBounds _bounds) {
+  set bounds(LatLngBounds _bounds) {
     asJsObject(this)['bounds'] = __codec1.encode(_bounds);
   }
 
   LatLngBounds get bounds => __codec1.decode(asJsObject(this)['bounds']);
-  void set componentRestrictions(ComponentRestrictions _componentRestrictions) {
+  set componentRestrictions(ComponentRestrictions _componentRestrictions) {
     asJsObject(this)['componentRestrictions'] =
         __codec3.encode(_componentRestrictions);
   }
 
   ComponentRestrictions get componentRestrictions =>
       __codec3.decode(asJsObject(this)['componentRestrictions']);
-  void set types(List<String> _types) {
+  set types(List<String> _types) {
     asJsObject(this)['types'] = __codec4.encode(_types);
   }
 
@@ -70,15 +70,15 @@ class AutocompleteOptions extends JsInterface {
 @GeneratedFrom(_AutocompletePrediction)
 @anonymous
 class AutocompletePrediction extends JsInterface {
+  AutocompletePrediction() : this.created(JsObject(context['Object']));
   AutocompletePrediction.created(JsObject o) : super.created(o);
-  AutocompletePrediction() : this.created(new JsObject(context['Object']));
 
-  void set description(String _description) {
+  set description(String _description) {
     asJsObject(this)['description'] = _description;
   }
 
   String get description => asJsObject(this)['description'];
-  void set _matched_substrings(List<PredictionSubstring> __matched_substrings) {
+  set _matched_substrings(List<PredictionSubstring> __matched_substrings) {
     asJsObject(this)['matched_substrings'] =
         __codec6.encode(__matched_substrings);
   }
@@ -90,7 +90,7 @@ class AutocompletePrediction extends JsInterface {
     _matched_substrings = matchedSubstrings;
   }
 
-  void set _place_id(String __place_id) {
+  set _place_id(String __place_id) {
     asJsObject(this)['place_id'] = __place_id;
   }
 
@@ -100,12 +100,12 @@ class AutocompletePrediction extends JsInterface {
     _place_id = placeId;
   }
 
-  void set terms(List<PredictionTerm> _terms) {
+  set terms(List<PredictionTerm> _terms) {
     asJsObject(this)['terms'] = __codec8.encode(_terms);
   }
 
   List<PredictionTerm> get terms => __codec8.decode(asJsObject(this)['terms']);
-  void set types(List<String> _types) {
+  set types(List<String> _types) {
     asJsObject(this)['types'] = __codec4.encode(_types);
   }
 
@@ -115,10 +115,10 @@ class AutocompletePrediction extends JsInterface {
 @GeneratedFrom(_AutocompleteService)
 @JsName('google.maps.places.AutocompleteService')
 class AutocompleteService extends JsInterface {
-  AutocompleteService.created(JsObject o) : super.created(o);
   AutocompleteService()
-      : this.created(new JsObject(
+      : this.created(JsObject(
             context['google']['maps']['places']['AutocompleteService']));
+  AutocompleteService.created(JsObject o) : super.created(o);
 
   void getPlacePredictions(AutocompletionRequest request,
       callback(List<AutocompletePrediction> p1, PlacesServiceStatus p2)) {
@@ -136,42 +136,42 @@ class AutocompleteService extends JsInterface {
 @GeneratedFrom(_AutocompletionRequest)
 @anonymous
 class AutocompletionRequest extends JsInterface {
+  AutocompletionRequest() : this.created(JsObject(context['Object']));
   AutocompletionRequest.created(JsObject o) : super.created(o);
-  AutocompletionRequest() : this.created(new JsObject(context['Object']));
 
-  void set bounds(LatLngBounds _bounds) {
+  set bounds(LatLngBounds _bounds) {
     asJsObject(this)['bounds'] = __codec1.encode(_bounds);
   }
 
   LatLngBounds get bounds => __codec1.decode(asJsObject(this)['bounds']);
-  void set componentRestrictions(ComponentRestrictions _componentRestrictions) {
+  set componentRestrictions(ComponentRestrictions _componentRestrictions) {
     asJsObject(this)['componentRestrictions'] =
         __codec3.encode(_componentRestrictions);
   }
 
   ComponentRestrictions get componentRestrictions =>
       __codec3.decode(asJsObject(this)['componentRestrictions']);
-  void set input(String _input) {
+  set input(String _input) {
     asJsObject(this)['input'] = _input;
   }
 
   String get input => asJsObject(this)['input'];
-  void set location(LatLng _location) {
+  set location(LatLng _location) {
     asJsObject(this)['location'] = __codec19.encode(_location);
   }
 
   LatLng get location => __codec19.decode(asJsObject(this)['location']);
-  void set offset(num _offset) {
+  set offset(num _offset) {
     asJsObject(this)['offset'] = _offset;
   }
 
   num get offset => asJsObject(this)['offset'];
-  void set radius(num _radius) {
+  set radius(num _radius) {
     asJsObject(this)['radius'] = _radius;
   }
 
   num get radius => asJsObject(this)['radius'];
-  void set types(List<String> _types) {
+  set types(List<String> _types) {
     asJsObject(this)['types'] = __codec4.encode(_types);
   }
 
@@ -181,10 +181,10 @@ class AutocompletionRequest extends JsInterface {
 @GeneratedFrom(_ComponentRestrictions)
 @anonymous
 class ComponentRestrictions extends JsInterface {
+  ComponentRestrictions() : this.created(JsObject(context['Object']));
   ComponentRestrictions.created(JsObject o) : super.created(o);
-  ComponentRestrictions() : this.created(new JsObject(context['Object']));
 
-  void set country(String _country) {
+  set country(String _country) {
     asJsObject(this)['country'] = _country;
   }
 
@@ -194,15 +194,15 @@ class ComponentRestrictions extends JsInterface {
 @GeneratedFrom(_PhotoOptions)
 @anonymous
 class PhotoOptions extends JsInterface {
+  PhotoOptions() : this.created(JsObject(context['Object']));
   PhotoOptions.created(JsObject o) : super.created(o);
-  PhotoOptions() : this.created(new JsObject(context['Object']));
 
-  void set maxHeight(num _maxHeight) {
+  set maxHeight(num _maxHeight) {
     asJsObject(this)['maxHeight'] = _maxHeight;
   }
 
   num get maxHeight => asJsObject(this)['maxHeight'];
-  void set maxWidth(num _maxWidth) {
+  set maxWidth(num _maxWidth) {
     asJsObject(this)['maxWidth'] = _maxWidth;
   }
 
@@ -212,15 +212,15 @@ class PhotoOptions extends JsInterface {
 @GeneratedFrom(_PlaceAspectRating)
 @anonymous
 class PlaceAspectRating extends JsInterface {
+  PlaceAspectRating() : this.created(JsObject(context['Object']));
   PlaceAspectRating.created(JsObject o) : super.created(o);
-  PlaceAspectRating() : this.created(new JsObject(context['Object']));
 
-  void set rating(num _rating) {
+  set rating(num _rating) {
     asJsObject(this)['rating'] = _rating;
   }
 
   num get rating => asJsObject(this)['rating'];
-  void set type(String _type) {
+  set type(String _type) {
     asJsObject(this)['type'] = _type;
   }
 
@@ -230,10 +230,10 @@ class PlaceAspectRating extends JsInterface {
 @GeneratedFrom(_PlaceDetailsRequest)
 @anonymous
 class PlaceDetailsRequest extends JsInterface {
+  PlaceDetailsRequest() : this.created(JsObject(context['Object']));
   PlaceDetailsRequest.created(JsObject o) : super.created(o);
-  PlaceDetailsRequest() : this.created(new JsObject(context['Object']));
 
-  void set placeId(String _placeId) {
+  set placeId(String _placeId) {
     asJsObject(this)['placeId'] = _placeId;
   }
 
@@ -243,15 +243,15 @@ class PlaceDetailsRequest extends JsInterface {
 @GeneratedFrom(_PlaceGeometry)
 @anonymous
 class PlaceGeometry extends JsInterface {
+  PlaceGeometry() : this.created(JsObject(context['Object']));
   PlaceGeometry.created(JsObject o) : super.created(o);
-  PlaceGeometry() : this.created(new JsObject(context['Object']));
 
-  void set location(LatLng _location) {
+  set location(LatLng _location) {
     asJsObject(this)['location'] = __codec19.encode(_location);
   }
 
   LatLng get location => __codec19.decode(asJsObject(this)['location']);
-  void set viewport(LatLngBounds _viewport) {
+  set viewport(LatLngBounds _viewport) {
     asJsObject(this)['viewport'] = __codec1.encode(_viewport);
   }
 
@@ -261,18 +261,18 @@ class PlaceGeometry extends JsInterface {
 @GeneratedFrom(_PlacePhoto)
 @anonymous
 class PlacePhoto extends JsInterface {
+  PlacePhoto() : this.created(JsObject(context['Object']));
   PlacePhoto.created(JsObject o) : super.created(o);
-  PlacePhoto() : this.created(new JsObject(context['Object']));
 
   String getUrl(PhotoOptions opts) =>
       asJsObject(this).callMethod('getUrl', [__codec20.encode(opts)]);
 
-  void set height(num _height) {
+  set height(num _height) {
     asJsObject(this)['height'] = _height;
   }
 
   num get height => asJsObject(this)['height'];
-  void set _html_attributions(List<String> __html_attributions) {
+  set _html_attributions(List<String> __html_attributions) {
     asJsObject(this)['html_attributions'] =
         __codec4.encode(__html_attributions);
   }
@@ -284,7 +284,7 @@ class PlacePhoto extends JsInterface {
     _html_attributions = htmlAttributions;
   }
 
-  void set width(num _width) {
+  set width(num _width) {
     asJsObject(this)['width'] = _width;
   }
 
@@ -294,11 +294,10 @@ class PlacePhoto extends JsInterface {
 @GeneratedFrom(_PlaceResult)
 @anonymous
 class PlaceResult extends JsInterface {
+  PlaceResult() : this.created(JsObject(context['Object']));
   PlaceResult.created(JsObject o) : super.created(o);
-  PlaceResult() : this.created(new JsObject(context['Object']));
 
-  void set _address_components(
-      List<GeocoderAddressComponent> __address_components) {
+  set _address_components(List<GeocoderAddressComponent> __address_components) {
     asJsObject(this)['address_components'] =
         __codec22.encode(__address_components);
   }
@@ -310,13 +309,13 @@ class PlaceResult extends JsInterface {
     _address_components = addressComponents;
   }
 
-  void set aspects(List<PlaceAspectRating> _aspects) {
+  set aspects(List<PlaceAspectRating> _aspects) {
     asJsObject(this)['aspects'] = __codec24.encode(_aspects);
   }
 
   List<PlaceAspectRating> get aspects =>
       __codec24.decode(asJsObject(this)['aspects']);
-  void set _formatted_address(String __formatted_address) {
+  set _formatted_address(String __formatted_address) {
     asJsObject(this)['formatted_address'] = __formatted_address;
   }
 
@@ -326,7 +325,7 @@ class PlaceResult extends JsInterface {
     _formatted_address = formattedAddress;
   }
 
-  void set _formatted_phone_number(String __formatted_phone_number) {
+  set _formatted_phone_number(String __formatted_phone_number) {
     asJsObject(this)['formatted_phone_number'] = __formatted_phone_number;
   }
 
@@ -337,12 +336,12 @@ class PlaceResult extends JsInterface {
     _formatted_phone_number = formattedPhoneNumber;
   }
 
-  void set geometry(PlaceGeometry _geometry) {
+  set geometry(PlaceGeometry _geometry) {
     asJsObject(this)['geometry'] = __codec25.encode(_geometry);
   }
 
   PlaceGeometry get geometry => __codec25.decode(asJsObject(this)['geometry']);
-  void set _html_attributions(List<String> __html_attributions) {
+  set _html_attributions(List<String> __html_attributions) {
     asJsObject(this)['html_attributions'] =
         __codec4.encode(__html_attributions);
   }
@@ -354,12 +353,12 @@ class PlaceResult extends JsInterface {
     _html_attributions = htmlAttributions;
   }
 
-  void set icon(String _icon) {
+  set icon(String _icon) {
     asJsObject(this)['icon'] = _icon;
   }
 
   String get icon => asJsObject(this)['icon'];
-  void set _international_phone_number(String __international_phone_number) {
+  set _international_phone_number(String __international_phone_number) {
     asJsObject(this)['international_phone_number'] =
         __international_phone_number;
   }
@@ -371,12 +370,12 @@ class PlaceResult extends JsInterface {
     _international_phone_number = internationalPhoneNumber;
   }
 
-  void set name(String _name) {
+  set name(String _name) {
     asJsObject(this)['name'] = _name;
   }
 
   String get name => asJsObject(this)['name'];
-  void set _permanently_closed(bool __permanently_closed) {
+  set _permanently_closed(bool __permanently_closed) {
     asJsObject(this)['permanently_closed'] = __permanently_closed;
   }
 
@@ -386,12 +385,12 @@ class PlaceResult extends JsInterface {
     _permanently_closed = permanentlyClosed;
   }
 
-  void set photos(List<PlacePhoto> _photos) {
+  set photos(List<PlacePhoto> _photos) {
     asJsObject(this)['photos'] = __codec27.encode(_photos);
   }
 
   List<PlacePhoto> get photos => __codec27.decode(asJsObject(this)['photos']);
-  void set _place_id(String __place_id) {
+  set _place_id(String __place_id) {
     asJsObject(this)['place_id'] = __place_id;
   }
 
@@ -401,7 +400,7 @@ class PlaceResult extends JsInterface {
     _place_id = placeId;
   }
 
-  void set _price_level(num __price_level) {
+  set _price_level(num __price_level) {
     asJsObject(this)['price_level'] = __price_level;
   }
 
@@ -411,28 +410,28 @@ class PlaceResult extends JsInterface {
     _price_level = priceLevel;
   }
 
-  void set rating(num _rating) {
+  set rating(num _rating) {
     asJsObject(this)['rating'] = _rating;
   }
 
   num get rating => asJsObject(this)['rating'];
-  void set reviews(List<PlaceReview> _reviews) {
+  set reviews(List<PlaceReview> _reviews) {
     asJsObject(this)['reviews'] = __codec29.encode(_reviews);
   }
 
   List<PlaceReview> get reviews =>
       __codec29.decode(asJsObject(this)['reviews']);
-  void set types(List<String> _types) {
+  set types(List<String> _types) {
     asJsObject(this)['types'] = __codec4.encode(_types);
   }
 
   List<String> get types => __codec4.decode(asJsObject(this)['types']);
-  void set url(String _url) {
+  set url(String _url) {
     asJsObject(this)['url'] = _url;
   }
 
   String get url => asJsObject(this)['url'];
-  void set _utc_offset(num __utc_offset) {
+  set _utc_offset(num __utc_offset) {
     asJsObject(this)['utc_offset'] = __utc_offset;
   }
 
@@ -442,12 +441,12 @@ class PlaceResult extends JsInterface {
     _utc_offset = utcOffset;
   }
 
-  void set vicinity(String _vicinity) {
+  set vicinity(String _vicinity) {
     asJsObject(this)['vicinity'] = _vicinity;
   }
 
   String get vicinity => asJsObject(this)['vicinity'];
-  void set website(String _website) {
+  set website(String _website) {
     asJsObject(this)['website'] = _website;
   }
 
@@ -457,16 +456,16 @@ class PlaceResult extends JsInterface {
 @GeneratedFrom(_PlaceReview)
 @anonymous
 class PlaceReview extends JsInterface {
+  PlaceReview() : this.created(JsObject(context['Object']));
   PlaceReview.created(JsObject o) : super.created(o);
-  PlaceReview() : this.created(new JsObject(context['Object']));
 
-  void set aspects(List<PlaceAspectRating> _aspects) {
+  set aspects(List<PlaceAspectRating> _aspects) {
     asJsObject(this)['aspects'] = __codec24.encode(_aspects);
   }
 
   List<PlaceAspectRating> get aspects =>
       __codec24.decode(asJsObject(this)['aspects']);
-  void set _author_name(String __author_name) {
+  set _author_name(String __author_name) {
     asJsObject(this)['author_name'] = __author_name;
   }
 
@@ -476,7 +475,7 @@ class PlaceReview extends JsInterface {
     _author_name = authorName;
   }
 
-  void set _author_url(String __author_url) {
+  set _author_url(String __author_url) {
     asJsObject(this)['author_url'] = __author_url;
   }
 
@@ -486,12 +485,12 @@ class PlaceReview extends JsInterface {
     _author_url = authorUrl;
   }
 
-  void set language(String _language) {
+  set language(String _language) {
     asJsObject(this)['language'] = _language;
   }
 
   String get language => asJsObject(this)['language'];
-  void set text(String _text) {
+  set text(String _text) {
     asJsObject(this)['text'] = _text;
   }
 
@@ -501,14 +500,14 @@ class PlaceReview extends JsInterface {
 @GeneratedFrom(_PlaceSearchPagination)
 @anonymous
 class PlaceSearchPagination extends JsInterface {
+  PlaceSearchPagination() : this.created(JsObject(context['Object']));
   PlaceSearchPagination.created(JsObject o) : super.created(o);
-  PlaceSearchPagination() : this.created(new JsObject(context['Object']));
 
   void nextPage() {
     asJsObject(this).callMethod('nextPage');
   }
 
-  void set hasNextPage(bool _hasNextPage) {
+  set hasNextPage(bool _hasNextPage) {
     asJsObject(this)['hasNextPage'] = _hasNextPage;
   }
 
@@ -518,55 +517,55 @@ class PlaceSearchPagination extends JsInterface {
 @GeneratedFrom(_PlaceSearchRequest)
 @anonymous
 class PlaceSearchRequest extends JsInterface {
+  PlaceSearchRequest() : this.created(JsObject(context['Object']));
   PlaceSearchRequest.created(JsObject o) : super.created(o);
-  PlaceSearchRequest() : this.created(new JsObject(context['Object']));
 
-  void set bounds(LatLngBounds _bounds) {
+  set bounds(LatLngBounds _bounds) {
     asJsObject(this)['bounds'] = __codec1.encode(_bounds);
   }
 
   LatLngBounds get bounds => __codec1.decode(asJsObject(this)['bounds']);
-  void set keyword(String _keyword) {
+  set keyword(String _keyword) {
     asJsObject(this)['keyword'] = _keyword;
   }
 
   String get keyword => asJsObject(this)['keyword'];
-  void set location(LatLng _location) {
+  set location(LatLng _location) {
     asJsObject(this)['location'] = __codec19.encode(_location);
   }
 
   LatLng get location => __codec19.decode(asJsObject(this)['location']);
-  void set maxPriceLevel(num _maxPriceLevel) {
+  set maxPriceLevel(num _maxPriceLevel) {
     asJsObject(this)['maxPriceLevel'] = _maxPriceLevel;
   }
 
   num get maxPriceLevel => asJsObject(this)['maxPriceLevel'];
-  void set minPriceLevel(num _minPriceLevel) {
+  set minPriceLevel(num _minPriceLevel) {
     asJsObject(this)['minPriceLevel'] = _minPriceLevel;
   }
 
   num get minPriceLevel => asJsObject(this)['minPriceLevel'];
-  void set name(String _name) {
+  set name(String _name) {
     asJsObject(this)['name'] = _name;
   }
 
   String get name => asJsObject(this)['name'];
-  void set openNow(bool _openNow) {
+  set openNow(bool _openNow) {
     asJsObject(this)['openNow'] = _openNow;
   }
 
   bool get openNow => asJsObject(this)['openNow'];
-  void set radius(num _radius) {
+  set radius(num _radius) {
     asJsObject(this)['radius'] = _radius;
   }
 
   num get radius => asJsObject(this)['radius'];
-  void set rankBy(RankBy _rankBy) {
+  set rankBy(RankBy _rankBy) {
     asJsObject(this)['rankBy'] = __codec30.encode(_rankBy);
   }
 
   RankBy get rankBy => __codec30.decode(asJsObject(this)['rankBy']);
-  void set types(List<String> _types) {
+  set types(List<String> _types) {
     asJsObject(this)['types'] = __codec4.encode(_types);
   }
 
@@ -578,13 +577,13 @@ class PlaceSearchRequest extends JsInterface {
 class PlacesService extends JsInterface {
   PlacesService.created(JsObject o) : super.created(o);
   PlacesService(dynamic /*DivElement|GMap*/ attrContainer)
-      : this.created(new JsObject(
+      : this.created(JsObject(
             context['google']['maps']['places']['PlacesService'] as JsFunction,
             [
-              (new ChainedCodec()
-                    ..add(new IdentityCodec<DivElement>())
-                    ..add(new JsInterfaceCodec<GMap>(
-                        (o) => new GMap.created(o),
+              (ChainedCodec()
+                    ..add(IdentityCodec<DivElement>())
+                    ..add(JsInterfaceCodec<GMap>(
+                        (o) => GMap.created(o),
                         (o) =>
                             o != null &&
                             o.instanceof(context['google']['maps']['Map']
@@ -633,32 +632,32 @@ class PlacesServiceStatus extends JsEnum {
     UNKNOWN_ERROR,
     ZERO_RESULTS
   ];
-  static final INVALID_REQUEST = new PlacesServiceStatus._(
+  static final INVALID_REQUEST = PlacesServiceStatus._(
       'INVALID_REQUEST',
       context['google']['maps']['places']['PlacesServiceStatus']
           ['INVALID_REQUEST']);
-  static final OK = new PlacesServiceStatus._(
+  static final OK = PlacesServiceStatus._(
       'OK', context['google']['maps']['places']['PlacesServiceStatus']['OK']);
-  static final OVER_QUERY_LIMIT = new PlacesServiceStatus._(
+  static final OVER_QUERY_LIMIT = PlacesServiceStatus._(
       'OVER_QUERY_LIMIT',
       context['google']['maps']['places']['PlacesServiceStatus']
           ['OVER_QUERY_LIMIT']);
-  static final REQUEST_DENIED = new PlacesServiceStatus._(
+  static final REQUEST_DENIED = PlacesServiceStatus._(
       'REQUEST_DENIED',
       context['google']['maps']['places']['PlacesServiceStatus']
           ['REQUEST_DENIED']);
-  static final UNKNOWN_ERROR = new PlacesServiceStatus._(
+  static final UNKNOWN_ERROR = PlacesServiceStatus._(
       'UNKNOWN_ERROR',
       context['google']['maps']['places']['PlacesServiceStatus']
           ['UNKNOWN_ERROR']);
-  static final ZERO_RESULTS = new PlacesServiceStatus._(
+  static final ZERO_RESULTS = PlacesServiceStatus._(
       'ZERO_RESULTS',
       context['google']['maps']['places']['PlacesServiceStatus']
           ['ZERO_RESULTS']);
-
   final String _name;
   PlacesServiceStatus._(this._name, o) : super.created(o);
 
+  @override
   String toString() => 'PlacesServiceStatus.$_name';
 
   // dumb code to remove analyzer hint for unused _PlacesServiceStatus
@@ -669,15 +668,15 @@ class PlacesServiceStatus extends JsEnum {
 @GeneratedFrom(_PredictionSubstring)
 @anonymous
 class PredictionSubstring extends JsInterface {
+  PredictionSubstring() : this.created(JsObject(context['Object']));
   PredictionSubstring.created(JsObject o) : super.created(o);
-  PredictionSubstring() : this.created(new JsObject(context['Object']));
 
-  void set length(num _length) {
+  set length(num _length) {
     asJsObject(this)['length'] = _length;
   }
 
   num get length => asJsObject(this)['length'];
-  void set offset(num _offset) {
+  set offset(num _offset) {
     asJsObject(this)['offset'] = _offset;
   }
 
@@ -687,15 +686,15 @@ class PredictionSubstring extends JsInterface {
 @GeneratedFrom(_PredictionTerm)
 @anonymous
 class PredictionTerm extends JsInterface {
+  PredictionTerm() : this.created(JsObject(context['Object']));
   PredictionTerm.created(JsObject o) : super.created(o);
-  PredictionTerm() : this.created(new JsObject(context['Object']));
 
-  void set offset(num _offset) {
+  set offset(num _offset) {
     asJsObject(this)['offset'] = _offset;
   }
 
   num get offset => asJsObject(this)['offset'];
-  void set value(String _value) {
+  set value(String _value) {
     asJsObject(this)['value'] = _value;
   }
 
@@ -705,15 +704,15 @@ class PredictionTerm extends JsInterface {
 @GeneratedFrom(_QueryAutocompletePrediction)
 @anonymous
 class QueryAutocompletePrediction extends JsInterface {
+  QueryAutocompletePrediction() : this.created(JsObject(context['Object']));
   QueryAutocompletePrediction.created(JsObject o) : super.created(o);
-  QueryAutocompletePrediction() : this.created(new JsObject(context['Object']));
 
-  void set description(String _description) {
+  set description(String _description) {
     asJsObject(this)['description'] = _description;
   }
 
   String get description => asJsObject(this)['description'];
-  void set _matched_substrings(List<PredictionSubstring> __matched_substrings) {
+  set _matched_substrings(List<PredictionSubstring> __matched_substrings) {
     asJsObject(this)['matched_substrings'] =
         __codec6.encode(__matched_substrings);
   }
@@ -725,7 +724,7 @@ class QueryAutocompletePrediction extends JsInterface {
     _matched_substrings = matchedSubstrings;
   }
 
-  void set _place_id(String __place_id) {
+  set _place_id(String __place_id) {
     asJsObject(this)['place_id'] = __place_id;
   }
 
@@ -735,7 +734,7 @@ class QueryAutocompletePrediction extends JsInterface {
     _place_id = placeId;
   }
 
-  void set terms(List<PredictionTerm> _terms) {
+  set terms(List<PredictionTerm> _terms) {
     asJsObject(this)['terms'] = __codec8.encode(_terms);
   }
 
@@ -745,30 +744,30 @@ class QueryAutocompletePrediction extends JsInterface {
 @GeneratedFrom(_QueryAutocompletionRequest)
 @anonymous
 class QueryAutocompletionRequest extends JsInterface {
+  QueryAutocompletionRequest() : this.created(JsObject(context['Object']));
   QueryAutocompletionRequest.created(JsObject o) : super.created(o);
-  QueryAutocompletionRequest() : this.created(new JsObject(context['Object']));
 
-  void set bounds(LatLngBounds _bounds) {
+  set bounds(LatLngBounds _bounds) {
     asJsObject(this)['bounds'] = __codec1.encode(_bounds);
   }
 
   LatLngBounds get bounds => __codec1.decode(asJsObject(this)['bounds']);
-  void set input(String _input) {
+  set input(String _input) {
     asJsObject(this)['input'] = _input;
   }
 
   String get input => asJsObject(this)['input'];
-  void set location(LatLng _location) {
+  set location(LatLng _location) {
     asJsObject(this)['location'] = __codec19.encode(_location);
   }
 
   LatLng get location => __codec19.decode(asJsObject(this)['location']);
-  void set offset(num _offset) {
+  set offset(num _offset) {
     asJsObject(this)['offset'] = _offset;
   }
 
   num get offset => asJsObject(this)['offset'];
-  void set radius(num _radius) {
+  set radius(num _radius) {
     asJsObject(this)['radius'] = _radius;
   }
 
@@ -778,35 +777,35 @@ class QueryAutocompletionRequest extends JsInterface {
 @GeneratedFrom(_RadarSearchRequest)
 @anonymous
 class RadarSearchRequest extends JsInterface {
+  RadarSearchRequest() : this.created(JsObject(context['Object']));
   RadarSearchRequest.created(JsObject o) : super.created(o);
-  RadarSearchRequest() : this.created(new JsObject(context['Object']));
 
-  void set bounds(LatLngBounds _bounds) {
+  set bounds(LatLngBounds _bounds) {
     asJsObject(this)['bounds'] = __codec1.encode(_bounds);
   }
 
   LatLngBounds get bounds => __codec1.decode(asJsObject(this)['bounds']);
-  void set keyword(String _keyword) {
+  set keyword(String _keyword) {
     asJsObject(this)['keyword'] = _keyword;
   }
 
   String get keyword => asJsObject(this)['keyword'];
-  void set location(LatLng _location) {
+  set location(LatLng _location) {
     asJsObject(this)['location'] = __codec19.encode(_location);
   }
 
   LatLng get location => __codec19.decode(asJsObject(this)['location']);
-  void set name(String _name) {
+  set name(String _name) {
     asJsObject(this)['name'] = _name;
   }
 
   String get name => asJsObject(this)['name'];
-  void set radius(num _radius) {
+  set radius(num _radius) {
     asJsObject(this)['radius'] = _radius;
   }
 
   num get radius => asJsObject(this)['radius'];
-  void set types(List<String> _types) {
+  set types(List<String> _types) {
     asJsObject(this)['types'] = __codec4.encode(_types);
   }
 
@@ -815,14 +814,14 @@ class RadarSearchRequest extends JsInterface {
 
 class RankBy extends JsEnum {
   static final values = <RankBy>[DISTANCE, PROMINENCE];
-  static final DISTANCE = new RankBy._(
+  static final DISTANCE = RankBy._(
       'DISTANCE', context['google']['maps']['places']['RankBy']['DISTANCE']);
-  static final PROMINENCE = new RankBy._('PROMINENCE',
+  static final PROMINENCE = RankBy._('PROMINENCE',
       context['google']['maps']['places']['RankBy']['PROMINENCE']);
-
   final String _name;
   RankBy._(this._name, o) : super.created(o);
 
+  @override
   String toString() => 'RankBy.$_name';
 
   // dumb code to remove analyzer hint for unused _RankBy
@@ -833,11 +832,10 @@ class RankBy extends JsEnum {
 @GeneratedFrom(_SearchBox)
 @JsName('google.maps.places.SearchBox')
 class SearchBox extends MVCObject {
-  SearchBox.created(JsObject o) : super.created(o);
   SearchBox(InputElement inputField, [SearchBoxOptions opts])
-      : this.created(new JsObject(
-            context['google']['maps']['places']['SearchBox'],
+      : this.created(JsObject(context['google']['maps']['places']['SearchBox'],
             [inputField, __codec40.encode(opts)]));
+  SearchBox.created(JsObject o) : super.created(o);
 
   LatLngBounds get bounds => _getBounds();
   LatLngBounds _getBounds() =>
@@ -857,10 +855,10 @@ class SearchBox extends MVCObject {
 @GeneratedFrom(_SearchBoxOptions)
 @anonymous
 class SearchBoxOptions extends JsInterface {
+  SearchBoxOptions() : this.created(JsObject(context['Object']));
   SearchBoxOptions.created(JsObject o) : super.created(o);
-  SearchBoxOptions() : this.created(new JsObject(context['Object']));
 
-  void set bounds(LatLngBounds _bounds) {
+  set bounds(LatLngBounds _bounds) {
     asJsObject(this)['bounds'] = __codec1.encode(_bounds);
   }
 
@@ -870,30 +868,30 @@ class SearchBoxOptions extends JsInterface {
 @GeneratedFrom(_TextSearchRequest)
 @anonymous
 class TextSearchRequest extends JsInterface {
+  TextSearchRequest() : this.created(JsObject(context['Object']));
   TextSearchRequest.created(JsObject o) : super.created(o);
-  TextSearchRequest() : this.created(new JsObject(context['Object']));
 
-  void set bounds(LatLngBounds _bounds) {
+  set bounds(LatLngBounds _bounds) {
     asJsObject(this)['bounds'] = __codec1.encode(_bounds);
   }
 
   LatLngBounds get bounds => __codec1.decode(asJsObject(this)['bounds']);
-  void set location(LatLng _location) {
+  set location(LatLng _location) {
     asJsObject(this)['location'] = __codec19.encode(_location);
   }
 
   LatLng get location => __codec19.decode(asJsObject(this)['location']);
-  void set query(String _query) {
+  set query(String _query) {
     asJsObject(this)['query'] = _query;
   }
 
   String get query => asJsObject(this)['query'];
-  void set radius(num _radius) {
+  set radius(num _radius) {
     asJsObject(this)['radius'] = _radius;
   }
 
   num get radius => asJsObject(this)['radius'];
-  void set types(List<String> _types) {
+  set types(List<String> _types) {
     asJsObject(this)['types'] = __codec4.encode(_types);
   }
 
@@ -901,201 +899,196 @@ class TextSearchRequest extends JsInterface {
 }
 
 /// codec for google_maps.src.places.AutocompleteOptions
-final __codec0 = new JsInterfaceCodec<AutocompleteOptions>(
-    (o) => new AutocompleteOptions.created(o));
+final __codec0 = JsInterfaceCodec<AutocompleteOptions>(
+    (o) => AutocompleteOptions.created(o));
 
 /// codec for google_maps.src.LatLngBounds
-final __codec1 =
-    new JsInterfaceCodec<LatLngBounds>((o) => new LatLngBounds.created(o));
+final __codec1 = JsInterfaceCodec<LatLngBounds>((o) => LatLngBounds.created(o));
 
 /// codec for google_maps.src.places.PlaceResult
-final __codec2 =
-    new JsInterfaceCodec<PlaceResult>((o) => new PlaceResult.created(o));
+final __codec2 = JsInterfaceCodec<PlaceResult>((o) => PlaceResult.created(o));
 
 /// codec for google_maps.src.places.ComponentRestrictions
-final __codec3 = new JsInterfaceCodec<ComponentRestrictions>(
-    (o) => new ComponentRestrictions.created(o));
+final __codec3 = JsInterfaceCodec<ComponentRestrictions>(
+    (o) => ComponentRestrictions.created(o));
 
 /// codec for dart.core.List<String>
-final __codec4 = new JsListCodec<String>(null);
+final __codec4 = JsListCodec<String>(null);
 
 /// codec for google_maps.src.places.PredictionSubstring
-final __codec5 = new JsInterfaceCodec<PredictionSubstring>(
-    (o) => new PredictionSubstring.created(o));
+final __codec5 = JsInterfaceCodec<PredictionSubstring>(
+    (o) => PredictionSubstring.created(o));
 
 /// codec for dart.core.List<PredictionSubstring>
-final __codec6 = new JsListCodec<PredictionSubstring>(__codec5);
+final __codec6 = JsListCodec<PredictionSubstring>(__codec5);
 
 /// codec for google_maps.src.places.PredictionTerm
 final __codec7 =
-    new JsInterfaceCodec<PredictionTerm>((o) => new PredictionTerm.created(o));
+    JsInterfaceCodec<PredictionTerm>((o) => PredictionTerm.created(o));
 
 /// codec for dart.core.List<PredictionTerm>
-final __codec8 = new JsListCodec<PredictionTerm>(__codec7);
+final __codec8 = JsListCodec<PredictionTerm>(__codec7);
 
 /// codec for google_maps.src.places.AutocompletionRequest
-final __codec9 = new JsInterfaceCodec<AutocompletionRequest>(
-    (o) => new AutocompletionRequest.created(o));
+final __codec9 = JsInterfaceCodec<AutocompletionRequest>(
+    (o) => AutocompletionRequest.created(o));
 
 /// codec for dart.core.dynamic
-final __codec10 = new DynamicCodec();
+final __codec10 = DynamicCodec();
 
 /// codec for google_maps.src.places.AutocompletePrediction
-final __codec11 = new JsInterfaceCodec<AutocompletePrediction>(
-    (o) => new AutocompletePrediction.created(o));
+final __codec11 = JsInterfaceCodec<AutocompletePrediction>(
+    (o) => AutocompletePrediction.created(o));
 
 /// codec for dart.core.List<AutocompletePrediction>
-final __codec12 = new JsListCodec<AutocompletePrediction>(__codec11);
+final __codec12 = JsListCodec<AutocompletePrediction>(__codec11);
 
 /// codec for google_maps.src.places.PlacesServiceStatus
-final __codec13 = new BiMapCodec<PlacesServiceStatus, dynamic>(
-    new Map<PlacesServiceStatus, dynamic>.fromIterable(
-        PlacesServiceStatus.values,
+final __codec13 = BiMapCodec<PlacesServiceStatus, dynamic>(
+    Map<PlacesServiceStatus, dynamic>.fromIterable(PlacesServiceStatus.values,
         value: asJs));
 
 /// codec for google_maps.src.places.(List<AutocompletePrediction>, PlacesServiceStatus) → dynamic
-final __codec14 = new FunctionCodec<
+final __codec14 = FunctionCodec<
     Function> /*<(List<AutocompletePrediction>, PlacesServiceStatus) → dynamic>*/(
-  (f) => (p_p1, p_p2) =>
-      __codec10.encode(f(__codec12.decode(p_p1), __codec13.decode(p_p2))),
-  (f) => (p_p1, p_p2) => __codec10.decode(f is JsFunction
-      ? f.apply([__codec12.encode(p_p1), __codec13.encode(p_p2)])
-      : Function.apply(f, [__codec12.encode(p_p1), __codec13.encode(p_p2)])),
+  (f) => (p$p1, p$p2) =>
+      __codec10.encode(f(__codec12.decode(p$p1), __codec13.decode(p$p2))),
+  (f) => (p$p1, p$p2) => __codec10.decode(f is JsFunction
+      ? f.apply([__codec12.encode(p$p1), __codec13.encode(p$p2)])
+      : Function.apply(f, [__codec12.encode(p$p1), __codec13.encode(p$p2)])),
 );
 
 /// codec for google_maps.src.places.QueryAutocompletionRequest
-final __codec15 = new JsInterfaceCodec<QueryAutocompletionRequest>(
-    (o) => new QueryAutocompletionRequest.created(o));
+final __codec15 = JsInterfaceCodec<QueryAutocompletionRequest>(
+    (o) => QueryAutocompletionRequest.created(o));
 
 /// codec for google_maps.src.places.QueryAutocompletePrediction
-final __codec16 = new JsInterfaceCodec<QueryAutocompletePrediction>(
-    (o) => new QueryAutocompletePrediction.created(o));
+final __codec16 = JsInterfaceCodec<QueryAutocompletePrediction>(
+    (o) => QueryAutocompletePrediction.created(o));
 
 /// codec for dart.core.List<QueryAutocompletePrediction>
-final __codec17 = new JsListCodec<QueryAutocompletePrediction>(__codec16);
+final __codec17 = JsListCodec<QueryAutocompletePrediction>(__codec16);
 
 /// codec for google_maps.src.places.(List<QueryAutocompletePrediction>, PlacesServiceStatus) → dynamic
-final __codec18 = new FunctionCodec<
+final __codec18 = FunctionCodec<
     Function> /*<(List<QueryAutocompletePrediction>, PlacesServiceStatus) → dynamic>*/(
-  (f) => (p_p1, p_p2) =>
-      __codec10.encode(f(__codec17.decode(p_p1), __codec13.decode(p_p2))),
-  (f) => (p_p1, p_p2) => __codec10.decode(f is JsFunction
-      ? f.apply([__codec17.encode(p_p1), __codec13.encode(p_p2)])
-      : Function.apply(f, [__codec17.encode(p_p1), __codec13.encode(p_p2)])),
+  (f) => (p$p1, p$p2) =>
+      __codec10.encode(f(__codec17.decode(p$p1), __codec13.decode(p$p2))),
+  (f) => (p$p1, p$p2) => __codec10.decode(f is JsFunction
+      ? f.apply([__codec17.encode(p$p1), __codec13.encode(p$p2)])
+      : Function.apply(f, [__codec17.encode(p$p1), __codec13.encode(p$p2)])),
 );
 
 /// codec for google_maps.src.LatLng
-final __codec19 = new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o));
+final __codec19 = JsInterfaceCodec<LatLng>((o) => LatLng.created(o));
 
 /// codec for google_maps.src.places.PhotoOptions
 final __codec20 =
-    new JsInterfaceCodec<PhotoOptions>((o) => new PhotoOptions.created(o));
+    JsInterfaceCodec<PhotoOptions>((o) => PhotoOptions.created(o));
 
 /// codec for google_maps.src.GeocoderAddressComponent
-final __codec21 = new JsInterfaceCodec<GeocoderAddressComponent>(
-    (o) => new GeocoderAddressComponent.created(o));
+final __codec21 = JsInterfaceCodec<GeocoderAddressComponent>(
+    (o) => GeocoderAddressComponent.created(o));
 
 /// codec for dart.core.List<GeocoderAddressComponent>
-final __codec22 = new JsListCodec<GeocoderAddressComponent>(__codec21);
+final __codec22 = JsListCodec<GeocoderAddressComponent>(__codec21);
 
 /// codec for google_maps.src.places.PlaceAspectRating
-final __codec23 = new JsInterfaceCodec<PlaceAspectRating>(
-    (o) => new PlaceAspectRating.created(o));
+final __codec23 =
+    JsInterfaceCodec<PlaceAspectRating>((o) => PlaceAspectRating.created(o));
 
 /// codec for dart.core.List<PlaceAspectRating>
-final __codec24 = new JsListCodec<PlaceAspectRating>(__codec23);
+final __codec24 = JsListCodec<PlaceAspectRating>(__codec23);
 
 /// codec for google_maps.src.places.PlaceGeometry
 final __codec25 =
-    new JsInterfaceCodec<PlaceGeometry>((o) => new PlaceGeometry.created(o));
+    JsInterfaceCodec<PlaceGeometry>((o) => PlaceGeometry.created(o));
 
 /// codec for google_maps.src.places.PlacePhoto
-final __codec26 =
-    new JsInterfaceCodec<PlacePhoto>((o) => new PlacePhoto.created(o));
+final __codec26 = JsInterfaceCodec<PlacePhoto>((o) => PlacePhoto.created(o));
 
 /// codec for dart.core.List<PlacePhoto>
-final __codec27 = new JsListCodec<PlacePhoto>(__codec26);
+final __codec27 = JsListCodec<PlacePhoto>(__codec26);
 
 /// codec for google_maps.src.places.PlaceReview
-final __codec28 =
-    new JsInterfaceCodec<PlaceReview>((o) => new PlaceReview.created(o));
+final __codec28 = JsInterfaceCodec<PlaceReview>((o) => PlaceReview.created(o));
 
 /// codec for dart.core.List<PlaceReview>
-final __codec29 = new JsListCodec<PlaceReview>(__codec28);
+final __codec29 = JsListCodec<PlaceReview>(__codec28);
 
 /// codec for google_maps.src.places.RankBy
-final __codec30 = new BiMapCodec<RankBy, dynamic>(
-    new Map<RankBy, dynamic>.fromIterable(RankBy.values, value: asJs));
+final __codec30 = BiMapCodec<RankBy, dynamic>(
+    Map<RankBy, dynamic>.fromIterable(RankBy.values, value: asJs));
 
 /// codec for google_maps.src.places.PlaceDetailsRequest
-final __codec31 = new JsInterfaceCodec<PlaceDetailsRequest>(
-    (o) => new PlaceDetailsRequest.created(o));
+final __codec31 = JsInterfaceCodec<PlaceDetailsRequest>(
+    (o) => PlaceDetailsRequest.created(o));
 
 /// codec for google_maps.src.places.(PlaceResult, PlacesServiceStatus) → dynamic
-final __codec32 = new FunctionCodec<
-    Function> /*<(PlaceResult, PlacesServiceStatus) → dynamic>*/(
-  (f) => (p_p1, p_p2) =>
-      __codec10.encode(f(__codec2.decode(p_p1), __codec13.decode(p_p2))),
-  (f) => (p_p1, p_p2) => __codec10.decode(f is JsFunction
-      ? f.apply([__codec2.encode(p_p1), __codec13.encode(p_p2)])
-      : Function.apply(f, [__codec2.encode(p_p1), __codec13.encode(p_p2)])),
+final __codec32 =
+    FunctionCodec<Function> /*<(PlaceResult, PlacesServiceStatus) → dynamic>*/(
+  (f) => (p$p1, p$p2) =>
+      __codec10.encode(f(__codec2.decode(p$p1), __codec13.decode(p$p2))),
+  (f) => (p$p1, p$p2) => __codec10.decode(f is JsFunction
+      ? f.apply([__codec2.encode(p$p1), __codec13.encode(p$p2)])
+      : Function.apply(f, [__codec2.encode(p$p1), __codec13.encode(p$p2)])),
 );
 
 /// codec for google_maps.src.places.PlaceSearchRequest
-final __codec33 = new JsInterfaceCodec<PlaceSearchRequest>(
-    (o) => new PlaceSearchRequest.created(o));
+final __codec33 =
+    JsInterfaceCodec<PlaceSearchRequest>((o) => PlaceSearchRequest.created(o));
 
 /// codec for dart.core.List<PlaceResult>
-final __codec34 = new JsListCodec<PlaceResult>(__codec2);
+final __codec34 = JsListCodec<PlaceResult>(__codec2);
 
 /// codec for google_maps.src.places.PlaceSearchPagination
-final __codec35 = new JsInterfaceCodec<PlaceSearchPagination>(
-    (o) => new PlaceSearchPagination.created(o));
+final __codec35 = JsInterfaceCodec<PlaceSearchPagination>(
+    (o) => PlaceSearchPagination.created(o));
 
 /// codec for google_maps.src.places.(List<PlaceResult>, PlacesServiceStatus, PlaceSearchPagination) → dynamic
-final __codec36 = new FunctionCodec<
+final __codec36 = FunctionCodec<
     Function> /*<(List<PlaceResult>, PlacesServiceStatus, PlaceSearchPagination) → dynamic>*/(
-  (f) => (p_p1, p_p2, p_p3) => __codec10.encode(f(
-      __codec34.decode(p_p1), __codec13.decode(p_p2), __codec35.decode(p_p3))),
-  (f) => (p_p1, p_p2, p_p3) => __codec10.decode(f is JsFunction
+  (f) => (p$p1, p$p2, p$p3) => __codec10.encode(f(
+      __codec34.decode(p$p1), __codec13.decode(p$p2), __codec35.decode(p$p3))),
+  (f) => (p$p1, p$p2, p$p3) => __codec10.decode(f is JsFunction
       ? f.apply([
-          __codec34.encode(p_p1),
-          __codec13.encode(p_p2),
-          __codec35.encode(p_p3)
+          __codec34.encode(p$p1),
+          __codec13.encode(p$p2),
+          __codec35.encode(p$p3)
         ])
       : Function.apply(f, [
-          __codec34.encode(p_p1),
-          __codec13.encode(p_p2),
-          __codec35.encode(p_p3)
+          __codec34.encode(p$p1),
+          __codec13.encode(p$p2),
+          __codec35.encode(p$p3)
         ])),
 );
 
 /// codec for google_maps.src.places.RadarSearchRequest
-final __codec37 = new JsInterfaceCodec<RadarSearchRequest>(
-    (o) => new RadarSearchRequest.created(o));
+final __codec37 =
+    JsInterfaceCodec<RadarSearchRequest>((o) => RadarSearchRequest.created(o));
 
 /// codec for google_maps.src.places.(List<PlaceResult>, PlacesServiceStatus, [dynamic]) → dynamic
-final __codec38 = new FunctionCodec<
+final __codec38 = FunctionCodec<
     Function> /*<(List<PlaceResult>, PlacesServiceStatus, [dynamic]) → dynamic>*/(
-  (f) => (p_p1, p_p2, [p__]) => __codec10.encode(
-      f(__codec34.decode(p_p1), __codec13.decode(p_p2), __codec10.decode(p__))),
-  (f) => (p_p1, p_p2, [p__]) => __codec10.decode(f is JsFunction
+  (f) => (p$p1, p$p2, [p$_]) => __codec10.encode(
+      f(__codec34.decode(p$p1), __codec13.decode(p$p2), __codec10.decode(p$_))),
+  (f) => (p$p1, p$p2, [p$_]) => __codec10.decode(f is JsFunction
       ? f.apply([
-          __codec34.encode(p_p1),
-          __codec13.encode(p_p2),
-          __codec10.encode(p__)
+          __codec34.encode(p$p1),
+          __codec13.encode(p$p2),
+          __codec10.encode(p$_)
         ])
       : Function.apply(f, [
-          __codec34.encode(p_p1),
-          __codec13.encode(p_p2),
-          __codec10.encode(p__)
+          __codec34.encode(p$p1),
+          __codec13.encode(p$p2),
+          __codec10.encode(p$_)
         ])),
 );
 
 /// codec for google_maps.src.places.TextSearchRequest
-final __codec39 = new JsInterfaceCodec<TextSearchRequest>(
-    (o) => new TextSearchRequest.created(o));
+final __codec39 =
+    JsInterfaceCodec<TextSearchRequest>((o) => TextSearchRequest.created(o));
 
 /// codec for google_maps.src.places.SearchBoxOptions
-final __codec40 = new JsInterfaceCodec<SearchBoxOptions>(
-    (o) => new SearchBoxOptions.created(o));
+final __codec40 =
+    JsInterfaceCodec<SearchBoxOptions>((o) => SearchBoxOptions.created(o));

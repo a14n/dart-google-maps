@@ -27,58 +27,58 @@ class AdFormat extends JsEnum {
     WIDE_SKYSCRAPER,
     X_LARGE_VERTICAL_LINK_UNIT
   ];
-  static final BANNER = new AdFormat._(
+  static final BANNER = AdFormat._(
       'BANNER', context['google']['maps']['adsense']['AdFormat']['BANNER']);
-  static final BUTTON = new AdFormat._(
+  static final BUTTON = AdFormat._(
       'BUTTON', context['google']['maps']['adsense']['AdFormat']['BUTTON']);
-  static final HALF_BANNER = new AdFormat._('HALF_BANNER',
+  static final HALF_BANNER = AdFormat._('HALF_BANNER',
       context['google']['maps']['adsense']['AdFormat']['HALF_BANNER']);
-  static final LARGE_HORIZONTAL_LINK_UNIT = new AdFormat._(
+  static final LARGE_HORIZONTAL_LINK_UNIT = AdFormat._(
       'LARGE_HORIZONTAL_LINK_UNIT',
       context['google']['maps']['adsense']['AdFormat']
           ['LARGE_HORIZONTAL_LINK_UNIT']);
-  static final LARGE_RECTANGLE = new AdFormat._('LARGE_RECTANGLE',
+  static final LARGE_RECTANGLE = AdFormat._('LARGE_RECTANGLE',
       context['google']['maps']['adsense']['AdFormat']['LARGE_RECTANGLE']);
-  static final LARGE_VERTICAL_LINK_UNIT = new AdFormat._(
+  static final LARGE_VERTICAL_LINK_UNIT = AdFormat._(
       'LARGE_VERTICAL_LINK_UNIT',
       context['google']['maps']['adsense']['AdFormat']
           ['LARGE_VERTICAL_LINK_UNIT']);
-  static final LEADERBOARD = new AdFormat._('LEADERBOARD',
+  static final LEADERBOARD = AdFormat._('LEADERBOARD',
       context['google']['maps']['adsense']['AdFormat']['LEADERBOARD']);
-  static final MEDIUM_RECTANGLE = new AdFormat._('MEDIUM_RECTANGLE',
+  static final MEDIUM_RECTANGLE = AdFormat._('MEDIUM_RECTANGLE',
       context['google']['maps']['adsense']['AdFormat']['MEDIUM_RECTANGLE']);
-  static final MEDIUM_VERTICAL_LINK_UNIT = new AdFormat._(
+  static final MEDIUM_VERTICAL_LINK_UNIT = AdFormat._(
       'MEDIUM_VERTICAL_LINK_UNIT',
       context['google']['maps']['adsense']['AdFormat']
           ['MEDIUM_VERTICAL_LINK_UNIT']);
-  static final SKYSCRAPER = new AdFormat._('SKYSCRAPER',
+  static final SKYSCRAPER = AdFormat._('SKYSCRAPER',
       context['google']['maps']['adsense']['AdFormat']['SKYSCRAPER']);
-  static final SMALL_HORIZONTAL_LINK_UNIT = new AdFormat._(
+  static final SMALL_HORIZONTAL_LINK_UNIT = AdFormat._(
       'SMALL_HORIZONTAL_LINK_UNIT',
       context['google']['maps']['adsense']['AdFormat']
           ['SMALL_HORIZONTAL_LINK_UNIT']);
-  static final SMALL_RECTANGLE = new AdFormat._('SMALL_RECTANGLE',
+  static final SMALL_RECTANGLE = AdFormat._('SMALL_RECTANGLE',
       context['google']['maps']['adsense']['AdFormat']['SMALL_RECTANGLE']);
-  static final SMALL_SQUARE = new AdFormat._('SMALL_SQUARE',
+  static final SMALL_SQUARE = AdFormat._('SMALL_SQUARE',
       context['google']['maps']['adsense']['AdFormat']['SMALL_SQUARE']);
-  static final SMALL_VERTICAL_LINK_UNIT = new AdFormat._(
+  static final SMALL_VERTICAL_LINK_UNIT = AdFormat._(
       'SMALL_VERTICAL_LINK_UNIT',
       context['google']['maps']['adsense']['AdFormat']
           ['SMALL_VERTICAL_LINK_UNIT']);
-  static final SQUARE = new AdFormat._(
+  static final SQUARE = AdFormat._(
       'SQUARE', context['google']['maps']['adsense']['AdFormat']['SQUARE']);
-  static final VERTICAL_BANNER = new AdFormat._('VERTICAL_BANNER',
+  static final VERTICAL_BANNER = AdFormat._('VERTICAL_BANNER',
       context['google']['maps']['adsense']['AdFormat']['VERTICAL_BANNER']);
-  static final WIDE_SKYSCRAPER = new AdFormat._('WIDE_SKYSCRAPER',
+  static final WIDE_SKYSCRAPER = AdFormat._('WIDE_SKYSCRAPER',
       context['google']['maps']['adsense']['AdFormat']['WIDE_SKYSCRAPER']);
-  static final X_LARGE_VERTICAL_LINK_UNIT = new AdFormat._(
+  static final X_LARGE_VERTICAL_LINK_UNIT = AdFormat._(
       'X_LARGE_VERTICAL_LINK_UNIT',
       context['google']['maps']['adsense']['AdFormat']
           ['X_LARGE_VERTICAL_LINK_UNIT']);
-
   final String _name;
   AdFormat._(this._name, o) : super.created(o);
 
+  @override
   String toString() => 'AdFormat.$_name';
 
   // dumb code to remove analyzer hint for unused _AdFormat
@@ -89,11 +89,10 @@ class AdFormat extends JsEnum {
 @GeneratedFrom(_AdUnit)
 @JsName('google.maps.adsense.AdUnit')
 class AdUnit extends MVCObject {
-  AdUnit.created(JsObject o) : super.created(o);
   AdUnit(Node container, AdUnitOptions opts)
-      : this.created(new JsObject(
-            context['google']['maps']['adsense']['AdUnit'],
+      : this.created(JsObject(context['google']['maps']['adsense']['AdUnit'],
             [container, __codec0.encode(opts)]));
+  AdUnit.created(JsObject o) : super.created(o);
 
   String get backgroundColor => _getBackgroundColor();
   String _getBackgroundColor() =>
@@ -171,55 +170,55 @@ class AdUnit extends MVCObject {
 @GeneratedFrom(_AdUnitOptions)
 @anonymous
 class AdUnitOptions extends JsInterface {
+  AdUnitOptions() : this.created(JsObject(context['Object']));
   AdUnitOptions.created(JsObject o) : super.created(o);
-  AdUnitOptions() : this.created(new JsObject(context['Object']));
 
-  void set backgroundColor(String _backgroundColor) {
+  set backgroundColor(String _backgroundColor) {
     asJsObject(this)['backgroundColor'] = _backgroundColor;
   }
 
   String get backgroundColor => asJsObject(this)['backgroundColor'];
-  void set borderColor(String _borderColor) {
+  set borderColor(String _borderColor) {
     asJsObject(this)['borderColor'] = _borderColor;
   }
 
   String get borderColor => asJsObject(this)['borderColor'];
-  void set channelNumber(String _channelNumber) {
+  set channelNumber(String _channelNumber) {
     asJsObject(this)['channelNumber'] = _channelNumber;
   }
 
   String get channelNumber => asJsObject(this)['channelNumber'];
-  void set format(AdFormat _format) {
+  set format(AdFormat _format) {
     asJsObject(this)['format'] = __codec1.encode(_format);
   }
 
   AdFormat get format => __codec1.decode(asJsObject(this)['format']);
-  void set map(GMap _map) {
+  set map(GMap _map) {
     asJsObject(this)['map'] = __codec2.encode(_map);
   }
 
   GMap get map => __codec2.decode(asJsObject(this)['map']);
-  void set position(ControlPosition _position) {
+  set position(ControlPosition _position) {
     asJsObject(this)['position'] = __codec3.encode(_position);
   }
 
   ControlPosition get position => __codec3.decode(asJsObject(this)['position']);
-  void set publisherId(String _publisherId) {
+  set publisherId(String _publisherId) {
     asJsObject(this)['publisherId'] = _publisherId;
   }
 
   String get publisherId => asJsObject(this)['publisherId'];
-  void set textColor(String _textColor) {
+  set textColor(String _textColor) {
     asJsObject(this)['textColor'] = _textColor;
   }
 
   String get textColor => asJsObject(this)['textColor'];
-  void set titleColor(String _titleColor) {
+  set titleColor(String _titleColor) {
     asJsObject(this)['titleColor'] = _titleColor;
   }
 
   String get titleColor => asJsObject(this)['titleColor'];
-  void set urlColor(String _urlColor) {
+  set urlColor(String _urlColor) {
     asJsObject(this)['urlColor'] = _urlColor;
   }
 
@@ -228,16 +227,16 @@ class AdUnitOptions extends JsInterface {
 
 /// codec for google_maps.src.adsense.AdUnitOptions
 final __codec0 =
-    new JsInterfaceCodec<AdUnitOptions>((o) => new AdUnitOptions.created(o));
+    JsInterfaceCodec<AdUnitOptions>((o) => AdUnitOptions.created(o));
 
 /// codec for google_maps.src.adsense.AdFormat
-final __codec1 = new BiMapCodec<AdFormat, dynamic>(
-    new Map<AdFormat, dynamic>.fromIterable(AdFormat.values, value: asJs));
+final __codec1 = BiMapCodec<AdFormat, dynamic>(
+    Map<AdFormat, dynamic>.fromIterable(AdFormat.values, value: asJs));
 
 /// codec for google_maps.src.GMap
-final __codec2 = new JsInterfaceCodec<GMap>((o) => new GMap.created(o));
+final __codec2 = JsInterfaceCodec<GMap>((o) => GMap.created(o));
 
 /// codec for google_maps.src.ControlPosition
-final __codec3 = new BiMapCodec<ControlPosition, dynamic>(
-    new Map<ControlPosition, dynamic>.fromIterable(ControlPosition.values,
+final __codec3 = BiMapCodec<ControlPosition, dynamic>(
+    Map<ControlPosition, dynamic>.fromIterable(ControlPosition.values,
         value: asJs));

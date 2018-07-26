@@ -200,16 +200,18 @@ part 'google_maps_src.g.dart';
 
 abstract class _Controls extends JsInterface
     with MapMixin<ControlPosition, MVCArray<Node>> {
-  _Controls() : super.created(new JsArray());
+  _Controls() : super.created(JsArray());
 
   MVCArray<Node> operator [](covariant ControlPosition controlPosition) {
     var value = asJsObject(this)[_toJsControlPosition(controlPosition)];
     if (value == null) return null;
-    return new MVCArray<Node>.created(value as JsObject);
+    return MVCArray<Node>.created(value as JsObject);
   }
+
   void operator []=(ControlPosition controlPosition, MVCArray<Node> nodes) {
     asJsObject(this)[_toJsControlPosition(controlPosition)] = asJsObject(nodes);
   }
+
   Iterable<ControlPosition> get keys {
     var result = <ControlPosition>[];
     for (final control in ControlPosition.values) {
@@ -217,27 +219,29 @@ abstract class _Controls extends JsInterface
     }
     return result;
   }
+
   MVCArray<Node> remove(Object key) {
     var result = this[key as ControlPosition];
     this[key as ControlPosition] = null;
     return result;
   }
+
   void clear() => (asJsObject(this) as JsArray).clear();
 
   _toJsControlPosition(ControlPosition controlPosition) => ((e) {
-    if (e == null) return null;
-    final path = context['google']['maps']['ControlPosition'];
-    if (e == ControlPosition.BOTTOM_CENTER) return path['BOTTOM_CENTER'];
-    if (e == ControlPosition.BOTTOM_LEFT) return path['BOTTOM_LEFT'];
-    if (e == ControlPosition.BOTTOM_RIGHT) return path['BOTTOM_RIGHT'];
-    if (e == ControlPosition.LEFT_BOTTOM) return path['LEFT_BOTTOM'];
-    if (e == ControlPosition.LEFT_CENTER) return path['LEFT_CENTER'];
-    if (e == ControlPosition.LEFT_TOP) return path['LEFT_TOP'];
-    if (e == ControlPosition.RIGHT_BOTTOM) return path['RIGHT_BOTTOM'];
-    if (e == ControlPosition.RIGHT_CENTER) return path['RIGHT_CENTER'];
-    if (e == ControlPosition.RIGHT_TOP) return path['RIGHT_TOP'];
-    if (e == ControlPosition.TOP_CENTER) return path['TOP_CENTER'];
-    if (e == ControlPosition.TOP_LEFT) return path['TOP_LEFT'];
-    if (e == ControlPosition.TOP_RIGHT) return path['TOP_RIGHT'];
-  })(controlPosition);
+        if (e == null) return null;
+        final path = context['google']['maps']['ControlPosition'];
+        if (e == ControlPosition.BOTTOM_CENTER) return path['BOTTOM_CENTER'];
+        if (e == ControlPosition.BOTTOM_LEFT) return path['BOTTOM_LEFT'];
+        if (e == ControlPosition.BOTTOM_RIGHT) return path['BOTTOM_RIGHT'];
+        if (e == ControlPosition.LEFT_BOTTOM) return path['LEFT_BOTTOM'];
+        if (e == ControlPosition.LEFT_CENTER) return path['LEFT_CENTER'];
+        if (e == ControlPosition.LEFT_TOP) return path['LEFT_TOP'];
+        if (e == ControlPosition.RIGHT_BOTTOM) return path['RIGHT_BOTTOM'];
+        if (e == ControlPosition.RIGHT_CENTER) return path['RIGHT_CENTER'];
+        if (e == ControlPosition.RIGHT_TOP) return path['RIGHT_TOP'];
+        if (e == ControlPosition.TOP_CENTER) return path['TOP_CENTER'];
+        if (e == ControlPosition.TOP_LEFT) return path['TOP_LEFT'];
+        if (e == ControlPosition.TOP_RIGHT) return path['TOP_RIGHT'];
+      })(controlPosition);
 }

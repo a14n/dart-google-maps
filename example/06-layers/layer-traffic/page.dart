@@ -2,11 +2,11 @@ import 'dart:html';
 import 'package:google_maps/google_maps.dart';
 
 void main() {
-  final myLatlng = new LatLng(34.04924594193164, -118.24104309082031);
-  final mapOptions = new MapOptions()
+  final myLatlng = LatLng(34.04924594193164, -118.24104309082031);
+  final mapOptions = MapOptions()
     ..zoom = 13
     ..center = myLatlng;
-  final map = new GMap(document.getElementById('map-canvas'), mapOptions);
+  final map = GMap(document.getElementById('map-canvas'), mapOptions);
 
-  new TrafficLayer()..map = map;
+  TrafficLayer()..map = map;
 }

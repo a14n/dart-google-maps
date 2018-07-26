@@ -10,18 +10,18 @@ StreetViewPanorama panorama;
 
 void main() {
   // The latlng of the entry point to the Google office on the road.
-  final sydneyOffice = new LatLng(-33.867386, 151.195767);
+  final sydneyOffice = LatLng(-33.867386, 151.195767);
 
   // Set up the map and enable the Street View control.
-  final mapOptions = new MapOptions()
+  final mapOptions = MapOptions()
     ..center = sydneyOffice
     ..zoom = 16;
-  final map = new GMap(document.getElementById('map-canvas'), mapOptions);
+  final map = GMap(document.getElementById('map-canvas'), mapOptions);
 
   panorama = map.streetView;
   // Set up Street View and initially set it visible. Register the
   // custom panorama provider function.
-  final panoOptions = new StreetViewPanoramaOptions()
+  final panoOptions = StreetViewPanoramaOptions()
     ..position = sydneyOffice
     ..visible = true;
   asJsObject(panoOptions)['panoProvider'] = (String pano) {
@@ -31,7 +31,7 @@ void main() {
   panorama.options = panoOptions;
 
   // Create a StreetViewService object.
-  final streetviewService = new StreetViewService();
+  final streetviewService = StreetViewService();
 
   // Compute the nearest panorama to the Google Sydney office
   // using the service and store that pano ID.
@@ -55,19 +55,19 @@ String getCustomPanoramaTileUrl(String pano, num zoom, num tileX, num tileY) {
 StreetViewPanoramaData getCustomPanorama(String pano) {
   switch (pano) {
     case 'reception':
-      final tiles = new StreetViewTileData()
-        ..tileSize = new Size(1024, 512)
-        ..worldSize = new Size(1024, 512)
+      final tiles = StreetViewTileData()
+        ..tileSize = Size(1024, 512)
+        ..worldSize = Size(1024, 512)
         // The heading in degrees at the origin of the panorama
         // tile set.
         ..centerHeading = 105;
       asJsObject(tiles)['getTileUrl'] = getCustomPanoramaTileUrl;
 
-      return new StreetViewPanoramaData()
-        ..location = (new StreetViewLocation()
+      return StreetViewPanoramaData()
+        ..location = (StreetViewLocation()
           ..pano = 'reception'
           ..description = 'Google Sydney - Reception'
-          ..latLng = new LatLng(-33.86684, 151.19583))
+          ..latLng = LatLng(-33.86684, 151.19583))
         ..links = []
         // The text for the copyright control.
         ..copyright = 'Imagery (c) 2010 Google'
@@ -85,7 +85,7 @@ void createCustomLinks(String entryPanoId) {
   if (panoId == entryPanoId) {
     // Adding a link in the view from the entrance of the building to
     // reception.
-    links.add(new StreetViewLink()
+    links.add(StreetViewLink()
       ..heading = 25
       ..description = 'Google Sydney'
       ..pano = 'reception');
@@ -93,7 +93,7 @@ void createCustomLinks(String entryPanoId) {
     // Adding a link in the view from the entrance of the office
     // with an arrow pointing at 100 degrees, with a text of 'Exit'
     // and loading the street entrance of the building pano on click.
-    links.add(new StreetViewLink()
+    links.add(StreetViewLink()
       ..heading = 195
       ..description = 'Exit'
       ..pano = entryPanoId);

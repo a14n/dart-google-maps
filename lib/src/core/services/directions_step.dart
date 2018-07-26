@@ -25,6 +25,7 @@ abstract class _DirectionsStep implements JsInterface {
   void set endLocation(LatLng endLocation) {
     _end_location = endLocation;
   }
+
   String instructions;
   List<LatLng> path;
   LatLng _start_location;
@@ -32,6 +33,7 @@ abstract class _DirectionsStep implements JsInterface {
   void set startLocation(LatLng startLocation) {
     _start_location = startLocation;
   }
+
   List<DirectionsStep> steps;
   TransitDetails transit;
   TravelMode _travel_mode;

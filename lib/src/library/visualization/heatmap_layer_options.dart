@@ -19,26 +19,25 @@ abstract class _HeatmapLayerOptions implements JsInterface {
   factory _HeatmapLayerOptions() => null;
 
   dynamic _data;
-  MVCArray<LatLng> get data => (new JsInterfaceCodec<MVCArray<LatLng>>((o) =>
-          new MVCArray<LatLng>.created(
+  MVCArray<LatLng> get data =>
+      (JsInterfaceCodec<MVCArray<LatLng>>((o) => MVCArray<LatLng>.created(
               o,
-              new JsInterfaceCodec<LatLng>(
-                  (o) => new LatLng.created(o),
+              JsInterfaceCodec<LatLng>(
+                  (o) => LatLng.created(o),
                   (o) =>
                       o != null &&
                       o.instanceof(
                           context['google']['maps']['LatLng'] as JsFunction)))))
-      .decode(_data as JsObject);
+          .decode(_data as JsObject);
   void set data(MVCArray<LatLng> data) {
-    _data = (new JsInterfaceCodec<MVCArray<LatLng>>((o) =>
-            new MVCArray<LatLng>.created(
-                o,
-                new JsInterfaceCodec<LatLng>(
-                    (o) => new LatLng.created(o),
-                    (o) =>
-                        o != null &&
-                        o.instanceof(context['google']['maps']['LatLng']
-                            as JsFunction)))))
+    _data = (JsInterfaceCodec<MVCArray<LatLng>>((o) => MVCArray<LatLng>.created(
+            o,
+            JsInterfaceCodec<LatLng>(
+                (o) => LatLng.created(o),
+                (o) =>
+                    o != null &&
+                    o.instanceof(
+                        context['google']['maps']['LatLng'] as JsFunction)))))
         .encode(data);
   }
 

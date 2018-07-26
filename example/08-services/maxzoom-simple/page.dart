@@ -6,13 +6,13 @@ GMap map;
 MaxZoomService maxZoomService;
 
 void main() {
-  final mapOptions = new MapOptions()
+  final mapOptions = MapOptions()
     ..zoom = 11
-    ..center = new LatLng(35.6894875, 139.6917064)
+    ..center = LatLng(35.6894875, 139.6917064)
     ..mapTypeId = MapTypeId.HYBRID;
-  map = new GMap(document.getElementById('map-canvas'), mapOptions);
+  map = GMap(document.getElementById('map-canvas'), mapOptions);
 
-  maxZoomService = new MaxZoomService();
+  maxZoomService = MaxZoomService();
 
   map.onClick.listen(showMaxZoom);
 }

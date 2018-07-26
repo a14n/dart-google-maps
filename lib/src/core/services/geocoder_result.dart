@@ -23,26 +23,31 @@ abstract class _GeocoderResult implements JsInterface {
   void set addressComponents(List<GeocoderAddressComponent> addressComponents) {
     _address_components = addressComponents;
   }
+
   String _formatted_address;
   String get formattedAddress => _formatted_address;
   void set formattedAddress(String formattedAddress) {
     _formatted_address = formattedAddress;
   }
+
   GeocoderGeometry geometry;
   bool _partial_match;
   bool get partialMatch => _partial_match;
   void set partialMatch(bool partialMatch) {
     _partial_match = partialMatch;
   }
+
   String _place_id;
   String get placeId => _place_id;
   void set placeId(String placeId) {
     _place_id = placeId;
   }
+
   List<String> _postcode_localities;
   List<String> get postcodeLocalities => _postcode_localities;
   void set postcodeLocalities(List<String> postcodeLocalities) {
     _postcode_localities = postcodeLocalities;
   }
+
   List<String> types;
 }

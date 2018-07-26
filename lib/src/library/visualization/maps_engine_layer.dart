@@ -49,8 +49,8 @@ abstract class _MapsEngineLayer extends MVCObject {
   void set zIndex(num zIndex) => _setZIndex(zIndex);
   void _setZIndex(num zIndex);
 
-  Stream<MapsEngineMouseEvent> get onClick => getStream(this, #onClick, "click",
-      (JsObject o) => new MapsEngineMouseEvent.created(o));
+  Stream<MapsEngineMouseEvent> get onClick => getStream(
+      this, #onClick, "click", (JsObject o) => MapsEngineMouseEvent.created(o));
   Stream get onPropertiesChanged =>
       getStream(this, #onPropertiesChanged, "properties_changed");
   Stream get onStatusChanged =>

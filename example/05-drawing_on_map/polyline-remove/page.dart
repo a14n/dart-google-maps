@@ -5,19 +5,19 @@ Polyline flightPath;
 GMap map;
 
 void main() {
-  final mapOptions = new MapOptions()
+  final mapOptions = MapOptions()
     ..zoom = 3
-    ..center = new LatLng(0, -180)
+    ..center = LatLng(0, -180)
     ..mapTypeId = MapTypeId.TERRAIN;
-  map = new GMap(document.getElementById('map-canvas'), mapOptions);
+  map = GMap(document.getElementById('map-canvas'), mapOptions);
 
   final flightPlanCoordinates = <LatLng>[
-    new LatLng(37.772323, -122.214897),
-    new LatLng(21.291982, -157.821856),
-    new LatLng(-18.142599, 178.431),
-    new LatLng(-27.46758, 153.027892)
+    LatLng(37.772323, -122.214897),
+    LatLng(21.291982, -157.821856),
+    LatLng(-18.142599, 178.431),
+    LatLng(-27.46758, 153.027892)
   ];
-  flightPath = new Polyline(new PolylineOptions()
+  flightPath = Polyline(PolylineOptions()
     ..path = flightPlanCoordinates
     ..strokeColor = '#FF0000'
     ..strokeOpacity = 1.0

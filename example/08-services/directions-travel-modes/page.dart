@@ -3,17 +3,17 @@ import 'dart:html';
 import 'package:google_maps/google_maps.dart';
 
 DirectionsRenderer directionsDisplay;
-final directionsService = new DirectionsService();
+final directionsService = DirectionsService();
 GMap map;
-final haight = new LatLng(37.7699298, -122.4469157);
-final oceanBeach = new LatLng(37.7683909618184, -122.51089453697205);
+final haight = LatLng(37.7699298, -122.4469157);
+final oceanBeach = LatLng(37.7683909618184, -122.51089453697205);
 
 void main() {
-  directionsDisplay = new DirectionsRenderer();
-  final mapOptions = new MapOptions()
+  directionsDisplay = DirectionsRenderer();
+  final mapOptions = MapOptions()
     ..zoom = 14
     ..center = haight;
-  map = new GMap(document.getElementById('map-canvas'), mapOptions);
+  map = GMap(document.getElementById('map-canvas'), mapOptions);
   directionsDisplay.map = map;
 
   document.getElementById('mode').onChange.listen((e) => calcRoute());
@@ -21,11 +21,11 @@ void main() {
 
 void calcRoute() {
   final selectedMode = (document.getElementById('mode') as SelectElement).value;
-  final request = new DirectionsRequest()
+  final request = DirectionsRequest()
     ..origin = haight
     ..destination = oceanBeach
-    ..travelMode =
-    TravelMode.values.firstWhere((t) => t.toString().contains(selectedMode));
+    ..travelMode = TravelMode.values
+        .firstWhere((t) => t.toString().contains(selectedMode));
   directionsService.route(request, (response, status) {
     if (status == DirectionsStatus.OK) {
       directionsDisplay.directions = response;

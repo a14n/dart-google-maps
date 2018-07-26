@@ -6,25 +6,25 @@ GMap map;
 DirectionsRenderer directionsDisplay;
 DirectionsService directionsService;
 InfoWindow stepDisplay;
-final markerArray = new List<Marker>();
+final markerArray = List<Marker>();
 
 void main() {
   // Instantiate a directions service.
-  directionsService = new DirectionsService();
+  directionsService = DirectionsService();
 
   // Create a map and center it on Manhattan.
-  final manhattan = new LatLng(40.7711329, -73.9741874);
-  final mapOptions = new MapOptions()
+  final manhattan = LatLng(40.7711329, -73.9741874);
+  final mapOptions = MapOptions()
     ..zoom = 13
     ..center = manhattan;
-  map = new GMap(document.getElementById('map-canvas'), mapOptions);
+  map = GMap(document.getElementById('map-canvas'), mapOptions);
 
   // Create a renderer for directions and bind it to the map.
-  final rendererOptions = new DirectionsRendererOptions()..map = map;
-  directionsDisplay = new DirectionsRenderer(rendererOptions);
+  final rendererOptions = DirectionsRendererOptions()..map = map;
+  directionsDisplay = DirectionsRenderer(rendererOptions);
 
   // Instantiate an info window to hold step text.
-  stepDisplay = new InfoWindow();
+  stepDisplay = InfoWindow();
 
   document.getElementById('start').onChange.listen((e) => calcRoute());
   document.getElementById('end').onChange.listen((e) => calcRoute());
@@ -41,7 +41,7 @@ void calcRoute() {
   // a DirectionsRequest using WALKING directions.
   final start = (document.getElementById('start') as SelectElement).value;
   final end = (document.getElementById('end') as SelectElement).value;
-  final request = new DirectionsRequest()
+  final request = DirectionsRequest()
     ..origin = start
     ..destination = end
     ..travelMode = TravelMode.WALKING;
@@ -66,7 +66,7 @@ void showSteps(DirectionsResult directionResult) {
   final myRoute = directionResult.routes[0].legs[0];
 
   for (final step in myRoute.steps) {
-    final marker = new Marker(new MarkerOptions()
+    final marker = Marker(MarkerOptions()
       ..position = step.startLocation
       ..map = map);
     attachInstructionText(marker, step.instructions);

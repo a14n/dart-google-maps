@@ -5,19 +5,19 @@ import 'package:google_maps/google_maps.dart';
 
 GMap map;
 const TILE_SIZE = 256;
-final LatLng chicago = new LatLng(41.850033, -87.6500523);
+final LatLng chicago = LatLng(41.850033, -87.6500523);
 
 num degreesToRadians(num deg) => deg * (Math.pi / 180);
 
 num radiansToDegrees(num rad) => rad / (Math.pi / 180);
 
 class MercatorProjection {
-  final _pixelOrigin = new Point(TILE_SIZE / 2, TILE_SIZE / 2);
+  final _pixelOrigin = Point(TILE_SIZE / 2, TILE_SIZE / 2);
   static const _pixelsPerLonDegree = TILE_SIZE / 360;
   static const _pixelsPerLonRadian = TILE_SIZE / (2 * Math.pi);
 
   Point fromLatLngToPoint(LatLng latLng, [Point point]) {
-    if (point == null) point = new Point(0, 0);
+    if (point == null) point = Point(0, 0);
     final origin = _pixelOrigin;
 
     point.x = origin.x + latLng.lng * _pixelsPerLonDegree;
@@ -38,17 +38,17 @@ class MercatorProjection {
     var latRadians = (point.y - origin.y) / -_pixelsPerLonRadian;
     var lat =
         radiansToDegrees(2 * Math.atan(Math.exp(latRadians)) - Math.pi / 2);
-    return new LatLng(lat, lng);
+    return LatLng(lat, lng);
   }
 }
 
 String createInfoWindowContent() {
   final numTiles = 1 << map.zoom;
-  final projection = new MercatorProjection();
+  final projection = MercatorProjection();
   final worldCoordinate = projection.fromLatLngToPoint(chicago);
   final pixelCoordinate =
-      new Point(worldCoordinate.x * numTiles, worldCoordinate.y * numTiles);
-  final tileCoordinate = new Point((pixelCoordinate.x / TILE_SIZE).floor(),
+      Point(worldCoordinate.x * numTiles, worldCoordinate.y * numTiles);
+  final tileCoordinate = Point((pixelCoordinate.x / TILE_SIZE).floor(),
       (pixelCoordinate.y / TILE_SIZE).floor());
 
   return [
@@ -61,12 +61,12 @@ String createInfoWindowContent() {
 }
 
 void main() {
-  final mapOptions = new MapOptions()
+  final mapOptions = MapOptions()
     ..zoom = 0
     ..center = chicago;
-  map = new GMap(document.getElementById("map-canvas"), mapOptions);
+  map = GMap(document.getElementById("map-canvas"), mapOptions);
 
-  final InfoWindow coordInfoWindow = new InfoWindow()
+  final InfoWindow coordInfoWindow = InfoWindow()
     ..content = createInfoWindowContent()
     ..position = chicago
     ..open(map);

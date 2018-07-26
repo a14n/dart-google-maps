@@ -2,26 +2,26 @@ import 'dart:html';
 
 import 'package:google_maps/google_maps.dart';
 
-final geocoder = new Geocoder();
+final geocoder = Geocoder();
 GMap map;
 
 void main() {
-  final latlng = new LatLng(-34.397, 150.644);
-  final mapOptions = new MapOptions()
+  final latlng = LatLng(-34.397, 150.644);
+  final mapOptions = MapOptions()
     ..zoom = 8
     ..center = latlng;
-  map = new GMap(document.getElementById('map-canvas'), mapOptions);
+  map = GMap(document.getElementById('map-canvas'), mapOptions);
 
   document.getElementById('codeAddress').onClick.listen(codeAddress);
 }
 
 void codeAddress(_) {
   final address = (document.getElementById('address') as InputElement).value;
-  final request = new GeocoderRequest()..address = address;
+  final request = GeocoderRequest()..address = address;
   geocoder.geocode(request, (results, status) {
     if (status == GeocoderStatus.OK) {
       map.center = results[0].geometry.location;
-      new Marker(new MarkerOptions()
+      Marker(MarkerOptions()
         ..map = map
         ..position = results[0].geometry.location);
     } else {

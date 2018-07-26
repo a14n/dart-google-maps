@@ -23,10 +23,12 @@ abstract class _GeocoderAddressComponent implements JsInterface {
   void set longName(String longName) {
     _long_name = longName;
   }
+
   String _short_name;
   String get shortName => _short_name;
   void set shortName(String shortName) {
     _short_name = shortName;
   }
+
   List<String> types;
 }

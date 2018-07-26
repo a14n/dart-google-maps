@@ -27,11 +27,13 @@ abstract class _DirectionsRoute implements JsInterface {
   void set overviewPath(List<LatLng> overviewPath) {
     _overview_path = overviewPath;
   }
+
   String _overview_polyline;
   String get overviewPolyline => _overview_polyline;
   void set overviewPolyline(String overviewPolyline) {
     _overview_polyline = overviewPolyline;
   }
+
   List<String> warnings;
   List<num> _waypoint_order;
   List<num> get waypointOrder => _waypoint_order;

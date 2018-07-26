@@ -2,12 +2,12 @@ import 'dart:html' hide Events;
 import 'package:google_maps/google_maps.dart';
 
 void main() {
-  final mapOptions = new MapOptions()
+  final mapOptions = MapOptions()
     ..zoom = 8
-    ..center = new LatLng(-34.397, 150.644);
+    ..center = LatLng(-34.397, 150.644);
 
   final mapDiv = document.getElementById('map-canvas');
-  new GMap(mapDiv, mapOptions);
+  GMap(mapDiv, mapOptions);
 
   // We add a DOM event here to show an alert if the DIV containing the
   // map is clicked. Note that we do this within the intialize function

@@ -2,17 +2,17 @@ import 'dart:html';
 import 'package:google_maps/google_maps.dart';
 
 void main() {
-  final fenway = new LatLng(42.345573, -71.098326);
-  final mapOptions = new MapOptions()
+  final fenway = LatLng(42.345573, -71.098326);
+  final mapOptions = MapOptions()
     ..center = fenway
     ..zoom = 14;
-  final map = new GMap(document.getElementById('map-canvas'), mapOptions);
-  final panoramaOptions = new StreetViewPanoramaOptions()
+  final map = GMap(document.getElementById('map-canvas'), mapOptions);
+  final panoramaOptions = StreetViewPanoramaOptions()
     ..position = fenway
-    ..pov = (new StreetViewPov()
+    ..pov = (StreetViewPov()
       ..heading = 34
       ..pitch = 10);
   final panorama =
-      new StreetViewPanorama(document.getElementById('pano'), panoramaOptions);
+      StreetViewPanorama(document.getElementById('pano'), panoramaOptions);
   map.streetView = panorama;
 }

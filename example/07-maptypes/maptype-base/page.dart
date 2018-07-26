@@ -5,11 +5,11 @@ import 'package:js_wrapping/js_wrapping.dart';
 
 class CoordMapType extends MapType {
   CoordMapType() : super() {
-    this.tileSize = new Size(256, 256);
+    this.tileSize = Size(256, 256);
     this.maxZoom = 19;
-    asJsObject(this)['getTile'] = (JsObject tileCoord, num zoom,
-        HtmlDocument ownerDocument) {
-      return _getTile(new Point.created(tileCoord), zoom, ownerDocument);
+    asJsObject(this)['getTile'] =
+        (JsObject tileCoord, num zoom, HtmlDocument ownerDocument) {
+      return _getTile(Point.created(tileCoord), zoom, ownerDocument);
     };
     this.name = 'Tile #s';
     this.alt = 'Tile Coordinate Map Type';
@@ -31,23 +31,23 @@ class CoordMapType extends MapType {
 }
 
 GMap map;
-final chicago = new LatLng(41.850033, -87.6500523);
-final coordinateMapType = new CoordMapType();
+final chicago = LatLng(41.850033, -87.6500523);
+final coordinateMapType = CoordMapType();
 
 void main() {
-  final mapOptions = new MapOptions()
+  final mapOptions = MapOptions()
     ..zoom = 10
     ..center = chicago
     ..streetViewControl = false
     ..mapTypeId = "coordinate"
-    ..mapTypeControlOptions = (new MapTypeControlOptions()
+    ..mapTypeControlOptions = (MapTypeControlOptions()
       ..mapTypeIds = ['coordinate', MapTypeId.ROADMAP]
       ..style = MapTypeControlStyle.DROPDOWN_MENU);
-  map = new GMap(document.getElementById('map-canvas'), mapOptions);
+  map = GMap(document.getElementById('map-canvas'), mapOptions);
 
   map.onMaptypeidChanged.listen((_) {
     final showStreetViewControl = map.mapTypeId != 'coordinate';
-    map.options = new MapOptions()..streetViewControl = showStreetViewControl;
+    map.options = MapOptions()..streetViewControl = showStreetViewControl;
   });
 
   // Now attach the coordinate map type to the map's registry

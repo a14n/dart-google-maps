@@ -3,16 +3,16 @@ import 'dart:html';
 import 'package:google_maps/google_maps.dart';
 
 DirectionsRenderer directionsDisplay;
-final directionsService = new DirectionsService();
+final directionsService = DirectionsService();
 GMap map;
 
 void main() {
-  directionsDisplay = new DirectionsRenderer();
-  final chicago = new LatLng(41.850033, -87.6500523);
-  final mapOptions = new MapOptions()
+  directionsDisplay = DirectionsRenderer();
+  final chicago = LatLng(41.850033, -87.6500523);
+  final mapOptions = MapOptions()
     ..zoom = 6
     ..center = chicago;
-  map = new GMap(document.getElementById('map-canvas'), mapOptions);
+  map = GMap(document.getElementById('map-canvas'), mapOptions);
   directionsDisplay.map = map;
 
   querySelector('#calcRoute').onClick.listen((e) => calcRoute());
@@ -21,17 +21,17 @@ void main() {
 void calcRoute() {
   final start = (document.getElementById('start') as SelectElement).value;
   final end = (document.getElementById('end') as SelectElement).value;
-  final waypts = new List<DirectionsWaypoint>();
+  final waypts = List<DirectionsWaypoint>();
   final checkboxArray = document.getElementById('waypoints') as SelectElement;
   for (final OptionElement option in checkboxArray.options) {
     if (option.selected) {
-      waypts.add(new DirectionsWaypoint()
+      waypts.add(DirectionsWaypoint()
         ..location = option.value
         ..stopover = true);
     }
   }
 
-  final request = new DirectionsRequest()
+  final request = DirectionsRequest()
     ..origin = start
     ..destination = end
     ..waypoints = waypts
@@ -42,7 +42,7 @@ void calcRoute() {
       directionsDisplay.directions = response;
       final route = response.routes[0];
       final summaryPanel = document.getElementById('directions_panel');
-      final html = new StringBuffer();
+      final html = StringBuffer();
       // For each route, display summary information.
       for (var i = 0; i < route.legs.length; i++) {
         final leg = route.legs[i];

@@ -26,5 +26,6 @@ abstract class _PlacePhoto implements JsInterface {
   void set htmlAttributions(List<String> htmlAttributions) {
     _html_attributions = htmlAttributions;
   }
+
   num width;
 }

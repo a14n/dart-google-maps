@@ -7,19 +7,21 @@ GMap map;
 InfoWindow infowindow;
 
 void main() {
-  final pyrmont = new LatLng(-33.8665433, 151.1956316);
+  final pyrmont = LatLng(-33.8665433, 151.1956316);
 
-  map = new GMap(document.getElementById('map-canvas'), new MapOptions()
-    ..center = pyrmont
-    ..zoom = 15);
+  map = GMap(
+      document.getElementById('map-canvas'),
+      MapOptions()
+        ..center = pyrmont
+        ..zoom = 15);
 
-  final request = new PlaceSearchRequest()
+  final request = PlaceSearchRequest()
     ..location = pyrmont
     ..radius = 500
     ..types = ['store'];
 
-  infowindow = new InfoWindow();
-  final service = new PlacesService(map);
+  infowindow = InfoWindow();
+  final service = PlacesService(map);
   service.nearbySearch(request, callback);
 }
 
@@ -33,7 +35,7 @@ void callback(List<PlaceResult> results, PlacesServiceStatus status,
 }
 
 void createMarker(PlaceResult place) {
-  final marker = new Marker(new MarkerOptions()
+  final marker = Marker(MarkerOptions()
     ..map = map
     ..position = place.geometry.location);
 

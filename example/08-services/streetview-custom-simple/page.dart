@@ -10,14 +10,14 @@ void main() {
   // Set up Street View and initially set it visible. Register the
   // custom panorama provider function. Set the StreetView to display
   // the custom panorama 'reception' which we check for below.
-  final panoOptions = new StreetViewPanoramaOptions()
+  final panoOptions = StreetViewPanoramaOptions()
     ..pano = 'reception'
     ..visible = true;
   asJsObject(panoOptions)['panoProvider'] = (String pano) {
     return asJs(getCustomPanorama(pano));
   };
 
-  new StreetViewPanorama(document.getElementById('map-canvas'), panoOptions);
+  StreetViewPanorama(document.getElementById('map-canvas'), panoOptions);
 }
 
 // Return a pano image given the panoID.
@@ -33,16 +33,16 @@ String getCustomPanoramaTileUrl(
 // the passed pano IDs.
 StreetViewPanoramaData getCustomPanorama(String pano) {
   if (pano == 'reception') {
-    final tiles = new StreetViewTileData()
-      ..tileSize = new Size(1024, 512)
-      ..worldSize = new Size(1024, 512)
+    final tiles = StreetViewTileData()
+      ..tileSize = Size(1024, 512)
+      ..worldSize = Size(1024, 512)
       // The heading in degrees at the origin of the panorama
       // tile set.
       ..centerHeading = 105;
     asJsObject(tiles)['getTileUrl'] = getCustomPanoramaTileUrl;
 
-    return new StreetViewPanoramaData()
-      ..location = (new StreetViewLocation()
+    return StreetViewPanoramaData()
+      ..location = (StreetViewLocation()
         ..pano = 'reception'
         ..description = 'Google Sydney - Reception')
       ..links = []

@@ -51,54 +51,53 @@ class MapTypeStyleFeatureType extends JsEnum {
     TRANSIT_STATION_RAIL,
     WATER
   ];
-  static final ADMINISTRATIVE = new MapTypeStyleFeatureType._('administrative');
+  static final ADMINISTRATIVE = MapTypeStyleFeatureType._('administrative');
   static final ADMINISTRATIVE_COUNTRY =
-      new MapTypeStyleFeatureType._('administrative.country');
+      MapTypeStyleFeatureType._('administrative.country');
   static final ADMINISTRATIVE_LAND_PARCEL =
-      new MapTypeStyleFeatureType._('administrative.land_parcel');
+      MapTypeStyleFeatureType._('administrative.land_parcel');
   static final ADMINISTRATIVE_LOCALITY =
-      new MapTypeStyleFeatureType._('administrative.locality');
+      MapTypeStyleFeatureType._('administrative.locality');
   static final ADMINISTRATIVE_NEIGHBORHOOD =
-      new MapTypeStyleFeatureType._('administrative.neighborhood');
+      MapTypeStyleFeatureType._('administrative.neighborhood');
   static final ADMINISTRATIVE_PROVINCE =
-      new MapTypeStyleFeatureType._('administrative.province');
-  static final ALL = new MapTypeStyleFeatureType._('all');
-  static final LANDSCAPE = new MapTypeStyleFeatureType._('landscape');
+      MapTypeStyleFeatureType._('administrative.province');
+  static final ALL = MapTypeStyleFeatureType._('all');
+  static final LANDSCAPE = MapTypeStyleFeatureType._('landscape');
   static final LANDSCAPE_MAN_MADE =
-      new MapTypeStyleFeatureType._('landscape.man_made');
+      MapTypeStyleFeatureType._('landscape.man_made');
   static final LANDSCAPE_NATURAL =
-      new MapTypeStyleFeatureType._('landscape.natural');
+      MapTypeStyleFeatureType._('landscape.natural');
   static final LANDSCAPE_NATURAL_LANDCOVER =
-      new MapTypeStyleFeatureType._('landscape.natural.landcover');
+      MapTypeStyleFeatureType._('landscape.natural.landcover');
   static final LANDSCAPE_NATURAL_TERRAIN =
-      new MapTypeStyleFeatureType._('landscape.natural.terrain');
-  static final POI = new MapTypeStyleFeatureType._('poi');
-  static final POI_ATTRACTION = new MapTypeStyleFeatureType._('poi.attraction');
-  static final POI_BUSINESS = new MapTypeStyleFeatureType._('poi.business');
-  static final POI_GOVERNMENT = new MapTypeStyleFeatureType._('poi.government');
-  static final POI_MEDICAL = new MapTypeStyleFeatureType._('poi.medical');
-  static final POI_PARK = new MapTypeStyleFeatureType._('poi.park');
+      MapTypeStyleFeatureType._('landscape.natural.terrain');
+  static final POI = MapTypeStyleFeatureType._('poi');
+  static final POI_ATTRACTION = MapTypeStyleFeatureType._('poi.attraction');
+  static final POI_BUSINESS = MapTypeStyleFeatureType._('poi.business');
+  static final POI_GOVERNMENT = MapTypeStyleFeatureType._('poi.government');
+  static final POI_MEDICAL = MapTypeStyleFeatureType._('poi.medical');
+  static final POI_PARK = MapTypeStyleFeatureType._('poi.park');
   static final POI_PLACE_OF_WORSHIP =
-      new MapTypeStyleFeatureType._('poi.place_of_worship');
-  static final POI_SCHOOL = new MapTypeStyleFeatureType._('poi.school');
+      MapTypeStyleFeatureType._('poi.place_of_worship');
+  static final POI_SCHOOL = MapTypeStyleFeatureType._('poi.school');
   static final POI_SPORTS_COMPLEX =
-      new MapTypeStyleFeatureType._('poi.sports_complex');
-  static final ROAD = new MapTypeStyleFeatureType._('road');
-  static final ROAD_ARTERIAL = new MapTypeStyleFeatureType._('road.arterial');
-  static final ROAD_HIGHWAY = new MapTypeStyleFeatureType._('road.highway');
+      MapTypeStyleFeatureType._('poi.sports_complex');
+  static final ROAD = MapTypeStyleFeatureType._('road');
+  static final ROAD_ARTERIAL = MapTypeStyleFeatureType._('road.arterial');
+  static final ROAD_HIGHWAY = MapTypeStyleFeatureType._('road.highway');
   static final ROAD_HIGHWAY_CONTROLLED_ACCESS =
-      new MapTypeStyleFeatureType._('road.highway.controlled_access');
-  static final ROAD_LOCAL = new MapTypeStyleFeatureType._('road.local');
-  static final TRANSIT = new MapTypeStyleFeatureType._('transit');
-  static final TRANSIT_LINE = new MapTypeStyleFeatureType._('transit.line');
-  static final TRANSIT_STATION =
-      new MapTypeStyleFeatureType._('transit.station');
+      MapTypeStyleFeatureType._('road.highway.controlled_access');
+  static final ROAD_LOCAL = MapTypeStyleFeatureType._('road.local');
+  static final TRANSIT = MapTypeStyleFeatureType._('transit');
+  static final TRANSIT_LINE = MapTypeStyleFeatureType._('transit.line');
+  static final TRANSIT_STATION = MapTypeStyleFeatureType._('transit.station');
   static final TRANSIT_STATION_AIRPORT =
-      new MapTypeStyleFeatureType._('transit.station.airport');
+      MapTypeStyleFeatureType._('transit.station.airport');
   static final TRANSIT_STATION_BUS =
-      new MapTypeStyleFeatureType._('transit.station.bus');
+      MapTypeStyleFeatureType._('transit.station.bus');
   static final TRANSIT_STATION_RAIL =
-      new MapTypeStyleFeatureType._('transit.station.rail');
-  static final WATER = new MapTypeStyleFeatureType._('water');
+      MapTypeStyleFeatureType._('transit.station.rail');
+  static final WATER = MapTypeStyleFeatureType._('water');
   MapTypeStyleFeatureType._(o) : super.created(o);
 }

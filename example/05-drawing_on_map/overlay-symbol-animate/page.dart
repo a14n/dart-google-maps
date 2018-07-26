@@ -7,25 +7,25 @@ import 'package:js_wrapping/js_wrapping.dart';
 Polyline line;
 
 void main() {
-  final mapOptions = new MapOptions()
-    ..center = new LatLng(20.291, 153.027)
+  final mapOptions = MapOptions()
+    ..center = LatLng(20.291, 153.027)
     ..zoom = 6
     ..mapTypeId = MapTypeId.TERRAIN;
-  final map = new GMap(document.getElementById('map-canvas'), mapOptions);
+  final map = GMap(document.getElementById('map-canvas'), mapOptions);
 
   final lineCoordinates = <LatLng>[
-    new LatLng(22.291, 153.027),
-    new LatLng(18.291, 153.027)
+    LatLng(22.291, 153.027),
+    LatLng(18.291, 153.027)
   ];
-  final lineSymbol = new GSymbol()
+  final lineSymbol = GSymbol()
     ..path = SymbolPath.CIRCLE
     ..scale = 8
     ..strokeColor = '#393';
 
-  line = new Polyline(new PolylineOptions()
+  line = Polyline(PolylineOptions()
     ..path = lineCoordinates
     ..icons = [
-      new IconSequence()
+      IconSequence()
         ..icon = lineSymbol
         ..offset = '100%'
     ]
@@ -36,11 +36,11 @@ void main() {
 
 void animateCircle() {
   var count = 0;
-  new Timer.periodic(new Duration(milliseconds: 20), (_) {
+  Timer.periodic(Duration(milliseconds: 20), (_) {
     count = (count + 1) % 200;
 
-    final icons = new JsList.created(line.get('icons') as JsArray,
-        new JsInterfaceCodec((o) => new IconSequence.created(o)));
+    final icons = JsList.created(line.get('icons') as JsArray,
+        JsInterfaceCodec((o) => IconSequence.created(o)));
     icons[0].offset = '${count / 2}%';
     line.set('icons', asJsObject(icons));
   });

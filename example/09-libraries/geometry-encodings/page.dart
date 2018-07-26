@@ -6,18 +6,18 @@ import 'package:google_maps/google_maps_geometry.dart';
 Polyline poly;
 
 void main() {
-  final mapOptions = new MapOptions()
+  final mapOptions = MapOptions()
     ..zoom = 14
-    ..center = new LatLng(34.3664951, -89.5192484);
+    ..center = LatLng(34.3664951, -89.5192484);
 
-  final map = new GMap(document.getElementById('map-canvas'), mapOptions);
+  final map = GMap(document.getElementById('map-canvas'), mapOptions);
 
-  final polyOptions = new PolylineOptions()
+  final polyOptions = PolylineOptions()
     ..strokeColor = '#000000'
     ..strokeOpacity = 1.0
     ..strokeWeight = 3
     ..map = map;
-  poly = new Polyline(polyOptions);
+  poly = Polyline(polyOptions);
 
   // Add a listener for the click event
   map.onClick.listen(addLatLng);

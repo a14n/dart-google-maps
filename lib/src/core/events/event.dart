@@ -14,7 +14,7 @@
 
 part of google_maps.src;
 
-final event = new Event.created(context['google']['maps']['event'] as JsObject);
+final event = Event.created(context['google']['maps']['event'] as JsObject);
 
 abstract class _Event implements JsInterface {
   MapsEventListener addDomListener(

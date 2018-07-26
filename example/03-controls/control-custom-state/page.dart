@@ -2,7 +2,7 @@ import 'dart:html' hide Events;
 import 'package:google_maps/google_maps.dart';
 
 GMap map;
-final LatLng chicago = new LatLng(41.850033, -87.6500523);
+final LatLng chicago = LatLng(41.850033, -87.6500523);
 
 /**
  * The HomeControl adds a control to the map that
@@ -15,7 +15,7 @@ class HomeControl {
     controlDiv.style.clear = 'both';
 
     // Set CSS for the control border
-    final goCenterUI = new DivElement();
+    final goCenterUI = DivElement();
     goCenterUI.style
       ..backgroundColor = '#fff'
       ..border = '2px solid #fff'
@@ -29,7 +29,7 @@ class HomeControl {
     controlDiv.children.add(goCenterUI);
 
     // Set CSS for the control interior
-    final goCenterText = new DivElement();
+    final goCenterText = DivElement();
     goCenterText.style
       ..color = 'rgb(25,25,25)'
       ..fontFamily = 'Roboto,Arial,sans-serif'
@@ -41,7 +41,7 @@ class HomeControl {
     goCenterUI.children.add(goCenterText);
 
     // Set CSS for the setCenter control border
-    final setCenterUI = new DivElement();
+    final setCenterUI = DivElement();
     setCenterUI.style
       ..backgroundColor = '#fff'
       ..border = '2px solid #fff'
@@ -56,7 +56,7 @@ class HomeControl {
     controlDiv.children.add(setCenterUI);
 
     // Set CSS for the control interior
-    final setCenterText = new DivElement();
+    final setCenterText = DivElement();
     setCenterText.style
       ..color = 'rgb(25,25,25)'
       ..fontFamily = 'Roboto,Arial,sans-serif'
@@ -83,16 +83,16 @@ class HomeControl {
 
 void main() {
   final mapDiv = document.getElementById('map-canvas');
-  final mapOptions = new MapOptions()
+  final mapOptions = MapOptions()
     ..zoom = 12
     ..center = chicago;
-  map = new GMap(mapDiv, mapOptions);
+  map = GMap(mapDiv, mapOptions);
 
   // Create the DIV to hold the control and
   // call the HomeControl() constructor passing
   // in this DIV.
-  var homeControlDiv = new DivElement();
-  new HomeControl(homeControlDiv, map, chicago);
+  var homeControlDiv = DivElement();
+  HomeControl(homeControlDiv, map, chicago);
 
   homeControlDiv.attributes["index"] = '1';
   map.controls[ControlPosition.BOTTOM_LEFT].push(homeControlDiv);

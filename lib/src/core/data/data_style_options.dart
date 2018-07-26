@@ -25,18 +25,19 @@ abstract class _DataStyleOptions implements JsInterface {
   String fillColor;
   num fillOpacity;
   dynamic _icon;
-  dynamic /*String|Icon|GSymbol*/ get icon => (new ChainedCodec()
-    ..add(new IdentityCodec<String>())
-    ..add(new JsInterfaceCodec<Icon>((o) => new Icon.created(o)))
-    ..add(new JsInterfaceCodec<GSymbol>((o) => new GSymbol.created(o))))
+  dynamic /*String|Icon|GSymbol*/ get icon => (ChainedCodec()
+        ..add(IdentityCodec<String>())
+        ..add(JsInterfaceCodec<Icon>((o) => Icon.created(o)))
+        ..add(JsInterfaceCodec<GSymbol>((o) => GSymbol.created(o))))
       .decode(_icon);
   void set icon(dynamic /*String|Icon|GSymbol*/ icon) {
-    _icon = (new ChainedCodec()
-      ..add(new IdentityCodec<String>())
-      ..add(new JsInterfaceCodec<Icon>((o) => new Icon.created(o)))
-      ..add(new JsInterfaceCodec<GSymbol>((o) => new GSymbol.created(o))))
+    _icon = (ChainedCodec()
+          ..add(IdentityCodec<String>())
+          ..add(JsInterfaceCodec<Icon>((o) => Icon.created(o)))
+          ..add(JsInterfaceCodec<GSymbol>((o) => GSymbol.created(o))))
         .encode(icon);
   }
+
   MarkerShape shape;
   String strokeColor;
   num strokeOpacity;

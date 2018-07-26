@@ -18,23 +18,25 @@ part of google_maps.src;
 abstract class _MVCArray<E> extends MVCObject {
   Codec<E, dynamic> _codec = null;
 
-  _MVCArray({List<E> elements, Codec<E, dynamic> codec}) : this.created(
-          new JsObject(context['google']['maps']['MVCArray'] as JsFunction, [
-        elements == null
-            ? new JsArray()
-            : new JsArray.from(
-                codec == null ? elements : elements.map(codec.encode))
-      ]), codec);
+  _MVCArray({List<E> elements, Codec<E, dynamic> codec})
+      : this.created(
+            JsObject(context['google']['maps']['MVCArray'] as JsFunction, [
+              elements == null
+                  ? JsArray()
+                  : JsArray.from(
+                      codec == null ? elements : elements.map(codec.encode))
+            ]),
+            codec);
 
   _MVCArray.created(JsObject o, [Codec<E, dynamic> codec])
-      : _codec = codec != null ? codec : new IdentityCodec(),
+      : _codec = codec != null ? codec : IdentityCodec(),
         super.created(o);
 
   void clear();
   void forEach(void callback(E o, num index)) =>
       _forEach((o, num index) => callback(_codec.decode(o), index));
   void _forEach(void callback(o, num index));
-  List<E> getArray() => new JsList.created(_getArray() as JsArray, _codec);
+  List<E> getArray() => JsList.created(_getArray() as JsArray, _codec);
   _getArray();
   E getAt(num i) => _codec.decode(_getAt(i));
   _getAt(num i);
@@ -52,12 +54,18 @@ abstract class _MVCArray<E> extends MVCObject {
   void _setAt(num i, elem);
 
   Stream<int> get onInsertAt => getStream(this, #onInsertAt, "insert_at");
-  Stream<IndexAndElement<E>> get onRemoveAt => getStream(this, #onClick,
-      "click", (int index, oldElement) =>
-          new IndexAndElement<E>(index, _codec.decode(oldElement)));
-  Stream<IndexAndElement<E>> get onSetAt => getStream(this, #onClick, "click",
+  Stream<IndexAndElement<E>> get onRemoveAt => getStream(
+      this,
+      #onClick,
+      "click",
       (int index, oldElement) =>
-          new IndexAndElement<E>(index, _codec.decode(oldElement)));
+          IndexAndElement<E>(index, _codec.decode(oldElement)));
+  Stream<IndexAndElement<E>> get onSetAt => getStream(
+      this,
+      #onClick,
+      "click",
+      (int index, oldElement) =>
+          IndexAndElement<E>(index, _codec.decode(oldElement)));
 }
 
 class IndexAndElement<E> {

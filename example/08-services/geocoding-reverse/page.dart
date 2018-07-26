@@ -2,18 +2,18 @@ import 'dart:html';
 
 import 'package:google_maps/google_maps.dart';
 
-final geocoder = new Geocoder();
+final geocoder = Geocoder();
 GMap map;
-final infowindow = new InfoWindow();
+final infowindow = InfoWindow();
 Marker marker;
 
 void main() {
-  final latlng = new LatLng(40.730885, -73.997383);
-  final mapOptions = new MapOptions()
+  final latlng = LatLng(40.730885, -73.997383);
+  final mapOptions = MapOptions()
     ..zoom = 8
     ..center = latlng
     ..mapTypeId = MapTypeId.ROADMAP;
-  map = new GMap(document.getElementById('map-canvas'), mapOptions);
+  map = GMap(document.getElementById('map-canvas'), mapOptions);
 
   document.getElementById('codeLatLng').onClick.listen(codeLatLng);
 }
@@ -23,12 +23,12 @@ void codeLatLng(_) {
   final latlngStr = input.split(',');
   final lat = num.parse(latlngStr[0]);
   final lng = num.parse(latlngStr[1]);
-  final latlng = new LatLng(lat, lng);
-  geocoder.geocode(new GeocoderRequest()..location = latlng, (results, status) {
+  final latlng = LatLng(lat, lng);
+  geocoder.geocode(GeocoderRequest()..location = latlng, (results, status) {
     if (status == GeocoderStatus.OK) {
       if (results[1] != null) {
         map.zoom = 11;
-        final marker = new Marker(new MarkerOptions()
+        final marker = Marker(MarkerOptions()
           ..position = latlng
           ..map = map);
         infowindow.content = results[1].formattedAddress;

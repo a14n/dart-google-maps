@@ -25,5 +25,6 @@ abstract class _GeocoderGeometry implements JsInterface {
   void set locationType(GeocoderLocationType locationType) {
     _location_type = locationType;
   }
+
   LatLngBounds viewport;
 }

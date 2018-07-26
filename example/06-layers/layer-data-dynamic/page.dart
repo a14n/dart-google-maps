@@ -2,9 +2,11 @@ import 'dart:html';
 import 'package:google_maps/google_maps.dart';
 
 void main() {
-  final map = new GMap(document.getElementById('map-canvas'), new MapOptions()
-    ..zoom = 4
-    ..center = new LatLng(-28, 137.883));
+  final map = GMap(
+      document.getElementById('map-canvas'),
+      MapOptions()
+        ..zoom = 4
+        ..center = LatLng(-28, 137.883));
 
   map.data
       .loadGeoJson('https://storage.googleapis.com/maps-devrel/google.json');
@@ -16,7 +18,7 @@ void main() {
     if (feature.getProperty('isColorful') == true) {
       color = feature.getProperty('color') as String;
     }
-    return new DataStyleOptions()
+    return DataStyleOptions()
       ..fillColor = color
       ..strokeColor = color
       ..strokeWeight = 2;
@@ -32,8 +34,7 @@ void main() {
   // defined in the function passed to setStyle()
   map.data.onMouseover.listen((event) {
     map.data.revertStyle();
-    map.data.overrideStyle(
-        event.feature, new DataStyleOptions()..strokeWeight = 8);
+    map.data.overrideStyle(event.feature, DataStyleOptions()..strokeWeight = 8);
   });
 
   map.data.onMouseout.listen((event) {

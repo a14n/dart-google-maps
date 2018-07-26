@@ -11,28 +11,28 @@ PlacesService places;
 InfoWindow infoWindow;
 List<Marker> markers = <Marker>[];
 Autocomplete autocomplete;
-final countryRestrict = new ComponentRestrictions()..country = 'us';
+final countryRestrict = ComponentRestrictions()..country = 'us';
 final MARKER_PATH = 'https://maps.gstatic.com/intl/en_us/mapfiles/marker_green';
-final RegExp hostnameRegexp = new RegExp('^https?://.+?/');
+final RegExp hostnameRegexp = RegExp('^https?://.+?/');
 
 var countries = {
-  'au': {'center': new LatLng(-25.3, 133.8), 'zoom': 4},
-  'br': {'center': new LatLng(-14.2, -51.9), 'zoom': 3},
-  'ca': {'center': new LatLng(62, -110.0), 'zoom': 3},
-  'fr': {'center': new LatLng(46.2, 2.2), 'zoom': 5},
-  'de': {'center': new LatLng(51.2, 10.4), 'zoom': 5},
-  'mx': {'center': new LatLng(23.6, -102.5), 'zoom': 4},
-  'nz': {'center': new LatLng(-40.9, 174.9), 'zoom': 5},
-  'it': {'center': new LatLng(41.9, 12.6), 'zoom': 5},
-  'za': {'center': new LatLng(-30.6, 22.9), 'zoom': 5},
-  'es': {'center': new LatLng(40.5, -3.7), 'zoom': 5},
-  'pt': {'center': new LatLng(39.4, -8.2), 'zoom': 6},
-  'us': {'center': new LatLng(37.1, -95.7), 'zoom': 3},
-  'uk': {'center': new LatLng(54.8, -4.6), 'zoom': 5}
+  'au': {'center': LatLng(-25.3, 133.8), 'zoom': 4},
+  'br': {'center': LatLng(-14.2, -51.9), 'zoom': 3},
+  'ca': {'center': LatLng(62, -110.0), 'zoom': 3},
+  'fr': {'center': LatLng(46.2, 2.2), 'zoom': 5},
+  'de': {'center': LatLng(51.2, 10.4), 'zoom': 5},
+  'mx': {'center': LatLng(23.6, -102.5), 'zoom': 4},
+  'nz': {'center': LatLng(-40.9, 174.9), 'zoom': 5},
+  'it': {'center': LatLng(41.9, 12.6), 'zoom': 5},
+  'za': {'center': LatLng(-30.6, 22.9), 'zoom': 5},
+  'es': {'center': LatLng(40.5, -3.7), 'zoom': 5},
+  'pt': {'center': LatLng(39.4, -8.2), 'zoom': 6},
+  'us': {'center': LatLng(37.1, -95.7), 'zoom': 3},
+  'uk': {'center': LatLng(54.8, -4.6), 'zoom': 5}
 };
 
 void main() {
-  final myOptions = new MapOptions()
+  final myOptions = MapOptions()
     ..zoom = countries['us']['zoom'] as int
     ..center = countries['us']['center'] as LatLng
     ..mapTypeControl = false
@@ -40,19 +40,19 @@ void main() {
     ..zoomControl = false
     ..streetViewControl = false;
 
-  map = new GMap(document.getElementById('map-canvas'), myOptions);
+  map = GMap(document.getElementById('map-canvas'), myOptions);
 
-  infoWindow = new InfoWindow(new InfoWindowOptions()
-    ..content = document.getElementById('info-content'));
+  infoWindow = InfoWindow(
+      InfoWindowOptions()..content = document.getElementById('info-content'));
 
   // Create the autocomplete object and associate it with the UI input control.
   // Restrict the search to the default country, and to place type "cities".
-  autocomplete = new Autocomplete(
+  autocomplete = Autocomplete(
       document.getElementById('autocomplete') as InputElement,
-      new AutocompleteOptions()
+      AutocompleteOptions()
         ..types = ['(cities)']
         ..componentRestrictions = countryRestrict);
-  places = new PlacesService(map);
+  places = PlacesService(map);
 
   autocomplete.onPlaceChanged.listen(onPlaceChanged);
 
@@ -77,7 +77,7 @@ void onPlaceChanged(_) {
 
 // Search for hotels in the selected city, within the viewport of the map.
 void search() {
-  final search = new PlaceSearchRequest()
+  final search = PlaceSearchRequest()
     ..bounds = map.bounds
     ..types = ['lodging'];
 
@@ -88,10 +88,10 @@ void search() {
       // Create a marker for each hotel found, and
       // assign a letter of the alphabetic to each marker icon.
       for (var i = 0; i < results.length; i++) {
-        final markerLetter = new String.fromCharCode('A'.codeUnitAt(0) + i);
+        final markerLetter = String.fromCharCode('A'.codeUnitAt(0) + i);
         final markerIcon = MARKER_PATH + markerLetter + '.png';
         // Use marker animation to drop the icons incrementally on the map.
-        final marker = new Marker(new MarkerOptions()
+        final marker = Marker(MarkerOptions()
           ..position = results[i].geometry.location
           ..animation = Animation.DROP
           ..icon = markerIcon);
@@ -99,7 +99,7 @@ void search() {
         // in an info window.
         markers.add(marker);
         marker.onClick.listen(showInfoWindow(marker, results[i]));
-        new Timer(new Duration(milliseconds: i * 100), dropMarker(i));
+        Timer(Duration(milliseconds: i * 100), dropMarker(i));
         addResult(results[i], i);
       }
     }
@@ -117,11 +117,11 @@ void clearMarkers() {
 void setAutocompleteCountry(_) {
   var country = (document.getElementById('country') as SelectElement).value;
   if (country == 'all') {
-    autocomplete.componentRestrictions = new ComponentRestrictions();
-    map.center = new LatLng(15, 0);
+    autocomplete.componentRestrictions = ComponentRestrictions();
+    map.center = LatLng(15, 0);
     map.zoom = 2;
   } else {
-    autocomplete.componentRestrictions = new ComponentRestrictions()
+    autocomplete.componentRestrictions = ComponentRestrictions()
       ..country = country;
     map.center = countries[country]['center'] as LatLng;
     map.zoom = countries[country]['zoom'] as int;
@@ -138,7 +138,7 @@ VoidFunc0 dropMarker(int i) {
 
 void addResult(PlaceResult result, int i) {
   final results = document.getElementById('results');
-  final markerLetter = new String.fromCharCode('A'.codeUnitAt(0) + i);
+  final markerLetter = String.fromCharCode('A'.codeUnitAt(0) + i);
   final markerIcon = MARKER_PATH + markerLetter + '.png';
 
   final tr = document.createElement('tr');
@@ -149,11 +149,11 @@ void addResult(PlaceResult result, int i) {
 
   final iconTd = document.createElement('td');
   final nameTd = document.createElement('td');
-  final icon = new ImageElement();
+  final icon = ImageElement();
   icon.src = markerIcon;
   icon.setAttribute('class', 'placeIcon');
   icon.setAttribute('className', 'placeIcon');
-  final name = new Text(result.name);
+  final name = Text(result.name);
   iconTd.append(icon);
   nameTd.append(name);
   tr.append(iconTd);
@@ -169,7 +169,7 @@ void clearResults() {
 // anchored on the marker for the hotel that the user selected.
 VoidFunc1<MouseEvent> showInfoWindow(Marker marker, PlaceResult placeResult) {
   return (_) => places
-          .getDetails(new PlaceDetailsRequest()..placeId = placeResult.placeId,
+          .getDetails(PlaceDetailsRequest()..placeId = placeResult.placeId,
               (place, status) {
         if (status != PlacesServiceStatus.OK) {
           return;
@@ -187,10 +187,10 @@ class _NullTreeSanitizer implements NodeTreeSanitizer {
 void buildIWContent(PlaceResult place) {
   document.getElementById('iw-icon').setInnerHtml(
       '<img class="hotelIcon" ' + 'src="' + place.icon + '"></img>',
-      treeSanitizer: new _NullTreeSanitizer());
+      treeSanitizer: _NullTreeSanitizer());
   document.getElementById('iw-url').setInnerHtml(
       '<b><a href="' + place.url + '">' + place.name + '</a></b>',
-      treeSanitizer: new _NullTreeSanitizer());
+      treeSanitizer: _NullTreeSanitizer());
   document.getElementById('iw-address').text = place.vicinity;
 
   if (place.formattedPhoneNumber != null) {

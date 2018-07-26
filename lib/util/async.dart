@@ -8,7 +8,7 @@ import 'package:js_wrapping/util/state.dart';
 
 import 'package:google_maps/google_maps.dart' show event, MapsEventListener;
 
-const _undefined = const _Undefined();
+const _undefined = _Undefined();
 
 class _Undefined {
   const _Undefined();
@@ -18,7 +18,7 @@ SubscribeStreamProvider<T> getStreamProviderFor<T>(
     dynamic instance, String eventName,
     [Function transformArguments]) {
   MapsEventListener mapsEventListener = null;
-  return new SubscribeStreamProvider(subscribe: (EventSink eventSink) {
+  return SubscribeStreamProvider(subscribe: (EventSink eventSink) {
     mapsEventListener = event.addListener(instance, eventName, (
         [p1 = _undefined,
         p2 = _undefined,

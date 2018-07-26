@@ -17,9 +17,9 @@ final componentForm = <String, String>{
 void main() {
   // Create the autocomplete object, restricting the search
   // to geographical location types.
-  autocomplete = new Autocomplete(
+  autocomplete = Autocomplete(
       document.getElementById('autocomplete') as InputElement,
-      new AutocompleteOptions()..types = ['geocode']);
+      AutocompleteOptions()..types = ['geocode']);
   // When the user selects an address from the dropdown,
   // populate the address fields in the form.
   autocomplete.onPlaceChanged.listen(fillInAddress);
@@ -55,8 +55,8 @@ geolocate(_) async {
   if (window.navigator.geolocation != null) {
     final position = await window.navigator.geolocation.getCurrentPosition();
     var geolocation =
-        new LatLng(position.coords.latitude, position.coords.longitude);
-    var circle = new Circle(new CircleOptions()
+        LatLng(position.coords.latitude, position.coords.longitude);
+    var circle = Circle(CircleOptions()
       ..center = geolocation
       ..radius = position.coords.accuracy);
     autocomplete.bounds = circle.bounds;

@@ -8,23 +8,25 @@ const IMAGE_URL =
 USGSOverlay overlay;
 
 void main() {
-  final myLatLng = new LatLng(62.323907, -150.109291);
-  final mapOptions = new MapOptions()
+  final myLatLng = LatLng(62.323907, -150.109291);
+  final mapOptions = MapOptions()
     ..zoom = 11
     ..center = myLatLng
     ..mapTypeId = MapTypeId.SATELLITE;
-  final map = new GMap(document.getElementById('map-canvas'), mapOptions);
+  final map = GMap(document.getElementById('map-canvas'), mapOptions);
 
-  final swBound = new LatLng(62.281819, -150.287132);
-  final neBound = new LatLng(62.400471, -150.005608);
-  final bounds = new LatLngBounds(swBound, neBound);
+  final swBound = LatLng(62.281819, -150.287132);
+  final neBound = LatLng(62.400471, -150.005608);
+  final bounds = LatLngBounds(swBound, neBound);
 
   // The photograph is courtesy of the U.S. Geological Survey.
   final srcImage = '${IMAGE_URL}/images/talkeetna.png';
-  overlay = new USGSOverlay(bounds, srcImage, map);
+  overlay = USGSOverlay(bounds, srcImage, map);
 
   document.getElementById("toggle").onClick.listen((e) => overlay.toggle());
-  document.getElementById("toggleDOM").onClick
+  document
+      .getElementById("toggleDOM")
+      .onClick
       .listen((e) => overlay.toggleDOM());
 }
 
@@ -47,14 +49,14 @@ class USGSOverlay extends OverlayView {
   /// onAdd is called when the map's panes are ready and the overlay has been
   /// added to the map.
   void _onAdd() {
-    final div = new DivElement();
+    final div = DivElement();
     div.style
       ..border = 'none'
       ..borderWidth = '0px'
       ..position = 'absolute';
 
     // Create the img element and attach it to the div.
-    final img = new ImageElement()..src = _image;
+    final img = ImageElement()..src = _image;
     img.style
       ..width = '100%'
       ..height = '100%';
@@ -91,7 +93,7 @@ class USGSOverlay extends OverlayView {
     _div.remove();
   }
 
-/// Set the visibility to 'hidden' or 'visible'.
+  /// Set the visibility to 'hidden' or 'visible'.
   void hide() {
     if (_div != null) {
       _div.style.visibility = 'hidden';

@@ -5,8 +5,8 @@ import 'package:google_maps/google_maps.dart';
 import 'package:js_wrapping/js_wrapping.dart';
 
 void main() {
-  final moonTypeOptions = new ImageMapTypeOptions()
-    ..tileSize = new Size(256, 256)
+  final moonTypeOptions = ImageMapTypeOptions()
+    ..tileSize = Size(256, 256)
     ..maxZoom = 9
     ..minZoom = 0
     ..name = 'Moon';
@@ -14,23 +14,22 @@ void main() {
     ..['radius'] = 1738000
     ..['getTileUrl'] = (JsObject point, int zoomLevel) {
       final normalizedCoord =
-          getNormalizedCoord(new Point.created(point), zoomLevel);
+          getNormalizedCoord(Point.created(point), zoomLevel);
       if (normalizedCoord == null) return null;
       final bound = Math.pow(2, zoomLevel);
       return 'http://mw1.google.com/mw-planetary/lunar/lunarmaps_v1/clem_bw/${zoomLevel}/${normalizedCoord.x}/${bound - normalizedCoord.y - 1}.jpg';
     };
 
-  final moonMapType = new ImageMapType(moonTypeOptions);
+  final moonMapType = ImageMapType(moonTypeOptions);
 
-  final myLatlng = new LatLng(0, 0);
-  final mapOptions = new MapOptions()
+  final myLatlng = LatLng(0, 0);
+  final mapOptions = MapOptions()
     ..center = myLatlng
     ..zoom = 1
     ..streetViewControl = false
-    ..mapTypeControlOptions = (new MapTypeControlOptions()
-      ..mapTypeIds = ['moon']);
+    ..mapTypeControlOptions = (MapTypeControlOptions()..mapTypeIds = ['moon']);
 
-  final map = new GMap(document.getElementById('map-canvas'), mapOptions);
+  final map = GMap(document.getElementById('map-canvas'), mapOptions);
   map.mapTypes.set('moon', moonMapType);
   map.mapTypeId = 'moon';
 }
@@ -55,5 +54,5 @@ Point getNormalizedCoord(Point coord, int zoom) {
     x = (x % tileRange + tileRange) % tileRange;
   }
 
-  return new Point(x, y);
+  return Point(x, y);
 }

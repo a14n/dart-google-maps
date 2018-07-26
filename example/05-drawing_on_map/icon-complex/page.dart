@@ -5,10 +5,10 @@ const IMAGE_URL =
     "https://google-developers.appspot.com/maps/documentation/javascript/examples/full";
 
 void main() {
-  final mapOptions = new MapOptions()
+  final mapOptions = MapOptions()
     ..zoom = 10
-    ..center = new LatLng(-33.9, 151.2);
-  final map = new GMap(document.getElementById("map-canvas"), mapOptions);
+    ..center = LatLng(-33.9, 151.2);
+  final map = GMap(document.getElementById("map-canvas"), mapOptions);
 
   setMarkers(map, beaches);
 }
@@ -36,25 +36,25 @@ void setMarkers(GMap map, List locations) {
   // Origins, anchor positions and coordinates of the marker
   // increase in the X direction to the right and in
   // the Y direction down.
-  final image = new Icon()
+  final image = Icon()
     ..url = '${IMAGE_URL}/images/beachflag.png'
     // This marker is 20 pixels wide by 32 pixels tall.
-    ..size = new Size(20, 32)
+    ..size = Size(20, 32)
     // The origin for this image is 0,0.
-    ..origin = new Point(0, 0)
+    ..origin = Point(0, 0)
     // The anchor for this image is the base of the flagpole at 0,32.
-    ..anchor = new Point(0, 32);
+    ..anchor = Point(0, 32);
   // Shapes define the clickable region of the icon.
   // The type defines an HTML &lt;area&gt; element 'poly' which
   // traces out a polygon as a series of X,Y points. The final
   // coordinate closes the poly by connecting to the first
   // coordinate.
-  final shape = new MarkerShape()
+  final shape = MarkerShape()
     ..coords = [1, 1, 1, 20, 18, 20, 18, 1]
     ..type = 'poly';
   for (final beach in locations) {
-    var myLatLng = new LatLng(beach[1] as num, beach[2] as num);
-    new Marker(new MarkerOptions()
+    var myLatLng = LatLng(beach[1] as num, beach[2] as num);
+    Marker(MarkerOptions()
       ..position = myLatLng
       ..map = map
       ..icon = image

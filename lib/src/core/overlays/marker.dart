@@ -30,20 +30,26 @@ abstract class _Marker extends MVCObject {
   String _getCursor();
   bool get draggable => _getDraggable();
   bool _getDraggable();
-  dynamic /*String|Icon|GSymbol*/ get icon => (new ChainedCodec()
-    ..add(new IdentityCodec<String>())
-    ..add(new JsInterfaceCodec<Icon>((o) => new Icon.created(o)))
-    ..add(new JsInterfaceCodec<GSymbol>((o) => new GSymbol.created(o))))
+  dynamic /*String|Icon|GSymbol*/ get icon => (ChainedCodec()
+        ..add(IdentityCodec<String>())
+        ..add(JsInterfaceCodec<Icon>((o) => Icon.created(o)))
+        ..add(JsInterfaceCodec<GSymbol>((o) => GSymbol.created(o))))
       .decode(_getIcon());
   _getIcon();
   MarkerLabel get label => _getLabel();
   MarkerLabel _getLabel();
-  dynamic /*GMap|StreetViewPanorama*/ get map => (new ChainedCodec()
-    ..add(new JsInterfaceCodec<GMap>((o) => new GMap.created(o),
-        (o) => o != null && o.instanceof(context['google']['maps']['Map'] as JsFunction)))
-    ..add(new JsInterfaceCodec<StreetViewPanorama>(
-            (o) => new StreetViewPanorama.created(o), (o) => o != null &&
-                o.instanceof(context['google']['maps']['StreetViewPanorama'] as JsFunction))))
+  dynamic /*GMap|StreetViewPanorama*/ get map => (ChainedCodec()
+        ..add(JsInterfaceCodec<GMap>(
+            (o) => GMap.created(o),
+            (o) =>
+                o != null &&
+                o.instanceof(context['google']['maps']['Map'] as JsFunction)))
+        ..add(JsInterfaceCodec<StreetViewPanorama>(
+            (o) => StreetViewPanorama.created(o),
+            (o) =>
+                o != null &&
+                o.instanceof(context['google']['maps']['StreetViewPanorama']
+                    as JsFunction))))
       .decode(_getMap());
   _getMap();
   num get opacity => _getOpacity();
@@ -70,26 +76,33 @@ abstract class _Marker extends MVCObject {
   void _setCursor(String cursor);
   void set draggable(bool flag) => _setDraggable(flag);
   void _setDraggable(bool flag);
-  void set icon(dynamic /*String|Icon|GSymbol*/ icon) => _setIcon(
-      (new ChainedCodec()
-    ..add(new IdentityCodec<String>())
-    ..add(new JsInterfaceCodec<Icon>((o) => new Icon.created(o)))
-    ..add(new JsInterfaceCodec<GSymbol>((o) => new GSymbol.created(o))))
-      .encode(icon));
+  void set icon(dynamic /*String|Icon|GSymbol*/ icon) =>
+      _setIcon((ChainedCodec()
+            ..add(IdentityCodec<String>())
+            ..add(JsInterfaceCodec<Icon>((o) => Icon.created(o)))
+            ..add(JsInterfaceCodec<GSymbol>((o) => GSymbol.created(o))))
+          .encode(icon));
   void _setIcon(dynamic /*String|Icon|GSymbol*/ icon);
-  void set label(dynamic /*String|MarkerLabel*/ label) => _setLabel(
-      (new ChainedCodec()
-    ..add(new IdentityCodec<String>())
-    ..add(new JsInterfaceCodec<MarkerLabel>((o) => new MarkerLabel.created(o))))
-      .encode(label));
+  void set label(dynamic /*String|MarkerLabel*/ label) =>
+      _setLabel((ChainedCodec()
+            ..add(IdentityCodec<String>())
+            ..add(JsInterfaceCodec<MarkerLabel>((o) => MarkerLabel.created(o))))
+          .encode(label));
   void _setLabel(dynamic /*String|MarkerLabel*/ label);
-  void set map(dynamic /*GMap|StreetViewPanorama*/ map) => _setMap(
-      (new ChainedCodec()
-    ..add(new JsInterfaceCodec<GMap>((o) => new GMap.created(o),
-        (o) => o != null && o.instanceof(context['google']['maps']['Map'] as JsFunction)))
-    ..add(new JsInterfaceCodec<StreetViewPanorama>(
-        (o) => new StreetViewPanorama.created(o), (o) => o != null &&
-                o.instanceof(context['google']['maps']['StreetViewPanorama'] as JsFunction))))
+  void set map(dynamic /*GMap|StreetViewPanorama*/ map) =>
+      _setMap((ChainedCodec()
+            ..add(JsInterfaceCodec<GMap>(
+                (o) => GMap.created(o),
+                (o) =>
+                    o != null &&
+                    o.instanceof(
+                        context['google']['maps']['Map'] as JsFunction)))
+            ..add(JsInterfaceCodec<StreetViewPanorama>(
+                (o) => StreetViewPanorama.created(o),
+                (o) =>
+                    o != null &&
+                    o.instanceof(context['google']['maps']['StreetViewPanorama']
+                        as JsFunction))))
           .encode(map));
   void _setMap(dynamic /*GMap|StreetViewPanorama*/ map);
   void set opacity(num opacity) => _setOpacity(opacity);
@@ -111,36 +124,36 @@ abstract class _Marker extends MVCObject {
 
   Stream get onAnimationChanged =>
       getStream(this, #onAnimationChanged, "animation_changed");
-  Stream<MouseEvent> get onClick => getStream(
-      this, #onClick, "click", (JsObject o) => new MouseEvent.created(o));
+  Stream<MouseEvent> get onClick =>
+      getStream(this, #onClick, "click", (JsObject o) => MouseEvent.created(o));
   Stream get onClickableChanged =>
       getStream(this, #onClickableChanged, "clickable_changed");
   Stream get onCursorChanged =>
       getStream(this, #onCursorChanged, "cursor_changed");
   Stream<MouseEvent> get onDblclick => getStream(
-      this, #onDblclick, "dblclick", (JsObject o) => new MouseEvent.created(o));
-  Stream<MouseEvent> get onDrag => getStream(
-      this, #onDrag, "drag", (JsObject o) => new MouseEvent.created(o));
+      this, #onDblclick, "dblclick", (JsObject o) => MouseEvent.created(o));
+  Stream<MouseEvent> get onDrag =>
+      getStream(this, #onDrag, "drag", (JsObject o) => MouseEvent.created(o));
   Stream<MouseEvent> get onDragend => getStream(
-      this, #onDragend, "dragend", (JsObject o) => new MouseEvent.created(o));
+      this, #onDragend, "dragend", (JsObject o) => MouseEvent.created(o));
   Stream get onDraggableChanged =>
       getStream(this, #onDraggableChanged, "draggable_changed");
-  Stream<MouseEvent> get onDragstart => getStream(this, #onDragstart,
-      "dragstart", (JsObject o) => new MouseEvent.created(o));
+  Stream<MouseEvent> get onDragstart => getStream(
+      this, #onDragstart, "dragstart", (JsObject o) => MouseEvent.created(o));
   Stream get onFlatChanged => getStream(this, #onFlatChanged, "flat_changed");
   Stream get onIconChanged => getStream(this, #onIconChanged, "icon_changed");
-  Stream<MouseEvent> get onMousedown => getStream(this, #onMousedown,
-      "mousedown", (JsObject o) => new MouseEvent.created(o));
+  Stream<MouseEvent> get onMousedown => getStream(
+      this, #onMousedown, "mousedown", (JsObject o) => MouseEvent.created(o));
   Stream<MouseEvent> get onMouseout => getStream(
-      this, #onMouseout, "mouseout", (JsObject o) => new MouseEvent.created(o));
-  Stream<MouseEvent> get onMouseover => getStream(this, #onMouseover,
-      "mouseover", (JsObject o) => new MouseEvent.created(o));
+      this, #onMouseout, "mouseout", (JsObject o) => MouseEvent.created(o));
+  Stream<MouseEvent> get onMouseover => getStream(
+      this, #onMouseover, "mouseover", (JsObject o) => MouseEvent.created(o));
   Stream<MouseEvent> get onMouseup => getStream(
-      this, #onMouseup, "mouseup", (JsObject o) => new MouseEvent.created(o));
+      this, #onMouseup, "mouseup", (JsObject o) => MouseEvent.created(o));
   Stream get onPositionChanged =>
       getStream(this, #onPositionChanged, "position_changed");
-  Stream<MouseEvent> get onRightclick => getStream(this, #onRightclick,
-      "rightclick", (JsObject o) => new MouseEvent.created(o));
+  Stream<MouseEvent> get onRightclick => getStream(
+      this, #onRightclick, "rightclick", (JsObject o) => MouseEvent.created(o));
   Stream get onShapeChanged =>
       getStream(this, #onShapeChanged, "shape_changed");
   Stream get onTitleChanged =>

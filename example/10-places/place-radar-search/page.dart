@@ -8,25 +8,27 @@ InfoWindow infowindow;
 PlacesService service;
 
 void main() {
-  map = new GMap(document.getElementById('map-canvas'), new MapOptions()
-    ..center = new LatLng(-33.8665433, 151.1956316)
-    ..zoom = 15
-    ..styles = <MapTypeStyle>[
-      new MapTypeStyle()
-        ..stylers = [new MapTypeStyler()..visibility = 'simplified'],
-      new MapTypeStyle()
-        ..elementType = MapTypeStyleElementType.LABELS
-        ..stylers = [new MapTypeStyler()..visibility = 'off']
-    ]);
+  map = GMap(
+      document.getElementById('map-canvas'),
+      MapOptions()
+        ..center = LatLng(-33.8665433, 151.1956316)
+        ..zoom = 15
+        ..styles = <MapTypeStyle>[
+          MapTypeStyle()
+            ..stylers = [MapTypeStyler()..visibility = 'simplified'],
+          MapTypeStyle()
+            ..elementType = MapTypeStyleElementType.LABELS
+            ..stylers = [MapTypeStyler()..visibility = 'off']
+        ]);
 
-  infowindow = new InfoWindow();
-  service = new PlacesService(map);
+  infowindow = InfoWindow();
+  service = PlacesService(map);
 
   map.onBoundsChanged.listen(performSearch);
 }
 
 void performSearch(_) {
-  final request = new RadarSearchRequest()
+  final request = RadarSearchRequest()
     ..bounds = map.bounds
     ..keyword = 'best view';
   service.radarSearch(request, callback);
@@ -43,10 +45,10 @@ void callback(List<PlaceResult> results, PlacesServiceStatus status) {
 }
 
 void createMarker(PlaceResult place) {
-  final marker = new Marker(new MarkerOptions()
+  final marker = Marker(MarkerOptions()
     ..map = map
     ..position = place.geometry.location
-    ..icon = (new GSymbol()
+    ..icon = (GSymbol()
       ..path = 'M 0,-24 6,-7 24,-7 10,4 15,21 0,11 -15,21 -10,4 -24,-7 -6,-7 z'
       ..fillColor = '#ffff00'
       ..fillOpacity = 1
@@ -55,7 +57,7 @@ void createMarker(PlaceResult place) {
       ..strokeWeight = 1));
 
   marker.onClick.listen((_) {
-    service.getDetails(new PlaceDetailsRequest()..placeId = place.placeId,
+    service.getDetails(PlaceDetailsRequest()..placeId = place.placeId,
         (result, status) {
       if (status != PlacesServiceStatus.OK) {
         window.alert('$status');

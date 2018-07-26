@@ -24,5 +24,6 @@ abstract class _Time implements JsInterface {
   void set timeZone(String timeZone) {
     _time_zone = timeZone;
   }
+
   DateTime value;
 }

@@ -7,17 +7,17 @@ GMap map;
 const query = 'Toledo';
 
 void main() {
-  geocoder = new Geocoder();
-  final mapOptions = new MapOptions()..zoom = 8;
-  map = new GMap(document.getElementById('map-canvas'), mapOptions);
+  geocoder = Geocoder();
+  final mapOptions = MapOptions()..zoom = 8;
+  map = GMap(document.getElementById('map-canvas'), mapOptions);
   codeAddress();
 }
 
 void codeAddress() {
-  geocoder.geocode(new GeocoderRequest()..address = query, (results, status) {
+  geocoder.geocode(GeocoderRequest()..address = query, (results, status) {
     if (status == GeocoderStatus.OK) {
       map.center = results[0].geometry.location;
-      new Marker(new MarkerOptions()
+      Marker(MarkerOptions()
         ..map = map
         ..position = results[0].geometry.location);
     } else {

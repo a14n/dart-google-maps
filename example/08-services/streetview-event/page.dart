@@ -2,17 +2,17 @@ import 'dart:html';
 
 import 'package:google_maps/google_maps.dart';
 
-final cafe = new LatLng(37.869085, -122.254775);
+final cafe = LatLng(37.869085, -122.254775);
 
 void main() {
-  final panoramaOptions = new StreetViewPanoramaOptions()
+  final panoramaOptions = StreetViewPanoramaOptions()
     ..position = cafe
-    ..pov = (new StreetViewPov()
+    ..pov = (StreetViewPov()
       ..heading = 270
       ..pitch = 0)
     ..visible = true;
   final panorama =
-      new StreetViewPanorama(document.getElementById('pano'), panoramaOptions);
+      StreetViewPanorama(document.getElementById('pano'), panoramaOptions);
 
   panorama.onPanoChanged.listen((_) {
     final panoCell = document.getElementById('pano_cell');
@@ -24,11 +24,11 @@ void main() {
     linksTable.children.clear();
     final links = panorama.links;
     for (int i = 0; i < links.length; i++) {
-      final row = new TableRowElement();
+      final row = TableRowElement();
       linksTable.children.add(row);
-      final labelCell = new TableCellElement();
+      final labelCell = TableCellElement();
       labelCell.innerHtml = '<b>Link: ${i}</b>';
-      final valueCell = new TableCellElement();
+      final valueCell = TableCellElement();
       valueCell.innerHtml = links[i].description;
       linksTable.children.add(labelCell);
       linksTable.children.add(valueCell);

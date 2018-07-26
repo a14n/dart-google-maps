@@ -27,11 +27,13 @@ abstract class _TransitLine implements JsInterface {
   void set shortName(String shortName) {
     _short_name = shortName;
   }
+
   String _text_color;
   String get textColor => _text_color;
   void set textColor(String textColor) {
     _text_color = textColor;
   }
+
   String url;
   TransitVehicle vehicle;
 }

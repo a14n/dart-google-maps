@@ -23,34 +23,38 @@ abstract class _GSymbol implements JsInterface {
   num fillOpacity;
   Point labelOrigin;
   dynamic _path;
-  dynamic /*SymbolPath|String*/ get path => (new ChainedCodec()
-    ..add(new BiMapCodec<SymbolPath, dynamic>({
-      SymbolPath.BACKWARD_CLOSED_ARROW:
-          context['google']['maps']['SymbolPath']['BACKWARD_CLOSED_ARROW'],
-      SymbolPath.BACKWARD_OPEN_ARROW:
-          context['google']['maps']['SymbolPath']['BACKWARD_OPEN_ARROW'],
-      SymbolPath.CIRCLE: context['google']['maps']['SymbolPath']['CIRCLE'],
-      SymbolPath.FORWARD_CLOSED_ARROW:
-          context['google']['maps']['SymbolPath']['FORWARD_CLOSED_ARROW'],
-      SymbolPath.FORWARD_OPEN_ARROW:
-          context['google']['maps']['SymbolPath']['FORWARD_OPEN_ARROW']
-    }))
-    ..add(new IdentityCodec<String>())).decode(_path);
+  dynamic /*SymbolPath|String*/ get path => (ChainedCodec()
+        ..add(BiMapCodec<SymbolPath, dynamic>({
+          SymbolPath.BACKWARD_CLOSED_ARROW: context['google']['maps']
+              ['SymbolPath']['BACKWARD_CLOSED_ARROW'],
+          SymbolPath.BACKWARD_OPEN_ARROW: context['google']['maps']
+              ['SymbolPath']['BACKWARD_OPEN_ARROW'],
+          SymbolPath.CIRCLE: context['google']['maps']['SymbolPath']['CIRCLE'],
+          SymbolPath.FORWARD_CLOSED_ARROW: context['google']['maps']
+              ['SymbolPath']['FORWARD_CLOSED_ARROW'],
+          SymbolPath.FORWARD_OPEN_ARROW: context['google']['maps']['SymbolPath']
+              ['FORWARD_OPEN_ARROW']
+        }))
+        ..add(IdentityCodec<String>()))
+      .decode(_path);
   void set path(dynamic /*SymbolPath|String*/ path) {
-    _path = (new ChainedCodec()
-      ..add(new BiMapCodec<SymbolPath, dynamic>({
-        SymbolPath.BACKWARD_CLOSED_ARROW:
-            context['google']['maps']['SymbolPath']['BACKWARD_CLOSED_ARROW'],
-        SymbolPath.BACKWARD_OPEN_ARROW:
-            context['google']['maps']['SymbolPath']['BACKWARD_OPEN_ARROW'],
-        SymbolPath.CIRCLE: context['google']['maps']['SymbolPath']['CIRCLE'],
-        SymbolPath.FORWARD_CLOSED_ARROW:
-            context['google']['maps']['SymbolPath']['FORWARD_CLOSED_ARROW'],
-        SymbolPath.FORWARD_OPEN_ARROW:
-            context['google']['maps']['SymbolPath']['FORWARD_OPEN_ARROW']
-      }))
-      ..add(new IdentityCodec<String>())).encode(path);
+    _path = (ChainedCodec()
+          ..add(BiMapCodec<SymbolPath, dynamic>({
+            SymbolPath.BACKWARD_CLOSED_ARROW: context['google']['maps']
+                ['SymbolPath']['BACKWARD_CLOSED_ARROW'],
+            SymbolPath.BACKWARD_OPEN_ARROW: context['google']['maps']
+                ['SymbolPath']['BACKWARD_OPEN_ARROW'],
+            SymbolPath.CIRCLE: context['google']['maps']['SymbolPath']
+                ['CIRCLE'],
+            SymbolPath.FORWARD_CLOSED_ARROW: context['google']['maps']
+                ['SymbolPath']['FORWARD_CLOSED_ARROW'],
+            SymbolPath.FORWARD_OPEN_ARROW: context['google']['maps']
+                ['SymbolPath']['FORWARD_OPEN_ARROW']
+          }))
+          ..add(IdentityCodec<String>()))
+        .encode(path);
   }
+
   num rotation;
   num scale;
   String strokeColor;

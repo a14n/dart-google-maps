@@ -6,36 +6,36 @@ import 'package:js_wrapping/js_wrapping.dart';
 
 GMap map;
 final mapStyle = <MapTypeStyle>[
-  new MapTypeStyle()
+  MapTypeStyle()
     ..featureType = MapTypeStyleFeatureType.ALL
     ..elementType = MapTypeStyleElementType.ALL
-    ..stylers = <MapTypeStyler>[new MapTypeStyler()..visibility = 'off'],
-  new MapTypeStyle()
+    ..stylers = <MapTypeStyler>[MapTypeStyler()..visibility = 'off'],
+  MapTypeStyle()
     ..featureType = MapTypeStyleFeatureType.LANDSCAPE
     ..elementType = MapTypeStyleElementType.GEOMETRY
     ..stylers = <MapTypeStyler>[
-      new MapTypeStyler()..visibility = 'on',
-      new MapTypeStyler()..color = '#fcfcfc'
+      MapTypeStyler()..visibility = 'on',
+      MapTypeStyler()..color = '#fcfcfc'
     ],
-  new MapTypeStyle()
+  MapTypeStyle()
     ..featureType = MapTypeStyleFeatureType.WATER
     ..elementType = MapTypeStyleElementType.LABELS
-    ..stylers = <MapTypeStyler>[new MapTypeStyler()..visibility = 'off'],
-  new MapTypeStyle()
+    ..stylers = <MapTypeStyler>[MapTypeStyler()..visibility = 'off'],
+  MapTypeStyle()
     ..featureType = MapTypeStyleFeatureType.WATER
     ..elementType = MapTypeStyleElementType.GEOMETRY
     ..stylers = <MapTypeStyler>[
-      new MapTypeStyler()..visibility = 'on',
-      new MapTypeStyler()..hue = '#5f94ff',
-      new MapTypeStyler()..lightness = 60
+      MapTypeStyler()..visibility = 'on',
+      MapTypeStyler()..hue = '#5f94ff',
+      MapTypeStyler()..lightness = 60
     ],
 ];
 
 main() {
-  map = new GMap(
+  map = GMap(
       document.getElementById('map-canvas'),
-      new MapOptions()
-        ..center = new LatLng(20, -160)
+      MapOptions()
+        ..center = LatLng(20, -160)
         ..zoom = 3
         ..styles = mapStyle);
 
@@ -70,8 +70,8 @@ DataStyleOptions styleFeature(DataFeature feature) {
 
   var color = interpolateHsl(low, high, fraction);
 
-  return new DataStyleOptions()
-    ..icon = (new GSymbol()
+  return DataStyleOptions()
+    ..icon = (GSymbol()
       ..path = SymbolPath.CIRCLE
       ..strokeWeight = 0.5
       ..strokeColor = '#fff'
@@ -83,7 +83,7 @@ DataStyleOptions styleFeature(DataFeature feature) {
 }
 
 String interpolateHsl(List<num> lowHsl, List<num> highHsl, num fraction) {
-  var color = new List<num>(3);
+  var color = List<num>(3);
   for (var i = 0; i < 3; i++) {
     // Calculate color based on the fraction.
     color[i] = (highHsl[i] - lowHsl[i]) * fraction + lowHsl[i];

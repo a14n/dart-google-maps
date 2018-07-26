@@ -24,5 +24,6 @@ abstract class _DirectionsResult implements JsInterface {
       List<DirectionsGeocodedWaypoint> geocodedWaypoints) {
     _geocoded_waypoints = geocodedWaypoints;
   }
+
   List<DirectionsRoute> routes;
 }

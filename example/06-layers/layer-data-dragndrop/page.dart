@@ -14,17 +14,17 @@ void main() {
 
 void initMap() {
   // set up the map
-  map = new GMap(
+  map = GMap(
       document.getElementById('map-canvas'),
-      new MapOptions()
+      MapOptions()
         ..zoom = 2
-        ..center = new LatLng(0, 0));
+        ..center = LatLng(0, 0));
 }
 
 void loadGeoJsonString(String geoString) {
   var geojson = json.decode(geoString);
   // TODO(aa) addGeoJson should take a Map
-  map.data.addGeoJson(new JsObject.jsify(geojson));
+  map.data.addGeoJson(JsObject.jsify(geojson));
   zoom(map);
 }
 
@@ -33,7 +33,7 @@ void loadGeoJsonString(String geoString) {
  * @param {google.maps.Map} map The map to adjust
  */
 void zoom(GMap map) {
-  var bounds = new LatLngBounds();
+  var bounds = LatLngBounds();
   map.data.forEach((feature) {
     processPoints(feature.geometry as DataGeometry, bounds.extend);
   });
@@ -92,7 +92,7 @@ void handleDrop(html.MouseEvent e) {
     // process file(s) being dropped
     // grab the file data from each file
     for (final file in files) {
-      var reader = new FileReader();
+      var reader = FileReader();
       reader.onLoad.listen((e) {
         loadGeoJsonString((e.target as FileReader).result as String);
       });

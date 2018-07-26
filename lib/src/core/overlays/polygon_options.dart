@@ -26,75 +26,46 @@ abstract class _PolygonOptions implements JsInterface {
   bool geodesic;
   GMap map;
   dynamic _paths;
-  dynamic /*MVCArray<MVCArray<LatLng>>|MVCArray<LatLng>|List<List<LatLng>>|List<LatLng>*/ get paths =>
-      (new ChainedCodec()
-    ..add(
-        new JsInterfaceCodec<MVCArray<MVCArray<LatLng>>>(
-            (o) =>
-                new MVCArray<MVCArray<LatLng>>.created(o,
-                    new JsInterfaceCodec<MVCArray<LatLng>>(
-                        (o) => new MVCArray<LatLng>.created(o,
-                            new JsInterfaceCodec<LatLng>(
-                                (o) => new LatLng.created(o),
-                                (o) => o != null &&
-                                    o.instanceof(context['google']['maps'][
-                                        'LatLng'] as JsFunction)))))))
-    ..add(
-        new JsInterfaceCodec<MVCArray<LatLng>>(
-            (o) =>
-                new MVCArray<LatLng>.created(o, new JsInterfaceCodec<LatLng>(
-                    (o) => new LatLng.created(o), (o) => o != null &&
-                        o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))))
-    ..add(
-        new JsListCodec<List<LatLng>>(
-            new JsListCodec<LatLng>(
-                new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
-                    (o) => o != null &&
-                        o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))))
-    ..add(
-        new JsListCodec<LatLng>(
-            new JsInterfaceCodec<LatLng>(
-                (o) => new LatLng.created(o),
-                (o) => o != null &&
-                    o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))))
-      .decode(
-          _paths);
+  dynamic /*MVCArray<MVCArray<LatLng>>|MVCArray<LatLng>|List<List<LatLng>>|List<LatLng>*/ get paths => (ChainedCodec()
+        ..add(JsInterfaceCodec<MVCArray<MVCArray<LatLng>>>((o) =>
+            MVCArray<MVCArray<LatLng>>.created(
+                o,
+                JsInterfaceCodec<MVCArray<LatLng>>((o) =>
+                    MVCArray<LatLng>.created(
+                        o,
+                        JsInterfaceCodec<LatLng>(
+                            (o) => LatLng.created(o),
+                            (o) =>
+                                o != null &&
+                                o.instanceof(context['google']['maps']['LatLng']
+                                    as JsFunction)))))))
+        ..add(JsInterfaceCodec<MVCArray<LatLng>>((o) => MVCArray<LatLng>.created(
+            o,
+            JsInterfaceCodec<LatLng>((o) => LatLng.created(o), (o) => o != null && o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))))
+        ..add(JsListCodec<List<LatLng>>(JsListCodec<LatLng>(JsInterfaceCodec<LatLng>((o) => LatLng.created(o), (o) => o != null && o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))))
+        ..add(JsListCodec<LatLng>(JsInterfaceCodec<LatLng>((o) => LatLng.created(o), (o) => o != null && o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))))
+      .decode(_paths);
   void set paths(
       dynamic /*MVCArray<MVCArray<LatLng>>|MVCArray<LatLng>|List<List<LatLng>>|List<LatLng>*/ paths) {
-    _paths =
-        (new ChainedCodec()
-      ..add(
-          new JsInterfaceCodec<MVCArray<MVCArray<LatLng>>>(
-              (o) =>
-                  new MVCArray<MVCArray<LatLng>>.created(o,
-                      new JsInterfaceCodec<MVCArray<LatLng>>(
-                          (o) => new MVCArray<LatLng>.created(o,
-                              new JsInterfaceCodec<LatLng>(
-                                  (o) => new LatLng.created(o),
-                                  (o) => o != null &&
-                                      o.instanceof(context['google']['maps'][
-                                          'LatLng'] as JsFunction)))))))
-      ..add(
-          new JsInterfaceCodec<MVCArray<LatLng>>(
-              (o) =>
-                  new MVCArray<LatLng>.created(o, new JsInterfaceCodec<LatLng>(
-                      (o) => new LatLng.created(o), (o) => o != null &&
-                          o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))))
-      ..add(
-          new JsListCodec<List<LatLng>>(
-              new JsListCodec<LatLng>(
-                  new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
-                      (o) => o != null &&
-                          o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))))
-      ..add(
-          new JsListCodec<LatLng>(
-              new JsInterfaceCodec<LatLng>(
-                  (o) => new LatLng.created(o),
-                  (o) => o != null &&
-                      o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))))
-        .encode(
-            paths);
+    _paths = (ChainedCodec()
+          ..add(JsInterfaceCodec<MVCArray<MVCArray<LatLng>>>((o) =>
+              MVCArray<MVCArray<LatLng>>.created(
+                  o,
+                  JsInterfaceCodec<MVCArray<LatLng>>((o) => MVCArray<LatLng>.created(
+                      o,
+                      JsInterfaceCodec<LatLng>(
+                          (o) => LatLng.created(o),
+                          (o) =>
+                              o != null &&
+                              o.instanceof(context['google']['maps']['LatLng']
+                                  as JsFunction)))))))
+          ..add(JsInterfaceCodec<MVCArray<LatLng>>((o) =>
+              MVCArray<LatLng>.created(o, JsInterfaceCodec<LatLng>((o) => LatLng.created(o), (o) => o != null && o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))))
+          ..add(JsListCodec<List<LatLng>>(JsListCodec<LatLng>(JsInterfaceCodec<LatLng>((o) => LatLng.created(o), (o) => o != null && o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))))
+          ..add(JsListCodec<LatLng>(JsInterfaceCodec<LatLng>((o) => LatLng.created(o), (o) => o != null && o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))))
+        .encode(paths);
   }
+
   String strokeColor;
   num strokeOpacity;
   StrokePosition strokePosition;
