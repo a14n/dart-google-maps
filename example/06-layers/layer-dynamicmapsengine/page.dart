@@ -17,9 +17,9 @@ void main() {
     ..clickable = true);
 
   layer.onMouseover.listen((event) {
-    final style = layer.getFeatureStyle(event.featureId);
-    style.fillColor = fillArray[int.parse(event.featureId) - 1];
-    style.fillOpacity = '0.8';
+    layer.getFeatureStyle(event.featureId)
+      ..fillColor = fillArray[int.parse(event.featureId) - 1]
+      ..fillOpacity = '0.8';
   });
 
   layer.onMouseout.listen((event) {

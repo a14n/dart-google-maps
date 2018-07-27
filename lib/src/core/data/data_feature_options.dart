@@ -44,7 +44,7 @@ abstract class _DataFeatureOptions implements JsInterface {
         ..add(JsInterfaceCodec<DataPoint>((o) => DataPoint.created(o), (o) => o != null && o.instanceof(context['google']['maps']['Data']['Point'] as JsFunction)))
         ..add(JsInterfaceCodec<LatLng>((o) => LatLng.created(o), (o) => o != null && o.instanceof(context['google']['maps']['LatLng'] as JsFunction))))
       .decode(_geometry);
-  void set geometry(
+  set geometry(
       dynamic /*DataGeometryCollection|DataMultiPolygon|DataPolygon|DataLinearRing|DataMultiLineString|DataLineString|DataMultiPoint|DataPoint|LatLng*/ geometry) {
     _geometry = (ChainedCodec()
           ..add(JsInterfaceCodec<DataGeometryCollection>(

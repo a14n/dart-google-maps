@@ -18,5 +18,5 @@ void main() {
     ..streetViewControlOptions =
         (StreetViewControlOptions()..position = ControlPosition.LEFT_TOP);
 
-  GMap(document.getElementById("map-canvas"), mapOptions);
+  GMap(document.getElementById('map-canvas'), mapOptions);
 }

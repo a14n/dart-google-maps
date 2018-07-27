@@ -1,11 +1,11 @@
 import 'dart:html' hide Point;
-import 'dart:math' as Math;
+import 'dart:math' as math;
 
 import 'package:google_maps/google_maps.dart';
 import 'package:js_wrapping/js_wrapping.dart';
 
 const IMAGE_URL =
-    "https://google-developers.appspot.com/maps/documentation/javascript/examples/full";
+    'https://google-developers.appspot.com/maps/documentation/javascript/examples/full';
 
 final chicago = LatLng(41.850033, -87.6500523);
 final anchorage = LatLng(61.2180556, -149.9002778);
@@ -45,9 +45,9 @@ const GALL_PETERS_RANGE_X = 800;
 // we will use the tile size.
 const GALL_PETERS_RANGE_Y = 510;
 
-num degreesToRadians(num deg) => deg * (Math.pi / 180);
+num degreesToRadians(num deg) => deg * (math.pi / 180);
 
-num radiansToDegrees(num rad) => rad / (Math.pi / 180);
+num radiansToDegrees(num rad) => rad / (math.pi / 180);
 
 class GallPetersProjection extends Projection {
   // Using the base map tile, denote the lat/lon of the equatorial origin.
@@ -73,20 +73,20 @@ class GallPetersProjection extends Projection {
   }
 
   Point _fromLatLngToPoint(LatLng latLng, [Point point]) {
-    final origin = this._worldOrigin;
+    final origin = _worldOrigin;
     final x = origin.x + _worldCoordinatePerLonDegree * latLng.lng;
 
     // Note that latitude is measured from the world coordinate origin
     // at the top left of the map.
     final latRadians = degreesToRadians(latLng.lat);
-    final y = origin.y - _worldCoordinateLatRange * Math.sin(latRadians);
+    final y = origin.y - _worldCoordinateLatRange * math.sin(latRadians);
 
     return Point(x, y);
   }
 
   LatLng _fromPointToLatLng(Point point, [bool nowrap]) {
     var y = point.y;
-    var x = point.x;
+    final x = point.x;
 
     if (y < 0) {
       y = 0;
@@ -95,9 +95,9 @@ class GallPetersProjection extends Projection {
       y = GALL_PETERS_RANGE_Y;
     }
 
-    final origin = this._worldOrigin;
+    final origin = _worldOrigin;
     final lng = (x - origin.x) / _worldCoordinatePerLonDegree;
-    final latRadians = Math.asin((origin.y - y) / _worldCoordinateLatRange);
+    final latRadians = math.asin((origin.y - y) / _worldCoordinateLatRange);
     final lat = radiansToDegrees(latRadians);
     return LatLng(lat, lng, nowrap);
   }
@@ -122,18 +122,17 @@ void main() {
     }
 
     // Wrap tiles horizontally.
-    var x = ((coord.x % numTiles) + numTiles) % numTiles;
+    final x = ((coord.x % numTiles) + numTiles) % numTiles;
 
     // For simplicity, we use a tileset consisting of 1 tile at zoom level 0
     // and 4 tiles at zoom level 1. Note that we set the base URL to a relative
     // directory.
-    return '${IMAGE_URL}/images/gall-peters_${zoom}_${x}_${coord.y}.png';
+    return '$IMAGE_URL/images/gall-peters_${zoom}_${x}_${coord.y}.png';
   };
-  final gallPetersMapType = ImageMapType(imageTypeOption);
-
-  gallPetersMapType.projection = GallPetersProjection();
-  context['a'] = (asJsObject(MapTypeControlOptions()
-    ..mapTypeIds = [MapTypeId.ROADMAP, 'gallPetersMap']));
+  final gallPetersMapType = ImageMapType(imageTypeOption)
+    ..projection = GallPetersProjection();
+  context['a'] = asJsObject(MapTypeControlOptions()
+    ..mapTypeIds = [MapTypeId.ROADMAP, 'gallPetersMap']);
   final mapOptions = MapOptions()
     ..zoom = 0
     ..center = LatLng(0, 0)

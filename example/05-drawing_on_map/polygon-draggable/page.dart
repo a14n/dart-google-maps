@@ -8,13 +8,13 @@ void main() {
     ..mapTypeId = MapTypeId.TERRAIN;
   final map = GMap(document.getElementById('map-canvas'), mapOptions);
 
-  var blueCoords = <LatLng>[
+  final blueCoords = <LatLng>[
     LatLng(25.774, -60.190),
     LatLng(18.466, -46.118),
     LatLng(32.321, -44.757)
   ];
 
-  var redCoords = <LatLng>[
+  final redCoords = <LatLng>[
     LatLng(25.774, -80.190),
     LatLng(18.466, -66.118),
     LatLng(32.321, -64.757)

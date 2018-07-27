@@ -37,7 +37,7 @@ abstract class _GSymbol implements JsInterface {
         }))
         ..add(IdentityCodec<String>()))
       .decode(_path);
-  void set path(dynamic /*SymbolPath|String*/ path) {
+  set path(dynamic /*SymbolPath|String*/ path) {
     _path = (ChainedCodec()
           ..add(BiMapCodec<SymbolPath, dynamic>({
             SymbolPath.BACKWARD_CLOSED_ARROW: context['google']['maps']

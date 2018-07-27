@@ -26,18 +26,17 @@ abstract class _DirectionsRenderer extends MVCObject {
   Node _getPanel();
   num get routeIndex => _getRouteIndex();
   num _getRouteIndex();
-  void set directions(DirectionsResult directions) =>
-      _setDirections(directions);
+  set directions(DirectionsResult directions) => _setDirections(directions);
   void _setDirections(DirectionsResult directions);
-  void set map(GMap map) => _setMap(map);
+  set map(GMap map) => _setMap(map);
   void _setMap(GMap map);
-  void set options(DirectionsRendererOptions options) => _setOptions(options);
+  set options(DirectionsRendererOptions options) => _setOptions(options);
   void _setOptions(DirectionsRendererOptions options);
-  void set panel(Node panel) => _setPanel(panel);
+  set panel(Node panel) => _setPanel(panel);
   void _setPanel(Node panel);
-  void set routeIndex(num routeIndex) => _setRouteIndex(routeIndex);
+  set routeIndex(num routeIndex) => _setRouteIndex(routeIndex);
   void _setRouteIndex(num routeIndex);
 
   Stream get onDirectionsChanged =>
-      getStream(this, #onDirectionsChanged, "directions_changed");
+      getStream(this, #onDirectionsChanged, 'directions_changed');
 }

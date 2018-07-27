@@ -32,7 +32,7 @@ abstract class _DirectionsRequest implements JsInterface {
         ..add(JsInterfaceCodec<Place>((o) => Place.created(o)))
         ..add(IdentityCodec<String>()))
       .decode(_destination);
-  void set destination(dynamic /*LatLng|Place|String*/ destination) {
+  set destination(dynamic /*LatLng|Place|String*/ destination) {
     _destination = (ChainedCodec()
           ..add(JsInterfaceCodec<LatLng>(
               (o) => LatLng.created(o),
@@ -58,7 +58,7 @@ abstract class _DirectionsRequest implements JsInterface {
         ..add(JsInterfaceCodec<Place>((o) => Place.created(o)))
         ..add(IdentityCodec<String>()))
       .decode(_origin);
-  void set origin(dynamic /*LatLng|Place|String*/ origin) {
+  set origin(dynamic /*LatLng|Place|String*/ origin) {
     _origin = (ChainedCodec()
           ..add(JsInterfaceCodec<LatLng>(
               (o) => LatLng.created(o),

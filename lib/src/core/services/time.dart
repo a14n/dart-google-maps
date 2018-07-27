@@ -21,7 +21,7 @@ abstract class _Time implements JsInterface {
   String text;
   String _time_zone;
   String get timeZone => _time_zone;
-  void set timeZone(String timeZone) {
+  set timeZone(String timeZone) {
     _time_zone = timeZone;
   }
 

@@ -10,7 +10,7 @@ void main() {
 
   final map = GMap(document.getElementById('map-canvas'), mapOptions);
 
-  final bounds = Map<int, List<List<int>>>();
+  final bounds = <int, List<List<int>>>{};
   bounds[17] = [
     [20969, 20970],
     [50657, 50658]

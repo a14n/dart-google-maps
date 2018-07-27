@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:html';
 
 import 'package:google_maps/google_maps.dart';
@@ -29,7 +30,7 @@ void main() {
 
 void fillInAddress(_) {
   // Get the place details from the autocomplete object.
-  var place = autocomplete.place;
+  final place = autocomplete.place;
 
   for (var component in componentForm.keys) {
     (document.getElementById(component) as InputElement)
@@ -51,12 +52,12 @@ void fillInAddress(_) {
 
 // Bias the autocomplete object to the user's geographical location,
 // as supplied by the browser's 'navigator.geolocation' object.
-geolocate(_) async {
+Future geolocate(_) async {
   if (window.navigator.geolocation != null) {
     final position = await window.navigator.geolocation.getCurrentPosition();
-    var geolocation =
+    final geolocation =
         LatLng(position.coords.latitude, position.coords.longitude);
-    var circle = Circle(CircleOptions()
+    final circle = Circle(CircleOptions()
       ..center = geolocation
       ..radius = position.coords.accuracy);
     autocomplete.bounds = circle.bounds;

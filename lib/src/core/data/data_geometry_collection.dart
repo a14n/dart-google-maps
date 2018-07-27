@@ -16,13 +16,12 @@ part of google_maps.src;
 
 @JsName('google.maps.Data.GeometryCollection')
 abstract class _DataGeometryCollection extends DataGeometry {
-  _DataGeometryCollection.created(JsObject o) : super.created(o);
   _DataGeometryCollection(List<dynamic /*DataGeometry|LatLng*/ > elements)
       : this.created(JsObject(
             context['google']['maps']['Data']['GeometryCollection']
                 as JsFunction,
             [
-              (JsListCodec<dynamic /*DataGeometry|LatLng*/ >(ChainedCodec()
+              JsListCodec<dynamic /*DataGeometry|LatLng*/ >(ChainedCodec()
                     ..add(JsInterfaceCodec<DataGeometry>(
                         (o) => DataGeometry.created(o),
                         (o) =>
@@ -34,30 +33,30 @@ abstract class _DataGeometryCollection extends DataGeometry {
                         (o) =>
                             o != null &&
                             o.instanceof(context['google']['maps']['LatLng']
-                                as JsFunction)))))
+                                as JsFunction))))
                   .encode(elements)
             ]));
-  List<dynamic /*DataGeometryCollection|DataMultiPolygon|DataPolygon|DataLinearRing|DataMultiLineString|DataLineString|DataMultiPoint|DataPoint*/ > get array =>
-      (JsListCodec<dynamic /*DataGeometryCollection|DataMultiPolygon|DataPolygon|DataLinearRing|DataMultiLineString|DataLineString|DataMultiPoint|DataPoint*/ >(ChainedCodec()
-            ..add(JsInterfaceCodec<DataGeometryCollection>(
-                (o) => DataGeometryCollection.created(o),
-                (o) =>
-                    o != null &&
-                    o.instanceof(context['google']['maps']['Data']
-                        ['GeometryCollection'] as JsFunction)))
-            ..add(JsInterfaceCodec<DataMultiPolygon>(
-                (o) => DataMultiPolygon.created(o),
-                (o) =>
-                    o != null &&
-                    o.instanceof(context['google']['maps']['Data']['MultiPolygon'] as JsFunction)))
-            ..add(JsInterfaceCodec<DataPolygon>((o) => DataPolygon.created(o), (o) => o != null && o.instanceof(context['google']['maps']['Data']['Polygon'] as JsFunction)))
-            ..add(JsInterfaceCodec<DataLinearRing>((o) => DataLinearRing.created(o), (o) => o != null && o.instanceof(context['google']['maps']['Data']['LinearRing'] as JsFunction)))
-            ..add(JsInterfaceCodec<DataMultiLineString>((o) => DataMultiLineString.created(o), (o) => o != null && o.instanceof(context['google']['maps']['Data']['MultiLineString'] as JsFunction)))
-            ..add(JsInterfaceCodec<DataLineString>((o) => DataLineString.created(o), (o) => o != null && o.instanceof(context['google']['maps']['Data']['LineString'] as JsFunction)))
-            ..add(JsInterfaceCodec<DataMultiPoint>((o) => DataMultiPoint.created(o), (o) => o != null && o.instanceof(context['google']['maps']['Data']['MultiPoint'] as JsFunction)))
-            ..add(JsInterfaceCodec<DataPoint>((o) => DataPoint.created(o), (o) => o != null && o.instanceof(context['google']['maps']['Data']['Point'] as JsFunction)))))
-          .decode(_getArray() as JsArray);
-  _getArray();
+  _DataGeometryCollection.created(JsObject o) : super.created(o);
+
+  List<dynamic /*DataGeometryCollection|DataMultiPolygon|DataPolygon|DataLinearRing|DataMultiLineString|DataLineString|DataMultiPoint|DataPoint*/ > get array => JsListCodec<
+          dynamic /*DataGeometryCollection|DataMultiPolygon|DataPolygon|DataLinearRing|DataMultiLineString|DataLineString|DataMultiPoint|DataPoint*/ >(ChainedCodec()
+        ..add(JsInterfaceCodec<DataGeometryCollection>(
+            (o) => DataGeometryCollection.created(o),
+            (o) =>
+                o != null &&
+                o.instanceof(context['google']['maps']['Data']
+                    ['GeometryCollection'] as JsFunction)))
+        ..add(JsInterfaceCodec<DataMultiPolygon>(
+            (o) => DataMultiPolygon.created(o),
+            (o) => o != null && o.instanceof(context['google']['maps']['Data']['MultiPolygon'] as JsFunction)))
+        ..add(JsInterfaceCodec<DataPolygon>((o) => DataPolygon.created(o), (o) => o != null && o.instanceof(context['google']['maps']['Data']['Polygon'] as JsFunction)))
+        ..add(JsInterfaceCodec<DataLinearRing>((o) => DataLinearRing.created(o), (o) => o != null && o.instanceof(context['google']['maps']['Data']['LinearRing'] as JsFunction)))
+        ..add(JsInterfaceCodec<DataMultiLineString>((o) => DataMultiLineString.created(o), (o) => o != null && o.instanceof(context['google']['maps']['Data']['MultiLineString'] as JsFunction)))
+        ..add(JsInterfaceCodec<DataLineString>((o) => DataLineString.created(o), (o) => o != null && o.instanceof(context['google']['maps']['Data']['LineString'] as JsFunction)))
+        ..add(JsInterfaceCodec<DataMultiPoint>((o) => DataMultiPoint.created(o), (o) => o != null && o.instanceof(context['google']['maps']['Data']['MultiPoint'] as JsFunction)))
+        ..add(JsInterfaceCodec<DataPoint>((o) => DataPoint.created(o), (o) => o != null && o.instanceof(context['google']['maps']['Data']['Point'] as JsFunction))))
+      .decode(_getArray() as JsArray);
+  dynamic _getArray();
 
   dynamic /*DataGeometryCollection|DataMultiPolygon|DataPolygon|DataLinearRing|DataMultiLineString|DataLineString|DataMultiPoint|DataPoint*/ getAt(num n) => (ChainedCodec()
         ..add(JsInterfaceCodec<DataGeometryCollection>(
@@ -82,7 +81,7 @@ abstract class _DataGeometryCollection extends DataGeometry {
         ..add(JsInterfaceCodec<DataMultiPoint>((o) => DataMultiPoint.created(o), (o) => o != null && o.instanceof(context['google']['maps']['Data']['MultiPoint'] as JsFunction)))
         ..add(JsInterfaceCodec<DataPoint>((o) => DataPoint.created(o), (o) => o != null && o.instanceof(context['google']['maps']['Data']['Point'] as JsFunction))))
       .decode(_getAt(n));
-  _getAt(num n);
+  dynamic _getAt(num n);
 
   num get length => _getLength();
   num _getLength();

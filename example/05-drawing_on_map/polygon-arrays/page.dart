@@ -24,9 +24,8 @@ void main() {
     ..strokeOpacity = 0.8
     ..strokeWeight = 3
     ..fillColor = '#FF0000'
-    ..fillOpacity = 0.35);
-
-  bermudaTriangle.map = map;
+    ..fillOpacity = 0.35)
+    ..map = map;
 
   // Add a listener for the click event
   bermudaTriangle.onClick.listen(showArrays);
@@ -39,13 +38,14 @@ void showArrays(MouseEvent e) {
   // to return the MVCArray of LatLngs
   final vertices = bermudaTriangle.path;
 
-  String contentString = '<b>Bermuda Triangle Polygon</b><br>'
-      'Clicked Location: <br>${e.latLng.lat},${e.latLng.lng}<br>';
+  final contentString = StringBuffer()
+    ..write('<b>Bermuda Triangle Polygon</b><br>'
+        'Clicked Location: <br>${e.latLng.lat},${e.latLng.lng}<br>');
 
   // Iterate over the vertices.
   for (var i = 0; i < vertices.length; i++) {
-    var xy = vertices.getAt(i);
-    contentString += '<br>Coordinate: ${i}<br>${xy.lat},${xy.lng}';
+    final xy = vertices.getAt(i);
+    contentString.write('<br>Coordinate: $i<br>${xy.lat},${xy.lng}');
   }
 
   // Replace our Info Window's content and position

@@ -22,20 +22,20 @@ void main() {
 }
 
 void getElevation(MouseEvent e) {
-  final locations = List<LatLng>();
+  final locations = <LatLng>[];
 
   // Retrieve the clicked location and push it on the array
   final clickedLocation = e.latLng;
   locations.add(clickedLocation);
 
   // Create a LocationElevationRequest object using the array's one value
-  var positionalRequest = LocationElevationRequest()..locations = locations;
+  final positionalRequest = LocationElevationRequest()..locations = locations;
 
   // Initiate the location request
   elevator.getElevationForLocations(positionalRequest, (results, status) {
     if (status == ElevationStatus.OK) {
       // Retrieve the first result
-      if (!results.isEmpty) {
+      if (results.isNotEmpty) {
         // Open an info window indicating the elevation at the clicked position
         infowindow.content =
             'The elevation at this point <br>is ${results[0].elevation} meters.';
@@ -45,7 +45,7 @@ void getElevation(MouseEvent e) {
         window.alert('No results found');
       }
     } else {
-      window.alert('Elevation service failed due to: ${status}');
+      window.alert('Elevation service failed due to: $status');
     }
   });
 }

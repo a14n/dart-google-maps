@@ -30,7 +30,7 @@ abstract class _DataStyleOptions implements JsInterface {
         ..add(JsInterfaceCodec<Icon>((o) => Icon.created(o)))
         ..add(JsInterfaceCodec<GSymbol>((o) => GSymbol.created(o))))
       .decode(_icon);
-  void set icon(dynamic /*String|Icon|GSymbol*/ icon) {
+  set icon(dynamic /*String|Icon|GSymbol*/ icon) {
     _icon = (ChainedCodec()
           ..add(IdentityCodec<String>())
           ..add(JsInterfaceCodec<Icon>((o) => Icon.created(o)))

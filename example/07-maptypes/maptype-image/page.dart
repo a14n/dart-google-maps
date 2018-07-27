@@ -1,5 +1,5 @@
 import 'dart:html' hide Point;
-import 'dart:math' as Math;
+import 'dart:math' as math;
 
 import 'package:google_maps/google_maps.dart';
 import 'package:js_wrapping/js_wrapping.dart';
@@ -16,8 +16,8 @@ void main() {
       final normalizedCoord =
           getNormalizedCoord(Point.created(point), zoomLevel);
       if (normalizedCoord == null) return null;
-      final bound = Math.pow(2, zoomLevel);
-      return 'http://mw1.google.com/mw-planetary/lunar/lunarmaps_v1/clem_bw/${zoomLevel}/${normalizedCoord.x}/${bound - normalizedCoord.y - 1}.jpg';
+      final bound = math.pow(2, zoomLevel);
+      return 'http://mw1.google.com/mw-planetary/lunar/lunarmaps_v1/clem_bw/$zoomLevel/${normalizedCoord.x}/${bound - normalizedCoord.y - 1}.jpg';
     };
 
   final moonMapType = ImageMapType(moonTypeOptions);

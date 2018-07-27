@@ -20,24 +20,24 @@ abstract class _HeatmapLayerOptions implements JsInterface {
 
   dynamic _data;
   MVCArray<LatLng> get data =>
-      (JsInterfaceCodec<MVCArray<LatLng>>((o) => MVCArray<LatLng>.created(
+      JsInterfaceCodec<MVCArray<LatLng>>((o) => MVCArray<LatLng>.created(
               o,
               JsInterfaceCodec<LatLng>(
                   (o) => LatLng.created(o),
                   (o) =>
                       o != null &&
                       o.instanceof(
-                          context['google']['maps']['LatLng'] as JsFunction)))))
+                          context['google']['maps']['LatLng'] as JsFunction))))
           .decode(_data as JsObject);
-  void set data(MVCArray<LatLng> data) {
-    _data = (JsInterfaceCodec<MVCArray<LatLng>>((o) => MVCArray<LatLng>.created(
+  set data(MVCArray<LatLng> data) {
+    _data = JsInterfaceCodec<MVCArray<LatLng>>((o) => MVCArray<LatLng>.created(
             o,
             JsInterfaceCodec<LatLng>(
                 (o) => LatLng.created(o),
                 (o) =>
                     o != null &&
                     o.instanceof(
-                        context['google']['maps']['LatLng'] as JsFunction)))))
+                        context['google']['maps']['LatLng'] as JsFunction))))
         .encode(data);
   }
 

@@ -21,7 +21,7 @@ abstract class _TransitVehicle implements JsInterface {
   String icon;
   String _local_icon;
   String get localIcon => _local_icon;
-  void set localIcon(String localIcon) {
+  set localIcon(String localIcon) {
     _local_icon = localIcon;
   }
 

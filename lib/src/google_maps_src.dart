@@ -202,18 +202,20 @@ abstract class _Controls extends JsInterface
     with MapMixin<ControlPosition, MVCArray<Node>> {
   _Controls() : super.created(JsArray());
 
-  MVCArray<Node> operator [](covariant ControlPosition controlPosition) {
-    var value = asJsObject(this)[_toJsControlPosition(controlPosition)];
+  @override
+  MVCArray<Node> operator [](covariant ControlPosition key) {
+    final value = asJsObject(this)[_toJsControlPosition(key)];
     if (value == null) return null;
     return MVCArray<Node>.created(value as JsObject);
   }
 
-  void operator []=(ControlPosition controlPosition, MVCArray<Node> nodes) {
-    asJsObject(this)[_toJsControlPosition(controlPosition)] = asJsObject(nodes);
+  @override
+  void operator []=(ControlPosition key, MVCArray<Node> value) {
+    asJsObject(this)[_toJsControlPosition(key)] = asJsObject(value);
   }
 
   Iterable<ControlPosition> get keys {
-    var result = <ControlPosition>[];
+    final result = <ControlPosition>[];
     for (final control in ControlPosition.values) {
       if (this[control] != null) result.add(control);
     }
@@ -221,14 +223,14 @@ abstract class _Controls extends JsInterface
   }
 
   MVCArray<Node> remove(Object key) {
-    var result = this[key as ControlPosition];
+    final result = this[key as ControlPosition];
     this[key as ControlPosition] = null;
     return result;
   }
 
   void clear() => (asJsObject(this) as JsArray).clear();
 
-  _toJsControlPosition(ControlPosition controlPosition) => ((e) {
+  dynamic _toJsControlPosition(ControlPosition controlPosition) => (e) {
         if (e == null) return null;
         final path = context['google']['maps']['ControlPosition'];
         if (e == ControlPosition.BOTTOM_CENTER) return path['BOTTOM_CENTER'];
@@ -243,5 +245,5 @@ abstract class _Controls extends JsInterface
         if (e == ControlPosition.TOP_CENTER) return path['TOP_CENTER'];
         if (e == ControlPosition.TOP_LEFT) return path['TOP_LEFT'];
         if (e == ControlPosition.TOP_RIGHT) return path['TOP_RIGHT'];
-      })(controlPosition);
+      }(controlPosition);
 }

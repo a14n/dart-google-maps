@@ -5,7 +5,7 @@ import 'package:google_maps/google_maps.dart';
 GMap map;
 Geocoder geocoder;
 final bounds = LatLngBounds();
-final markersArray = List<Marker>();
+final markersArray = <Marker>[];
 
 final origin1 = LatLng(55.930385, -3.118425);
 const origin2 = 'Greenwich, England';
@@ -31,21 +31,20 @@ void main() {
 }
 
 void calculateDistances() {
-  final service = DistanceMatrixService();
-  service.getDistanceMatrix(
-      (DistanceMatrixRequest()
+  DistanceMatrixService().getDistanceMatrix(
+      DistanceMatrixRequest()
         ..origins = [origin1, origin2]
         ..destinations = [destinationA, destinationB]
         ..travelMode = TravelMode.DRIVING
         ..unitSystem = UnitSystem.METRIC
         ..avoidHighways = false
-        ..avoidTolls = false),
+        ..avoidTolls = false,
       callback);
 }
 
 void callback(DistanceMatrixResponse response, DistanceMatrixStatus status) {
   if (status != DistanceMatrixStatus.OK) {
-    window.alert('Error was: ${status}');
+    window.alert('Error was: $status');
   } else {
     final origins = response.originAddresses;
     final destinations = response.destinationAddresses;
@@ -53,10 +52,10 @@ void callback(DistanceMatrixResponse response, DistanceMatrixStatus status) {
 
     final html = StringBuffer();
     for (var i = 0; i < origins.length; i++) {
-      var results = response.rows[i].elements;
-      addMarker(origins[i], false);
+      final results = response.rows[i].elements;
+      addMarker(origins[i], isDestination: false);
       for (var j = 0; j < results.length; j++) {
-        addMarker(destinations[j], true);
+        addMarker(destinations[j], isDestination: true);
         html.write(
             '${origins[i]} to ${destinations[j]}: ${results[j].distance.text} in ${results[j].duration.text}<br>');
       }
@@ -65,7 +64,7 @@ void callback(DistanceMatrixResponse response, DistanceMatrixStatus status) {
   }
 }
 
-void addMarker(String location, bool isDestination) {
+void addMarker(String location, {bool isDestination}) {
   String icon;
   if (isDestination) {
     icon = destinationIcon;
@@ -83,12 +82,14 @@ void addMarker(String location, bool isDestination) {
       markersArray.add(marker);
     } else {
       window.alert(
-          'Geocode was not successful for the following reason: ${status}');
+          'Geocode was not successful for the following reason: $status');
     }
   });
 }
 
 void deleteOverlays() {
-  markersArray.forEach((marker) => marker.map = null);
+  for (final marker in markersArray) {
+    marker.map = null;
+  }
   markersArray.clear();
 }

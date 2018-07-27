@@ -20,6 +20,6 @@ abstract class _StreetViewCoverageLayer extends MVCObject {
 
   GMap get map => _getMap();
   GMap _getMap();
-  void set map(GMap map) => _setMap(map);
+  set map(GMap map) => _setMap(map);
   void _setMap(GMap map);
 }

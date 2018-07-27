@@ -5,30 +5,30 @@ GMap map;
 
 void main() {
   final mapOptions = MapOptions()..zoom = 6;
-  map = GMap(document.getElementById("map-canvas"), mapOptions);
+  map = GMap(document.getElementById('map-canvas'), mapOptions);
 
   // Try HTML5 geolocation
   if (window.navigator.geolocation != null) {
     window.navigator.geolocation.getCurrentPosition().then((position) {
       final pos = LatLng(position.coords.latitude, position.coords.longitude);
 
-      final infowindow = InfoWindow(InfoWindowOptions()
-        ..position = pos
-        ..content = 'Location found using HTML5.');
-      // FIXME https://code.google.com/p/gmaps-api-issues/issues/detail?id=7908
-      infowindow.open(map);
+      InfoWindow(InfoWindowOptions()
+            ..position = pos
+            ..content = 'Location found using HTML5.')
+          // FIXME https://code.google.com/p/gmaps-api-issues/issues/detail?id=7908
+          .open(map);
 
       map.center = pos;
     }, onError: (error) {
-      handleNoGeolocation(true);
+      handleNoGeolocation(errorFlag: true);
     });
   } else {
     // Browser doesn't support Geolocation
-    handleNoGeolocation(false);
+    handleNoGeolocation(errorFlag: false);
   }
 }
 
-void handleNoGeolocation(bool errorFlag) {
+void handleNoGeolocation({bool errorFlag}) {
   String content;
   if (errorFlag) {
     content = 'Error: The Geolocation service failed.';
@@ -40,9 +40,8 @@ void handleNoGeolocation(bool errorFlag) {
     ..position = LatLng(60, 105)
     ..content = content;
 
-  final infowindow = InfoWindow(options);
   // FIXME https://code.google.com/p/gmaps-api-issues/issues/detail?id=7908
-  infowindow.open(map);
+  InfoWindow(options).open(map);
 
   map.center = options.position;
 }

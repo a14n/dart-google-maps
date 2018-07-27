@@ -22,8 +22,7 @@ void main() {
 
   placesList = document.getElementById('places') as UListElement;
 
-  final service = PlacesService(map);
-  service.nearbySearch(request, callback);
+  PlacesService(map).nearbySearch(request, callback);
 }
 
 void callback(List<PlaceResult> results, PlacesServiceStatus status,
@@ -34,9 +33,8 @@ void callback(List<PlaceResult> results, PlacesServiceStatus status,
     createMarkers(results);
 
     if (pagination.hasNextPage) {
-      final moreButton = document.getElementById('more') as ButtonElement;
-
-      moreButton.disabled = false;
+      final moreButton = (document.getElementById('more') as ButtonElement)
+        ..disabled = false;
 
       moreButton.onClick.listen((_) {
         moreButton.disabled = true;
@@ -47,10 +45,10 @@ void callback(List<PlaceResult> results, PlacesServiceStatus status,
 }
 
 void createMarkers(List<PlaceResult> places) {
-  var bounds = LatLngBounds();
+  final bounds = LatLngBounds();
 
   for (final place in places) {
-    var image = Icon()
+    final image = Icon()
       ..url = place.icon
       ..size = Size(71, 71)
       ..origin = Point(0, 0)
@@ -63,7 +61,7 @@ void createMarkers(List<PlaceResult> places) {
       ..title = place.name
       ..position = place.geometry.location);
 
-    placesList.innerHtml += '<li>' + place.name + '</li>';
+    placesList.innerHtml += '<li>${place.name}</li>';
 
     bounds.extend(place.geometry.location);
   }

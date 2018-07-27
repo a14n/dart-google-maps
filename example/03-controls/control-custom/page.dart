@@ -4,11 +4,9 @@ import 'package:google_maps/google_maps.dart';
 GMap map;
 final LatLng chicago = LatLng(41.850033, -87.6500523);
 
-/**
- * The CenterControl adds a control to the map that recenters the map on
- * Chicago.
- * This constructor takes the control DIV as an argument.
- */
+/// The CenterControl adds a control to the map that recenters the map on
+/// Chicago.
+/// This constructor takes the control DIV as an argument.
 class CenterControl {
   CenterControl(Element controlDiv, GMap map) {
     // Set CSS for the control border
@@ -54,10 +52,10 @@ void main() {
   // Create the DIV to hold the control and
   // call the HomeControl() constructor passing
   // in this DIV.
-  var centerControlDiv = DivElement();
+  final centerControlDiv = DivElement();
   CenterControl(centerControlDiv, map);
 
-  centerControlDiv.attributes["index"] = '1';
+  centerControlDiv.attributes['index'] = '1';
   map.controls[ControlPosition.BOTTOM_LEFT].push(centerControlDiv);
 
   print(map.controls.length);

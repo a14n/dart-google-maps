@@ -21,8 +21,7 @@ void main() {
     ..types = ['store'];
 
   infowindow = InfoWindow();
-  final service = PlacesService(map);
-  service.nearbySearch(request, callback);
+  PlacesService(map).nearbySearch(request, callback);
 }
 
 void callback(List<PlaceResult> results, PlacesServiceStatus status,

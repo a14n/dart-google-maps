@@ -30,17 +30,17 @@ abstract class _KmlLayer extends MVCObject {
   String _getUrl();
   num get zIndex => _getZIndex();
   num _getZIndex();
-  void set map(GMap map) => _setMap(map);
+  set map(GMap map) => _setMap(map);
   void _setMap(GMap map);
-  void set url(String url) => _setUrl(url);
+  set url(String url) => _setUrl(url);
   void _setUrl(String url);
-  void set zIndex(num zIndex) => _setZIndex(zIndex);
+  set zIndex(num zIndex) => _setZIndex(zIndex);
   void _setZIndex(num zIndex);
 
   Stream<KmlMouseEvent> get onClick => getStream(
-      this, #onClick, "click", (JsObject o) => KmlMouseEvent.created(o));
+      this, #onClick, 'click', (JsObject o) => KmlMouseEvent.created(o));
   Stream get onDefaultviewportChanged =>
-      getStream(this, #onDefaultviewportChanged, "defaultviewport_changed");
+      getStream(this, #onDefaultviewportChanged, 'defaultviewport_changed');
   Stream get onStatusChanged =>
-      getStream(this, #onStatusChanged, "status_changed");
+      getStream(this, #onStatusChanged, 'status_changed');
 }

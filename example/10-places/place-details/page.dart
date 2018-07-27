@@ -14,16 +14,15 @@ void main() {
     ..placeId = 'ChIJN1t_tDeuEmsRUsoyG83frY4';
 
   final infowindow = InfoWindow();
-  final service = PlacesService(map);
-
-  service.getDetails(request, (place, status) {
+  PlacesService(map).getDetails(request, (place, status) {
     if (status == PlacesServiceStatus.OK) {
       final marker = Marker(MarkerOptions()
         ..map = map
         ..position = place.geometry.location);
       marker.onClick.listen((e) {
-        infowindow.content = place.name;
-        infowindow.open(map, marker);
+        infowindow
+          ..content = place.name
+          ..open(map, marker);
       });
     }
   });

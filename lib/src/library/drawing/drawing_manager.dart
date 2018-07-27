@@ -22,32 +22,32 @@ abstract class _DrawingManager extends MVCObject {
   OverlayType _getDrawingMode();
   GMap get map => _getMap();
   GMap _getMap();
-  void set drawingMode(OverlayType drawingMode) => _setDrawingMode(drawingMode);
+  set drawingMode(OverlayType drawingMode) => _setDrawingMode(drawingMode);
   void _setDrawingMode(OverlayType drawingMode);
-  void set map(GMap map) => _setMap(map);
+  set map(GMap map) => _setMap(map);
   void _setMap(GMap map);
-  void set options(DrawingManagerOptions options) => _setOptions(options);
+  set options(DrawingManagerOptions options) => _setOptions(options);
   void _setOptions(DrawingManagerOptions options);
 
   Stream<Circle> get onCirclecomplete => getStream(this, #onCirclecomplete,
-      "circlecomplete", (JsObject o) => Circle.created(o));
+      'circlecomplete', (JsObject o) => Circle.created(o));
   Stream<Marker> get onMarkercomplete => getStream(this, #onMarkercomplete,
-      "markercomplete", (JsObject o) => Marker.created(o));
+      'markercomplete', (JsObject o) => Marker.created(o));
   Stream<OverlayCompleteEvent> get onOverlaycomplete => getStream(
       this,
       #onOverlaycomplete,
-      "overlaycomplete",
+      'overlaycomplete',
       (JsObject o) => OverlayCompleteEvent.created(o));
   Stream<Polygon> get onPolygoncomplete => getStream(this, #onPolygoncomplete,
-      "polygoncomplete", (JsObject o) => Polygon.created(o));
+      'polygoncomplete', (JsObject o) => Polygon.created(o));
   Stream<Polyline> get onPolylinecomplete => getStream(
       this,
       #onPolylinecomplete,
-      "polylinecomplete",
+      'polylinecomplete',
       (JsObject o) => Polyline.created(o));
   Stream<Rectangle> get onRectanglecomplete => getStream(
       this,
       #onRectanglecomplete,
-      "rectanglecomplete",
+      'rectanglecomplete',
       (JsObject o) => Rectangle.created(o));
 }

@@ -46,7 +46,7 @@ abstract class _MapOptions implements JsInterface {
         }))
         ..add(IdentityCodec<String>()))
       .decode(_mapTypeId);
-  void set mapTypeId(dynamic /*MapTypeId|String*/ mapTypeId) {
+  set mapTypeId(dynamic /*MapTypeId|String*/ mapTypeId) {
     _mapTypeId = (ChainedCodec()
           ..add(BiMapCodec<MapTypeId, dynamic>({
             MapTypeId.HYBRID: context['google']['maps']['MapTypeId']['HYBRID'],

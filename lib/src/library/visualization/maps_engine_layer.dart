@@ -34,25 +34,25 @@ abstract class _MapsEngineLayer extends MVCObject {
   MapsEngineStatus _getStatus();
   num get zIndex => _getZIndex();
   num _getZIndex();
-  void set layerId(String layerId) => _setLayerId(layerId);
+  set layerId(String layerId) => _setLayerId(layerId);
   void _setLayerId(String layerId);
-  void set layerKey(String layerKey) => _setLayerKey(layerKey);
+  set layerKey(String layerKey) => _setLayerKey(layerKey);
   void _setLayerKey(String layerKey);
-  void set map(GMap map) => _setMap(map);
+  set map(GMap map) => _setMap(map);
   void _setMap(GMap map);
-  void set mapId(String mapId) => _setMapId(mapId);
+  set mapId(String mapId) => _setMapId(mapId);
   void _setMapId(String mapId);
-  void set opacity(num opacity) => _setOpacity(opacity);
+  set opacity(num opacity) => _setOpacity(opacity);
   void _setOpacity(num opacity);
-  void set options(MapsEngineLayerOptions options) => _setOptions(options);
+  set options(MapsEngineLayerOptions options) => _setOptions(options);
   void _setOptions(MapsEngineLayerOptions options);
-  void set zIndex(num zIndex) => _setZIndex(zIndex);
+  set zIndex(num zIndex) => _setZIndex(zIndex);
   void _setZIndex(num zIndex);
 
   Stream<MapsEngineMouseEvent> get onClick => getStream(
-      this, #onClick, "click", (JsObject o) => MapsEngineMouseEvent.created(o));
+      this, #onClick, 'click', (o) => MapsEngineMouseEvent.created(o));
   Stream get onPropertiesChanged =>
-      getStream(this, #onPropertiesChanged, "properties_changed");
+      getStream(this, #onPropertiesChanged, 'properties_changed');
   Stream get onStatusChanged =>
-      getStream(this, #onStatusChanged, "status_changed");
+      getStream(this, #onStatusChanged, 'status_changed');
 }

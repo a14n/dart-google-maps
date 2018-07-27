@@ -12,7 +12,7 @@ InfoWindow infoWindow;
 List<Marker> markers = <Marker>[];
 Autocomplete autocomplete;
 final countryRestrict = ComponentRestrictions()..country = 'us';
-final MARKER_PATH = 'https://maps.gstatic.com/intl/en_us/mapfiles/marker_green';
+const MARKER_PATH = 'https://maps.gstatic.com/intl/en_us/mapfiles/marker_green';
 final RegExp hostnameRegexp = RegExp('^https?://.+?/');
 
 var countries = {
@@ -66,8 +66,9 @@ void main() {
 void onPlaceChanged(_) {
   final place = autocomplete.place;
   if (place.geometry != null) {
-    map.panTo(place.geometry.location);
-    map.zoom = 15;
+    map
+      ..panTo(place.geometry.location)
+      ..zoom = 15;
     search();
   } else {
     (document.getElementById('autocomplete') as InputElement).placeholder =
@@ -89,7 +90,7 @@ void search() {
       // assign a letter of the alphabetic to each marker icon.
       for (var i = 0; i < results.length; i++) {
         final markerLetter = String.fromCharCode('A'.codeUnitAt(0) + i);
-        final markerIcon = MARKER_PATH + markerLetter + '.png';
+        final markerIcon = '$MARKER_PATH$markerLetter.png';
         // Use marker animation to drop the icons incrementally on the map.
         final marker = Marker(MarkerOptions()
           ..position = results[i].geometry.location
@@ -115,7 +116,7 @@ void clearMarkers() {
 // Set the country restriction based on user input.
 // Also center and zoom the map on the given country.
 void setAutocompleteCountry(_) {
-  var country = (document.getElementById('country') as SelectElement).value;
+  final country = (document.getElementById('country') as SelectElement).value;
   if (country == 'all') {
     autocomplete.componentRestrictions = ComponentRestrictions();
     map.center = LatLng(15, 0);
@@ -130,34 +131,31 @@ void setAutocompleteCountry(_) {
   clearMarkers();
 }
 
-VoidFunc0 dropMarker(int i) {
-  return () {
-    markers[i].map = map;
-  };
-}
+VoidFunc0 dropMarker(int i) => () {
+      markers[i].map = map;
+    };
 
 void addResult(PlaceResult result, int i) {
   final results = document.getElementById('results');
   final markerLetter = String.fromCharCode('A'.codeUnitAt(0) + i);
-  final markerIcon = MARKER_PATH + markerLetter + '.png';
+  final markerIcon = '$MARKER_PATH$markerLetter.png';
 
   final tr = document.createElement('tr');
-  tr.style.backgroundColor = (i % 2 == 0 ? '#F0F0F0' : '#FFFFFF');
+  tr.style.backgroundColor = i % 2 == 0 ? '#F0F0F0' : '#FFFFFF';
   tr.onClick.listen((_) {
     event.trigger(asJsObject(markers[i]), 'click', null);
   });
 
   final iconTd = document.createElement('td');
   final nameTd = document.createElement('td');
-  final icon = ImageElement();
-  icon.src = markerIcon;
-  icon.setAttribute('class', 'placeIcon');
-  icon.setAttribute('className', 'placeIcon');
+  final icon = ImageElement()
+    ..src = markerIcon
+    ..setAttribute('class', 'placeIcon')
+    ..setAttribute('className', 'placeIcon');
   final name = Text(result.name);
   iconTd.append(icon);
   nameTd.append(name);
-  tr.append(iconTd);
-  tr.append(nameTd);
+  tr..append(iconTd)..append(nameTd);
   results.append(tr);
 }
 
@@ -167,29 +165,29 @@ void clearResults() {
 
 // Get the place details for a hotel. Show the information in an info window,
 // anchored on the marker for the hotel that the user selected.
-VoidFunc1<MouseEvent> showInfoWindow(Marker marker, PlaceResult placeResult) {
-  return (_) => places
-          .getDetails(PlaceDetailsRequest()..placeId = placeResult.placeId,
-              (place, status) {
-        if (status != PlacesServiceStatus.OK) {
-          return;
-        }
-        infoWindow.open(map, marker);
-        buildIWContent(place);
-      });
-}
+VoidFunc1<MouseEvent> showInfoWindow(Marker marker, PlaceResult placeResult) =>
+    (_) => places
+            .getDetails(PlaceDetailsRequest()..placeId = placeResult.placeId,
+                (place, status) {
+          if (status != PlacesServiceStatus.OK) {
+            return;
+          }
+          infoWindow.open(map, marker);
+          buildIWContent(place);
+        });
 
 class _NullTreeSanitizer implements NodeTreeSanitizer {
+  @override
   void sanitizeTree(Node node) {}
 }
 
 // Load the place information into the HTML elements used by the info window.
 void buildIWContent(PlaceResult place) {
   document.getElementById('iw-icon').setInnerHtml(
-      '<img class="hotelIcon" ' + 'src="' + place.icon + '"></img>',
+      '<img class="hotelIcon" src="${place.icon}"></img>',
       treeSanitizer: _NullTreeSanitizer());
   document.getElementById('iw-url').setInnerHtml(
-      '<b><a href="' + place.url + '">' + place.name + '</a></b>',
+      '<b><a href="${place.url}">${place.name}</a></b>',
       treeSanitizer: _NullTreeSanitizer());
   document.getElementById('iw-address').text = place.vicinity;
 
@@ -222,9 +220,7 @@ void buildIWContent(PlaceResult place) {
   // to give a short URL for displaying in the info window.
   if (place.website != null) {
     var website = hostnameRegexp.stringMatch(place.website);
-    if (website == null) {
-      website = 'http://' + place.website + '/';
-    }
+    website ??= 'http://${place.website}/';
     document.getElementById('iw-website-row').style.display = '';
     document.getElementById('iw-website').text = website;
   } else {

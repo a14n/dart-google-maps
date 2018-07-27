@@ -29,14 +29,18 @@ void main() {
 
 // Add a marker to the map and push to the array.
 void addMarker(LatLng location) {
-  var marker = Marker(MarkerOptions()
+  final marker = Marker(MarkerOptions()
     ..position = location
     ..map = map);
   markers.add(marker);
 }
 
 // Sets the map on all markers in the array.
-void setAllMap(GMap map) => markers.forEach((m) => m.map = map);
+void setAllMap(GMap map) {
+  for (final m in markers) {
+    m.map = map;
+  }
+}
 
 // Removes the markers from the map, but keeps them in the array.
 void clearMarkers() => setAllMap(null);

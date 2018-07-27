@@ -44,7 +44,7 @@ abstract class _DataSetGeometryEvent implements JsInterface {
         ..add(JsInterfaceCodec<DataMultiPoint>((o) => DataMultiPoint.created(o), (o) => o != null && o.instanceof(context['google']['maps']['Data']['MultiPoint'] as JsFunction)))
         ..add(JsInterfaceCodec<DataPoint>((o) => DataPoint.created(o), (o) => o != null && o.instanceof(context['google']['maps']['Data']['Point'] as JsFunction))))
       .decode(_newGeometry);
-  void set newGeometry(
+  set newGeometry(
       dynamic /*DataGeometryCollection|DataMultiPolygon|DataPolygon|DataLinearRing|DataMultiLineString|DataLineString|DataMultiPoint|DataPoint*/ newGeometry) {
     _newGeometry = (ChainedCodec()
           ..add(JsInterfaceCodec<DataGeometryCollection>(
@@ -96,7 +96,7 @@ abstract class _DataSetGeometryEvent implements JsInterface {
         ..add(JsInterfaceCodec<DataMultiPoint>((o) => DataMultiPoint.created(o), (o) => o != null && o.instanceof(context['google']['maps']['Data']['MultiPoint'] as JsFunction)))
         ..add(JsInterfaceCodec<DataPoint>((o) => DataPoint.created(o), (o) => o != null && o.instanceof(context['google']['maps']['Data']['Point'] as JsFunction))))
       .decode(_oldGeometry);
-  void set oldGeometry(
+  set oldGeometry(
       dynamic /*DataGeometryCollection|DataMultiPolygon|DataPolygon|DataLinearRing|DataMultiLineString|DataLineString|DataMultiPoint|DataPoint*/ oldGeometry) {
     _oldGeometry = (ChainedCodec()
           ..add(JsInterfaceCodec<DataGeometryCollection>(

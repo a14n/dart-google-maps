@@ -39,42 +39,42 @@ class DrawingManager extends MVCObject {
       __codec0.decode(asJsObject(this).callMethod('getDrawingMode'));
   GMap get map => _getMap();
   GMap _getMap() => __codec4.decode(asJsObject(this).callMethod('getMap'));
-  void set drawingMode(OverlayType drawingMode) => _setDrawingMode(drawingMode);
+  set drawingMode(OverlayType drawingMode) => _setDrawingMode(drawingMode);
   void _setDrawingMode(OverlayType drawingMode) {
     asJsObject(this)
         .callMethod('setDrawingMode', [__codec0.encode(drawingMode)]);
   }
 
-  void set map(GMap map) => _setMap(map);
+  set map(GMap map) => _setMap(map);
   void _setMap(GMap map) {
     asJsObject(this).callMethod('setMap', [__codec4.encode(map)]);
   }
 
-  void set options(DrawingManagerOptions options) => _setOptions(options);
+  set options(DrawingManagerOptions options) => _setOptions(options);
   void _setOptions(DrawingManagerOptions options) {
     asJsObject(this).callMethod('setOptions', [__codec3.encode(options)]);
   }
 
   Stream<Circle> get onCirclecomplete => getStream(this, #onCirclecomplete,
-      "circlecomplete", (JsObject o) => Circle.created(o));
+      'circlecomplete', (JsObject o) => Circle.created(o));
   Stream<Marker> get onMarkercomplete => getStream(this, #onMarkercomplete,
-      "markercomplete", (JsObject o) => Marker.created(o));
+      'markercomplete', (JsObject o) => Marker.created(o));
   Stream<OverlayCompleteEvent> get onOverlaycomplete => getStream(
       this,
       #onOverlaycomplete,
-      "overlaycomplete",
+      'overlaycomplete',
       (JsObject o) => OverlayCompleteEvent.created(o));
   Stream<Polygon> get onPolygoncomplete => getStream(this, #onPolygoncomplete,
-      "polygoncomplete", (JsObject o) => Polygon.created(o));
+      'polygoncomplete', (JsObject o) => Polygon.created(o));
   Stream<Polyline> get onPolylinecomplete => getStream(
       this,
       #onPolylinecomplete,
-      "polylinecomplete",
+      'polylinecomplete',
       (JsObject o) => Polyline.created(o));
   Stream<Rectangle> get onRectanglecomplete => getStream(
       this,
       #onRectanglecomplete,
-      "rectanglecomplete",
+      'rectanglecomplete',
       (JsObject o) => Rectangle.created(o));
 }
 
@@ -183,8 +183,7 @@ class OverlayCompleteEvent extends JsInterface {
                     o.instanceof(
                         context['google']['maps']['Circle'] as JsFunction))))
           .decode(_overlay);
-  void set overlay(
-      dynamic /*Marker|Polygon|Polyline|Rectangle|Circle*/ overlay) {
+  set overlay(dynamic /*Marker|Polygon|Polyline|Rectangle|Circle*/ overlay) {
     _overlay = (ChainedCodec()
           ..add(JsInterfaceCodec<Marker>(
               (o) => Marker.created(o),

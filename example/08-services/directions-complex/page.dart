@@ -6,7 +6,7 @@ GMap map;
 DirectionsRenderer directionsDisplay;
 DirectionsService directionsService;
 InfoWindow stepDisplay;
-final markerArray = List<Marker>();
+final markerArray = <Marker>[];
 
 void main() {
   // Instantiate a directions service.
@@ -32,7 +32,9 @@ void main() {
 
 void calcRoute() {
   // First, remove any existing markers from the map.
-  markerArray.forEach((marker) => marker.map = null);
+  for (final marker in markerArray) {
+    marker.map = null;
+  }
 
   // Now, clear the array itself.
   markerArray.clear();
@@ -50,8 +52,8 @@ void calcRoute() {
   // function to create markers for each step.
   directionsService.route(request, (response, status) {
     if (status == DirectionsStatus.OK) {
-      final warnings = querySelector('#warnings_panel');
-      warnings.innerHtml = '<b>${response.routes[0].warnings}</b>';
+      querySelector('#warnings_panel').innerHtml =
+          '<b>${response.routes[0].warnings}</b>';
       directionsDisplay.directions = response;
       showSteps(response);
     }

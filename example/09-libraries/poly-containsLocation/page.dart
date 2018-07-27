@@ -27,7 +27,7 @@ void main() {
       result = 'green';
     }
 
-    var circle = GSymbol()
+    final circle = GSymbol()
       ..path = SymbolPath.CIRCLE
       ..fillColor = result
       ..fillOpacity = 0.2

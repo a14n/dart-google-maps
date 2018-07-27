@@ -16,7 +16,7 @@ class CloudLayer extends MVCObject {
 
   GMap get map => _getMap();
   GMap _getMap() => __codec0.decode(asJsObject(this).callMethod('getMap'));
-  void set map(GMap map) => _setMap(map);
+  set map(GMap map) => _setMap(map);
   void _setMap(GMap map) {
     asJsObject(this).callMethod('setMap', [__codec0.encode(map)]);
   }
@@ -189,18 +189,18 @@ class WeatherLayer extends MVCObject {
 
   GMap get map => _getMap();
   GMap _getMap() => __codec0.decode(asJsObject(this).callMethod('getMap'));
-  void set map(GMap map) => _setMap(map);
+  set map(GMap map) => _setMap(map);
   void _setMap(GMap map) {
     asJsObject(this).callMethod('setMap', [__codec0.encode(map)]);
   }
 
-  void set options(WeatherLayerOptions options) => _setOptions(options);
+  set options(WeatherLayerOptions options) => _setOptions(options);
   void _setOptions(WeatherLayerOptions options) {
     asJsObject(this).callMethod('setOptions', [__codec6.encode(options)]);
   }
 
-  Stream<WeatherMouseEvent> get onClick => getStream(
-      this, #onClick, "click", (JsObject o) => WeatherMouseEvent.created(o));
+  Stream<WeatherMouseEvent> get onClick =>
+      getStream(this, #onClick, 'click', (o) => WeatherMouseEvent.created(o));
 }
 
 @GeneratedFrom(_WeatherLayerOptions)

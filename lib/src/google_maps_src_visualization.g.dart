@@ -31,78 +31,59 @@ class DynamicMapsEngineLayer extends MVCObject {
   MapsEngineStatus get status => _getStatus();
   MapsEngineStatus _getStatus() =>
       __codec3.decode(asJsObject(this).callMethod('getStatus'));
-  void set layerId(String layerId) => _setLayerId(layerId);
+  set layerId(String layerId) => _setLayerId(layerId);
   void _setLayerId(String layerId) {
     asJsObject(this).callMethod('setLayerId', [layerId]);
   }
 
-  void set layerKey(String layerKey) => _setLayerKey(layerKey);
+  set layerKey(String layerKey) => _setLayerKey(layerKey);
   void _setLayerKey(String layerKey) {
     asJsObject(this).callMethod('setLayerKey', [layerKey]);
   }
 
-  void set map(GMap map) => _setMap(map);
+  set map(GMap map) => _setMap(map);
   void _setMap(GMap map) {
     asJsObject(this).callMethod('setMap', [__codec2.encode(map)]);
   }
 
-  void set mapId(String mapId) => _setMapId(mapId);
+  set mapId(String mapId) => _setMapId(mapId);
   void _setMapId(String mapId) {
     asJsObject(this).callMethod('setMapId', [mapId]);
   }
 
-  void set opacity(num opacity) => _setOpacity(opacity);
+  set opacity(num opacity) => _setOpacity(opacity);
   void _setOpacity(num opacity) {
     asJsObject(this).callMethod('setOpacity', [opacity]);
   }
 
-  void set options(DynamicMapsEngineLayerOptions options) =>
-      _setOptions(options);
+  set options(DynamicMapsEngineLayerOptions options) => _setOptions(options);
   void _setOptions(DynamicMapsEngineLayerOptions options) {
     asJsObject(this).callMethod('setOptions', [__codec0.encode(options)]);
   }
 
-  Stream<DynamicMapsEngineMouseEvent> get onClick => getStream(this, #onClick,
-      "click", (JsObject o) => DynamicMapsEngineMouseEvent.created(o));
-  Stream<DynamicMapsEngineMouseEvent> get onDblclick => getStream(
-      this,
-      #onDblclick,
-      "dblclick",
-      (JsObject o) => DynamicMapsEngineMouseEvent.created(o));
-  Stream<DynamicMapsEngineMouseEvent> get onMousedown => getStream(
-      this,
-      #onMousedown,
-      "mousedown",
-      (JsObject o) => DynamicMapsEngineMouseEvent.created(o));
-  Stream<DynamicMapsEngineMouseEvent> get onMousemove => getStream(
-      this,
-      #onMousemove,
-      "mousemove",
-      (JsObject o) => DynamicMapsEngineMouseEvent.created(o));
-  Stream<DynamicMapsEngineMouseEvent> get onMouseout => getStream(
-      this,
-      #onMouseout,
-      "mouseout",
-      (JsObject o) => DynamicMapsEngineMouseEvent.created(o));
-  Stream<DynamicMapsEngineMouseEvent> get onMouseover => getStream(
-      this,
-      #onMouseover,
-      "mouseover",
-      (JsObject o) => DynamicMapsEngineMouseEvent.created(o));
-  Stream<DynamicMapsEngineMouseEvent> get onMouseup => getStream(
-      this,
-      #onMouseup,
-      "mouseup",
-      (JsObject o) => DynamicMapsEngineMouseEvent.created(o));
+  Stream<DynamicMapsEngineMouseEvent> get onClick => getStream(
+      this, #onClick, 'click', (o) => DynamicMapsEngineMouseEvent.created(o));
+  Stream<DynamicMapsEngineMouseEvent> get onDblclick => getStream(this,
+      #onDblclick, 'dblclick', (o) => DynamicMapsEngineMouseEvent.created(o));
+  Stream<DynamicMapsEngineMouseEvent> get onMousedown => getStream(this,
+      #onMousedown, 'mousedown', (o) => DynamicMapsEngineMouseEvent.created(o));
+  Stream<DynamicMapsEngineMouseEvent> get onMousemove => getStream(this,
+      #onMousemove, 'mousemove', (o) => DynamicMapsEngineMouseEvent.created(o));
+  Stream<DynamicMapsEngineMouseEvent> get onMouseout => getStream(this,
+      #onMouseout, 'mouseout', (o) => DynamicMapsEngineMouseEvent.created(o));
+  Stream<DynamicMapsEngineMouseEvent> get onMouseover => getStream(this,
+      #onMouseover, 'mouseover', (o) => DynamicMapsEngineMouseEvent.created(o));
+  Stream<DynamicMapsEngineMouseEvent> get onMouseup => getStream(this,
+      #onMouseup, 'mouseup', (o) => DynamicMapsEngineMouseEvent.created(o));
   Stream get onPropertiesChanged =>
-      getStream(this, #onPropertiesChanged, "properties_changed");
+      getStream(this, #onPropertiesChanged, 'properties_changed');
   Stream<DynamicMapsEngineMouseEvent> get onRightclick => getStream(
       this,
       #onRightclick,
-      "rightclick",
-      (JsObject o) => DynamicMapsEngineMouseEvent.created(o));
+      'rightclick',
+      (o) => DynamicMapsEngineMouseEvent.created(o));
   Stream get onStatusChanged =>
-      getStream(this, #onStatusChanged, "status_changed");
+      getStream(this, #onStatusChanged, 'status_changed');
 }
 
 @GeneratedFrom(_DynamicMapsEngineLayerOptions)
@@ -256,7 +237,7 @@ class HeatmapLayer extends MVCObject {
   HeatmapLayer.created(JsObject o) : super.created(o);
 
   MVCArray<dynamic /*LatLng|WeightedLocation*/ > get data =>
-      (JsInterfaceCodec<MVCArray<dynamic /*LatLng|WeightedLocation*/ >>((o) =>
+      JsInterfaceCodec<MVCArray<dynamic /*LatLng|WeightedLocation*/ >>((o) =>
               MVCArray<dynamic /*LatLng|WeightedLocation*/ >.created(
                   o,
                   ChainedCodec()
@@ -264,16 +245,15 @@ class HeatmapLayer extends MVCObject {
                         (o) => LatLng.created(o),
                         (o) =>
                             o != null &&
-                            o.instanceof(context['google']['maps']['LatLng']
-                                as JsFunction)))
+                            o.instanceof(
+                                context['google']['maps']['LatLng'] as JsFunction)))
                     ..add(JsInterfaceCodec<WeightedLocation>(
-                        (o) => WeightedLocation.created(o))))))
+                        (o) => WeightedLocation.created(o)))))
           .decode(_getData() as JsObject);
-  _getData() => __codec5.decode(asJsObject(this).callMethod('getData'));
+  dynamic _getData() => __codec5.decode(asJsObject(this).callMethod('getData'));
   GMap get map => _getMap();
   GMap _getMap() => __codec2.decode(asJsObject(this).callMethod('getMap'));
-  void set data(
-          dynamic /*MVCArray<dynamic/*LatLng|WeightedLocation*/>|List<dynamic/*LatLng|WeightedLocation*/>*/ data) =>
+  set data(dynamic /*MVCArray<dynamic/*LatLng|WeightedLocation*/>|List<dynamic/*LatLng|WeightedLocation*/>*/ data) =>
       _setData((ChainedCodec()
             ..add(JsInterfaceCodec<MVCArray<dynamic /*LatLng|WeightedLocation*/ >>(
                 (o) => MVCArray<dynamic /*LatLng|WeightedLocation*/ >.created(
@@ -283,9 +263,10 @@ class HeatmapLayer extends MVCObject {
                           (o) => LatLng.created(o),
                           (o) =>
                               o != null &&
-                              o.instanceof(
-                                  context['google']['maps']['LatLng'] as JsFunction)))
-                      ..add(JsInterfaceCodec<WeightedLocation>((o) => WeightedLocation.created(o))))))
+                              o.instanceof(context['google']['maps']['LatLng']
+                                  as JsFunction)))
+                      ..add(
+                          JsInterfaceCodec<WeightedLocation>((o) => WeightedLocation.created(o))))))
             ..add(JsListCodec<dynamic /*LatLng|WeightedLocation*/ >(ChainedCodec()..add(JsInterfaceCodec<LatLng>((o) => LatLng.created(o), (o) => o != null && o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))..add(JsInterfaceCodec<WeightedLocation>((o) => WeightedLocation.created(o))))))
           .encode(data));
   void _setData(
@@ -293,12 +274,12 @@ class HeatmapLayer extends MVCObject {
     asJsObject(this).callMethod('setData', [__codec5.encode(data)]);
   }
 
-  void set map(GMap map) => _setMap(map);
+  set map(GMap map) => _setMap(map);
   void _setMap(GMap map) {
     asJsObject(this).callMethod('setMap', [__codec2.encode(map)]);
   }
 
-  void set options(HeatmapLayerOptions options) => _setOptions(options);
+  set options(HeatmapLayerOptions options) => _setOptions(options);
   void _setOptions(HeatmapLayerOptions options) {
     asJsObject(this).callMethod('setOptions', [__codec8.encode(options)]);
   }
@@ -316,24 +297,24 @@ class HeatmapLayerOptions extends JsInterface {
 
   dynamic get _data => __codec5.decode(asJsObject(this)['data']);
   MVCArray<LatLng> get data =>
-      (JsInterfaceCodec<MVCArray<LatLng>>((o) => MVCArray<LatLng>.created(
+      JsInterfaceCodec<MVCArray<LatLng>>((o) => MVCArray<LatLng>.created(
               o,
               JsInterfaceCodec<LatLng>(
                   (o) => LatLng.created(o),
                   (o) =>
                       o != null &&
                       o.instanceof(
-                          context['google']['maps']['LatLng'] as JsFunction)))))
+                          context['google']['maps']['LatLng'] as JsFunction))))
           .decode(_data as JsObject);
-  void set data(MVCArray<LatLng> data) {
-    _data = (JsInterfaceCodec<MVCArray<LatLng>>((o) => MVCArray<LatLng>.created(
+  set data(MVCArray<LatLng> data) {
+    _data = JsInterfaceCodec<MVCArray<LatLng>>((o) => MVCArray<LatLng>.created(
             o,
             JsInterfaceCodec<LatLng>(
                 (o) => LatLng.created(o),
                 (o) =>
                     o != null &&
                     o.instanceof(
-                        context['google']['maps']['LatLng'] as JsFunction)))))
+                        context['google']['maps']['LatLng'] as JsFunction))))
         .encode(data);
   }
 
@@ -396,47 +377,47 @@ class MapsEngineLayer extends MVCObject {
       __codec3.decode(asJsObject(this).callMethod('getStatus'));
   num get zIndex => _getZIndex();
   num _getZIndex() => asJsObject(this).callMethod('getZIndex');
-  void set layerId(String layerId) => _setLayerId(layerId);
+  set layerId(String layerId) => _setLayerId(layerId);
   void _setLayerId(String layerId) {
     asJsObject(this).callMethod('setLayerId', [layerId]);
   }
 
-  void set layerKey(String layerKey) => _setLayerKey(layerKey);
+  set layerKey(String layerKey) => _setLayerKey(layerKey);
   void _setLayerKey(String layerKey) {
     asJsObject(this).callMethod('setLayerKey', [layerKey]);
   }
 
-  void set map(GMap map) => _setMap(map);
+  set map(GMap map) => _setMap(map);
   void _setMap(GMap map) {
     asJsObject(this).callMethod('setMap', [__codec2.encode(map)]);
   }
 
-  void set mapId(String mapId) => _setMapId(mapId);
+  set mapId(String mapId) => _setMapId(mapId);
   void _setMapId(String mapId) {
     asJsObject(this).callMethod('setMapId', [mapId]);
   }
 
-  void set opacity(num opacity) => _setOpacity(opacity);
+  set opacity(num opacity) => _setOpacity(opacity);
   void _setOpacity(num opacity) {
     asJsObject(this).callMethod('setOpacity', [opacity]);
   }
 
-  void set options(MapsEngineLayerOptions options) => _setOptions(options);
+  set options(MapsEngineLayerOptions options) => _setOptions(options);
   void _setOptions(MapsEngineLayerOptions options) {
     asJsObject(this).callMethod('setOptions', [__codec10.encode(options)]);
   }
 
-  void set zIndex(num zIndex) => _setZIndex(zIndex);
+  set zIndex(num zIndex) => _setZIndex(zIndex);
   void _setZIndex(num zIndex) {
     asJsObject(this).callMethod('setZIndex', [zIndex]);
   }
 
   Stream<MapsEngineMouseEvent> get onClick => getStream(
-      this, #onClick, "click", (JsObject o) => MapsEngineMouseEvent.created(o));
+      this, #onClick, 'click', (o) => MapsEngineMouseEvent.created(o));
   Stream get onPropertiesChanged =>
-      getStream(this, #onPropertiesChanged, "properties_changed");
+      getStream(this, #onPropertiesChanged, 'properties_changed');
   Stream get onStatusChanged =>
-      getStream(this, #onStatusChanged, "status_changed");
+      getStream(this, #onStatusChanged, 'status_changed');
 }
 
 @GeneratedFrom(_MapsEngineLayerOptions)

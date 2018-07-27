@@ -9,9 +9,8 @@ void main() {
 
   final bounds = LatLngBounds(LatLng(44.490, -78.649), LatLng(44.599, -78.443));
 
-  final rectangle = Rectangle(RectangleOptions()
-    ..bounds = bounds
-    ..editable = true);
-
-  rectangle.map = map;
+  Rectangle(RectangleOptions()
+        ..bounds = bounds
+        ..editable = true)
+      .map = map;
 }

@@ -14,5 +14,5 @@ void main() {
   asJsObject(panoramaOptions)['zoom'] = 1;
 
   StreetViewPanorama(document.getElementById('map-canvas'), panoramaOptions)
-    ..visible = true;
+      .visible = true;
 }

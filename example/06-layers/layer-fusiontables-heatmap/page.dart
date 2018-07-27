@@ -8,10 +8,10 @@ void main() {
         ..center = LatLng(10, -140)
         ..zoom = 3);
 
-  final layer = FusionTablesLayer(FusionTablesLayerOptions()
-    ..query = (FusionTablesQuery()
-      ..select = 'location'
-      ..from = '1xWyeuAhIFK_aED1ikkQEGmR8mINSCJO9Vq-BPQ')
-    ..heatmap = (FusionTablesHeatmap()..enabled = true));
-  layer.map = map;
+  FusionTablesLayer(FusionTablesLayerOptions()
+        ..query = (FusionTablesQuery()
+          ..select = 'location'
+          ..from = '1xWyeuAhIFK_aED1ikkQEGmR8mINSCJO9Vq-BPQ')
+        ..heatmap = (FusionTablesHeatmap()..enabled = true))
+      .map = map;
 }

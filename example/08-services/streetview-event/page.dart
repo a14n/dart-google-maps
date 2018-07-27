@@ -15,29 +15,25 @@ void main() {
       StreetViewPanorama(document.getElementById('pano'), panoramaOptions);
 
   panorama.onPanoChanged.listen((_) {
-    final panoCell = document.getElementById('pano_cell');
-    panoCell.innerHtml = panorama.pano;
+    document.getElementById('pano_cell').innerHtml = panorama.pano;
   });
 
   panorama.onLinksChanged.listen((_) {
     final linksTable = document.getElementById('links_table');
     linksTable.children.clear();
     final links = panorama.links;
-    for (int i = 0; i < links.length; i++) {
+    for (var i = 0; i < links.length; i++) {
       final row = TableRowElement();
       linksTable.children.add(row);
-      final labelCell = TableCellElement();
-      labelCell.innerHtml = '<b>Link: ${i}</b>';
-      final valueCell = TableCellElement();
-      valueCell.innerHtml = links[i].description;
+      final labelCell = TableCellElement()..innerHtml = '<b>Link: $i</b>';
+      final valueCell = TableCellElement()..innerHtml = links[i].description;
       linksTable.children.add(labelCell);
       linksTable.children.add(valueCell);
     }
   });
 
   panorama.onPositionChanged.listen((_) {
-    final positionCell = document.getElementById('position_cell');
-    positionCell.innerHtml = '${panorama.position}';
+    document.getElementById('position_cell').innerHtml = '${panorama.position}';
   });
 
   panorama.onPovChanged.listen((_) {

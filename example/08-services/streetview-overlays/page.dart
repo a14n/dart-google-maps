@@ -41,17 +41,17 @@ void main() {
 
   // We get the map's default panorama and set up some defaults.
   // Note that we don't yet set it visible.
-  panorama = map.streetView;
-  panorama.position = astorPlace;
-  panorama.pov = StreetViewPov()
-    ..heading = 265
-    ..pitch = 0;
+  panorama = map.streetView
+    ..position = astorPlace
+    ..pov = (StreetViewPov()
+      ..heading = 265
+      ..pitch = 0);
 
-  querySelector("#toggleStreetView").onClick.listen((e) => toggleStreetView());
+  querySelector('#toggleStreetView').onClick.listen((e) => toggleStreetView());
 }
 
 void toggleStreetView() {
-  var toggle = panorama.visible;
+  final toggle = panorama.visible;
   if (toggle == false) {
     panorama.visible = true;
   } else {

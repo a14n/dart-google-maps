@@ -3,7 +3,7 @@ import 'package:google_maps/google_maps.dart';
 import 'package:js_wrapping/js_wrapping.dart';
 
 const IMAGE_URL =
-    "https://google-developers.appspot.com/maps/documentation/javascript/examples/full";
+    'https://google-developers.appspot.com/maps/documentation/javascript/examples/full';
 
 USGSOverlay overlay;
 
@@ -19,7 +19,7 @@ void main() {
   final bounds = LatLngBounds(swBound, neBound);
 
   // The photograph is courtesy of the U.S. Geological Survey.
-  final srcImage = '${IMAGE_URL}/images/talkeetna.png';
+  const srcImage = '$IMAGE_URL/images/talkeetna.png';
 
   // The custom USGSOverlay object contains the USGS image,
   // the bounds of the image, and a reference to the map.
@@ -67,7 +67,7 @@ class USGSOverlay extends OverlayView {
     // We use the south-west and north-east
     // coordinates of the overlay to peg it to the correct position and size.
     // To do this, we need to retrieve the projection from the overlay.
-    final overlayProjection = this.projection;
+    final overlayProjection = projection;
 
     // Retrieve the south-west and north-east coordinates of this overlay
     // in LatLngs and convert them to pixel coordinates.

@@ -2,13 +2,13 @@ import 'dart:html';
 import 'package:google_maps/google_maps.dart';
 
 void main() {
-  var myLatlng = LatLng(-25.363882, 131.044922);
+  final myLatlng = LatLng(-25.363882, 131.044922);
   final mapOptions = MapOptions()
     ..zoom = 4
     ..center = myLatlng;
   final map = GMap(document.getElementById('map-canvas'), mapOptions);
 
-  final contentString = '<div id="content">'
+  const contentString = '<div id="content">'
       '<div id="siteNotice">'
       '</div>'
       '<h1 id="firstHeading" class="firstHeading">Uluru</h1>'

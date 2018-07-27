@@ -14,4 +14,5 @@
 
 part of google_maps.src;
 
-typedef DataStyleOptions DataStylingFunction(DataFeature dataFeature);
+typedef DataStylingFunction = DataStyleOptions Function(
+    DataFeature dataFeature);

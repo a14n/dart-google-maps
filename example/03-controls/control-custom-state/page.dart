@@ -4,10 +4,8 @@ import 'package:google_maps/google_maps.dart';
 GMap map;
 final LatLng chicago = LatLng(41.850033, -87.6500523);
 
-/**
- * The HomeControl adds a control to the map that
- * returns the user to the control's defined home.
- */
+/// The HomeControl adds a control to the map that
+/// returns the user to the control's defined home.
 class HomeControl {
   LatLng center;
 
@@ -67,17 +65,17 @@ class HomeControl {
     setCenterText.innerHtml = 'Set Center';
     setCenterUI.children.add(setCenterText);
 
-    // Setup the click event listener for Home:
-    // simply set the map to the control's current home property.
-    event.addDomListener(goCenterUI, 'click', (e) {
-      map.center = center;
-    });
-
-    // Setup the click event listener for Set Home:
-    // Set the control's home to the current Map center.
-    event.addDomListener(setCenterUI, 'click', (e) {
-      center = map.center;
-    });
+    event
+      // Setup the click event listener for Home:
+      // simply set the map to the control's current home property.
+      ..addDomListener(goCenterUI, 'click', (e) {
+        map.center = center;
+      })
+      // Setup the click event listener for Set Home:
+      // Set the control's home to the current Map center.
+      ..addDomListener(setCenterUI, 'click', (e) {
+        center = map.center;
+      });
   }
 }
 
@@ -91,9 +89,9 @@ void main() {
   // Create the DIV to hold the control and
   // call the HomeControl() constructor passing
   // in this DIV.
-  var homeControlDiv = DivElement();
+  final homeControlDiv = DivElement();
   HomeControl(homeControlDiv, map, chicago);
 
-  homeControlDiv.attributes["index"] = '1';
+  homeControlDiv.attributes['index'] = '1';
   map.controls[ControlPosition.BOTTOM_LEFT].push(homeControlDiv);
 }

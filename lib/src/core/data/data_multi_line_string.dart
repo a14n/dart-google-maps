@@ -16,12 +16,11 @@ part of google_maps.src;
 
 @JsName('google.maps.Data.MultiLineString')
 abstract class _DataMultiLineString extends DataGeometry {
-  _DataMultiLineString.created(JsObject o) : super.created(o);
   _DataMultiLineString(List<dynamic /*DataLineString|List<LatLng>*/ > elements)
       : this.created(JsObject(
             context['google']['maps']['Data']['MultiLineString'] as JsFunction,
             [
-              (JsListCodec<dynamic /*DataLineString|List<LatLng>*/ >(
+              JsListCodec<dynamic /*DataLineString|List<LatLng>*/ >(
                       ChainedCodec()
                         ..add(JsInterfaceCodec<DataLineString>(
                             (o) => DataLineString.created(o),
@@ -34,9 +33,11 @@ abstract class _DataMultiLineString extends DataGeometry {
                             (o) =>
                                 o != null &&
                                 o.instanceof(context['google']['maps']['LatLng']
-                                    as JsFunction))))))
+                                    as JsFunction)))))
                   .encode(elements)
             ]));
+  _DataMultiLineString.created(JsObject o) : super.created(o);
+
   List<DataLineString> get array => _getArray();
   List<DataLineString> _getArray();
   DataLineString getAt(num n);

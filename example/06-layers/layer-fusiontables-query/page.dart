@@ -9,10 +9,10 @@ void main() {
         ..center = chicago
         ..zoom = 12);
 
-  final layer = FusionTablesLayer(FusionTablesLayerOptions()
-    ..query = (FusionTablesQuery()
-      ..select = 'address'
-      ..from = '1d7qpn60tAvG4LEg4jvClZbc1ggp8fIGGvpMGzA'
-      ..where = 'ridership > 5000'));
-  layer.map = map;
+  FusionTablesLayer(FusionTablesLayerOptions()
+        ..query = (FusionTablesQuery()
+          ..select = 'address'
+          ..from = '1d7qpn60tAvG4LEg4jvClZbc1ggp8fIGGvpMGzA'
+          ..where = 'ridership > 5000'))
+      .map = map;
 }

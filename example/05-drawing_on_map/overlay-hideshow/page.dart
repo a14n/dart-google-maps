@@ -3,7 +3,7 @@ import 'package:google_maps/google_maps.dart';
 import 'package:js_wrapping/js_wrapping.dart';
 
 const IMAGE_URL =
-    "https://google-developers.appspot.com/maps/documentation/javascript/examples/full";
+    'https://google-developers.appspot.com/maps/documentation/javascript/examples/full';
 
 USGSOverlay overlay;
 
@@ -20,12 +20,12 @@ void main() {
   final bounds = LatLngBounds(swBound, neBound);
 
   // The photograph is courtesy of the U.S. Geological Survey.
-  final srcImage = '${IMAGE_URL}/images/talkeetna.png';
+  const srcImage = '$IMAGE_URL/images/talkeetna.png';
   overlay = USGSOverlay(bounds, srcImage, map);
 
-  document.getElementById("toggle").onClick.listen((e) => overlay.toggle());
+  document.getElementById('toggle').onClick.listen((e) => overlay.toggle());
   document
-      .getElementById("toggleDOM")
+      .getElementById('toggleDOM')
       .onClick
       .listen((e) => overlay.toggleDOM());
 }
@@ -43,7 +43,7 @@ class USGSOverlay extends OverlayView {
     asJsObject(this)['onRemove'] = _onRemove;
 
     // Explicitly call setMap on this overlay
-    this.map = _map;
+    map = _map;
   }
 
   /// onAdd is called when the map's panes are ready and the overlay has been
@@ -72,7 +72,7 @@ class USGSOverlay extends OverlayView {
     // We use the south-west and north-east
     // coordinates of the overlay to peg it to the correct position and size.
     // To do this, we need to retrieve the projection from the overlay.
-    final overlayProjection = this.projection;
+    final overlayProjection = projection;
 
     // Retrieve the south-west and north-east coordinates of this overlay
     // in LatLngs and convert them to pixel coordinates.
@@ -81,7 +81,7 @@ class USGSOverlay extends OverlayView {
     final ne = overlayProjection.fromLatLngToDivPixel(_bounds.northEast);
 
     // Resize the image's div to fit the indicated dimensions.
-    var div = _div;
+    final div = _div;
     div.style
       ..left = '${sw.x}px'
       ..top = '${ne.y}px'

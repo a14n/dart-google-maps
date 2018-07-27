@@ -44,22 +44,22 @@ abstract class _InfoWindow extends MVCObject {
         anchor);
   }
 
-  _open([dynamic /*GMap|StreetViewPanorama*/ map, MVCObject anchor]);
-  void set content(dynamic /*String|Node*/ content) => _setContent(content);
+  void _open([dynamic /*GMap|StreetViewPanorama*/ map, MVCObject anchor]);
+  set content(dynamic /*String|Node*/ content) => _setContent(content);
   void _setContent(dynamic /*String|Node*/ content);
-  void set options(InfoWindowOptions options) => _setOptions(options);
+  set options(InfoWindowOptions options) => _setOptions(options);
   void _setOptions(InfoWindowOptions options);
-  void set position(LatLng position) => _setPosition(position);
+  set position(LatLng position) => _setPosition(position);
   void _setPosition(LatLng position);
-  void set zIndex(num zIndex) => _setZIndex(zIndex);
+  set zIndex(num zIndex) => _setZIndex(zIndex);
   void _setZIndex(num zIndex);
 
-  Stream get onCloseclick => getStream(this, #onCloseclick, "closeclick");
+  Stream get onCloseclick => getStream(this, #onCloseclick, 'closeclick');
   Stream get onContentChanged =>
-      getStream(this, #onContentChanged, "content_changed");
-  Stream get onDomready => getStream(this, #onDomready, "domready");
+      getStream(this, #onContentChanged, 'content_changed');
+  Stream get onDomready => getStream(this, #onDomready, 'domready');
   Stream get onPositionChanged =>
-      getStream(this, #onPositionChanged, "position_changed");
+      getStream(this, #onPositionChanged, 'position_changed');
   Stream get onZindexChanged =>
-      getStream(this, #onZindexChanged, "zindex_changed");
+      getStream(this, #onZindexChanged, 'zindex_changed');
 }

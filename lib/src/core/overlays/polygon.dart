@@ -25,42 +25,39 @@ abstract class _Polygon extends MVCObject {
   GMap get map => _getMap();
   GMap _getMap();
   MVCArray<LatLng> get path =>
-      (JsInterfaceCodec<MVCArray<LatLng>>((o) => MVCArray<LatLng>.created(
+      JsInterfaceCodec<MVCArray<LatLng>>((o) => MVCArray<LatLng>.created(
               o,
               JsInterfaceCodec<LatLng>(
                   (o) => LatLng.created(o),
                   (o) =>
                       o != null &&
                       o.instanceof(
-                          context['google']['maps']['LatLng'] as JsFunction)))))
+                          context['google']['maps']['LatLng'] as JsFunction))))
           .decode(_getPath() as JsObject);
-  _getPath();
-  MVCArray<MVCArray<LatLng>> get paths =>
-      (JsInterfaceCodec<MVCArray<MVCArray<LatLng>>>((o) =>
-              MVCArray<MVCArray<LatLng>>.created(
+  dynamic _getPath();
+  MVCArray<MVCArray<LatLng>> get paths => JsInterfaceCodec<MVCArray<MVCArray<LatLng>>>(
+          (o) => MVCArray<MVCArray<LatLng>>.created(
+              o,
+              JsInterfaceCodec<MVCArray<LatLng>>((o) => MVCArray<LatLng>.created(
                   o,
-                  JsInterfaceCodec<MVCArray<LatLng>>((o) =>
-                      MVCArray<LatLng>.created(
-                          o,
-                          JsInterfaceCodec<LatLng>(
-                              (o) => LatLng.created(o),
-                              (o) =>
-                                  o != null &&
-                                  o.instanceof(context['google']['maps']
-                                      ['LatLng'] as JsFunction)))))))
-          .decode(_getPaths() as JsObject);
-  _getPaths();
+                  JsInterfaceCodec<LatLng>(
+                      (o) => LatLng.created(o),
+                      (o) =>
+                          o != null &&
+                          o.instanceof(context['google']['maps']['LatLng'] as JsFunction))))))
+      .decode(_getPaths() as JsObject);
+  dynamic _getPaths();
   bool get visible => _getVisible();
   bool _getVisible();
-  void set draggable(bool draggable) => _setDraggable(draggable);
+  set draggable(bool draggable) => _setDraggable(draggable);
   void _setDraggable(bool draggable);
-  void set editable(bool editable) => _setEditable(editable);
+  set editable(bool editable) => _setEditable(editable);
   void _setEditable(bool editable);
-  void set map(GMap map) => _setMap(map);
+  set map(GMap map) => _setMap(map);
   void _setMap(GMap map);
-  void set options(PolygonOptions options) => _setOptions(options);
+  set options(PolygonOptions options) => _setOptions(options);
   void _setOptions(PolygonOptions options);
-  void set path(dynamic /*MVCArray<LatLng>|List<LatLng>*/ path) => _setPath((ChainedCodec()
+  set path(dynamic /*MVCArray<LatLng>|List<LatLng>*/ path) => _setPath((ChainedCodec()
         ..add(JsInterfaceCodec<MVCArray<LatLng>>((o) => MVCArray<LatLng>.created(
             o,
             JsInterfaceCodec<LatLng>(
@@ -73,11 +70,11 @@ abstract class _Polygon extends MVCObject {
             (o) => LatLng.created(o),
             (o) =>
                 o != null &&
-                o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))))
+                o.instanceof(
+                    context['google']['maps']['LatLng'] as JsFunction)))))
       .encode(path));
   void _setPath(dynamic /*MVCArray<LatLng>|List<LatLng>*/ path);
-  void set paths(
-          dynamic /*MVCArray<MVCArray<LatLng>>|MVCArray<LatLng>|List<List<LatLng>>|List<LatLng>*/ paths) =>
+  set paths(dynamic /*MVCArray<MVCArray<LatLng>>|MVCArray<LatLng>|List<List<LatLng>>|List<LatLng>*/ paths) =>
       _setPaths((ChainedCodec()
             ..add(JsInterfaceCodec<MVCArray<MVCArray<LatLng>>>((o) =>
                 MVCArray<MVCArray<LatLng>>.created(
@@ -97,29 +94,29 @@ abstract class _Polygon extends MVCObject {
           .encode(paths));
   void _setPaths(
       dynamic /*MVCArray<MVCArray<LatLng>>|MVCArray<LatLng>|List<List<LatLng>>|List<LatLng>*/ paths);
-  void set visible(bool visible) => _setVisible(visible);
+  set visible(bool visible) => _setVisible(visible);
   void _setVisible(bool visible);
 
   Stream<PolyMouseEvent> get onClick => getStream(
-      this, #onClick, "click", (JsObject o) => PolyMouseEvent.created(o));
+      this, #onClick, 'click', (JsObject o) => PolyMouseEvent.created(o));
   Stream<PolyMouseEvent> get onDblclick => getStream(
-      this, #onDblclick, "dblclick", (JsObject o) => PolyMouseEvent.created(o));
+      this, #onDblclick, 'dblclick', (JsObject o) => PolyMouseEvent.created(o));
   Stream<MouseEvent> get onDrag =>
-      getStream(this, #onDrag, "drag", (JsObject o) => MouseEvent.created(o));
+      getStream(this, #onDrag, 'drag', (JsObject o) => MouseEvent.created(o));
   Stream<MouseEvent> get onDragend => getStream(
-      this, #onDragend, "dragend", (JsObject o) => MouseEvent.created(o));
+      this, #onDragend, 'dragend', (JsObject o) => MouseEvent.created(o));
   Stream<MouseEvent> get onDragstart => getStream(
-      this, #onDragstart, "dragstart", (JsObject o) => MouseEvent.created(o));
+      this, #onDragstart, 'dragstart', (JsObject o) => MouseEvent.created(o));
   Stream<PolyMouseEvent> get onMousedown => getStream(this, #onMousedown,
-      "mousedown", (JsObject o) => PolyMouseEvent.created(o));
+      'mousedown', (JsObject o) => PolyMouseEvent.created(o));
   Stream<PolyMouseEvent> get onMousemove => getStream(this, #onMousemove,
-      "mousemove", (JsObject o) => PolyMouseEvent.created(o));
+      'mousemove', (JsObject o) => PolyMouseEvent.created(o));
   Stream<PolyMouseEvent> get onMouseout => getStream(
-      this, #onMouseout, "mouseout", (JsObject o) => PolyMouseEvent.created(o));
+      this, #onMouseout, 'mouseout', (JsObject o) => PolyMouseEvent.created(o));
   Stream<PolyMouseEvent> get onMouseover => getStream(this, #onMouseover,
-      "mouseover", (JsObject o) => PolyMouseEvent.created(o));
+      'mouseover', (JsObject o) => PolyMouseEvent.created(o));
   Stream<PolyMouseEvent> get onMouseup => getStream(
-      this, #onMouseup, "mouseup", (JsObject o) => PolyMouseEvent.created(o));
+      this, #onMouseup, 'mouseup', (JsObject o) => PolyMouseEvent.created(o));
   Stream<PolyMouseEvent> get onRightclick => getStream(this, #onRightclick,
-      "rightclick", (JsObject o) => PolyMouseEvent.created(o));
+      'rightclick', (JsObject o) => PolyMouseEvent.created(o));
 }

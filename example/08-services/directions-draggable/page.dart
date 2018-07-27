@@ -2,16 +2,16 @@ import 'dart:html';
 
 import 'package:google_maps/google_maps.dart';
 
-main() {
-  var map = GMap(
+void main() {
+  final map = GMap(
       document.getElementById('map'),
       MapOptions()
         ..zoom = 4
         ..center = LatLng(-24.345, 134.46) // Australia.
       );
 
-  var directionsService = DirectionsService();
-  var directionsDisplay = DirectionsRenderer(DirectionsRendererOptions()
+  final directionsService = DirectionsService();
+  final directionsDisplay = DirectionsRenderer(DirectionsRendererOptions()
     ..draggable = true
     ..map = map
     ..panel = document.getElementById('right-panel'));
@@ -46,7 +46,7 @@ void displayRoute(String origin, String destination, DirectionsService service,
 
 void computeTotalDistance(DirectionsResult result) {
   var total = 0.0;
-  var myroute = result.routes[0];
+  final myroute = result.routes[0];
   for (var i = 0; i < myroute.legs.length; i++) {
     total += myroute.legs[i].distance.value;
   }

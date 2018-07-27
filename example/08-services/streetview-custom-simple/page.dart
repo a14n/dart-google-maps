@@ -4,7 +4,7 @@ import 'package:google_maps/google_maps.dart';
 import 'package:js_wrapping/js_wrapping.dart';
 
 const IMAGE_URL =
-    "https://google-developers.appspot.com/maps/documentation/javascript/examples/full";
+    'https://google-developers.appspot.com/maps/documentation/javascript/examples/full';
 
 void main() {
   // Set up Street View and initially set it visible. Register the
@@ -13,21 +13,19 @@ void main() {
   final panoOptions = StreetViewPanoramaOptions()
     ..pano = 'reception'
     ..visible = true;
-  asJsObject(panoOptions)['panoProvider'] = (String pano) {
-    return asJs(getCustomPanorama(pano));
-  };
+  asJsObject(panoOptions)['panoProvider'] =
+      (String pano) => asJs(getCustomPanorama(pano));
 
   StreetViewPanorama(document.getElementById('map-canvas'), panoOptions);
 }
 
 // Return a pano image given the panoID.
 String getCustomPanoramaTileUrl(
-    String pano, num tileZoom, num tileX, num tileY) {
-  // Note: robust custom panorama methods would require tiled pano data.
-  // Here we're just using a single tile, set to the tile size and equal
-  // to the pano "world" size.
-  return '${IMAGE_URL}/images/panoReception1024-0.jpg';
-}
+        String pano, num tileZoom, num tileX, num tileY) =>
+    // Note: robust custom panorama methods would require tiled pano data.
+    // Here we're just using a single tile, set to the tile size and equal
+    // to the pano "world" size.
+    '$IMAGE_URL/images/panoReception1024-0.jpg';
 
 // Construct the appropriate StreetViewPanoramaData given
 // the passed pano IDs.

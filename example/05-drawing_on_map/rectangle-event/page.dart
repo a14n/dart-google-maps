@@ -17,9 +17,8 @@ void main() {
   rectangle = Rectangle(RectangleOptions()
     ..bounds = bounds
     ..editable = true
-    ..draggable = true);
-
-  rectangle.map = map;
+    ..draggable = true)
+    ..map = map;
 
   // Add an event listener on the rectangle.
   rectangle.onBoundsChanged.listen(showNewRect);

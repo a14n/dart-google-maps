@@ -21,6 +21,5 @@ void main() {
 }
 
 void showInContentWindow(String text) {
-  final sidediv = document.getElementById('content-window');
-  sidediv.innerHtml = text;
+  document.getElementById('content-window').innerHtml = text;
 }

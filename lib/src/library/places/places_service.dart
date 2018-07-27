@@ -16,7 +16,6 @@ part of google_maps.src.places;
 
 @JsName('google.maps.places.PlacesService')
 abstract class _PlacesService extends JsInterface {
-  _PlacesService.created(JsObject o) : super.created(o);
   _PlacesService(dynamic /*DivElement|GMap*/ attrContainer)
       : this.created(JsObject(
             context['google']['maps']['places']['PlacesService'] as JsFunction,
@@ -31,6 +30,7 @@ abstract class _PlacesService extends JsInterface {
                                 as JsFunction))))
                   .encode(attrContainer)
             ]));
+  _PlacesService.created(JsObject o) : super.created(o);
   void getDetails(PlaceDetailsRequest request,
       callback(PlaceResult p1, PlacesServiceStatus p2));
   void nearbySearch(

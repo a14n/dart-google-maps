@@ -1,5 +1,5 @@
 import 'dart:html';
-import 'dart:math' as Math;
+import 'dart:math' as math;
 import 'package:google_maps/google_maps.dart';
 
 void main() {
@@ -19,15 +19,14 @@ void main() {
   final lngSpan = northEast.lng - southWest.lng;
   final latSpan = northEast.lat - southWest.lat;
 
-  final random = Math.Random();
+  final random = math.Random();
   for (var i = 0; i < 5; i++) {
     final position = LatLng(southWest.lat + latSpan * random.nextDouble(),
         southWest.lng + lngSpan * random.nextDouble());
     final marker = Marker(MarkerOptions()
       ..position = position
-      ..map = map);
-
-    marker.title = (i + 1).toString();
+      ..map = map)
+      ..title = (i + 1).toString();
     attachSecretMessage(marker, i);
   }
 }
@@ -35,7 +34,7 @@ void main() {
 // The five markers show a secret message when clicked
 // but that message is not within the marker's instance data.
 void attachSecretMessage(Marker marker, int number) {
-  final message = ["This", "is", "the", "secret", "message"];
+  final message = ['This', 'is', 'the', 'secret', 'message'];
   final infowindow = InfoWindow(InfoWindowOptions()..content = message[number]);
   marker.onClick.listen((e) {
     infowindow.open(marker.map, marker);

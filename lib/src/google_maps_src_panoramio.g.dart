@@ -54,28 +54,28 @@ class PanoramioLayer extends MVCObject {
   String _getTag() => asJsObject(this).callMethod('getTag');
   String get userId => _getUserId();
   String _getUserId() => asJsObject(this).callMethod('getUserId');
-  void set map(GMap map) => _setMap(map);
+  set map(GMap map) => _setMap(map);
   void _setMap(GMap map) {
     asJsObject(this).callMethod('setMap', [__codec1.encode(map)]);
   }
 
-  void set options(PanoramioLayerOptions options) => _setOptions(options);
+  set options(PanoramioLayerOptions options) => _setOptions(options);
   void _setOptions(PanoramioLayerOptions options) {
     asJsObject(this).callMethod('setOptions', [__codec0.encode(options)]);
   }
 
-  void set tag(String tag) => _setTag(tag);
+  set tag(String tag) => _setTag(tag);
   void _setTag(String tag) {
     asJsObject(this).callMethod('setTag', [tag]);
   }
 
-  void set userId(String userId) => _setUserId(userId);
+  set userId(String userId) => _setUserId(userId);
   void _setUserId(String userId) {
     asJsObject(this).callMethod('setUserId', [userId]);
   }
 
   Stream<PanoramioMouseEvent> get onClick => getStream(
-      this, #onClick, "click", (JsObject o) => PanoramioMouseEvent.created(o));
+      this, #onClick, 'click', (JsObject o) => PanoramioMouseEvent.created(o));
 }
 
 @GeneratedFrom(_PanoramioLayerOptions)

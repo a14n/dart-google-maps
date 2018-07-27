@@ -23,48 +23,48 @@ abstract class _DistanceMatrixRequest implements JsInterface {
   bool avoidTolls;
   dynamic _destinations;
   List<dynamic /*LatLng|String*/ > get destinations =>
-      (JsListCodec<dynamic /*LatLng|String*/ >(ChainedCodec()
+      JsListCodec<dynamic /*LatLng|String*/ >(ChainedCodec()
             ..add(JsInterfaceCodec<LatLng>(
                 (o) => LatLng.created(o),
                 (o) =>
                     o != null &&
                     o.instanceof(
                         context['google']['maps']['LatLng'] as JsFunction)))
-            ..add(IdentityCodec<String>())))
+            ..add(IdentityCodec<String>()))
           .decode(_destinations as JsArray);
-  void set destinations(List<dynamic /*LatLng|String*/ > destinations) {
-    _destinations = (JsListCodec<dynamic /*LatLng|String*/ >(ChainedCodec()
+  set destinations(List<dynamic /*LatLng|String*/ > destinations) {
+    _destinations = JsListCodec<dynamic /*LatLng|String*/ >(ChainedCodec()
           ..add(JsInterfaceCodec<LatLng>(
               (o) => LatLng.created(o),
               (o) =>
                   o != null &&
                   o.instanceof(
                       context['google']['maps']['LatLng'] as JsFunction)))
-          ..add(IdentityCodec<String>())))
+          ..add(IdentityCodec<String>()))
         .encode(destinations);
   }
 
   DrivingOptions drivingOptions;
   dynamic _origins;
   List<dynamic /*LatLng|String*/ > get origins =>
-      (JsListCodec<dynamic /*LatLng|String*/ >(ChainedCodec()
+      JsListCodec<dynamic /*LatLng|String*/ >(ChainedCodec()
             ..add(JsInterfaceCodec<LatLng>(
                 (o) => LatLng.created(o),
                 (o) =>
                     o != null &&
                     o.instanceof(
                         context['google']['maps']['LatLng'] as JsFunction)))
-            ..add(IdentityCodec<String>())))
+            ..add(IdentityCodec<String>()))
           .decode(_origins as JsArray);
-  void set origins(List<dynamic /*LatLng|String*/ > origins) {
-    _origins = (JsListCodec<dynamic /*LatLng|String*/ >(ChainedCodec()
+  set origins(List<dynamic /*LatLng|String*/ > origins) {
+    _origins = JsListCodec<dynamic /*LatLng|String*/ >(ChainedCodec()
           ..add(JsInterfaceCodec<LatLng>(
               (o) => LatLng.created(o),
               (o) =>
                   o != null &&
                   o.instanceof(
                       context['google']['maps']['LatLng'] as JsFunction)))
-          ..add(IdentityCodec<String>())))
+          ..add(IdentityCodec<String>()))
         .encode(origins);
   }
 

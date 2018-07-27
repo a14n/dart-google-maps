@@ -119,49 +119,48 @@ class AdUnit extends MVCObject {
   String _getTitleColor() => asJsObject(this).callMethod('getTitleColor');
   String get urlColor => _getUrlColor();
   String _getUrlColor() => asJsObject(this).callMethod('getUrlColor');
-  void set backgroundColor(String backgroundColor) =>
+  set backgroundColor(String backgroundColor) =>
       _setBackgroundColor(backgroundColor);
   void _setBackgroundColor(String backgroundColor) {
     asJsObject(this).callMethod('setBackgroundColor', [backgroundColor]);
   }
 
-  void set borderColor(String borderColor) => _setBorderColor(borderColor);
+  set borderColor(String borderColor) => _setBorderColor(borderColor);
   void _setBorderColor(String borderColor) {
     asJsObject(this).callMethod('setBorderColor', [borderColor]);
   }
 
-  void set channelNumber(String channelNumber) =>
-      _setChannelNumber(channelNumber);
+  set channelNumber(String channelNumber) => _setChannelNumber(channelNumber);
   void _setChannelNumber(String channelNumber) {
     asJsObject(this).callMethod('setChannelNumber', [channelNumber]);
   }
 
-  void set format(AdFormat format) => _setFormat(format);
+  set format(AdFormat format) => _setFormat(format);
   void _setFormat(AdFormat format) {
     asJsObject(this).callMethod('setFormat', [__codec1.encode(format)]);
   }
 
-  void set map(GMap map) => _setMap(map);
+  set map(GMap map) => _setMap(map);
   void _setMap(GMap map) {
     asJsObject(this).callMethod('setMap', [__codec2.encode(map)]);
   }
 
-  void set position(ControlPosition position) => _setPosition(position);
+  set position(ControlPosition position) => _setPosition(position);
   void _setPosition(ControlPosition position) {
     asJsObject(this).callMethod('setPosition', [__codec3.encode(position)]);
   }
 
-  void set textColor(String textColor) => _setTextColor(textColor);
+  set textColor(String textColor) => _setTextColor(textColor);
   void _setTextColor(String textColor) {
     asJsObject(this).callMethod('setTextColor', [textColor]);
   }
 
-  void set titleColor(String titleColor) => _setTitleColor(titleColor);
+  set titleColor(String titleColor) => _setTitleColor(titleColor);
   void _setTitleColor(String titleColor) {
     asJsObject(this).callMethod('setTitleColor', [titleColor]);
   }
 
-  void set urlColor(String urlColor) => _setUrlColor(urlColor);
+  set urlColor(String urlColor) => _setUrlColor(urlColor);
   void _setUrlColor(String urlColor) {
     asJsObject(this).callMethod('setUrlColor', [urlColor]);
   }

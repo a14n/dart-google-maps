@@ -7,8 +7,7 @@ GMap map;
 InfoWindow infowindow;
 
 void main() {
-  final service = AutocompleteService();
-  service.getQueryPredictions(
+  AutocompleteService().getQueryPredictions(
       QueryAutocompletionRequest()..input = 'pizza near', callback);
 }
 
@@ -22,6 +21,6 @@ void callback(
   final results = document.getElementById('results') as UListElement;
 
   for (final prediction in predictions) {
-    results.innerHtml += '<li>' + prediction.description + '</li>';
+    results.innerHtml += '<li>${prediction.description}</li>';
   }
 }

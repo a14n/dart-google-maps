@@ -7,9 +7,8 @@ class CoordMapType extends MapType {
   CoordMapType(Size tileSize) : super() {
     this.tileSize = tileSize;
     asJsObject(this)['getTile'] =
-        (JsObject tileCoord, num zoom, HtmlDocument ownerDocument) {
-      return _getTile(Point.created(tileCoord), zoom, ownerDocument);
-    };
+        (JsObject tileCoord, num zoom, HtmlDocument ownerDocument) =>
+            _getTile(Point.created(tileCoord), zoom, ownerDocument);
   }
 
   Element _getTile(Point coord, num zoom, HtmlDocument ownerDocument) {

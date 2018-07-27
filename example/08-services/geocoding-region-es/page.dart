@@ -22,7 +22,7 @@ void codeAddress() {
         ..position = results[0].geometry.location);
     } else {
       window.alert(
-          'Geocode was not successful for the following reason: ${status}');
+          'Geocode was not successful for the following reason: $status');
     }
   });
 }

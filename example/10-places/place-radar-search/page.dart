@@ -39,9 +39,7 @@ void callback(List<PlaceResult> results, PlacesServiceStatus status) {
     window.alert('$status');
     return;
   }
-  for (final result in results) {
-    createMarker(result);
-  }
+  results.forEach(createMarker);
 }
 
 void createMarker(PlaceResult place) {

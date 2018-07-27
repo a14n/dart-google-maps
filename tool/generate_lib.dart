@@ -1,10 +1,11 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:dart_style/src/dart_formatter.dart';
 import 'package:html/parser.dart' show parse;
 import 'package:html/dom.dart';
 
-final LICENCE = '''
+const licence = '''
 // Copyright (c) 2015, Alexandre Ardhuin
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -102,7 +103,7 @@ abstract class _ImageMapType extends MVCObject implements MapType {
   num _getOpacity();
   Node getTile(Point tileCoord, num zoom, Document ownerDocument);
   void releaseTile(Node tile);
-  void set opacity(num opacity) => _setOpacity(opacity);
+  set opacity(num opacity) => _setOpacity(opacity);
   void _setOpacity(num opacity);
 
   String alt;
@@ -327,7 +328,7 @@ bool _isEmpty();''',
         (o) => new DataStyleOptions.created(o)))).decode(_getStyle());
   _getStyle();''',
       'setStyle': '''
-  void set style(dynamic /*DataStylingFunction|DataStyleOptions*/ style) =>
+  set style(dynamic /*DataStylingFunction|DataStyleOptions*/ style) =>
       _setStyle((new ChainedCodec()
     ..add(new FunctionCodec<DataStylingFunction>((o) => ((f) {
       if (f == null) return null;
@@ -385,7 +386,7 @@ bool _isEmpty();''',
     })(o)))
     ..add(new JsInterfaceCodec<DataStyleOptions>(
         (o) => new DataStyleOptions.created(o)))).decode(_style);
-  void set style(dynamic /*DataStylingFunction|DataStyleOptions*/ style) =>
+  set style(dynamic /*DataStylingFunction|DataStyleOptions*/ style) =>
       _style = (new ChainedCodec()
     ..add(new FunctionCodec<DataStylingFunction>((o) => ((f) {
       if (f == null) return null;
@@ -428,10 +429,10 @@ bool _isEmpty();''',
       MapTypeId.TERRAIN: context['google']['maps']['MapTypeId']['TERRAIN']
     }))
     ..add(new IdentityCodec<String>()))).decode(_mapTypeIds);
-  void set _mapTypeIds(dynamic mapTypeIds) {
+  set _mapTypeIds(dynamic mapTypeIds) {
     asJsObject(this)['mapTypeIds'] = mapTypeIds;
   }
-  void set mapTypeIds(List<dynamic /*MapTypeId|String*/ > mapTypeIds) {
+  set mapTypeIds(List<dynamic /*MapTypeId|String*/ > mapTypeIds) {
     _mapTypeIds = (new JsListCodec<dynamic /*MapTypeId|String*/ >(
         new ChainedCodec()
       ..add(new BiMapCodec<MapTypeId, dynamic>({
@@ -457,7 +458,7 @@ bool _isEmpty();''',
       MapTypeId.TERRAIN: context['google']['maps']['MapTypeId']['TERRAIN']
     }))
     ..add(new IdentityCodec<String>())).decode(_mapTypeId);
-  void set mapTypeId(dynamic /*MapTypeId|String*/ mapTypeId) {
+  set mapTypeId(dynamic /*MapTypeId|String*/ mapTypeId) {
     _mapTypeId = (new ChainedCodec()
       ..add(new BiMapCodec<MapTypeId, dynamic>({
         MapTypeId.HYBRID: context['google']['maps']['MapTypeId']['HYBRID'],
@@ -500,7 +501,7 @@ bool _isEmpty();''',
   _getGeometry();
 ''',
       'setGeometry': '''
-  void set geometry(
+  set geometry(
           dynamic /*DataGeometryCollection|DataMultiPolygon|DataPolygon|DataLinearRing|DataMultiLineString|DataLineString|DataMultiPoint|DataPoint|LatLng*/ newGeometry) =>
       _setGeometry((new ChainedCodec()
     ..add(new JsInterfaceCodec<DataGeometryCollection>(
@@ -562,7 +563,7 @@ bool _isEmpty();''',
     ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
             (o) => o != null && o.instanceof(context['google']['maps']['LatLng']))))
       .decode(_geometry);
-  void set geometry(
+  set geometry(
       dynamic /*DataGeometryCollection|DataMultiPolygon|DataPolygon|DataLinearRing|DataMultiLineString|DataLineString|DataMultiPoint|DataPoint|LatLng*/ geometry) {
     _geometry = (new ChainedCodec()
       ..add(new JsInterfaceCodec<DataGeometryCollection>(
@@ -684,7 +685,7 @@ bool _isEmpty();''',
             (o) =>
                 o != null && o.instanceof(context['google']['maps']['Data']['Point']))))
       .decode(_newGeometry);
-  void set newGeometry(
+  set newGeometry(
       dynamic /*DataGeometryCollection|DataMultiPolygon|DataPolygon|DataLinearRing|DataMultiLineString|DataLineString|DataMultiPoint|DataPoint*/ newGeometry) {
     _newGeometry = (new ChainedCodec()
       ..add(new JsInterfaceCodec<DataGeometryCollection>(
@@ -742,7 +743,7 @@ bool _isEmpty();''',
             (o) =>
                 o != null && o.instanceof(context['google']['maps']['Data']['Point']))))
       .decode(_oldGeometry);
-  void set oldGeometry(
+  set oldGeometry(
       dynamic /*DataGeometryCollection|DataMultiPolygon|DataPolygon|DataLinearRing|DataMultiLineString|DataLineString|DataMultiPoint|DataPoint*/ oldGeometry) {
     _oldGeometry = (new ChainedCodec()
       ..add(new JsInterfaceCodec<DataGeometryCollection>(
@@ -781,7 +782,7 @@ bool _isEmpty();''',
     ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
         (o) => o != null && o.instanceof(context['google']['maps']['LatLng'])))
     ..add(new IdentityCodec<String>()))).decode(_destinations);
-  void set destinations(List<dynamic /*LatLng|String*/ > destinations) {
+  set destinations(List<dynamic /*LatLng|String*/ > destinations) {
     _destinations = (new JsListCodec<dynamic /*LatLng|String*/ >(
         new ChainedCodec()
       ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
@@ -796,7 +797,7 @@ bool _isEmpty();''',
     ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
         (o) => o != null && o.instanceof(context['google']['maps']['LatLng'])))
     ..add(new IdentityCodec<String>()))).decode(_origins);
-  void set origins(List<dynamic /*LatLng|String*/ > origins) {
+  set origins(List<dynamic /*LatLng|String*/ > origins) {
     _origins = (new JsListCodec<dynamic /*LatLng|String*/ >(new ChainedCodec()
       ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
           (o) => o != null && o.instanceof(context['google']['maps']['LatLng'])))
@@ -818,8 +819,8 @@ bool _isEmpty();''',
   }
 };
 
-main() async {
-  final genFolder = 'lib/src';
+Future main() async {
+  const genFolder = 'lib/src';
   // final request = await new HttpClient().getUrl(Uri.parse(
   //     'https://developers.google.com/maps/documentation/javascript/reference'));
   // final response = await request.close();
@@ -828,7 +829,7 @@ main() async {
   final content = File('api/api.html').readAsStringSync();
   final document = parse(content);
   final libraries = <String, List<JsElement>>{};
-  document.querySelectorAll(".toc>ul").forEach((ul) {
+  for (final ul in document.querySelectorAll('.toc>ul')) {
     var folder = underscores(ul.previousElementSibling.attributes['id']);
 
     var libraryName = 'google_maps.src';
@@ -840,9 +841,9 @@ main() async {
       folder = 'core/$folder';
     }
 
-    ul.children.forEach((li) {
+    for (final li in ul.children) {
       final h2id = li.firstChild.attributes['href'].substring(1);
-      final fileName = underscores(h2id) + '.dart';
+      final fileName = '${underscores(h2id)}.dart';
       final file = File('$genFolder/$folder/$fileName')
         ..createSync(recursive: true);
 
@@ -852,15 +853,15 @@ main() async {
       libraries
           .putIfAbsent(libraryName, () => <JsElement>[])
           .add(JsElement(h2id, file, title.parent));
-    });
-  });
+    }
+  }
 
   // generate contents
-  libraries.keys.forEach((libraryName) {
-    var imports = importsByLib[libraryName];
-    if (imports == null) throw '$libraryName has no import';
+  for (final libraryName in libraries.keys) {
+    final imports = importsByLib[libraryName];
+    if (imports == null) throw StateError('$libraryName has no import');
     var libContents = '''
-$LICENCE
+$licence
 
 library $libraryName;
 
@@ -886,19 +887,18 @@ part '${libraryName.replaceAll('.', '_')}.g.dart';
 
     final jsElements = libraries.values.expand((e) => e).toList();
 
-    libraries[libraryName]
-        .where((e) => !ignoredClasses.contains(e.name))
-        .forEach((jsElmt) {
+    for (final jsElmt in libraries[libraryName]
+        .where((e) => !ignoredClasses.contains(e.name))) {
       print(jsElmt.fullName);
-      var partContents = '''
-$LICENCE
+      final partContents = StringBuffer()..write('''
+$licence
 
 part of $libraryName;
 
-''';
+''');
 
       if (customContent.containsKey(jsElmt.id)) {
-        partContents += customContent[jsElmt.id];
+        partContents.write(customContent[jsElmt.id]);
       } else if (jsElmt.isEnum) {
         final constants = jsElmt.constants
             .map((tr) => tr.getElementsByTagName('td')[0].text.trim());
@@ -906,19 +906,23 @@ part of $libraryName;
         String toEnumValue(String v) => v.replaceAll('.', '_').toUpperCase();
 
         if (jsElmt.isAnonymousObject) {
-          partContents += "@jsEnum ";
-          partContents += 'class ${jsElmt.name} extends JsEnum {';
-          partContents += '  static final values = <${jsElmt.name}>'
-              '[${constants.map(toEnumValue).join(',')}];\n';
+          partContents
+            ..writeln('@jsEnum ')
+            ..writeln('class ${jsElmt.name} extends JsEnum {')
+            ..writeln('  static final values = '
+                '<${jsElmt.name}>[${constants.map(toEnumValue).join(',')}];');
           for (final value in constants) {
-            partContents += "  static final ${toEnumValue(value)} = "
-                "new ${jsElmt.name}._('$value');\n";
+            partContents.writeln('  static final ${toEnumValue(value)} = '
+                "${jsElmt.name}._('$value');");
           }
-          partContents += '  ${jsElmt.name}._(o) : super.created(o);';
-          partContents += '}\n\n';
+          partContents
+            ..writeln('  ${jsElmt.name}._(o) : super.created(o);')
+            ..writeln('}');
         } else {
-          partContents += "@jsEnum @JsName('${jsElmt.fullName}') ";
-          partContents += 'enum _${jsElmt.name}{${constants.join(',')}}\n\n';
+          partContents
+            ..writeln("@jsEnum @JsName('${jsElmt.fullName}') ")
+            ..writeln('enum _${jsElmt.name}{${constants.join(',')}}')
+            ..writeln();
         }
       } else if (jsElmt.isNamespace ||
           jsElmt.isAnonymousObject ||
@@ -928,18 +932,19 @@ part of $libraryName;
             : jsElmt.name;
 
         // constructor
-        bool needExtends = false;
-        String constructorSection = '';
+        var needExtends = false;
+        var constructorSection = '';
         final constr = jsElmt.constructor;
         if (constr != null) {
           final decl = constr.getElementsByTagName('td')[0].text.trim();
           final parameters =
               decl.substring(decl.indexOf('(') + 1, decl.lastIndexOf(')'));
           final params = splitParameters(parameters);
-          final allParams =
-              ({}..addAll(params.mandatory)..addAll(params.optional));
+          final allParams = <String, String>{}
+            ..addAll(params.mandatory)
+            ..addAll(params.optional);
           final paramsCodecs = Map.fromIterable(allParams.keys,
-              value: (k) => getCodec(allParams[k] as String, jsElements));
+              value: (k) => getCodec(allParams[k], jsElements));
           if (paramsCodecs.values.every((p) => p.canBeNativelyHandled)) {
             constructorSection += '  factory '
                 '_$className(${params.toSignature(jsElements)}) => null;\n';
@@ -964,38 +969,38 @@ part of $libraryName;
 
         // class def
         final inherit = getExtends(jsElmt.element.querySelector('h2'));
-        if (jsElmt.isAnonymousObject) partContents += '@anonymous\n';
-        if (jsElmt.isClass) partContents += "@JsName('${jsElmt.fullName}')\n";
+        if (jsElmt.isAnonymousObject) partContents.writeln('@anonymous');
+        if (jsElmt.isClass)
+          partContents.writeln("@JsName('${jsElmt.fullName}')");
         if (jsElmt.isNamespace) {
-          partContents +=
-              "final ${jsElmt.name} = new $className.created(${getPath(jsElmt.fullName)});";
+          partContents.writeln('final ${jsElmt.name} = '
+              'new $className.created(${getPath(jsElmt.fullName)});');
         }
-        partContents += 'abstract class _$className ' +
-            (inherit != null
-                ? 'extends ${inherit.replaceAll('.', '')}'
-                : (needExtends ? 'extends' : 'implements') + ' JsInterface') +
-            ' {\n';
+        final extendsPart = inherit != null
+            ? 'extends ${inherit.replaceAll('.', '')}'
+            : '${needExtends ? 'extends' : 'implements'} JsInterface';
+        partContents.writeln('abstract class _$className $extendsPart {');
 
         // add constants
-        jsElmt.constants.forEach((constantTr) {
+        for (final constantTr in jsElmt.constants) {
           final name = constantTr.getElementsByTagName('td')[0].text.trim();
           if (declarationSubstitutions.containsKey(libraryName) &&
               declarationSubstitutions[libraryName].containsKey(jsElmt.name) &&
               declarationSubstitutions[libraryName][jsElmt.name]
                   .containsKey(name)) {
-            partContents +=
-                declarationSubstitutions[libraryName][jsElmt.name][name] + '\n';
+            partContents.writeln(
+                declarationSubstitutions[libraryName][jsElmt.name][name]);
           } else {
-            partContents += 'static get $name => null;\n';
+            partContents.writeln('static get $name => null;');
           }
-        });
-        partContents += '\n';
-
-        // add constructors
-        partContents += constructorSection;
+        }
+        partContents
+          ..writeln()
+          // add constructors
+          ..writeln(constructorSection);
 
         // add methods
-        jsElmt.methods.forEach((methodTr) {
+        for (final methodTr in jsElmt.methods) {
           final decl = methodTr.getElementsByTagName('td')[0].text.trim();
           final returnType = methodTr.querySelector('td>div>code').text.trim();
           final methodName = decl.substring(0, decl.indexOf('('));
@@ -1004,83 +1009,85 @@ part of $libraryName;
               declarationSubstitutions[libraryName].containsKey(jsElmt.name) &&
               declarationSubstitutions[libraryName][jsElmt.name]
                   .containsKey(methodName)) {
-            partContents += declarationSubstitutions[libraryName][jsElmt.name]
-                    [methodName] +
-                '\n';
+            partContents.writeln(
+                declarationSubstitutions[libraryName][jsElmt.name][methodName]);
             return;
           }
 
           final parameters =
               decl.substring(decl.indexOf('(') + 1, decl.lastIndexOf(')'));
           final params = splitParameters(parameters);
-          final allParams =
-              ({}..addAll(params.mandatory)..addAll(params.optional));
+          final allParams = <String, String>{}
+            ..addAll(params.mandatory)
+            ..addAll(params.optional);
           final paramsCodecs = Map.fromIterable(allParams.keys,
-              value: (k) => getCodec(allParams[k] as String, jsElements));
+              value: (k) => getCodec(allParams[k], jsElements));
           final returnCodec = getCodec(returnType, jsElements);
           final convertedReturnType = convertType(returnType, jsElements);
           if (methodName.startsWith(RegExp('get[A-Z]')) &&
               params.mandatory.isEmpty &&
               params.optional.isEmpty) {
             final name = methodName[3].toLowerCase() + methodName.substring(4);
-            partContents += '  $convertedReturnType get $name => ';
+            partContents.write('  $convertedReturnType get $name => ');
             if (returnCodec.canBeNativelyHandled) {
-              partContents += '_$methodName();\n';
-              partContents += '  $convertedReturnType _$methodName();\n';
+              partContents
+                ..writeln('_$methodName();')
+                ..writeln('  $convertedReturnType _$methodName();');
             } else {
-              partContents +=
-                  '(${returnCodec.codec}).decode(_$methodName());\n';
-              partContents += '  _$methodName();\n';
+              partContents
+                ..writeln('(${returnCodec.codec}).decode(_$methodName());')
+                ..writeln('  _$methodName();');
             }
           } else if (methodName.startsWith(RegExp('set[A-Z]')) &&
               params.mandatory.length == 1 &&
               params.optional.isEmpty) {
             final name = methodName[3].toLowerCase() + methodName.substring(4);
             final p = params.mandatory.keys.first;
-            partContents +=
-                '  void set $name(${params.toSignature(jsElements)}) => ';
+            partContents
+                .write('  set $name(${params.toSignature(jsElements)}) => ');
             if (paramsCodecs.values.first.canBeNativelyHandled) {
-              partContents += '_$methodName($p);\n';
+              partContents.writeln('_$methodName($p);');
             } else {
-              partContents +=
-                  '_$methodName((${paramsCodecs.values.first.codec}).encode($p));\n';
+              partContents
+                  .writeln('_$methodName((${paramsCodecs.values.first.codec})'
+                      '.encode($p));');
             }
-            partContents +=
-                '  void _$methodName(${params.toSignature(jsElements)});\n';
+            partContents.writeln(
+                '  void _$methodName(${params.toSignature(jsElements)});');
           } else {
             if (paramsCodecs.values.every((p) => p.canBeNativelyHandled) &&
                 returnCodec.canBeNativelyHandled) {
-              partContents +=
-                  '  $convertedReturnType $methodName(${params.toSignature(jsElements)});\n';
+              partContents.writeln('  $convertedReturnType $methodName'
+                  '(${params.toSignature(jsElements)});');
             } else {
               final returnVoid = convertedReturnType == 'void';
-              partContents +=
-                  '  $convertedReturnType $methodName(${params.toSignature(jsElements)})';
-              partContents += returnVoid ? '{' : ' => ';
+              partContents
+                ..writeln('  $convertedReturnType $methodName'
+                    '(${params.toSignature(jsElements)})')
+                ..write(returnVoid ? '{' : ' => ');
               if (!returnCodec.canBeNativelyHandled) {
-                partContents += '(${returnCodec.codec}).decode(';
+                partContents.write('(${returnCodec.codec}).decode(');
               }
-              partContents += '_$methodName(' +
-                  paramsCodecs.keys
-                      .map((p) => paramsCodecs[p].canBeNativelyHandled
-                          ? p
-                          : '(${paramsCodecs[p].codec}).encode($p)')
-                      .join(',') +
-                  ')';
+              final methodParams = paramsCodecs.keys
+                  .map((p) => paramsCodecs[p].canBeNativelyHandled
+                      ? p
+                      : '(${paramsCodecs[p].codec}).encode($p)')
+                  .join(',');
+              partContents.write('_$methodName($methodParams)');
               if (!returnCodec.canBeNativelyHandled) {
-                partContents += ')';
+                partContents.write(')');
               }
-              partContents += ';';
-              if (returnVoid) partContents += '}';
-              partContents +=
-                  '  _$methodName(${params.toSignature(jsElements)});\n';
+              partContents.write(';');
+              if (returnVoid) partContents.write('}');
+              partContents.writeln(
+                  '  _$methodName(${params.toSignature(jsElements)});');
             }
           }
-        });
-        partContents += '\n';
+        }
+        partContents.writeln();
 
         // add properties
-        jsElmt.properties.forEach((propertyTr) {
+        for (final propertyTr in jsElmt.properties) {
           final name = propertyTr.getElementsByTagName('td')[0].text.trim();
           final type = (overridenPropertyTypes[jsElmt.name] ?? {})[name] ??
               propertyTr.querySelector('td>div>code').text.trim();
@@ -1088,8 +1095,8 @@ part of $libraryName;
               declarationSubstitutions[libraryName].containsKey(jsElmt.name) &&
               declarationSubstitutions[libraryName][jsElmt.name]
                   .containsKey(name)) {
-            partContents +=
-                declarationSubstitutions[libraryName][jsElmt.name][name] + '\n';
+            partContents.writeln(
+                declarationSubstitutions[libraryName][jsElmt.name][name]);
           } else {
             final typeCodec = getCodec(type, jsElements);
             final convertedType = convertType(type, jsElements);
@@ -1099,65 +1106,65 @@ part of $libraryName;
                     RegExp('_([a-z])'), (m) => m[1].toUpperCase());
             if (typeCodec.canBeNativelyHandled) {
               if (dartName == name) {
-                partContents += '  $convertedType $name;\n';
+                partContents.writeln('  $convertedType $name;');
               } else {
-                partContents += '  $convertedType _$name;\n';
-                partContents += '  $convertedType get $dartName => _$name;\n';
-                partContents +=
-                    '  void set $dartName($convertedType $dartName) { _$name = $dartName; }\n';
+                partContents
+                  ..writeln('  $convertedType _$name;')
+                  ..writeln('  $convertedType get $dartName => _$name;')
+                  ..writeln('  set $dartName($convertedType $dartName) '
+                      '{ _$name = $dartName; }');
               }
             } else {
-              partContents += '''
+              partContents.write('''
   dynamic _$name;
   $convertedType get $dartName => (${typeCodec.codec}).decode(_$name);
-  void set $dartName($convertedType $dartName) {
+  set $dartName($convertedType $dartName) {
     _$name = (${typeCodec.codec}).encode($dartName);
-  }''';
+  }''');
             }
           }
-        });
-        partContents += '\n';
+        }
+        partContents.writeln();
 
         // add events
-        jsElmt.events.forEach((eventsTr) {
-          String name = eventsTr.getElementsByTagName('td')[0].text.trim();
-          String type = eventsTr.querySelector('td>div>code').text.trim();
-          if (type.contains(',')) throw 'multiple args on event not supported';
+        for (final eventsTr in jsElmt.events) {
+          final name = eventsTr.getElementsByTagName('td')[0].text.trim();
+          var type = eventsTr.querySelector('td>div>code').text.trim();
+          if (type.contains(','))
+            throw StateError('multiple args on event not supported');
           type = convertType(type, jsElements);
 
-          final streamName = 'on' +
-              name[0].toUpperCase() +
-              name.substring(1).replaceAllMapped(
-                  RegExp('_[a-z]'), (m) => m[0][1].toUpperCase());
+          final streamName =
+              'on${name[0].toUpperCase() + name.substring(1).replaceAllMapped(RegExp('_[a-z]'), (m) => m[0][1].toUpperCase())}';
           if (type == 'void') {
-            partContents += '''
+            partContents.write('''
 Stream get $streamName => getStream(this, #$streamName, "$name");
-''';
+''');
           } else if (<String>['num', 'JsObject', 'String', 'bool']
               .contains(type)) {
-            partContents += '''
+            partContents.write('''
 Stream<$type> get $streamName => getStream(this, #$streamName, "$name");
-''';
+''');
           } else {
-            partContents += '''
+            partContents.write('''
 Stream<$type> get $streamName => getStream(
   this, #$streamName, "$name", (JsObject o) => new $type.created(o));
-''';
+''');
           }
-        });
+        }
 
-        partContents += '}\n';
+        partContents.writeln('}');
       }
       print('---------------------------------------------------------');
       print(partContents);
-      partContents = DartFormatter().format(partContents);
-      jsElmt.file.writeAsStringSync(partContents);
-    });
-  });
+      jsElmt.file
+          .writeAsStringSync(DartFormatter().format(partContents.toString()));
+    }
+  }
 }
 
 String getCodecName(JsElement jsElmt) =>
-    jsElmt.name[0].toLowerCase() + jsElmt.name.substring(1) + 'Codec';
+    '${jsElmt.name[0].toLowerCase() + jsElmt.name.substring(1)}Codec';
 
 class Parameters {
   final mandatory = <String, String>{};
@@ -1165,8 +1172,7 @@ class Parameters {
 
   void add(String name, String type) {
     if (name.endsWith('?')) {
-      name = name.substring(0, name.length - 1);
-      optional[name] = type;
+      optional[name.substring(0, name.length - 1)] = type;
     } else {
       mandatory[name] = type;
     }
@@ -1178,11 +1184,10 @@ class Parameters {
         .join(',');
     if (optional.isNotEmpty) {
       if (result.isNotEmpty) result += ',';
-      result += '[' +
-          optional.keys
-              .map((name) => convertParam(optional[name], jsElements, name))
-              .join(',') +
-          ']';
+      final optionalParams = optional.keys
+          .map((name) => convertParam(optional[name], jsElements, name))
+          .join(',');
+      result += '[$optionalParams]';
     }
     return result;
   }
@@ -1194,8 +1199,8 @@ Parameters splitParameters(String parameters) {
   final paramsParts = <String>[];
   var parenthesisDeepth = 0;
   final buffer = StringBuffer();
-  for (int i = 0; i < parameters.length; i++) {
-    var c = parameters[i];
+  for (var i = 0; i < parameters.length; i++) {
+    final c = parameters[i];
     if (c == ',' && parenthesisDeepth == 0) {
       paramsParts.add(buffer.toString());
       buffer.clear();
@@ -1208,9 +1213,9 @@ Parameters splitParameters(String parameters) {
   }
   if (buffer.isNotEmpty) paramsParts.add(buffer.toString());
 
-  paramsParts.map((p) => p.split(':')).forEach((e) {
+  for (final e in paramsParts.map((p) => p.split(':'))) {
     result.add(e[0], (e.length == 1) ? '' : e[1]);
-  });
+  }
 
   return result;
 }
@@ -1219,7 +1224,7 @@ String convertParam(String type, List<JsElement> jsElements, String name) {
   if (type.startsWith('function(')) {
     return convertType(type, jsElements, name: name);
   } else {
-    return convertType(type, jsElements) + ' $name';
+    return '${convertType(type, jsElements)} $name';
   }
 }
 
@@ -1227,166 +1232,166 @@ class CodecInfo {
   final String codec;
   final bool canBeNativelyHandled;
   final bool isIdentity;
-  CodecInfo(this.codec, this.canBeNativelyHandled, this.isIdentity);
+  CodecInfo(this.codec, {this.canBeNativelyHandled, this.isIdentity});
 }
 
 CodecInfo getCodec(String type, List<JsElement> jsElements) {
-  type = type.trim();
-  if (splitUnionTypes(type).length > 1) {
-    for (String ignoredClass in ignoredClasses) {
-      if (type.startsWith('$ignoredClass|')) {
-        return getCodec(type.substring('$ignoredClass|'.length), jsElements);
+  final myType = type.trim();
+  if (splitUnionTypes(myType).length > 1) {
+    for (final ignoredClass in ignoredClasses) {
+      if (myType.startsWith('$ignoredClass|')) {
+        return getCodec(myType.substring('$ignoredClass|'.length), jsElements);
       }
-      if (type.endsWith('|$ignoredClass')) {
+      if (myType.endsWith('|$ignoredClass')) {
         return getCodec(
-            type.substring(0, type.lastIndexOf('|$ignoredClass')), jsElements);
+            myType.substring(0, myType.lastIndexOf('|$ignoredClass')),
+            jsElements);
       }
-      if (type.contains('|$ignoredClass|')) {
-        return getCodec(type.replaceAll('|$ignoredClass|', '|'), jsElements);
+      if (myType.contains('|$ignoredClass|')) {
+        return getCodec(myType.replaceAll('|$ignoredClass|', '|'), jsElements);
       }
     }
-    final typeUnion = splitUnionTypes(type);
+    final typeUnion = splitUnionTypes(myType);
     final codecInfos = typeUnion.map((t) => getCodec(t, jsElements));
     if (codecInfos.any((ci) => !ci.isIdentity)) {
-      return CodecInfo(
-          'new ChainedCodec()' +
-              codecInfos.map((ci) => '..add(' + ci.codec + ')').join(),
-          false,
-          false);
+      final calls = codecInfos.map((ci) => '..add(${ci.codec})').join();
+      return CodecInfo('new ChainedCodec()$calls',
+          canBeNativelyHandled: false, isIdentity: false);
     } else {
-      return CodecInfo('new IdentityCodec()', true, true);
+      return CodecInfo('new IdentityCodec()',
+          canBeNativelyHandled: true, isIdentity: true);
     }
-  } else if (type.startsWith('Object<') && type.endsWith('>')) {
-    return CodecInfo('FUCK', true, true);
-  } else if (type.startsWith('Array<') && type.endsWith('>')) {
-    final innerType = type.substring('Array<'.length, type.length - 1);
+  } else if (myType.startsWith('Object<') && myType.endsWith('>')) {
+    return CodecInfo('FUCK', canBeNativelyHandled: true, isIdentity: true);
+  } else if (myType.startsWith('Array<') && myType.endsWith('>')) {
+    final innerType = myType.substring('Array<'.length, myType.length - 1);
     final convertedInnerType = convertType(innerType, jsElements);
     final innerCodecInfo = getCodec(innerType, jsElements);
     return CodecInfo(
-        'new JsListCodec<$convertedInnerType>'
-        '(${innerCodecInfo.codec})',
-        innerCodecInfo.canBeNativelyHandled,
-        false);
-  } else if (type.startsWith('function(')) {
-    return CodecInfo('PLEASE_IMPLEMENT_MANUALLY', true, true);
-  } else if (jsElements.any((e) => e.id == type)) {
-    final jsElmt = jsElements.firstWhere((e) => e.id == type);
-    final convertedType = convertType(type, jsElements);
+        'new JsListCodec<$convertedInnerType>(${innerCodecInfo.codec})',
+        canBeNativelyHandled: innerCodecInfo.canBeNativelyHandled,
+        isIdentity: false);
+  } else if (myType.startsWith('function(')) {
+    return CodecInfo('PLEASE_IMPLEMENT_MANUALLY',
+        canBeNativelyHandled: true, isIdentity: true);
+  } else if (jsElements.any((e) => e.id == myType)) {
+    final jsElmt = jsElements.firstWhere((e) => e.id == myType);
+    final convertedType = convertType(myType, jsElements);
     if (jsElmt.isEnum) {
       final constants = jsElmt.constants
           .map((tr) => tr.getElementsByTagName('td')[0].text.trim());
-      return CodecInfo(
-          'new BiMapCodec<$convertedType, dynamic>({' +
-              constants
-                  .map((e) =>
-                      "${jsElmt.name}.$e: ${getPath(jsElmt.fullName)}['$e']")
-                  .join(',') +
-              '})',
-          true,
-          false);
+      final params = constants
+          .map((e) => "${jsElmt.name}.$e: ${getPath(jsElmt.fullName)}['$e']")
+          .join(',');
+      return CodecInfo('new BiMapCodec<$convertedType, dynamic>({$params})',
+          canBeNativelyHandled: true, isIdentity: false);
     } else if (jsElmt.isAnonymousObject) {
       return CodecInfo(
           'new JsInterfaceCodec<$convertedType>'
           '((o) => new $convertedType.created(o))',
-          true,
-          false);
+          canBeNativelyHandled: true,
+          isIdentity: false);
     } else {
       return CodecInfo(
           'new JsInterfaceCodec<$convertedType>'
           '((o) => new $convertedType.created(o), '
           '(o) => o != null && o.instanceof(${getPath(jsElmt.fullName)}))',
-          true,
-          false);
+          canBeNativelyHandled: true,
+          isIdentity: false);
     }
-  } else if (type.startsWith('MVCArray<') && type.endsWith('>')) {
-    final innerType = type.substring('MVCArray<'.length, type.length - 1);
+  } else if (myType.startsWith('MVCArray<') && myType.endsWith('>')) {
+    final innerType = myType.substring('MVCArray<'.length, myType.length - 1);
     final convertedInnerType = convertType(innerType, jsElements);
     final innerCodecInfo = getCodec(innerType, jsElements);
     return CodecInfo(
         'new JsInterfaceCodec<MVCArray<$convertedInnerType>>'
         '((o) => new MVCArray<$convertedInnerType>.created(o, ${innerCodecInfo.codec}))',
-        false,
-        false);
+        canBeNativelyHandled: false,
+        isIdentity: false);
   } else {
-    final convertedType = convertType(type, jsElements);
-    return CodecInfo('new IdentityCodec<$convertedType>()', true, true);
+    final convertedType = convertType(myType, jsElements);
+    return CodecInfo('new IdentityCodec<$convertedType>()',
+        canBeNativelyHandled: true, isIdentity: true);
   }
 }
 
 String convertType(String type, List<JsElement> jsElements, {String name}) {
-  type = type.trim();
-  if (type == 'boolean')
+  var myType = type.trim();
+  if (myType == 'boolean')
     return 'bool';
-  else if (type == 'number')
+  else if (myType == 'number')
     return 'num';
-  else if (type == 'string')
+  else if (myType == 'string')
     return 'String';
-  else if (type == 'Date')
+  else if (myType == 'Date')
     return 'DateTime';
-  else if (type == 'HTMLInputElement')
+  else if (myType == 'HTMLInputElement')
     return 'InputElement';
-  else if (type == 'HTMLDivElement')
+  else if (myType == 'HTMLDivElement')
     return 'DivElement';
-  else if (type == 'Event')
+  else if (myType == 'Event')
     return 'JsObject';
-  else if (type == 'Array')
+  else if (myType == 'Array')
     return 'List';
-  else if (type == 'None')
+  else if (myType == 'None')
     return 'void';
-  else if (type == '*')
+  else if (myType == '*')
     return 'dynamic';
-  else if (type == '?')
+  else if (myType == '?')
     return 'dynamic';
-  else if (splitUnionTypes(type).length > 1) {
-    for (String ignoredClass in ignoredClasses) {
-      if (type.startsWith('$ignoredClass|')) {
-        return convertType(type.substring('$ignoredClass|'.length), jsElements,
-            name: name);
-      }
-      if (type.endsWith('|$ignoredClass')) {
+  else if (splitUnionTypes(myType).length > 1) {
+    for (final ignoredClass in ignoredClasses) {
+      if (myType.startsWith('$ignoredClass|')) {
         return convertType(
-            type.substring(0, type.lastIndexOf('|$ignoredClass')), jsElements,
+            myType.substring('$ignoredClass|'.length), jsElements,
             name: name);
       }
-      if (type.contains('|$ignoredClass|')) {
-        return convertType(type.replaceAll('|$ignoredClass|', '|'), jsElements,
+      if (myType.endsWith('|$ignoredClass')) {
+        return convertType(
+            myType.substring(0, myType.lastIndexOf('|$ignoredClass')),
+            jsElements,
+            name: name);
+      }
+      if (myType.contains('|$ignoredClass|')) {
+        return convertType(
+            myType.replaceAll('|$ignoredClass|', '|'), jsElements,
             name: name);
       }
     }
-    final typeUnion = splitUnionTypes(type);
+    final typeUnion = splitUnionTypes(myType);
     final dartUnion =
         typeUnion.map((t) => convertType(t, jsElements)).join('|');
     return 'dynamic/*$dartUnion*/';
-  } else if (type.startsWith('Object<') && type.endsWith('>')) {
+  } else if (myType.startsWith('Object<') && myType.endsWith('>')) {
     final innerType = convertType(
-        type.substring('Object<'.length, type.length - 1), jsElements,
+        myType.substring('Object<'.length, myType.length - 1), jsElements,
         name: name);
     return 'Map<String, $innerType>';
-  } else if (type.startsWith('Array<') && type.endsWith('>')) {
+  } else if (myType.startsWith('Array<') && myType.endsWith('>')) {
     final innerType = convertType(
-        type.substring('Array<'.length, type.length - 1), jsElements,
+        myType.substring('Array<'.length, myType.length - 1), jsElements,
         name: name);
     return 'List<$innerType>';
-  } else if (type.startsWith('function(')) {
+  } else if (myType.startsWith('function(')) {
     final functionParams =
-        type.substring('function('.length, type.length - 1).split(',');
-    int i = 1;
+        myType.substring('function('.length, myType.length - 1).split(',');
+    var i = 1;
     final params = functionParams
         .map((p) => convertType(p, jsElements))
         .map((p) => '$p p${i++}')
         .join(',');
-    type = '$name($params)';
-    if (name == null) type = 'dynamic/*$type*/';
-    return type;
-  } else if (jsElements.any((e) => e.id == type)) {
-    return jsElements.firstWhere((e) => e.id == type).name;
-  } else if (type.startsWith('MVCArray<') && type.endsWith('>')) {
+    myType = '$name($params)';
+    if (name == null) myType = 'dynamic/*$myType*/';
+    return myType;
+  } else if (jsElements.any((e) => e.id == myType)) {
+    return jsElements.firstWhere((e) => e.id == myType).name;
+  } else if (myType.startsWith('MVCArray<') && myType.endsWith('>')) {
     final innerType = convertType(
-        type.substring('MVCArray<'.length, type.length - 1), jsElements,
+        myType.substring('MVCArray<'.length, myType.length - 1), jsElements,
         name: name);
     return 'MVCArray<$innerType>';
   } else {
-    return type;
+    return myType;
   }
 }
 
@@ -1395,8 +1400,8 @@ List<String> splitUnionTypes(String type) {
   var parenthesisDeepth = 0;
   var genericDeepth = 0;
   final buffer = StringBuffer();
-  for (int i = 0; i < type.length; i++) {
-    var c = type[i];
+  for (var i = 0; i < type.length; i++) {
+    final c = type[i];
     if (c == '|' && parenthesisDeepth == 0 && genericDeepth == 0) {
       typeParts.add(buffer.toString());
       buffer.clear();
@@ -1414,6 +1419,7 @@ List<String> splitUnionTypes(String type) {
 
 String getExtends(Element title) {
   var e = title;
+  // ignore: literal_only_boolean_expressions
   while (true) {
     e = e.nextElementSibling;
     if (e == null || e.localName != 'p') return null;
@@ -1441,7 +1447,7 @@ class JsElement {
     final path = element.querySelector('p span[itemprop="path"]');
     var name = element.querySelector('p span[itemprop="name"]').text.trim();
     if (path != null && path.text.trim().isNotEmpty) {
-      name = path.text.trim() + '.' + name;
+      name = '${path.text.trim()}.$name';
     }
     return name;
   }
@@ -1482,4 +1488,4 @@ String underscores(String name) => name
     .toLowerCase();
 
 String getPath(String path) =>
-    path.split('.').fold('context', (String t, p) => "$t['$p']");
+    path.split('.').fold('context', (t, p) => "$t['$p']");

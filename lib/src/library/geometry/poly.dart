@@ -38,6 +38,6 @@ abstract class _Poly implements JsInterface {
                             as JsFunction))))
               .encode(poly),
           tolerance) as bool;
-  _isLocationOnEdge(LatLng point, dynamic /*Polygon|Polyline*/ poly,
+  dynamic _isLocationOnEdge(LatLng point, dynamic /*Polygon|Polyline*/ poly,
       [num tolerance]);
 }

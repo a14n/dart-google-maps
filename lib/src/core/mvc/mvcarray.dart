@@ -16,6 +16,7 @@ part of google_maps.src;
 
 @JsName('google.maps.MVCArray')
 abstract class _MVCArray<E> extends MVCObject {
+  // ignore: avoid_init_to_null,prefer_final_fields
   Codec<E, dynamic> _codec = null;
 
   _MVCArray({List<E> elements, Codec<E, dynamic> codec})
@@ -29,7 +30,7 @@ abstract class _MVCArray<E> extends MVCObject {
             codec);
 
   _MVCArray.created(JsObject o, [Codec<E, dynamic> codec])
-      : _codec = codec != null ? codec : IdentityCodec(),
+      : _codec = codec ?? IdentityCodec(),
         super.created(o);
 
   void clear();
@@ -37,33 +38,33 @@ abstract class _MVCArray<E> extends MVCObject {
       _forEach((o, num index) => callback(_codec.decode(o), index));
   void _forEach(void callback(o, num index));
   List<E> getArray() => JsList.created(_getArray() as JsArray, _codec);
-  _getArray();
+  dynamic _getArray();
   E getAt(num i) => _codec.decode(_getAt(i));
-  _getAt(num i);
+  dynamic _getAt(num i);
   num get length => _getLength();
   num _getLength();
   void insertAt(num i, E elem) => _insertAt(i, _codec.encode(elem));
   void _insertAt(num i, elem);
   E pop() => _codec.decode(_pop());
-  _pop();
+  dynamic _pop();
   num push(E elem) => _push(_codec.encode(elem));
   num _push(elem);
   E removeAt(num i) => _codec.decode(_removeAt(i));
-  _removeAt(num i);
+  dynamic _removeAt(num i);
   void setAt(num i, E elem) => _setAt(i, _codec.encode(elem));
   void _setAt(num i, elem);
 
-  Stream<int> get onInsertAt => getStream(this, #onInsertAt, "insert_at");
+  Stream<int> get onInsertAt => getStream(this, #onInsertAt, 'insert_at');
   Stream<IndexAndElement<E>> get onRemoveAt => getStream(
       this,
       #onClick,
-      "click",
+      'click',
       (int index, oldElement) =>
           IndexAndElement<E>(index, _codec.decode(oldElement)));
   Stream<IndexAndElement<E>> get onSetAt => getStream(
       this,
       #onClick,
-      "click",
+      'click',
       (int index, oldElement) =>
           IndexAndElement<E>(index, _codec.decode(oldElement)));
 }

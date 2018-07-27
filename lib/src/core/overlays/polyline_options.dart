@@ -42,7 +42,7 @@ abstract class _PolylineOptions implements JsInterface {
                 o.instanceof(
                     context['google']['maps']['LatLng'] as JsFunction)))))
       .decode(_path);
-  void set path(dynamic /*MVCArray<LatLng>|List<LatLng>*/ path) {
+  set path(dynamic /*MVCArray<LatLng>|List<LatLng>*/ path) {
     _path = (ChainedCodec()
           ..add(JsInterfaceCodec<MVCArray<LatLng>>((o) =>
               MVCArray<LatLng>.created(

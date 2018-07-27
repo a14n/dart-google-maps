@@ -15,8 +15,7 @@ void main() {
 
   final input = document.getElementById('pac-input') as InputElement;
 
-  final autocomplete = Autocomplete(input);
-  autocomplete.bindTo('bounds', map);
+  final autocomplete = Autocomplete(input)..bindTo('bounds', map);
 
   map.controls[ControlPosition.TOP_LEFT].push(input);
 
@@ -41,14 +40,15 @@ void main() {
     }
 
     // Set the position of the marker using the place ID and location
-    marker.place = MarkerPlace()
-      ..placeId = place.placeId
-      ..location = place.geometry.location;
-    marker.visible = true;
+    marker
+      ..place = (MarkerPlace()
+        ..placeId = place.placeId
+        ..location = place.geometry.location)
+      ..visible = true;
 
-    infowindow.content = '<div><strong>${place.name}</strong><br>' +
-        'Place ID: ${place.placeId}<br>' +
-        place.formattedAddress;
-    infowindow.open(map, marker);
+    infowindow
+      ..content = '<div><strong>${place.name}</strong><br>'
+          'Place ID: ${place.placeId}<br>${place.formattedAddress}'
+      ..open(map, marker);
   });
 }

@@ -11,8 +11,7 @@ void main() {
     ..center = newark;
   final map = GMap(document.getElementById('map-canvas'), mapOptions);
 
-  final historicalOverlay = GroundOverlay(
-      'https://www.lib.utexas.edu/maps/historical/newark_nj_1922.jpg',
-      imageBounds);
-  historicalOverlay.map = map;
+  GroundOverlay('https://www.lib.utexas.edu/maps/historical/newark_nj_1922.jpg',
+          imageBounds)
+      .map = map;
 }

@@ -21,9 +21,9 @@ void main() {
 void calcRoute() {
   final start = (document.getElementById('start') as SelectElement).value;
   final end = (document.getElementById('end') as SelectElement).value;
-  final waypts = List<DirectionsWaypoint>();
+  final waypts = <DirectionsWaypoint>[];
   final checkboxArray = document.getElementById('waypoints') as SelectElement;
-  for (final OptionElement option in checkboxArray.options) {
+  for (final option in checkboxArray.options) {
     if (option.selected) {
       waypts.add(DirectionsWaypoint()
         ..location = option.value
@@ -47,10 +47,11 @@ void calcRoute() {
       for (var i = 0; i < route.legs.length; i++) {
         final leg = route.legs[i];
         final routeSegment = i + 1;
-        html.write('<b>Route Segment: ${routeSegment}</b><br>');
-        html.write('${leg.startAddress} to ');
-        html.write('${leg.endAddress}<br>');
-        html.write('${leg.distance.text}<br><br>');
+        html
+          ..write('<b>Route Segment: $routeSegment</b><br>')
+          ..write('${leg.startAddress} to ')
+          ..write('${leg.endAddress}<br>')
+          ..write('${leg.distance.text}<br><br>');
       }
       summaryPanel.innerHtml = html.toString();
     }

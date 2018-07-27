@@ -23,14 +23,14 @@ abstract class _Autocomplete extends MVCObject {
   LatLngBounds _getBounds();
   PlaceResult get place => _getPlace();
   PlaceResult _getPlace();
-  void set bounds(LatLngBounds bounds) => _setBounds(bounds);
+  set bounds(LatLngBounds bounds) => _setBounds(bounds);
   void _setBounds(LatLngBounds bounds);
-  void set componentRestrictions(ComponentRestrictions restrictions) =>
+  set componentRestrictions(ComponentRestrictions restrictions) =>
       _setComponentRestrictions(restrictions);
   void _setComponentRestrictions(ComponentRestrictions restrictions);
-  void set types(List<String> types) => _setTypes(types);
+  set types(List<String> types) => _setTypes(types);
   void _setTypes(List<String> types);
 
   Stream get onPlaceChanged =>
-      getStream(this, #onPlaceChanged, "place_changed");
+      getStream(this, #onPlaceChanged, 'place_changed');
 }

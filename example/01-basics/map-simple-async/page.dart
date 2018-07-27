@@ -7,7 +7,7 @@ void initialize() {
   final mapOptions = MapOptions()
     ..zoom = 8
     ..center = LatLng(-34.397, 150.644);
-  GMap(document.getElementById("map-canvas"), mapOptions);
+  GMap(document.getElementById('map-canvas'), mapOptions);
 }
 
 void main() {

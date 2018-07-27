@@ -16,11 +16,10 @@ part of google_maps.src;
 
 @JsName('google.maps.Data.Polygon')
 abstract class _DataPolygon extends DataGeometry {
-  _DataPolygon.created(JsObject o) : super.created(o);
   _DataPolygon(List<dynamic /*DataLinearRing|List<LatLng>*/ > elements)
       : this.created(JsObject(
             context['google']['maps']['Data']['Polygon'] as JsFunction, [
-          (JsListCodec<dynamic /*DataLinearRing|List<LatLng>*/ >(ChainedCodec()
+          JsListCodec<dynamic /*DataLinearRing|List<LatLng>*/ >(ChainedCodec()
                 ..add(JsInterfaceCodec<DataLinearRing>(
                     (o) => DataLinearRing.created(o),
                     (o) =>
@@ -32,9 +31,11 @@ abstract class _DataPolygon extends DataGeometry {
                     (o) =>
                         o != null &&
                         o.instanceof(context['google']['maps']['LatLng']
-                            as JsFunction))))))
+                            as JsFunction)))))
               .encode(elements)
         ]));
+  _DataPolygon.created(JsObject o) : super.created(o);
+
   List<DataLinearRing> get array => _getArray();
   List<DataLinearRing> _getArray();
   DataLinearRing getAt(num n);

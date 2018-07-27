@@ -8,5 +8,5 @@ void main() {
     ..center = myLatlng;
   final map = GMap(document.getElementById('map-canvas'), mapOptions);
 
-  TrafficLayer()..map = map;
+  TrafficLayer().map = map;
 }

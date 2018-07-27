@@ -23,7 +23,7 @@ abstract class _PlacePhoto implements JsInterface {
   num height;
   List<String> _html_attributions;
   List<String> get htmlAttributions => _html_attributions;
-  void set htmlAttributions(List<String> htmlAttributions) {
+  set htmlAttributions(List<String> htmlAttributions) {
     _html_attributions = htmlAttributions;
   }
 

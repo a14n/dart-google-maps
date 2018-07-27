@@ -24,20 +24,20 @@ abstract class _DirectionsRoute implements JsInterface {
   List<DirectionsLeg> legs;
   List<LatLng> _overview_path;
   List<LatLng> get overviewPath => _overview_path;
-  void set overviewPath(List<LatLng> overviewPath) {
+  set overviewPath(List<LatLng> overviewPath) {
     _overview_path = overviewPath;
   }
 
   String _overview_polyline;
   String get overviewPolyline => _overview_polyline;
-  void set overviewPolyline(String overviewPolyline) {
+  set overviewPolyline(String overviewPolyline) {
     _overview_polyline = overviewPolyline;
   }
 
   List<String> warnings;
   List<num> _waypoint_order;
   List<num> get waypointOrder => _waypoint_order;
-  void set waypointOrder(List<num> waypointOrder) {
+  set waypointOrder(List<num> waypointOrder) {
     _waypoint_order = waypointOrder;
   }
 }

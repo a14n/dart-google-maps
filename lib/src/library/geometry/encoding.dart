@@ -34,8 +34,7 @@ abstract class _Encoding implements JsInterface {
                         (o) => LatLng.created(o),
                         (o) =>
                             o != null &&
-                            o.instanceof(
-                                context['google']['maps']['LatLng'] as JsFunction))))))
+                            o.instanceof(context['google']['maps']['LatLng'] as JsFunction))))))
           .encode(path)) as String;
-  _encodePath(dynamic /*List<LatLng>|MVCArray<LatLng>*/ path);
+  dynamic _encodePath(dynamic /*List<LatLng>|MVCArray<LatLng>*/ path);
 }

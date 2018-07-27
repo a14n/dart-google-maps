@@ -22,37 +22,33 @@ void initMap() {
 }
 
 void loadGeoJsonString(String geoString) {
-  var geojson = json.decode(geoString);
+  final geojson = json.decode(geoString);
   // TODO(aa) addGeoJson should take a Map
   map.data.addGeoJson(JsObject.jsify(geojson));
   zoom(map);
 }
 
-/**
- * Update a map's viewport to fit each geometry in a dataset
- * @param {google.maps.Map} map The map to adjust
- */
+/// Update a map's viewport to fit each geometry in a dataset
+/// @param {google.maps.Map} map The map to adjust
 void zoom(GMap map) {
-  var bounds = LatLngBounds();
+  final bounds = LatLngBounds();
   map.data.forEach((feature) {
     processPoints(feature.geometry as DataGeometry, bounds.extend);
   });
   map.fitBounds(bounds);
 }
 
-/**
- * Process each point in a Geometry, regardless of how deep the points may lie.
- * @param {google.maps.Data.Geometry} geometry The structure to process
- * @param {function(google.maps.LatLng)} callback A function to call on each
- *     LatLng point encountered (e.g. Array.push)
- */
+/// Process each point in a Geometry, regardless of how deep the points may lie.
+/// @param {google.maps.Data.Geometry} geometry The structure to process
+/// @param {function(google.maps.LatLng)} callback A function to call on each
+/// LatLng point encountered (e.g. Array.push)
 void processPoints(DataGeometry geometry, LatLngBounds callback(LatLng point)) {
   if (geometry is DataPoint) {
     callback(geometry.get());
   } else if (geometry is DataGeometryCollection) {
-    geometry.array.forEach((g) {
+    for (final g in geometry.array) {
       processPoints(g as DataGeometry, callback);
-    });
+    }
   }
 }
 
@@ -60,8 +56,8 @@ void processPoints(DataGeometry geometry, LatLngBounds callback(LatLng point)) {
 
 void initEvents() {
   // set up the drag & drop events
-  var mapContainer = document.getElementById('map-canvas');
-  var dropContainer = document.getElementById('drop-container');
+  final mapContainer = document.getElementById('map-canvas');
+  final dropContainer = document.getElementById('drop-container');
 
   // map-specific events
   mapContainer.onDragEnter.listen(showPanel);
@@ -73,8 +69,9 @@ void initEvents() {
 }
 
 void showPanel(html.MouseEvent e) {
-  e.stopPropagation();
-  e.preventDefault();
+  e
+    ..stopPropagation()
+    ..preventDefault();
   document.getElementById('drop-container').style.display = 'block';
 }
 
@@ -83,16 +80,17 @@ void hidePanel(html.MouseEvent e) {
 }
 
 void handleDrop(html.MouseEvent e) {
-  e.preventDefault();
-  e.stopPropagation();
+  e
+    ..stopPropagation()
+    ..preventDefault();
   hidePanel(e);
 
-  var files = e.dataTransfer.files;
-  if (files.length > 0) {
+  final files = e.dataTransfer.files;
+  if (files.isNotEmpty) {
     // process file(s) being dropped
     // grab the file data from each file
     for (final file in files) {
-      var reader = FileReader();
+      final reader = FileReader();
       reader.onLoad.listen((e) {
         loadGeoJsonString((e.target as FileReader).result as String);
       });
@@ -104,7 +102,7 @@ void handleDrop(html.MouseEvent e) {
   } else {
     // process non-file (e.g. text or html) content being dropped
     // grab the plain text version of the data
-    var plainText = e.dataTransfer.getData('text/plain');
+    final plainText = e.dataTransfer.getData('text/plain');
     if (plainText != null) {
       loadGeoJsonString(plainText);
     }

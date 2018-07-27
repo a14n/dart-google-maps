@@ -24,7 +24,7 @@ abstract class _MVCObject implements JsInterface {
   dynamic get(String key);
   void notify(String key);
   void set(String key, dynamic value);
-  void set values(Object values) => _setValues(values);
+  set values(Object values) => _setValues(values);
   void _setValues(Object values);
   void unbind(String key);
   void unbindAll();

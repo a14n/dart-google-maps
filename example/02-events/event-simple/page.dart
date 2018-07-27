@@ -7,12 +7,12 @@ void main() {
     ..zoom = 4
     ..center = LatLng(-25.363882, 131.044922);
 
-  final map = GMap(document.getElementById("map-canvas"), mapOptions);
+  final map = GMap(document.getElementById('map-canvas'), mapOptions);
 
   final marker = Marker(MarkerOptions()
     ..position = map.center
     ..map = map
-    ..title = "Click to zoom");
+    ..title = 'Click to zoom');
 
   map.onCenterChanged.listen((_) {
     // 3 seconds after the center of the map has changed, pan back to the marker.
@@ -22,7 +22,8 @@ void main() {
   });
 
   marker.onClick.listen((e) {
-    map.zoom = 8;
-    map.center = marker.position;
+    map
+      ..zoom = 8
+      ..center = marker.position;
   });
 }

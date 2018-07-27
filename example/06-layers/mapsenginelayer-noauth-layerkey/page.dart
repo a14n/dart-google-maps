@@ -15,8 +15,8 @@ void main() {
     ..clickable = true
     ..suppressInfoWindows = false);
 
-  var mapsEngineLayer2 = MapsEngineLayer(MapsEngineLayerOptions()
-    ..layerId = '10446176163891957399-13516001307527776624-4'
-    ..layerKey = 'layer_00002');
-  mapsEngineLayer2.map = map;
+  MapsEngineLayer(MapsEngineLayerOptions()
+        ..layerId = '10446176163891957399-13516001307527776624-4'
+        ..layerKey = 'layer_00002')
+      .map = map;
 }

@@ -101,9 +101,9 @@ void plotElevation(List<ElevationResult> results, ElevationStatus status) {
     // Because the samples are equidistant, the 'Sample'
     // column here does double duty as distance along the
     // X axis.
-    final data = DataTable();
-    data.addColumn('string', 'Sample');
-    data.addColumn('number', 'Elevation');
+    final data = DataTable()
+      ..addColumn('string', 'Sample')
+      ..addColumn('number', 'Elevation');
     for (final elevation in results) {
       data.addRow(JsArray.from(['', elevation.elevation]));
     }

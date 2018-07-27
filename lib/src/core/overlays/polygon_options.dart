@@ -27,40 +27,38 @@ abstract class _PolygonOptions implements JsInterface {
   GMap map;
   dynamic _paths;
   dynamic /*MVCArray<MVCArray<LatLng>>|MVCArray<LatLng>|List<List<LatLng>>|List<LatLng>*/ get paths => (ChainedCodec()
-        ..add(JsInterfaceCodec<MVCArray<MVCArray<LatLng>>>((o) =>
-            MVCArray<MVCArray<LatLng>>.created(
-                o,
-                JsInterfaceCodec<MVCArray<LatLng>>((o) =>
-                    MVCArray<LatLng>.created(
-                        o,
-                        JsInterfaceCodec<LatLng>(
-                            (o) => LatLng.created(o),
-                            (o) =>
-                                o != null &&
-                                o.instanceof(context['google']['maps']['LatLng']
-                                    as JsFunction)))))))
-        ..add(JsInterfaceCodec<MVCArray<LatLng>>((o) => MVCArray<LatLng>.created(
+        ..add(JsInterfaceCodec<MVCArray<MVCArray<LatLng>>>((o) => MVCArray<MVCArray<LatLng>>.created(
             o,
-            JsInterfaceCodec<LatLng>((o) => LatLng.created(o), (o) => o != null && o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))))
+            JsInterfaceCodec<MVCArray<LatLng>>((o) => MVCArray<LatLng>.created(
+                o,
+                JsInterfaceCodec<LatLng>(
+                    (o) => LatLng.created(o),
+                    (o) =>
+                        o != null &&
+                        o.instanceof(context['google']['maps']['LatLng']
+                            as JsFunction)))))))
+        ..add(JsInterfaceCodec<MVCArray<LatLng>>((o) => MVCArray<LatLng>.created(
+            o, JsInterfaceCodec<LatLng>((o) => LatLng.created(o), (o) => o != null && o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))))
         ..add(JsListCodec<List<LatLng>>(JsListCodec<LatLng>(JsInterfaceCodec<LatLng>((o) => LatLng.created(o), (o) => o != null && o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))))
         ..add(JsListCodec<LatLng>(JsInterfaceCodec<LatLng>((o) => LatLng.created(o), (o) => o != null && o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))))
       .decode(_paths);
-  void set paths(
+  set paths(
       dynamic /*MVCArray<MVCArray<LatLng>>|MVCArray<LatLng>|List<List<LatLng>>|List<LatLng>*/ paths) {
     _paths = (ChainedCodec()
           ..add(JsInterfaceCodec<MVCArray<MVCArray<LatLng>>>((o) =>
               MVCArray<MVCArray<LatLng>>.created(
                   o,
-                  JsInterfaceCodec<MVCArray<LatLng>>((o) => MVCArray<LatLng>.created(
-                      o,
-                      JsInterfaceCodec<LatLng>(
-                          (o) => LatLng.created(o),
-                          (o) =>
-                              o != null &&
-                              o.instanceof(context['google']['maps']['LatLng']
-                                  as JsFunction)))))))
-          ..add(JsInterfaceCodec<MVCArray<LatLng>>((o) =>
-              MVCArray<LatLng>.created(o, JsInterfaceCodec<LatLng>((o) => LatLng.created(o), (o) => o != null && o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))))
+                  JsInterfaceCodec<MVCArray<LatLng>>((o) =>
+                      MVCArray<LatLng>.created(
+                          o,
+                          JsInterfaceCodec<LatLng>(
+                              (o) => LatLng.created(o),
+                              (o) =>
+                                  o != null &&
+                                  o.instanceof(context['google']['maps']
+                                      ['LatLng'] as JsFunction)))))))
+          ..add(
+              JsInterfaceCodec<MVCArray<LatLng>>((o) => MVCArray<LatLng>.created(o, JsInterfaceCodec<LatLng>((o) => LatLng.created(o), (o) => o != null && o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))))
           ..add(JsListCodec<List<LatLng>>(JsListCodec<LatLng>(JsInterfaceCodec<LatLng>((o) => LatLng.created(o), (o) => o != null && o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))))
           ..add(JsListCodec<LatLng>(JsInterfaceCodec<LatLng>((o) => LatLng.created(o), (o) => o != null && o.instanceof(context['google']['maps']['LatLng'] as JsFunction)))))
         .encode(paths);

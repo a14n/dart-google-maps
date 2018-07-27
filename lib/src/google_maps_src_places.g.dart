@@ -21,25 +21,25 @@ class Autocomplete extends MVCObject {
   PlaceResult get place => _getPlace();
   PlaceResult _getPlace() =>
       __codec2.decode(asJsObject(this).callMethod('getPlace'));
-  void set bounds(LatLngBounds bounds) => _setBounds(bounds);
+  set bounds(LatLngBounds bounds) => _setBounds(bounds);
   void _setBounds(LatLngBounds bounds) {
     asJsObject(this).callMethod('setBounds', [__codec1.encode(bounds)]);
   }
 
-  void set componentRestrictions(ComponentRestrictions restrictions) =>
+  set componentRestrictions(ComponentRestrictions restrictions) =>
       _setComponentRestrictions(restrictions);
   void _setComponentRestrictions(ComponentRestrictions restrictions) {
     asJsObject(this).callMethod(
         'setComponentRestrictions', [__codec3.encode(restrictions)]);
   }
 
-  void set types(List<String> types) => _setTypes(types);
+  set types(List<String> types) => _setTypes(types);
   void _setTypes(List<String> types) {
     asJsObject(this).callMethod('setTypes', [__codec4.encode(types)]);
   }
 
   Stream get onPlaceChanged =>
-      getStream(this, #onPlaceChanged, "place_changed");
+      getStream(this, #onPlaceChanged, 'place_changed');
 }
 
 @GeneratedFrom(_AutocompleteOptions)
@@ -86,7 +86,7 @@ class AutocompletePrediction extends JsInterface {
   List<PredictionSubstring> get _matched_substrings =>
       __codec6.decode(asJsObject(this)['matched_substrings']);
   List<PredictionSubstring> get matchedSubstrings => _matched_substrings;
-  void set matchedSubstrings(List<PredictionSubstring> matchedSubstrings) {
+  set matchedSubstrings(List<PredictionSubstring> matchedSubstrings) {
     _matched_substrings = matchedSubstrings;
   }
 
@@ -96,7 +96,7 @@ class AutocompletePrediction extends JsInterface {
 
   String get _place_id => asJsObject(this)['place_id'];
   String get placeId => _place_id;
-  void set placeId(String placeId) {
+  set placeId(String placeId) {
     _place_id = placeId;
   }
 
@@ -280,7 +280,7 @@ class PlacePhoto extends JsInterface {
   List<String> get _html_attributions =>
       __codec4.decode(asJsObject(this)['html_attributions']);
   List<String> get htmlAttributions => _html_attributions;
-  void set htmlAttributions(List<String> htmlAttributions) {
+  set htmlAttributions(List<String> htmlAttributions) {
     _html_attributions = htmlAttributions;
   }
 
@@ -305,7 +305,7 @@ class PlaceResult extends JsInterface {
   List<GeocoderAddressComponent> get _address_components =>
       __codec22.decode(asJsObject(this)['address_components']);
   List<GeocoderAddressComponent> get addressComponents => _address_components;
-  void set addressComponents(List<GeocoderAddressComponent> addressComponents) {
+  set addressComponents(List<GeocoderAddressComponent> addressComponents) {
     _address_components = addressComponents;
   }
 
@@ -321,7 +321,7 @@ class PlaceResult extends JsInterface {
 
   String get _formatted_address => asJsObject(this)['formatted_address'];
   String get formattedAddress => _formatted_address;
-  void set formattedAddress(String formattedAddress) {
+  set formattedAddress(String formattedAddress) {
     _formatted_address = formattedAddress;
   }
 
@@ -332,7 +332,7 @@ class PlaceResult extends JsInterface {
   String get _formatted_phone_number =>
       asJsObject(this)['formatted_phone_number'];
   String get formattedPhoneNumber => _formatted_phone_number;
-  void set formattedPhoneNumber(String formattedPhoneNumber) {
+  set formattedPhoneNumber(String formattedPhoneNumber) {
     _formatted_phone_number = formattedPhoneNumber;
   }
 
@@ -349,7 +349,7 @@ class PlaceResult extends JsInterface {
   List<String> get _html_attributions =>
       __codec4.decode(asJsObject(this)['html_attributions']);
   List<String> get htmlAttributions => _html_attributions;
-  void set htmlAttributions(List<String> htmlAttributions) {
+  set htmlAttributions(List<String> htmlAttributions) {
     _html_attributions = htmlAttributions;
   }
 
@@ -366,7 +366,7 @@ class PlaceResult extends JsInterface {
   String get _international_phone_number =>
       asJsObject(this)['international_phone_number'];
   String get internationalPhoneNumber => _international_phone_number;
-  void set internationalPhoneNumber(String internationalPhoneNumber) {
+  set internationalPhoneNumber(String internationalPhoneNumber) {
     _international_phone_number = internationalPhoneNumber;
   }
 
@@ -381,7 +381,7 @@ class PlaceResult extends JsInterface {
 
   bool get _permanently_closed => asJsObject(this)['permanently_closed'];
   bool get permanentlyClosed => _permanently_closed;
-  void set permanentlyClosed(bool permanentlyClosed) {
+  set permanentlyClosed(bool permanentlyClosed) {
     _permanently_closed = permanentlyClosed;
   }
 
@@ -396,7 +396,7 @@ class PlaceResult extends JsInterface {
 
   String get _place_id => asJsObject(this)['place_id'];
   String get placeId => _place_id;
-  void set placeId(String placeId) {
+  set placeId(String placeId) {
     _place_id = placeId;
   }
 
@@ -406,7 +406,7 @@ class PlaceResult extends JsInterface {
 
   num get _price_level => asJsObject(this)['price_level'];
   num get priceLevel => _price_level;
-  void set priceLevel(num priceLevel) {
+  set priceLevel(num priceLevel) {
     _price_level = priceLevel;
   }
 
@@ -437,7 +437,7 @@ class PlaceResult extends JsInterface {
 
   num get _utc_offset => asJsObject(this)['utc_offset'];
   num get utcOffset => _utc_offset;
-  void set utcOffset(num utcOffset) {
+  set utcOffset(num utcOffset) {
     _utc_offset = utcOffset;
   }
 
@@ -471,7 +471,7 @@ class PlaceReview extends JsInterface {
 
   String get _author_name => asJsObject(this)['author_name'];
   String get authorName => _author_name;
-  void set authorName(String authorName) {
+  set authorName(String authorName) {
     _author_name = authorName;
   }
 
@@ -481,7 +481,7 @@ class PlaceReview extends JsInterface {
 
   String get _author_url => asJsObject(this)['author_url'];
   String get authorUrl => _author_url;
-  void set authorUrl(String authorUrl) {
+  set authorUrl(String authorUrl) {
     _author_url = authorUrl;
   }
 
@@ -575,7 +575,6 @@ class PlaceSearchRequest extends JsInterface {
 @GeneratedFrom(_PlacesService)
 @JsName('google.maps.places.PlacesService')
 class PlacesService extends JsInterface {
-  PlacesService.created(JsObject o) : super.created(o);
   PlacesService(dynamic /*DivElement|GMap*/ attrContainer)
       : this.created(JsObject(
             context['google']['maps']['places']['PlacesService'] as JsFunction,
@@ -590,6 +589,7 @@ class PlacesService extends JsInterface {
                                 as JsFunction))))
                   .encode(attrContainer)
             ]));
+  PlacesService.created(JsObject o) : super.created(o);
   void getDetails(PlaceDetailsRequest request,
       callback(PlaceResult p1, PlacesServiceStatus p2)) {
     asJsObject(this).callMethod(
@@ -720,7 +720,7 @@ class QueryAutocompletePrediction extends JsInterface {
   List<PredictionSubstring> get _matched_substrings =>
       __codec6.decode(asJsObject(this)['matched_substrings']);
   List<PredictionSubstring> get matchedSubstrings => _matched_substrings;
-  void set matchedSubstrings(List<PredictionSubstring> matchedSubstrings) {
+  set matchedSubstrings(List<PredictionSubstring> matchedSubstrings) {
     _matched_substrings = matchedSubstrings;
   }
 
@@ -730,7 +730,7 @@ class QueryAutocompletePrediction extends JsInterface {
 
   String get _place_id => asJsObject(this)['place_id'];
   String get placeId => _place_id;
-  void set placeId(String placeId) {
+  set placeId(String placeId) {
     _place_id = placeId;
   }
 
@@ -843,13 +843,13 @@ class SearchBox extends MVCObject {
   List<PlaceResult> get places => _getPlaces();
   List<PlaceResult> _getPlaces() =>
       __codec34.decode(asJsObject(this).callMethod('getPlaces'));
-  void set bounds(LatLngBounds bounds) => _setBounds(bounds);
+  set bounds(LatLngBounds bounds) => _setBounds(bounds);
   void _setBounds(LatLngBounds bounds) {
     asJsObject(this).callMethod('setBounds', [__codec1.encode(bounds)]);
   }
 
   Stream get onPlacesChanged =>
-      getStream(this, #onPlacesChanged, "places_changed");
+      getStream(this, #onPlacesChanged, 'places_changed');
 }
 
 @GeneratedFrom(_SearchBoxOptions)

@@ -22,7 +22,7 @@ abstract class _ImageMapType extends MVCObject implements MapType {
   num _getOpacity();
   Node getTile(Point tileCoord, num zoom, Document ownerDocument);
   void releaseTile(Node tile);
-  void set opacity(num opacity) => _setOpacity(opacity);
+  set opacity(num opacity) => _setOpacity(opacity);
   void _setOpacity(num opacity);
 
   String alt;
@@ -33,5 +33,5 @@ abstract class _ImageMapType extends MVCObject implements MapType {
   num radius;
   Size tileSize;
 
-  Stream get onTilesloaded => getStream(this, #onTilesloaded, "tilesloaded");
+  Stream get onTilesloaded => getStream(this, #onTilesloaded, 'tilesloaded');
 }

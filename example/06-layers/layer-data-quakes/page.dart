@@ -31,7 +31,7 @@ final mapStyle = <MapTypeStyle>[
     ],
 ];
 
-main() {
+void main() {
   map = GMap(
       document.getElementById('map-canvas'),
       MapOptions()
@@ -46,9 +46,9 @@ main() {
   // Get the earthquake data (JSONP format)
   // This feed is a copy from the USGS feed, you can find the originals here:
   //   http://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php
-  var script = document.createElement('script');
-  script.setAttribute(
-      'src', 'https://storage.googleapis.com/maps-devrel/quakes.geo.json');
+  final script = document.createElement('script')
+    ..setAttribute(
+        'src', 'https://storage.googleapis.com/maps-devrel/quakes.geo.json');
   document.getElementsByTagName('head')[0].append(script);
 }
 
@@ -59,16 +59,16 @@ void eqfeed_callback(JsObject data) {
 }
 
 DataStyleOptions styleFeature(DataFeature feature) {
-  var low = [151, 83, 34]; // color of mag 1.0
-  var high = [5, 69, 54]; // color of mag 6.0 and above
-  var minMag = 1.0;
-  var maxMag = 6.0;
+  const low = [151, 83, 34]; // color of mag 1.0
+  const high = [5, 69, 54]; // color of mag 6.0 and above
+  const minMag = 1.0;
+  const maxMag = 6.0;
 
   // fraction represents where the value sits between the min and max
-  var fraction = (min(feature.getProperty('mag') as num, maxMag) - minMag) /
+  final fraction = (min(feature.getProperty('mag') as num, maxMag) - minMag) /
       (maxMag - minMag);
 
-  var color = interpolateHsl(low, high, fraction);
+  final color = interpolateHsl(low, high, fraction);
 
   return DataStyleOptions()
     ..icon = (GSymbol()
@@ -83,7 +83,7 @@ DataStyleOptions styleFeature(DataFeature feature) {
 }
 
 String interpolateHsl(List<num> lowHsl, List<num> highHsl, num fraction) {
-  var color = List<num>(3);
+  final color = List<num>(3);
   for (var i = 0; i < 3; i++) {
     // Calculate color based on the fraction.
     color[i] = (highHsl[i] - lowHsl[i]) * fraction + lowHsl[i];

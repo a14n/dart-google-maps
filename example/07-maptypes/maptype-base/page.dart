@@ -5,14 +5,13 @@ import 'package:js_wrapping/js_wrapping.dart';
 
 class CoordMapType extends MapType {
   CoordMapType() : super() {
-    this.tileSize = Size(256, 256);
-    this.maxZoom = 19;
+    tileSize = Size(256, 256);
+    maxZoom = 19;
     asJsObject(this)['getTile'] =
-        (JsObject tileCoord, num zoom, HtmlDocument ownerDocument) {
-      return _getTile(Point.created(tileCoord), zoom, ownerDocument);
-    };
-    this.name = 'Tile #s';
-    this.alt = 'Tile Coordinate Map Type';
+        (JsObject tileCoord, num zoom, HtmlDocument ownerDocument) =>
+            _getTile(Point.created(tileCoord), zoom, ownerDocument);
+    name = 'Tile #s';
+    alt = 'Tile Coordinate Map Type';
   }
 
   Element _getTile(Point coord, num zoom, HtmlDocument ownerDocument) {
@@ -39,7 +38,7 @@ void main() {
     ..zoom = 10
     ..center = chicago
     ..streetViewControl = false
-    ..mapTypeId = "coordinate"
+    ..mapTypeId = 'coordinate'
     ..mapTypeControlOptions = (MapTypeControlOptions()
       ..mapTypeIds = ['coordinate', MapTypeId.ROADMAP]
       ..style = MapTypeControlStyle.DROPDOWN_MENU);

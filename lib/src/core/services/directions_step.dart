@@ -22,7 +22,7 @@ abstract class _DirectionsStep implements JsInterface {
   GDuration duration;
   LatLng _end_location;
   LatLng get endLocation => _end_location;
-  void set endLocation(LatLng endLocation) {
+  set endLocation(LatLng endLocation) {
     _end_location = endLocation;
   }
 
@@ -30,7 +30,7 @@ abstract class _DirectionsStep implements JsInterface {
   List<LatLng> path;
   LatLng _start_location;
   LatLng get startLocation => _start_location;
-  void set startLocation(LatLng startLocation) {
+  set startLocation(LatLng startLocation) {
     _start_location = startLocation;
   }
 
@@ -38,7 +38,7 @@ abstract class _DirectionsStep implements JsInterface {
   TransitDetails transit;
   TravelMode _travel_mode;
   TravelMode get travelMode => _travel_mode;
-  void set travelMode(TravelMode travelMode) {
+  set travelMode(TravelMode travelMode) {
     _travel_mode = travelMode;
   }
 }

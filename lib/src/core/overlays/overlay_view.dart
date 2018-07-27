@@ -32,27 +32,25 @@ abstract class _OverlayView implements JsInterface {
                 o.instanceof(context['google']['maps']['StreetViewPanorama']
                     as JsFunction))))
       .decode(_getMap());
-  _getMap();
+  dynamic _getMap();
   MapPanes get panes => _getPanes();
   MapPanes _getPanes();
   MapCanvasProjection get projection => _getProjection();
   MapCanvasProjection _getProjection();
   void onAdd();
   void onRemove();
-  void set map(dynamic /*GMap|StreetViewPanorama*/ map) =>
-      _setMap((ChainedCodec()
-            ..add(JsInterfaceCodec<GMap>(
-                (o) => GMap.created(o),
-                (o) =>
-                    o != null &&
-                    o.instanceof(
-                        context['google']['maps']['Map'] as JsFunction)))
-            ..add(JsInterfaceCodec<StreetViewPanorama>(
-                (o) => StreetViewPanorama.created(o),
-                (o) =>
-                    o != null &&
-                    o.instanceof(context['google']['maps']['StreetViewPanorama']
-                        as JsFunction))))
-          .encode(map));
+  set map(dynamic /*GMap|StreetViewPanorama*/ map) => _setMap((ChainedCodec()
+        ..add(JsInterfaceCodec<GMap>(
+            (o) => GMap.created(o),
+            (o) =>
+                o != null &&
+                o.instanceof(context['google']['maps']['Map'] as JsFunction)))
+        ..add(JsInterfaceCodec<StreetViewPanorama>(
+            (o) => StreetViewPanorama.created(o),
+            (o) =>
+                o != null &&
+                o.instanceof(context['google']['maps']['StreetViewPanorama']
+                    as JsFunction))))
+      .encode(map));
   void _setMap(dynamic /*GMap|StreetViewPanorama*/ map);
 }

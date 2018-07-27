@@ -15,8 +15,7 @@ void main() {
   map.controls[ControlPosition.TOP_LEFT].push(input);
   map.controls[ControlPosition.TOP_LEFT].push(types);
 
-  final autocomplete = Autocomplete(input);
-  autocomplete.bindTo('bounds', map);
+  final autocomplete = Autocomplete(input)..bindTo('bounds', map);
 
   final infowindow = InfoWindow();
   final marker = Marker(MarkerOptions()
@@ -37,20 +36,22 @@ void main() {
     if (place.geometry.viewport != null) {
       map.fitBounds(place.geometry.viewport);
     } else {
-      map.center = place.geometry.location;
-      map.zoom = 17; // Why 17? Because it looks good.
+      map
+        ..center = place.geometry.location
+        ..zoom = 17; // Why 17? Because it looks good.
     }
 
-    marker.icon = Icon()
-      ..url = place.icon
-      ..size = Size(71, 71)
-      ..origin = Point(0, 0)
-      ..anchor = Point(17, 34)
-      ..scaledSize = Size(35, 35);
-    marker.position = place.geometry.location;
-    marker.visible = true;
+    marker
+      ..icon = (Icon()
+        ..url = place.icon
+        ..size = Size(71, 71)
+        ..origin = Point(0, 0)
+        ..anchor = Point(17, 34)
+        ..scaledSize = Size(35, 35))
+      ..position = place.geometry.location
+      ..visible = true;
 
-    String address = '';
+    var address = '';
     if (place.addressComponents != null) {
       address = [
         (place.addressComponents[0] != null &&
@@ -68,14 +69,15 @@ void main() {
       ].join(' ');
     }
 
-    infowindow.content = '<div><strong>${place.name}</strong><br>${address}';
-    infowindow.open(map, marker);
+    infowindow
+      ..content = '<div><strong>${place.name}</strong><br>$address'
+      ..open(map, marker);
   });
 
   // Sets a listener on a radio button to change the filter type on Places
   // Autocomplete.
   void setupClickListener(String id, List<String> types) {
-    final radioButton = querySelector('#${id}');
+    final radioButton = querySelector('#$id');
     event.addDomListener(radioButton, 'click', (_) {
       autocomplete.types = types;
     });

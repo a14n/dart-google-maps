@@ -52,8 +52,7 @@ abstract class _OverlayCompleteEvent implements JsInterface {
                     o.instanceof(
                         context['google']['maps']['Circle'] as JsFunction))))
           .decode(_overlay);
-  void set overlay(
-      dynamic /*Marker|Polygon|Polyline|Rectangle|Circle*/ overlay) {
+  set overlay(dynamic /*Marker|Polygon|Polyline|Rectangle|Circle*/ overlay) {
     _overlay = (ChainedCodec()
           ..add(JsInterfaceCodec<Marker>(
               (o) => Marker.created(o),

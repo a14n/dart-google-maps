@@ -20,11 +20,11 @@ abstract class _WeatherLayer extends MVCObject {
 
   GMap get map => _getMap();
   GMap _getMap();
-  void set map(GMap map) => _setMap(map);
+  set map(GMap map) => _setMap(map);
   void _setMap(GMap map);
-  void set options(WeatherLayerOptions options) => _setOptions(options);
+  set options(WeatherLayerOptions options) => _setOptions(options);
   void _setOptions(WeatherLayerOptions options);
 
-  Stream<WeatherMouseEvent> get onClick => getStream(
-      this, #onClick, "click", (JsObject o) => WeatherMouseEvent.created(o));
+  Stream<WeatherMouseEvent> get onClick =>
+      getStream(this, #onClick, 'click', (o) => WeatherMouseEvent.created(o));
 }

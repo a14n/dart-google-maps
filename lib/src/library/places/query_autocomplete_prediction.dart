@@ -21,13 +21,13 @@ abstract class _QueryAutocompletePrediction implements JsInterface {
   String description;
   List<PredictionSubstring> _matched_substrings;
   List<PredictionSubstring> get matchedSubstrings => _matched_substrings;
-  void set matchedSubstrings(List<PredictionSubstring> matchedSubstrings) {
+  set matchedSubstrings(List<PredictionSubstring> matchedSubstrings) {
     _matched_substrings = matchedSubstrings;
   }
 
   String _place_id;
   String get placeId => _place_id;
-  void set placeId(String placeId) {
+  set placeId(String placeId) {
     _place_id = placeId;
   }
 

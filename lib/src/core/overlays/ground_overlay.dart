@@ -28,13 +28,13 @@ abstract class _GroundOverlay extends MVCObject {
   num _getOpacity();
   String get url => _getUrl();
   String _getUrl();
-  void set map(GMap map) => _setMap(map);
+  set map(GMap map) => _setMap(map);
   void _setMap(GMap map);
-  void set opacity(num opacity) => _setOpacity(opacity);
+  set opacity(num opacity) => _setOpacity(opacity);
   void _setOpacity(num opacity);
 
   Stream<MouseEvent> get onClick =>
-      getStream(this, #onClick, "click", (JsObject o) => MouseEvent.created(o));
+      getStream(this, #onClick, 'click', (JsObject o) => MouseEvent.created(o));
   Stream<MouseEvent> get onDblclick => getStream(
-      this, #onDblclick, "dblclick", (JsObject o) => MouseEvent.created(o));
+      this, #onDblclick, 'dblclick', (JsObject o) => MouseEvent.created(o));
 }

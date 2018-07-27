@@ -39,48 +39,48 @@ abstract class _StreetViewPanorama extends MVCObject {
   num get zoom => _getZoom();
   num _getZoom();
   void registerPanoProvider(provider(String p1));
-  void set links(List<StreetViewLink> links) => _setLinks(links);
+  set links(List<StreetViewLink> links) => _setLinks(links);
   void _setLinks(List<StreetViewLink> links);
-  void set options(StreetViewPanoramaOptions options) => _setOptions(options);
+  set options(StreetViewPanoramaOptions options) => _setOptions(options);
   void _setOptions(StreetViewPanoramaOptions options);
-  void set pano(String pano) => _setPano(pano);
+  set pano(String pano) => _setPano(pano);
   void _setPano(String pano);
-  void set position(LatLng latLng) => _setPosition(latLng);
+  set position(LatLng latLng) => _setPosition(latLng);
   void _setPosition(LatLng latLng);
-  void set pov(StreetViewPov pov) => _setPov(pov);
+  set pov(StreetViewPov pov) => _setPov(pov);
   void _setPov(StreetViewPov pov);
-  void set visible(bool flag) => _setVisible(flag);
+  set visible(bool flag) => _setVisible(flag);
   void _setVisible(bool flag);
-  void set zoom(num zoom) => _setZoom(zoom);
+  set zoom(num zoom) => _setZoom(zoom);
   void _setZoom(num zoom);
 
   dynamic _controls;
   List<MVCArray<Node>> get controls =>
-      (JsListCodec<MVCArray<Node>>(JsInterfaceCodec<MVCArray<Node>>(
-              (o) => MVCArray<Node>.created(o, IdentityCodec<Node>()))))
+      JsListCodec<MVCArray<Node>>(JsInterfaceCodec<MVCArray<Node>>(
+              (o) => MVCArray<Node>.created(o, IdentityCodec<Node>())))
           .decode(_controls as JsArray);
-  void set controls(List<MVCArray<Node>> controls) {
-    _controls = (JsListCodec<MVCArray<Node>>(JsInterfaceCodec<MVCArray<Node>>(
-            (o) => MVCArray<Node>.created(o, IdentityCodec<Node>()))))
+  set controls(List<MVCArray<Node>> controls) {
+    _controls = JsListCodec<MVCArray<Node>>(JsInterfaceCodec<MVCArray<Node>>(
+            (o) => MVCArray<Node>.created(o, IdentityCodec<Node>())))
         .encode(controls);
   }
 
   Stream get onClicktogoChanged =>
-      getStream(this, #onClicktogoChanged, "clicktogo_changed");
+      getStream(this, #onClicktogoChanged, 'clicktogo_changed');
   Stream<JsObject> get onCloseclick =>
-      getStream(this, #onCloseclick, "closeclick");
+      getStream(this, #onCloseclick, 'closeclick');
   Stream get onLinksChanged =>
-      getStream(this, #onLinksChanged, "links_changed");
-  Stream get onPanoChanged => getStream(this, #onPanoChanged, "pano_changed");
+      getStream(this, #onLinksChanged, 'links_changed');
+  Stream get onPanoChanged => getStream(this, #onPanoChanged, 'pano_changed');
   Stream get onPositionChanged =>
-      getStream(this, #onPositionChanged, "position_changed");
-  Stream get onPovChanged => getStream(this, #onPovChanged, "pov_changed");
-  Stream get onResize => getStream(this, #onResize, "resize");
+      getStream(this, #onPositionChanged, 'position_changed');
+  Stream get onPovChanged => getStream(this, #onPovChanged, 'pov_changed');
+  Stream get onResize => getStream(this, #onResize, 'resize');
   Stream get onScrollwheelChanged =>
-      getStream(this, #onScrollwheelChanged, "scrollwheel_changed");
+      getStream(this, #onScrollwheelChanged, 'scrollwheel_changed');
   Stream get onStatusChanged =>
-      getStream(this, #onStatusChanged, "status_changed");
+      getStream(this, #onStatusChanged, 'status_changed');
   Stream get onVisibleChanged =>
-      getStream(this, #onVisibleChanged, "visible_changed");
-  Stream get onZoomChanged => getStream(this, #onZoomChanged, "zoom_changed");
+      getStream(this, #onVisibleChanged, 'visible_changed');
+  Stream get onZoomChanged => getStream(this, #onZoomChanged, 'zoom_changed');
 }

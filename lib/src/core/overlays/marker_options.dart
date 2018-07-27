@@ -31,7 +31,7 @@ abstract class _MarkerOptions implements JsInterface {
         ..add(JsInterfaceCodec<Icon>((o) => Icon.created(o)))
         ..add(JsInterfaceCodec<GSymbol>((o) => GSymbol.created(o))))
       .decode(_icon);
-  void set icon(dynamic /*String|Icon|GSymbol*/ icon) {
+  set icon(dynamic /*String|Icon|GSymbol*/ icon) {
     _icon = (ChainedCodec()
           ..add(IdentityCodec<String>())
           ..add(JsInterfaceCodec<Icon>((o) => Icon.created(o)))
@@ -44,7 +44,7 @@ abstract class _MarkerOptions implements JsInterface {
         ..add(IdentityCodec<String>())
         ..add(JsInterfaceCodec<MarkerLabel>((o) => MarkerLabel.created(o))))
       .decode(_label);
-  void set label(dynamic /*String|MarkerLabel*/ label) {
+  set label(dynamic /*String|MarkerLabel*/ label) {
     _label = (ChainedCodec()
           ..add(IdentityCodec<String>())
           ..add(JsInterfaceCodec<MarkerLabel>((o) => MarkerLabel.created(o))))
@@ -65,7 +65,7 @@ abstract class _MarkerOptions implements JsInterface {
                 o.instanceof(context['google']['maps']['StreetViewPanorama']
                     as JsFunction))))
       .decode(_map);
-  void set map(dynamic /*GMap|StreetViewPanorama*/ map) {
+  set map(dynamic /*GMap|StreetViewPanorama*/ map) {
     _map = (ChainedCodec()
           ..add(JsInterfaceCodec<GMap>(
               (o) => GMap.created(o),

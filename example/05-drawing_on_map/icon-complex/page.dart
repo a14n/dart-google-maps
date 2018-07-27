@@ -2,22 +2,20 @@ import 'dart:html' hide Point;
 import 'package:google_maps/google_maps.dart';
 
 const IMAGE_URL =
-    "https://google-developers.appspot.com/maps/documentation/javascript/examples/full";
+    'https://google-developers.appspot.com/maps/documentation/javascript/examples/full';
 
 void main() {
   final mapOptions = MapOptions()
     ..zoom = 10
     ..center = LatLng(-33.9, 151.2);
-  final map = GMap(document.getElementById("map-canvas"), mapOptions);
+  final map = GMap(document.getElementById('map-canvas'), mapOptions);
 
   setMarkers(map, beaches);
 }
 
-/**
- * Data for the markers consisting of a name, a LatLng and a zIndex for
- * the order in which these markers should display on top of each
- * other.
- */
+/// Data for the markers consisting of a name, a LatLng and a zIndex for
+/// the order in which these markers should display on top of each
+/// other.
 final beaches = [
   ['Bondi Beach', -33.890542, 151.274856, 4],
   ['Coogee Beach', -33.923036, 151.259052, 5],
@@ -37,7 +35,7 @@ void setMarkers(GMap map, List locations) {
   // increase in the X direction to the right and in
   // the Y direction down.
   final image = Icon()
-    ..url = '${IMAGE_URL}/images/beachflag.png'
+    ..url = '$IMAGE_URL/images/beachflag.png'
     // This marker is 20 pixels wide by 32 pixels tall.
     ..size = Size(20, 32)
     // The origin for this image is 0,0.
@@ -53,7 +51,7 @@ void setMarkers(GMap map, List locations) {
     ..coords = [1, 1, 1, 20, 18, 20, 18, 1]
     ..type = 'poly';
   for (final beach in locations) {
-    var myLatLng = LatLng(beach[1] as num, beach[2] as num);
+    final myLatLng = LatLng(beach[1] as num, beach[2] as num);
     Marker(MarkerOptions()
       ..position = myLatLng
       ..map = map

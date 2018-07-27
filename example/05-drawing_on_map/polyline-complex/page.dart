@@ -21,16 +21,13 @@ void main() {
   map.onClick.listen(addLatLng);
 }
 
-/**
- * Handles click events on a map, and adds a new point to the Polyline.
- * @param {MouseEvent} mouseEvent
- */
+/// Handles click events on a map, and adds a new point to the Polyline.
+/// @param {MouseEvent} mouseEvent
 void addLatLng(MouseEvent e) {
-  final path = poly.path;
-
-  // Because path is an MVCArray, we can simply append a new coordinate
-  // and it will automatically appear
-  path.push(e.latLng);
+  final path = poly.path
+    // Because path is an MVCArray, we can simply append a new coordinate
+    // and it will automatically appear
+    ..push(e.latLng);
 
   // Add a new marker at the new plotted point on the polyline.
   Marker(MarkerOptions()

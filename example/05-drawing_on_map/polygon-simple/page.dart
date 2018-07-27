@@ -15,13 +15,12 @@ void main() {
     LatLng(25.774252, -80.190262)
   ];
 
-  final bermudaTriangle = Polygon(PolygonOptions()
-    ..paths = triangleCoords
-    ..strokeColor = '#FF0000'
-    ..strokeOpacity = 0.8
-    ..strokeWeight = 3
-    ..fillColor = '#FF0000'
-    ..fillOpacity = 0.35);
-
-  bermudaTriangle.map = map;
+  Polygon(PolygonOptions()
+        ..paths = triangleCoords
+        ..strokeColor = '#FF0000'
+        ..strokeOpacity = 0.8
+        ..strokeWeight = 3
+        ..fillColor = '#FF0000'
+        ..fillOpacity = 0.35)
+      .map = map;
 }

@@ -4,7 +4,7 @@ import 'package:google_maps/google_maps.dart';
 GroundOverlay historicalOverlay;
 GMap map;
 
-main() {
+void main() {
   final newark = LatLng(40.740, -74.18);
   final imageBounds =
       LatLngBounds(LatLng(40.712216, -74.22655), LatLng(40.773941, -74.12544));

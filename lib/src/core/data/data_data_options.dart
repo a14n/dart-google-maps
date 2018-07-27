@@ -27,59 +27,54 @@ abstract class _DataDataOptions implements JsInterface {
         ..add(FunctionCodec<DataStylingFunction>((f) {
           if (f == null) return null;
           return (p_dataFeature) {
-            final dataFeature = JsInterfaceCodec<DataFeature>((o) => ((e) =>
-                    e == null ? null : DataFeature.created(e as JsObject))(o))
+            final dataFeature = JsInterfaceCodec<DataFeature>(
+                    (e) => e == null ? null : DataFeature.created(e))
                 .decode(p_dataFeature as JsObject);
             final result = f(dataFeature);
-            return JsInterfaceCodec<DataStyleOptions>((o) => ((e) => e == null
-                ? null
-                : DataStyleOptions.created(e as JsObject))(o)).encode(result);
+            return JsInterfaceCodec<DataStyleOptions>(
+                    (e) => e == null ? null : DataStyleOptions.created(e))
+                .encode(result);
           };
         }, (f) {
           if (f == null) return null;
           return (p_dataFeature) {
-            final dataFeature = JsInterfaceCodec<DataFeature>((o) => ((e) =>
-                    e == null ? null : DataFeature.created(e as JsObject))(o))
+            final dataFeature = JsInterfaceCodec<DataFeature>(
+                    (e) => e == null ? null : DataFeature.created(e))
                 .encode(p_dataFeature);
             final result = f is JsFunction
                 ? f.apply([dataFeature])
                 : Function.apply(f, [dataFeature]);
-            return JsInterfaceCodec<DataStyleOptions>((o) => ((e) => e == null
-                    ? null
-                    : DataStyleOptions.created(e as JsObject))(o))
+            return JsInterfaceCodec<DataStyleOptions>(
+                    (e) => e == null ? null : DataStyleOptions.created(e))
                 .decode(result as JsObject);
           };
         }))
         ..add(JsInterfaceCodec<DataStyleOptions>(
             (o) => DataStyleOptions.created(o))))
       .decode(_style);
-  void set style(dynamic /*DataStylingFunction|DataStyleOptions*/ style) =>
+  set style(dynamic /*DataStylingFunction|DataStyleOptions*/ style) =>
       _style = (ChainedCodec()
             ..add(FunctionCodec<DataStylingFunction>((f) {
               if (f == null) return null;
               return (p_dataFeature) {
-                final result = f(JsInterfaceCodec<DataFeature>((o) => ((e) =>
-                        e == null ? null : DataFeature.created(e as JsObject))(
-                    o)).decode(p_dataFeature as JsObject));
-                return JsInterfaceCodec<DataStyleOptions>((o) => ((e) =>
-                        e == null
-                            ? null
-                            : DataStyleOptions.created(e as JsObject))(o))
+                final result = f(JsInterfaceCodec<DataFeature>(
+                        (e) => e == null ? null : DataFeature.created(e))
+                    .decode(p_dataFeature as JsObject));
+                return JsInterfaceCodec<DataStyleOptions>(
+                        (e) => e == null ? null : DataStyleOptions.created(e))
                     .encode(result);
               };
             }, (f) {
               if (f == null) return null;
               return (p_dataFeature) {
-                final dataFeature = JsInterfaceCodec<DataFeature>((o) => ((e) =>
-                        e == null ? null : DataFeature.created(e as JsObject))(
-                    o)).encode(p_dataFeature);
+                final dataFeature = JsInterfaceCodec<DataFeature>(
+                        (e) => e == null ? null : DataFeature.created(e))
+                    .encode(p_dataFeature);
                 final result = f is JsFunction
                     ? f.apply([dataFeature])
                     : Function.apply(f, [dataFeature]);
-                return JsInterfaceCodec<DataStyleOptions>((o) => ((e) =>
-                        e == null
-                            ? null
-                            : DataStyleOptions.created(e as JsObject))(o))
+                return JsInterfaceCodec<DataStyleOptions>(
+                        (e) => e == null ? null : DataStyleOptions.created(e))
                     .decode(result as JsObject);
               };
             }))

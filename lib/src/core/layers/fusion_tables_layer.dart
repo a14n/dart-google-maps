@@ -20,11 +20,11 @@ abstract class _FusionTablesLayer extends MVCObject {
 
   GMap get map => _getMap();
   GMap _getMap();
-  void set map(GMap map) => _setMap(map);
+  set map(GMap map) => _setMap(map);
   void _setMap(GMap map);
-  void set options(FusionTablesLayerOptions options) => _setOptions(options);
+  set options(FusionTablesLayerOptions options) => _setOptions(options);
   void _setOptions(FusionTablesLayerOptions options);
 
   Stream<FusionTablesMouseEvent> get onClick => getStream(this, #onClick,
-      "click", (JsObject o) => FusionTablesMouseEvent.created(o));
+      'click', (JsObject o) => FusionTablesMouseEvent.created(o));
 }

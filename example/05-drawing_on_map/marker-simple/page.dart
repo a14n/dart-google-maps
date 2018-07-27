@@ -11,5 +11,5 @@ void main() {
   Marker(MarkerOptions()
     ..position = myLatlng
     ..map = map
-    ..title = "Hello World!");
+    ..title = 'Hello World!');
 }

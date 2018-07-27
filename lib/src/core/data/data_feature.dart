@@ -43,33 +43,35 @@ abstract class _DataFeature implements JsInterface {
         ..add(JsInterfaceCodec<DataMultiPoint>((o) => DataMultiPoint.created(o), (o) => o != null && o.instanceof(context['google']['maps']['Data']['MultiPoint'] as JsFunction)))
         ..add(JsInterfaceCodec<DataPoint>((o) => DataPoint.created(o), (o) => o != null && o.instanceof(context['google']['maps']['Data']['Point'] as JsFunction))))
       .decode(_getGeometry());
-  _getGeometry();
+  dynamic _getGeometry();
 
   dynamic /*num|String*/ get id => _getId();
   dynamic /*num|String*/ _getId();
   dynamic getProperty(String name);
   void removeProperty(String name);
-  void set geometry(dynamic /*DataGeometryCollection|DataMultiPolygon|DataPolygon|DataLinearRing|DataMultiLineString|DataLineString|DataMultiPoint|DataPoint|LatLng*/ newGeometry) => _setGeometry((ChainedCodec()
-        ..add(JsInterfaceCodec<DataGeometryCollection>(
-            (o) => DataGeometryCollection.created(o),
-            (o) =>
-                o != null &&
-                o.instanceof(context['google']['maps']['Data']
-                    ['GeometryCollection'] as JsFunction)))
-        ..add(JsInterfaceCodec<DataMultiPolygon>(
-            (o) => DataMultiPolygon.created(o),
-            (o) =>
-                o != null &&
-                o.instanceof(
-                    context['google']['maps']['Data']['MultiPolygon'] as JsFunction)))
-        ..add(JsInterfaceCodec<DataPolygon>((o) => DataPolygon.created(o), (o) => o != null && o.instanceof(context['google']['maps']['Data']['Polygon'] as JsFunction)))
-        ..add(JsInterfaceCodec<DataLinearRing>((o) => DataLinearRing.created(o), (o) => o != null && o.instanceof(context['google']['maps']['Data']['LinearRing'] as JsFunction)))
-        ..add(JsInterfaceCodec<DataMultiLineString>((o) => DataMultiLineString.created(o), (o) => o != null && o.instanceof(context['google']['maps']['Data']['MultiLineString'] as JsFunction)))
-        ..add(JsInterfaceCodec<DataLineString>((o) => DataLineString.created(o), (o) => o != null && o.instanceof(context['google']['maps']['Data']['LineString'] as JsFunction)))
-        ..add(JsInterfaceCodec<DataMultiPoint>((o) => DataMultiPoint.created(o), (o) => o != null && o.instanceof(context['google']['maps']['Data']['MultiPoint'] as JsFunction)))
-        ..add(JsInterfaceCodec<DataPoint>((o) => DataPoint.created(o), (o) => o != null && o.instanceof(context['google']['maps']['Data']['Point'] as JsFunction)))
-        ..add(JsInterfaceCodec<LatLng>((o) => LatLng.created(o), (o) => o != null && o.instanceof(context['google']['maps']['LatLng'] as JsFunction))))
-      .encode(newGeometry));
+  set geometry(
+          dynamic /*DataGeometryCollection|DataMultiPolygon|DataPolygon|DataLinearRing|DataMultiLineString|DataLineString|DataMultiPoint|DataPoint|LatLng*/ newGeometry) =>
+      _setGeometry((ChainedCodec()
+            ..add(JsInterfaceCodec<DataGeometryCollection>(
+                (o) => DataGeometryCollection.created(o),
+                (o) =>
+                    o != null &&
+                    o.instanceof(context['google']['maps']['Data']
+                        ['GeometryCollection'] as JsFunction)))
+            ..add(JsInterfaceCodec<DataMultiPolygon>(
+                (o) => DataMultiPolygon.created(o),
+                (o) =>
+                    o != null &&
+                    o.instanceof(context['google']['maps']['Data']
+                        ['MultiPolygon'] as JsFunction)))
+            ..add(JsInterfaceCodec<DataPolygon>((o) => DataPolygon.created(o), (o) => o != null && o.instanceof(context['google']['maps']['Data']['Polygon'] as JsFunction)))
+            ..add(JsInterfaceCodec<DataLinearRing>((o) => DataLinearRing.created(o), (o) => o != null && o.instanceof(context['google']['maps']['Data']['LinearRing'] as JsFunction)))
+            ..add(JsInterfaceCodec<DataMultiLineString>((o) => DataMultiLineString.created(o), (o) => o != null && o.instanceof(context['google']['maps']['Data']['MultiLineString'] as JsFunction)))
+            ..add(JsInterfaceCodec<DataLineString>((o) => DataLineString.created(o), (o) => o != null && o.instanceof(context['google']['maps']['Data']['LineString'] as JsFunction)))
+            ..add(JsInterfaceCodec<DataMultiPoint>((o) => DataMultiPoint.created(o), (o) => o != null && o.instanceof(context['google']['maps']['Data']['MultiPoint'] as JsFunction)))
+            ..add(JsInterfaceCodec<DataPoint>((o) => DataPoint.created(o), (o) => o != null && o.instanceof(context['google']['maps']['Data']['Point'] as JsFunction)))
+            ..add(JsInterfaceCodec<LatLng>((o) => LatLng.created(o), (o) => o != null && o.instanceof(context['google']['maps']['LatLng'] as JsFunction))))
+          .encode(newGeometry));
   void _setGeometry(
       dynamic /*DataGeometryCollection|DataMultiPolygon|DataPolygon|DataLinearRing|DataMultiLineString|DataLineString|DataMultiPoint|DataPoint|LatLng*/ newGeometry);
 
@@ -79,16 +81,16 @@ abstract class _DataFeature implements JsInterface {
   Stream<DataRemovePropertyEvent> get onRemoveproperty => getStream(
       this,
       #onRemoveproperty,
-      "removeproperty",
+      'removeproperty',
       (JsObject o) => DataRemovePropertyEvent.created(o));
   Stream<DataSetGeometryEvent> get onSetgeometry => getStream(
       this,
       #onSetgeometry,
-      "setgeometry",
+      'setgeometry',
       (JsObject o) => DataSetGeometryEvent.created(o));
   Stream<DataSetPropertyEvent> get onSetproperty => getStream(
       this,
       #onSetproperty,
-      "setproperty",
+      'setproperty',
       (JsObject o) => DataSetPropertyEvent.created(o));
 }

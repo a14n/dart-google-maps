@@ -28,7 +28,7 @@ class Encoding extends JsInterface {
                             o != null &&
                             o.instanceof(context['google']['maps']['LatLng'] as JsFunction))))))
           .encode(path)) as String;
-  _encodePath(dynamic /*List<LatLng>|MVCArray<LatLng>*/ path) =>
+  dynamic _encodePath(dynamic /*List<LatLng>|MVCArray<LatLng>*/ path) =>
       __codec2.decode(
           asJsObject(this).callMethod('encodePath', [__codec2.encode(path)]));
 }
@@ -58,7 +58,7 @@ class Poly extends JsInterface {
                             as JsFunction))))
               .encode(poly),
           tolerance) as bool;
-  _isLocationOnEdge(LatLng point, dynamic /*Polygon|Polyline*/ poly,
+  dynamic _isLocationOnEdge(LatLng point, dynamic /*Polygon|Polyline*/ poly,
           [num tolerance]) =>
       __codec2.decode(asJsObject(this).callMethod('isLocationOnEdge',
           [__codec0.encode(point), __codec2.encode(poly), tolerance]));
@@ -85,7 +85,8 @@ class Spherical extends JsInterface {
                             context['google']['maps']['LatLng'] as JsFunction))))))
           .encode(path),
       radius) as num;
-  _computeArea(dynamic /*List<LatLng>|MVCArray<LatLng>*/ path, [num radius]) =>
+  dynamic _computeArea(dynamic /*List<LatLng>|MVCArray<LatLng>*/ path,
+          [num radius]) =>
       __codec2.decode(asJsObject(this)
           .callMethod('computeArea', [__codec2.encode(path), radius]));
   num computeDistanceBetween(LatLng from, LatLng to, [num radius]) =>
@@ -113,7 +114,7 @@ class Spherical extends JsInterface {
                                 o.instanceof(context['google']['maps']['LatLng'] as JsFunction))))))
               .encode(path),
           radius) as num;
-  _computeLength(dynamic /*List<LatLng>|MVCArray<LatLng>*/ path,
+  dynamic _computeLength(dynamic /*List<LatLng>|MVCArray<LatLng>*/ path,
           [num radius]) =>
       __codec2.decode(asJsObject(this)
           .callMethod('computeLength', [__codec2.encode(path), radius]));
@@ -143,7 +144,7 @@ class Spherical extends JsInterface {
                                 o != null && o.instanceof(context['google']['maps']['LatLng'] as JsFunction))))))
               .encode(loop),
           radius) as num;
-  _computeSignedArea(dynamic /*List<LatLng>|MVCArray<LatLng>*/ loop,
+  dynamic _computeSignedArea(dynamic /*List<LatLng>|MVCArray<LatLng>*/ loop,
           [num radius]) =>
       __codec2.decode(asJsObject(this)
           .callMethod('computeSignedArea', [__codec2.encode(loop), radius]));

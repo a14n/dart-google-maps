@@ -20,25 +20,25 @@ abstract class _TransitDetails implements JsInterface {
 
   TransitStop _arrival_stop;
   TransitStop get arrivalStop => _arrival_stop;
-  void set arrivalStop(TransitStop arrivalStop) {
+  set arrivalStop(TransitStop arrivalStop) {
     _arrival_stop = arrivalStop;
   }
 
   Time _arrival_time;
   Time get arrivalTime => _arrival_time;
-  void set arrivalTime(Time arrivalTime) {
+  set arrivalTime(Time arrivalTime) {
     _arrival_time = arrivalTime;
   }
 
   TransitStop _departure_stop;
   TransitStop get departureStop => _departure_stop;
-  void set departureStop(TransitStop departureStop) {
+  set departureStop(TransitStop departureStop) {
     _departure_stop = departureStop;
   }
 
   Time _departure_time;
   Time get departureTime => _departure_time;
-  void set departureTime(Time departureTime) {
+  set departureTime(Time departureTime) {
     _departure_time = departureTime;
   }
 
@@ -47,7 +47,7 @@ abstract class _TransitDetails implements JsInterface {
   TransitLine line;
   num _num_stops;
   num get numStops => _num_stops;
-  void set numStops(num numStops) {
+  set numStops(num numStops) {
     _num_stops = numStops;
   }
 }

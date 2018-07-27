@@ -29,7 +29,7 @@ abstract class _DirectionsWaypoint implements JsInterface {
         ..add(JsInterfaceCodec<Place>((o) => Place.created(o)))
         ..add(IdentityCodec<String>()))
       .decode(_location);
-  void set location(dynamic /*LatLng|Place|String*/ location) {
+  set location(dynamic /*LatLng|Place|String*/ location) {
     _location = (ChainedCodec()
           ..add(JsInterfaceCodec<LatLng>(
               (o) => LatLng.created(o),

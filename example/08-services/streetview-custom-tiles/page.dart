@@ -4,7 +4,7 @@ import 'package:google_maps/google_maps.dart';
 import 'package:js_wrapping/js_wrapping.dart';
 
 const IMAGE_URL =
-    "https://google-developers.appspot.com/maps/documentation/javascript/examples/full";
+    'https://google-developers.appspot.com/maps/documentation/javascript/examples/full';
 
 StreetViewPanorama panorama;
 
@@ -24,9 +24,8 @@ void main() {
   final panoOptions = StreetViewPanoramaOptions()
     ..position = sydneyOffice
     ..visible = true;
-  asJsObject(panoOptions)['panoProvider'] = (String pano) {
-    return asJs(getCustomPanorama(pano));
-  };
+  asJsObject(panoOptions)['panoProvider'] =
+      (String pano) => asJs(getCustomPanorama(pano));
 
   panorama.options = panoOptions;
 
@@ -35,7 +34,7 @@ void main() {
 
   // Compute the nearest panorama to the Google Sydney office
   // using the service and store that pano ID.
-  final radius = 50;
+  const radius = 50;
   streetviewService.getPanoramaByLocation(sydneyOffice, radius,
       (result, status) {
     if (status == StreetViewStatus.OK) {
@@ -47,10 +46,9 @@ void main() {
   });
 }
 
-String getCustomPanoramaTileUrl(String pano, num zoom, num tileX, num tileY) {
-  // Return a pano image given the panoID.
-  return '${IMAGE_URL}/images/panoReception1024-${zoom}-${tileX}-${tileY}.jpg';
-}
+String getCustomPanoramaTileUrl(String pano, num zoom, num tileX, num tileY) =>
+    // Return a pano image given the panoID.
+    '$IMAGE_URL/images/panoReception1024-$zoom-$tileX-$tileY.jpg';
 
 StreetViewPanoramaData getCustomPanorama(String pano) {
   switch (pano) {

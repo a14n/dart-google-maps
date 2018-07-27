@@ -22,9 +22,9 @@ abstract class _SearchBox extends MVCObject {
   LatLngBounds _getBounds();
   List<PlaceResult> get places => _getPlaces();
   List<PlaceResult> _getPlaces();
-  void set bounds(LatLngBounds bounds) => _setBounds(bounds);
+  set bounds(LatLngBounds bounds) => _setBounds(bounds);
   void _setBounds(LatLngBounds bounds);
 
   Stream get onPlacesChanged =>
-      getStream(this, #onPlacesChanged, "places_changed");
+      getStream(this, #onPlacesChanged, 'places_changed');
 }

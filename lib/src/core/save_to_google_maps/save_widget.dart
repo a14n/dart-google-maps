@@ -22,10 +22,10 @@ abstract class _SaveWidget extends MVCObject {
   Attribution _getAttribution();
   MarkerPlace get place => _getPlace();
   MarkerPlace _getPlace();
-  void set attribution(Attribution attribution) => _setAttribution(attribution);
+  set attribution(Attribution attribution) => _setAttribution(attribution);
   void _setAttribution(Attribution attribution);
-  void set options(SaveWidgetOptions opts) => _setOptions(opts);
+  set options(SaveWidgetOptions opts) => _setOptions(opts);
   void _setOptions(SaveWidgetOptions opts);
-  void set place(MarkerPlace place) => _setPlace(place);
+  set place(MarkerPlace place) => _setPlace(place);
   void _setPlace(MarkerPlace place);
 }

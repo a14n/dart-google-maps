@@ -521,20 +521,18 @@ void main() {
   pointArray = MVCArray(
       elements: taxiData, codec: JsInterfaceCodec((o) => LatLng.created(o)));
 
-  heatmap = HeatmapLayer(HeatmapLayerOptions()..data = pointArray);
+  heatmap = HeatmapLayer(HeatmapLayerOptions()..data = pointArray)..map = map;
 
-  heatmap.map = map;
-
-  querySelector("#toggleHeatmap").onClick.listen((e) {
+  querySelector('#toggleHeatmap').onClick.listen((e) {
     toggleHeatmap();
   });
-  querySelector("#changeGradient").onClick.listen((e) {
+  querySelector('#changeGradient').onClick.listen((e) {
     changeGradient();
   });
-  querySelector("#changeRadius").onClick.listen((e) {
+  querySelector('#changeRadius').onClick.listen((e) {
     changeRadius();
   });
-  querySelector("#changeOpacity").onClick.listen((e) {
+  querySelector('#changeOpacity').onClick.listen((e) {
     changeOpacity();
   });
 }

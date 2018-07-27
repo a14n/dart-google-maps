@@ -8,7 +8,7 @@ void main() {
     ..center = chicago;
   final map = GMap(document.getElementById('map-canvas'), mapOptions);
 
-  final ctaLayer = KmlLayer()
-    ..url = 'http://googlemaps.github.io/js-v2-samples/ggeoxml/cta.kml';
-  ctaLayer.map = map;
+  KmlLayer()
+    ..url = 'http://googlemaps.github.io/js-v2-samples/ggeoxml/cta.kml'
+    ..map = map;
 }

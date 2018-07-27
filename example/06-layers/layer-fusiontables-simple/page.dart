@@ -9,9 +9,9 @@ void main() {
         ..center = chicago
         ..zoom = 11);
 
-  final layer = FusionTablesLayer(FusionTablesLayerOptions()
-    ..query = (FusionTablesQuery()
-      ..select = "'Geocodable address'"
-      ..from = '1mZ53Z70NsChnBMm-qEYmSDOvLXgrreLTkQUvvg'));
-  layer.map = map;
+  FusionTablesLayer(FusionTablesLayerOptions()
+        ..query = (FusionTablesQuery()
+          ..select = "'Geocodable address'"
+          ..from = '1mZ53Z70NsChnBMm-qEYmSDOvLXgrreLTkQUvvg'))
+      .map = map;
 }

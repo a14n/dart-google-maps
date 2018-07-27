@@ -22,7 +22,7 @@ abstract class _GeocoderGeometry implements JsInterface {
   LatLng location;
   GeocoderLocationType _location_type;
   GeocoderLocationType get locationType => _location_type;
-  void set locationType(GeocoderLocationType locationType) {
+  set locationType(GeocoderLocationType locationType) {
     _location_type = locationType;
   }
 
