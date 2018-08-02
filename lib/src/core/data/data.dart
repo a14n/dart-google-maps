@@ -115,40 +115,28 @@ abstract class _Data implements JsInterface {
   void _setStyle(dynamic /*DataStylingFunction|DataStyleOptions*/ style);
   void toGeoJson(callback(Object p1));
 
-  Stream<DataAddFeatureEvent> get onAddfeature => getStream(this, #onAddfeature,
-      'addfeature', (JsObject o) => DataAddFeatureEvent.created(o));
-  Stream<DataMouseEvent> get onClick => getStream(
-      this, #onClick, 'click', (JsObject o) => DataMouseEvent.created(o));
-  Stream<DataMouseEvent> get onDblclick => getStream(
-      this, #onDblclick, 'dblclick', (JsObject o) => DataMouseEvent.created(o));
-  Stream<DataMouseEvent> get onMousedown => getStream(this, #onMousedown,
-      'mousedown', (JsObject o) => DataMouseEvent.created(o));
-  Stream<DataMouseEvent> get onMouseout => getStream(
-      this, #onMouseout, 'mouseout', (JsObject o) => DataMouseEvent.created(o));
-  Stream<DataMouseEvent> get onMouseover => getStream(this, #onMouseover,
-      'mouseover', (JsObject o) => DataMouseEvent.created(o));
-  Stream<DataMouseEvent> get onMouseup => getStream(
-      this, #onMouseup, 'mouseup', (JsObject o) => DataMouseEvent.created(o));
+  Stream<DataAddFeatureEvent> get onAddfeature => getStream(
+      this, 'addfeature', (JsObject o) => DataAddFeatureEvent.created(o));
+  Stream<DataMouseEvent> get onClick =>
+      getStream(this, 'click', (JsObject o) => DataMouseEvent.created(o));
+  Stream<DataMouseEvent> get onDblclick =>
+      getStream(this, 'dblclick', (JsObject o) => DataMouseEvent.created(o));
+  Stream<DataMouseEvent> get onMousedown =>
+      getStream(this, 'mousedown', (JsObject o) => DataMouseEvent.created(o));
+  Stream<DataMouseEvent> get onMouseout =>
+      getStream(this, 'mouseout', (JsObject o) => DataMouseEvent.created(o));
+  Stream<DataMouseEvent> get onMouseover =>
+      getStream(this, 'mouseover', (JsObject o) => DataMouseEvent.created(o));
+  Stream<DataMouseEvent> get onMouseup =>
+      getStream(this, 'mouseup', (JsObject o) => DataMouseEvent.created(o));
   Stream<DataRemoveFeatureEvent> get onRemovefeature => getStream(
-      this,
-      #onRemovefeature,
-      'removefeature',
-      (JsObject o) => DataRemoveFeatureEvent.created(o));
-  Stream<DataRemovePropertyEvent> get onRemoveproperty => getStream(
-      this,
-      #onRemoveproperty,
-      'removeproperty',
-      (JsObject o) => DataRemovePropertyEvent.created(o));
-  Stream<DataMouseEvent> get onRightclick => getStream(this, #onRightclick,
-      'rightclick', (JsObject o) => DataMouseEvent.created(o));
+      this, 'removefeature', (JsObject o) => DataRemoveFeatureEvent.created(o));
+  Stream<DataRemovePropertyEvent> get onRemoveproperty => getStream(this,
+      'removeproperty', (JsObject o) => DataRemovePropertyEvent.created(o));
+  Stream<DataMouseEvent> get onRightclick =>
+      getStream(this, 'rightclick', (JsObject o) => DataMouseEvent.created(o));
   Stream<DataSetGeometryEvent> get onSetgeometry => getStream(
-      this,
-      #onSetgeometry,
-      'setgeometry',
-      (JsObject o) => DataSetGeometryEvent.created(o));
+      this, 'setgeometry', (JsObject o) => DataSetGeometryEvent.created(o));
   Stream<DataSetPropertyEvent> get onSetproperty => getStream(
-      this,
-      #onSetproperty,
-      'setproperty',
-      (JsObject o) => DataSetPropertyEvent.created(o));
+      this, 'setproperty', (JsObject o) => DataSetPropertyEvent.created(o));
 }

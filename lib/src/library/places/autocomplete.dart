@@ -31,6 +31,5 @@ abstract class _Autocomplete extends MVCObject {
   set types(List<String> types) => _setTypes(types);
   void _setTypes(List<String> types);
 
-  Stream get onPlaceChanged =>
-      getStream(this, #onPlaceChanged, 'place_changed');
+  Stream get onPlaceChanged => getStream(this, 'place_changed');
 }

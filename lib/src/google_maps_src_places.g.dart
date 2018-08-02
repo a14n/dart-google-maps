@@ -38,8 +38,7 @@ class Autocomplete extends MVCObject {
     asJsObject(this).callMethod('setTypes', [__codec4.encode(types)]);
   }
 
-  Stream get onPlaceChanged =>
-      getStream(this, #onPlaceChanged, 'place_changed');
+  Stream get onPlaceChanged => getStream(this, 'place_changed');
 }
 
 @GeneratedFrom(_AutocompleteOptions)
@@ -848,8 +847,7 @@ class SearchBox extends MVCObject {
     asJsObject(this).callMethod('setBounds', [__codec1.encode(bounds)]);
   }
 
-  Stream get onPlacesChanged =>
-      getStream(this, #onPlacesChanged, 'places_changed');
+  Stream get onPlacesChanged => getStream(this, 'places_changed');
 }
 
 @GeneratedFrom(_SearchBoxOptions)

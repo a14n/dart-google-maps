@@ -200,7 +200,7 @@ class WeatherLayer extends MVCObject {
   }
 
   Stream<WeatherMouseEvent> get onClick =>
-      getStream(this, #onClick, 'click', (o) => WeatherMouseEvent.created(o));
+      getStream(this, 'click', (o) => WeatherMouseEvent.created(o));
 }
 
 @GeneratedFrom(_WeatherLayerOptions)

@@ -34,7 +34,7 @@ abstract class _GroundOverlay extends MVCObject {
   void _setOpacity(num opacity);
 
   Stream<MouseEvent> get onClick =>
-      getStream(this, #onClick, 'click', (JsObject o) => MouseEvent.created(o));
-  Stream<MouseEvent> get onDblclick => getStream(
-      this, #onDblclick, 'dblclick', (JsObject o) => MouseEvent.created(o));
+      getStream(this, 'click', (JsObject o) => MouseEvent.created(o));
+  Stream<MouseEvent> get onDblclick =>
+      getStream(this, 'dblclick', (JsObject o) => MouseEvent.created(o));
 }

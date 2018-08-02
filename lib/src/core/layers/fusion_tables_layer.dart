@@ -25,6 +25,6 @@ abstract class _FusionTablesLayer extends MVCObject {
   set options(FusionTablesLayerOptions options) => _setOptions(options);
   void _setOptions(FusionTablesLayerOptions options);
 
-  Stream<FusionTablesMouseEvent> get onClick => getStream(this, #onClick,
-      'click', (JsObject o) => FusionTablesMouseEvent.created(o));
+  Stream<FusionTablesMouseEvent> get onClick => getStream(
+      this, 'click', (JsObject o) => FusionTablesMouseEvent.created(o));
 }

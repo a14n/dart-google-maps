@@ -46,26 +46,26 @@ abstract class _DynamicMapsEngineLayer extends MVCObject {
   void _setOptions(DynamicMapsEngineLayerOptions options);
 
   Stream<DynamicMapsEngineMouseEvent> get onClick => getStream(
-      this, #onClick, 'click', (o) => DynamicMapsEngineMouseEvent.created(o));
+      this,  'click', (o) => DynamicMapsEngineMouseEvent.created(o));
   Stream<DynamicMapsEngineMouseEvent> get onDblclick => getStream(this,
-      #onDblclick, 'dblclick', (o) => DynamicMapsEngineMouseEvent.created(o));
+       'dblclick', (o) => DynamicMapsEngineMouseEvent.created(o));
   Stream<DynamicMapsEngineMouseEvent> get onMousedown => getStream(this,
-      #onMousedown, 'mousedown', (o) => DynamicMapsEngineMouseEvent.created(o));
+       'mousedown', (o) => DynamicMapsEngineMouseEvent.created(o));
   Stream<DynamicMapsEngineMouseEvent> get onMousemove => getStream(this,
-      #onMousemove, 'mousemove', (o) => DynamicMapsEngineMouseEvent.created(o));
+       'mousemove', (o) => DynamicMapsEngineMouseEvent.created(o));
   Stream<DynamicMapsEngineMouseEvent> get onMouseout => getStream(this,
-      #onMouseout, 'mouseout', (o) => DynamicMapsEngineMouseEvent.created(o));
+       'mouseout', (o) => DynamicMapsEngineMouseEvent.created(o));
   Stream<DynamicMapsEngineMouseEvent> get onMouseover => getStream(this,
-      #onMouseover, 'mouseover', (o) => DynamicMapsEngineMouseEvent.created(o));
+       'mouseover', (o) => DynamicMapsEngineMouseEvent.created(o));
   Stream<DynamicMapsEngineMouseEvent> get onMouseup => getStream(this,
-      #onMouseup, 'mouseup', (o) => DynamicMapsEngineMouseEvent.created(o));
+       'mouseup', (o) => DynamicMapsEngineMouseEvent.created(o));
   Stream get onPropertiesChanged =>
-      getStream(this, #onPropertiesChanged, 'properties_changed');
+      getStream(this,  'properties_changed');
   Stream<DynamicMapsEngineMouseEvent> get onRightclick => getStream(
       this,
-      #onRightclick,
+
       'rightclick',
       (o) => DynamicMapsEngineMouseEvent.created(o));
   Stream get onStatusChanged =>
-      getStream(this, #onStatusChanged, 'status_changed');
+      getStream(this,  'status_changed');
 }

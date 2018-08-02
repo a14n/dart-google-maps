@@ -65,22 +65,15 @@ abstract class _StreetViewPanorama extends MVCObject {
         .encode(controls);
   }
 
-  Stream get onClicktogoChanged =>
-      getStream(this, #onClicktogoChanged, 'clicktogo_changed');
-  Stream<JsObject> get onCloseclick =>
-      getStream(this, #onCloseclick, 'closeclick');
-  Stream get onLinksChanged =>
-      getStream(this, #onLinksChanged, 'links_changed');
-  Stream get onPanoChanged => getStream(this, #onPanoChanged, 'pano_changed');
-  Stream get onPositionChanged =>
-      getStream(this, #onPositionChanged, 'position_changed');
-  Stream get onPovChanged => getStream(this, #onPovChanged, 'pov_changed');
-  Stream get onResize => getStream(this, #onResize, 'resize');
-  Stream get onScrollwheelChanged =>
-      getStream(this, #onScrollwheelChanged, 'scrollwheel_changed');
-  Stream get onStatusChanged =>
-      getStream(this, #onStatusChanged, 'status_changed');
-  Stream get onVisibleChanged =>
-      getStream(this, #onVisibleChanged, 'visible_changed');
-  Stream get onZoomChanged => getStream(this, #onZoomChanged, 'zoom_changed');
+  Stream get onClicktogoChanged => getStream(this, 'clicktogo_changed');
+  Stream<JsObject> get onCloseclick => getStream(this, 'closeclick');
+  Stream get onLinksChanged => getStream(this, 'links_changed');
+  Stream get onPanoChanged => getStream(this, 'pano_changed');
+  Stream get onPositionChanged => getStream(this, 'position_changed');
+  Stream get onPovChanged => getStream(this, 'pov_changed');
+  Stream get onResize => getStream(this, 'resize');
+  Stream get onScrollwheelChanged => getStream(this, 'scrollwheel_changed');
+  Stream get onStatusChanged => getStream(this, 'status_changed');
+  Stream get onVisibleChanged => getStream(this, 'visible_changed');
+  Stream get onZoomChanged => getStream(this, 'zoom_changed');
 }

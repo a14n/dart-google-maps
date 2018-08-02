@@ -561,42 +561,30 @@ class Data extends JsInterface {
     asJsObject(this).callMethod('toGeoJson', [__codec19.encode(callback)]);
   }
 
-  Stream<DataAddFeatureEvent> get onAddfeature => getStream(this, #onAddfeature,
-      'addfeature', (JsObject o) => DataAddFeatureEvent.created(o));
-  Stream<DataMouseEvent> get onClick => getStream(
-      this, #onClick, 'click', (JsObject o) => DataMouseEvent.created(o));
-  Stream<DataMouseEvent> get onDblclick => getStream(
-      this, #onDblclick, 'dblclick', (JsObject o) => DataMouseEvent.created(o));
-  Stream<DataMouseEvent> get onMousedown => getStream(this, #onMousedown,
-      'mousedown', (JsObject o) => DataMouseEvent.created(o));
-  Stream<DataMouseEvent> get onMouseout => getStream(
-      this, #onMouseout, 'mouseout', (JsObject o) => DataMouseEvent.created(o));
-  Stream<DataMouseEvent> get onMouseover => getStream(this, #onMouseover,
-      'mouseover', (JsObject o) => DataMouseEvent.created(o));
-  Stream<DataMouseEvent> get onMouseup => getStream(
-      this, #onMouseup, 'mouseup', (JsObject o) => DataMouseEvent.created(o));
+  Stream<DataAddFeatureEvent> get onAddfeature => getStream(
+      this, 'addfeature', (JsObject o) => DataAddFeatureEvent.created(o));
+  Stream<DataMouseEvent> get onClick =>
+      getStream(this, 'click', (JsObject o) => DataMouseEvent.created(o));
+  Stream<DataMouseEvent> get onDblclick =>
+      getStream(this, 'dblclick', (JsObject o) => DataMouseEvent.created(o));
+  Stream<DataMouseEvent> get onMousedown =>
+      getStream(this, 'mousedown', (JsObject o) => DataMouseEvent.created(o));
+  Stream<DataMouseEvent> get onMouseout =>
+      getStream(this, 'mouseout', (JsObject o) => DataMouseEvent.created(o));
+  Stream<DataMouseEvent> get onMouseover =>
+      getStream(this, 'mouseover', (JsObject o) => DataMouseEvent.created(o));
+  Stream<DataMouseEvent> get onMouseup =>
+      getStream(this, 'mouseup', (JsObject o) => DataMouseEvent.created(o));
   Stream<DataRemoveFeatureEvent> get onRemovefeature => getStream(
-      this,
-      #onRemovefeature,
-      'removefeature',
-      (JsObject o) => DataRemoveFeatureEvent.created(o));
-  Stream<DataRemovePropertyEvent> get onRemoveproperty => getStream(
-      this,
-      #onRemoveproperty,
-      'removeproperty',
-      (JsObject o) => DataRemovePropertyEvent.created(o));
-  Stream<DataMouseEvent> get onRightclick => getStream(this, #onRightclick,
-      'rightclick', (JsObject o) => DataMouseEvent.created(o));
+      this, 'removefeature', (JsObject o) => DataRemoveFeatureEvent.created(o));
+  Stream<DataRemovePropertyEvent> get onRemoveproperty => getStream(this,
+      'removeproperty', (JsObject o) => DataRemovePropertyEvent.created(o));
+  Stream<DataMouseEvent> get onRightclick =>
+      getStream(this, 'rightclick', (JsObject o) => DataMouseEvent.created(o));
   Stream<DataSetGeometryEvent> get onSetgeometry => getStream(
-      this,
-      #onSetgeometry,
-      'setgeometry',
-      (JsObject o) => DataSetGeometryEvent.created(o));
+      this, 'setgeometry', (JsObject o) => DataSetGeometryEvent.created(o));
   Stream<DataSetPropertyEvent> get onSetproperty => getStream(
-      this,
-      #onSetproperty,
-      'setproperty',
-      (JsObject o) => DataSetPropertyEvent.created(o));
+      this, 'setproperty', (JsObject o) => DataSetPropertyEvent.created(o));
 }
 
 @GeneratedFrom(_DataAddFeatureEvent)
@@ -796,21 +784,12 @@ class DataFeature extends JsInterface {
     asJsObject(this).callMethod('toGeoJson', [__codec19.encode(callback)]);
   }
 
-  Stream<DataRemovePropertyEvent> get onRemoveproperty => getStream(
-      this,
-      #onRemoveproperty,
-      'removeproperty',
-      (JsObject o) => DataRemovePropertyEvent.created(o));
+  Stream<DataRemovePropertyEvent> get onRemoveproperty => getStream(this,
+      'removeproperty', (JsObject o) => DataRemovePropertyEvent.created(o));
   Stream<DataSetGeometryEvent> get onSetgeometry => getStream(
-      this,
-      #onSetgeometry,
-      'setgeometry',
-      (JsObject o) => DataSetGeometryEvent.created(o));
+      this, 'setgeometry', (JsObject o) => DataSetGeometryEvent.created(o));
   Stream<DataSetPropertyEvent> get onSetproperty => getStream(
-      this,
-      #onSetproperty,
-      'setproperty',
-      (JsObject o) => DataSetPropertyEvent.created(o));
+      this, 'setproperty', (JsObject o) => DataSetPropertyEvent.created(o));
 }
 
 @GeneratedFrom(_DataFeatureOptions)
@@ -1599,8 +1578,8 @@ class FusionTablesLayer extends MVCObject {
     asJsObject(this).callMethod('setOptions', [__codec33.encode(options)]);
   }
 
-  Stream<FusionTablesMouseEvent> get onClick => getStream(this, #onClick,
-      'click', (JsObject o) => FusionTablesMouseEvent.created(o));
+  Stream<FusionTablesMouseEvent> get onClick => getStream(
+      this, 'click', (JsObject o) => FusionTablesMouseEvent.created(o));
 }
 
 @GeneratedFrom(_FusionTablesLayerOptions)
@@ -1909,12 +1888,11 @@ class KmlLayer extends MVCObject {
     asJsObject(this).callMethod('setZIndex', [zIndex]);
   }
 
-  Stream<KmlMouseEvent> get onClick => getStream(
-      this, #onClick, 'click', (JsObject o) => KmlMouseEvent.created(o));
+  Stream<KmlMouseEvent> get onClick =>
+      getStream(this, 'click', (JsObject o) => KmlMouseEvent.created(o));
   Stream get onDefaultviewportChanged =>
-      getStream(this, #onDefaultviewportChanged, 'defaultviewport_changed');
-  Stream get onStatusChanged =>
-      getStream(this, #onStatusChanged, 'status_changed');
+      getStream(this, 'defaultviewport_changed');
+  Stream get onStatusChanged => getStream(this, 'status_changed');
 }
 
 @GeneratedFrom(_KmlLayerMetadata)
@@ -2232,36 +2210,31 @@ class GMap extends MVCObject {
         .encode(overlayMapTypes);
   }
 
-  Stream get onBoundsChanged =>
-      getStream(this, #onBoundsChanged, 'bounds_changed');
-  Stream get onCenterChanged =>
-      getStream(this, #onCenterChanged, 'center_changed');
+  Stream get onBoundsChanged => getStream(this, 'bounds_changed');
+  Stream get onCenterChanged => getStream(this, 'center_changed');
   Stream<MouseEvent> get onClick =>
-      getStream(this, #onClick, 'click', (JsObject o) => MouseEvent.created(o));
-  Stream<MouseEvent> get onDblclick => getStream(
-      this, #onDblclick, 'dblclick', (JsObject o) => MouseEvent.created(o));
-  Stream get onDrag => getStream(this, #onDrag, 'drag');
-  Stream get onDragend => getStream(this, #onDragend, 'dragend');
-  Stream get onDragstart => getStream(this, #onDragstart, 'dragstart');
-  Stream get onHeadingChanged =>
-      getStream(this, #onHeadingChanged, 'heading_changed');
-  Stream get onIdle => getStream(this, #onIdle, 'idle');
-  Stream get onMaptypeidChanged =>
-      getStream(this, #onMaptypeidChanged, 'maptypeid_changed');
-  Stream<MouseEvent> get onMousemove => getStream(
-      this, #onMousemove, 'mousemove', (JsObject o) => MouseEvent.created(o));
-  Stream<MouseEvent> get onMouseout => getStream(
-      this, #onMouseout, 'mouseout', (JsObject o) => MouseEvent.created(o));
-  Stream<MouseEvent> get onMouseover => getStream(
-      this, #onMouseover, 'mouseover', (JsObject o) => MouseEvent.created(o));
-  Stream get onProjectionChanged =>
-      getStream(this, #onProjectionChanged, 'projection_changed');
-  Stream get onResize => getStream(this, #onResize, 'resize');
-  Stream<MouseEvent> get onRightclick => getStream(
-      this, #onRightclick, 'rightclick', (JsObject o) => MouseEvent.created(o));
-  Stream get onTilesloaded => getStream(this, #onTilesloaded, 'tilesloaded');
-  Stream get onTiltChanged => getStream(this, #onTiltChanged, 'tilt_changed');
-  Stream get onZoomChanged => getStream(this, #onZoomChanged, 'zoom_changed');
+      getStream(this, 'click', (JsObject o) => MouseEvent.created(o));
+  Stream<MouseEvent> get onDblclick =>
+      getStream(this, 'dblclick', (JsObject o) => MouseEvent.created(o));
+  Stream get onDrag => getStream(this, 'drag');
+  Stream get onDragend => getStream(this, 'dragend');
+  Stream get onDragstart => getStream(this, 'dragstart');
+  Stream get onHeadingChanged => getStream(this, 'heading_changed');
+  Stream get onIdle => getStream(this, 'idle');
+  Stream get onMaptypeidChanged => getStream(this, 'maptypeid_changed');
+  Stream<MouseEvent> get onMousemove =>
+      getStream(this, 'mousemove', (JsObject o) => MouseEvent.created(o));
+  Stream<MouseEvent> get onMouseout =>
+      getStream(this, 'mouseout', (JsObject o) => MouseEvent.created(o));
+  Stream<MouseEvent> get onMouseover =>
+      getStream(this, 'mouseover', (JsObject o) => MouseEvent.created(o));
+  Stream get onProjectionChanged => getStream(this, 'projection_changed');
+  Stream get onResize => getStream(this, 'resize');
+  Stream<MouseEvent> get onRightclick =>
+      getStream(this, 'rightclick', (JsObject o) => MouseEvent.created(o));
+  Stream get onTilesloaded => getStream(this, 'tilesloaded');
+  Stream get onTiltChanged => getStream(this, 'tilt_changed');
+  Stream get onZoomChanged => getStream(this, 'zoom_changed');
 }
 
 @GeneratedFrom(_MapOptions)
@@ -2575,7 +2548,7 @@ class ImageMapType extends MVCObject implements MapType {
 
   Size get tileSize => __codec3.decode(asJsObject(this)['tileSize']);
 
-  Stream get onTilesloaded => getStream(this, #onTilesloaded, 'tilesloaded');
+  Stream get onTilesloaded => getStream(this, 'tilesloaded');
 }
 
 @GeneratedFrom(_ImageMapTypeOptions)
@@ -2912,16 +2885,14 @@ class MVCArray<E> extends MVCObject {
     asJsObject(this).callMethod('setAt', [i, __codec9.encode(elem)]);
   }
 
-  Stream<int> get onInsertAt => getStream(this, #onInsertAt, 'insert_at');
+  Stream<int> get onInsertAt => getStream(this, 'insert_at');
   Stream<IndexAndElement<E>> get onRemoveAt => getStream(
       this,
-      #onClick,
       'click',
       (int index, oldElement) =>
           IndexAndElement<E>(index, _codec.decode(oldElement)));
   Stream<IndexAndElement<E>> get onSetAt => getStream(
       this,
-      #onClick,
       'click',
       (int index, oldElement) =>
           IndexAndElement<E>(index, _codec.decode(oldElement)));
@@ -3044,32 +3015,30 @@ class Circle extends MVCObject {
     asJsObject(this).callMethod('setVisible', [visible]);
   }
 
-  Stream get onCenterChanged =>
-      getStream(this, #onCenterChanged, 'center_changed');
+  Stream get onCenterChanged => getStream(this, 'center_changed');
   Stream<MouseEvent> get onClick =>
-      getStream(this, #onClick, 'click', (JsObject o) => MouseEvent.created(o));
-  Stream<MouseEvent> get onDblclick => getStream(
-      this, #onDblclick, 'dblclick', (JsObject o) => MouseEvent.created(o));
+      getStream(this, 'click', (JsObject o) => MouseEvent.created(o));
+  Stream<MouseEvent> get onDblclick =>
+      getStream(this, 'dblclick', (JsObject o) => MouseEvent.created(o));
   Stream<MouseEvent> get onDrag =>
-      getStream(this, #onDrag, 'drag', (JsObject o) => MouseEvent.created(o));
-  Stream<MouseEvent> get onDragend => getStream(
-      this, #onDragend, 'dragend', (JsObject o) => MouseEvent.created(o));
-  Stream<MouseEvent> get onDragstart => getStream(
-      this, #onDragstart, 'dragstart', (JsObject o) => MouseEvent.created(o));
-  Stream<MouseEvent> get onMousedown => getStream(
-      this, #onMousedown, 'mousedown', (JsObject o) => MouseEvent.created(o));
-  Stream<MouseEvent> get onMousemove => getStream(
-      this, #onMousemove, 'mousemove', (JsObject o) => MouseEvent.created(o));
-  Stream<MouseEvent> get onMouseout => getStream(
-      this, #onMouseout, 'mouseout', (JsObject o) => MouseEvent.created(o));
-  Stream<MouseEvent> get onMouseover => getStream(
-      this, #onMouseover, 'mouseover', (JsObject o) => MouseEvent.created(o));
-  Stream<MouseEvent> get onMouseup => getStream(
-      this, #onMouseup, 'mouseup', (JsObject o) => MouseEvent.created(o));
-  Stream get onRadiusChanged =>
-      getStream(this, #onRadiusChanged, 'radius_changed');
-  Stream<MouseEvent> get onRightclick => getStream(
-      this, #onRightclick, 'rightclick', (JsObject o) => MouseEvent.created(o));
+      getStream(this, 'drag', (JsObject o) => MouseEvent.created(o));
+  Stream<MouseEvent> get onDragend =>
+      getStream(this, 'dragend', (JsObject o) => MouseEvent.created(o));
+  Stream<MouseEvent> get onDragstart =>
+      getStream(this, 'dragstart', (JsObject o) => MouseEvent.created(o));
+  Stream<MouseEvent> get onMousedown =>
+      getStream(this, 'mousedown', (JsObject o) => MouseEvent.created(o));
+  Stream<MouseEvent> get onMousemove =>
+      getStream(this, 'mousemove', (JsObject o) => MouseEvent.created(o));
+  Stream<MouseEvent> get onMouseout =>
+      getStream(this, 'mouseout', (JsObject o) => MouseEvent.created(o));
+  Stream<MouseEvent> get onMouseover =>
+      getStream(this, 'mouseover', (JsObject o) => MouseEvent.created(o));
+  Stream<MouseEvent> get onMouseup =>
+      getStream(this, 'mouseup', (JsObject o) => MouseEvent.created(o));
+  Stream get onRadiusChanged => getStream(this, 'radius_changed');
+  Stream<MouseEvent> get onRightclick =>
+      getStream(this, 'rightclick', (JsObject o) => MouseEvent.created(o));
 }
 
 @GeneratedFrom(_CircleOptions)
@@ -3179,9 +3148,9 @@ class GroundOverlay extends MVCObject {
   }
 
   Stream<MouseEvent> get onClick =>
-      getStream(this, #onClick, 'click', (JsObject o) => MouseEvent.created(o));
-  Stream<MouseEvent> get onDblclick => getStream(
-      this, #onDblclick, 'dblclick', (JsObject o) => MouseEvent.created(o));
+      getStream(this, 'click', (JsObject o) => MouseEvent.created(o));
+  Stream<MouseEvent> get onDblclick =>
+      getStream(this, 'dblclick', (JsObject o) => MouseEvent.created(o));
 }
 
 @GeneratedFrom(_GroundOverlayOptions)
@@ -3337,14 +3306,11 @@ class InfoWindow extends MVCObject {
     asJsObject(this).callMethod('setZIndex', [zIndex]);
   }
 
-  Stream get onCloseclick => getStream(this, #onCloseclick, 'closeclick');
-  Stream get onContentChanged =>
-      getStream(this, #onContentChanged, 'content_changed');
-  Stream get onDomready => getStream(this, #onDomready, 'domready');
-  Stream get onPositionChanged =>
-      getStream(this, #onPositionChanged, 'position_changed');
-  Stream get onZindexChanged =>
-      getStream(this, #onZindexChanged, 'zindex_changed');
+  Stream get onCloseclick => getStream(this, 'closeclick');
+  Stream get onContentChanged => getStream(this, 'content_changed');
+  Stream get onDomready => getStream(this, 'domready');
+  Stream get onPositionChanged => getStream(this, 'position_changed');
+  Stream get onZindexChanged => getStream(this, 'zindex_changed');
 }
 
 @GeneratedFrom(_InfoWindowOptions)
@@ -3602,46 +3568,37 @@ class Marker extends MVCObject {
     asJsObject(this).callMethod('setZIndex', [zIndex]);
   }
 
-  Stream get onAnimationChanged =>
-      getStream(this, #onAnimationChanged, 'animation_changed');
+  Stream get onAnimationChanged => getStream(this, 'animation_changed');
   Stream<MouseEvent> get onClick =>
-      getStream(this, #onClick, 'click', (JsObject o) => MouseEvent.created(o));
-  Stream get onClickableChanged =>
-      getStream(this, #onClickableChanged, 'clickable_changed');
-  Stream get onCursorChanged =>
-      getStream(this, #onCursorChanged, 'cursor_changed');
-  Stream<MouseEvent> get onDblclick => getStream(
-      this, #onDblclick, 'dblclick', (JsObject o) => MouseEvent.created(o));
+      getStream(this, 'click', (JsObject o) => MouseEvent.created(o));
+  Stream get onClickableChanged => getStream(this, 'clickable_changed');
+  Stream get onCursorChanged => getStream(this, 'cursor_changed');
+  Stream<MouseEvent> get onDblclick =>
+      getStream(this, 'dblclick', (JsObject o) => MouseEvent.created(o));
   Stream<MouseEvent> get onDrag =>
-      getStream(this, #onDrag, 'drag', (JsObject o) => MouseEvent.created(o));
-  Stream<MouseEvent> get onDragend => getStream(
-      this, #onDragend, 'dragend', (JsObject o) => MouseEvent.created(o));
-  Stream get onDraggableChanged =>
-      getStream(this, #onDraggableChanged, 'draggable_changed');
-  Stream<MouseEvent> get onDragstart => getStream(
-      this, #onDragstart, 'dragstart', (JsObject o) => MouseEvent.created(o));
-  Stream get onFlatChanged => getStream(this, #onFlatChanged, 'flat_changed');
-  Stream get onIconChanged => getStream(this, #onIconChanged, 'icon_changed');
-  Stream<MouseEvent> get onMousedown => getStream(
-      this, #onMousedown, 'mousedown', (JsObject o) => MouseEvent.created(o));
-  Stream<MouseEvent> get onMouseout => getStream(
-      this, #onMouseout, 'mouseout', (JsObject o) => MouseEvent.created(o));
-  Stream<MouseEvent> get onMouseover => getStream(
-      this, #onMouseover, 'mouseover', (JsObject o) => MouseEvent.created(o));
-  Stream<MouseEvent> get onMouseup => getStream(
-      this, #onMouseup, 'mouseup', (JsObject o) => MouseEvent.created(o));
-  Stream get onPositionChanged =>
-      getStream(this, #onPositionChanged, 'position_changed');
-  Stream<MouseEvent> get onRightclick => getStream(
-      this, #onRightclick, 'rightclick', (JsObject o) => MouseEvent.created(o));
-  Stream get onShapeChanged =>
-      getStream(this, #onShapeChanged, 'shape_changed');
-  Stream get onTitleChanged =>
-      getStream(this, #onTitleChanged, 'title_changed');
-  Stream get onVisibleChanged =>
-      getStream(this, #onVisibleChanged, 'visible_changed');
-  Stream get onZindexChanged =>
-      getStream(this, #onZindexChanged, 'zindex_changed');
+      getStream(this, 'drag', (JsObject o) => MouseEvent.created(o));
+  Stream<MouseEvent> get onDragend =>
+      getStream(this, 'dragend', (JsObject o) => MouseEvent.created(o));
+  Stream get onDraggableChanged => getStream(this, 'draggable_changed');
+  Stream<MouseEvent> get onDragstart =>
+      getStream(this, 'dragstart', (JsObject o) => MouseEvent.created(o));
+  Stream get onFlatChanged => getStream(this, 'flat_changed');
+  Stream get onIconChanged => getStream(this, 'icon_changed');
+  Stream<MouseEvent> get onMousedown =>
+      getStream(this, 'mousedown', (JsObject o) => MouseEvent.created(o));
+  Stream<MouseEvent> get onMouseout =>
+      getStream(this, 'mouseout', (JsObject o) => MouseEvent.created(o));
+  Stream<MouseEvent> get onMouseover =>
+      getStream(this, 'mouseover', (JsObject o) => MouseEvent.created(o));
+  Stream<MouseEvent> get onMouseup =>
+      getStream(this, 'mouseup', (JsObject o) => MouseEvent.created(o));
+  Stream get onPositionChanged => getStream(this, 'position_changed');
+  Stream<MouseEvent> get onRightclick =>
+      getStream(this, 'rightclick', (JsObject o) => MouseEvent.created(o));
+  Stream get onShapeChanged => getStream(this, 'shape_changed');
+  Stream get onTitleChanged => getStream(this, 'title_changed');
+  Stream get onVisibleChanged => getStream(this, 'visible_changed');
+  Stream get onZindexChanged => getStream(this, 'zindex_changed');
 }
 
 @GeneratedFrom(_MarkerLabel)
@@ -4035,28 +3992,28 @@ class Polygon extends MVCObject {
     asJsObject(this).callMethod('setVisible', [visible]);
   }
 
-  Stream<PolyMouseEvent> get onClick => getStream(
-      this, #onClick, 'click', (JsObject o) => PolyMouseEvent.created(o));
-  Stream<PolyMouseEvent> get onDblclick => getStream(
-      this, #onDblclick, 'dblclick', (JsObject o) => PolyMouseEvent.created(o));
+  Stream<PolyMouseEvent> get onClick =>
+      getStream(this, 'click', (JsObject o) => PolyMouseEvent.created(o));
+  Stream<PolyMouseEvent> get onDblclick =>
+      getStream(this, 'dblclick', (JsObject o) => PolyMouseEvent.created(o));
   Stream<MouseEvent> get onDrag =>
-      getStream(this, #onDrag, 'drag', (JsObject o) => MouseEvent.created(o));
-  Stream<MouseEvent> get onDragend => getStream(
-      this, #onDragend, 'dragend', (JsObject o) => MouseEvent.created(o));
-  Stream<MouseEvent> get onDragstart => getStream(
-      this, #onDragstart, 'dragstart', (JsObject o) => MouseEvent.created(o));
-  Stream<PolyMouseEvent> get onMousedown => getStream(this, #onMousedown,
-      'mousedown', (JsObject o) => PolyMouseEvent.created(o));
-  Stream<PolyMouseEvent> get onMousemove => getStream(this, #onMousemove,
-      'mousemove', (JsObject o) => PolyMouseEvent.created(o));
-  Stream<PolyMouseEvent> get onMouseout => getStream(
-      this, #onMouseout, 'mouseout', (JsObject o) => PolyMouseEvent.created(o));
-  Stream<PolyMouseEvent> get onMouseover => getStream(this, #onMouseover,
-      'mouseover', (JsObject o) => PolyMouseEvent.created(o));
-  Stream<PolyMouseEvent> get onMouseup => getStream(
-      this, #onMouseup, 'mouseup', (JsObject o) => PolyMouseEvent.created(o));
-  Stream<PolyMouseEvent> get onRightclick => getStream(this, #onRightclick,
-      'rightclick', (JsObject o) => PolyMouseEvent.created(o));
+      getStream(this, 'drag', (JsObject o) => MouseEvent.created(o));
+  Stream<MouseEvent> get onDragend =>
+      getStream(this, 'dragend', (JsObject o) => MouseEvent.created(o));
+  Stream<MouseEvent> get onDragstart =>
+      getStream(this, 'dragstart', (JsObject o) => MouseEvent.created(o));
+  Stream<PolyMouseEvent> get onMousedown =>
+      getStream(this, 'mousedown', (JsObject o) => PolyMouseEvent.created(o));
+  Stream<PolyMouseEvent> get onMousemove =>
+      getStream(this, 'mousemove', (JsObject o) => PolyMouseEvent.created(o));
+  Stream<PolyMouseEvent> get onMouseout =>
+      getStream(this, 'mouseout', (JsObject o) => PolyMouseEvent.created(o));
+  Stream<PolyMouseEvent> get onMouseover =>
+      getStream(this, 'mouseover', (JsObject o) => PolyMouseEvent.created(o));
+  Stream<PolyMouseEvent> get onMouseup =>
+      getStream(this, 'mouseup', (JsObject o) => PolyMouseEvent.created(o));
+  Stream<PolyMouseEvent> get onRightclick =>
+      getStream(this, 'rightclick', (JsObject o) => PolyMouseEvent.created(o));
 }
 
 @GeneratedFrom(_PolygonOptions)
@@ -4248,28 +4205,28 @@ class Polyline extends MVCObject {
     asJsObject(this).callMethod('setVisible', [visible]);
   }
 
-  Stream<PolyMouseEvent> get onClick => getStream(
-      this, #onClick, 'click', (JsObject o) => PolyMouseEvent.created(o));
-  Stream<PolyMouseEvent> get onDblclick => getStream(
-      this, #onDblclick, 'dblclick', (JsObject o) => PolyMouseEvent.created(o));
+  Stream<PolyMouseEvent> get onClick =>
+      getStream(this, 'click', (JsObject o) => PolyMouseEvent.created(o));
+  Stream<PolyMouseEvent> get onDblclick =>
+      getStream(this, 'dblclick', (JsObject o) => PolyMouseEvent.created(o));
   Stream<MouseEvent> get onDrag =>
-      getStream(this, #onDrag, 'drag', (JsObject o) => MouseEvent.created(o));
-  Stream<MouseEvent> get onDragend => getStream(
-      this, #onDragend, 'dragend', (JsObject o) => MouseEvent.created(o));
-  Stream<MouseEvent> get onDragstart => getStream(
-      this, #onDragstart, 'dragstart', (JsObject o) => MouseEvent.created(o));
-  Stream<PolyMouseEvent> get onMousedown => getStream(this, #onMousedown,
-      'mousedown', (JsObject o) => PolyMouseEvent.created(o));
-  Stream<PolyMouseEvent> get onMousemove => getStream(this, #onMousemove,
-      'mousemove', (JsObject o) => PolyMouseEvent.created(o));
-  Stream<PolyMouseEvent> get onMouseout => getStream(
-      this, #onMouseout, 'mouseout', (JsObject o) => PolyMouseEvent.created(o));
-  Stream<PolyMouseEvent> get onMouseover => getStream(this, #onMouseover,
-      'mouseover', (JsObject o) => PolyMouseEvent.created(o));
-  Stream<PolyMouseEvent> get onMouseup => getStream(
-      this, #onMouseup, 'mouseup', (JsObject o) => PolyMouseEvent.created(o));
-  Stream<PolyMouseEvent> get onRightclick => getStream(this, #onRightclick,
-      'rightclick', (JsObject o) => PolyMouseEvent.created(o));
+      getStream(this, 'drag', (JsObject o) => MouseEvent.created(o));
+  Stream<MouseEvent> get onDragend =>
+      getStream(this, 'dragend', (JsObject o) => MouseEvent.created(o));
+  Stream<MouseEvent> get onDragstart =>
+      getStream(this, 'dragstart', (JsObject o) => MouseEvent.created(o));
+  Stream<PolyMouseEvent> get onMousedown =>
+      getStream(this, 'mousedown', (JsObject o) => PolyMouseEvent.created(o));
+  Stream<PolyMouseEvent> get onMousemove =>
+      getStream(this, 'mousemove', (JsObject o) => PolyMouseEvent.created(o));
+  Stream<PolyMouseEvent> get onMouseout =>
+      getStream(this, 'mouseout', (JsObject o) => PolyMouseEvent.created(o));
+  Stream<PolyMouseEvent> get onMouseover =>
+      getStream(this, 'mouseover', (JsObject o) => PolyMouseEvent.created(o));
+  Stream<PolyMouseEvent> get onMouseup =>
+      getStream(this, 'mouseup', (JsObject o) => PolyMouseEvent.created(o));
+  Stream<PolyMouseEvent> get onRightclick =>
+      getStream(this, 'rightclick', (JsObject o) => PolyMouseEvent.created(o));
 }
 
 @GeneratedFrom(_PolylineOptions)
@@ -4426,30 +4383,29 @@ class Rectangle extends MVCObject {
     asJsObject(this).callMethod('setVisible', [visible]);
   }
 
-  Stream get onBoundsChanged =>
-      getStream(this, #onBoundsChanged, 'bounds_changed');
+  Stream get onBoundsChanged => getStream(this, 'bounds_changed');
   Stream<MouseEvent> get onClick =>
-      getStream(this, #onClick, 'click', (JsObject o) => MouseEvent.created(o));
-  Stream<MouseEvent> get onDblclick => getStream(
-      this, #onDblclick, 'dblclick', (JsObject o) => MouseEvent.created(o));
+      getStream(this, 'click', (JsObject o) => MouseEvent.created(o));
+  Stream<MouseEvent> get onDblclick =>
+      getStream(this, 'dblclick', (JsObject o) => MouseEvent.created(o));
   Stream<MouseEvent> get onDrag =>
-      getStream(this, #onDrag, 'drag', (JsObject o) => MouseEvent.created(o));
-  Stream<MouseEvent> get onDragend => getStream(
-      this, #onDragend, 'dragend', (JsObject o) => MouseEvent.created(o));
-  Stream<MouseEvent> get onDragstart => getStream(
-      this, #onDragstart, 'dragstart', (JsObject o) => MouseEvent.created(o));
-  Stream<MouseEvent> get onMousedown => getStream(
-      this, #onMousedown, 'mousedown', (JsObject o) => MouseEvent.created(o));
-  Stream<MouseEvent> get onMousemove => getStream(
-      this, #onMousemove, 'mousemove', (JsObject o) => MouseEvent.created(o));
-  Stream<MouseEvent> get onMouseout => getStream(
-      this, #onMouseout, 'mouseout', (JsObject o) => MouseEvent.created(o));
-  Stream<MouseEvent> get onMouseover => getStream(
-      this, #onMouseover, 'mouseover', (JsObject o) => MouseEvent.created(o));
-  Stream<MouseEvent> get onMouseup => getStream(
-      this, #onMouseup, 'mouseup', (JsObject o) => MouseEvent.created(o));
-  Stream<MouseEvent> get onRightclick => getStream(
-      this, #onRightclick, 'rightclick', (JsObject o) => MouseEvent.created(o));
+      getStream(this, 'drag', (JsObject o) => MouseEvent.created(o));
+  Stream<MouseEvent> get onDragend =>
+      getStream(this, 'dragend', (JsObject o) => MouseEvent.created(o));
+  Stream<MouseEvent> get onDragstart =>
+      getStream(this, 'dragstart', (JsObject o) => MouseEvent.created(o));
+  Stream<MouseEvent> get onMousedown =>
+      getStream(this, 'mousedown', (JsObject o) => MouseEvent.created(o));
+  Stream<MouseEvent> get onMousemove =>
+      getStream(this, 'mousemove', (JsObject o) => MouseEvent.created(o));
+  Stream<MouseEvent> get onMouseout =>
+      getStream(this, 'mouseout', (JsObject o) => MouseEvent.created(o));
+  Stream<MouseEvent> get onMouseover =>
+      getStream(this, 'mouseover', (JsObject o) => MouseEvent.created(o));
+  Stream<MouseEvent> get onMouseup =>
+      getStream(this, 'mouseup', (JsObject o) => MouseEvent.created(o));
+  Stream<MouseEvent> get onRightclick =>
+      getStream(this, 'rightclick', (JsObject o) => MouseEvent.created(o));
 }
 
 @GeneratedFrom(_RectangleOptions)
@@ -4943,8 +4899,7 @@ class DirectionsRenderer extends MVCObject {
     asJsObject(this).callMethod('setRouteIndex', [routeIndex]);
   }
 
-  Stream get onDirectionsChanged =>
-      getStream(this, #onDirectionsChanged, 'directions_changed');
+  Stream get onDirectionsChanged => getStream(this, 'directions_changed');
 }
 
 @GeneratedFrom(_DirectionsRendererOptions)
@@ -6769,24 +6724,17 @@ class StreetViewPanorama extends MVCObject {
         .encode(controls);
   }
 
-  Stream get onClicktogoChanged =>
-      getStream(this, #onClicktogoChanged, 'clicktogo_changed');
-  Stream<JsObject> get onCloseclick =>
-      getStream(this, #onCloseclick, 'closeclick');
-  Stream get onLinksChanged =>
-      getStream(this, #onLinksChanged, 'links_changed');
-  Stream get onPanoChanged => getStream(this, #onPanoChanged, 'pano_changed');
-  Stream get onPositionChanged =>
-      getStream(this, #onPositionChanged, 'position_changed');
-  Stream get onPovChanged => getStream(this, #onPovChanged, 'pov_changed');
-  Stream get onResize => getStream(this, #onResize, 'resize');
-  Stream get onScrollwheelChanged =>
-      getStream(this, #onScrollwheelChanged, 'scrollwheel_changed');
-  Stream get onStatusChanged =>
-      getStream(this, #onStatusChanged, 'status_changed');
-  Stream get onVisibleChanged =>
-      getStream(this, #onVisibleChanged, 'visible_changed');
-  Stream get onZoomChanged => getStream(this, #onZoomChanged, 'zoom_changed');
+  Stream get onClicktogoChanged => getStream(this, 'clicktogo_changed');
+  Stream<JsObject> get onCloseclick => getStream(this, 'closeclick');
+  Stream get onLinksChanged => getStream(this, 'links_changed');
+  Stream get onPanoChanged => getStream(this, 'pano_changed');
+  Stream get onPositionChanged => getStream(this, 'position_changed');
+  Stream get onPovChanged => getStream(this, 'pov_changed');
+  Stream get onResize => getStream(this, 'resize');
+  Stream get onScrollwheelChanged => getStream(this, 'scrollwheel_changed');
+  Stream get onStatusChanged => getStream(this, 'status_changed');
+  Stream get onVisibleChanged => getStream(this, 'visible_changed');
+  Stream get onZoomChanged => getStream(this, 'zoom_changed');
 }
 
 @GeneratedFrom(_StreetViewPanoramaData)

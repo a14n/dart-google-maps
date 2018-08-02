@@ -33,5 +33,5 @@ abstract class _ImageMapType extends MVCObject implements MapType {
   num radius;
   Size tileSize;
 
-  Stream get onTilesloaded => getStream(this, #onTilesloaded, 'tilesloaded');
+  Stream get onTilesloaded => getStream(this, 'tilesloaded');
 }

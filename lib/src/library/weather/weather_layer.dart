@@ -26,5 +26,5 @@ abstract class _WeatherLayer extends MVCObject {
   void _setOptions(WeatherLayerOptions options);
 
   Stream<WeatherMouseEvent> get onClick =>
-      getStream(this, #onClick, 'click', (o) => WeatherMouseEvent.created(o));
+      getStream(this, 'click', (o) => WeatherMouseEvent.created(o));
 }

@@ -74,8 +74,8 @@ class PanoramioLayer extends MVCObject {
     asJsObject(this).callMethod('setUserId', [userId]);
   }
 
-  Stream<PanoramioMouseEvent> get onClick => getStream(
-      this, #onClick, 'click', (JsObject o) => PanoramioMouseEvent.created(o));
+  Stream<PanoramioMouseEvent> get onClick =>
+      getStream(this, 'click', (JsObject o) => PanoramioMouseEvent.created(o));
 }
 
 @GeneratedFrom(_PanoramioLayerOptions)

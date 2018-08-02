@@ -78,19 +78,10 @@ abstract class _DataFeature implements JsInterface {
   void setProperty(String name, dynamic newValue);
   void toGeoJson(callback(Object p1));
 
-  Stream<DataRemovePropertyEvent> get onRemoveproperty => getStream(
-      this,
-      #onRemoveproperty,
-      'removeproperty',
-      (JsObject o) => DataRemovePropertyEvent.created(o));
+  Stream<DataRemovePropertyEvent> get onRemoveproperty => getStream(this,
+      'removeproperty', (JsObject o) => DataRemovePropertyEvent.created(o));
   Stream<DataSetGeometryEvent> get onSetgeometry => getStream(
-      this,
-      #onSetgeometry,
-      'setgeometry',
-      (JsObject o) => DataSetGeometryEvent.created(o));
+      this, 'setgeometry', (JsObject o) => DataSetGeometryEvent.created(o));
   Stream<DataSetPropertyEvent> get onSetproperty => getStream(
-      this,
-      #onSetproperty,
-      'setproperty',
-      (JsObject o) => DataSetPropertyEvent.created(o));
+      this, 'setproperty', (JsObject o) => DataSetPropertyEvent.created(o));
 }

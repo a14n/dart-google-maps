@@ -25,6 +25,5 @@ abstract class _SearchBox extends MVCObject {
   set bounds(LatLngBounds bounds) => _setBounds(bounds);
   void _setBounds(LatLngBounds bounds);
 
-  Stream get onPlacesChanged =>
-      getStream(this, #onPlacesChanged, 'places_changed');
+  Stream get onPlacesChanged => getStream(this, 'places_changed');
 }

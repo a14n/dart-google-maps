@@ -55,27 +55,18 @@ class DrawingManager extends MVCObject {
     asJsObject(this).callMethod('setOptions', [__codec3.encode(options)]);
   }
 
-  Stream<Circle> get onCirclecomplete => getStream(this, #onCirclecomplete,
-      'circlecomplete', (JsObject o) => Circle.created(o));
-  Stream<Marker> get onMarkercomplete => getStream(this, #onMarkercomplete,
-      'markercomplete', (JsObject o) => Marker.created(o));
+  Stream<Circle> get onCirclecomplete =>
+      getStream(this, 'circlecomplete', (JsObject o) => Circle.created(o));
+  Stream<Marker> get onMarkercomplete =>
+      getStream(this, 'markercomplete', (JsObject o) => Marker.created(o));
   Stream<OverlayCompleteEvent> get onOverlaycomplete => getStream(
-      this,
-      #onOverlaycomplete,
-      'overlaycomplete',
-      (JsObject o) => OverlayCompleteEvent.created(o));
-  Stream<Polygon> get onPolygoncomplete => getStream(this, #onPolygoncomplete,
-      'polygoncomplete', (JsObject o) => Polygon.created(o));
-  Stream<Polyline> get onPolylinecomplete => getStream(
-      this,
-      #onPolylinecomplete,
-      'polylinecomplete',
-      (JsObject o) => Polyline.created(o));
+      this, 'overlaycomplete', (JsObject o) => OverlayCompleteEvent.created(o));
+  Stream<Polygon> get onPolygoncomplete =>
+      getStream(this, 'polygoncomplete', (JsObject o) => Polygon.created(o));
+  Stream<Polyline> get onPolylinecomplete =>
+      getStream(this, 'polylinecomplete', (JsObject o) => Polyline.created(o));
   Stream<Rectangle> get onRectanglecomplete => getStream(
-      this,
-      #onRectanglecomplete,
-      'rectanglecomplete',
-      (JsObject o) => Rectangle.created(o));
+      this, 'rectanglecomplete', (JsObject o) => Rectangle.created(o));
 }
 
 @GeneratedFrom(_DrawingManagerOptions)

@@ -54,16 +54,14 @@ abstract class _MVCArray<E> extends MVCObject {
   void setAt(num i, E elem) => _setAt(i, _codec.encode(elem));
   void _setAt(num i, elem);
 
-  Stream<int> get onInsertAt => getStream(this, #onInsertAt, 'insert_at');
+  Stream<int> get onInsertAt => getStream(this, 'insert_at');
   Stream<IndexAndElement<E>> get onRemoveAt => getStream(
       this,
-      #onClick,
       'click',
       (int index, oldElement) =>
           IndexAndElement<E>(index, _codec.decode(oldElement)));
   Stream<IndexAndElement<E>> get onSetAt => getStream(
       this,
-      #onClick,
       'click',
       (int index, oldElement) =>
           IndexAndElement<E>(index, _codec.decode(oldElement)));

@@ -54,12 +54,9 @@ abstract class _InfoWindow extends MVCObject {
   set zIndex(num zIndex) => _setZIndex(zIndex);
   void _setZIndex(num zIndex);
 
-  Stream get onCloseclick => getStream(this, #onCloseclick, 'closeclick');
-  Stream get onContentChanged =>
-      getStream(this, #onContentChanged, 'content_changed');
-  Stream get onDomready => getStream(this, #onDomready, 'domready');
-  Stream get onPositionChanged =>
-      getStream(this, #onPositionChanged, 'position_changed');
-  Stream get onZindexChanged =>
-      getStream(this, #onZindexChanged, 'zindex_changed');
+  Stream get onCloseclick => getStream(this, 'closeclick');
+  Stream get onContentChanged => getStream(this, 'content_changed');
+  Stream get onDomready => getStream(this, 'domready');
+  Stream get onPositionChanged => getStream(this, 'position_changed');
+  Stream get onZindexChanged => getStream(this, 'zindex_changed');
 }

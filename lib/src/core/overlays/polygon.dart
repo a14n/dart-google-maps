@@ -98,25 +98,25 @@ abstract class _Polygon extends MVCObject {
   void _setVisible(bool visible);
 
   Stream<PolyMouseEvent> get onClick => getStream(
-      this, #onClick, 'click', (JsObject o) => PolyMouseEvent.created(o));
+      this,  'click', (JsObject o) => PolyMouseEvent.created(o));
   Stream<PolyMouseEvent> get onDblclick => getStream(
-      this, #onDblclick, 'dblclick', (JsObject o) => PolyMouseEvent.created(o));
+      this,  'dblclick', (JsObject o) => PolyMouseEvent.created(o));
   Stream<MouseEvent> get onDrag =>
-      getStream(this, #onDrag, 'drag', (JsObject o) => MouseEvent.created(o));
+      getStream(this,  'drag', (JsObject o) => MouseEvent.created(o));
   Stream<MouseEvent> get onDragend => getStream(
-      this, #onDragend, 'dragend', (JsObject o) => MouseEvent.created(o));
+      this,  'dragend', (JsObject o) => MouseEvent.created(o));
   Stream<MouseEvent> get onDragstart => getStream(
-      this, #onDragstart, 'dragstart', (JsObject o) => MouseEvent.created(o));
-  Stream<PolyMouseEvent> get onMousedown => getStream(this, #onMousedown,
+      this,  'dragstart', (JsObject o) => MouseEvent.created(o));
+  Stream<PolyMouseEvent> get onMousedown => getStream(this,
       'mousedown', (JsObject o) => PolyMouseEvent.created(o));
-  Stream<PolyMouseEvent> get onMousemove => getStream(this, #onMousemove,
+  Stream<PolyMouseEvent> get onMousemove => getStream(this,
       'mousemove', (JsObject o) => PolyMouseEvent.created(o));
   Stream<PolyMouseEvent> get onMouseout => getStream(
-      this, #onMouseout, 'mouseout', (JsObject o) => PolyMouseEvent.created(o));
-  Stream<PolyMouseEvent> get onMouseover => getStream(this, #onMouseover,
+      this,  'mouseout', (JsObject o) => PolyMouseEvent.created(o));
+  Stream<PolyMouseEvent> get onMouseover => getStream(this,
       'mouseover', (JsObject o) => PolyMouseEvent.created(o));
   Stream<PolyMouseEvent> get onMouseup => getStream(
-      this, #onMouseup, 'mouseup', (JsObject o) => PolyMouseEvent.created(o));
-  Stream<PolyMouseEvent> get onRightclick => getStream(this, #onRightclick,
+      this,  'mouseup', (JsObject o) => PolyMouseEvent.created(o));
+  Stream<PolyMouseEvent> get onRightclick => getStream(this,
       'rightclick', (JsObject o) => PolyMouseEvent.created(o));
 }

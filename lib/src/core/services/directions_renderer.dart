@@ -37,6 +37,5 @@ abstract class _DirectionsRenderer extends MVCObject {
   set routeIndex(num routeIndex) => _setRouteIndex(routeIndex);
   void _setRouteIndex(num routeIndex);
 
-  Stream get onDirectionsChanged =>
-      getStream(this, #onDirectionsChanged, 'directions_changed');
+  Stream get onDirectionsChanged => getStream(this, 'directions_changed');
 }

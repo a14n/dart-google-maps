@@ -96,34 +96,29 @@ abstract class _GMap extends MVCObject {
         .encode(overlayMapTypes);
   }
 
-  Stream get onBoundsChanged =>
-      getStream(this, #onBoundsChanged, 'bounds_changed');
-  Stream get onCenterChanged =>
-      getStream(this, #onCenterChanged, 'center_changed');
+  Stream get onBoundsChanged => getStream(this, 'bounds_changed');
+  Stream get onCenterChanged => getStream(this, 'center_changed');
   Stream<MouseEvent> get onClick =>
-      getStream(this, #onClick, 'click', (JsObject o) => MouseEvent.created(o));
-  Stream<MouseEvent> get onDblclick => getStream(
-      this, #onDblclick, 'dblclick', (JsObject o) => MouseEvent.created(o));
-  Stream get onDrag => getStream(this, #onDrag, 'drag');
-  Stream get onDragend => getStream(this, #onDragend, 'dragend');
-  Stream get onDragstart => getStream(this, #onDragstart, 'dragstart');
-  Stream get onHeadingChanged =>
-      getStream(this, #onHeadingChanged, 'heading_changed');
-  Stream get onIdle => getStream(this, #onIdle, 'idle');
-  Stream get onMaptypeidChanged =>
-      getStream(this, #onMaptypeidChanged, 'maptypeid_changed');
-  Stream<MouseEvent> get onMousemove => getStream(
-      this, #onMousemove, 'mousemove', (JsObject o) => MouseEvent.created(o));
-  Stream<MouseEvent> get onMouseout => getStream(
-      this, #onMouseout, 'mouseout', (JsObject o) => MouseEvent.created(o));
-  Stream<MouseEvent> get onMouseover => getStream(
-      this, #onMouseover, 'mouseover', (JsObject o) => MouseEvent.created(o));
-  Stream get onProjectionChanged =>
-      getStream(this, #onProjectionChanged, 'projection_changed');
-  Stream get onResize => getStream(this, #onResize, 'resize');
-  Stream<MouseEvent> get onRightclick => getStream(
-      this, #onRightclick, 'rightclick', (JsObject o) => MouseEvent.created(o));
-  Stream get onTilesloaded => getStream(this, #onTilesloaded, 'tilesloaded');
-  Stream get onTiltChanged => getStream(this, #onTiltChanged, 'tilt_changed');
-  Stream get onZoomChanged => getStream(this, #onZoomChanged, 'zoom_changed');
+      getStream(this, 'click', (JsObject o) => MouseEvent.created(o));
+  Stream<MouseEvent> get onDblclick =>
+      getStream(this, 'dblclick', (JsObject o) => MouseEvent.created(o));
+  Stream get onDrag => getStream(this, 'drag');
+  Stream get onDragend => getStream(this, 'dragend');
+  Stream get onDragstart => getStream(this, 'dragstart');
+  Stream get onHeadingChanged => getStream(this, 'heading_changed');
+  Stream get onIdle => getStream(this, 'idle');
+  Stream get onMaptypeidChanged => getStream(this, 'maptypeid_changed');
+  Stream<MouseEvent> get onMousemove =>
+      getStream(this, 'mousemove', (JsObject o) => MouseEvent.created(o));
+  Stream<MouseEvent> get onMouseout =>
+      getStream(this, 'mouseout', (JsObject o) => MouseEvent.created(o));
+  Stream<MouseEvent> get onMouseover =>
+      getStream(this, 'mouseover', (JsObject o) => MouseEvent.created(o));
+  Stream get onProjectionChanged => getStream(this, 'projection_changed');
+  Stream get onResize => getStream(this, 'resize');
+  Stream<MouseEvent> get onRightclick =>
+      getStream(this, 'rightclick', (JsObject o) => MouseEvent.created(o));
+  Stream get onTilesloaded => getStream(this, 'tilesloaded');
+  Stream get onTiltChanged => getStream(this, 'tilt_changed');
+  Stream get onZoomChanged => getStream(this, 'zoom_changed');
 }

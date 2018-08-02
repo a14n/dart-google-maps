@@ -37,10 +37,9 @@ abstract class _KmlLayer extends MVCObject {
   set zIndex(num zIndex) => _setZIndex(zIndex);
   void _setZIndex(num zIndex);
 
-  Stream<KmlMouseEvent> get onClick => getStream(
-      this, #onClick, 'click', (JsObject o) => KmlMouseEvent.created(o));
+  Stream<KmlMouseEvent> get onClick =>
+      getStream(this, 'click', (JsObject o) => KmlMouseEvent.created(o));
   Stream get onDefaultviewportChanged =>
-      getStream(this, #onDefaultviewportChanged, 'defaultviewport_changed');
-  Stream get onStatusChanged =>
-      getStream(this, #onStatusChanged, 'status_changed');
+      getStream(this, 'defaultviewport_changed');
+  Stream get onStatusChanged => getStream(this, 'status_changed');
 }

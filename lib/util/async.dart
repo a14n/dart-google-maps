@@ -38,11 +38,11 @@ SubscribeStreamProvider<T> getStreamProviderFor<T>(
   });
 }
 
-Stream<T> getStream<T>(JsInterface o, Symbol s, String eventName,
+Stream<T> getStream<T>(JsInterface o, String eventName,
         [Function transformArguments]) =>
     getState(o)
         .putIfAbsent(
-            s,
+            eventName,
             () => getStreamProviderFor<T>(
                 asJsObject(o), eventName, transformArguments))
         .stream as Stream<T>;

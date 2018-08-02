@@ -118,44 +118,35 @@ abstract class _Marker extends MVCObject {
   set zIndex(num zIndex) => _setZIndex(zIndex);
   void _setZIndex(num zIndex);
 
-  Stream get onAnimationChanged =>
-      getStream(this, #onAnimationChanged, 'animation_changed');
+  Stream get onAnimationChanged => getStream(this, 'animation_changed');
   Stream<MouseEvent> get onClick =>
-      getStream(this, #onClick, 'click', (JsObject o) => MouseEvent.created(o));
-  Stream get onClickableChanged =>
-      getStream(this, #onClickableChanged, 'clickable_changed');
-  Stream get onCursorChanged =>
-      getStream(this, #onCursorChanged, 'cursor_changed');
-  Stream<MouseEvent> get onDblclick => getStream(
-      this, #onDblclick, 'dblclick', (JsObject o) => MouseEvent.created(o));
+      getStream(this, 'click', (JsObject o) => MouseEvent.created(o));
+  Stream get onClickableChanged => getStream(this, 'clickable_changed');
+  Stream get onCursorChanged => getStream(this, 'cursor_changed');
+  Stream<MouseEvent> get onDblclick =>
+      getStream(this, 'dblclick', (JsObject o) => MouseEvent.created(o));
   Stream<MouseEvent> get onDrag =>
-      getStream(this, #onDrag, 'drag', (JsObject o) => MouseEvent.created(o));
-  Stream<MouseEvent> get onDragend => getStream(
-      this, #onDragend, 'dragend', (JsObject o) => MouseEvent.created(o));
-  Stream get onDraggableChanged =>
-      getStream(this, #onDraggableChanged, 'draggable_changed');
-  Stream<MouseEvent> get onDragstart => getStream(
-      this, #onDragstart, 'dragstart', (JsObject o) => MouseEvent.created(o));
-  Stream get onFlatChanged => getStream(this, #onFlatChanged, 'flat_changed');
-  Stream get onIconChanged => getStream(this, #onIconChanged, 'icon_changed');
-  Stream<MouseEvent> get onMousedown => getStream(
-      this, #onMousedown, 'mousedown', (JsObject o) => MouseEvent.created(o));
-  Stream<MouseEvent> get onMouseout => getStream(
-      this, #onMouseout, 'mouseout', (JsObject o) => MouseEvent.created(o));
-  Stream<MouseEvent> get onMouseover => getStream(
-      this, #onMouseover, 'mouseover', (JsObject o) => MouseEvent.created(o));
-  Stream<MouseEvent> get onMouseup => getStream(
-      this, #onMouseup, 'mouseup', (JsObject o) => MouseEvent.created(o));
-  Stream get onPositionChanged =>
-      getStream(this, #onPositionChanged, 'position_changed');
-  Stream<MouseEvent> get onRightclick => getStream(
-      this, #onRightclick, 'rightclick', (JsObject o) => MouseEvent.created(o));
-  Stream get onShapeChanged =>
-      getStream(this, #onShapeChanged, 'shape_changed');
-  Stream get onTitleChanged =>
-      getStream(this, #onTitleChanged, 'title_changed');
-  Stream get onVisibleChanged =>
-      getStream(this, #onVisibleChanged, 'visible_changed');
-  Stream get onZindexChanged =>
-      getStream(this, #onZindexChanged, 'zindex_changed');
+      getStream(this, 'drag', (JsObject o) => MouseEvent.created(o));
+  Stream<MouseEvent> get onDragend =>
+      getStream(this, 'dragend', (JsObject o) => MouseEvent.created(o));
+  Stream get onDraggableChanged => getStream(this, 'draggable_changed');
+  Stream<MouseEvent> get onDragstart =>
+      getStream(this, 'dragstart', (JsObject o) => MouseEvent.created(o));
+  Stream get onFlatChanged => getStream(this, 'flat_changed');
+  Stream get onIconChanged => getStream(this, 'icon_changed');
+  Stream<MouseEvent> get onMousedown =>
+      getStream(this, 'mousedown', (JsObject o) => MouseEvent.created(o));
+  Stream<MouseEvent> get onMouseout =>
+      getStream(this, 'mouseout', (JsObject o) => MouseEvent.created(o));
+  Stream<MouseEvent> get onMouseover =>
+      getStream(this, 'mouseover', (JsObject o) => MouseEvent.created(o));
+  Stream<MouseEvent> get onMouseup =>
+      getStream(this, 'mouseup', (JsObject o) => MouseEvent.created(o));
+  Stream get onPositionChanged => getStream(this, 'position_changed');
+  Stream<MouseEvent> get onRightclick =>
+      getStream(this, 'rightclick', (JsObject o) => MouseEvent.created(o));
+  Stream get onShapeChanged => getStream(this, 'shape_changed');
+  Stream get onTitleChanged => getStream(this, 'title_changed');
+  Stream get onVisibleChanged => getStream(this, 'visible_changed');
+  Stream get onZindexChanged => getStream(this, 'zindex_changed');
 }
