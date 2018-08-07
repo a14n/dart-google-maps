@@ -1,0 +1,10 @@
+language: dart
+jobs:
+  include:
+  - stage: run tests
+    dart: dev
+    script:
+    - pub get
+    - dartfmt -n --set-exit-if-changed .
+    - dartanalyzer --fatal-warnings --fatal-hints --fatal-lints .
+    - pub run test
