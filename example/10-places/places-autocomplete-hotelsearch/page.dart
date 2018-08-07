@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:html' hide Animation, MouseEvent;
 
-import 'package:func/func.dart' show VoidFunc0, VoidFunc1;
 import 'package:google_maps/google_maps.dart';
 import 'package:google_maps/google_maps_places.dart';
 import 'package:js_wrapping/js_wrapping.dart';
@@ -131,7 +130,7 @@ void setAutocompleteCountry(_) {
   clearMarkers();
 }
 
-VoidFunc0 dropMarker(int i) => () {
+void Function() dropMarker(int i) => () {
       markers[i].map = map;
     };
 
@@ -165,7 +164,8 @@ void clearResults() {
 
 // Get the place details for a hotel. Show the information in an info window,
 // anchored on the marker for the hotel that the user selected.
-VoidFunc1<MouseEvent> showInfoWindow(Marker marker, PlaceResult placeResult) =>
+void Function(MouseEvent) showInfoWindow(
+        Marker marker, PlaceResult placeResult) =>
     (_) => places
             .getDetails(PlaceDetailsRequest()..placeId = placeResult.placeId,
                 (place, status) {

@@ -1,3 +1,7 @@
+# v3.3.1 (2018-08-07)
+
+- remove `func` dependency.
+
 # v3.3.0 (2018-07-27)
 
 - migration to Dart 2.
