@@ -41,28 +41,27 @@ abstract class _Rectangle extends MVCObject {
   set visible(bool visible) => _setVisible(visible);
   void _setVisible(bool visible);
 
-  Stream get onBoundsChanged =>
-      getStream(this,  'bounds_changed');
+  Stream get onBoundsChanged => getStream(this, 'bounds_changed');
   Stream<MouseEvent> get onClick =>
-      getStream(this,  'click', (JsObject o) => MouseEvent.created(o));
-  Stream<MouseEvent> get onDblclick => getStream(
-      this,  'dblclick', (JsObject o) => MouseEvent.created(o));
+      getStream(this, 'click', (JsObject o) => MouseEvent.created(o));
+  Stream<MouseEvent> get onDblclick =>
+      getStream(this, 'dblclick', (JsObject o) => MouseEvent.created(o));
   Stream<MouseEvent> get onDrag =>
-      getStream(this,  'drag', (JsObject o) => MouseEvent.created(o));
-  Stream<MouseEvent> get onDragend => getStream(
-      this,  'dragend', (JsObject o) => MouseEvent.created(o));
-  Stream<MouseEvent> get onDragstart => getStream(
-      this,  'dragstart', (JsObject o) => MouseEvent.created(o));
-  Stream<MouseEvent> get onMousedown => getStream(
-      this,  'mousedown', (JsObject o) => MouseEvent.created(o));
-  Stream<MouseEvent> get onMousemove => getStream(
-      this,  'mousemove', (JsObject o) => MouseEvent.created(o));
-  Stream<MouseEvent> get onMouseout => getStream(
-      this,  'mouseout', (JsObject o) => MouseEvent.created(o));
-  Stream<MouseEvent> get onMouseover => getStream(
-      this,  'mouseover', (JsObject o) => MouseEvent.created(o));
-  Stream<MouseEvent> get onMouseup => getStream(
-      this,  'mouseup', (JsObject o) => MouseEvent.created(o));
-  Stream<MouseEvent> get onRightclick => getStream(
-      this,  'rightclick', (JsObject o) => MouseEvent.created(o));
+      getStream(this, 'drag', (JsObject o) => MouseEvent.created(o));
+  Stream<MouseEvent> get onDragend =>
+      getStream(this, 'dragend', (JsObject o) => MouseEvent.created(o));
+  Stream<MouseEvent> get onDragstart =>
+      getStream(this, 'dragstart', (JsObject o) => MouseEvent.created(o));
+  Stream<MouseEvent> get onMousedown =>
+      getStream(this, 'mousedown', (JsObject o) => MouseEvent.created(o));
+  Stream<MouseEvent> get onMousemove =>
+      getStream(this, 'mousemove', (JsObject o) => MouseEvent.created(o));
+  Stream<MouseEvent> get onMouseout =>
+      getStream(this, 'mouseout', (JsObject o) => MouseEvent.created(o));
+  Stream<MouseEvent> get onMouseover =>
+      getStream(this, 'mouseover', (JsObject o) => MouseEvent.created(o));
+  Stream<MouseEvent> get onMouseup =>
+      getStream(this, 'mouseup', (JsObject o) => MouseEvent.created(o));
+  Stream<MouseEvent> get onRightclick =>
+      getStream(this, 'rightclick', (JsObject o) => MouseEvent.created(o));
 }
