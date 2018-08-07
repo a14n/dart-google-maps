@@ -42,7 +42,7 @@ Stream<T> getStream<T>(JsInterface o, String eventName,
         [Function transformArguments]) =>
     getState(o)
         .putIfAbsent(
-            eventName,
+            Symbol(eventName),
             () => getStreamProviderFor<T>(
                 asJsObject(o), eventName, transformArguments))
         .stream as Stream<T>;
