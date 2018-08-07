@@ -1,3 +1,7 @@
+# v3.3.2 (2018-08-07)
+
+- fix build.
+
 # v3.3.1 (2018-08-07)
 
 - remove `func` dependency.
