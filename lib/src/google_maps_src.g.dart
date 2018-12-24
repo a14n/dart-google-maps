@@ -2888,12 +2888,12 @@ class MVCArray<E> extends MVCObject {
   Stream<int> get onInsertAt => getStream(this, 'insert_at');
   Stream<IndexAndElement<E>> get onRemoveAt => getStream(
       this,
-      'click',
+      'remove_at',
       (int index, oldElement) =>
           IndexAndElement<E>(index, _codec.decode(oldElement)));
   Stream<IndexAndElement<E>> get onSetAt => getStream(
       this,
-      'click',
+      'set_at',
       (int index, oldElement) =>
           IndexAndElement<E>(index, _codec.decode(oldElement)));
 }
