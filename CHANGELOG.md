@@ -1,3 +1,7 @@
+# v3.3.3 (2018-12-24)
+
+- fix [incorrect event names ofr MVCArray removeAt and setAt](https://github.com/a14n/dart-google-maps/issues/65).
+
 # v3.3.2 (2018-08-07)
 
 - fix build.
