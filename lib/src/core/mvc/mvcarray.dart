@@ -16,9 +16,6 @@ part of google_maps.src;
 
 @JsName('google.maps.MVCArray')
 abstract class _MVCArray<E> extends MVCObject {
-  // ignore: avoid_init_to_null,prefer_final_fields
-  Codec<E, dynamic> _codec = null;
-
   _MVCArray({List<E> elements, Codec<E, dynamic> codec})
       : this.created(
             JsObject(context['google']['maps']['MVCArray'] as JsFunction, [
@@ -32,6 +29,9 @@ abstract class _MVCArray<E> extends MVCObject {
   _MVCArray.created(JsObject o, [Codec<E, dynamic> codec])
       : _codec = codec ?? IdentityCodec(),
         super.created(o);
+
+  // ignore: avoid_init_to_null,prefer_final_fields
+  Codec<E, dynamic> _codec = null;
 
   void clear();
   void forEach(void callback(E o, num index)) =>
@@ -68,7 +68,7 @@ abstract class _MVCArray<E> extends MVCObject {
 }
 
 class IndexAndElement<E> {
+  IndexAndElement(this.index, this.element);
   final int index;
   final E element;
-  IndexAndElement(this.index, this.element);
 }

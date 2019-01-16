@@ -1229,10 +1229,10 @@ String convertParam(String type, List<JsElement> jsElements, String name) {
 }
 
 class CodecInfo {
+  CodecInfo(this.codec, {this.canBeNativelyHandled, this.isIdentity});
   final String codec;
   final bool canBeNativelyHandled;
   final bool isIdentity;
-  CodecInfo(this.codec, {this.canBeNativelyHandled, this.isIdentity});
 }
 
 CodecInfo getCodec(String type, List<JsElement> jsElements) {
@@ -1433,11 +1433,10 @@ String getExtends(Element title) {
 }
 
 class JsElement {
+  JsElement(this.id, this.file, this.element);
   final String id;
   final File file;
   final Element element;
-
-  JsElement(this.id, this.file, this.element);
 
   String get name => customClassName.containsKey(id)
       ? customClassName[id]

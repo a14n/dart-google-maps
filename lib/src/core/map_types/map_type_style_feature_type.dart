@@ -16,6 +16,8 @@ part of google_maps.src;
 
 @jsEnum
 class MapTypeStyleFeatureType extends JsEnum {
+  MapTypeStyleFeatureType._(o) : super.created(o);
+
   static final values = <MapTypeStyleFeatureType>[
     ADMINISTRATIVE,
     ADMINISTRATIVE_COUNTRY,
@@ -99,5 +101,4 @@ class MapTypeStyleFeatureType extends JsEnum {
   static final TRANSIT_STATION_RAIL =
       MapTypeStyleFeatureType._('transit.station.rail');
   static final WATER = MapTypeStyleFeatureType._('water');
-  MapTypeStyleFeatureType._(o) : super.created(o);
 }

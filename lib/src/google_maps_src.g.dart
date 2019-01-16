@@ -2832,9 +2832,6 @@ class StyledMapTypeOptions extends JsInterface {
 @GeneratedFrom(_MVCArray)
 @JsName('google.maps.MVCArray')
 class MVCArray<E> extends MVCObject {
-  // ignore: avoid_init_to_null,prefer_final_fields
-  Codec<E, dynamic> _codec = null;
-
   MVCArray({List<E> elements, Codec<E, dynamic> codec})
       : this.created(
             JsObject(context['google']['maps']['MVCArray'] as JsFunction, [
@@ -2848,6 +2845,9 @@ class MVCArray<E> extends MVCObject {
   MVCArray.created(JsObject o, [Codec<E, dynamic> codec])
       : _codec = codec ?? IdentityCodec(),
         super.created(o);
+
+  // ignore: avoid_init_to_null,prefer_final_fields
+  Codec<E, dynamic> _codec = null;
 
   void clear() {
     asJsObject(this).callMethod('clear');

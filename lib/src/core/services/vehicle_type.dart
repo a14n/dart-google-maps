@@ -16,6 +16,7 @@ part of google_maps.src;
 
 @jsEnum
 class VehicleType extends JsEnum {
+  VehicleType._(o) : super.created(o);
   static final values = <VehicleType>[
     BUS,
     CABLE_CAR,
@@ -52,5 +53,4 @@ class VehicleType extends JsEnum {
   static final SUBWAY = VehicleType._('SUBWAY');
   static final TRAM = VehicleType._('TRAM');
   static final TROLLEYBUS = VehicleType._('TROLLEYBUS');
-  VehicleType._(o) : super.created(o);
 }

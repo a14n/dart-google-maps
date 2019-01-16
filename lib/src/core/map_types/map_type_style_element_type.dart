@@ -16,6 +16,8 @@ part of google_maps.src;
 
 @jsEnum
 class MapTypeStyleElementType extends JsEnum {
+  MapTypeStyleElementType._(o) : super.created(o);
+
   static final values = <MapTypeStyleElementType>[
     ALL,
     GEOMETRY,
@@ -37,5 +39,4 @@ class MapTypeStyleElementType extends JsEnum {
   static final LABELS_TEXT_FILL = MapTypeStyleElementType._('labels.text.fill');
   static final LABELS_TEXT_STROKE =
       MapTypeStyleElementType._('labels.text.stroke');
-  MapTypeStyleElementType._(o) : super.created(o);
 }

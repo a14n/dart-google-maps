@@ -31,12 +31,6 @@ void main() {
 }
 
 class USGSOverlay extends OverlayView {
-  LatLngBounds _bounds;
-  String _image;
-  GMap _map;
-
-  DivElement _div;
-
   USGSOverlay(this._bounds, this._image, this._map) : super() {
     asJsObject(this)['onAdd'] = _onAdd;
     asJsObject(this)['draw'] = _draw;
@@ -45,6 +39,12 @@ class USGSOverlay extends OverlayView {
     // Explicitly call setMap on this overlay
     map = _map;
   }
+
+  LatLngBounds _bounds;
+  String _image;
+  GMap _map;
+
+  DivElement _div;
 
   /// onAdd is called when the map's panes are ready and the overlay has been
   /// added to the map.

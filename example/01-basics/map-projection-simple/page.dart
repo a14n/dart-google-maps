@@ -50,17 +50,6 @@ num degreesToRadians(num deg) => deg * (math.pi / 180);
 num radiansToDegrees(num rad) => rad / (math.pi / 180);
 
 class GallPetersProjection extends Projection {
-  // Using the base map tile, denote the lat/lon of the equatorial origin.
-  final _worldOrigin =
-      Point(GALL_PETERS_RANGE_X * 400 / 800, GALL_PETERS_RANGE_Y / 2);
-
-  // This projection has equidistant meridians, so each longitude degree is a linear
-  // mapping.
-  static const _worldCoordinatePerLonDegree = GALL_PETERS_RANGE_X / 360;
-
-  // This constant merely reflects that latitudes vary from +90 to -90 degrees.
-  static const _worldCoordinateLatRange = GALL_PETERS_RANGE_Y / 2;
-
   // TODO(aa) make a constructor with optionals
   GallPetersProjection() : super() {
     asJsObject(this)['fromLatLngToPoint'] =
@@ -71,6 +60,17 @@ class GallPetersProjection extends Projection {
         asJsObject(_fromPointToLatLng(
             point == null ? null : Point.created(point), nowrap));
   }
+
+  // Using the base map tile, denote the lat/lon of the equatorial origin.
+  final _worldOrigin =
+      Point(GALL_PETERS_RANGE_X * 400 / 800, GALL_PETERS_RANGE_Y / 2);
+
+  // This projection has equidistant meridians, so each longitude degree is a linear
+  // mapping.
+  static const _worldCoordinatePerLonDegree = GALL_PETERS_RANGE_X / 360;
+
+  // This constant merely reflects that latitudes vary from +90 to -90 degrees.
+  static const _worldCoordinateLatRange = GALL_PETERS_RANGE_Y / 2;
 
   Point _fromLatLngToPoint(LatLng latLng, [Point point]) {
     final origin = _worldOrigin;

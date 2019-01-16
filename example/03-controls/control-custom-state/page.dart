@@ -7,8 +7,6 @@ final LatLng chicago = LatLng(41.850033, -87.6500523);
 /// The HomeControl adds a control to the map that
 /// returns the user to the control's defined home.
 class HomeControl {
-  LatLng center;
-
   HomeControl(Element controlDiv, GMap map, this.center) {
     controlDiv.style.clear = 'both';
 
@@ -77,6 +75,8 @@ class HomeControl {
         center = map.center;
       });
   }
+
+  LatLng center;
 }
 
 void main() {
