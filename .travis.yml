@@ -2,7 +2,7 @@ language: dart
 jobs:
   include:
   - stage: run tests
-    dart: dev
+    dart: stable
     script:
     - pub get
     - dartfmt -n --set-exit-if-changed .
