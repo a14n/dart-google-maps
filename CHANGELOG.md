@@ -1,3 +1,7 @@
+# v3.3.4 (2019-06-21)
+
+- fix [issue with StreetViewPanorama.controls](https://github.com/a14n/dart-google-maps/issues/66).
+
 # v3.3.3 (2018-12-24)
 
 - fix [incorrect event names ofr MVCArray removeAt and setAt](https://github.com/a14n/dart-google-maps/issues/65).
