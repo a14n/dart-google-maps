@@ -6709,20 +6709,11 @@ class StreetViewPanorama extends MVCObject {
     asJsObject(this).callMethod('setZoom', [zoom]);
   }
 
-  set _controls(dynamic __controls) {
-    asJsObject(this)['controls'] = __codec9.encode(__controls);
+  set controls(Controls _controls) {
+    asJsObject(this)['controls'] = __codec49.encode(_controls);
   }
 
-  dynamic get _controls => __codec9.decode(asJsObject(this)['controls']);
-  List<MVCArray<Node>> get controls =>
-      JsListCodec<MVCArray<Node>>(JsInterfaceCodec<MVCArray<Node>>(
-              (o) => MVCArray<Node>.created(o, IdentityCodec<Node>())))
-          .decode(_controls as JsArray);
-  set controls(List<MVCArray<Node>> controls) {
-    _controls = JsListCodec<MVCArray<Node>>(JsInterfaceCodec<MVCArray<Node>>(
-            (o) => MVCArray<Node>.created(o, IdentityCodec<Node>())))
-        .encode(controls);
-  }
+  Controls get controls => __codec49.decode(asJsObject(this)['controls']);
 
   Stream get onClicktogoChanged => getStream(this, 'clicktogo_changed');
   Stream<JsObject> get onCloseclick => getStream(this, 'closeclick');

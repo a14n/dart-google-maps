@@ -54,16 +54,7 @@ abstract class _StreetViewPanorama extends MVCObject {
   set zoom(num zoom) => _setZoom(zoom);
   void _setZoom(num zoom);
 
-  dynamic _controls;
-  List<MVCArray<Node>> get controls =>
-      JsListCodec<MVCArray<Node>>(JsInterfaceCodec<MVCArray<Node>>(
-              (o) => MVCArray<Node>.created(o, IdentityCodec<Node>())))
-          .decode(_controls as JsArray);
-  set controls(List<MVCArray<Node>> controls) {
-    _controls = JsListCodec<MVCArray<Node>>(JsInterfaceCodec<MVCArray<Node>>(
-            (o) => MVCArray<Node>.created(o, IdentityCodec<Node>())))
-        .encode(controls);
-  }
+  Controls controls;
 
   Stream get onClicktogoChanged => getStream(this, 'clicktogo_changed');
   Stream<JsObject> get onCloseclick => getStream(this, 'closeclick');
