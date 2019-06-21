@@ -6,5 +6,7 @@ jobs:
     script:
     - pub get
     - dartfmt -n --set-exit-if-changed .
-    - dartanalyzer --fatal-warnings --fatal-hints --fatal-lints .
+    # TODO re-enable --fatal-lints once https://github.com/dart-lang/sdk/issues/25551 is fixed
+    # - dartanalyzer --fatal-warnings --fatal-hints --fatal-lints .
+    - dartanalyzer --fatal-warnings --fatal-hints .
     - pub run test
