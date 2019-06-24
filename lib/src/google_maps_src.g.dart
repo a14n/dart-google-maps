@@ -7282,13 +7282,13 @@ final __codec70 = JsInterfaceCodec<StyledMapTypeOptions>(
 /// codec for google_maps.src.(dynamic, num) → void
 final __codec71 = FunctionCodec<Function> /*<(dynamic, num) → void>*/(
   (f) => (p$o, p$index) {
-        f(__codec9.decode(p$o), p$index);
-      },
+    f(__codec9.decode(p$o), p$index);
+  },
   (f) => (p$o, p$index) {
-        f is JsFunction
-            ? f.apply([__codec9.encode(p$o), p$index])
-            : Function.apply(f, [__codec9.encode(p$o), p$index]);
-      },
+    f is JsFunction
+        ? f.apply([__codec9.encode(p$o), p$index])
+        : Function.apply(f, [__codec9.encode(p$o), p$index]);
+  },
 );
 
 /// codec for google_maps.src.MVCObject
