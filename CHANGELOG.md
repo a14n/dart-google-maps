@@ -1,3 +1,14 @@
+# v3.4.0 (2019-06-25)
+
+- Potentially breaking changes: the following function can now be set directly without dealing with JsObject
+  * `ImageMapType.getTile`
+  * `ImageMapTypeOptions.getTileUrl`
+  * `MapType.getTile`
+  * `Projection.fromLatLngToPoint` and `Projection.fromPointToLatLng`
+  * `StyledMapType.getTile`
+  * `OverlayView.draw`, `OverlayView.onAdd`, and `OverlayView.onRemove`
+- Fix `StreetViewService.getPanorama` to follow the documentation.
+
 # v3.3.4 (2019-06-21)
 
 - fix [issue with StreetViewPanorama.controls](https://github.com/a14n/dart-google-maps/issues/66).
