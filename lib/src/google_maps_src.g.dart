@@ -6965,8 +6965,11 @@ class StreetViewTileData extends JsInterface {
   StreetViewTileData() : this.created(JsObject(context['Object']));
   StreetViewTileData.created(JsObject o) : super.created(o);
 
-  String getTileUrl(String pano, num tileZoom, num tileX, num tileY) =>
-      asJsObject(this).callMethod('getTileUrl', [pano, tileZoom, tileX, tileY]);
+  set getTileUrl(TileUrlFn _getTileUrl) {
+    asJsObject(this)['getTileUrl'] = __codec168.encode(_getTileUrl);
+  }
+
+  TileUrlFn get getTileUrl => __codec168.decode(asJsObject(this)['getTileUrl']);
 
   set centerHeading(num _centerHeading) {
     asJsObject(this)['centerHeading'] = _centerHeading;
@@ -7279,13 +7282,13 @@ final __codec70 = JsInterfaceCodec<StyledMapTypeOptions>(
 /// codec for google_maps.src.(dynamic, num) → void
 final __codec71 = FunctionCodec<Function> /*<(dynamic, num) → void>*/(
   (f) => (p$o, p$index) {
-        f(__codec9.decode(p$o), p$index);
-      },
+    f(__codec9.decode(p$o), p$index);
+  },
   (f) => (p$o, p$index) {
-        f is JsFunction
-            ? f.apply([__codec9.encode(p$o), p$index])
-            : Function.apply(f, [__codec9.encode(p$o), p$index]);
-      },
+    f is JsFunction
+        ? f.apply([__codec9.encode(p$o), p$index])
+        : Function.apply(f, [__codec9.encode(p$o), p$index]);
+  },
 );
 
 /// codec for google_maps.src.MVCObject
@@ -7693,4 +7696,13 @@ final __codec167 = FunctionCodec<
   (f) => (p$p1, p$p2) => __codec9.decode(f is JsFunction
       ? f.apply([__codec166.encode(p$p1), __codec162.encode(p$p2)])
       : Function.apply(f, [__codec166.encode(p$p1), __codec162.encode(p$p2)])),
+);
+
+/// codec for google_maps.src.(String, num, num, num) → String
+final __codec168 =
+    FunctionCodec<Function> /*<(String, num, num, num) → String>*/(
+  (f) => f,
+  (f) => (p$pano, p$tileZoom, p$tileX, p$tileY) => f is JsFunction
+      ? f.apply([p$pano, p$tileZoom, p$tileX, p$tileY])
+      : Function.apply(f, [p$pano, p$tileZoom, p$tileX, p$tileY]),
 );
