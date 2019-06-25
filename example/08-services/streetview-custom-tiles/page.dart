@@ -1,99 +1,66 @@
 import 'dart:html';
 
 import 'package:google_maps/google_maps.dart';
-import 'package:js_wrapping/js_wrapping.dart';
-
-const IMAGE_URL =
-    'https://google-developers.appspot.com/maps/documentation/javascript/examples/full';
 
 StreetViewPanorama panorama;
+// StreetViewPanoramaData of a panorama just outside the Google Sydney office.
+StreetViewPanoramaData outsideGoogle;
 
 void main() {
-  // The latlng of the entry point to the Google office on the road.
-  final sydneyOffice = LatLng(-33.867386, 151.195767);
-
-  // Set up the map and enable the Street View control.
-  final mapOptions = MapOptions()
-    ..center = sydneyOffice
-    ..zoom = 16;
-  final map = GMap(document.getElementById('map-canvas'), mapOptions);
-
-  panorama = map.streetView;
-  // Set up Street View and initially set it visible. Register the
-  // custom panorama provider function.
-  final panoOptions = StreetViewPanoramaOptions()
-    ..position = sydneyOffice
-    ..visible = true;
-  asJsObject(panoOptions)['panoProvider'] =
-      (String pano) => asJs(getCustomPanorama(pano));
-
-  panorama.options = panoOptions;
-
-  // Create a StreetViewService object.
-  final streetviewService = StreetViewService();
-
-  // Compute the nearest panorama to the Google Sydney office
-  // using the service and store that pano ID.
-  const radius = 50;
-  streetviewService.getPanoramaByLocation(sydneyOffice, radius,
-      (result, status) {
-    if (status == StreetViewStatus.OK) {
-      // We'll monitor the links_changed event to check if the current
-      // pano is either a custom pano or our entry pano.
-      panorama.onLinksChanged
-          .listen((_) => createCustomLinks(result.location.pano));
-    }
-  });
+  // Use the Street View service to find a pano ID on Pirrama Rd, outside the
+  // Google office.
+  StreetViewService().getPanorama(
+    LatLng(-33.867386, 151.195767),
+    (result, status) {
+      if (status == StreetViewStatus.OK) {
+        outsideGoogle = result;
+        initPanorama();
+      }
+    },
+  );
 }
 
-String getCustomPanoramaTileUrl(String pano, num zoom, num tileX, num tileY) =>
-    // Return a pano image given the panoID.
-    '$IMAGE_URL/images/panoReception1024-$zoom-$tileX-$tileY.jpg';
-
-StreetViewPanoramaData getCustomPanorama(String pano) {
-  switch (pano) {
-    case 'reception':
-      final tiles = StreetViewTileData()
-        ..tileSize = Size(1024, 512)
-        ..worldSize = Size(1024, 512)
-        // The heading in degrees at the origin of the panorama
-        // tile set.
-        ..centerHeading = 105;
-      asJsObject(tiles)['getTileUrl'] = getCustomPanoramaTileUrl;
-
-      return StreetViewPanoramaData()
-        ..location = (StreetViewLocation()
-          ..pano = 'reception'
-          ..description = 'Google Sydney - Reception'
-          ..latLng = LatLng(-33.86684, 151.19583))
-        ..links = []
-        // The text for the copyright control.
-        ..copyright = 'Imagery (c) 2010 Google'
-        // The definition of the tiles for this panorama.
-        ..tiles = tiles;
-    default:
+void initPanorama() {
+  panorama = StreetViewPanorama(
+    document.getElementById('street-view'),
+    StreetViewPanoramaOptions()..pano = outsideGoogle.location.pano,
+  )
+    // Register a provider for the custom panorama.
+    ..registerPanoProvider((pano, [_]) {
+      if (pano == 'reception') {
+        return getReceptionPanoramaData();
+      }
       return null;
-  }
+    })
+
+    // Add a link to our custom panorama from outside the Google Sydney office.
+    ..onLinksChanged.listen((_) {
+      if (panorama.pano == outsideGoogle.location.pano) {
+        panorama.links.add(StreetViewLink()
+          ..description = 'Google Sydney'
+          ..heading = 25
+          ..pano = 'reception');
+      }
+    });
 }
 
-void createCustomLinks(String entryPanoId) {
-  final links = panorama.links;
-  final panoId = panorama.pano;
-
-  if (panoId == entryPanoId) {
-    // Adding a link in the view from the entrance of the building to
-    // reception.
-    links.add(StreetViewLink()
-      ..heading = 25
-      ..description = 'Google Sydney'
-      ..pano = 'reception');
-  } else if (panoId == 'reception') {
-    // Adding a link in the view from the entrance of the office
-    // with an arrow pointing at 100 degrees, with a text of 'Exit'
-    // and loading the street entrance of the building pano on click.
-    links.add(StreetViewLink()
+// StreetViewPanoramaData for a custom panorama: the Google Sydney reception.
+StreetViewPanoramaData getReceptionPanoramaData() => StreetViewPanoramaData()
+  ..location = (StreetViewLocation()
+    ..pano = 'reception' // The ID for this custom panorama.
+    ..description = 'Google Sydney - Reception'
+    ..latLng = LatLng(-33.86684, 151.19583))
+  ..links = [
+    StreetViewLink()
       ..heading = 195
       ..description = 'Exit'
-      ..pano = entryPanoId);
-  }
-}
+      ..pano = outsideGoogle.location.pano
+  ]
+  ..copyright = 'Imagery (c) 2010 Google'
+  ..tiles = (StreetViewTileData()
+    ..tileSize = Size(1024, 512)
+    ..worldSize = Size(2048, 1024)
+    ..centerHeading = 105
+    ..getTileUrl = (pano, zoom, tileX, tileY) =>
+        'https://developers.google.com/maps/documentation/javascript/examples/full/images/'
+        'panoReception1024-$zoom-$tileX-$tileY.jpg');

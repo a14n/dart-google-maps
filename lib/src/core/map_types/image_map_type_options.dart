@@ -19,7 +19,7 @@ abstract class _ImageMapTypeOptions implements JsInterface {
   factory _ImageMapTypeOptions() => null;
 
   String alt;
-  dynamic /*null(Point p1,number): strin p2)*/ getTileUrl;
+  String Function(Point point, num zoom) getTileUrl;
   num maxZoom;
   num minZoom;
   String name;

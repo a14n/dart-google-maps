@@ -1,6 +1,6 @@
 import 'dart:html';
+
 import 'package:google_maps/google_maps.dart';
-import 'package:js_wrapping/js_wrapping.dart';
 
 const IMAGE_URL =
     'https://google-developers.appspot.com/maps/documentation/javascript/examples/full';
@@ -28,9 +28,9 @@ void main() {
 
 class USGSOverlay extends OverlayView {
   USGSOverlay(this._bounds, this._image, GMap map) : super() {
-    asJsObject(this)['onAdd'] = _onAdd;
-    asJsObject(this)['draw'] = _draw;
-    asJsObject(this)['onRemove'] = _onRemove;
+    onAdd = _onAdd;
+    draw = _draw;
+    onRemove = _onRemove;
 
     // Explicitly call setMap on this overlay
     this.map = map;

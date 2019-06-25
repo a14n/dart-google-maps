@@ -17,7 +17,8 @@ dev_dependencies:
   html: ^0.13.3
   js_wrapping_generator: ^0.5.0
   test: ^1.3.0
-# dependency_overrides:
+dependency_overrides:
+  package_resolver: 1.0.9 # to avoid similar issue to https://github.com/dart-lang/package_resolver/issues/26
 #   js_wrapping:
 #     # git:
 #     #   url: https://github.com/a14n/dart-js-wrapping.git

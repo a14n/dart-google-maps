@@ -1,20 +1,17 @@
 import 'dart:html' hide Point;
 
 import 'package:google_maps/google_maps.dart';
-import 'package:js_wrapping/js_wrapping.dart';
 
 class CoordMapType extends MapType {
   CoordMapType() : super() {
     tileSize = Size(256, 256);
     maxZoom = 19;
-    asJsObject(this)['getTile'] =
-        (JsObject tileCoord, num zoom, HtmlDocument ownerDocument) =>
-            _getTile(Point.created(tileCoord), zoom, ownerDocument);
+    getTile = _getTile;
     name = 'Tile #s';
     alt = 'Tile Coordinate Map Type';
   }
 
-  Element _getTile(Point coord, num zoom, HtmlDocument ownerDocument) {
+  Node _getTile(Point coord, num zoom, Document ownerDocument) {
     final div = ownerDocument.createElement('div')
       ..innerHtml = coord.toString();
     div.style

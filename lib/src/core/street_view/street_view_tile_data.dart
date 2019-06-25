@@ -14,15 +14,11 @@
 
 part of google_maps.src;
 
-typedef TileUrlFn = String Function(
-    String pano, num tileZoom, num tileX, num tileY);
-
 @anonymous
 abstract class _StreetViewTileData implements JsInterface {
   factory _StreetViewTileData() => null;
 
-  TileUrlFn getTileUrl;
-
+  String Function(String pano, num tileZoom, num tileX, num tileY) getTileUrl;
   num centerHeading;
   Size tileSize;
   Size worldSize;

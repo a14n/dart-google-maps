@@ -29,11 +29,11 @@ abstract class _StreetViewPanoramaOptions implements JsInterface {
   bool panControl;
   PanControlOptions panControlOptions;
   String pano;
-  dynamic /*null(string): StreetViewPanoramaDat p1)*/ panoProvider;
   LatLng position;
   StreetViewPov pov;
   bool scrollwheel;
   bool visible;
+  num zoom;
   bool zoomControl;
   ZoomControlOptions zoomControlOptions;
 }

@@ -18,6 +18,6 @@ part of google_maps.src;
 abstract class _Projection implements JsInterface {
   factory _Projection() => null;
 
-  Point fromLatLngToPoint(LatLng latLng, [Point point]);
-  LatLng fromPointToLatLng(Point pixel, [bool nowrap]);
+  Point Function(LatLng latLng, [Point point]) fromLatLngToPoint;
+  LatLng Function(Point pixel, [bool nowrap]) fromPointToLatLng;
 }

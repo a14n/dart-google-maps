@@ -18,7 +18,7 @@ part of google_maps.src;
 abstract class _OverlayView implements JsInterface {
   factory _OverlayView() => null;
 
-  void draw();
+  void Function() draw;
   dynamic /*GMap|StreetViewPanorama*/ get map => (ChainedCodec()
         ..add(JsInterfaceCodec<GMap>(
             (o) => GMap.created(o),
@@ -37,8 +37,8 @@ abstract class _OverlayView implements JsInterface {
   MapPanes _getPanes();
   MapCanvasProjection get projection => _getProjection();
   MapCanvasProjection _getProjection();
-  void onAdd();
-  void onRemove();
+  void Function() onAdd;
+  void Function() onRemove;
   set map(dynamic /*GMap|StreetViewPanorama*/ map) => _setMap((ChainedCodec()
         ..add(JsInterfaceCodec<GMap>(
             (o) => GMap.created(o),

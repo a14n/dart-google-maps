@@ -90,10 +90,8 @@ void plotElevation(List<ElevationResult> results, ElevationStatus status) {
     final pathOptions = PolylineOptions()
       ..path = elevationPath
       ..strokeColor = '#0000CC'
+      ..strokeOpacity = 0.4
       ..map = map;
-
-    // TODO(aa) https://code.google.com/p/gmaps-api-issues/issues/detail?id=8046
-    asJsObject(pathOptions)['opacity'] = 0.4;
 
     polyline = Polyline(pathOptions);
 

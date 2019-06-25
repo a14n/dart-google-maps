@@ -20,7 +20,7 @@ abstract class _ImageMapType extends MVCObject implements MapType {
 
   num get opacity => _getOpacity();
   num _getOpacity();
-  Node getTile(Point tileCoord, num zoom, Document ownerDocument);
+  Node Function(Point tileCoord, num zoom, Document ownerDocument) getTile;
   void releaseTile(Node tile);
   set opacity(num opacity) => _setOpacity(opacity);
   void _setOpacity(num opacity);

@@ -181,6 +181,7 @@ part 'core/services/transit_vehicle.dart';
 part 'core/services/travel_mode.dart';
 part 'core/services/unit_system.dart';
 part 'core/services/vehicle_type.dart';
+part 'core/street_view/pano_provider_options.dart';
 part 'core/street_view/street_view_address_control_options.dart';
 part 'core/street_view/street_view_coverage_layer.dart';
 part 'core/street_view/street_view_link.dart';

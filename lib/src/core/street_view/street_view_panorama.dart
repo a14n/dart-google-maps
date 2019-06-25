@@ -38,7 +38,7 @@ abstract class _StreetViewPanorama extends MVCObject {
   bool _getVisible();
   num get zoom => _getZoom();
   num _getZoom();
-  void registerPanoProvider(provider(String p1));
+  void registerPanoProvider(StreetViewPanoramaData provider(String p1, [PanoProviderOptions options]));
   set links(List<StreetViewLink> links) => _setLinks(links);
   void _setLinks(List<StreetViewLink> links);
   set options(StreetViewPanoramaOptions options) => _setOptions(options);

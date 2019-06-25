@@ -2,7 +2,6 @@ import 'dart:html' hide Point;
 import 'dart:math' as math;
 
 import 'package:google_maps/google_maps.dart';
-import 'package:js_wrapping/js_wrapping.dart';
 
 const IMAGE_URL =
     'https://google-developers.appspot.com/maps/documentation/javascript/examples/full';
@@ -50,15 +49,9 @@ num degreesToRadians(num deg) => deg * (math.pi / 180);
 num radiansToDegrees(num rad) => rad / (math.pi / 180);
 
 class GallPetersProjection extends Projection {
-  // TODO(aa) make a constructor with optionals
   GallPetersProjection() : super() {
-    asJsObject(this)['fromLatLngToPoint'] =
-        (JsObject latLng, [JsObject point]) => asJsObject(_fromLatLngToPoint(
-            latLng == null ? null : LatLng.created(latLng),
-            point == null ? null : Point.created(point)));
-    asJsObject(this)['fromPointToLatLng'] = (JsObject point, [bool nowrap]) =>
-        asJsObject(_fromPointToLatLng(
-            point == null ? null : Point.created(point), nowrap));
+    fromLatLngToPoint = _fromLatLngToPoint;
+    fromPointToLatLng = _fromPointToLatLng;
   }
 
   // Using the base map tile, denote the lat/lon of the equatorial origin.
@@ -110,29 +103,25 @@ void main() {
     //..isPng = true
     ..minZoom = 0
     ..maxZoom = 1
-    ..name = 'Gall-Peters';
-  asJsObject(imageTypeOption)['getTileUrl'] =
-      (JsObject coordJs, int zoom, [_]) {
-    final coord = Point.created(coordJs);
-    final numTiles = 1 << zoom;
+    ..name = 'Gall-Peters'
+    ..getTileUrl = (coord, zoom, [_]) {
+      final numTiles = 1 << zoom;
 
-    // Don't wrap tiles vertically.
-    if (coord.y < 0 || coord.y >= numTiles) {
-      return null;
-    }
+      // Don't wrap tiles vertically.
+      if (coord.y < 0 || coord.y >= numTiles) {
+        return null;
+      }
 
-    // Wrap tiles horizontally.
-    final x = ((coord.x % numTiles) + numTiles) % numTiles;
+      // Wrap tiles horizontally.
+      final x = ((coord.x % numTiles) + numTiles) % numTiles;
 
-    // For simplicity, we use a tileset consisting of 1 tile at zoom level 0
-    // and 4 tiles at zoom level 1. Note that we set the base URL to a relative
-    // directory.
-    return '$IMAGE_URL/images/gall-peters_${zoom}_${x}_${coord.y}.png';
-  };
+      // For simplicity, we use a tileset consisting of 1 tile at zoom level 0
+      // and 4 tiles at zoom level 1. Note that we set the base URL to a relative
+      // directory.
+      return '$IMAGE_URL/images/gall-peters_${zoom}_${x}_${coord.y}.png';
+    };
   final gallPetersMapType = ImageMapType(imageTypeOption)
     ..projection = GallPetersProjection();
-  context['a'] = asJsObject(MapTypeControlOptions()
-    ..mapTypeIds = [MapTypeId.ROADMAP, 'gallPetersMap']);
   final mapOptions = MapOptions()
     ..zoom = 0
     ..center = LatLng(0, 0)

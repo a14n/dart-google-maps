@@ -9,16 +9,14 @@ void main() {
     ..tileSize = Size(256, 256)
     ..maxZoom = 9
     ..minZoom = 0
-    ..name = 'Moon';
-  asJsObject(moonTypeOptions)
-    ..['radius'] = 1738000
-    ..['getTileUrl'] = (JsObject point, int zoomLevel) {
-      final normalizedCoord =
-          getNormalizedCoord(Point.created(point), zoomLevel);
+    ..name = 'Moon'
+    ..getTileUrl = (point, zoomLevel) {
+      final normalizedCoord = getNormalizedCoord(point, zoomLevel);
       if (normalizedCoord == null) return null;
       final bound = math.pow(2, zoomLevel);
       return 'http://mw1.google.com/mw-planetary/lunar/lunarmaps_v1/clem_bw/$zoomLevel/${normalizedCoord.x}/${bound - normalizedCoord.y - 1}.jpg';
     };
+  asJsObject(moonTypeOptions)['radius'] = 1738000;
 
   final moonMapType = ImageMapType(moonTypeOptions);
 

@@ -20,7 +20,7 @@ abstract class _StyledMapType extends MVCObject implements MapType {
           [StyledMapTypeOptions options]) =>
       null;
 
-  Node getTile(Point tileCoord, num zoom, Document ownerDocument);
+  Node Function(Point tileCoord, num zoom, Document ownerDocument) getTile;
   void releaseTile(Node tile);
 
   String alt;

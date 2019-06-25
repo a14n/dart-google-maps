@@ -22,4 +22,22 @@ abstract class _StreetViewService implements JsInterface {
       String pano, callback(StreetViewPanoramaData p1, StreetViewStatus p2));
   void getPanoramaByLocation(LatLng latlng, num radius,
       callback(StreetViewPanoramaData p1, StreetViewStatus p2));
+
+  void getPanorama(
+      dynamic /*StreetViewLocationRequest|StreetViewPanoRequest*/ request,
+      void callback(StreetViewPanoramaData datas, StreetViewStatus status)) {
+    _getPanorama(
+        (ChainedCodec()
+              ..add(JsInterfaceCodec<StreetViewLocationRequest>(
+                  (o) => StreetViewLocationRequest.created(o),
+                  (o) => o is JsObject && o.hasProperty('location')))
+              ..add(JsInterfaceCodec<StreetViewPanoRequest>(
+                  (o) => StreetViewPanoRequest.created(o),
+                  (o) => o is JsObject && o.hasProperty('pano'))))
+            .encode(request),
+        callback);
+  }
+
+  void _getPanorama(dynamic request,
+      void callback(StreetViewPanoramaData datas, StreetViewStatus status));
 }
