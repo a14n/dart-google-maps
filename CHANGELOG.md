@@ -1,3 +1,7 @@
+# v3.4.1 (2019-07-11)
+
+- Fix issue with `MVCArray.onRemoveAt` and `MVCArray.onRemoveAt`.
+
 # v3.4.0 (2019-06-25)
 
 - Potentially breaking changes: the following function can now be set directly without dealing with JsObject
