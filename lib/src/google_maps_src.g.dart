@@ -1461,11 +1461,17 @@ class Event extends JsInterface {
         capture
       ]));
   MapsEventListener addListener(
-          Object instance, String eventName, handler([dynamic p1])) =>
+    Object instance,
+    String eventName,
+    handler([dynamic p1, dynamic p2, dynamic p3, dynamic p4, dynamic p5]),
+  ) =>
       __codec31.decode(asJsObject(this).callMethod('addListener',
           [__codec10.encode(instance), eventName, __codec32.encode(handler)]));
   MapsEventListener addListenerOnce(
-          Object instance, String eventName, handler([dynamic p1])) =>
+    Object instance,
+    String eventName,
+    handler([dynamic p1, dynamic p2, dynamic p3, dynamic p4, dynamic p5]),
+  ) =>
       __codec31.decode(asJsObject(this).callMethod('addListenerOnce',
           [__codec10.encode(instance), eventName, __codec32.encode(handler)]));
   void clearInstanceListeners(Object instance) {
@@ -2913,15 +2919,19 @@ class MVCArray<E> extends MVCObject {
 
   Stream<int> get onInsertAt => getStream(this, 'insert_at');
   Stream<IndexAndElement<E>> get onRemoveAt => getStream(
-      this,
-      'remove_at',
-      (int index, oldElement) =>
-          IndexAndElement<E>(index, _codec.decode(oldElement)));
+        this,
+        'remove_at',
+        (int index, oldElement) =>
+            IndexAndElement<E>(index, _codec.decode(oldElement)),
+        2,
+      );
   Stream<IndexAndElement<E>> get onSetAt => getStream(
-      this,
-      'set_at',
-      (int index, oldElement) =>
-          IndexAndElement<E>(index, _codec.decode(oldElement)));
+        this,
+        'set_at',
+        (int index, oldElement) =>
+            IndexAndElement<E>(index, _codec.decode(oldElement)),
+        2,
+      );
 }
 
 @GeneratedFrom(_MVCObject)
@@ -7195,12 +7205,30 @@ final __codec30 = FunctionCodec<Function> /*<(dynamic) → dynamic>*/(
 final __codec31 =
     JsInterfaceCodec<MapsEventListener>((o) => MapsEventListener.created(o));
 
-/// codec for google_maps.src.([dynamic]) → dynamic
-final __codec32 = FunctionCodec<Function> /*<([dynamic]) → dynamic>*/(
-  (f) => ([p$p1]) => __codec9.encode(f(__codec9.decode(p$p1))),
-  (f) => ([p$p1]) => __codec9.decode(f is JsFunction
-      ? f.apply([__codec9.encode(p$p1)])
-      : Function.apply(f, [__codec9.encode(p$p1)])),
+/// codec for google_maps.src.([dynamic, dynamic, dynamic, dynamic, dynamic]) → dynamic
+final __codec32 = FunctionCodec<
+    Function> /*<([dynamic, dynamic, dynamic, dynamic, dynamic]) → dynamic>*/(
+  (f) => ([p$p1, p$p2, p$p3, p$p4, p$p5]) => __codec9.encode(f(
+      __codec9.decode(p$p1),
+      __codec9.decode(p$p2),
+      __codec9.decode(p$p3),
+      __codec9.decode(p$p4),
+      __codec9.decode(p$p5))),
+  (f) => ([p$p1, p$p2, p$p3, p$p4, p$p5]) => __codec9.decode(f is JsFunction
+      ? f.apply([
+          __codec9.encode(p$p1),
+          __codec9.encode(p$p2),
+          __codec9.encode(p$p3),
+          __codec9.encode(p$p4),
+          __codec9.encode(p$p5)
+        ])
+      : Function.apply(f, [
+          __codec9.encode(p$p1),
+          __codec9.encode(p$p2),
+          __codec9.encode(p$p3),
+          __codec9.encode(p$p4),
+          __codec9.encode(p$p5)
+        ])),
 );
 
 /// codec for google_maps.src.FusionTablesLayerOptions

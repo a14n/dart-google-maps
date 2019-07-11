@@ -24,9 +24,15 @@ abstract class _Event implements JsInterface {
       Object instance, String eventName, handler(dynamic p1),
       [bool capture]);
   MapsEventListener addListener(
-      Object instance, String eventName, handler([dynamic p1]));
+    Object instance,
+    String eventName,
+    handler([dynamic p1, dynamic p2, dynamic p3, dynamic p4, dynamic p5]),
+  );
   MapsEventListener addListenerOnce(
-      Object instance, String eventName, handler([dynamic p1]));
+    Object instance,
+    String eventName,
+    handler([dynamic p1, dynamic p2, dynamic p3, dynamic p4, dynamic p5]),
+  );
   void clearInstanceListeners(Object instance);
   void clearListeners(Object instance, String eventName);
   void removeListener(MapsEventListener listener);
