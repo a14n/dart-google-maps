@@ -16,4 +16,5 @@ part of google_maps.src;
 
 @jsEnum
 @JsName('google.maps.StreetViewStatus')
+// ignore: unused_element
 enum _StreetViewStatus { OK, UNKNOWN_ERROR, ZERO_RESULTS }

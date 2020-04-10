@@ -239,10 +239,6 @@ class OverlayType extends JsEnum {
 
   @override
   String toString() => 'OverlayType.$_name';
-
-  // dumb code to remove analyzer hint for unused _OverlayType
-  _OverlayType _dumbMethod1() => _dumbMethod2();
-  _OverlayType _dumbMethod2() => _dumbMethod1();
 }
 
 /// codec for google_maps.src.drawing.OverlayType

@@ -16,6 +16,7 @@ part of google_maps.src;
 
 @jsEnum
 @JsName('google.maps.ControlPosition')
+// ignore: unused_element
 enum _ControlPosition {
   BOTTOM_CENTER,
   BOTTOM_LEFT,

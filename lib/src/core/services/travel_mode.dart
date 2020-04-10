@@ -16,4 +16,5 @@ part of google_maps.src;
 
 @jsEnum
 @JsName('google.maps.TravelMode')
+// ignore: unused_element
 enum _TravelMode { BICYCLING, DRIVING, TRANSIT, WALKING }

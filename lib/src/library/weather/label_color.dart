@@ -16,4 +16,5 @@ part of google_maps.src.weather;
 
 @jsEnum
 @JsName('google.maps.weather.LabelColor')
+// ignore: unused_element
 enum _LabelColor { BLACK, WHITE }

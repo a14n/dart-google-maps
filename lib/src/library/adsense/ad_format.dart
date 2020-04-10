@@ -16,6 +16,7 @@ part of google_maps.src.adsense;
 
 @jsEnum
 @JsName('google.maps.adsense.AdFormat')
+// ignore: unused_element
 enum _AdFormat {
   BANNER,
   BUTTON,

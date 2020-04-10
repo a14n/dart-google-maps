@@ -16,4 +16,5 @@ part of google_maps.src.drawing;
 
 @jsEnum
 @JsName('google.maps.drawing.OverlayType')
+// ignore: unused_element
 enum _OverlayType { CIRCLE, MARKER, POLYGON, POLYLINE, RECTANGLE }

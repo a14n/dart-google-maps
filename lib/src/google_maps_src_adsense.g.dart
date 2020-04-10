@@ -80,10 +80,6 @@ class AdFormat extends JsEnum {
 
   @override
   String toString() => 'AdFormat.$_name';
-
-  // dumb code to remove analyzer hint for unused _AdFormat
-  _AdFormat _dumbMethod1() => _dumbMethod2();
-  _AdFormat _dumbMethod2() => _dumbMethod1();
 }
 
 @GeneratedFrom(_AdUnit)

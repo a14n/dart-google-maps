@@ -16,6 +16,7 @@ part of google_maps.src;
 
 @jsEnum
 @JsName('google.maps.SymbolPath')
+// ignore: unused_element
 enum _SymbolPath {
   BACKWARD_CLOSED_ARROW,
   BACKWARD_OPEN_ARROW,

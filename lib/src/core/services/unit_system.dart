@@ -16,4 +16,5 @@ part of google_maps.src;
 
 @jsEnum
 @JsName('google.maps.UnitSystem')
+// ignore: unused_element
 enum _UnitSystem { IMPERIAL, METRIC }

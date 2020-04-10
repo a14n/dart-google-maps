@@ -529,10 +529,6 @@ class MapsEngineStatus extends JsEnum {
 
   @override
   String toString() => 'MapsEngineStatus.$_name';
-
-  // dumb code to remove analyzer hint for unused _MapsEngineStatus
-  _MapsEngineStatus _dumbMethod1() => _dumbMethod2();
-  _MapsEngineStatus _dumbMethod2() => _dumbMethod1();
 }
 
 @GeneratedFrom(_WeightedLocation)

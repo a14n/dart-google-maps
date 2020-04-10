@@ -16,4 +16,5 @@ part of google_maps.src;
 
 @jsEnum
 @JsName('google.maps.TrafficModel')
+// ignore: unused_element
 enum _TrafficModel { BEST_GUESS, OPTIMISTIC, PESSIMISTIC }

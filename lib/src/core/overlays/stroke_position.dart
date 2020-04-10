@@ -16,4 +16,5 @@ part of google_maps.src;
 
 @jsEnum
 @JsName('google.maps.StrokePosition')
+// ignore: unused_element
 enum _StrokePosition { CENTER, INSIDE, OUTSIDE }

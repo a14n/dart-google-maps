@@ -16,4 +16,5 @@ part of google_maps.src;
 
 @jsEnum
 @JsName('google.maps.ZoomControlStyle')
+// ignore: unused_element
 enum _ZoomControlStyle { DEFAULT, LARGE, SMALL }

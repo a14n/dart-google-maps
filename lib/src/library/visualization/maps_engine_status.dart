@@ -16,4 +16,5 @@ part of google_maps.src.visualization;
 
 @jsEnum
 @JsName('google.maps.visualization.MapsEngineStatus')
+// ignore: unused_element
 enum _MapsEngineStatus { INVALID_LAYER, OK, UNKNOWN_ERROR }

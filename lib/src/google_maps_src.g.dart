@@ -203,10 +203,6 @@ class ControlPosition extends JsEnum {
 
   @override
   String toString() => 'ControlPosition.$_name';
-
-  // dumb code to remove analyzer hint for unused _ControlPosition
-  _ControlPosition _dumbMethod1() => _dumbMethod2();
-  _ControlPosition _dumbMethod2() => _dumbMethod1();
 }
 
 @GeneratedFrom(_FullscreenControlOptions)
@@ -290,10 +286,6 @@ class MapTypeControlStyle extends JsEnum {
 
   @override
   String toString() => 'MapTypeControlStyle.$_name';
-
-  // dumb code to remove analyzer hint for unused _MapTypeControlStyle
-  _MapTypeControlStyle _dumbMethod1() => _dumbMethod2();
-  _MapTypeControlStyle _dumbMethod2() => _dumbMethod1();
 }
 
 @GeneratedFrom(_OverviewMapControlOptions)
@@ -357,10 +349,6 @@ class ScaleControlStyle extends JsEnum {
 
   @override
   String toString() => 'ScaleControlStyle.$_name';
-
-  // dumb code to remove analyzer hint for unused _ScaleControlStyle
-  _ScaleControlStyle _dumbMethod1() => _dumbMethod2();
-  _ScaleControlStyle _dumbMethod2() => _dumbMethod1();
 }
 
 @GeneratedFrom(_StreetViewControlOptions)
@@ -407,10 +395,6 @@ class ZoomControlStyle extends JsEnum {
 
   @override
   String toString() => 'ZoomControlStyle.$_name';
-
-  // dumb code to remove analyzer hint for unused _ZoomControlStyle
-  _ZoomControlStyle _dumbMethod1() => _dumbMethod2();
-  _ZoomControlStyle _dumbMethod2() => _dumbMethod1();
 }
 
 @GeneratedFrom(_Data)
@@ -2012,10 +1996,6 @@ class KmlLayerStatus extends JsEnum {
 
   @override
   String toString() => 'KmlLayerStatus.$_name';
-
-  // dumb code to remove analyzer hint for unused _KmlLayerStatus
-  _KmlLayerStatus _dumbMethod1() => _dumbMethod2();
-  _KmlLayerStatus _dumbMethod2() => _dumbMethod1();
 }
 
 @GeneratedFrom(_KmlMouseEvent)
@@ -2490,10 +2470,6 @@ class MapTypeId extends JsEnum {
 
   @override
   String toString() => 'MapTypeId.$_name';
-
-  // dumb code to remove analyzer hint for unused _MapTypeId
-  _MapTypeId _dumbMethod1() => _dumbMethod2();
-  _MapTypeId _dumbMethod2() => _dumbMethod1();
 }
 
 @GeneratedFrom(_ImageMapType)
@@ -2986,10 +2962,6 @@ class Animation extends JsEnum {
 
   @override
   String toString() => 'Animation.$_name';
-
-  // dumb code to remove analyzer hint for unused _Animation
-  _Animation _dumbMethod1() => _dumbMethod2();
-  _Animation _dumbMethod2() => _dumbMethod1();
 }
 
 @GeneratedFrom(_Circle)
@@ -4535,10 +4507,6 @@ class StrokePosition extends JsEnum {
 
   @override
   String toString() => 'StrokePosition.$_name';
-
-  // dumb code to remove analyzer hint for unused _StrokePosition
-  _StrokePosition _dumbMethod1() => _dumbMethod2();
-  _StrokePosition _dumbMethod2() => _dumbMethod1();
 }
 
 @GeneratedFrom(_GSymbol)
@@ -4654,10 +4622,6 @@ class SymbolPath extends JsEnum {
 
   @override
   String toString() => 'SymbolPath.$_name';
-
-  // dumb code to remove analyzer hint for unused _SymbolPath
-  _SymbolPath _dumbMethod1() => _dumbMethod2();
-  _SymbolPath _dumbMethod2() => _dumbMethod1();
 }
 
 @GeneratedFrom(_Attribution)
@@ -5288,10 +5252,6 @@ class DirectionsStatus extends JsEnum {
 
   @override
   String toString() => 'DirectionsStatus.$_name';
-
-  // dumb code to remove analyzer hint for unused _DirectionsStatus
-  _DirectionsStatus _dumbMethod1() => _dumbMethod2();
-  _DirectionsStatus _dumbMethod2() => _dumbMethod1();
 }
 
 @GeneratedFrom(_DirectionsStep)
@@ -5440,10 +5400,6 @@ class DistanceMatrixElementStatus extends JsEnum {
 
   @override
   String toString() => 'DistanceMatrixElementStatus.$_name';
-
-  // dumb code to remove analyzer hint for unused _DistanceMatrixElementStatus
-  _DistanceMatrixElementStatus _dumbMethod1() => _dumbMethod2();
-  _DistanceMatrixElementStatus _dumbMethod2() => _dumbMethod1();
 }
 
 @GeneratedFrom(_DistanceMatrixRequest)
@@ -5683,10 +5639,6 @@ class DistanceMatrixStatus extends JsEnum {
 
   @override
   String toString() => 'DistanceMatrixStatus.$_name';
-
-  // dumb code to remove analyzer hint for unused _DistanceMatrixStatus
-  _DistanceMatrixStatus _dumbMethod1() => _dumbMethod2();
-  _DistanceMatrixStatus _dumbMethod2() => _dumbMethod1();
 }
 
 @GeneratedFrom(_DrivingOptions)
@@ -5792,10 +5744,6 @@ class ElevationStatus extends JsEnum {
 
   @override
   String toString() => 'ElevationStatus.$_name';
-
-  // dumb code to remove analyzer hint for unused _ElevationStatus
-  _ElevationStatus _dumbMethod1() => _dumbMethod2();
-  _ElevationStatus _dumbMethod2() => _dumbMethod1();
 }
 
 @GeneratedFrom(_Geocoder)
@@ -5931,10 +5879,6 @@ class GeocoderLocationType extends JsEnum {
 
   @override
   String toString() => 'GeocoderLocationType.$_name';
-
-  // dumb code to remove analyzer hint for unused _GeocoderLocationType
-  _GeocoderLocationType _dumbMethod1() => _dumbMethod2();
-  _GeocoderLocationType _dumbMethod2() => _dumbMethod1();
 }
 
 @GeneratedFrom(_GeocoderRequest)
@@ -6080,10 +6024,6 @@ class GeocoderStatus extends JsEnum {
 
   @override
   String toString() => 'GeocoderStatus.$_name';
-
-  // dumb code to remove analyzer hint for unused _GeocoderStatus
-  _GeocoderStatus _dumbMethod1() => _dumbMethod2();
-  _GeocoderStatus _dumbMethod2() => _dumbMethod1();
 }
 
 @GeneratedFrom(_LocationElevationRequest)
@@ -6141,10 +6081,6 @@ class MaxZoomStatus extends JsEnum {
 
   @override
   String toString() => 'MaxZoomStatus.$_name';
-
-  // dumb code to remove analyzer hint for unused _MaxZoomStatus
-  _MaxZoomStatus _dumbMethod1() => _dumbMethod2();
-  _MaxZoomStatus _dumbMethod2() => _dumbMethod1();
 }
 
 @GeneratedFrom(_PathElevationRequest)
@@ -6229,10 +6165,6 @@ class TrafficModel extends JsEnum {
 
   @override
   String toString() => 'TrafficModel.$_name';
-
-  // dumb code to remove analyzer hint for unused _TrafficModel
-  _TrafficModel _dumbMethod1() => _dumbMethod2();
-  _TrafficModel _dumbMethod2() => _dumbMethod1();
 }
 
 @GeneratedFrom(_TransitAgency)
@@ -6416,10 +6348,6 @@ class TransitMode extends JsEnum {
 
   @override
   String toString() => 'TransitMode.$_name';
-
-  // dumb code to remove analyzer hint for unused _TransitMode
-  _TransitMode _dumbMethod1() => _dumbMethod2();
-  _TransitMode _dumbMethod2() => _dumbMethod1();
 }
 
 @GeneratedFrom(_TransitOptions)
@@ -6463,10 +6391,6 @@ class TransitRoutePreference extends JsEnum {
 
   @override
   String toString() => 'TransitRoutePreference.$_name';
-
-  // dumb code to remove analyzer hint for unused _TransitRoutePreference
-  _TransitRoutePreference _dumbMethod1() => _dumbMethod2();
-  _TransitRoutePreference _dumbMethod2() => _dumbMethod1();
 }
 
 @GeneratedFrom(_TransitStop)
@@ -6535,10 +6459,6 @@ class TravelMode extends JsEnum {
 
   @override
   String toString() => 'TravelMode.$_name';
-
-  // dumb code to remove analyzer hint for unused _TravelMode
-  _TravelMode _dumbMethod1() => _dumbMethod2();
-  _TravelMode _dumbMethod2() => _dumbMethod1();
 }
 
 class UnitSystem extends JsEnum {
@@ -6552,10 +6472,6 @@ class UnitSystem extends JsEnum {
 
   @override
   String toString() => 'UnitSystem.$_name';
-
-  // dumb code to remove analyzer hint for unused _UnitSystem
-  _UnitSystem _dumbMethod1() => _dumbMethod2();
-  _UnitSystem _dumbMethod2() => _dumbMethod1();
 }
 
 @GeneratedFrom(_PanoProviderOptions)
@@ -6955,10 +6871,6 @@ class StreetViewPreference extends JsEnum {
 
   @override
   String toString() => 'StreetViewPreference.$_name';
-
-  // dumb code to remove analyzer hint for unused _StreetViewPreference
-  _StreetViewPreference _dumbMethod1() => _dumbMethod2();
-  _StreetViewPreference _dumbMethod2() => _dumbMethod1();
 }
 
 @GeneratedFrom(_StreetViewService)
@@ -7013,10 +6925,6 @@ class StreetViewSource extends JsEnum {
 
   @override
   String toString() => 'StreetViewSource.$_name';
-
-  // dumb code to remove analyzer hint for unused _StreetViewSource
-  _StreetViewSource _dumbMethod1() => _dumbMethod2();
-  _StreetViewSource _dumbMethod2() => _dumbMethod1();
 }
 
 class StreetViewStatus extends JsEnum {
@@ -7032,10 +6940,6 @@ class StreetViewStatus extends JsEnum {
 
   @override
   String toString() => 'StreetViewStatus.$_name';
-
-  // dumb code to remove analyzer hint for unused _StreetViewStatus
-  _StreetViewStatus _dumbMethod1() => _dumbMethod2();
-  _StreetViewStatus _dumbMethod2() => _dumbMethod1();
 }
 
 @GeneratedFrom(_StreetViewTileData)

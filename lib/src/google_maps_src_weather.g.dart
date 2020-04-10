@@ -33,10 +33,6 @@ class LabelColor extends JsEnum {
 
   @override
   String toString() => 'LabelColor.$_name';
-
-  // dumb code to remove analyzer hint for unused _LabelColor
-  _LabelColor _dumbMethod1() => _dumbMethod2();
-  _LabelColor _dumbMethod2() => _dumbMethod1();
 }
 
 class TemperatureUnit extends JsEnum {
@@ -50,10 +46,6 @@ class TemperatureUnit extends JsEnum {
 
   @override
   String toString() => 'TemperatureUnit.$_name';
-
-  // dumb code to remove analyzer hint for unused _TemperatureUnit
-  _TemperatureUnit _dumbMethod1() => _dumbMethod2();
-  _TemperatureUnit _dumbMethod2() => _dumbMethod1();
 }
 
 @GeneratedFrom(_WeatherConditions)
@@ -293,10 +285,6 @@ class WindSpeedUnit extends JsEnum {
 
   @override
   String toString() => 'WindSpeedUnit.$_name';
-
-  // dumb code to remove analyzer hint for unused _WindSpeedUnit
-  _WindSpeedUnit _dumbMethod1() => _dumbMethod2();
-  _WindSpeedUnit _dumbMethod2() => _dumbMethod1();
 }
 
 /// codec for google_maps.src.GMap

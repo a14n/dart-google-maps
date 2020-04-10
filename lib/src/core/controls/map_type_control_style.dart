@@ -16,4 +16,5 @@ part of google_maps.src;
 
 @jsEnum
 @JsName('google.maps.MapTypeControlStyle')
+// ignore: unused_element
 enum _MapTypeControlStyle { DEFAULT, DROPDOWN_MENU, HORIZONTAL_BAR }

@@ -16,6 +16,7 @@ part of google_maps.src.places;
 
 @jsEnum
 @JsName('google.maps.places.PlacesServiceStatus')
+// ignore: unused_element
 enum _PlacesServiceStatus {
   INVALID_REQUEST,
   OK,

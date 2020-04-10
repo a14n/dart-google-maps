@@ -16,4 +16,5 @@ part of google_maps.src.places;
 
 @jsEnum
 @JsName('google.maps.places.RankBy')
+// ignore: unused_element
 enum _RankBy { DISTANCE, PROMINENCE }

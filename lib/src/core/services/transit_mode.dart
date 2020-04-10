@@ -16,4 +16,5 @@ part of google_maps.src;
 
 @jsEnum
 @JsName('google.maps.TransitMode')
+// ignore: unused_element
 enum _TransitMode { BUS, RAIL, SUBWAY, TRAIN, TRAM }

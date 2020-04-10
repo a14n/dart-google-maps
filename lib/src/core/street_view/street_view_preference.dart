@@ -16,4 +16,5 @@ part of google_maps.src;
 
 @jsEnum
 @JsName('google.maps.StreetViewPreference')
+// ignore: unused_element
 enum _StreetViewPreference { BEST, NEAREST }

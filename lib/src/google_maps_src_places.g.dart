@@ -658,10 +658,6 @@ class PlacesServiceStatus extends JsEnum {
 
   @override
   String toString() => 'PlacesServiceStatus.$_name';
-
-  // dumb code to remove analyzer hint for unused _PlacesServiceStatus
-  _PlacesServiceStatus _dumbMethod1() => _dumbMethod2();
-  _PlacesServiceStatus _dumbMethod2() => _dumbMethod1();
 }
 
 @GeneratedFrom(_PredictionSubstring)
@@ -822,10 +818,6 @@ class RankBy extends JsEnum {
 
   @override
   String toString() => 'RankBy.$_name';
-
-  // dumb code to remove analyzer hint for unused _RankBy
-  _RankBy _dumbMethod1() => _dumbMethod2();
-  _RankBy _dumbMethod2() => _dumbMethod1();
 }
 
 @GeneratedFrom(_SearchBox)

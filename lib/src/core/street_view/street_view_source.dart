@@ -16,4 +16,5 @@ part of google_maps.src;
 
 @jsEnum
 @JsName('google.maps.StreetViewSource')
+// ignore: unused_element
 enum _StreetViewSource { DEFAULT, OUTDOOR }

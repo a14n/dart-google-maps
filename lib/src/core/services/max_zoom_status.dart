@@ -16,4 +16,5 @@ part of google_maps.src;
 
 @jsEnum
 @JsName('google.maps.MaxZoomStatus')
+// ignore: unused_element
 enum _MaxZoomStatus { ERROR, OK }
