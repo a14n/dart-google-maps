@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @jsEnum
 @JsName('google.maps.DistanceMatrixStatus')
-// ignore: unused_element
+// ignore: unused_element, unused_field
 enum _DistanceMatrixStatus {
   INVALID_REQUEST,
   MAX_DIMENSIONS_EXCEEDED,

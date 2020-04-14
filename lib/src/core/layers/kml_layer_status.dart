@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @jsEnum
 @JsName('google.maps.KmlLayerStatus')
-// ignore: unused_element
+// ignore: unused_element, unused_field
 enum _KmlLayerStatus {
   DOCUMENT_NOT_FOUND,
   DOCUMENT_TOO_LARGE,

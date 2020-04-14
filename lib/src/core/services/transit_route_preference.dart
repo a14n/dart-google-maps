@@ -16,5 +16,5 @@ part of google_maps.src;
 
 @jsEnum
 @JsName('google.maps.TransitRoutePreference')
-// ignore: unused_element
+// ignore: unused_element, unused_field
 enum _TransitRoutePreference { FEWER_TRANSFERS, LESS_WALKING }

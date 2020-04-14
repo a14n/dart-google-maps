@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @jsEnum
 @JsName('google.maps.GeocoderLocationType')
-// ignore: unused_element
+// ignore: unused_element, unused_field
 enum _GeocoderLocationType {
   APPROXIMATE,
   GEOMETRIC_CENTER,

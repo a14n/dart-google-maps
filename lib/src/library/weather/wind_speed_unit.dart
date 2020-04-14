@@ -16,5 +16,5 @@ part of google_maps.src.weather;
 
 @jsEnum
 @JsName('google.maps.weather.WindSpeedUnit')
-// ignore: unused_element
+// ignore: unused_element, unused_field
 enum _WindSpeedUnit { KILOMETERS_PER_HOUR, METERS_PER_SECOND, MILES_PER_HOUR }

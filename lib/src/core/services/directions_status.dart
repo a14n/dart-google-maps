@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @jsEnum
 @JsName('google.maps.DirectionsStatus')
-// ignore: unused_element
+// ignore: unused_element, unused_field
 enum _DirectionsStatus {
   INVALID_REQUEST,
   MAX_WAYPOINTS_EXCEEDED,

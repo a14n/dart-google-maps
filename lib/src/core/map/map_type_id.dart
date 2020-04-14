@@ -16,5 +16,5 @@ part of google_maps.src;
 
 @jsEnum
 @JsName('google.maps.MapTypeId')
-// ignore: unused_element
+// ignore: unused_element, unused_field
 enum _MapTypeId { HYBRID, ROADMAP, SATELLITE, TERRAIN }

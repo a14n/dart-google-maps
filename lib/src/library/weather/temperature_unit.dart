@@ -16,5 +16,5 @@ part of google_maps.src.weather;
 
 @jsEnum
 @JsName('google.maps.weather.TemperatureUnit')
-// ignore: unused_element
+// ignore: unused_element, unused_field
 enum _TemperatureUnit { CELSIUS, FAHRENHEIT }

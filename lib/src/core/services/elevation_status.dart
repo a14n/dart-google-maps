@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @jsEnum
 @JsName('google.maps.ElevationStatus')
-// ignore: unused_element
+// ignore: unused_element, unused_field
 enum _ElevationStatus {
   INVALID_REQUEST,
   OK,

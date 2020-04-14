@@ -16,7 +16,7 @@ part of google_maps.src;
 
 @jsEnum
 @JsName('google.maps.GeocoderStatus')
-// ignore: unused_element
+// ignore: unused_element, unused_field
 enum _GeocoderStatus {
   ERROR,
   INVALID_REQUEST,
