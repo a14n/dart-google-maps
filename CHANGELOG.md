@@ -1,3 +1,7 @@
+# v3.4.2 (2020-04-22)
+
+- Add `AutocompletionRequest.origin` and `AutocompletionRequest.sessionToken`.
+
 # v3.4.1 (2019-07-11)
 
 - Fix issue with `MVCArray.onRemoveAt` and `MVCArray.onRemoveAt`.
