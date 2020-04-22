@@ -132,6 +132,15 @@ class AutocompleteService extends JsInterface {
   }
 }
 
+@GeneratedFrom(_AutocompleteSessionToken)
+@JsName('google.maps.places.AutocompleteSessionToken')
+class AutocompleteSessionToken extends JsInterface {
+  AutocompleteSessionToken()
+      : this.created(JsObject(
+            context['google']['maps']['places']['AutocompleteSessionToken']));
+  AutocompleteSessionToken.created(JsObject o) : super.created(o);
+}
+
 @GeneratedFrom(_AutocompletionRequest)
 @anonymous
 class AutocompletionRequest extends JsInterface {
@@ -165,11 +174,22 @@ class AutocompletionRequest extends JsInterface {
   }
 
   num get offset => asJsObject(this)['offset'];
+  set origin(LatLng _origin) {
+    asJsObject(this)['origin'] = __codec19.encode(_origin);
+  }
+
+  LatLng get origin => __codec19.decode(asJsObject(this)['origin']);
   set radius(num _radius) {
     asJsObject(this)['radius'] = _radius;
   }
 
   num get radius => asJsObject(this)['radius'];
+  set sessionToken(AutocompleteSessionToken _sessionToken) {
+    asJsObject(this)['sessionToken'] = __codec41.encode(_sessionToken);
+  }
+
+  AutocompleteSessionToken get sessionToken =>
+      __codec41.decode(asJsObject(this)['sessionToken']);
   set types(List<String> _types) {
     asJsObject(this)['types'] = __codec4.encode(_types);
   }
@@ -1082,3 +1102,7 @@ final __codec39 =
 /// codec for google_maps.src.places.SearchBoxOptions
 final __codec40 =
     JsInterfaceCodec<SearchBoxOptions>((o) => SearchBoxOptions.created(o));
+
+/// codec for google.maps.places.AutocompleteSessionToken
+final __codec41 = JsInterfaceCodec<AutocompleteSessionToken>(
+    (o) => AutocompleteSessionToken.created(o));

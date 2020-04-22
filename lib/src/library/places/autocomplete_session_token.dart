@@ -14,17 +14,7 @@
 
 part of google_maps.src.places;
 
-@anonymous
-abstract class _AutocompletionRequest implements JsInterface {
-  factory _AutocompletionRequest() => null;
-
-  LatLngBounds bounds;
-  ComponentRestrictions componentRestrictions;
-  String input;
-  LatLng location;
-  num offset;
-  LatLng origin;
-  num radius;
-  AutocompleteSessionToken sessionToken;
-  List<String> types;
+@JsName('google.maps.places.AutocompleteSessionToken')
+abstract class _AutocompleteSessionToken implements JsInterface {
+  factory _AutocompleteSessionToken() => null;
 }

@@ -27,6 +27,7 @@ part 'library/places/autocomplete.dart';
 part 'library/places/autocomplete_options.dart';
 part 'library/places/autocomplete_prediction.dart';
 part 'library/places/autocomplete_service.dart';
+part 'library/places/autocomplete_session_token.dart';
 part 'library/places/autocompletion_request.dart';
 part 'library/places/component_restrictions.dart';
 part 'library/places/photo_options.dart';
