@@ -35,8 +35,8 @@ class USGSOverlay extends OverlayView {
     // Explicitly call setMap on this overlay
     this.map = map;
   }
-  LatLngBounds _bounds;
-  String _image;
+  final LatLngBounds _bounds;
+  final String _image;
   DivElement _div;
 
   /// onAdd is called when the map's panes are ready and the overlay has been

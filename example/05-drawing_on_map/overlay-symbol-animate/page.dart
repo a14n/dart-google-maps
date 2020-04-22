@@ -36,7 +36,7 @@ void main() {
 
 void animateCircle() {
   var count = 0;
-  Timer.periodic(Duration(milliseconds: 20), (_) {
+  Timer.periodic(const Duration(milliseconds: 20), (_) {
     count = (count + 1) % 200;
 
     final icons = JsList.created(line.get('icons') as JsArray,

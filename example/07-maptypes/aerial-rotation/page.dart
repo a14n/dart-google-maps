@@ -25,6 +25,6 @@ void rotate90(_) {
 void autoRotate(_) {
   // Determine if we're showing aerial imagery
   if (map.tilt != 0) {
-    Timer.periodic(Duration(seconds: 3), rotate90);
+    Timer.periodic(const Duration(seconds: 3), rotate90);
   }
 }

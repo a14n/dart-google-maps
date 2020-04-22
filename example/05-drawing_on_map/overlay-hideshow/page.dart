@@ -40,9 +40,9 @@ class USGSOverlay extends OverlayView {
     map = _map;
   }
 
-  LatLngBounds _bounds;
-  String _image;
-  GMap _map;
+  final LatLngBounds _bounds;
+  final String _image;
+  final GMap _map;
 
   DivElement _div;
 
