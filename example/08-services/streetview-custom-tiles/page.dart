@@ -1,6 +1,7 @@
 import 'dart:html';
 
 import 'package:google_maps/google_maps.dart';
+import 'package:js_wrapping/js_wrapping.dart';
 
 StreetViewPanorama panorama;
 // StreetViewPanoramaData of a panorama just outside the Google Sydney office.
@@ -10,14 +11,15 @@ void main() {
   // Use the Street View service to find a pano ID on Pirrama Rd, outside the
   // Google office.
   StreetViewService().getPanorama(
-    LatLng(-33.867386, 151.195767),
+      StreetViewLocationRequest()..location = LatLng(-33.867386, 151.195767),
+      allowInterop(
     (result, status) {
       if (status == StreetViewStatus.OK) {
         outsideGoogle = result;
         initPanorama();
       }
     },
-  );
+  ));
 }
 
 void initPanorama() {
@@ -31,17 +33,17 @@ void initPanorama() {
         return getReceptionPanoramaData();
       }
       return null;
-    })
-
-    // Add a link to our custom panorama from outside the Google Sydney office.
-    ..onLinksChanged.listen((_) {
-      if (panorama.pano == outsideGoogle.location.pano) {
-        panorama.links.add(StreetViewLink()
-          ..description = 'Google Sydney'
-          ..heading = 25
-          ..pano = 'reception');
-      }
     });
+
+  // Add a link to our custom panorama from outside the Google Sydney office.
+  Event.addListener(panorama, 'links_changed', allowInterop((_) {
+    if (panorama.pano == outsideGoogle.location.pano) {
+      panorama.links.add(StreetViewLink()
+        ..description = 'Google Sydney'
+        ..heading = 25
+        ..pano = 'reception');
+    }
+  }));
 }
 
 // StreetViewPanoramaData for a custom panorama: the Google Sydney reception.

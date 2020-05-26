@@ -1,6 +1,7 @@
 import 'dart:html';
 
 import 'package:google_maps/google_maps.dart';
+import 'package:js_wrapping/js_wrapping.dart';
 
 final cafe = LatLng(37.869085, -122.254775);
 
@@ -18,7 +19,7 @@ void main() {
     document.getElementById('pano_cell').innerHtml = panorama.pano;
   });
 
-  panorama.onLinksChanged.listen((_) {
+  Event.addListener(panorama, 'links_changed', allowInterop((_) {
     final linksTable = document.getElementById('links_table');
     linksTable.children.clear();
     final links = panorama.links;
@@ -30,7 +31,7 @@ void main() {
       linksTable.children.add(labelCell);
       linksTable.children.add(valueCell);
     }
-  });
+  }));
 
   panorama.onPositionChanged.listen((_) {
     document.getElementById('position_cell').innerHtml = '${panorama.position}';

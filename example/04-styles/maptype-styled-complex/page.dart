@@ -1,6 +1,7 @@
 import 'dart:html';
 
 import 'package:google_maps/google_maps.dart';
+import 'package:js/js_util.dart';
 
 GMap map;
 final chicago = LatLng(41.850033, -87.650052);
@@ -8,61 +9,61 @@ final chicago = LatLng(41.850033, -87.650052);
 void main() {
   final roadAtlasStyles = <MapTypeStyle>[
     MapTypeStyle()
-      ..featureType = MapTypeStyleFeatureType.ROAD_HIGHWAY
-      ..elementType = MapTypeStyleElementType.GEOMETRY
-      ..stylers = <MapTypeStyler>[
-        MapTypeStyler()..hue = '#ff0022',
-        MapTypeStyler()..saturation = 60,
-        MapTypeStyler()..lightness = -20,
+      ..featureType = 'road.highway'
+      ..elementType = 'geometry'
+      ..stylers = [
+        jsify({'hue': '#ff0022'}),
+        jsify({'saturation': 60}),
+        jsify({'lightness': -20}),
       ],
     MapTypeStyle()
-      ..featureType = MapTypeStyleFeatureType.ROAD_ARTERIAL
-      ..elementType = MapTypeStyleElementType.ALL
-      ..stylers = <MapTypeStyler>[
-        MapTypeStyler()..hue = '#2200ff',
-        MapTypeStyler()..lightness = -40,
-        MapTypeStyler()..visibility = 'simplified',
-        MapTypeStyler()..saturation = 30,
+      ..featureType = 'road.arterial'
+      ..elementType = 'all'
+      ..stylers = [
+        jsify({'hue': '#2200ff'}),
+        jsify({'lightness': -40}),
+        jsify({'visibility': 'simplified'}),
+        jsify({'saturation': 30}),
       ],
     MapTypeStyle()
-      ..featureType = MapTypeStyleFeatureType.ROAD_LOCAL
-      ..elementType = MapTypeStyleElementType.ALL
-      ..stylers = <MapTypeStyler>[
-        MapTypeStyler()..hue = '#f6ff00',
-        MapTypeStyler()..saturation = 50,
-        MapTypeStyler()..gamma = 0.7,
-        MapTypeStyler()..visibility = 'simplified',
+      ..featureType = 'road.local'
+      ..elementType = 'all'
+      ..stylers = [
+        jsify({'hue': '#f6ff00'}),
+        jsify({'saturation': 50}),
+        jsify({'gamma': 0.7}),
+        jsify({'visibility': 'simplified'}),
       ],
     MapTypeStyle()
-      ..featureType = MapTypeStyleFeatureType.WATER
-      ..elementType = MapTypeStyleElementType.GEOMETRY
-      ..stylers = <MapTypeStyler>[
-        MapTypeStyler()..saturation = 40,
-        MapTypeStyler()..lightness = 40,
+      ..featureType = 'water'
+      ..elementType = 'geometry'
+      ..stylers = [
+        jsify({'saturation': 40}),
+        jsify({'lightness': 40}),
       ],
     MapTypeStyle()
-      ..featureType = MapTypeStyleFeatureType.ROAD_HIGHWAY
-      ..elementType = MapTypeStyleElementType.LABELS
-      ..stylers = <MapTypeStyler>[
-        MapTypeStyler()..saturation = 98,
-        MapTypeStyler()..visibility = 'on',
+      ..featureType = 'road.highway'
+      ..elementType = 'labels'
+      ..stylers = [
+        jsify({'saturation': 98}),
+        jsify({'visibility': 'on'}),
       ],
     MapTypeStyle()
-      ..featureType = MapTypeStyleFeatureType.ADMINISTRATIVE_LOCALITY
-      ..elementType = MapTypeStyleElementType.LABELS
-      ..stylers = <MapTypeStyler>[
-        MapTypeStyler()..hue = '#0022ff',
-        MapTypeStyler()..saturation = 50,
-        MapTypeStyler()..lightness = -10,
-        MapTypeStyler()..gamma = 0.90,
+      ..featureType = 'administrative.locality'
+      ..elementType = 'labels'
+      ..stylers = [
+        jsify({'hue': '#0022ff'}),
+        jsify({'saturation': 50}),
+        jsify({'lightness': -10}),
+        jsify({'gamma': 0.9}),
       ],
     MapTypeStyle()
-      ..featureType = MapTypeStyleFeatureType.TRANSIT_LINE
-      ..elementType = MapTypeStyleElementType.GEOMETRY
-      ..stylers = <MapTypeStyler>[
-        MapTypeStyler()..hue = '#ff0000',
-        MapTypeStyler()..visibility = 'on',
-        MapTypeStyler()..lightness = -70,
+      ..featureType = 'transit.line'
+      ..elementType = 'geometry'
+      ..stylers = [
+        jsify({'hue': '#ff0000'}),
+        jsify({'visibility': 'on'}),
+        jsify({'lightness': -70}),
       ],
   ];
 

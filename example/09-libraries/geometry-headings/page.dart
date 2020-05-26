@@ -15,7 +15,7 @@ void main() {
 
   final map = GMap(document.getElementById('map-canvas'), mapOptions);
 
-  map.controls[ControlPosition.TOP_CENTER]
+  map.controls[ControlPosition.TOP_CENTER as int]
       .push(document.getElementById('info'));
 
   marker1 = Marker(MarkerOptions()
@@ -56,7 +56,7 @@ void update() {
   final path = [marker1.position, marker2.position];
   poly.path = path;
   geodesicPoly.path = path;
-  final heading = spherical.computeHeading(path[0], path[1]);
+  final heading = Spherical.computeHeading(path[0], path[1]);
   (document.getElementById('heading') as InputElement).value =
       heading.toString();
   (document.getElementById('origin') as InputElement).value =

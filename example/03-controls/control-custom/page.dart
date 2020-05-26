@@ -36,7 +36,7 @@ class CenterControl {
 
     // Setup the click event listeners: simply set the map to
     // Chicago
-    event.addDomListener(controlUI, 'click', (e) {
+    Event.addDomListener(controlUI, 'click', (e) {
       map.center = chicago;
     });
   }
@@ -56,7 +56,7 @@ void main() {
   CenterControl(centerControlDiv, map);
 
   centerControlDiv.attributes['index'] = '1';
-  map.controls[ControlPosition.BOTTOM_LEFT].push(centerControlDiv);
+  map.controls[ControlPosition.BOTTOM_LEFT as int].push(centerControlDiv);
 
   print(map.controls.length);
 }

@@ -14,4 +14,4 @@
 
 library google_maps_visualization;
 
-export 'src/google_maps_src_visualization.dart';
+export 'src/generated/google_maps_visualization.dart';

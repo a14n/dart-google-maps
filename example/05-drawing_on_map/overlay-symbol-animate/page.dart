@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:html';
 
 import 'package:google_maps/google_maps.dart';
-import 'package:js_wrapping/js_wrapping.dart';
 
 Polyline line;
 
@@ -39,9 +38,8 @@ void animateCircle() {
   Timer.periodic(const Duration(milliseconds: 20), (_) {
     count = (count + 1) % 200;
 
-    final icons = JsList.created(line.get('icons') as JsArray,
-        JsInterfaceCodec((o) => IconSequence.created(o)));
+    final icons = line.get('icons') as List<IconSequence>;
     icons[0].offset = '${count / 2}%';
-    line.set('icons', asJsObject(icons));
+    line.set('icons', icons);
   });
 }

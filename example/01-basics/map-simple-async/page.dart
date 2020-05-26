@@ -15,7 +15,6 @@ void main() {
 
   final script = ScriptElement()
     ..type = 'text/javascript'
-    ..src =
-        'https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initialize';
+    ..src = 'https://maps.googleapis.com/maps/api/js?callback=initialize';
   document.body.children.add(script);
 }

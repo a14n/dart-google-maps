@@ -8,15 +8,15 @@ void main() {
     ..mapTypeControl = true
     ..mapTypeControlOptions = (MapTypeControlOptions()
       ..style = MapTypeControlStyle.HORIZONTAL_BAR
-      ..position = ControlPosition.BOTTOM_CENTER)
+      ..position = ControlPosition.TOP_CENTER)
     ..zoomControl = true
-    ..zoomControlOptions = (ZoomControlOptions()
-      ..style = ZoomControlStyle.LARGE
-      ..position = ControlPosition.LEFT_CENTER)
+    ..zoomControlOptions =
+        (ZoomControlOptions()..position = ControlPosition.LEFT_CENTER)
     ..scaleControl = true
     ..streetViewControl = true
     ..streetViewControlOptions =
-        (StreetViewControlOptions()..position = ControlPosition.LEFT_TOP);
+        (StreetViewControlOptions()..position = ControlPosition.LEFT_TOP)
+    ..fullscreenControl = true;
 
   GMap(document.getElementById('map-canvas'), mapOptions);
 }

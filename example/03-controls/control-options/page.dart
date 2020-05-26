@@ -1,4 +1,5 @@
 import 'dart:html';
+
 import 'package:google_maps/google_maps.dart';
 
 void main() {
@@ -8,10 +9,7 @@ void main() {
     ..mapTypeControl = true
     ..mapTypeControlOptions = (MapTypeControlOptions()
       ..style = MapTypeControlStyle.DEFAULT
-      ..mapTypeIds = [MapTypeId.ROADMAP, MapTypeId.TERRAIN])
-    ..zoomControl = true
-    ..zoomControlOptions =
-        (ZoomControlOptions()..style = ZoomControlStyle.SMALL);
+      ..mapTypeIds = [MapTypeId.ROADMAP, MapTypeId.TERRAIN]);
 
   GMap(document.getElementById('map-canvas'), mapOptions);
 }

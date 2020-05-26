@@ -3,9 +3,6 @@ import 'dart:math' as math;
 
 import 'package:google_maps/google_maps.dart';
 
-const IMAGE_URL =
-    'https://google-developers.appspot.com/maps/documentation/javascript/examples/full';
-
 final chicago = LatLng(41.850033, -87.6500523);
 final anchorage = LatLng(61.2180556, -149.9002778);
 final mexico = LatLng(19.4270499, -99.1275711);
@@ -48,12 +45,7 @@ num degreesToRadians(num deg) => deg * (math.pi / 180);
 
 num radiansToDegrees(num rad) => rad / (math.pi / 180);
 
-class GallPetersProjection extends Projection {
-  GallPetersProjection() : super() {
-    fromLatLngToPoint = _fromLatLngToPoint;
-    fromPointToLatLng = _fromPointToLatLng;
-  }
-
+class GallPetersProjection {
   // Using the base map tile, denote the lat/lon of the equatorial origin.
   final _worldOrigin =
       Point(GALL_PETERS_RANGE_X * 400 / 800, GALL_PETERS_RANGE_Y / 2);
@@ -65,7 +57,7 @@ class GallPetersProjection extends Projection {
   // This constant merely reflects that latitudes vary from +90 to -90 degrees.
   static const _worldCoordinateLatRange = GALL_PETERS_RANGE_Y / 2;
 
-  Point _fromLatLngToPoint(LatLng latLng, [Point point]) {
+  Point fromLatLngToPoint(LatLng latLng, [Point point]) {
     final origin = _worldOrigin;
     final x = origin.x + _worldCoordinatePerLonDegree * latLng.lng;
 
@@ -77,7 +69,7 @@ class GallPetersProjection extends Projection {
     return Point(x, y);
   }
 
-  LatLng _fromPointToLatLng(Point point, [bool nowrap]) {
+  LatLng fromPointToLatLng(Point point, [bool nowrap]) {
     var y = point.y;
     final x = point.x;
 
@@ -118,10 +110,13 @@ void main() {
       // For simplicity, we use a tileset consisting of 1 tile at zoom level 0
       // and 4 tiles at zoom level 1. Note that we set the base URL to a relative
       // directory.
-      return '$IMAGE_URL/images/gall-peters_${zoom}_${x}_${coord.y}.png';
+      return 'https://developers.google.com/maps/documentation/javascript/examples/full/images/gall-peters_${zoom}_${x}_${coord.y}.png';
     };
+  final gallPetersProjection = GallPetersProjection();
   final gallPetersMapType = ImageMapType(imageTypeOption)
-    ..projection = GallPetersProjection();
+    ..projection = (Projection()
+      ..fromLatLngToPoint = gallPetersProjection.fromLatLngToPoint
+      ..fromPointToLatLng = gallPetersProjection.fromPointToLatLng);
   final mapOptions = MapOptions()
     ..zoom = 0
     ..center = LatLng(0, 0)
@@ -139,6 +134,7 @@ void main() {
   }
 
   gallPetersMap.onClick.listen((e) {
-    window.alert('Point.X.Y: ${e.latLng}');
+    final latLng = e.latLng;
+    window.alert('Point.X.Y: $latLng');
   });
 }

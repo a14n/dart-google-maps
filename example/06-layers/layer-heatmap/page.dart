@@ -1,14 +1,70 @@
 import 'dart:html';
+
 import 'package:google_maps/google_maps.dart';
 import 'package:google_maps/google_maps_visualization.dart';
-import 'package:js_wrapping/js_wrapping.dart';
 
 // Adding 500 Data Points
 GMap map;
-MVCArray<LatLng> pointArray;
 HeatmapLayer heatmap;
 
-final taxiData = [
+void main() {
+  final mapOptions = MapOptions()
+    ..zoom = 13
+    ..center = LatLng(37.774546, -122.433523)
+    ..mapTypeId = MapTypeId.SATELLITE;
+  map = GMap(document.getElementById('map-canvas'), mapOptions);
+
+  heatmap = HeatmapLayer(HeatmapLayerOptions()
+    ..data = points
+    ..map = map);
+
+  querySelector('#toggleHeatmap').onClick.listen((e) {
+    toggleHeatmap();
+  });
+  querySelector('#changeGradient').onClick.listen((e) {
+    changeGradient();
+  });
+  querySelector('#changeRadius').onClick.listen((e) {
+    changeRadius();
+  });
+  querySelector('#changeOpacity').onClick.listen((e) {
+    changeOpacity();
+  });
+}
+
+void toggleHeatmap() {
+  heatmap.map = heatmap.map != null ? null : map;
+}
+
+void changeGradient() {
+  final gradient = [
+    'rgba(0, 255, 255, 0)',
+    'rgba(0, 255, 255, 1)',
+    'rgba(0, 191, 255, 1)',
+    'rgba(0, 127, 255, 1)',
+    'rgba(0, 63, 255, 1)',
+    'rgba(0, 0, 255, 1)',
+    'rgba(0, 0, 223, 1)',
+    'rgba(0, 0, 191, 1)',
+    'rgba(0, 0, 159, 1)',
+    'rgba(0, 0, 127, 1)',
+    'rgba(63, 0, 91, 1)',
+    'rgba(127, 0, 63, 1)',
+    'rgba(191, 0, 31, 1)',
+    'rgba(255, 0, 0, 1)'
+  ];
+  heatmap.set('gradient', heatmap.get('gradient') != null ? null : gradient);
+}
+
+void changeRadius() {
+  heatmap.set('radius', heatmap.get('radius') != null ? null : 20);
+}
+
+void changeOpacity() {
+  heatmap.set('opacity', heatmap.get('opacity') != null ? null : 0.2);
+}
+
+final points = <LatLng>[
   LatLng(37.782551, -122.445368),
   LatLng(37.782745, -122.444586),
   LatLng(37.782842, -122.443688),
@@ -510,61 +566,3 @@ final taxiData = [
   LatLng(37.752986, -122.403112),
   LatLng(37.751266, -122.403355)
 ];
-
-void main() {
-  final mapOptions = MapOptions()
-    ..zoom = 13
-    ..center = LatLng(37.774546, -122.433523)
-    ..mapTypeId = MapTypeId.SATELLITE;
-  map = GMap(document.getElementById('map-canvas'), mapOptions);
-
-  pointArray = MVCArray(
-      elements: taxiData, codec: JsInterfaceCodec((o) => LatLng.created(o)));
-
-  heatmap = HeatmapLayer(HeatmapLayerOptions()..data = pointArray)..map = map;
-
-  querySelector('#toggleHeatmap').onClick.listen((e) {
-    toggleHeatmap();
-  });
-  querySelector('#changeGradient').onClick.listen((e) {
-    changeGradient();
-  });
-  querySelector('#changeRadius').onClick.listen((e) {
-    changeRadius();
-  });
-  querySelector('#changeOpacity').onClick.listen((e) {
-    changeOpacity();
-  });
-}
-
-void toggleHeatmap() {
-  heatmap.map = heatmap.map != null ? null : map;
-}
-
-void changeGradient() {
-  final gradient = JsArray.from([
-    'rgba(0, 255, 255, 0)',
-    'rgba(0, 255, 255, 1)',
-    'rgba(0, 191, 255, 1)',
-    'rgba(0, 127, 255, 1)',
-    'rgba(0, 63, 255, 1)',
-    'rgba(0, 0, 255, 1)',
-    'rgba(0, 0, 223, 1)',
-    'rgba(0, 0, 191, 1)',
-    'rgba(0, 0, 159, 1)',
-    'rgba(0, 0, 127, 1)',
-    'rgba(63, 0, 91, 1)',
-    'rgba(127, 0, 63, 1)',
-    'rgba(191, 0, 31, 1)',
-    'rgba(255, 0, 0, 1)'
-  ]);
-  heatmap.set('gradient', heatmap.get('gradient') != null ? null : gradient);
-}
-
-void changeRadius() {
-  heatmap.set('radius', heatmap.get('radius') != null ? null : 20);
-}
-
-void changeOpacity() {
-  heatmap.set('opacity', heatmap.get('opacity') != null ? null : 0.2);
-}

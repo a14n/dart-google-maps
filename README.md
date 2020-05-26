@@ -11,7 +11,7 @@ To use this library in your code:
 
   ```yaml
   dependencies:
-    google_maps: ">=3.0.0 <4.0.0"
+    google_maps:
   ```
 
 * add import in your `dart` code:
@@ -36,10 +36,10 @@ import 'dart:html';
 import 'package:google_maps/google_maps.dart';
 
 void main() {
-  final mapOptions = new MapOptions()
+  final mapOptions = MapOptions()
     ..zoom = 8
-    ..center = new LatLng(-34.397, 150.644);
-  new GMap(document.getElementById("map-canvas"), mapOptions);
+    ..center = LatLng(-34.397, 150.644);
+  GMap(document.getElementById("map-canvas"), mapOptions);
 }
 ```
 
@@ -58,7 +58,7 @@ To use one or more Google Maps Library:
 * Include the Maps API JavaScript using a `script` tag.
 
   ```html
-  <script src="http://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=LIBRARY1,LIBRARY2"></script>
+  <script src="http://maps.googleapis.com/maps/api/js?libraries=LIBRARY1,LIBRARY2"></script>
   ```
 
 ## Examples ##

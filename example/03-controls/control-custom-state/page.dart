@@ -63,17 +63,16 @@ class HomeControl {
     setCenterText.innerHtml = 'Set Center';
     setCenterUI.children.add(setCenterText);
 
-    event
-      // Setup the click event listener for Home:
-      // simply set the map to the control's current home property.
-      ..addDomListener(goCenterUI, 'click', (e) {
-        map.center = center;
-      })
-      // Setup the click event listener for Set Home:
-      // Set the control's home to the current Map center.
-      ..addDomListener(setCenterUI, 'click', (e) {
-        center = map.center;
-      });
+    // Setup the click event listener for Home:
+    // simply set the map to the control's current home property.
+    Event.addDomListener(goCenterUI, 'click', (e) {
+      map.center = center;
+    });
+    // Setup the click event listener for Set Home:
+    // Set the control's home to the current Map center.
+    Event.addDomListener(setCenterUI, 'click', (e) {
+      center = map.center;
+    });
   }
 
   LatLng center;
@@ -93,5 +92,5 @@ void main() {
   HomeControl(homeControlDiv, map, chicago);
 
   homeControlDiv.attributes['index'] = '1';
-  map.controls[ControlPosition.BOTTOM_LEFT].push(homeControlDiv);
+  map.controls[ControlPosition.BOTTOM_LEFT as int].push(homeControlDiv);
 }

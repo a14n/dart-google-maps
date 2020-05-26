@@ -3,7 +3,6 @@ import 'dart:html' hide Animation, MouseEvent;
 
 import 'package:google_maps/google_maps.dart';
 import 'package:google_maps/google_maps_places.dart';
-import 'package:js_wrapping/js_wrapping.dart';
 
 GMap map;
 PlacesService places;
@@ -56,7 +55,7 @@ void main() {
   autocomplete.onPlaceChanged.listen(onPlaceChanged);
 
   // Add a DOM event listener to react when the user selects a country.
-  event.addDomListener(
+  Event.addDomListener(
       document.getElementById('country'), 'change', setAutocompleteCountry);
 }
 
@@ -79,7 +78,7 @@ void onPlaceChanged(_) {
 void search() {
   final search = PlaceSearchRequest()
     ..bounds = map.bounds
-    ..types = ['lodging'];
+    ..type = 'lodging';
 
   places.nearbySearch(search, (results, status, _) {
     if (status == PlacesServiceStatus.OK) {
@@ -142,7 +141,7 @@ void addResult(PlaceResult result, int i) {
   final tr = document.createElement('tr');
   tr.style.backgroundColor = i % 2 == 0 ? '#F0F0F0' : '#FFFFFF';
   tr.onClick.listen((_) {
-    event.trigger(asJsObject(markers[i]), 'click', null);
+    Event.trigger(markers[i], 'click', null);
   });
 
   final iconTd = document.createElement('td');

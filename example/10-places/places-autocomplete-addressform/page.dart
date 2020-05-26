@@ -44,7 +44,7 @@ void fillInAddress(_) {
     final addressType = addressComponent.types[0];
     final prop = componentForm[addressType];
     if (prop != null) {
-      final val = asJsObject(addressComponent)[prop] as String;
+      final val = getProperty(addressComponent, prop) as String;
       (document.getElementById(addressType) as InputElement).value = val;
     }
   }

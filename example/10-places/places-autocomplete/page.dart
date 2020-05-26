@@ -12,8 +12,8 @@ void main() {
   final input = document.getElementById('pac-input') as InputElement;
 
   final types = document.getElementById('type-selector');
-  map.controls[ControlPosition.TOP_LEFT].push(input);
-  map.controls[ControlPosition.TOP_LEFT].push(types);
+  map.controls[ControlPosition.TOP_LEFT as int].push(input);
+  map.controls[ControlPosition.TOP_LEFT as int].push(types);
 
   final autocomplete = Autocomplete(input)..bindTo('bounds', map);
 
@@ -78,7 +78,7 @@ void main() {
   // Autocomplete.
   void setupClickListener(String id, List<String> types) {
     final radioButton = querySelector('#$id');
-    event.addDomListener(radioButton, 'click', (_) {
+    Event.addDomListener(radioButton, 'click', (_) {
       autocomplete.types = types;
     });
   }

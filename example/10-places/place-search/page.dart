@@ -7,30 +7,27 @@ GMap map;
 InfoWindow infowindow;
 
 void main() {
-  final pyrmont = LatLng(-33.8665433, 151.1956316);
+  final sydney = LatLng(-33.867, 151.195);
+
+  infowindow = InfoWindow();
 
   map = GMap(
       document.getElementById('map-canvas'),
       MapOptions()
-        ..center = pyrmont
+        ..center = sydney
         ..zoom = 15);
 
-  final request = PlaceSearchRequest()
-    ..location = pyrmont
-    ..radius = 500
-    ..types = ['store'];
+  final request = FindPlaceFromQueryRequest()
+    ..query = 'Museum of Contemporary Art Australia'
+    ..fields = ['name', 'geometry'];
 
-  infowindow = InfoWindow();
-  PlacesService(map).nearbySearch(request, callback);
-}
-
-void callback(List<PlaceResult> results, PlacesServiceStatus status,
-    PlaceSearchPagination pagination) {
-  if (status == PlacesServiceStatus.OK) {
-    for (var i = 0; i < results.length; i++) {
-      createMarker(results[i]);
+  PlacesService(map).findPlaceFromQuery(request, (results, status) {
+    if (status == PlacesServiceStatus.OK) {
+      for (var i = 0; i < results.length; i++) {
+        createMarker(results[i]);
+      }
     }
-  }
+  });
 }
 
 void createMarker(PlaceResult place) {

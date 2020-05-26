@@ -10,15 +10,14 @@ void main() {
     ..maxZoom = 9
     ..minZoom = 0
     ..name = 'Moon'
-    ..getTileUrl = (point, zoomLevel) {
+    ..getTileUrl = allowInterop((point, zoomLevel) {
       final normalizedCoord = getNormalizedCoord(point, zoomLevel);
       if (normalizedCoord == null) return null;
       final bound = math.pow(2, zoomLevel);
-      return 'http://mw1.google.com/mw-planetary/lunar/lunarmaps_v1/clem_bw/$zoomLevel/${normalizedCoord.x}/${bound - normalizedCoord.y - 1}.jpg';
-    };
-  asJsObject(moonTypeOptions)['radius'] = 1738000;
+      return '//mw1.google.com/mw-planetary/lunar/lunarmaps_v1/clem_bw/$zoomLevel/${normalizedCoord.x}/${bound - normalizedCoord.y - 1}.jpg';
+    });
 
-  final moonMapType = ImageMapType(moonTypeOptions);
+  final moonMapType = ImageMapType(moonTypeOptions)..radius = 1738000;
 
   final myLatlng = LatLng(0, 0);
   final mapOptions = MapOptions()

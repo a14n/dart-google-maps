@@ -14,7 +14,7 @@ void main() {
 
   // Create the search box and link it to the UI element.
   final input = document.getElementById('pac-input') as InputElement;
-  map.controls[ControlPosition.TOP_LEFT].push(input);
+  map.controls[ControlPosition.TOP_LEFT as int].push(input);
 
   final searchBox = SearchBox(input);
 

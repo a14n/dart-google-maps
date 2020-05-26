@@ -1,6 +1,7 @@
 import 'dart:html';
 
 import 'package:google_maps/google_maps.dart';
+import 'package:js_wrapping/js_wrapping.dart';
 
 DirectionsRenderer directionsDisplay;
 final directionsService = DirectionsService();
@@ -24,11 +25,15 @@ void calcRoute() {
   final request = DirectionsRequest()
     ..origin = haight
     ..destination = oceanBeach
-    ..travelMode = TravelMode.values
-        .firstWhere((t) => t.toString().contains(selectedMode));
-  directionsService.route(request, (response, status) {
+    ..travelMode = {
+      'BICYCLING': TravelMode.BICYCLING,
+      'DRIVING': TravelMode.DRIVING,
+      'TRANSIT': TravelMode.TRANSIT,
+      'WALKING': TravelMode.WALKING,
+    }[selectedMode];
+  directionsService.route(request, allowInterop((response, status) {
     if (status == DirectionsStatus.OK) {
       directionsDisplay.directions = response;
     }
-  });
+  }));
 }

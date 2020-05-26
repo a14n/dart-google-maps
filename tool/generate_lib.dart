@@ -1,9 +1,11 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:dart_style/src/dart_formatter.dart';
-import 'package:html/parser.dart' show parse;
+import 'package:dart_style/dart_style.dart';
 import 'package:html/dom.dart';
+import 'package:html/parser.dart' show parse;
+import 'package:http/http.dart' as http;
+import 'package:path/path.dart' as path;
 
 const licence = '''
 // Copyright (c) 2015, Alexandre Ardhuin
@@ -25,1298 +27,392 @@ final customClassName = <String, String>{
   'Map': 'GMap',
   'Symbol': 'GSymbol',
   'Duration': 'GDuration',
-};
-
-final overridenPropertyTypes = {
-  'DirectionsRequest': {
-    'origin': 'LatLng|Place|string',
-    'destination': 'LatLng|Place|string',
-  },
-  'DirectionsWaypoint': {
-    'location': 'LatLng|Place|string',
-  },
-};
-
-final customContent = <String, String>{
-  'Data.StylingFunction':
-      'typedef DataStyleOptions DataStylingFunction(DataFeature dataFeature);',
-  'MVCArray': '''
-@JsName('google.maps.MVCArray')
-abstract class _MVCArray<E> extends MVCObject {
-  Codec<E, dynamic> _codec = null;
-
-  _MVCArray({List<E> elements, Codec<E, dynamic> codec}) : this.created(
-          new JsObject(context['google']['maps']['MVCArray'], [
-        elements == null
-            ? new JsArray()
-            : new JsArray.from(
-                codec == null ? elements : elements.map(codec.encode))
-      ]), codec);
-
-  _MVCArray.created(JsObject o,
-      [Codec<E, dynamic> codec])
-      : _codec = codec != null ? codec : new IdentityCodec(),
-        super.created(o);
-
-  void clear();
-  void forEach(void callback(E o, num index)) =>
-      _forEach((o, num index) => callback(_codec.decode(o), index));
-  void _forEach(void callback(o, num index));
-  List<E> getArray() => new JsList.created(_getArray(), _codec);
-  JsArray _getArray();
-  E getAt(num i) => _codec.decode(_getAt(i));
-  _getAt(num i);
-  num get length => _getLength();
-  num _getLength();
-  void insertAt(num i, E elem) => _insertAt(i, _codec.encode(elem));
-  void _insertAt(num i, elem);
-  E pop() => _codec.decode(_pop());
-  _pop();
-  num push(E elem) => _push(_codec.encode(elem));
-  num _push(elem);
-  E removeAt(num i) => _codec.decode(_removeAt(i));
-  _removeAt(num i);
-  void setAt(num i, E elem) => _setAt(i, _codec.encode(elem));
-  void _setAt(num i, elem);
-
-  Stream<int> get onInsertAt => getStream(this, #onInsertAt, "insert_at");
-  Stream<IndexAndElement<E>> get onRemoveAt => getStream(this, #onClick,
-      "click", (int index, oldElement) =>
-          new IndexAndElement<E>(index, _codec.decode(oldElement)));
-  Stream<IndexAndElement<E>> get onSetAt => getStream(this, #onClick, "click",
-      (int index, oldElement) =>
-          new IndexAndElement<E>(index, _codec.decode(oldElement)));
-}
-
-class IndexAndElement<E> {
-  final int index;
-  final E element;
-  IndexAndElement(this.index, this.element);
-}
-''',
-  'ImageMapType': '''
-@JsName('google.maps.ImageMapType')
-abstract class _ImageMapType extends MVCObject implements MapType {
-  factory _ImageMapType(ImageMapTypeOptions opts) => null;
-
-  num get opacity => _getOpacity();
-  num _getOpacity();
-  Node getTile(Point tileCoord, num zoom, Document ownerDocument);
-  void releaseTile(Node tile);
-  set opacity(num opacity) => _setOpacity(opacity);
-  void _setOpacity(num opacity);
-
-  String alt;
-  num maxZoom;
-  num minZoom;
-  String name;
-  Projection projection;
-  num radius;
-  Size tileSize;
-
-  Stream get onTilesloaded => getStream(this, #onTilesloaded, "tilesloaded");
-}
-''',
-  'StyledMapType': '''
-@JsName('google.maps.StyledMapType')
-abstract class _StyledMapType extends MVCObject implements MapType {
-  factory _StyledMapType(List<MapTypeStyle> styles,
-      [StyledMapTypeOptions options]) => null;
-
-  Node getTile(Point tileCoord, num zoom, Document ownerDocument);
-  void releaseTile(Node tile);
-
-  String alt;
-  num maxZoom;
-  num minZoom;
-  String name;
-  Projection projection;
-  num radius;
-  Size tileSize;
-}
-''',
-  'StrokePosition': '''
-@jsEnum
-@JsName('google.maps.StrokePosition')
-enum _StrokePosition { CENTER, INSIDE, OUTSIDE }
-''',
-  'MapsEngineStatus': '''
-@jsEnum
-@JsName('google.maps.visualization.MapsEngineStatus')
-enum _MapsEngineStatus { INVALID_LAYER, OK, UNKNOWN_ERROR }
-''',
-  'StreetViewService': '''
-@JsName('google.maps.StreetViewService')
-abstract class _StreetViewService implements JsInterface {
-  factory _StreetViewService() => null;
-
-  void getPanoramaById(
-      String pano, callback(StreetViewPanoramaData p1, StreetViewStatus p2));
-  void getPanoramaByLocation(LatLng latlng, num radius,
-      callback(StreetViewPanoramaData p1, StreetViewStatus p2));
-}
-'''
-};
-
-final importsByLib = <String, String>{
-  'google_maps.src': '''
-import 'dart:async' show Stream;
-import 'dart:collection' show MapMixin;
-import 'dart:html' show Node, Document;
-
-import 'package:js_wrapping/js_wrapping.dart';
-
-import 'package:google_maps/util/async.dart';
-''',
-  'google_maps.src.adsense': '''
-import 'dart:html' show Node;
-
-import 'package:js_wrapping/js_wrapping.dart';
-
-import 'package:google_maps/google_maps.dart';
-''',
-  'google_maps.src.drawing': '''
-import 'dart:async' show Stream;
-
-import 'package:js_wrapping/js_wrapping.dart';
-
-import 'package:google_maps/util/async.dart';
-import 'package:google_maps/google_maps.dart';
-''',
-  'google_maps.src.geometry': '''
-import 'package:js_wrapping/js_wrapping.dart';
-
-import 'package:google_maps/google_maps.dart';
-''',
-  'google_maps.src.panoramio': '''
-import 'dart:async' show Stream;
-
-import 'package:js_wrapping/js_wrapping.dart';
-
-import 'package:google_maps/util/async.dart';
-import 'package:google_maps/google_maps.dart';
-''',
-  'google_maps.src.places': '''
-import 'dart:async' show Stream;
-import 'dart:html' show DivElement, InputElement;
-
-import 'package:js_wrapping/js_wrapping.dart';
-
-import 'package:google_maps/util/async.dart';
-import 'package:google_maps/google_maps.dart';
-''',
-  'google_maps.src.visualization': '''
-import 'dart:async' show Stream;
-
-import 'package:js_wrapping/js_wrapping.dart';
-
-import 'package:google_maps/util/async.dart';
-import 'package:google_maps/google_maps.dart';
-''',
-  'google_maps.src.weather': '''
-import 'dart:async' show Stream;
-
-import 'package:js_wrapping/js_wrapping.dart';
-
-import 'package:google_maps/util/async.dart';
-import 'package:google_maps/google_maps.dart';
-''',
-};
-
-final additionalContentByLib = <String, String>{
-  'google_maps.src': '''
-
-abstract class _Controls extends JsInterface
-    with MapMixin<ControlPosition, MVCArray<Node>> {
-  _Controls() : super.created(new JsArray());
-
-  MVCArray<Node> operator [](ControlPosition controlPosition) {
-    var value = asJsObject(this)[_toJsControlPosition(controlPosition)];
-    if (value == null) return null;
-    return new MVCArray<Node>.created(value);
-  }
-  void operator []=(ControlPosition controlPosition, MVCArray<Node> nodes) {
-    asJsObject(this)[_toJsControlPosition(controlPosition)] = asJsObject(nodes);
-  }
-  Iterable<ControlPosition> get keys {
-    var result = <ControlPosition>[];
-    for (final control in ControlPosition.values) {
-      if (this[control] != null) result.add(control);
-    }
-    return result;
-  }
-  MVCArray<Node> remove(Object key) {
-    var result = this[key];
-    this[key] = null;
-    return result;
-  }
-  void clear() => (asJsObject(this) as JsArray).clear();
-
-  _toJsControlPosition(ControlPosition controlPosition) => ((e) {
-    if (e == null) return null;
-    final path = context['google']['maps']['ControlPosition'];
-    if (e == ControlPosition.BOTTOM_CENTER) return path['BOTTOM_CENTER'];
-    if (e == ControlPosition.BOTTOM_LEFT) return path['BOTTOM_LEFT'];
-    if (e == ControlPosition.BOTTOM_RIGHT) return path['BOTTOM_RIGHT'];
-    if (e == ControlPosition.LEFT_BOTTOM) return path['LEFT_BOTTOM'];
-    if (e == ControlPosition.LEFT_CENTER) return path['LEFT_CENTER'];
-    if (e == ControlPosition.LEFT_TOP) return path['LEFT_TOP'];
-    if (e == ControlPosition.RIGHT_BOTTOM) return path['RIGHT_BOTTOM'];
-    if (e == ControlPosition.RIGHT_CENTER) return path['RIGHT_CENTER'];
-    if (e == ControlPosition.RIGHT_TOP) return path['RIGHT_TOP'];
-    if (e == ControlPosition.TOP_CENTER) return path['TOP_CENTER'];
-    if (e == ControlPosition.TOP_LEFT) return path['TOP_LEFT'];
-    if (e == ControlPosition.TOP_RIGHT) return path['TOP_RIGHT'];
-  })(controlPosition);
-}
-
-'''
-};
-
-final ignoredClasses = <String>[
-  'LatLngLiteral',
-  'LatLngBoundsLiteral',
-  'undefined'
-];
-
-final declarationSubstitutions = <String, Map<String, Map<String, String>>>{
-  'google_maps.src': {
-    'GMap': {
-      'controls': 'Controls controls;',
-    },
-    'LatLng': {
-      'lat': '''
-num get lat => _lat();
-num _lat();''',
-      'lng': '''
-num get lng => _lng();
-num _lng();''',
-    },
-    'LatLngBounds': {
-      'isEmpty': '''
-bool get isEmpty => _isEmpty();
-bool _isEmpty();''',
-    },
-    'Data': {
-      'getStyle': '''
-  dynamic /*DataStylingFunction|DataStyleOptions*/ get style =>
-      (new ChainedCodec()
-    ..add(new FunctionCodec<DataStylingFunction>((o) => ((f) {
-      if (f == null) return null;
-      return (p_dataFeature) {
-        p_dataFeature = new JsInterfaceCodec<DataFeature>((o) =>
-                ((e) => e == null ? null : new DataFeature.created(e))(o))
-            .decode(p_dataFeature);
-        final result = f(p_dataFeature);
-        return new JsInterfaceCodec<DataStyleOptions>((o) =>
-                ((e) => e == null ? null : new DataStyleOptions.created(e))(o))
-            .encode(result);
-      };
-    })(o), (o) => ((JsFunction f) {
-      if (f == null) return null;
-      return (p_dataFeature) {
-        p_dataFeature = new JsInterfaceCodec<DataFeature>((o) =>
-                ((e) => e == null ? null : new DataFeature.created(e))(o))
-            .encode(p_dataFeature);
-        final result = f.apply([p_dataFeature]);
-        return new JsInterfaceCodec<DataStyleOptions>((o) =>
-                ((e) => e == null ? null : new DataStyleOptions.created(e))(o))
-            .decode(result);
-      };
-    })(o)))
-    ..add(new JsInterfaceCodec<DataStyleOptions>(
-        (o) => new DataStyleOptions.created(o)))).decode(_getStyle());
-  _getStyle();''',
-      'setStyle': '''
-  set style(dynamic /*DataStylingFunction|DataStyleOptions*/ style) =>
-      _setStyle((new ChainedCodec()
-    ..add(new FunctionCodec<DataStylingFunction>((o) => ((f) {
-      if (f == null) return null;
-      return (p_dataFeature) {
-        p_dataFeature = new JsInterfaceCodec<DataFeature>((o) =>
-                ((e) => e == null ? null : new DataFeature.created(e))(o))
-            .decode(p_dataFeature);
-        final result = f(p_dataFeature);
-        return new JsInterfaceCodec<DataStyleOptions>((o) =>
-                ((e) => e == null ? null : new DataStyleOptions.created(e))(o))
-            .encode(result);
-      };
-    })(o), (o) => ((JsFunction f) {
-      if (f == null) return null;
-      return (p_dataFeature) {
-        p_dataFeature = new JsInterfaceCodec<DataFeature>((o) =>
-                ((e) => e == null ? null : new DataFeature.created(e))(o))
-            .encode(p_dataFeature);
-        final result = f.apply([p_dataFeature]);
-        return new JsInterfaceCodec<DataStyleOptions>((o) =>
-                ((e) => e == null ? null : new DataStyleOptions.created(e))(o))
-            .decode(result);
-      };
-    })(o)))
-    ..add(new JsInterfaceCodec<DataStyleOptions>(
-        (o) => new DataStyleOptions.created(o)))).encode(style));
-  void _setStyle(dynamic /*DataStylingFunction|DataStyleOptions*/ style);''',
-    },
-    'DataDataOptions': {
-      'style': '''
-  dynamic /*DataStylingFunction|DataStyleOptions*/ get style =>
-      (new ChainedCodec()
-    ..add(new FunctionCodec<DataStylingFunction>((o) => ((f) {
-      if (f == null) return null;
-      return (p_dataFeature) {
-        p_dataFeature = new JsInterfaceCodec<DataFeature>((o) =>
-                ((e) => e == null ? null : new DataFeature.created(e))(o))
-            .decode(p_dataFeature);
-        final result = f(p_dataFeature);
-        return new JsInterfaceCodec<DataStyleOptions>((o) =>
-                ((e) => e == null ? null : new DataStyleOptions.created(e))(o))
-            .encode(result);
-      };
-    })(o), (o) => ((JsFunction f) {
-      if (f == null) return null;
-      return (p_dataFeature) {
-        p_dataFeature = new JsInterfaceCodec<DataFeature>((o) =>
-                ((e) => e == null ? null : new DataFeature.created(e))(o))
-            .encode(p_dataFeature);
-        final result = f.apply([p_dataFeature]);
-        return new JsInterfaceCodec<DataStyleOptions>((o) =>
-                ((e) => e == null ? null : new DataStyleOptions.created(e))(o))
-            .decode(result);
-      };
-    })(o)))
-    ..add(new JsInterfaceCodec<DataStyleOptions>(
-        (o) => new DataStyleOptions.created(o)))).decode(_style);
-  set style(dynamic /*DataStylingFunction|DataStyleOptions*/ style) =>
-      _style = (new ChainedCodec()
-    ..add(new FunctionCodec<DataStylingFunction>((o) => ((f) {
-      if (f == null) return null;
-      return (p_dataFeature) {
-        p_dataFeature = new JsInterfaceCodec<DataFeature>((o) =>
-                ((e) => e == null ? null : new DataFeature.created(e))(o))
-            .decode(p_dataFeature);
-        final result = f(p_dataFeature);
-        return new JsInterfaceCodec<DataStyleOptions>((o) =>
-                ((e) => e == null ? null : new DataStyleOptions.created(e))(o))
-            .encode(result);
-      };
-    })(o), (o) => ((JsFunction f) {
-      if (f == null) return null;
-      return (p_dataFeature) {
-        p_dataFeature = new JsInterfaceCodec<DataFeature>((o) =>
-                ((e) => e == null ? null : new DataFeature.created(e))(o))
-            .encode(p_dataFeature);
-        final result = f.apply([p_dataFeature]);
-        return new JsInterfaceCodec<DataStyleOptions>((o) =>
-                ((e) => e == null ? null : new DataStyleOptions.created(e))(o))
-            .decode(result);
-      };
-    })(o)))
-    ..add(new JsInterfaceCodec<DataStyleOptions>(
-        (o) => new DataStyleOptions.created(o)))).encode(_style);
-  dynamic /*DataStylingFunction|DataStyleOptions*/ _style;''',
-    },
-
-    // FIXME https://code.google.com/p/gmaps-api-issues/issues/detail?id=7910
-    'MapTypeControlOptions': {
-      'mapTypeIds': '''
-  dynamic get _mapTypeIds => asJsObject(this)['mapTypeIds'];
-  List<dynamic /*MapTypeId|String*/ > get mapTypeIds =>
-      (new JsListCodec<dynamic /*MapTypeId|String*/ >(new ChainedCodec()
-    ..add(new BiMapCodec<MapTypeId, dynamic>({
-      MapTypeId.HYBRID: context['google']['maps']['MapTypeId']['HYBRID'],
-      MapTypeId.ROADMAP: context['google']['maps']['MapTypeId']['ROADMAP'],
-      MapTypeId.SATELLITE: context['google']['maps']['MapTypeId']['SATELLITE'],
-      MapTypeId.TERRAIN: context['google']['maps']['MapTypeId']['TERRAIN']
-    }))
-    ..add(new IdentityCodec<String>()))).decode(_mapTypeIds);
-  set _mapTypeIds(dynamic mapTypeIds) {
-    asJsObject(this)['mapTypeIds'] = mapTypeIds;
-  }
-  set mapTypeIds(List<dynamic /*MapTypeId|String*/ > mapTypeIds) {
-    _mapTypeIds = (new JsListCodec<dynamic /*MapTypeId|String*/ >(
-        new ChainedCodec()
-      ..add(new BiMapCodec<MapTypeId, dynamic>({
-        MapTypeId.HYBRID: context['google']['maps']['MapTypeId']['HYBRID'],
-        MapTypeId.ROADMAP: context['google']['maps']['MapTypeId']['ROADMAP'],
-        MapTypeId.SATELLITE: context['google']['maps']['MapTypeId']['SATELLITE'],
-        MapTypeId.TERRAIN: context['google']['maps']['MapTypeId']['TERRAIN']
-      }))
-      ..add(new IdentityCodec<String>()))).encode(mapTypeIds);
-  }
-''',
-    },
-
-    // FIXME https://code.google.com/p/gmaps-api-issues/issues/detail?id=7994
-    'MapOptions': {
-      'mapTypeId': '''
-  dynamic _mapTypeId;
-  dynamic /*MapTypeId|String*/ get mapTypeId => (new ChainedCodec()
-    ..add(new BiMapCodec<MapTypeId, dynamic>({
-      MapTypeId.HYBRID: context['google']['maps']['MapTypeId']['HYBRID'],
-      MapTypeId.ROADMAP: context['google']['maps']['MapTypeId']['ROADMAP'],
-      MapTypeId.SATELLITE: context['google']['maps']['MapTypeId']['SATELLITE'],
-      MapTypeId.TERRAIN: context['google']['maps']['MapTypeId']['TERRAIN']
-    }))
-    ..add(new IdentityCodec<String>())).decode(_mapTypeId);
-  set mapTypeId(dynamic /*MapTypeId|String*/ mapTypeId) {
-    _mapTypeId = (new ChainedCodec()
-      ..add(new BiMapCodec<MapTypeId, dynamic>({
-        MapTypeId.HYBRID: context['google']['maps']['MapTypeId']['HYBRID'],
-        MapTypeId.ROADMAP: context['google']['maps']['MapTypeId']['ROADMAP'],
-        MapTypeId.SATELLITE: context['google']['maps']['MapTypeId']['SATELLITE'],
-        MapTypeId.TERRAIN: context['google']['maps']['MapTypeId']['TERRAIN']
-      }))
-      ..add(new IdentityCodec<String>())).encode(mapTypeId);
-  }
-''',
-    },
-    'DataFeature': {
-      'getGeometry': '''
-  dynamic /*DataGeometryCollection|DataMultiPolygon|DataPolygon|DataLinearRing|DataMultiLineString|DataLineString|DataMultiPoint|DataPoint*/ get geometry =>
-      (new ChainedCodec()
-    ..add(new JsInterfaceCodec<DataGeometryCollection>(
-        (o) => new DataGeometryCollection.created(o), (o) => o != null &&
-            o.instanceof(context['google']['maps']['Data']['GeometryCollection'])))
-    ..add(new JsInterfaceCodec<DataMultiPolygon>(
-        (o) => new DataMultiPolygon.created(o), (o) => o != null &&
-            o.instanceof(context['google']['maps']['Data']['MultiPolygon'])))
-    ..add(new JsInterfaceCodec<DataPolygon>((o) => new DataPolygon.created(o),
-        (o) => o != null && o.instanceof(context['google']['maps']['Data']['Polygon'])))
-    ..add(new JsInterfaceCodec<DataLinearRing>(
-        (o) => new DataLinearRing.created(o), (o) =>
-            o != null && o.instanceof(context['google']['maps']['Data']['LinearRing'])))
-    ..add(new JsInterfaceCodec<DataMultiLineString>(
-        (o) => new DataMultiLineString.created(o), (o) => o != null &&
-            o.instanceof(context['google']['maps']['Data']['MultiLineString'])))
-    ..add(new JsInterfaceCodec<DataLineString>(
-        (o) => new DataLineString.created(o), (o) =>
-            o != null && o.instanceof(context['google']['maps']['Data']['LineString'])))
-    ..add(new JsInterfaceCodec<DataMultiPoint>(
-        (o) => new DataMultiPoint.created(o), (o) =>
-            o != null && o.instanceof(context['google']['maps']['Data']['MultiPoint'])))
-    ..add(new JsInterfaceCodec<DataPoint>((o) => new DataPoint.created(o),
-            (o) =>
-                o != null && o.instanceof(context['google']['maps']['Data']['Point']))))
-      .decode(_getGeometry());
-  _getGeometry();
-''',
-      'setGeometry': '''
-  set geometry(
-          dynamic /*DataGeometryCollection|DataMultiPolygon|DataPolygon|DataLinearRing|DataMultiLineString|DataLineString|DataMultiPoint|DataPoint|LatLng*/ newGeometry) =>
-      _setGeometry((new ChainedCodec()
-    ..add(new JsInterfaceCodec<DataGeometryCollection>(
-        (o) => new DataGeometryCollection.created(o), (o) => o != null &&
-            o.instanceof(context['google']['maps']['Data']['GeometryCollection'])))
-    ..add(new JsInterfaceCodec<DataMultiPolygon>(
-        (o) => new DataMultiPolygon.created(o), (o) => o != null &&
-            o.instanceof(context['google']['maps']['Data']['MultiPolygon'])))
-    ..add(new JsInterfaceCodec<DataPolygon>((o) => new DataPolygon.created(o),
-        (o) => o != null && o.instanceof(context['google']['maps']['Data']['Polygon'])))
-    ..add(new JsInterfaceCodec<DataLinearRing>(
-        (o) => new DataLinearRing.created(o), (o) =>
-            o != null && o.instanceof(context['google']['maps']['Data']['LinearRing'])))
-    ..add(new JsInterfaceCodec<DataMultiLineString>(
-        (o) => new DataMultiLineString.created(o), (o) => o != null &&
-            o.instanceof(context['google']['maps']['Data']['MultiLineString'])))
-    ..add(new JsInterfaceCodec<DataLineString>(
-        (o) => new DataLineString.created(o), (o) =>
-            o != null && o.instanceof(context['google']['maps']['Data']['LineString'])))
-    ..add(new JsInterfaceCodec<DataMultiPoint>(
-        (o) => new DataMultiPoint.created(o), (o) =>
-            o != null && o.instanceof(context['google']['maps']['Data']['MultiPoint'])))
-    ..add(new JsInterfaceCodec<DataPoint>((o) => new DataPoint.created(o),
-        (o) => o != null && o.instanceof(context['google']['maps']['Data']['Point'])))
-    ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
-        (o) => o != null && o.instanceof(context['google']['maps']['LatLng']))))
-          .encode(newGeometry));
-  void _setGeometry(
-      dynamic /*DataGeometryCollection|DataMultiPolygon|DataPolygon|DataLinearRing|DataMultiLineString|DataLineString|DataMultiPoint|DataPoint|LatLng*/ newGeometry);
-'''
-    },
-    'DataFeatureOptions': {
-      'geometry': '''
-  dynamic _geometry;
-  dynamic /*DataGeometryCollection|DataMultiPolygon|DataPolygon|DataLinearRing|DataMultiLineString|DataLineString|DataMultiPoint|DataPoint|LatLng*/ get geometry =>
-      (new ChainedCodec()
-    ..add(new JsInterfaceCodec<DataGeometryCollection>(
-        (o) => new DataGeometryCollection.created(o), (o) => o != null &&
-            o.instanceof(context['google']['maps']['Data']['GeometryCollection'])))
-    ..add(new JsInterfaceCodec<DataMultiPolygon>(
-        (o) => new DataMultiPolygon.created(o), (o) => o != null &&
-            o.instanceof(context['google']['maps']['Data']['MultiPolygon'])))
-    ..add(new JsInterfaceCodec<DataPolygon>((o) => new DataPolygon.created(o),
-        (o) => o != null && o.instanceof(context['google']['maps']['Data']['Polygon'])))
-    ..add(new JsInterfaceCodec<DataLinearRing>(
-        (o) => new DataLinearRing.created(o), (o) =>
-            o != null && o.instanceof(context['google']['maps']['Data']['LinearRing'])))
-    ..add(new JsInterfaceCodec<DataMultiLineString>(
-        (o) => new DataMultiLineString.created(o), (o) => o != null &&
-            o.instanceof(context['google']['maps']['Data']['MultiLineString'])))
-    ..add(new JsInterfaceCodec<DataLineString>(
-        (o) => new DataLineString.created(o), (o) =>
-            o != null && o.instanceof(context['google']['maps']['Data']['LineString'])))
-    ..add(new JsInterfaceCodec<DataMultiPoint>(
-        (o) => new DataMultiPoint.created(o), (o) =>
-            o != null && o.instanceof(context['google']['maps']['Data']['MultiPoint'])))
-    ..add(new JsInterfaceCodec<DataPoint>((o) => new DataPoint.created(o),
-        (o) => o != null && o.instanceof(context['google']['maps']['Data']['Point'])))
-    ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
-            (o) => o != null && o.instanceof(context['google']['maps']['LatLng']))))
-      .decode(_geometry);
-  set geometry(
-      dynamic /*DataGeometryCollection|DataMultiPolygon|DataPolygon|DataLinearRing|DataMultiLineString|DataLineString|DataMultiPoint|DataPoint|LatLng*/ geometry) {
-    _geometry = (new ChainedCodec()
-      ..add(new JsInterfaceCodec<DataGeometryCollection>(
-          (o) => new DataGeometryCollection.created(o), (o) => o != null &&
-              o.instanceof(context['google']['maps']['Data']['GeometryCollection'])))
-      ..add(new JsInterfaceCodec<DataMultiPolygon>(
-          (o) => new DataMultiPolygon.created(o), (o) => o != null &&
-              o.instanceof(context['google']['maps']['Data']['MultiPolygon'])))
-      ..add(new JsInterfaceCodec<DataPolygon>((o) => new DataPolygon.created(o),
-          (o) =>
-              o != null && o.instanceof(context['google']['maps']['Data']['Polygon'])))
-      ..add(new JsInterfaceCodec<DataLinearRing>(
-          (o) => new DataLinearRing.created(o), (o) => o != null &&
-              o.instanceof(context['google']['maps']['Data']['LinearRing'])))
-      ..add(new JsInterfaceCodec<DataMultiLineString>(
-          (o) => new DataMultiLineString.created(o), (o) => o != null &&
-              o.instanceof(context['google']['maps']['Data']['MultiLineString'])))
-      ..add(new JsInterfaceCodec<DataLineString>(
-          (o) => new DataLineString.created(o), (o) => o != null &&
-              o.instanceof(context['google']['maps']['Data']['LineString'])))
-      ..add(new JsInterfaceCodec<DataMultiPoint>(
-          (o) => new DataMultiPoint.created(o), (o) => o != null &&
-              o.instanceof(context['google']['maps']['Data']['MultiPoint'])))
-      ..add(new JsInterfaceCodec<DataPoint>((o) => new DataPoint.created(o),
-          (o) => o != null && o.instanceof(context['google']['maps']['Data']['Point'])))
-      ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
-              (o) => o != null && o.instanceof(context['google']['maps']['LatLng']))))
-        .encode(geometry);
-  }
-'''
-    },
-    'DataGeometryCollection': {
-      'getArray': '''
-  List<dynamic /*DataGeometryCollection|DataMultiPolygon|DataPolygon|DataLinearRing|DataMultiLineString|DataLineString|DataMultiPoint|DataPoint*/ > get array =>
-      (new JsListCodec<dynamic /*DataGeometryCollection|DataMultiPolygon|DataPolygon|DataLinearRing|DataMultiLineString|DataLineString|DataMultiPoint|DataPoint*/ >(
-          new ChainedCodec()
-    ..add(new JsInterfaceCodec<DataGeometryCollection>(
-        (o) => new DataGeometryCollection.created(o), (o) => o != null &&
-            o.instanceof(context['google']['maps']['Data']['GeometryCollection'])))
-    ..add(new JsInterfaceCodec<DataMultiPolygon>(
-        (o) => new DataMultiPolygon.created(o), (o) => o != null &&
-            o.instanceof(context['google']['maps']['Data']['MultiPolygon'])))
-    ..add(new JsInterfaceCodec<DataPolygon>((o) => new DataPolygon.created(o),
-        (o) => o != null && o.instanceof(context['google']['maps']['Data']['Polygon'])))
-    ..add(new JsInterfaceCodec<DataLinearRing>(
-        (o) => new DataLinearRing.created(o), (o) =>
-            o != null && o.instanceof(context['google']['maps']['Data']['LinearRing'])))
-    ..add(new JsInterfaceCodec<DataMultiLineString>(
-        (o) => new DataMultiLineString.created(o), (o) => o != null &&
-            o.instanceof(context['google']['maps']['Data']['MultiLineString'])))
-    ..add(new JsInterfaceCodec<DataLineString>(
-        (o) => new DataLineString.created(o), (o) =>
-            o != null && o.instanceof(context['google']['maps']['Data']['LineString'])))
-    ..add(new JsInterfaceCodec<DataMultiPoint>(
-        (o) => new DataMultiPoint.created(o), (o) =>
-            o != null && o.instanceof(context['google']['maps']['Data']['MultiPoint'])))
-    ..add(new JsInterfaceCodec<DataPoint>((o) => new DataPoint.created(o),
-            (o) =>
-                o != null && o.instanceof(context['google']['maps']['Data']['Point'])))))
-      .decode(_getArray());
-  _getArray();
-''',
-      'getAt': '''
-  dynamic /*DataGeometryCollection|DataMultiPolygon|DataPolygon|DataLinearRing|DataMultiLineString|DataLineString|DataMultiPoint|DataPoint*/ getAt(
-      num n) => (new ChainedCodec()
-    ..add(new JsInterfaceCodec<DataGeometryCollection>(
-        (o) => new DataGeometryCollection.created(o), (o) => o != null &&
-            o.instanceof(context['google']['maps']['Data']['GeometryCollection'])))
-    ..add(new JsInterfaceCodec<DataMultiPolygon>(
-        (o) => new DataMultiPolygon.created(o), (o) => o != null &&
-            o.instanceof(context['google']['maps']['Data']['MultiPolygon'])))
-    ..add(new JsInterfaceCodec<DataPolygon>((o) => new DataPolygon.created(o),
-        (o) => o != null && o.instanceof(context['google']['maps']['Data']['Polygon'])))
-    ..add(new JsInterfaceCodec<DataLinearRing>(
-        (o) => new DataLinearRing.created(o), (o) =>
-            o != null && o.instanceof(context['google']['maps']['Data']['LinearRing'])))
-    ..add(new JsInterfaceCodec<DataMultiLineString>(
-        (o) => new DataMultiLineString.created(o), (o) => o != null &&
-            o.instanceof(context['google']['maps']['Data']['MultiLineString'])))
-    ..add(new JsInterfaceCodec<DataLineString>(
-        (o) => new DataLineString.created(o), (o) =>
-            o != null && o.instanceof(context['google']['maps']['Data']['LineString'])))
-    ..add(new JsInterfaceCodec<DataMultiPoint>(
-        (o) => new DataMultiPoint.created(o), (o) =>
-            o != null && o.instanceof(context['google']['maps']['Data']['MultiPoint'])))
-    ..add(new JsInterfaceCodec<DataPoint>((o) => new DataPoint.created(o),
-            (o) =>
-                o != null && o.instanceof(context['google']['maps']['Data']['Point']))))
-      .decode(_getAt(n));
-  _getAt(num n);
-'''
-    },
-    'DataSetGeometryEvent': {
-      'newGeometry': '''
-  dynamic _newGeometry;
-  dynamic /*DataGeometryCollection|DataMultiPolygon|DataPolygon|DataLinearRing|DataMultiLineString|DataLineString|DataMultiPoint|DataPoint*/ get newGeometry =>
-      (new ChainedCodec()
-    ..add(new JsInterfaceCodec<DataGeometryCollection>(
-        (o) => new DataGeometryCollection.created(o), (o) => o != null &&
-            o.instanceof(context['google']['maps']['Data']['GeometryCollection'])))
-    ..add(new JsInterfaceCodec<DataMultiPolygon>(
-        (o) => new DataMultiPolygon.created(o), (o) => o != null &&
-            o.instanceof(context['google']['maps']['Data']['MultiPolygon'])))
-    ..add(new JsInterfaceCodec<DataPolygon>((o) => new DataPolygon.created(o),
-        (o) => o != null && o.instanceof(context['google']['maps']['Data']['Polygon'])))
-    ..add(new JsInterfaceCodec<DataLinearRing>(
-        (o) => new DataLinearRing.created(o), (o) =>
-            o != null && o.instanceof(context['google']['maps']['Data']['LinearRing'])))
-    ..add(new JsInterfaceCodec<DataMultiLineString>(
-        (o) => new DataMultiLineString.created(o), (o) => o != null &&
-            o.instanceof(context['google']['maps']['Data']['MultiLineString'])))
-    ..add(new JsInterfaceCodec<DataLineString>(
-        (o) => new DataLineString.created(o), (o) =>
-            o != null && o.instanceof(context['google']['maps']['Data']['LineString'])))
-    ..add(new JsInterfaceCodec<DataMultiPoint>(
-        (o) => new DataMultiPoint.created(o), (o) =>
-            o != null && o.instanceof(context['google']['maps']['Data']['MultiPoint'])))
-    ..add(new JsInterfaceCodec<DataPoint>((o) => new DataPoint.created(o),
-            (o) =>
-                o != null && o.instanceof(context['google']['maps']['Data']['Point']))))
-      .decode(_newGeometry);
-  set newGeometry(
-      dynamic /*DataGeometryCollection|DataMultiPolygon|DataPolygon|DataLinearRing|DataMultiLineString|DataLineString|DataMultiPoint|DataPoint*/ newGeometry) {
-    _newGeometry = (new ChainedCodec()
-      ..add(new JsInterfaceCodec<DataGeometryCollection>(
-          (o) => new DataGeometryCollection.created(o), (o) => o != null &&
-              o.instanceof(context['google']['maps']['Data']['GeometryCollection'])))
-      ..add(new JsInterfaceCodec<DataMultiPolygon>(
-          (o) => new DataMultiPolygon.created(o), (o) => o != null &&
-              o.instanceof(context['google']['maps']['Data']['MultiPolygon'])))
-      ..add(new JsInterfaceCodec<DataPolygon>((o) => new DataPolygon.created(o),
-          (o) =>
-              o != null && o.instanceof(context['google']['maps']['Data']['Polygon'])))
-      ..add(new JsInterfaceCodec<DataLinearRing>(
-          (o) => new DataLinearRing.created(o), (o) => o != null &&
-              o.instanceof(context['google']['maps']['Data']['LinearRing'])))
-      ..add(new JsInterfaceCodec<DataMultiLineString>(
-          (o) => new DataMultiLineString.created(o), (o) => o != null &&
-              o.instanceof(context['google']['maps']['Data']['MultiLineString'])))
-      ..add(new JsInterfaceCodec<DataLineString>(
-          (o) => new DataLineString.created(o), (o) => o != null &&
-              o.instanceof(context['google']['maps']['Data']['LineString'])))
-      ..add(new JsInterfaceCodec<DataMultiPoint>(
-          (o) => new DataMultiPoint.created(o), (o) => o != null &&
-              o.instanceof(context['google']['maps']['Data']['MultiPoint'])))
-      ..add(new JsInterfaceCodec<DataPoint>((o) => new DataPoint.created(o),
-              (o) => o != null &&
-                  o.instanceof(context['google']['maps']['Data']['Point']))))
-        .encode(newGeometry);
-  }
-''',
-      'oldGeometry': '''
-  dynamic _oldGeometry;
-  dynamic /*DataGeometryCollection|DataMultiPolygon|DataPolygon|DataLinearRing|DataMultiLineString|DataLineString|DataMultiPoint|DataPoint*/ get oldGeometry =>
-      (new ChainedCodec()
-    ..add(new JsInterfaceCodec<DataGeometryCollection>(
-        (o) => new DataGeometryCollection.created(o), (o) => o != null &&
-            o.instanceof(context['google']['maps']['Data']['GeometryCollection'])))
-    ..add(new JsInterfaceCodec<DataMultiPolygon>(
-        (o) => new DataMultiPolygon.created(o), (o) => o != null &&
-            o.instanceof(context['google']['maps']['Data']['MultiPolygon'])))
-    ..add(new JsInterfaceCodec<DataPolygon>((o) => new DataPolygon.created(o),
-        (o) => o != null && o.instanceof(context['google']['maps']['Data']['Polygon'])))
-    ..add(new JsInterfaceCodec<DataLinearRing>(
-        (o) => new DataLinearRing.created(o), (o) =>
-            o != null && o.instanceof(context['google']['maps']['Data']['LinearRing'])))
-    ..add(new JsInterfaceCodec<DataMultiLineString>(
-        (o) => new DataMultiLineString.created(o), (o) => o != null &&
-            o.instanceof(context['google']['maps']['Data']['MultiLineString'])))
-    ..add(new JsInterfaceCodec<DataLineString>(
-        (o) => new DataLineString.created(o), (o) =>
-            o != null && o.instanceof(context['google']['maps']['Data']['LineString'])))
-    ..add(new JsInterfaceCodec<DataMultiPoint>(
-        (o) => new DataMultiPoint.created(o), (o) =>
-            o != null && o.instanceof(context['google']['maps']['Data']['MultiPoint'])))
-    ..add(new JsInterfaceCodec<DataPoint>((o) => new DataPoint.created(o),
-            (o) =>
-                o != null && o.instanceof(context['google']['maps']['Data']['Point']))))
-      .decode(_oldGeometry);
-  set oldGeometry(
-      dynamic /*DataGeometryCollection|DataMultiPolygon|DataPolygon|DataLinearRing|DataMultiLineString|DataLineString|DataMultiPoint|DataPoint*/ oldGeometry) {
-    _oldGeometry = (new ChainedCodec()
-      ..add(new JsInterfaceCodec<DataGeometryCollection>(
-          (o) => new DataGeometryCollection.created(o), (o) => o != null &&
-              o.instanceof(context['google']['maps']['Data']['GeometryCollection'])))
-      ..add(new JsInterfaceCodec<DataMultiPolygon>(
-          (o) => new DataMultiPolygon.created(o), (o) => o != null &&
-              o.instanceof(context['google']['maps']['Data']['MultiPolygon'])))
-      ..add(new JsInterfaceCodec<DataPolygon>((o) => new DataPolygon.created(o),
-          (o) =>
-              o != null && o.instanceof(context['google']['maps']['Data']['Polygon'])))
-      ..add(new JsInterfaceCodec<DataLinearRing>(
-          (o) => new DataLinearRing.created(o), (o) => o != null &&
-              o.instanceof(context['google']['maps']['Data']['LinearRing'])))
-      ..add(new JsInterfaceCodec<DataMultiLineString>(
-          (o) => new DataMultiLineString.created(o), (o) => o != null &&
-              o.instanceof(context['google']['maps']['Data']['MultiLineString'])))
-      ..add(new JsInterfaceCodec<DataLineString>(
-          (o) => new DataLineString.created(o), (o) => o != null &&
-              o.instanceof(context['google']['maps']['Data']['LineString'])))
-      ..add(new JsInterfaceCodec<DataMultiPoint>(
-          (o) => new DataMultiPoint.created(o), (o) => o != null &&
-              o.instanceof(context['google']['maps']['Data']['MultiPoint'])))
-      ..add(new JsInterfaceCodec<DataPoint>((o) => new DataPoint.created(o),
-              (o) => o != null &&
-                  o.instanceof(context['google']['maps']['Data']['Point']))))
-        .encode(oldGeometry);
-  }
-'''
-    },
-    'DistanceMatrixRequest': {
-      'destinations': '''
-  dynamic _destinations;
-  List<dynamic /*LatLng|String*/ > get destinations =>
-      (new JsListCodec<dynamic /*LatLng|String*/ >(new ChainedCodec()
-    ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
-        (o) => o != null && o.instanceof(context['google']['maps']['LatLng'])))
-    ..add(new IdentityCodec<String>()))).decode(_destinations);
-  set destinations(List<dynamic /*LatLng|String*/ > destinations) {
-    _destinations = (new JsListCodec<dynamic /*LatLng|String*/ >(
-        new ChainedCodec()
-      ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
-          (o) => o != null && o.instanceof(context['google']['maps']['LatLng'])))
-      ..add(new IdentityCodec<String>()))).encode(destinations);
-  }
-''',
-      'origins': '''
-  dynamic _origins;
-  List<dynamic /*LatLng|String*/ > get origins =>
-      (new JsListCodec<dynamic /*LatLng|String*/ >(new ChainedCodec()
-    ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
-        (o) => o != null && o.instanceof(context['google']['maps']['LatLng'])))
-    ..add(new IdentityCodec<String>()))).decode(_origins);
-  set origins(List<dynamic /*LatLng|String*/ > origins) {
-    _origins = (new JsListCodec<dynamic /*LatLng|String*/ >(new ChainedCodec()
-      ..add(new JsInterfaceCodec<LatLng>((o) => new LatLng.created(o),
-          (o) => o != null && o.instanceof(context['google']['maps']['LatLng'])))
-      ..add(new IdentityCodec<String>()))).encode(origins);
-  }
-''',
-    }
-  },
-  'google_maps.src.places': {
-    'PlacesService': {
-      'radarSearch': '''
-  void _radarSearch(RadarSearchRequest request,
-      callback(List<PlaceResult> p1, PlacesServiceStatus p2, [_]));
-  void radarSearch(RadarSearchRequest request,
-          callback(List<PlaceResult> p1, PlacesServiceStatus p2)) =>
-      _radarSearch(request, (p1, p2, [_]) => callback(p1, p2));
-''',
-    }
-  }
+  'DataStylingFunction': 'function(Data.Feature): Data.StyleOptions',
+  'LocationBias':
+      'LatLng|LatLngLiteral|LatLngBounds|LatLngBoundsLiteral|Circle|CircleLiteral|string',
+  'MouseEvent|IconMouseEvent': 'IconMouseEvent',
 };
 
 Future main() async {
-  const genFolder = 'lib/src';
-  // final request = await new HttpClient().getUrl(Uri.parse(
-  //     'https://developers.google.com/maps/documentation/javascript/reference'));
-  // final response = await request.close();
-  // final content = await UTF8.decodeStream(response);
-  // new File('api/api.html').writeAsStringSync(content);
-  final content = File('api/api.html').readAsStringSync();
+  final genFolder =
+      '${path.dirname(Platform.script.path)}/../lib/src/generated';
+  final content = (await http.get(
+          'https://developers.google.com/maps/documentation/javascript/reference'))
+      .body;
   final document = parse(content);
-  final libraries = <String, List<JsElement>>{};
-  for (final ul in document.querySelectorAll('.toc>ul')) {
-    var folder = underscores(ul.previousElementSibling.attributes['id']);
+  final urls = document
+      .querySelectorAll('devsite-expandable-nav')
+      .first
+      .querySelectorAll('a.devsite-nav-title')
+      .skip(1)
+      .map((Element e) => e.attributes['href'])
+      .map((e) => 'https://developers.google.com$e');
+  final entities = (await Future.wait(urls.map(http.get)))
+      .map((response) => response.body)
+      .map(parse)
+      .expand((html) => html.querySelectorAll(
+          'div[itemtype="http://developers.google.com/ReferenceObject"]'))
+      .map(parseDocEntity)
+      .where((e) => !ignoredClasses.contains(e.name))
+      .map((e) => e..convertTypes());
 
-    var libraryName = 'google_maps.src';
-    if (folder.endsWith('_library')) {
-      final lib = folder.substring(0, folder.length - '_library'.length);
-      folder = 'library/$lib';
-      libraryName += '.$lib';
-    } else {
-      folder = 'core/$folder';
-    }
-
-    for (final li in ul.children) {
-      final h2id = li.firstChild.attributes['href'].substring(1);
-      final fileName = '${underscores(h2id)}.dart';
-      final file = File('$genFolder/$folder/$fileName')
-        ..createSync(recursive: true);
-
-      final title =
-          document.querySelectorAll('[id]').firstWhere((e) => e.id == h2id);
-
-      libraries
-          .putIfAbsent(libraryName, () => <JsElement>[])
-          .add(JsElement(h2id, file, title.parent));
-    }
-  }
-
-  // generate contents
-  for (final libraryName in libraries.keys) {
-    final imports = importsByLib[libraryName];
-    if (imports == null) throw StateError('$libraryName has no import');
-    var libContents = '''
-$licence
-
-library $libraryName;
-
-$imports
-
-part '${libraryName.replaceAll('.', '_')}.g.dart';
-
-''';
-    libContents += libraries[libraryName]
-        .where((e) => !ignoredClasses.contains(e.name))
-        .map((e) => e.file.path.substring(genFolder.length + 1))
-        .map((path) => "part '$path';")
-        .join('\n');
-
-    if (additionalContentByLib.containsKey(libraryName)) {
-      libContents += additionalContentByLib[libraryName];
-    }
-
-    libContents = DartFormatter().format(libContents);
-    File('$genFolder/${libraryName.replaceAll('.', '_')}.dart')
-      ..createSync(recursive: true)
-      ..writeAsStringSync(libContents);
-
-    final jsElements = libraries.values.expand((e) => e).toList();
-
-    for (final jsElmt in libraries[libraryName]
-        .where((e) => !ignoredClasses.contains(e.name))) {
-      print(jsElmt.fullName);
-      final partContents = StringBuffer()..write('''
-$licence
-
-part of $libraryName;
-
-''');
-
-      if (customContent.containsKey(jsElmt.id)) {
-        partContents.write(customContent[jsElmt.id]);
-      } else if (jsElmt.isEnum) {
-        final constants = jsElmt.constants
-            .map((tr) => tr.getElementsByTagName('td')[0].text.trim());
-
-        String toEnumValue(String v) => v.replaceAll('.', '_').toUpperCase();
-
-        if (jsElmt.isAnonymousObject) {
-          partContents
-            ..writeln('@jsEnum ')
-            ..writeln('class ${jsElmt.name} extends JsEnum {')
-            ..writeln('  static final values = '
-                '<${jsElmt.name}>[${constants.map(toEnumValue).join(',')}];');
-          for (final value in constants) {
-            partContents.writeln('  static final ${toEnumValue(value)} = '
-                "${jsElmt.name}._('$value');");
-          }
-          partContents
-            ..writeln('  ${jsElmt.name}._(o) : super.created(o);')
-            ..writeln('}');
-        } else {
-          partContents
-            ..writeln("@jsEnum @JsName('${jsElmt.fullName}') ")
-            ..writeln('enum _${jsElmt.name}{${constants.join(',')}}')
-            ..writeln();
-        }
-      } else if (jsElmt.isNamespace ||
-          jsElmt.isAnonymousObject ||
-          jsElmt.isClass) {
-        final className = jsElmt.isNamespace
-            ? jsElmt.name[0].toUpperCase() + jsElmt.name.substring(1)
-            : jsElmt.name;
-
-        // constructor
-        var needExtends = false;
-        var constructorSection = '';
-        final constr = jsElmt.constructor;
-        if (constr != null) {
-          final decl = constr.getElementsByTagName('td')[0].text.trim();
-          final parameters =
-              decl.substring(decl.indexOf('(') + 1, decl.lastIndexOf(')'));
-          final params = splitParameters(parameters);
-          final allParams = <String, String>{}
-            ..addAll(params.mandatory)
-            ..addAll(params.optional);
-          final paramsCodecs = Map.fromIterable(allParams.keys,
-              value: (k) => getCodec(allParams[k], jsElements));
-          if (paramsCodecs.values.every((p) => p.canBeNativelyHandled)) {
-            constructorSection += '  factory '
-                '_$className(${params.toSignature(jsElements)}) => null;\n';
-          } else {
-            needExtends = true;
-            constructorSection +=
-                '  _$className.created(JsObject o): super.created(o);\n';
-            constructorSection +=
-                '  _$className(${params.toSignature(jsElements)}) : '
-                'this.created(new JsObject(${getPath(jsElmt.fullName)},[';
-            constructorSection += paramsCodecs.keys
-                .map((p) => paramsCodecs[p].canBeNativelyHandled
-                    ? p
-                    : '(${paramsCodecs[p].codec}).encode($p)')
-                .join(',');
-            constructorSection += ']));';
-          }
-        } else if (jsElmt.isAnonymousObject) {
-          constructorSection += '  factory _$className() => null;\n';
-        }
-        constructorSection += '\n';
-
-        // class def
-        final inherit = getExtends(jsElmt.element.querySelector('h2'));
-        if (jsElmt.isAnonymousObject) partContents.writeln('@anonymous');
-        if (jsElmt.isClass)
-          partContents.writeln("@JsName('${jsElmt.fullName}')");
-        if (jsElmt.isNamespace) {
-          partContents.writeln('final ${jsElmt.name} = '
-              'new $className.created(${getPath(jsElmt.fullName)});');
-        }
-        final extendsPart = inherit != null
-            ? 'extends ${inherit.replaceAll('.', '')}'
-            : '${needExtends ? 'extends' : 'implements'} JsInterface';
-        partContents.writeln('abstract class _$className $extendsPart {');
-
-        // add constants
-        for (final constantTr in jsElmt.constants) {
-          final name = constantTr.getElementsByTagName('td')[0].text.trim();
-          if (declarationSubstitutions.containsKey(libraryName) &&
-              declarationSubstitutions[libraryName].containsKey(jsElmt.name) &&
-              declarationSubstitutions[libraryName][jsElmt.name]
-                  .containsKey(name)) {
-            partContents.writeln(
-                declarationSubstitutions[libraryName][jsElmt.name][name]);
-          } else {
-            partContents.writeln('static get $name => null;');
-          }
-        }
-        partContents
-          ..writeln()
-          // add constructors
-          ..writeln(constructorSection);
-
-        // add methods
-        for (final methodTr in jsElmt.methods) {
-          final decl = methodTr.getElementsByTagName('td')[0].text.trim();
-          final returnType = methodTr.querySelector('td>div>code').text.trim();
-          final methodName = decl.substring(0, decl.indexOf('('));
-
-          if (declarationSubstitutions.containsKey(libraryName) &&
-              declarationSubstitutions[libraryName].containsKey(jsElmt.name) &&
-              declarationSubstitutions[libraryName][jsElmt.name]
-                  .containsKey(methodName)) {
-            partContents.writeln(
-                declarationSubstitutions[libraryName][jsElmt.name][methodName]);
-            return;
-          }
-
-          final parameters =
-              decl.substring(decl.indexOf('(') + 1, decl.lastIndexOf(')'));
-          final params = splitParameters(parameters);
-          final allParams = <String, String>{}
-            ..addAll(params.mandatory)
-            ..addAll(params.optional);
-          final paramsCodecs = Map.fromIterable(allParams.keys,
-              value: (k) => getCodec(allParams[k], jsElements));
-          final returnCodec = getCodec(returnType, jsElements);
-          final convertedReturnType = convertType(returnType, jsElements);
-          if (methodName.startsWith(RegExp('get[A-Z]')) &&
-              params.mandatory.isEmpty &&
-              params.optional.isEmpty) {
-            final name = methodName[3].toLowerCase() + methodName.substring(4);
-            partContents.write('  $convertedReturnType get $name => ');
-            if (returnCodec.canBeNativelyHandled) {
-              partContents
-                ..writeln('_$methodName();')
-                ..writeln('  $convertedReturnType _$methodName();');
-            } else {
-              partContents
-                ..writeln('(${returnCodec.codec}).decode(_$methodName());')
-                ..writeln('  _$methodName();');
-            }
-          } else if (methodName.startsWith(RegExp('set[A-Z]')) &&
-              params.mandatory.length == 1 &&
-              params.optional.isEmpty) {
-            final name = methodName[3].toLowerCase() + methodName.substring(4);
-            final p = params.mandatory.keys.first;
-            partContents
-                .write('  set $name(${params.toSignature(jsElements)}) => ');
-            if (paramsCodecs.values.first.canBeNativelyHandled) {
-              partContents.writeln('_$methodName($p);');
-            } else {
-              partContents
-                  .writeln('_$methodName((${paramsCodecs.values.first.codec})'
-                      '.encode($p));');
-            }
-            partContents.writeln(
-                '  void _$methodName(${params.toSignature(jsElements)});');
-          } else {
-            if (paramsCodecs.values.every((p) => p.canBeNativelyHandled) &&
-                returnCodec.canBeNativelyHandled) {
-              partContents.writeln('  $convertedReturnType $methodName'
-                  '(${params.toSignature(jsElements)});');
-            } else {
-              final returnVoid = convertedReturnType == 'void';
-              partContents
-                ..writeln('  $convertedReturnType $methodName'
-                    '(${params.toSignature(jsElements)})')
-                ..write(returnVoid ? '{' : ' => ');
-              if (!returnCodec.canBeNativelyHandled) {
-                partContents.write('(${returnCodec.codec}).decode(');
-              }
-              final methodParams = paramsCodecs.keys
-                  .map((p) => paramsCodecs[p].canBeNativelyHandled
-                      ? p
-                      : '(${paramsCodecs[p].codec}).encode($p)')
-                  .join(',');
-              partContents.write('_$methodName($methodParams)');
-              if (!returnCodec.canBeNativelyHandled) {
-                partContents.write(')');
-              }
-              partContents.write(';');
-              if (returnVoid) partContents.write('}');
-              partContents.writeln(
-                  '  _$methodName(${params.toSignature(jsElements)});');
-            }
-          }
-        }
-        partContents.writeln();
-
-        // add properties
-        for (final propertyTr in jsElmt.properties) {
-          final name = propertyTr.getElementsByTagName('td')[0].text.trim();
-          final type = (overridenPropertyTypes[jsElmt.name] ?? {})[name] ??
-              propertyTr.querySelector('td>div>code').text.trim();
-          if (declarationSubstitutions.containsKey(libraryName) &&
-              declarationSubstitutions[libraryName].containsKey(jsElmt.name) &&
-              declarationSubstitutions[libraryName][jsElmt.name]
-                  .containsKey(name)) {
-            partContents.writeln(
-                declarationSubstitutions[libraryName][jsElmt.name][name]);
-          } else {
-            final typeCodec = getCodec(type, jsElements);
-            final convertedType = convertType(type, jsElements);
-            final dartName = !name.contains('_')
-                ? name
-                : name.replaceAllMapped(
-                    RegExp('_([a-z])'), (m) => m[1].toUpperCase());
-            if (typeCodec.canBeNativelyHandled) {
-              if (dartName == name) {
-                partContents.writeln('  $convertedType $name;');
-              } else {
-                partContents
-                  ..writeln('  $convertedType _$name;')
-                  ..writeln('  $convertedType get $dartName => _$name;')
-                  ..writeln('  set $dartName($convertedType $dartName) '
-                      '{ _$name = $dartName; }');
-              }
-            } else {
-              partContents.write('''
-  dynamic _$name;
-  $convertedType get $dartName => (${typeCodec.codec}).decode(_$name);
-  set $dartName($convertedType $dartName) {
-    _$name = (${typeCodec.codec}).encode($dartName);
-  }''');
-            }
-          }
-        }
-        partContents.writeln();
-
-        // add events
-        for (final eventsTr in jsElmt.events) {
-          final name = eventsTr.getElementsByTagName('td')[0].text.trim();
-          var type = eventsTr.querySelector('td>div>code').text.trim();
-          if (type.contains(','))
-            throw StateError('multiple args on event not supported');
-          type = convertType(type, jsElements);
-
-          final streamName =
-              'on${name[0].toUpperCase() + name.substring(1).replaceAllMapped(RegExp('_[a-z]'), (m) => m[0][1].toUpperCase())}';
-          if (type == 'void') {
-            partContents.write('''
-Stream get $streamName => getStream(this, #$streamName, "$name");
-''');
-          } else if (<String>['num', 'JsObject', 'String', 'bool']
-              .contains(type)) {
-            partContents.write('''
-Stream<$type> get $streamName => getStream(this, #$streamName, "$name");
-''');
-          } else {
-            partContents.write('''
-Stream<$type> get $streamName => getStream(
-  this, #$streamName, "$name", (JsObject o) => new $type.created(o));
-''');
-          }
-        }
-
-        partContents.writeln('}');
-      }
-      print('---------------------------------------------------------');
-      print(partContents);
-      jsElmt.file
-          .writeAsStringSync(DartFormatter().format(partContents.toString()));
-    }
-  }
-}
-
-String getCodecName(JsElement jsElmt) =>
-    '${jsElmt.name[0].toLowerCase() + jsElmt.name.substring(1)}Codec';
-
-class Parameters {
-  final mandatory = <String, String>{};
-  final optional = <String, String>{};
-
-  void add(String name, String type) {
-    if (name.endsWith('?')) {
-      optional[name.substring(0, name.length - 1)] = type;
-    } else {
-      mandatory[name] = type;
-    }
-  }
-
-  String toSignature(List<JsElement> jsElements) {
-    var result = mandatory.keys
-        .map((name) => convertParam(mandatory[name], jsElements, name))
-        .join(',');
-    if (optional.isNotEmpty) {
-      if (result.isNotEmpty) result += ',';
-      final optionalParams = optional.keys
-          .map((name) => convertParam(optional[name], jsElements, name))
-          .join(',');
-      result += '[$optionalParams]';
-    }
-    return result;
-  }
-}
-
-Parameters splitParameters(String parameters) {
-  final result = Parameters();
-
-  final paramsParts = <String>[];
-  var parenthesisDeepth = 0;
-  final buffer = StringBuffer();
-  for (var i = 0; i < parameters.length; i++) {
-    final c = parameters[i];
-    if (c == ',' && parenthesisDeepth == 0) {
-      paramsParts.add(buffer.toString());
-      buffer.clear();
+  final parts = <String, List<String>>{};
+  final needGenPart = <String, bool>{};
+  for (var entity in entities) {
+    final code = generateCodeForEntity(entity);
+    if (code?.trim()?.isEmpty ?? true) {
       continue;
     }
-    if (c == '(')
-      parenthesisDeepth++;
-    else if (c == ')') parenthesisDeepth--;
-    buffer.write(c);
+    final library = entity.library ?? 'core';
+    final fileName = '$library/${entity.fileName}.dart';
+    final bundleFile = 'google_maps_$library.dart';
+    File('$genFolder/$fileName')
+      ..createSync(recursive: true)
+      ..writeAsStringSync(DartFormatter().format('''
+$licence
+part of '../$bundleFile';
+$code
+'''));
+    needGenPart[library] =
+        (needGenPart[library] ?? false) || entity.kind != Kind.namespace;
+    parts.putIfAbsent(library, () => <String>[]).add(fileName);
   }
-  if (buffer.isNotEmpty) paramsParts.add(buffer.toString());
 
-  for (final e in paramsParts.map((p) => p.split(':'))) {
-    result.add(e[0], (e.length == 1) ? '' : e[1]);
+  for (var entry in parts.entries) {
+    final library = entry.key;
+    final partList = [
+      for (final fileName in entry.value) "part '$fileName';",
+    ].join('\n');
+    final imports = <String, List<String>>{
+      'core': [
+        "import 'dart:async' show StreamController;",
+        "import 'dart:html' show Document, Element, Node;",
+        "import 'package:js_wrapping/js_wrapping.dart';",
+      ],
+      'drawing': [
+        "import 'dart:async' show StreamController;",
+        "import 'package:js_wrapping/js_wrapping.dart';",
+        "import 'google_maps_core.dart';",
+      ],
+      'geometry': [
+        "import 'package:js_wrapping/js_wrapping.dart';",
+        "import 'google_maps_core.dart';",
+      ],
+      'places': [
+        "import 'dart:async' show StreamController;",
+        "import 'dart:html' show InputElement;",
+        "import 'package:js_wrapping/js_wrapping.dart';",
+        "import 'google_maps_core.dart';",
+      ],
+      'visualization': [
+        "import 'package:js_wrapping/js_wrapping.dart';",
+        "import 'google_maps_core.dart';",
+      ],
+    };
+    File('$genFolder/google_maps_$library.dart')
+      ..createSync(recursive: true)
+      ..writeAsStringSync(DartFormatter().format('''
+$licence
+
+@JS()
+library google_maps.$library;
+
+${imports[library].join()}
+
+${needGenPart[library] ? "part 'google_maps_$library.g.dart';" : ""}
+
+$partList
+'''));
   }
-
-  return result;
 }
 
-String convertParam(String type, List<JsElement> jsElements, String name) {
-  if (type.startsWith('function(')) {
-    return convertType(type, jsElements, name: name);
+String generateCodeForEntity(DocEntity entity) {
+  switch (entity.kind) {
+    case Kind.clazz:
+      return generateCodeForClass(entity);
+    case Kind.interface:
+      return generateCodeForInterface(entity);
+    case Kind.namespace:
+      return generateCodeForNamespace(entity);
+    case Kind.constants:
+      return generateCodeForConstants(entity);
+    case Kind.typedef:
+      return generateCodeForTypedef(entity);
+  }
+  throw StateError('Unknown kind: ${entity.kind}');
+}
+
+String generateCodeForClass(DocEntity entity) {
+  final name = entity.name;
+  final lines = <String>[
+    // constructor
+    if (entity.constructor != null)
+      'factory _${name.replaceAll(RegExp(r'<.*'), '')}${buildSignature(entity.constructor)} => \$js;',
+    // properties
+    for (var property in entity.properties)
+      ...generateCodeForProperty(entity, property),
+    // methods
+    for (var method in entity.methods) ...generateCodeForMethod(entity, method),
+    // methods
+    for (var method in entity.events) ...generateCodeForEvent(entity, method),
+  ];
+
+  return '''
+@JsName('${entity.fullJsName}')
+abstract class _$name
+${entity.extendsName != null ? 'extends ${entity.extendsName}' : ''}
+${entity.implementsName != null ? 'implements ${entity.implementsName}' : ''}
+{
+${lines.join('\n')}
+}
+''';
+}
+
+String generateCodeForInterface(DocEntity entity) {
+  final name = entity.name;
+  final lines = <String>[
+    // constructor
+    'factory _${name.replaceAll(RegExp(r'<.*'), '')}() => \$js;',
+    // properties
+    for (var property in entity.properties)
+      ...generateCodeForProperty(entity, property),
+    // methods
+    for (var method in entity.methods) ...generateCodeForMethod(entity, method),
+  ];
+  return '''
+@JsName()
+@anonymous
+abstract class _$name
+${entity.extendsName != null ? 'extends ${entity.extendsName}' : ''}
+${entity.implementsName != null ? 'implements ${entity.implementsName}' : ''}
+{
+${lines.join('\n')}
+}
+''';
+}
+
+String generateCodeForNamespace(DocEntity entity) {
+  final name = entity.name.capitalize();
+  final namespace = '_$name\$namespace';
+  final lines = <String>[
+    // static methods
+    for (var method in entity.staticMethods)
+      ...generateCodeForStaticMethod(entity, method, namespace),
+  ];
+  return '''
+@JS('${entity.fullJsName}')
+external Object get $namespace;
+class $name {
+${lines.join('\n')}
+}
+''';
+}
+
+String generateCodeForConstants(DocEntity entity) {
+  final name = entity.name;
+  return '''
+// ignore_for_file: unused_element, unused_field
+@JsName('${entity.fullJsName}')
+enum _$name {
+${entity.constants.map((e) => e.name).join(',')},
+}
+''';
+}
+
+// handled directly by alias in convertType
+String generateCodeForTypedef(DocEntity entity) => null;
+
+List<String> generateCodeForProperty(DocEntity entity, DocProperty property) {
+  if (property.name.contains('_')) {
+    final parts = property.name.split('_');
+    final rename = [
+      parts.first.unCapitalize(),
+      ...parts.skip(1).map((e) => e.capitalize()),
+    ].join();
+    return [
+      ' // custom name for ${property.name}',
+      "@JsName('${property.name}')",
+      '${property.type} $rename;',
+    ];
+  }
+  return [
+    '${property.type} ${property.name};',
+  ];
+}
+
+List<String> generateCodeForMethod(DocEntity entity, DocMethod method) {
+  // custom
+  if (const [
+    Member('LatLng', 'lat'),
+    Member('LatLng', 'lng'),
+  ].contains(Member(entity.name, method.name))) {
+    return [
+      '',
+      ' // custom getter for ${method.name}',
+      '${method.returnType} get ${method.name} => _${method.name}();',
+      "@JsName('${method.name}')",
+      '${method.returnType} _${method.name}();',
+      '',
+    ];
+  }
+
+  // method to implement
+  if (const [
+    Member('MapType', 'getTile'),
+    Member('MapType', 'releaseTile'),
+    Member('OverlayView', 'draw'),
+    Member('OverlayView', 'onAdd'),
+    Member('OverlayView', 'onRemove'),
+    Member('Projection', 'fromLatLngToPoint'),
+    Member('Projection', 'fromPointToLatLng'),
+    Member('StreetViewTileData', 'getTileUrl'),
+    Member('StyledMapType', 'getTile'),
+    Member('StyledMapType', 'releaseTile'),
+  ].contains(Member(entity.name, method.name))) {
+    return [
+      '${method.returnType} Function${buildSignature(method)} ${method.name};',
+    ];
+  }
+
+  // replace with getter
+  if (method.name.startsWith('get') &&
+      method.name.length > 3 &&
+      method.parameters.isEmpty) {
+    final name = '${method.name[3].toLowerCase()}${method.name.substring(4)}';
+    return [
+      '',
+      ' // synthetic getter for ${method.name}',
+      '${method.returnType} get $name => _${method.name}();',
+      "@JsName('${method.name}')",
+      '${method.returnType} _${method.name}();',
+      '',
+    ];
+  }
+
+  // replace with setter
+  if (method.name.startsWith('set') &&
+      method.name.length > 3 &&
+      method.returnType == 'void' &&
+      [...method.parameters, ...method.optionalParameters].length == 1) {
+    if (method.optionalParameters.isNotEmpty) {
+      method
+        ..parameters = method.optionalParameters
+        ..optionalParameters = [];
+    }
+    final type = method.parameters.first.type;
+    final name = '${method.name[3].toLowerCase()}${method.name.substring(4)}';
+    return [
+      '',
+      ' // synthetic setter for ${method.name}',
+      'set $name($type $name) => _${method.name}($name);',
+      "@JsName('${method.name}')",
+      'void _${method.name}${buildSignature(method)};',
+      '',
+    ];
+  }
+
+  if (ignoredClasses.contains(method.returnType)) return [];
+
+  return [
+    '${method.returnType} ${method.name}${buildSignature(method)};',
+  ];
+}
+
+List<String> generateCodeForStaticMethod(
+    DocEntity entity, DocMethod method, String namespace) {
+  if (const [Member('event', 'trigger')]
+      .contains(Member(entity.name, method.name))) {
+    return [
+      '',
+      'static void trigger(Object instance, String eventName, List<Object> eventArgs)',
+      "=> callMethod($namespace, 'trigger', [instance, eventName, ...?eventArgs]);",
+      '',
+    ];
+  }
+  final params = [...method.parameters, ...method.optionalParameters]
+      .map((e) => e.name)
+      .join(',');
+  return [
+    'static ${method.returnType} ${method.name}${buildSignature(method)}',
+    "  => callMethod($namespace, '${method.name}', [$params]);",
+  ];
+}
+
+List<String> generateCodeForEvent(DocEntity entity, DocMethod method) {
+  final eventName = method.name;
+  final streamName = [
+    'on',
+    ...eventName.split('_').map((e) => e.capitalize()),
+  ].join();
+  String params;
+  String type;
+  if (method.parameters.isEmpty && method.optionalParameters.isEmpty) {
+    type = 'void';
+    params = 'null';
+  } else if (method.parameters.length == 1 &&
+      method.optionalParameters.isEmpty) {
+    type = method.parameters.first.type;
+    params = method.parameters.first.name;
   } else {
-    return '${convertType(type, jsElements)} $name';
+    type = 'List';
+    final names = [...method.parameters, ...method.optionalParameters]
+        .map((e) => e.name)
+        .join(',');
+    params = '[$names]';
   }
+
+  return [
+    '''
+    Stream<$type> get $streamName {
+      StreamController<$type> sc; // ignore: close_sinks
+      MapsEventListener mapsEventListener;
+      void start() => mapsEventListener = Event.addListener(
+        this,
+        '$eventName',
+        allowInterop(${buildSignature(method)} => sc.add($params)),
+      );
+      void stop() => mapsEventListener.remove();
+      sc = StreamController<$type>(
+        onListen: start,
+        onCancel: stop,
+        onResume: start,
+        onPause: stop,
+      );
+      return sc.stream;
+    }''',
+  ];
 }
 
-class CodecInfo {
-  CodecInfo(this.codec, {this.canBeNativelyHandled, this.isIdentity});
-  final String codec;
-  final bool canBeNativelyHandled;
-  final bool isIdentity;
+String buildSignature(DocMethod method) {
+  final params = method.parameters ?? [];
+  final optionalParams = method.optionalParameters ?? [];
+  final result = StringBuffer('(')
+    ..write(params.map((param) => '${param.type} ${param.name}').join(','));
+  if (optionalParams.isNotEmpty) {
+    if (params.isNotEmpty) {
+      result.write(',');
+    }
+    result
+      ..write('[')
+      ..write(optionalParams
+          .map((param) => '${param.type} ${param.name}')
+          .join(','))
+      ..write(']');
+  }
+  result.write(')');
+  return result.toString();
 }
 
-CodecInfo getCodec(String type, List<JsElement> jsElements) {
+final ignoredClasses = <String>[
+  'CircleLiteral',
+  'LatLngLiteral',
+  'LatLngBoundsLiteral',
+  'undefined',
+];
+
+String convertType(String type) {
+  if (type == null) return null;
   final myType = type.trim();
-  if (splitUnionTypes(myType).length > 1) {
-    for (final ignoredClass in ignoredClasses) {
-      if (myType.startsWith('$ignoredClass|')) {
-        return getCodec(myType.substring('$ignoredClass|'.length), jsElements);
-      }
-      if (myType.endsWith('|$ignoredClass')) {
-        return getCodec(
-            myType.substring(0, myType.lastIndexOf('|$ignoredClass')),
-            jsElements);
-      }
-      if (myType.contains('|$ignoredClass|')) {
-        return getCodec(myType.replaceAll('|$ignoredClass|', '|'), jsElements);
-      }
-    }
-    final typeUnion = splitUnionTypes(myType);
-    final codecInfos = typeUnion.map((t) => getCodec(t, jsElements));
-    if (codecInfos.any((ci) => !ci.isIdentity)) {
-      final calls = codecInfos.map((ci) => '..add(${ci.codec})').join();
-      return CodecInfo('new ChainedCodec()$calls',
-          canBeNativelyHandled: false, isIdentity: false);
-    } else {
-      return CodecInfo('new IdentityCodec()',
-          canBeNativelyHandled: true, isIdentity: true);
-    }
-  } else if (myType.startsWith('Object<') && myType.endsWith('>')) {
-    return CodecInfo('FUCK', canBeNativelyHandled: true, isIdentity: true);
-  } else if (myType.startsWith('Array<') && myType.endsWith('>')) {
-    final innerType = myType.substring('Array<'.length, myType.length - 1);
-    final convertedInnerType = convertType(innerType, jsElements);
-    final innerCodecInfo = getCodec(innerType, jsElements);
-    return CodecInfo(
-        'new JsListCodec<$convertedInnerType>(${innerCodecInfo.codec})',
-        canBeNativelyHandled: innerCodecInfo.canBeNativelyHandled,
-        isIdentity: false);
-  } else if (myType.startsWith('function(')) {
-    return CodecInfo('PLEASE_IMPLEMENT_MANUALLY',
-        canBeNativelyHandled: true, isIdentity: true);
-  } else if (jsElements.any((e) => e.id == myType)) {
-    final jsElmt = jsElements.firstWhere((e) => e.id == myType);
-    final convertedType = convertType(myType, jsElements);
-    if (jsElmt.isEnum) {
-      final constants = jsElmt.constants
-          .map((tr) => tr.getElementsByTagName('td')[0].text.trim());
-      final params = constants
-          .map((e) => "${jsElmt.name}.$e: ${getPath(jsElmt.fullName)}['$e']")
-          .join(',');
-      return CodecInfo('new BiMapCodec<$convertedType, dynamic>({$params})',
-          canBeNativelyHandled: true, isIdentity: false);
-    } else if (jsElmt.isAnonymousObject) {
-      return CodecInfo(
-          'new JsInterfaceCodec<$convertedType>'
-          '((o) => new $convertedType.created(o))',
-          canBeNativelyHandled: true,
-          isIdentity: false);
-    } else {
-      return CodecInfo(
-          'new JsInterfaceCodec<$convertedType>'
-          '((o) => new $convertedType.created(o), '
-          '(o) => o != null && o.instanceof(${getPath(jsElmt.fullName)}))',
-          canBeNativelyHandled: true,
-          isIdentity: false);
-    }
-  } else if (myType.startsWith('MVCArray<') && myType.endsWith('>')) {
-    final innerType = myType.substring('MVCArray<'.length, myType.length - 1);
-    final convertedInnerType = convertType(innerType, jsElements);
-    final innerCodecInfo = getCodec(innerType, jsElements);
-    return CodecInfo(
-        'new JsInterfaceCodec<MVCArray<$convertedInnerType>>'
-        '((o) => new MVCArray<$convertedInnerType>.created(o, ${innerCodecInfo.codec}))',
-        canBeNativelyHandled: false,
-        isIdentity: false);
-  } else {
-    final convertedType = convertType(myType, jsElements);
-    return CodecInfo('new IdentityCodec<$convertedType>()',
-        canBeNativelyHandled: true, isIdentity: true);
-  }
-}
-
-String convertType(String type, List<JsElement> jsElements, {String name}) {
-  var myType = type.trim();
   if (myType == 'boolean')
     return 'bool';
   else if (myType == 'number')
@@ -1330,68 +426,59 @@ String convertType(String type, List<JsElement> jsElements, {String name}) {
   else if (myType == 'HTMLDivElement')
     return 'DivElement';
   else if (myType == 'Event')
-    return 'JsObject';
+    return 'Object';
   else if (myType == 'Array')
     return 'List';
   else if (myType == 'None')
     return 'void';
   else if (myType == '*')
-    return 'dynamic';
+    return 'Object';
   else if (myType == '?')
-    return 'dynamic';
+    return 'Object';
+  else if (customClassName.containsKey(myType))
+    return convertType(customClassName[myType]);
+  else if (myType.startsWith('(') && myType.endsWith(')'))
+    return convertType(myType.substring(1, myType.length - 1));
   else if (splitUnionTypes(myType).length > 1) {
     for (final ignoredClass in ignoredClasses) {
       if (myType.startsWith('$ignoredClass|')) {
-        return convertType(
-            myType.substring('$ignoredClass|'.length), jsElements,
-            name: name);
+        return convertType(myType.substring('$ignoredClass|'.length));
       }
       if (myType.endsWith('|$ignoredClass')) {
         return convertType(
-            myType.substring(0, myType.lastIndexOf('|$ignoredClass')),
-            jsElements,
-            name: name);
+            myType.substring(0, myType.lastIndexOf('|$ignoredClass')));
       }
       if (myType.contains('|$ignoredClass|')) {
-        return convertType(
-            myType.replaceAll('|$ignoredClass|', '|'), jsElements,
-            name: name);
+        return convertType(myType.replaceAll('|$ignoredClass|', '|'));
       }
     }
     final typeUnion = splitUnionTypes(myType);
-    final dartUnion =
-        typeUnion.map((t) => convertType(t, jsElements)).join('|');
-    return 'dynamic/*$dartUnion*/';
+    final dartUnion = typeUnion.map(convertType).join('|');
+    return 'Object/*$dartUnion*/';
   } else if (myType.startsWith('Object<') && myType.endsWith('>')) {
-    final innerType = convertType(
-        myType.substring('Object<'.length, myType.length - 1), jsElements,
-        name: name);
+    final innerType =
+        convertType(myType.substring('Object<'.length, myType.length - 1));
     return 'Map<String, $innerType>';
   } else if (myType.startsWith('Array<') && myType.endsWith('>')) {
-    final innerType = convertType(
-        myType.substring('Array<'.length, myType.length - 1), jsElements,
-        name: name);
+    final innerType =
+        convertType(myType.substring('Array<'.length, myType.length - 1));
     return 'List<$innerType>';
   } else if (myType.startsWith('function(')) {
     final functionParams =
-        myType.substring('function('.length, myType.length - 1).split(',');
+        myType.substring('function('.length, myType.indexOf(')')).split(',');
+    final returnType = myType.indexOf(':') > 0
+        ? convertType(myType.substring(myType.indexOf(':') + 1))
+        : 'void';
     var i = 1;
-    final params = functionParams
-        .map((p) => convertType(p, jsElements))
-        .map((p) => '$p p${i++}')
-        .join(',');
-    myType = '$name($params)';
-    if (name == null) myType = 'dynamic/*$myType*/';
-    return myType;
-  } else if (jsElements.any((e) => e.id == myType)) {
-    return jsElements.firstWhere((e) => e.id == myType).name;
+    final params =
+        functionParams.map(convertType).map((p) => '$p p${i++}').join(',');
+    return '$returnType Function($params)';
   } else if (myType.startsWith('MVCArray<') && myType.endsWith('>')) {
-    final innerType = convertType(
-        myType.substring('MVCArray<'.length, myType.length - 1), jsElements,
-        name: name);
+    final innerType =
+        convertType(myType.substring('MVCArray<'.length, myType.length - 1));
     return 'MVCArray<$innerType>';
   } else {
-    return myType;
+    return myType.replaceAll('.', '');
   }
 }
 
@@ -1417,74 +504,291 @@ List<String> splitUnionTypes(String type) {
   return typeParts;
 }
 
-String getExtends(Element title) {
-  var e = title;
-  // ignore: literal_only_boolean_expressions
-  while (true) {
-    e = e.nextElementSibling;
-    if (e == null || e.localName != 'p') return null;
-    if (e.text.startsWith('This class extends')) {
-      return e.querySelector('a').attributes['href'].substring(1);
+enum Kind { clazz, interface, namespace, constants, typedef }
+
+class DocEntity {
+  Kind kind;
+  String library;
+  String path;
+  String name;
+  String fullJsName;
+  String extendsName;
+  String implementsName;
+  String comment;
+  DocMethod constructor;
+  List<DocMethod> staticMethods = [];
+  List<DocMethod> methods = [];
+  List<DocProperty> properties = [];
+  List<DocMethod> events = [];
+  List<DocConstant> constants = [];
+
+  String get fileName {
+    final value = name
+        .capitalize()
+        .replaceAll('.', '_')
+        .replaceAll(RegExp(r'<[A-Z]>'), '')
+        .replaceAllMapped(RegExp(r'([A-Z]+)([A-Z][a-z]+)'),
+            (m) => '${m.group(1).toLowerCase()}_${m.group(2).toLowerCase()}_')
+        .replaceAllMapped(
+            RegExp(r'[A-Z][a-z]+'), (m) => '${m.group(0).toLowerCase()}_');
+    return value.substring(0, value.length - 1);
+  }
+
+  @override
+  String toString() => 'DocEntity($library ,$kind, $path, $name, $extendsName)';
+
+  void convertTypes() {
+    extendsName = convertType(extendsName);
+    implementsName = convertType(implementsName);
+    name = convertType(name);
+    constructor?.convertTypes();
+    for (var e in staticMethods) {
+      e.convertTypes();
     }
-    if (e.text.startsWith('This object extends')) {
-      return e.querySelector('a').attributes['href'].substring(1);
+    for (var e in methods) {
+      e.convertTypes();
+    }
+    for (var e in properties) {
+      e.convertTypes();
+    }
+    for (var e in events) {
+      e.convertTypes();
     }
   }
 }
 
-class JsElement {
-  JsElement(this.id, this.file, this.element);
-  final String id;
-  final File file;
-  final Element element;
+DocEntity parseDocEntity(Element element) {
+  final entity = DocEntity()
+    ..kind = toKind(element
+        .querySelector('h2')
+        .attributes['data-text']
+        .trim()
+        .split(RegExp(r'[ \n]+'))[1])
+    ..path = element.querySelector('span[itemprop="path"]').text
+    ..name = element.querySelector('span[itemprop="name"]').text
+    ..library = element
+        .querySelector('h4[data-text="Library"]')
+        ?.nextElementSibling
+        ?.text;
 
-  String get name => customClassName.containsKey(id)
-      ? customClassName[id]
-      : id.replaceAll('.', '');
+  entity
+    // full js name
+    ..fullJsName =
+        [entity.path, entity.name].join('.').replaceFirst(RegExp(r'<.*'), '')
+    // extendsName
+    ..extendsName = element
+        .querySelectorAll('>p')
+        .firstWhere(
+            (e) =>
+                e.text.startsWith(RegExp(r'This (class|interface) extends')) &&
+                e.querySelector('a') != null,
+            orElse: () => null)
+        ?.querySelector('a')
+        ?.text
+    // implementsName
+    ..implementsName = element
+        .querySelectorAll('>p')
+        .firstWhere(
+            (e) =>
+                e.text
+                    .startsWith(RegExp(r'This (class|interface) implements')) &&
+                e.querySelector('a') != null,
+            orElse: () => null)
+        ?.querySelector('a')
+        ?.text;
 
-  String get fullName {
-    final path = element.querySelector('p span[itemprop="path"]');
-    var name = element.querySelector('p span[itemprop="name"]').text.trim();
-    if (path != null && path.text.trim().isNotEmpty) {
-      name = '${path.text.trim()}.$name';
-    }
-    return name;
+  // constructor
+  if (element.querySelector('table.constructors') != null) {
+    entity.constructor = parseTrForDocMethod(
+        element.querySelector('table.constructors').children[1].children.first);
   }
-
-  Element get constructor =>
-      element.querySelector(r"table[summary$='Constructor']>tbody>tr");
-
-  List<Element> get methods =>
-      element.querySelectorAll(r"table[summary$='Methods']>tbody>tr");
-
-  List<Element> get properties =>
-      element.querySelectorAll(r"table[summary$='Properties']>tbody>tr");
-
-  List<Element> get constants =>
-      element.querySelectorAll(r"table[summary$='Constants']>tbody>tr");
-
-  List<Element> get events =>
-      element.querySelectorAll(r"table[summary$='Events']>tbody>tr");
-
-  bool get isNamespace =>
-      element.querySelector('h2').text.trim().endsWith('namespace');
-  bool get isEnum =>
-      (isClass || isAnonymousObject) &&
-      element.querySelectorAll('table').length == 1 &&
-      element.querySelectorAll('table.constants').length == 1;
-  bool get isClass => element.querySelector('h2').text.trim().endsWith('class');
-  bool get isAnonymousObject =>
-      element.querySelector('h2').text.trim().endsWith('object specification');
-  bool get isTypeDef =>
-      element.querySelector('h2').text.trim().endsWith('typedef');
+  // properties
+  if (element.querySelector('table.properties') != null) {
+    entity.properties = element
+        .querySelector('table.properties')
+        .children[1]
+        .children
+        .map(parseTrForDocProperty)
+        .toList();
+  }
+  // methods
+  if (element.querySelector(r'table.methods[summary$=" - Methods"]') != null) {
+    entity.methods = element
+        .querySelector(r'table.methods[summary$=" - Methods"]')
+        .children[1]
+        .children
+        .map(parseTrForDocMethod)
+        .toList();
+  }
+  // static methods
+  if (element.querySelector(r'table.methods[summary$=" - Static Methods"]') !=
+      null) {
+    entity.staticMethods = element
+        .querySelector(r'table.methods[summary$=" - Static Methods"]')
+        .children[1]
+        .children
+        .map(parseTrForDocMethod)
+        .toList();
+  }
+  // constants
+  if (element.querySelector('table.constants') != null) {
+    entity.constants = element
+        .querySelector('table.constants')
+        .children[1]
+        .children
+        .map(parseTrForDocConstant)
+        .toList();
+  }
+  // constants
+  if (element.querySelector('table.details') != null) {
+    entity.events = element
+        .querySelector('table.details')
+        .children[1]
+        .children
+        .map(parseTrForDocMethod)
+        .toList();
+  }
+  return entity;
 }
 
-String underscores(String name) => name
-    .replaceAllMapped(
-        RegExp('([a-z])([A-Z])'), (m) => '${m[1]}_${m[2].toLowerCase()}')
-    .replaceAll('-', '_')
-    .replaceAll('.', '_')
-    .toLowerCase();
+DocMethod parseTrForDocMethod(Element trElement) {
+  final result = DocMethod();
 
-String getPath(String path) =>
-    path.split('.').fold('context', (t, p) => "$t['$p']");
+  final tdList = trElement.children;
+  result.name = tdList[0].text;
+
+  final descriptions = tdList[1]
+      .children
+      .where((e) => e.localName == 'div' && e.classes.contains('desc'));
+
+  final parameters = descriptions.singleWhere(
+      (e) =>
+          e.children.isNotEmpty &&
+          (e.children.first.text == 'Parameters:' ||
+              e.children.first.text == 'Arguments:'),
+      orElse: () => null);
+  if (parameters != null) {
+    final paramLis = parameters.querySelectorAll('li');
+    result
+      ..parameters = paramLis
+          .where((e) => e.querySelector('.optional-type-annotation') == null)
+          .map((e) => DocMethodParameter()
+            ..name = e.querySelectorAll('code')[0].text
+            ..type = e.querySelectorAll('code')[1].text)
+          .toList()
+      ..optionalParameters = paramLis
+          .where((e) => e.querySelector('.optional-type-annotation') != null)
+          .map((e) => DocMethodParameter()
+            ..name = e.querySelectorAll('code')[0].text
+            ..type =
+                e.querySelectorAll('code')[1].text.replaceAll(' optional', ''))
+          .toList();
+  }
+
+  final returnType = descriptions.singleWhere(
+      (e) => e.children.isNotEmpty && e.children.first.text == 'Return Value:',
+      orElse: () => null);
+  if (returnType != null) {
+    result.returnType = returnType.text
+        .replaceFirst('Return Value:', '')
+        .replaceAll(' optional', '')
+        .trim();
+  }
+
+  return result;
+}
+
+DocProperty parseTrForDocProperty(Element trElement) {
+  final tdList = trElement.children;
+  return DocProperty()
+    ..name = tdList[0].text
+    ..type = tdList[1]
+        .children
+        .firstWhere((e) => e.localName == 'div')
+        .text
+        .replaceFirst('Type:', '')
+        .replaceAll(' optional', '')
+        .trim();
+}
+
+DocConstant parseTrForDocConstant(Element trElement) {
+  final tdList = trElement.children;
+  return DocConstant()..name = tdList[0].text;
+}
+
+class DocProperty {
+  String name;
+  String type;
+  bool optional;
+  String comment;
+
+  void convertTypes() {
+    type = convertType(type);
+  }
+}
+
+class DocMethod {
+  String name;
+  List<DocMethodParameter> parameters = [];
+  List<DocMethodParameter> optionalParameters = [];
+  String returnType;
+  String comment;
+
+  void convertTypes() {
+    returnType = convertType(returnType);
+    for (var e in parameters) {
+      e.convertTypes();
+    }
+    for (var e in optionalParameters) {
+      e.convertTypes();
+    }
+  }
+}
+
+class DocMethodParameter {
+  String name;
+  String type;
+
+  void convertTypes() {
+    type = convertType(type);
+  }
+}
+
+class DocConstant {
+  String name;
+  String comment;
+}
+
+Kind toKind(String value) {
+  switch (value) {
+    case 'class':
+      return Kind.clazz;
+    case 'constants':
+      return Kind.constants;
+    case 'interface':
+      return Kind.interface;
+    case 'namespace':
+      return Kind.namespace;
+    case 'typedef':
+      return Kind.typedef;
+  }
+  throw StateError('Unknown kind: $value');
+}
+
+class Member {
+  const Member(this.className, this.name);
+
+  final String className;
+  final String name;
+
+  @override
+  int get hashCode => 0;
+  @override
+  bool operator ==(other) =>
+      other is Member && other.className == className && other.name == name;
+}
+
+extension on String {
+  String capitalize() => this[0].toUpperCase() + substring(1);
+  String unCapitalize() => this[0].toLowerCase() + substring(1);
+}

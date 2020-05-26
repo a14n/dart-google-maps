@@ -5,20 +5,41 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <style>
-      html, body, #map-canvas {
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
         height: 100%;
-        margin: 0px;
-        padding: 0px
       }
-    </style>
-    <style>
-      #results {
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #right-panel {
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+      }
+
+      #right-panel select, #right-panel input {
+        font-size: 15px;
+      }
+
+      #right-panel select {
+        width: 100%;
+      }
+
+      #right-panel i {
+        font-size: 12px;
+      }
+      #right-panel {
         font-family: Arial, Helvetica, sans-serif;
         position: absolute;
         right: 5px;
-        top: 50%;
+        top: 60%;
         margin-top: -195px;
-        height: 380px;
+        height: 330px;
         width: 200px;
         padding: 5px;
         z-index: 5;
@@ -33,7 +54,7 @@
         list-style-type: none;
         padding: 0;
         margin: 0;
-        height: 321px;
+        height: 271px;
         width: 200px;
         overflow-y: scroll;
       }
@@ -54,14 +75,14 @@
     </style>
   </head>
   <body>
-    <div id="map-canvas"></div>
-    <div id="results">
+    <div id="map"></div>
+    <div id="right-panel">
       <h2>Results</h2>
       <ul id="places"></ul>
       <button id="more">More results</button>
     </div>
 
-    <script src="http://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></script>
+    <script src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>
     <script defer src="page.dart.js"></script>
 
   </body>

@@ -1,3 +1,4 @@
+@JS()
 library example;
 
 import 'dart:html';
@@ -5,21 +6,19 @@ import 'dart:html';
 import 'package:js_wrapping/js_wrapping.dart';
 import 'package:google_maps/google_maps.dart';
 
-part 'page.g.dart';
+@JS('google.visualization.ColumnChart')
+class ColumnChart {
+  external ColumnChart(Node div);
 
-@JsName('google.visualization.ColumnChart')
-abstract class _ColumnChart extends JsInterface {
-  factory _ColumnChart(Node div) => null;
-
-  void draw(DataTable data, [JsObject options]);
+  external void draw(DataTable data, [Object options]);
 }
 
 @JsName('google.visualization.DataTable')
-abstract class _DataTable extends JsInterface {
-  factory _DataTable() => null;
+class DataTable {
+  external DataTable();
 
-  void addColumn(String type, [String label, String id]);
-  void addRow([JsArray cellArray]);
+  external void addColumn(String type, [String label, String id]);
+  external void addRow([List cells]);
 }
 
 ElevationService elevator;
@@ -72,7 +71,7 @@ void drawPath() {
     ..samples = 256;
 
   // Initiate the path request.
-  elevator.getElevationAlongPath(pathRequest, plotElevation);
+  elevator.getElevationAlongPath(pathRequest, allowInterop(plotElevation));
 }
 
 // Takes an array of ElevationResult objects, draws the path on the map
@@ -103,14 +102,12 @@ void plotElevation(List<ElevationResult> results, ElevationStatus status) {
       ..addColumn('string', 'Sample')
       ..addColumn('number', 'Elevation');
     for (final elevation in results) {
-      data.addRow(JsArray.from(['', elevation.elevation]));
+      data.addRow(['', elevation.elevation]);
     }
 
     // Draw the chart using the data within its DIV.
     querySelector('#elevation_chart').style.display = 'block';
-    chart.draw(
-        data,
-        JsObject.jsify(
-            {'height': 150, 'legend': 'none', 'titleY': 'Elevation (m)'}));
+    chart.draw(data,
+        jsify({'height': 150, 'legend': 'none', 'titleY': 'Elevation (m)'}));
   }
 }

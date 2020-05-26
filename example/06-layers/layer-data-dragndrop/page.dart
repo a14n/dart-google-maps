@@ -3,6 +3,7 @@ import 'dart:html';
 import 'dart:html' as html show MouseEvent;
 
 import 'package:google_maps/google_maps.dart';
+import 'package:js/js_util.dart';
 import 'package:js_wrapping/js_wrapping.dart';
 
 GMap map;
@@ -23,8 +24,7 @@ void initMap() {
 
 void loadGeoJsonString(String geoString) {
   final geojson = json.decode(geoString);
-  // TODO(aa) addGeoJson should take a Map
-  map.data.addGeoJson(JsObject.jsify(geojson));
+  map.data.addGeoJson(jsify(geojson));
   zoom(map);
 }
 
@@ -32,9 +32,11 @@ void loadGeoJsonString(String geoString) {
 /// @param {google.maps.Map} map The map to adjust
 void zoom(GMap map) {
   final bounds = LatLngBounds();
-  map.data.forEach((feature) {
-    processPoints(feature.geometry as DataGeometry, bounds.extend);
-  });
+  map.data.forEach(allowInterop((feature) {
+    // TODO: replace with tearoff once issue is fixed
+    // ignore: unnecessary_lambdas, https://github.com/dart-lang/sdk/issues/32370
+    processPoints(feature.geometry, (e) => bounds.extend(e));
+  }));
   map.fitBounds(bounds);
 }
 
@@ -47,7 +49,7 @@ void processPoints(DataGeometry geometry, LatLngBounds callback(LatLng point)) {
     callback(geometry.get());
   } else if (geometry is DataGeometryCollection) {
     for (final g in geometry.array) {
-      processPoints(g as DataGeometry, callback);
+      processPoints(g, callback);
     }
   }
 }

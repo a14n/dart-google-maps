@@ -9,4 +9,4 @@ jobs:
     # TODO re-enable --fatal-lints once https://github.com/dart-lang/sdk/issues/25551 is fixed
     # - dartanalyzer --fatal-warnings --fatal-hints --fatal-lints .
     - dartanalyzer --fatal-warnings --fatal-hints --no-lints .
-    - pub run test
+    # - pub run test

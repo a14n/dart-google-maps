@@ -65,7 +65,7 @@ class USGSOverlay extends OverlayView {
     _div = div;
 
     // Add the element to the "overlayImage" pane.
-    (panes.overlayLayer as Element).children.add(_div);
+    panes.overlayLayer.children.add(_div);
   }
 
   void _draw() {

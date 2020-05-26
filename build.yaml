@@ -1,0 +1,39 @@
+targets:
+  $default:
+    builders:
+      js_wrapping_generator:
+        generate_for:
+          include:
+          - 'lib/src/generated/google_maps_*.dart'
+
+# targets:
+#   $default:
+#     dependencies:
+#     - :google_maps
+#     - :google_maps_lib
+#     - :example
+#   google_maps:
+#     builders:
+#       js_wrapping_generator:
+#         generate_for:
+#           include:
+#           - 'lib/src/generated/google_maps_core.dart'
+#   google_maps_lib:
+#     dependencies:
+#     - :google_maps
+#     builders:
+#       js_wrapping_generator:
+#         generate_for:
+#           include:
+#           - 'lib/src/generated/google_maps_drawing.dart'
+#           - 'lib/src/generated/google_maps_places.dart'
+#           - 'lib/src/generated/google_maps_visualization.dart'
+#   example:
+#     dependencies:
+#     - :google_maps
+#     - :google_maps_lib
+#     builders:
+#       js_wrapping_generator:
+#         generate_for:
+#           include:
+#           - 'example/**.dart'

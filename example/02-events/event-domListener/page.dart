@@ -13,7 +13,7 @@ void main() {
   // map is clicked. Note that we do this within the intialize function
   // since the document object isn't loaded until after the window.load
   // event.
-  event.addDomListener(mapDiv, 'click', (e) {
+  Event.addDomListener(mapDiv, 'click', (e) {
     window.alert('DIV clicked');
   });
 }

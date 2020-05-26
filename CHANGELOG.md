@@ -1,3 +1,7 @@
+# v4.0.0 (2020-04-22)
+
+- Migrate from `dart:js` to `package:js`.
+
 # v3.4.2 (2020-04-22)
 
 - Add `AutocompletionRequest.origin` and `AutocompletionRequest.sessionToken`.

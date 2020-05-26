@@ -3,13 +3,12 @@ import 'dart:html';
 import 'package:google_maps/google_maps.dart';
 
 GMap map;
-final berkeley = LatLng(37.869085, -122.254775);
-// TODO(aa) https://code.google.com/p/gmaps-api-issues/issues/detail?id=8048
-final sv = StreetViewService();
-
 StreetViewPanorama panorama;
 
 void main() {
+  final berkeley = LatLng(37.869085, -122.254775);
+  final sv = StreetViewService();
+
   panorama = StreetViewPanorama(document.getElementById('pano'));
 
   // Set up the map
@@ -20,13 +19,21 @@ void main() {
   map = GMap(document.getElementById('map-canvas'), mapOptions);
 
   // Set the initial Street View camera to the center of the map
-  sv.getPanoramaByLocation(berkeley, 50, processSVData);
+  sv.getPanorama(
+      StreetViewLocationRequest()
+        ..location = berkeley
+        ..radius = 50,
+      processSVData);
 
   // Look for a nearby Street View panorama when the map is clicked.
-  // getPanoramaByLocation will return the nearest pano when the
+  // getPanorama will return the nearest pano when the
   // given radius is 50 meters or less.
   map.onClick.listen((e) {
-    sv.getPanoramaByLocation(e.latLng, 50, processSVData);
+    sv.getPanorama(
+        StreetViewLocationRequest()
+          ..location = e.latLng
+          ..radius = 50,
+        processSVData);
   });
 }
 

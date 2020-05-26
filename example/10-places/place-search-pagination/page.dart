@@ -4,48 +4,46 @@ import 'package:google_maps/google_maps.dart';
 import 'package:google_maps/google_maps_places.dart';
 
 GMap map;
-UListElement placesList;
 
 void main() {
-  final pyrmont = LatLng(-33.8665433, 151.1956316);
-
+  // Create the map.
+  final pyrmont = LatLng(-33.866, 151.196);
   map = GMap(
-      document.getElementById('map-canvas'),
+      document.getElementById('map'),
       MapOptions()
         ..center = pyrmont
         ..zoom = 17);
 
-  final request = PlaceSearchRequest()
-    ..location = pyrmont
-    ..radius = 500
-    ..types = ['store'];
+  // Create the places service.
+  final service = PlacesService(map);
+  void Function() getNextPage;
+  final moreButton = document.getElementById('more') as ButtonElement;
+  moreButton.onClick.listen((event) {
+    moreButton.disabled = true;
+    if (getNextPage != null) getNextPage();
+  });
 
-  placesList = document.getElementById('places') as UListElement;
+  // Perform a nearby search.
+  service.nearbySearch(
+      PlaceSearchRequest()
+        ..location = pyrmont
+        ..radius = 500
+        ..type = 'store', (results, status, pagination) {
+    if (status != PlacesServiceStatus.OK) return;
 
-  PlacesService(map).nearbySearch(request, callback);
-}
-
-void callback(List<PlaceResult> results, PlacesServiceStatus status,
-    PlaceSearchPagination pagination) {
-  if (status != PlacesServiceStatus.OK) {
-    return;
-  } else {
     createMarkers(results);
-
+    moreButton.disabled = !pagination.hasNextPage;
     if (pagination.hasNextPage) {
-      final moreButton = (document.getElementById('more') as ButtonElement)
-        ..disabled = false;
-
-      moreButton.onClick.listen((_) {
-        moreButton.disabled = true;
+      getNextPage = () {
         pagination.nextPage();
-      });
+      };
     }
-  }
+  });
 }
 
 void createMarkers(List<PlaceResult> places) {
   final bounds = LatLngBounds();
+  final placesList = document.getElementById('places');
 
   for (final place in places) {
     final image = Icon()
@@ -61,7 +59,8 @@ void createMarkers(List<PlaceResult> places) {
       ..title = place.name
       ..position = place.geometry.location);
 
-    placesList.innerHtml += '<li>${place.name}</li>';
+    final li = document.createElement('li')..text = place.name;
+    placesList.children.add(li);
 
     bounds.extend(place.geometry.location);
   }

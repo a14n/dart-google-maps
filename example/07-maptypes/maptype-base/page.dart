@@ -1,17 +1,15 @@
 import 'dart:html' hide Point;
 
 import 'package:google_maps/google_maps.dart';
+import 'package:js_wrapping/js_wrapping.dart';
 
-class CoordMapType extends MapType {
-  CoordMapType() : super() {
-    tileSize = Size(256, 256);
-    maxZoom = 19;
-    getTile = _getTile;
-    name = 'Tile #s';
-    alt = 'Tile Coordinate Map Type';
-  }
-
-  Node _getTile(Point coord, num zoom, Document ownerDocument) {
+GMap map;
+final chicago = LatLng(41.850033, -87.6500523);
+final tileSize = Size(256, 256);
+final coordinateMapType = MapType()
+  ..tileSize = tileSize
+  ..maxZoom = 19
+  ..getTile = allowInterop((Point coord, num zoom, Document ownerDocument) {
     final div = ownerDocument.createElement('div')
       ..innerHtml = coord.toString();
     div.style
@@ -23,12 +21,9 @@ class CoordMapType extends MapType {
       ..borderColor = '#AAAAAA'
       ..backgroundColor = '#E5E3DF';
     return div;
-  }
-}
-
-GMap map;
-final chicago = LatLng(41.850033, -87.6500523);
-final coordinateMapType = CoordMapType();
+  })
+  ..name = 'Tile #s'
+  ..alt = 'Tile Coordinate Map Type';
 
 void main() {
   final mapOptions = MapOptions()

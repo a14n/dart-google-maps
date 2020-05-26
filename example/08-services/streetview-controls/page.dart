@@ -12,8 +12,6 @@ void main() {
       ..position = ControlPosition.BOTTOM_CENTER)
     ..linksControl = false
     ..panControl = false
-    ..zoomControlOptions =
-        (ZoomControlOptions()..style = ZoomControlStyle.SMALL)
     ..enableCloseButton = false;
   StreetViewPanorama(document.getElementById('map-canvas'), panoramaOptions);
 }

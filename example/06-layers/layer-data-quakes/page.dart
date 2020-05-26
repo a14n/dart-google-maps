@@ -1,3 +1,6 @@
+@JS()
+library test;
+
 import 'dart:html';
 import 'dart:math';
 
@@ -7,29 +10,36 @@ import 'package:js_wrapping/js_wrapping.dart';
 GMap map;
 final mapStyle = <MapTypeStyle>[
   MapTypeStyle()
-    ..featureType = MapTypeStyleFeatureType.ALL
-    ..elementType = MapTypeStyleElementType.ALL
-    ..stylers = <MapTypeStyler>[MapTypeStyler()..visibility = 'off'],
-  MapTypeStyle()
-    ..featureType = MapTypeStyleFeatureType.LANDSCAPE
-    ..elementType = MapTypeStyleElementType.GEOMETRY
-    ..stylers = <MapTypeStyler>[
-      MapTypeStyler()..visibility = 'on',
-      MapTypeStyler()..color = '#fcfcfc'
+    ..featureType = 'all'
+    ..elementType = 'all'
+    ..stylers = [
+      jsify({'visibility': 'off'}),
     ],
   MapTypeStyle()
-    ..featureType = MapTypeStyleFeatureType.WATER
-    ..elementType = MapTypeStyleElementType.LABELS
-    ..stylers = <MapTypeStyler>[MapTypeStyler()..visibility = 'off'],
+    ..featureType = 'landscape'
+    ..elementType = 'geometry'
+    ..stylers = [
+      jsify({'visibility': 'on'}),
+      jsify({'color': '#fcfcfc'}),
+    ],
   MapTypeStyle()
-    ..featureType = MapTypeStyleFeatureType.WATER
-    ..elementType = MapTypeStyleElementType.GEOMETRY
-    ..stylers = <MapTypeStyler>[
-      MapTypeStyler()..visibility = 'on',
-      MapTypeStyler()..hue = '#5f94ff',
-      MapTypeStyler()..lightness = 60
+    ..featureType = 'water'
+    ..elementType = 'labels'
+    ..stylers = [
+      jsify({'visibility': 'off'}),
+    ],
+  MapTypeStyle()
+    ..featureType = 'water'
+    ..elementType = 'geometry'
+    ..stylers = [
+      jsify({'visibility': 'on'}),
+      jsify({'hue': '#5f94ff'}),
+      jsify({'lightness': '60'}),
     ],
 ];
+
+@JS('window')
+external dynamic get window;
 
 void main() {
   map = GMap(
@@ -41,7 +51,7 @@ void main() {
 
   map.data.style = styleFeature;
 
-  context['eqfeed_callback'] = eqfeed_callback;
+  setProperty(window, 'eqfeed_callback', allowInterop(eqfeed_callback));
 
   // Get the earthquake data (JSONP format)
   // This feed is a copy from the USGS feed, you can find the originals here:
@@ -53,8 +63,7 @@ void main() {
 }
 
 // Defines the callback function referenced in the jsonp file.
-void eqfeed_callback(JsObject data) {
-  // TODO(aa) addGeoJson should take a Map
+void eqfeed_callback(Object data) {
   map.data.addGeoJson(data);
 }
 
