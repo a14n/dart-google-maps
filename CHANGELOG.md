@@ -1,3 +1,7 @@
+# v3.4.3 (2020-06-02)
+
+- fix [map.projection.fromLatLngToPoint issue](https://github.com/a14n/dart-google-maps/issues/81).
+
 # v3.4.2 (2020-04-22)
 
 - Add `AutocompletionRequest.origin` and `AutocompletionRequest.sessionToken`.

@@ -2741,7 +2741,9 @@ class Projection extends JsInterface {
   }
 
   Point Function(LatLng latLng, [Point point]) get fromLatLngToPoint =>
-      __codec72.decode(asJsObject(this)['fromLatLngToPoint']);
+      (latLng, [point]) =>
+          __codec72.decode(asJsObject(this)['fromLatLngToPoint'])(
+              asJsObject(this), latLng, point);
   set fromPointToLatLng(
       LatLng Function(Point pixel, [bool nowrap]) _fromPointToLatLng) {
     asJsObject(this)['fromPointToLatLng'] =
@@ -7300,8 +7302,11 @@ final __codec71 = JsListCodec<MapTypeStyler>(__codec70);
 final __codec72 = FunctionCodec<Function> /*<(LatLng, [Point]) → Point>*/(
   (f) => (p$latLng, [p$point]) =>
       __codec2.encode(f(__codec0.decode(p$latLng), __codec2.decode(p$point))),
-  (f) => (p$latLng, [p$point]) => __codec2.decode(f is JsFunction
-      ? f.apply([__codec0.encode(p$latLng), __codec2.encode(p$point)])
+  (f) => (p$this, p$latLng, [p$point]) => __codec2.decode(f is JsFunction
+      ? f.apply([
+          __codec0.encode(p$latLng),
+          if (p$point != null) __codec2.encode(p$point),
+        ], thisArg: p$this)
       : Function.apply(
           f, [__codec0.encode(p$latLng), __codec2.encode(p$point)])),
 );
@@ -7322,13 +7327,13 @@ final __codec74 = JsInterfaceCodec<StyledMapTypeOptions>(
 /// codec for google_maps.src.(dynamic, num) → void
 final __codec75 = FunctionCodec<Function> /*<(dynamic, num) → void>*/(
   (f) => (p$o, p$index) {
-        f(__codec9.decode(p$o), p$index);
-      },
+    f(__codec9.decode(p$o), p$index);
+  },
   (f) => (p$o, p$index) {
-        f is JsFunction
-            ? f.apply([__codec9.encode(p$o), p$index])
-            : Function.apply(f, [__codec9.encode(p$o), p$index]);
-      },
+    f is JsFunction
+        ? f.apply([__codec9.encode(p$o), p$index])
+        : Function.apply(f, [__codec9.encode(p$o), p$index]);
+  },
 );
 
 /// codec for google_maps.src.MVCObject
@@ -7378,8 +7383,8 @@ final __codec87 = JsListCodec<num>(null);
 final __codec88 = FunctionCodec<Function> /*<() → void>*/(
   (f) => f,
   (f) => () {
-        f is JsFunction ? f.apply([]) : Function.apply(f, []);
-      },
+    f is JsFunction ? f.apply([]) : Function.apply(f, []);
+  },
 );
 
 /// codec for google_maps.src.MapPanes
@@ -7757,14 +7762,14 @@ final __codec173 = FunctionCodec<
 final __codec174 = FunctionCodec<
     Function> /*<(StreetViewPanoramaData, StreetViewStatus) → void>*/(
   (f) => (p$datas, p$status) {
-        f(__codec168.decode(p$datas), __codec167.decode(p$status));
-      },
+    f(__codec168.decode(p$datas), __codec167.decode(p$status));
+  },
   (f) => (p$datas, p$status) {
-        f is JsFunction
-            ? f.apply([__codec168.encode(p$datas), __codec167.encode(p$status)])
-            : Function.apply(
-                f, [__codec168.encode(p$datas), __codec167.encode(p$status)]);
-      },
+    f is JsFunction
+        ? f.apply([__codec168.encode(p$datas), __codec167.encode(p$status)])
+        : Function.apply(
+            f, [__codec168.encode(p$datas), __codec167.encode(p$status)]);
+  },
 );
 
 /// codec for google_maps.src.(String, num, num, num) → String
