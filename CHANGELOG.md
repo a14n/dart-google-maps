@@ -1,3 +1,7 @@
+# v3.4.4 (2020-06-26)
+
+- Update `GMap.fitBounds` to accept `padding`.
+
 # v3.4.3 (2020-06-02)
 
 - fix [map.projection.fromLatLngToPoint issue](https://github.com/a14n/dart-google-maps/issues/81).
