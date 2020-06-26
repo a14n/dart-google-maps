@@ -24,6 +24,7 @@ import 'package:google_maps/util/async.dart';
 
 part 'core/base/lat_lng.dart';
 part 'core/base/lat_lng_bounds.dart';
+part 'core/base/padding.dart';
 part 'core/base/point.dart';
 part 'core/base/size.dart';
 part 'core/controls/control_position.dart';

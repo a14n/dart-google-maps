@@ -112,6 +112,34 @@ class LatLngBounds extends JsInterface {
       .decode(asJsObject(this).callMethod('union', [__codec1.encode(other)]));
 }
 
+@GeneratedFrom(_Padding)
+@anonymous
+class Padding extends JsInterface {
+  Padding() : this.created(JsObject(context['Object']));
+  Padding.created(JsObject o) : super.created(o);
+
+  set bottom(num _bottom) {
+    asJsObject(this)['bottom'] = _bottom;
+  }
+
+  num get bottom => asJsObject(this)['bottom'];
+  set left(num _left) {
+    asJsObject(this)['left'] = _left;
+  }
+
+  num get left => asJsObject(this)['left'];
+  set right(num _right) {
+    asJsObject(this)['right'] = _right;
+  }
+
+  num get right => asJsObject(this)['right'];
+  set top(num _top) {
+    asJsObject(this)['top'] = _top;
+  }
+
+  num get top => asJsObject(this)['top'];
+}
+
 @GeneratedFrom(_Point)
 @JsName('google.maps.Point')
 class Point extends JsInterface {
@@ -2060,8 +2088,13 @@ class GMap extends MVCObject {
             [mapDiv, __codec48.encode(opts)]));
   GMap.created(JsObject o) : super.created(o);
 
-  void fitBounds(LatLngBounds bounds) {
-    asJsObject(this).callMethod('fitBounds', [__codec1.encode(bounds)]);
+  void fitBounds(LatLngBounds bounds, [dynamic /*num|Padding*/ padding]) {
+    asJsObject(this).callMethod('fitBounds', [
+      __codec1.encode(bounds),
+      if (padding != null)
+        (ChainedCodec()..add(__codec176)..add(IdentityCodec<String>()))
+            .encode(padding),
+    ]);
   }
 
   LatLngBounds get bounds => _getBounds();
@@ -7780,3 +7813,6 @@ final __codec175 =
       ? f.apply([p$pano, p$tileZoom, p$tileX, p$tileY])
       : Function.apply(f, [p$pano, p$tileZoom, p$tileX, p$tileY]),
 );
+
+/// codec for google_maps.src.Padding
+final __codec176 = JsInterfaceCodec<Padding>((o) => Padding.created(o));

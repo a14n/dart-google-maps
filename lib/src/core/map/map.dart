@@ -18,7 +18,7 @@ part of google_maps.src;
 abstract class _GMap extends MVCObject {
   factory _GMap(Node mapDiv, [MapOptions opts]) => null;
 
-  void fitBounds(LatLngBounds bounds);
+  void fitBounds(LatLngBounds bounds, [dynamic /*num|Padding*/ padding]);
   LatLngBounds get bounds => _getBounds();
   LatLngBounds _getBounds();
   LatLng get center => _getCenter();
