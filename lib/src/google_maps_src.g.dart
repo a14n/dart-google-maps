@@ -2784,7 +2784,9 @@ class Projection extends JsInterface {
   }
 
   LatLng Function(Point pixel, [bool nowrap]) get fromPointToLatLng =>
-      __codec73.decode(asJsObject(this)['fromPointToLatLng']);
+      (pixel, [noWrap]) =>
+          __codec73.decode(asJsObject(this)['fromPointToLatLng'])(
+              asJsObject(this), pixel, noWrap);
 }
 
 @GeneratedFrom(_StyledMapType)
@@ -7348,8 +7350,11 @@ final __codec72 = FunctionCodec<Function> /*<(LatLng, [Point]) → Point>*/(
 final __codec73 = FunctionCodec<Function> /*<(Point, [bool]) → LatLng>*/(
   (f) => (p$pixel, [p$nowrap]) =>
       __codec0.encode(f(__codec2.decode(p$pixel), p$nowrap)),
-  (f) => (p$pixel, [p$nowrap]) => __codec0.decode(f is JsFunction
-      ? f.apply([__codec2.encode(p$pixel), p$nowrap])
+  (f) => (p$this, p$pixel, [p$nowrap]) => __codec0.decode(f is JsFunction
+      ? f.apply([
+          __codec2.encode(p$pixel),
+          if (p$nowrap != null) p$nowrap,
+        ], thisArg: p$this)
       : Function.apply(f, [__codec2.encode(p$pixel), p$nowrap])),
 );
 
