@@ -16,7 +16,10 @@ part of '../google_maps_core.dart';
 
 @JsName('google.maps.Data.Feature')
 abstract class _DataFeature {
-  factory _DataFeature([DataFeatureOptions options]) => $js;
+  factory _DataFeature([
+    DataFeatureOptions options, // ignore: unused_element
+  ]) =>
+      $js;
   void forEachProperty(void Function(Object p1, String p2) callback);
 
   // synthetic getter for getGeometry

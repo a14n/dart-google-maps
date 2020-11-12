@@ -24,6 +24,9 @@ const licence = '''
 ''';
 
 final customClassName = <String, String>{
+  'Promise<DistanceMatrixResponse>': 'Future<DistanceMatrixResponse>',
+  'Promise<PathElevationResponse>': 'Future<PathElevationResponse>',
+  'Promise<LocationElevationResponse>': 'Future<LocationElevationResponse>',
   'Map': 'GMap',
   'Symbol': 'GSymbol',
   'Duration': 'GDuration',
@@ -31,7 +34,36 @@ final customClassName = <String, String>{
   'LocationBias':
       'LatLng|LatLngLiteral|LatLngBounds|LatLngBoundsLiteral|Circle|CircleLiteral|string',
   'MouseEvent|IconMouseEvent': 'IconMouseEvent',
+  'LocationRestriction': 'LatLngBounds|LatLngBoundsLiteral',
+  'Error': 'Object',
 };
+
+final customLibraryNames = <String, String>{
+  'localContext': 'local_context',
+};
+
+final ignoredClasses = <String>[
+  'CircleLiteral',
+  'LatLngLiteral',
+  'LatLngBoundsLiteral',
+  'undefined',
+];
+
+final customEntities = <DocEntity>[
+  DocEntity()
+    ..library = 'localContext'
+    ..name = 'PlaceTypePreference'
+    ..kind = Kind.interface
+    ..properties = [
+      DocProperty()
+        ..name = 'type'
+        ..type = convertType('string'),
+      DocProperty()
+        ..name = 'weight'
+        ..type = convertType('number')
+        ..optional = true,
+    ],
+];
 
 Future main() async {
   final genFolder =
@@ -54,7 +86,15 @@ Future main() async {
           'div[itemtype="http://developers.google.com/ReferenceObject"]'))
       .map(parseDocEntity)
       .where((e) => !ignoredClasses.contains(e.name))
-      .map((e) => e..convertTypes());
+      .map((e) => e..convertTypes())
+      .toList();
+
+  for (var customEntity in customEntities) {
+    entities
+      ..removeWhere((e) =>
+          e.library == customEntity.library && e.name == customEntity.name)
+      ..add(customEntity);
+  }
 
   final parts = <String, List<String>>{};
   final needGenPart = <String, bool>{};
@@ -63,7 +103,8 @@ Future main() async {
     if (code?.trim()?.isEmpty ?? true) {
       continue;
     }
-    final library = entity.library ?? 'core';
+    var library = entity.library ?? 'core';
+    library = customLibraryNames[library] ?? library;
     final fileName = '$library/${entity.fileName}.dart';
     final bundleFile = 'google_maps_$library.dart';
     File('$genFolder/$fileName')
@@ -98,6 +139,12 @@ $code
         "import 'package:js_wrapping/js_wrapping.dart';",
         "import 'google_maps_core.dart';",
       ],
+      'local_context': [
+        "import 'dart:async' show StreamController;",
+        "import 'dart:html' show Element;",
+        "import 'package:js_wrapping/js_wrapping.dart';",
+        "import 'google_maps_core.dart';",
+      ],
       'places': [
         "import 'dart:async' show StreamController;",
         "import 'dart:html' show InputElement;",
@@ -117,7 +164,7 @@ $licence
 @JS()
 library google_maps.$library;
 
-${imports[library].join()}
+${imports[library]?.join()}
 
 ${needGenPart[library] ? "part 'google_maps_$library.g.dart';" : ""}
 
@@ -146,8 +193,9 @@ String generateCodeForClass(DocEntity entity) {
   final name = entity.name;
   final lines = <String>[
     // constructor
-    if (entity.constructor != null)
-      'factory _${name.replaceAll(RegExp(r'<.*'), '')}${buildSignature(entity.constructor)} => \$js;',
+    if (entity.constructor != null) ...<String>[
+      'factory _${name.replaceAll(RegExp(r'<.*'), '')}${buildSignature(entity.constructor, addIgnoreUnusedElement: true)} => \$js;',
+    ],
     // properties
     for (var property in entity.properties)
       ...generateCodeForProperty(entity, property),
@@ -383,7 +431,7 @@ List<String> generateCodeForEvent(DocEntity entity, DocMethod method) {
   ];
 }
 
-String buildSignature(DocMethod method) {
+String buildSignature(DocMethod method, {bool addIgnoreUnusedElement = false}) {
   final params = method.parameters ?? [];
   final optionalParams = method.optionalParameters ?? [];
   final result = StringBuffer('(')
@@ -395,20 +443,15 @@ String buildSignature(DocMethod method) {
     result
       ..write('[')
       ..write(optionalParams
-          .map((param) => '${param.type} ${param.name}')
-          .join(','))
+          .map((param) => '${param.type} ${param.name},')
+          .map((e) =>
+              addIgnoreUnusedElement ? '$e // ignore: unused_element\n' : e)
+          .join())
       ..write(']');
   }
   result.write(')');
   return result.toString();
 }
-
-final ignoredClasses = <String>[
-  'CircleLiteral',
-  'LatLngLiteral',
-  'LatLngBoundsLiteral',
-  'undefined',
-];
 
 String convertType(String type) {
   if (type == null) return null;
@@ -567,9 +610,12 @@ DocEntity parseDocEntity(Element element) {
     ..path = element.querySelector('span[itemprop="path"]').text
     ..name = element.querySelector('span[itemprop="name"]').text
     ..library = element
-        .querySelector('h4[data-text="Library"]')
-        ?.nextElementSibling
-        ?.text;
+        .querySelectorAll('>p')
+        .firstWhere((e) => e.text.startsWith('Requires the &libraries='),
+            orElse: () => null)
+        ?.querySelector('code')
+        ?.text
+        ?.substring('&libraries='.length);
 
   entity
     // full js name
@@ -701,7 +747,7 @@ DocMethod parseTrForDocMethod(Element trElement) {
 DocProperty parseTrForDocProperty(Element trElement) {
   final tdList = trElement.children;
   return DocProperty()
-    ..name = tdList[0].text
+    ..name = tdList[0].querySelector('a.secret-link').text
     ..type = tdList[1]
         .children
         .firstWhere((e) => e.localName == 'div')

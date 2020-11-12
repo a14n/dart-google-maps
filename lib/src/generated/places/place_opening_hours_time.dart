@@ -21,6 +21,6 @@ abstract class _PlaceOpeningHoursTime {
   num day;
   num hours;
   num minutes;
-  num nextDate;
   String time;
+  num nextDate;
 }

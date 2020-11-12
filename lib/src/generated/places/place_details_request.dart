@@ -18,7 +18,7 @@ part of '../google_maps_places.dart';
 @anonymous
 abstract class _PlaceDetailsRequest {
   factory _PlaceDetailsRequest() => $js;
-  List<String> fields;
   String placeId;
+  List<String> fields;
   AutocompleteSessionToken sessionToken;
 }

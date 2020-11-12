@@ -18,9 +18,9 @@ part of '../google_maps_places.dart';
 @anonymous
 abstract class _AutocompletionRequest {
   factory _AutocompletionRequest() => $js;
+  String input;
   LatLngBounds bounds;
   ComponentRestrictions componentRestrictions;
-  String input;
   LatLng location;
   num offset;
   LatLng origin;

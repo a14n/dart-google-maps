@@ -16,7 +16,10 @@ part of '../google_maps_core.dart';
 
 @JsName('google.maps.Rectangle')
 abstract class _Rectangle extends MVCObject {
-  factory _Rectangle([RectangleOptions opts]) => $js;
+  factory _Rectangle([
+    RectangleOptions opts, // ignore: unused_element
+  ]) =>
+      $js;
 
   // synthetic getter for getBounds
   LatLngBounds get bounds => _getBounds();

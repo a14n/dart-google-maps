@@ -16,7 +16,10 @@ part of '../google_maps_core.dart';
 
 @JsName('google.maps.Circle')
 abstract class _Circle extends MVCObject {
-  factory _Circle([CircleOptions opts]) => $js;
+  factory _Circle([
+    CircleOptions opts, // ignore: unused_element
+  ]) =>
+      $js;
 
   // synthetic getter for getBounds
   LatLngBounds get bounds => _getBounds();

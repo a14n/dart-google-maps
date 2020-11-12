@@ -16,8 +16,10 @@ part of '../google_maps_core.dart';
 
 @JsName('google.maps.StreetViewPanorama')
 abstract class _StreetViewPanorama extends MVCObject {
-  factory _StreetViewPanorama(Element container,
-          [StreetViewPanoramaOptions opts]) =>
+  factory _StreetViewPanorama(
+    Element container, [
+    StreetViewPanoramaOptions opts, // ignore: unused_element
+  ]) =>
       $js;
   List<MVCArray<Node>> controls;
 
@@ -71,9 +73,10 @@ abstract class _StreetViewPanorama extends MVCObject {
   @JsName('getZoom')
   num _getZoom();
 
-  void registerPanoProvider(
-      [StreetViewPanoramaData Function(String p1) provider,
-      PanoProviderOptions opt_options]);
+  void registerPanoProvider([
+    StreetViewPanoramaData Function(String p1) provider,
+    PanoProviderOptions opt_options,
+  ]);
 
   // synthetic setter for setLinks
   set links(List<StreetViewLink> links) => _setLinks(links);

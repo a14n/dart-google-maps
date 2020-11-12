@@ -9,7 +9,9 @@ part of google_maps.drawing;
 @GeneratedFrom(_DrawingManager)
 @JS('google.maps.drawing.DrawingManager')
 class DrawingManager extends MVCObject {
-  external DrawingManager([DrawingManagerOptions options]);
+  external DrawingManager([
+    DrawingManagerOptions options, // ignore: unused_element
+  ]);
 }
 
 @GeneratedFrom(_DrawingManager)

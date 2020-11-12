@@ -16,7 +16,10 @@ part of '../google_maps_core.dart';
 
 @JsName('google.maps.Polyline')
 abstract class _Polyline extends MVCObject {
-  factory _Polyline([PolylineOptions opts]) => $js;
+  factory _Polyline([
+    PolylineOptions opts, // ignore: unused_element
+  ]) =>
+      $js;
 
   // synthetic getter for getDraggable
   bool get draggable => _getDraggable();

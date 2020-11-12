@@ -18,11 +18,11 @@ part of '../google_maps_core.dart';
 @anonymous
 abstract class _GSymbol {
   factory _GSymbol() => $js;
+  Object /*SymbolPath|String*/ path;
   Point anchor;
   String fillColor;
   num fillOpacity;
   Point labelOrigin;
-  Object /*SymbolPath|String*/ path;
   num rotation;
   num scale;
   String strokeColor;

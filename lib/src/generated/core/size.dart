@@ -16,7 +16,12 @@ part of '../google_maps_core.dart';
 
 @JsName('google.maps.Size')
 abstract class _Size {
-  factory _Size(num width, num height, [String widthUnit, String heightUnit]) =>
+  factory _Size(
+    num width,
+    num height, [
+    String widthUnit, // ignore: unused_element
+    String heightUnit, // ignore: unused_element
+  ]) =>
       $js;
   num height;
   num width;

@@ -16,7 +16,10 @@ part of '../google_maps_core.dart';
 
 @JsName('google.maps.Polygon')
 abstract class _Polygon extends MVCObject {
-  factory _Polygon([PolygonOptions opts]) => $js;
+  factory _Polygon([
+    PolygonOptions opts, // ignore: unused_element
+  ]) =>
+      $js;
 
   // synthetic getter for getDraggable
   bool get draggable => _getDraggable();

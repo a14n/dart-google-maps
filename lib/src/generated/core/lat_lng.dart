@@ -16,7 +16,12 @@ part of '../google_maps_core.dart';
 
 @JsName('google.maps.LatLng')
 abstract class _LatLng {
-  factory _LatLng(num lat, num lng, [bool noWrap]) => $js;
+  factory _LatLng(
+    num lat,
+    num lng, [
+    bool noWrap, // ignore: unused_element
+  ]) =>
+      $js;
   bool equals(LatLng other);
 
   // custom getter for lat
@@ -30,5 +35,7 @@ abstract class _LatLng {
   num _lng();
 
   String toString();
-  String toUrlValue([num precision]);
+  String toUrlValue([
+    num precision,
+  ]);
 }

@@ -22,8 +22,8 @@ abstract class _QueryAutocompletePrediction {
   // custom name for matched_substrings
   @JsName('matched_substrings')
   List<PredictionSubstring> matchedSubstrings;
+  List<PredictionTerm> terms;
   // custom name for place_id
   @JsName('place_id')
   String placeId;
-  List<PredictionTerm> terms;
 }

@@ -16,9 +16,17 @@ part of '../google_maps_core.dart';
 
 @JsName('google.maps.Data')
 abstract class _Data extends MVCObject {
-  factory _Data([DataDataOptions options]) => $js;
-  DataFeature add([Object /*DataFeature|DataFeatureOptions*/ feature]);
-  List<DataFeature> addGeoJson(Object geoJson, [DataGeoJsonOptions options]);
+  factory _Data([
+    DataDataOptions options, // ignore: unused_element
+  ]) =>
+      $js;
+  DataFeature add([
+    Object /*DataFeature|DataFeatureOptions*/ feature,
+  ]);
+  List<DataFeature> addGeoJson(
+    Object geoJson, [
+    DataGeoJsonOptions options,
+  ]);
   bool contains(DataFeature feature);
   void forEach(void Function(DataFeature p1) callback);
 
@@ -49,12 +57,16 @@ abstract class _Data extends MVCObject {
   @JsName('getStyle')
   Object /*DataStylingFunction|DataStyleOptions*/ _getStyle();
 
-  void loadGeoJson(String url,
-      [DataGeoJsonOptions options,
-      void Function(List<DataFeature> p1) callback]);
+  void loadGeoJson(
+    String url, [
+    DataGeoJsonOptions options,
+    void Function(List<DataFeature> p1) callback,
+  ]);
   void overrideStyle(DataFeature feature, DataStyleOptions style);
   void remove(DataFeature feature);
-  void revertStyle([DataFeature feature]);
+  void revertStyle([
+    DataFeature feature,
+  ]);
 
   // synthetic setter for setControlPosition
   set controlPosition(ControlPosition controlPosition) =>

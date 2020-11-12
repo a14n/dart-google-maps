@@ -20,7 +20,10 @@ external Object get _Poly$namespace;
 class Poly {
   static bool containsLocation(LatLng point, Polygon polygon) =>
       callMethod(_Poly$namespace, 'containsLocation', [point, polygon]);
-  static bool isLocationOnEdge(LatLng point, Object /*Polygon|Polyline*/ poly,
-          [num tolerance]) =>
+  static bool isLocationOnEdge(
+    LatLng point,
+    Object /*Polygon|Polyline*/ poly, [
+    num tolerance,
+  ]) =>
       callMethod(_Poly$namespace, 'isLocationOnEdge', [point, poly, tolerance]);
 }

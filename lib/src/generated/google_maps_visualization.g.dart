@@ -9,7 +9,9 @@ part of google_maps.visualization;
 @GeneratedFrom(_HeatmapLayer)
 @JS('google.maps.visualization.HeatmapLayer')
 class HeatmapLayer extends MVCObject {
-  external HeatmapLayer([HeatmapLayerOptions opts]);
+  external HeatmapLayer([
+    HeatmapLayerOptions opts, // ignore: unused_element
+  ]);
 }
 
 @GeneratedFrom(_HeatmapLayer)

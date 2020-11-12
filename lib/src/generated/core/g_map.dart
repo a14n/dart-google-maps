@@ -16,12 +16,19 @@ part of '../google_maps_core.dart';
 
 @JsName('google.maps.Map')
 abstract class _GMap extends MVCObject {
-  factory _GMap(Element mapDiv, [MapOptions opts]) => $js;
+  factory _GMap(
+    Element mapDiv, [
+    MapOptions opts, // ignore: unused_element
+  ]) =>
+      $js;
   List<MVCArray<Node>> controls;
   Data data;
   MapTypeRegistry mapTypes;
   MVCArray<MapType> overlayMapTypes;
-  void fitBounds(LatLngBounds bounds, [Object /*num|Padding*/ padding]);
+  void fitBounds(
+    LatLngBounds bounds, [
+    Object /*num|Padding*/ padding,
+  ]);
 
   // synthetic getter for getBounds
   LatLngBounds get bounds => _getBounds();
@@ -75,7 +82,10 @@ abstract class _GMap extends MVCObject {
 
   void panBy(num x, num y);
   void panTo(LatLng latLng);
-  void panToBounds(LatLngBounds latLngBounds, [Object /*num|Padding*/ padding]);
+  void panToBounds(
+    LatLngBounds latLngBounds, [
+    Object /*num|Padding*/ padding,
+  ]);
 
   // synthetic setter for setCenter
   set center(LatLng center) => _setCenter(center);

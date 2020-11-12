@@ -21,6 +21,7 @@ abstract class _InfoWindowOptions {
   Object /*String|Node*/ content;
   bool disableAutoPan;
   num maxWidth;
+  num minWidth;
   Size pixelOffset;
   LatLng position;
   num zIndex;

@@ -16,7 +16,10 @@ part of '../google_maps_core.dart';
 
 @JsName('google.maps.TrafficLayer')
 abstract class _TrafficLayer extends MVCObject {
-  factory _TrafficLayer([TrafficLayerOptions opts]) => $js;
+  factory _TrafficLayer([
+    TrafficLayerOptions opts, // ignore: unused_element
+  ]) =>
+      $js;
 
   // synthetic getter for getMap
   GMap get map => _getMap();

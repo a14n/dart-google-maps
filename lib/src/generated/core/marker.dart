@@ -16,7 +16,10 @@ part of '../google_maps_core.dart';
 
 @JsName('google.maps.Marker')
 abstract class _Marker extends MVCObject {
-  factory _Marker([MarkerOptions opts]) => $js;
+  factory _Marker([
+    MarkerOptions opts, // ignore: unused_element
+  ]) =>
+      $js;
 
   // synthetic getter for getAnimation
   Animation get animation => _getAnimation();

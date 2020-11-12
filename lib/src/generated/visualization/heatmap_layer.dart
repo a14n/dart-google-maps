@@ -16,7 +16,10 @@ part of '../google_maps_visualization.dart';
 
 @JsName('google.maps.visualization.HeatmapLayer')
 abstract class _HeatmapLayer extends MVCObject {
-  factory _HeatmapLayer([HeatmapLayerOptions opts]) => $js;
+  factory _HeatmapLayer([
+    HeatmapLayerOptions opts, // ignore: unused_element
+  ]) =>
+      $js;
 
   // synthetic getter for getData
   MVCArray<Object /*LatLng|WeightedLocation*/ > get data => _getData();

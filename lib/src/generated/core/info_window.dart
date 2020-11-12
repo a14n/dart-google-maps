@@ -16,7 +16,10 @@ part of '../google_maps_core.dart';
 
 @JsName('google.maps.InfoWindow')
 abstract class _InfoWindow extends MVCObject {
-  factory _InfoWindow([InfoWindowOptions opts]) => $js;
+  factory _InfoWindow([
+    InfoWindowOptions opts, // ignore: unused_element
+  ]) =>
+      $js;
   void close();
 
   // synthetic getter for getContent
@@ -34,7 +37,10 @@ abstract class _InfoWindow extends MVCObject {
   @JsName('getZIndex')
   num _getZIndex();
 
-  void open([Object /*GMap|StreetViewPanorama*/ map, MVCObject anchor]);
+  void open([
+    Object /*GMap|StreetViewPanorama*/ map,
+    MVCObject anchor,
+  ]);
 
   // synthetic setter for setContent
   set content(Object /*String|Node*/ content) => _setContent(content);

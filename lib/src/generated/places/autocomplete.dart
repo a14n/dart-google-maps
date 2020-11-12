@@ -16,7 +16,10 @@ part of '../google_maps_places.dart';
 
 @JsName('google.maps.places.Autocomplete')
 abstract class _Autocomplete extends MVCObject {
-  factory _Autocomplete(InputElement inputField, [AutocompleteOptions opts]) =>
+  factory _Autocomplete(
+    InputElement inputField, [
+    AutocompleteOptions opts, // ignore: unused_element
+  ]) =>
       $js;
 
   // synthetic getter for getBounds

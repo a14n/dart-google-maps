@@ -18,8 +18,8 @@ part of '../google_maps_core.dart';
 @anonymous
 abstract class _StreetViewLocation {
   factory _StreetViewLocation() => $js;
+  String pano;
   String description;
   LatLng latLng;
-  String pano;
   String shortDescription;
 }

@@ -18,10 +18,10 @@ part of '../google_maps_core.dart';
 @anonymous
 abstract class _DataDataOptions {
   factory _DataDataOptions() => $js;
+  GMap map;
   ControlPosition controlPosition;
   List<String> controls;
   String drawingMode;
   DataFeature Function(DataGeometry p1) featureFactory;
-  GMap map;
   Object /*DataStylingFunction|DataStyleOptions*/ style;
 }

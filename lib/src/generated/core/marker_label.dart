@@ -18,9 +18,9 @@ part of '../google_maps_core.dart';
 @anonymous
 abstract class _MarkerLabel {
   factory _MarkerLabel() => $js;
+  String text;
   String color;
   String fontFamily;
   String fontSize;
   String fontWeight;
-  String text;
 }

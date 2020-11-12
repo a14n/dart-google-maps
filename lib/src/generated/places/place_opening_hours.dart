@@ -25,5 +25,7 @@ abstract class _PlaceOpeningHours {
   // custom name for weekday_text
   @JsName('weekday_text')
   List<String> weekdayText;
-  bool isOpen([DateTime date]);
+  bool isOpen([
+    DateTime date,
+  ]);
 }

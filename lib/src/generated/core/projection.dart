@@ -18,6 +18,12 @@ part of '../google_maps_core.dart';
 @anonymous
 abstract class _Projection {
   factory _Projection() => $js;
-  Point Function(LatLng latLng, [Point point]) fromLatLngToPoint;
-  LatLng Function(Point pixel, [bool noWrap]) fromPointToLatLng;
+  Point Function(
+    LatLng latLng, [
+    Point point,
+  ]) fromLatLngToPoint;
+  LatLng Function(
+    Point pixel, [
+    bool noWrap,
+  ]) fromPointToLatLng;
 }

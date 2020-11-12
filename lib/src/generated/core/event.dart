@@ -19,13 +19,19 @@ external Object get _Event$namespace;
 
 class Event {
   static MapsEventListener addDomListener(
-          Object instance, String eventName, Function handler,
-          [bool capture]) =>
+    Object instance,
+    String eventName,
+    Function handler, [
+    bool capture,
+  ]) =>
       callMethod(_Event$namespace, 'addDomListener',
           [instance, eventName, handler, capture]);
   static MapsEventListener addDomListenerOnce(
-          Object instance, String eventName, Function handler,
-          [bool capture]) =>
+    Object instance,
+    String eventName,
+    Function handler, [
+    bool capture,
+  ]) =>
       callMethod(_Event$namespace, 'addDomListenerOnce',
           [instance, eventName, handler, capture]);
   static MapsEventListener addListener(

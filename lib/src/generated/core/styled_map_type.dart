@@ -16,8 +16,10 @@ part of '../google_maps_core.dart';
 
 @JsName('google.maps.StyledMapType')
 abstract class _StyledMapType extends MVCObject implements MapType {
-  factory _StyledMapType(List<MapTypeStyle> styles,
-          [StyledMapTypeOptions options]) =>
+  factory _StyledMapType(
+    List<MapTypeStyle> styles, [
+    StyledMapTypeOptions options, // ignore: unused_element
+  ]) =>
       $js;
   String alt;
   num maxZoom;

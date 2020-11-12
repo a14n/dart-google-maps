@@ -16,7 +16,11 @@ part of '../google_maps_places.dart';
 
 @JsName('google.maps.places.SearchBox')
 abstract class _SearchBox extends MVCObject {
-  factory _SearchBox(InputElement inputField, [SearchBoxOptions opts]) => $js;
+  factory _SearchBox(
+    InputElement inputField, [
+    SearchBoxOptions opts, // ignore: unused_element
+  ]) =>
+      $js;
 
   // synthetic getter for getBounds
   LatLngBounds get bounds => _getBounds();

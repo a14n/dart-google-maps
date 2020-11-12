@@ -18,7 +18,12 @@ part of '../google_maps_core.dart';
 abstract class _MVCObject {
   factory _MVCObject() => $js;
   MapsEventListener addListener(String eventName, Function handler);
-  void bindTo(String key, MVCObject target, [String targetKey, bool noNotify]);
+  void bindTo(
+    String key,
+    MVCObject target, [
+    String targetKey,
+    bool noNotify,
+  ]);
   Object get(String key);
   void notify(String key);
   void set(String key, Object value);

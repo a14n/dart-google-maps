@@ -16,7 +16,11 @@ part of '../google_maps_core.dart';
 
 @JsName('google.maps.LatLngBounds')
 abstract class _LatLngBounds {
-  factory _LatLngBounds([LatLng sw, LatLng ne]) => $js;
+  factory _LatLngBounds([
+    LatLng sw, // ignore: unused_element
+    LatLng ne, // ignore: unused_element
+  ]) =>
+      $js;
   bool contains(LatLng latLng);
   bool equals(LatLngBounds other);
   LatLngBounds extend(LatLng point);
@@ -40,6 +44,8 @@ abstract class _LatLngBounds {
   bool isEmpty();
   LatLng toSpan();
   String toString();
-  String toUrlValue([num precision]);
+  String toUrlValue([
+    num precision,
+  ]);
   LatLngBounds union(LatLngBounds other);
 }

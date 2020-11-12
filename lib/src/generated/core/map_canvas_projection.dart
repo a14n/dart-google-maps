@@ -18,10 +18,20 @@ part of '../google_maps_core.dart';
 @anonymous
 abstract class _MapCanvasProjection {
   factory _MapCanvasProjection() => $js;
-  LatLng fromContainerPixelToLatLng([Point pixel, bool nowrap]);
-  LatLng fromDivPixelToLatLng([Point pixel, bool nowrap]);
-  Point fromLatLngToContainerPixel([LatLng latLng]);
-  Point fromLatLngToDivPixel([LatLng latLng]);
+  LatLng fromContainerPixelToLatLng([
+    Point pixel,
+    bool nowrap,
+  ]);
+  LatLng fromDivPixelToLatLng([
+    Point pixel,
+    bool nowrap,
+  ]);
+  Point fromLatLngToContainerPixel([
+    LatLng latLng,
+  ]);
+  Point fromLatLngToDivPixel([
+    LatLng latLng,
+  ]);
 
   // synthetic getter for getWorldWidth
   num get worldWidth => _getWorldWidth();

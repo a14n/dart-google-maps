@@ -18,8 +18,8 @@ part of '../google_maps_places.dart';
 @anonymous
 abstract class _QueryAutocompletionRequest {
   factory _QueryAutocompletionRequest() => $js;
-  LatLngBounds bounds;
   String input;
+  LatLngBounds bounds;
   LatLng location;
   num offset;
   num radius;

@@ -16,7 +16,10 @@ part of '../google_maps_core.dart';
 
 @JsName('google.maps.KmlLayer')
 abstract class _KmlLayer extends MVCObject {
-  factory _KmlLayer([KmlLayerOptions opts]) => $js;
+  factory _KmlLayer([
+    KmlLayerOptions opts, // ignore: unused_element
+  ]) =>
+      $js;
 
   // synthetic getter for getDefaultViewport
   LatLngBounds get defaultViewport => _getDefaultViewport();

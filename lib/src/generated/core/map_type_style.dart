@@ -18,7 +18,7 @@ part of '../google_maps_core.dart';
 @anonymous
 abstract class _MapTypeStyle {
   factory _MapTypeStyle() => $js;
+  List<Object> stylers;
   String elementType;
   String featureType;
-  List<Object> stylers;
 }

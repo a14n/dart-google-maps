@@ -18,13 +18,13 @@ part of '../google_maps_core.dart';
 @anonymous
 abstract class _MapType {
   factory _MapType() => $js;
-  String alt;
   num maxZoom;
   num minZoom;
-  String name;
-  Projection projection;
   num radius;
   Size tileSize;
+  String alt;
+  String name;
+  Projection projection;
   Node Function(Point tileCoord, num zoom, Document ownerDocument) getTile;
   void Function(Node tile) releaseTile;
 }

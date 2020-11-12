@@ -22,9 +22,6 @@ abstract class _PlaceReview {
   // custom name for author_name
   @JsName('author_name')
   String authorName;
-  // custom name for author_url
-  @JsName('author_url')
-  String authorUrl;
   String language;
   // custom name for profile_photo_url
   @JsName('profile_photo_url')
@@ -34,4 +31,7 @@ abstract class _PlaceReview {
   String relativeTimeDescription;
   String text;
   num time;
+  // custom name for author_url
+  @JsName('author_url')
+  String authorUrl;
 }

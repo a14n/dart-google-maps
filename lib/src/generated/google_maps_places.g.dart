@@ -9,7 +9,10 @@ part of google_maps.places;
 @GeneratedFrom(_Autocomplete)
 @JS('google.maps.places.Autocomplete')
 class Autocomplete extends MVCObject {
-  external Autocomplete(InputElement inputField, [AutocompleteOptions opts]);
+  external Autocomplete(
+    InputElement inputField, [
+    AutocompleteOptions opts, // ignore: unused_element
+  ]);
 }
 
 @GeneratedFrom(_Autocomplete)
@@ -96,7 +99,10 @@ class AutocompleteOptions {
 @GeneratedFrom(_SearchBox)
 @JS('google.maps.places.SearchBox')
 class SearchBox extends MVCObject {
-  external SearchBox(InputElement inputField, [SearchBoxOptions opts]);
+  external SearchBox(
+    InputElement inputField, [
+    SearchBoxOptions opts, // ignore: unused_element
+  ]);
 }
 
 @GeneratedFrom(_SearchBox)
@@ -147,24 +153,33 @@ class PlacesService {
   external PlacesService(Object /*DivElement|GMap*/ attrContainer);
 
   external void findPlaceFromPhoneNumber(
-      FindPlaceFromPhoneNumberRequest request,
-      [void Function(List<PlaceResult> p1, PlacesServiceStatus p2) callback]);
+    FindPlaceFromPhoneNumberRequest request, [
+    void Function(List<PlaceResult> p1, PlacesServiceStatus p2) callback,
+  ]);
 
-  external void findPlaceFromQuery(FindPlaceFromQueryRequest request,
-      [void Function(List<PlaceResult> p1, PlacesServiceStatus p2) callback]);
+  external void findPlaceFromQuery(
+    FindPlaceFromQueryRequest request, [
+    void Function(List<PlaceResult> p1, PlacesServiceStatus p2) callback,
+  ]);
 
-  external void getDetails(PlaceDetailsRequest request,
-      [void Function(PlaceResult p1, PlacesServiceStatus p2) callback]);
+  external void getDetails(
+    PlaceDetailsRequest request, [
+    void Function(PlaceResult p1, PlacesServiceStatus p2) callback,
+  ]);
 
-  external void nearbySearch(PlaceSearchRequest request,
-      [void Function(List<PlaceResult> p1, PlacesServiceStatus p2,
-              PlaceSearchPagination p3)
-          callback]);
+  external void nearbySearch(
+    PlaceSearchRequest request, [
+    void Function(List<PlaceResult> p1, PlacesServiceStatus p2,
+            PlaceSearchPagination p3)
+        callback,
+  ]);
 
-  external void textSearch(TextSearchRequest request,
-      [void Function(List<PlaceResult> p1, PlacesServiceStatus p2,
-              PlaceSearchPagination p3)
-          callback]);
+  external void textSearch(
+    TextSearchRequest request, [
+    void Function(List<PlaceResult> p1, PlacesServiceStatus p2,
+            PlaceSearchPagination p3)
+        callback,
+  ]);
 }
 
 @GeneratedFrom(_PlaceDetailsRequest)
@@ -173,13 +188,13 @@ class PlacesService {
 class PlaceDetailsRequest {
   external factory PlaceDetailsRequest();
 
-  external List<String> get fields;
-
-  external set fields(List<String> value);
-
   external String get placeId;
 
   external set placeId(String value);
+
+  external List<String> get fields;
+
+  external set fields(List<String> value);
 
   external AutocompleteSessionToken get sessionToken;
 
@@ -196,13 +211,13 @@ class FindPlaceFromPhoneNumberRequest {
 
   external set fields(List<String> value);
 
-  external Object get locationBias;
-
-  external set locationBias(Object value);
-
   external String get phoneNumber;
 
   external set phoneNumber(String value);
+
+  external Object get locationBias;
+
+  external set locationBias(Object value);
 }
 
 @GeneratedFrom(_FindPlaceFromQueryRequest)
@@ -215,13 +230,13 @@ class FindPlaceFromQueryRequest {
 
   external set fields(List<String> value);
 
-  external Object get locationBias;
-
-  external set locationBias(Object value);
-
   external String get query;
 
   external set query(String value);
+
+  external Object get locationBias;
+
+  external set locationBias(Object value);
 }
 
 @GeneratedFrom(_PlaceSearchRequest)
@@ -525,7 +540,9 @@ class PlaceOpeningHours {
 
   external set periods(List<PlaceOpeningHoursPeriod> value);
 
-  external bool isOpen([DateTime date]);
+  external bool isOpen([
+    DateTime date,
+  ]);
 }
 
 @GeneratedFrom(_PlaceOpeningHours)
@@ -549,13 +566,13 @@ extension PlaceOpeningHours$Ext on PlaceOpeningHours {
 class PlaceOpeningHoursPeriod {
   external factory PlaceOpeningHoursPeriod();
 
-  external PlaceOpeningHoursTime get close;
-
-  external set close(PlaceOpeningHoursTime value);
-
   external PlaceOpeningHoursTime get open;
 
   external set open(PlaceOpeningHoursTime value);
+
+  external PlaceOpeningHoursTime get close;
+
+  external set close(PlaceOpeningHoursTime value);
 }
 
 @GeneratedFrom(_PlaceOpeningHoursTime)
@@ -576,13 +593,13 @@ class PlaceOpeningHoursTime {
 
   external set minutes(num value);
 
-  external num get nextDate;
-
-  external set nextDate(num value);
-
   external String get time;
 
   external set time(String value);
+
+  external num get nextDate;
+
+  external set nextDate(num value);
 }
 
 @GeneratedFrom(_PlacePlusCode)
@@ -594,16 +611,16 @@ class PlacePlusCode {
 
 @GeneratedFrom(_PlacePlusCode)
 extension PlacePlusCode$Ext on PlacePlusCode {
-  String get compoundCode => getProperty(this, 'compound_code');
-
-  set compoundCode(String value) {
-    setProperty(this, 'compound_code', value);
-  }
-
   String get globalCode => getProperty(this, 'global_code');
 
   set globalCode(String value) {
     setProperty(this, 'global_code', value);
+  }
+
+  String get compoundCode => getProperty(this, 'compound_code');
+
+  set compoundCode(String value) {
+    setProperty(this, 'compound_code', value);
   }
 }
 
@@ -681,12 +698,6 @@ extension PlaceReview$Ext on PlaceReview {
     setProperty(this, 'author_name', value);
   }
 
-  String get authorUrl => getProperty(this, 'author_url');
-
-  set authorUrl(String value) {
-    setProperty(this, 'author_url', value);
-  }
-
   String get profilePhotoUrl => getProperty(this, 'profile_photo_url');
 
   set profilePhotoUrl(String value) {
@@ -698,6 +709,12 @@ extension PlaceReview$Ext on PlaceReview {
 
   set relativeTimeDescription(String value) {
     setProperty(this, 'relative_time_description', value);
+  }
+
+  String get authorUrl => getProperty(this, 'author_url');
+
+  set authorUrl(String value) {
+    setProperty(this, 'author_url', value);
   }
 }
 
@@ -724,6 +741,10 @@ class AutocompleteService {
 class AutocompletionRequest {
   external factory AutocompletionRequest();
 
+  external String get input;
+
+  external set input(String value);
+
   external LatLngBounds get bounds;
 
   external set bounds(LatLngBounds value);
@@ -731,10 +752,6 @@ class AutocompletionRequest {
   external ComponentRestrictions get componentRestrictions;
 
   external set componentRestrictions(ComponentRestrictions value);
-
-  external String get input;
-
-  external set input(String value);
 
   external LatLng get location;
 
@@ -767,13 +784,13 @@ class AutocompletionRequest {
 class QueryAutocompletionRequest {
   external factory QueryAutocompletionRequest();
 
-  external LatLngBounds get bounds;
-
-  external set bounds(LatLngBounds value);
-
   external String get input;
 
   external set input(String value);
+
+  external LatLngBounds get bounds;
+
+  external set bounds(LatLngBounds value);
 
   external LatLng get location;
 
@@ -826,12 +843,6 @@ class AutocompletePrediction {
 
 @GeneratedFrom(_AutocompletePrediction)
 extension AutocompletePrediction$Ext on AutocompletePrediction {
-  num get distanceMeters => getProperty(this, 'distance_meters');
-
-  set distanceMeters(num value) {
-    setProperty(this, 'distance_meters', value);
-  }
-
   List<PredictionSubstring> get matchedSubstrings =>
       getProperty(this, 'matched_substrings');
 
@@ -850,6 +861,12 @@ extension AutocompletePrediction$Ext on AutocompletePrediction {
 
   set structuredFormatting(StructuredFormatting value) {
     setProperty(this, 'structured_formatting', value);
+  }
+
+  num get distanceMeters => getProperty(this, 'distance_meters');
+
+  set distanceMeters(num value) {
+    setProperty(this, 'distance_meters', value);
   }
 }
 

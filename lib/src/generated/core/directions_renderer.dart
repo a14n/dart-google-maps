@@ -16,7 +16,10 @@ part of '../google_maps_core.dart';
 
 @JsName('google.maps.DirectionsRenderer')
 abstract class _DirectionsRenderer extends MVCObject {
-  factory _DirectionsRenderer([DirectionsRendererOptions opts]) => $js;
+  factory _DirectionsRenderer([
+    DirectionsRendererOptions opts, // ignore: unused_element
+  ]) =>
+      $js;
 
   // synthetic getter for getDirections
   DirectionsResult get directions => _getDirections();

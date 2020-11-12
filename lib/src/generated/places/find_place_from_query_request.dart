@@ -19,6 +19,6 @@ part of '../google_maps_places.dart';
 abstract class _FindPlaceFromQueryRequest {
   factory _FindPlaceFromQueryRequest() => $js;
   List<String> fields;
-  Object /*LatLng|LatLngBounds|Circle|String*/ locationBias;
   String query;
+  Object /*LatLng|LatLngBounds|Circle|String*/ locationBias;
 }

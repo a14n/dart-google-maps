@@ -19,9 +19,6 @@ part of '../google_maps_places.dart';
 abstract class _AutocompletePrediction {
   factory _AutocompletePrediction() => $js;
   String description;
-  // custom name for distance_meters
-  @JsName('distance_meters')
-  num distanceMeters;
   // custom name for matched_substrings
   @JsName('matched_substrings')
   List<PredictionSubstring> matchedSubstrings;
@@ -33,4 +30,7 @@ abstract class _AutocompletePrediction {
   StructuredFormatting structuredFormatting;
   List<PredictionTerm> terms;
   List<String> types;
+  // custom name for distance_meters
+  @JsName('distance_meters')
+  num distanceMeters;
 }

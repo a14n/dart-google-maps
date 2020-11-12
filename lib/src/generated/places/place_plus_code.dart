@@ -18,10 +18,10 @@ part of '../google_maps_places.dart';
 @anonymous
 abstract class _PlacePlusCode {
   factory _PlacePlusCode() => $js;
-  // custom name for compound_code
-  @JsName('compound_code')
-  String compoundCode;
   // custom name for global_code
   @JsName('global_code')
   String globalCode;
+  // custom name for compound_code
+  @JsName('compound_code')
+  String compoundCode;
 }

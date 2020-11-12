@@ -18,6 +18,6 @@ part of '../google_maps_core.dart';
 @anonymous
 abstract class _MapRestriction {
   factory _MapRestriction() => $js;
-  LatLngBounds latLngBounds;
   bool strictBounds;
+  LatLngBounds latLngBounds;
 }
