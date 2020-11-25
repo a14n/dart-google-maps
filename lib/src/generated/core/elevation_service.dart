@@ -17,11 +17,11 @@ part of '../google_maps_core.dart';
 @JsName('google.maps.ElevationService')
 abstract class _ElevationService {
   factory _ElevationService() => $js;
-  Future<PathElevationResponse> getElevationAlongPath(
+  void getElevationAlongPath(
     PathElevationRequest request, [
     void Function(List<ElevationResult> p1, ElevationStatus p2) callback,
   ]);
-  Future<LocationElevationResponse> getElevationForLocations(
+  void getElevationForLocations(
     LocationElevationRequest request, [
     void Function(List<ElevationResult> p1, ElevationStatus p2) callback,
   ]);

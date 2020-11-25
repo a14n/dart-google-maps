@@ -1,7 +1,6 @@
 import 'dart:html';
 
 import 'package:google_maps/google_maps.dart';
-import 'package:js_wrapping/js_wrapping.dart';
 
 DirectionsRenderer directionsDisplay;
 final directionsService = DirectionsService();
@@ -30,9 +29,9 @@ void calcRoute() {
     ..origin = start
     ..destination = end
     ..travelMode = TravelMode.DRIVING;
-  directionsService.route(request, allowInterop((response, status) {
+  directionsService.route(request, (response, status) {
     if (status == DirectionsStatus.OK) {
       directionsDisplay.directions = response;
     }
-  }));
+  });
 }

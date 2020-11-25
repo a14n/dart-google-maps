@@ -24,9 +24,13 @@ const licence = '''
 ''';
 
 final customClassName = <String, String>{
-  'Promise<DistanceMatrixResponse>': 'Future<DistanceMatrixResponse>',
-  'Promise<PathElevationResponse>': 'Future<PathElevationResponse>',
-  'Promise<LocationElevationResponse>': 'Future<LocationElevationResponse>',
+  'Promise<DirectionsResult>': 'void',
+  'Promise<DistanceMatrixResponse>': 'void',
+  'Promise<GeocoderResponse>': 'void',
+  'Promise<LocationElevationResponse>': 'void',
+  'Promise<MaxZoomResult>': 'void',
+  'Promise<PathElevationResponse>': 'void',
+  'Promise<StreetViewResponse>': 'void',
   'Map': 'GMap',
   'Symbol': 'GSymbol',
   'Duration': 'GDuration',
@@ -378,7 +382,7 @@ List<String> generateCodeForStaticMethod(
     ];
   }
   final params = [...method.parameters, ...method.optionalParameters]
-      .map((e) => e.name)
+      .map((e) => e.type == 'Function' ? 'allowInterop(${e.name})' : e.name)
       .join(',');
   return [
     'static ${method.returnType} ${method.name}${buildSignature(method)}',

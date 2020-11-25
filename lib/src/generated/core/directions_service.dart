@@ -17,6 +17,8 @@ part of '../google_maps_core.dart';
 @JsName('google.maps.DirectionsService')
 abstract class _DirectionsService {
   factory _DirectionsService() => $js;
-  void route(DirectionsRequest request,
-      void Function(DirectionsResult p1, DirectionsStatus p2) callback);
+  void route(
+    DirectionsRequest request, [
+    void Function(DirectionsResult p1, DirectionsStatus p2) callback,
+  ]);
 }

@@ -25,7 +25,7 @@ class Event {
     bool capture,
   ]) =>
       callMethod(_Event$namespace, 'addDomListener',
-          [instance, eventName, handler, capture]);
+          [instance, eventName, allowInterop(handler), capture]);
   static MapsEventListener addDomListenerOnce(
     Object instance,
     String eventName,
@@ -33,15 +33,15 @@ class Event {
     bool capture,
   ]) =>
       callMethod(_Event$namespace, 'addDomListenerOnce',
-          [instance, eventName, handler, capture]);
+          [instance, eventName, allowInterop(handler), capture]);
   static MapsEventListener addListener(
           Object instance, String eventName, Function handler) =>
-      callMethod(
-          _Event$namespace, 'addListener', [instance, eventName, handler]);
+      callMethod(_Event$namespace, 'addListener',
+          [instance, eventName, allowInterop(handler)]);
   static MapsEventListener addListenerOnce(
           Object instance, String eventName, Function handler) =>
-      callMethod(
-          _Event$namespace, 'addListenerOnce', [instance, eventName, handler]);
+      callMethod(_Event$namespace, 'addListenerOnce',
+          [instance, eventName, allowInterop(handler)]);
   static void clearInstanceListeners(Object instance) =>
       callMethod(_Event$namespace, 'clearInstanceListeners', [instance]);
   static void clearListeners(Object instance, String eventName) =>

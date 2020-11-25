@@ -160,35 +160,44 @@ class SearchBoxOptions {
 @JS('google.maps.places.PlacesService')
 class PlacesService {
   external PlacesService(Object /*DivElement|GMap*/ attrContainer);
+}
 
-  external void findPlaceFromPhoneNumber(
+@GeneratedFrom(_PlacesService)
+extension PlacesService$Ext on PlacesService {
+  void findPlaceFromPhoneNumber(
     FindPlaceFromPhoneNumberRequest request, [
     void Function(List<PlaceResult> p1, PlacesServiceStatus p2) callback,
-  ]);
+  ]) =>
+      callMethod(
+          this, 'findPlaceFromPhoneNumber', [request, allowInterop(callback)]);
 
-  external void findPlaceFromQuery(
+  void findPlaceFromQuery(
     FindPlaceFromQueryRequest request, [
     void Function(List<PlaceResult> p1, PlacesServiceStatus p2) callback,
-  ]);
+  ]) =>
+      callMethod(this, 'findPlaceFromQuery', [request, allowInterop(callback)]);
 
-  external void getDetails(
+  void getDetails(
     PlaceDetailsRequest request, [
     void Function(PlaceResult p1, PlacesServiceStatus p2) callback,
-  ]);
+  ]) =>
+      callMethod(this, 'getDetails', [request, allowInterop(callback)]);
 
-  external void nearbySearch(
+  void nearbySearch(
     PlaceSearchRequest request, [
     void Function(List<PlaceResult> p1, PlacesServiceStatus p2,
             PlaceSearchPagination p3)
         callback,
-  ]);
+  ]) =>
+      callMethod(this, 'nearbySearch', [request, allowInterop(callback)]);
 
-  external void textSearch(
+  void textSearch(
     TextSearchRequest request, [
     void Function(List<PlaceResult> p1, PlacesServiceStatus p2,
             PlaceSearchPagination p3)
         callback,
-  ]);
+  ]) =>
+      callMethod(this, 'textSearch', [request, allowInterop(callback)]);
 }
 
 @GeneratedFrom(_PlaceDetailsRequest)
@@ -767,17 +776,24 @@ extension PlaceReview$Ext on PlaceReview {
 @JS('google.maps.places.AutocompleteService')
 class AutocompleteService {
   external AutocompleteService();
+}
 
-  external void getPlacePredictions(
-      AutocompletionRequest request,
-      void Function(List<AutocompletePrediction> p1, PlacesServiceStatus p2)
-          callback);
+@GeneratedFrom(_AutocompleteService)
+extension AutocompleteService$Ext on AutocompleteService {
+  void getPlacePredictions(
+          AutocompletionRequest request,
+          void Function(List<AutocompletePrediction> p1, PlacesServiceStatus p2)
+              callback) =>
+      callMethod(
+          this, 'getPlacePredictions', [request, allowInterop(callback)]);
 
-  external void getQueryPredictions(
-      QueryAutocompletionRequest request,
-      void Function(
-              List<QueryAutocompletePrediction> p1, PlacesServiceStatus p2)
-          callback);
+  void getQueryPredictions(
+          QueryAutocompletionRequest request,
+          void Function(
+                  List<QueryAutocompletePrediction> p1, PlacesServiceStatus p2)
+              callback) =>
+      callMethod(
+          this, 'getQueryPredictions', [request, allowInterop(callback)]);
 }
 
 @GeneratedFrom(_AutocompletionRequest)

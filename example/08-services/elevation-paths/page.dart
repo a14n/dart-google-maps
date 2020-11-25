@@ -71,7 +71,7 @@ void drawPath() {
     ..samples = 256;
 
   // Initiate the path request.
-  elevator.getElevationAlongPath(pathRequest, allowInterop(plotElevation));
+  elevator.getElevationAlongPath(pathRequest, plotElevation);
 }
 
 // Takes an array of ElevationResult objects, draws the path on the map

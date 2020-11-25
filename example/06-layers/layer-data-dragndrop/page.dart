@@ -32,11 +32,11 @@ void loadGeoJsonString(String geoString) {
 /// @param {google.maps.Map} map The map to adjust
 void zoom(GMap map) {
   final bounds = LatLngBounds();
-  map.data.forEach(allowInterop((feature) {
+  map.data.forEach((feature) {
     // TODO: replace with tearoff once issue is fixed
     // ignore: unnecessary_lambdas, https://github.com/dart-lang/sdk/issues/32370
     processPoints(feature.geometry, (e) => bounds.extend(e));
-  }));
+  });
   map.fitBounds(bounds);
 }
 

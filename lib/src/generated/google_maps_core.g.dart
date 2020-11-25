@@ -663,13 +663,13 @@ class MapTypeRegistry extends MVCObject {
 class MapRestriction {
   external factory MapRestriction();
 
-  external bool get strictBounds;
-
-  external set strictBounds(bool value);
-
   external LatLngBounds get latLngBounds;
 
   external set latLngBounds(LatLngBounds value);
+
+  external bool get strictBounds;
+
+  external set strictBounds(bool value);
 }
 
 @GeneratedFrom(_TrafficLayer)
@@ -925,8 +925,6 @@ class MVCArray<T> extends MVCObject {
 
   external void clear();
 
-  external void forEach(void Function(T p1, num p2) callback);
-
   external T getAt(num i);
 
   external void insertAt(num i, T elem);
@@ -997,6 +995,9 @@ extension MVCArray$Ext<T> on MVCArray<T> {
     );
     return sc.stream;
   }
+
+  void forEach(void Function(T p1, num p2) callback) =>
+      callMethod(this, 'forEach', [allowInterop(callback)]);
 
   List<T> _getArray() => callMethod(this, 'getArray', [])?.cast<T>();
 
@@ -1700,6 +1701,10 @@ class MarkerOptions {
 class Icon {
   external factory Icon();
 
+  external String get url;
+
+  external set url(String value);
+
   external Point get anchor;
 
   external set anchor(Point value);
@@ -1719,10 +1724,6 @@ class Icon {
   external Size get size;
 
   external set size(Size value);
-
-  external String get url;
-
-  external set url(String value);
 }
 
 @GeneratedFrom(_MarkerLabel)
@@ -1734,6 +1735,10 @@ class MarkerLabel {
   external String get text;
 
   external set text(String value);
+
+  external String get className;
+
+  external set className(String value);
 
   external String get color;
 
@@ -3368,15 +3373,7 @@ class Data extends MVCObject {
 
   external bool contains(DataFeature feature);
 
-  external void forEach(void Function(DataFeature p1) callback);
-
   external DataFeature getFeatureById(Object /*num|String*/ id);
-
-  external void loadGeoJson(
-    String url, [
-    DataGeoJsonOptions options,
-    void Function(List<DataFeature> p1) callback,
-  ]);
 
   external void overrideStyle(DataFeature feature, DataStyleOptions style);
 
@@ -3385,8 +3382,6 @@ class Data extends MVCObject {
   external void revertStyle([
     DataFeature feature,
   ]);
-
-  external void toGeoJson(void Function(Object p1) callback);
 }
 
 @GeneratedFrom(_Data)
@@ -3625,6 +3620,9 @@ extension Data$Ext on Data {
   ]) =>
       callMethod(this, 'addGeoJson', [geoJson, options])?.cast<DataFeature>();
 
+  void forEach(void Function(DataFeature p1) callback) =>
+      callMethod(this, 'forEach', [allowInterop(callback)]);
+
   ControlPosition _getControlPosition() =>
       callMethod(this, 'getControlPosition', []);
 
@@ -3637,6 +3635,13 @@ extension Data$Ext on Data {
 
   Object /*DataStylingFunction|DataStyleOptions*/ _getStyle() =>
       callMethod(this, 'getStyle', []);
+
+  void loadGeoJson(
+    String url, [
+    DataGeoJsonOptions options,
+    void Function(List<DataFeature> p1) callback,
+  ]) =>
+      callMethod(this, 'loadGeoJson', [url, options, allowInterop(callback)]);
 
   void _setControlPosition(ControlPosition controlPosition) =>
       callMethod(this, 'setControlPosition', [controlPosition]);
@@ -3651,6 +3656,9 @@ extension Data$Ext on Data {
 
   void _setStyle(Object /*DataStylingFunction|DataStyleOptions*/ style) =>
       callMethod(this, 'setStyle', [style]);
+
+  void toGeoJson(void Function(Object p1) callback) =>
+      callMethod(this, 'toGeoJson', [allowInterop(callback)]);
 }
 
 @GeneratedFrom(_DataDataOptions)
@@ -3773,15 +3781,11 @@ class DataFeature {
     DataFeatureOptions options, // ignore: unused_element
   ]);
 
-  external void forEachProperty(void Function(Object p1, String p2) callback);
-
   external Object getProperty(String name);
 
   external void removeProperty(String name);
 
   external void setProperty(String name, Object newValue);
-
-  external void toGeoJson(void Function(Object p1) callback);
 }
 
 @GeneratedFrom(_DataFeature)
@@ -3844,12 +3848,18 @@ extension DataFeature$Ext on DataFeature {
     return sc.stream;
   }
 
+  void forEachProperty(void Function(Object p1, String p2) callback) =>
+      callMethod(this, 'forEachProperty', [allowInterop(callback)]);
+
   DataGeometry _getGeometry() => callMethod(this, 'getGeometry', []);
 
   Object /*num|String*/ _getId() => callMethod(this, 'getId', []);
 
   void _setGeometry(Object /*DataGeometry|LatLng*/ newGeometry) =>
       callMethod(this, 'setGeometry', [newGeometry]);
+
+  void toGeoJson(void Function(Object p1) callback) =>
+      callMethod(this, 'toGeoJson', [allowInterop(callback)]);
 }
 
 @GeneratedFrom(_DataFeatureOptions)
@@ -3876,13 +3886,14 @@ class DataFeatureOptions {
 @anonymous
 class DataGeometry {
   external factory DataGeometry();
-
-  external void forEachLatLng(void Function(LatLng p1) callback);
 }
 
 @GeneratedFrom(_DataGeometry)
 extension DataGeometry$Ext on DataGeometry {
   String get type => _getType();
+
+  void forEachLatLng(void Function(LatLng p1) callback) =>
+      callMethod(this, 'forEachLatLng', [allowInterop(callback)]);
 
   String _getType() => callMethod(this, 'getType', []);
 }
@@ -3892,14 +3903,15 @@ extension DataGeometry$Ext on DataGeometry {
 class DataPoint implements DataGeometry {
   external DataPoint(LatLng latLng);
 
-  external void forEachLatLng(void Function(LatLng p1) callback);
-
   external LatLng get();
 }
 
 @GeneratedFrom(_DataPoint)
 extension DataPoint$Ext on DataPoint {
   String get type => _getType();
+
+  void forEachLatLng(void Function(LatLng p1) callback) =>
+      callMethod(this, 'forEachLatLng', [allowInterop(callback)]);
 
   String _getType() => callMethod(this, 'getType', []);
 }
@@ -3909,8 +3921,6 @@ extension DataPoint$Ext on DataPoint {
 class DataMultiPoint implements DataGeometry {
   external DataMultiPoint(List<LatLng> elements);
 
-  external void forEachLatLng(void Function(LatLng p1) callback);
-
   external LatLng getAt(num n);
 }
 
@@ -3919,6 +3929,9 @@ extension DataMultiPoint$Ext on DataMultiPoint {
   List<LatLng> get array => _getArray();
   num get length => _getLength();
   String get type => _getType();
+
+  void forEachLatLng(void Function(LatLng p1) callback) =>
+      callMethod(this, 'forEachLatLng', [allowInterop(callback)]);
 
   List<LatLng> _getArray() => callMethod(this, 'getArray', [])?.cast<LatLng>();
 
@@ -3932,8 +3945,6 @@ extension DataMultiPoint$Ext on DataMultiPoint {
 class DataLineString implements DataGeometry {
   external DataLineString(List<LatLng> elements);
 
-  external void forEachLatLng(void Function(LatLng p1) callback);
-
   external LatLng getAt(num n);
 }
 
@@ -3942,6 +3953,9 @@ extension DataLineString$Ext on DataLineString {
   List<LatLng> get array => _getArray();
   num get length => _getLength();
   String get type => _getType();
+
+  void forEachLatLng(void Function(LatLng p1) callback) =>
+      callMethod(this, 'forEachLatLng', [allowInterop(callback)]);
 
   List<LatLng> _getArray() => callMethod(this, 'getArray', [])?.cast<LatLng>();
 
@@ -3956,8 +3970,6 @@ class DataMultiLineString implements DataGeometry {
   external DataMultiLineString(
       List<Object /*DataLineString|List<LatLng>*/ > elements);
 
-  external void forEachLatLng(void Function(LatLng p1) callback);
-
   external DataLineString getAt(num n);
 }
 
@@ -3966,6 +3978,9 @@ extension DataMultiLineString$Ext on DataMultiLineString {
   List<DataLineString> get array => _getArray();
   num get length => _getLength();
   String get type => _getType();
+
+  void forEachLatLng(void Function(LatLng p1) callback) =>
+      callMethod(this, 'forEachLatLng', [allowInterop(callback)]);
 
   List<DataLineString> _getArray() =>
       callMethod(this, 'getArray', [])?.cast<DataLineString>();
@@ -3980,8 +3995,6 @@ extension DataMultiLineString$Ext on DataMultiLineString {
 class DataLinearRing implements DataGeometry {
   external DataLinearRing(List<LatLng> elements);
 
-  external void forEachLatLng(void Function(LatLng p1) callback);
-
   external LatLng getAt(num n);
 }
 
@@ -3990,6 +4003,9 @@ extension DataLinearRing$Ext on DataLinearRing {
   List<LatLng> get array => _getArray();
   num get length => _getLength();
   String get type => _getType();
+
+  void forEachLatLng(void Function(LatLng p1) callback) =>
+      callMethod(this, 'forEachLatLng', [allowInterop(callback)]);
 
   List<LatLng> _getArray() => callMethod(this, 'getArray', [])?.cast<LatLng>();
 
@@ -4003,8 +4019,6 @@ extension DataLinearRing$Ext on DataLinearRing {
 class DataPolygon implements DataGeometry {
   external DataPolygon(List<Object /*DataLinearRing|List<LatLng>*/ > elements);
 
-  external void forEachLatLng(void Function(LatLng p1) callback);
-
   external DataLinearRing getAt(num n);
 }
 
@@ -4013,6 +4027,9 @@ extension DataPolygon$Ext on DataPolygon {
   List<DataLinearRing> get array => _getArray();
   num get length => _getLength();
   String get type => _getType();
+
+  void forEachLatLng(void Function(LatLng p1) callback) =>
+      callMethod(this, 'forEachLatLng', [allowInterop(callback)]);
 
   List<DataLinearRing> _getArray() =>
       callMethod(this, 'getArray', [])?.cast<DataLinearRing>();
@@ -4029,8 +4046,6 @@ class DataMultiPolygon implements DataGeometry {
       List<Object /*DataPolygon|List<Object/*DataLinearRing|List<LatLng>*/>*/ >
           elements);
 
-  external void forEachLatLng(void Function(LatLng p1) callback);
-
   external DataPolygon getAt(num n);
 }
 
@@ -4039,6 +4054,9 @@ extension DataMultiPolygon$Ext on DataMultiPolygon {
   List<DataPolygon> get array => _getArray();
   num get length => _getLength();
   String get type => _getType();
+
+  void forEachLatLng(void Function(LatLng p1) callback) =>
+      callMethod(this, 'forEachLatLng', [allowInterop(callback)]);
 
   List<DataPolygon> _getArray() =>
       callMethod(this, 'getArray', [])?.cast<DataPolygon>();
@@ -4054,8 +4072,6 @@ class DataGeometryCollection implements DataGeometry {
   external DataGeometryCollection(
       List<Object /*DataGeometry|LatLng*/ > elements);
 
-  external void forEachLatLng(void Function(LatLng p1) callback);
-
   external DataGeometry getAt(num n);
 }
 
@@ -4064,6 +4080,9 @@ extension DataGeometryCollection$Ext on DataGeometryCollection {
   List<DataGeometry> get array => _getArray();
   num get length => _getLength();
   String get type => _getType();
+
+  void forEachLatLng(void Function(LatLng p1) callback) =>
+      callMethod(this, 'forEachLatLng', [allowInterop(callback)]);
 
   List<DataGeometry> _getArray() =>
       callMethod(this, 'getArray', [])?.cast<DataGeometry>();
@@ -4873,9 +4892,15 @@ class StyledMapTypeOptions {
 @JS('google.maps.MaxZoomService')
 class MaxZoomService {
   external MaxZoomService();
+}
 
-  external void getMaxZoomAtLatLng(
-      LatLng latlng, void Function(MaxZoomResult p1) callback);
+@GeneratedFrom(_MaxZoomService)
+extension MaxZoomService$Ext on MaxZoomService {
+  void getMaxZoomAtLatLng(
+    LatLng latlng, [
+    void Function(MaxZoomResult p1) callback,
+  ]) =>
+      callMethod(this, 'getMaxZoomAtLatLng', [latlng, allowInterop(callback)]);
 }
 
 @GeneratedFrom(_MaxZoomResult)
@@ -4884,13 +4909,13 @@ class MaxZoomService {
 class MaxZoomResult {
   external factory MaxZoomResult();
 
-  external MaxZoomStatus get status;
-
-  external set status(MaxZoomStatus value);
-
   external num get zoom;
 
   external set zoom(num value);
+
+  external MaxZoomStatus get status;
+
+  external set status(MaxZoomStatus value);
 }
 
 @GeneratedFrom(_MaxZoomStatus)
@@ -4906,11 +4931,6 @@ class StreetViewPanorama extends MVCObject {
   external StreetViewPanorama(
     Element container, [
     StreetViewPanoramaOptions opts, // ignore: unused_element
-  ]);
-
-  external void registerPanoProvider([
-    StreetViewPanoramaData Function(String p1) provider,
-    PanoProviderOptions opt_options,
   ]);
 }
 
@@ -5106,6 +5126,13 @@ extension StreetViewPanorama$Ext on StreetViewPanorama {
   bool _getVisible() => callMethod(this, 'getVisible', []);
 
   num _getZoom() => callMethod(this, 'getZoom', []);
+
+  void registerPanoProvider([
+    StreetViewPanoramaData Function(String p1) provider,
+    PanoProviderOptions opt_options,
+  ]) =>
+      callMethod(
+          this, 'registerPanoProvider', [allowInterop(provider), opt_options]);
 
   void _setLinks(List<StreetViewLink> links) =>
       callMethod(this, 'setLinks', [links]);
@@ -5321,10 +5348,15 @@ extension StreetViewCoverageLayer$Ext on StreetViewCoverageLayer {
 @JS('google.maps.StreetViewService')
 class StreetViewService {
   external StreetViewService();
+}
 
-  external void getPanorama(
-      Object /*StreetViewLocationRequest|StreetViewPanoRequest*/ request,
-      void Function(StreetViewPanoramaData p1, StreetViewStatus p2) callback);
+@GeneratedFrom(_StreetViewService)
+extension StreetViewService$Ext on StreetViewService {
+  void getPanorama(
+    Object /*StreetViewLocationRequest|StreetViewPanoRequest*/ request, [
+    void Function(StreetViewPanoramaData p1, StreetViewStatus p2) callback,
+  ]) =>
+      callMethod(this, 'getPanorama', [request, allowInterop(callback)]);
 }
 
 @GeneratedFrom(_StreetViewStatus)
@@ -5367,6 +5399,17 @@ class StreetViewPanoRequest {
   external String get pano;
 
   external set pano(String value);
+}
+
+@GeneratedFrom(_StreetViewResponse)
+@JS()
+@anonymous
+class StreetViewResponse {
+  external factory StreetViewResponse();
+
+  external StreetViewPanoramaData get data;
+
+  external set data(StreetViewPanoramaData value);
 }
 
 @GeneratedFrom(_StreetViewLocation)
@@ -5462,9 +5505,15 @@ class StreetViewLink {
 @JS('google.maps.Geocoder')
 class Geocoder {
   external Geocoder();
+}
 
-  external void geocode(GeocoderRequest request,
-      void Function(List<GeocoderResult> p1, GeocoderStatus p2) callback);
+@GeneratedFrom(_Geocoder)
+extension Geocoder$Ext on Geocoder {
+  void geocode(
+    GeocoderRequest request, [
+    void Function(List<GeocoderResult> p1, GeocoderStatus p2) callback,
+  ]) =>
+      callMethod(this, 'geocode', [request, allowInterop(callback)]);
 }
 
 @GeneratedFrom(_GeocoderRequest)
@@ -5535,6 +5584,23 @@ class GeocoderStatus {
   external static GeocoderStatus get REQUEST_DENIED;
   external static GeocoderStatus get UNKNOWN_ERROR;
   external static GeocoderStatus get ZERO_RESULTS;
+}
+
+@GeneratedFrom(_GeocoderResponse)
+@JS()
+@anonymous
+class GeocoderResponse {
+  external factory GeocoderResponse();
+}
+
+@GeneratedFrom(_GeocoderResponse)
+extension GeocoderResponse$Ext on GeocoderResponse {
+  List<GeocoderResult> get results =>
+      getProperty(this, 'results')?.cast<GeocoderResult>();
+
+  set results(List<GeocoderResult> value) {
+    setProperty(this, 'results', value);
+  }
 }
 
 @GeneratedFrom(_GeocoderResult)
@@ -5658,9 +5724,15 @@ class GeocoderLocationType {
 @JS('google.maps.DirectionsService')
 class DirectionsService {
   external DirectionsService();
+}
 
-  external void route(DirectionsRequest request,
-      void Function(DirectionsResult p1, DirectionsStatus p2) callback);
+@GeneratedFrom(_DirectionsService)
+extension DirectionsService$Ext on DirectionsService {
+  void route(
+    DirectionsRequest request, [
+    void Function(DirectionsResult p1, DirectionsStatus p2) callback,
+  ]) =>
+      callMethod(this, 'route', [request, allowInterop(callback)]);
 }
 
 @GeneratedFrom(_DirectionsRequest)
@@ -6485,11 +6557,15 @@ extension Time$Ext on Time {
 @JS('google.maps.DistanceMatrixService')
 class DistanceMatrixService {
   external DistanceMatrixService();
+}
 
-  external Future<DistanceMatrixResponse> getDistanceMatrix(
+@GeneratedFrom(_DistanceMatrixService)
+extension DistanceMatrixService$Ext on DistanceMatrixService {
+  void getDistanceMatrix(
     DistanceMatrixRequest request, [
     void Function(DistanceMatrixResponse p1, DistanceMatrixStatus p2) callback,
-  ]);
+  ]) =>
+      callMethod(this, 'getDistanceMatrix', [request, allowInterop(callback)]);
 }
 
 @GeneratedFrom(_DistanceMatrixRequest)
@@ -6653,16 +6729,23 @@ class DistanceMatrixElementStatus {
 @JS('google.maps.ElevationService')
 class ElevationService {
   external ElevationService();
+}
 
-  external Future<PathElevationResponse> getElevationAlongPath(
+@GeneratedFrom(_ElevationService)
+extension ElevationService$Ext on ElevationService {
+  void getElevationAlongPath(
     PathElevationRequest request, [
     void Function(List<ElevationResult> p1, ElevationStatus p2) callback,
-  ]);
+  ]) =>
+      callMethod(
+          this, 'getElevationAlongPath', [request, allowInterop(callback)]);
 
-  external Future<LocationElevationResponse> getElevationForLocations(
+  void getElevationForLocations(
     LocationElevationRequest request, [
     void Function(List<ElevationResult> p1, ElevationStatus p2) callback,
-  ]);
+  ]) =>
+      callMethod(
+          this, 'getElevationForLocations', [request, allowInterop(callback)]);
 }
 
 @GeneratedFrom(_LocationElevationRequest)

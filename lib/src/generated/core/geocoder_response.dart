@@ -16,8 +16,7 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _MaxZoomResult {
-  factory _MaxZoomResult() => $js;
-  num zoom;
-  MaxZoomStatus status;
+abstract class _GeocoderResponse {
+  factory _GeocoderResponse() => $js;
+  List<GeocoderResult> results;
 }

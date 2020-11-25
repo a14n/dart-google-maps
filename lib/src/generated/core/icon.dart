@@ -18,10 +18,10 @@ part of '../google_maps_core.dart';
 @anonymous
 abstract class _Icon {
   factory _Icon() => $js;
+  String url;
   Point anchor;
   Point labelOrigin;
   Point origin;
   Size scaledSize;
   Size size;
-  String url;
 }
