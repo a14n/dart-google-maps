@@ -14,10 +14,6 @@ class GMap extends MVCObject {
     MapOptions opts, // ignore: unused_element
   ]);
 
-  external List<MVCArray<Node>> get controls;
-
-  external set controls(List<MVCArray<Node>> value);
-
   external Data get data;
 
   external set data(Data value);
@@ -47,6 +43,13 @@ class GMap extends MVCObject {
 
 @GeneratedFrom(_GMap)
 extension GMap$Ext on GMap {
+  List<MVCArray<Node>> get controls =>
+      getProperty(this, 'controls')?.cast<MVCArray<Node>>();
+
+  set controls(List<MVCArray<Node>> value) {
+    setProperty(this, 'controls', value);
+  }
+
   LatLngBounds get bounds => _getBounds();
   LatLng get center => _getCenter();
   bool get clickableIcons => _getClickableIcons();
@@ -562,10 +565,6 @@ class MapOptions {
 
   external set streetViewControlOptions(StreetViewControlOptions value);
 
-  external List<MapTypeStyle> get styles;
-
-  external set styles(List<MapTypeStyle> value);
-
   external num get tilt;
 
   external set tilt(num value);
@@ -583,15 +582,21 @@ class MapOptions {
   external set zoomControlOptions(ZoomControlOptions value);
 }
 
+@GeneratedFrom(_MapOptions)
+extension MapOptions$Ext on MapOptions {
+  List<MapTypeStyle> get styles =>
+      getProperty(this, 'styles')?.cast<MapTypeStyle>();
+
+  set styles(List<MapTypeStyle> value) {
+    setProperty(this, 'styles', value);
+  }
+}
+
 @GeneratedFrom(_MapTypeStyle)
 @JS()
 @anonymous
 class MapTypeStyle {
   external factory MapTypeStyle();
-
-  external List<Object> get stylers;
-
-  external set stylers(List<Object> value);
 
   external String get elementType;
 
@@ -600,6 +605,15 @@ class MapTypeStyle {
   external String get featureType;
 
   external set featureType(String value);
+}
+
+@GeneratedFrom(_MapTypeStyle)
+extension MapTypeStyle$Ext on MapTypeStyle {
+  List<Object> get stylers => getProperty(this, 'stylers')?.cast<Object>();
+
+  set stylers(List<Object> value) {
+    setProperty(this, 'stylers', value);
+  }
 }
 
 @GeneratedFrom(_MouseEvent)
@@ -984,7 +998,7 @@ extension MVCArray$Ext<T> on MVCArray<T> {
     return sc.stream;
   }
 
-  List<T> _getArray() => callMethod(this, 'getArray', []);
+  List<T> _getArray() => callMethod(this, 'getArray', [])?.cast<T>();
 
   num _getLength() => callMethod(this, 'getLength', []);
 }
@@ -1017,10 +1031,6 @@ class FullscreenControlOptions {
 class MapTypeControlOptions {
   external factory MapTypeControlOptions();
 
-  external List<Object /*MapTypeId|String*/ > get mapTypeIds;
-
-  external set mapTypeIds(List<Object /*MapTypeId|String*/ > value);
-
   external ControlPosition get position;
 
   external set position(ControlPosition value);
@@ -1028,6 +1038,16 @@ class MapTypeControlOptions {
   external MapTypeControlStyle get style;
 
   external set style(MapTypeControlStyle value);
+}
+
+@GeneratedFrom(_MapTypeControlOptions)
+extension MapTypeControlOptions$Ext on MapTypeControlOptions {
+  List<Object /*MapTypeId|String*/ > get mapTypeIds =>
+      getProperty(this, 'mapTypeIds')?.cast<Object /*MapTypeId|String*/ >();
+
+  set mapTypeIds(List<Object /*MapTypeId|String*/ > value) {
+    setProperty(this, 'mapTypeIds', value);
+  }
 }
 
 @GeneratedFrom(_MapTypeControlStyle)
@@ -1738,13 +1758,18 @@ class MarkerLabel {
 class MarkerShape {
   external factory MarkerShape();
 
-  external List<num> get coords;
-
-  external set coords(List<num> value);
-
   external String get type;
 
   external set type(String value);
+}
+
+@GeneratedFrom(_MarkerShape)
+extension MarkerShape$Ext on MarkerShape {
+  List<num> get coords => getProperty(this, 'coords')?.cast<num>();
+
+  set coords(List<num> value) {
+    setProperty(this, 'coords', value);
+  }
 }
 
 @GeneratedFrom(_GSymbol)
@@ -2246,10 +2271,6 @@ class PolylineOptions {
 
   external set geodesic(bool value);
 
-  external List<IconSequence> get icons;
-
-  external set icons(List<IconSequence> value);
-
   external GMap get map;
 
   external set map(GMap value);
@@ -2277,6 +2298,16 @@ class PolylineOptions {
   external num get zIndex;
 
   external set zIndex(num value);
+}
+
+@GeneratedFrom(_PolylineOptions)
+extension PolylineOptions$Ext on PolylineOptions {
+  List<IconSequence> get icons =>
+      getProperty(this, 'icons')?.cast<IconSequence>();
+
+  set icons(List<IconSequence> value) {
+    setProperty(this, 'icons', value);
+  }
 }
 
 @GeneratedFrom(_IconSequence)
@@ -3335,11 +3366,6 @@ class Data extends MVCObject {
     Object /*DataFeature|DataFeatureOptions*/ feature,
   ]);
 
-  external List<DataFeature> addGeoJson(
-    Object geoJson, [
-    DataGeoJsonOptions options,
-  ]);
-
   external bool contains(DataFeature feature);
 
   external void forEach(void Function(DataFeature p1) callback);
@@ -3593,10 +3619,17 @@ extension Data$Ext on Data {
     return sc.stream;
   }
 
+  List<DataFeature> addGeoJson(
+    Object geoJson, [
+    DataGeoJsonOptions options,
+  ]) =>
+      callMethod(this, 'addGeoJson', [geoJson, options])?.cast<DataFeature>();
+
   ControlPosition _getControlPosition() =>
       callMethod(this, 'getControlPosition', []);
 
-  List<String> _getControls() => callMethod(this, 'getControls', []);
+  List<String> _getControls() =>
+      callMethod(this, 'getControls', [])?.cast<String>();
 
   String _getDrawingMode() => callMethod(this, 'getDrawingMode', []);
 
@@ -3634,10 +3667,6 @@ class DataDataOptions {
 
   external set controlPosition(ControlPosition value);
 
-  external List<String> get controls;
-
-  external set controls(List<String> value);
-
   external String get drawingMode;
 
   external set drawingMode(String value);
@@ -3649,6 +3678,12 @@ class DataDataOptions {
 
 @GeneratedFrom(_DataDataOptions)
 extension DataDataOptions$Ext on DataDataOptions {
+  List<String> get controls => getProperty(this, 'controls')?.cast<String>();
+
+  set controls(List<String> value) {
+    setProperty(this, 'controls', value);
+  }
+
   DataFeature Function(DataGeometry p1) get featureFactory =>
       getProperty(this, 'featureFactory');
 
@@ -3885,7 +3920,7 @@ extension DataMultiPoint$Ext on DataMultiPoint {
   num get length => _getLength();
   String get type => _getType();
 
-  List<LatLng> _getArray() => callMethod(this, 'getArray', []);
+  List<LatLng> _getArray() => callMethod(this, 'getArray', [])?.cast<LatLng>();
 
   num _getLength() => callMethod(this, 'getLength', []);
 
@@ -3908,7 +3943,7 @@ extension DataLineString$Ext on DataLineString {
   num get length => _getLength();
   String get type => _getType();
 
-  List<LatLng> _getArray() => callMethod(this, 'getArray', []);
+  List<LatLng> _getArray() => callMethod(this, 'getArray', [])?.cast<LatLng>();
 
   num _getLength() => callMethod(this, 'getLength', []);
 
@@ -3932,7 +3967,8 @@ extension DataMultiLineString$Ext on DataMultiLineString {
   num get length => _getLength();
   String get type => _getType();
 
-  List<DataLineString> _getArray() => callMethod(this, 'getArray', []);
+  List<DataLineString> _getArray() =>
+      callMethod(this, 'getArray', [])?.cast<DataLineString>();
 
   num _getLength() => callMethod(this, 'getLength', []);
 
@@ -3955,7 +3991,7 @@ extension DataLinearRing$Ext on DataLinearRing {
   num get length => _getLength();
   String get type => _getType();
 
-  List<LatLng> _getArray() => callMethod(this, 'getArray', []);
+  List<LatLng> _getArray() => callMethod(this, 'getArray', [])?.cast<LatLng>();
 
   num _getLength() => callMethod(this, 'getLength', []);
 
@@ -3978,7 +4014,8 @@ extension DataPolygon$Ext on DataPolygon {
   num get length => _getLength();
   String get type => _getType();
 
-  List<DataLinearRing> _getArray() => callMethod(this, 'getArray', []);
+  List<DataLinearRing> _getArray() =>
+      callMethod(this, 'getArray', [])?.cast<DataLinearRing>();
 
   num _getLength() => callMethod(this, 'getLength', []);
 
@@ -4003,7 +4040,8 @@ extension DataMultiPolygon$Ext on DataMultiPolygon {
   num get length => _getLength();
   String get type => _getType();
 
-  List<DataPolygon> _getArray() => callMethod(this, 'getArray', []);
+  List<DataPolygon> _getArray() =>
+      callMethod(this, 'getArray', [])?.cast<DataPolygon>();
 
   num _getLength() => callMethod(this, 'getLength', []);
 
@@ -4027,7 +4065,8 @@ extension DataGeometryCollection$Ext on DataGeometryCollection {
   num get length => _getLength();
   String get type => _getType();
 
-  List<DataGeometry> _getArray() => callMethod(this, 'getArray', []);
+  List<DataGeometry> _getArray() =>
+      callMethod(this, 'getArray', [])?.cast<DataGeometry>();
 
   num _getLength() => callMethod(this, 'getLength', []);
 
@@ -4869,10 +4908,6 @@ class StreetViewPanorama extends MVCObject {
     StreetViewPanoramaOptions opts, // ignore: unused_element
   ]);
 
-  external List<MVCArray<Node>> get controls;
-
-  external set controls(List<MVCArray<Node>> value);
-
   external void registerPanoProvider([
     StreetViewPanoramaData Function(String p1) provider,
     PanoProviderOptions opt_options,
@@ -4881,6 +4916,13 @@ class StreetViewPanorama extends MVCObject {
 
 @GeneratedFrom(_StreetViewPanorama)
 extension StreetViewPanorama$Ext on StreetViewPanorama {
+  List<MVCArray<Node>> get controls =>
+      getProperty(this, 'controls')?.cast<MVCArray<Node>>();
+
+  set controls(List<MVCArray<Node>> value) {
+    setProperty(this, 'controls', value);
+  }
+
   List<StreetViewLink> get links => _getLinks();
   StreetViewLocation get location => _getLocation();
   bool get motionTracking => _getMotionTracking();
@@ -5043,7 +5085,8 @@ extension StreetViewPanorama$Ext on StreetViewPanorama {
     return sc.stream;
   }
 
-  List<StreetViewLink> _getLinks() => callMethod(this, 'getLinks', []);
+  List<StreetViewLink> _getLinks() =>
+      callMethod(this, 'getLinks', [])?.cast<StreetViewLink>();
 
   StreetViewLocation _getLocation() => callMethod(this, 'getLocation', []);
 
@@ -5377,10 +5420,6 @@ class StreetViewPanoramaData {
 
   external set imageDate(String value);
 
-  external List<StreetViewLink> get links;
-
-  external set links(List<StreetViewLink> value);
-
   external StreetViewLocation get location;
 
   external set location(StreetViewLocation value);
@@ -5388,6 +5427,16 @@ class StreetViewPanoramaData {
   external StreetViewTileData get tiles;
 
   external set tiles(StreetViewTileData value);
+}
+
+@GeneratedFrom(_StreetViewPanoramaData)
+extension StreetViewPanoramaData$Ext on StreetViewPanoramaData {
+  List<StreetViewLink> get links =>
+      getProperty(this, 'links')?.cast<StreetViewLink>();
+
+  set links(List<StreetViewLink> value) {
+    setProperty(this, 'links', value);
+  }
 }
 
 @GeneratedFrom(_StreetViewLink)
@@ -5497,16 +5546,12 @@ class GeocoderResult {
   external GeocoderGeometry get geometry;
 
   external set geometry(GeocoderGeometry value);
-
-  external List<String> get types;
-
-  external set types(List<String> value);
 }
 
 @GeneratedFrom(_GeocoderResult)
 extension GeocoderResult$Ext on GeocoderResult {
   List<GeocoderAddressComponent> get addressComponents =>
-      getProperty(this, 'address_components');
+      getProperty(this, 'address_components')?.cast<GeocoderAddressComponent>();
 
   set addressComponents(List<GeocoderAddressComponent> value) {
     setProperty(this, 'address_components', value);
@@ -5531,10 +5576,16 @@ extension GeocoderResult$Ext on GeocoderResult {
   }
 
   List<String> get postcodeLocalities =>
-      getProperty(this, 'postcode_localities');
+      getProperty(this, 'postcode_localities')?.cast<String>();
 
   set postcodeLocalities(List<String> value) {
     setProperty(this, 'postcode_localities', value);
+  }
+
+  List<String> get types => getProperty(this, 'types')?.cast<String>();
+
+  set types(List<String> value) {
+    setProperty(this, 'types', value);
   }
 }
 
@@ -5543,10 +5594,6 @@ extension GeocoderResult$Ext on GeocoderResult {
 @anonymous
 class GeocoderAddressComponent {
   external factory GeocoderAddressComponent();
-
-  external List<String> get types;
-
-  external set types(List<String> value);
 }
 
 @GeneratedFrom(_GeocoderAddressComponent)
@@ -5561,6 +5608,12 @@ extension GeocoderAddressComponent$Ext on GeocoderAddressComponent {
 
   set shortName(String value) {
     setProperty(this, 'short_name', value);
+  }
+
+  List<String> get types => getProperty(this, 'types')?.cast<String>();
+
+  set types(List<String> value) {
+    setProperty(this, 'types', value);
   }
 }
 
@@ -5663,10 +5716,16 @@ class DirectionsRequest {
   external UnitSystem get unitSystem;
 
   external set unitSystem(UnitSystem value);
+}
 
-  external List<DirectionsWaypoint> get waypoints;
+@GeneratedFrom(_DirectionsRequest)
+extension DirectionsRequest$Ext on DirectionsRequest {
+  List<DirectionsWaypoint> get waypoints =>
+      getProperty(this, 'waypoints')?.cast<DirectionsWaypoint>();
 
-  external set waypoints(List<DirectionsWaypoint> value);
+  set waypoints(List<DirectionsWaypoint> value) {
+    setProperty(this, 'waypoints', value);
+  }
 }
 
 @GeneratedFrom(_DirectionsStatus)
@@ -5687,19 +5746,23 @@ class DirectionsStatus {
 @anonymous
 class DirectionsResult {
   external factory DirectionsResult();
-
-  external List<DirectionsRoute> get routes;
-
-  external set routes(List<DirectionsRoute> value);
 }
 
 @GeneratedFrom(_DirectionsResult)
 extension DirectionsResult$Ext on DirectionsResult {
   List<DirectionsGeocodedWaypoint> get geocodedWaypoints =>
-      getProperty(this, 'geocoded_waypoints');
+      getProperty(this, 'geocoded_waypoints')
+          ?.cast<DirectionsGeocodedWaypoint>();
 
   set geocodedWaypoints(List<DirectionsGeocodedWaypoint> value) {
     setProperty(this, 'geocoded_waypoints', value);
+  }
+
+  List<DirectionsRoute> get routes =>
+      getProperty(this, 'routes')?.cast<DirectionsRoute>();
+
+  set routes(List<DirectionsRoute> value) {
+    setProperty(this, 'routes', value);
   }
 }
 
@@ -5845,10 +5908,6 @@ class DirectionsWaypoint {
 @anonymous
 class DirectionsGeocodedWaypoint {
   external factory DirectionsGeocodedWaypoint();
-
-  external List<String> get types;
-
-  external set types(List<String> value);
 }
 
 @GeneratedFrom(_DirectionsGeocodedWaypoint)
@@ -5863,6 +5922,12 @@ extension DirectionsGeocodedWaypoint$Ext on DirectionsGeocodedWaypoint {
 
   set placeId(String value) {
     setProperty(this, 'place_id', value);
+  }
+
+  List<String> get types => getProperty(this, 'types')?.cast<String>();
+
+  set types(List<String> value) {
+    setProperty(this, 'types', value);
   }
 }
 
@@ -5883,19 +5948,19 @@ class DirectionsRoute {
   external TransitFare get fare;
 
   external set fare(TransitFare value);
-
-  external List<DirectionsLeg> get legs;
-
-  external set legs(List<DirectionsLeg> value);
-
-  external List<String> get warnings;
-
-  external set warnings(List<String> value);
 }
 
 @GeneratedFrom(_DirectionsRoute)
 extension DirectionsRoute$Ext on DirectionsRoute {
-  List<LatLng> get overviewPath => getProperty(this, 'overview_path');
+  List<DirectionsLeg> get legs =>
+      getProperty(this, 'legs')?.cast<DirectionsLeg>();
+
+  set legs(List<DirectionsLeg> value) {
+    setProperty(this, 'legs', value);
+  }
+
+  List<LatLng> get overviewPath =>
+      getProperty(this, 'overview_path')?.cast<LatLng>();
 
   set overviewPath(List<LatLng> value) {
     setProperty(this, 'overview_path', value);
@@ -5907,7 +5972,14 @@ extension DirectionsRoute$Ext on DirectionsRoute {
     setProperty(this, 'overview_polyline', value);
   }
 
-  List<num> get waypointOrder => getProperty(this, 'waypoint_order');
+  List<String> get warnings => getProperty(this, 'warnings')?.cast<String>();
+
+  set warnings(List<String> value) {
+    setProperty(this, 'warnings', value);
+  }
+
+  List<num> get waypointOrder =>
+      getProperty(this, 'waypoint_order')?.cast<num>();
 
   set waypointOrder(List<num> value) {
     setProperty(this, 'waypoint_order', value);
@@ -5927,10 +5999,6 @@ class DirectionsLeg {
   external GDuration get duration;
 
   external set duration(GDuration value);
-
-  external List<DirectionsStep> get steps;
-
-  external set steps(List<DirectionsStep> value);
 }
 
 @GeneratedFrom(_DirectionsLeg)
@@ -5977,7 +6045,15 @@ extension DirectionsLeg$Ext on DirectionsLeg {
     setProperty(this, 'start_location', value);
   }
 
-  List<LatLng> get viaWaypoints => getProperty(this, 'via_waypoints');
+  List<DirectionsStep> get steps =>
+      getProperty(this, 'steps')?.cast<DirectionsStep>();
+
+  set steps(List<DirectionsStep> value) {
+    setProperty(this, 'steps', value);
+  }
+
+  List<LatLng> get viaWaypoints =>
+      getProperty(this, 'via_waypoints')?.cast<LatLng>();
 
   set viaWaypoints(List<LatLng> value) {
     setProperty(this, 'via_waypoints', value);
@@ -6002,14 +6078,6 @@ class DirectionsStep {
 
   external set instructions(String value);
 
-  external List<LatLng> get path;
-
-  external set path(List<LatLng> value);
-
-  external List<DirectionsStep> get steps;
-
-  external set steps(List<DirectionsStep> value);
-
   external TransitDetails get transit;
 
   external set transit(TransitDetails value);
@@ -6023,10 +6091,23 @@ extension DirectionsStep$Ext on DirectionsStep {
     setProperty(this, 'end_location', value);
   }
 
+  List<LatLng> get path => getProperty(this, 'path')?.cast<LatLng>();
+
+  set path(List<LatLng> value) {
+    setProperty(this, 'path', value);
+  }
+
   LatLng get startLocation => getProperty(this, 'start_location');
 
   set startLocation(LatLng value) {
     setProperty(this, 'start_location', value);
+  }
+
+  List<DirectionsStep> get steps =>
+      getProperty(this, 'steps')?.cast<DirectionsStep>();
+
+  set steps(List<DirectionsStep> value) {
+    setProperty(this, 'steps', value);
   }
 
   TravelMode get travelMode => getProperty(this, 'travel_mode');
@@ -6101,13 +6182,19 @@ class TransitOptions {
 
   external set departureTime(DateTime value);
 
-  external List<TransitMode> get modes;
-
-  external set modes(List<TransitMode> value);
-
   external TransitRoutePreference get routingPreference;
 
   external set routingPreference(TransitRoutePreference value);
+}
+
+@GeneratedFrom(_TransitOptions)
+extension TransitOptions$Ext on TransitOptions {
+  List<TransitMode> get modes =>
+      getProperty(this, 'modes')?.cast<TransitMode>();
+
+  set modes(List<TransitMode> value) {
+    setProperty(this, 'modes', value);
+  }
 }
 
 @GeneratedFrom(_TransitMode)
@@ -6221,10 +6308,6 @@ class TransitStop {
 class TransitLine {
   external factory TransitLine();
 
-  external List<TransitAgency> get agencies;
-
-  external set agencies(List<TransitAgency> value);
-
   external String get color;
 
   external set color(String value);
@@ -6248,6 +6331,13 @@ class TransitLine {
 
 @GeneratedFrom(_TransitLine)
 extension TransitLine$Ext on TransitLine {
+  List<TransitAgency> get agencies =>
+      getProperty(this, 'agencies')?.cast<TransitAgency>();
+
+  set agencies(List<TransitAgency> value) {
+    setProperty(this, 'agencies', value);
+  }
+
   String get shortName => getProperty(this, 'short_name');
 
   set shortName(String value) {
@@ -6408,14 +6498,6 @@ class DistanceMatrixService {
 class DistanceMatrixRequest {
   external factory DistanceMatrixRequest();
 
-  external List<Object /*String|LatLng|Place*/ > get destinations;
-
-  external set destinations(List<Object /*String|LatLng|Place*/ > value);
-
-  external List<Object /*String|LatLng|Place*/ > get origins;
-
-  external set origins(List<Object /*String|LatLng|Place*/ > value);
-
   external TravelMode get travelMode;
 
   external set travelMode(TravelMode value);
@@ -6449,23 +6531,53 @@ class DistanceMatrixRequest {
   external set unitSystem(UnitSystem value);
 }
 
+@GeneratedFrom(_DistanceMatrixRequest)
+extension DistanceMatrixRequest$Ext on DistanceMatrixRequest {
+  List<Object /*String|LatLng|Place*/ > get destinations =>
+      getProperty(this, 'destinations')
+          ?.cast<Object /*String|LatLng|Place*/ >();
+
+  set destinations(List<Object /*String|LatLng|Place*/ > value) {
+    setProperty(this, 'destinations', value);
+  }
+
+  List<Object /*String|LatLng|Place*/ > get origins =>
+      getProperty(this, 'origins')?.cast<Object /*String|LatLng|Place*/ >();
+
+  set origins(List<Object /*String|LatLng|Place*/ > value) {
+    setProperty(this, 'origins', value);
+  }
+}
+
 @GeneratedFrom(_DistanceMatrixResponse)
 @JS()
 @anonymous
 class DistanceMatrixResponse {
   external factory DistanceMatrixResponse();
+}
 
-  external List<String> get destinationAddresses;
+@GeneratedFrom(_DistanceMatrixResponse)
+extension DistanceMatrixResponse$Ext on DistanceMatrixResponse {
+  List<String> get destinationAddresses =>
+      getProperty(this, 'destinationAddresses')?.cast<String>();
 
-  external set destinationAddresses(List<String> value);
+  set destinationAddresses(List<String> value) {
+    setProperty(this, 'destinationAddresses', value);
+  }
 
-  external List<String> get originAddresses;
+  List<String> get originAddresses =>
+      getProperty(this, 'originAddresses')?.cast<String>();
 
-  external set originAddresses(List<String> value);
+  set originAddresses(List<String> value) {
+    setProperty(this, 'originAddresses', value);
+  }
 
-  external List<DistanceMatrixResponseRow> get rows;
+  List<DistanceMatrixResponseRow> get rows =>
+      getProperty(this, 'rows')?.cast<DistanceMatrixResponseRow>();
 
-  external set rows(List<DistanceMatrixResponseRow> value);
+  set rows(List<DistanceMatrixResponseRow> value) {
+    setProperty(this, 'rows', value);
+  }
 }
 
 @GeneratedFrom(_DistanceMatrixResponseRow)
@@ -6473,10 +6585,16 @@ class DistanceMatrixResponse {
 @anonymous
 class DistanceMatrixResponseRow {
   external factory DistanceMatrixResponseRow();
+}
 
-  external List<DistanceMatrixResponseElement> get elements;
+@GeneratedFrom(_DistanceMatrixResponseRow)
+extension DistanceMatrixResponseRow$Ext on DistanceMatrixResponseRow {
+  List<DistanceMatrixResponseElement> get elements =>
+      getProperty(this, 'elements')?.cast<DistanceMatrixResponseElement>();
 
-  external set elements(List<DistanceMatrixResponseElement> value);
+  set elements(List<DistanceMatrixResponseElement> value) {
+    setProperty(this, 'elements', value);
+  }
 }
 
 @GeneratedFrom(_DistanceMatrixResponseElement)
@@ -6552,10 +6670,15 @@ class ElevationService {
 @anonymous
 class LocationElevationRequest {
   external factory LocationElevationRequest();
+}
 
-  external List<LatLng> get locations;
+@GeneratedFrom(_LocationElevationRequest)
+extension LocationElevationRequest$Ext on LocationElevationRequest {
+  List<LatLng> get locations => getProperty(this, 'locations')?.cast<LatLng>();
 
-  external set locations(List<LatLng> value);
+  set locations(List<LatLng> value) {
+    setProperty(this, 'locations', value);
+  }
 }
 
 @GeneratedFrom(_LocationElevationResponse)
@@ -6563,10 +6686,16 @@ class LocationElevationRequest {
 @anonymous
 class LocationElevationResponse {
   external factory LocationElevationResponse();
+}
 
-  external List<ElevationResult> get results;
+@GeneratedFrom(_LocationElevationResponse)
+extension LocationElevationResponse$Ext on LocationElevationResponse {
+  List<ElevationResult> get results =>
+      getProperty(this, 'results')?.cast<ElevationResult>();
 
-  external set results(List<ElevationResult> value);
+  set results(List<ElevationResult> value) {
+    setProperty(this, 'results', value);
+  }
 }
 
 @GeneratedFrom(_PathElevationRequest)
@@ -6578,10 +6707,15 @@ class PathElevationRequest {
   external num get samples;
 
   external set samples(num value);
+}
 
-  external List<LatLng> get path;
+@GeneratedFrom(_PathElevationRequest)
+extension PathElevationRequest$Ext on PathElevationRequest {
+  List<LatLng> get path => getProperty(this, 'path')?.cast<LatLng>();
 
-  external set path(List<LatLng> value);
+  set path(List<LatLng> value) {
+    setProperty(this, 'path', value);
+  }
 }
 
 @GeneratedFrom(_PathElevationResponse)
@@ -6589,10 +6723,16 @@ class PathElevationRequest {
 @anonymous
 class PathElevationResponse {
   external factory PathElevationResponse();
+}
 
-  external List<ElevationResult> get results;
+@GeneratedFrom(_PathElevationResponse)
+extension PathElevationResponse$Ext on PathElevationResponse {
+  List<ElevationResult> get results =>
+      getProperty(this, 'results')?.cast<ElevationResult>();
 
-  external set results(List<ElevationResult> value);
+  set results(List<ElevationResult> value) {
+    setProperty(this, 'results', value);
+  }
 }
 
 @GeneratedFrom(_ElevationResult)

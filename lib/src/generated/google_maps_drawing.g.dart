@@ -191,13 +191,19 @@ class DrawingManagerOptions {
 class DrawingControlOptions {
   external factory DrawingControlOptions();
 
-  external List<OverlayType> get drawingModes;
-
-  external set drawingModes(List<OverlayType> value);
-
   external ControlPosition get position;
 
   external set position(ControlPosition value);
+}
+
+@GeneratedFrom(_DrawingControlOptions)
+extension DrawingControlOptions$Ext on DrawingControlOptions {
+  List<OverlayType> get drawingModes =>
+      getProperty(this, 'drawingModes')?.cast<OverlayType>();
+
+  set drawingModes(List<OverlayType> value) {
+    setProperty(this, 'drawingModes', value);
+  }
 }
 
 @GeneratedFrom(_OverlayCompleteEvent)

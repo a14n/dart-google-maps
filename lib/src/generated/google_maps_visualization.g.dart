@@ -53,10 +53,6 @@ class HeatmapLayerOptions {
 
   external set dissipating(bool value);
 
-  external List<String> get gradient;
-
-  external set gradient(List<String> value);
-
   external GMap get map;
 
   external set map(GMap value);
@@ -72,6 +68,15 @@ class HeatmapLayerOptions {
   external num get radius;
 
   external set radius(num value);
+}
+
+@GeneratedFrom(_HeatmapLayerOptions)
+extension HeatmapLayerOptions$Ext on HeatmapLayerOptions {
+  List<String> get gradient => getProperty(this, 'gradient')?.cast<String>();
+
+  set gradient(List<String> value) {
+    setProperty(this, 'gradient', value);
+  }
 }
 
 @GeneratedFrom(_WeightedLocation)

@@ -1,7 +1,6 @@
 import 'dart:html' hide Point;
 
 import 'package:google_maps/google_maps.dart';
-import 'package:js_wrapping/js_wrapping.dart';
 
 GMap map;
 final chicago = LatLng(41.850033, -87.6500523);
@@ -20,8 +19,7 @@ void main() {
       0,
       MapType()
         ..tileSize = tileSize
-        ..getTile =
-            allowInterop((Point coord, num zoom, Document ownerDocument) {
+        ..getTile = (Point coord, num zoom, Document ownerDocument) {
           final div = ownerDocument.createElement('div')
             ..innerHtml = coord.toString();
           div.style
@@ -32,5 +30,5 @@ void main() {
             ..borderWidth = '1px'
             ..borderColor = '#AAAAAA';
           return div;
-        }));
+        });
 }

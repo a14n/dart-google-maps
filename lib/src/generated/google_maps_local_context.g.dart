@@ -35,10 +35,6 @@ class LocalContextMapView implements LocalContextMapViewOptions {
 
   external set maxPlaceCount(num value);
 
-  external List<PlaceTypePreference> get placeTypePreferences;
-
-  external set placeTypePreferences(List<PlaceTypePreference> value);
-
   external MapsEventListener addListener(String eventName, Function handler);
 
   external void hidePlaceDetailsView();
@@ -48,6 +44,13 @@ class LocalContextMapView implements LocalContextMapViewOptions {
 
 @GeneratedFrom(_LocalContextMapView)
 extension LocalContextMapView$Ext on LocalContextMapView {
+  List<PlaceTypePreference> get placeTypePreferences =>
+      getProperty(this, 'placeTypePreferences')?.cast<PlaceTypePreference>();
+
+  set placeTypePreferences(List<PlaceTypePreference> value) {
+    setProperty(this, 'placeTypePreferences', value);
+  }
+
   Stream<ErrorEvent> get onError {
     StreamController<ErrorEvent> sc; // ignore: close_sinks
     MapsEventListener mapsEventListener;
@@ -113,10 +116,6 @@ class LocalContextMapViewOptions {
 
   external set maxPlaceCount(num value);
 
-  external List<PlaceTypePreference> get placeTypePreferences;
-
-  external set placeTypePreferences(List<PlaceTypePreference> value);
-
   external Object get directionsOptions;
 
   external set directionsOptions(Object value);
@@ -148,6 +147,16 @@ class LocalContextMapViewOptions {
   external Object get placeDetailsViewSetup;
 
   external set placeDetailsViewSetup(Object value);
+}
+
+@GeneratedFrom(_LocalContextMapViewOptions)
+extension LocalContextMapViewOptions$Ext on LocalContextMapViewOptions {
+  List<PlaceTypePreference> get placeTypePreferences =>
+      getProperty(this, 'placeTypePreferences')?.cast<PlaceTypePreference>();
+
+  set placeTypePreferences(List<PlaceTypePreference> value) {
+    setProperty(this, 'placeTypePreferences', value);
+  }
 }
 
 @GeneratedFrom(_MapDirectionsOptions)

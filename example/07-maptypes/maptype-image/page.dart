@@ -2,7 +2,6 @@ import 'dart:html' hide Point;
 import 'dart:math' as math;
 
 import 'package:google_maps/google_maps.dart';
-import 'package:js_wrapping/js_wrapping.dart';
 
 void main() {
   final moonTypeOptions = ImageMapTypeOptions()
@@ -10,12 +9,12 @@ void main() {
     ..maxZoom = 9
     ..minZoom = 0
     ..name = 'Moon'
-    ..getTileUrl = allowInterop((point, zoomLevel) {
+    ..getTileUrl = (point, zoomLevel) {
       final normalizedCoord = getNormalizedCoord(point, zoomLevel);
       if (normalizedCoord == null) return null;
       final bound = math.pow(2, zoomLevel);
       return '//mw1.google.com/mw-planetary/lunar/lunarmaps_v1/clem_bw/$zoomLevel/${normalizedCoord.x}/${bound - normalizedCoord.y - 1}.jpg';
-    });
+    };
 
   final moonMapType = ImageMapType(moonTypeOptions)..radius = 1738000;
 

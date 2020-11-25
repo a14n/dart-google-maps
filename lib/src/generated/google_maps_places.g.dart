@@ -46,7 +46,8 @@ extension Autocomplete$Ext on Autocomplete {
 
   LatLngBounds _getBounds() => callMethod(this, 'getBounds', []);
 
-  List<String> _getFields() => callMethod(this, 'getFields', []);
+  List<String> _getFields() =>
+      callMethod(this, 'getFields', [])?.cast<String>();
 
   PlaceResult _getPlace() => callMethod(this, 'getPlace', []);
 
@@ -79,10 +80,6 @@ class AutocompleteOptions {
 
   external set componentRestrictions(ComponentRestrictions value);
 
-  external List<String> get fields;
-
-  external set fields(List<String> value);
-
   external bool get placeIdOnly;
 
   external set placeIdOnly(bool value);
@@ -90,10 +87,21 @@ class AutocompleteOptions {
   external bool get strictBounds;
 
   external set strictBounds(bool value);
+}
 
-  external List<String> get types;
+@GeneratedFrom(_AutocompleteOptions)
+extension AutocompleteOptions$Ext on AutocompleteOptions {
+  List<String> get fields => getProperty(this, 'fields')?.cast<String>();
 
-  external set types(List<String> value);
+  set fields(List<String> value) {
+    setProperty(this, 'fields', value);
+  }
+
+  List<String> get types => getProperty(this, 'types')?.cast<String>();
+
+  set types(List<String> value) {
+    setProperty(this, 'types', value);
+  }
 }
 
 @GeneratedFrom(_SearchBox)
@@ -130,7 +138,8 @@ extension SearchBox$Ext on SearchBox {
 
   LatLngBounds _getBounds() => callMethod(this, 'getBounds', []);
 
-  List<PlaceResult> _getPlaces() => callMethod(this, 'getPlaces', []);
+  List<PlaceResult> _getPlaces() =>
+      callMethod(this, 'getPlaces', [])?.cast<PlaceResult>();
 
   void _setBounds(LatLngBounds bounds) =>
       callMethod(this, 'setBounds', [bounds]);
@@ -192,13 +201,18 @@ class PlaceDetailsRequest {
 
   external set placeId(String value);
 
-  external List<String> get fields;
-
-  external set fields(List<String> value);
-
   external AutocompleteSessionToken get sessionToken;
 
   external set sessionToken(AutocompleteSessionToken value);
+}
+
+@GeneratedFrom(_PlaceDetailsRequest)
+extension PlaceDetailsRequest$Ext on PlaceDetailsRequest {
+  List<String> get fields => getProperty(this, 'fields')?.cast<String>();
+
+  set fields(List<String> value) {
+    setProperty(this, 'fields', value);
+  }
 }
 
 @GeneratedFrom(_FindPlaceFromPhoneNumberRequest)
@@ -206,10 +220,6 @@ class PlaceDetailsRequest {
 @anonymous
 class FindPlaceFromPhoneNumberRequest {
   external factory FindPlaceFromPhoneNumberRequest();
-
-  external List<String> get fields;
-
-  external set fields(List<String> value);
 
   external String get phoneNumber;
 
@@ -220,15 +230,21 @@ class FindPlaceFromPhoneNumberRequest {
   external set locationBias(Object value);
 }
 
+@GeneratedFrom(_FindPlaceFromPhoneNumberRequest)
+extension FindPlaceFromPhoneNumberRequest$Ext
+    on FindPlaceFromPhoneNumberRequest {
+  List<String> get fields => getProperty(this, 'fields')?.cast<String>();
+
+  set fields(List<String> value) {
+    setProperty(this, 'fields', value);
+  }
+}
+
 @GeneratedFrom(_FindPlaceFromQueryRequest)
 @JS()
 @anonymous
 class FindPlaceFromQueryRequest {
   external factory FindPlaceFromQueryRequest();
-
-  external List<String> get fields;
-
-  external set fields(List<String> value);
 
   external String get query;
 
@@ -237,6 +253,15 @@ class FindPlaceFromQueryRequest {
   external Object get locationBias;
 
   external set locationBias(Object value);
+}
+
+@GeneratedFrom(_FindPlaceFromQueryRequest)
+extension FindPlaceFromQueryRequest$Ext on FindPlaceFromQueryRequest {
+  List<String> get fields => getProperty(this, 'fields')?.cast<String>();
+
+  set fields(List<String> value) {
+    setProperty(this, 'fields', value);
+  }
 }
 
 @GeneratedFrom(_PlaceSearchRequest)
@@ -351,10 +376,6 @@ class PlaceSearchPagination {
 class PlaceResult {
   external factory PlaceResult();
 
-  external List<PlaceAspectRating> get aspects;
-
-  external set aspects(List<PlaceAspectRating> value);
-
   external PlaceGeometry get geometry;
 
   external set geometry(PlaceGeometry value);
@@ -367,21 +388,9 @@ class PlaceResult {
 
   external set name(String value);
 
-  external List<PlacePhoto> get photos;
-
-  external set photos(List<PlacePhoto> value);
-
   external num get rating;
 
   external set rating(num value);
-
-  external List<PlaceReview> get reviews;
-
-  external set reviews(List<PlaceReview> value);
-
-  external List<String> get types;
-
-  external set types(List<String> value);
 
   external String get url;
 
@@ -399,7 +408,7 @@ class PlaceResult {
 @GeneratedFrom(_PlaceResult)
 extension PlaceResult$Ext on PlaceResult {
   List<GeocoderAddressComponent> get addressComponents =>
-      getProperty(this, 'address_components');
+      getProperty(this, 'address_components')?.cast<GeocoderAddressComponent>();
 
   set addressComponents(List<GeocoderAddressComponent> value) {
     setProperty(this, 'address_components', value);
@@ -409,6 +418,13 @@ extension PlaceResult$Ext on PlaceResult {
 
   set adrAddress(String value) {
     setProperty(this, 'adr_address', value);
+  }
+
+  List<PlaceAspectRating> get aspects =>
+      getProperty(this, 'aspects')?.cast<PlaceAspectRating>();
+
+  set aspects(List<PlaceAspectRating> value) {
+    setProperty(this, 'aspects', value);
   }
 
   BusinessStatus get businessStatus => getProperty(this, 'business_status');
@@ -430,7 +446,8 @@ extension PlaceResult$Ext on PlaceResult {
     setProperty(this, 'formatted_phone_number', value);
   }
 
-  List<String> get htmlAttributions => getProperty(this, 'html_attributions');
+  List<String> get htmlAttributions =>
+      getProperty(this, 'html_attributions')?.cast<String>();
 
   set htmlAttributions(List<String> value) {
     setProperty(this, 'html_attributions', value);
@@ -455,6 +472,13 @@ extension PlaceResult$Ext on PlaceResult {
     setProperty(this, 'permanently_closed', value);
   }
 
+  List<PlacePhoto> get photos =>
+      getProperty(this, 'photos')?.cast<PlacePhoto>();
+
+  set photos(List<PlacePhoto> value) {
+    setProperty(this, 'photos', value);
+  }
+
   String get placeId => getProperty(this, 'place_id');
 
   set placeId(String value) {
@@ -471,6 +495,19 @@ extension PlaceResult$Ext on PlaceResult {
 
   set priceLevel(num value) {
     setProperty(this, 'price_level', value);
+  }
+
+  List<PlaceReview> get reviews =>
+      getProperty(this, 'reviews')?.cast<PlaceReview>();
+
+  set reviews(List<PlaceReview> value) {
+    setProperty(this, 'reviews', value);
+  }
+
+  List<String> get types => getProperty(this, 'types')?.cast<String>();
+
+  set types(List<String> value) {
+    setProperty(this, 'types', value);
   }
 
   num get userRatingsTotal => getProperty(this, 'user_ratings_total');
@@ -536,10 +573,6 @@ class PlaceGeometry {
 class PlaceOpeningHours {
   external factory PlaceOpeningHours();
 
-  external List<PlaceOpeningHoursPeriod> get periods;
-
-  external set periods(List<PlaceOpeningHoursPeriod> value);
-
   external bool isOpen([
     DateTime date,
   ]);
@@ -553,7 +586,15 @@ extension PlaceOpeningHours$Ext on PlaceOpeningHours {
     setProperty(this, 'open_now', value);
   }
 
-  List<String> get weekdayText => getProperty(this, 'weekday_text');
+  List<PlaceOpeningHoursPeriod> get periods =>
+      getProperty(this, 'periods')?.cast<PlaceOpeningHoursPeriod>();
+
+  set periods(List<PlaceOpeningHoursPeriod> value) {
+    setProperty(this, 'periods', value);
+  }
+
+  List<String> get weekdayText =>
+      getProperty(this, 'weekday_text')?.cast<String>();
 
   set weekdayText(List<String> value) {
     setProperty(this, 'weekday_text', value);
@@ -641,7 +682,8 @@ class PlacePhoto {
 
 @GeneratedFrom(_PlacePhoto)
 extension PlacePhoto$Ext on PlacePhoto {
-  List<String> get htmlAttributions => getProperty(this, 'html_attributions');
+  List<String> get htmlAttributions =>
+      getProperty(this, 'html_attributions')?.cast<String>();
 
   set htmlAttributions(List<String> value) {
     setProperty(this, 'html_attributions', value);
@@ -673,10 +715,6 @@ class PhotoOptions {
 class PlaceReview {
   external factory PlaceReview();
 
-  external List<PlaceAspectRating> get aspects;
-
-  external set aspects(List<PlaceAspectRating> value);
-
   external String get language;
 
   external set language(String value);
@@ -692,6 +730,13 @@ class PlaceReview {
 
 @GeneratedFrom(_PlaceReview)
 extension PlaceReview$Ext on PlaceReview {
+  List<PlaceAspectRating> get aspects =>
+      getProperty(this, 'aspects')?.cast<PlaceAspectRating>();
+
+  set aspects(List<PlaceAspectRating> value) {
+    setProperty(this, 'aspects', value);
+  }
+
   String get authorName => getProperty(this, 'author_name');
 
   set authorName(String value) {
@@ -772,10 +817,15 @@ class AutocompletionRequest {
   external AutocompleteSessionToken get sessionToken;
 
   external set sessionToken(AutocompleteSessionToken value);
+}
 
-  external List<String> get types;
+@GeneratedFrom(_AutocompletionRequest)
+extension AutocompletionRequest$Ext on AutocompletionRequest {
+  List<String> get types => getProperty(this, 'types')?.cast<String>();
 
-  external set types(List<String> value);
+  set types(List<String> value) {
+    setProperty(this, 'types', value);
+  }
 }
 
 @GeneratedFrom(_QueryAutocompletionRequest)
@@ -831,20 +881,12 @@ class AutocompletePrediction {
   external String get description;
 
   external set description(String value);
-
-  external List<PredictionTerm> get terms;
-
-  external set terms(List<PredictionTerm> value);
-
-  external List<String> get types;
-
-  external set types(List<String> value);
 }
 
 @GeneratedFrom(_AutocompletePrediction)
 extension AutocompletePrediction$Ext on AutocompletePrediction {
   List<PredictionSubstring> get matchedSubstrings =>
-      getProperty(this, 'matched_substrings');
+      getProperty(this, 'matched_substrings')?.cast<PredictionSubstring>();
 
   set matchedSubstrings(List<PredictionSubstring> value) {
     setProperty(this, 'matched_substrings', value);
@@ -863,6 +905,19 @@ extension AutocompletePrediction$Ext on AutocompletePrediction {
     setProperty(this, 'structured_formatting', value);
   }
 
+  List<PredictionTerm> get terms =>
+      getProperty(this, 'terms')?.cast<PredictionTerm>();
+
+  set terms(List<PredictionTerm> value) {
+    setProperty(this, 'terms', value);
+  }
+
+  List<String> get types => getProperty(this, 'types')?.cast<String>();
+
+  set types(List<String> value) {
+    setProperty(this, 'types', value);
+  }
+
   num get distanceMeters => getProperty(this, 'distance_meters');
 
   set distanceMeters(num value) {
@@ -879,19 +934,22 @@ class QueryAutocompletePrediction {
   external String get description;
 
   external set description(String value);
-
-  external List<PredictionTerm> get terms;
-
-  external set terms(List<PredictionTerm> value);
 }
 
 @GeneratedFrom(_QueryAutocompletePrediction)
 extension QueryAutocompletePrediction$Ext on QueryAutocompletePrediction {
   List<PredictionSubstring> get matchedSubstrings =>
-      getProperty(this, 'matched_substrings');
+      getProperty(this, 'matched_substrings')?.cast<PredictionSubstring>();
 
   set matchedSubstrings(List<PredictionSubstring> value) {
     setProperty(this, 'matched_substrings', value);
+  }
+
+  List<PredictionTerm> get terms =>
+      getProperty(this, 'terms')?.cast<PredictionTerm>();
+
+  set terms(List<PredictionTerm> value) {
+    setProperty(this, 'terms', value);
   }
 
   String get placeId => getProperty(this, 'place_id');
@@ -947,7 +1005,8 @@ extension StructuredFormatting$Ext on StructuredFormatting {
   }
 
   List<PredictionSubstring> get mainTextMatchedSubstrings =>
-      getProperty(this, 'main_text_matched_substrings');
+      getProperty(this, 'main_text_matched_substrings')
+          ?.cast<PredictionSubstring>();
 
   set mainTextMatchedSubstrings(List<PredictionSubstring> value) {
     setProperty(this, 'main_text_matched_substrings', value);

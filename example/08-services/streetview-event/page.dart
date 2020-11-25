@@ -3,23 +3,22 @@ import 'dart:html';
 import 'package:google_maps/google_maps.dart';
 import 'package:js_wrapping/js_wrapping.dart';
 
-final cafe = LatLng(37.869085, -122.254775);
-
 void main() {
-  final panoramaOptions = StreetViewPanoramaOptions()
-    ..position = cafe
-    ..pov = (StreetViewPov()
-      ..heading = 270
-      ..pitch = 0)
-    ..visible = true;
-  final panorama =
-      StreetViewPanorama(document.getElementById('pano'), panoramaOptions);
+  final panorama = StreetViewPanorama(
+    document.getElementById('pano'),
+    StreetViewPanoramaOptions()
+      ..position = LatLng(37.869, -122.255)
+      ..pov = (StreetViewPov()
+        ..heading = 270
+        ..pitch = 0)
+      ..visible = true,
+  );
 
   panorama.onPanoChanged.listen((_) {
     document.getElementById('pano_cell').innerHtml = panorama.pano;
   });
 
-  Event.addListener(panorama, 'links_changed', allowInterop((_) {
+  Event.addListener(panorama, 'links_changed', allowInterop(() {
     final linksTable = document.getElementById('links_table');
     linksTable.children.clear();
     final links = panorama.links;
