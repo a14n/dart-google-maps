@@ -79,7 +79,8 @@ void patchEntities(List<DocEntity> entities) {
     }
     for (var method in entity.methods) {
       if (method.returnType.startsWith('Promise<')) {
-        method.returnType = 'Future${method.returnType.substring('Promise'.length)}';
+        method.returnType =
+            'Future${method.returnType.substring('Promise'.length)}';
       }
     }
   }
