@@ -16,5 +16,6 @@ part of '../google_maps_local_context.dart';
 
 @JsName('google.maps.localContext.MapDirectionsOptions')
 abstract class _MapDirectionsOptions implements MapDirectionsOptionsLiteral {
+  LatLng origin;
   MapsEventListener addListener(String eventName, Function handler);
 }

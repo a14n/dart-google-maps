@@ -53,21 +53,39 @@ final ignoredClasses = <String>[
   'undefined',
 ];
 
-final customEntities = <DocEntity>[
-  DocEntity()
-    ..library = 'localContext'
-    ..name = 'PlaceTypePreference'
-    ..kind = Kind.interface
-    ..properties = [
-      DocProperty()
-        ..name = 'type'
-        ..type = convertType('string'),
-      DocProperty()
-        ..name = 'weight'
-        ..type = convertType('number')
-        ..optional = true,
-    ],
-];
+void patchEntities(List<DocEntity> entities) {
+  for (final entity in entities) {
+    if (entity.library == null && entity.name == 'LatLng') {
+      entity.constructor
+        ..parameters = [
+          DocMethodParameter()
+            ..name = 'lat'
+            ..type = convertType('number'),
+          DocMethodParameter()
+            ..name = 'lng'
+            ..type = convertType('number'),
+        ]
+        ..optionalParameters = [
+          DocMethodParameter()
+            ..name = 'noWrap'
+            ..type = convertType('boolean'),
+        ];
+    } else if (entity.library == 'localContext' &&
+        entity.name == 'PlaceTypePreference') {
+      entity
+        ..kind = Kind.interface
+        ..properties = [
+          DocProperty()
+            ..name = 'type'
+            ..type = convertType('string'),
+          DocProperty()
+            ..name = 'weight'
+            ..type = convertType('number')
+            ..optional = true,
+        ];
+    }
+  }
+}
 
 Future main() async {
   final genFolder =
@@ -92,18 +110,12 @@ Future main() async {
       .where((e) => !ignoredClasses.contains(e.name))
       .map((e) => e..convertTypes())
       .toList();
-
-  for (var customEntity in customEntities) {
-    entities
-      ..removeWhere((e) =>
-          e.library == customEntity.library && e.name == customEntity.name)
-      ..add(customEntity);
-  }
+  patchEntities(entities);
 
   final parts = <String, List<String>>{};
   final needGenPart = <String, bool>{};
   for (var entity in entities) {
-    final code = generateCodeForEntity(entity);
+    final code = generateCodeForEntity(entity, entities);
     if (code?.trim()?.isEmpty ?? true) {
       continue;
     }
@@ -177,10 +189,10 @@ $partList
   }
 }
 
-String generateCodeForEntity(DocEntity entity) {
+String generateCodeForEntity(DocEntity entity, List<DocEntity> entities) {
   switch (entity.kind) {
     case Kind.clazz:
-      return generateCodeForClass(entity);
+      return generateCodeForClass(entity, entities);
     case Kind.interface:
       return generateCodeForInterface(entity);
     case Kind.namespace:
@@ -193,7 +205,24 @@ String generateCodeForEntity(DocEntity entity) {
   throw StateError('Unknown kind: ${entity.kind}');
 }
 
-String generateCodeForClass(DocEntity entity) {
+String generateCodeForClass(DocEntity entity, List<DocEntity> entities) {
+  final additionalProperties = [];
+  final additionalMethods = [];
+  if (entity.kind == Kind.clazz && entity.implementsName != null) {
+    final impl = entities.firstWhere(
+        (e) => e.library == entity.library && e.name == entity.implementsName);
+    for (final p in impl.properties) {
+      if (!entity.properties.any((e) => e.name == p.name)) {
+        additionalProperties.add(p);
+      }
+    }
+    for (final m in impl.methods) {
+      if (!entity.methods.any((e) => e.name == m.name)) {
+        additionalMethods.add(m);
+      }
+    }
+  }
+
   final name = entity.name;
   final lines = <String>[
     // constructor
@@ -201,11 +230,12 @@ String generateCodeForClass(DocEntity entity) {
       'factory _${name.replaceAll(RegExp(r'<.*'), '')}${buildSignature(entity.constructor, addIgnoreUnusedElement: true)} => \$js;',
     ],
     // properties
-    for (var property in entity.properties)
+    for (var property in [...entity.properties, ...additionalProperties])
       ...generateCodeForProperty(entity, property),
     // methods
-    for (var method in entity.methods) ...generateCodeForMethod(entity, method),
-    // methods
+    for (var method in [...entity.methods, ...additionalMethods])
+      ...generateCodeForMethod(entity, method),
+    // events
     for (var method in entity.events) ...generateCodeForEvent(entity, method),
   ];
 

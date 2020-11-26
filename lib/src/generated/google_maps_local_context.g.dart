@@ -175,9 +175,28 @@ extension LocalContextMapViewOptions$Ext on LocalContextMapViewOptions {
   }
 }
 
+@GeneratedFrom(_PlaceTypePreference)
+@JS()
+@anonymous
+class PlaceTypePreference {
+  external factory PlaceTypePreference();
+
+  external String get type;
+
+  external set type(String value);
+
+  external num get weight;
+
+  external set weight(num value);
+}
+
 @GeneratedFrom(_MapDirectionsOptions)
 @JS('google.maps.localContext.MapDirectionsOptions')
 class MapDirectionsOptions implements MapDirectionsOptionsLiteral {
+  external LatLng get origin;
+
+  external set origin(LatLng value);
+
   external MapsEventListener addListener(String eventName, Function handler);
 }
 
@@ -272,19 +291,4 @@ class PlaceDetailsLayoutMode {
 class PlaceDetailsPosition {
   external static PlaceDetailsPosition get INLINE_END;
   external static PlaceDetailsPosition get INLINE_START;
-}
-
-@GeneratedFrom(_PlaceTypePreference)
-@JS()
-@anonymous
-class PlaceTypePreference {
-  external factory PlaceTypePreference();
-
-  external String get type;
-
-  external set type(String value);
-
-  external num get weight;
-
-  external set weight(num value);
 }

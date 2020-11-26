@@ -24,6 +24,7 @@ part 'google_maps_local_context.g.dart';
 
 part 'local_context/local_context_map_view.dart';
 part 'local_context/local_context_map_view_options.dart';
+part 'local_context/place_type_preference.dart';
 part 'local_context/map_directions_options.dart';
 part 'local_context/map_directions_options_literal.dart';
 part 'local_context/pin_options.dart';
@@ -33,4 +34,3 @@ part 'local_context/place_chooser_position.dart';
 part 'local_context/place_details_view_setup_options.dart';
 part 'local_context/place_details_layout_mode.dart';
 part 'local_context/place_details_position.dart';
-part 'local_context/place_type_preference.dart';
