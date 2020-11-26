@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>POI Click Events</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      html, body, #map {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+
+      .title {
+        font-weight: bold;
+      }
+
+      #infowindow-content {
+        display: none;
+      }
+
+      #map #infowindow-content {
+        display: inline;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <div id="infowindow-content">
+      <img id="place-icon" src="" height="16" width="16" />
+      <span id="place-name" class="title"></span><br />
+      Place ID <span id="place-id"></span><br />
+      <span id="place-address"></span>
+    </div>
+
+    <script src="http://maps.googleapis.com/maps/api/js?libraries=places&v=beta"></script>
+    <script defer src="page.dart.js"></script>
+  </body>
+</html>

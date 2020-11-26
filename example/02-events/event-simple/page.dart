@@ -3,14 +3,16 @@ import 'dart:html';
 import 'package:google_maps/google_maps.dart';
 
 void main() {
-  final mapOptions = MapOptions()
-    ..zoom = 4
-    ..center = LatLng(-25.363882, 131.044922);
-
-  final map = GMap(document.getElementById('map-canvas'), mapOptions);
+  final myLatLng = LatLng(-25.363, 131.044);
+  final map = GMap(
+    document.getElementById('map'),
+    MapOptions()
+      ..zoom = 4
+      ..center = myLatLng,
+  );
 
   final marker = Marker(MarkerOptions()
-    ..position = map.center
+    ..position = myLatLng
     ..map = map
     ..title = 'Click to zoom');
 

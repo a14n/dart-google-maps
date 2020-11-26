@@ -2,21 +2,20 @@ import 'dart:html';
 import 'package:google_maps/google_maps.dart';
 
 void main() {
-  final myLatLng = LatLng(-25.363882, 131.044922);
-  final mapOptions = MapOptions()
-    ..zoom = 4
-    ..center = myLatLng;
-
-  final map = GMap(document.getElementById('map-canvas'), mapOptions);
+  final originalMapCenter = LatLng(-25.363882, 131.044922);
+  final map = GMap(
+    document.getElementById('map'),
+    MapOptions()
+      ..zoom = 4
+      ..center = originalMapCenter,
+  );
 
   final infowindow = InfoWindow(InfoWindowOptions()
     ..content = 'Change the zoom level'
-    ..position = myLatLng)
+    ..position = originalMapCenter)
     ..open(map);
 
   map.onZoomChanged.listen((_) {
-    final zoomLevel = map.zoom;
-    map.center = myLatLng;
-    infowindow.content = 'Zoom: $zoomLevel';
+    infowindow.content = 'Zoom: ${map.zoom}';
   });
 }
