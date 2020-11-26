@@ -133,13 +133,17 @@ extension DrawingManager$Ext on DrawingManager {
 
   GMap _getMap() => callMethod(this, 'getMap', []);
 
-  void _setDrawingMode(OverlayType drawingMode) =>
-      callMethod(this, 'setDrawingMode', [drawingMode]);
+  void _setDrawingMode(OverlayType drawingMode) {
+    callMethod(this, 'setDrawingMode', [drawingMode]);
+  }
 
-  void _setMap(GMap map) => callMethod(this, 'setMap', [map]);
+  void _setMap(GMap map) {
+    callMethod(this, 'setMap', [map]);
+  }
 
-  void _setOptions(DrawingManagerOptions options) =>
-      callMethod(this, 'setOptions', [options]);
+  void _setOptions(DrawingManagerOptions options) {
+    callMethod(this, 'setOptions', [options]);
+  }
 }
 
 @GeneratedFrom(_DrawingManagerOptions)

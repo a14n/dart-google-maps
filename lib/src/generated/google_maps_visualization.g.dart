@@ -30,13 +30,17 @@ extension HeatmapLayer$Ext on HeatmapLayer {
   GMap _getMap() => callMethod(this, 'getMap', []);
 
   void _setData(
-          Object /*MVCArray<Object/*LatLng|WeightedLocation*/>|List<Object/*LatLng|WeightedLocation*/>*/ data) =>
-      callMethod(this, 'setData', [data]);
+      Object /*MVCArray<Object/*LatLng|WeightedLocation*/>|List<Object/*LatLng|WeightedLocation*/>*/ data) {
+    callMethod(this, 'setData', [data]);
+  }
 
-  void _setMap(GMap map) => callMethod(this, 'setMap', [map]);
+  void _setMap(GMap map) {
+    callMethod(this, 'setMap', [map]);
+  }
 
-  void _setOptions(HeatmapLayerOptions options) =>
-      callMethod(this, 'setOptions', [options]);
+  void _setOptions(HeatmapLayerOptions options) {
+    callMethod(this, 'setOptions', [options]);
+  }
 }
 
 @GeneratedFrom(_HeatmapLayerOptions)

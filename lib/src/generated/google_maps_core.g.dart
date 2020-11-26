@@ -414,25 +414,37 @@ extension GMap$Ext on GMap {
 
   num _getZoom() => callMethod(this, 'getZoom', []);
 
-  void _setCenter(LatLng latlng) => callMethod(this, 'setCenter', [latlng]);
+  void _setCenter(LatLng latlng) {
+    callMethod(this, 'setCenter', [latlng]);
+  }
 
-  void _setClickableIcons(bool value) =>
-      callMethod(this, 'setClickableIcons', [value]);
+  void _setClickableIcons(bool value) {
+    callMethod(this, 'setClickableIcons', [value]);
+  }
 
-  void _setHeading(num heading) => callMethod(this, 'setHeading', [heading]);
+  void _setHeading(num heading) {
+    callMethod(this, 'setHeading', [heading]);
+  }
 
-  void _setMapTypeId(Object /*MapTypeId|String*/ mapTypeId) =>
-      callMethod(this, 'setMapTypeId', [mapTypeId]);
+  void _setMapTypeId(Object /*MapTypeId|String*/ mapTypeId) {
+    callMethod(this, 'setMapTypeId', [mapTypeId]);
+  }
 
-  void _setOptions(MapOptions options) =>
-      callMethod(this, 'setOptions', [options]);
+  void _setOptions(MapOptions options) {
+    callMethod(this, 'setOptions', [options]);
+  }
 
-  void _setStreetView(StreetViewPanorama panorama) =>
-      callMethod(this, 'setStreetView', [panorama]);
+  void _setStreetView(StreetViewPanorama panorama) {
+    callMethod(this, 'setStreetView', [panorama]);
+  }
 
-  void _setTilt(num tilt) => callMethod(this, 'setTilt', [tilt]);
+  void _setTilt(num tilt) {
+    callMethod(this, 'setTilt', [tilt]);
+  }
 
-  void _setZoom(num zoom) => callMethod(this, 'setZoom', [zoom]);
+  void _setZoom(num zoom) {
+    callMethod(this, 'setZoom', [zoom]);
+  }
 }
 
 @GeneratedFrom(_MapOptions)
@@ -688,10 +700,13 @@ extension TrafficLayer$Ext on TrafficLayer {
 
   GMap _getMap() => callMethod(this, 'getMap', []);
 
-  void _setMap(GMap map) => callMethod(this, 'setMap', [map]);
+  void _setMap(GMap map) {
+    callMethod(this, 'setMap', [map]);
+  }
 
-  void _setOptions(TrafficLayerOptions options) =>
-      callMethod(this, 'setOptions', [options]);
+  void _setOptions(TrafficLayerOptions options) {
+    callMethod(this, 'setOptions', [options]);
+  }
 }
 
 @GeneratedFrom(_TrafficLayerOptions)
@@ -722,7 +737,9 @@ extension TransitLayer$Ext on TransitLayer {
 
   GMap _getMap() => callMethod(this, 'getMap', []);
 
-  void _setMap(GMap map) => callMethod(this, 'setMap', [map]);
+  void _setMap(GMap map) {
+    callMethod(this, 'setMap', [map]);
+  }
 }
 
 @GeneratedFrom(_BicyclingLayer)
@@ -738,7 +755,9 @@ extension BicyclingLayer$Ext on BicyclingLayer {
 
   GMap _getMap() => callMethod(this, 'getMap', []);
 
-  void _setMap(GMap map) => callMethod(this, 'setMap', [map]);
+  void _setMap(GMap map) {
+    callMethod(this, 'setMap', [map]);
+  }
 }
 
 @GeneratedFrom(_LatLng)
@@ -913,7 +932,9 @@ class MVCObject {
 extension MVCObject$Ext on MVCObject {
   set values(Object values) => _setValues(values);
 
-  void _setValues(Object values) => callMethod(this, 'setValues', [values]);
+  void _setValues(Object values) {
+    callMethod(this, 'setValues', [values]);
+  }
 }
 
 @GeneratedFrom(_MVCArray)
@@ -996,8 +1017,9 @@ extension MVCArray$Ext<T> on MVCArray<T> {
     return sc.stream;
   }
 
-  void forEach(void Function(T p1, num p2) callback) =>
-      callMethod(this, 'forEach', [allowInterop(callback)]);
+  void forEach(void Function(T p1, num p2) callback) {
+    callMethod(this, 'forEach', [allowInterop(callback)]);
+  }
 
   List<T> _getArray() => callMethod(this, 'getArray', [])?.cast<T>();
 
@@ -1590,38 +1612,61 @@ extension Marker$Ext on Marker {
 
   num _getZIndex() => callMethod(this, 'getZIndex', []);
 
-  void _setAnimation(Animation animation) =>
-      callMethod(this, 'setAnimation', [animation]);
+  void _setAnimation(Animation animation) {
+    callMethod(this, 'setAnimation', [animation]);
+  }
 
-  void _setClickable(bool flag) => callMethod(this, 'setClickable', [flag]);
+  void _setClickable(bool flag) {
+    callMethod(this, 'setClickable', [flag]);
+  }
 
-  void _setCursor(String cursor) => callMethod(this, 'setCursor', [cursor]);
+  void _setCursor(String cursor) {
+    callMethod(this, 'setCursor', [cursor]);
+  }
 
-  void _setDraggable(bool flag) => callMethod(this, 'setDraggable', [flag]);
+  void _setDraggable(bool flag) {
+    callMethod(this, 'setDraggable', [flag]);
+  }
 
-  void _setIcon(Object /*String|Icon|GSymbol*/ icon) =>
-      callMethod(this, 'setIcon', [icon]);
+  void _setIcon(Object /*String|Icon|GSymbol*/ icon) {
+    callMethod(this, 'setIcon', [icon]);
+  }
 
-  void _setLabel(Object /*String|MarkerLabel*/ label) =>
-      callMethod(this, 'setLabel', [label]);
+  void _setLabel(Object /*String|MarkerLabel*/ label) {
+    callMethod(this, 'setLabel', [label]);
+  }
 
-  void _setMap(Object /*GMap|StreetViewPanorama*/ map) =>
-      callMethod(this, 'setMap', [map]);
+  void _setMap(Object /*GMap|StreetViewPanorama*/ map) {
+    callMethod(this, 'setMap', [map]);
+  }
 
-  void _setOpacity(num opacity) => callMethod(this, 'setOpacity', [opacity]);
+  void _setOpacity(num opacity) {
+    callMethod(this, 'setOpacity', [opacity]);
+  }
 
-  void _setOptions(MarkerOptions options) =>
-      callMethod(this, 'setOptions', [options]);
+  void _setOptions(MarkerOptions options) {
+    callMethod(this, 'setOptions', [options]);
+  }
 
-  void _setPosition(LatLng latlng) => callMethod(this, 'setPosition', [latlng]);
+  void _setPosition(LatLng latlng) {
+    callMethod(this, 'setPosition', [latlng]);
+  }
 
-  void _setShape(MarkerShape shape) => callMethod(this, 'setShape', [shape]);
+  void _setShape(MarkerShape shape) {
+    callMethod(this, 'setShape', [shape]);
+  }
 
-  void _setTitle(String title) => callMethod(this, 'setTitle', [title]);
+  void _setTitle(String title) {
+    callMethod(this, 'setTitle', [title]);
+  }
 
-  void _setVisible(bool visible) => callMethod(this, 'setVisible', [visible]);
+  void _setVisible(bool visible) {
+    callMethod(this, 'setVisible', [visible]);
+  }
 
-  void _setZIndex(num zIndex) => callMethod(this, 'setZIndex', [zIndex]);
+  void _setZIndex(num zIndex) {
+    callMethod(this, 'setZIndex', [zIndex]);
+  }
 }
 
 @GeneratedFrom(_MarkerOptions)
@@ -1961,16 +2006,21 @@ extension InfoWindow$Ext on InfoWindow {
 
   num _getZIndex() => callMethod(this, 'getZIndex', []);
 
-  void _setContent(Object /*String|Node*/ content) =>
-      callMethod(this, 'setContent', [content]);
+  void _setContent(Object /*String|Node*/ content) {
+    callMethod(this, 'setContent', [content]);
+  }
 
-  void _setOptions(InfoWindowOptions options) =>
-      callMethod(this, 'setOptions', [options]);
+  void _setOptions(InfoWindowOptions options) {
+    callMethod(this, 'setOptions', [options]);
+  }
 
-  void _setPosition(LatLng position) =>
-      callMethod(this, 'setPosition', [position]);
+  void _setPosition(LatLng position) {
+    callMethod(this, 'setPosition', [position]);
+  }
 
-  void _setZIndex(num zIndex) => callMethod(this, 'setZIndex', [zIndex]);
+  void _setZIndex(num zIndex) {
+    callMethod(this, 'setZIndex', [zIndex]);
+  }
 }
 
 @GeneratedFrom(_InfoWindowOptions)
@@ -2237,21 +2287,29 @@ extension Polyline$Ext on Polyline {
 
   bool _getVisible() => callMethod(this, 'getVisible', []);
 
-  void _setDraggable(bool draggable) =>
-      callMethod(this, 'setDraggable', [draggable]);
+  void _setDraggable(bool draggable) {
+    callMethod(this, 'setDraggable', [draggable]);
+  }
 
-  void _setEditable(bool editable) =>
-      callMethod(this, 'setEditable', [editable]);
+  void _setEditable(bool editable) {
+    callMethod(this, 'setEditable', [editable]);
+  }
 
-  void _setMap(GMap map) => callMethod(this, 'setMap', [map]);
+  void _setMap(GMap map) {
+    callMethod(this, 'setMap', [map]);
+  }
 
-  void _setOptions(PolylineOptions options) =>
-      callMethod(this, 'setOptions', [options]);
+  void _setOptions(PolylineOptions options) {
+    callMethod(this, 'setOptions', [options]);
+  }
 
-  void _setPath(Object /*MVCArray<LatLng>|List<LatLng>*/ path) =>
-      callMethod(this, 'setPath', [path]);
+  void _setPath(Object /*MVCArray<LatLng>|List<LatLng>*/ path) {
+    callMethod(this, 'setPath', [path]);
+  }
 
-  void _setVisible(bool visible) => callMethod(this, 'setVisible', [visible]);
+  void _setVisible(bool visible) {
+    callMethod(this, 'setVisible', [visible]);
+  }
 }
 
 @GeneratedFrom(_PolylineOptions)
@@ -2573,25 +2631,34 @@ extension Polygon$Ext on Polygon {
 
   bool _getVisible() => callMethod(this, 'getVisible', []);
 
-  void _setDraggable(bool draggable) =>
-      callMethod(this, 'setDraggable', [draggable]);
+  void _setDraggable(bool draggable) {
+    callMethod(this, 'setDraggable', [draggable]);
+  }
 
-  void _setEditable(bool editable) =>
-      callMethod(this, 'setEditable', [editable]);
+  void _setEditable(bool editable) {
+    callMethod(this, 'setEditable', [editable]);
+  }
 
-  void _setMap(GMap map) => callMethod(this, 'setMap', [map]);
+  void _setMap(GMap map) {
+    callMethod(this, 'setMap', [map]);
+  }
 
-  void _setOptions(PolygonOptions options) =>
-      callMethod(this, 'setOptions', [options]);
+  void _setOptions(PolygonOptions options) {
+    callMethod(this, 'setOptions', [options]);
+  }
 
-  void _setPath(Object /*MVCArray<LatLng>|List<LatLng>*/ path) =>
-      callMethod(this, 'setPath', [path]);
+  void _setPath(Object /*MVCArray<LatLng>|List<LatLng>*/ path) {
+    callMethod(this, 'setPath', [path]);
+  }
 
   void _setPaths(
-          Object /*MVCArray<MVCArray<LatLng>>|MVCArray<LatLng>|List<List<LatLng>>|List<LatLng>*/ paths) =>
-      callMethod(this, 'setPaths', [paths]);
+      Object /*MVCArray<MVCArray<LatLng>>|MVCArray<LatLng>|List<List<LatLng>>|List<LatLng>*/ paths) {
+    callMethod(this, 'setPaths', [paths]);
+  }
 
-  void _setVisible(bool visible) => callMethod(this, 'setVisible', [visible]);
+  void _setVisible(bool visible) {
+    callMethod(this, 'setVisible', [visible]);
+  }
 }
 
 @GeneratedFrom(_PolygonOptions)
@@ -2923,21 +2990,29 @@ extension Rectangle$Ext on Rectangle {
 
   bool _getVisible() => callMethod(this, 'getVisible', []);
 
-  void _setBounds(LatLngBounds bounds) =>
-      callMethod(this, 'setBounds', [bounds]);
+  void _setBounds(LatLngBounds bounds) {
+    callMethod(this, 'setBounds', [bounds]);
+  }
 
-  void _setDraggable(bool draggable) =>
-      callMethod(this, 'setDraggable', [draggable]);
+  void _setDraggable(bool draggable) {
+    callMethod(this, 'setDraggable', [draggable]);
+  }
 
-  void _setEditable(bool editable) =>
-      callMethod(this, 'setEditable', [editable]);
+  void _setEditable(bool editable) {
+    callMethod(this, 'setEditable', [editable]);
+  }
 
-  void _setMap(GMap map) => callMethod(this, 'setMap', [map]);
+  void _setMap(GMap map) {
+    callMethod(this, 'setMap', [map]);
+  }
 
-  void _setOptions(RectangleOptions options) =>
-      callMethod(this, 'setOptions', [options]);
+  void _setOptions(RectangleOptions options) {
+    callMethod(this, 'setOptions', [options]);
+  }
 
-  void _setVisible(bool visible) => callMethod(this, 'setVisible', [visible]);
+  void _setVisible(bool visible) {
+    callMethod(this, 'setVisible', [visible]);
+  }
 }
 
 @GeneratedFrom(_RectangleOptions)
@@ -3271,22 +3346,33 @@ extension Circle$Ext on Circle {
 
   bool _getVisible() => callMethod(this, 'getVisible', []);
 
-  void _setCenter(LatLng center) => callMethod(this, 'setCenter', [center]);
+  void _setCenter(LatLng center) {
+    callMethod(this, 'setCenter', [center]);
+  }
 
-  void _setDraggable(bool draggable) =>
-      callMethod(this, 'setDraggable', [draggable]);
+  void _setDraggable(bool draggable) {
+    callMethod(this, 'setDraggable', [draggable]);
+  }
 
-  void _setEditable(bool editable) =>
-      callMethod(this, 'setEditable', [editable]);
+  void _setEditable(bool editable) {
+    callMethod(this, 'setEditable', [editable]);
+  }
 
-  void _setMap(GMap map) => callMethod(this, 'setMap', [map]);
+  void _setMap(GMap map) {
+    callMethod(this, 'setMap', [map]);
+  }
 
-  void _setOptions(CircleOptions options) =>
-      callMethod(this, 'setOptions', [options]);
+  void _setOptions(CircleOptions options) {
+    callMethod(this, 'setOptions', [options]);
+  }
 
-  void _setRadius(num radius) => callMethod(this, 'setRadius', [radius]);
+  void _setRadius(num radius) {
+    callMethod(this, 'setRadius', [radius]);
+  }
 
-  void _setVisible(bool visible) => callMethod(this, 'setVisible', [visible]);
+  void _setVisible(bool visible) {
+    callMethod(this, 'setVisible', [visible]);
+  }
 }
 
 @GeneratedFrom(_CircleOptions)
@@ -3620,8 +3706,9 @@ extension Data$Ext on Data {
   ]) =>
       callMethod(this, 'addGeoJson', [geoJson, options])?.cast<DataFeature>();
 
-  void forEach(void Function(DataFeature p1) callback) =>
-      callMethod(this, 'forEach', [allowInterop(callback)]);
+  void forEach(void Function(DataFeature p1) callback) {
+    callMethod(this, 'forEach', [allowInterop(callback)]);
+  }
 
   ControlPosition _getControlPosition() =>
       callMethod(this, 'getControlPosition', []);
@@ -3640,25 +3727,33 @@ extension Data$Ext on Data {
     String url, [
     DataGeoJsonOptions options,
     void Function(List<DataFeature> p1) callback,
-  ]) =>
-      callMethod(this, 'loadGeoJson', [url, options, allowInterop(callback)]);
+  ]) {
+    callMethod(this, 'loadGeoJson', [url, options, allowInterop(callback)]);
+  }
 
-  void _setControlPosition(ControlPosition controlPosition) =>
-      callMethod(this, 'setControlPosition', [controlPosition]);
+  void _setControlPosition(ControlPosition controlPosition) {
+    callMethod(this, 'setControlPosition', [controlPosition]);
+  }
 
-  void _setControls(List<String> controls) =>
-      callMethod(this, 'setControls', [controls]);
+  void _setControls(List<String> controls) {
+    callMethod(this, 'setControls', [controls]);
+  }
 
-  void _setDrawingMode(String drawingMode) =>
-      callMethod(this, 'setDrawingMode', [drawingMode]);
+  void _setDrawingMode(String drawingMode) {
+    callMethod(this, 'setDrawingMode', [drawingMode]);
+  }
 
-  void _setMap(GMap map) => callMethod(this, 'setMap', [map]);
+  void _setMap(GMap map) {
+    callMethod(this, 'setMap', [map]);
+  }
 
-  void _setStyle(Object /*DataStylingFunction|DataStyleOptions*/ style) =>
-      callMethod(this, 'setStyle', [style]);
+  void _setStyle(Object /*DataStylingFunction|DataStyleOptions*/ style) {
+    callMethod(this, 'setStyle', [style]);
+  }
 
-  void toGeoJson(void Function(Object p1) callback) =>
-      callMethod(this, 'toGeoJson', [allowInterop(callback)]);
+  void toGeoJson(void Function(Object p1) callback) {
+    callMethod(this, 'toGeoJson', [allowInterop(callback)]);
+  }
 }
 
 @GeneratedFrom(_DataDataOptions)
@@ -3848,18 +3943,21 @@ extension DataFeature$Ext on DataFeature {
     return sc.stream;
   }
 
-  void forEachProperty(void Function(Object p1, String p2) callback) =>
-      callMethod(this, 'forEachProperty', [allowInterop(callback)]);
+  void forEachProperty(void Function(Object p1, String p2) callback) {
+    callMethod(this, 'forEachProperty', [allowInterop(callback)]);
+  }
 
   DataGeometry _getGeometry() => callMethod(this, 'getGeometry', []);
 
   Object /*num|String*/ _getId() => callMethod(this, 'getId', []);
 
-  void _setGeometry(Object /*DataGeometry|LatLng*/ newGeometry) =>
-      callMethod(this, 'setGeometry', [newGeometry]);
+  void _setGeometry(Object /*DataGeometry|LatLng*/ newGeometry) {
+    callMethod(this, 'setGeometry', [newGeometry]);
+  }
 
-  void toGeoJson(void Function(Object p1) callback) =>
-      callMethod(this, 'toGeoJson', [allowInterop(callback)]);
+  void toGeoJson(void Function(Object p1) callback) {
+    callMethod(this, 'toGeoJson', [allowInterop(callback)]);
+  }
 }
 
 @GeneratedFrom(_DataFeatureOptions)
@@ -3892,8 +3990,9 @@ class DataGeometry {
 extension DataGeometry$Ext on DataGeometry {
   String get type => _getType();
 
-  void forEachLatLng(void Function(LatLng p1) callback) =>
-      callMethod(this, 'forEachLatLng', [allowInterop(callback)]);
+  void forEachLatLng(void Function(LatLng p1) callback) {
+    callMethod(this, 'forEachLatLng', [allowInterop(callback)]);
+  }
 
   String _getType() => callMethod(this, 'getType', []);
 }
@@ -3910,8 +4009,9 @@ class DataPoint implements DataGeometry {
 extension DataPoint$Ext on DataPoint {
   String get type => _getType();
 
-  void forEachLatLng(void Function(LatLng p1) callback) =>
-      callMethod(this, 'forEachLatLng', [allowInterop(callback)]);
+  void forEachLatLng(void Function(LatLng p1) callback) {
+    callMethod(this, 'forEachLatLng', [allowInterop(callback)]);
+  }
 
   String _getType() => callMethod(this, 'getType', []);
 }
@@ -3930,8 +4030,9 @@ extension DataMultiPoint$Ext on DataMultiPoint {
   num get length => _getLength();
   String get type => _getType();
 
-  void forEachLatLng(void Function(LatLng p1) callback) =>
-      callMethod(this, 'forEachLatLng', [allowInterop(callback)]);
+  void forEachLatLng(void Function(LatLng p1) callback) {
+    callMethod(this, 'forEachLatLng', [allowInterop(callback)]);
+  }
 
   List<LatLng> _getArray() => callMethod(this, 'getArray', [])?.cast<LatLng>();
 
@@ -3954,8 +4055,9 @@ extension DataLineString$Ext on DataLineString {
   num get length => _getLength();
   String get type => _getType();
 
-  void forEachLatLng(void Function(LatLng p1) callback) =>
-      callMethod(this, 'forEachLatLng', [allowInterop(callback)]);
+  void forEachLatLng(void Function(LatLng p1) callback) {
+    callMethod(this, 'forEachLatLng', [allowInterop(callback)]);
+  }
 
   List<LatLng> _getArray() => callMethod(this, 'getArray', [])?.cast<LatLng>();
 
@@ -3979,8 +4081,9 @@ extension DataMultiLineString$Ext on DataMultiLineString {
   num get length => _getLength();
   String get type => _getType();
 
-  void forEachLatLng(void Function(LatLng p1) callback) =>
-      callMethod(this, 'forEachLatLng', [allowInterop(callback)]);
+  void forEachLatLng(void Function(LatLng p1) callback) {
+    callMethod(this, 'forEachLatLng', [allowInterop(callback)]);
+  }
 
   List<DataLineString> _getArray() =>
       callMethod(this, 'getArray', [])?.cast<DataLineString>();
@@ -4004,8 +4107,9 @@ extension DataLinearRing$Ext on DataLinearRing {
   num get length => _getLength();
   String get type => _getType();
 
-  void forEachLatLng(void Function(LatLng p1) callback) =>
-      callMethod(this, 'forEachLatLng', [allowInterop(callback)]);
+  void forEachLatLng(void Function(LatLng p1) callback) {
+    callMethod(this, 'forEachLatLng', [allowInterop(callback)]);
+  }
 
   List<LatLng> _getArray() => callMethod(this, 'getArray', [])?.cast<LatLng>();
 
@@ -4028,8 +4132,9 @@ extension DataPolygon$Ext on DataPolygon {
   num get length => _getLength();
   String get type => _getType();
 
-  void forEachLatLng(void Function(LatLng p1) callback) =>
-      callMethod(this, 'forEachLatLng', [allowInterop(callback)]);
+  void forEachLatLng(void Function(LatLng p1) callback) {
+    callMethod(this, 'forEachLatLng', [allowInterop(callback)]);
+  }
 
   List<DataLinearRing> _getArray() =>
       callMethod(this, 'getArray', [])?.cast<DataLinearRing>();
@@ -4055,8 +4160,9 @@ extension DataMultiPolygon$Ext on DataMultiPolygon {
   num get length => _getLength();
   String get type => _getType();
 
-  void forEachLatLng(void Function(LatLng p1) callback) =>
-      callMethod(this, 'forEachLatLng', [allowInterop(callback)]);
+  void forEachLatLng(void Function(LatLng p1) callback) {
+    callMethod(this, 'forEachLatLng', [allowInterop(callback)]);
+  }
 
   List<DataPolygon> _getArray() =>
       callMethod(this, 'getArray', [])?.cast<DataPolygon>();
@@ -4081,8 +4187,9 @@ extension DataGeometryCollection$Ext on DataGeometryCollection {
   num get length => _getLength();
   String get type => _getType();
 
-  void forEachLatLng(void Function(LatLng p1) callback) =>
-      callMethod(this, 'forEachLatLng', [allowInterop(callback)]);
+  void forEachLatLng(void Function(LatLng p1) callback) {
+    callMethod(this, 'forEachLatLng', [allowInterop(callback)]);
+  }
 
   List<DataGeometry> _getArray() =>
       callMethod(this, 'getArray', [])?.cast<DataGeometry>();
@@ -4224,8 +4331,9 @@ extension OverlayView$Ext on OverlayView {
 
   MapCanvasProjection _getProjection() => callMethod(this, 'getProjection', []);
 
-  void _setMap(Object /*GMap|StreetViewPanorama*/ map) =>
-      callMethod(this, 'setMap', [map]);
+  void _setMap(Object /*GMap|StreetViewPanorama*/ map) {
+    callMethod(this, 'setMap', [map]);
+  }
 }
 
 @GeneratedFrom(_MapPanes)
@@ -4374,14 +4482,21 @@ extension KmlLayer$Ext on KmlLayer {
 
   num _getZIndex() => callMethod(this, 'getZIndex', []);
 
-  void _setMap(GMap map) => callMethod(this, 'setMap', [map]);
+  void _setMap(GMap map) {
+    callMethod(this, 'setMap', [map]);
+  }
 
-  void _setOptions(KmlLayerOptions options) =>
-      callMethod(this, 'setOptions', [options]);
+  void _setOptions(KmlLayerOptions options) {
+    callMethod(this, 'setOptions', [options]);
+  }
 
-  void _setUrl(String url) => callMethod(this, 'setUrl', [url]);
+  void _setUrl(String url) {
+    callMethod(this, 'setUrl', [url]);
+  }
 
-  void _setZIndex(num zIndex) => callMethod(this, 'setZIndex', [zIndex]);
+  void _setZIndex(num zIndex) {
+    callMethod(this, 'setZIndex', [zIndex]);
+  }
 }
 
 @GeneratedFrom(_KmlLayerOptions)
@@ -4681,7 +4796,9 @@ extension ImageMapType$Ext on ImageMapType {
 
   num _getOpacity() => callMethod(this, 'getOpacity', []);
 
-  void _setOpacity(num opacity) => callMethod(this, 'setOpacity', [opacity]);
+  void _setOpacity(num opacity) {
+    callMethod(this, 'setOpacity', [opacity]);
+  }
 }
 
 @GeneratedFrom(_ImageMapTypeOptions)
@@ -4787,9 +4904,13 @@ extension GroundOverlay$Ext on GroundOverlay {
 
   String _getUrl() => callMethod(this, 'getUrl', []);
 
-  void _setMap(GMap map) => callMethod(this, 'setMap', [map]);
+  void _setMap(GMap map) {
+    callMethod(this, 'setMap', [map]);
+  }
 
-  void _setOpacity(num opacity) => callMethod(this, 'setOpacity', [opacity]);
+  void _setOpacity(num opacity) {
+    callMethod(this, 'setOpacity', [opacity]);
+  }
 }
 
 @GeneratedFrom(_GroundOverlayOptions)
@@ -4899,8 +5020,9 @@ extension MaxZoomService$Ext on MaxZoomService {
   void getMaxZoomAtLatLng(
     LatLng latlng, [
     void Function(MaxZoomResult p1) callback,
-  ]) =>
-      callMethod(this, 'getMaxZoomAtLatLng', [latlng, allowInterop(callback)]);
+  ]) {
+    callMethod(this, 'getMaxZoomAtLatLng', [latlng, allowInterop(callback)]);
+  }
 }
 
 @GeneratedFrom(_MaxZoomResult)
@@ -5130,28 +5252,42 @@ extension StreetViewPanorama$Ext on StreetViewPanorama {
   void registerPanoProvider([
     StreetViewPanoramaData Function(String p1) provider,
     PanoProviderOptions opt_options,
-  ]) =>
-      callMethod(
-          this, 'registerPanoProvider', [allowInterop(provider), opt_options]);
+  ]) {
+    callMethod(
+        this, 'registerPanoProvider', [allowInterop(provider), opt_options]);
+  }
 
-  void _setLinks(List<StreetViewLink> links) =>
-      callMethod(this, 'setLinks', [links]);
+  void _setLinks(List<StreetViewLink> links) {
+    callMethod(this, 'setLinks', [links]);
+  }
 
-  void _setMotionTracking(bool motionTracking) =>
-      callMethod(this, 'setMotionTracking', [motionTracking]);
+  void _setMotionTracking(bool motionTracking) {
+    callMethod(this, 'setMotionTracking', [motionTracking]);
+  }
 
-  void _setOptions(StreetViewPanoramaOptions options) =>
-      callMethod(this, 'setOptions', [options]);
+  void _setOptions(StreetViewPanoramaOptions options) {
+    callMethod(this, 'setOptions', [options]);
+  }
 
-  void _setPano(String pano) => callMethod(this, 'setPano', [pano]);
+  void _setPano(String pano) {
+    callMethod(this, 'setPano', [pano]);
+  }
 
-  void _setPosition(LatLng latLng) => callMethod(this, 'setPosition', [latLng]);
+  void _setPosition(LatLng latLng) {
+    callMethod(this, 'setPosition', [latLng]);
+  }
 
-  void _setPov(StreetViewPov pov) => callMethod(this, 'setPov', [pov]);
+  void _setPov(StreetViewPov pov) {
+    callMethod(this, 'setPov', [pov]);
+  }
 
-  void _setVisible(bool flag) => callMethod(this, 'setVisible', [flag]);
+  void _setVisible(bool flag) {
+    callMethod(this, 'setVisible', [flag]);
+  }
 
-  void _setZoom(num zoom) => callMethod(this, 'setZoom', [zoom]);
+  void _setZoom(num zoom) {
+    callMethod(this, 'setZoom', [zoom]);
+  }
 }
 
 @GeneratedFrom(_StreetViewPanoramaOptions)
@@ -5341,7 +5477,9 @@ extension StreetViewCoverageLayer$Ext on StreetViewCoverageLayer {
 
   GMap _getMap() => callMethod(this, 'getMap', []);
 
-  void _setMap(GMap map) => callMethod(this, 'setMap', [map]);
+  void _setMap(GMap map) {
+    callMethod(this, 'setMap', [map]);
+  }
 }
 
 @GeneratedFrom(_StreetViewService)
@@ -5355,8 +5493,9 @@ extension StreetViewService$Ext on StreetViewService {
   void getPanorama(
     Object /*StreetViewLocationRequest|StreetViewPanoRequest*/ request, [
     void Function(StreetViewPanoramaData p1, StreetViewStatus p2) callback,
-  ]) =>
-      callMethod(this, 'getPanorama', [request, allowInterop(callback)]);
+  ]) {
+    callMethod(this, 'getPanorama', [request, allowInterop(callback)]);
+  }
 }
 
 @GeneratedFrom(_StreetViewStatus)
@@ -5512,8 +5651,9 @@ extension Geocoder$Ext on Geocoder {
   void geocode(
     GeocoderRequest request, [
     void Function(List<GeocoderResult> p1, GeocoderStatus p2) callback,
-  ]) =>
-      callMethod(this, 'geocode', [request, allowInterop(callback)]);
+  ]) {
+    callMethod(this, 'geocode', [request, allowInterop(callback)]);
+  }
 }
 
 @GeneratedFrom(_GeocoderRequest)
@@ -5731,8 +5871,9 @@ extension DirectionsService$Ext on DirectionsService {
   void route(
     DirectionsRequest request, [
     void Function(DirectionsResult p1, DirectionsStatus p2) callback,
-  ]) =>
-      callMethod(this, 'route', [request, allowInterop(callback)]);
+  ]) {
+    callMethod(this, 'route', [request, allowInterop(callback)]);
+  }
 }
 
 @GeneratedFrom(_DirectionsRequest)
@@ -5883,18 +6024,25 @@ extension DirectionsRenderer$Ext on DirectionsRenderer {
 
   num _getRouteIndex() => callMethod(this, 'getRouteIndex', []);
 
-  void _setDirections(DirectionsResult directions) =>
-      callMethod(this, 'setDirections', [directions]);
+  void _setDirections(DirectionsResult directions) {
+    callMethod(this, 'setDirections', [directions]);
+  }
 
-  void _setMap(GMap map) => callMethod(this, 'setMap', [map]);
+  void _setMap(GMap map) {
+    callMethod(this, 'setMap', [map]);
+  }
 
-  void _setOptions(DirectionsRendererOptions options) =>
-      callMethod(this, 'setOptions', [options]);
+  void _setOptions(DirectionsRendererOptions options) {
+    callMethod(this, 'setOptions', [options]);
+  }
 
-  void _setPanel(Node panel) => callMethod(this, 'setPanel', [panel]);
+  void _setPanel(Node panel) {
+    callMethod(this, 'setPanel', [panel]);
+  }
 
-  void _setRouteIndex(num routeIndex) =>
-      callMethod(this, 'setRouteIndex', [routeIndex]);
+  void _setRouteIndex(num routeIndex) {
+    callMethod(this, 'setRouteIndex', [routeIndex]);
+  }
 }
 
 @GeneratedFrom(_DirectionsRendererOptions)
@@ -6564,8 +6712,9 @@ extension DistanceMatrixService$Ext on DistanceMatrixService {
   void getDistanceMatrix(
     DistanceMatrixRequest request, [
     void Function(DistanceMatrixResponse p1, DistanceMatrixStatus p2) callback,
-  ]) =>
-      callMethod(this, 'getDistanceMatrix', [request, allowInterop(callback)]);
+  ]) {
+    callMethod(this, 'getDistanceMatrix', [request, allowInterop(callback)]);
+  }
 }
 
 @GeneratedFrom(_DistanceMatrixRequest)
@@ -6736,16 +6885,18 @@ extension ElevationService$Ext on ElevationService {
   void getElevationAlongPath(
     PathElevationRequest request, [
     void Function(List<ElevationResult> p1, ElevationStatus p2) callback,
-  ]) =>
-      callMethod(
-          this, 'getElevationAlongPath', [request, allowInterop(callback)]);
+  ]) {
+    callMethod(
+        this, 'getElevationAlongPath', [request, allowInterop(callback)]);
+  }
 
   void getElevationForLocations(
     LocationElevationRequest request, [
     void Function(List<ElevationResult> p1, ElevationStatus p2) callback,
-  ]) =>
-      callMethod(
-          this, 'getElevationForLocations', [request, allowInterop(callback)]);
+  ]) {
+    callMethod(
+        this, 'getElevationForLocations', [request, allowInterop(callback)]);
+  }
 }
 
 @GeneratedFrom(_LocationElevationRequest)

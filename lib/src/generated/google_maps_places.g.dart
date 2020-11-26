@@ -51,19 +51,25 @@ extension Autocomplete$Ext on Autocomplete {
 
   PlaceResult _getPlace() => callMethod(this, 'getPlace', []);
 
-  void _setBounds(LatLngBounds bounds) =>
-      callMethod(this, 'setBounds', [bounds]);
+  void _setBounds(LatLngBounds bounds) {
+    callMethod(this, 'setBounds', [bounds]);
+  }
 
-  void _setComponentRestrictions(ComponentRestrictions restrictions) =>
-      callMethod(this, 'setComponentRestrictions', [restrictions]);
+  void _setComponentRestrictions(ComponentRestrictions restrictions) {
+    callMethod(this, 'setComponentRestrictions', [restrictions]);
+  }
 
-  void _setFields(List<String> fields) =>
-      callMethod(this, 'setFields', [fields]);
+  void _setFields(List<String> fields) {
+    callMethod(this, 'setFields', [fields]);
+  }
 
-  void _setOptions(AutocompleteOptions options) =>
-      callMethod(this, 'setOptions', [options]);
+  void _setOptions(AutocompleteOptions options) {
+    callMethod(this, 'setOptions', [options]);
+  }
 
-  void _setTypes(List<String> types) => callMethod(this, 'setTypes', [types]);
+  void _setTypes(List<String> types) {
+    callMethod(this, 'setTypes', [types]);
+  }
 }
 
 @GeneratedFrom(_AutocompleteOptions)
@@ -141,8 +147,9 @@ extension SearchBox$Ext on SearchBox {
   List<PlaceResult> _getPlaces() =>
       callMethod(this, 'getPlaces', [])?.cast<PlaceResult>();
 
-  void _setBounds(LatLngBounds bounds) =>
-      callMethod(this, 'setBounds', [bounds]);
+  void _setBounds(LatLngBounds bounds) {
+    callMethod(this, 'setBounds', [bounds]);
+  }
 }
 
 @GeneratedFrom(_SearchBoxOptions)
@@ -167,37 +174,42 @@ extension PlacesService$Ext on PlacesService {
   void findPlaceFromPhoneNumber(
     FindPlaceFromPhoneNumberRequest request, [
     void Function(List<PlaceResult> p1, PlacesServiceStatus p2) callback,
-  ]) =>
-      callMethod(
-          this, 'findPlaceFromPhoneNumber', [request, allowInterop(callback)]);
+  ]) {
+    callMethod(
+        this, 'findPlaceFromPhoneNumber', [request, allowInterop(callback)]);
+  }
 
   void findPlaceFromQuery(
     FindPlaceFromQueryRequest request, [
     void Function(List<PlaceResult> p1, PlacesServiceStatus p2) callback,
-  ]) =>
-      callMethod(this, 'findPlaceFromQuery', [request, allowInterop(callback)]);
+  ]) {
+    callMethod(this, 'findPlaceFromQuery', [request, allowInterop(callback)]);
+  }
 
   void getDetails(
     PlaceDetailsRequest request, [
     void Function(PlaceResult p1, PlacesServiceStatus p2) callback,
-  ]) =>
-      callMethod(this, 'getDetails', [request, allowInterop(callback)]);
+  ]) {
+    callMethod(this, 'getDetails', [request, allowInterop(callback)]);
+  }
 
   void nearbySearch(
     PlaceSearchRequest request, [
     void Function(List<PlaceResult> p1, PlacesServiceStatus p2,
             PlaceSearchPagination p3)
         callback,
-  ]) =>
-      callMethod(this, 'nearbySearch', [request, allowInterop(callback)]);
+  ]) {
+    callMethod(this, 'nearbySearch', [request, allowInterop(callback)]);
+  }
 
   void textSearch(
     TextSearchRequest request, [
     void Function(List<PlaceResult> p1, PlacesServiceStatus p2,
             PlaceSearchPagination p3)
         callback,
-  ]) =>
-      callMethod(this, 'textSearch', [request, allowInterop(callback)]);
+  ]) {
+    callMethod(this, 'textSearch', [request, allowInterop(callback)]);
+  }
 }
 
 @GeneratedFrom(_PlaceDetailsRequest)
@@ -781,19 +793,19 @@ class AutocompleteService {
 @GeneratedFrom(_AutocompleteService)
 extension AutocompleteService$Ext on AutocompleteService {
   void getPlacePredictions(
-          AutocompletionRequest request,
-          void Function(List<AutocompletePrediction> p1, PlacesServiceStatus p2)
-              callback) =>
-      callMethod(
-          this, 'getPlacePredictions', [request, allowInterop(callback)]);
+      AutocompletionRequest request,
+      void Function(List<AutocompletePrediction> p1, PlacesServiceStatus p2)
+          callback) {
+    callMethod(this, 'getPlacePredictions', [request, allowInterop(callback)]);
+  }
 
   void getQueryPredictions(
-          QueryAutocompletionRequest request,
-          void Function(
-                  List<QueryAutocompletePrediction> p1, PlacesServiceStatus p2)
-              callback) =>
-      callMethod(
-          this, 'getQueryPredictions', [request, allowInterop(callback)]);
+      QueryAutocompletionRequest request,
+      void Function(
+              List<QueryAutocompletePrediction> p1, PlacesServiceStatus p2)
+          callback) {
+    callMethod(this, 'getQueryPredictions', [request, allowInterop(callback)]);
+  }
 }
 
 @GeneratedFrom(_AutocompletionRequest)
