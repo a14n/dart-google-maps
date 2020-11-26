@@ -35,6 +35,22 @@ class LocalContextMapView implements LocalContextMapViewOptions {
 
   external set maxPlaceCount(num value);
 
+  external GMap get map;
+
+  external set map(GMap value);
+
+  external Object get pinOptionsSetup;
+
+  external set pinOptionsSetup(Object value);
+
+  external Object get placeChooserViewSetup;
+
+  external set placeChooserViewSetup(Object value);
+
+  external Object get placeDetailsViewSetup;
+
+  external set placeDetailsViewSetup(Object value);
+
   external MapsEventListener addListener(String eventName, Function handler);
 
   external void hidePlaceDetailsView();

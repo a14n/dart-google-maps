@@ -80,4 +80,9 @@ abstract class _LocalContextMapView implements LocalContextMapViewOptions {
     );
     return sc.stream;
   }
+
+  GMap map;
+  Object /*boolean,  isHighlighted:boolean}): (PinOptions) Function({  isSelected:boolean p1,isHighlighted:boolean} p2)|PinOptions*/ pinOptionsSetup;
+  Object /*PlaceChooserLayoutMode,  defaultPosition:PlaceChooserPosition}): (PlaceChooserViewSetupOptions) Function({  defaultLayoutMode:PlaceChooserLayoutMode p1,defaultPosition:PlaceChooserPosition} p2)|PlaceChooserViewSetupOptions*/ placeChooserViewSetup;
+  Object /*PlaceDetailsLayoutMode,  defaultPosition:PlaceDetailsPosition}): (PlaceDetailsViewSetupOptions) Function({  defaultLayoutMode:PlaceDetailsLayoutMode p1,defaultPosition:PlaceDetailsPosition} p2)|PlaceDetailsViewSetupOptions*/ placeDetailsViewSetup;
 }
