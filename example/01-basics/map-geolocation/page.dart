@@ -1,47 +1,50 @@
 import 'dart:html';
+
 import 'package:google_maps/google_maps.dart';
 
 GMap map;
+InfoWindow infoWindow;
 
 void main() {
-  final mapOptions = MapOptions()..zoom = 6;
-  map = GMap(document.getElementById('map-canvas'), mapOptions);
-
-  // Try HTML5 geolocation
-  if (window.navigator.geolocation != null) {
-    window.navigator.geolocation.getCurrentPosition().then((position) {
-      final pos = LatLng(position.coords.latitude, position.coords.longitude);
-
-      InfoWindow(InfoWindowOptions()
-            ..position = pos
-            ..content = 'Location found using HTML5.')
-          // FIXME https://code.google.com/p/gmaps-api-issues/issues/detail?id=7908
-          .open(map);
-
-      map.center = pos;
-    }, onError: (error) {
-      handleNoGeolocation(errorFlag: true);
-    });
-  } else {
-    // Browser doesn't support Geolocation
-    handleNoGeolocation(errorFlag: false);
-  }
+  map = GMap(
+    document.getElementById('map'),
+    MapOptions()
+      ..center = LatLng(-34.397, 150.644)
+      ..zoom = 6,
+  );
+  infoWindow = InfoWindow();
+  final locationButton = document.createElement('button')
+    ..text = 'Pan to Current Location'
+    ..classes.add('custom-map-control-button');
+  map.controls[ControlPosition.TOP_CENTER as int].push(locationButton);
+  locationButton.onClick.listen((_) async {
+    // Try HTML5 geolocation.
+    if (window.navigator.geolocation != null) {
+      try {
+        final position =
+            await window.navigator.geolocation.getCurrentPosition();
+        final pos = LatLng(position.coords.latitude, position.coords.longitude);
+        infoWindow
+          ..position = pos
+          ..content = 'Location found.'
+          ..open(map);
+        map.center = pos;
+      } catch (e) {
+        handleLocationError(true, infoWindow, map.center);
+      }
+    } else {
+      // Browser doesn't support Geolocation
+      handleLocationError(false, infoWindow, map.center);
+    }
+  });
 }
 
-void handleNoGeolocation({bool errorFlag}) {
-  String content;
-  if (errorFlag) {
-    content = 'Error: The Geolocation service failed.';
-  } else {
-    content = 'Error: Your browser doesn\'t support geolocation.';
-  }
-
-  final options = InfoWindowOptions()
-    ..position = LatLng(60, 105)
-    ..content = content;
-
-  // FIXME https://code.google.com/p/gmaps-api-issues/issues/detail?id=7908
-  InfoWindow(options).open(map);
-
-  map.center = options.position;
+void handleLocationError(
+    bool browserHasGeolocation, InfoWindow infoWindow, LatLng pos) {
+  infoWindow
+    ..position = pos
+    ..content = browserHasGeolocation
+        ? 'Error: The Geolocation service failed.'
+        : "Error: Your browser doesn't support geolocation."
+    ..open(map);
 }
