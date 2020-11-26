@@ -2,6 +2,7 @@ import 'dart:html' hide Point;
 import 'dart:math' as math;
 
 import 'package:google_maps/google_maps.dart';
+import 'package:js/js.dart';
 import 'package:js/js_util.dart';
 
 // This example defines an image map type using the Gall-Peters
@@ -27,10 +28,10 @@ void main() {
         'lat: ${event.latLng.lat.round()}, lng: ${event.latLng.lng.round()}';
   });
   // Add some markers to the map.
-  map.data.style = (feature) => jsify({
+  map.data.style = allowInterop((feature) => jsify({
         'title': feature.getProperty('name'),
         'optimized': false,
-      });
+      }));
   map.data.addGeoJson(jsify(cities));
 }
 
