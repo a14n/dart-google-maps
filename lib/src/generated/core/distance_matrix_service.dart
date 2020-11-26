@@ -17,7 +17,7 @@ part of '../google_maps_core.dart';
 @JsName('google.maps.DistanceMatrixService')
 abstract class _DistanceMatrixService {
   factory _DistanceMatrixService() => $js;
-  void getDistanceMatrix(
+  Future<DistanceMatrixResponse> getDistanceMatrix(
     DistanceMatrixRequest request, [
     void Function(DistanceMatrixResponse p1, DistanceMatrixStatus p2) callback,
   ]);

@@ -5017,12 +5017,12 @@ class MaxZoomService {
 
 @GeneratedFrom(_MaxZoomService)
 extension MaxZoomService$Ext on MaxZoomService {
-  void getMaxZoomAtLatLng(
+  Future<MaxZoomResult> getMaxZoomAtLatLng(
     LatLng latlng, [
     void Function(MaxZoomResult p1) callback,
-  ]) {
-    callMethod(this, 'getMaxZoomAtLatLng', [latlng, allowInterop(callback)]);
-  }
+  ]) =>
+      promiseToFuture(callMethod(
+          this, 'getMaxZoomAtLatLng', [latlng, allowInterop(callback)]));
 }
 
 @GeneratedFrom(_MaxZoomResult)
@@ -5490,12 +5490,12 @@ class StreetViewService {
 
 @GeneratedFrom(_StreetViewService)
 extension StreetViewService$Ext on StreetViewService {
-  void getPanorama(
+  Future<StreetViewResponse> getPanorama(
     Object /*StreetViewLocationRequest|StreetViewPanoRequest*/ request, [
     void Function(StreetViewPanoramaData p1, StreetViewStatus p2) callback,
-  ]) {
-    callMethod(this, 'getPanorama', [request, allowInterop(callback)]);
-  }
+  ]) =>
+      promiseToFuture(
+          callMethod(this, 'getPanorama', [request, allowInterop(callback)]));
 }
 
 @GeneratedFrom(_StreetViewStatus)
@@ -5648,12 +5648,12 @@ class Geocoder {
 
 @GeneratedFrom(_Geocoder)
 extension Geocoder$Ext on Geocoder {
-  void geocode(
+  Future<GeocoderResponse> geocode(
     GeocoderRequest request, [
     void Function(List<GeocoderResult> p1, GeocoderStatus p2) callback,
-  ]) {
-    callMethod(this, 'geocode', [request, allowInterop(callback)]);
-  }
+  ]) =>
+      promiseToFuture(
+          callMethod(this, 'geocode', [request, allowInterop(callback)]));
 }
 
 @GeneratedFrom(_GeocoderRequest)
@@ -5868,12 +5868,12 @@ class DirectionsService {
 
 @GeneratedFrom(_DirectionsService)
 extension DirectionsService$Ext on DirectionsService {
-  void route(
+  Future<DirectionsResult> route(
     DirectionsRequest request, [
     void Function(DirectionsResult p1, DirectionsStatus p2) callback,
-  ]) {
-    callMethod(this, 'route', [request, allowInterop(callback)]);
-  }
+  ]) =>
+      promiseToFuture(
+          callMethod(this, 'route', [request, allowInterop(callback)]));
 }
 
 @GeneratedFrom(_DirectionsRequest)
@@ -6709,12 +6709,12 @@ class DistanceMatrixService {
 
 @GeneratedFrom(_DistanceMatrixService)
 extension DistanceMatrixService$Ext on DistanceMatrixService {
-  void getDistanceMatrix(
+  Future<DistanceMatrixResponse> getDistanceMatrix(
     DistanceMatrixRequest request, [
     void Function(DistanceMatrixResponse p1, DistanceMatrixStatus p2) callback,
-  ]) {
-    callMethod(this, 'getDistanceMatrix', [request, allowInterop(callback)]);
-  }
+  ]) =>
+      promiseToFuture(callMethod(
+          this, 'getDistanceMatrix', [request, allowInterop(callback)]));
 }
 
 @GeneratedFrom(_DistanceMatrixRequest)
@@ -6882,21 +6882,19 @@ class ElevationService {
 
 @GeneratedFrom(_ElevationService)
 extension ElevationService$Ext on ElevationService {
-  void getElevationAlongPath(
+  Future<PathElevationResponse> getElevationAlongPath(
     PathElevationRequest request, [
     void Function(List<ElevationResult> p1, ElevationStatus p2) callback,
-  ]) {
-    callMethod(
-        this, 'getElevationAlongPath', [request, allowInterop(callback)]);
-  }
+  ]) =>
+      promiseToFuture(callMethod(
+          this, 'getElevationAlongPath', [request, allowInterop(callback)]));
 
-  void getElevationForLocations(
+  Future<LocationElevationResponse> getElevationForLocations(
     LocationElevationRequest request, [
     void Function(List<ElevationResult> p1, ElevationStatus p2) callback,
-  ]) {
-    callMethod(
-        this, 'getElevationForLocations', [request, allowInterop(callback)]);
-  }
+  ]) =>
+      promiseToFuture(callMethod(
+          this, 'getElevationForLocations', [request, allowInterop(callback)]));
 }
 
 @GeneratedFrom(_LocationElevationRequest)

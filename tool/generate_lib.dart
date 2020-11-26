@@ -24,13 +24,6 @@ const licence = '''
 ''';
 
 final customClassName = <String, String>{
-  'Promise<DirectionsResult>': 'void',
-  'Promise<DistanceMatrixResponse>': 'void',
-  'Promise<GeocoderResponse>': 'void',
-  'Promise<LocationElevationResponse>': 'void',
-  'Promise<MaxZoomResult>': 'void',
-  'Promise<PathElevationResponse>': 'void',
-  'Promise<StreetViewResponse>': 'void',
   'Map': 'GMap',
   'Symbol': 'GSymbol',
   'Duration': 'GDuration',
@@ -83,6 +76,11 @@ void patchEntities(List<DocEntity> entities) {
             ..type = convertType('number')
             ..optional = true,
         ];
+    }
+    for (var method in entity.methods) {
+      if (method.returnType.startsWith('Promise<')) {
+        method.returnType = 'Future${method.returnType.substring('Promise'.length)}';
+      }
     }
   }
 }
