@@ -515,7 +515,7 @@ String convertType(String type) {
     return convertType(customClassName[myType]);
   else if (myType.startsWith('(') && myType.endsWith(')'))
     return convertType(myType.substring(1, myType.length - 1));
-  else if (splitUnionTypes(myType).length > 1) {
+  else if (splitComplexTypeBy(myType, '|').length > 1) {
     for (final ignoredClass in ignoredClasses) {
       if (myType.startsWith('$ignoredClass|')) {
         return convertType(myType.substring('$ignoredClass|'.length));
@@ -528,9 +528,16 @@ String convertType(String type) {
         return convertType(myType.replaceAll('|$ignoredClass|', '|'));
       }
     }
-    final typeUnion = splitUnionTypes(myType);
+    final typeUnion = splitComplexTypeBy(myType, '|');
     final dartUnion = typeUnion.map(convertType).join('|');
     return 'Object/*$dartUnion*/';
+  } else if (myType.startsWith('{') && myType.endsWith('}')) {
+    final tupleContent =
+        splitComplexTypeBy(myType.substring(1, myType.length - 1), ',')
+            .map((p) => splitComplexTypeBy(p.trim(), ':'))
+            .map((e) => [convertType(e[1].trim()), e[0].trim()].join(' '))
+            .join(', ');
+    return '($tupleContent)';
   } else if (myType.startsWith('Object<') && myType.endsWith('>')) {
     final innerType =
         convertType(myType.substring('Object<'.length, myType.length - 1));
@@ -540,14 +547,16 @@ String convertType(String type) {
         convertType(myType.substring('Array<'.length, myType.length - 1));
     return 'List<$innerType>';
   } else if (myType.startsWith('function(')) {
-    final functionParams =
-        myType.substring('function('.length, myType.indexOf(')')).split(',');
-    final returnType = myType.indexOf(':') > 0
-        ? convertType(myType.substring(myType.indexOf(':') + 1))
-        : 'void';
+    final parts = splitComplexTypeBy(myType, ':');
+    final returnType =
+        parts.length > 1 ? convertType(parts.skip(1).join(':')) : 'void';
     var i = 1;
-    final params =
-        functionParams.map(convertType).map((p) => '$p p${i++}').join(',');
+    final params = splitComplexTypeBy(
+            parts[0].substring('function('.length, parts[0].lastIndexOf(')')),
+            ',')
+        .map(convertType)
+        .map((p) => '$p p${i++}')
+        .join(',');
     return '$returnType Function($params)';
   } else if (myType.startsWith('MVCArray<') && myType.endsWith('>')) {
     final innerType =
@@ -558,18 +567,24 @@ String convertType(String type) {
   }
 }
 
-List<String> splitUnionTypes(String type) {
+List<String> splitComplexTypeBy(String type, String char) {
   final typeParts = <String>[];
+  var bracketDeepth = 0;
   var parenthesisDeepth = 0;
   var genericDeepth = 0;
   final buffer = StringBuffer();
   for (var i = 0; i < type.length; i++) {
     final c = type[i];
-    if (c == '|' && parenthesisDeepth == 0 && genericDeepth == 0) {
+    if (c == char &&
+        bracketDeepth == 0 &&
+        parenthesisDeepth == 0 &&
+        genericDeepth == 0) {
       typeParts.add(buffer.toString());
       buffer.clear();
       continue;
     }
+    if (c == '{') bracketDeepth++;
+    if (c == '}') bracketDeepth--;
     if (c == '(') parenthesisDeepth++;
     if (c == ')') parenthesisDeepth--;
     if (c == '<') genericDeepth++;

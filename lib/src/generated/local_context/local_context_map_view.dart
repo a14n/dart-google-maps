@@ -25,9 +25,9 @@ abstract class _LocalContextMapView implements LocalContextMapViewOptions {
   num maxPlaceCount;
   List<PlaceTypePreference> placeTypePreferences;
   GMap map;
-  Object /*boolean,  isHighlighted:boolean}): (PinOptions) Function({  isSelected:boolean p1,isHighlighted:boolean} p2)|PinOptions*/ pinOptionsSetup;
-  Object /*PlaceChooserLayoutMode,  defaultPosition:PlaceChooserPosition}): (PlaceChooserViewSetupOptions) Function({  defaultLayoutMode:PlaceChooserLayoutMode p1,defaultPosition:PlaceChooserPosition} p2)|PlaceChooserViewSetupOptions*/ placeChooserViewSetup;
-  Object /*PlaceDetailsLayoutMode,  defaultPosition:PlaceDetailsPosition}): (PlaceDetailsViewSetupOptions) Function({  defaultLayoutMode:PlaceDetailsLayoutMode p1,defaultPosition:PlaceDetailsPosition} p2)|PlaceDetailsViewSetupOptions*/ placeDetailsViewSetup;
+  Object /*PinOptions Function((bool isSelected, bool isHighlighted) p1)|PinOptions*/ pinOptionsSetup;
+  Object /*PlaceChooserViewSetupOptions Function((PlaceChooserLayoutMode defaultLayoutMode, PlaceChooserPosition defaultPosition) p1)|PlaceChooserViewSetupOptions*/ placeChooserViewSetup;
+  Object /*PlaceDetailsViewSetupOptions Function((PlaceDetailsLayoutMode defaultLayoutMode, PlaceDetailsPosition defaultPosition) p1)|PlaceDetailsViewSetupOptions*/ placeDetailsViewSetup;
   MapsEventListener addListener(String eventName, Function handler);
   void hidePlaceDetailsView();
   void search();
