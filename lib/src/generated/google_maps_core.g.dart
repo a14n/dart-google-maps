@@ -517,9 +517,9 @@ class MapOptions {
 
   external set mapTypeControlOptions(MapTypeControlOptions value);
 
-  external Object get mapTypeId;
+  external Object /*MapTypeId|String*/ get mapTypeId;
 
-  external set mapTypeId(Object value);
+  external set mapTypeId(Object /*MapTypeId|String*/ value);
 
   external num get maxZoom;
 
@@ -1699,17 +1699,17 @@ class MarkerOptions {
 
   external set draggable(bool value);
 
-  external Object get icon;
+  external Object /*String|Icon|GSymbol*/ get icon;
 
-  external set icon(Object value);
+  external set icon(Object /*String|Icon|GSymbol*/ value);
 
-  external Object get label;
+  external Object /*String|MarkerLabel*/ get label;
 
-  external set label(Object value);
+  external set label(Object /*String|MarkerLabel*/ value);
 
-  external Object get map;
+  external Object /*GMap|StreetViewPanorama*/ get map;
 
-  external set map(Object value);
+  external set map(Object /*GMap|StreetViewPanorama*/ value);
 
   external num get opacity;
 
@@ -1828,9 +1828,9 @@ extension MarkerShape$Ext on MarkerShape {
 class GSymbol {
   external factory GSymbol();
 
-  external Object get path;
+  external Object /*SymbolPath|String*/ get path;
 
-  external set path(Object value);
+  external set path(Object /*SymbolPath|String*/ value);
 
   external Point get anchor;
 
@@ -2029,9 +2029,9 @@ extension InfoWindow$Ext on InfoWindow {
 class InfoWindowOptions {
   external factory InfoWindowOptions();
 
-  external Object get content;
+  external Object /*String|Node*/ get content;
 
-  external set content(Object value);
+  external set content(Object /*String|Node*/ value);
 
   external bool get disableAutoPan;
 
@@ -2338,9 +2338,9 @@ class PolylineOptions {
 
   external set map(GMap value);
 
-  external Object get path;
+  external Object /*MVCArray<LatLng>|List<LatLng>*/ get path;
 
-  external set path(Object value);
+  external set path(Object /*MVCArray<LatLng>|List<LatLng>*/ value);
 
   external String get strokeColor;
 
@@ -2695,9 +2695,10 @@ class PolygonOptions {
 
   external set map(GMap value);
 
-  external Object get paths;
+  external Object /*MVCArray<MVCArray<LatLng>>|MVCArray<LatLng>|List<List<LatLng>>|List<LatLng>*/ get paths;
 
-  external set paths(Object value);
+  external set paths(
+      Object /*MVCArray<MVCArray<LatLng>>|MVCArray<LatLng>|List<List<LatLng>>|List<LatLng>*/ value);
 
   external String get strokeColor;
 
@@ -3774,9 +3775,9 @@ class DataDataOptions {
 
   external set drawingMode(String value);
 
-  external Object get style;
+  external Object /*DataStylingFunction|DataStyleOptions*/ get style;
 
-  external set style(Object value);
+  external set style(Object /*DataStylingFunction|DataStyleOptions*/ value);
 }
 
 @GeneratedFrom(_DataDataOptions)
@@ -3836,9 +3837,9 @@ class DataStyleOptions {
 
   external set fillOpacity(num value);
 
-  external Object get icon;
+  external Object /*String|Icon|GSymbol*/ get icon;
 
-  external set icon(Object value);
+  external set icon(Object /*String|Icon|GSymbol*/ value);
 
   external MarkerShape get shape;
 
@@ -3966,13 +3967,13 @@ extension DataFeature$Ext on DataFeature {
 class DataFeatureOptions {
   external factory DataFeatureOptions();
 
-  external Object get geometry;
+  external Object /*DataGeometry|LatLng*/ get geometry;
 
-  external set geometry(Object value);
+  external set geometry(Object /*DataGeometry|LatLng*/ value);
 
-  external Object get id;
+  external Object /*num|String*/ get id;
 
-  external set id(Object value);
+  external set id(Object /*num|String*/ value);
 
   external Object get properties;
 
@@ -5882,13 +5883,13 @@ extension DirectionsService$Ext on DirectionsService {
 class DirectionsRequest {
   external factory DirectionsRequest();
 
-  external Object get destination;
+  external Object /*String|LatLng|Place*/ get destination;
 
-  external set destination(Object value);
+  external set destination(Object /*String|LatLng|Place*/ value);
 
-  external Object get origin;
+  external Object /*String|LatLng|Place*/ get origin;
 
-  external set origin(Object value);
+  external set origin(Object /*String|LatLng|Place*/ value);
 
   external TravelMode get travelMode;
 
@@ -6114,9 +6115,9 @@ class DirectionsRendererOptions {
 class DirectionsWaypoint {
   external factory DirectionsWaypoint();
 
-  external Object get location;
+  external Object /*String|LatLng|Place*/ get location;
 
-  external set location(Object value);
+  external set location(Object /*String|LatLng|Place*/ value);
 
   external bool get stopover;
 

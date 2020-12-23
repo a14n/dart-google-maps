@@ -49,9 +49,10 @@ extension HeatmapLayer$Ext on HeatmapLayer {
 class HeatmapLayerOptions {
   external factory HeatmapLayerOptions();
 
-  external Object get data;
+  external Object /*MVCArray<Object/*LatLng|WeightedLocation*/>|List<Object/*LatLng|WeightedLocation*/>*/ get data;
 
-  external set data(Object value);
+  external set data(
+      Object /*MVCArray<Object/*LatLng|WeightedLocation*/>|List<Object/*LatLng|WeightedLocation*/>*/ value);
 
   external bool get dissipating;
 

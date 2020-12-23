@@ -216,9 +216,10 @@ extension DrawingControlOptions$Ext on DrawingControlOptions {
 class OverlayCompleteEvent {
   external factory OverlayCompleteEvent();
 
-  external Object get overlay;
+  external Object /*Marker|Polygon|Polyline|Rectangle|Circle*/ get overlay;
 
-  external set overlay(Object value);
+  external set overlay(
+      Object /*Marker|Polygon|Polyline|Rectangle|Circle*/ value);
 
   external OverlayType get type;
 

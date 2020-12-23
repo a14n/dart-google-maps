@@ -246,9 +246,9 @@ class FindPlaceFromPhoneNumberRequest {
 
   external set phoneNumber(String value);
 
-  external Object get locationBias;
+  external Object /*LatLng|LatLngBounds|Circle|String*/ get locationBias;
 
-  external set locationBias(Object value);
+  external set locationBias(Object /*LatLng|LatLngBounds|Circle|String*/ value);
 }
 
 @GeneratedFrom(_FindPlaceFromPhoneNumberRequest)
@@ -271,9 +271,9 @@ class FindPlaceFromQueryRequest {
 
   external set query(String value);
 
-  external Object get locationBias;
+  external Object /*LatLng|LatLngBounds|Circle|String*/ get locationBias;
 
-  external set locationBias(Object value);
+  external set locationBias(Object /*LatLng|LatLngBounds|Circle|String*/ value);
 }
 
 @GeneratedFrom(_FindPlaceFromQueryRequest)
@@ -895,9 +895,9 @@ class AutocompleteSessionToken {
 class ComponentRestrictions {
   external factory ComponentRestrictions();
 
-  external Object get country;
+  external Object /*String|List<String>*/ get country;
 
-  external set country(Object value);
+  external set country(Object /*String|List<String>*/ value);
 }
 
 @GeneratedFrom(_AutocompletePrediction)

@@ -11,9 +11,10 @@ part of google_maps.local_context;
 class LocalContextMapView implements LocalContextMapViewOptions {
   external LocalContextMapView(LocalContextMapViewOptions options);
 
-  external Object get directionsOptions;
+  external Object /*MapDirectionsOptions|MapDirectionsOptionsLiteral*/ get directionsOptions;
 
-  external set directionsOptions(Object value);
+  external set directionsOptions(
+      Object /*MapDirectionsOptions|MapDirectionsOptionsLiteral*/ value);
 
   external Element get element;
 
@@ -23,9 +24,9 @@ class LocalContextMapView implements LocalContextMapViewOptions {
 
   external set isTransitioningMapBounds(bool value);
 
-  external Object get locationBias;
+  external Object /*LatLng|LatLngBounds|Circle|String*/ get locationBias;
 
-  external set locationBias(Object value);
+  external set locationBias(Object /*LatLng|LatLngBounds|Circle|String*/ value);
 
   external LatLngBounds get locationRestriction;
 
@@ -39,17 +40,20 @@ class LocalContextMapView implements LocalContextMapViewOptions {
 
   external set map(GMap value);
 
-  external Object get pinOptionsSetup;
+  external Object /*PinOptions Function((bool isSelected, bool isHighlighted) p1)|PinOptions*/ get pinOptionsSetup;
 
-  external set pinOptionsSetup(Object value);
+  external set pinOptionsSetup(
+      Object /*PinOptions Function((bool isSelected, bool isHighlighted) p1)|PinOptions*/ value);
 
-  external Object get placeChooserViewSetup;
+  external Object /*PlaceChooserViewSetupOptions Function((PlaceChooserLayoutMode defaultLayoutMode, PlaceChooserPosition defaultPosition) p1)|PlaceChooserViewSetupOptions*/ get placeChooserViewSetup;
 
-  external set placeChooserViewSetup(Object value);
+  external set placeChooserViewSetup(
+      Object /*PlaceChooserViewSetupOptions Function((PlaceChooserLayoutMode defaultLayoutMode, PlaceChooserPosition defaultPosition) p1)|PlaceChooserViewSetupOptions*/ value);
 
-  external Object get placeDetailsViewSetup;
+  external Object /*PlaceDetailsViewSetupOptions Function((PlaceDetailsLayoutMode defaultLayoutMode, PlaceDetailsPosition defaultPosition) p1)|PlaceDetailsViewSetupOptions*/ get placeDetailsViewSetup;
 
-  external set placeDetailsViewSetup(Object value);
+  external set placeDetailsViewSetup(
+      Object /*PlaceDetailsViewSetupOptions Function((PlaceDetailsLayoutMode defaultLayoutMode, PlaceDetailsPosition defaultPosition) p1)|PlaceDetailsViewSetupOptions*/ value);
 
   external MapsEventListener addListener(String eventName, Function handler);
 
@@ -132,17 +136,18 @@ class LocalContextMapViewOptions {
 
   external set maxPlaceCount(num value);
 
-  external Object get directionsOptions;
+  external Object /*MapDirectionsOptions|MapDirectionsOptionsLiteral*/ get directionsOptions;
 
-  external set directionsOptions(Object value);
+  external set directionsOptions(
+      Object /*MapDirectionsOptions|MapDirectionsOptionsLiteral*/ value);
 
   external Element get element;
 
   external set element(Element value);
 
-  external Object get locationBias;
+  external Object /*LatLng|LatLngBounds|Circle|String*/ get locationBias;
 
-  external set locationBias(Object value);
+  external set locationBias(Object /*LatLng|LatLngBounds|Circle|String*/ value);
 
   external LatLngBounds get locationRestriction;
 
@@ -152,17 +157,20 @@ class LocalContextMapViewOptions {
 
   external set map(GMap value);
 
-  external Object get pinOptionsSetup;
+  external Object /*PinOptions Function((bool isSelected, bool isHighlighted) p1)|PinOptions*/ get pinOptionsSetup;
 
-  external set pinOptionsSetup(Object value);
+  external set pinOptionsSetup(
+      Object /*PinOptions Function((bool isSelected, bool isHighlighted) p1)|PinOptions*/ value);
 
-  external Object get placeChooserViewSetup;
+  external Object /*PlaceChooserViewSetupOptions Function((PlaceChooserLayoutMode defaultLayoutMode, PlaceChooserPosition defaultPosition) p1)|PlaceChooserViewSetupOptions*/ get placeChooserViewSetup;
 
-  external set placeChooserViewSetup(Object value);
+  external set placeChooserViewSetup(
+      Object /*PlaceChooserViewSetupOptions Function((PlaceChooserLayoutMode defaultLayoutMode, PlaceChooserPosition defaultPosition) p1)|PlaceChooserViewSetupOptions*/ value);
 
-  external Object get placeDetailsViewSetup;
+  external Object /*PlaceDetailsViewSetupOptions Function((PlaceDetailsLayoutMode defaultLayoutMode, PlaceDetailsPosition defaultPosition) p1)|PlaceDetailsViewSetupOptions*/ get placeDetailsViewSetup;
 
-  external set placeDetailsViewSetup(Object value);
+  external set placeDetailsViewSetup(
+      Object /*PlaceDetailsViewSetupOptions Function((PlaceDetailsLayoutMode defaultLayoutMode, PlaceDetailsPosition defaultPosition) p1)|PlaceDetailsViewSetupOptions*/ value);
 }
 
 @GeneratedFrom(_LocalContextMapViewOptions)
