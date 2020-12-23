@@ -20,7 +20,7 @@ void main() {
   map.onClick.listen(showMaxZoom);
 }
 
-void showMaxZoom(MouseEvent e) async {
+void showMaxZoom(MapMouseEvent e) async {
   try {
     final response = await maxZoomService.getMaxZoomAtLatLng(e.latLng);
     infoWindow.content =

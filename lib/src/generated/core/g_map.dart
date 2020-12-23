@@ -182,16 +182,34 @@ abstract class _GMap extends MVCObject {
     return sc.stream;
   }
 
-  Stream<MouseEvent> get onDblclick {
-    StreamController<MouseEvent> sc; // ignore: close_sinks
+  Stream<MapMouseEvent> get onContextmenu {
+    StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    MapsEventListener mapsEventListener;
+    void start() => mapsEventListener = Event.addListener(
+          this,
+          'contextmenu',
+          allowInterop((MapMouseEvent event) => sc.add(event)),
+        );
+    void stop() => mapsEventListener.remove();
+    sc = StreamController<MapMouseEvent>(
+      onListen: start,
+      onCancel: stop,
+      onResume: start,
+      onPause: stop,
+    );
+    return sc.stream;
+  }
+
+  Stream<MapMouseEvent> get onDblclick {
+    StreamController<MapMouseEvent> sc; // ignore: close_sinks
     MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'dblclick',
-          allowInterop((MouseEvent event) => sc.add(event)),
+          allowInterop((MapMouseEvent event) => sc.add(event)),
         );
     void stop() => mapsEventListener.remove();
-    sc = StreamController<MouseEvent>(
+    sc = StreamController<MapMouseEvent>(
       onListen: start,
       onCancel: stop,
       onResume: start,
@@ -308,16 +326,16 @@ abstract class _GMap extends MVCObject {
     return sc.stream;
   }
 
-  Stream<MouseEvent> get onMousemove {
-    StreamController<MouseEvent> sc; // ignore: close_sinks
+  Stream<MapMouseEvent> get onMousemove {
+    StreamController<MapMouseEvent> sc; // ignore: close_sinks
     MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mousemove',
-          allowInterop((MouseEvent event) => sc.add(event)),
+          allowInterop((MapMouseEvent event) => sc.add(event)),
         );
     void stop() => mapsEventListener.remove();
-    sc = StreamController<MouseEvent>(
+    sc = StreamController<MapMouseEvent>(
       onListen: start,
       onCancel: stop,
       onResume: start,
@@ -326,16 +344,16 @@ abstract class _GMap extends MVCObject {
     return sc.stream;
   }
 
-  Stream<MouseEvent> get onMouseout {
-    StreamController<MouseEvent> sc; // ignore: close_sinks
+  Stream<MapMouseEvent> get onMouseout {
+    StreamController<MapMouseEvent> sc; // ignore: close_sinks
     MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseout',
-          allowInterop((MouseEvent event) => sc.add(event)),
+          allowInterop((MapMouseEvent event) => sc.add(event)),
         );
     void stop() => mapsEventListener.remove();
-    sc = StreamController<MouseEvent>(
+    sc = StreamController<MapMouseEvent>(
       onListen: start,
       onCancel: stop,
       onResume: start,
@@ -344,16 +362,16 @@ abstract class _GMap extends MVCObject {
     return sc.stream;
   }
 
-  Stream<MouseEvent> get onMouseover {
-    StreamController<MouseEvent> sc; // ignore: close_sinks
+  Stream<MapMouseEvent> get onMouseover {
+    StreamController<MapMouseEvent> sc; // ignore: close_sinks
     MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseover',
-          allowInterop((MouseEvent event) => sc.add(event)),
+          allowInterop((MapMouseEvent event) => sc.add(event)),
         );
     void stop() => mapsEventListener.remove();
-    sc = StreamController<MouseEvent>(
+    sc = StreamController<MapMouseEvent>(
       onListen: start,
       onCancel: stop,
       onResume: start,
@@ -380,16 +398,16 @@ abstract class _GMap extends MVCObject {
     return sc.stream;
   }
 
-  Stream<MouseEvent> get onRightclick {
-    StreamController<MouseEvent> sc; // ignore: close_sinks
+  Stream<MapMouseEvent> get onRightclick {
+    StreamController<MapMouseEvent> sc; // ignore: close_sinks
     MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'rightclick',
-          allowInterop((MouseEvent event) => sc.add(event)),
+          allowInterop((MapMouseEvent event) => sc.add(event)),
         );
     void stop() => mapsEventListener.remove();
-    sc = StreamController<MouseEvent>(
+    sc = StreamController<MapMouseEvent>(
       onListen: start,
       onCancel: stop,
       onResume: start,

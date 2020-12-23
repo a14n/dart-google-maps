@@ -132,6 +132,24 @@ abstract class _Data extends MVCObject {
     return sc.stream;
   }
 
+  Stream<DataMouseEvent> get onContextmenu {
+    StreamController<DataMouseEvent> sc; // ignore: close_sinks
+    MapsEventListener mapsEventListener;
+    void start() => mapsEventListener = Event.addListener(
+          this,
+          'contextmenu',
+          allowInterop((DataMouseEvent event) => sc.add(event)),
+        );
+    void stop() => mapsEventListener.remove();
+    sc = StreamController<DataMouseEvent>(
+      onListen: start,
+      onCancel: stop,
+      onResume: start,
+      onPause: stop,
+    );
+    return sc.stream;
+  }
+
   Stream<DataMouseEvent> get onDblclick {
     StreamController<DataMouseEvent> sc; // ignore: close_sinks
     MapsEventListener mapsEventListener;

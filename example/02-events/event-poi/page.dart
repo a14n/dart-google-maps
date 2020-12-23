@@ -15,7 +15,7 @@ void main() {
   ClickEventHandler(map, origin);
 }
 
-bool isIconMouseEvent(MouseEvent e) => hasProperty(e, 'placeId');
+bool isIconMouseEvent(MapMouseEvent e) => hasProperty(e, 'placeId');
 
 class ClickEventHandler {
   ClickEventHandler(this.map, this.origin) {
@@ -36,7 +36,7 @@ class ClickEventHandler {
   InfoWindow infowindow = InfoWindow();
   DivElement infowindowContent;
 
-  void handleClick(MouseEvent event) {
+  void handleClick(MapMouseEvent event) {
     print('You clicked on: ${event.latLng}');
 
     // If the event has a placeId, use it.

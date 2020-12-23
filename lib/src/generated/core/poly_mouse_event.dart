@@ -16,7 +16,7 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _PolyMouseEvent extends MouseEvent {
+abstract class _PolyMouseEvent extends MapMouseEvent {
   factory _PolyMouseEvent() => $js;
   num edge;
   num path;

@@ -25,7 +25,7 @@ void main() {
 
 /// Handles click events on a map, and adds a new point to the Polyline.
 /// Updates the encoding text area with the path's encoded values.
-void addLatLng(MouseEvent e) {
+void addLatLng(MapMouseEvent e) {
   final path = poly.path
     // Because path is an MVCArray, we can simply append a new coordinate
     // and it will automatically appear

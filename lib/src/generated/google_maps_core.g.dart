@@ -123,16 +123,34 @@ extension GMap$Ext on GMap {
     return sc.stream;
   }
 
-  Stream<MouseEvent> get onDblclick {
-    StreamController<MouseEvent> sc; // ignore: close_sinks
+  Stream<MapMouseEvent> get onContextmenu {
+    StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    MapsEventListener mapsEventListener;
+    void start() => mapsEventListener = Event.addListener(
+          this,
+          'contextmenu',
+          allowInterop((MapMouseEvent event) => sc.add(event)),
+        );
+    void stop() => mapsEventListener.remove();
+    sc = StreamController<MapMouseEvent>(
+      onListen: start,
+      onCancel: stop,
+      onResume: start,
+      onPause: stop,
+    );
+    return sc.stream;
+  }
+
+  Stream<MapMouseEvent> get onDblclick {
+    StreamController<MapMouseEvent> sc; // ignore: close_sinks
     MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'dblclick',
-          allowInterop((MouseEvent event) => sc.add(event)),
+          allowInterop((MapMouseEvent event) => sc.add(event)),
         );
     void stop() => mapsEventListener.remove();
-    sc = StreamController<MouseEvent>(
+    sc = StreamController<MapMouseEvent>(
       onListen: start,
       onCancel: stop,
       onResume: start,
@@ -249,16 +267,16 @@ extension GMap$Ext on GMap {
     return sc.stream;
   }
 
-  Stream<MouseEvent> get onMousemove {
-    StreamController<MouseEvent> sc; // ignore: close_sinks
+  Stream<MapMouseEvent> get onMousemove {
+    StreamController<MapMouseEvent> sc; // ignore: close_sinks
     MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mousemove',
-          allowInterop((MouseEvent event) => sc.add(event)),
+          allowInterop((MapMouseEvent event) => sc.add(event)),
         );
     void stop() => mapsEventListener.remove();
-    sc = StreamController<MouseEvent>(
+    sc = StreamController<MapMouseEvent>(
       onListen: start,
       onCancel: stop,
       onResume: start,
@@ -267,16 +285,16 @@ extension GMap$Ext on GMap {
     return sc.stream;
   }
 
-  Stream<MouseEvent> get onMouseout {
-    StreamController<MouseEvent> sc; // ignore: close_sinks
+  Stream<MapMouseEvent> get onMouseout {
+    StreamController<MapMouseEvent> sc; // ignore: close_sinks
     MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseout',
-          allowInterop((MouseEvent event) => sc.add(event)),
+          allowInterop((MapMouseEvent event) => sc.add(event)),
         );
     void stop() => mapsEventListener.remove();
-    sc = StreamController<MouseEvent>(
+    sc = StreamController<MapMouseEvent>(
       onListen: start,
       onCancel: stop,
       onResume: start,
@@ -285,16 +303,16 @@ extension GMap$Ext on GMap {
     return sc.stream;
   }
 
-  Stream<MouseEvent> get onMouseover {
-    StreamController<MouseEvent> sc; // ignore: close_sinks
+  Stream<MapMouseEvent> get onMouseover {
+    StreamController<MapMouseEvent> sc; // ignore: close_sinks
     MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseover',
-          allowInterop((MouseEvent event) => sc.add(event)),
+          allowInterop((MapMouseEvent event) => sc.add(event)),
         );
     void stop() => mapsEventListener.remove();
-    sc = StreamController<MouseEvent>(
+    sc = StreamController<MapMouseEvent>(
       onListen: start,
       onCancel: stop,
       onResume: start,
@@ -321,16 +339,16 @@ extension GMap$Ext on GMap {
     return sc.stream;
   }
 
-  Stream<MouseEvent> get onRightclick {
-    StreamController<MouseEvent> sc; // ignore: close_sinks
+  Stream<MapMouseEvent> get onRightclick {
+    StreamController<MapMouseEvent> sc; // ignore: close_sinks
     MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'rightclick',
-          allowInterop((MouseEvent event) => sc.add(event)),
+          allowInterop((MapMouseEvent event) => sc.add(event)),
         );
     void stop() => mapsEventListener.remove();
-    sc = StreamController<MouseEvent>(
+    sc = StreamController<MapMouseEvent>(
       onListen: start,
       onCancel: stop,
       onResume: start,
@@ -628,11 +646,16 @@ extension MapTypeStyle$Ext on MapTypeStyle {
   }
 }
 
-@GeneratedFrom(_MouseEvent)
+@GeneratedFrom(_MapMouseEvent)
 @JS()
 @anonymous
-class MouseEvent {
-  external factory MouseEvent();
+class MapMouseEvent {
+  external factory MapMouseEvent();
+
+  external Object /*MouseEvent|TouchEvent|PointerEvent|Object*/ get domEvent;
+
+  external set domEvent(
+      Object /*MouseEvent|TouchEvent|PointerEvent|Object*/ value);
 
   external LatLng get latLng;
 
@@ -644,7 +667,7 @@ class MouseEvent {
 @GeneratedFrom(_IconMouseEvent)
 @JS()
 @anonymous
-class IconMouseEvent extends MouseEvent {
+class IconMouseEvent extends MapMouseEvent {
   external factory IconMouseEvent();
 
   external String get placeId;
@@ -1225,16 +1248,16 @@ extension Marker$Ext on Marker {
     return sc.stream;
   }
 
-  Stream<MouseEvent> get onClick {
-    StreamController<MouseEvent> sc; // ignore: close_sinks
+  Stream<MapMouseEvent> get onClick {
+    StreamController<MapMouseEvent> sc; // ignore: close_sinks
     MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'click',
-          allowInterop((MouseEvent event) => sc.add(event)),
+          allowInterop((MapMouseEvent event) => sc.add(event)),
         );
     void stop() => mapsEventListener.remove();
-    sc = StreamController<MouseEvent>(
+    sc = StreamController<MapMouseEvent>(
       onListen: start,
       onCancel: stop,
       onResume: start,
@@ -1261,6 +1284,24 @@ extension Marker$Ext on Marker {
     return sc.stream;
   }
 
+  Stream<MapMouseEvent> get onContextmenu {
+    StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    MapsEventListener mapsEventListener;
+    void start() => mapsEventListener = Event.addListener(
+          this,
+          'contextmenu',
+          allowInterop((MapMouseEvent event) => sc.add(event)),
+        );
+    void stop() => mapsEventListener.remove();
+    sc = StreamController<MapMouseEvent>(
+      onListen: start,
+      onCancel: stop,
+      onResume: start,
+      onPause: stop,
+    );
+    return sc.stream;
+  }
+
   Stream<void> get onCursorChanged {
     StreamController<void> sc; // ignore: close_sinks
     MapsEventListener mapsEventListener;
@@ -1279,16 +1320,16 @@ extension Marker$Ext on Marker {
     return sc.stream;
   }
 
-  Stream<MouseEvent> get onDblclick {
-    StreamController<MouseEvent> sc; // ignore: close_sinks
+  Stream<MapMouseEvent> get onDblclick {
+    StreamController<MapMouseEvent> sc; // ignore: close_sinks
     MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'dblclick',
-          allowInterop((MouseEvent event) => sc.add(event)),
+          allowInterop((MapMouseEvent event) => sc.add(event)),
         );
     void stop() => mapsEventListener.remove();
-    sc = StreamController<MouseEvent>(
+    sc = StreamController<MapMouseEvent>(
       onListen: start,
       onCancel: stop,
       onResume: start,
@@ -1297,16 +1338,16 @@ extension Marker$Ext on Marker {
     return sc.stream;
   }
 
-  Stream<MouseEvent> get onDrag {
-    StreamController<MouseEvent> sc; // ignore: close_sinks
+  Stream<MapMouseEvent> get onDrag {
+    StreamController<MapMouseEvent> sc; // ignore: close_sinks
     MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'drag',
-          allowInterop((MouseEvent event) => sc.add(event)),
+          allowInterop((MapMouseEvent event) => sc.add(event)),
         );
     void stop() => mapsEventListener.remove();
-    sc = StreamController<MouseEvent>(
+    sc = StreamController<MapMouseEvent>(
       onListen: start,
       onCancel: stop,
       onResume: start,
@@ -1315,16 +1356,16 @@ extension Marker$Ext on Marker {
     return sc.stream;
   }
 
-  Stream<MouseEvent> get onDragend {
-    StreamController<MouseEvent> sc; // ignore: close_sinks
+  Stream<MapMouseEvent> get onDragend {
+    StreamController<MapMouseEvent> sc; // ignore: close_sinks
     MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'dragend',
-          allowInterop((MouseEvent event) => sc.add(event)),
+          allowInterop((MapMouseEvent event) => sc.add(event)),
         );
     void stop() => mapsEventListener.remove();
-    sc = StreamController<MouseEvent>(
+    sc = StreamController<MapMouseEvent>(
       onListen: start,
       onCancel: stop,
       onResume: start,
@@ -1351,16 +1392,16 @@ extension Marker$Ext on Marker {
     return sc.stream;
   }
 
-  Stream<MouseEvent> get onDragstart {
-    StreamController<MouseEvent> sc; // ignore: close_sinks
+  Stream<MapMouseEvent> get onDragstart {
+    StreamController<MapMouseEvent> sc; // ignore: close_sinks
     MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'dragstart',
-          allowInterop((MouseEvent event) => sc.add(event)),
+          allowInterop((MapMouseEvent event) => sc.add(event)),
         );
     void stop() => mapsEventListener.remove();
-    sc = StreamController<MouseEvent>(
+    sc = StreamController<MapMouseEvent>(
       onListen: start,
       onCancel: stop,
       onResume: start,
@@ -1405,16 +1446,16 @@ extension Marker$Ext on Marker {
     return sc.stream;
   }
 
-  Stream<MouseEvent> get onMousedown {
-    StreamController<MouseEvent> sc; // ignore: close_sinks
+  Stream<MapMouseEvent> get onMousedown {
+    StreamController<MapMouseEvent> sc; // ignore: close_sinks
     MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mousedown',
-          allowInterop((MouseEvent event) => sc.add(event)),
+          allowInterop((MapMouseEvent event) => sc.add(event)),
         );
     void stop() => mapsEventListener.remove();
-    sc = StreamController<MouseEvent>(
+    sc = StreamController<MapMouseEvent>(
       onListen: start,
       onCancel: stop,
       onResume: start,
@@ -1423,16 +1464,16 @@ extension Marker$Ext on Marker {
     return sc.stream;
   }
 
-  Stream<MouseEvent> get onMouseout {
-    StreamController<MouseEvent> sc; // ignore: close_sinks
+  Stream<MapMouseEvent> get onMouseout {
+    StreamController<MapMouseEvent> sc; // ignore: close_sinks
     MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseout',
-          allowInterop((MouseEvent event) => sc.add(event)),
+          allowInterop((MapMouseEvent event) => sc.add(event)),
         );
     void stop() => mapsEventListener.remove();
-    sc = StreamController<MouseEvent>(
+    sc = StreamController<MapMouseEvent>(
       onListen: start,
       onCancel: stop,
       onResume: start,
@@ -1441,16 +1482,16 @@ extension Marker$Ext on Marker {
     return sc.stream;
   }
 
-  Stream<MouseEvent> get onMouseover {
-    StreamController<MouseEvent> sc; // ignore: close_sinks
+  Stream<MapMouseEvent> get onMouseover {
+    StreamController<MapMouseEvent> sc; // ignore: close_sinks
     MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseover',
-          allowInterop((MouseEvent event) => sc.add(event)),
+          allowInterop((MapMouseEvent event) => sc.add(event)),
         );
     void stop() => mapsEventListener.remove();
-    sc = StreamController<MouseEvent>(
+    sc = StreamController<MapMouseEvent>(
       onListen: start,
       onCancel: stop,
       onResume: start,
@@ -1459,16 +1500,16 @@ extension Marker$Ext on Marker {
     return sc.stream;
   }
 
-  Stream<MouseEvent> get onMouseup {
-    StreamController<MouseEvent> sc; // ignore: close_sinks
+  Stream<MapMouseEvent> get onMouseup {
+    StreamController<MapMouseEvent> sc; // ignore: close_sinks
     MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseup',
-          allowInterop((MouseEvent event) => sc.add(event)),
+          allowInterop((MapMouseEvent event) => sc.add(event)),
         );
     void stop() => mapsEventListener.remove();
-    sc = StreamController<MouseEvent>(
+    sc = StreamController<MapMouseEvent>(
       onListen: start,
       onCancel: stop,
       onResume: start,
@@ -1495,16 +1536,16 @@ extension Marker$Ext on Marker {
     return sc.stream;
   }
 
-  Stream<MouseEvent> get onRightclick {
-    StreamController<MouseEvent> sc; // ignore: close_sinks
+  Stream<MapMouseEvent> get onRightclick {
+    StreamController<MapMouseEvent> sc; // ignore: close_sinks
     MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'rightclick',
-          allowInterop((MouseEvent event) => sc.add(event)),
+          allowInterop((MapMouseEvent event) => sc.add(event)),
         );
     void stop() => mapsEventListener.remove();
-    sc = StreamController<MouseEvent>(
+    sc = StreamController<MapMouseEvent>(
       onListen: start,
       onCancel: stop,
       onResume: start,
@@ -2097,6 +2138,24 @@ extension Polyline$Ext on Polyline {
     return sc.stream;
   }
 
+  Stream<PolyMouseEvent> get onContextmenu {
+    StreamController<PolyMouseEvent> sc; // ignore: close_sinks
+    MapsEventListener mapsEventListener;
+    void start() => mapsEventListener = Event.addListener(
+          this,
+          'contextmenu',
+          allowInterop((PolyMouseEvent event) => sc.add(event)),
+        );
+    void stop() => mapsEventListener.remove();
+    sc = StreamController<PolyMouseEvent>(
+      onListen: start,
+      onCancel: stop,
+      onResume: start,
+      onPause: stop,
+    );
+    return sc.stream;
+  }
+
   Stream<PolyMouseEvent> get onDblclick {
     StreamController<PolyMouseEvent> sc; // ignore: close_sinks
     MapsEventListener mapsEventListener;
@@ -2115,16 +2174,16 @@ extension Polyline$Ext on Polyline {
     return sc.stream;
   }
 
-  Stream<MouseEvent> get onDrag {
-    StreamController<MouseEvent> sc; // ignore: close_sinks
+  Stream<MapMouseEvent> get onDrag {
+    StreamController<MapMouseEvent> sc; // ignore: close_sinks
     MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'drag',
-          allowInterop((MouseEvent event) => sc.add(event)),
+          allowInterop((MapMouseEvent event) => sc.add(event)),
         );
     void stop() => mapsEventListener.remove();
-    sc = StreamController<MouseEvent>(
+    sc = StreamController<MapMouseEvent>(
       onListen: start,
       onCancel: stop,
       onResume: start,
@@ -2133,16 +2192,16 @@ extension Polyline$Ext on Polyline {
     return sc.stream;
   }
 
-  Stream<MouseEvent> get onDragend {
-    StreamController<MouseEvent> sc; // ignore: close_sinks
+  Stream<MapMouseEvent> get onDragend {
+    StreamController<MapMouseEvent> sc; // ignore: close_sinks
     MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'dragend',
-          allowInterop((MouseEvent event) => sc.add(event)),
+          allowInterop((MapMouseEvent event) => sc.add(event)),
         );
     void stop() => mapsEventListener.remove();
-    sc = StreamController<MouseEvent>(
+    sc = StreamController<MapMouseEvent>(
       onListen: start,
       onCancel: stop,
       onResume: start,
@@ -2151,16 +2210,16 @@ extension Polyline$Ext on Polyline {
     return sc.stream;
   }
 
-  Stream<MouseEvent> get onDragstart {
-    StreamController<MouseEvent> sc; // ignore: close_sinks
+  Stream<MapMouseEvent> get onDragstart {
+    StreamController<MapMouseEvent> sc; // ignore: close_sinks
     MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'dragstart',
-          allowInterop((MouseEvent event) => sc.add(event)),
+          allowInterop((MapMouseEvent event) => sc.add(event)),
         );
     void stop() => mapsEventListener.remove();
-    sc = StreamController<MouseEvent>(
+    sc = StreamController<MapMouseEvent>(
       onListen: start,
       onCancel: stop,
       onResume: start,
@@ -2439,6 +2498,24 @@ extension Polygon$Ext on Polygon {
     return sc.stream;
   }
 
+  Stream<PolyMouseEvent> get onContextmenu {
+    StreamController<PolyMouseEvent> sc; // ignore: close_sinks
+    MapsEventListener mapsEventListener;
+    void start() => mapsEventListener = Event.addListener(
+          this,
+          'contextmenu',
+          allowInterop((PolyMouseEvent event) => sc.add(event)),
+        );
+    void stop() => mapsEventListener.remove();
+    sc = StreamController<PolyMouseEvent>(
+      onListen: start,
+      onCancel: stop,
+      onResume: start,
+      onPause: stop,
+    );
+    return sc.stream;
+  }
+
   Stream<PolyMouseEvent> get onDblclick {
     StreamController<PolyMouseEvent> sc; // ignore: close_sinks
     MapsEventListener mapsEventListener;
@@ -2457,16 +2534,16 @@ extension Polygon$Ext on Polygon {
     return sc.stream;
   }
 
-  Stream<MouseEvent> get onDrag {
-    StreamController<MouseEvent> sc; // ignore: close_sinks
+  Stream<MapMouseEvent> get onDrag {
+    StreamController<MapMouseEvent> sc; // ignore: close_sinks
     MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'drag',
-          allowInterop((MouseEvent event) => sc.add(event)),
+          allowInterop((MapMouseEvent event) => sc.add(event)),
         );
     void stop() => mapsEventListener.remove();
-    sc = StreamController<MouseEvent>(
+    sc = StreamController<MapMouseEvent>(
       onListen: start,
       onCancel: stop,
       onResume: start,
@@ -2475,16 +2552,16 @@ extension Polygon$Ext on Polygon {
     return sc.stream;
   }
 
-  Stream<MouseEvent> get onDragend {
-    StreamController<MouseEvent> sc; // ignore: close_sinks
+  Stream<MapMouseEvent> get onDragend {
+    StreamController<MapMouseEvent> sc; // ignore: close_sinks
     MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'dragend',
-          allowInterop((MouseEvent event) => sc.add(event)),
+          allowInterop((MapMouseEvent event) => sc.add(event)),
         );
     void stop() => mapsEventListener.remove();
-    sc = StreamController<MouseEvent>(
+    sc = StreamController<MapMouseEvent>(
       onListen: start,
       onCancel: stop,
       onResume: start,
@@ -2493,16 +2570,16 @@ extension Polygon$Ext on Polygon {
     return sc.stream;
   }
 
-  Stream<MouseEvent> get onDragstart {
-    StreamController<MouseEvent> sc; // ignore: close_sinks
+  Stream<MapMouseEvent> get onDragstart {
+    StreamController<MapMouseEvent> sc; // ignore: close_sinks
     MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'dragstart',
-          allowInterop((MouseEvent event) => sc.add(event)),
+          allowInterop((MapMouseEvent event) => sc.add(event)),
         );
     void stop() => mapsEventListener.remove();
-    sc = StreamController<MouseEvent>(
+    sc = StreamController<MapMouseEvent>(
       onListen: start,
       onCancel: stop,
       onResume: start,
@@ -2728,7 +2805,7 @@ class PolygonOptions {
 @GeneratedFrom(_PolyMouseEvent)
 @JS()
 @anonymous
-class PolyMouseEvent extends MouseEvent {
+class PolyMouseEvent extends MapMouseEvent {
   external factory PolyMouseEvent();
 
   external num get edge;
@@ -2783,16 +2860,16 @@ extension Rectangle$Ext on Rectangle {
     return sc.stream;
   }
 
-  Stream<MouseEvent> get onClick {
-    StreamController<MouseEvent> sc; // ignore: close_sinks
+  Stream<MapMouseEvent> get onClick {
+    StreamController<MapMouseEvent> sc; // ignore: close_sinks
     MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'click',
-          allowInterop((MouseEvent event) => sc.add(event)),
+          allowInterop((MapMouseEvent event) => sc.add(event)),
         );
     void stop() => mapsEventListener.remove();
-    sc = StreamController<MouseEvent>(
+    sc = StreamController<MapMouseEvent>(
       onListen: start,
       onCancel: stop,
       onResume: start,
@@ -2801,16 +2878,34 @@ extension Rectangle$Ext on Rectangle {
     return sc.stream;
   }
 
-  Stream<MouseEvent> get onDblclick {
-    StreamController<MouseEvent> sc; // ignore: close_sinks
+  Stream<MapMouseEvent> get onContextmenu {
+    StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    MapsEventListener mapsEventListener;
+    void start() => mapsEventListener = Event.addListener(
+          this,
+          'contextmenu',
+          allowInterop((MapMouseEvent event) => sc.add(event)),
+        );
+    void stop() => mapsEventListener.remove();
+    sc = StreamController<MapMouseEvent>(
+      onListen: start,
+      onCancel: stop,
+      onResume: start,
+      onPause: stop,
+    );
+    return sc.stream;
+  }
+
+  Stream<MapMouseEvent> get onDblclick {
+    StreamController<MapMouseEvent> sc; // ignore: close_sinks
     MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'dblclick',
-          allowInterop((MouseEvent event) => sc.add(event)),
+          allowInterop((MapMouseEvent event) => sc.add(event)),
         );
     void stop() => mapsEventListener.remove();
-    sc = StreamController<MouseEvent>(
+    sc = StreamController<MapMouseEvent>(
       onListen: start,
       onCancel: stop,
       onResume: start,
@@ -2819,16 +2914,16 @@ extension Rectangle$Ext on Rectangle {
     return sc.stream;
   }
 
-  Stream<MouseEvent> get onDrag {
-    StreamController<MouseEvent> sc; // ignore: close_sinks
+  Stream<MapMouseEvent> get onDrag {
+    StreamController<MapMouseEvent> sc; // ignore: close_sinks
     MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'drag',
-          allowInterop((MouseEvent event) => sc.add(event)),
+          allowInterop((MapMouseEvent event) => sc.add(event)),
         );
     void stop() => mapsEventListener.remove();
-    sc = StreamController<MouseEvent>(
+    sc = StreamController<MapMouseEvent>(
       onListen: start,
       onCancel: stop,
       onResume: start,
@@ -2837,16 +2932,16 @@ extension Rectangle$Ext on Rectangle {
     return sc.stream;
   }
 
-  Stream<MouseEvent> get onDragend {
-    StreamController<MouseEvent> sc; // ignore: close_sinks
+  Stream<MapMouseEvent> get onDragend {
+    StreamController<MapMouseEvent> sc; // ignore: close_sinks
     MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'dragend',
-          allowInterop((MouseEvent event) => sc.add(event)),
+          allowInterop((MapMouseEvent event) => sc.add(event)),
         );
     void stop() => mapsEventListener.remove();
-    sc = StreamController<MouseEvent>(
+    sc = StreamController<MapMouseEvent>(
       onListen: start,
       onCancel: stop,
       onResume: start,
@@ -2855,16 +2950,16 @@ extension Rectangle$Ext on Rectangle {
     return sc.stream;
   }
 
-  Stream<MouseEvent> get onDragstart {
-    StreamController<MouseEvent> sc; // ignore: close_sinks
+  Stream<MapMouseEvent> get onDragstart {
+    StreamController<MapMouseEvent> sc; // ignore: close_sinks
     MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'dragstart',
-          allowInterop((MouseEvent event) => sc.add(event)),
+          allowInterop((MapMouseEvent event) => sc.add(event)),
         );
     void stop() => mapsEventListener.remove();
-    sc = StreamController<MouseEvent>(
+    sc = StreamController<MapMouseEvent>(
       onListen: start,
       onCancel: stop,
       onResume: start,
@@ -2873,16 +2968,16 @@ extension Rectangle$Ext on Rectangle {
     return sc.stream;
   }
 
-  Stream<MouseEvent> get onMousedown {
-    StreamController<MouseEvent> sc; // ignore: close_sinks
+  Stream<MapMouseEvent> get onMousedown {
+    StreamController<MapMouseEvent> sc; // ignore: close_sinks
     MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mousedown',
-          allowInterop((MouseEvent event) => sc.add(event)),
+          allowInterop((MapMouseEvent event) => sc.add(event)),
         );
     void stop() => mapsEventListener.remove();
-    sc = StreamController<MouseEvent>(
+    sc = StreamController<MapMouseEvent>(
       onListen: start,
       onCancel: stop,
       onResume: start,
@@ -2891,16 +2986,16 @@ extension Rectangle$Ext on Rectangle {
     return sc.stream;
   }
 
-  Stream<MouseEvent> get onMousemove {
-    StreamController<MouseEvent> sc; // ignore: close_sinks
+  Stream<MapMouseEvent> get onMousemove {
+    StreamController<MapMouseEvent> sc; // ignore: close_sinks
     MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mousemove',
-          allowInterop((MouseEvent event) => sc.add(event)),
+          allowInterop((MapMouseEvent event) => sc.add(event)),
         );
     void stop() => mapsEventListener.remove();
-    sc = StreamController<MouseEvent>(
+    sc = StreamController<MapMouseEvent>(
       onListen: start,
       onCancel: stop,
       onResume: start,
@@ -2909,16 +3004,16 @@ extension Rectangle$Ext on Rectangle {
     return sc.stream;
   }
 
-  Stream<MouseEvent> get onMouseout {
-    StreamController<MouseEvent> sc; // ignore: close_sinks
+  Stream<MapMouseEvent> get onMouseout {
+    StreamController<MapMouseEvent> sc; // ignore: close_sinks
     MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseout',
-          allowInterop((MouseEvent event) => sc.add(event)),
+          allowInterop((MapMouseEvent event) => sc.add(event)),
         );
     void stop() => mapsEventListener.remove();
-    sc = StreamController<MouseEvent>(
+    sc = StreamController<MapMouseEvent>(
       onListen: start,
       onCancel: stop,
       onResume: start,
@@ -2927,16 +3022,16 @@ extension Rectangle$Ext on Rectangle {
     return sc.stream;
   }
 
-  Stream<MouseEvent> get onMouseover {
-    StreamController<MouseEvent> sc; // ignore: close_sinks
+  Stream<MapMouseEvent> get onMouseover {
+    StreamController<MapMouseEvent> sc; // ignore: close_sinks
     MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseover',
-          allowInterop((MouseEvent event) => sc.add(event)),
+          allowInterop((MapMouseEvent event) => sc.add(event)),
         );
     void stop() => mapsEventListener.remove();
-    sc = StreamController<MouseEvent>(
+    sc = StreamController<MapMouseEvent>(
       onListen: start,
       onCancel: stop,
       onResume: start,
@@ -2945,16 +3040,16 @@ extension Rectangle$Ext on Rectangle {
     return sc.stream;
   }
 
-  Stream<MouseEvent> get onMouseup {
-    StreamController<MouseEvent> sc; // ignore: close_sinks
+  Stream<MapMouseEvent> get onMouseup {
+    StreamController<MapMouseEvent> sc; // ignore: close_sinks
     MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseup',
-          allowInterop((MouseEvent event) => sc.add(event)),
+          allowInterop((MapMouseEvent event) => sc.add(event)),
         );
     void stop() => mapsEventListener.remove();
-    sc = StreamController<MouseEvent>(
+    sc = StreamController<MapMouseEvent>(
       onListen: start,
       onCancel: stop,
       onResume: start,
@@ -2963,16 +3058,16 @@ extension Rectangle$Ext on Rectangle {
     return sc.stream;
   }
 
-  Stream<MouseEvent> get onRightclick {
-    StreamController<MouseEvent> sc; // ignore: close_sinks
+  Stream<MapMouseEvent> get onRightclick {
+    StreamController<MapMouseEvent> sc; // ignore: close_sinks
     MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'rightclick',
-          allowInterop((MouseEvent event) => sc.add(event)),
+          allowInterop((MapMouseEvent event) => sc.add(event)),
         );
     void stop() => mapsEventListener.remove();
-    sc = StreamController<MouseEvent>(
+    sc = StreamController<MapMouseEvent>(
       onListen: start,
       onCancel: stop,
       onResume: start,
@@ -3117,16 +3212,16 @@ extension Circle$Ext on Circle {
     return sc.stream;
   }
 
-  Stream<MouseEvent> get onClick {
-    StreamController<MouseEvent> sc; // ignore: close_sinks
+  Stream<MapMouseEvent> get onClick {
+    StreamController<MapMouseEvent> sc; // ignore: close_sinks
     MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'click',
-          allowInterop((MouseEvent event) => sc.add(event)),
+          allowInterop((MapMouseEvent event) => sc.add(event)),
         );
     void stop() => mapsEventListener.remove();
-    sc = StreamController<MouseEvent>(
+    sc = StreamController<MapMouseEvent>(
       onListen: start,
       onCancel: stop,
       onResume: start,
@@ -3135,16 +3230,16 @@ extension Circle$Ext on Circle {
     return sc.stream;
   }
 
-  Stream<MouseEvent> get onDblclick {
-    StreamController<MouseEvent> sc; // ignore: close_sinks
+  Stream<MapMouseEvent> get onDblclick {
+    StreamController<MapMouseEvent> sc; // ignore: close_sinks
     MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'dblclick',
-          allowInterop((MouseEvent event) => sc.add(event)),
+          allowInterop((MapMouseEvent event) => sc.add(event)),
         );
     void stop() => mapsEventListener.remove();
-    sc = StreamController<MouseEvent>(
+    sc = StreamController<MapMouseEvent>(
       onListen: start,
       onCancel: stop,
       onResume: start,
@@ -3153,16 +3248,16 @@ extension Circle$Ext on Circle {
     return sc.stream;
   }
 
-  Stream<MouseEvent> get onDrag {
-    StreamController<MouseEvent> sc; // ignore: close_sinks
+  Stream<MapMouseEvent> get onDrag {
+    StreamController<MapMouseEvent> sc; // ignore: close_sinks
     MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'drag',
-          allowInterop((MouseEvent event) => sc.add(event)),
+          allowInterop((MapMouseEvent event) => sc.add(event)),
         );
     void stop() => mapsEventListener.remove();
-    sc = StreamController<MouseEvent>(
+    sc = StreamController<MapMouseEvent>(
       onListen: start,
       onCancel: stop,
       onResume: start,
@@ -3171,16 +3266,16 @@ extension Circle$Ext on Circle {
     return sc.stream;
   }
 
-  Stream<MouseEvent> get onDragend {
-    StreamController<MouseEvent> sc; // ignore: close_sinks
+  Stream<MapMouseEvent> get onDragend {
+    StreamController<MapMouseEvent> sc; // ignore: close_sinks
     MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'dragend',
-          allowInterop((MouseEvent event) => sc.add(event)),
+          allowInterop((MapMouseEvent event) => sc.add(event)),
         );
     void stop() => mapsEventListener.remove();
-    sc = StreamController<MouseEvent>(
+    sc = StreamController<MapMouseEvent>(
       onListen: start,
       onCancel: stop,
       onResume: start,
@@ -3189,16 +3284,16 @@ extension Circle$Ext on Circle {
     return sc.stream;
   }
 
-  Stream<MouseEvent> get onDragstart {
-    StreamController<MouseEvent> sc; // ignore: close_sinks
+  Stream<MapMouseEvent> get onDragstart {
+    StreamController<MapMouseEvent> sc; // ignore: close_sinks
     MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'dragstart',
-          allowInterop((MouseEvent event) => sc.add(event)),
+          allowInterop((MapMouseEvent event) => sc.add(event)),
         );
     void stop() => mapsEventListener.remove();
-    sc = StreamController<MouseEvent>(
+    sc = StreamController<MapMouseEvent>(
       onListen: start,
       onCancel: stop,
       onResume: start,
@@ -3207,16 +3302,16 @@ extension Circle$Ext on Circle {
     return sc.stream;
   }
 
-  Stream<MouseEvent> get onMousedown {
-    StreamController<MouseEvent> sc; // ignore: close_sinks
+  Stream<MapMouseEvent> get onMousedown {
+    StreamController<MapMouseEvent> sc; // ignore: close_sinks
     MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mousedown',
-          allowInterop((MouseEvent event) => sc.add(event)),
+          allowInterop((MapMouseEvent event) => sc.add(event)),
         );
     void stop() => mapsEventListener.remove();
-    sc = StreamController<MouseEvent>(
+    sc = StreamController<MapMouseEvent>(
       onListen: start,
       onCancel: stop,
       onResume: start,
@@ -3225,16 +3320,16 @@ extension Circle$Ext on Circle {
     return sc.stream;
   }
 
-  Stream<MouseEvent> get onMousemove {
-    StreamController<MouseEvent> sc; // ignore: close_sinks
+  Stream<MapMouseEvent> get onMousemove {
+    StreamController<MapMouseEvent> sc; // ignore: close_sinks
     MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mousemove',
-          allowInterop((MouseEvent event) => sc.add(event)),
+          allowInterop((MapMouseEvent event) => sc.add(event)),
         );
     void stop() => mapsEventListener.remove();
-    sc = StreamController<MouseEvent>(
+    sc = StreamController<MapMouseEvent>(
       onListen: start,
       onCancel: stop,
       onResume: start,
@@ -3243,16 +3338,16 @@ extension Circle$Ext on Circle {
     return sc.stream;
   }
 
-  Stream<MouseEvent> get onMouseout {
-    StreamController<MouseEvent> sc; // ignore: close_sinks
+  Stream<MapMouseEvent> get onMouseout {
+    StreamController<MapMouseEvent> sc; // ignore: close_sinks
     MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseout',
-          allowInterop((MouseEvent event) => sc.add(event)),
+          allowInterop((MapMouseEvent event) => sc.add(event)),
         );
     void stop() => mapsEventListener.remove();
-    sc = StreamController<MouseEvent>(
+    sc = StreamController<MapMouseEvent>(
       onListen: start,
       onCancel: stop,
       onResume: start,
@@ -3261,16 +3356,16 @@ extension Circle$Ext on Circle {
     return sc.stream;
   }
 
-  Stream<MouseEvent> get onMouseover {
-    StreamController<MouseEvent> sc; // ignore: close_sinks
+  Stream<MapMouseEvent> get onMouseover {
+    StreamController<MapMouseEvent> sc; // ignore: close_sinks
     MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseover',
-          allowInterop((MouseEvent event) => sc.add(event)),
+          allowInterop((MapMouseEvent event) => sc.add(event)),
         );
     void stop() => mapsEventListener.remove();
-    sc = StreamController<MouseEvent>(
+    sc = StreamController<MapMouseEvent>(
       onListen: start,
       onCancel: stop,
       onResume: start,
@@ -3279,16 +3374,16 @@ extension Circle$Ext on Circle {
     return sc.stream;
   }
 
-  Stream<MouseEvent> get onMouseup {
-    StreamController<MouseEvent> sc; // ignore: close_sinks
+  Stream<MapMouseEvent> get onMouseup {
+    StreamController<MapMouseEvent> sc; // ignore: close_sinks
     MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseup',
-          allowInterop((MouseEvent event) => sc.add(event)),
+          allowInterop((MapMouseEvent event) => sc.add(event)),
         );
     void stop() => mapsEventListener.remove();
-    sc = StreamController<MouseEvent>(
+    sc = StreamController<MapMouseEvent>(
       onListen: start,
       onCancel: stop,
       onResume: start,
@@ -3315,16 +3410,16 @@ extension Circle$Ext on Circle {
     return sc.stream;
   }
 
-  Stream<MouseEvent> get onRightclick {
-    StreamController<MouseEvent> sc; // ignore: close_sinks
+  Stream<MapMouseEvent> get onRightclick {
+    StreamController<MapMouseEvent> sc; // ignore: close_sinks
     MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'rightclick',
-          allowInterop((MouseEvent event) => sc.add(event)),
+          allowInterop((MapMouseEvent event) => sc.add(event)),
         );
     void stop() => mapsEventListener.remove();
-    sc = StreamController<MouseEvent>(
+    sc = StreamController<MapMouseEvent>(
       onListen: start,
       onCancel: stop,
       onResume: start,
@@ -3509,6 +3604,24 @@ extension Data$Ext on Data {
     void start() => mapsEventListener = Event.addListener(
           this,
           'click',
+          allowInterop((DataMouseEvent event) => sc.add(event)),
+        );
+    void stop() => mapsEventListener.remove();
+    sc = StreamController<DataMouseEvent>(
+      onListen: start,
+      onCancel: stop,
+      onResume: start,
+      onPause: stop,
+    );
+    return sc.stream;
+  }
+
+  Stream<DataMouseEvent> get onContextmenu {
+    StreamController<DataMouseEvent> sc; // ignore: close_sinks
+    MapsEventListener mapsEventListener;
+    void start() => mapsEventListener = Event.addListener(
+          this,
+          'contextmenu',
           allowInterop((DataMouseEvent event) => sc.add(event)),
         );
     void stop() => mapsEventListener.remove();
@@ -4203,7 +4316,7 @@ extension DataGeometryCollection$Ext on DataGeometryCollection {
 @GeneratedFrom(_DataMouseEvent)
 @JS()
 @anonymous
-class DataMouseEvent extends MouseEvent {
+class DataMouseEvent extends MapMouseEvent {
   external factory DataMouseEvent();
 
   external DataFeature get feature;
@@ -4861,16 +4974,16 @@ extension GroundOverlay$Ext on GroundOverlay {
   String get url => _getUrl();
   set map(GMap map) => _setMap(map);
   set opacity(num opacity) => _setOpacity(opacity);
-  Stream<MouseEvent> get onClick {
-    StreamController<MouseEvent> sc; // ignore: close_sinks
+  Stream<MapMouseEvent> get onClick {
+    StreamController<MapMouseEvent> sc; // ignore: close_sinks
     MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'click',
-          allowInterop((MouseEvent event) => sc.add(event)),
+          allowInterop((MapMouseEvent event) => sc.add(event)),
         );
     void stop() => mapsEventListener.remove();
-    sc = StreamController<MouseEvent>(
+    sc = StreamController<MapMouseEvent>(
       onListen: start,
       onCancel: stop,
       onResume: start,
@@ -4879,16 +4992,16 @@ extension GroundOverlay$Ext on GroundOverlay {
     return sc.stream;
   }
 
-  Stream<MouseEvent> get onDblclick {
-    StreamController<MouseEvent> sc; // ignore: close_sinks
+  Stream<MapMouseEvent> get onDblclick {
+    StreamController<MapMouseEvent> sc; // ignore: close_sinks
     MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'dblclick',
-          allowInterop((MouseEvent event) => sc.add(event)),
+          allowInterop((MapMouseEvent event) => sc.add(event)),
         );
     void stop() => mapsEventListener.remove();
-    sc = StreamController<MouseEvent>(
+    sc = StreamController<MapMouseEvent>(
       onListen: start,
       onCancel: stop,
       onResume: start,

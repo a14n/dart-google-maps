@@ -21,7 +21,7 @@ void main() {
   map.onClick.listen(getElevation);
 }
 
-void getElevation(MouseEvent e) {
+void getElevation(MapMouseEvent e) {
   final locations = <LatLng>[];
 
   // Retrieve the clicked location and push it on the array

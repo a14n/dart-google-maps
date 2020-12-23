@@ -30,7 +30,7 @@ final customClassName = <String, String>{
   'DataStylingFunction': 'function(Data.Feature): Data.StyleOptions',
   'LocationBias':
       'LatLng|LatLngLiteral|LatLngBounds|LatLngBoundsLiteral|Circle|CircleLiteral|string',
-  'MouseEvent|IconMouseEvent': 'IconMouseEvent',
+  'MapMouseEvent|IconMouseEvent': 'IconMouseEvent',
   'LocationRestriction': 'LatLngBounds|LatLngBoundsLiteral',
   'Error': 'Object',
 };

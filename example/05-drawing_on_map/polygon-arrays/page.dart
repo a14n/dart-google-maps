@@ -33,7 +33,7 @@ void main() {
   infoWindow = InfoWindow();
 }
 
-void showArrays(MouseEvent e) {
+void showArrays(MapMouseEvent e) {
   // Since this Polygon only has one path, we can call getPath()
   // to return the MVCArray of LatLngs
   final vertices = bermudaTriangle.path;

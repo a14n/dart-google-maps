@@ -107,6 +107,24 @@ abstract class _Polygon extends MVCObject {
     return sc.stream;
   }
 
+  Stream<PolyMouseEvent> get onContextmenu {
+    StreamController<PolyMouseEvent> sc; // ignore: close_sinks
+    MapsEventListener mapsEventListener;
+    void start() => mapsEventListener = Event.addListener(
+          this,
+          'contextmenu',
+          allowInterop((PolyMouseEvent event) => sc.add(event)),
+        );
+    void stop() => mapsEventListener.remove();
+    sc = StreamController<PolyMouseEvent>(
+      onListen: start,
+      onCancel: stop,
+      onResume: start,
+      onPause: stop,
+    );
+    return sc.stream;
+  }
+
   Stream<PolyMouseEvent> get onDblclick {
     StreamController<PolyMouseEvent> sc; // ignore: close_sinks
     MapsEventListener mapsEventListener;
@@ -125,16 +143,16 @@ abstract class _Polygon extends MVCObject {
     return sc.stream;
   }
 
-  Stream<MouseEvent> get onDrag {
-    StreamController<MouseEvent> sc; // ignore: close_sinks
+  Stream<MapMouseEvent> get onDrag {
+    StreamController<MapMouseEvent> sc; // ignore: close_sinks
     MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'drag',
-          allowInterop((MouseEvent event) => sc.add(event)),
+          allowInterop((MapMouseEvent event) => sc.add(event)),
         );
     void stop() => mapsEventListener.remove();
-    sc = StreamController<MouseEvent>(
+    sc = StreamController<MapMouseEvent>(
       onListen: start,
       onCancel: stop,
       onResume: start,
@@ -143,16 +161,16 @@ abstract class _Polygon extends MVCObject {
     return sc.stream;
   }
 
-  Stream<MouseEvent> get onDragend {
-    StreamController<MouseEvent> sc; // ignore: close_sinks
+  Stream<MapMouseEvent> get onDragend {
+    StreamController<MapMouseEvent> sc; // ignore: close_sinks
     MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'dragend',
-          allowInterop((MouseEvent event) => sc.add(event)),
+          allowInterop((MapMouseEvent event) => sc.add(event)),
         );
     void stop() => mapsEventListener.remove();
-    sc = StreamController<MouseEvent>(
+    sc = StreamController<MapMouseEvent>(
       onListen: start,
       onCancel: stop,
       onResume: start,
@@ -161,16 +179,16 @@ abstract class _Polygon extends MVCObject {
     return sc.stream;
   }
 
-  Stream<MouseEvent> get onDragstart {
-    StreamController<MouseEvent> sc; // ignore: close_sinks
+  Stream<MapMouseEvent> get onDragstart {
+    StreamController<MapMouseEvent> sc; // ignore: close_sinks
     MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'dragstart',
-          allowInterop((MouseEvent event) => sc.add(event)),
+          allowInterop((MapMouseEvent event) => sc.add(event)),
         );
     void stop() => mapsEventListener.remove();
-    sc = StreamController<MouseEvent>(
+    sc = StreamController<MapMouseEvent>(
       onListen: start,
       onCancel: stop,
       onResume: start,

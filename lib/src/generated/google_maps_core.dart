@@ -24,7 +24,7 @@ part 'google_maps_core.g.dart';
 part 'core/g_map.dart';
 part 'core/map_options.dart';
 part 'core/map_type_style.dart';
-part 'core/mouse_event.dart';
+part 'core/map_mouse_event.dart';
 part 'core/icon_mouse_event.dart';
 part 'core/map_type_id.dart';
 part 'core/map_type_registry.dart';
