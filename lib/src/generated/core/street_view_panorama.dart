@@ -124,7 +124,7 @@ abstract class _StreetViewPanorama extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'closeclick',
-          allowInterop((Object event) => sc.add(event)),
+          (Object event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<Object>(
@@ -142,7 +142,7 @@ abstract class _StreetViewPanorama extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'pano_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -160,7 +160,7 @@ abstract class _StreetViewPanorama extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'position_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -178,7 +178,7 @@ abstract class _StreetViewPanorama extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'pov_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -196,7 +196,7 @@ abstract class _StreetViewPanorama extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'resize',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -214,7 +214,7 @@ abstract class _StreetViewPanorama extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'status_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -232,7 +232,7 @@ abstract class _StreetViewPanorama extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'visible_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -250,7 +250,7 @@ abstract class _StreetViewPanorama extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'zoom_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(

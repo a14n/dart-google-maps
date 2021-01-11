@@ -134,7 +134,7 @@ abstract class _GMap extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'bounds_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -152,7 +152,7 @@ abstract class _GMap extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'center_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -170,7 +170,7 @@ abstract class _GMap extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'click',
-          allowInterop((IconMouseEvent event) => sc.add(event)),
+          (IconMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<IconMouseEvent>(
@@ -188,7 +188,7 @@ abstract class _GMap extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'contextmenu',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -206,7 +206,7 @@ abstract class _GMap extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'dblclick',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -224,7 +224,7 @@ abstract class _GMap extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'drag',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -242,7 +242,7 @@ abstract class _GMap extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'dragend',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -260,7 +260,7 @@ abstract class _GMap extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'dragstart',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -278,7 +278,7 @@ abstract class _GMap extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'heading_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -296,7 +296,7 @@ abstract class _GMap extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'idle',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -314,7 +314,7 @@ abstract class _GMap extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'maptypeid_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -332,7 +332,7 @@ abstract class _GMap extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'mousemove',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -350,7 +350,7 @@ abstract class _GMap extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseout',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -368,7 +368,7 @@ abstract class _GMap extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseover',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -386,7 +386,7 @@ abstract class _GMap extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'projection_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -404,7 +404,7 @@ abstract class _GMap extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'rightclick',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -422,7 +422,7 @@ abstract class _GMap extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'tilesloaded',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -440,7 +440,7 @@ abstract class _GMap extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'tilt_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -458,7 +458,7 @@ abstract class _GMap extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'zoom_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(

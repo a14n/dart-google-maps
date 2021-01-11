@@ -72,7 +72,7 @@ abstract class _DirectionsRenderer extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'directions_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(

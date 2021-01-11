@@ -95,7 +95,7 @@ abstract class _Polygon extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'click',
-          allowInterop((PolyMouseEvent event) => sc.add(event)),
+          (PolyMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<PolyMouseEvent>(
@@ -113,7 +113,7 @@ abstract class _Polygon extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'contextmenu',
-          allowInterop((PolyMouseEvent event) => sc.add(event)),
+          (PolyMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<PolyMouseEvent>(
@@ -131,7 +131,7 @@ abstract class _Polygon extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'dblclick',
-          allowInterop((PolyMouseEvent event) => sc.add(event)),
+          (PolyMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<PolyMouseEvent>(
@@ -149,7 +149,7 @@ abstract class _Polygon extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'drag',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -167,7 +167,7 @@ abstract class _Polygon extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'dragend',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -185,7 +185,7 @@ abstract class _Polygon extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'dragstart',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -203,7 +203,7 @@ abstract class _Polygon extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'mousedown',
-          allowInterop((PolyMouseEvent event) => sc.add(event)),
+          (PolyMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<PolyMouseEvent>(
@@ -221,7 +221,7 @@ abstract class _Polygon extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'mousemove',
-          allowInterop((PolyMouseEvent event) => sc.add(event)),
+          (PolyMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<PolyMouseEvent>(
@@ -239,7 +239,7 @@ abstract class _Polygon extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseout',
-          allowInterop((PolyMouseEvent event) => sc.add(event)),
+          (PolyMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<PolyMouseEvent>(
@@ -257,7 +257,7 @@ abstract class _Polygon extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseover',
-          allowInterop((PolyMouseEvent event) => sc.add(event)),
+          (PolyMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<PolyMouseEvent>(
@@ -275,7 +275,7 @@ abstract class _Polygon extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseup',
-          allowInterop((PolyMouseEvent event) => sc.add(event)),
+          (PolyMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<PolyMouseEvent>(
@@ -293,7 +293,7 @@ abstract class _Polygon extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'rightclick',
-          allowInterop((PolyMouseEvent event) => sc.add(event)),
+          (PolyMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<PolyMouseEvent>(

@@ -59,7 +59,7 @@ abstract class _GroundOverlay extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'click',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -77,7 +77,7 @@ abstract class _GroundOverlay extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'dblclick',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(

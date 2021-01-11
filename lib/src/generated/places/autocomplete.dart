@@ -69,7 +69,7 @@ abstract class _Autocomplete extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'place_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(

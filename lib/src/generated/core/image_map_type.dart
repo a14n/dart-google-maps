@@ -44,7 +44,7 @@ abstract class _ImageMapType extends MVCObject implements MapType {
     void start() => mapsEventListener = Event.addListener(
           this,
           'tilesloaded',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(

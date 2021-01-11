@@ -162,7 +162,7 @@ abstract class _Marker extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'animation_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -180,7 +180,7 @@ abstract class _Marker extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'click',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -198,7 +198,7 @@ abstract class _Marker extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'clickable_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -216,7 +216,7 @@ abstract class _Marker extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'contextmenu',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -234,7 +234,7 @@ abstract class _Marker extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'cursor_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -252,7 +252,7 @@ abstract class _Marker extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'dblclick',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -270,7 +270,7 @@ abstract class _Marker extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'drag',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -288,7 +288,7 @@ abstract class _Marker extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'dragend',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -306,7 +306,7 @@ abstract class _Marker extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'draggable_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -324,7 +324,7 @@ abstract class _Marker extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'dragstart',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -342,7 +342,7 @@ abstract class _Marker extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'flat_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -360,7 +360,7 @@ abstract class _Marker extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'icon_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -378,7 +378,7 @@ abstract class _Marker extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'mousedown',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -396,7 +396,7 @@ abstract class _Marker extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseout',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -414,7 +414,7 @@ abstract class _Marker extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseover',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -432,7 +432,7 @@ abstract class _Marker extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseup',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -450,7 +450,7 @@ abstract class _Marker extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'position_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -468,7 +468,7 @@ abstract class _Marker extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'rightclick',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -486,7 +486,7 @@ abstract class _Marker extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'shape_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -504,7 +504,7 @@ abstract class _Marker extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'title_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -522,7 +522,7 @@ abstract class _Marker extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'visible_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -540,7 +540,7 @@ abstract class _Marker extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'zindex_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(

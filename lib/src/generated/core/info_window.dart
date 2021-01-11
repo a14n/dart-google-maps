@@ -68,7 +68,7 @@ abstract class _InfoWindow extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'closeclick',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -86,7 +86,7 @@ abstract class _InfoWindow extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'content_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -104,7 +104,7 @@ abstract class _InfoWindow extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'domready',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -122,7 +122,7 @@ abstract class _InfoWindow extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'position_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -140,7 +140,7 @@ abstract class _InfoWindow extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'zindex_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(

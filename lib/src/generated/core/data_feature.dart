@@ -49,7 +49,7 @@ abstract class _DataFeature {
     void start() => mapsEventListener = Event.addListener(
           this,
           'removeproperty',
-          allowInterop((DataRemovePropertyEvent event) => sc.add(event)),
+          (DataRemovePropertyEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<DataRemovePropertyEvent>(
@@ -67,7 +67,7 @@ abstract class _DataFeature {
     void start() => mapsEventListener = Event.addListener(
           this,
           'setgeometry',
-          allowInterop((DataSetGeometryEvent event) => sc.add(event)),
+          (DataSetGeometryEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<DataSetGeometryEvent>(
@@ -85,7 +85,7 @@ abstract class _DataFeature {
     void start() => mapsEventListener = Event.addListener(
           this,
           'setproperty',
-          allowInterop((DataSetPropertyEvent event) => sc.add(event)),
+          (DataSetPropertyEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<DataSetPropertyEvent>(

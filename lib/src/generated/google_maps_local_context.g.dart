@@ -77,7 +77,7 @@ extension LocalContextMapView$Ext on LocalContextMapView {
     void start() => mapsEventListener = Event.addListener(
           this,
           'error',
-          allowInterop((ErrorEvent event) => sc.add(event)),
+          (ErrorEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<ErrorEvent>(
@@ -95,7 +95,7 @@ extension LocalContextMapView$Ext on LocalContextMapView {
     void start() => mapsEventListener = Event.addListener(
           this,
           'placedetailsviewhidestart',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -113,7 +113,7 @@ extension LocalContextMapView$Ext on LocalContextMapView {
     void start() => mapsEventListener = Event.addListener(
           this,
           'placedetailsviewshowstart',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(

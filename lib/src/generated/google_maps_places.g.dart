@@ -32,7 +32,7 @@ extension Autocomplete$Ext on Autocomplete {
     void start() => mapsEventListener = Event.addListener(
           this,
           'place_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -130,7 +130,7 @@ extension SearchBox$Ext on SearchBox {
     void start() => mapsEventListener = Event.addListener(
           this,
           'places_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(

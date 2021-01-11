@@ -77,7 +77,7 @@ abstract class _KmlLayer extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'click',
-          allowInterop((KmlMouseEvent kmlClickEvent) => sc.add(kmlClickEvent)),
+          (KmlMouseEvent kmlClickEvent) => sc.add(kmlClickEvent),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<KmlMouseEvent>(
@@ -95,7 +95,7 @@ abstract class _KmlLayer extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'defaultviewport_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -113,7 +113,7 @@ abstract class _KmlLayer extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'status_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(

@@ -46,7 +46,7 @@ abstract class _MVCArray<T> extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'insert_at',
-          allowInterop((num index) => sc.add(index)),
+          (num index) => sc.add(index),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<num>(
@@ -64,7 +64,7 @@ abstract class _MVCArray<T> extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'remove_at',
-          allowInterop((num index, T removed) => sc.add([index, removed])),
+          (num index, T removed) => sc.add([index, removed]),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<List>(
@@ -82,7 +82,7 @@ abstract class _MVCArray<T> extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'set_at',
-          allowInterop((num index, T previous) => sc.add([index, previous])),
+          (num index, T previous) => sc.add([index, previous]),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<List>(

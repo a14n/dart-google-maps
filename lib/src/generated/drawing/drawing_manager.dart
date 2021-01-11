@@ -52,7 +52,7 @@ abstract class _DrawingManager extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'circlecomplete',
-          allowInterop((Circle circle) => sc.add(circle)),
+          (Circle circle) => sc.add(circle),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<Circle>(
@@ -70,7 +70,7 @@ abstract class _DrawingManager extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'markercomplete',
-          allowInterop((Marker marker) => sc.add(marker)),
+          (Marker marker) => sc.add(marker),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<Marker>(
@@ -88,7 +88,7 @@ abstract class _DrawingManager extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'overlaycomplete',
-          allowInterop((OverlayCompleteEvent event) => sc.add(event)),
+          (OverlayCompleteEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<OverlayCompleteEvent>(
@@ -106,7 +106,7 @@ abstract class _DrawingManager extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'polygoncomplete',
-          allowInterop((Polygon polygon) => sc.add(polygon)),
+          (Polygon polygon) => sc.add(polygon),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<Polygon>(
@@ -124,7 +124,7 @@ abstract class _DrawingManager extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'polylinecomplete',
-          allowInterop((Polyline polyline) => sc.add(polyline)),
+          (Polyline polyline) => sc.add(polyline),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<Polyline>(
@@ -142,7 +142,7 @@ abstract class _DrawingManager extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'rectanglecomplete',
-          allowInterop((Rectangle rectangle) => sc.add(rectangle)),
+          (Rectangle rectangle) => sc.add(rectangle),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<Rectangle>(

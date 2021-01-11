@@ -451,7 +451,7 @@ List<String> generateCodeForEvent(DocEntity entity, DocMethod method) {
       void start() => mapsEventListener = Event.addListener(
         this,
         '$eventName',
-        allowInterop(${buildSignature(method)} => sc.add($params)),
+        ${buildSignature(method)} => sc.add($params),
       );
       void stop() => mapsEventListener.remove();
       sc = StreamController<$type>(

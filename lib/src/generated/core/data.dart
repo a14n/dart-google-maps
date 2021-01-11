@@ -102,7 +102,7 @@ abstract class _Data extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'addfeature',
-          allowInterop((DataAddFeatureEvent event) => sc.add(event)),
+          (DataAddFeatureEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<DataAddFeatureEvent>(
@@ -120,7 +120,7 @@ abstract class _Data extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'click',
-          allowInterop((DataMouseEvent event) => sc.add(event)),
+          (DataMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<DataMouseEvent>(
@@ -138,7 +138,7 @@ abstract class _Data extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'contextmenu',
-          allowInterop((DataMouseEvent event) => sc.add(event)),
+          (DataMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<DataMouseEvent>(
@@ -156,7 +156,7 @@ abstract class _Data extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'dblclick',
-          allowInterop((DataMouseEvent event) => sc.add(event)),
+          (DataMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<DataMouseEvent>(
@@ -174,7 +174,7 @@ abstract class _Data extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'mousedown',
-          allowInterop((DataMouseEvent event) => sc.add(event)),
+          (DataMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<DataMouseEvent>(
@@ -192,7 +192,7 @@ abstract class _Data extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseout',
-          allowInterop((DataMouseEvent event) => sc.add(event)),
+          (DataMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<DataMouseEvent>(
@@ -210,7 +210,7 @@ abstract class _Data extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseover',
-          allowInterop((DataMouseEvent event) => sc.add(event)),
+          (DataMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<DataMouseEvent>(
@@ -228,7 +228,7 @@ abstract class _Data extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseup',
-          allowInterop((DataMouseEvent event) => sc.add(event)),
+          (DataMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<DataMouseEvent>(
@@ -246,7 +246,7 @@ abstract class _Data extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'removefeature',
-          allowInterop((DataRemoveFeatureEvent event) => sc.add(event)),
+          (DataRemoveFeatureEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<DataRemoveFeatureEvent>(
@@ -264,7 +264,7 @@ abstract class _Data extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'removeproperty',
-          allowInterop((DataRemovePropertyEvent event) => sc.add(event)),
+          (DataRemovePropertyEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<DataRemovePropertyEvent>(
@@ -282,7 +282,7 @@ abstract class _Data extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'rightclick',
-          allowInterop((DataMouseEvent event) => sc.add(event)),
+          (DataMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<DataMouseEvent>(
@@ -300,7 +300,7 @@ abstract class _Data extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'setgeometry',
-          allowInterop((DataSetGeometryEvent event) => sc.add(event)),
+          (DataSetGeometryEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<DataSetGeometryEvent>(
@@ -318,7 +318,7 @@ abstract class _Data extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'setproperty',
-          allowInterop((DataSetPropertyEvent event) => sc.add(event)),
+          (DataSetPropertyEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<DataSetPropertyEvent>(

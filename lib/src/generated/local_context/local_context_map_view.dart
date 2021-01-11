@@ -37,7 +37,7 @@ abstract class _LocalContextMapView implements LocalContextMapViewOptions {
     void start() => mapsEventListener = Event.addListener(
           this,
           'error',
-          allowInterop((ErrorEvent event) => sc.add(event)),
+          (ErrorEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<ErrorEvent>(
@@ -55,7 +55,7 @@ abstract class _LocalContextMapView implements LocalContextMapViewOptions {
     void start() => mapsEventListener = Event.addListener(
           this,
           'placedetailsviewhidestart',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -73,7 +73,7 @@ abstract class _LocalContextMapView implements LocalContextMapViewOptions {
     void start() => mapsEventListener = Event.addListener(
           this,
           'placedetailsviewshowstart',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(

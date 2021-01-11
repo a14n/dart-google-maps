@@ -75,7 +75,7 @@ extension GMap$Ext on GMap {
     void start() => mapsEventListener = Event.addListener(
           this,
           'bounds_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -93,7 +93,7 @@ extension GMap$Ext on GMap {
     void start() => mapsEventListener = Event.addListener(
           this,
           'center_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -111,7 +111,7 @@ extension GMap$Ext on GMap {
     void start() => mapsEventListener = Event.addListener(
           this,
           'click',
-          allowInterop((IconMouseEvent event) => sc.add(event)),
+          (IconMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<IconMouseEvent>(
@@ -129,7 +129,7 @@ extension GMap$Ext on GMap {
     void start() => mapsEventListener = Event.addListener(
           this,
           'contextmenu',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -147,7 +147,7 @@ extension GMap$Ext on GMap {
     void start() => mapsEventListener = Event.addListener(
           this,
           'dblclick',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -165,7 +165,7 @@ extension GMap$Ext on GMap {
     void start() => mapsEventListener = Event.addListener(
           this,
           'drag',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -183,7 +183,7 @@ extension GMap$Ext on GMap {
     void start() => mapsEventListener = Event.addListener(
           this,
           'dragend',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -201,7 +201,7 @@ extension GMap$Ext on GMap {
     void start() => mapsEventListener = Event.addListener(
           this,
           'dragstart',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -219,7 +219,7 @@ extension GMap$Ext on GMap {
     void start() => mapsEventListener = Event.addListener(
           this,
           'heading_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -237,7 +237,7 @@ extension GMap$Ext on GMap {
     void start() => mapsEventListener = Event.addListener(
           this,
           'idle',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -255,7 +255,7 @@ extension GMap$Ext on GMap {
     void start() => mapsEventListener = Event.addListener(
           this,
           'maptypeid_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -273,7 +273,7 @@ extension GMap$Ext on GMap {
     void start() => mapsEventListener = Event.addListener(
           this,
           'mousemove',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -291,7 +291,7 @@ extension GMap$Ext on GMap {
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseout',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -309,7 +309,7 @@ extension GMap$Ext on GMap {
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseover',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -327,7 +327,7 @@ extension GMap$Ext on GMap {
     void start() => mapsEventListener = Event.addListener(
           this,
           'projection_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -345,7 +345,7 @@ extension GMap$Ext on GMap {
     void start() => mapsEventListener = Event.addListener(
           this,
           'rightclick',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -363,7 +363,7 @@ extension GMap$Ext on GMap {
     void start() => mapsEventListener = Event.addListener(
           this,
           'tilesloaded',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -381,7 +381,7 @@ extension GMap$Ext on GMap {
     void start() => mapsEventListener = Event.addListener(
           this,
           'tilt_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -399,7 +399,7 @@ extension GMap$Ext on GMap {
     void start() => mapsEventListener = Event.addListener(
           this,
           'zoom_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -992,7 +992,7 @@ extension MVCArray$Ext<T> on MVCArray<T> {
     void start() => mapsEventListener = Event.addListener(
           this,
           'insert_at',
-          allowInterop((num index) => sc.add(index)),
+          (num index) => sc.add(index),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<num>(
@@ -1010,7 +1010,7 @@ extension MVCArray$Ext<T> on MVCArray<T> {
     void start() => mapsEventListener = Event.addListener(
           this,
           'remove_at',
-          allowInterop((num index, T removed) => sc.add([index, removed])),
+          (num index, T removed) => sc.add([index, removed]),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<List>(
@@ -1028,7 +1028,7 @@ extension MVCArray$Ext<T> on MVCArray<T> {
     void start() => mapsEventListener = Event.addListener(
           this,
           'set_at',
-          allowInterop((num index, T previous) => sc.add([index, previous])),
+          (num index, T previous) => sc.add([index, previous]),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<List>(
@@ -1236,7 +1236,7 @@ extension Marker$Ext on Marker {
     void start() => mapsEventListener = Event.addListener(
           this,
           'animation_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -1254,7 +1254,7 @@ extension Marker$Ext on Marker {
     void start() => mapsEventListener = Event.addListener(
           this,
           'click',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -1272,7 +1272,7 @@ extension Marker$Ext on Marker {
     void start() => mapsEventListener = Event.addListener(
           this,
           'clickable_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -1290,7 +1290,7 @@ extension Marker$Ext on Marker {
     void start() => mapsEventListener = Event.addListener(
           this,
           'contextmenu',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -1308,7 +1308,7 @@ extension Marker$Ext on Marker {
     void start() => mapsEventListener = Event.addListener(
           this,
           'cursor_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -1326,7 +1326,7 @@ extension Marker$Ext on Marker {
     void start() => mapsEventListener = Event.addListener(
           this,
           'dblclick',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -1344,7 +1344,7 @@ extension Marker$Ext on Marker {
     void start() => mapsEventListener = Event.addListener(
           this,
           'drag',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -1362,7 +1362,7 @@ extension Marker$Ext on Marker {
     void start() => mapsEventListener = Event.addListener(
           this,
           'dragend',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -1380,7 +1380,7 @@ extension Marker$Ext on Marker {
     void start() => mapsEventListener = Event.addListener(
           this,
           'draggable_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -1398,7 +1398,7 @@ extension Marker$Ext on Marker {
     void start() => mapsEventListener = Event.addListener(
           this,
           'dragstart',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -1416,7 +1416,7 @@ extension Marker$Ext on Marker {
     void start() => mapsEventListener = Event.addListener(
           this,
           'flat_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -1434,7 +1434,7 @@ extension Marker$Ext on Marker {
     void start() => mapsEventListener = Event.addListener(
           this,
           'icon_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -1452,7 +1452,7 @@ extension Marker$Ext on Marker {
     void start() => mapsEventListener = Event.addListener(
           this,
           'mousedown',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -1470,7 +1470,7 @@ extension Marker$Ext on Marker {
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseout',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -1488,7 +1488,7 @@ extension Marker$Ext on Marker {
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseover',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -1506,7 +1506,7 @@ extension Marker$Ext on Marker {
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseup',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -1524,7 +1524,7 @@ extension Marker$Ext on Marker {
     void start() => mapsEventListener = Event.addListener(
           this,
           'position_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -1542,7 +1542,7 @@ extension Marker$Ext on Marker {
     void start() => mapsEventListener = Event.addListener(
           this,
           'rightclick',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -1560,7 +1560,7 @@ extension Marker$Ext on Marker {
     void start() => mapsEventListener = Event.addListener(
           this,
           'shape_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -1578,7 +1578,7 @@ extension Marker$Ext on Marker {
     void start() => mapsEventListener = Event.addListener(
           this,
           'title_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -1596,7 +1596,7 @@ extension Marker$Ext on Marker {
     void start() => mapsEventListener = Event.addListener(
           this,
           'visible_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -1614,7 +1614,7 @@ extension Marker$Ext on Marker {
     void start() => mapsEventListener = Event.addListener(
           this,
           'zindex_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -1957,7 +1957,7 @@ extension InfoWindow$Ext on InfoWindow {
     void start() => mapsEventListener = Event.addListener(
           this,
           'closeclick',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -1975,7 +1975,7 @@ extension InfoWindow$Ext on InfoWindow {
     void start() => mapsEventListener = Event.addListener(
           this,
           'content_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -1993,7 +1993,7 @@ extension InfoWindow$Ext on InfoWindow {
     void start() => mapsEventListener = Event.addListener(
           this,
           'domready',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -2011,7 +2011,7 @@ extension InfoWindow$Ext on InfoWindow {
     void start() => mapsEventListener = Event.addListener(
           this,
           'position_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -2029,7 +2029,7 @@ extension InfoWindow$Ext on InfoWindow {
     void start() => mapsEventListener = Event.addListener(
           this,
           'zindex_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -2126,7 +2126,7 @@ extension Polyline$Ext on Polyline {
     void start() => mapsEventListener = Event.addListener(
           this,
           'click',
-          allowInterop((PolyMouseEvent event) => sc.add(event)),
+          (PolyMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<PolyMouseEvent>(
@@ -2144,7 +2144,7 @@ extension Polyline$Ext on Polyline {
     void start() => mapsEventListener = Event.addListener(
           this,
           'contextmenu',
-          allowInterop((PolyMouseEvent event) => sc.add(event)),
+          (PolyMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<PolyMouseEvent>(
@@ -2162,7 +2162,7 @@ extension Polyline$Ext on Polyline {
     void start() => mapsEventListener = Event.addListener(
           this,
           'dblclick',
-          allowInterop((PolyMouseEvent event) => sc.add(event)),
+          (PolyMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<PolyMouseEvent>(
@@ -2180,7 +2180,7 @@ extension Polyline$Ext on Polyline {
     void start() => mapsEventListener = Event.addListener(
           this,
           'drag',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -2198,7 +2198,7 @@ extension Polyline$Ext on Polyline {
     void start() => mapsEventListener = Event.addListener(
           this,
           'dragend',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -2216,7 +2216,7 @@ extension Polyline$Ext on Polyline {
     void start() => mapsEventListener = Event.addListener(
           this,
           'dragstart',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -2234,7 +2234,7 @@ extension Polyline$Ext on Polyline {
     void start() => mapsEventListener = Event.addListener(
           this,
           'mousedown',
-          allowInterop((PolyMouseEvent event) => sc.add(event)),
+          (PolyMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<PolyMouseEvent>(
@@ -2252,7 +2252,7 @@ extension Polyline$Ext on Polyline {
     void start() => mapsEventListener = Event.addListener(
           this,
           'mousemove',
-          allowInterop((PolyMouseEvent event) => sc.add(event)),
+          (PolyMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<PolyMouseEvent>(
@@ -2270,7 +2270,7 @@ extension Polyline$Ext on Polyline {
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseout',
-          allowInterop((PolyMouseEvent event) => sc.add(event)),
+          (PolyMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<PolyMouseEvent>(
@@ -2288,7 +2288,7 @@ extension Polyline$Ext on Polyline {
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseover',
-          allowInterop((PolyMouseEvent event) => sc.add(event)),
+          (PolyMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<PolyMouseEvent>(
@@ -2306,7 +2306,7 @@ extension Polyline$Ext on Polyline {
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseup',
-          allowInterop((PolyMouseEvent event) => sc.add(event)),
+          (PolyMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<PolyMouseEvent>(
@@ -2324,7 +2324,7 @@ extension Polyline$Ext on Polyline {
     void start() => mapsEventListener = Event.addListener(
           this,
           'rightclick',
-          allowInterop((PolyMouseEvent event) => sc.add(event)),
+          (PolyMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<PolyMouseEvent>(
@@ -2486,7 +2486,7 @@ extension Polygon$Ext on Polygon {
     void start() => mapsEventListener = Event.addListener(
           this,
           'click',
-          allowInterop((PolyMouseEvent event) => sc.add(event)),
+          (PolyMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<PolyMouseEvent>(
@@ -2504,7 +2504,7 @@ extension Polygon$Ext on Polygon {
     void start() => mapsEventListener = Event.addListener(
           this,
           'contextmenu',
-          allowInterop((PolyMouseEvent event) => sc.add(event)),
+          (PolyMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<PolyMouseEvent>(
@@ -2522,7 +2522,7 @@ extension Polygon$Ext on Polygon {
     void start() => mapsEventListener = Event.addListener(
           this,
           'dblclick',
-          allowInterop((PolyMouseEvent event) => sc.add(event)),
+          (PolyMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<PolyMouseEvent>(
@@ -2540,7 +2540,7 @@ extension Polygon$Ext on Polygon {
     void start() => mapsEventListener = Event.addListener(
           this,
           'drag',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -2558,7 +2558,7 @@ extension Polygon$Ext on Polygon {
     void start() => mapsEventListener = Event.addListener(
           this,
           'dragend',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -2576,7 +2576,7 @@ extension Polygon$Ext on Polygon {
     void start() => mapsEventListener = Event.addListener(
           this,
           'dragstart',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -2594,7 +2594,7 @@ extension Polygon$Ext on Polygon {
     void start() => mapsEventListener = Event.addListener(
           this,
           'mousedown',
-          allowInterop((PolyMouseEvent event) => sc.add(event)),
+          (PolyMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<PolyMouseEvent>(
@@ -2612,7 +2612,7 @@ extension Polygon$Ext on Polygon {
     void start() => mapsEventListener = Event.addListener(
           this,
           'mousemove',
-          allowInterop((PolyMouseEvent event) => sc.add(event)),
+          (PolyMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<PolyMouseEvent>(
@@ -2630,7 +2630,7 @@ extension Polygon$Ext on Polygon {
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseout',
-          allowInterop((PolyMouseEvent event) => sc.add(event)),
+          (PolyMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<PolyMouseEvent>(
@@ -2648,7 +2648,7 @@ extension Polygon$Ext on Polygon {
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseover',
-          allowInterop((PolyMouseEvent event) => sc.add(event)),
+          (PolyMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<PolyMouseEvent>(
@@ -2666,7 +2666,7 @@ extension Polygon$Ext on Polygon {
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseup',
-          allowInterop((PolyMouseEvent event) => sc.add(event)),
+          (PolyMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<PolyMouseEvent>(
@@ -2684,7 +2684,7 @@ extension Polygon$Ext on Polygon {
     void start() => mapsEventListener = Event.addListener(
           this,
           'rightclick',
-          allowInterop((PolyMouseEvent event) => sc.add(event)),
+          (PolyMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<PolyMouseEvent>(
@@ -2848,7 +2848,7 @@ extension Rectangle$Ext on Rectangle {
     void start() => mapsEventListener = Event.addListener(
           this,
           'bounds_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -2866,7 +2866,7 @@ extension Rectangle$Ext on Rectangle {
     void start() => mapsEventListener = Event.addListener(
           this,
           'click',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -2884,7 +2884,7 @@ extension Rectangle$Ext on Rectangle {
     void start() => mapsEventListener = Event.addListener(
           this,
           'contextmenu',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -2902,7 +2902,7 @@ extension Rectangle$Ext on Rectangle {
     void start() => mapsEventListener = Event.addListener(
           this,
           'dblclick',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -2920,7 +2920,7 @@ extension Rectangle$Ext on Rectangle {
     void start() => mapsEventListener = Event.addListener(
           this,
           'drag',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -2938,7 +2938,7 @@ extension Rectangle$Ext on Rectangle {
     void start() => mapsEventListener = Event.addListener(
           this,
           'dragend',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -2956,7 +2956,7 @@ extension Rectangle$Ext on Rectangle {
     void start() => mapsEventListener = Event.addListener(
           this,
           'dragstart',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -2974,7 +2974,7 @@ extension Rectangle$Ext on Rectangle {
     void start() => mapsEventListener = Event.addListener(
           this,
           'mousedown',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -2992,7 +2992,7 @@ extension Rectangle$Ext on Rectangle {
     void start() => mapsEventListener = Event.addListener(
           this,
           'mousemove',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -3010,7 +3010,7 @@ extension Rectangle$Ext on Rectangle {
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseout',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -3028,7 +3028,7 @@ extension Rectangle$Ext on Rectangle {
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseover',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -3046,7 +3046,7 @@ extension Rectangle$Ext on Rectangle {
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseup',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -3064,7 +3064,7 @@ extension Rectangle$Ext on Rectangle {
     void start() => mapsEventListener = Event.addListener(
           this,
           'rightclick',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -3200,7 +3200,7 @@ extension Circle$Ext on Circle {
     void start() => mapsEventListener = Event.addListener(
           this,
           'center_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -3218,7 +3218,7 @@ extension Circle$Ext on Circle {
     void start() => mapsEventListener = Event.addListener(
           this,
           'click',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -3236,7 +3236,7 @@ extension Circle$Ext on Circle {
     void start() => mapsEventListener = Event.addListener(
           this,
           'dblclick',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -3254,7 +3254,7 @@ extension Circle$Ext on Circle {
     void start() => mapsEventListener = Event.addListener(
           this,
           'drag',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -3272,7 +3272,7 @@ extension Circle$Ext on Circle {
     void start() => mapsEventListener = Event.addListener(
           this,
           'dragend',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -3290,7 +3290,7 @@ extension Circle$Ext on Circle {
     void start() => mapsEventListener = Event.addListener(
           this,
           'dragstart',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -3308,7 +3308,7 @@ extension Circle$Ext on Circle {
     void start() => mapsEventListener = Event.addListener(
           this,
           'mousedown',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -3326,7 +3326,7 @@ extension Circle$Ext on Circle {
     void start() => mapsEventListener = Event.addListener(
           this,
           'mousemove',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -3344,7 +3344,7 @@ extension Circle$Ext on Circle {
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseout',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -3362,7 +3362,7 @@ extension Circle$Ext on Circle {
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseover',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -3380,7 +3380,7 @@ extension Circle$Ext on Circle {
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseup',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -3398,7 +3398,7 @@ extension Circle$Ext on Circle {
     void start() => mapsEventListener = Event.addListener(
           this,
           'radius_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -3416,7 +3416,7 @@ extension Circle$Ext on Circle {
     void start() => mapsEventListener = Event.addListener(
           this,
           'rightclick',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -3586,7 +3586,7 @@ extension Data$Ext on Data {
     void start() => mapsEventListener = Event.addListener(
           this,
           'addfeature',
-          allowInterop((DataAddFeatureEvent event) => sc.add(event)),
+          (DataAddFeatureEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<DataAddFeatureEvent>(
@@ -3604,7 +3604,7 @@ extension Data$Ext on Data {
     void start() => mapsEventListener = Event.addListener(
           this,
           'click',
-          allowInterop((DataMouseEvent event) => sc.add(event)),
+          (DataMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<DataMouseEvent>(
@@ -3622,7 +3622,7 @@ extension Data$Ext on Data {
     void start() => mapsEventListener = Event.addListener(
           this,
           'contextmenu',
-          allowInterop((DataMouseEvent event) => sc.add(event)),
+          (DataMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<DataMouseEvent>(
@@ -3640,7 +3640,7 @@ extension Data$Ext on Data {
     void start() => mapsEventListener = Event.addListener(
           this,
           'dblclick',
-          allowInterop((DataMouseEvent event) => sc.add(event)),
+          (DataMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<DataMouseEvent>(
@@ -3658,7 +3658,7 @@ extension Data$Ext on Data {
     void start() => mapsEventListener = Event.addListener(
           this,
           'mousedown',
-          allowInterop((DataMouseEvent event) => sc.add(event)),
+          (DataMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<DataMouseEvent>(
@@ -3676,7 +3676,7 @@ extension Data$Ext on Data {
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseout',
-          allowInterop((DataMouseEvent event) => sc.add(event)),
+          (DataMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<DataMouseEvent>(
@@ -3694,7 +3694,7 @@ extension Data$Ext on Data {
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseover',
-          allowInterop((DataMouseEvent event) => sc.add(event)),
+          (DataMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<DataMouseEvent>(
@@ -3712,7 +3712,7 @@ extension Data$Ext on Data {
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseup',
-          allowInterop((DataMouseEvent event) => sc.add(event)),
+          (DataMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<DataMouseEvent>(
@@ -3730,7 +3730,7 @@ extension Data$Ext on Data {
     void start() => mapsEventListener = Event.addListener(
           this,
           'removefeature',
-          allowInterop((DataRemoveFeatureEvent event) => sc.add(event)),
+          (DataRemoveFeatureEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<DataRemoveFeatureEvent>(
@@ -3748,7 +3748,7 @@ extension Data$Ext on Data {
     void start() => mapsEventListener = Event.addListener(
           this,
           'removeproperty',
-          allowInterop((DataRemovePropertyEvent event) => sc.add(event)),
+          (DataRemovePropertyEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<DataRemovePropertyEvent>(
@@ -3766,7 +3766,7 @@ extension Data$Ext on Data {
     void start() => mapsEventListener = Event.addListener(
           this,
           'rightclick',
-          allowInterop((DataMouseEvent event) => sc.add(event)),
+          (DataMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<DataMouseEvent>(
@@ -3784,7 +3784,7 @@ extension Data$Ext on Data {
     void start() => mapsEventListener = Event.addListener(
           this,
           'setgeometry',
-          allowInterop((DataSetGeometryEvent event) => sc.add(event)),
+          (DataSetGeometryEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<DataSetGeometryEvent>(
@@ -3802,7 +3802,7 @@ extension Data$Ext on Data {
     void start() => mapsEventListener = Event.addListener(
           this,
           'setproperty',
-          allowInterop((DataSetPropertyEvent event) => sc.add(event)),
+          (DataSetPropertyEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<DataSetPropertyEvent>(
@@ -4009,7 +4009,7 @@ extension DataFeature$Ext on DataFeature {
     void start() => mapsEventListener = Event.addListener(
           this,
           'removeproperty',
-          allowInterop((DataRemovePropertyEvent event) => sc.add(event)),
+          (DataRemovePropertyEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<DataRemovePropertyEvent>(
@@ -4027,7 +4027,7 @@ extension DataFeature$Ext on DataFeature {
     void start() => mapsEventListener = Event.addListener(
           this,
           'setgeometry',
-          allowInterop((DataSetGeometryEvent event) => sc.add(event)),
+          (DataSetGeometryEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<DataSetGeometryEvent>(
@@ -4045,7 +4045,7 @@ extension DataFeature$Ext on DataFeature {
     void start() => mapsEventListener = Event.addListener(
           this,
           'setproperty',
-          allowInterop((DataSetPropertyEvent event) => sc.add(event)),
+          (DataSetPropertyEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<DataSetPropertyEvent>(
@@ -4535,7 +4535,7 @@ extension KmlLayer$Ext on KmlLayer {
     void start() => mapsEventListener = Event.addListener(
           this,
           'click',
-          allowInterop((KmlMouseEvent kmlClickEvent) => sc.add(kmlClickEvent)),
+          (KmlMouseEvent kmlClickEvent) => sc.add(kmlClickEvent),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<KmlMouseEvent>(
@@ -4553,7 +4553,7 @@ extension KmlLayer$Ext on KmlLayer {
     void start() => mapsEventListener = Event.addListener(
           this,
           'defaultviewport_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -4571,7 +4571,7 @@ extension KmlLayer$Ext on KmlLayer {
     void start() => mapsEventListener = Event.addListener(
           this,
           'status_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -4896,7 +4896,7 @@ extension ImageMapType$Ext on ImageMapType {
     void start() => mapsEventListener = Event.addListener(
           this,
           'tilesloaded',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -4980,7 +4980,7 @@ extension GroundOverlay$Ext on GroundOverlay {
     void start() => mapsEventListener = Event.addListener(
           this,
           'click',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -4998,7 +4998,7 @@ extension GroundOverlay$Ext on GroundOverlay {
     void start() => mapsEventListener = Event.addListener(
           this,
           'dblclick',
-          allowInterop((MapMouseEvent event) => sc.add(event)),
+          (MapMouseEvent event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<MapMouseEvent>(
@@ -5203,7 +5203,7 @@ extension StreetViewPanorama$Ext on StreetViewPanorama {
     void start() => mapsEventListener = Event.addListener(
           this,
           'closeclick',
-          allowInterop((Object event) => sc.add(event)),
+          (Object event) => sc.add(event),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<Object>(
@@ -5221,7 +5221,7 @@ extension StreetViewPanorama$Ext on StreetViewPanorama {
     void start() => mapsEventListener = Event.addListener(
           this,
           'pano_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -5239,7 +5239,7 @@ extension StreetViewPanorama$Ext on StreetViewPanorama {
     void start() => mapsEventListener = Event.addListener(
           this,
           'position_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -5257,7 +5257,7 @@ extension StreetViewPanorama$Ext on StreetViewPanorama {
     void start() => mapsEventListener = Event.addListener(
           this,
           'pov_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -5275,7 +5275,7 @@ extension StreetViewPanorama$Ext on StreetViewPanorama {
     void start() => mapsEventListener = Event.addListener(
           this,
           'resize',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -5293,7 +5293,7 @@ extension StreetViewPanorama$Ext on StreetViewPanorama {
     void start() => mapsEventListener = Event.addListener(
           this,
           'status_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -5311,7 +5311,7 @@ extension StreetViewPanorama$Ext on StreetViewPanorama {
     void start() => mapsEventListener = Event.addListener(
           this,
           'visible_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -5329,7 +5329,7 @@ extension StreetViewPanorama$Ext on StreetViewPanorama {
     void start() => mapsEventListener = Event.addListener(
           this,
           'zoom_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
@@ -6118,7 +6118,7 @@ extension DirectionsRenderer$Ext on DirectionsRenderer {
     void start() => mapsEventListener = Event.addListener(
           this,
           'directions_changed',
-          allowInterop(() => sc.add(null)),
+          () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<void>(
