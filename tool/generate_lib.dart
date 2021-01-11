@@ -262,6 +262,7 @@ String generateCodeForInterface(DocEntity entity) {
   ];
   return '''
 @JsName()
+${entity.extendsName != null ? '@JS()' : ''}
 @anonymous
 abstract class _$name
 ${entity.extendsName != null ? 'extends ${entity.extendsName}' : ''}
