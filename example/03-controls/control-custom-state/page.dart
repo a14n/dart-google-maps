@@ -1,76 +1,48 @@
 import 'dart:html' hide Events;
+
 import 'package:google_maps/google_maps.dart';
 
 GMap map;
-final LatLng chicago = LatLng(41.850033, -87.6500523);
+final LatLng chicago = LatLng(41.85, -87.65);
 
-/// The HomeControl adds a control to the map that
+/// The CenterControl adds a control to the map that
 /// returns the user to the control's defined home.
-class HomeControl {
-  HomeControl(Element controlDiv, GMap map, this.center) {
+class CenterControl {
+  CenterControl(Element controlDiv, GMap map, this.center) {
     controlDiv.style.clear = 'both';
 
     // Set CSS for the control border
-    final goCenterUI = DivElement();
-    goCenterUI.style
-      ..backgroundColor = '#fff'
-      ..border = '2px solid #fff'
-      ..borderRadius = '3px'
-      ..boxShadow = '0 2px 6px rgba(0,0,0,.3)'
-      ..cursor = 'pointer'
-      ..float = 'left'
-      ..marginBottom = '22px'
-      ..textAlign = 'center';
-    goCenterUI.title = 'Click to recenter the map';
+    final goCenterUI = DivElement()
+      ..id = 'goCenterUI'
+      ..title = 'Click to recenter the map';
     controlDiv.children.add(goCenterUI);
 
     // Set CSS for the control interior
-    final goCenterText = DivElement();
-    goCenterText.style
-      ..color = 'rgb(25,25,25)'
-      ..fontFamily = 'Roboto,Arial,sans-serif'
-      ..fontSize = '16px'
-      ..lineHeight = '38px'
-      ..paddingLeft = '5px'
-      ..paddingRight = '5px';
-    goCenterText.innerHtml = 'Center Map';
+    final goCenterText = DivElement()
+      ..id = 'goCenterText'
+      ..innerHtml = 'Center Map';
     goCenterUI.children.add(goCenterText);
 
     // Set CSS for the setCenter control border
-    final setCenterUI = DivElement();
-    setCenterUI.style
-      ..backgroundColor = '#fff'
-      ..border = '2px solid #fff'
-      ..borderRadius = '3px'
-      ..boxShadow = '0 2px 6px rgba(0,0,0,.3)'
-      ..cursor = 'pointer'
-      ..float = 'left'
-      ..marginBottom = '22px'
-      ..marginLeft = '12px'
-      ..textAlign = 'center';
-    setCenterUI.title = 'Click to change the center of the map';
+    final setCenterUI = DivElement()
+      ..id = 'setCenterUI'
+      ..title = 'Click to change the center of the map';
     controlDiv.children.add(setCenterUI);
 
     // Set CSS for the control interior
-    final setCenterText = DivElement();
-    setCenterText.style
-      ..color = 'rgb(25,25,25)'
-      ..fontFamily = 'Roboto,Arial,sans-serif'
-      ..fontSize = '16px'
-      ..lineHeight = '38px'
-      ..paddingLeft = '5px'
-      ..paddingRight = '5px';
-    setCenterText.innerHtml = 'Set Center';
+    final setCenterText = DivElement()
+      ..id = 'setCenterText'
+      ..innerHtml = 'Set Center';
     setCenterUI.children.add(setCenterText);
 
     // Setup the click event listener for Home:
     // simply set the map to the control's current home property.
-    Event.addDomListener(goCenterUI, 'click', (e) {
+    goCenterUI.onClick.listen((e) {
       map.center = center;
     });
     // Setup the click event listener for Set Home:
     // Set the control's home to the current Map center.
-    Event.addDomListener(setCenterUI, 'click', (e) {
+    setCenterUI.onClick.listen((e) {
       center = map.center;
     });
   }
@@ -79,18 +51,16 @@ class HomeControl {
 }
 
 void main() {
-  final mapDiv = document.getElementById('map-canvas');
-  final mapOptions = MapOptions()
+  map = GMap(document.getElementById('map'), MapOptions()
     ..zoom = 12
-    ..center = chicago;
-  map = GMap(mapDiv, mapOptions);
+    ..center = chicago);
 
   // Create the DIV to hold the control and
   // call the HomeControl() constructor passing
   // in this DIV.
-  final homeControlDiv = DivElement();
-  HomeControl(homeControlDiv, map, chicago);
-
-  homeControlDiv.attributes['index'] = '1';
-  map.controls[ControlPosition.BOTTOM_LEFT as int].push(homeControlDiv);
+  final centerControlDiv = DivElement();
+  CenterControl(centerControlDiv, map, chicago);
+  centerControlDiv.attributes['index'] = '1';
+  centerControlDiv.style.paddingTop = '10px';
+  map.controls[ControlPosition.TOP_CENTER as int].push(centerControlDiv);
 }

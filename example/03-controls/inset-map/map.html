@@ -10,10 +10,31 @@
         margin: 0px;
         padding: 0px
       }
+      #container,
+      #map {
+        height: 100%;
+        width: 100%;
+      }
+
+      #map {
+        position: relative;
+      }
+
+      #overview {
+        position: absolute;
+        left: 40px;
+        height: 175px;
+        width: 175px;
+        bottom: 50px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      }
     </style>
   </head>
   <body>
-    <div id="map"></div>
+    <div id="container">
+      <div id="map"></div>
+      <div id="overview"></div>
+    </div>
 
     <script src="http://maps.googleapis.com/maps/api/js"></script>
     <script defer src="page.dart.js"></script>

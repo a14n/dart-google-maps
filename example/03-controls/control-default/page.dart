@@ -6,8 +6,7 @@ void main() {
   GMap(
     document.getElementById('map'),
     MapOptions()
-      ..zoom = 4
-      ..center = LatLng(-33, 151)
-      ..disableDefaultUI = true,
+      ..center = LatLng(-34.397, 150.644)
+      ..zoom = 8,
   );
 }

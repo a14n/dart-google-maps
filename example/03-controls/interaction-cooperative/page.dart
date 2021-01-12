@@ -7,7 +7,7 @@ void main() {
     document.getElementById('map'),
     MapOptions()
       ..zoom = 4
-      ..center = LatLng(-33, 151)
-      ..disableDefaultUI = true,
+      ..center = LatLng(-25.363, 131.044)
+      ..gestureHandling = 'cooperative',
   );
 }

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Split Map Panes</title>
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+
+      #container,
+      #left,
+      #right,
+      .map,
+      .gutter {
+        height: 100%;
+      }
+
+      #left,
+      #right,
+      .gutter {
+        float: left;
+        position: relative;
+        overflow: hidden;
+      }
+
+      #map-left {
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+
+      #map-right {
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+
+      .gutter {
+        background-color: #eee;
+        background-repeat: no-repeat;
+        background-position: 50%;
+      }
+
+      .gutter.gutter-horizontal {
+        cursor: col-resize;
+        background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==");
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <div id="left">
+        <div id="map-left" class="map"></div>
+      </div>
+      <div id="right">
+        <div id="map-right" class="map"></div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/split.js/1.5.11/split.min.js"></script>
+    <script src="http://maps.googleapis.com/maps/api/js"></script>
+    <script defer src="page.dart.js"></script>
+
+  </body>
+</html>
