@@ -7,7 +7,13 @@ homepage: https://github.com/a14n/dart-google-maps
 environment:
   sdk: '>=2.6.0 <3.0.0'
 dependencies:
-#  js_wrapping: ^0.5.0
+  # js_wrapping: ^0.5.0
+  js_wrapping:
+    git:
+      url: https://github.com/a14n/dart-js-wrapping.git
+      ref: master
+      path: js_wrapping
+    # path: ../dart-js-wrapping/js_wrapping
   meta: ^1.1.2
 dev_dependencies:
   build_runner: ^1.10.0
@@ -16,17 +22,10 @@ dev_dependencies:
   html: ^0.14.0+3
   http: ^0.12.1
 #  js_wrapping_generator: ^0.5.0
-  path: ^1.7.0
-dependency_overrides:
-  js_wrapping:
-    git:
-      url: https://github.com/a14n/dart-js-wrapping.git
-      ref: master
-      path: js_wrapping
-    #path: ../dart-js-wrapping/js_wrapping
   js_wrapping_generator:
     git:
       url: https://github.com/a14n/dart-js-wrapping.git
       ref: master
       path: js_wrapping_generator
-  #  path: ../dart-js-wrapping/js_wrapping_generator
+    # path: ../dart-js-wrapping/js_wrapping_generator
+  path: ^1.7.0
