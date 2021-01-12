@@ -51,9 +51,11 @@ class CenterControl {
 }
 
 void main() {
-  map = GMap(document.getElementById('map'), MapOptions()
-    ..zoom = 12
-    ..center = chicago);
+  map = GMap(
+      document.getElementById('map'),
+      MapOptions()
+        ..zoom = 12
+        ..center = chicago);
 
   // Create the DIV to hold the control and
   // call the HomeControl() constructor passing
