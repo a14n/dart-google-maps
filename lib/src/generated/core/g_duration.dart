@@ -16,8 +16,8 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _GDuration {
-  factory _GDuration() => $js;
+abstract class GDuration {
+  factory GDuration() => $js;
   String text;
   num value;
 }

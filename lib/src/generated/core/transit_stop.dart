@@ -16,8 +16,8 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _TransitStop {
-  factory _TransitStop() => $js;
+abstract class TransitStop {
+  factory TransitStop() => $js;
   LatLng location;
   String name;
 }

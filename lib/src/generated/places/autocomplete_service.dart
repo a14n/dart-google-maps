@@ -15,8 +15,8 @@
 part of '../google_maps_places.dart';
 
 @JsName('google.maps.places.AutocompleteService')
-abstract class _AutocompleteService {
-  factory _AutocompleteService() => $js;
+abstract class AutocompleteService {
+  factory AutocompleteService() => $js;
   void getPlacePredictions(
       AutocompletionRequest request,
       void Function(List<AutocompletePrediction> p1, PlacesServiceStatus p2)

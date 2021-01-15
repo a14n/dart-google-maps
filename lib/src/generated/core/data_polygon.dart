@@ -15,9 +15,8 @@
 part of '../google_maps_core.dart';
 
 @JsName('google.maps.Data.Polygon')
-abstract class _DataPolygon implements DataGeometry {
-  factory _DataPolygon(
-          List<Object /*DataLinearRing|List<LatLng>*/ > elements) =>
+abstract class DataPolygon implements DataGeometry {
+  factory DataPolygon(List<Object /*DataLinearRing|List<LatLng>*/ > elements) =>
       $js;
   void forEachLatLng(void Function(LatLng p1) callback);
 

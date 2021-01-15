@@ -16,8 +16,8 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _TransitLine {
-  factory _TransitLine() => $js;
+abstract class TransitLine {
+  factory TransitLine() => $js;
   List<TransitAgency> agencies;
   String color;
   String icon;

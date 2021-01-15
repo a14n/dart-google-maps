@@ -16,7 +16,7 @@ part of '../google_maps_core.dart';
 
 // ignore_for_file: unused_element, unused_field
 @JsName('google.maps.GeocoderStatus')
-enum _GeocoderStatus {
+enum GeocoderStatus {
   ERROR,
   INVALID_REQUEST,
   OK,

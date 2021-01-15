@@ -16,8 +16,8 @@ part of '../google_maps_drawing.dart';
 
 @JsName()
 @anonymous
-abstract class _DrawingManagerOptions {
-  factory _DrawingManagerOptions() => $js;
+abstract class DrawingManagerOptions {
+  factory DrawingManagerOptions() => $js;
   CircleOptions circleOptions;
   bool drawingControl;
   DrawingControlOptions drawingControlOptions;

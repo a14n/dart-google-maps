@@ -1,12 +1,31 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of google_maps.places;
-
 // **************************************************************************
 // JsWrappingGenerator
 // **************************************************************************
 
-@GeneratedFrom(_Autocomplete)
+// Copyright (c) 2015, Alexandre Ardhuin
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+@JS()
+library google_maps.places;
+
+import 'dart:async' show StreamController;
+import 'dart:html' show InputElement;
+import 'package:js_wrapping/js_wrapping.dart';
+import 'package:google_maps/google_maps.dart';
+
 @JS('google.maps.places.Autocomplete')
 class Autocomplete extends MVCObject {
   external Autocomplete(
@@ -15,7 +34,6 @@ class Autocomplete extends MVCObject {
   ]);
 }
 
-@GeneratedFrom(_Autocomplete)
 extension Autocomplete$Ext on Autocomplete {
   LatLngBounds get bounds => _getBounds();
   List<String> get fields => _getFields();
@@ -72,7 +90,6 @@ extension Autocomplete$Ext on Autocomplete {
   }
 }
 
-@GeneratedFrom(_AutocompleteOptions)
 @JS()
 @anonymous
 class AutocompleteOptions {
@@ -95,7 +112,6 @@ class AutocompleteOptions {
   external set strictBounds(bool value);
 }
 
-@GeneratedFrom(_AutocompleteOptions)
 extension AutocompleteOptions$Ext on AutocompleteOptions {
   List<String> get fields => getProperty(this, 'fields')?.cast<String>();
 
@@ -110,7 +126,6 @@ extension AutocompleteOptions$Ext on AutocompleteOptions {
   }
 }
 
-@GeneratedFrom(_SearchBox)
 @JS('google.maps.places.SearchBox')
 class SearchBox extends MVCObject {
   external SearchBox(
@@ -119,7 +134,6 @@ class SearchBox extends MVCObject {
   ]);
 }
 
-@GeneratedFrom(_SearchBox)
 extension SearchBox$Ext on SearchBox {
   LatLngBounds get bounds => _getBounds();
   List<PlaceResult> get places => _getPlaces();
@@ -152,7 +166,6 @@ extension SearchBox$Ext on SearchBox {
   }
 }
 
-@GeneratedFrom(_SearchBoxOptions)
 @JS()
 @anonymous
 class SearchBoxOptions {
@@ -163,13 +176,11 @@ class SearchBoxOptions {
   external set bounds(LatLngBounds value);
 }
 
-@GeneratedFrom(_PlacesService)
 @JS('google.maps.places.PlacesService')
 class PlacesService {
   external PlacesService(Object /*DivElement|GMap*/ attrContainer);
 }
 
-@GeneratedFrom(_PlacesService)
 extension PlacesService$Ext on PlacesService {
   void findPlaceFromPhoneNumber(
     FindPlaceFromPhoneNumberRequest request, [
@@ -212,7 +223,6 @@ extension PlacesService$Ext on PlacesService {
   }
 }
 
-@GeneratedFrom(_PlaceDetailsRequest)
 @JS()
 @anonymous
 class PlaceDetailsRequest {
@@ -227,7 +237,6 @@ class PlaceDetailsRequest {
   external set sessionToken(AutocompleteSessionToken value);
 }
 
-@GeneratedFrom(_PlaceDetailsRequest)
 extension PlaceDetailsRequest$Ext on PlaceDetailsRequest {
   List<String> get fields => getProperty(this, 'fields')?.cast<String>();
 
@@ -236,7 +245,6 @@ extension PlaceDetailsRequest$Ext on PlaceDetailsRequest {
   }
 }
 
-@GeneratedFrom(_FindPlaceFromPhoneNumberRequest)
 @JS()
 @anonymous
 class FindPlaceFromPhoneNumberRequest {
@@ -251,7 +259,6 @@ class FindPlaceFromPhoneNumberRequest {
   external set locationBias(Object /*LatLng|LatLngBounds|Circle|String*/ value);
 }
 
-@GeneratedFrom(_FindPlaceFromPhoneNumberRequest)
 extension FindPlaceFromPhoneNumberRequest$Ext
     on FindPlaceFromPhoneNumberRequest {
   List<String> get fields => getProperty(this, 'fields')?.cast<String>();
@@ -261,7 +268,6 @@ extension FindPlaceFromPhoneNumberRequest$Ext
   }
 }
 
-@GeneratedFrom(_FindPlaceFromQueryRequest)
 @JS()
 @anonymous
 class FindPlaceFromQueryRequest {
@@ -276,7 +282,6 @@ class FindPlaceFromQueryRequest {
   external set locationBias(Object /*LatLng|LatLngBounds|Circle|String*/ value);
 }
 
-@GeneratedFrom(_FindPlaceFromQueryRequest)
 extension FindPlaceFromQueryRequest$Ext on FindPlaceFromQueryRequest {
   List<String> get fields => getProperty(this, 'fields')?.cast<String>();
 
@@ -285,7 +290,6 @@ extension FindPlaceFromQueryRequest$Ext on FindPlaceFromQueryRequest {
   }
 }
 
-@GeneratedFrom(_PlaceSearchRequest)
 @JS()
 @anonymous
 class PlaceSearchRequest {
@@ -332,7 +336,6 @@ class PlaceSearchRequest {
   external set type(String value);
 }
 
-@GeneratedFrom(_TextSearchRequest)
 @JS()
 @anonymous
 class TextSearchRequest {
@@ -359,14 +362,12 @@ class TextSearchRequest {
   external set type(String value);
 }
 
-@GeneratedFrom(_RankBy)
 @JS('google.maps.places.RankBy')
 class RankBy {
   external static RankBy get DISTANCE;
   external static RankBy get PROMINENCE;
 }
 
-@GeneratedFrom(_PlacesServiceStatus)
 @JS('google.maps.places.PlacesServiceStatus')
 class PlacesServiceStatus {
   external static PlacesServiceStatus get INVALID_REQUEST;
@@ -378,7 +379,6 @@ class PlacesServiceStatus {
   external static PlacesServiceStatus get ZERO_RESULTS;
 }
 
-@GeneratedFrom(_PlaceSearchPagination)
 @JS()
 @anonymous
 class PlaceSearchPagination {
@@ -391,7 +391,6 @@ class PlaceSearchPagination {
   external void nextPage();
 }
 
-@GeneratedFrom(_PlaceResult)
 @JS()
 @anonymous
 class PlaceResult {
@@ -426,7 +425,6 @@ class PlaceResult {
   external set website(String value);
 }
 
-@GeneratedFrom(_PlaceResult)
 extension PlaceResult$Ext on PlaceResult {
   List<GeocoderAddressComponent> get addressComponents =>
       getProperty(this, 'address_components')?.cast<GeocoderAddressComponent>();
@@ -550,7 +548,6 @@ extension PlaceResult$Ext on PlaceResult {
   }
 }
 
-@GeneratedFrom(_PlaceAspectRating)
 @JS()
 @anonymous
 class PlaceAspectRating {
@@ -565,7 +562,6 @@ class PlaceAspectRating {
   external set type(String value);
 }
 
-@GeneratedFrom(_BusinessStatus)
 @JS('google.maps.places.BusinessStatus')
 class BusinessStatus {
   external static BusinessStatus get CLOSED_PERMANENTLY;
@@ -573,7 +569,6 @@ class BusinessStatus {
   external static BusinessStatus get OPERATIONAL;
 }
 
-@GeneratedFrom(_PlaceGeometry)
 @JS()
 @anonymous
 class PlaceGeometry {
@@ -588,7 +583,6 @@ class PlaceGeometry {
   external set viewport(LatLngBounds value);
 }
 
-@GeneratedFrom(_PlaceOpeningHours)
 @JS()
 @anonymous
 class PlaceOpeningHours {
@@ -599,7 +593,6 @@ class PlaceOpeningHours {
   ]);
 }
 
-@GeneratedFrom(_PlaceOpeningHours)
 extension PlaceOpeningHours$Ext on PlaceOpeningHours {
   bool get openNow => getProperty(this, 'open_now');
 
@@ -622,7 +615,6 @@ extension PlaceOpeningHours$Ext on PlaceOpeningHours {
   }
 }
 
-@GeneratedFrom(_PlaceOpeningHoursPeriod)
 @JS()
 @anonymous
 class PlaceOpeningHoursPeriod {
@@ -637,7 +629,6 @@ class PlaceOpeningHoursPeriod {
   external set close(PlaceOpeningHoursTime value);
 }
 
-@GeneratedFrom(_PlaceOpeningHoursTime)
 @JS()
 @anonymous
 class PlaceOpeningHoursTime {
@@ -664,14 +655,12 @@ class PlaceOpeningHoursTime {
   external set nextDate(num value);
 }
 
-@GeneratedFrom(_PlacePlusCode)
 @JS()
 @anonymous
 class PlacePlusCode {
   external factory PlacePlusCode();
 }
 
-@GeneratedFrom(_PlacePlusCode)
 extension PlacePlusCode$Ext on PlacePlusCode {
   String get globalCode => getProperty(this, 'global_code');
 
@@ -686,7 +675,6 @@ extension PlacePlusCode$Ext on PlacePlusCode {
   }
 }
 
-@GeneratedFrom(_PlacePhoto)
 @JS()
 @anonymous
 class PlacePhoto {
@@ -701,7 +689,6 @@ class PlacePhoto {
   external set width(num value);
 }
 
-@GeneratedFrom(_PlacePhoto)
 extension PlacePhoto$Ext on PlacePhoto {
   List<String> get htmlAttributions =>
       getProperty(this, 'html_attributions')?.cast<String>();
@@ -715,7 +702,6 @@ extension PlacePhoto$Ext on PlacePhoto {
   String _getUrl() => callMethod(this, 'getUrl', []);
 }
 
-@GeneratedFrom(_PhotoOptions)
 @JS()
 @anonymous
 class PhotoOptions {
@@ -730,7 +716,6 @@ class PhotoOptions {
   external set maxWidth(num value);
 }
 
-@GeneratedFrom(_PlaceReview)
 @JS()
 @anonymous
 class PlaceReview {
@@ -749,7 +734,6 @@ class PlaceReview {
   external set time(num value);
 }
 
-@GeneratedFrom(_PlaceReview)
 extension PlaceReview$Ext on PlaceReview {
   List<PlaceAspectRating> get aspects =>
       getProperty(this, 'aspects')?.cast<PlaceAspectRating>();
@@ -784,13 +768,11 @@ extension PlaceReview$Ext on PlaceReview {
   }
 }
 
-@GeneratedFrom(_AutocompleteService)
 @JS('google.maps.places.AutocompleteService')
 class AutocompleteService {
   external AutocompleteService();
 }
 
-@GeneratedFrom(_AutocompleteService)
 extension AutocompleteService$Ext on AutocompleteService {
   void getPlacePredictions(
       AutocompletionRequest request,
@@ -808,7 +790,6 @@ extension AutocompleteService$Ext on AutocompleteService {
   }
 }
 
-@GeneratedFrom(_AutocompletionRequest)
 @JS()
 @anonymous
 class AutocompletionRequest {
@@ -847,7 +828,6 @@ class AutocompletionRequest {
   external set sessionToken(AutocompleteSessionToken value);
 }
 
-@GeneratedFrom(_AutocompletionRequest)
 extension AutocompletionRequest$Ext on AutocompletionRequest {
   List<String> get types => getProperty(this, 'types')?.cast<String>();
 
@@ -856,7 +836,6 @@ extension AutocompletionRequest$Ext on AutocompletionRequest {
   }
 }
 
-@GeneratedFrom(_QueryAutocompletionRequest)
 @JS()
 @anonymous
 class QueryAutocompletionRequest {
@@ -883,13 +862,11 @@ class QueryAutocompletionRequest {
   external set radius(num value);
 }
 
-@GeneratedFrom(_AutocompleteSessionToken)
 @JS('google.maps.places.AutocompleteSessionToken')
 class AutocompleteSessionToken {
   external AutocompleteSessionToken();
 }
 
-@GeneratedFrom(_ComponentRestrictions)
 @JS()
 @anonymous
 class ComponentRestrictions {
@@ -900,7 +877,6 @@ class ComponentRestrictions {
   external set country(Object /*String|List<String>*/ value);
 }
 
-@GeneratedFrom(_AutocompletePrediction)
 @JS()
 @anonymous
 class AutocompletePrediction {
@@ -911,7 +887,6 @@ class AutocompletePrediction {
   external set description(String value);
 }
 
-@GeneratedFrom(_AutocompletePrediction)
 extension AutocompletePrediction$Ext on AutocompletePrediction {
   List<PredictionSubstring> get matchedSubstrings =>
       getProperty(this, 'matched_substrings')?.cast<PredictionSubstring>();
@@ -953,7 +928,6 @@ extension AutocompletePrediction$Ext on AutocompletePrediction {
   }
 }
 
-@GeneratedFrom(_QueryAutocompletePrediction)
 @JS()
 @anonymous
 class QueryAutocompletePrediction {
@@ -964,7 +938,6 @@ class QueryAutocompletePrediction {
   external set description(String value);
 }
 
-@GeneratedFrom(_QueryAutocompletePrediction)
 extension QueryAutocompletePrediction$Ext on QueryAutocompletePrediction {
   List<PredictionSubstring> get matchedSubstrings =>
       getProperty(this, 'matched_substrings')?.cast<PredictionSubstring>();
@@ -987,7 +960,6 @@ extension QueryAutocompletePrediction$Ext on QueryAutocompletePrediction {
   }
 }
 
-@GeneratedFrom(_PredictionTerm)
 @JS()
 @anonymous
 class PredictionTerm {
@@ -1002,7 +974,6 @@ class PredictionTerm {
   external set value(String value);
 }
 
-@GeneratedFrom(_PredictionSubstring)
 @JS()
 @anonymous
 class PredictionSubstring {
@@ -1017,14 +988,12 @@ class PredictionSubstring {
   external set offset(num value);
 }
 
-@GeneratedFrom(_StructuredFormatting)
 @JS()
 @anonymous
 class StructuredFormatting {
   external factory StructuredFormatting();
 }
 
-@GeneratedFrom(_StructuredFormatting)
 extension StructuredFormatting$Ext on StructuredFormatting {
   String get mainText => getProperty(this, 'main_text');
 

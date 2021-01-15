@@ -15,8 +15,8 @@
 part of '../google_maps_core.dart';
 
 @JsName('google.maps.Marker')
-abstract class _Marker extends MVCObject {
-  factory _Marker([
+abstract class Marker extends MVCObject {
+  factory Marker([
     MarkerOptions opts, // ignore: unused_element
   ]) =>
       $js;

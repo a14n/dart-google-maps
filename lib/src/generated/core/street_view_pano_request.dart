@@ -16,7 +16,7 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _StreetViewPanoRequest {
-  factory _StreetViewPanoRequest() => $js;
+abstract class StreetViewPanoRequest {
+  factory StreetViewPanoRequest() => $js;
   String pano;
 }

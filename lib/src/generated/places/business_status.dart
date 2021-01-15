@@ -16,7 +16,7 @@ part of '../google_maps_places.dart';
 
 // ignore_for_file: unused_element, unused_field
 @JsName('google.maps.places.BusinessStatus')
-enum _BusinessStatus {
+enum BusinessStatus {
   CLOSED_PERMANENTLY,
   CLOSED_TEMPORARILY,
   OPERATIONAL,

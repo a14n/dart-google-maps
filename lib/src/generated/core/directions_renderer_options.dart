@@ -16,8 +16,8 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _DirectionsRendererOptions {
-  factory _DirectionsRendererOptions() => $js;
+abstract class DirectionsRendererOptions {
+  factory DirectionsRendererOptions() => $js;
   DirectionsResult directions;
   bool draggable;
   bool hideRouteList;

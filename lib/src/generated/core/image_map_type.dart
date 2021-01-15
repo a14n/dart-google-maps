@@ -15,8 +15,8 @@
 part of '../google_maps_core.dart';
 
 @JsName('google.maps.ImageMapType')
-abstract class _ImageMapType extends MVCObject implements MapType {
-  factory _ImageMapType(ImageMapTypeOptions opts) => $js;
+abstract class ImageMapType extends MVCObject implements MapType {
+  factory ImageMapType(ImageMapTypeOptions opts) => $js;
   String alt;
   num maxZoom;
   num minZoom;
@@ -30,8 +30,8 @@ abstract class _ImageMapType extends MVCObject implements MapType {
   @JsName('getOpacity')
   num _getOpacity();
 
-  Node getTile(Point tileCoord, num zoom, Document ownerDocument);
-  void releaseTile(Node tileDiv);
+  Node Function(Point tileCoord, num zoom, Document ownerDocument) getTile;
+  void Function(Node tileDiv) releaseTile;
 
   // synthetic setter for setOpacity
   set opacity(num opacity) => _setOpacity(opacity);

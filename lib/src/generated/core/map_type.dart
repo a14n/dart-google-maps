@@ -16,8 +16,8 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _MapType {
-  factory _MapType() => $js;
+abstract class MapType {
+  factory MapType() => $js;
   num maxZoom;
   num minZoom;
   num radius;

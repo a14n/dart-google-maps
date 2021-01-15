@@ -16,8 +16,8 @@ part of '../google_maps_visualization.dart';
 
 @JsName()
 @anonymous
-abstract class _HeatmapLayerOptions {
-  factory _HeatmapLayerOptions() => $js;
+abstract class HeatmapLayerOptions {
+  factory HeatmapLayerOptions() => $js;
   Object /*MVCArray<Object/*LatLng|WeightedLocation*/>|List<Object/*LatLng|WeightedLocation*/>*/ data;
   bool dissipating;
   List<String> gradient;

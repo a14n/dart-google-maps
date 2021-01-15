@@ -15,8 +15,8 @@
 part of '../google_maps_core.dart';
 
 @JsName('google.maps.Data.MultiPoint')
-abstract class _DataMultiPoint implements DataGeometry {
-  factory _DataMultiPoint(List<LatLng> elements) => $js;
+abstract class DataMultiPoint implements DataGeometry {
+  factory DataMultiPoint(List<LatLng> elements) => $js;
   void forEachLatLng(void Function(LatLng p1) callback);
 
   // synthetic getter for getArray

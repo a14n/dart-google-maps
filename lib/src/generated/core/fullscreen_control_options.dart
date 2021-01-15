@@ -16,7 +16,7 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _FullscreenControlOptions {
-  factory _FullscreenControlOptions() => $js;
+abstract class FullscreenControlOptions {
+  factory FullscreenControlOptions() => $js;
   ControlPosition position;
 }

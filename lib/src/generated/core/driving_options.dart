@@ -16,8 +16,8 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _DrivingOptions {
-  factory _DrivingOptions() => $js;
+abstract class DrivingOptions {
+  factory DrivingOptions() => $js;
   DateTime departureTime;
   TrafficModel trafficModel;
 }

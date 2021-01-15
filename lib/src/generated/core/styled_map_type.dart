@@ -15,8 +15,8 @@
 part of '../google_maps_core.dart';
 
 @JsName('google.maps.StyledMapType')
-abstract class _StyledMapType extends MVCObject implements MapType {
-  factory _StyledMapType(
+abstract class StyledMapType extends MVCObject implements MapType {
+  factory StyledMapType(
     List<MapTypeStyle> styles, [
     StyledMapTypeOptions options, // ignore: unused_element
   ]) =>

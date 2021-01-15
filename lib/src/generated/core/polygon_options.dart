@@ -16,8 +16,8 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _PolygonOptions {
-  factory _PolygonOptions() => $js;
+abstract class PolygonOptions {
+  factory PolygonOptions() => $js;
   bool clickable;
   bool draggable;
   bool editable;

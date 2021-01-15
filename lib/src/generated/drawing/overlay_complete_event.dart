@@ -16,8 +16,8 @@ part of '../google_maps_drawing.dart';
 
 @JsName()
 @anonymous
-abstract class _OverlayCompleteEvent {
-  factory _OverlayCompleteEvent() => $js;
+abstract class OverlayCompleteEvent {
+  factory OverlayCompleteEvent() => $js;
   Object /*Marker|Polygon|Polyline|Rectangle|Circle*/ overlay;
   OverlayType type;
 }

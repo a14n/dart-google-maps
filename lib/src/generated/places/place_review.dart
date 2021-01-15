@@ -16,8 +16,8 @@ part of '../google_maps_places.dart';
 
 @JsName()
 @anonymous
-abstract class _PlaceReview {
-  factory _PlaceReview() => $js;
+abstract class PlaceReview {
+  factory PlaceReview() => $js;
   List<PlaceAspectRating> aspects;
   // custom name for author_name
   @JsName('author_name')

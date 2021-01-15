@@ -16,8 +16,8 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _GeocoderRequest {
-  factory _GeocoderRequest() => $js;
+abstract class GeocoderRequest {
+  factory GeocoderRequest() => $js;
   String address;
   LatLngBounds bounds;
   GeocoderComponentRestrictions componentRestrictions;

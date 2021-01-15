@@ -15,8 +15,8 @@
 part of '../google_maps_core.dart';
 
 @JsName('google.maps.Data.GeometryCollection')
-abstract class _DataGeometryCollection implements DataGeometry {
-  factory _DataGeometryCollection(
+abstract class DataGeometryCollection implements DataGeometry {
+  factory DataGeometryCollection(
           List<Object /*DataGeometry|LatLng*/ > elements) =>
       $js;
   void forEachLatLng(void Function(LatLng p1) callback);

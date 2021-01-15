@@ -16,8 +16,8 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _MapTypeControlOptions {
-  factory _MapTypeControlOptions() => $js;
+abstract class MapTypeControlOptions {
+  factory MapTypeControlOptions() => $js;
   List<Object /*MapTypeId|String*/ > mapTypeIds;
   ControlPosition position;
   MapTypeControlStyle style;

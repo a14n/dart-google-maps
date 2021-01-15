@@ -1,12 +1,30 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of google_maps.core;
-
 // **************************************************************************
 // JsWrappingGenerator
 // **************************************************************************
 
-@GeneratedFrom(_GMap)
+// Copyright (c) 2015, Alexandre Ardhuin
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+@JS()
+library google_maps.core;
+
+import 'dart:async' show StreamController;
+import 'dart:html' show Document, Element, Node;
+import 'package:js_wrapping/js_wrapping.dart';
+
 @JS('google.maps.Map')
 class GMap extends MVCObject {
   external GMap(
@@ -41,7 +59,6 @@ class GMap extends MVCObject {
   ]);
 }
 
-@GeneratedFrom(_GMap)
 extension GMap$Ext on GMap {
   List<MVCArray<Node>> get controls =>
       getProperty(this, 'controls')?.cast<MVCArray<Node>>();
@@ -465,7 +482,6 @@ extension GMap$Ext on GMap {
   }
 }
 
-@GeneratedFrom(_MapOptions)
 @JS()
 @anonymous
 class MapOptions {
@@ -612,7 +628,6 @@ class MapOptions {
   external set zoomControlOptions(ZoomControlOptions value);
 }
 
-@GeneratedFrom(_MapOptions)
 extension MapOptions$Ext on MapOptions {
   List<MapTypeStyle> get styles =>
       getProperty(this, 'styles')?.cast<MapTypeStyle>();
@@ -622,7 +637,6 @@ extension MapOptions$Ext on MapOptions {
   }
 }
 
-@GeneratedFrom(_MapTypeStyle)
 @JS()
 @anonymous
 class MapTypeStyle {
@@ -637,7 +651,6 @@ class MapTypeStyle {
   external set featureType(String value);
 }
 
-@GeneratedFrom(_MapTypeStyle)
 extension MapTypeStyle$Ext on MapTypeStyle {
   List<Object> get stylers => getProperty(this, 'stylers')?.cast<Object>();
 
@@ -646,7 +659,6 @@ extension MapTypeStyle$Ext on MapTypeStyle {
   }
 }
 
-@GeneratedFrom(_MapMouseEvent)
 @JS()
 @anonymous
 class MapMouseEvent {
@@ -664,7 +676,6 @@ class MapMouseEvent {
   external void stop();
 }
 
-@GeneratedFrom(_IconMouseEvent)
 @JS()
 @anonymous
 class IconMouseEvent extends MapMouseEvent {
@@ -675,7 +686,6 @@ class IconMouseEvent extends MapMouseEvent {
   external set placeId(String value);
 }
 
-@GeneratedFrom(_MapTypeId)
 @JS('google.maps.MapTypeId')
 class MapTypeId {
   external static MapTypeId get HYBRID;
@@ -684,7 +694,6 @@ class MapTypeId {
   external static MapTypeId get TERRAIN;
 }
 
-@GeneratedFrom(_MapTypeRegistry)
 @JS('google.maps.MapTypeRegistry')
 class MapTypeRegistry extends MVCObject {
   external MapTypeRegistry();
@@ -692,7 +701,6 @@ class MapTypeRegistry extends MVCObject {
   external void set(String id, Object /*MapType|Object*/ mapType);
 }
 
-@GeneratedFrom(_MapRestriction)
 @JS()
 @anonymous
 class MapRestriction {
@@ -707,7 +715,6 @@ class MapRestriction {
   external set strictBounds(bool value);
 }
 
-@GeneratedFrom(_TrafficLayer)
 @JS('google.maps.TrafficLayer')
 class TrafficLayer extends MVCObject {
   external TrafficLayer([
@@ -715,7 +722,6 @@ class TrafficLayer extends MVCObject {
   ]);
 }
 
-@GeneratedFrom(_TrafficLayer)
 extension TrafficLayer$Ext on TrafficLayer {
   GMap get map => _getMap();
   set map(GMap map) => _setMap(map);
@@ -732,7 +738,6 @@ extension TrafficLayer$Ext on TrafficLayer {
   }
 }
 
-@GeneratedFrom(_TrafficLayerOptions)
 @JS()
 @anonymous
 class TrafficLayerOptions {
@@ -747,13 +752,11 @@ class TrafficLayerOptions {
   external set map(GMap value);
 }
 
-@GeneratedFrom(_TransitLayer)
 @JS('google.maps.TransitLayer')
 class TransitLayer extends MVCObject {
   external TransitLayer();
 }
 
-@GeneratedFrom(_TransitLayer)
 extension TransitLayer$Ext on TransitLayer {
   GMap get map => _getMap();
   set map(GMap map) => _setMap(map);
@@ -765,13 +768,11 @@ extension TransitLayer$Ext on TransitLayer {
   }
 }
 
-@GeneratedFrom(_BicyclingLayer)
 @JS('google.maps.BicyclingLayer')
 class BicyclingLayer extends MVCObject {
   external BicyclingLayer();
 }
 
-@GeneratedFrom(_BicyclingLayer)
 extension BicyclingLayer$Ext on BicyclingLayer {
   GMap get map => _getMap();
   set map(GMap map) => _setMap(map);
@@ -783,7 +784,6 @@ extension BicyclingLayer$Ext on BicyclingLayer {
   }
 }
 
-@GeneratedFrom(_LatLng)
 @JS('google.maps.LatLng')
 class LatLng {
   external LatLng(
@@ -801,7 +801,6 @@ class LatLng {
   ]);
 }
 
-@GeneratedFrom(_LatLng)
 extension LatLng$Ext on LatLng {
   num get lat => _lat();
   num get lng => _lng();
@@ -811,7 +810,6 @@ extension LatLng$Ext on LatLng {
   num _lng() => callMethod(this, 'lng', []);
 }
 
-@GeneratedFrom(_LatLngBounds)
 @JS('google.maps.LatLngBounds')
 class LatLngBounds {
   external LatLngBounds([
@@ -840,7 +838,6 @@ class LatLngBounds {
   external LatLngBounds union(LatLngBounds other);
 }
 
-@GeneratedFrom(_LatLngBounds)
 extension LatLngBounds$Ext on LatLngBounds {
   LatLng get center => _getCenter();
   LatLng get northEast => _getNorthEast();
@@ -853,7 +850,6 @@ extension LatLngBounds$Ext on LatLngBounds {
   LatLng _getSouthWest() => callMethod(this, 'getSouthWest', []);
 }
 
-@GeneratedFrom(_Point)
 @JS('google.maps.Point')
 class Point {
   external Point(num x, num y);
@@ -871,7 +867,6 @@ class Point {
   external String toString();
 }
 
-@GeneratedFrom(_Size)
 @JS('google.maps.Size')
 class Size {
   external Size(
@@ -894,7 +889,6 @@ class Size {
   external String toString();
 }
 
-@GeneratedFrom(_Padding)
 @JS()
 @anonymous
 class Padding {
@@ -917,7 +911,47 @@ class Padding {
   external set top(num value);
 }
 
-@GeneratedFrom(_MapsEventListener)
+@JS('google.maps.event')
+external Object get _Event$namespace;
+
+class Event {
+  static MapsEventListener addDomListener(
+    Object instance,
+    String eventName,
+    Function handler, [
+    bool capture,
+  ]) =>
+      callMethod(_Event$namespace, 'addDomListener',
+          [instance, eventName, allowInterop(handler), capture]);
+  static MapsEventListener addDomListenerOnce(
+    Object instance,
+    String eventName,
+    Function handler, [
+    bool capture,
+  ]) =>
+      callMethod(_Event$namespace, 'addDomListenerOnce',
+          [instance, eventName, allowInterop(handler), capture]);
+  static MapsEventListener addListener(
+          Object instance, String eventName, Function handler) =>
+      callMethod(_Event$namespace, 'addListener',
+          [instance, eventName, allowInterop(handler)]);
+  static MapsEventListener addListenerOnce(
+          Object instance, String eventName, Function handler) =>
+      callMethod(_Event$namespace, 'addListenerOnce',
+          [instance, eventName, allowInterop(handler)]);
+  static void clearInstanceListeners(Object instance) =>
+      callMethod(_Event$namespace, 'clearInstanceListeners', [instance]);
+  static void clearListeners(Object instance, String eventName) =>
+      callMethod(_Event$namespace, 'clearListeners', [instance, eventName]);
+  static void removeListener(MapsEventListener listener) =>
+      callMethod(_Event$namespace, 'removeListener', [listener]);
+
+  static void trigger(
+          Object instance, String eventName, List<Object> eventArgs) =>
+      callMethod(
+          _Event$namespace, 'trigger', [instance, eventName, ...?eventArgs]);
+}
+
 @JS()
 @anonymous
 class MapsEventListener {
@@ -926,7 +960,6 @@ class MapsEventListener {
   external void remove();
 }
 
-@GeneratedFrom(_MVCObject)
 @JS('google.maps.MVCObject')
 class MVCObject {
   external MVCObject();
@@ -951,7 +984,6 @@ class MVCObject {
   external void unbindAll();
 }
 
-@GeneratedFrom(_MVCObject)
 extension MVCObject$Ext on MVCObject {
   set values(Object values) => _setValues(values);
 
@@ -960,7 +992,6 @@ extension MVCObject$Ext on MVCObject {
   }
 }
 
-@GeneratedFrom(_MVCArray)
 @JS('google.maps.MVCArray')
 class MVCArray<T> extends MVCObject {
   external MVCArray([
@@ -982,7 +1013,6 @@ class MVCArray<T> extends MVCObject {
   external void setAt(num i, T elem);
 }
 
-@GeneratedFrom(_MVCArray)
 extension MVCArray$Ext<T> on MVCArray<T> {
   List<T> get array => _getArray();
   num get length => _getLength();
@@ -1049,7 +1079,6 @@ extension MVCArray$Ext<T> on MVCArray<T> {
   num _getLength() => callMethod(this, 'getLength', []);
 }
 
-@GeneratedFrom(_ErrorEvent)
 @JS()
 @anonymous
 class ErrorEvent {
@@ -1060,7 +1089,6 @@ class ErrorEvent {
   external set error(Object value);
 }
 
-@GeneratedFrom(_FullscreenControlOptions)
 @JS()
 @anonymous
 class FullscreenControlOptions {
@@ -1071,7 +1099,6 @@ class FullscreenControlOptions {
   external set position(ControlPosition value);
 }
 
-@GeneratedFrom(_MapTypeControlOptions)
 @JS()
 @anonymous
 class MapTypeControlOptions {
@@ -1086,7 +1113,6 @@ class MapTypeControlOptions {
   external set style(MapTypeControlStyle value);
 }
 
-@GeneratedFrom(_MapTypeControlOptions)
 extension MapTypeControlOptions$Ext on MapTypeControlOptions {
   List<Object /*MapTypeId|String*/ > get mapTypeIds =>
       getProperty(this, 'mapTypeIds')?.cast<Object /*MapTypeId|String*/ >();
@@ -1096,7 +1122,6 @@ extension MapTypeControlOptions$Ext on MapTypeControlOptions {
   }
 }
 
-@GeneratedFrom(_MapTypeControlStyle)
 @JS('google.maps.MapTypeControlStyle')
 class MapTypeControlStyle {
   external static MapTypeControlStyle get DEFAULT;
@@ -1104,7 +1129,6 @@ class MapTypeControlStyle {
   external static MapTypeControlStyle get HORIZONTAL_BAR;
 }
 
-@GeneratedFrom(_MotionTrackingControlOptions)
 @JS()
 @anonymous
 class MotionTrackingControlOptions {
@@ -1115,7 +1139,6 @@ class MotionTrackingControlOptions {
   external set position(ControlPosition value);
 }
 
-@GeneratedFrom(_PanControlOptions)
 @JS()
 @anonymous
 class PanControlOptions {
@@ -1126,7 +1149,6 @@ class PanControlOptions {
   external set position(ControlPosition value);
 }
 
-@GeneratedFrom(_RotateControlOptions)
 @JS()
 @anonymous
 class RotateControlOptions {
@@ -1137,7 +1159,6 @@ class RotateControlOptions {
   external set position(ControlPosition value);
 }
 
-@GeneratedFrom(_ScaleControlOptions)
 @JS()
 @anonymous
 class ScaleControlOptions {
@@ -1148,13 +1169,11 @@ class ScaleControlOptions {
   external set style(ScaleControlStyle value);
 }
 
-@GeneratedFrom(_ScaleControlStyle)
 @JS('google.maps.ScaleControlStyle')
 class ScaleControlStyle {
   external static ScaleControlStyle get DEFAULT;
 }
 
-@GeneratedFrom(_StreetViewControlOptions)
 @JS()
 @anonymous
 class StreetViewControlOptions {
@@ -1165,7 +1184,6 @@ class StreetViewControlOptions {
   external set position(ControlPosition value);
 }
 
-@GeneratedFrom(_ZoomControlOptions)
 @JS()
 @anonymous
 class ZoomControlOptions {
@@ -1176,7 +1194,6 @@ class ZoomControlOptions {
   external set position(ControlPosition value);
 }
 
-@GeneratedFrom(_ControlPosition)
 @JS('google.maps.ControlPosition')
 class ControlPosition {
   external static ControlPosition get BOTTOM_CENTER;
@@ -1193,7 +1210,6 @@ class ControlPosition {
   external static ControlPosition get TOP_RIGHT;
 }
 
-@GeneratedFrom(_Marker)
 @JS('google.maps.Marker')
 class Marker extends MVCObject {
   external Marker([
@@ -1201,7 +1217,6 @@ class Marker extends MVCObject {
   ]);
 }
 
-@GeneratedFrom(_Marker)
 extension Marker$Ext on Marker {
   Animation get animation => _getAnimation();
   bool get clickable => _getClickable();
@@ -1710,7 +1725,6 @@ extension Marker$Ext on Marker {
   }
 }
 
-@GeneratedFrom(_MarkerOptions)
 @JS()
 @anonymous
 class MarkerOptions {
@@ -1781,7 +1795,6 @@ class MarkerOptions {
   external set zIndex(num value);
 }
 
-@GeneratedFrom(_Icon)
 @JS()
 @anonymous
 class Icon {
@@ -1812,7 +1825,6 @@ class Icon {
   external set size(Size value);
 }
 
-@GeneratedFrom(_MarkerLabel)
 @JS()
 @anonymous
 class MarkerLabel {
@@ -1843,7 +1855,6 @@ class MarkerLabel {
   external set fontWeight(String value);
 }
 
-@GeneratedFrom(_MarkerShape)
 @JS()
 @anonymous
 class MarkerShape {
@@ -1854,7 +1865,6 @@ class MarkerShape {
   external set type(String value);
 }
 
-@GeneratedFrom(_MarkerShape)
 extension MarkerShape$Ext on MarkerShape {
   List<num> get coords => getProperty(this, 'coords')?.cast<num>();
 
@@ -1863,7 +1873,6 @@ extension MarkerShape$Ext on MarkerShape {
   }
 }
 
-@GeneratedFrom(_GSymbol)
 @JS()
 @anonymous
 class GSymbol {
@@ -1910,7 +1919,6 @@ class GSymbol {
   external set strokeWeight(num value);
 }
 
-@GeneratedFrom(_SymbolPath)
 @JS('google.maps.SymbolPath')
 class SymbolPath {
   external static SymbolPath get BACKWARD_CLOSED_ARROW;
@@ -1920,14 +1928,12 @@ class SymbolPath {
   external static SymbolPath get FORWARD_OPEN_ARROW;
 }
 
-@GeneratedFrom(_Animation)
 @JS('google.maps.Animation')
 class Animation {
   external static Animation get BOUNCE;
   external static Animation get DROP;
 }
 
-@GeneratedFrom(_InfoWindow)
 @JS('google.maps.InfoWindow')
 class InfoWindow extends MVCObject {
   external InfoWindow([
@@ -1942,7 +1948,6 @@ class InfoWindow extends MVCObject {
   ]);
 }
 
-@GeneratedFrom(_InfoWindow)
 extension InfoWindow$Ext on InfoWindow {
   Object /*String|Node*/ get content => _getContent();
   LatLng get position => _getPosition();
@@ -2064,7 +2069,6 @@ extension InfoWindow$Ext on InfoWindow {
   }
 }
 
-@GeneratedFrom(_InfoWindowOptions)
 @JS()
 @anonymous
 class InfoWindowOptions {
@@ -2099,7 +2103,6 @@ class InfoWindowOptions {
   external set zIndex(num value);
 }
 
-@GeneratedFrom(_Polyline)
 @JS('google.maps.Polyline')
 class Polyline extends MVCObject {
   external Polyline([
@@ -2107,7 +2110,6 @@ class Polyline extends MVCObject {
   ]);
 }
 
-@GeneratedFrom(_Polyline)
 extension Polyline$Ext on Polyline {
   bool get draggable => _getDraggable();
   bool get editable => _getEditable();
@@ -2371,7 +2373,6 @@ extension Polyline$Ext on Polyline {
   }
 }
 
-@GeneratedFrom(_PolylineOptions)
 @JS()
 @anonymous
 class PolylineOptions {
@@ -2422,7 +2423,6 @@ class PolylineOptions {
   external set zIndex(num value);
 }
 
-@GeneratedFrom(_PolylineOptions)
 extension PolylineOptions$Ext on PolylineOptions {
   List<IconSequence> get icons =>
       getProperty(this, 'icons')?.cast<IconSequence>();
@@ -2432,7 +2432,6 @@ extension PolylineOptions$Ext on PolylineOptions {
   }
 }
 
-@GeneratedFrom(_IconSequence)
 @JS()
 @anonymous
 class IconSequence {
@@ -2455,7 +2454,6 @@ class IconSequence {
   external set repeat(String value);
 }
 
-@GeneratedFrom(_Polygon)
 @JS('google.maps.Polygon')
 class Polygon extends MVCObject {
   external Polygon([
@@ -2463,7 +2461,6 @@ class Polygon extends MVCObject {
   ]);
 }
 
-@GeneratedFrom(_Polygon)
 extension Polygon$Ext on Polygon {
   bool get draggable => _getDraggable();
   bool get editable => _getEditable();
@@ -2738,7 +2735,6 @@ extension Polygon$Ext on Polygon {
   }
 }
 
-@GeneratedFrom(_PolygonOptions)
 @JS()
 @anonymous
 class PolygonOptions {
@@ -2802,7 +2798,6 @@ class PolygonOptions {
   external set zIndex(num value);
 }
 
-@GeneratedFrom(_PolyMouseEvent)
 @JS()
 @anonymous
 class PolyMouseEvent extends MapMouseEvent {
@@ -2821,7 +2816,6 @@ class PolyMouseEvent extends MapMouseEvent {
   external set vertex(num value);
 }
 
-@GeneratedFrom(_Rectangle)
 @JS('google.maps.Rectangle')
 class Rectangle extends MVCObject {
   external Rectangle([
@@ -2829,7 +2823,6 @@ class Rectangle extends MVCObject {
   ]);
 }
 
-@GeneratedFrom(_Rectangle)
 extension Rectangle$Ext on Rectangle {
   LatLngBounds get bounds => _getBounds();
   bool get draggable => _getDraggable();
@@ -3111,7 +3104,6 @@ extension Rectangle$Ext on Rectangle {
   }
 }
 
-@GeneratedFrom(_RectangleOptions)
 @JS()
 @anonymous
 class RectangleOptions {
@@ -3170,7 +3162,6 @@ class RectangleOptions {
   external set zIndex(num value);
 }
 
-@GeneratedFrom(_Circle)
 @JS('google.maps.Circle')
 class Circle extends MVCObject {
   external Circle([
@@ -3178,7 +3169,6 @@ class Circle extends MVCObject {
   ]);
 }
 
-@GeneratedFrom(_Circle)
 extension Circle$Ext on Circle {
   LatLngBounds get bounds => _getBounds();
   LatLng get center => _getCenter();
@@ -3471,7 +3461,6 @@ extension Circle$Ext on Circle {
   }
 }
 
-@GeneratedFrom(_CircleOptions)
 @JS()
 @anonymous
 class CircleOptions {
@@ -3534,7 +3523,6 @@ class CircleOptions {
   external set zIndex(num value);
 }
 
-@GeneratedFrom(_StrokePosition)
 @JS('google.maps.StrokePosition')
 class StrokePosition {
   external static StrokePosition get CENTER;
@@ -3542,7 +3530,6 @@ class StrokePosition {
   external static StrokePosition get OUTSIDE;
 }
 
-@GeneratedFrom(_Data)
 @JS('google.maps.Data')
 class Data extends MVCObject {
   external Data([
@@ -3566,7 +3553,6 @@ class Data extends MVCObject {
   ]);
 }
 
-@GeneratedFrom(_Data)
 extension Data$Ext on Data {
   ControlPosition get controlPosition => _getControlPosition();
   List<String> get controls => _getControls();
@@ -3870,7 +3856,6 @@ extension Data$Ext on Data {
   }
 }
 
-@GeneratedFrom(_DataDataOptions)
 @JS()
 @anonymous
 class DataDataOptions {
@@ -3893,7 +3878,6 @@ class DataDataOptions {
   external set style(Object /*DataStylingFunction|DataStyleOptions*/ value);
 }
 
-@GeneratedFrom(_DataDataOptions)
 extension DataDataOptions$Ext on DataDataOptions {
   List<String> get controls => getProperty(this, 'controls')?.cast<String>();
 
@@ -3909,7 +3893,6 @@ extension DataDataOptions$Ext on DataDataOptions {
   }
 }
 
-@GeneratedFrom(_DataGeoJsonOptions)
 @JS()
 @anonymous
 class DataGeoJsonOptions {
@@ -3920,7 +3903,6 @@ class DataGeoJsonOptions {
   external set idPropertyName(String value);
 }
 
-@GeneratedFrom(_DataStyleOptions)
 @JS()
 @anonymous
 class DataStyleOptions {
@@ -3983,7 +3965,6 @@ class DataStyleOptions {
   external set zIndex(num value);
 }
 
-@GeneratedFrom(_DataFeature)
 @JS('google.maps.Data.Feature')
 class DataFeature {
   external DataFeature([
@@ -3997,7 +3978,6 @@ class DataFeature {
   external void setProperty(String name, Object newValue);
 }
 
-@GeneratedFrom(_DataFeature)
 extension DataFeature$Ext on DataFeature {
   DataGeometry get geometry => _getGeometry();
   Object /*num|String*/ get id => _getId();
@@ -4074,7 +4054,6 @@ extension DataFeature$Ext on DataFeature {
   }
 }
 
-@GeneratedFrom(_DataFeatureOptions)
 @JS()
 @anonymous
 class DataFeatureOptions {
@@ -4093,14 +4072,12 @@ class DataFeatureOptions {
   external set properties(Object value);
 }
 
-@GeneratedFrom(_DataGeometry)
 @JS()
 @anonymous
 class DataGeometry {
   external factory DataGeometry();
 }
 
-@GeneratedFrom(_DataGeometry)
 extension DataGeometry$Ext on DataGeometry {
   String get type => _getType();
 
@@ -4111,7 +4088,6 @@ extension DataGeometry$Ext on DataGeometry {
   String _getType() => callMethod(this, 'getType', []);
 }
 
-@GeneratedFrom(_DataPoint)
 @JS('google.maps.Data.Point')
 class DataPoint implements DataGeometry {
   external DataPoint(LatLng latLng);
@@ -4119,7 +4095,6 @@ class DataPoint implements DataGeometry {
   external LatLng get();
 }
 
-@GeneratedFrom(_DataPoint)
 extension DataPoint$Ext on DataPoint {
   String get type => _getType();
 
@@ -4130,7 +4105,6 @@ extension DataPoint$Ext on DataPoint {
   String _getType() => callMethod(this, 'getType', []);
 }
 
-@GeneratedFrom(_DataMultiPoint)
 @JS('google.maps.Data.MultiPoint')
 class DataMultiPoint implements DataGeometry {
   external DataMultiPoint(List<LatLng> elements);
@@ -4138,7 +4112,6 @@ class DataMultiPoint implements DataGeometry {
   external LatLng getAt(num n);
 }
 
-@GeneratedFrom(_DataMultiPoint)
 extension DataMultiPoint$Ext on DataMultiPoint {
   List<LatLng> get array => _getArray();
   num get length => _getLength();
@@ -4155,7 +4128,6 @@ extension DataMultiPoint$Ext on DataMultiPoint {
   String _getType() => callMethod(this, 'getType', []);
 }
 
-@GeneratedFrom(_DataLineString)
 @JS('google.maps.Data.LineString')
 class DataLineString implements DataGeometry {
   external DataLineString(List<LatLng> elements);
@@ -4163,7 +4135,6 @@ class DataLineString implements DataGeometry {
   external LatLng getAt(num n);
 }
 
-@GeneratedFrom(_DataLineString)
 extension DataLineString$Ext on DataLineString {
   List<LatLng> get array => _getArray();
   num get length => _getLength();
@@ -4180,7 +4151,6 @@ extension DataLineString$Ext on DataLineString {
   String _getType() => callMethod(this, 'getType', []);
 }
 
-@GeneratedFrom(_DataMultiLineString)
 @JS('google.maps.Data.MultiLineString')
 class DataMultiLineString implements DataGeometry {
   external DataMultiLineString(
@@ -4189,7 +4159,6 @@ class DataMultiLineString implements DataGeometry {
   external DataLineString getAt(num n);
 }
 
-@GeneratedFrom(_DataMultiLineString)
 extension DataMultiLineString$Ext on DataMultiLineString {
   List<DataLineString> get array => _getArray();
   num get length => _getLength();
@@ -4207,7 +4176,6 @@ extension DataMultiLineString$Ext on DataMultiLineString {
   String _getType() => callMethod(this, 'getType', []);
 }
 
-@GeneratedFrom(_DataLinearRing)
 @JS('google.maps.Data.LinearRing')
 class DataLinearRing implements DataGeometry {
   external DataLinearRing(List<LatLng> elements);
@@ -4215,7 +4183,6 @@ class DataLinearRing implements DataGeometry {
   external LatLng getAt(num n);
 }
 
-@GeneratedFrom(_DataLinearRing)
 extension DataLinearRing$Ext on DataLinearRing {
   List<LatLng> get array => _getArray();
   num get length => _getLength();
@@ -4232,7 +4199,6 @@ extension DataLinearRing$Ext on DataLinearRing {
   String _getType() => callMethod(this, 'getType', []);
 }
 
-@GeneratedFrom(_DataPolygon)
 @JS('google.maps.Data.Polygon')
 class DataPolygon implements DataGeometry {
   external DataPolygon(List<Object /*DataLinearRing|List<LatLng>*/ > elements);
@@ -4240,7 +4206,6 @@ class DataPolygon implements DataGeometry {
   external DataLinearRing getAt(num n);
 }
 
-@GeneratedFrom(_DataPolygon)
 extension DataPolygon$Ext on DataPolygon {
   List<DataLinearRing> get array => _getArray();
   num get length => _getLength();
@@ -4258,7 +4223,6 @@ extension DataPolygon$Ext on DataPolygon {
   String _getType() => callMethod(this, 'getType', []);
 }
 
-@GeneratedFrom(_DataMultiPolygon)
 @JS('google.maps.Data.MultiPolygon')
 class DataMultiPolygon implements DataGeometry {
   external DataMultiPolygon(
@@ -4268,7 +4232,6 @@ class DataMultiPolygon implements DataGeometry {
   external DataPolygon getAt(num n);
 }
 
-@GeneratedFrom(_DataMultiPolygon)
 extension DataMultiPolygon$Ext on DataMultiPolygon {
   List<DataPolygon> get array => _getArray();
   num get length => _getLength();
@@ -4286,7 +4249,6 @@ extension DataMultiPolygon$Ext on DataMultiPolygon {
   String _getType() => callMethod(this, 'getType', []);
 }
 
-@GeneratedFrom(_DataGeometryCollection)
 @JS('google.maps.Data.GeometryCollection')
 class DataGeometryCollection implements DataGeometry {
   external DataGeometryCollection(
@@ -4295,7 +4257,6 @@ class DataGeometryCollection implements DataGeometry {
   external DataGeometry getAt(num n);
 }
 
-@GeneratedFrom(_DataGeometryCollection)
 extension DataGeometryCollection$Ext on DataGeometryCollection {
   List<DataGeometry> get array => _getArray();
   num get length => _getLength();
@@ -4313,7 +4274,6 @@ extension DataGeometryCollection$Ext on DataGeometryCollection {
   String _getType() => callMethod(this, 'getType', []);
 }
 
-@GeneratedFrom(_DataMouseEvent)
 @JS()
 @anonymous
 class DataMouseEvent extends MapMouseEvent {
@@ -4324,7 +4284,6 @@ class DataMouseEvent extends MapMouseEvent {
   external set feature(DataFeature value);
 }
 
-@GeneratedFrom(_DataAddFeatureEvent)
 @JS()
 @anonymous
 class DataAddFeatureEvent {
@@ -4335,7 +4294,6 @@ class DataAddFeatureEvent {
   external set feature(DataFeature value);
 }
 
-@GeneratedFrom(_DataRemoveFeatureEvent)
 @JS()
 @anonymous
 class DataRemoveFeatureEvent {
@@ -4346,7 +4304,6 @@ class DataRemoveFeatureEvent {
   external set feature(DataFeature value);
 }
 
-@GeneratedFrom(_DataSetGeometryEvent)
 @JS()
 @anonymous
 class DataSetGeometryEvent {
@@ -4365,7 +4322,6 @@ class DataSetGeometryEvent {
   external set oldGeometry(DataGeometry value);
 }
 
-@GeneratedFrom(_DataSetPropertyEvent)
 @JS()
 @anonymous
 class DataSetPropertyEvent {
@@ -4388,7 +4344,6 @@ class DataSetPropertyEvent {
   external set oldValue(Object value);
 }
 
-@GeneratedFrom(_DataRemovePropertyEvent)
 @JS()
 @anonymous
 class DataRemovePropertyEvent {
@@ -4407,13 +4362,11 @@ class DataRemovePropertyEvent {
   external set oldValue(Object value);
 }
 
-@GeneratedFrom(_OverlayView)
 @JS('google.maps.OverlayView')
 class OverlayView extends MVCObject {
   external OverlayView();
 }
 
-@GeneratedFrom(_OverlayView)
 extension OverlayView$Ext on OverlayView {
   void Function() get draw => getProperty(this, 'draw');
 
@@ -4450,7 +4403,6 @@ extension OverlayView$Ext on OverlayView {
   }
 }
 
-@GeneratedFrom(_MapPanes)
 @JS()
 @anonymous
 class MapPanes {
@@ -4477,7 +4429,6 @@ class MapPanes {
   external set overlayMouseTarget(Element value);
 }
 
-@GeneratedFrom(_MapCanvasProjection)
 @JS()
 @anonymous
 class MapCanvasProjection {
@@ -4502,14 +4453,12 @@ class MapCanvasProjection {
   ]);
 }
 
-@GeneratedFrom(_MapCanvasProjection)
 extension MapCanvasProjection$Ext on MapCanvasProjection {
   num get worldWidth => _getWorldWidth();
 
   num _getWorldWidth() => callMethod(this, 'getWorldWidth', []);
 }
 
-@GeneratedFrom(_KmlLayer)
 @JS('google.maps.KmlLayer')
 class KmlLayer extends MVCObject {
   external KmlLayer([
@@ -4517,7 +4466,6 @@ class KmlLayer extends MVCObject {
   ]);
 }
 
-@GeneratedFrom(_KmlLayer)
 extension KmlLayer$Ext on KmlLayer {
   LatLngBounds get defaultViewport => _getDefaultViewport();
   GMap get map => _getMap();
@@ -4613,7 +4561,6 @@ extension KmlLayer$Ext on KmlLayer {
   }
 }
 
-@GeneratedFrom(_KmlLayerOptions)
 @JS()
 @anonymous
 class KmlLayerOptions {
@@ -4648,7 +4595,6 @@ class KmlLayerOptions {
   external set zIndex(num value);
 }
 
-@GeneratedFrom(_KmlLayerMetadata)
 @JS()
 @anonymous
 class KmlLayerMetadata {
@@ -4675,7 +4621,6 @@ class KmlLayerMetadata {
   external set snippet(String value);
 }
 
-@GeneratedFrom(_KmlLayerStatus)
 @JS('google.maps.KmlLayerStatus')
 class KmlLayerStatus {
   external static KmlLayerStatus get DOCUMENT_NOT_FOUND;
@@ -4689,7 +4634,6 @@ class KmlLayerStatus {
   external static KmlLayerStatus get UNKNOWN;
 }
 
-@GeneratedFrom(_KmlMouseEvent)
 @JS()
 @anonymous
 class KmlMouseEvent {
@@ -4708,7 +4652,6 @@ class KmlMouseEvent {
   external set pixelOffset(Size value);
 }
 
-@GeneratedFrom(_KmlFeatureData)
 @JS()
 @anonymous
 class KmlFeatureData {
@@ -4739,7 +4682,6 @@ class KmlFeatureData {
   external set snippet(String value);
 }
 
-@GeneratedFrom(_KmlAuthor)
 @JS()
 @anonymous
 class KmlAuthor {
@@ -4758,7 +4700,6 @@ class KmlAuthor {
   external set uri(String value);
 }
 
-@GeneratedFrom(_MapType)
 @JS()
 @anonymous
 class MapType {
@@ -4793,7 +4734,6 @@ class MapType {
   external set projection(Projection value);
 }
 
-@GeneratedFrom(_MapType)
 extension MapType$Ext on MapType {
   Node Function(Point tileCoord, num zoom, Document ownerDocument)
       get getTile => getProperty(this, 'getTile');
@@ -4810,14 +4750,12 @@ extension MapType$Ext on MapType {
   }
 }
 
-@GeneratedFrom(_Projection)
 @JS()
 @anonymous
 class Projection {
   external factory Projection();
 }
 
-@GeneratedFrom(_Projection)
 extension Projection$Ext on Projection {
   Point Function(
     LatLng latLng, [
@@ -4848,7 +4786,6 @@ extension Projection$Ext on Projection {
   }
 }
 
-@GeneratedFrom(_ImageMapType)
 @JS('google.maps.ImageMapType')
 class ImageMapType extends MVCObject implements MapType {
   external ImageMapType(ImageMapTypeOptions opts);
@@ -4880,14 +4817,24 @@ class ImageMapType extends MVCObject implements MapType {
   external Size get tileSize;
 
   external set tileSize(Size value);
-
-  external Node getTile(Point tileCoord, num zoom, Document ownerDocument);
-
-  external void releaseTile(Node tileDiv);
 }
 
-@GeneratedFrom(_ImageMapType)
 extension ImageMapType$Ext on ImageMapType {
+  Node Function(Point tileCoord, num zoom, Document ownerDocument)
+      get getTile => getProperty(this, 'getTile');
+
+  set getTile(
+      Node Function(Point tileCoord, num zoom, Document ownerDocument) value) {
+    setProperty(this, 'getTile', allowInterop(value));
+  }
+
+  void Function(Node tileDiv) get releaseTile =>
+      getProperty(this, 'releaseTile');
+
+  set releaseTile(void Function(Node tileDiv) value) {
+    setProperty(this, 'releaseTile', allowInterop(value));
+  }
+
   num get opacity => _getOpacity();
   set opacity(num opacity) => _setOpacity(opacity);
   Stream<void> get onTilesloaded {
@@ -4915,7 +4862,6 @@ extension ImageMapType$Ext on ImageMapType {
   }
 }
 
-@GeneratedFrom(_ImageMapTypeOptions)
 @JS()
 @anonymous
 class ImageMapTypeOptions {
@@ -4946,7 +4892,6 @@ class ImageMapTypeOptions {
   external set tileSize(Size value);
 }
 
-@GeneratedFrom(_ImageMapTypeOptions)
 extension ImageMapTypeOptions$Ext on ImageMapTypeOptions {
   String Function(Point p1, num p2) get getTileUrl =>
       getProperty(this, 'getTileUrl');
@@ -4956,7 +4901,6 @@ extension ImageMapTypeOptions$Ext on ImageMapTypeOptions {
   }
 }
 
-@GeneratedFrom(_GroundOverlay)
 @JS('google.maps.GroundOverlay')
 class GroundOverlay extends MVCObject {
   external GroundOverlay(
@@ -4966,7 +4910,6 @@ class GroundOverlay extends MVCObject {
   ]);
 }
 
-@GeneratedFrom(_GroundOverlay)
 extension GroundOverlay$Ext on GroundOverlay {
   LatLngBounds get bounds => _getBounds();
   GMap get map => _getMap();
@@ -5027,7 +4970,6 @@ extension GroundOverlay$Ext on GroundOverlay {
   }
 }
 
-@GeneratedFrom(_GroundOverlayOptions)
 @JS()
 @anonymous
 class GroundOverlayOptions {
@@ -5046,7 +4988,6 @@ class GroundOverlayOptions {
   external set opacity(num value);
 }
 
-@GeneratedFrom(_StyledMapType)
 @JS('google.maps.StyledMapType')
 class StyledMapType extends MVCObject implements MapType {
   external StyledMapType(
@@ -5083,7 +5024,6 @@ class StyledMapType extends MVCObject implements MapType {
   external set tileSize(Size value);
 }
 
-@GeneratedFrom(_StyledMapType)
 extension StyledMapType$Ext on StyledMapType {
   Node Function(Point tileCoord, num zoom, Document ownerDocument)
       get getTile => getProperty(this, 'getTile');
@@ -5100,7 +5040,6 @@ extension StyledMapType$Ext on StyledMapType {
   }
 }
 
-@GeneratedFrom(_StyledMapTypeOptions)
 @JS()
 @anonymous
 class StyledMapTypeOptions {
@@ -5123,13 +5062,11 @@ class StyledMapTypeOptions {
   external set name(String value);
 }
 
-@GeneratedFrom(_MaxZoomService)
 @JS('google.maps.MaxZoomService')
 class MaxZoomService {
   external MaxZoomService();
 }
 
-@GeneratedFrom(_MaxZoomService)
 extension MaxZoomService$Ext on MaxZoomService {
   Future<MaxZoomResult> getMaxZoomAtLatLng(
     LatLng latlng, [
@@ -5139,7 +5076,6 @@ extension MaxZoomService$Ext on MaxZoomService {
           this, 'getMaxZoomAtLatLng', [latlng, allowInterop(callback)]));
 }
 
-@GeneratedFrom(_MaxZoomResult)
 @JS()
 @anonymous
 class MaxZoomResult {
@@ -5154,14 +5090,12 @@ class MaxZoomResult {
   external set status(MaxZoomStatus value);
 }
 
-@GeneratedFrom(_MaxZoomStatus)
 @JS('google.maps.MaxZoomStatus')
 class MaxZoomStatus {
   external static MaxZoomStatus get ERROR;
   external static MaxZoomStatus get OK;
 }
 
-@GeneratedFrom(_StreetViewPanorama)
 @JS('google.maps.StreetViewPanorama')
 class StreetViewPanorama extends MVCObject {
   external StreetViewPanorama(
@@ -5170,7 +5104,6 @@ class StreetViewPanorama extends MVCObject {
   ]);
 }
 
-@GeneratedFrom(_StreetViewPanorama)
 extension StreetViewPanorama$Ext on StreetViewPanorama {
   List<MVCArray<Node>> get controls =>
       getProperty(this, 'controls')?.cast<MVCArray<Node>>();
@@ -5404,7 +5337,6 @@ extension StreetViewPanorama$Ext on StreetViewPanorama {
   }
 }
 
-@GeneratedFrom(_StreetViewPanoramaOptions)
 @JS()
 @anonymous
 class StreetViewPanoramaOptions {
@@ -5511,7 +5443,6 @@ class StreetViewPanoramaOptions {
   external set zoomControlOptions(ZoomControlOptions value);
 }
 
-@GeneratedFrom(_StreetViewAddressControlOptions)
 @JS()
 @anonymous
 class StreetViewAddressControlOptions {
@@ -5522,7 +5453,6 @@ class StreetViewAddressControlOptions {
   external set position(ControlPosition value);
 }
 
-@GeneratedFrom(_PanoProviderOptions)
 @JS()
 @anonymous
 class PanoProviderOptions {
@@ -5533,7 +5463,6 @@ class PanoProviderOptions {
   external set cors(bool value);
 }
 
-@GeneratedFrom(_StreetViewTileData)
 @JS()
 @anonymous
 class StreetViewTileData {
@@ -5552,7 +5481,6 @@ class StreetViewTileData {
   external set worldSize(Size value);
 }
 
-@GeneratedFrom(_StreetViewTileData)
 extension StreetViewTileData$Ext on StreetViewTileData {
   String Function(String pano, num tileZoom, num tileX, num tileY)
       get getTileUrl => getProperty(this, 'getTileUrl');
@@ -5563,7 +5491,6 @@ extension StreetViewTileData$Ext on StreetViewTileData {
   }
 }
 
-@GeneratedFrom(_StreetViewPov)
 @JS()
 @anonymous
 class StreetViewPov {
@@ -5578,13 +5505,11 @@ class StreetViewPov {
   external set pitch(num value);
 }
 
-@GeneratedFrom(_StreetViewCoverageLayer)
 @JS('google.maps.StreetViewCoverageLayer')
 class StreetViewCoverageLayer extends MVCObject {
   external StreetViewCoverageLayer();
 }
 
-@GeneratedFrom(_StreetViewCoverageLayer)
 extension StreetViewCoverageLayer$Ext on StreetViewCoverageLayer {
   GMap get map => _getMap();
   set map(GMap map) => _setMap(map);
@@ -5596,13 +5521,11 @@ extension StreetViewCoverageLayer$Ext on StreetViewCoverageLayer {
   }
 }
 
-@GeneratedFrom(_StreetViewService)
 @JS('google.maps.StreetViewService')
 class StreetViewService {
   external StreetViewService();
 }
 
-@GeneratedFrom(_StreetViewService)
 extension StreetViewService$Ext on StreetViewService {
   Future<StreetViewResponse> getPanorama(
     Object /*StreetViewLocationRequest|StreetViewPanoRequest*/ request, [
@@ -5612,7 +5535,6 @@ extension StreetViewService$Ext on StreetViewService {
           callMethod(this, 'getPanorama', [request, allowInterop(callback)]));
 }
 
-@GeneratedFrom(_StreetViewStatus)
 @JS('google.maps.StreetViewStatus')
 class StreetViewStatus {
   external static StreetViewStatus get OK;
@@ -5620,7 +5542,6 @@ class StreetViewStatus {
   external static StreetViewStatus get ZERO_RESULTS;
 }
 
-@GeneratedFrom(_StreetViewLocationRequest)
 @JS()
 @anonymous
 class StreetViewLocationRequest {
@@ -5643,7 +5564,6 @@ class StreetViewLocationRequest {
   external set source(StreetViewSource value);
 }
 
-@GeneratedFrom(_StreetViewPanoRequest)
 @JS()
 @anonymous
 class StreetViewPanoRequest {
@@ -5654,7 +5574,6 @@ class StreetViewPanoRequest {
   external set pano(String value);
 }
 
-@GeneratedFrom(_StreetViewResponse)
 @JS()
 @anonymous
 class StreetViewResponse {
@@ -5665,7 +5584,6 @@ class StreetViewResponse {
   external set data(StreetViewPanoramaData value);
 }
 
-@GeneratedFrom(_StreetViewLocation)
 @JS()
 @anonymous
 class StreetViewLocation {
@@ -5688,21 +5606,18 @@ class StreetViewLocation {
   external set shortDescription(String value);
 }
 
-@GeneratedFrom(_StreetViewPreference)
 @JS('google.maps.StreetViewPreference')
 class StreetViewPreference {
   external static StreetViewPreference get BEST;
   external static StreetViewPreference get NEAREST;
 }
 
-@GeneratedFrom(_StreetViewSource)
 @JS('google.maps.StreetViewSource')
 class StreetViewSource {
   external static StreetViewSource get DEFAULT;
   external static StreetViewSource get OUTDOOR;
 }
 
-@GeneratedFrom(_StreetViewPanoramaData)
 @JS()
 @anonymous
 class StreetViewPanoramaData {
@@ -5725,7 +5640,6 @@ class StreetViewPanoramaData {
   external set tiles(StreetViewTileData value);
 }
 
-@GeneratedFrom(_StreetViewPanoramaData)
 extension StreetViewPanoramaData$Ext on StreetViewPanoramaData {
   List<StreetViewLink> get links =>
       getProperty(this, 'links')?.cast<StreetViewLink>();
@@ -5735,7 +5649,6 @@ extension StreetViewPanoramaData$Ext on StreetViewPanoramaData {
   }
 }
 
-@GeneratedFrom(_StreetViewLink)
 @JS()
 @anonymous
 class StreetViewLink {
@@ -5754,13 +5667,11 @@ class StreetViewLink {
   external set pano(String value);
 }
 
-@GeneratedFrom(_Geocoder)
 @JS('google.maps.Geocoder')
 class Geocoder {
   external Geocoder();
 }
 
-@GeneratedFrom(_Geocoder)
 extension Geocoder$Ext on Geocoder {
   Future<GeocoderResponse> geocode(
     GeocoderRequest request, [
@@ -5770,7 +5681,6 @@ extension Geocoder$Ext on Geocoder {
           callMethod(this, 'geocode', [request, allowInterop(callback)]));
 }
 
-@GeneratedFrom(_GeocoderRequest)
 @JS()
 @anonymous
 class GeocoderRequest {
@@ -5801,7 +5711,6 @@ class GeocoderRequest {
   external set region(String value);
 }
 
-@GeneratedFrom(_GeocoderComponentRestrictions)
 @JS()
 @anonymous
 class GeocoderComponentRestrictions {
@@ -5828,7 +5737,6 @@ class GeocoderComponentRestrictions {
   external set route(String value);
 }
 
-@GeneratedFrom(_GeocoderStatus)
 @JS('google.maps.GeocoderStatus')
 class GeocoderStatus {
   external static GeocoderStatus get ERROR;
@@ -5840,14 +5748,12 @@ class GeocoderStatus {
   external static GeocoderStatus get ZERO_RESULTS;
 }
 
-@GeneratedFrom(_GeocoderResponse)
 @JS()
 @anonymous
 class GeocoderResponse {
   external factory GeocoderResponse();
 }
 
-@GeneratedFrom(_GeocoderResponse)
 extension GeocoderResponse$Ext on GeocoderResponse {
   List<GeocoderResult> get results =>
       getProperty(this, 'results')?.cast<GeocoderResult>();
@@ -5857,7 +5763,6 @@ extension GeocoderResponse$Ext on GeocoderResponse {
   }
 }
 
-@GeneratedFrom(_GeocoderResult)
 @JS()
 @anonymous
 class GeocoderResult {
@@ -5868,7 +5773,6 @@ class GeocoderResult {
   external set geometry(GeocoderGeometry value);
 }
 
-@GeneratedFrom(_GeocoderResult)
 extension GeocoderResult$Ext on GeocoderResult {
   List<GeocoderAddressComponent> get addressComponents =>
       getProperty(this, 'address_components')?.cast<GeocoderAddressComponent>();
@@ -5909,14 +5813,12 @@ extension GeocoderResult$Ext on GeocoderResult {
   }
 }
 
-@GeneratedFrom(_GeocoderAddressComponent)
 @JS()
 @anonymous
 class GeocoderAddressComponent {
   external factory GeocoderAddressComponent();
 }
 
-@GeneratedFrom(_GeocoderAddressComponent)
 extension GeocoderAddressComponent$Ext on GeocoderAddressComponent {
   String get longName => getProperty(this, 'long_name');
 
@@ -5937,7 +5839,6 @@ extension GeocoderAddressComponent$Ext on GeocoderAddressComponent {
   }
 }
 
-@GeneratedFrom(_GeocoderGeometry)
 @JS()
 @anonymous
 class GeocoderGeometry {
@@ -5956,7 +5857,6 @@ class GeocoderGeometry {
   external set viewport(LatLngBounds value);
 }
 
-@GeneratedFrom(_GeocoderGeometry)
 extension GeocoderGeometry$Ext on GeocoderGeometry {
   GeocoderLocationType get locationType => getProperty(this, 'location_type');
 
@@ -5965,7 +5865,6 @@ extension GeocoderGeometry$Ext on GeocoderGeometry {
   }
 }
 
-@GeneratedFrom(_GeocoderLocationType)
 @JS('google.maps.GeocoderLocationType')
 class GeocoderLocationType {
   external static GeocoderLocationType get APPROXIMATE;
@@ -5974,13 +5873,11 @@ class GeocoderLocationType {
   external static GeocoderLocationType get ROOFTOP;
 }
 
-@GeneratedFrom(_DirectionsService)
 @JS('google.maps.DirectionsService')
 class DirectionsService {
   external DirectionsService();
 }
 
-@GeneratedFrom(_DirectionsService)
 extension DirectionsService$Ext on DirectionsService {
   Future<DirectionsResult> route(
     DirectionsRequest request, [
@@ -5990,7 +5887,6 @@ extension DirectionsService$Ext on DirectionsService {
           callMethod(this, 'route', [request, allowInterop(callback)]));
 }
 
-@GeneratedFrom(_DirectionsRequest)
 @JS()
 @anonymous
 class DirectionsRequest {
@@ -6045,7 +5941,6 @@ class DirectionsRequest {
   external set unitSystem(UnitSystem value);
 }
 
-@GeneratedFrom(_DirectionsRequest)
 extension DirectionsRequest$Ext on DirectionsRequest {
   List<DirectionsWaypoint> get waypoints =>
       getProperty(this, 'waypoints')?.cast<DirectionsWaypoint>();
@@ -6055,7 +5950,6 @@ extension DirectionsRequest$Ext on DirectionsRequest {
   }
 }
 
-@GeneratedFrom(_DirectionsStatus)
 @JS('google.maps.DirectionsStatus')
 class DirectionsStatus {
   external static DirectionsStatus get INVALID_REQUEST;
@@ -6068,14 +5962,12 @@ class DirectionsStatus {
   external static DirectionsStatus get ZERO_RESULTS;
 }
 
-@GeneratedFrom(_DirectionsResult)
 @JS()
 @anonymous
 class DirectionsResult {
   external factory DirectionsResult();
 }
 
-@GeneratedFrom(_DirectionsResult)
 extension DirectionsResult$Ext on DirectionsResult {
   List<DirectionsGeocodedWaypoint> get geocodedWaypoints =>
       getProperty(this, 'geocoded_waypoints')
@@ -6093,7 +5985,6 @@ extension DirectionsResult$Ext on DirectionsResult {
   }
 }
 
-@GeneratedFrom(_DirectionsRenderer)
 @JS('google.maps.DirectionsRenderer')
 class DirectionsRenderer extends MVCObject {
   external DirectionsRenderer([
@@ -6101,7 +5992,6 @@ class DirectionsRenderer extends MVCObject {
   ]);
 }
 
-@GeneratedFrom(_DirectionsRenderer)
 extension DirectionsRenderer$Ext on DirectionsRenderer {
   DirectionsResult get directions => _getDirections();
   GMap get map => _getMap();
@@ -6159,7 +6049,6 @@ extension DirectionsRenderer$Ext on DirectionsRenderer {
   }
 }
 
-@GeneratedFrom(_DirectionsRendererOptions)
 @JS()
 @anonymous
 class DirectionsRendererOptions {
@@ -6222,7 +6111,6 @@ class DirectionsRendererOptions {
   external set suppressPolylines(bool value);
 }
 
-@GeneratedFrom(_DirectionsWaypoint)
 @JS()
 @anonymous
 class DirectionsWaypoint {
@@ -6237,14 +6125,12 @@ class DirectionsWaypoint {
   external set stopover(bool value);
 }
 
-@GeneratedFrom(_DirectionsGeocodedWaypoint)
 @JS()
 @anonymous
 class DirectionsGeocodedWaypoint {
   external factory DirectionsGeocodedWaypoint();
 }
 
-@GeneratedFrom(_DirectionsGeocodedWaypoint)
 extension DirectionsGeocodedWaypoint$Ext on DirectionsGeocodedWaypoint {
   bool get partialMatch => getProperty(this, 'partial_match');
 
@@ -6265,7 +6151,6 @@ extension DirectionsGeocodedWaypoint$Ext on DirectionsGeocodedWaypoint {
   }
 }
 
-@GeneratedFrom(_DirectionsRoute)
 @JS()
 @anonymous
 class DirectionsRoute {
@@ -6284,7 +6169,6 @@ class DirectionsRoute {
   external set fare(TransitFare value);
 }
 
-@GeneratedFrom(_DirectionsRoute)
 extension DirectionsRoute$Ext on DirectionsRoute {
   List<DirectionsLeg> get legs =>
       getProperty(this, 'legs')?.cast<DirectionsLeg>();
@@ -6320,7 +6204,6 @@ extension DirectionsRoute$Ext on DirectionsRoute {
   }
 }
 
-@GeneratedFrom(_DirectionsLeg)
 @JS()
 @anonymous
 class DirectionsLeg {
@@ -6335,7 +6218,6 @@ class DirectionsLeg {
   external set duration(GDuration value);
 }
 
-@GeneratedFrom(_DirectionsLeg)
 extension DirectionsLeg$Ext on DirectionsLeg {
   Time get arrivalTime => getProperty(this, 'arrival_time');
 
@@ -6394,7 +6276,6 @@ extension DirectionsLeg$Ext on DirectionsLeg {
   }
 }
 
-@GeneratedFrom(_DirectionsStep)
 @JS()
 @anonymous
 class DirectionsStep {
@@ -6417,7 +6298,6 @@ class DirectionsStep {
   external set transit(TransitDetails value);
 }
 
-@GeneratedFrom(_DirectionsStep)
 extension DirectionsStep$Ext on DirectionsStep {
   LatLng get endLocation => getProperty(this, 'end_location');
 
@@ -6451,7 +6331,6 @@ extension DirectionsStep$Ext on DirectionsStep {
   }
 }
 
-@GeneratedFrom(_Place)
 @JS()
 @anonymous
 class Place {
@@ -6470,7 +6349,6 @@ class Place {
   external set query(String value);
 }
 
-@GeneratedFrom(_TravelMode)
 @JS('google.maps.TravelMode')
 class TravelMode {
   external static TravelMode get BICYCLING;
@@ -6479,7 +6357,6 @@ class TravelMode {
   external static TravelMode get WALKING;
 }
 
-@GeneratedFrom(_DrivingOptions)
 @JS()
 @anonymous
 class DrivingOptions {
@@ -6494,7 +6371,6 @@ class DrivingOptions {
   external set trafficModel(TrafficModel value);
 }
 
-@GeneratedFrom(_TrafficModel)
 @JS('google.maps.TrafficModel')
 class TrafficModel {
   external static TrafficModel get BEST_GUESS;
@@ -6502,7 +6378,6 @@ class TrafficModel {
   external static TrafficModel get PESSIMISTIC;
 }
 
-@GeneratedFrom(_TransitOptions)
 @JS()
 @anonymous
 class TransitOptions {
@@ -6521,7 +6396,6 @@ class TransitOptions {
   external set routingPreference(TransitRoutePreference value);
 }
 
-@GeneratedFrom(_TransitOptions)
 extension TransitOptions$Ext on TransitOptions {
   List<TransitMode> get modes =>
       getProperty(this, 'modes')?.cast<TransitMode>();
@@ -6531,7 +6405,6 @@ extension TransitOptions$Ext on TransitOptions {
   }
 }
 
-@GeneratedFrom(_TransitMode)
 @JS('google.maps.TransitMode')
 class TransitMode {
   external static TransitMode get BUS;
@@ -6541,14 +6414,12 @@ class TransitMode {
   external static TransitMode get TRAM;
 }
 
-@GeneratedFrom(_TransitRoutePreference)
 @JS('google.maps.TransitRoutePreference')
 class TransitRoutePreference {
   external static TransitRoutePreference get FEWER_TRANSFERS;
   external static TransitRoutePreference get LESS_WALKING;
 }
 
-@GeneratedFrom(_TransitFare)
 @JS()
 @anonymous
 class TransitFare {
@@ -6563,7 +6434,6 @@ class TransitFare {
   external set value(num value);
 }
 
-@GeneratedFrom(_TransitDetails)
 @JS()
 @anonymous
 class TransitDetails {
@@ -6582,7 +6452,6 @@ class TransitDetails {
   external set line(TransitLine value);
 }
 
-@GeneratedFrom(_TransitDetails)
 extension TransitDetails$Ext on TransitDetails {
   TransitStop get arrivalStop => getProperty(this, 'arrival_stop');
 
@@ -6621,7 +6490,6 @@ extension TransitDetails$Ext on TransitDetails {
   }
 }
 
-@GeneratedFrom(_TransitStop)
 @JS()
 @anonymous
 class TransitStop {
@@ -6636,7 +6504,6 @@ class TransitStop {
   external set name(String value);
 }
 
-@GeneratedFrom(_TransitLine)
 @JS()
 @anonymous
 class TransitLine {
@@ -6663,7 +6530,6 @@ class TransitLine {
   external set vehicle(TransitVehicle value);
 }
 
-@GeneratedFrom(_TransitLine)
 extension TransitLine$Ext on TransitLine {
   List<TransitAgency> get agencies =>
       getProperty(this, 'agencies')?.cast<TransitAgency>();
@@ -6685,7 +6551,6 @@ extension TransitLine$Ext on TransitLine {
   }
 }
 
-@GeneratedFrom(_TransitAgency)
 @JS()
 @anonymous
 class TransitAgency {
@@ -6704,7 +6569,6 @@ class TransitAgency {
   external set url(String value);
 }
 
-@GeneratedFrom(_TransitVehicle)
 @JS()
 @anonymous
 class TransitVehicle {
@@ -6723,7 +6587,6 @@ class TransitVehicle {
   external set type(VehicleType value);
 }
 
-@GeneratedFrom(_TransitVehicle)
 extension TransitVehicle$Ext on TransitVehicle {
   String get localIcon => getProperty(this, 'local_icon');
 
@@ -6732,7 +6595,6 @@ extension TransitVehicle$Ext on TransitVehicle {
   }
 }
 
-@GeneratedFrom(_VehicleType)
 @JS('google.maps.VehicleType')
 class VehicleType {
   external static VehicleType get BUS;
@@ -6754,14 +6616,12 @@ class VehicleType {
   external static VehicleType get TROLLEYBUS;
 }
 
-@GeneratedFrom(_UnitSystem)
 @JS('google.maps.UnitSystem')
 class UnitSystem {
   external static UnitSystem get IMPERIAL;
   external static UnitSystem get METRIC;
 }
 
-@GeneratedFrom(_Distance)
 @JS()
 @anonymous
 class Distance {
@@ -6776,7 +6636,6 @@ class Distance {
   external set value(num value);
 }
 
-@GeneratedFrom(_GDuration)
 @JS()
 @anonymous
 class GDuration {
@@ -6791,7 +6650,6 @@ class GDuration {
   external set value(num value);
 }
 
-@GeneratedFrom(_Time)
 @JS()
 @anonymous
 class Time {
@@ -6806,7 +6664,6 @@ class Time {
   external set value(DateTime value);
 }
 
-@GeneratedFrom(_Time)
 extension Time$Ext on Time {
   String get timeZone => getProperty(this, 'time_zone');
 
@@ -6815,13 +6672,11 @@ extension Time$Ext on Time {
   }
 }
 
-@GeneratedFrom(_DistanceMatrixService)
 @JS('google.maps.DistanceMatrixService')
 class DistanceMatrixService {
   external DistanceMatrixService();
 }
 
-@GeneratedFrom(_DistanceMatrixService)
 extension DistanceMatrixService$Ext on DistanceMatrixService {
   Future<DistanceMatrixResponse> getDistanceMatrix(
     DistanceMatrixRequest request, [
@@ -6831,7 +6686,6 @@ extension DistanceMatrixService$Ext on DistanceMatrixService {
           this, 'getDistanceMatrix', [request, allowInterop(callback)]));
 }
 
-@GeneratedFrom(_DistanceMatrixRequest)
 @JS()
 @anonymous
 class DistanceMatrixRequest {
@@ -6870,7 +6724,6 @@ class DistanceMatrixRequest {
   external set unitSystem(UnitSystem value);
 }
 
-@GeneratedFrom(_DistanceMatrixRequest)
 extension DistanceMatrixRequest$Ext on DistanceMatrixRequest {
   List<Object /*String|LatLng|Place*/ > get destinations =>
       getProperty(this, 'destinations')
@@ -6888,14 +6741,12 @@ extension DistanceMatrixRequest$Ext on DistanceMatrixRequest {
   }
 }
 
-@GeneratedFrom(_DistanceMatrixResponse)
 @JS()
 @anonymous
 class DistanceMatrixResponse {
   external factory DistanceMatrixResponse();
 }
 
-@GeneratedFrom(_DistanceMatrixResponse)
 extension DistanceMatrixResponse$Ext on DistanceMatrixResponse {
   List<String> get destinationAddresses =>
       getProperty(this, 'destinationAddresses')?.cast<String>();
@@ -6919,14 +6770,12 @@ extension DistanceMatrixResponse$Ext on DistanceMatrixResponse {
   }
 }
 
-@GeneratedFrom(_DistanceMatrixResponseRow)
 @JS()
 @anonymous
 class DistanceMatrixResponseRow {
   external factory DistanceMatrixResponseRow();
 }
 
-@GeneratedFrom(_DistanceMatrixResponseRow)
 extension DistanceMatrixResponseRow$Ext on DistanceMatrixResponseRow {
   List<DistanceMatrixResponseElement> get elements =>
       getProperty(this, 'elements')?.cast<DistanceMatrixResponseElement>();
@@ -6936,7 +6785,6 @@ extension DistanceMatrixResponseRow$Ext on DistanceMatrixResponseRow {
   }
 }
 
-@GeneratedFrom(_DistanceMatrixResponseElement)
 @JS()
 @anonymous
 class DistanceMatrixResponseElement {
@@ -6959,7 +6807,6 @@ class DistanceMatrixResponseElement {
   external set status(DistanceMatrixElementStatus value);
 }
 
-@GeneratedFrom(_DistanceMatrixResponseElement)
 extension DistanceMatrixResponseElement$Ext on DistanceMatrixResponseElement {
   GDuration get durationInTraffic => getProperty(this, 'duration_in_traffic');
 
@@ -6968,7 +6815,6 @@ extension DistanceMatrixResponseElement$Ext on DistanceMatrixResponseElement {
   }
 }
 
-@GeneratedFrom(_DistanceMatrixStatus)
 @JS('google.maps.DistanceMatrixStatus')
 class DistanceMatrixStatus {
   external static DistanceMatrixStatus get INVALID_REQUEST;
@@ -6980,7 +6826,6 @@ class DistanceMatrixStatus {
   external static DistanceMatrixStatus get UNKNOWN_ERROR;
 }
 
-@GeneratedFrom(_DistanceMatrixElementStatus)
 @JS('google.maps.DistanceMatrixElementStatus')
 class DistanceMatrixElementStatus {
   external static DistanceMatrixElementStatus get NOT_FOUND;
@@ -6988,13 +6833,11 @@ class DistanceMatrixElementStatus {
   external static DistanceMatrixElementStatus get ZERO_RESULTS;
 }
 
-@GeneratedFrom(_ElevationService)
 @JS('google.maps.ElevationService')
 class ElevationService {
   external ElevationService();
 }
 
-@GeneratedFrom(_ElevationService)
 extension ElevationService$Ext on ElevationService {
   Future<PathElevationResponse> getElevationAlongPath(
     PathElevationRequest request, [
@@ -7011,14 +6854,12 @@ extension ElevationService$Ext on ElevationService {
           this, 'getElevationForLocations', [request, allowInterop(callback)]));
 }
 
-@GeneratedFrom(_LocationElevationRequest)
 @JS()
 @anonymous
 class LocationElevationRequest {
   external factory LocationElevationRequest();
 }
 
-@GeneratedFrom(_LocationElevationRequest)
 extension LocationElevationRequest$Ext on LocationElevationRequest {
   List<LatLng> get locations => getProperty(this, 'locations')?.cast<LatLng>();
 
@@ -7027,14 +6868,12 @@ extension LocationElevationRequest$Ext on LocationElevationRequest {
   }
 }
 
-@GeneratedFrom(_LocationElevationResponse)
 @JS()
 @anonymous
 class LocationElevationResponse {
   external factory LocationElevationResponse();
 }
 
-@GeneratedFrom(_LocationElevationResponse)
 extension LocationElevationResponse$Ext on LocationElevationResponse {
   List<ElevationResult> get results =>
       getProperty(this, 'results')?.cast<ElevationResult>();
@@ -7044,7 +6883,6 @@ extension LocationElevationResponse$Ext on LocationElevationResponse {
   }
 }
 
-@GeneratedFrom(_PathElevationRequest)
 @JS()
 @anonymous
 class PathElevationRequest {
@@ -7055,7 +6893,6 @@ class PathElevationRequest {
   external set samples(num value);
 }
 
-@GeneratedFrom(_PathElevationRequest)
 extension PathElevationRequest$Ext on PathElevationRequest {
   List<LatLng> get path => getProperty(this, 'path')?.cast<LatLng>();
 
@@ -7064,14 +6901,12 @@ extension PathElevationRequest$Ext on PathElevationRequest {
   }
 }
 
-@GeneratedFrom(_PathElevationResponse)
 @JS()
 @anonymous
 class PathElevationResponse {
   external factory PathElevationResponse();
 }
 
-@GeneratedFrom(_PathElevationResponse)
 extension PathElevationResponse$Ext on PathElevationResponse {
   List<ElevationResult> get results =>
       getProperty(this, 'results')?.cast<ElevationResult>();
@@ -7081,7 +6916,6 @@ extension PathElevationResponse$Ext on PathElevationResponse {
   }
 }
 
-@GeneratedFrom(_ElevationResult)
 @JS()
 @anonymous
 class ElevationResult {
@@ -7100,7 +6934,6 @@ class ElevationResult {
   external set resolution(num value);
 }
 
-@GeneratedFrom(_ElevationStatus)
 @JS('google.maps.ElevationStatus')
 class ElevationStatus {
   external static ElevationStatus get INVALID_REQUEST;

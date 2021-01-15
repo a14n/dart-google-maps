@@ -16,7 +16,7 @@ part of '../google_maps_core.dart';
 
 // ignore_for_file: unused_element, unused_field
 @JsName('google.maps.StrokePosition')
-enum _StrokePosition {
+enum StrokePosition {
   CENTER,
   INSIDE,
   OUTSIDE,

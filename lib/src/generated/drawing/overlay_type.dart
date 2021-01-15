@@ -16,7 +16,7 @@ part of '../google_maps_drawing.dart';
 
 // ignore_for_file: unused_element, unused_field
 @JsName('google.maps.drawing.OverlayType')
-enum _OverlayType {
+enum OverlayType {
   CIRCLE,
   MARKER,
   POLYGON,

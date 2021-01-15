@@ -16,8 +16,8 @@ part of '../google_maps_local_context.dart';
 
 @JsName()
 @anonymous
-abstract class _PinOptions {
-  factory _PinOptions() => $js;
+abstract class PinOptions {
+  factory PinOptions() => $js;
   String background;
   String glyphColor;
   num scale;

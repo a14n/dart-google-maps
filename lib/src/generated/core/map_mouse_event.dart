@@ -16,8 +16,8 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _MapMouseEvent {
-  factory _MapMouseEvent() => $js;
+abstract class MapMouseEvent {
+  factory MapMouseEvent() => $js;
   Object /*MouseEvent|TouchEvent|PointerEvent|Object*/ domEvent;
   LatLng latLng;
   void stop();

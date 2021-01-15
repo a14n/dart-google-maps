@@ -15,8 +15,8 @@
 part of '../google_maps_core.dart';
 
 @JsName('google.maps.Circle')
-abstract class _Circle extends MVCObject {
-  factory _Circle([
+abstract class Circle extends MVCObject {
+  factory Circle([
     CircleOptions opts, // ignore: unused_element
   ]) =>
       $js;

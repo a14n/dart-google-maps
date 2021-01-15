@@ -16,7 +16,7 @@ part of '../google_maps_local_context.dart';
 
 @JsName()
 @anonymous
-abstract class _MapDirectionsOptionsLiteral {
-  factory _MapDirectionsOptionsLiteral() => $js;
+abstract class MapDirectionsOptionsLiteral {
+  factory MapDirectionsOptionsLiteral() => $js;
   LatLng origin;
 }

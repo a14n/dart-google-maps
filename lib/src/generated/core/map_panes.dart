@@ -16,8 +16,8 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _MapPanes {
-  factory _MapPanes() => $js;
+abstract class MapPanes {
+  factory MapPanes() => $js;
   Element floatPane;
   Element mapPane;
   Element markerLayer;

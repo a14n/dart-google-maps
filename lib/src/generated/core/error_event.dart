@@ -16,7 +16,7 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _ErrorEvent {
-  factory _ErrorEvent() => $js;
+abstract class ErrorEvent {
+  factory ErrorEvent() => $js;
   Object error;
 }

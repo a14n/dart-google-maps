@@ -16,8 +16,8 @@ part of '../google_maps_local_context.dart';
 
 @JsName()
 @anonymous
-abstract class _PlaceChooserViewSetupOptions {
-  factory _PlaceChooserViewSetupOptions() => $js;
+abstract class PlaceChooserViewSetupOptions {
+  factory PlaceChooserViewSetupOptions() => $js;
   PlaceChooserLayoutMode layoutMode;
   PlaceChooserPosition position;
 }

@@ -16,7 +16,7 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _RotateControlOptions {
-  factory _RotateControlOptions() => $js;
+abstract class RotateControlOptions {
+  factory RotateControlOptions() => $js;
   ControlPosition position;
 }

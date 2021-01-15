@@ -16,7 +16,7 @@ part of '../google_maps_core.dart';
 
 // ignore_for_file: unused_element, unused_field
 @JsName('google.maps.KmlLayerStatus')
-enum _KmlLayerStatus {
+enum KmlLayerStatus {
   DOCUMENT_NOT_FOUND,
   DOCUMENT_TOO_LARGE,
   FETCH_ERROR,

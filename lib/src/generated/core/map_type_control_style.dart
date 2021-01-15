@@ -16,7 +16,7 @@ part of '../google_maps_core.dart';
 
 // ignore_for_file: unused_element, unused_field
 @JsName('google.maps.MapTypeControlStyle')
-enum _MapTypeControlStyle {
+enum MapTypeControlStyle {
   DEFAULT,
   DROPDOWN_MENU,
   HORIZONTAL_BAR,

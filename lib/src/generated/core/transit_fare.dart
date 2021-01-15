@@ -16,8 +16,8 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _TransitFare {
-  factory _TransitFare() => $js;
+abstract class TransitFare {
+  factory TransitFare() => $js;
   String currency;
   num value;
 }

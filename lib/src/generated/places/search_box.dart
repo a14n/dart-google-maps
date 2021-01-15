@@ -15,8 +15,8 @@
 part of '../google_maps_places.dart';
 
 @JsName('google.maps.places.SearchBox')
-abstract class _SearchBox extends MVCObject {
-  factory _SearchBox(
+abstract class SearchBox extends MVCObject {
+  factory SearchBox(
     InputElement inputField, [
     SearchBoxOptions opts, // ignore: unused_element
   ]) =>

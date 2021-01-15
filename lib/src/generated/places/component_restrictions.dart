@@ -16,7 +16,7 @@ part of '../google_maps_places.dart';
 
 @JsName()
 @anonymous
-abstract class _ComponentRestrictions {
-  factory _ComponentRestrictions() => $js;
+abstract class ComponentRestrictions {
+  factory ComponentRestrictions() => $js;
   Object /*String|List<String>*/ country;
 }

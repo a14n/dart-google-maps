@@ -16,8 +16,8 @@ part of '../google_maps_places.dart';
 
 @JsName()
 @anonymous
-abstract class _PlaceSearchPagination {
-  factory _PlaceSearchPagination() => $js;
+abstract class PlaceSearchPagination {
+  factory PlaceSearchPagination() => $js;
   bool hasNextPage;
   void nextPage();
 }

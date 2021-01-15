@@ -16,8 +16,8 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _DirectionsLeg {
-  factory _DirectionsLeg() => $js;
+abstract class DirectionsLeg {
+  factory DirectionsLeg() => $js;
   // custom name for arrival_time
   @JsName('arrival_time')
   Time arrivalTime;

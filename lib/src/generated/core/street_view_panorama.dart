@@ -15,8 +15,8 @@
 part of '../google_maps_core.dart';
 
 @JsName('google.maps.StreetViewPanorama')
-abstract class _StreetViewPanorama extends MVCObject {
-  factory _StreetViewPanorama(
+abstract class StreetViewPanorama extends MVCObject {
+  factory StreetViewPanorama(
     Element container, [
     StreetViewPanoramaOptions opts, // ignore: unused_element
   ]) =>

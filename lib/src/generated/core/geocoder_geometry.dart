@@ -16,8 +16,8 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _GeocoderGeometry {
-  factory _GeocoderGeometry() => $js;
+abstract class GeocoderGeometry {
+  factory GeocoderGeometry() => $js;
   LatLngBounds bounds;
   LatLng location;
   // custom name for location_type

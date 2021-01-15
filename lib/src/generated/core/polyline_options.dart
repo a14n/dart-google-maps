@@ -16,8 +16,8 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _PolylineOptions {
-  factory _PolylineOptions() => $js;
+abstract class PolylineOptions {
+  factory PolylineOptions() => $js;
   bool clickable;
   bool draggable;
   bool editable;

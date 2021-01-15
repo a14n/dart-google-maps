@@ -16,8 +16,8 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _DirectionsRequest {
-  factory _DirectionsRequest() => $js;
+abstract class DirectionsRequest {
+  factory DirectionsRequest() => $js;
   Object /*String|LatLng|Place*/ destination;
   Object /*String|LatLng|Place*/ origin;
   TravelMode travelMode;

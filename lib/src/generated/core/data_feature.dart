@@ -15,8 +15,8 @@
 part of '../google_maps_core.dart';
 
 @JsName('google.maps.Data.Feature')
-abstract class _DataFeature {
-  factory _DataFeature([
+abstract class DataFeature {
+  factory DataFeature([
     DataFeatureOptions options, // ignore: unused_element
   ]) =>
       $js;

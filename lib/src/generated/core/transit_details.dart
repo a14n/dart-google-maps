@@ -16,8 +16,8 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _TransitDetails {
-  factory _TransitDetails() => $js;
+abstract class TransitDetails {
+  factory TransitDetails() => $js;
   // custom name for arrival_stop
   @JsName('arrival_stop')
   TransitStop arrivalStop;

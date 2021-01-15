@@ -16,8 +16,8 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _ImageMapTypeOptions {
-  factory _ImageMapTypeOptions() => $js;
+abstract class ImageMapTypeOptions {
+  factory ImageMapTypeOptions() => $js;
   String alt;
   String Function(Point p1, num p2) getTileUrl;
   num maxZoom;

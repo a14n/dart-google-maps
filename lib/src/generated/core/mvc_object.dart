@@ -15,8 +15,8 @@
 part of '../google_maps_core.dart';
 
 @JsName('google.maps.MVCObject')
-abstract class _MVCObject {
-  factory _MVCObject() => $js;
+abstract class MVCObject {
+  factory MVCObject() => $js;
   MapsEventListener addListener(String eventName, Function handler);
   void bindTo(
     String key,

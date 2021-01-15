@@ -15,8 +15,8 @@
 part of '../google_maps_core.dart';
 
 @JsName('google.maps.TransitLayer')
-abstract class _TransitLayer extends MVCObject {
-  factory _TransitLayer() => $js;
+abstract class TransitLayer extends MVCObject {
+  factory TransitLayer() => $js;
 
   // synthetic getter for getMap
   GMap get map => _getMap();

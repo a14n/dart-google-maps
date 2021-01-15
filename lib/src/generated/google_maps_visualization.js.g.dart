@@ -1,12 +1,29 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of google_maps.visualization;
-
 // **************************************************************************
 // JsWrappingGenerator
 // **************************************************************************
 
-@GeneratedFrom(_HeatmapLayer)
+// Copyright (c) 2015, Alexandre Ardhuin
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+@JS()
+library google_maps.visualization;
+
+import 'package:js_wrapping/js_wrapping.dart';
+import 'package:google_maps/google_maps.dart';
+
 @JS('google.maps.visualization.HeatmapLayer')
 class HeatmapLayer extends MVCObject {
   external HeatmapLayer([
@@ -14,7 +31,6 @@ class HeatmapLayer extends MVCObject {
   ]);
 }
 
-@GeneratedFrom(_HeatmapLayer)
 extension HeatmapLayer$Ext on HeatmapLayer {
   MVCArray<Object /*LatLng|WeightedLocation*/ > get data => _getData();
   GMap get map => _getMap();
@@ -43,7 +59,6 @@ extension HeatmapLayer$Ext on HeatmapLayer {
   }
 }
 
-@GeneratedFrom(_HeatmapLayerOptions)
 @JS()
 @anonymous
 class HeatmapLayerOptions {
@@ -75,7 +90,6 @@ class HeatmapLayerOptions {
   external set radius(num value);
 }
 
-@GeneratedFrom(_HeatmapLayerOptions)
 extension HeatmapLayerOptions$Ext on HeatmapLayerOptions {
   List<String> get gradient => getProperty(this, 'gradient')?.cast<String>();
 
@@ -84,7 +98,6 @@ extension HeatmapLayerOptions$Ext on HeatmapLayerOptions {
   }
 }
 
-@GeneratedFrom(_WeightedLocation)
 @JS()
 @anonymous
 class WeightedLocation {

@@ -16,8 +16,8 @@ part of '../google_maps_places.dart';
 
 @JsName()
 @anonymous
-abstract class _PlaceGeometry {
-  factory _PlaceGeometry() => $js;
+abstract class PlaceGeometry {
+  factory PlaceGeometry() => $js;
   LatLng location;
   LatLngBounds viewport;
 }

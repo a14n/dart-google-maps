@@ -16,8 +16,8 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _TransitOptions {
-  factory _TransitOptions() => $js;
+abstract class TransitOptions {
+  factory TransitOptions() => $js;
   DateTime arrivalTime;
   DateTime departureTime;
   List<TransitMode> modes;

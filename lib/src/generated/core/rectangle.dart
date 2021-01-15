@@ -15,8 +15,8 @@
 part of '../google_maps_core.dart';
 
 @JsName('google.maps.Rectangle')
-abstract class _Rectangle extends MVCObject {
-  factory _Rectangle([
+abstract class Rectangle extends MVCObject {
+  factory Rectangle([
     RectangleOptions opts, // ignore: unused_element
   ]) =>
       $js;

@@ -16,7 +16,7 @@ part of '../google_maps_core.dart';
 
 // ignore_for_file: unused_element, unused_field
 @JsName('google.maps.StreetViewStatus')
-enum _StreetViewStatus {
+enum StreetViewStatus {
   OK,
   UNKNOWN_ERROR,
   ZERO_RESULTS,

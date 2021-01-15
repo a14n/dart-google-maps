@@ -16,8 +16,8 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _GroundOverlayOptions {
-  factory _GroundOverlayOptions() => $js;
+abstract class GroundOverlayOptions {
+  factory GroundOverlayOptions() => $js;
   bool clickable;
   GMap map;
   num opacity;

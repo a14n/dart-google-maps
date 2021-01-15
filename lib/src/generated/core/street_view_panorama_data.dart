@@ -16,8 +16,8 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _StreetViewPanoramaData {
-  factory _StreetViewPanoramaData() => $js;
+abstract class StreetViewPanoramaData {
+  factory StreetViewPanoramaData() => $js;
   String copyright;
   String imageDate;
   List<StreetViewLink> links;

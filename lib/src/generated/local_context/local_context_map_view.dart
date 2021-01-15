@@ -15,8 +15,8 @@
 part of '../google_maps_local_context.dart';
 
 @JsName('google.maps.localContext.LocalContextMapView')
-abstract class _LocalContextMapView implements LocalContextMapViewOptions {
-  factory _LocalContextMapView(LocalContextMapViewOptions options) => $js;
+abstract class LocalContextMapView implements LocalContextMapViewOptions {
+  factory LocalContextMapView(LocalContextMapViewOptions options) => $js;
   Object /*MapDirectionsOptions|MapDirectionsOptionsLiteral*/ directionsOptions;
   Element element;
   bool isTransitioningMapBounds;

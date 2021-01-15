@@ -16,8 +16,8 @@ part of '../google_maps_places.dart';
 
 @JsName()
 @anonymous
-abstract class _PlaceAspectRating {
-  factory _PlaceAspectRating() => $js;
+abstract class PlaceAspectRating {
+  factory PlaceAspectRating() => $js;
   num rating;
   String type;
 }

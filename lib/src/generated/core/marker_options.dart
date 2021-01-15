@@ -16,8 +16,8 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _MarkerOptions {
-  factory _MarkerOptions() => $js;
+abstract class MarkerOptions {
+  factory MarkerOptions() => $js;
   Point anchorPoint;
   Animation animation;
   bool clickable;

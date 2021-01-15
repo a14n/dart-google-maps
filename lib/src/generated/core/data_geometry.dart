@@ -16,8 +16,8 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _DataGeometry {
-  factory _DataGeometry() => $js;
+abstract class DataGeometry {
+  factory DataGeometry() => $js;
   void forEachLatLng(void Function(LatLng p1) callback);
 
   // synthetic getter for getType

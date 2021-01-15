@@ -16,8 +16,8 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _MapCanvasProjection {
-  factory _MapCanvasProjection() => $js;
+abstract class MapCanvasProjection {
+  factory MapCanvasProjection() => $js;
   LatLng fromContainerPixelToLatLng([
     Point pixel,
     bool nowrap,

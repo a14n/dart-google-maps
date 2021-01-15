@@ -16,7 +16,7 @@ part of '../google_maps_core.dart';
 
 // ignore_for_file: unused_element, unused_field
 @JsName('google.maps.TransitMode')
-enum _TransitMode {
+enum TransitMode {
   BUS,
   RAIL,
   SUBWAY,

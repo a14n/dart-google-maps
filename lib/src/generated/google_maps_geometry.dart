@@ -16,7 +16,7 @@
 library google_maps.geometry;
 
 import 'package:js_wrapping/js_wrapping.dart';
-import 'google_maps_core.dart';
+import 'package:google_maps/google_maps.dart';
 
 part 'geometry/encoding.dart';
 part 'geometry/spherical.dart';

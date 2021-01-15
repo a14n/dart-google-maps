@@ -16,8 +16,8 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _KmlLayerOptions {
-  factory _KmlLayerOptions() => $js;
+abstract class KmlLayerOptions {
+  factory KmlLayerOptions() => $js;
   bool clickable;
   GMap map;
   bool preserveViewport;

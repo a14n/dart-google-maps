@@ -16,8 +16,8 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _DirectionsStep {
-  factory _DirectionsStep() => $js;
+abstract class DirectionsStep {
+  factory DirectionsStep() => $js;
   Distance distance;
   GDuration duration;
   // custom name for end_location

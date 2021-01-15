@@ -16,8 +16,8 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _KmlLayerMetadata {
-  factory _KmlLayerMetadata() => $js;
+abstract class KmlLayerMetadata {
+  factory KmlLayerMetadata() => $js;
   KmlAuthor author;
   String description;
   bool hasScreenOverlays;

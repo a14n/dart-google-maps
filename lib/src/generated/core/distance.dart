@@ -16,8 +16,8 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _Distance {
-  factory _Distance() => $js;
+abstract class Distance {
+  factory Distance() => $js;
   String text;
   num value;
 }

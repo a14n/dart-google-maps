@@ -16,8 +16,8 @@ part of '../google_maps_places.dart';
 
 @JsName()
 @anonymous
-abstract class _AutocompletePrediction {
-  factory _AutocompletePrediction() => $js;
+abstract class AutocompletePrediction {
+  factory AutocompletePrediction() => $js;
   String description;
   // custom name for matched_substrings
   @JsName('matched_substrings')

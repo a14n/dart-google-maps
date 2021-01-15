@@ -16,8 +16,8 @@ part of '../google_maps_places.dart';
 
 @JsName()
 @anonymous
-abstract class _QueryAutocompletionRequest {
-  factory _QueryAutocompletionRequest() => $js;
+abstract class QueryAutocompletionRequest {
+  factory QueryAutocompletionRequest() => $js;
   String input;
   LatLngBounds bounds;
   LatLng location;

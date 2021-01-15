@@ -18,9 +18,7 @@ library google_maps.places;
 import 'dart:async' show StreamController;
 import 'dart:html' show InputElement;
 import 'package:js_wrapping/js_wrapping.dart';
-import 'google_maps_core.dart';
-
-part 'google_maps_places.g.dart';
+import 'package:google_maps/google_maps.dart';
 
 part 'places/autocomplete.dart';
 part 'places/autocomplete_options.dart';

@@ -16,8 +16,8 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _MapOptions {
-  factory _MapOptions() => $js;
+abstract class MapOptions {
+  factory MapOptions() => $js;
   String backgroundColor;
   LatLng center;
   bool clickableIcons;

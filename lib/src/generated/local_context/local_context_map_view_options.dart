@@ -16,8 +16,8 @@ part of '../google_maps_local_context.dart';
 
 @JsName()
 @anonymous
-abstract class _LocalContextMapViewOptions {
-  factory _LocalContextMapViewOptions() => $js;
+abstract class LocalContextMapViewOptions {
+  factory LocalContextMapViewOptions() => $js;
   num maxPlaceCount;
   List<PlaceTypePreference> placeTypePreferences;
   Object /*MapDirectionsOptions|MapDirectionsOptionsLiteral*/ directionsOptions;

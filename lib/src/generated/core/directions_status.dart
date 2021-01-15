@@ -16,7 +16,7 @@ part of '../google_maps_core.dart';
 
 // ignore_for_file: unused_element, unused_field
 @JsName('google.maps.DirectionsStatus')
-enum _DirectionsStatus {
+enum DirectionsStatus {
   INVALID_REQUEST,
   MAX_WAYPOINTS_EXCEEDED,
   NOT_FOUND,

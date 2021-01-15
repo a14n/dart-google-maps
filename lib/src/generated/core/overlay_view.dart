@@ -15,8 +15,8 @@
 part of '../google_maps_core.dart';
 
 @JsName('google.maps.OverlayView')
-abstract class _OverlayView extends MVCObject {
-  factory _OverlayView() => $js;
+abstract class OverlayView extends MVCObject {
+  factory OverlayView() => $js;
   void Function() draw;
 
   // synthetic getter for getMap

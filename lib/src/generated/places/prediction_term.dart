@@ -16,8 +16,8 @@ part of '../google_maps_places.dart';
 
 @JsName()
 @anonymous
-abstract class _PredictionTerm {
-  factory _PredictionTerm() => $js;
+abstract class PredictionTerm {
+  factory PredictionTerm() => $js;
   num offset;
   String value;
 }

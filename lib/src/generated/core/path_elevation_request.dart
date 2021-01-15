@@ -16,8 +16,8 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _PathElevationRequest {
-  factory _PathElevationRequest() => $js;
+abstract class PathElevationRequest {
+  factory PathElevationRequest() => $js;
   num samples;
   List<LatLng> path;
 }

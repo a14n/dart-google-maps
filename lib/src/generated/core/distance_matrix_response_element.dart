@@ -16,8 +16,8 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _DistanceMatrixResponseElement {
-  factory _DistanceMatrixResponseElement() => $js;
+abstract class DistanceMatrixResponseElement {
+  factory DistanceMatrixResponseElement() => $js;
   Distance distance;
   GDuration duration;
   // custom name for duration_in_traffic

@@ -16,8 +16,8 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _StreetViewTileData {
-  factory _StreetViewTileData() => $js;
+abstract class StreetViewTileData {
+  factory StreetViewTileData() => $js;
   num centerHeading;
   Size tileSize;
   Size worldSize;

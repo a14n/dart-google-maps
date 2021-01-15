@@ -15,8 +15,8 @@
 part of '../google_maps_core.dart';
 
 @JsName('google.maps.BicyclingLayer')
-abstract class _BicyclingLayer extends MVCObject {
-  factory _BicyclingLayer() => $js;
+abstract class BicyclingLayer extends MVCObject {
+  factory BicyclingLayer() => $js;
 
   // synthetic getter for getMap
   GMap get map => _getMap();

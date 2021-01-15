@@ -16,7 +16,7 @@ part of '../google_maps_local_context.dart';
 
 // ignore_for_file: unused_element, unused_field
 @JsName('google.maps.localContext.PlaceChooserLayoutMode')
-enum _PlaceChooserLayoutMode {
+enum PlaceChooserLayoutMode {
   HIDDEN,
   SHEET,
 }

@@ -16,7 +16,7 @@ part of '../google_maps_core.dart';
 
 // ignore_for_file: unused_element, unused_field
 @JsName('google.maps.DistanceMatrixStatus')
-enum _DistanceMatrixStatus {
+enum DistanceMatrixStatus {
   INVALID_REQUEST,
   MAX_DIMENSIONS_EXCEEDED,
   MAX_ELEMENTS_EXCEEDED,

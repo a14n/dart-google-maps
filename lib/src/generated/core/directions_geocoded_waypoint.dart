@@ -16,8 +16,8 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _DirectionsGeocodedWaypoint {
-  factory _DirectionsGeocodedWaypoint() => $js;
+abstract class DirectionsGeocodedWaypoint {
+  factory DirectionsGeocodedWaypoint() => $js;
   // custom name for partial_match
   @JsName('partial_match')
   bool partialMatch;

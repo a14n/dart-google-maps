@@ -15,8 +15,8 @@
 part of '../google_maps_core.dart';
 
 @JsName('google.maps.MVCArray')
-abstract class _MVCArray<T> extends MVCObject {
-  factory _MVCArray([
+abstract class MVCArray<T> extends MVCObject {
+  factory MVCArray([
     List<T> array, // ignore: unused_element
   ]) =>
       $js;

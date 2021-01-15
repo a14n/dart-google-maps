@@ -112,7 +112,6 @@ Future main() async {
   patchEntities(entities);
 
   final parts = <String, List<String>>{};
-  final needGenPart = <String, bool>{};
   for (var entity in entities) {
     final code = generateCodeForEntity(entity, entities);
     if (code?.trim()?.isEmpty ?? true) {
@@ -129,8 +128,6 @@ $licence
 part of '../$bundleFile';
 $code
 '''));
-    needGenPart[library] =
-        (needGenPart[library] ?? false) || entity.kind != Kind.namespace;
     parts.putIfAbsent(library, () => <String>[]).add(fileName);
   }
 
@@ -148,27 +145,27 @@ $code
       'drawing': [
         "import 'dart:async' show StreamController;",
         "import 'package:js_wrapping/js_wrapping.dart';",
-        "import 'google_maps_core.dart';",
+        "import 'package:google_maps/google_maps.dart';",
       ],
       'geometry': [
         "import 'package:js_wrapping/js_wrapping.dart';",
-        "import 'google_maps_core.dart';",
+        "import 'package:google_maps/google_maps.dart';",
       ],
       'local_context': [
         "import 'dart:async' show StreamController;",
         "import 'dart:html' show Element;",
         "import 'package:js_wrapping/js_wrapping.dart';",
-        "import 'google_maps_core.dart';",
+        "import 'package:google_maps/google_maps.dart';",
       ],
       'places': [
         "import 'dart:async' show StreamController;",
         "import 'dart:html' show InputElement;",
         "import 'package:js_wrapping/js_wrapping.dart';",
-        "import 'google_maps_core.dart';",
+        "import 'package:google_maps/google_maps.dart';",
       ],
       'visualization': [
         "import 'package:js_wrapping/js_wrapping.dart';",
-        "import 'google_maps_core.dart';",
+        "import 'package:google_maps/google_maps.dart';",
       ],
     };
     File('$genFolder/google_maps_$library.dart')
@@ -180,8 +177,6 @@ $licence
 library google_maps.$library;
 
 ${imports[library]?.join()}
-
-${needGenPart[library] ? "part 'google_maps_$library.g.dart';" : ""}
 
 $partList
 '''));
@@ -226,7 +221,7 @@ String generateCodeForClass(DocEntity entity, List<DocEntity> entities) {
   final lines = <String>[
     // constructor
     if (entity.constructor != null) ...<String>[
-      'factory _${name.replaceAll(RegExp(r'<.*'), '')}${buildSignature(entity.constructor, addIgnoreUnusedElement: true)} => \$js;',
+      'factory ${name.replaceAll(RegExp(r'<.*'), '')}${buildSignature(entity.constructor, addIgnoreUnusedElement: true)} => \$js;',
     ],
     // properties
     for (var property in [...entity.properties, ...additionalProperties])
@@ -240,7 +235,7 @@ String generateCodeForClass(DocEntity entity, List<DocEntity> entities) {
 
   return '''
 @JsName('${entity.fullJsName}')
-abstract class _$name
+abstract class $name
 ${entity.extendsName != null ? 'extends ${entity.extendsName}' : ''}
 ${entity.implementsName != null ? 'implements ${entity.implementsName}' : ''}
 {
@@ -253,7 +248,7 @@ String generateCodeForInterface(DocEntity entity) {
   final name = entity.name;
   final lines = <String>[
     // constructor
-    'factory _${name.replaceAll(RegExp(r'<.*'), '')}() => \$js;',
+    'factory ${name.replaceAll(RegExp(r'<.*'), '')}() => \$js;',
     // properties
     for (var property in entity.properties)
       ...generateCodeForProperty(entity, property),
@@ -264,7 +259,7 @@ String generateCodeForInterface(DocEntity entity) {
 @JsName()
 ${entity.extendsName != null ? '@JS()' : ''}
 @anonymous
-abstract class _$name
+abstract class $name
 ${entity.extendsName != null ? 'extends ${entity.extendsName}' : ''}
 ${entity.implementsName != null ? 'implements ${entity.implementsName}' : ''}
 {
@@ -295,7 +290,7 @@ String generateCodeForConstants(DocEntity entity) {
   return '''
 // ignore_for_file: unused_element, unused_field
 @JsName('${entity.fullJsName}')
-enum _$name {
+enum $name {
 ${entity.constants.map((e) => e.name).join(',')},
 }
 ''';

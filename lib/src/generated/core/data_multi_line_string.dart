@@ -15,8 +15,8 @@
 part of '../google_maps_core.dart';
 
 @JsName('google.maps.Data.MultiLineString')
-abstract class _DataMultiLineString implements DataGeometry {
-  factory _DataMultiLineString(
+abstract class DataMultiLineString implements DataGeometry {
+  factory DataMultiLineString(
           List<Object /*DataLineString|List<LatLng>*/ > elements) =>
       $js;
   void forEachLatLng(void Function(LatLng p1) callback);

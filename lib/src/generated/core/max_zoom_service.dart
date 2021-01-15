@@ -15,8 +15,8 @@
 part of '../google_maps_core.dart';
 
 @JsName('google.maps.MaxZoomService')
-abstract class _MaxZoomService {
-  factory _MaxZoomService() => $js;
+abstract class MaxZoomService {
+  factory MaxZoomService() => $js;
   Future<MaxZoomResult> getMaxZoomAtLatLng(
     LatLng latlng, [
     void Function(MaxZoomResult p1) callback,

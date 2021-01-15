@@ -16,7 +16,7 @@ part of '../google_maps_core.dart';
 
 // ignore_for_file: unused_element, unused_field
 @JsName('google.maps.VehicleType')
-enum _VehicleType {
+enum VehicleType {
   BUS,
   CABLE_CAR,
   COMMUTER_TRAIN,

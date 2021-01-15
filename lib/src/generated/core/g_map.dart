@@ -15,8 +15,8 @@
 part of '../google_maps_core.dart';
 
 @JsName('google.maps.Map')
-abstract class _GMap extends MVCObject {
-  factory _GMap(
+abstract class GMap extends MVCObject {
+  factory GMap(
     Element mapDiv, [
     MapOptions opts, // ignore: unused_element
   ]) =>

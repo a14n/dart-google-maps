@@ -16,8 +16,8 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _Padding {
-  factory _Padding() => $js;
+abstract class Padding {
+  factory Padding() => $js;
   num bottom;
   num left;
   num right;

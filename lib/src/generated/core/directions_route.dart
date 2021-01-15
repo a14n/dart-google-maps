@@ -16,8 +16,8 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _DirectionsRoute {
-  factory _DirectionsRoute() => $js;
+abstract class DirectionsRoute {
+  factory DirectionsRoute() => $js;
   LatLngBounds bounds;
   String copyrights;
   TransitFare fare;

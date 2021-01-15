@@ -15,8 +15,8 @@
 part of '../google_maps_core.dart';
 
 @JsName('google.maps.TrafficLayer')
-abstract class _TrafficLayer extends MVCObject {
-  factory _TrafficLayer([
+abstract class TrafficLayer extends MVCObject {
+  factory TrafficLayer([
     TrafficLayerOptions opts, // ignore: unused_element
   ]) =>
       $js;

@@ -15,8 +15,8 @@
 part of '../google_maps_core.dart';
 
 @JsName('google.maps.GroundOverlay')
-abstract class _GroundOverlay extends MVCObject {
-  factory _GroundOverlay(
+abstract class GroundOverlay extends MVCObject {
+  factory GroundOverlay(
     String url,
     LatLngBounds bounds, [
     GroundOverlayOptions opts, // ignore: unused_element

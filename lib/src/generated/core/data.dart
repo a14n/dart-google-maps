@@ -15,8 +15,8 @@
 part of '../google_maps_core.dart';
 
 @JsName('google.maps.Data')
-abstract class _Data extends MVCObject {
-  factory _Data([
+abstract class Data extends MVCObject {
+  factory Data([
     DataDataOptions options, // ignore: unused_element
   ]) =>
       $js;

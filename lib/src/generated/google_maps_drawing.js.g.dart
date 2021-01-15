@@ -1,12 +1,30 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of google_maps.drawing;
-
 // **************************************************************************
 // JsWrappingGenerator
 // **************************************************************************
 
-@GeneratedFrom(_DrawingManager)
+// Copyright (c) 2015, Alexandre Ardhuin
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+@JS()
+library google_maps.drawing;
+
+import 'dart:async' show StreamController;
+import 'package:js_wrapping/js_wrapping.dart';
+import 'package:google_maps/google_maps.dart';
+
 @JS('google.maps.drawing.DrawingManager')
 class DrawingManager extends MVCObject {
   external DrawingManager([
@@ -14,7 +32,6 @@ class DrawingManager extends MVCObject {
   ]);
 }
 
-@GeneratedFrom(_DrawingManager)
 extension DrawingManager$Ext on DrawingManager {
   OverlayType get drawingMode => _getDrawingMode();
   GMap get map => _getMap();
@@ -146,7 +163,6 @@ extension DrawingManager$Ext on DrawingManager {
   }
 }
 
-@GeneratedFrom(_DrawingManagerOptions)
 @JS()
 @anonymous
 class DrawingManagerOptions {
@@ -189,7 +205,6 @@ class DrawingManagerOptions {
   external set rectangleOptions(RectangleOptions value);
 }
 
-@GeneratedFrom(_DrawingControlOptions)
 @JS()
 @anonymous
 class DrawingControlOptions {
@@ -200,7 +215,6 @@ class DrawingControlOptions {
   external set position(ControlPosition value);
 }
 
-@GeneratedFrom(_DrawingControlOptions)
 extension DrawingControlOptions$Ext on DrawingControlOptions {
   List<OverlayType> get drawingModes =>
       getProperty(this, 'drawingModes')?.cast<OverlayType>();
@@ -210,7 +224,6 @@ extension DrawingControlOptions$Ext on DrawingControlOptions {
   }
 }
 
-@GeneratedFrom(_OverlayCompleteEvent)
 @JS()
 @anonymous
 class OverlayCompleteEvent {
@@ -226,7 +239,6 @@ class OverlayCompleteEvent {
   external set type(OverlayType value);
 }
 
-@GeneratedFrom(_OverlayType)
 @JS('google.maps.drawing.OverlayType')
 class OverlayType {
   external static OverlayType get CIRCLE;

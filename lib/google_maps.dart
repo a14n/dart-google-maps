@@ -14,4 +14,4 @@
 
 library google_maps;
 
-export 'src/generated/google_maps_core.dart';
+export 'src/generated/google_maps_core.js.g.dart';

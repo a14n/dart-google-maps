@@ -16,8 +16,8 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _MaxZoomResult {
-  factory _MaxZoomResult() => $js;
+abstract class MaxZoomResult {
+  factory MaxZoomResult() => $js;
   num zoom;
   MaxZoomStatus status;
 }

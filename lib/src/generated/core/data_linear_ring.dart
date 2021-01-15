@@ -15,8 +15,8 @@
 part of '../google_maps_core.dart';
 
 @JsName('google.maps.Data.LinearRing')
-abstract class _DataLinearRing implements DataGeometry {
-  factory _DataLinearRing(List<LatLng> elements) => $js;
+abstract class DataLinearRing implements DataGeometry {
+  factory DataLinearRing(List<LatLng> elements) => $js;
   void forEachLatLng(void Function(LatLng p1) callback);
 
   // synthetic getter for getArray

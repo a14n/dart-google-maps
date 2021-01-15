@@ -16,8 +16,8 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _StreetViewPanoramaOptions {
-  factory _StreetViewPanoramaOptions() => $js;
+abstract class StreetViewPanoramaOptions {
+  factory StreetViewPanoramaOptions() => $js;
   bool addressControl;
   StreetViewAddressControlOptions addressControlOptions;
   bool clickToGo;

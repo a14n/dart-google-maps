@@ -16,8 +16,8 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _Projection {
-  factory _Projection() => $js;
+abstract class Projection {
+  factory Projection() => $js;
   Point Function(
     LatLng latLng, [
     Point point,

@@ -16,7 +16,7 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _ZoomControlOptions {
-  factory _ZoomControlOptions() => $js;
+abstract class ZoomControlOptions {
+  factory ZoomControlOptions() => $js;
   ControlPosition position;
 }

@@ -16,8 +16,8 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _GeocoderAddressComponent {
-  factory _GeocoderAddressComponent() => $js;
+abstract class GeocoderAddressComponent {
+  factory GeocoderAddressComponent() => $js;
   // custom name for long_name
   @JsName('long_name')
   String longName;

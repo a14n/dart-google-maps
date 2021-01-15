@@ -16,8 +16,8 @@ part of '../google_maps_drawing.dart';
 
 @JsName()
 @anonymous
-abstract class _DrawingControlOptions {
-  factory _DrawingControlOptions() => $js;
+abstract class DrawingControlOptions {
+  factory DrawingControlOptions() => $js;
   List<OverlayType> drawingModes;
   ControlPosition position;
 }

@@ -16,8 +16,8 @@ part of '../google_maps_places.dart';
 
 @JsName()
 @anonymous
-abstract class _PlaceDetailsRequest {
-  factory _PlaceDetailsRequest() => $js;
+abstract class PlaceDetailsRequest {
+  factory PlaceDetailsRequest() => $js;
   String placeId;
   List<String> fields;
   AutocompleteSessionToken sessionToken;

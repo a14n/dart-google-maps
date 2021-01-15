@@ -15,8 +15,8 @@
 part of '../google_maps_places.dart';
 
 @JsName('google.maps.places.PlacesService')
-abstract class _PlacesService {
-  factory _PlacesService(Object /*DivElement|GMap*/ attrContainer) => $js;
+abstract class PlacesService {
+  factory PlacesService(Object /*DivElement|GMap*/ attrContainer) => $js;
   void findPlaceFromPhoneNumber(
     FindPlaceFromPhoneNumberRequest request, [
     void Function(List<PlaceResult> p1, PlacesServiceStatus p2) callback,

@@ -16,8 +16,8 @@ part of '../google_maps_places.dart';
 
 @JsName()
 @anonymous
-abstract class _PlaceResult {
-  factory _PlaceResult() => $js;
+abstract class PlaceResult {
+  factory PlaceResult() => $js;
   // custom name for address_components
   @JsName('address_components')
   List<GeocoderAddressComponent> addressComponents;

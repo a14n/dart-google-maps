@@ -16,8 +16,8 @@ part of '../google_maps_places.dart';
 
 @JsName()
 @anonymous
-abstract class _FindPlaceFromPhoneNumberRequest {
-  factory _FindPlaceFromPhoneNumberRequest() => $js;
+abstract class FindPlaceFromPhoneNumberRequest {
+  factory FindPlaceFromPhoneNumberRequest() => $js;
   List<String> fields;
   String phoneNumber;
   Object /*LatLng|LatLngBounds|Circle|String*/ locationBias;

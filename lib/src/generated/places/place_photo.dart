@@ -16,8 +16,8 @@ part of '../google_maps_places.dart';
 
 @JsName()
 @anonymous
-abstract class _PlacePhoto {
-  factory _PlacePhoto() => $js;
+abstract class PlacePhoto {
+  factory PlacePhoto() => $js;
   num height;
   // custom name for html_attributions
   @JsName('html_attributions')

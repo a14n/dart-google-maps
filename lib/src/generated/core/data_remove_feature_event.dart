@@ -16,7 +16,7 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _DataRemoveFeatureEvent {
-  factory _DataRemoveFeatureEvent() => $js;
+abstract class DataRemoveFeatureEvent {
+  factory DataRemoveFeatureEvent() => $js;
   DataFeature feature;
 }

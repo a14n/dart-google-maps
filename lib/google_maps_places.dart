@@ -14,4 +14,4 @@
 
 library google_maps_places;
 
-export 'src/generated/google_maps_places.dart';
+export 'src/generated/google_maps_places.js.g.dart';

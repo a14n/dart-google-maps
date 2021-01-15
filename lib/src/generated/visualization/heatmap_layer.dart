@@ -15,8 +15,8 @@
 part of '../google_maps_visualization.dart';
 
 @JsName('google.maps.visualization.HeatmapLayer')
-abstract class _HeatmapLayer extends MVCObject {
-  factory _HeatmapLayer([
+abstract class HeatmapLayer extends MVCObject {
+  factory HeatmapLayer([
     HeatmapLayerOptions opts, // ignore: unused_element
   ]) =>
       $js;

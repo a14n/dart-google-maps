@@ -15,8 +15,8 @@
 part of '../google_maps_core.dart';
 
 @JsName('google.maps.Polyline')
-abstract class _Polyline extends MVCObject {
-  factory _Polyline([
+abstract class Polyline extends MVCObject {
+  factory Polyline([
     PolylineOptions opts, // ignore: unused_element
   ]) =>
       $js;

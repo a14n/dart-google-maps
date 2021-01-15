@@ -15,8 +15,8 @@
 part of '../google_maps_drawing.dart';
 
 @JsName('google.maps.drawing.DrawingManager')
-abstract class _DrawingManager extends MVCObject {
-  factory _DrawingManager([
+abstract class DrawingManager extends MVCObject {
+  factory DrawingManager([
     DrawingManagerOptions options, // ignore: unused_element
   ]) =>
       $js;

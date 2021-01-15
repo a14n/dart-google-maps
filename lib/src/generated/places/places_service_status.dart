@@ -16,7 +16,7 @@ part of '../google_maps_places.dart';
 
 // ignore_for_file: unused_element, unused_field
 @JsName('google.maps.places.PlacesServiceStatus')
-enum _PlacesServiceStatus {
+enum PlacesServiceStatus {
   INVALID_REQUEST,
   NOT_FOUND,
   OK,

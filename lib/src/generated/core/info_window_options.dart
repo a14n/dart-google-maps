@@ -16,8 +16,8 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _InfoWindowOptions {
-  factory _InfoWindowOptions() => $js;
+abstract class InfoWindowOptions {
+  factory InfoWindowOptions() => $js;
   Object /*String|Node*/ content;
   bool disableAutoPan;
   num maxWidth;

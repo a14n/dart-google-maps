@@ -16,8 +16,8 @@ part of '../google_maps_places.dart';
 
 @JsName()
 @anonymous
-abstract class _AutocompleteOptions {
-  factory _AutocompleteOptions() => $js;
+abstract class AutocompleteOptions {
+  factory AutocompleteOptions() => $js;
   LatLngBounds bounds;
   ComponentRestrictions componentRestrictions;
   List<String> fields;

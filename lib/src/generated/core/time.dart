@@ -16,8 +16,8 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _Time {
-  factory _Time() => $js;
+abstract class Time {
+  factory Time() => $js;
   String text;
   // custom name for time_zone
   @JsName('time_zone')

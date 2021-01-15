@@ -16,8 +16,8 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _DistanceMatrixRequest {
-  factory _DistanceMatrixRequest() => $js;
+abstract class DistanceMatrixRequest {
+  factory DistanceMatrixRequest() => $js;
   List<Object /*String|LatLng|Place*/ > destinations;
   List<Object /*String|LatLng|Place*/ > origins;
   TravelMode travelMode;

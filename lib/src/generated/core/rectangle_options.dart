@@ -16,8 +16,8 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _RectangleOptions {
-  factory _RectangleOptions() => $js;
+abstract class RectangleOptions {
+  factory RectangleOptions() => $js;
   LatLngBounds bounds;
   bool clickable;
   bool draggable;

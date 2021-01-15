@@ -16,8 +16,8 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _Icon {
-  factory _Icon() => $js;
+abstract class Icon {
+  factory Icon() => $js;
   String url;
   Point anchor;
   Point labelOrigin;

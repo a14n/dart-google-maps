@@ -16,7 +16,7 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _DataGeoJsonOptions {
-  factory _DataGeoJsonOptions() => $js;
+abstract class DataGeoJsonOptions {
+  factory DataGeoJsonOptions() => $js;
   String idPropertyName;
 }

@@ -16,8 +16,8 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _ElevationResult {
-  factory _ElevationResult() => $js;
+abstract class ElevationResult {
+  factory ElevationResult() => $js;
   num elevation;
   LatLng location;
   num resolution;

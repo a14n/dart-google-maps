@@ -15,8 +15,8 @@
 part of '../google_maps_core.dart';
 
 @JsName('google.maps.Polygon')
-abstract class _Polygon extends MVCObject {
-  factory _Polygon([
+abstract class Polygon extends MVCObject {
+  factory Polygon([
     PolygonOptions opts, // ignore: unused_element
   ]) =>
       $js;

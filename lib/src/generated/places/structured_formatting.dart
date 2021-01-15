@@ -16,8 +16,8 @@ part of '../google_maps_places.dart';
 
 @JsName()
 @anonymous
-abstract class _StructuredFormatting {
-  factory _StructuredFormatting() => $js;
+abstract class StructuredFormatting {
+  factory StructuredFormatting() => $js;
   // custom name for main_text
   @JsName('main_text')
   String mainText;

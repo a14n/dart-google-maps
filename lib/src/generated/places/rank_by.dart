@@ -16,7 +16,7 @@ part of '../google_maps_places.dart';
 
 // ignore_for_file: unused_element, unused_field
 @JsName('google.maps.places.RankBy')
-enum _RankBy {
+enum RankBy {
   DISTANCE,
   PROMINENCE,
 }

@@ -16,8 +16,8 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _DataStyleOptions {
-  factory _DataStyleOptions() => $js;
+abstract class DataStyleOptions {
+  factory DataStyleOptions() => $js;
   bool clickable;
   String cursor;
   bool draggable;

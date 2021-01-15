@@ -16,8 +16,8 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _TransitVehicle {
-  factory _TransitVehicle() => $js;
+abstract class TransitVehicle {
+  factory TransitVehicle() => $js;
   String icon;
   // custom name for local_icon
   @JsName('local_icon')

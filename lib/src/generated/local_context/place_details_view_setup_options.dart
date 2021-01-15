@@ -16,8 +16,8 @@ part of '../google_maps_local_context.dart';
 
 @JsName()
 @anonymous
-abstract class _PlaceDetailsViewSetupOptions {
-  factory _PlaceDetailsViewSetupOptions() => $js;
+abstract class PlaceDetailsViewSetupOptions {
+  factory PlaceDetailsViewSetupOptions() => $js;
   bool hidesOnMapClick;
   PlaceDetailsLayoutMode layoutMode;
   PlaceDetailsPosition position;

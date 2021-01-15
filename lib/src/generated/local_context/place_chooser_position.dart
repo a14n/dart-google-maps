@@ -16,7 +16,7 @@ part of '../google_maps_local_context.dart';
 
 // ignore_for_file: unused_element, unused_field
 @JsName('google.maps.localContext.PlaceChooserPosition')
-enum _PlaceChooserPosition {
+enum PlaceChooserPosition {
   BLOCK_END,
   INLINE_END,
   INLINE_START,

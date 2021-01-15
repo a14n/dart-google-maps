@@ -16,7 +16,7 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _DistanceMatrixResponseRow {
-  factory _DistanceMatrixResponseRow() => $js;
+abstract class DistanceMatrixResponseRow {
+  factory DistanceMatrixResponseRow() => $js;
   List<DistanceMatrixResponseElement> elements;
 }

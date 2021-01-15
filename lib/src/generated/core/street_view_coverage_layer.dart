@@ -15,8 +15,8 @@
 part of '../google_maps_core.dart';
 
 @JsName('google.maps.StreetViewCoverageLayer')
-abstract class _StreetViewCoverageLayer extends MVCObject {
-  factory _StreetViewCoverageLayer() => $js;
+abstract class StreetViewCoverageLayer extends MVCObject {
+  factory StreetViewCoverageLayer() => $js;
 
   // synthetic getter for getMap
   GMap get map => _getMap();

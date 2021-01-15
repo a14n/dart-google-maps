@@ -16,8 +16,8 @@ part of '../google_maps_places.dart';
 
 @JsName()
 @anonymous
-abstract class _PlaceOpeningHoursPeriod {
-  factory _PlaceOpeningHoursPeriod() => $js;
+abstract class PlaceOpeningHoursPeriod {
+  factory PlaceOpeningHoursPeriod() => $js;
   PlaceOpeningHoursTime open;
   PlaceOpeningHoursTime close;
 }

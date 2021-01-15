@@ -15,8 +15,8 @@
 part of '../google_maps_core.dart';
 
 @JsName('google.maps.KmlLayer')
-abstract class _KmlLayer extends MVCObject {
-  factory _KmlLayer([
+abstract class KmlLayer extends MVCObject {
+  factory KmlLayer([
     KmlLayerOptions opts, // ignore: unused_element
   ]) =>
       $js;

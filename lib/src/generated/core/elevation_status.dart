@@ -16,7 +16,7 @@ part of '../google_maps_core.dart';
 
 // ignore_for_file: unused_element, unused_field
 @JsName('google.maps.ElevationStatus')
-enum _ElevationStatus {
+enum ElevationStatus {
   INVALID_REQUEST,
   OK,
   OVER_QUERY_LIMIT,

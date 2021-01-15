@@ -16,7 +16,7 @@ part of '../google_maps_core.dart';
 
 // ignore_for_file: unused_element, unused_field
 @JsName('google.maps.SymbolPath')
-enum _SymbolPath {
+enum SymbolPath {
   BACKWARD_CLOSED_ARROW,
   BACKWARD_OPEN_ARROW,
   CIRCLE,

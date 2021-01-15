@@ -16,8 +16,8 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _StreetViewPov {
-  factory _StreetViewPov() => $js;
+abstract class StreetViewPov {
+  factory StreetViewPov() => $js;
   num heading;
   num pitch;
 }

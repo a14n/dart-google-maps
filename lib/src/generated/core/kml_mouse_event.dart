@@ -16,8 +16,8 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _KmlMouseEvent {
-  factory _KmlMouseEvent() => $js;
+abstract class KmlMouseEvent {
+  factory KmlMouseEvent() => $js;
   KmlFeatureData featureData;
   LatLng latLng;
   Size pixelOffset;

@@ -16,8 +16,8 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _GSymbol {
-  factory _GSymbol() => $js;
+abstract class GSymbol {
+  factory GSymbol() => $js;
   Object /*SymbolPath|String*/ path;
   Point anchor;
   String fillColor;

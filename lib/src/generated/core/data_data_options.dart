@@ -16,8 +16,8 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _DataDataOptions {
-  factory _DataDataOptions() => $js;
+abstract class DataDataOptions {
+  factory DataDataOptions() => $js;
   GMap map;
   ControlPosition controlPosition;
   List<String> controls;

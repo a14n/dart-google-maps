@@ -15,8 +15,8 @@
 part of '../google_maps_core.dart';
 
 @JsName('google.maps.InfoWindow')
-abstract class _InfoWindow extends MVCObject {
-  factory _InfoWindow([
+abstract class InfoWindow extends MVCObject {
+  factory InfoWindow([
     InfoWindowOptions opts, // ignore: unused_element
   ]) =>
       $js;

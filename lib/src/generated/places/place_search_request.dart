@@ -16,8 +16,8 @@ part of '../google_maps_places.dart';
 
 @JsName()
 @anonymous
-abstract class _PlaceSearchRequest {
-  factory _PlaceSearchRequest() => $js;
+abstract class PlaceSearchRequest {
+  factory PlaceSearchRequest() => $js;
   LatLngBounds bounds;
   String keyword;
   LatLng location;

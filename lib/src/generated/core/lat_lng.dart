@@ -15,8 +15,8 @@
 part of '../google_maps_core.dart';
 
 @JsName('google.maps.LatLng')
-abstract class _LatLng {
-  factory _LatLng(
+abstract class LatLng {
+  factory LatLng(
     num lat,
     num lng, [
     bool noWrap, // ignore: unused_element

@@ -16,8 +16,8 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _CircleOptions {
-  factory _CircleOptions() => $js;
+abstract class CircleOptions {
+  factory CircleOptions() => $js;
   LatLng center;
   bool clickable;
   bool draggable;

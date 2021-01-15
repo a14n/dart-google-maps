@@ -19,8 +19,6 @@ import 'dart:async' show StreamController;
 import 'dart:html' show Document, Element, Node;
 import 'package:js_wrapping/js_wrapping.dart';
 
-part 'google_maps_core.g.dart';
-
 part 'core/g_map.dart';
 part 'core/map_options.dart';
 part 'core/map_type_style.dart';

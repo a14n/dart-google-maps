@@ -15,6 +15,6 @@
 part of '../google_maps_places.dart';
 
 @JsName('google.maps.places.AutocompleteSessionToken')
-abstract class _AutocompleteSessionToken {
-  factory _AutocompleteSessionToken() => $js;
+abstract class AutocompleteSessionToken {
+  factory AutocompleteSessionToken() => $js;
 }

@@ -15,8 +15,8 @@
 part of '../google_maps_core.dart';
 
 @JsName('google.maps.Data.MultiPolygon')
-abstract class _DataMultiPolygon implements DataGeometry {
-  factory _DataMultiPolygon(
+abstract class DataMultiPolygon implements DataGeometry {
+  factory DataMultiPolygon(
           List<Object /*DataPolygon|List<Object/*DataLinearRing|List<LatLng>*/>*/ >
               elements) =>
       $js;

@@ -1,12 +1,31 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of google_maps.local_context;
-
 // **************************************************************************
 // JsWrappingGenerator
 // **************************************************************************
 
-@GeneratedFrom(_LocalContextMapView)
+// Copyright (c) 2015, Alexandre Ardhuin
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+@JS()
+library google_maps.local_context;
+
+import 'dart:async' show StreamController;
+import 'dart:html' show Element;
+import 'package:js_wrapping/js_wrapping.dart';
+import 'package:google_maps/google_maps.dart';
+
 @JS('google.maps.localContext.LocalContextMapView')
 class LocalContextMapView implements LocalContextMapViewOptions {
   external LocalContextMapView(LocalContextMapViewOptions options);
@@ -62,7 +81,6 @@ class LocalContextMapView implements LocalContextMapViewOptions {
   external void search();
 }
 
-@GeneratedFrom(_LocalContextMapView)
 extension LocalContextMapView$Ext on LocalContextMapView {
   List<PlaceTypePreference> get placeTypePreferences =>
       getProperty(this, 'placeTypePreferences')?.cast<PlaceTypePreference>();
@@ -126,7 +144,6 @@ extension LocalContextMapView$Ext on LocalContextMapView {
   }
 }
 
-@GeneratedFrom(_LocalContextMapViewOptions)
 @JS()
 @anonymous
 class LocalContextMapViewOptions {
@@ -173,7 +190,6 @@ class LocalContextMapViewOptions {
       Object /*PlaceDetailsViewSetupOptions Function((PlaceDetailsLayoutMode defaultLayoutMode, PlaceDetailsPosition defaultPosition) p1)|PlaceDetailsViewSetupOptions*/ value);
 }
 
-@GeneratedFrom(_LocalContextMapViewOptions)
 extension LocalContextMapViewOptions$Ext on LocalContextMapViewOptions {
   List<PlaceTypePreference> get placeTypePreferences =>
       getProperty(this, 'placeTypePreferences')?.cast<PlaceTypePreference>();
@@ -183,7 +199,6 @@ extension LocalContextMapViewOptions$Ext on LocalContextMapViewOptions {
   }
 }
 
-@GeneratedFrom(_PlaceTypePreference)
 @JS()
 @anonymous
 class PlaceTypePreference {
@@ -198,7 +213,6 @@ class PlaceTypePreference {
   external set weight(num value);
 }
 
-@GeneratedFrom(_MapDirectionsOptions)
 @JS('google.maps.localContext.MapDirectionsOptions')
 class MapDirectionsOptions implements MapDirectionsOptionsLiteral {
   external LatLng get origin;
@@ -208,7 +222,6 @@ class MapDirectionsOptions implements MapDirectionsOptionsLiteral {
   external MapsEventListener addListener(String eventName, Function handler);
 }
 
-@GeneratedFrom(_MapDirectionsOptionsLiteral)
 @JS()
 @anonymous
 class MapDirectionsOptionsLiteral {
@@ -219,7 +232,6 @@ class MapDirectionsOptionsLiteral {
   external set origin(LatLng value);
 }
 
-@GeneratedFrom(_PinOptions)
 @JS()
 @anonymous
 class PinOptions {
@@ -238,7 +250,6 @@ class PinOptions {
   external set scale(num value);
 }
 
-@GeneratedFrom(_PlaceChooserViewSetupOptions)
 @JS()
 @anonymous
 class PlaceChooserViewSetupOptions {
@@ -253,14 +264,12 @@ class PlaceChooserViewSetupOptions {
   external set position(PlaceChooserPosition value);
 }
 
-@GeneratedFrom(_PlaceChooserLayoutMode)
 @JS('google.maps.localContext.PlaceChooserLayoutMode')
 class PlaceChooserLayoutMode {
   external static PlaceChooserLayoutMode get HIDDEN;
   external static PlaceChooserLayoutMode get SHEET;
 }
 
-@GeneratedFrom(_PlaceChooserPosition)
 @JS('google.maps.localContext.PlaceChooserPosition')
 class PlaceChooserPosition {
   external static PlaceChooserPosition get BLOCK_END;
@@ -268,7 +277,6 @@ class PlaceChooserPosition {
   external static PlaceChooserPosition get INLINE_START;
 }
 
-@GeneratedFrom(_PlaceDetailsViewSetupOptions)
 @JS()
 @anonymous
 class PlaceDetailsViewSetupOptions {
@@ -287,14 +295,12 @@ class PlaceDetailsViewSetupOptions {
   external set position(PlaceDetailsPosition value);
 }
 
-@GeneratedFrom(_PlaceDetailsLayoutMode)
 @JS('google.maps.localContext.PlaceDetailsLayoutMode')
 class PlaceDetailsLayoutMode {
   external static PlaceDetailsLayoutMode get INFO_WINDOW;
   external static PlaceDetailsLayoutMode get SHEET;
 }
 
-@GeneratedFrom(_PlaceDetailsPosition)
 @JS('google.maps.localContext.PlaceDetailsPosition')
 class PlaceDetailsPosition {
   external static PlaceDetailsPosition get INLINE_END;

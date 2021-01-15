@@ -16,8 +16,8 @@ part of '../google_maps_core.dart';
 
 @JsName()
 @anonymous
-abstract class _MarkerShape {
-  factory _MarkerShape() => $js;
+abstract class MarkerShape {
+  factory MarkerShape() => $js;
   List<num> coords;
   String type;
 }

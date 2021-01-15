@@ -15,8 +15,8 @@
 part of '../google_maps_core.dart';
 
 @JsName('google.maps.Size')
-abstract class _Size {
-  factory _Size(
+abstract class Size {
+  factory Size(
     num width,
     num height, [
     String widthUnit, // ignore: unused_element
