@@ -350,6 +350,8 @@ List<String> generateCodeForMethod(DocEntity entity, DocMethod method) {
     Member('StreetViewTileData', 'getTileUrl'),
     Member('StyledMapType', 'getTile'),
     Member('StyledMapType', 'releaseTile'),
+    Member('ImageMapType', 'getTile'),
+    Member('ImageMapType', 'releaseTile'),
   ].contains(Member(entity.name, method.name))) {
     return [
       '${method.returnType} Function${buildSignature(method)} ${method.name};',
