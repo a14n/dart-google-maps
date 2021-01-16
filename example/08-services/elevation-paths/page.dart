@@ -13,7 +13,7 @@ class ColumnChart {
   external void draw(DataTable data, [Object options]);
 }
 
-@JsName('google.visualization.DataTable')
+@JS('google.visualization.DataTable')
 class DataTable {
   external DataTable();
 
