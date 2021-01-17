@@ -1,4 +1,4 @@
-# v4.0.0 (2020-04-22)
+# v4.0.0 (2021-01-17)
 
 - Migrate from `dart:js` to `package:js`.
 
