@@ -964,8 +964,6 @@ class MapsEventListener {
 class MVCObject {
   external MVCObject();
 
-  external MapsEventListener addListener(String eventName, Function handler);
-
   external void bindTo(
     String key,
     MVCObject target, [
@@ -986,6 +984,9 @@ class MVCObject {
 
 extension MVCObject$Ext on MVCObject {
   set values(Object values) => _setValues(values);
+
+  MapsEventListener addListener(String eventName, Function handler) =>
+      callMethod(this, 'addListener', [eventName, allowInterop(handler)]);
 
   void _setValues(Object values) {
     callMethod(this, 'setValues', [values]);

@@ -74,8 +74,6 @@ class LocalContextMapView implements LocalContextMapViewOptions {
   external set placeDetailsViewSetup(
       Object /*PlaceDetailsViewSetupOptions Function((PlaceDetailsLayoutMode defaultLayoutMode, PlaceDetailsPosition defaultPosition) p1)|PlaceDetailsViewSetupOptions*/ value);
 
-  external MapsEventListener addListener(String eventName, Function handler);
-
   external void hidePlaceDetailsView();
 
   external void search();
@@ -142,6 +140,9 @@ extension LocalContextMapView$Ext on LocalContextMapView {
     );
     return sc.stream;
   }
+
+  MapsEventListener addListener(String eventName, Function handler) =>
+      callMethod(this, 'addListener', [eventName, allowInterop(handler)]);
 }
 
 @JS()
@@ -218,8 +219,11 @@ class MapDirectionsOptions implements MapDirectionsOptionsLiteral {
   external LatLng get origin;
 
   external set origin(LatLng value);
+}
 
-  external MapsEventListener addListener(String eventName, Function handler);
+extension MapDirectionsOptions$Ext on MapDirectionsOptions {
+  MapsEventListener addListener(String eventName, Function handler) =>
+      callMethod(this, 'addListener', [eventName, allowInterop(handler)]);
 }
 
 @JS()
