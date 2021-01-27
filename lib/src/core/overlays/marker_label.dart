@@ -18,6 +18,7 @@ part of google_maps.src;
 abstract class _MarkerLabel implements JsInterface {
   factory _MarkerLabel() => null;
 
+  String className;
   String color;
   String fontFamily;
   String fontSize;

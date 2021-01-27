@@ -1,5 +1,5 @@
 name: google_maps
-version: 3.4.5
+version: 3.4.6
 description: >
   With that package you will be able to use Google Maps JavaScript API from Dart
   scripts.
