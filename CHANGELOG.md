@@ -1,3 +1,7 @@
+# v5.0.1 (2021-03-10)
+
+- Add a missing file
+
 # v5.0.0 (2021-03-10)
 
 - Migrate to null-safety. As the google maps documentation does not provide information about nullability everything has been migrated as nullable.
