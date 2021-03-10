@@ -44,7 +44,8 @@ void zoom(GMap map) {
 /// @param {google.maps.Data.Geometry} geometry The structure to process
 /// @param {function(google.maps.LatLng)} callback A function to call on each
 /// LatLng point encountered (e.g. Array.push)
-void processPoints(DataGeometry geometry, LatLngBounds? callback(LatLng? point)) {
+void processPoints(
+    DataGeometry geometry, LatLngBounds? callback(LatLng? point)) {
   if (geometry is DataPoint) {
     callback(geometry.get());
   } else if (geometry is DataGeometryCollection) {

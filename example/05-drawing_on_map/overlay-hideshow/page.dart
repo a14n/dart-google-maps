@@ -31,13 +31,14 @@ void main() {
 }
 
 class USGSOverlay {
-  USGSOverlay(this._bounds, this._image, this._map)  {
-    overlayView..onAdd = _onAdd
-    ..draw = _draw
-    ..onRemove = _onRemove
+  USGSOverlay(this._bounds, this._image, this._map) {
+    overlayView
+      ..onAdd = _onAdd
+      ..draw = _draw
+      ..onRemove = _onRemove
 
-    // Explicitly call setMap on this overlay
-    ..map = _map;
+      // Explicitly call setMap on this overlay
+      ..map = _map;
   }
 
   final overlayView = OverlayView();

@@ -32,7 +32,8 @@ void main() {
   });
 
   panorama.onPositionChanged.listen((_) {
-    document.getElementById('position_cell')!.innerHtml = '${panorama.position}';
+    document.getElementById('position_cell')!.innerHtml =
+        '${panorama.position}';
   });
 
   panorama.onPovChanged.listen((_) {

@@ -11,8 +11,8 @@ void main() {
       QueryAutocompletionRequest()..input = 'pizza near', callback);
 }
 
-void callback(
-    List<QueryAutocompletePrediction?>? predictions, PlacesServiceStatus? status) {
+void callback(List<QueryAutocompletePrediction?>? predictions,
+    PlacesServiceStatus? status) {
   if (status != PlacesServiceStatus.OK) {
     window.alert('$status');
     return;
@@ -21,6 +21,7 @@ void callback(
   final results = document.getElementById('results') as UListElement;
 
   for (final prediction in predictions!) {
-    results.innerHtml = '${results.innerHtml!}<li>${prediction!.description}</li>';
+    results.innerHtml =
+        '${results.innerHtml!}<li>${prediction!.description}</li>';
   }
 }

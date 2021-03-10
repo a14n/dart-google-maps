@@ -34,7 +34,8 @@ void main() {
   // defined in the function passed to setStyle()
   map.data!.onMouseover.listen((event) {
     map.data!.revertStyle();
-    map.data!.overrideStyle(event.feature, DataStyleOptions()..strokeWeight = 8);
+    map.data!
+        .overrideStyle(event.feature, DataStyleOptions()..strokeWeight = 8);
   });
 
   map.data!.onMouseout.listen((event) {

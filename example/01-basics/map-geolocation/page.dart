@@ -24,7 +24,8 @@ void main() {
       try {
         final position =
             await window.navigator.geolocation.getCurrentPosition();
-        final pos = LatLng(position.coords!.latitude, position.coords!.longitude);
+        final pos =
+            LatLng(position.coords!.latitude, position.coords!.longitude);
         infoWindow
           ..position = pos
           ..content = 'Location found.'

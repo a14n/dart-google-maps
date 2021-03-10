@@ -19,7 +19,10 @@ void main() {
   addMarker(haightAshbury);
 
   // bind buttons
-  document.getElementById('clearMarkers')!.onClick.listen((_) => clearMarkers());
+  document
+      .getElementById('clearMarkers')!
+      .onClick
+      .listen((_) => clearMarkers());
   document.getElementById('showMarkers')!.onClick.listen((_) => showMarkers());
   document
       .getElementById('deleteMarkers')!
