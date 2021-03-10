@@ -17,11 +17,11 @@ part of '../google_maps_core.dart';
 @JsName()
 @anonymous
 abstract class MarkerLabel {
-  factory MarkerLabel() => $js;
-  String text;
-  String className;
-  String color;
-  String fontFamily;
-  String fontSize;
-  String fontWeight;
+  factory MarkerLabel() => $js();
+  String? text;
+  String? className;
+  String? color;
+  String? fontFamily;
+  String? fontSize;
+  String? fontWeight;
 }

@@ -16,38 +16,38 @@ void main() {
 }
 
 void initZoomControl(GMap map) {
-  document.querySelector('.zoom-control-in').onClick.listen((event) {
-    map.zoom = map.zoom + 1;
+  document.querySelector('.zoom-control-in')!.onClick.listen((event) {
+    map.zoom = map.zoom! + 1;
   });
 
-  document.querySelector('.zoom-control-out').onClick.listen((event) {
-    map.zoom = map.zoom - 1;
+  document.querySelector('.zoom-control-out')!.onClick.listen((event) {
+    map.zoom = map.zoom! - 1;
   });
-  map.controls[ControlPosition.RIGHT_BOTTOM as int]
+  map.controls![ControlPosition.RIGHT_BOTTOM as int]!
       .push(document.querySelector('.zoom-control'));
 }
 
 void initMapTypeControl(GMap map) {
-  final mapTypeControlDiv = document.querySelector('.maptype-control');
+  final mapTypeControlDiv = document.querySelector('.maptype-control')!;
 
-  document.querySelector('.maptype-control-map').onClick.listen((event) {
+  document.querySelector('.maptype-control-map')!.onClick.listen((event) {
     mapTypeControlDiv.classes.add('maptype-control-is-map');
     mapTypeControlDiv.classes.remove('maptype-control-is-satellite');
     map.mapTypeId = 'roadmap';
   });
 
-  document.querySelector('.maptype-control-satellite').onClick.listen((event) {
+  document.querySelector('.maptype-control-satellite')!.onClick.listen((event) {
     mapTypeControlDiv.classes.remove('maptype-control-is-map');
     mapTypeControlDiv.classes.add('maptype-control-is-satellite');
     map.mapTypeId = 'hybrid';
   });
-  map.controls[ControlPosition.LEFT_TOP as int].push(mapTypeControlDiv);
+  map.controls![ControlPosition.LEFT_TOP as int]!.push(mapTypeControlDiv);
 }
 
 void initFullscreenControl(GMap map) {
-  final elementToSendFullscreen = map.div.firstChild;
-  final fullscreenControl = document.querySelector('.fullscreen-control');
-  map.controls[ControlPosition.RIGHT_TOP as int].push(fullscreenControl);
+  final elementToSendFullscreen = map.div!.firstChild! as Element;
+  final fullscreenControl = document.querySelector('.fullscreen-control')!;
+  map.controls![ControlPosition.RIGHT_TOP as int]!.push(fullscreenControl);
 
   fullscreenControl.onClick.listen((event) {
     if (isFullscreen(elementToSendFullscreen)) {

@@ -2,14 +2,14 @@ import 'dart:html' hide Point;
 
 import 'package:google_maps/google_maps.dart';
 
-GMap map;
+late GMap map;
 final chicago = LatLng(41.850033, -87.6500523);
 final tileSize = Size(256, 256);
 final coordinateMapType = MapType()
   ..tileSize = tileSize
   ..maxZoom = 19
-  ..getTile = (Point coord, num zoom, Document ownerDocument) {
-    final div = ownerDocument.createElement('div')
+  ..getTile = (coord, zoom, ownerDocument) {
+    final div = ownerDocument!.createElement('div')
       ..innerHtml = coord.toString();
     div.style
       ..width = '${tileSize.width}px'
@@ -41,5 +41,5 @@ void main() {
   });
 
   // Now attach the coordinate map type to the map's registry
-  map.mapTypes.set('coordinate', coordinateMapType);
+  map.mapTypes!.set('coordinate', coordinateMapType);
 }

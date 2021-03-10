@@ -21,11 +21,11 @@ class DataTable {
   external void addRow([List cells]);
 }
 
-ElevationService elevator;
-GMap map;
-ColumnChart chart;
+late ElevationService elevator;
+late GMap map;
+late ColumnChart chart;
 final infowindow = InfoWindow();
-Polyline polyline;
+late Polyline polyline;
 
 // The following path marks a general path from Mt.
 // Whitney, the highest point in the continental United
@@ -53,7 +53,7 @@ void main() {
 
 void drawPath() {
   // Create a new chart in the elevation_chart DIV.
-  chart = ColumnChart(document.getElementById('elevation_chart'));
+  chart = ColumnChart(document.getElementById('elevation_chart')!);
 
   final path = [
     whitney,
@@ -76,13 +76,13 @@ void drawPath() {
 
 // Takes an array of ElevationResult objects, draws the path on the map
 // and plots the elevation profile on a Visualization API ColumnChart.
-void plotElevation(List<ElevationResult> results, ElevationStatus status) {
+void plotElevation(List<ElevationResult?>? results, ElevationStatus? status) {
   if (status == ElevationStatus.OK) {
     // Extract the elevation samples from the returned results
     // and store them in an array of LatLngs.
     final elevationPath = [];
-    for (final elevation in results) {
-      elevationPath.add(elevation.location);
+    for (final elevation in results!) {
+      elevationPath.add(elevation!.location);
     }
 
     // Display a polyline of the elevation path.
@@ -102,11 +102,11 @@ void plotElevation(List<ElevationResult> results, ElevationStatus status) {
       ..addColumn('string', 'Sample')
       ..addColumn('number', 'Elevation');
     for (final elevation in results) {
-      data.addRow(['', elevation.elevation]);
+      data.addRow(['', elevation!.elevation]);
     }
 
     // Draw the chart using the data within its DIV.
-    querySelector('#elevation_chart').style.display = 'block';
+    querySelector('#elevation_chart')!.style.display = 'block';
     chart.draw(data,
         jsify({'height': 150, 'legend': 'none', 'titleY': 'Elevation (m)'}));
   }

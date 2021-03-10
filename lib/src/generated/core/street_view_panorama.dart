@@ -17,110 +17,111 @@ part of '../google_maps_core.dart';
 @JsName('google.maps.StreetViewPanorama')
 abstract class StreetViewPanorama extends MVCObject {
   factory StreetViewPanorama(
-    Element container, [
-    StreetViewPanoramaOptions opts, // ignore: unused_element
+    Element? container, [
+    StreetViewPanoramaOptions? opts, // ignore: unused_element
   ]) =>
-      $js;
-  List<MVCArray<Node>> controls;
+      $js();
+  List<MVCArray<Node?>?>? controls;
 
   // synthetic getter for getLinks
-  List<StreetViewLink> get links => _getLinks();
+  List<StreetViewLink?>? get links => _getLinks();
   @JsName('getLinks')
-  List<StreetViewLink> _getLinks();
+  List<StreetViewLink?>? _getLinks();
 
   // synthetic getter for getLocation
-  StreetViewLocation get location => _getLocation();
+  StreetViewLocation? get location => _getLocation();
   @JsName('getLocation')
-  StreetViewLocation _getLocation();
+  StreetViewLocation? _getLocation();
 
   // synthetic getter for getMotionTracking
-  bool get motionTracking => _getMotionTracking();
+  bool? get motionTracking => _getMotionTracking();
   @JsName('getMotionTracking')
-  bool _getMotionTracking();
+  bool? _getMotionTracking();
 
   // synthetic getter for getPano
-  String get pano => _getPano();
+  String? get pano => _getPano();
   @JsName('getPano')
-  String _getPano();
+  String? _getPano();
 
   // synthetic getter for getPhotographerPov
-  StreetViewPov get photographerPov => _getPhotographerPov();
+  StreetViewPov? get photographerPov => _getPhotographerPov();
   @JsName('getPhotographerPov')
-  StreetViewPov _getPhotographerPov();
+  StreetViewPov? _getPhotographerPov();
 
   // synthetic getter for getPosition
-  LatLng get position => _getPosition();
+  LatLng? get position => _getPosition();
   @JsName('getPosition')
-  LatLng _getPosition();
+  LatLng? _getPosition();
 
   // synthetic getter for getPov
-  StreetViewPov get pov => _getPov();
+  StreetViewPov? get pov => _getPov();
   @JsName('getPov')
-  StreetViewPov _getPov();
+  StreetViewPov? _getPov();
 
   // synthetic getter for getStatus
-  StreetViewStatus get status => _getStatus();
+  StreetViewStatus? get status => _getStatus();
   @JsName('getStatus')
-  StreetViewStatus _getStatus();
+  StreetViewStatus? _getStatus();
 
   // synthetic getter for getVisible
-  bool get visible => _getVisible();
+  bool? get visible => _getVisible();
   @JsName('getVisible')
-  bool _getVisible();
+  bool? _getVisible();
 
   // synthetic getter for getZoom
-  num get zoom => _getZoom();
+  num? get zoom => _getZoom();
   @JsName('getZoom')
-  num _getZoom();
+  num? _getZoom();
 
   void registerPanoProvider([
-    StreetViewPanoramaData Function(String p1) provider,
-    PanoProviderOptions opt_options,
+    StreetViewPanoramaData? Function(String? p1)? provider,
+    PanoProviderOptions? opt_options,
   ]);
 
   // synthetic setter for setLinks
-  set links(List<StreetViewLink> links) => _setLinks(links);
+  set links(List<StreetViewLink?>? links) => _setLinks(links);
   @JsName('setLinks')
-  void _setLinks(List<StreetViewLink> links);
+  void _setLinks(List<StreetViewLink?>? links);
 
   // synthetic setter for setMotionTracking
-  set motionTracking(bool motionTracking) => _setMotionTracking(motionTracking);
+  set motionTracking(bool? motionTracking) =>
+      _setMotionTracking(motionTracking);
   @JsName('setMotionTracking')
-  void _setMotionTracking(bool motionTracking);
+  void _setMotionTracking(bool? motionTracking);
 
   // synthetic setter for setOptions
-  set options(StreetViewPanoramaOptions options) => _setOptions(options);
+  set options(StreetViewPanoramaOptions? options) => _setOptions(options);
   @JsName('setOptions')
-  void _setOptions(StreetViewPanoramaOptions options);
+  void _setOptions(StreetViewPanoramaOptions? options);
 
   // synthetic setter for setPano
-  set pano(String pano) => _setPano(pano);
+  set pano(String? pano) => _setPano(pano);
   @JsName('setPano')
-  void _setPano(String pano);
+  void _setPano(String? pano);
 
   // synthetic setter for setPosition
-  set position(LatLng position) => _setPosition(position);
+  set position(LatLng? position) => _setPosition(position);
   @JsName('setPosition')
-  void _setPosition(LatLng latLng);
+  void _setPosition(LatLng? latLng);
 
   // synthetic setter for setPov
-  set pov(StreetViewPov pov) => _setPov(pov);
+  set pov(StreetViewPov? pov) => _setPov(pov);
   @JsName('setPov')
-  void _setPov(StreetViewPov pov);
+  void _setPov(StreetViewPov? pov);
 
   // synthetic setter for setVisible
-  set visible(bool visible) => _setVisible(visible);
+  set visible(bool? visible) => _setVisible(visible);
   @JsName('setVisible')
-  void _setVisible(bool flag);
+  void _setVisible(bool? flag);
 
   // synthetic setter for setZoom
-  set zoom(num zoom) => _setZoom(zoom);
+  set zoom(num? zoom) => _setZoom(zoom);
   @JsName('setZoom')
-  void _setZoom(num zoom);
+  void _setZoom(num? zoom);
 
   Stream<Object> get onCloseclick {
-    StreamController<Object> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<Object> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'closeclick',
@@ -137,8 +138,8 @@ abstract class StreetViewPanorama extends MVCObject {
   }
 
   Stream<void> get onPanoChanged {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'pano_changed',
@@ -155,8 +156,8 @@ abstract class StreetViewPanorama extends MVCObject {
   }
 
   Stream<void> get onPositionChanged {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'position_changed',
@@ -173,8 +174,8 @@ abstract class StreetViewPanorama extends MVCObject {
   }
 
   Stream<void> get onPovChanged {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'pov_changed',
@@ -191,8 +192,8 @@ abstract class StreetViewPanorama extends MVCObject {
   }
 
   Stream<void> get onResize {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'resize',
@@ -209,8 +210,8 @@ abstract class StreetViewPanorama extends MVCObject {
   }
 
   Stream<void> get onStatusChanged {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'status_changed',
@@ -227,8 +228,8 @@ abstract class StreetViewPanorama extends MVCObject {
   }
 
   Stream<void> get onVisibleChanged {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'visible_changed',
@@ -245,8 +246,8 @@ abstract class StreetViewPanorama extends MVCObject {
   }
 
   Stream<void> get onZoomChanged {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'zoom_changed',

@@ -17,148 +17,148 @@ part of '../google_maps_core.dart';
 @JsName('google.maps.Marker')
 abstract class Marker extends MVCObject {
   factory Marker([
-    MarkerOptions opts, // ignore: unused_element
+    MarkerOptions? opts, // ignore: unused_element
   ]) =>
-      $js;
+      $js();
 
   // synthetic getter for getAnimation
-  Animation get animation => _getAnimation();
+  Animation? get animation => _getAnimation();
   @JsName('getAnimation')
-  Animation _getAnimation();
+  Animation? _getAnimation();
 
   // synthetic getter for getClickable
-  bool get clickable => _getClickable();
+  bool? get clickable => _getClickable();
   @JsName('getClickable')
-  bool _getClickable();
+  bool? _getClickable();
 
   // synthetic getter for getCursor
-  String get cursor => _getCursor();
+  String? get cursor => _getCursor();
   @JsName('getCursor')
-  String _getCursor();
+  String? _getCursor();
 
   // synthetic getter for getDraggable
-  bool get draggable => _getDraggable();
+  bool? get draggable => _getDraggable();
   @JsName('getDraggable')
-  bool _getDraggable();
+  bool? _getDraggable();
 
   // synthetic getter for getIcon
-  Object /*String|Icon|GSymbol*/ get icon => _getIcon();
+  Object? /*String?|Icon?|GSymbol?*/ get icon => _getIcon();
   @JsName('getIcon')
-  Object /*String|Icon|GSymbol*/ _getIcon();
+  Object? /*String?|Icon?|GSymbol?*/ _getIcon();
 
   // synthetic getter for getLabel
-  MarkerLabel get label => _getLabel();
+  MarkerLabel? get label => _getLabel();
   @JsName('getLabel')
-  MarkerLabel _getLabel();
+  MarkerLabel? _getLabel();
 
   // synthetic getter for getMap
-  Object /*GMap|StreetViewPanorama*/ get map => _getMap();
+  Object? /*GMap?|StreetViewPanorama?*/ get map => _getMap();
   @JsName('getMap')
-  Object /*GMap|StreetViewPanorama*/ _getMap();
+  Object? /*GMap?|StreetViewPanorama?*/ _getMap();
 
   // synthetic getter for getOpacity
-  num get opacity => _getOpacity();
+  num? get opacity => _getOpacity();
   @JsName('getOpacity')
-  num _getOpacity();
+  num? _getOpacity();
 
   // synthetic getter for getPosition
-  LatLng get position => _getPosition();
+  LatLng? get position => _getPosition();
   @JsName('getPosition')
-  LatLng _getPosition();
+  LatLng? _getPosition();
 
   // synthetic getter for getShape
-  MarkerShape get shape => _getShape();
+  MarkerShape? get shape => _getShape();
   @JsName('getShape')
-  MarkerShape _getShape();
+  MarkerShape? _getShape();
 
   // synthetic getter for getTitle
-  String get title => _getTitle();
+  String? get title => _getTitle();
   @JsName('getTitle')
-  String _getTitle();
+  String? _getTitle();
 
   // synthetic getter for getVisible
-  bool get visible => _getVisible();
+  bool? get visible => _getVisible();
   @JsName('getVisible')
-  bool _getVisible();
+  bool? _getVisible();
 
   // synthetic getter for getZIndex
-  num get zIndex => _getZIndex();
+  num? get zIndex => _getZIndex();
   @JsName('getZIndex')
-  num _getZIndex();
+  num? _getZIndex();
 
   // synthetic setter for setAnimation
-  set animation(Animation animation) => _setAnimation(animation);
+  set animation(Animation? animation) => _setAnimation(animation);
   @JsName('setAnimation')
-  void _setAnimation(Animation animation);
+  void _setAnimation(Animation? animation);
 
   // synthetic setter for setClickable
-  set clickable(bool clickable) => _setClickable(clickable);
+  set clickable(bool? clickable) => _setClickable(clickable);
   @JsName('setClickable')
-  void _setClickable(bool flag);
+  void _setClickable(bool? flag);
 
   // synthetic setter for setCursor
-  set cursor(String cursor) => _setCursor(cursor);
+  set cursor(String? cursor) => _setCursor(cursor);
   @JsName('setCursor')
-  void _setCursor(String cursor);
+  void _setCursor(String? cursor);
 
   // synthetic setter for setDraggable
-  set draggable(bool draggable) => _setDraggable(draggable);
+  set draggable(bool? draggable) => _setDraggable(draggable);
   @JsName('setDraggable')
-  void _setDraggable(bool flag);
+  void _setDraggable(bool? flag);
 
   // synthetic setter for setIcon
-  set icon(Object /*String|Icon|GSymbol*/ icon) => _setIcon(icon);
+  set icon(Object? /*String?|Icon?|GSymbol?*/ icon) => _setIcon(icon);
   @JsName('setIcon')
-  void _setIcon(Object /*String|Icon|GSymbol*/ icon);
+  void _setIcon(Object? /*String?|Icon?|GSymbol?*/ icon);
 
   // synthetic setter for setLabel
-  set label(Object /*String|MarkerLabel*/ label) => _setLabel(label);
+  set label(Object? /*String?|MarkerLabel?*/ label) => _setLabel(label);
   @JsName('setLabel')
-  void _setLabel(Object /*String|MarkerLabel*/ label);
+  void _setLabel(Object? /*String?|MarkerLabel?*/ label);
 
   // synthetic setter for setMap
-  set map(Object /*GMap|StreetViewPanorama*/ map) => _setMap(map);
+  set map(Object? /*GMap?|StreetViewPanorama?*/ map) => _setMap(map);
   @JsName('setMap')
-  void _setMap(Object /*GMap|StreetViewPanorama*/ map);
+  void _setMap(Object? /*GMap?|StreetViewPanorama?*/ map);
 
   // synthetic setter for setOpacity
-  set opacity(num opacity) => _setOpacity(opacity);
+  set opacity(num? opacity) => _setOpacity(opacity);
   @JsName('setOpacity')
-  void _setOpacity(num opacity);
+  void _setOpacity(num? opacity);
 
   // synthetic setter for setOptions
-  set options(MarkerOptions options) => _setOptions(options);
+  set options(MarkerOptions? options) => _setOptions(options);
   @JsName('setOptions')
-  void _setOptions(MarkerOptions options);
+  void _setOptions(MarkerOptions? options);
 
   // synthetic setter for setPosition
-  set position(LatLng position) => _setPosition(position);
+  set position(LatLng? position) => _setPosition(position);
   @JsName('setPosition')
-  void _setPosition(LatLng latlng);
+  void _setPosition(LatLng? latlng);
 
   // synthetic setter for setShape
-  set shape(MarkerShape shape) => _setShape(shape);
+  set shape(MarkerShape? shape) => _setShape(shape);
   @JsName('setShape')
-  void _setShape(MarkerShape shape);
+  void _setShape(MarkerShape? shape);
 
   // synthetic setter for setTitle
-  set title(String title) => _setTitle(title);
+  set title(String? title) => _setTitle(title);
   @JsName('setTitle')
-  void _setTitle(String title);
+  void _setTitle(String? title);
 
   // synthetic setter for setVisible
-  set visible(bool visible) => _setVisible(visible);
+  set visible(bool? visible) => _setVisible(visible);
   @JsName('setVisible')
-  void _setVisible(bool visible);
+  void _setVisible(bool? visible);
 
   // synthetic setter for setZIndex
-  set zIndex(num zIndex) => _setZIndex(zIndex);
+  set zIndex(num? zIndex) => _setZIndex(zIndex);
   @JsName('setZIndex')
-  void _setZIndex(num zIndex);
+  void _setZIndex(num? zIndex);
 
   Stream<void> get onAnimationChanged {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'animation_changed',
@@ -175,8 +175,8 @@ abstract class Marker extends MVCObject {
   }
 
   Stream<MapMouseEvent> get onClick {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'click',
@@ -193,8 +193,8 @@ abstract class Marker extends MVCObject {
   }
 
   Stream<void> get onClickableChanged {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'clickable_changed',
@@ -211,8 +211,8 @@ abstract class Marker extends MVCObject {
   }
 
   Stream<MapMouseEvent> get onContextmenu {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'contextmenu',
@@ -229,8 +229,8 @@ abstract class Marker extends MVCObject {
   }
 
   Stream<void> get onCursorChanged {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'cursor_changed',
@@ -247,8 +247,8 @@ abstract class Marker extends MVCObject {
   }
 
   Stream<MapMouseEvent> get onDblclick {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'dblclick',
@@ -265,8 +265,8 @@ abstract class Marker extends MVCObject {
   }
 
   Stream<MapMouseEvent> get onDrag {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'drag',
@@ -283,8 +283,8 @@ abstract class Marker extends MVCObject {
   }
 
   Stream<MapMouseEvent> get onDragend {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'dragend',
@@ -301,8 +301,8 @@ abstract class Marker extends MVCObject {
   }
 
   Stream<void> get onDraggableChanged {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'draggable_changed',
@@ -319,8 +319,8 @@ abstract class Marker extends MVCObject {
   }
 
   Stream<MapMouseEvent> get onDragstart {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'dragstart',
@@ -337,8 +337,8 @@ abstract class Marker extends MVCObject {
   }
 
   Stream<void> get onFlatChanged {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'flat_changed',
@@ -355,8 +355,8 @@ abstract class Marker extends MVCObject {
   }
 
   Stream<void> get onIconChanged {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'icon_changed',
@@ -373,8 +373,8 @@ abstract class Marker extends MVCObject {
   }
 
   Stream<MapMouseEvent> get onMousedown {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mousedown',
@@ -391,8 +391,8 @@ abstract class Marker extends MVCObject {
   }
 
   Stream<MapMouseEvent> get onMouseout {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseout',
@@ -409,8 +409,8 @@ abstract class Marker extends MVCObject {
   }
 
   Stream<MapMouseEvent> get onMouseover {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseover',
@@ -427,8 +427,8 @@ abstract class Marker extends MVCObject {
   }
 
   Stream<MapMouseEvent> get onMouseup {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseup',
@@ -445,8 +445,8 @@ abstract class Marker extends MVCObject {
   }
 
   Stream<void> get onPositionChanged {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'position_changed',
@@ -463,8 +463,8 @@ abstract class Marker extends MVCObject {
   }
 
   Stream<MapMouseEvent> get onRightclick {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'rightclick',
@@ -481,8 +481,8 @@ abstract class Marker extends MVCObject {
   }
 
   Stream<void> get onShapeChanged {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'shape_changed',
@@ -499,8 +499,8 @@ abstract class Marker extends MVCObject {
   }
 
   Stream<void> get onTitleChanged {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'title_changed',
@@ -517,8 +517,8 @@ abstract class Marker extends MVCObject {
   }
 
   Stream<void> get onVisibleChanged {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'visible_changed',
@@ -535,8 +535,8 @@ abstract class Marker extends MVCObject {
   }
 
   Stream<void> get onZindexChanged {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'zindex_changed',

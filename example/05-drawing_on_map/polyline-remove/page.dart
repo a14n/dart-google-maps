@@ -1,8 +1,8 @@
 import 'dart:html';
 import 'package:google_maps/google_maps.dart';
 
-Polyline flightPath;
-GMap map;
+late Polyline flightPath;
+late GMap map;
 
 void main() {
   final mapOptions = MapOptions()
@@ -23,8 +23,8 @@ void main() {
     ..strokeOpacity = 1.0
     ..strokeWeight = 2);
 
-  document.getElementById('addLine').onClick.listen((_) => addLine());
-  document.getElementById('removeLine').onClick.listen((_) => removeLine());
+  document.getElementById('addLine')!.onClick.listen((_) => addLine());
+  document.getElementById('removeLine')!.onClick.listen((_) => removeLine());
 
   addLine();
 }

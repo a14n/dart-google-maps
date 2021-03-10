@@ -17,18 +17,18 @@ part of '../google_maps_core.dart';
 @JsName()
 @anonymous
 abstract class DirectionsRequest {
-  factory DirectionsRequest() => $js;
-  Object /*String|LatLng|Place*/ destination;
-  Object /*String|LatLng|Place*/ origin;
-  TravelMode travelMode;
-  bool avoidFerries;
-  bool avoidHighways;
-  bool avoidTolls;
-  DrivingOptions drivingOptions;
-  bool optimizeWaypoints;
-  bool provideRouteAlternatives;
-  String region;
-  TransitOptions transitOptions;
-  UnitSystem unitSystem;
-  List<DirectionsWaypoint> waypoints;
+  factory DirectionsRequest() => $js();
+  Object? /*String?|LatLng?|Place?*/ destination;
+  Object? /*String?|LatLng?|Place?*/ origin;
+  TravelMode? travelMode;
+  bool? avoidFerries;
+  bool? avoidHighways;
+  bool? avoidTolls;
+  DrivingOptions? drivingOptions;
+  bool? optimizeWaypoints;
+  bool? provideRouteAlternatives;
+  String? region;
+  TransitOptions? transitOptions;
+  UnitSystem? unitSystem;
+  List<DirectionsWaypoint?>? waypoints;
 }

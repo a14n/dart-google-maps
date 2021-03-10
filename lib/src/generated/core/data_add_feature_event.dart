@@ -17,6 +17,6 @@ part of '../google_maps_core.dart';
 @JsName()
 @anonymous
 abstract class DataAddFeatureEvent {
-  factory DataAddFeatureEvent() => $js;
-  DataFeature feature;
+  factory DataAddFeatureEvent() => $js();
+  DataFeature? feature;
 }

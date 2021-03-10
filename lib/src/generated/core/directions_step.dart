@@ -17,20 +17,20 @@ part of '../google_maps_core.dart';
 @JsName()
 @anonymous
 abstract class DirectionsStep {
-  factory DirectionsStep() => $js;
-  Distance distance;
-  GDuration duration;
+  factory DirectionsStep() => $js();
   // custom name for end_location
   @JsName('end_location')
-  LatLng endLocation;
-  String instructions;
-  List<LatLng> path;
+  LatLng? endLocation;
+  String? instructions;
+  List<LatLng?>? path;
   // custom name for start_location
   @JsName('start_location')
-  LatLng startLocation;
-  List<DirectionsStep> steps;
-  TransitDetails transit;
+  LatLng? startLocation;
   // custom name for travel_mode
   @JsName('travel_mode')
-  TravelMode travelMode;
+  TravelMode? travelMode;
+  Distance? distance;
+  GDuration? duration;
+  List<DirectionsStep?>? steps;
+  TransitDetails? transit;
 }

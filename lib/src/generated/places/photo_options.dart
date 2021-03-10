@@ -17,7 +17,7 @@ part of '../google_maps_places.dart';
 @JsName()
 @anonymous
 abstract class PhotoOptions {
-  factory PhotoOptions() => $js;
-  num maxHeight;
-  num maxWidth;
+  factory PhotoOptions() => $js();
+  num? maxHeight;
+  num? maxWidth;
 }

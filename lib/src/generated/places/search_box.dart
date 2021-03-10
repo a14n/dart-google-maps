@@ -17,29 +17,29 @@ part of '../google_maps_places.dart';
 @JsName('google.maps.places.SearchBox')
 abstract class SearchBox extends MVCObject {
   factory SearchBox(
-    InputElement inputField, [
-    SearchBoxOptions opts, // ignore: unused_element
+    InputElement? inputField, [
+    SearchBoxOptions? opts, // ignore: unused_element
   ]) =>
-      $js;
+      $js();
 
   // synthetic getter for getBounds
-  LatLngBounds get bounds => _getBounds();
+  LatLngBounds? get bounds => _getBounds();
   @JsName('getBounds')
-  LatLngBounds _getBounds();
+  LatLngBounds? _getBounds();
 
   // synthetic getter for getPlaces
-  List<PlaceResult> get places => _getPlaces();
+  List<PlaceResult?>? get places => _getPlaces();
   @JsName('getPlaces')
-  List<PlaceResult> _getPlaces();
+  List<PlaceResult?>? _getPlaces();
 
   // synthetic setter for setBounds
-  set bounds(LatLngBounds bounds) => _setBounds(bounds);
+  set bounds(LatLngBounds? bounds) => _setBounds(bounds);
   @JsName('setBounds')
-  void _setBounds(LatLngBounds bounds);
+  void _setBounds(LatLngBounds? bounds);
 
   Stream<void> get onPlacesChanged {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'places_changed',

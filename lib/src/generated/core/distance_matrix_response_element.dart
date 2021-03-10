@@ -17,12 +17,12 @@ part of '../google_maps_core.dart';
 @JsName()
 @anonymous
 abstract class DistanceMatrixResponseElement {
-  factory DistanceMatrixResponseElement() => $js;
-  Distance distance;
-  GDuration duration;
+  factory DistanceMatrixResponseElement() => $js();
+  Distance? distance;
+  GDuration? duration;
   // custom name for duration_in_traffic
   @JsName('duration_in_traffic')
-  GDuration durationInTraffic;
-  TransitFare fare;
-  DistanceMatrixElementStatus status;
+  GDuration? durationInTraffic;
+  TransitFare? fare;
+  DistanceMatrixElementStatus? status;
 }

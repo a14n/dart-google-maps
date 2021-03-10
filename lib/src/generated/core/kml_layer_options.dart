@@ -17,12 +17,12 @@ part of '../google_maps_core.dart';
 @JsName()
 @anonymous
 abstract class KmlLayerOptions {
-  factory KmlLayerOptions() => $js;
-  bool clickable;
-  GMap map;
-  bool preserveViewport;
-  bool screenOverlays;
-  bool suppressInfoWindows;
-  String url;
-  num zIndex;
+  factory KmlLayerOptions() => $js();
+  bool? clickable;
+  GMap? map;
+  bool? preserveViewport;
+  bool? screenOverlays;
+  bool? suppressInfoWindows;
+  String? url;
+  num? zIndex;
 }

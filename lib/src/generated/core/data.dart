@@ -17,88 +17,88 @@ part of '../google_maps_core.dart';
 @JsName('google.maps.Data')
 abstract class Data extends MVCObject {
   factory Data([
-    DataDataOptions options, // ignore: unused_element
+    DataDataOptions? options, // ignore: unused_element
   ]) =>
-      $js;
-  DataFeature add([
-    Object /*DataFeature|DataFeatureOptions*/ feature,
+      $js();
+  DataFeature? add([
+    Object? /*DataFeature?|DataFeatureOptions?*/ feature,
   ]);
-  List<DataFeature> addGeoJson(
-    Object geoJson, [
-    DataGeoJsonOptions options,
+  List<DataFeature?>? addGeoJson(
+    Object? geoJson, [
+    DataGeoJsonOptions? options,
   ]);
-  bool contains(DataFeature feature);
-  void forEach(void Function(DataFeature p1) callback);
+  bool? contains(DataFeature? feature);
+  void forEach(void Function(DataFeature? p1)? callback);
 
   // synthetic getter for getControlPosition
-  ControlPosition get controlPosition => _getControlPosition();
+  ControlPosition? get controlPosition => _getControlPosition();
   @JsName('getControlPosition')
-  ControlPosition _getControlPosition();
+  ControlPosition? _getControlPosition();
 
   // synthetic getter for getControls
-  List<String> get controls => _getControls();
+  List<String?>? get controls => _getControls();
   @JsName('getControls')
-  List<String> _getControls();
+  List<String?>? _getControls();
 
   // synthetic getter for getDrawingMode
-  String get drawingMode => _getDrawingMode();
+  String? get drawingMode => _getDrawingMode();
   @JsName('getDrawingMode')
-  String _getDrawingMode();
+  String? _getDrawingMode();
 
-  DataFeature getFeatureById(Object /*num|String*/ id);
+  DataFeature? getFeatureById(Object? /*num?|String?*/ id);
 
   // synthetic getter for getMap
-  GMap get map => _getMap();
+  GMap? get map => _getMap();
   @JsName('getMap')
-  GMap _getMap();
+  GMap? _getMap();
 
   // synthetic getter for getStyle
-  Object /*DataStylingFunction|DataStyleOptions*/ get style => _getStyle();
+  Object? /*DataStylingFunction?|DataStyleOptions?*/ get style => _getStyle();
   @JsName('getStyle')
-  Object /*DataStylingFunction|DataStyleOptions*/ _getStyle();
+  Object? /*DataStylingFunction?|DataStyleOptions?*/ _getStyle();
 
   void loadGeoJson(
-    String url, [
-    DataGeoJsonOptions options,
-    void Function(List<DataFeature> p1) callback,
+    String? url, [
+    DataGeoJsonOptions? options,
+    void Function(List<DataFeature?>? p1)? callback,
   ]);
-  void overrideStyle(DataFeature feature, DataStyleOptions style);
-  void remove(DataFeature feature);
+  void overrideStyle(DataFeature? feature, DataStyleOptions? style);
+  void remove(DataFeature? feature);
   void revertStyle([
-    DataFeature feature,
+    DataFeature? feature,
   ]);
 
   // synthetic setter for setControlPosition
-  set controlPosition(ControlPosition controlPosition) =>
+  set controlPosition(ControlPosition? controlPosition) =>
       _setControlPosition(controlPosition);
   @JsName('setControlPosition')
-  void _setControlPosition(ControlPosition controlPosition);
+  void _setControlPosition(ControlPosition? controlPosition);
 
   // synthetic setter for setControls
-  set controls(List<String> controls) => _setControls(controls);
+  set controls(List<String?>? controls) => _setControls(controls);
   @JsName('setControls')
-  void _setControls(List<String> controls);
+  void _setControls(List<String?>? controls);
 
   // synthetic setter for setDrawingMode
-  set drawingMode(String drawingMode) => _setDrawingMode(drawingMode);
+  set drawingMode(String? drawingMode) => _setDrawingMode(drawingMode);
   @JsName('setDrawingMode')
-  void _setDrawingMode(String drawingMode);
+  void _setDrawingMode(String? drawingMode);
 
   // synthetic setter for setMap
-  set map(GMap map) => _setMap(map);
+  set map(GMap? map) => _setMap(map);
   @JsName('setMap')
-  void _setMap(GMap map);
+  void _setMap(GMap? map);
 
   // synthetic setter for setStyle
-  set style(Object /*DataStylingFunction|DataStyleOptions*/ style) =>
+  set style(Object? /*DataStylingFunction?|DataStyleOptions?*/ style) =>
       _setStyle(style);
   @JsName('setStyle')
-  void _setStyle(Object /*DataStylingFunction|DataStyleOptions*/ style);
+  void _setStyle(Object? /*DataStylingFunction?|DataStyleOptions?*/ style);
 
-  void toGeoJson(void Function(Object p1) callback);
+  void toGeoJson(void Function(Object? p1)? callback);
   Stream<DataAddFeatureEvent> get onAddfeature {
-    StreamController<DataAddFeatureEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<DataAddFeatureEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'addfeature',
@@ -115,8 +115,8 @@ abstract class Data extends MVCObject {
   }
 
   Stream<DataMouseEvent> get onClick {
-    StreamController<DataMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<DataMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'click',
@@ -133,8 +133,8 @@ abstract class Data extends MVCObject {
   }
 
   Stream<DataMouseEvent> get onContextmenu {
-    StreamController<DataMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<DataMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'contextmenu',
@@ -151,8 +151,8 @@ abstract class Data extends MVCObject {
   }
 
   Stream<DataMouseEvent> get onDblclick {
-    StreamController<DataMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<DataMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'dblclick',
@@ -169,8 +169,8 @@ abstract class Data extends MVCObject {
   }
 
   Stream<DataMouseEvent> get onMousedown {
-    StreamController<DataMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<DataMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mousedown',
@@ -187,8 +187,8 @@ abstract class Data extends MVCObject {
   }
 
   Stream<DataMouseEvent> get onMouseout {
-    StreamController<DataMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<DataMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseout',
@@ -205,8 +205,8 @@ abstract class Data extends MVCObject {
   }
 
   Stream<DataMouseEvent> get onMouseover {
-    StreamController<DataMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<DataMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseover',
@@ -223,8 +223,8 @@ abstract class Data extends MVCObject {
   }
 
   Stream<DataMouseEvent> get onMouseup {
-    StreamController<DataMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<DataMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseup',
@@ -241,8 +241,8 @@ abstract class Data extends MVCObject {
   }
 
   Stream<DataRemoveFeatureEvent> get onRemovefeature {
-    StreamController<DataRemoveFeatureEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<DataRemoveFeatureEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'removefeature',
@@ -259,8 +259,8 @@ abstract class Data extends MVCObject {
   }
 
   Stream<DataRemovePropertyEvent> get onRemoveproperty {
-    StreamController<DataRemovePropertyEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<DataRemovePropertyEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'removeproperty',
@@ -277,8 +277,8 @@ abstract class Data extends MVCObject {
   }
 
   Stream<DataMouseEvent> get onRightclick {
-    StreamController<DataMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<DataMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'rightclick',
@@ -295,8 +295,8 @@ abstract class Data extends MVCObject {
   }
 
   Stream<DataSetGeometryEvent> get onSetgeometry {
-    StreamController<DataSetGeometryEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<DataSetGeometryEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'setgeometry',
@@ -313,8 +313,8 @@ abstract class Data extends MVCObject {
   }
 
   Stream<DataSetPropertyEvent> get onSetproperty {
-    StreamController<DataSetPropertyEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<DataSetPropertyEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'setproperty',

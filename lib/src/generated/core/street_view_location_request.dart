@@ -17,9 +17,9 @@ part of '../google_maps_core.dart';
 @JsName()
 @anonymous
 abstract class StreetViewLocationRequest {
-  factory StreetViewLocationRequest() => $js;
-  LatLng location;
-  StreetViewPreference preference;
-  num radius;
-  StreetViewSource source;
+  factory StreetViewLocationRequest() => $js();
+  LatLng? location;
+  StreetViewPreference? preference;
+  num? radius;
+  StreetViewSource? source;
 }

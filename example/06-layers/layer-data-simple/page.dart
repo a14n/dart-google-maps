@@ -8,6 +8,6 @@ void main() {
         ..zoom = 4
         ..center = LatLng(-28, 137.883));
 
-  map.data
+  map.data!
       .loadGeoJson('https://storage.googleapis.com/maps-devrel/google.json');
 }

@@ -17,21 +17,21 @@ part of '../google_maps_places.dart';
 @JsName()
 @anonymous
 abstract class PlaceReview {
-  factory PlaceReview() => $js;
-  List<PlaceAspectRating> aspects;
+  factory PlaceReview() => $js();
   // custom name for author_name
   @JsName('author_name')
-  String authorName;
-  String language;
+  String? authorName;
+  String? language;
   // custom name for profile_photo_url
   @JsName('profile_photo_url')
-  String profilePhotoUrl;
+  String? profilePhotoUrl;
   // custom name for relative_time_description
   @JsName('relative_time_description')
-  String relativeTimeDescription;
-  String text;
-  num time;
+  String? relativeTimeDescription;
+  String? text;
+  num? time;
+  List<PlaceAspectRating?>? aspects;
   // custom name for author_url
   @JsName('author_url')
-  String authorUrl;
+  String? authorUrl;
 }

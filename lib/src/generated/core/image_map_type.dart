@@ -16,31 +16,31 @@ part of '../google_maps_core.dart';
 
 @JsName('google.maps.ImageMapType')
 abstract class ImageMapType extends MVCObject implements MapType {
-  factory ImageMapType(ImageMapTypeOptions opts) => $js;
-  String alt;
-  num maxZoom;
-  num minZoom;
-  String name;
-  Projection projection;
-  num radius;
-  Size tileSize;
+  factory ImageMapType(ImageMapTypeOptions? opts) => $js();
+  String? alt;
+  num? maxZoom;
+  num? minZoom;
+  String? name;
+  Projection? projection;
+  num? radius;
+  Size? tileSize;
 
   // synthetic getter for getOpacity
-  num get opacity => _getOpacity();
+  num? get opacity => _getOpacity();
   @JsName('getOpacity')
-  num _getOpacity();
+  num? _getOpacity();
 
-  Node Function(Point tileCoord, num zoom, Document ownerDocument) getTile;
-  void Function(Node tileDiv) releaseTile;
+  Node? Function(Point? tileCoord, num? zoom, Document? ownerDocument)? getTile;
+  void Function(Node? tileDiv)? releaseTile;
 
   // synthetic setter for setOpacity
-  set opacity(num opacity) => _setOpacity(opacity);
+  set opacity(num? opacity) => _setOpacity(opacity);
   @JsName('setOpacity')
-  void _setOpacity(num opacity);
+  void _setOpacity(num? opacity);
 
   Stream<void> get onTilesloaded {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'tilesloaded',

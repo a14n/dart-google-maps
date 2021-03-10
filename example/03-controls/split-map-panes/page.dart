@@ -47,8 +47,8 @@ void main() {
 
   // helper function to keep maps in sync
   void syncMaps(List<GMap> maps) {
-    LatLng center;
-    int zoom;
+    LatLng? center;
+    num? zoom;
 
     void update(GMap changedMap) {
       for (var map in maps) {
@@ -78,9 +78,9 @@ void main() {
   syncMaps([mapLeft, mapRight]);
 
   void handleContainerResize([_]) {
-    final width = document.getElementById('container').offsetWidth;
-    document.getElementById('map-left').style.width = '${width}px';
-    document.getElementById('map-right').style.width = '${width}px';
+    final width = document.getElementById('container')!.offsetWidth;
+    document.getElementById('map-left')!.style.width = '${width}px';
+    document.getElementById('map-right')!.style.width = '${width}px';
   }
 
   // trigger to set map container size since using absolute

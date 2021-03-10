@@ -1,3 +1,7 @@
+# v5.0.0 (2021-03-10)
+
+- Migrate to null-safety. As the google maps documentation does not provide information about nullability everything has been migrated as nullable.
+
 # v4.0.0 (2021-01-17)
 
 - Migrate from `dart:js` to `package:js`.

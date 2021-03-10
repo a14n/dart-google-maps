@@ -17,14 +17,14 @@ part of '../google_maps_core.dart';
 @JsName('google.maps.Size')
 abstract class Size {
   factory Size(
-    num width,
-    num height, [
-    String widthUnit, // ignore: unused_element
-    String heightUnit, // ignore: unused_element
+    num? width,
+    num? height, [
+    String? widthUnit, // ignore: unused_element
+    String? heightUnit, // ignore: unused_element
   ]) =>
-      $js;
-  num height;
-  num width;
-  bool equals(Size other);
+      $js();
+  num? height;
+  num? width;
+  bool? equals(Size? other);
   String toString();
 }

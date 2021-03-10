@@ -17,10 +17,10 @@ part of '../google_maps_core.dart';
 @JsName()
 @anonymous
 abstract class StreetViewPanoramaData {
-  factory StreetViewPanoramaData() => $js;
-  String copyright;
-  String imageDate;
-  List<StreetViewLink> links;
-  StreetViewLocation location;
-  StreetViewTileData tiles;
+  factory StreetViewPanoramaData() => $js();
+  StreetViewTileData? tiles;
+  String? copyright;
+  String? imageDate;
+  List<StreetViewLink?>? links;
+  StreetViewLocation? location;
 }

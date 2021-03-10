@@ -2,9 +2,9 @@ import 'dart:html';
 
 import 'package:google_maps/google_maps.dart';
 
-DirectionsRenderer directionsDisplay;
+late DirectionsRenderer directionsDisplay;
 final directionsService = DirectionsService();
-GMap map;
+late GMap map;
 final haight = LatLng(37.7699298, -122.4469157);
 final oceanBeach = LatLng(37.7683909618184, -122.51089453697205);
 
@@ -16,7 +16,7 @@ void main() {
   map = GMap(document.getElementById('map-canvas'), mapOptions);
   directionsDisplay.map = map;
 
-  document.getElementById('mode').onChange.listen((e) => calcRoute());
+  document.getElementById('mode')!.onChange.listen((e) => calcRoute());
 }
 
 void calcRoute() {

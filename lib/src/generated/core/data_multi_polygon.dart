@@ -17,25 +17,25 @@ part of '../google_maps_core.dart';
 @JsName('google.maps.Data.MultiPolygon')
 abstract class DataMultiPolygon implements DataGeometry {
   factory DataMultiPolygon(
-          List<Object /*DataPolygon|List<Object/*DataLinearRing|List<LatLng>*/>*/ >
+          List<Object? /*DataPolygon?|List<Object?/*DataLinearRing?|List<LatLng?>?*/>?*/ >?
               elements) =>
-      $js;
-  void forEachLatLng(void Function(LatLng p1) callback);
+      $js();
+  void forEachLatLng(void Function(LatLng? p1)? callback);
 
   // synthetic getter for getArray
-  List<DataPolygon> get array => _getArray();
+  List<DataPolygon?>? get array => _getArray();
   @JsName('getArray')
-  List<DataPolygon> _getArray();
+  List<DataPolygon?>? _getArray();
 
-  DataPolygon getAt(num n);
+  DataPolygon? getAt(num? n);
 
   // synthetic getter for getLength
-  num get length => _getLength();
+  num? get length => _getLength();
   @JsName('getLength')
-  num _getLength();
+  num? _getLength();
 
   // synthetic getter for getType
-  String get type => _getType();
+  String? get type => _getType();
   @JsName('getType')
-  String _getType();
+  String? _getType();
 }

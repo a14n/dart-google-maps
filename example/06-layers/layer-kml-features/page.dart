@@ -15,11 +15,11 @@ void main() {
     ..map = map);
 
   kmlLayer.onClick.listen((e) {
-    final text = e.featureData.description;
+    final text = e.featureData!.description!;
     showInContentWindow(text);
   });
 }
 
 void showInContentWindow(String text) {
-  document.getElementById('content-window').innerHtml = text;
+  document.getElementById('content-window')!.innerHtml = text;
 }

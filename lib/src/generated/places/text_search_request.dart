@@ -17,10 +17,10 @@ part of '../google_maps_places.dart';
 @JsName()
 @anonymous
 abstract class TextSearchRequest {
-  factory TextSearchRequest() => $js;
-  LatLngBounds bounds;
-  LatLng location;
-  String query;
-  num radius;
-  String type;
+  factory TextSearchRequest() => $js();
+  LatLngBounds? bounds;
+  LatLng? location;
+  String? query;
+  num? radius;
+  String? type;
 }

@@ -17,32 +17,32 @@ part of '../google_maps_core.dart';
 @JsName('google.maps.MVCArray')
 abstract class MVCArray<T> extends MVCObject {
   factory MVCArray([
-    List<T> array, // ignore: unused_element
+    List<T?>? array, // ignore: unused_element
   ]) =>
-      $js;
+      $js();
   void clear();
-  void forEach(void Function(T p1, num p2) callback);
+  void forEach(void Function(T? p1, num? p2)? callback);
 
   // synthetic getter for getArray
-  List<T> get array => _getArray();
+  List<T?>? get array => _getArray();
   @JsName('getArray')
-  List<T> _getArray();
+  List<T?>? _getArray();
 
-  T getAt(num i);
+  T? getAt(num? i);
 
   // synthetic getter for getLength
-  num get length => _getLength();
+  num? get length => _getLength();
   @JsName('getLength')
-  num _getLength();
+  num? _getLength();
 
-  void insertAt(num i, T elem);
-  T pop();
-  num push(T elem);
-  T removeAt(num i);
-  void setAt(num i, T elem);
+  void insertAt(num? i, T? elem);
+  T? pop();
+  num? push(T? elem);
+  T? removeAt(num? i);
+  void setAt(num? i, T? elem);
   Stream<num> get onInsertAt {
-    StreamController<num> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<num> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'insert_at',
@@ -59,8 +59,8 @@ abstract class MVCArray<T> extends MVCObject {
   }
 
   Stream<List> get onRemoveAt {
-    StreamController<List> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<List> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'remove_at',
@@ -77,8 +77,8 @@ abstract class MVCArray<T> extends MVCObject {
   }
 
   Stream<List> get onSetAt {
-    StreamController<List> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<List> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'set_at',

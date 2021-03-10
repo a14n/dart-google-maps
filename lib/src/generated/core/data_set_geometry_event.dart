@@ -17,8 +17,8 @@ part of '../google_maps_core.dart';
 @JsName()
 @anonymous
 abstract class DataSetGeometryEvent {
-  factory DataSetGeometryEvent() => $js;
-  DataFeature feature;
-  DataGeometry newGeometry;
-  DataGeometry oldGeometry;
+  factory DataSetGeometryEvent() => $js();
+  DataFeature? feature;
+  DataGeometry? newGeometry;
+  DataGeometry? oldGeometry;
 }

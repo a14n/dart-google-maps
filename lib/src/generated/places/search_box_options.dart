@@ -17,6 +17,6 @@ part of '../google_maps_places.dart';
 @JsName()
 @anonymous
 abstract class SearchBoxOptions {
-  factory SearchBoxOptions() => $js;
-  LatLngBounds bounds;
+  factory SearchBoxOptions() => $js();
+  LatLngBounds? bounds;
 }

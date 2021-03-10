@@ -17,7 +17,7 @@ part of '../google_maps_places.dart';
 @JsName()
 @anonymous
 abstract class PredictionSubstring {
-  factory PredictionSubstring() => $js;
-  num length;
-  num offset;
+  factory PredictionSubstring() => $js();
+  num? length;
+  num? offset;
 }

@@ -16,9 +16,9 @@ part of '../google_maps_core.dart';
 
 @JsName('google.maps.Point')
 abstract class Point {
-  factory Point(num x, num y) => $js;
-  num x;
-  num y;
-  bool equals(Point other);
+  factory Point(num? x, num? y) => $js();
+  num? x;
+  num? y;
+  bool? equals(Point? other);
   String toString();
 }

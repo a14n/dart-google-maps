@@ -17,63 +17,63 @@ part of '../google_maps_core.dart';
 @JsName('google.maps.KmlLayer')
 abstract class KmlLayer extends MVCObject {
   factory KmlLayer([
-    KmlLayerOptions opts, // ignore: unused_element
+    KmlLayerOptions? opts, // ignore: unused_element
   ]) =>
-      $js;
+      $js();
 
   // synthetic getter for getDefaultViewport
-  LatLngBounds get defaultViewport => _getDefaultViewport();
+  LatLngBounds? get defaultViewport => _getDefaultViewport();
   @JsName('getDefaultViewport')
-  LatLngBounds _getDefaultViewport();
+  LatLngBounds? _getDefaultViewport();
 
   // synthetic getter for getMap
-  GMap get map => _getMap();
+  GMap? get map => _getMap();
   @JsName('getMap')
-  GMap _getMap();
+  GMap? _getMap();
 
   // synthetic getter for getMetadata
-  KmlLayerMetadata get metadata => _getMetadata();
+  KmlLayerMetadata? get metadata => _getMetadata();
   @JsName('getMetadata')
-  KmlLayerMetadata _getMetadata();
+  KmlLayerMetadata? _getMetadata();
 
   // synthetic getter for getStatus
-  KmlLayerStatus get status => _getStatus();
+  KmlLayerStatus? get status => _getStatus();
   @JsName('getStatus')
-  KmlLayerStatus _getStatus();
+  KmlLayerStatus? _getStatus();
 
   // synthetic getter for getUrl
-  String get url => _getUrl();
+  String? get url => _getUrl();
   @JsName('getUrl')
-  String _getUrl();
+  String? _getUrl();
 
   // synthetic getter for getZIndex
-  num get zIndex => _getZIndex();
+  num? get zIndex => _getZIndex();
   @JsName('getZIndex')
-  num _getZIndex();
+  num? _getZIndex();
 
   // synthetic setter for setMap
-  set map(GMap map) => _setMap(map);
+  set map(GMap? map) => _setMap(map);
   @JsName('setMap')
-  void _setMap(GMap map);
+  void _setMap(GMap? map);
 
   // synthetic setter for setOptions
-  set options(KmlLayerOptions options) => _setOptions(options);
+  set options(KmlLayerOptions? options) => _setOptions(options);
   @JsName('setOptions')
-  void _setOptions(KmlLayerOptions options);
+  void _setOptions(KmlLayerOptions? options);
 
   // synthetic setter for setUrl
-  set url(String url) => _setUrl(url);
+  set url(String? url) => _setUrl(url);
   @JsName('setUrl')
-  void _setUrl(String url);
+  void _setUrl(String? url);
 
   // synthetic setter for setZIndex
-  set zIndex(num zIndex) => _setZIndex(zIndex);
+  set zIndex(num? zIndex) => _setZIndex(zIndex);
   @JsName('setZIndex')
-  void _setZIndex(num zIndex);
+  void _setZIndex(num? zIndex);
 
   Stream<KmlMouseEvent> get onClick {
-    StreamController<KmlMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<KmlMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'click',
@@ -90,8 +90,8 @@ abstract class KmlLayer extends MVCObject {
   }
 
   Stream<void> get onDefaultviewportChanged {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'defaultviewport_changed',
@@ -108,8 +108,8 @@ abstract class KmlLayer extends MVCObject {
   }
 
   Stream<void> get onStatusChanged {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'status_changed',

@@ -17,9 +17,9 @@ part of '../google_maps_core.dart';
 @JsName()
 @anonymous
 abstract class TransitOptions {
-  factory TransitOptions() => $js;
-  DateTime arrivalTime;
-  DateTime departureTime;
-  List<TransitMode> modes;
-  TransitRoutePreference routingPreference;
+  factory TransitOptions() => $js();
+  DateTime? arrivalTime;
+  DateTime? departureTime;
+  List<TransitMode?>? modes;
+  TransitRoutePreference? routingPreference;
 }

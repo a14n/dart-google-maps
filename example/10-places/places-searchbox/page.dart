@@ -14,14 +14,14 @@ void main() {
 
   // Create the search box and link it to the UI element.
   final input = document.getElementById('pac-input') as InputElement;
-  map.controls[ControlPosition.TOP_LEFT as int].push(input);
+  map.controls![ControlPosition.TOP_LEFT as int]!.push(input);
 
   final searchBox = SearchBox(input);
 
   // Listen for the event fired when the user selects an item from the
   // pick list. Retrieve the matching places for that item.
   searchBox.onPlacesChanged.listen((_) {
-    final places = searchBox.places;
+    final places = searchBox.places!;
 
     if (places.isEmpty) {
       return;
@@ -35,7 +35,7 @@ void main() {
     final bounds = LatLngBounds();
     for (final place in places) {
       final image = Icon()
-        ..url = place.icon
+        ..url = place!.icon
         ..size = Size(71, 71)
         ..origin = Point(0, 0)
         ..anchor = Point(17, 34)
@@ -46,11 +46,11 @@ void main() {
         ..map = map
         ..icon = image
         ..title = place.name
-        ..position = place.geometry.location);
+        ..position = place.geometry!.location);
 
       markers.add(marker);
 
-      bounds.extend(place.geometry.location);
+      bounds.extend(place.geometry!.location);
     }
 
     map.fitBounds(bounds);

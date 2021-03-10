@@ -2,9 +2,9 @@ import 'dart:html';
 
 import 'package:google_maps/google_maps.dart';
 
-DirectionsRenderer directionsDisplay;
+late DirectionsRenderer directionsDisplay;
 final directionsService = DirectionsService();
-GMap map;
+late GMap map;
 
 void main() {
   directionsDisplay = DirectionsRenderer();
@@ -15,7 +15,7 @@ void main() {
   map = GMap(document.getElementById('map-canvas'), mapOptions);
   directionsDisplay.map = map;
 
-  querySelector('#calcRoute').onClick.listen((e) => calcRoute());
+  querySelector('#calcRoute')!.onClick.listen((e) => calcRoute());
 }
 
 void calcRoute() {
@@ -40,20 +40,20 @@ void calcRoute() {
   directionsService.route(request, (response, status) {
     if (status == DirectionsStatus.OK) {
       directionsDisplay.directions = response;
-      final route = response.routes[0];
+      final route = response!.routes![0];
       final summaryPanel = document.getElementById('directions_panel');
       final html = StringBuffer();
       // For each route, display summary information.
-      for (var i = 0; i < route.legs.length; i++) {
-        final leg = route.legs[i];
+      for (var i = 0; i < route!.legs!.length; i++) {
+        final leg = route.legs![i];
         final routeSegment = i + 1;
         html
           ..write('<b>Route Segment: $routeSegment</b><br>')
-          ..write('${leg.startAddress} to ')
+          ..write('${leg!.startAddress} to ')
           ..write('${leg.endAddress}<br>')
-          ..write('${leg.distance.text}<br><br>');
+          ..write('${leg.distance!.text}<br><br>');
       }
-      summaryPanel.innerHtml = html.toString();
+      summaryPanel!.innerHtml = html.toString();
     }
   });
 }

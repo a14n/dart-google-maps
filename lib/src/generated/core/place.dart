@@ -17,8 +17,8 @@ part of '../google_maps_core.dart';
 @JsName()
 @anonymous
 abstract class Place {
-  factory Place() => $js;
-  LatLng location;
-  String placeId;
-  String query;
+  factory Place() => $js();
+  LatLng? location;
+  String? placeId;
+  String? query;
 }

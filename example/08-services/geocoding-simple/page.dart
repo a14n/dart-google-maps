@@ -3,7 +3,7 @@ import 'dart:html';
 import 'package:google_maps/google_maps.dart';
 
 final geocoder = Geocoder();
-GMap map;
+late GMap map;
 
 void main() {
   final latlng = LatLng(-34.397, 150.644);
@@ -12,7 +12,7 @@ void main() {
     ..center = latlng;
   map = GMap(document.getElementById('map-canvas'), mapOptions);
 
-  document.getElementById('codeAddress').onClick.listen(codeAddress);
+  document.getElementById('codeAddress')!.onClick.listen(codeAddress);
 }
 
 void codeAddress(_) {
@@ -20,10 +20,10 @@ void codeAddress(_) {
   final request = GeocoderRequest()..address = address;
   geocoder.geocode(request, (results, status) {
     if (status == GeocoderStatus.OK) {
-      map.center = results[0].geometry.location;
+      map.center = results![0]!.geometry!.location;
       Marker(MarkerOptions()
         ..map = map
-        ..position = results[0].geometry.location);
+        ..position = results[0]!.geometry!.location);
     } else {
       window.alert(
           'Geocode was not successful for the following reason: $status');

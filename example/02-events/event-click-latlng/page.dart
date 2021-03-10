@@ -25,8 +25,8 @@ void main() {
     infoWindow =
         InfoWindow(InfoWindowOptions()..position = mapsMouseEvent.latLng)
           ..content = (json.encode({
-            'lat': mapsMouseEvent.latLng.lat,
-            'lng': mapsMouseEvent.latLng.lng,
+            'lat': mapsMouseEvent.latLng!.lat,
+            'lng': mapsMouseEvent.latLng!.lng,
           }))
           ..open(map);
   });

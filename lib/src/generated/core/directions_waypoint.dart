@@ -17,7 +17,7 @@ part of '../google_maps_core.dart';
 @JsName()
 @anonymous
 abstract class DirectionsWaypoint {
-  factory DirectionsWaypoint() => $js;
-  Object /*String|LatLng|Place*/ location;
-  bool stopover;
+  factory DirectionsWaypoint() => $js();
+  Object? /*String?|LatLng?|Place?*/ location;
+  bool? stopover;
 }

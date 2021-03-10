@@ -2,8 +2,8 @@ import 'dart:html';
 
 import 'package:google_maps/google_maps.dart';
 
-GMap map;
-StreetViewPanorama panorama;
+late GMap map;
+late StreetViewPanorama panorama;
 
 void main() {
   final berkeley = LatLng(37.869085, -122.254775);
@@ -37,21 +37,21 @@ void main() {
   });
 }
 
-void processSVData(StreetViewPanoramaData data, StreetViewStatus status) {
+void processSVData(StreetViewPanoramaData? data, StreetViewStatus? status) {
   if (status == StreetViewStatus.OK) {
     final marker = Marker(MarkerOptions()
-      ..position = data.location.latLng
+      ..position = data!.location!.latLng
       ..map = map
-      ..title = data.location.description);
+      ..title = data.location!.description);
 
-    panorama.pano = data.location.pano;
+    panorama.pano = data.location!.pano;
     panorama.pov = StreetViewPov()
       ..heading = 270
       ..pitch = 0;
     panorama.visible = true;
 
     marker.onClick.listen((e) {
-      final markerPanoID = data.location.pano;
+      final markerPanoID = data.location!.pano;
       // Set the Pano to use the passed panoID
       panorama.pano = markerPanoID;
       panorama.pov = StreetViewPov()

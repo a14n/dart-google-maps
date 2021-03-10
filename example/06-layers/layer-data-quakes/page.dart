@@ -7,7 +7,7 @@ import 'dart:math';
 import 'package:google_maps/google_maps.dart';
 import 'package:js_wrapping/js_wrapping.dart';
 
-GMap map;
+late GMap map;
 final mapStyle = <MapTypeStyle>[
   MapTypeStyle()
     ..featureType = 'all'
@@ -49,7 +49,7 @@ void main() {
         ..zoom = 3
         ..styles = mapStyle);
 
-  map.data.style = styleFeature;
+  map.data!.style = styleFeature;
 
   setProperty(window, 'eqfeed_callback', allowInterop(eqfeed_callback));
 
@@ -64,7 +64,7 @@ void main() {
 
 // Defines the callback function referenced in the jsonp file.
 void eqfeed_callback(Object data) {
-  map.data.addGeoJson(data);
+  map.data!.addGeoJson(data);
 }
 
 DataStyleOptions styleFeature(DataFeature feature) {
@@ -92,11 +92,10 @@ DataStyleOptions styleFeature(DataFeature feature) {
 }
 
 String interpolateHsl(List<num> lowHsl, List<num> highHsl, num fraction) {
-  final color = List<num>(3);
-  for (var i = 0; i < 3; i++) {
+  final color = <num>[
     // Calculate color based on the fraction.
-    color[i] = (highHsl[i] - lowHsl[i]) * fraction + lowHsl[i];
-  }
+    for (var i = 0; i < 3; i++) (highHsl[i] - lowHsl[i]) * fraction + lowHsl[i],
+  ];
 
   return 'hsl(${color[0]},${color[1]}%,${color[2]}%)';
 }

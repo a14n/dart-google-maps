@@ -17,6 +17,6 @@ part of '../google_maps_core.dart';
 @JsName()
 @anonymous
 abstract class PathElevationResponse {
-  factory PathElevationResponse() => $js;
-  List<ElevationResult> results;
+  factory PathElevationResponse() => $js();
+  List<ElevationResult?>? results;
 }

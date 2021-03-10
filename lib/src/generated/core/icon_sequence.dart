@@ -17,9 +17,9 @@ part of '../google_maps_core.dart';
 @JsName()
 @anonymous
 abstract class IconSequence {
-  factory IconSequence() => $js;
-  bool fixedRotation;
-  GSymbol icon;
-  String offset;
-  String repeat;
+  factory IconSequence() => $js();
+  bool? fixedRotation;
+  GSymbol? icon;
+  String? offset;
+  String? repeat;
 }

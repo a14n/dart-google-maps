@@ -3,7 +3,7 @@ import 'dart:html';
 import 'package:google_maps/google_maps.dart';
 import 'package:js/js_util.dart';
 
-GMap map;
+late GMap map;
 final chicago = LatLng(41.850033, -87.650052);
 
 void main() {
@@ -79,6 +79,6 @@ void main() {
 
   final usRoadMapType = StyledMapType(roadAtlasStyles, styledMapTypeOptions);
 
-  map.mapTypes.set('usroadatlas', usRoadMapType);
+  map.mapTypes!.set('usroadatlas', usRoadMapType);
   map.mapTypeId = 'usroadatlas';
 }

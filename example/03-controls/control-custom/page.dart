@@ -1,7 +1,7 @@
 import 'dart:html' hide Events;
 import 'package:google_maps/google_maps.dart';
 
-GMap map;
+late GMap map;
 final LatLng chicago = LatLng(41.85, -87.65);
 
 /// The CenterControl adds a control to the map that recenters the map on
@@ -55,5 +55,5 @@ void main() {
   // in this DIV.
   final centerControlDiv = DivElement();
   CenterControl(centerControlDiv, map);
-  map.controls[ControlPosition.TOP_CENTER as int].push(centerControlDiv);
+  map.controls![ControlPosition.TOP_CENTER as int]!.push(centerControlDiv);
 }

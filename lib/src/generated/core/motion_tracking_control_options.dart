@@ -17,6 +17,6 @@ part of '../google_maps_core.dart';
 @JsName()
 @anonymous
 abstract class MotionTrackingControlOptions {
-  factory MotionTrackingControlOptions() => $js;
-  ControlPosition position;
+  factory MotionTrackingControlOptions() => $js();
+  ControlPosition? position;
 }

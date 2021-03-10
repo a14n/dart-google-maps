@@ -17,24 +17,24 @@ part of '../google_maps_core.dart';
 @JsName()
 @anonymous
 abstract class MapCanvasProjection {
-  factory MapCanvasProjection() => $js;
-  LatLng fromContainerPixelToLatLng([
-    Point pixel,
-    bool nowrap,
+  factory MapCanvasProjection() => $js();
+  LatLng? fromContainerPixelToLatLng([
+    Point? pixel,
+    bool? nowrap,
   ]);
-  LatLng fromDivPixelToLatLng([
-    Point pixel,
-    bool nowrap,
+  LatLng? fromDivPixelToLatLng([
+    Point? pixel,
+    bool? nowrap,
   ]);
-  Point fromLatLngToContainerPixel([
-    LatLng latLng,
+  Point? fromLatLngToContainerPixel([
+    LatLng? latLng,
   ]);
-  Point fromLatLngToDivPixel([
-    LatLng latLng,
+  Point? fromLatLngToDivPixel([
+    LatLng? latLng,
   ]);
 
   // synthetic getter for getWorldWidth
-  num get worldWidth => _getWorldWidth();
+  num? get worldWidth => _getWorldWidth();
   @JsName('getWorldWidth')
-  num _getWorldWidth();
+  num? _getWorldWidth();
 }

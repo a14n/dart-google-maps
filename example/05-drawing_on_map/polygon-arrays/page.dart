@@ -1,9 +1,9 @@
 import 'dart:html' hide MouseEvent;
 import 'package:google_maps/google_maps.dart';
 
-GMap map;
-InfoWindow infoWindow;
-Polygon bermudaTriangle;
+late GMap map;
+late InfoWindow infoWindow;
+late Polygon bermudaTriangle;
 
 void main() {
   final mapOptions = MapOptions()
@@ -36,15 +36,15 @@ void main() {
 void showArrays(MapMouseEvent e) {
   // Since this Polygon only has one path, we can call getPath()
   // to return the MVCArray of LatLngs
-  final vertices = bermudaTriangle.path;
+  final vertices = bermudaTriangle.path!;
 
   final contentString = StringBuffer()
     ..write('<b>Bermuda Triangle Polygon</b><br>'
-        'Clicked Location: <br>${e.latLng.lat},${e.latLng.lng}<br>');
+        'Clicked Location: <br>${e.latLng!.lat},${e.latLng!.lng}<br>');
 
   // Iterate over the vertices.
-  for (var i = 0; i < vertices.length; i++) {
-    final xy = vertices.getAt(i);
+  for (var i = 0; i < vertices.length!; i++) {
+    final xy = vertices.getAt(i)!;
     contentString.write('<br>Coordinate: $i<br>${xy.lat},${xy.lng}');
   }
 

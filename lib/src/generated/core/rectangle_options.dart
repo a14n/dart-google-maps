@@ -17,18 +17,18 @@ part of '../google_maps_core.dart';
 @JsName()
 @anonymous
 abstract class RectangleOptions {
-  factory RectangleOptions() => $js;
-  LatLngBounds bounds;
-  bool clickable;
-  bool draggable;
-  bool editable;
-  String fillColor;
-  num fillOpacity;
-  GMap map;
-  String strokeColor;
-  num strokeOpacity;
-  StrokePosition strokePosition;
-  num strokeWeight;
-  bool visible;
-  num zIndex;
+  factory RectangleOptions() => $js();
+  LatLngBounds? bounds;
+  bool? clickable;
+  bool? draggable;
+  bool? editable;
+  String? fillColor;
+  num? fillOpacity;
+  GMap? map;
+  String? strokeColor;
+  num? strokeOpacity;
+  StrokePosition? strokePosition;
+  num? strokeWeight;
+  bool? visible;
+  num? zIndex;
 }

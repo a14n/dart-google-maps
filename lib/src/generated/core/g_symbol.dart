@@ -17,15 +17,15 @@ part of '../google_maps_core.dart';
 @JsName()
 @anonymous
 abstract class GSymbol {
-  factory GSymbol() => $js;
-  Object /*SymbolPath|String*/ path;
-  Point anchor;
-  String fillColor;
-  num fillOpacity;
-  Point labelOrigin;
-  num rotation;
-  num scale;
-  String strokeColor;
-  num strokeOpacity;
-  num strokeWeight;
+  factory GSymbol() => $js();
+  Object? /*SymbolPath?|String?*/ path;
+  Point? anchor;
+  String? fillColor;
+  num? fillOpacity;
+  Point? labelOrigin;
+  num? rotation;
+  num? scale;
+  String? strokeColor;
+  num? strokeOpacity;
+  num? strokeWeight;
 }

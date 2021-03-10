@@ -10,10 +10,10 @@ void main() {
     ..minZoom = 0
     ..name = 'Moon'
     ..getTileUrl = (point, zoomLevel) {
-      final normalizedCoord = getNormalizedCoord(point, zoomLevel);
+      final normalizedCoord = getNormalizedCoord(point!, zoomLevel!.toInt());
       if (normalizedCoord == null) return null;
       final bound = math.pow(2, zoomLevel);
-      return '//mw1.google.com/mw-planetary/lunar/lunarmaps_v1/clem_bw/$zoomLevel/${normalizedCoord.x}/${bound - normalizedCoord.y - 1}.jpg';
+      return '//mw1.google.com/mw-planetary/lunar/lunarmaps_v1/clem_bw/$zoomLevel/${normalizedCoord.x}/${bound - normalizedCoord.y! - 1}.jpg';
     };
 
   final moonMapType = ImageMapType(moonTypeOptions)..radius = 1738000;
@@ -26,15 +26,15 @@ void main() {
     ..mapTypeControlOptions = (MapTypeControlOptions()..mapTypeIds = ['moon']);
 
   final map = GMap(document.getElementById('map-canvas'), mapOptions);
-  map.mapTypes.set('moon', moonMapType);
+  map.mapTypes!.set('moon', moonMapType);
   map.mapTypeId = 'moon';
 }
 
 // Normalizes the coords that tiles repeat across the x axis (horizontally)
 // like the standard Google map tiles.
-Point getNormalizedCoord(Point coord, int zoom) {
-  final y = coord.y;
-  var x = coord.x;
+Point? getNormalizedCoord(Point coord, int zoom) {
+  final y = coord.y!;
+  var x = coord.x!;
 
   // tile range in one direction range is dependent on zoom level
   // 0 = 1 tile, 1 = 2 tiles, 2 = 4 tiles, 3 = 8 tiles, etc

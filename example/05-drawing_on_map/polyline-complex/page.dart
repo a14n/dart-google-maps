@@ -1,8 +1,8 @@
 import 'dart:html' hide MouseEvent;
 import 'package:google_maps/google_maps.dart';
 
-Polyline poly;
-GMap map;
+late Polyline poly;
+late GMap map;
 
 void main() {
   final mapOptions = MapOptions()
@@ -24,7 +24,7 @@ void main() {
 /// Handles click events on a map, and adds a new point to the Polyline.
 /// @param {MouseEvent} mouseEvent
 void addLatLng(MapMouseEvent e) {
-  final path = poly.path
+  final path = poly.path!
     // Because path is an MVCArray, we can simply append a new coordinate
     // and it will automatically appear
     ..push(e.latLng);

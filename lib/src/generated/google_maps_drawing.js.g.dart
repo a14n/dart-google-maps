@@ -28,19 +28,19 @@ import 'package:google_maps/google_maps.dart';
 @JS('google.maps.drawing.DrawingManager')
 class DrawingManager extends MVCObject {
   external DrawingManager([
-    DrawingManagerOptions options, // ignore: unused_element
+    DrawingManagerOptions? options, // ignore: unused_element
   ]);
 }
 
 extension DrawingManager$Ext on DrawingManager {
-  OverlayType get drawingMode => _getDrawingMode();
-  GMap get map => _getMap();
-  set drawingMode(OverlayType drawingMode) => _setDrawingMode(drawingMode);
-  set map(GMap map) => _setMap(map);
-  set options(DrawingManagerOptions options) => _setOptions(options);
+  OverlayType? get drawingMode => _getDrawingMode();
+  GMap? get map => _getMap();
+  set drawingMode(OverlayType? drawingMode) => _setDrawingMode(drawingMode);
+  set map(GMap? map) => _setMap(map);
+  set options(DrawingManagerOptions? options) => _setOptions(options);
   Stream<Circle> get onCirclecomplete {
-    StreamController<Circle> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<Circle> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'circlecomplete',
@@ -57,8 +57,8 @@ extension DrawingManager$Ext on DrawingManager {
   }
 
   Stream<Marker> get onMarkercomplete {
-    StreamController<Marker> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<Marker> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'markercomplete',
@@ -75,8 +75,8 @@ extension DrawingManager$Ext on DrawingManager {
   }
 
   Stream<OverlayCompleteEvent> get onOverlaycomplete {
-    StreamController<OverlayCompleteEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<OverlayCompleteEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'overlaycomplete',
@@ -93,8 +93,8 @@ extension DrawingManager$Ext on DrawingManager {
   }
 
   Stream<Polygon> get onPolygoncomplete {
-    StreamController<Polygon> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<Polygon> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'polygoncomplete',
@@ -111,8 +111,8 @@ extension DrawingManager$Ext on DrawingManager {
   }
 
   Stream<Polyline> get onPolylinecomplete {
-    StreamController<Polyline> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<Polyline> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'polylinecomplete',
@@ -129,8 +129,8 @@ extension DrawingManager$Ext on DrawingManager {
   }
 
   Stream<Rectangle> get onRectanglecomplete {
-    StreamController<Rectangle> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<Rectangle> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'rectanglecomplete',
@@ -146,19 +146,19 @@ extension DrawingManager$Ext on DrawingManager {
     return sc.stream;
   }
 
-  OverlayType _getDrawingMode() => callMethod(this, 'getDrawingMode', []);
+  OverlayType? _getDrawingMode() => callMethod(this, 'getDrawingMode', []);
 
-  GMap _getMap() => callMethod(this, 'getMap', []);
+  GMap? _getMap() => callMethod(this, 'getMap', []);
 
-  void _setDrawingMode(OverlayType drawingMode) {
+  void _setDrawingMode(OverlayType? drawingMode) {
     callMethod(this, 'setDrawingMode', [drawingMode]);
   }
 
-  void _setMap(GMap map) {
+  void _setMap(GMap? map) {
     callMethod(this, 'setMap', [map]);
   }
 
-  void _setOptions(DrawingManagerOptions options) {
+  void _setOptions(DrawingManagerOptions? options) {
     callMethod(this, 'setOptions', [options]);
   }
 }
@@ -168,41 +168,41 @@ extension DrawingManager$Ext on DrawingManager {
 class DrawingManagerOptions {
   external factory DrawingManagerOptions();
 
-  external CircleOptions get circleOptions;
+  external CircleOptions? get circleOptions;
 
-  external set circleOptions(CircleOptions value);
+  external set circleOptions(CircleOptions? value);
 
-  external bool get drawingControl;
+  external bool? get drawingControl;
 
-  external set drawingControl(bool value);
+  external set drawingControl(bool? value);
 
-  external DrawingControlOptions get drawingControlOptions;
+  external DrawingControlOptions? get drawingControlOptions;
 
-  external set drawingControlOptions(DrawingControlOptions value);
+  external set drawingControlOptions(DrawingControlOptions? value);
 
-  external OverlayType get drawingMode;
+  external OverlayType? get drawingMode;
 
-  external set drawingMode(OverlayType value);
+  external set drawingMode(OverlayType? value);
 
-  external GMap get map;
+  external GMap? get map;
 
-  external set map(GMap value);
+  external set map(GMap? value);
 
-  external MarkerOptions get markerOptions;
+  external MarkerOptions? get markerOptions;
 
-  external set markerOptions(MarkerOptions value);
+  external set markerOptions(MarkerOptions? value);
 
-  external PolygonOptions get polygonOptions;
+  external PolygonOptions? get polygonOptions;
 
-  external set polygonOptions(PolygonOptions value);
+  external set polygonOptions(PolygonOptions? value);
 
-  external PolylineOptions get polylineOptions;
+  external PolylineOptions? get polylineOptions;
 
-  external set polylineOptions(PolylineOptions value);
+  external set polylineOptions(PolylineOptions? value);
 
-  external RectangleOptions get rectangleOptions;
+  external RectangleOptions? get rectangleOptions;
 
-  external set rectangleOptions(RectangleOptions value);
+  external set rectangleOptions(RectangleOptions? value);
 }
 
 @JS()
@@ -210,16 +210,16 @@ class DrawingManagerOptions {
 class DrawingControlOptions {
   external factory DrawingControlOptions();
 
-  external ControlPosition get position;
+  external ControlPosition? get position;
 
-  external set position(ControlPosition value);
+  external set position(ControlPosition? value);
 }
 
 extension DrawingControlOptions$Ext on DrawingControlOptions {
-  List<OverlayType> get drawingModes =>
-      getProperty(this, 'drawingModes')?.cast<OverlayType>();
+  List<OverlayType?>? get drawingModes =>
+      getProperty(this, 'drawingModes')?.cast<OverlayType?>();
 
-  set drawingModes(List<OverlayType> value) {
+  set drawingModes(List<OverlayType?>? value) {
     setProperty(this, 'drawingModes', value);
   }
 }
@@ -229,14 +229,14 @@ extension DrawingControlOptions$Ext on DrawingControlOptions {
 class OverlayCompleteEvent {
   external factory OverlayCompleteEvent();
 
-  external Object /*Marker|Polygon|Polyline|Rectangle|Circle*/ get overlay;
+  external Object? /*Marker?|Polygon?|Polyline?|Rectangle?|Circle?*/ get overlay;
 
   external set overlay(
-      Object /*Marker|Polygon|Polyline|Rectangle|Circle*/ value);
+      Object? /*Marker?|Polygon?|Polyline?|Rectangle?|Circle?*/ value);
 
-  external OverlayType get type;
+  external OverlayType? get type;
 
-  external set type(OverlayType value);
+  external set type(OverlayType? value);
 }
 
 @JS('google.maps.drawing.OverlayType')

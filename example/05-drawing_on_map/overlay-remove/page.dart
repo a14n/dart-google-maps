@@ -1,8 +1,8 @@
 import 'dart:html';
 import 'package:google_maps/google_maps.dart';
 
-GroundOverlay historicalOverlay;
-GMap map;
+late GroundOverlay historicalOverlay;
+late GMap map;
 
 void main() {
   final newark = LatLng(40.740, -74.18);
@@ -22,10 +22,10 @@ void main() {
   addOverlay();
 
   document
-      .getElementById('removeOverlay')
+      .getElementById('removeOverlay')!
       .onClick
       .listen((_) => removeOverlay());
-  document.getElementById('addOverlay').onClick.listen((_) => addOverlay());
+  document.getElementById('addOverlay')!.onClick.listen((_) => addOverlay());
 }
 
 void addOverlay() {

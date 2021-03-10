@@ -18,8 +18,8 @@ part of '../google_maps_core.dart';
 @JS()
 @anonymous
 abstract class PolyMouseEvent extends MapMouseEvent {
-  factory PolyMouseEvent() => $js;
-  num edge;
-  num path;
-  num vertex;
+  factory PolyMouseEvent() => $js();
+  num? edge;
+  num? path;
+  num? vertex;
 }

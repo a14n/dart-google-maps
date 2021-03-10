@@ -17,19 +17,19 @@ part of '../google_maps_core.dart';
 @JsName()
 @anonymous
 abstract class PolygonOptions {
-  factory PolygonOptions() => $js;
-  bool clickable;
-  bool draggable;
-  bool editable;
-  String fillColor;
-  num fillOpacity;
-  bool geodesic;
-  GMap map;
-  Object /*MVCArray<MVCArray<LatLng>>|MVCArray<LatLng>|List<List<LatLng>>|List<LatLng>*/ paths;
-  String strokeColor;
-  num strokeOpacity;
-  StrokePosition strokePosition;
-  num strokeWeight;
-  bool visible;
-  num zIndex;
+  factory PolygonOptions() => $js();
+  bool? clickable;
+  bool? draggable;
+  bool? editable;
+  String? fillColor;
+  num? fillOpacity;
+  bool? geodesic;
+  GMap? map;
+  Object? /*MVCArray<MVCArray<LatLng?>?>?|MVCArray<LatLng?>?|List<List<LatLng?>?>?|List<LatLng?>?*/ paths;
+  String? strokeColor;
+  num? strokeOpacity;
+  StrokePosition? strokePosition;
+  num? strokeWeight;
+  bool? visible;
+  num? zIndex;
 }

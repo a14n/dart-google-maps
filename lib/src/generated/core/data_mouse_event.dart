@@ -18,6 +18,6 @@ part of '../google_maps_core.dart';
 @JS()
 @anonymous
 abstract class DataMouseEvent extends MapMouseEvent {
-  factory DataMouseEvent() => $js;
-  DataFeature feature;
+  factory DataMouseEvent() => $js();
+  DataFeature? feature;
 }

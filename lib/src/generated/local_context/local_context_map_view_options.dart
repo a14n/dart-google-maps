@@ -17,15 +17,15 @@ part of '../google_maps_local_context.dart';
 @JsName()
 @anonymous
 abstract class LocalContextMapViewOptions {
-  factory LocalContextMapViewOptions() => $js;
-  num maxPlaceCount;
-  List<PlaceTypePreference> placeTypePreferences;
-  Object /*MapDirectionsOptions|MapDirectionsOptionsLiteral*/ directionsOptions;
-  Element element;
-  Object /*LatLng|LatLngBounds|Circle|String*/ locationBias;
-  LatLngBounds locationRestriction;
-  GMap map;
-  Object /*PinOptions Function((bool isSelected, bool isHighlighted) p1)|PinOptions*/ pinOptionsSetup;
-  Object /*PlaceChooserViewSetupOptions Function((PlaceChooserLayoutMode defaultLayoutMode, PlaceChooserPosition defaultPosition) p1)|PlaceChooserViewSetupOptions*/ placeChooserViewSetup;
-  Object /*PlaceDetailsViewSetupOptions Function((PlaceDetailsLayoutMode defaultLayoutMode, PlaceDetailsPosition defaultPosition) p1)|PlaceDetailsViewSetupOptions*/ placeDetailsViewSetup;
+  factory LocalContextMapViewOptions() => $js();
+  num? maxPlaceCount;
+  List<PlaceTypePreference?>? placeTypePreferences;
+  Object? /*MapDirectionsOptions?|MapDirectionsOptionsLiteral?*/ directionsOptions;
+  Element? element;
+  Object? /*LatLng?|LatLngBounds?|Circle?|String?*/ locationBias;
+  LatLngBounds? locationRestriction;
+  GMap? map;
+  Object? /*PinOptions? Function((bool? isSelected, bool? isHighlighted) p1)?|PinOptions?*/ pinOptionsSetup;
+  Object? /*PlaceChooserViewSetupOptions? Function((PlaceChooserLayoutMode? defaultLayoutMode, PlaceChooserPosition? defaultPosition) p1)?|PlaceChooserViewSetupOptions?*/ placeChooserViewSetup;
+  Object? /*PlaceDetailsViewSetupOptions? Function((PlaceDetailsLayoutMode? defaultLayoutMode, PlaceDetailsPosition? defaultPosition) p1)?|PlaceDetailsViewSetupOptions?*/ placeDetailsViewSetup;
 }

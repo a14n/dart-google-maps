@@ -17,13 +17,13 @@ part of '../google_maps_core.dart';
 @JsName()
 @anonymous
 abstract class Projection {
-  factory Projection() => $js;
-  Point Function(
-    LatLng latLng, [
-    Point point,
-  ]) fromLatLngToPoint;
-  LatLng Function(
-    Point pixel, [
-    bool noWrap,
-  ]) fromPointToLatLng;
+  factory Projection() => $js();
+  Point? Function(
+    LatLng? latLng, [
+    Point? point,
+  ])? fromLatLngToPoint;
+  LatLng? Function(
+    Point? pixel, [
+    bool? noWrap,
+  ])? fromPointToLatLng;
 }

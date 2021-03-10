@@ -18,7 +18,7 @@ void main() {
     if (status == PlacesServiceStatus.OK) {
       final marker = Marker(MarkerOptions()
         ..map = map
-        ..position = place.geometry.location);
+        ..position = place!.geometry!.location);
       marker.onClick.listen((e) {
         infowindow
           ..content = place.name

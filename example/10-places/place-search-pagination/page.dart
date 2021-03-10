@@ -3,7 +3,7 @@ import 'dart:html' hide Point;
 import 'package:google_maps/google_maps.dart';
 import 'package:google_maps/google_maps_places.dart';
 
-GMap map;
+late GMap map;
 
 void main() {
   // Create the map.
@@ -16,11 +16,11 @@ void main() {
 
   // Create the places service.
   final service = PlacesService(map);
-  void Function() getNextPage;
+  void Function()? getNextPage;
   final moreButton = document.getElementById('more') as ButtonElement;
   moreButton.onClick.listen((event) {
     moreButton.disabled = true;
-    if (getNextPage != null) getNextPage();
+    if (getNextPage != null) getNextPage!();
   });
 
   // Perform a nearby search.
@@ -31,9 +31,9 @@ void main() {
         ..type = 'store', (results, status, pagination) {
     if (status != PlacesServiceStatus.OK) return;
 
-    createMarkers(results);
-    moreButton.disabled = !pagination.hasNextPage;
-    if (pagination.hasNextPage) {
+    createMarkers(results!);
+    moreButton.disabled = !pagination!.hasNextPage!;
+    if (pagination.hasNextPage!) {
       getNextPage = () {
         pagination.nextPage();
       };
@@ -41,13 +41,13 @@ void main() {
   });
 }
 
-void createMarkers(List<PlaceResult> places) {
+void createMarkers(List<PlaceResult?> places) {
   final bounds = LatLngBounds();
   final placesList = document.getElementById('places');
 
   for (final place in places) {
     final image = Icon()
-      ..url = place.icon
+      ..url = place!.icon
       ..size = Size(71, 71)
       ..origin = Point(0, 0)
       ..anchor = Point(17, 34)
@@ -57,12 +57,12 @@ void createMarkers(List<PlaceResult> places) {
       ..map = map
       ..icon = image
       ..title = place.name
-      ..position = place.geometry.location);
+      ..position = place.geometry!.location);
 
     final li = document.createElement('li')..text = place.name;
-    placesList.children.add(li);
+    placesList!.children.add(li);
 
-    bounds.extend(place.geometry.location);
+    bounds.extend(place.geometry!.location);
   }
   map.fitBounds(bounds);
 }

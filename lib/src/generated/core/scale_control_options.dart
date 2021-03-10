@@ -17,6 +17,6 @@ part of '../google_maps_core.dart';
 @JsName()
 @anonymous
 abstract class ScaleControlOptions {
-  factory ScaleControlOptions() => $js;
-  ScaleControlStyle style;
+  factory ScaleControlOptions() => $js();
+  ScaleControlStyle? style;
 }

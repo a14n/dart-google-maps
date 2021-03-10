@@ -29,13 +29,13 @@ void main() {
 
   final imageMapTypeOptions = ImageMapTypeOptions()
     ..tileSize = Size(256, 256)
-    ..getTileUrl = (point, num zoomLevel) {
-      if (zoomLevel < 17 ||
+    ..getTileUrl = (point, zoomLevel) {
+      if (zoomLevel! < 17 ||
           zoomLevel > 20 ||
-          bounds[zoomLevel][0][0] > point.x ||
-          point.x > bounds[zoomLevel][0][1] ||
-          bounds[zoomLevel][1][0] > point.y ||
-          point.y > bounds[zoomLevel][1][1]) {
+          bounds[zoomLevel]![0][0] > point!.x! ||
+          point.x! > bounds[zoomLevel]![0][1] ||
+          bounds[zoomLevel]![1][0] > point.y! ||
+          point.y! > bounds[zoomLevel]![1][1]) {
         return null;
       }
 
@@ -44,5 +44,5 @@ void main() {
 
   final imageMapType = ImageMapType(imageMapTypeOptions);
 
-  map.overlayMapTypes.push(imageMapType);
+  map.overlayMapTypes!.push(imageMapType);
 }

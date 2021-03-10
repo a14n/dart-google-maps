@@ -8,12 +8,12 @@ void main() {
         ..zoom = 4
         ..center = LatLng(-28, 137.883));
 
-  map.data
+  map.data!
       .loadGeoJson('https://storage.googleapis.com/maps-devrel/google.json');
 
   // Set the stroke width, and fill color for each polygon
   final featureStyle = DataStyleOptions()
     ..fillColor = 'green'
     ..strokeWeight = 1;
-  map.data.style = featureStyle;
+  map.data!.style = featureStyle;
 }

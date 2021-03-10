@@ -17,15 +17,15 @@ part of '../google_maps_places.dart';
 @JsName()
 @anonymous
 abstract class PlacePhoto {
-  factory PlacePhoto() => $js;
-  num height;
+  factory PlacePhoto() => $js();
+  num? height;
   // custom name for html_attributions
   @JsName('html_attributions')
-  List<String> htmlAttributions;
-  num width;
+  List<String?>? htmlAttributions;
+  num? width;
 
   // synthetic getter for getUrl
-  String get url => _getUrl();
+  String? get url => _getUrl();
   @JsName('getUrl')
-  String _getUrl();
+  String? _getUrl();
 }

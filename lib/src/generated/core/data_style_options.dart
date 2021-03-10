@@ -17,19 +17,19 @@ part of '../google_maps_core.dart';
 @JsName()
 @anonymous
 abstract class DataStyleOptions {
-  factory DataStyleOptions() => $js;
-  bool clickable;
-  String cursor;
-  bool draggable;
-  bool editable;
-  String fillColor;
-  num fillOpacity;
-  Object /*String|Icon|GSymbol*/ icon;
-  MarkerShape shape;
-  String strokeColor;
-  num strokeOpacity;
-  num strokeWeight;
-  String title;
-  bool visible;
-  num zIndex;
+  factory DataStyleOptions() => $js();
+  bool? clickable;
+  String? cursor;
+  bool? draggable;
+  bool? editable;
+  String? fillColor;
+  num? fillOpacity;
+  Object? /*String?|Icon?|GSymbol?*/ icon;
+  MarkerShape? shape;
+  String? strokeColor;
+  num? strokeOpacity;
+  num? strokeWeight;
+  String? title;
+  bool? visible;
+  num? zIndex;
 }

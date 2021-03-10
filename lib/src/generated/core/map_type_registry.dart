@@ -16,6 +16,6 @@ part of '../google_maps_core.dart';
 
 @JsName('google.maps.MapTypeRegistry')
 abstract class MapTypeRegistry extends MVCObject {
-  factory MapTypeRegistry() => $js;
-  void set(String id, Object /*MapType|Object*/ mapType);
+  factory MapTypeRegistry() => $js();
+  void set(String? id, Object? /*MapType?|Object?*/ mapType);
 }

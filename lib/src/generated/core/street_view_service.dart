@@ -16,9 +16,9 @@ part of '../google_maps_core.dart';
 
 @JsName('google.maps.StreetViewService')
 abstract class StreetViewService {
-  factory StreetViewService() => $js;
-  Future<StreetViewResponse> getPanorama(
-    Object /*StreetViewLocationRequest|StreetViewPanoRequest*/ request, [
-    void Function(StreetViewPanoramaData p1, StreetViewStatus p2) callback,
+  factory StreetViewService() => $js();
+  Future<StreetViewResponse>? getPanorama(
+    Object? /*StreetViewLocationRequest?|StreetViewPanoRequest?*/ request, [
+    void Function(StreetViewPanoramaData? p1, StreetViewStatus? p2)? callback,
   ]);
 }

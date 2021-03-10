@@ -17,7 +17,7 @@ part of '../google_maps_local_context.dart';
 @JsName()
 @anonymous
 abstract class PlaceTypePreference {
-  factory PlaceTypePreference() => $js;
-  String type;
-  num weight;
+  factory PlaceTypePreference() => $js();
+  String? type;
+  num? weight;
 }

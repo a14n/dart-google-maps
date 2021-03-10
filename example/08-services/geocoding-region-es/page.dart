@@ -2,8 +2,8 @@ import 'dart:html';
 
 import 'package:google_maps/google_maps.dart';
 
-Geocoder geocoder;
-GMap map;
+late Geocoder geocoder;
+late GMap map;
 const query = 'Toledo';
 
 void main() {
@@ -16,10 +16,10 @@ void main() {
 void codeAddress() {
   geocoder.geocode(GeocoderRequest()..address = query, (results, status) {
     if (status == GeocoderStatus.OK) {
-      map.center = results[0].geometry.location;
+      map.center = results![0]!.geometry!.location;
       Marker(MarkerOptions()
         ..map = map
-        ..position = results[0].geometry.location);
+        ..position = results[0]!.geometry!.location);
     } else {
       window.alert(
           'Geocode was not successful for the following reason: $status');

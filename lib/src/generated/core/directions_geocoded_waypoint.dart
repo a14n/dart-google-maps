@@ -17,12 +17,12 @@ part of '../google_maps_core.dart';
 @JsName()
 @anonymous
 abstract class DirectionsGeocodedWaypoint {
-  factory DirectionsGeocodedWaypoint() => $js;
+  factory DirectionsGeocodedWaypoint() => $js();
   // custom name for partial_match
   @JsName('partial_match')
-  bool partialMatch;
+  bool? partialMatch;
   // custom name for place_id
   @JsName('place_id')
-  String placeId;
-  List<String> types;
+  String? placeId;
+  List<String?>? types;
 }

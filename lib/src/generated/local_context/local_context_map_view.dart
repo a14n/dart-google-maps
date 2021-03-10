@@ -16,24 +16,24 @@ part of '../google_maps_local_context.dart';
 
 @JsName('google.maps.localContext.LocalContextMapView')
 abstract class LocalContextMapView implements LocalContextMapViewOptions {
-  factory LocalContextMapView(LocalContextMapViewOptions options) => $js;
-  Object /*MapDirectionsOptions|MapDirectionsOptionsLiteral*/ directionsOptions;
-  Element element;
-  bool isTransitioningMapBounds;
-  Object /*LatLng|LatLngBounds|Circle|String*/ locationBias;
-  LatLngBounds locationRestriction;
-  num maxPlaceCount;
-  List<PlaceTypePreference> placeTypePreferences;
-  GMap map;
-  Object /*PinOptions Function((bool isSelected, bool isHighlighted) p1)|PinOptions*/ pinOptionsSetup;
-  Object /*PlaceChooserViewSetupOptions Function((PlaceChooserLayoutMode defaultLayoutMode, PlaceChooserPosition defaultPosition) p1)|PlaceChooserViewSetupOptions*/ placeChooserViewSetup;
-  Object /*PlaceDetailsViewSetupOptions Function((PlaceDetailsLayoutMode defaultLayoutMode, PlaceDetailsPosition defaultPosition) p1)|PlaceDetailsViewSetupOptions*/ placeDetailsViewSetup;
-  MapsEventListener addListener(String eventName, Function handler);
+  factory LocalContextMapView(LocalContextMapViewOptions? options) => $js();
+  Object? /*MapDirectionsOptions?|MapDirectionsOptionsLiteral?*/ directionsOptions;
+  Element? element;
+  bool? isTransitioningMapBounds;
+  Object? /*LatLng?|LatLngBounds?|Circle?|String?*/ locationBias;
+  LatLngBounds? locationRestriction;
+  num? maxPlaceCount;
+  List<PlaceTypePreference?>? placeTypePreferences;
+  GMap? map;
+  Object? /*PinOptions? Function((bool? isSelected, bool? isHighlighted) p1)?|PinOptions?*/ pinOptionsSetup;
+  Object? /*PlaceChooserViewSetupOptions? Function((PlaceChooserLayoutMode? defaultLayoutMode, PlaceChooserPosition? defaultPosition) p1)?|PlaceChooserViewSetupOptions?*/ placeChooserViewSetup;
+  Object? /*PlaceDetailsViewSetupOptions? Function((PlaceDetailsLayoutMode? defaultLayoutMode, PlaceDetailsPosition? defaultPosition) p1)?|PlaceDetailsViewSetupOptions?*/ placeDetailsViewSetup;
+  MapsEventListener? addListener(String? eventName, Function? handler);
   void hidePlaceDetailsView();
   void search();
   Stream<ErrorEvent> get onError {
-    StreamController<ErrorEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<ErrorEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'error',
@@ -50,8 +50,8 @@ abstract class LocalContextMapView implements LocalContextMapViewOptions {
   }
 
   Stream<void> get onPlacedetailsviewhidestart {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'placedetailsviewhidestart',
@@ -68,8 +68,8 @@ abstract class LocalContextMapView implements LocalContextMapViewOptions {
   }
 
   Stream<void> get onPlacedetailsviewshowstart {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'placedetailsviewshowstart',

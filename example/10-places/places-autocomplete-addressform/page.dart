@@ -5,7 +5,7 @@ import 'package:google_maps/google_maps.dart';
 import 'package:google_maps/google_maps_places.dart';
 import 'package:js_wrapping/js_wrapping.dart';
 
-Autocomplete autocomplete;
+late Autocomplete autocomplete;
 final componentForm = <String, String>{
   'street_number': 'short_name',
   'route': 'long_name',
@@ -25,7 +25,7 @@ void main() {
   // populate the address fields in the form.
   autocomplete.onPlaceChanged.listen(fillInAddress);
 
-  document.getElementById('autocomplete').onFocus.listen(geolocate);
+  document.getElementById('autocomplete')!.onFocus.listen(geolocate);
 }
 
 void fillInAddress(_) {
@@ -40,12 +40,12 @@ void fillInAddress(_) {
 
   // Get each component of the address from the place details
   // and fill the corresponding field on the form.
-  for (final addressComponent in place.addressComponents) {
-    final addressType = addressComponent.types[0];
+  for (final addressComponent in place!.addressComponents!) {
+    final addressType = addressComponent!.types![0];
     final prop = componentForm[addressType];
     if (prop != null) {
       final val = getProperty(addressComponent, prop) as String;
-      (document.getElementById(addressType) as InputElement).value = val;
+      (document.getElementById(addressType!)! as InputElement).value = val;
     }
   }
 }
@@ -53,13 +53,14 @@ void fillInAddress(_) {
 // Bias the autocomplete object to the user's geographical location,
 // as supplied by the browser's 'navigator.geolocation' object.
 Future geolocate(_) async {
+  // ignore: unnecessary_null_comparison
   if (window.navigator.geolocation != null) {
     final position = await window.navigator.geolocation.getCurrentPosition();
     final geolocation =
-        LatLng(position.coords.latitude, position.coords.longitude);
+        LatLng(position.coords!.latitude, position.coords!.longitude);
     final circle = Circle(CircleOptions()
       ..center = geolocation
-      ..radius = position.coords.accuracy);
+      ..radius = position.coords!.accuracy);
     autocomplete.bounds = circle.bounds;
   }
 }

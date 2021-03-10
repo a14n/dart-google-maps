@@ -4,11 +4,11 @@ import 'dart:html' hide Animation, MouseEvent;
 import 'package:google_maps/google_maps.dart';
 import 'package:google_maps/google_maps_places.dart';
 
-GMap map;
-PlacesService places;
-InfoWindow infoWindow;
+late GMap map;
+late PlacesService places;
+late InfoWindow infoWindow;
 List<Marker> markers = <Marker>[];
-Autocomplete autocomplete;
+late Autocomplete autocomplete;
 final countryRestrict = ComponentRestrictions()..country = 'us';
 const MARKER_PATH = 'https://maps.gstatic.com/intl/en_us/mapfiles/marker_green';
 final RegExp hostnameRegexp = RegExp('^https?://.+?/');
@@ -31,8 +31,8 @@ var countries = {
 
 void main() {
   final myOptions = MapOptions()
-    ..zoom = countries['us']['zoom'] as int
-    ..center = countries['us']['center'] as LatLng
+    ..zoom = countries['us']!['zoom']! as int
+    ..center = countries['us']!['center']! as LatLng
     ..mapTypeControl = false
     ..panControl = false
     ..zoomControl = false
@@ -62,10 +62,10 @@ void main() {
 // When the user selects a city, get the place details for the city and
 // zoom the map in on the city.
 void onPlaceChanged(_) {
-  final place = autocomplete.place;
+  final place = autocomplete.place!;
   if (place.geometry != null) {
     map
-      ..panTo(place.geometry.location)
+      ..panTo(place.geometry!.location)
       ..zoom = 15;
     search();
   } else {
@@ -86,20 +86,20 @@ void search() {
       clearMarkers();
       // Create a marker for each hotel found, and
       // assign a letter of the alphabetic to each marker icon.
-      for (var i = 0; i < results.length; i++) {
+      for (var i = 0; i < results!.length; i++) {
         final markerLetter = String.fromCharCode('A'.codeUnitAt(0) + i);
         final markerIcon = '$MARKER_PATH$markerLetter.png';
         // Use marker animation to drop the icons incrementally on the map.
         final marker = Marker(MarkerOptions()
-          ..position = results[i].geometry.location
+          ..position = results[i]!.geometry!.location
           ..animation = Animation.DROP
           ..icon = markerIcon);
         // If the user clicks a hotel marker, show the details of that hotel
         // in an info window.
         markers.add(marker);
-        marker.onClick.listen(showInfoWindow(marker, results[i]));
+        marker.onClick.listen(showInfoWindow(marker, results[i]!));
         Timer(Duration(milliseconds: i * 100), dropMarker(i));
-        addResult(results[i], i);
+        addResult(results[i]!, i);
       }
     }
   });
@@ -122,8 +122,8 @@ void setAutocompleteCountry(_) {
   } else {
     autocomplete.componentRestrictions = ComponentRestrictions()
       ..country = country;
-    map.center = countries[country]['center'] as LatLng;
-    map.zoom = countries[country]['zoom'] as int;
+    map.center = countries[country]!['center']! as LatLng;
+    map.zoom = countries[country]!['zoom']! as int;
   }
   clearResults();
   clearMarkers();
@@ -150,15 +150,15 @@ void addResult(PlaceResult result, int i) {
     ..src = markerIcon
     ..setAttribute('class', 'placeIcon')
     ..setAttribute('className', 'placeIcon');
-  final name = Text(result.name);
+  final name = Text(result.name!);
   iconTd.append(icon);
   nameTd.append(name);
   tr..append(iconTd)..append(nameTd);
-  results.append(tr);
+  results!.append(tr);
 }
 
 void clearResults() {
-  document.getElementById('results').nodes.clear();
+  document.getElementById('results')!.nodes.clear();
 }
 
 // Get the place details for a hotel. Show the information in an info window,
@@ -172,7 +172,7 @@ void Function(MapMouseEvent) showInfoWindow(
             return;
           }
           infoWindow.open(map, marker);
-          buildIWContent(place);
+          buildIWContent(place!);
         });
 
 class _NullTreeSanitizer implements NodeTreeSanitizer {
@@ -182,19 +182,19 @@ class _NullTreeSanitizer implements NodeTreeSanitizer {
 
 // Load the place information into the HTML elements used by the info window.
 void buildIWContent(PlaceResult place) {
-  document.getElementById('iw-icon').setInnerHtml(
+  document.getElementById('iw-icon')!.setInnerHtml(
       '<img class="hotelIcon" src="${place.icon}"></img>',
       treeSanitizer: _NullTreeSanitizer());
-  document.getElementById('iw-url').setInnerHtml(
+  document.getElementById('iw-url')!.setInnerHtml(
       '<b><a href="${place.url}">${place.name}</a></b>',
       treeSanitizer: _NullTreeSanitizer());
-  document.getElementById('iw-address').text = place.vicinity;
+  document.getElementById('iw-address')!.text = place.vicinity;
 
   if (place.formattedPhoneNumber != null) {
-    document.getElementById('iw-phone-row').style.display = '';
-    document.getElementById('iw-phone').text = place.formattedPhoneNumber;
+    document.getElementById('iw-phone-row')!.style.display = '';
+    document.getElementById('iw-phone')!.text = place.formattedPhoneNumber;
   } else {
-    document.getElementById('iw-phone-row').style.display = 'none';
+    document.getElementById('iw-phone-row')!.style.display = 'none';
   }
 
   // Assign a five-star rating to the hotel, using a black star ('&#10029;')
@@ -203,26 +203,26 @@ void buildIWContent(PlaceResult place) {
   if (place.rating != null) {
     var ratingHtml = '';
     for (var i = 0; i < 5; i++) {
-      if (place.rating < (i + 0.5)) {
+      if (place.rating! < (i + 0.5)) {
         ratingHtml += '&#10025;';
       } else {
         ratingHtml += '&#10029;';
       }
-      document.getElementById('iw-rating-row').style.display = '';
-      document.getElementById('iw-rating').innerHtml = ratingHtml;
+      document.getElementById('iw-rating-row')!.style.display = '';
+      document.getElementById('iw-rating')!.innerHtml = ratingHtml;
     }
   } else {
-    document.getElementById('iw-rating-row').style.display = 'none';
+    document.getElementById('iw-rating-row')!.style.display = 'none';
   }
 
   // The regexp isolates the first part of the URL (domain plus subdomain)
   // to give a short URL for displaying in the info window.
   if (place.website != null) {
-    var website = hostnameRegexp.stringMatch(place.website);
+    var website = hostnameRegexp.stringMatch(place.website!);
     website ??= 'http://${place.website}/';
-    document.getElementById('iw-website-row').style.display = '';
-    document.getElementById('iw-website').text = website;
+    document.getElementById('iw-website-row')!.style.display = '';
+    document.getElementById('iw-website')!.text = website;
   } else {
-    document.getElementById('iw-website-row').style.display = 'none';
+    document.getElementById('iw-website-row')!.style.display = 'none';
   }
 }

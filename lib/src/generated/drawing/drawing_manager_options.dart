@@ -17,14 +17,14 @@ part of '../google_maps_drawing.dart';
 @JsName()
 @anonymous
 abstract class DrawingManagerOptions {
-  factory DrawingManagerOptions() => $js;
-  CircleOptions circleOptions;
-  bool drawingControl;
-  DrawingControlOptions drawingControlOptions;
-  OverlayType drawingMode;
-  GMap map;
-  MarkerOptions markerOptions;
-  PolygonOptions polygonOptions;
-  PolylineOptions polylineOptions;
-  RectangleOptions rectangleOptions;
+  factory DrawingManagerOptions() => $js();
+  CircleOptions? circleOptions;
+  bool? drawingControl;
+  DrawingControlOptions? drawingControlOptions;
+  OverlayType? drawingMode;
+  GMap? map;
+  MarkerOptions? markerOptions;
+  PolygonOptions? polygonOptions;
+  PolylineOptions? polylineOptions;
+  RectangleOptions? rectangleOptions;
 }

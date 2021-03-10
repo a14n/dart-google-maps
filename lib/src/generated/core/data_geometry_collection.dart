@@ -17,24 +17,24 @@ part of '../google_maps_core.dart';
 @JsName('google.maps.Data.GeometryCollection')
 abstract class DataGeometryCollection implements DataGeometry {
   factory DataGeometryCollection(
-          List<Object /*DataGeometry|LatLng*/ > elements) =>
-      $js;
-  void forEachLatLng(void Function(LatLng p1) callback);
+          List<Object? /*DataGeometry?|LatLng?*/ >? elements) =>
+      $js();
+  void forEachLatLng(void Function(LatLng? p1)? callback);
 
   // synthetic getter for getArray
-  List<DataGeometry> get array => _getArray();
+  List<DataGeometry?>? get array => _getArray();
   @JsName('getArray')
-  List<DataGeometry> _getArray();
+  List<DataGeometry?>? _getArray();
 
-  DataGeometry getAt(num n);
+  DataGeometry? getAt(num? n);
 
   // synthetic getter for getLength
-  num get length => _getLength();
+  num? get length => _getLength();
   @JsName('getLength')
-  num _getLength();
+  num? _getLength();
 
   // synthetic getter for getType
-  String get type => _getType();
+  String? get type => _getType();
   @JsName('getType')
-  String _getType();
+  String? _getType();
 }

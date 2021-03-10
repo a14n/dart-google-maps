@@ -4,8 +4,8 @@ import 'package:google_maps/google_maps.dart';
 import 'package:google_maps/google_maps_visualization.dart';
 
 // Adding 500 Data Points
-GMap map;
-HeatmapLayer heatmap;
+late GMap map;
+late HeatmapLayer heatmap;
 
 void main() {
   final mapOptions = MapOptions()
@@ -18,16 +18,16 @@ void main() {
     ..data = points
     ..map = map);
 
-  querySelector('#toggleHeatmap').onClick.listen((e) {
+  querySelector('#toggleHeatmap')!.onClick.listen((e) {
     toggleHeatmap();
   });
-  querySelector('#changeGradient').onClick.listen((e) {
+  querySelector('#changeGradient')!.onClick.listen((e) {
     changeGradient();
   });
-  querySelector('#changeRadius').onClick.listen((e) {
+  querySelector('#changeRadius')!.onClick.listen((e) {
     changeRadius();
   });
-  querySelector('#changeOpacity').onClick.listen((e) {
+  querySelector('#changeOpacity')!.onClick.listen((e) {
     changeOpacity();
   });
 }

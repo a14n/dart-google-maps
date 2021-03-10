@@ -10,7 +10,7 @@ void main() {
       ..center = LatLng(-25.363882, 131.044922),
   );
   map.onClick.listen((e) {
-    placeMarkerAndPanTo(e.latLng, map);
+    placeMarkerAndPanTo(e.latLng!, map);
   });
 }
 

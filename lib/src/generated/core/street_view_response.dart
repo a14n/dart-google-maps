@@ -17,6 +17,6 @@ part of '../google_maps_core.dart';
 @JsName()
 @anonymous
 abstract class StreetViewResponse {
-  factory StreetViewResponse() => $js;
-  StreetViewPanoramaData data;
+  factory StreetViewResponse() => $js();
+  StreetViewPanoramaData? data;
 }

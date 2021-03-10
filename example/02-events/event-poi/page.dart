@@ -31,17 +31,17 @@ class ClickEventHandler {
   GMap map;
   LatLng origin;
   DirectionsService directionsService = DirectionsService();
-  DirectionsRenderer directionsRenderer;
-  PlacesService placesService;
-  InfoWindow infowindow = InfoWindow();
-  DivElement infowindowContent;
+  late DirectionsRenderer directionsRenderer;
+  late PlacesService placesService;
+  late InfoWindow infowindow = InfoWindow();
+  late DivElement infowindowContent;
 
   void handleClick(MapMouseEvent event) {
     print('You clicked on: ${event.latLng}');
 
     // If the event has a placeId, use it.
     if (isIconMouseEvent(event)) {
-      final placeId = (event as IconMouseEvent).placeId;
+      final placeId = (event as IconMouseEvent).placeId!;
       print('You clicked on place:$placeId');
       // Calling e.stop() on the event prevents the default info window from
       // showing.
@@ -73,12 +73,12 @@ class ClickEventHandler {
       if (status == PlacesServiceStatus.OK) {
         infowindow
           ..close()
-          ..position = place.geometry.location;
+          ..position = place!.geometry!.location;
         (infowindowContent.querySelector('#place-icon') as ImageElement).src =
             place.icon;
-        infowindowContent.querySelector('#place-name').text = place.name;
-        infowindowContent.querySelector('#place-id').text = place.placeId;
-        infowindowContent.querySelector('#place-address').text =
+        infowindowContent.querySelector('#place-name')!.text = place.name;
+        infowindowContent.querySelector('#place-id')!.text = place.placeId;
+        infowindowContent.querySelector('#place-address')!.text =
             place.formattedAddress;
         infowindow.open(map);
       }

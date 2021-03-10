@@ -2,8 +2,8 @@ import 'dart:html';
 
 import 'package:google_maps/google_maps.dart';
 
-GMap map;
-Geocoder geocoder;
+late GMap map;
+late Geocoder geocoder;
 final bounds = LatLngBounds();
 final markersArray = <Marker>[];
 
@@ -25,7 +25,7 @@ void main() {
   geocoder = Geocoder();
 
   document
-      .getElementById('calculateDistances')
+      .getElementById('calculateDistances')!
       .onClick
       .listen((e) => calculateDistances());
 }
@@ -42,29 +42,29 @@ void calculateDistances() {
       callback);
 }
 
-void callback(DistanceMatrixResponse response, DistanceMatrixStatus status) {
+void callback(DistanceMatrixResponse? response, DistanceMatrixStatus? status) {
   if (status != DistanceMatrixStatus.OK) {
     window.alert('Error was: $status');
   } else {
-    final origins = response.originAddresses;
+    final origins = response!.originAddresses;
     final destinations = response.destinationAddresses;
     deleteOverlays();
 
     final html = StringBuffer();
-    for (var i = 0; i < origins.length; i++) {
-      final results = response.rows[i].elements;
-      addMarker(origins[i], isDestination: false);
-      for (var j = 0; j < results.length; j++) {
-        addMarker(destinations[j], isDestination: true);
+    for (var i = 0; i < origins!.length; i++) {
+      final results = response.rows![i]!.elements;
+      addMarker(origins[i]!, isDestination: false);
+      for (var j = 0; j < results!.length; j++) {
+        addMarker(destinations![j]!, isDestination: true);
         html.write(
-            '${origins[i]} to ${destinations[j]}: ${results[j].distance.text} in ${results[j].duration.text}<br>');
+            '${origins[i]} to ${destinations[j]}: ${results[j]!.distance!.text} in ${results[j]!.duration!.text}<br>');
       }
     }
-    document.getElementById('outputDiv').innerHtml = html.toString();
+    document.getElementById('outputDiv')!.innerHtml = html.toString();
   }
 }
 
-void addMarker(String location, {bool isDestination}) {
+void addMarker(String location, {required bool isDestination}) {
   String icon;
   if (isDestination) {
     icon = destinationIcon;
@@ -73,11 +73,11 @@ void addMarker(String location, {bool isDestination}) {
   }
   geocoder.geocode(GeocoderRequest()..address = location, (results, status) {
     if (status == GeocoderStatus.OK) {
-      bounds.extend(results[0].geometry.location);
+      bounds.extend(results![0]!.geometry!.location);
       map.fitBounds(bounds);
       final marker = Marker(MarkerOptions()
         ..map = map
-        ..position = results[0].geometry.location
+        ..position = results[0]!.geometry!.location
         ..icon = icon);
       markersArray.add(marker);
     } else {

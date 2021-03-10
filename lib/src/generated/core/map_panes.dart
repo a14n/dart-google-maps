@@ -17,10 +17,10 @@ part of '../google_maps_core.dart';
 @JsName()
 @anonymous
 abstract class MapPanes {
-  factory MapPanes() => $js;
-  Element floatPane;
-  Element mapPane;
-  Element markerLayer;
-  Element overlayLayer;
-  Element overlayMouseTarget;
+  factory MapPanes() => $js();
+  Element? floatPane;
+  Element? mapPane;
+  Element? markerLayer;
+  Element? overlayLayer;
+  Element? overlayMouseTarget;
 }

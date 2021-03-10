@@ -19,38 +19,52 @@ external Object get _Event$namespace;
 
 class Event {
   static MapsEventListener addDomListener(
-    Object instance,
-    String eventName,
-    Function handler, [
-    bool capture,
+    Object? instance,
+    String? eventName,
+    Function? handler, [
+    bool? capture,
   ]) =>
-      callMethod(_Event$namespace, 'addDomListener',
-          [instance, eventName, allowInterop(handler), capture]);
+      callMethod(_Event$namespace, 'addDomListener', [
+        instance,
+        eventName,
+        handler == null ? null : allowInterop(handler),
+        capture
+      ]);
   static MapsEventListener addDomListenerOnce(
-    Object instance,
-    String eventName,
-    Function handler, [
-    bool capture,
+    Object? instance,
+    String? eventName,
+    Function? handler, [
+    bool? capture,
   ]) =>
-      callMethod(_Event$namespace, 'addDomListenerOnce',
-          [instance, eventName, allowInterop(handler), capture]);
+      callMethod(_Event$namespace, 'addDomListenerOnce', [
+        instance,
+        eventName,
+        handler == null ? null : allowInterop(handler),
+        capture
+      ]);
   static MapsEventListener addListener(
-          Object instance, String eventName, Function handler) =>
-      callMethod(_Event$namespace, 'addListener',
-          [instance, eventName, allowInterop(handler)]);
+          Object? instance, String? eventName, Function? handler) =>
+      callMethod(_Event$namespace, 'addListener', [
+        instance,
+        eventName,
+        handler == null ? null : allowInterop(handler)
+      ]);
   static MapsEventListener addListenerOnce(
-          Object instance, String eventName, Function handler) =>
-      callMethod(_Event$namespace, 'addListenerOnce',
-          [instance, eventName, allowInterop(handler)]);
-  static void clearInstanceListeners(Object instance) =>
+          Object? instance, String? eventName, Function? handler) =>
+      callMethod(_Event$namespace, 'addListenerOnce', [
+        instance,
+        eventName,
+        handler == null ? null : allowInterop(handler)
+      ]);
+  static void clearInstanceListeners(Object? instance) =>
       callMethod(_Event$namespace, 'clearInstanceListeners', [instance]);
-  static void clearListeners(Object instance, String eventName) =>
+  static void clearListeners(Object? instance, String? eventName) =>
       callMethod(_Event$namespace, 'clearListeners', [instance, eventName]);
-  static void removeListener(MapsEventListener listener) =>
+  static void removeListener(MapsEventListener? listener) =>
       callMethod(_Event$namespace, 'removeListener', [listener]);
 
   static void trigger(
-          Object instance, String eventName, List<Object> eventArgs) =>
+          Object instance, String eventName, List<Object?>? eventArgs) =>
       callMethod(
           _Event$namespace, 'trigger', [instance, eventName, ...?eventArgs]);
 }

@@ -17,8 +17,8 @@ part of '../google_maps_places.dart';
 @JsName()
 @anonymous
 abstract class FindPlaceFromQueryRequest {
-  factory FindPlaceFromQueryRequest() => $js;
-  List<String> fields;
-  String query;
-  Object /*LatLng|LatLngBounds|Circle|String*/ locationBias;
+  factory FindPlaceFromQueryRequest() => $js();
+  List<String?>? fields;
+  String? query;
+  Object? /*LatLng?|LatLngBounds?|Circle?|String?*/ locationBias;
 }

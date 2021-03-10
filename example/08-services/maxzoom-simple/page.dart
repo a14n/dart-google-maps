@@ -2,9 +2,9 @@ import 'dart:html' hide MouseEvent;
 
 import 'package:google_maps/google_maps.dart';
 
-GMap map;
-MaxZoomService maxZoomService;
-InfoWindow infoWindow;
+late GMap map;
+late MaxZoomService maxZoomService;
+late InfoWindow infoWindow;
 
 void main() {
   map = GMap(
@@ -22,7 +22,7 @@ void main() {
 
 void showMaxZoom(MapMouseEvent e) async {
   try {
-    final response = await maxZoomService.getMaxZoomAtLatLng(e.latLng);
+    final response = await maxZoomService.getMaxZoomAtLatLng(e.latLng)!;
     infoWindow.content =
         'The maximum zoom at this location is: ${response.zoom}';
   } catch (e) {

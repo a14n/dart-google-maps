@@ -17,11 +17,11 @@ part of '../google_maps_core.dart';
 @JsName()
 @anonymous
 abstract class TransitVehicle {
-  factory TransitVehicle() => $js;
-  String icon;
+  factory TransitVehicle() => $js();
+  String? icon;
   // custom name for local_icon
   @JsName('local_icon')
-  String localIcon;
-  String name;
-  VehicleType type;
+  String? localIcon;
+  String? name;
+  VehicleType? type;
 }

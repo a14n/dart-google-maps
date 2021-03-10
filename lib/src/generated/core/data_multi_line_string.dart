@@ -17,24 +17,24 @@ part of '../google_maps_core.dart';
 @JsName('google.maps.Data.MultiLineString')
 abstract class DataMultiLineString implements DataGeometry {
   factory DataMultiLineString(
-          List<Object /*DataLineString|List<LatLng>*/ > elements) =>
-      $js;
-  void forEachLatLng(void Function(LatLng p1) callback);
+          List<Object? /*DataLineString?|List<LatLng?>?*/ >? elements) =>
+      $js();
+  void forEachLatLng(void Function(LatLng? p1)? callback);
 
   // synthetic getter for getArray
-  List<DataLineString> get array => _getArray();
+  List<DataLineString?>? get array => _getArray();
   @JsName('getArray')
-  List<DataLineString> _getArray();
+  List<DataLineString?>? _getArray();
 
-  DataLineString getAt(num n);
+  DataLineString? getAt(num? n);
 
   // synthetic getter for getLength
-  num get length => _getLength();
+  num? get length => _getLength();
   @JsName('getLength')
-  num _getLength();
+  num? _getLength();
 
   // synthetic getter for getType
-  String get type => _getType();
+  String? get type => _getType();
   @JsName('getType')
-  String _getType();
+  String? _getType();
 }

@@ -3,8 +3,8 @@ import 'package:google_maps/google_maps.dart';
 
 final LatLng stockholm = LatLng(59.32522, 18.07002);
 final LatLng parliament = LatLng(59.327383, 18.06747);
-Marker marker;
-GMap map;
+late Marker marker;
+late GMap map;
 
 void main() {
   final mapOptions = MapOptions()

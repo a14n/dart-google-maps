@@ -17,11 +17,11 @@ part of '../google_maps_core.dart';
 @JsName()
 @anonymous
 abstract class GeocoderGeometry {
-  factory GeocoderGeometry() => $js;
-  LatLngBounds bounds;
-  LatLng location;
+  factory GeocoderGeometry() => $js();
+  LatLng? location;
   // custom name for location_type
   @JsName('location_type')
-  GeocoderLocationType locationType;
-  LatLngBounds viewport;
+  GeocoderLocationType? locationType;
+  LatLngBounds? viewport;
+  LatLngBounds? bounds;
 }

@@ -17,6 +17,6 @@ part of '../google_maps_core.dart';
 @JsName()
 @anonymous
 abstract class LocationElevationResponse {
-  factory LocationElevationResponse() => $js;
-  List<ElevationResult> results;
+  factory LocationElevationResponse() => $js();
+  List<ElevationResult?>? results;
 }

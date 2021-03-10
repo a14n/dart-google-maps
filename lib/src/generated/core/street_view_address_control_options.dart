@@ -17,6 +17,6 @@ part of '../google_maps_core.dart';
 @JsName()
 @anonymous
 abstract class StreetViewAddressControlOptions {
-  factory StreetViewAddressControlOptions() => $js;
-  ControlPosition position;
+  factory StreetViewAddressControlOptions() => $js();
+  ControlPosition? position;
 }

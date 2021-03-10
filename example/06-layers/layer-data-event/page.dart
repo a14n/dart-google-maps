@@ -9,17 +9,17 @@ void main() {
         ..zoom = 4
         ..center = LatLng(-28, 137.883));
 
-  map.data
+  map.data!
       .loadGeoJson('https://storage.googleapis.com/maps-devrel/google.json');
 
   // Add some style.
-  map.data.style = (DataFeature feature) => DataStyleOptions()
+  map.data!.style = (DataFeature feature) => DataStyleOptions()
     ..fillColor = feature.getProperty('color') as String
     ..strokeWeight = 1;
 
   // Set mouseover event for each feature.
-  map.data.onMouseover.listen((event) {
-    document.getElementById('info-box').text =
-        event.feature.getProperty('letter') as String;
+  map.data!.onMouseover.listen((event) {
+    document.getElementById('info-box')!.text =
+        event.feature!.getProperty('letter') as String;
   });
 }

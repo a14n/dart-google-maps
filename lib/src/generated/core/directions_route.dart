@@ -17,19 +17,19 @@ part of '../google_maps_core.dart';
 @JsName()
 @anonymous
 abstract class DirectionsRoute {
-  factory DirectionsRoute() => $js;
-  LatLngBounds bounds;
-  String copyrights;
-  TransitFare fare;
-  List<DirectionsLeg> legs;
+  factory DirectionsRoute() => $js();
+  LatLngBounds? bounds;
+  String? copyrights;
+  List<DirectionsLeg?>? legs;
   // custom name for overview_path
   @JsName('overview_path')
-  List<LatLng> overviewPath;
+  List<LatLng?>? overviewPath;
   // custom name for overview_polyline
   @JsName('overview_polyline')
-  String overviewPolyline;
-  List<String> warnings;
+  String? overviewPolyline;
+  List<String?>? warnings;
   // custom name for waypoint_order
   @JsName('waypoint_order')
-  List<num> waypointOrder;
+  List<num?>? waypointOrder;
+  TransitFare? fare;
 }

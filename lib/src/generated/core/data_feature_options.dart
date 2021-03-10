@@ -17,8 +17,8 @@ part of '../google_maps_core.dart';
 @JsName()
 @anonymous
 abstract class DataFeatureOptions {
-  factory DataFeatureOptions() => $js;
-  Object /*DataGeometry|LatLng*/ geometry;
-  Object /*num|String*/ id;
-  Object properties;
+  factory DataFeatureOptions() => $js();
+  Object? /*DataGeometry?|LatLng?*/ geometry;
+  Object? /*num?|String?*/ id;
+  Object? properties;
 }

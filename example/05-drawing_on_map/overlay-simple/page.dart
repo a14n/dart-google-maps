@@ -5,7 +5,7 @@ import 'package:google_maps/google_maps.dart';
 const IMAGE_URL =
     'https://google-developers.appspot.com/maps/documentation/javascript/examples/full';
 
-USGSOverlay overlay;
+late USGSOverlay overlay;
 
 void main() {
   final map = GMap(
@@ -31,7 +31,7 @@ void main() {
 }
 
 class USGSOverlay {
-  USGSOverlay(this._bounds, this._image, GMap map) : super() {
+  USGSOverlay(this._bounds, this._image, GMap map) {
     overlayView
       ..onAdd = _onAdd
       ..draw = _draw
@@ -45,7 +45,7 @@ class USGSOverlay {
 
   final LatLngBounds _bounds;
   final String _image;
-  DivElement _div;
+  DivElement? _div;
 
   /// onAdd is called when the map's panes are ready and the overlay has been
   /// added to the map.
@@ -67,34 +67,34 @@ class USGSOverlay {
     _div = div;
 
     // Add the element to the "overlayLayer" pane.
-    overlayView.panes.overlayLayer.children.add(_div);
+    overlayView.panes!.overlayLayer!.children.add(div);
   }
 
   void _draw() {
     // We use the south-west and north-east
     // coordinates of the overlay to peg it to the correct position and size.
     // To do this, we need to retrieve the projection from the overlay.
-    final overlayProjection = overlayView.projection;
+    final overlayProjection = overlayView.projection!;
 
     // Retrieve the south-west and north-east coordinates of this overlay
     // in LatLngs and convert them to pixel coordinates.
     // We'll use these coordinates to resize the div.
-    final sw = overlayProjection.fromLatLngToDivPixel(_bounds.southWest);
-    final ne = overlayProjection.fromLatLngToDivPixel(_bounds.northEast);
+    final sw = overlayProjection.fromLatLngToDivPixel(_bounds.southWest)!;
+    final ne = overlayProjection.fromLatLngToDivPixel(_bounds.northEast)!;
 
     // Resize the image's div to fit the indicated dimensions.
-    final div = _div;
+    final div = _div!;
     div.style
       ..left = '${sw.x}px'
       ..top = '${ne.y}px'
-      ..width = '${ne.x - sw.x}px'
-      ..height = '${sw.y - ne.y}px';
+      ..width = '${ne.x! - sw.x!}px'
+      ..height = '${sw.y! - ne.y!}px';
   }
 
   /// The onRemove() method will be called automatically from the API if
   /// we ever set the overlay's map property to 'null'.
   void _onRemove() {
-    _div.remove();
+    _div!.remove();
     _div = null;
   }
 }

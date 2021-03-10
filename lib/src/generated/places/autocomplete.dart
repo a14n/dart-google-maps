@@ -17,55 +17,55 @@ part of '../google_maps_places.dart';
 @JsName('google.maps.places.Autocomplete')
 abstract class Autocomplete extends MVCObject {
   factory Autocomplete(
-    InputElement inputField, [
-    AutocompleteOptions opts, // ignore: unused_element
+    InputElement? inputField, [
+    AutocompleteOptions? opts, // ignore: unused_element
   ]) =>
-      $js;
+      $js();
 
   // synthetic getter for getBounds
-  LatLngBounds get bounds => _getBounds();
+  LatLngBounds? get bounds => _getBounds();
   @JsName('getBounds')
-  LatLngBounds _getBounds();
+  LatLngBounds? _getBounds();
 
   // synthetic getter for getFields
-  List<String> get fields => _getFields();
+  List<String?>? get fields => _getFields();
   @JsName('getFields')
-  List<String> _getFields();
+  List<String?>? _getFields();
 
   // synthetic getter for getPlace
-  PlaceResult get place => _getPlace();
+  PlaceResult? get place => _getPlace();
   @JsName('getPlace')
-  PlaceResult _getPlace();
+  PlaceResult? _getPlace();
 
   // synthetic setter for setBounds
-  set bounds(LatLngBounds bounds) => _setBounds(bounds);
+  set bounds(LatLngBounds? bounds) => _setBounds(bounds);
   @JsName('setBounds')
-  void _setBounds(LatLngBounds bounds);
+  void _setBounds(LatLngBounds? bounds);
 
   // synthetic setter for setComponentRestrictions
-  set componentRestrictions(ComponentRestrictions componentRestrictions) =>
+  set componentRestrictions(ComponentRestrictions? componentRestrictions) =>
       _setComponentRestrictions(componentRestrictions);
   @JsName('setComponentRestrictions')
-  void _setComponentRestrictions(ComponentRestrictions restrictions);
+  void _setComponentRestrictions(ComponentRestrictions? restrictions);
 
   // synthetic setter for setFields
-  set fields(List<String> fields) => _setFields(fields);
+  set fields(List<String?>? fields) => _setFields(fields);
   @JsName('setFields')
-  void _setFields(List<String> fields);
+  void _setFields(List<String?>? fields);
 
   // synthetic setter for setOptions
-  set options(AutocompleteOptions options) => _setOptions(options);
+  set options(AutocompleteOptions? options) => _setOptions(options);
   @JsName('setOptions')
-  void _setOptions(AutocompleteOptions options);
+  void _setOptions(AutocompleteOptions? options);
 
   // synthetic setter for setTypes
-  set types(List<String> types) => _setTypes(types);
+  set types(List<String?>? types) => _setTypes(types);
   @JsName('setTypes')
-  void _setTypes(List<String> types);
+  void _setTypes(List<String?>? types);
 
   Stream<void> get onPlaceChanged {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'place_changed',

@@ -17,35 +17,35 @@ part of '../google_maps_visualization.dart';
 @JsName('google.maps.visualization.HeatmapLayer')
 abstract class HeatmapLayer extends MVCObject {
   factory HeatmapLayer([
-    HeatmapLayerOptions opts, // ignore: unused_element
+    HeatmapLayerOptions? opts, // ignore: unused_element
   ]) =>
-      $js;
+      $js();
 
   // synthetic getter for getData
-  MVCArray<Object /*LatLng|WeightedLocation*/ > get data => _getData();
+  MVCArray<Object? /*LatLng?|WeightedLocation?*/ >? get data => _getData();
   @JsName('getData')
-  MVCArray<Object /*LatLng|WeightedLocation*/ > _getData();
+  MVCArray<Object? /*LatLng?|WeightedLocation?*/ >? _getData();
 
   // synthetic getter for getMap
-  GMap get map => _getMap();
+  GMap? get map => _getMap();
   @JsName('getMap')
-  GMap _getMap();
+  GMap? _getMap();
 
   // synthetic setter for setData
   set data(
-          Object /*MVCArray<Object/*LatLng|WeightedLocation*/>|List<Object/*LatLng|WeightedLocation*/>*/ data) =>
+          Object? /*MVCArray<Object?/*LatLng?|WeightedLocation?*/>?|List<Object?/*LatLng?|WeightedLocation?*/>?*/ data) =>
       _setData(data);
   @JsName('setData')
   void _setData(
-      Object /*MVCArray<Object/*LatLng|WeightedLocation*/>|List<Object/*LatLng|WeightedLocation*/>*/ data);
+      Object? /*MVCArray<Object?/*LatLng?|WeightedLocation?*/>?|List<Object?/*LatLng?|WeightedLocation?*/>?*/ data);
 
   // synthetic setter for setMap
-  set map(GMap map) => _setMap(map);
+  set map(GMap? map) => _setMap(map);
   @JsName('setMap')
-  void _setMap(GMap map);
+  void _setMap(GMap? map);
 
   // synthetic setter for setOptions
-  set options(HeatmapLayerOptions options) => _setOptions(options);
+  set options(HeatmapLayerOptions? options) => _setOptions(options);
   @JsName('setOptions')
-  void _setOptions(HeatmapLayerOptions options);
+  void _setOptions(HeatmapLayerOptions? options);
 }

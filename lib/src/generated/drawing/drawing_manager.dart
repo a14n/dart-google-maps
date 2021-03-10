@@ -17,38 +17,38 @@ part of '../google_maps_drawing.dart';
 @JsName('google.maps.drawing.DrawingManager')
 abstract class DrawingManager extends MVCObject {
   factory DrawingManager([
-    DrawingManagerOptions options, // ignore: unused_element
+    DrawingManagerOptions? options, // ignore: unused_element
   ]) =>
-      $js;
+      $js();
 
   // synthetic getter for getDrawingMode
-  OverlayType get drawingMode => _getDrawingMode();
+  OverlayType? get drawingMode => _getDrawingMode();
   @JsName('getDrawingMode')
-  OverlayType _getDrawingMode();
+  OverlayType? _getDrawingMode();
 
   // synthetic getter for getMap
-  GMap get map => _getMap();
+  GMap? get map => _getMap();
   @JsName('getMap')
-  GMap _getMap();
+  GMap? _getMap();
 
   // synthetic setter for setDrawingMode
-  set drawingMode(OverlayType drawingMode) => _setDrawingMode(drawingMode);
+  set drawingMode(OverlayType? drawingMode) => _setDrawingMode(drawingMode);
   @JsName('setDrawingMode')
-  void _setDrawingMode(OverlayType drawingMode);
+  void _setDrawingMode(OverlayType? drawingMode);
 
   // synthetic setter for setMap
-  set map(GMap map) => _setMap(map);
+  set map(GMap? map) => _setMap(map);
   @JsName('setMap')
-  void _setMap(GMap map);
+  void _setMap(GMap? map);
 
   // synthetic setter for setOptions
-  set options(DrawingManagerOptions options) => _setOptions(options);
+  set options(DrawingManagerOptions? options) => _setOptions(options);
   @JsName('setOptions')
-  void _setOptions(DrawingManagerOptions options);
+  void _setOptions(DrawingManagerOptions? options);
 
   Stream<Circle> get onCirclecomplete {
-    StreamController<Circle> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<Circle> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'circlecomplete',
@@ -65,8 +65,8 @@ abstract class DrawingManager extends MVCObject {
   }
 
   Stream<Marker> get onMarkercomplete {
-    StreamController<Marker> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<Marker> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'markercomplete',
@@ -83,8 +83,8 @@ abstract class DrawingManager extends MVCObject {
   }
 
   Stream<OverlayCompleteEvent> get onOverlaycomplete {
-    StreamController<OverlayCompleteEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<OverlayCompleteEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'overlaycomplete',
@@ -101,8 +101,8 @@ abstract class DrawingManager extends MVCObject {
   }
 
   Stream<Polygon> get onPolygoncomplete {
-    StreamController<Polygon> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<Polygon> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'polygoncomplete',
@@ -119,8 +119,8 @@ abstract class DrawingManager extends MVCObject {
   }
 
   Stream<Polyline> get onPolylinecomplete {
-    StreamController<Polyline> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<Polyline> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'polylinecomplete',
@@ -137,8 +137,8 @@ abstract class DrawingManager extends MVCObject {
   }
 
   Stream<Rectangle> get onRectanglecomplete {
-    StreamController<Rectangle> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<Rectangle> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'rectanglecomplete',

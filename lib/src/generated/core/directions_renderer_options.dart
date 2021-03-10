@@ -17,19 +17,19 @@ part of '../google_maps_core.dart';
 @JsName()
 @anonymous
 abstract class DirectionsRendererOptions {
-  factory DirectionsRendererOptions() => $js;
-  DirectionsResult directions;
-  bool draggable;
-  bool hideRouteList;
-  InfoWindow infoWindow;
-  GMap map;
-  MarkerOptions markerOptions;
-  Node panel;
-  PolylineOptions polylineOptions;
-  bool preserveViewport;
-  num routeIndex;
-  bool suppressBicyclingLayer;
-  bool suppressInfoWindows;
-  bool suppressMarkers;
-  bool suppressPolylines;
+  factory DirectionsRendererOptions() => $js();
+  DirectionsResult? directions;
+  bool? draggable;
+  bool? hideRouteList;
+  InfoWindow? infoWindow;
+  GMap? map;
+  MarkerOptions? markerOptions;
+  Node? panel;
+  PolylineOptions? polylineOptions;
+  bool? preserveViewport;
+  num? routeIndex;
+  bool? suppressBicyclingLayer;
+  bool? suppressInfoWindows;
+  bool? suppressMarkers;
+  bool? suppressPolylines;
 }

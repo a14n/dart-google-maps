@@ -1,7 +1,7 @@
 import 'dart:html';
 import 'package:google_maps/google_maps.dart';
 
-GMap map;
+late GMap map;
 final markers = <Marker>[];
 
 void main() {
@@ -13,16 +13,16 @@ void main() {
   map = GMap(document.getElementById('map-canvas'), mapOptions);
 
   // This event listener will call addMarker() when the map is clicked.
-  map.onClick.listen((e) => addMarker(e.latLng));
+  map.onClick.listen((e) => addMarker(e.latLng!));
 
   // Adds a marker at the center of the map.
   addMarker(haightAshbury);
 
   // bind buttons
-  document.getElementById('clearMarkers').onClick.listen((_) => clearMarkers());
-  document.getElementById('showMarkers').onClick.listen((_) => showMarkers());
+  document.getElementById('clearMarkers')!.onClick.listen((_) => clearMarkers());
+  document.getElementById('showMarkers')!.onClick.listen((_) => showMarkers());
   document
-      .getElementById('deleteMarkers')
+      .getElementById('deleteMarkers')!
       .onClick
       .listen((_) => deleteMarkers());
 }
@@ -36,7 +36,7 @@ void addMarker(LatLng location) {
 }
 
 // Sets the map on all markers in the array.
-void setAllMap(GMap map) {
+void setAllMap(GMap? map) {
   for (final m in markers) {
     m.map = map;
   }

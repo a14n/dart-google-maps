@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:html';
 import 'package:google_maps/google_maps.dart';
 
-GMap map;
+late GMap map;
 
 void main() {
   final mapOptions = MapOptions()
@@ -13,7 +13,7 @@ void main() {
     ..tilt = 45;
   map = GMap(document.getElementById('map-canvas'), mapOptions)..tilt = 45;
 
-  document.getElementById('autoRotate').onClick.listen(autoRotate);
+  document.getElementById('autoRotate')!.onClick.listen(autoRotate);
 }
 
 void rotate90(_) {

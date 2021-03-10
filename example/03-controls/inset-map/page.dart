@@ -34,7 +34,7 @@ void main() {
   map.onBoundsChanged.listen((event) {
     overview
       ..center = map.center
-      ..zoom = (map.zoom - overviewDifference)
+      ..zoom = (map.zoom! - overviewDifference)
           .clamp(overviewMinZoom, overviewMaxZoom);
   });
 }

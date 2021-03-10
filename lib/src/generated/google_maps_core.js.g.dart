@@ -28,67 +28,68 @@ import 'package:js_wrapping/js_wrapping.dart';
 @JS('google.maps.Map')
 class GMap extends MVCObject {
   external GMap(
-    Element mapDiv, [
-    MapOptions opts, // ignore: unused_element
+    Element? mapDiv, [
+    MapOptions? opts, // ignore: unused_element
   ]);
 
-  external Data get data;
+  external Data? get data;
 
-  external set data(Data value);
+  external set data(Data? value);
 
-  external MapTypeRegistry get mapTypes;
+  external MapTypeRegistry? get mapTypes;
 
-  external set mapTypes(MapTypeRegistry value);
+  external set mapTypes(MapTypeRegistry? value);
 
-  external MVCArray<MapType> get overlayMapTypes;
+  external MVCArray<MapType?>? get overlayMapTypes;
 
-  external set overlayMapTypes(MVCArray<MapType> value);
+  external set overlayMapTypes(MVCArray<MapType?>? value);
 
   external void fitBounds(
-    LatLngBounds bounds, [
-    Object /*num|Padding*/ padding,
+    LatLngBounds? bounds, [
+    Object? /*num?|Padding?*/ padding,
   ]);
 
-  external void panBy(num x, num y);
+  external void panBy(num? x, num? y);
 
-  external void panTo(LatLng latLng);
+  external void panTo(LatLng? latLng);
 
   external void panToBounds(
-    LatLngBounds latLngBounds, [
-    Object /*num|Padding*/ padding,
+    LatLngBounds? latLngBounds, [
+    Object? /*num?|Padding?*/ padding,
   ]);
 }
 
 extension GMap$Ext on GMap {
-  List<MVCArray<Node>> get controls =>
-      getProperty(this, 'controls')?.cast<MVCArray<Node>>();
+  List<MVCArray<Node?>?>? get controls =>
+      getProperty(this, 'controls')?.cast<MVCArray<Node?>?>();
 
-  set controls(List<MVCArray<Node>> value) {
+  set controls(List<MVCArray<Node?>?>? value) {
     setProperty(this, 'controls', value);
   }
 
-  LatLngBounds get bounds => _getBounds();
-  LatLng get center => _getCenter();
-  bool get clickableIcons => _getClickableIcons();
-  Element get div => _getDiv();
-  num get heading => _getHeading();
-  Object /*MapTypeId|String*/ get mapTypeId => _getMapTypeId();
-  Projection get projection => _getProjection();
-  StreetViewPanorama get streetView => _getStreetView();
-  num get tilt => _getTilt();
-  num get zoom => _getZoom();
-  set center(LatLng center) => _setCenter(center);
-  set clickableIcons(bool clickableIcons) => _setClickableIcons(clickableIcons);
-  set heading(num heading) => _setHeading(heading);
-  set mapTypeId(Object /*MapTypeId|String*/ mapTypeId) =>
+  LatLngBounds? get bounds => _getBounds();
+  LatLng? get center => _getCenter();
+  bool? get clickableIcons => _getClickableIcons();
+  Element? get div => _getDiv();
+  num? get heading => _getHeading();
+  Object? /*MapTypeId?|String?*/ get mapTypeId => _getMapTypeId();
+  Projection? get projection => _getProjection();
+  StreetViewPanorama? get streetView => _getStreetView();
+  num? get tilt => _getTilt();
+  num? get zoom => _getZoom();
+  set center(LatLng? center) => _setCenter(center);
+  set clickableIcons(bool? clickableIcons) =>
+      _setClickableIcons(clickableIcons);
+  set heading(num? heading) => _setHeading(heading);
+  set mapTypeId(Object? /*MapTypeId?|String?*/ mapTypeId) =>
       _setMapTypeId(mapTypeId);
-  set options(MapOptions options) => _setOptions(options);
-  set streetView(StreetViewPanorama streetView) => _setStreetView(streetView);
-  set tilt(num tilt) => _setTilt(tilt);
-  set zoom(num zoom) => _setZoom(zoom);
+  set options(MapOptions? options) => _setOptions(options);
+  set streetView(StreetViewPanorama? streetView) => _setStreetView(streetView);
+  set tilt(num? tilt) => _setTilt(tilt);
+  set zoom(num? zoom) => _setZoom(zoom);
   Stream<void> get onBoundsChanged {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'bounds_changed',
@@ -105,8 +106,8 @@ extension GMap$Ext on GMap {
   }
 
   Stream<void> get onCenterChanged {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'center_changed',
@@ -123,8 +124,8 @@ extension GMap$Ext on GMap {
   }
 
   Stream<IconMouseEvent> get onClick {
-    StreamController<IconMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<IconMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'click',
@@ -141,8 +142,8 @@ extension GMap$Ext on GMap {
   }
 
   Stream<MapMouseEvent> get onContextmenu {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'contextmenu',
@@ -159,8 +160,8 @@ extension GMap$Ext on GMap {
   }
 
   Stream<MapMouseEvent> get onDblclick {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'dblclick',
@@ -177,8 +178,8 @@ extension GMap$Ext on GMap {
   }
 
   Stream<void> get onDrag {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'drag',
@@ -195,8 +196,8 @@ extension GMap$Ext on GMap {
   }
 
   Stream<void> get onDragend {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'dragend',
@@ -213,8 +214,8 @@ extension GMap$Ext on GMap {
   }
 
   Stream<void> get onDragstart {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'dragstart',
@@ -231,8 +232,8 @@ extension GMap$Ext on GMap {
   }
 
   Stream<void> get onHeadingChanged {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'heading_changed',
@@ -249,8 +250,8 @@ extension GMap$Ext on GMap {
   }
 
   Stream<void> get onIdle {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'idle',
@@ -267,8 +268,8 @@ extension GMap$Ext on GMap {
   }
 
   Stream<void> get onMaptypeidChanged {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'maptypeid_changed',
@@ -285,8 +286,8 @@ extension GMap$Ext on GMap {
   }
 
   Stream<MapMouseEvent> get onMousemove {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mousemove',
@@ -303,8 +304,8 @@ extension GMap$Ext on GMap {
   }
 
   Stream<MapMouseEvent> get onMouseout {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseout',
@@ -321,8 +322,8 @@ extension GMap$Ext on GMap {
   }
 
   Stream<MapMouseEvent> get onMouseover {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseover',
@@ -339,8 +340,8 @@ extension GMap$Ext on GMap {
   }
 
   Stream<void> get onProjectionChanged {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'projection_changed',
@@ -357,8 +358,8 @@ extension GMap$Ext on GMap {
   }
 
   Stream<MapMouseEvent> get onRightclick {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'rightclick',
@@ -375,8 +376,8 @@ extension GMap$Ext on GMap {
   }
 
   Stream<void> get onTilesloaded {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'tilesloaded',
@@ -393,8 +394,8 @@ extension GMap$Ext on GMap {
   }
 
   Stream<void> get onTiltChanged {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'tilt_changed',
@@ -411,8 +412,8 @@ extension GMap$Ext on GMap {
   }
 
   Stream<void> get onZoomChanged {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'zoom_changed',
@@ -428,56 +429,56 @@ extension GMap$Ext on GMap {
     return sc.stream;
   }
 
-  LatLngBounds _getBounds() => callMethod(this, 'getBounds', []);
+  LatLngBounds? _getBounds() => callMethod(this, 'getBounds', []);
 
-  LatLng _getCenter() => callMethod(this, 'getCenter', []);
+  LatLng? _getCenter() => callMethod(this, 'getCenter', []);
 
-  bool _getClickableIcons() => callMethod(this, 'getClickableIcons', []);
+  bool? _getClickableIcons() => callMethod(this, 'getClickableIcons', []);
 
-  Element _getDiv() => callMethod(this, 'getDiv', []);
+  Element? _getDiv() => callMethod(this, 'getDiv', []);
 
-  num _getHeading() => callMethod(this, 'getHeading', []);
+  num? _getHeading() => callMethod(this, 'getHeading', []);
 
-  Object /*MapTypeId|String*/ _getMapTypeId() =>
+  Object? /*MapTypeId?|String?*/ _getMapTypeId() =>
       callMethod(this, 'getMapTypeId', []);
 
-  Projection _getProjection() => callMethod(this, 'getProjection', []);
+  Projection? _getProjection() => callMethod(this, 'getProjection', []);
 
-  StreetViewPanorama _getStreetView() => callMethod(this, 'getStreetView', []);
+  StreetViewPanorama? _getStreetView() => callMethod(this, 'getStreetView', []);
 
-  num _getTilt() => callMethod(this, 'getTilt', []);
+  num? _getTilt() => callMethod(this, 'getTilt', []);
 
-  num _getZoom() => callMethod(this, 'getZoom', []);
+  num? _getZoom() => callMethod(this, 'getZoom', []);
 
-  void _setCenter(LatLng latlng) {
+  void _setCenter(LatLng? latlng) {
     callMethod(this, 'setCenter', [latlng]);
   }
 
-  void _setClickableIcons(bool value) {
+  void _setClickableIcons(bool? value) {
     callMethod(this, 'setClickableIcons', [value]);
   }
 
-  void _setHeading(num heading) {
+  void _setHeading(num? heading) {
     callMethod(this, 'setHeading', [heading]);
   }
 
-  void _setMapTypeId(Object /*MapTypeId|String*/ mapTypeId) {
+  void _setMapTypeId(Object? /*MapTypeId?|String?*/ mapTypeId) {
     callMethod(this, 'setMapTypeId', [mapTypeId]);
   }
 
-  void _setOptions(MapOptions options) {
+  void _setOptions(MapOptions? options) {
     callMethod(this, 'setOptions', [options]);
   }
 
-  void _setStreetView(StreetViewPanorama panorama) {
+  void _setStreetView(StreetViewPanorama? panorama) {
     callMethod(this, 'setStreetView', [panorama]);
   }
 
-  void _setTilt(num tilt) {
+  void _setTilt(num? tilt) {
     callMethod(this, 'setTilt', [tilt]);
   }
 
-  void _setZoom(num zoom) {
+  void _setZoom(num? zoom) {
     callMethod(this, 'setZoom', [zoom]);
   }
 }
@@ -487,152 +488,152 @@ extension GMap$Ext on GMap {
 class MapOptions {
   external factory MapOptions();
 
-  external String get backgroundColor;
+  external String? get backgroundColor;
 
-  external set backgroundColor(String value);
+  external set backgroundColor(String? value);
 
-  external LatLng get center;
+  external LatLng? get center;
 
-  external set center(LatLng value);
+  external set center(LatLng? value);
 
-  external bool get clickableIcons;
+  external bool? get clickableIcons;
 
-  external set clickableIcons(bool value);
+  external set clickableIcons(bool? value);
 
-  external num get controlSize;
+  external num? get controlSize;
 
-  external set controlSize(num value);
+  external set controlSize(num? value);
 
-  external bool get disableDefaultUI;
+  external bool? get disableDefaultUI;
 
-  external set disableDefaultUI(bool value);
+  external set disableDefaultUI(bool? value);
 
-  external bool get disableDoubleClickZoom;
+  external bool? get disableDoubleClickZoom;
 
-  external set disableDoubleClickZoom(bool value);
+  external set disableDoubleClickZoom(bool? value);
 
-  external bool get draggable;
+  external bool? get draggable;
 
-  external set draggable(bool value);
+  external set draggable(bool? value);
 
-  external String get draggableCursor;
+  external String? get draggableCursor;
 
-  external set draggableCursor(String value);
+  external set draggableCursor(String? value);
 
-  external String get draggingCursor;
+  external String? get draggingCursor;
 
-  external set draggingCursor(String value);
+  external set draggingCursor(String? value);
 
-  external bool get fullscreenControl;
+  external bool? get fullscreenControl;
 
-  external set fullscreenControl(bool value);
+  external set fullscreenControl(bool? value);
 
-  external FullscreenControlOptions get fullscreenControlOptions;
+  external FullscreenControlOptions? get fullscreenControlOptions;
 
-  external set fullscreenControlOptions(FullscreenControlOptions value);
+  external set fullscreenControlOptions(FullscreenControlOptions? value);
 
-  external String get gestureHandling;
+  external String? get gestureHandling;
 
-  external set gestureHandling(String value);
+  external set gestureHandling(String? value);
 
-  external num get heading;
+  external num? get heading;
 
-  external set heading(num value);
+  external set heading(num? value);
 
-  external bool get keyboardShortcuts;
+  external bool? get keyboardShortcuts;
 
-  external set keyboardShortcuts(bool value);
+  external set keyboardShortcuts(bool? value);
 
-  external bool get mapTypeControl;
+  external bool? get mapTypeControl;
 
-  external set mapTypeControl(bool value);
+  external set mapTypeControl(bool? value);
 
-  external MapTypeControlOptions get mapTypeControlOptions;
+  external MapTypeControlOptions? get mapTypeControlOptions;
 
-  external set mapTypeControlOptions(MapTypeControlOptions value);
+  external set mapTypeControlOptions(MapTypeControlOptions? value);
 
-  external Object /*MapTypeId|String*/ get mapTypeId;
+  external Object? /*MapTypeId?|String?*/ get mapTypeId;
 
-  external set mapTypeId(Object /*MapTypeId|String*/ value);
+  external set mapTypeId(Object? /*MapTypeId?|String?*/ value);
 
-  external num get maxZoom;
+  external num? get maxZoom;
 
-  external set maxZoom(num value);
+  external set maxZoom(num? value);
 
-  external num get minZoom;
+  external num? get minZoom;
 
-  external set minZoom(num value);
+  external set minZoom(num? value);
 
-  external bool get noClear;
+  external bool? get noClear;
 
-  external set noClear(bool value);
+  external set noClear(bool? value);
 
-  external bool get panControl;
+  external bool? get panControl;
 
-  external set panControl(bool value);
+  external set panControl(bool? value);
 
-  external PanControlOptions get panControlOptions;
+  external PanControlOptions? get panControlOptions;
 
-  external set panControlOptions(PanControlOptions value);
+  external set panControlOptions(PanControlOptions? value);
 
-  external MapRestriction get restriction;
+  external MapRestriction? get restriction;
 
-  external set restriction(MapRestriction value);
+  external set restriction(MapRestriction? value);
 
-  external bool get rotateControl;
+  external bool? get rotateControl;
 
-  external set rotateControl(bool value);
+  external set rotateControl(bool? value);
 
-  external RotateControlOptions get rotateControlOptions;
+  external RotateControlOptions? get rotateControlOptions;
 
-  external set rotateControlOptions(RotateControlOptions value);
+  external set rotateControlOptions(RotateControlOptions? value);
 
-  external bool get scaleControl;
+  external bool? get scaleControl;
 
-  external set scaleControl(bool value);
+  external set scaleControl(bool? value);
 
-  external ScaleControlOptions get scaleControlOptions;
+  external ScaleControlOptions? get scaleControlOptions;
 
-  external set scaleControlOptions(ScaleControlOptions value);
+  external set scaleControlOptions(ScaleControlOptions? value);
 
-  external bool get scrollwheel;
+  external bool? get scrollwheel;
 
-  external set scrollwheel(bool value);
+  external set scrollwheel(bool? value);
 
-  external StreetViewPanorama get streetView;
+  external StreetViewPanorama? get streetView;
 
-  external set streetView(StreetViewPanorama value);
+  external set streetView(StreetViewPanorama? value);
 
-  external bool get streetViewControl;
+  external bool? get streetViewControl;
 
-  external set streetViewControl(bool value);
+  external set streetViewControl(bool? value);
 
-  external StreetViewControlOptions get streetViewControlOptions;
+  external StreetViewControlOptions? get streetViewControlOptions;
 
-  external set streetViewControlOptions(StreetViewControlOptions value);
+  external set streetViewControlOptions(StreetViewControlOptions? value);
 
-  external num get tilt;
+  external num? get tilt;
 
-  external set tilt(num value);
+  external set tilt(num? value);
 
-  external num get zoom;
+  external num? get zoom;
 
-  external set zoom(num value);
+  external set zoom(num? value);
 
-  external bool get zoomControl;
+  external bool? get zoomControl;
 
-  external set zoomControl(bool value);
+  external set zoomControl(bool? value);
 
-  external ZoomControlOptions get zoomControlOptions;
+  external ZoomControlOptions? get zoomControlOptions;
 
-  external set zoomControlOptions(ZoomControlOptions value);
+  external set zoomControlOptions(ZoomControlOptions? value);
 }
 
 extension MapOptions$Ext on MapOptions {
-  List<MapTypeStyle> get styles =>
-      getProperty(this, 'styles')?.cast<MapTypeStyle>();
+  List<MapTypeStyle?>? get styles =>
+      getProperty(this, 'styles')?.cast<MapTypeStyle?>();
 
-  set styles(List<MapTypeStyle> value) {
+  set styles(List<MapTypeStyle?>? value) {
     setProperty(this, 'styles', value);
   }
 }
@@ -642,19 +643,19 @@ extension MapOptions$Ext on MapOptions {
 class MapTypeStyle {
   external factory MapTypeStyle();
 
-  external String get elementType;
+  external String? get elementType;
 
-  external set elementType(String value);
+  external set elementType(String? value);
 
-  external String get featureType;
+  external String? get featureType;
 
-  external set featureType(String value);
+  external set featureType(String? value);
 }
 
 extension MapTypeStyle$Ext on MapTypeStyle {
-  List<Object> get stylers => getProperty(this, 'stylers')?.cast<Object>();
+  List<Object?>? get stylers => getProperty(this, 'stylers')?.cast<Object?>();
 
-  set stylers(List<Object> value) {
+  set stylers(List<Object?>? value) {
     setProperty(this, 'stylers', value);
   }
 }
@@ -664,14 +665,14 @@ extension MapTypeStyle$Ext on MapTypeStyle {
 class MapMouseEvent {
   external factory MapMouseEvent();
 
-  external Object /*MouseEvent|TouchEvent|PointerEvent|Object*/ get domEvent;
+  external Object? /*MouseEvent?|TouchEvent?|PointerEvent?|KeyboardEvent?|Object?*/ get domEvent;
 
   external set domEvent(
-      Object /*MouseEvent|TouchEvent|PointerEvent|Object*/ value);
+      Object? /*MouseEvent?|TouchEvent?|PointerEvent?|KeyboardEvent?|Object?*/ value);
 
-  external LatLng get latLng;
+  external LatLng? get latLng;
 
-  external set latLng(LatLng value);
+  external set latLng(LatLng? value);
 
   external void stop();
 }
@@ -681,9 +682,9 @@ class MapMouseEvent {
 class IconMouseEvent extends MapMouseEvent {
   external factory IconMouseEvent();
 
-  external String get placeId;
+  external String? get placeId;
 
-  external set placeId(String value);
+  external set placeId(String? value);
 }
 
 @JS('google.maps.MapTypeId')
@@ -698,7 +699,7 @@ class MapTypeId {
 class MapTypeRegistry extends MVCObject {
   external MapTypeRegistry();
 
-  external void set(String id, Object /*MapType|Object*/ mapType);
+  external void set(String? id, Object? /*MapType?|Object?*/ mapType);
 }
 
 @JS()
@@ -706,34 +707,34 @@ class MapTypeRegistry extends MVCObject {
 class MapRestriction {
   external factory MapRestriction();
 
-  external LatLngBounds get latLngBounds;
+  external LatLngBounds? get latLngBounds;
 
-  external set latLngBounds(LatLngBounds value);
+  external set latLngBounds(LatLngBounds? value);
 
-  external bool get strictBounds;
+  external bool? get strictBounds;
 
-  external set strictBounds(bool value);
+  external set strictBounds(bool? value);
 }
 
 @JS('google.maps.TrafficLayer')
 class TrafficLayer extends MVCObject {
   external TrafficLayer([
-    TrafficLayerOptions opts, // ignore: unused_element
+    TrafficLayerOptions? opts, // ignore: unused_element
   ]);
 }
 
 extension TrafficLayer$Ext on TrafficLayer {
-  GMap get map => _getMap();
-  set map(GMap map) => _setMap(map);
-  set options(TrafficLayerOptions options) => _setOptions(options);
+  GMap? get map => _getMap();
+  set map(GMap? map) => _setMap(map);
+  set options(TrafficLayerOptions? options) => _setOptions(options);
 
-  GMap _getMap() => callMethod(this, 'getMap', []);
+  GMap? _getMap() => callMethod(this, 'getMap', []);
 
-  void _setMap(GMap map) {
+  void _setMap(GMap? map) {
     callMethod(this, 'setMap', [map]);
   }
 
-  void _setOptions(TrafficLayerOptions options) {
+  void _setOptions(TrafficLayerOptions? options) {
     callMethod(this, 'setOptions', [options]);
   }
 }
@@ -743,13 +744,13 @@ extension TrafficLayer$Ext on TrafficLayer {
 class TrafficLayerOptions {
   external factory TrafficLayerOptions();
 
-  external bool get autoRefresh;
+  external bool? get autoRefresh;
 
-  external set autoRefresh(bool value);
+  external set autoRefresh(bool? value);
 
-  external GMap get map;
+  external GMap? get map;
 
-  external set map(GMap value);
+  external set map(GMap? value);
 }
 
 @JS('google.maps.TransitLayer')
@@ -758,12 +759,12 @@ class TransitLayer extends MVCObject {
 }
 
 extension TransitLayer$Ext on TransitLayer {
-  GMap get map => _getMap();
-  set map(GMap map) => _setMap(map);
+  GMap? get map => _getMap();
+  set map(GMap? map) => _setMap(map);
 
-  GMap _getMap() => callMethod(this, 'getMap', []);
+  GMap? _getMap() => callMethod(this, 'getMap', []);
 
-  void _setMap(GMap map) {
+  void _setMap(GMap? map) {
     callMethod(this, 'setMap', [map]);
   }
 }
@@ -774,12 +775,12 @@ class BicyclingLayer extends MVCObject {
 }
 
 extension BicyclingLayer$Ext on BicyclingLayer {
-  GMap get map => _getMap();
-  set map(GMap map) => _setMap(map);
+  GMap? get map => _getMap();
+  set map(GMap? map) => _setMap(map);
 
-  GMap _getMap() => callMethod(this, 'getMap', []);
+  GMap? _getMap() => callMethod(this, 'getMap', []);
 
-  void _setMap(GMap map) {
+  void _setMap(GMap? map) {
     callMethod(this, 'setMap', [map]);
   }
 }
@@ -787,82 +788,84 @@ extension BicyclingLayer$Ext on BicyclingLayer {
 @JS('google.maps.LatLng')
 class LatLng {
   external LatLng(
-    num lat,
-    num lng, [
-    bool noWrap, // ignore: unused_element
+    num? lat,
+    num? lng, [
+    bool? noWrap, // ignore: unused_element
   ]);
 
-  external bool equals(LatLng other);
+  external bool? equals(LatLng? other);
 
   external String toString();
 
-  external String toUrlValue([
-    num precision,
+  external String? toUrlValue([
+    num? precision,
   ]);
 }
 
 extension LatLng$Ext on LatLng {
-  num get lat => _lat();
-  num get lng => _lng();
+  num? get lat => _lat();
+  num? get lng => _lng();
 
-  num _lat() => callMethod(this, 'lat', []);
+  num? _lat() => callMethod(this, 'lat', []);
 
-  num _lng() => callMethod(this, 'lng', []);
+  num? _lng() => callMethod(this, 'lng', []);
 }
 
 @JS('google.maps.LatLngBounds')
 class LatLngBounds {
   external LatLngBounds([
-    LatLng sw, // ignore: unused_element
-    LatLng ne, // ignore: unused_element
+    LatLng? sw, // ignore: unused_element
+    LatLng? ne, // ignore: unused_element
   ]);
 
-  external bool contains(LatLng latLng);
+  external bool? contains(LatLng? latLng);
 
-  external bool equals(LatLngBounds other);
+  external bool? equals([
+    LatLngBounds? other,
+  ]);
 
-  external LatLngBounds extend(LatLng point);
+  external LatLngBounds? extend(LatLng? point);
 
-  external bool intersects(LatLngBounds other);
+  external bool? intersects(LatLngBounds? other);
 
-  external bool isEmpty();
+  external bool? isEmpty();
 
-  external LatLng toSpan();
+  external LatLng? toSpan();
 
   external String toString();
 
-  external String toUrlValue([
-    num precision,
+  external String? toUrlValue([
+    num? precision,
   ]);
 
-  external LatLngBounds union(LatLngBounds other);
+  external LatLngBounds? union(LatLngBounds? other);
 }
 
 extension LatLngBounds$Ext on LatLngBounds {
-  LatLng get center => _getCenter();
-  LatLng get northEast => _getNorthEast();
-  LatLng get southWest => _getSouthWest();
+  LatLng? get center => _getCenter();
+  LatLng? get northEast => _getNorthEast();
+  LatLng? get southWest => _getSouthWest();
 
-  LatLng _getCenter() => callMethod(this, 'getCenter', []);
+  LatLng? _getCenter() => callMethod(this, 'getCenter', []);
 
-  LatLng _getNorthEast() => callMethod(this, 'getNorthEast', []);
+  LatLng? _getNorthEast() => callMethod(this, 'getNorthEast', []);
 
-  LatLng _getSouthWest() => callMethod(this, 'getSouthWest', []);
+  LatLng? _getSouthWest() => callMethod(this, 'getSouthWest', []);
 }
 
 @JS('google.maps.Point')
 class Point {
-  external Point(num x, num y);
+  external Point(num? x, num? y);
 
-  external num get x;
+  external num? get x;
 
-  external set x(num value);
+  external set x(num? value);
 
-  external num get y;
+  external num? get y;
 
-  external set y(num value);
+  external set y(num? value);
 
-  external bool equals(Point other);
+  external bool? equals(Point? other);
 
   external String toString();
 }
@@ -870,21 +873,21 @@ class Point {
 @JS('google.maps.Size')
 class Size {
   external Size(
-    num width,
-    num height, [
-    String widthUnit, // ignore: unused_element
-    String heightUnit, // ignore: unused_element
+    num? width,
+    num? height, [
+    String? widthUnit, // ignore: unused_element
+    String? heightUnit, // ignore: unused_element
   ]);
 
-  external num get height;
+  external num? get height;
 
-  external set height(num value);
+  external set height(num? value);
 
-  external num get width;
+  external num? get width;
 
-  external set width(num value);
+  external set width(num? value);
 
-  external bool equals(Size other);
+  external bool? equals(Size? other);
 
   external String toString();
 }
@@ -894,21 +897,21 @@ class Size {
 class Padding {
   external factory Padding();
 
-  external num get bottom;
+  external num? get bottom;
 
-  external set bottom(num value);
+  external set bottom(num? value);
 
-  external num get left;
+  external num? get left;
 
-  external set left(num value);
+  external set left(num? value);
 
-  external num get right;
+  external num? get right;
 
-  external set right(num value);
+  external set right(num? value);
 
-  external num get top;
+  external num? get top;
 
-  external set top(num value);
+  external set top(num? value);
 }
 
 @JS('google.maps.event')
@@ -916,38 +919,52 @@ external Object get _Event$namespace;
 
 class Event {
   static MapsEventListener addDomListener(
-    Object instance,
-    String eventName,
-    Function handler, [
-    bool capture,
+    Object? instance,
+    String? eventName,
+    Function? handler, [
+    bool? capture,
   ]) =>
-      callMethod(_Event$namespace, 'addDomListener',
-          [instance, eventName, allowInterop(handler), capture]);
+      callMethod(_Event$namespace, 'addDomListener', [
+        instance,
+        eventName,
+        handler == null ? null : allowInterop(handler),
+        capture
+      ]);
   static MapsEventListener addDomListenerOnce(
-    Object instance,
-    String eventName,
-    Function handler, [
-    bool capture,
+    Object? instance,
+    String? eventName,
+    Function? handler, [
+    bool? capture,
   ]) =>
-      callMethod(_Event$namespace, 'addDomListenerOnce',
-          [instance, eventName, allowInterop(handler), capture]);
+      callMethod(_Event$namespace, 'addDomListenerOnce', [
+        instance,
+        eventName,
+        handler == null ? null : allowInterop(handler),
+        capture
+      ]);
   static MapsEventListener addListener(
-          Object instance, String eventName, Function handler) =>
-      callMethod(_Event$namespace, 'addListener',
-          [instance, eventName, allowInterop(handler)]);
+          Object? instance, String? eventName, Function? handler) =>
+      callMethod(_Event$namespace, 'addListener', [
+        instance,
+        eventName,
+        handler == null ? null : allowInterop(handler)
+      ]);
   static MapsEventListener addListenerOnce(
-          Object instance, String eventName, Function handler) =>
-      callMethod(_Event$namespace, 'addListenerOnce',
-          [instance, eventName, allowInterop(handler)]);
-  static void clearInstanceListeners(Object instance) =>
+          Object? instance, String? eventName, Function? handler) =>
+      callMethod(_Event$namespace, 'addListenerOnce', [
+        instance,
+        eventName,
+        handler == null ? null : allowInterop(handler)
+      ]);
+  static void clearInstanceListeners(Object? instance) =>
       callMethod(_Event$namespace, 'clearInstanceListeners', [instance]);
-  static void clearListeners(Object instance, String eventName) =>
+  static void clearListeners(Object? instance, String? eventName) =>
       callMethod(_Event$namespace, 'clearListeners', [instance, eventName]);
-  static void removeListener(MapsEventListener listener) =>
+  static void removeListener(MapsEventListener? listener) =>
       callMethod(_Event$namespace, 'removeListener', [listener]);
 
   static void trigger(
-          Object instance, String eventName, List<Object> eventArgs) =>
+          Object instance, String eventName, List<Object?>? eventArgs) =>
       callMethod(
           _Event$namespace, 'trigger', [instance, eventName, ...?eventArgs]);
 }
@@ -965,30 +982,31 @@ class MVCObject {
   external MVCObject();
 
   external void bindTo(
-    String key,
-    MVCObject target, [
-    String targetKey,
-    bool noNotify,
+    String? key,
+    MVCObject? target, [
+    String? targetKey,
+    bool? noNotify,
   ]);
 
-  external Object get(String key);
+  external Object? get(String? key);
 
-  external void notify(String key);
+  external void notify(String? key);
 
-  external void set(String key, Object value);
+  external void set(String? key, Object? value);
 
-  external void unbind(String key);
+  external void unbind(String? key);
 
   external void unbindAll();
 }
 
 extension MVCObject$Ext on MVCObject {
-  set values(Object values) => _setValues(values);
+  set values(Object? values) => _setValues(values);
 
-  MapsEventListener addListener(String eventName, Function handler) =>
-      callMethod(this, 'addListener', [eventName, allowInterop(handler)]);
+  MapsEventListener? addListener(String? eventName, Function? handler) =>
+      callMethod(this, 'addListener',
+          [eventName, handler == null ? null : allowInterop(handler)]);
 
-  void _setValues(Object values) {
+  void _setValues(Object? values) {
     callMethod(this, 'setValues', [values]);
   }
 }
@@ -996,30 +1014,30 @@ extension MVCObject$Ext on MVCObject {
 @JS('google.maps.MVCArray')
 class MVCArray<T> extends MVCObject {
   external MVCArray([
-    List<T> array, // ignore: unused_element
+    List<T?>? array, // ignore: unused_element
   ]);
 
   external void clear();
 
-  external T getAt(num i);
+  external T? getAt(num? i);
 
-  external void insertAt(num i, T elem);
+  external void insertAt(num? i, T? elem);
 
-  external T pop();
+  external T? pop();
 
-  external num push(T elem);
+  external num? push(T? elem);
 
-  external T removeAt(num i);
+  external T? removeAt(num? i);
 
-  external void setAt(num i, T elem);
+  external void setAt(num? i, T? elem);
 }
 
 extension MVCArray$Ext<T> on MVCArray<T> {
-  List<T> get array => _getArray();
-  num get length => _getLength();
+  List<T?>? get array => _getArray();
+  num? get length => _getLength();
   Stream<num> get onInsertAt {
-    StreamController<num> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<num> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'insert_at',
@@ -1036,8 +1054,8 @@ extension MVCArray$Ext<T> on MVCArray<T> {
   }
 
   Stream<List> get onRemoveAt {
-    StreamController<List> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<List> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'remove_at',
@@ -1054,8 +1072,8 @@ extension MVCArray$Ext<T> on MVCArray<T> {
   }
 
   Stream<List> get onSetAt {
-    StreamController<List> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<List> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'set_at',
@@ -1071,13 +1089,14 @@ extension MVCArray$Ext<T> on MVCArray<T> {
     return sc.stream;
   }
 
-  void forEach(void Function(T p1, num p2) callback) {
-    callMethod(this, 'forEach', [allowInterop(callback)]);
+  void forEach(void Function(T? p1, num? p2)? callback) {
+    callMethod(
+        this, 'forEach', [callback == null ? null : allowInterop(callback)]);
   }
 
-  List<T> _getArray() => callMethod(this, 'getArray', [])?.cast<T>();
+  List<T?>? _getArray() => callMethod(this, 'getArray', [])?.cast<T?>();
 
-  num _getLength() => callMethod(this, 'getLength', []);
+  num? _getLength() => callMethod(this, 'getLength', []);
 }
 
 @JS()
@@ -1085,9 +1104,9 @@ extension MVCArray$Ext<T> on MVCArray<T> {
 class ErrorEvent {
   external factory ErrorEvent();
 
-  external Object get error;
+  external Object? get error;
 
-  external set error(Object value);
+  external set error(Object? value);
 }
 
 @JS()
@@ -1095,9 +1114,9 @@ class ErrorEvent {
 class FullscreenControlOptions {
   external factory FullscreenControlOptions();
 
-  external ControlPosition get position;
+  external ControlPosition? get position;
 
-  external set position(ControlPosition value);
+  external set position(ControlPosition? value);
 }
 
 @JS()
@@ -1105,20 +1124,20 @@ class FullscreenControlOptions {
 class MapTypeControlOptions {
   external factory MapTypeControlOptions();
 
-  external ControlPosition get position;
+  external ControlPosition? get position;
 
-  external set position(ControlPosition value);
+  external set position(ControlPosition? value);
 
-  external MapTypeControlStyle get style;
+  external MapTypeControlStyle? get style;
 
-  external set style(MapTypeControlStyle value);
+  external set style(MapTypeControlStyle? value);
 }
 
 extension MapTypeControlOptions$Ext on MapTypeControlOptions {
-  List<Object /*MapTypeId|String*/ > get mapTypeIds =>
-      getProperty(this, 'mapTypeIds')?.cast<Object /*MapTypeId|String*/ >();
+  List<Object? /*MapTypeId?|String?*/ >? get mapTypeIds =>
+      getProperty(this, 'mapTypeIds')?.cast<Object? /*MapTypeId?|String?*/ >();
 
-  set mapTypeIds(List<Object /*MapTypeId|String*/ > value) {
+  set mapTypeIds(List<Object? /*MapTypeId?|String?*/ >? value) {
     setProperty(this, 'mapTypeIds', value);
   }
 }
@@ -1135,9 +1154,9 @@ class MapTypeControlStyle {
 class MotionTrackingControlOptions {
   external factory MotionTrackingControlOptions();
 
-  external ControlPosition get position;
+  external ControlPosition? get position;
 
-  external set position(ControlPosition value);
+  external set position(ControlPosition? value);
 }
 
 @JS()
@@ -1145,9 +1164,9 @@ class MotionTrackingControlOptions {
 class PanControlOptions {
   external factory PanControlOptions();
 
-  external ControlPosition get position;
+  external ControlPosition? get position;
 
-  external set position(ControlPosition value);
+  external set position(ControlPosition? value);
 }
 
 @JS()
@@ -1155,9 +1174,9 @@ class PanControlOptions {
 class RotateControlOptions {
   external factory RotateControlOptions();
 
-  external ControlPosition get position;
+  external ControlPosition? get position;
 
-  external set position(ControlPosition value);
+  external set position(ControlPosition? value);
 }
 
 @JS()
@@ -1165,9 +1184,9 @@ class RotateControlOptions {
 class ScaleControlOptions {
   external factory ScaleControlOptions();
 
-  external ScaleControlStyle get style;
+  external ScaleControlStyle? get style;
 
-  external set style(ScaleControlStyle value);
+  external set style(ScaleControlStyle? value);
 }
 
 @JS('google.maps.ScaleControlStyle')
@@ -1180,9 +1199,9 @@ class ScaleControlStyle {
 class StreetViewControlOptions {
   external factory StreetViewControlOptions();
 
-  external ControlPosition get position;
+  external ControlPosition? get position;
 
-  external set position(ControlPosition value);
+  external set position(ControlPosition? value);
 }
 
 @JS()
@@ -1190,9 +1209,9 @@ class StreetViewControlOptions {
 class ZoomControlOptions {
   external factory ZoomControlOptions();
 
-  external ControlPosition get position;
+  external ControlPosition? get position;
 
-  external set position(ControlPosition value);
+  external set position(ControlPosition? value);
 }
 
 @JS('google.maps.ControlPosition')
@@ -1214,41 +1233,41 @@ class ControlPosition {
 @JS('google.maps.Marker')
 class Marker extends MVCObject {
   external Marker([
-    MarkerOptions opts, // ignore: unused_element
+    MarkerOptions? opts, // ignore: unused_element
   ]);
 }
 
 extension Marker$Ext on Marker {
-  Animation get animation => _getAnimation();
-  bool get clickable => _getClickable();
-  String get cursor => _getCursor();
-  bool get draggable => _getDraggable();
-  Object /*String|Icon|GSymbol*/ get icon => _getIcon();
-  MarkerLabel get label => _getLabel();
-  Object /*GMap|StreetViewPanorama*/ get map => _getMap();
-  num get opacity => _getOpacity();
-  LatLng get position => _getPosition();
-  MarkerShape get shape => _getShape();
-  String get title => _getTitle();
-  bool get visible => _getVisible();
-  num get zIndex => _getZIndex();
-  set animation(Animation animation) => _setAnimation(animation);
-  set clickable(bool clickable) => _setClickable(clickable);
-  set cursor(String cursor) => _setCursor(cursor);
-  set draggable(bool draggable) => _setDraggable(draggable);
-  set icon(Object /*String|Icon|GSymbol*/ icon) => _setIcon(icon);
-  set label(Object /*String|MarkerLabel*/ label) => _setLabel(label);
-  set map(Object /*GMap|StreetViewPanorama*/ map) => _setMap(map);
-  set opacity(num opacity) => _setOpacity(opacity);
-  set options(MarkerOptions options) => _setOptions(options);
-  set position(LatLng position) => _setPosition(position);
-  set shape(MarkerShape shape) => _setShape(shape);
-  set title(String title) => _setTitle(title);
-  set visible(bool visible) => _setVisible(visible);
-  set zIndex(num zIndex) => _setZIndex(zIndex);
+  Animation? get animation => _getAnimation();
+  bool? get clickable => _getClickable();
+  String? get cursor => _getCursor();
+  bool? get draggable => _getDraggable();
+  Object? /*String?|Icon?|GSymbol?*/ get icon => _getIcon();
+  MarkerLabel? get label => _getLabel();
+  Object? /*GMap?|StreetViewPanorama?*/ get map => _getMap();
+  num? get opacity => _getOpacity();
+  LatLng? get position => _getPosition();
+  MarkerShape? get shape => _getShape();
+  String? get title => _getTitle();
+  bool? get visible => _getVisible();
+  num? get zIndex => _getZIndex();
+  set animation(Animation? animation) => _setAnimation(animation);
+  set clickable(bool? clickable) => _setClickable(clickable);
+  set cursor(String? cursor) => _setCursor(cursor);
+  set draggable(bool? draggable) => _setDraggable(draggable);
+  set icon(Object? /*String?|Icon?|GSymbol?*/ icon) => _setIcon(icon);
+  set label(Object? /*String?|MarkerLabel?*/ label) => _setLabel(label);
+  set map(Object? /*GMap?|StreetViewPanorama?*/ map) => _setMap(map);
+  set opacity(num? opacity) => _setOpacity(opacity);
+  set options(MarkerOptions? options) => _setOptions(options);
+  set position(LatLng? position) => _setPosition(position);
+  set shape(MarkerShape? shape) => _setShape(shape);
+  set title(String? title) => _setTitle(title);
+  set visible(bool? visible) => _setVisible(visible);
+  set zIndex(num? zIndex) => _setZIndex(zIndex);
   Stream<void> get onAnimationChanged {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'animation_changed',
@@ -1265,8 +1284,8 @@ extension Marker$Ext on Marker {
   }
 
   Stream<MapMouseEvent> get onClick {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'click',
@@ -1283,8 +1302,8 @@ extension Marker$Ext on Marker {
   }
 
   Stream<void> get onClickableChanged {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'clickable_changed',
@@ -1301,8 +1320,8 @@ extension Marker$Ext on Marker {
   }
 
   Stream<MapMouseEvent> get onContextmenu {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'contextmenu',
@@ -1319,8 +1338,8 @@ extension Marker$Ext on Marker {
   }
 
   Stream<void> get onCursorChanged {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'cursor_changed',
@@ -1337,8 +1356,8 @@ extension Marker$Ext on Marker {
   }
 
   Stream<MapMouseEvent> get onDblclick {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'dblclick',
@@ -1355,8 +1374,8 @@ extension Marker$Ext on Marker {
   }
 
   Stream<MapMouseEvent> get onDrag {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'drag',
@@ -1373,8 +1392,8 @@ extension Marker$Ext on Marker {
   }
 
   Stream<MapMouseEvent> get onDragend {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'dragend',
@@ -1391,8 +1410,8 @@ extension Marker$Ext on Marker {
   }
 
   Stream<void> get onDraggableChanged {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'draggable_changed',
@@ -1409,8 +1428,8 @@ extension Marker$Ext on Marker {
   }
 
   Stream<MapMouseEvent> get onDragstart {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'dragstart',
@@ -1427,8 +1446,8 @@ extension Marker$Ext on Marker {
   }
 
   Stream<void> get onFlatChanged {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'flat_changed',
@@ -1445,8 +1464,8 @@ extension Marker$Ext on Marker {
   }
 
   Stream<void> get onIconChanged {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'icon_changed',
@@ -1463,8 +1482,8 @@ extension Marker$Ext on Marker {
   }
 
   Stream<MapMouseEvent> get onMousedown {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mousedown',
@@ -1481,8 +1500,8 @@ extension Marker$Ext on Marker {
   }
 
   Stream<MapMouseEvent> get onMouseout {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseout',
@@ -1499,8 +1518,8 @@ extension Marker$Ext on Marker {
   }
 
   Stream<MapMouseEvent> get onMouseover {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseover',
@@ -1517,8 +1536,8 @@ extension Marker$Ext on Marker {
   }
 
   Stream<MapMouseEvent> get onMouseup {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseup',
@@ -1535,8 +1554,8 @@ extension Marker$Ext on Marker {
   }
 
   Stream<void> get onPositionChanged {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'position_changed',
@@ -1553,8 +1572,8 @@ extension Marker$Ext on Marker {
   }
 
   Stream<MapMouseEvent> get onRightclick {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'rightclick',
@@ -1571,8 +1590,8 @@ extension Marker$Ext on Marker {
   }
 
   Stream<void> get onShapeChanged {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'shape_changed',
@@ -1589,8 +1608,8 @@ extension Marker$Ext on Marker {
   }
 
   Stream<void> get onTitleChanged {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'title_changed',
@@ -1607,8 +1626,8 @@ extension Marker$Ext on Marker {
   }
 
   Stream<void> get onVisibleChanged {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'visible_changed',
@@ -1625,8 +1644,8 @@ extension Marker$Ext on Marker {
   }
 
   Stream<void> get onZindexChanged {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'zindex_changed',
@@ -1642,86 +1661,87 @@ extension Marker$Ext on Marker {
     return sc.stream;
   }
 
-  Animation _getAnimation() => callMethod(this, 'getAnimation', []);
+  Animation? _getAnimation() => callMethod(this, 'getAnimation', []);
 
-  bool _getClickable() => callMethod(this, 'getClickable', []);
+  bool? _getClickable() => callMethod(this, 'getClickable', []);
 
-  String _getCursor() => callMethod(this, 'getCursor', []);
+  String? _getCursor() => callMethod(this, 'getCursor', []);
 
-  bool _getDraggable() => callMethod(this, 'getDraggable', []);
+  bool? _getDraggable() => callMethod(this, 'getDraggable', []);
 
-  Object /*String|Icon|GSymbol*/ _getIcon() => callMethod(this, 'getIcon', []);
+  Object? /*String?|Icon?|GSymbol?*/ _getIcon() =>
+      callMethod(this, 'getIcon', []);
 
-  MarkerLabel _getLabel() => callMethod(this, 'getLabel', []);
+  MarkerLabel? _getLabel() => callMethod(this, 'getLabel', []);
 
-  Object /*GMap|StreetViewPanorama*/ _getMap() =>
+  Object? /*GMap?|StreetViewPanorama?*/ _getMap() =>
       callMethod(this, 'getMap', []);
 
-  num _getOpacity() => callMethod(this, 'getOpacity', []);
+  num? _getOpacity() => callMethod(this, 'getOpacity', []);
 
-  LatLng _getPosition() => callMethod(this, 'getPosition', []);
+  LatLng? _getPosition() => callMethod(this, 'getPosition', []);
 
-  MarkerShape _getShape() => callMethod(this, 'getShape', []);
+  MarkerShape? _getShape() => callMethod(this, 'getShape', []);
 
-  String _getTitle() => callMethod(this, 'getTitle', []);
+  String? _getTitle() => callMethod(this, 'getTitle', []);
 
-  bool _getVisible() => callMethod(this, 'getVisible', []);
+  bool? _getVisible() => callMethod(this, 'getVisible', []);
 
-  num _getZIndex() => callMethod(this, 'getZIndex', []);
+  num? _getZIndex() => callMethod(this, 'getZIndex', []);
 
-  void _setAnimation(Animation animation) {
+  void _setAnimation(Animation? animation) {
     callMethod(this, 'setAnimation', [animation]);
   }
 
-  void _setClickable(bool flag) {
+  void _setClickable(bool? flag) {
     callMethod(this, 'setClickable', [flag]);
   }
 
-  void _setCursor(String cursor) {
+  void _setCursor(String? cursor) {
     callMethod(this, 'setCursor', [cursor]);
   }
 
-  void _setDraggable(bool flag) {
+  void _setDraggable(bool? flag) {
     callMethod(this, 'setDraggable', [flag]);
   }
 
-  void _setIcon(Object /*String|Icon|GSymbol*/ icon) {
+  void _setIcon(Object? /*String?|Icon?|GSymbol?*/ icon) {
     callMethod(this, 'setIcon', [icon]);
   }
 
-  void _setLabel(Object /*String|MarkerLabel*/ label) {
+  void _setLabel(Object? /*String?|MarkerLabel?*/ label) {
     callMethod(this, 'setLabel', [label]);
   }
 
-  void _setMap(Object /*GMap|StreetViewPanorama*/ map) {
+  void _setMap(Object? /*GMap?|StreetViewPanorama?*/ map) {
     callMethod(this, 'setMap', [map]);
   }
 
-  void _setOpacity(num opacity) {
+  void _setOpacity(num? opacity) {
     callMethod(this, 'setOpacity', [opacity]);
   }
 
-  void _setOptions(MarkerOptions options) {
+  void _setOptions(MarkerOptions? options) {
     callMethod(this, 'setOptions', [options]);
   }
 
-  void _setPosition(LatLng latlng) {
+  void _setPosition(LatLng? latlng) {
     callMethod(this, 'setPosition', [latlng]);
   }
 
-  void _setShape(MarkerShape shape) {
+  void _setShape(MarkerShape? shape) {
     callMethod(this, 'setShape', [shape]);
   }
 
-  void _setTitle(String title) {
+  void _setTitle(String? title) {
     callMethod(this, 'setTitle', [title]);
   }
 
-  void _setVisible(bool visible) {
+  void _setVisible(bool? visible) {
     callMethod(this, 'setVisible', [visible]);
   }
 
-  void _setZIndex(num zIndex) {
+  void _setZIndex(num? zIndex) {
     callMethod(this, 'setZIndex', [zIndex]);
   }
 }
@@ -1731,69 +1751,69 @@ extension Marker$Ext on Marker {
 class MarkerOptions {
   external factory MarkerOptions();
 
-  external Point get anchorPoint;
+  external Point? get anchorPoint;
 
-  external set anchorPoint(Point value);
+  external set anchorPoint(Point? value);
 
-  external Animation get animation;
+  external Animation? get animation;
 
-  external set animation(Animation value);
+  external set animation(Animation? value);
 
-  external bool get clickable;
+  external bool? get clickable;
 
-  external set clickable(bool value);
+  external set clickable(bool? value);
 
-  external bool get crossOnDrag;
+  external bool? get crossOnDrag;
 
-  external set crossOnDrag(bool value);
+  external set crossOnDrag(bool? value);
 
-  external String get cursor;
+  external String? get cursor;
 
-  external set cursor(String value);
+  external set cursor(String? value);
 
-  external bool get draggable;
+  external bool? get draggable;
 
-  external set draggable(bool value);
+  external set draggable(bool? value);
 
-  external Object /*String|Icon|GSymbol*/ get icon;
+  external Object? /*String?|Icon?|GSymbol?*/ get icon;
 
-  external set icon(Object /*String|Icon|GSymbol*/ value);
+  external set icon(Object? /*String?|Icon?|GSymbol?*/ value);
 
-  external Object /*String|MarkerLabel*/ get label;
+  external Object? /*String?|MarkerLabel?*/ get label;
 
-  external set label(Object /*String|MarkerLabel*/ value);
+  external set label(Object? /*String?|MarkerLabel?*/ value);
 
-  external Object /*GMap|StreetViewPanorama*/ get map;
+  external Object? /*GMap?|StreetViewPanorama?*/ get map;
 
-  external set map(Object /*GMap|StreetViewPanorama*/ value);
+  external set map(Object? /*GMap?|StreetViewPanorama?*/ value);
 
-  external num get opacity;
+  external num? get opacity;
 
-  external set opacity(num value);
+  external set opacity(num? value);
 
-  external bool get optimized;
+  external bool? get optimized;
 
-  external set optimized(bool value);
+  external set optimized(bool? value);
 
-  external LatLng get position;
+  external LatLng? get position;
 
-  external set position(LatLng value);
+  external set position(LatLng? value);
 
-  external MarkerShape get shape;
+  external MarkerShape? get shape;
 
-  external set shape(MarkerShape value);
+  external set shape(MarkerShape? value);
 
-  external String get title;
+  external String? get title;
 
-  external set title(String value);
+  external set title(String? value);
 
-  external bool get visible;
+  external bool? get visible;
 
-  external set visible(bool value);
+  external set visible(bool? value);
 
-  external num get zIndex;
+  external num? get zIndex;
 
-  external set zIndex(num value);
+  external set zIndex(num? value);
 }
 
 @JS()
@@ -1801,29 +1821,29 @@ class MarkerOptions {
 class Icon {
   external factory Icon();
 
-  external String get url;
+  external String? get url;
 
-  external set url(String value);
+  external set url(String? value);
 
-  external Point get anchor;
+  external Point? get anchor;
 
-  external set anchor(Point value);
+  external set anchor(Point? value);
 
-  external Point get labelOrigin;
+  external Point? get labelOrigin;
 
-  external set labelOrigin(Point value);
+  external set labelOrigin(Point? value);
 
-  external Point get origin;
+  external Point? get origin;
 
-  external set origin(Point value);
+  external set origin(Point? value);
 
-  external Size get scaledSize;
+  external Size? get scaledSize;
 
-  external set scaledSize(Size value);
+  external set scaledSize(Size? value);
 
-  external Size get size;
+  external Size? get size;
 
-  external set size(Size value);
+  external set size(Size? value);
 }
 
 @JS()
@@ -1831,29 +1851,29 @@ class Icon {
 class MarkerLabel {
   external factory MarkerLabel();
 
-  external String get text;
+  external String? get text;
 
-  external set text(String value);
+  external set text(String? value);
 
-  external String get className;
+  external String? get className;
 
-  external set className(String value);
+  external set className(String? value);
 
-  external String get color;
+  external String? get color;
 
-  external set color(String value);
+  external set color(String? value);
 
-  external String get fontFamily;
+  external String? get fontFamily;
 
-  external set fontFamily(String value);
+  external set fontFamily(String? value);
 
-  external String get fontSize;
+  external String? get fontSize;
 
-  external set fontSize(String value);
+  external set fontSize(String? value);
 
-  external String get fontWeight;
+  external String? get fontWeight;
 
-  external set fontWeight(String value);
+  external set fontWeight(String? value);
 }
 
 @JS()
@@ -1861,15 +1881,15 @@ class MarkerLabel {
 class MarkerShape {
   external factory MarkerShape();
 
-  external String get type;
+  external String? get type;
 
-  external set type(String value);
+  external set type(String? value);
 }
 
 extension MarkerShape$Ext on MarkerShape {
-  List<num> get coords => getProperty(this, 'coords')?.cast<num>();
+  List<num?>? get coords => getProperty(this, 'coords')?.cast<num?>();
 
-  set coords(List<num> value) {
+  set coords(List<num?>? value) {
     setProperty(this, 'coords', value);
   }
 }
@@ -1879,45 +1899,45 @@ extension MarkerShape$Ext on MarkerShape {
 class GSymbol {
   external factory GSymbol();
 
-  external Object /*SymbolPath|String*/ get path;
+  external Object? /*SymbolPath?|String?*/ get path;
 
-  external set path(Object /*SymbolPath|String*/ value);
+  external set path(Object? /*SymbolPath?|String?*/ value);
 
-  external Point get anchor;
+  external Point? get anchor;
 
-  external set anchor(Point value);
+  external set anchor(Point? value);
 
-  external String get fillColor;
+  external String? get fillColor;
 
-  external set fillColor(String value);
+  external set fillColor(String? value);
 
-  external num get fillOpacity;
+  external num? get fillOpacity;
 
-  external set fillOpacity(num value);
+  external set fillOpacity(num? value);
 
-  external Point get labelOrigin;
+  external Point? get labelOrigin;
 
-  external set labelOrigin(Point value);
+  external set labelOrigin(Point? value);
 
-  external num get rotation;
+  external num? get rotation;
 
-  external set rotation(num value);
+  external set rotation(num? value);
 
-  external num get scale;
+  external num? get scale;
 
-  external set scale(num value);
+  external set scale(num? value);
 
-  external String get strokeColor;
+  external String? get strokeColor;
 
-  external set strokeColor(String value);
+  external set strokeColor(String? value);
 
-  external num get strokeOpacity;
+  external num? get strokeOpacity;
 
-  external set strokeOpacity(num value);
+  external set strokeOpacity(num? value);
 
-  external num get strokeWeight;
+  external num? get strokeWeight;
 
-  external set strokeWeight(num value);
+  external set strokeWeight(num? value);
 }
 
 @JS('google.maps.SymbolPath')
@@ -1938,28 +1958,28 @@ class Animation {
 @JS('google.maps.InfoWindow')
 class InfoWindow extends MVCObject {
   external InfoWindow([
-    InfoWindowOptions opts, // ignore: unused_element
+    InfoWindowOptions? opts, // ignore: unused_element
   ]);
 
   external void close();
 
   external void open([
-    Object /*GMap|StreetViewPanorama*/ map,
-    MVCObject anchor,
+    Object? /*GMap?|StreetViewPanorama?*/ map,
+    MVCObject? anchor,
   ]);
 }
 
 extension InfoWindow$Ext on InfoWindow {
-  Object /*String|Node*/ get content => _getContent();
-  LatLng get position => _getPosition();
-  num get zIndex => _getZIndex();
-  set content(Object /*String|Node*/ content) => _setContent(content);
-  set options(InfoWindowOptions options) => _setOptions(options);
-  set position(LatLng position) => _setPosition(position);
-  set zIndex(num zIndex) => _setZIndex(zIndex);
+  Object? /*String?|Node?*/ get content => _getContent();
+  LatLng? get position => _getPosition();
+  num? get zIndex => _getZIndex();
+  set content(Object? /*String?|Node?*/ content) => _setContent(content);
+  set options(InfoWindowOptions? options) => _setOptions(options);
+  set position(LatLng? position) => _setPosition(position);
+  set zIndex(num? zIndex) => _setZIndex(zIndex);
   Stream<void> get onCloseclick {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'closeclick',
@@ -1976,8 +1996,8 @@ extension InfoWindow$Ext on InfoWindow {
   }
 
   Stream<void> get onContentChanged {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'content_changed',
@@ -1994,8 +2014,8 @@ extension InfoWindow$Ext on InfoWindow {
   }
 
   Stream<void> get onDomready {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'domready',
@@ -2012,8 +2032,8 @@ extension InfoWindow$Ext on InfoWindow {
   }
 
   Stream<void> get onPositionChanged {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'position_changed',
@@ -2030,8 +2050,8 @@ extension InfoWindow$Ext on InfoWindow {
   }
 
   Stream<void> get onZindexChanged {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'zindex_changed',
@@ -2047,25 +2067,25 @@ extension InfoWindow$Ext on InfoWindow {
     return sc.stream;
   }
 
-  Object /*String|Node*/ _getContent() => callMethod(this, 'getContent', []);
+  Object? /*String?|Node?*/ _getContent() => callMethod(this, 'getContent', []);
 
-  LatLng _getPosition() => callMethod(this, 'getPosition', []);
+  LatLng? _getPosition() => callMethod(this, 'getPosition', []);
 
-  num _getZIndex() => callMethod(this, 'getZIndex', []);
+  num? _getZIndex() => callMethod(this, 'getZIndex', []);
 
-  void _setContent(Object /*String|Node*/ content) {
+  void _setContent(Object? /*String?|Node?*/ content) {
     callMethod(this, 'setContent', [content]);
   }
 
-  void _setOptions(InfoWindowOptions options) {
+  void _setOptions(InfoWindowOptions? options) {
     callMethod(this, 'setOptions', [options]);
   }
 
-  void _setPosition(LatLng position) {
+  void _setPosition(LatLng? position) {
     callMethod(this, 'setPosition', [position]);
   }
 
-  void _setZIndex(num zIndex) {
+  void _setZIndex(num? zIndex) {
     callMethod(this, 'setZIndex', [zIndex]);
   }
 }
@@ -2075,57 +2095,58 @@ extension InfoWindow$Ext on InfoWindow {
 class InfoWindowOptions {
   external factory InfoWindowOptions();
 
-  external Object /*String|Node*/ get content;
+  external Object? /*String?|Node?*/ get content;
 
-  external set content(Object /*String|Node*/ value);
+  external set content(Object? /*String?|Node?*/ value);
 
-  external bool get disableAutoPan;
+  external bool? get disableAutoPan;
 
-  external set disableAutoPan(bool value);
+  external set disableAutoPan(bool? value);
 
-  external num get maxWidth;
+  external num? get maxWidth;
 
-  external set maxWidth(num value);
+  external set maxWidth(num? value);
 
-  external num get minWidth;
+  external num? get minWidth;
 
-  external set minWidth(num value);
+  external set minWidth(num? value);
 
-  external Size get pixelOffset;
+  external Size? get pixelOffset;
 
-  external set pixelOffset(Size value);
+  external set pixelOffset(Size? value);
 
-  external LatLng get position;
+  external LatLng? get position;
 
-  external set position(LatLng value);
+  external set position(LatLng? value);
 
-  external num get zIndex;
+  external num? get zIndex;
 
-  external set zIndex(num value);
+  external set zIndex(num? value);
 }
 
 @JS('google.maps.Polyline')
 class Polyline extends MVCObject {
   external Polyline([
-    PolylineOptions opts, // ignore: unused_element
+    PolylineOptions? opts, // ignore: unused_element
   ]);
 }
 
 extension Polyline$Ext on Polyline {
-  bool get draggable => _getDraggable();
-  bool get editable => _getEditable();
-  GMap get map => _getMap();
-  MVCArray<LatLng> get path => _getPath();
-  bool get visible => _getVisible();
-  set draggable(bool draggable) => _setDraggable(draggable);
-  set editable(bool editable) => _setEditable(editable);
-  set map(GMap map) => _setMap(map);
-  set options(PolylineOptions options) => _setOptions(options);
-  set path(Object /*MVCArray<LatLng>|List<LatLng>*/ path) => _setPath(path);
-  set visible(bool visible) => _setVisible(visible);
+  bool? get draggable => _getDraggable();
+  bool? get editable => _getEditable();
+  GMap? get map => _getMap();
+  MVCArray<LatLng?>? get path => _getPath();
+  bool? get visible => _getVisible();
+  set draggable(bool? draggable) => _setDraggable(draggable);
+  set editable(bool? editable) => _setEditable(editable);
+  set map(GMap? map) => _setMap(map);
+  set options(PolylineOptions? options) => _setOptions(options);
+  set path(Object? /*MVCArray<LatLng?>?|List<LatLng?>?*/ path) =>
+      _setPath(path);
+  set visible(bool? visible) => _setVisible(visible);
   Stream<PolyMouseEvent> get onClick {
-    StreamController<PolyMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<PolyMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'click',
@@ -2142,8 +2163,8 @@ extension Polyline$Ext on Polyline {
   }
 
   Stream<PolyMouseEvent> get onContextmenu {
-    StreamController<PolyMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<PolyMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'contextmenu',
@@ -2160,8 +2181,8 @@ extension Polyline$Ext on Polyline {
   }
 
   Stream<PolyMouseEvent> get onDblclick {
-    StreamController<PolyMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<PolyMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'dblclick',
@@ -2178,8 +2199,8 @@ extension Polyline$Ext on Polyline {
   }
 
   Stream<MapMouseEvent> get onDrag {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'drag',
@@ -2196,8 +2217,8 @@ extension Polyline$Ext on Polyline {
   }
 
   Stream<MapMouseEvent> get onDragend {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'dragend',
@@ -2214,8 +2235,8 @@ extension Polyline$Ext on Polyline {
   }
 
   Stream<MapMouseEvent> get onDragstart {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'dragstart',
@@ -2232,8 +2253,8 @@ extension Polyline$Ext on Polyline {
   }
 
   Stream<PolyMouseEvent> get onMousedown {
-    StreamController<PolyMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<PolyMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mousedown',
@@ -2250,8 +2271,8 @@ extension Polyline$Ext on Polyline {
   }
 
   Stream<PolyMouseEvent> get onMousemove {
-    StreamController<PolyMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<PolyMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mousemove',
@@ -2268,8 +2289,8 @@ extension Polyline$Ext on Polyline {
   }
 
   Stream<PolyMouseEvent> get onMouseout {
-    StreamController<PolyMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<PolyMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseout',
@@ -2286,8 +2307,8 @@ extension Polyline$Ext on Polyline {
   }
 
   Stream<PolyMouseEvent> get onMouseover {
-    StreamController<PolyMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<PolyMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseover',
@@ -2304,8 +2325,8 @@ extension Polyline$Ext on Polyline {
   }
 
   Stream<PolyMouseEvent> get onMouseup {
-    StreamController<PolyMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<PolyMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseup',
@@ -2322,8 +2343,8 @@ extension Polyline$Ext on Polyline {
   }
 
   Stream<PolyMouseEvent> get onRightclick {
-    StreamController<PolyMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<PolyMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'rightclick',
@@ -2339,37 +2360,37 @@ extension Polyline$Ext on Polyline {
     return sc.stream;
   }
 
-  bool _getDraggable() => callMethod(this, 'getDraggable', []);
+  bool? _getDraggable() => callMethod(this, 'getDraggable', []);
 
-  bool _getEditable() => callMethod(this, 'getEditable', []);
+  bool? _getEditable() => callMethod(this, 'getEditable', []);
 
-  GMap _getMap() => callMethod(this, 'getMap', []);
+  GMap? _getMap() => callMethod(this, 'getMap', []);
 
-  MVCArray<LatLng> _getPath() => callMethod(this, 'getPath', []);
+  MVCArray<LatLng?>? _getPath() => callMethod(this, 'getPath', []);
 
-  bool _getVisible() => callMethod(this, 'getVisible', []);
+  bool? _getVisible() => callMethod(this, 'getVisible', []);
 
-  void _setDraggable(bool draggable) {
+  void _setDraggable(bool? draggable) {
     callMethod(this, 'setDraggable', [draggable]);
   }
 
-  void _setEditable(bool editable) {
+  void _setEditable(bool? editable) {
     callMethod(this, 'setEditable', [editable]);
   }
 
-  void _setMap(GMap map) {
+  void _setMap(GMap? map) {
     callMethod(this, 'setMap', [map]);
   }
 
-  void _setOptions(PolylineOptions options) {
+  void _setOptions(PolylineOptions? options) {
     callMethod(this, 'setOptions', [options]);
   }
 
-  void _setPath(Object /*MVCArray<LatLng>|List<LatLng>*/ path) {
+  void _setPath(Object? /*MVCArray<LatLng?>?|List<LatLng?>?*/ path) {
     callMethod(this, 'setPath', [path]);
   }
 
-  void _setVisible(bool visible) {
+  void _setVisible(bool? visible) {
     callMethod(this, 'setVisible', [visible]);
   }
 }
@@ -2379,56 +2400,56 @@ extension Polyline$Ext on Polyline {
 class PolylineOptions {
   external factory PolylineOptions();
 
-  external bool get clickable;
+  external bool? get clickable;
 
-  external set clickable(bool value);
+  external set clickable(bool? value);
 
-  external bool get draggable;
+  external bool? get draggable;
 
-  external set draggable(bool value);
+  external set draggable(bool? value);
 
-  external bool get editable;
+  external bool? get editable;
 
-  external set editable(bool value);
+  external set editable(bool? value);
 
-  external bool get geodesic;
+  external bool? get geodesic;
 
-  external set geodesic(bool value);
+  external set geodesic(bool? value);
 
-  external GMap get map;
+  external GMap? get map;
 
-  external set map(GMap value);
+  external set map(GMap? value);
 
-  external Object /*MVCArray<LatLng>|List<LatLng>*/ get path;
+  external Object? /*MVCArray<LatLng?>?|List<LatLng?>?*/ get path;
 
-  external set path(Object /*MVCArray<LatLng>|List<LatLng>*/ value);
+  external set path(Object? /*MVCArray<LatLng?>?|List<LatLng?>?*/ value);
 
-  external String get strokeColor;
+  external String? get strokeColor;
 
-  external set strokeColor(String value);
+  external set strokeColor(String? value);
 
-  external num get strokeOpacity;
+  external num? get strokeOpacity;
 
-  external set strokeOpacity(num value);
+  external set strokeOpacity(num? value);
 
-  external num get strokeWeight;
+  external num? get strokeWeight;
 
-  external set strokeWeight(num value);
+  external set strokeWeight(num? value);
 
-  external bool get visible;
+  external bool? get visible;
 
-  external set visible(bool value);
+  external set visible(bool? value);
 
-  external num get zIndex;
+  external num? get zIndex;
 
-  external set zIndex(num value);
+  external set zIndex(num? value);
 }
 
 extension PolylineOptions$Ext on PolylineOptions {
-  List<IconSequence> get icons =>
-      getProperty(this, 'icons')?.cast<IconSequence>();
+  List<IconSequence?>? get icons =>
+      getProperty(this, 'icons')?.cast<IconSequence?>();
 
-  set icons(List<IconSequence> value) {
+  set icons(List<IconSequence?>? value) {
     setProperty(this, 'icons', value);
   }
 }
@@ -2438,49 +2459,50 @@ extension PolylineOptions$Ext on PolylineOptions {
 class IconSequence {
   external factory IconSequence();
 
-  external bool get fixedRotation;
+  external bool? get fixedRotation;
 
-  external set fixedRotation(bool value);
+  external set fixedRotation(bool? value);
 
-  external GSymbol get icon;
+  external GSymbol? get icon;
 
-  external set icon(GSymbol value);
+  external set icon(GSymbol? value);
 
-  external String get offset;
+  external String? get offset;
 
-  external set offset(String value);
+  external set offset(String? value);
 
-  external String get repeat;
+  external String? get repeat;
 
-  external set repeat(String value);
+  external set repeat(String? value);
 }
 
 @JS('google.maps.Polygon')
 class Polygon extends MVCObject {
   external Polygon([
-    PolygonOptions opts, // ignore: unused_element
+    PolygonOptions? opts, // ignore: unused_element
   ]);
 }
 
 extension Polygon$Ext on Polygon {
-  bool get draggable => _getDraggable();
-  bool get editable => _getEditable();
-  GMap get map => _getMap();
-  MVCArray<LatLng> get path => _getPath();
-  MVCArray<MVCArray<LatLng>> get paths => _getPaths();
-  bool get visible => _getVisible();
-  set draggable(bool draggable) => _setDraggable(draggable);
-  set editable(bool editable) => _setEditable(editable);
-  set map(GMap map) => _setMap(map);
-  set options(PolygonOptions options) => _setOptions(options);
-  set path(Object /*MVCArray<LatLng>|List<LatLng>*/ path) => _setPath(path);
+  bool? get draggable => _getDraggable();
+  bool? get editable => _getEditable();
+  GMap? get map => _getMap();
+  MVCArray<LatLng?>? get path => _getPath();
+  MVCArray<MVCArray<LatLng?>?>? get paths => _getPaths();
+  bool? get visible => _getVisible();
+  set draggable(bool? draggable) => _setDraggable(draggable);
+  set editable(bool? editable) => _setEditable(editable);
+  set map(GMap? map) => _setMap(map);
+  set options(PolygonOptions? options) => _setOptions(options);
+  set path(Object? /*MVCArray<LatLng?>?|List<LatLng?>?*/ path) =>
+      _setPath(path);
   set paths(
-          Object /*MVCArray<MVCArray<LatLng>>|MVCArray<LatLng>|List<List<LatLng>>|List<LatLng>*/ paths) =>
+          Object? /*MVCArray<MVCArray<LatLng?>?>?|MVCArray<LatLng?>?|List<List<LatLng?>?>?|List<LatLng?>?*/ paths) =>
       _setPaths(paths);
-  set visible(bool visible) => _setVisible(visible);
+  set visible(bool? visible) => _setVisible(visible);
   Stream<PolyMouseEvent> get onClick {
-    StreamController<PolyMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<PolyMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'click',
@@ -2497,8 +2519,8 @@ extension Polygon$Ext on Polygon {
   }
 
   Stream<PolyMouseEvent> get onContextmenu {
-    StreamController<PolyMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<PolyMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'contextmenu',
@@ -2515,8 +2537,8 @@ extension Polygon$Ext on Polygon {
   }
 
   Stream<PolyMouseEvent> get onDblclick {
-    StreamController<PolyMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<PolyMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'dblclick',
@@ -2533,8 +2555,8 @@ extension Polygon$Ext on Polygon {
   }
 
   Stream<MapMouseEvent> get onDrag {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'drag',
@@ -2551,8 +2573,8 @@ extension Polygon$Ext on Polygon {
   }
 
   Stream<MapMouseEvent> get onDragend {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'dragend',
@@ -2569,8 +2591,8 @@ extension Polygon$Ext on Polygon {
   }
 
   Stream<MapMouseEvent> get onDragstart {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'dragstart',
@@ -2587,8 +2609,8 @@ extension Polygon$Ext on Polygon {
   }
 
   Stream<PolyMouseEvent> get onMousedown {
-    StreamController<PolyMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<PolyMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mousedown',
@@ -2605,8 +2627,8 @@ extension Polygon$Ext on Polygon {
   }
 
   Stream<PolyMouseEvent> get onMousemove {
-    StreamController<PolyMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<PolyMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mousemove',
@@ -2623,8 +2645,8 @@ extension Polygon$Ext on Polygon {
   }
 
   Stream<PolyMouseEvent> get onMouseout {
-    StreamController<PolyMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<PolyMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseout',
@@ -2641,8 +2663,8 @@ extension Polygon$Ext on Polygon {
   }
 
   Stream<PolyMouseEvent> get onMouseover {
-    StreamController<PolyMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<PolyMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseover',
@@ -2659,8 +2681,8 @@ extension Polygon$Ext on Polygon {
   }
 
   Stream<PolyMouseEvent> get onMouseup {
-    StreamController<PolyMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<PolyMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseup',
@@ -2677,8 +2699,8 @@ extension Polygon$Ext on Polygon {
   }
 
   Stream<PolyMouseEvent> get onRightclick {
-    StreamController<PolyMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<PolyMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'rightclick',
@@ -2694,44 +2716,44 @@ extension Polygon$Ext on Polygon {
     return sc.stream;
   }
 
-  bool _getDraggable() => callMethod(this, 'getDraggable', []);
+  bool? _getDraggable() => callMethod(this, 'getDraggable', []);
 
-  bool _getEditable() => callMethod(this, 'getEditable', []);
+  bool? _getEditable() => callMethod(this, 'getEditable', []);
 
-  GMap _getMap() => callMethod(this, 'getMap', []);
+  GMap? _getMap() => callMethod(this, 'getMap', []);
 
-  MVCArray<LatLng> _getPath() => callMethod(this, 'getPath', []);
+  MVCArray<LatLng?>? _getPath() => callMethod(this, 'getPath', []);
 
-  MVCArray<MVCArray<LatLng>> _getPaths() => callMethod(this, 'getPaths', []);
+  MVCArray<MVCArray<LatLng?>?>? _getPaths() => callMethod(this, 'getPaths', []);
 
-  bool _getVisible() => callMethod(this, 'getVisible', []);
+  bool? _getVisible() => callMethod(this, 'getVisible', []);
 
-  void _setDraggable(bool draggable) {
+  void _setDraggable(bool? draggable) {
     callMethod(this, 'setDraggable', [draggable]);
   }
 
-  void _setEditable(bool editable) {
+  void _setEditable(bool? editable) {
     callMethod(this, 'setEditable', [editable]);
   }
 
-  void _setMap(GMap map) {
+  void _setMap(GMap? map) {
     callMethod(this, 'setMap', [map]);
   }
 
-  void _setOptions(PolygonOptions options) {
+  void _setOptions(PolygonOptions? options) {
     callMethod(this, 'setOptions', [options]);
   }
 
-  void _setPath(Object /*MVCArray<LatLng>|List<LatLng>*/ path) {
+  void _setPath(Object? /*MVCArray<LatLng?>?|List<LatLng?>?*/ path) {
     callMethod(this, 'setPath', [path]);
   }
 
   void _setPaths(
-      Object /*MVCArray<MVCArray<LatLng>>|MVCArray<LatLng>|List<List<LatLng>>|List<LatLng>*/ paths) {
+      Object? /*MVCArray<MVCArray<LatLng?>?>?|MVCArray<LatLng?>?|List<List<LatLng?>?>?|List<LatLng?>?*/ paths) {
     callMethod(this, 'setPaths', [paths]);
   }
 
-  void _setVisible(bool visible) {
+  void _setVisible(bool? visible) {
     callMethod(this, 'setVisible', [visible]);
   }
 }
@@ -2741,62 +2763,62 @@ extension Polygon$Ext on Polygon {
 class PolygonOptions {
   external factory PolygonOptions();
 
-  external bool get clickable;
+  external bool? get clickable;
 
-  external set clickable(bool value);
+  external set clickable(bool? value);
 
-  external bool get draggable;
+  external bool? get draggable;
 
-  external set draggable(bool value);
+  external set draggable(bool? value);
 
-  external bool get editable;
+  external bool? get editable;
 
-  external set editable(bool value);
+  external set editable(bool? value);
 
-  external String get fillColor;
+  external String? get fillColor;
 
-  external set fillColor(String value);
+  external set fillColor(String? value);
 
-  external num get fillOpacity;
+  external num? get fillOpacity;
 
-  external set fillOpacity(num value);
+  external set fillOpacity(num? value);
 
-  external bool get geodesic;
+  external bool? get geodesic;
 
-  external set geodesic(bool value);
+  external set geodesic(bool? value);
 
-  external GMap get map;
+  external GMap? get map;
 
-  external set map(GMap value);
+  external set map(GMap? value);
 
-  external Object /*MVCArray<MVCArray<LatLng>>|MVCArray<LatLng>|List<List<LatLng>>|List<LatLng>*/ get paths;
+  external Object? /*MVCArray<MVCArray<LatLng?>?>?|MVCArray<LatLng?>?|List<List<LatLng?>?>?|List<LatLng?>?*/ get paths;
 
   external set paths(
-      Object /*MVCArray<MVCArray<LatLng>>|MVCArray<LatLng>|List<List<LatLng>>|List<LatLng>*/ value);
+      Object? /*MVCArray<MVCArray<LatLng?>?>?|MVCArray<LatLng?>?|List<List<LatLng?>?>?|List<LatLng?>?*/ value);
 
-  external String get strokeColor;
+  external String? get strokeColor;
 
-  external set strokeColor(String value);
+  external set strokeColor(String? value);
 
-  external num get strokeOpacity;
+  external num? get strokeOpacity;
 
-  external set strokeOpacity(num value);
+  external set strokeOpacity(num? value);
 
-  external StrokePosition get strokePosition;
+  external StrokePosition? get strokePosition;
 
-  external set strokePosition(StrokePosition value);
+  external set strokePosition(StrokePosition? value);
 
-  external num get strokeWeight;
+  external num? get strokeWeight;
 
-  external set strokeWeight(num value);
+  external set strokeWeight(num? value);
 
-  external bool get visible;
+  external bool? get visible;
 
-  external set visible(bool value);
+  external set visible(bool? value);
 
-  external num get zIndex;
+  external num? get zIndex;
 
-  external set zIndex(num value);
+  external set zIndex(num? value);
 }
 
 @JS()
@@ -2804,41 +2826,41 @@ class PolygonOptions {
 class PolyMouseEvent extends MapMouseEvent {
   external factory PolyMouseEvent();
 
-  external num get edge;
+  external num? get edge;
 
-  external set edge(num value);
+  external set edge(num? value);
 
-  external num get path;
+  external num? get path;
 
-  external set path(num value);
+  external set path(num? value);
 
-  external num get vertex;
+  external num? get vertex;
 
-  external set vertex(num value);
+  external set vertex(num? value);
 }
 
 @JS('google.maps.Rectangle')
 class Rectangle extends MVCObject {
   external Rectangle([
-    RectangleOptions opts, // ignore: unused_element
+    RectangleOptions? opts, // ignore: unused_element
   ]);
 }
 
 extension Rectangle$Ext on Rectangle {
-  LatLngBounds get bounds => _getBounds();
-  bool get draggable => _getDraggable();
-  bool get editable => _getEditable();
-  GMap get map => _getMap();
-  bool get visible => _getVisible();
-  set bounds(LatLngBounds bounds) => _setBounds(bounds);
-  set draggable(bool draggable) => _setDraggable(draggable);
-  set editable(bool editable) => _setEditable(editable);
-  set map(GMap map) => _setMap(map);
-  set options(RectangleOptions options) => _setOptions(options);
-  set visible(bool visible) => _setVisible(visible);
+  LatLngBounds? get bounds => _getBounds();
+  bool? get draggable => _getDraggable();
+  bool? get editable => _getEditable();
+  GMap? get map => _getMap();
+  bool? get visible => _getVisible();
+  set bounds(LatLngBounds? bounds) => _setBounds(bounds);
+  set draggable(bool? draggable) => _setDraggable(draggable);
+  set editable(bool? editable) => _setEditable(editable);
+  set map(GMap? map) => _setMap(map);
+  set options(RectangleOptions? options) => _setOptions(options);
+  set visible(bool? visible) => _setVisible(visible);
   Stream<void> get onBoundsChanged {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'bounds_changed',
@@ -2855,8 +2877,8 @@ extension Rectangle$Ext on Rectangle {
   }
 
   Stream<MapMouseEvent> get onClick {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'click',
@@ -2873,8 +2895,8 @@ extension Rectangle$Ext on Rectangle {
   }
 
   Stream<MapMouseEvent> get onContextmenu {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'contextmenu',
@@ -2891,8 +2913,8 @@ extension Rectangle$Ext on Rectangle {
   }
 
   Stream<MapMouseEvent> get onDblclick {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'dblclick',
@@ -2909,8 +2931,8 @@ extension Rectangle$Ext on Rectangle {
   }
 
   Stream<MapMouseEvent> get onDrag {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'drag',
@@ -2927,8 +2949,8 @@ extension Rectangle$Ext on Rectangle {
   }
 
   Stream<MapMouseEvent> get onDragend {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'dragend',
@@ -2945,8 +2967,8 @@ extension Rectangle$Ext on Rectangle {
   }
 
   Stream<MapMouseEvent> get onDragstart {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'dragstart',
@@ -2963,8 +2985,8 @@ extension Rectangle$Ext on Rectangle {
   }
 
   Stream<MapMouseEvent> get onMousedown {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mousedown',
@@ -2981,8 +3003,8 @@ extension Rectangle$Ext on Rectangle {
   }
 
   Stream<MapMouseEvent> get onMousemove {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mousemove',
@@ -2999,8 +3021,8 @@ extension Rectangle$Ext on Rectangle {
   }
 
   Stream<MapMouseEvent> get onMouseout {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseout',
@@ -3017,8 +3039,8 @@ extension Rectangle$Ext on Rectangle {
   }
 
   Stream<MapMouseEvent> get onMouseover {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseover',
@@ -3035,8 +3057,8 @@ extension Rectangle$Ext on Rectangle {
   }
 
   Stream<MapMouseEvent> get onMouseup {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseup',
@@ -3053,8 +3075,8 @@ extension Rectangle$Ext on Rectangle {
   }
 
   Stream<MapMouseEvent> get onRightclick {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'rightclick',
@@ -3070,37 +3092,37 @@ extension Rectangle$Ext on Rectangle {
     return sc.stream;
   }
 
-  LatLngBounds _getBounds() => callMethod(this, 'getBounds', []);
+  LatLngBounds? _getBounds() => callMethod(this, 'getBounds', []);
 
-  bool _getDraggable() => callMethod(this, 'getDraggable', []);
+  bool? _getDraggable() => callMethod(this, 'getDraggable', []);
 
-  bool _getEditable() => callMethod(this, 'getEditable', []);
+  bool? _getEditable() => callMethod(this, 'getEditable', []);
 
-  GMap _getMap() => callMethod(this, 'getMap', []);
+  GMap? _getMap() => callMethod(this, 'getMap', []);
 
-  bool _getVisible() => callMethod(this, 'getVisible', []);
+  bool? _getVisible() => callMethod(this, 'getVisible', []);
 
-  void _setBounds(LatLngBounds bounds) {
+  void _setBounds(LatLngBounds? bounds) {
     callMethod(this, 'setBounds', [bounds]);
   }
 
-  void _setDraggable(bool draggable) {
+  void _setDraggable(bool? draggable) {
     callMethod(this, 'setDraggable', [draggable]);
   }
 
-  void _setEditable(bool editable) {
+  void _setEditable(bool? editable) {
     callMethod(this, 'setEditable', [editable]);
   }
 
-  void _setMap(GMap map) {
+  void _setMap(GMap? map) {
     callMethod(this, 'setMap', [map]);
   }
 
-  void _setOptions(RectangleOptions options) {
+  void _setOptions(RectangleOptions? options) {
     callMethod(this, 'setOptions', [options]);
   }
 
-  void _setVisible(bool visible) {
+  void _setVisible(bool? visible) {
     callMethod(this, 'setVisible', [visible]);
   }
 }
@@ -3110,84 +3132,84 @@ extension Rectangle$Ext on Rectangle {
 class RectangleOptions {
   external factory RectangleOptions();
 
-  external LatLngBounds get bounds;
+  external LatLngBounds? get bounds;
 
-  external set bounds(LatLngBounds value);
+  external set bounds(LatLngBounds? value);
 
-  external bool get clickable;
+  external bool? get clickable;
 
-  external set clickable(bool value);
+  external set clickable(bool? value);
 
-  external bool get draggable;
+  external bool? get draggable;
 
-  external set draggable(bool value);
+  external set draggable(bool? value);
 
-  external bool get editable;
+  external bool? get editable;
 
-  external set editable(bool value);
+  external set editable(bool? value);
 
-  external String get fillColor;
+  external String? get fillColor;
 
-  external set fillColor(String value);
+  external set fillColor(String? value);
 
-  external num get fillOpacity;
+  external num? get fillOpacity;
 
-  external set fillOpacity(num value);
+  external set fillOpacity(num? value);
 
-  external GMap get map;
+  external GMap? get map;
 
-  external set map(GMap value);
+  external set map(GMap? value);
 
-  external String get strokeColor;
+  external String? get strokeColor;
 
-  external set strokeColor(String value);
+  external set strokeColor(String? value);
 
-  external num get strokeOpacity;
+  external num? get strokeOpacity;
 
-  external set strokeOpacity(num value);
+  external set strokeOpacity(num? value);
 
-  external StrokePosition get strokePosition;
+  external StrokePosition? get strokePosition;
 
-  external set strokePosition(StrokePosition value);
+  external set strokePosition(StrokePosition? value);
 
-  external num get strokeWeight;
+  external num? get strokeWeight;
 
-  external set strokeWeight(num value);
+  external set strokeWeight(num? value);
 
-  external bool get visible;
+  external bool? get visible;
 
-  external set visible(bool value);
+  external set visible(bool? value);
 
-  external num get zIndex;
+  external num? get zIndex;
 
-  external set zIndex(num value);
+  external set zIndex(num? value);
 }
 
 @JS('google.maps.Circle')
 class Circle extends MVCObject {
   external Circle([
-    CircleOptions opts, // ignore: unused_element
+    CircleOptions? opts, // ignore: unused_element
   ]);
 }
 
 extension Circle$Ext on Circle {
-  LatLngBounds get bounds => _getBounds();
-  LatLng get center => _getCenter();
-  bool get draggable => _getDraggable();
-  bool get editable => _getEditable();
-  GMap get map => _getMap();
-  num get radius => _getRadius();
-  bool get visible => _getVisible();
-  set center(LatLng center) => _setCenter(center);
-  set draggable(bool draggable) => _setDraggable(draggable);
-  set editable(bool editable) => _setEditable(editable);
-  set map(GMap map) => _setMap(map);
-  set options(CircleOptions options) => _setOptions(options);
-  set radius(num radius) => _setRadius(radius);
-  set visible(bool visible) => _setVisible(visible);
+  LatLngBounds? get bounds => _getBounds();
+  LatLng? get center => _getCenter();
+  bool? get draggable => _getDraggable();
+  bool? get editable => _getEditable();
+  GMap? get map => _getMap();
+  num? get radius => _getRadius();
+  bool? get visible => _getVisible();
+  set center(LatLng? center) => _setCenter(center);
+  set draggable(bool? draggable) => _setDraggable(draggable);
+  set editable(bool? editable) => _setEditable(editable);
+  set map(GMap? map) => _setMap(map);
+  set options(CircleOptions? options) => _setOptions(options);
+  set radius(num? radius) => _setRadius(radius);
+  set visible(bool? visible) => _setVisible(visible);
   Stream<void> get onCenterChanged {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'center_changed',
@@ -3204,8 +3226,8 @@ extension Circle$Ext on Circle {
   }
 
   Stream<MapMouseEvent> get onClick {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'click',
@@ -3222,8 +3244,8 @@ extension Circle$Ext on Circle {
   }
 
   Stream<MapMouseEvent> get onDblclick {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'dblclick',
@@ -3240,8 +3262,8 @@ extension Circle$Ext on Circle {
   }
 
   Stream<MapMouseEvent> get onDrag {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'drag',
@@ -3258,8 +3280,8 @@ extension Circle$Ext on Circle {
   }
 
   Stream<MapMouseEvent> get onDragend {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'dragend',
@@ -3276,8 +3298,8 @@ extension Circle$Ext on Circle {
   }
 
   Stream<MapMouseEvent> get onDragstart {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'dragstart',
@@ -3294,8 +3316,8 @@ extension Circle$Ext on Circle {
   }
 
   Stream<MapMouseEvent> get onMousedown {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mousedown',
@@ -3312,8 +3334,8 @@ extension Circle$Ext on Circle {
   }
 
   Stream<MapMouseEvent> get onMousemove {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mousemove',
@@ -3330,8 +3352,8 @@ extension Circle$Ext on Circle {
   }
 
   Stream<MapMouseEvent> get onMouseout {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseout',
@@ -3348,8 +3370,8 @@ extension Circle$Ext on Circle {
   }
 
   Stream<MapMouseEvent> get onMouseover {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseover',
@@ -3366,8 +3388,8 @@ extension Circle$Ext on Circle {
   }
 
   Stream<MapMouseEvent> get onMouseup {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseup',
@@ -3384,8 +3406,8 @@ extension Circle$Ext on Circle {
   }
 
   Stream<void> get onRadiusChanged {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'radius_changed',
@@ -3402,8 +3424,8 @@ extension Circle$Ext on Circle {
   }
 
   Stream<MapMouseEvent> get onRightclick {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'rightclick',
@@ -3419,45 +3441,45 @@ extension Circle$Ext on Circle {
     return sc.stream;
   }
 
-  LatLngBounds _getBounds() => callMethod(this, 'getBounds', []);
+  LatLngBounds? _getBounds() => callMethod(this, 'getBounds', []);
 
-  LatLng _getCenter() => callMethod(this, 'getCenter', []);
+  LatLng? _getCenter() => callMethod(this, 'getCenter', []);
 
-  bool _getDraggable() => callMethod(this, 'getDraggable', []);
+  bool? _getDraggable() => callMethod(this, 'getDraggable', []);
 
-  bool _getEditable() => callMethod(this, 'getEditable', []);
+  bool? _getEditable() => callMethod(this, 'getEditable', []);
 
-  GMap _getMap() => callMethod(this, 'getMap', []);
+  GMap? _getMap() => callMethod(this, 'getMap', []);
 
-  num _getRadius() => callMethod(this, 'getRadius', []);
+  num? _getRadius() => callMethod(this, 'getRadius', []);
 
-  bool _getVisible() => callMethod(this, 'getVisible', []);
+  bool? _getVisible() => callMethod(this, 'getVisible', []);
 
-  void _setCenter(LatLng center) {
+  void _setCenter(LatLng? center) {
     callMethod(this, 'setCenter', [center]);
   }
 
-  void _setDraggable(bool draggable) {
+  void _setDraggable(bool? draggable) {
     callMethod(this, 'setDraggable', [draggable]);
   }
 
-  void _setEditable(bool editable) {
+  void _setEditable(bool? editable) {
     callMethod(this, 'setEditable', [editable]);
   }
 
-  void _setMap(GMap map) {
+  void _setMap(GMap? map) {
     callMethod(this, 'setMap', [map]);
   }
 
-  void _setOptions(CircleOptions options) {
+  void _setOptions(CircleOptions? options) {
     callMethod(this, 'setOptions', [options]);
   }
 
-  void _setRadius(num radius) {
+  void _setRadius(num? radius) {
     callMethod(this, 'setRadius', [radius]);
   }
 
-  void _setVisible(bool visible) {
+  void _setVisible(bool? visible) {
     callMethod(this, 'setVisible', [visible]);
   }
 }
@@ -3467,61 +3489,61 @@ extension Circle$Ext on Circle {
 class CircleOptions {
   external factory CircleOptions();
 
-  external LatLng get center;
+  external LatLng? get center;
 
-  external set center(LatLng value);
+  external set center(LatLng? value);
 
-  external bool get clickable;
+  external bool? get clickable;
 
-  external set clickable(bool value);
+  external set clickable(bool? value);
 
-  external bool get draggable;
+  external bool? get draggable;
 
-  external set draggable(bool value);
+  external set draggable(bool? value);
 
-  external bool get editable;
+  external bool? get editable;
 
-  external set editable(bool value);
+  external set editable(bool? value);
 
-  external String get fillColor;
+  external String? get fillColor;
 
-  external set fillColor(String value);
+  external set fillColor(String? value);
 
-  external num get fillOpacity;
+  external num? get fillOpacity;
 
-  external set fillOpacity(num value);
+  external set fillOpacity(num? value);
 
-  external GMap get map;
+  external GMap? get map;
 
-  external set map(GMap value);
+  external set map(GMap? value);
 
-  external num get radius;
+  external num? get radius;
 
-  external set radius(num value);
+  external set radius(num? value);
 
-  external String get strokeColor;
+  external String? get strokeColor;
 
-  external set strokeColor(String value);
+  external set strokeColor(String? value);
 
-  external num get strokeOpacity;
+  external num? get strokeOpacity;
 
-  external set strokeOpacity(num value);
+  external set strokeOpacity(num? value);
 
-  external StrokePosition get strokePosition;
+  external StrokePosition? get strokePosition;
 
-  external set strokePosition(StrokePosition value);
+  external set strokePosition(StrokePosition? value);
 
-  external num get strokeWeight;
+  external num? get strokeWeight;
 
-  external set strokeWeight(num value);
+  external set strokeWeight(num? value);
 
-  external bool get visible;
+  external bool? get visible;
 
-  external set visible(bool value);
+  external set visible(bool? value);
 
-  external num get zIndex;
+  external num? get zIndex;
 
-  external set zIndex(num value);
+  external set zIndex(num? value);
 }
 
 @JS('google.maps.StrokePosition')
@@ -3534,42 +3556,42 @@ class StrokePosition {
 @JS('google.maps.Data')
 class Data extends MVCObject {
   external Data([
-    DataDataOptions options, // ignore: unused_element
+    DataDataOptions? options, // ignore: unused_element
   ]);
 
-  external DataFeature add([
-    Object /*DataFeature|DataFeatureOptions*/ feature,
+  external DataFeature? add([
+    Object? /*DataFeature?|DataFeatureOptions?*/ feature,
   ]);
 
-  external bool contains(DataFeature feature);
+  external bool? contains(DataFeature? feature);
 
-  external DataFeature getFeatureById(Object /*num|String*/ id);
+  external DataFeature? getFeatureById(Object? /*num?|String?*/ id);
 
-  external void overrideStyle(DataFeature feature, DataStyleOptions style);
+  external void overrideStyle(DataFeature? feature, DataStyleOptions? style);
 
-  external void remove(DataFeature feature);
+  external void remove(DataFeature? feature);
 
   external void revertStyle([
-    DataFeature feature,
+    DataFeature? feature,
   ]);
 }
 
 extension Data$Ext on Data {
-  ControlPosition get controlPosition => _getControlPosition();
-  List<String> get controls => _getControls();
-  String get drawingMode => _getDrawingMode();
-  GMap get map => _getMap();
-  Object /*DataStylingFunction|DataStyleOptions*/ get style => _getStyle();
-  set controlPosition(ControlPosition controlPosition) =>
+  ControlPosition? get controlPosition => _getControlPosition();
+  List<String?>? get controls => _getControls();
+  String? get drawingMode => _getDrawingMode();
+  GMap? get map => _getMap();
+  Object? /*DataStylingFunction?|DataStyleOptions?*/ get style => _getStyle();
+  set controlPosition(ControlPosition? controlPosition) =>
       _setControlPosition(controlPosition);
-  set controls(List<String> controls) => _setControls(controls);
-  set drawingMode(String drawingMode) => _setDrawingMode(drawingMode);
-  set map(GMap map) => _setMap(map);
-  set style(Object /*DataStylingFunction|DataStyleOptions*/ style) =>
+  set controls(List<String?>? controls) => _setControls(controls);
+  set drawingMode(String? drawingMode) => _setDrawingMode(drawingMode);
+  set map(GMap? map) => _setMap(map);
+  set style(Object? /*DataStylingFunction?|DataStyleOptions?*/ style) =>
       _setStyle(style);
   Stream<DataAddFeatureEvent> get onAddfeature {
-    StreamController<DataAddFeatureEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<DataAddFeatureEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'addfeature',
@@ -3586,8 +3608,8 @@ extension Data$Ext on Data {
   }
 
   Stream<DataMouseEvent> get onClick {
-    StreamController<DataMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<DataMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'click',
@@ -3604,8 +3626,8 @@ extension Data$Ext on Data {
   }
 
   Stream<DataMouseEvent> get onContextmenu {
-    StreamController<DataMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<DataMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'contextmenu',
@@ -3622,8 +3644,8 @@ extension Data$Ext on Data {
   }
 
   Stream<DataMouseEvent> get onDblclick {
-    StreamController<DataMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<DataMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'dblclick',
@@ -3640,8 +3662,8 @@ extension Data$Ext on Data {
   }
 
   Stream<DataMouseEvent> get onMousedown {
-    StreamController<DataMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<DataMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mousedown',
@@ -3658,8 +3680,8 @@ extension Data$Ext on Data {
   }
 
   Stream<DataMouseEvent> get onMouseout {
-    StreamController<DataMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<DataMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseout',
@@ -3676,8 +3698,8 @@ extension Data$Ext on Data {
   }
 
   Stream<DataMouseEvent> get onMouseover {
-    StreamController<DataMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<DataMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseover',
@@ -3694,8 +3716,8 @@ extension Data$Ext on Data {
   }
 
   Stream<DataMouseEvent> get onMouseup {
-    StreamController<DataMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<DataMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseup',
@@ -3712,8 +3734,8 @@ extension Data$Ext on Data {
   }
 
   Stream<DataRemoveFeatureEvent> get onRemovefeature {
-    StreamController<DataRemoveFeatureEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<DataRemoveFeatureEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'removefeature',
@@ -3730,8 +3752,8 @@ extension Data$Ext on Data {
   }
 
   Stream<DataRemovePropertyEvent> get onRemoveproperty {
-    StreamController<DataRemovePropertyEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<DataRemovePropertyEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'removeproperty',
@@ -3748,8 +3770,8 @@ extension Data$Ext on Data {
   }
 
   Stream<DataMouseEvent> get onRightclick {
-    StreamController<DataMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<DataMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'rightclick',
@@ -3766,8 +3788,8 @@ extension Data$Ext on Data {
   }
 
   Stream<DataSetGeometryEvent> get onSetgeometry {
-    StreamController<DataSetGeometryEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<DataSetGeometryEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'setgeometry',
@@ -3784,8 +3806,8 @@ extension Data$Ext on Data {
   }
 
   Stream<DataSetPropertyEvent> get onSetproperty {
-    StreamController<DataSetPropertyEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<DataSetPropertyEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'setproperty',
@@ -3801,59 +3823,62 @@ extension Data$Ext on Data {
     return sc.stream;
   }
 
-  List<DataFeature> addGeoJson(
-    Object geoJson, [
-    DataGeoJsonOptions options,
+  List<DataFeature?>? addGeoJson(
+    Object? geoJson, [
+    DataGeoJsonOptions? options,
   ]) =>
-      callMethod(this, 'addGeoJson', [geoJson, options])?.cast<DataFeature>();
+      callMethod(this, 'addGeoJson', [geoJson, options])?.cast<DataFeature?>();
 
-  void forEach(void Function(DataFeature p1) callback) {
-    callMethod(this, 'forEach', [allowInterop(callback)]);
+  void forEach(void Function(DataFeature? p1)? callback) {
+    callMethod(
+        this, 'forEach', [callback == null ? null : allowInterop(callback)]);
   }
 
-  ControlPosition _getControlPosition() =>
+  ControlPosition? _getControlPosition() =>
       callMethod(this, 'getControlPosition', []);
 
-  List<String> _getControls() =>
-      callMethod(this, 'getControls', [])?.cast<String>();
+  List<String?>? _getControls() =>
+      callMethod(this, 'getControls', [])?.cast<String?>();
 
-  String _getDrawingMode() => callMethod(this, 'getDrawingMode', []);
+  String? _getDrawingMode() => callMethod(this, 'getDrawingMode', []);
 
-  GMap _getMap() => callMethod(this, 'getMap', []);
+  GMap? _getMap() => callMethod(this, 'getMap', []);
 
-  Object /*DataStylingFunction|DataStyleOptions*/ _getStyle() =>
+  Object? /*DataStylingFunction?|DataStyleOptions?*/ _getStyle() =>
       callMethod(this, 'getStyle', []);
 
   void loadGeoJson(
-    String url, [
-    DataGeoJsonOptions options,
-    void Function(List<DataFeature> p1) callback,
+    String? url, [
+    DataGeoJsonOptions? options,
+    void Function(List<DataFeature?>? p1)? callback,
   ]) {
-    callMethod(this, 'loadGeoJson', [url, options, allowInterop(callback)]);
+    callMethod(this, 'loadGeoJson',
+        [url, options, callback == null ? null : allowInterop(callback)]);
   }
 
-  void _setControlPosition(ControlPosition controlPosition) {
+  void _setControlPosition(ControlPosition? controlPosition) {
     callMethod(this, 'setControlPosition', [controlPosition]);
   }
 
-  void _setControls(List<String> controls) {
+  void _setControls(List<String?>? controls) {
     callMethod(this, 'setControls', [controls]);
   }
 
-  void _setDrawingMode(String drawingMode) {
+  void _setDrawingMode(String? drawingMode) {
     callMethod(this, 'setDrawingMode', [drawingMode]);
   }
 
-  void _setMap(GMap map) {
+  void _setMap(GMap? map) {
     callMethod(this, 'setMap', [map]);
   }
 
-  void _setStyle(Object /*DataStylingFunction|DataStyleOptions*/ style) {
+  void _setStyle(Object? /*DataStylingFunction?|DataStyleOptions?*/ style) {
     callMethod(this, 'setStyle', [style]);
   }
 
-  void toGeoJson(void Function(Object p1) callback) {
-    callMethod(this, 'toGeoJson', [allowInterop(callback)]);
+  void toGeoJson(void Function(Object? p1)? callback) {
+    callMethod(
+        this, 'toGeoJson', [callback == null ? null : allowInterop(callback)]);
   }
 }
 
@@ -3862,35 +3887,36 @@ extension Data$Ext on Data {
 class DataDataOptions {
   external factory DataDataOptions();
 
-  external GMap get map;
+  external GMap? get map;
 
-  external set map(GMap value);
+  external set map(GMap? value);
 
-  external ControlPosition get controlPosition;
+  external ControlPosition? get controlPosition;
 
-  external set controlPosition(ControlPosition value);
+  external set controlPosition(ControlPosition? value);
 
-  external String get drawingMode;
+  external String? get drawingMode;
 
-  external set drawingMode(String value);
+  external set drawingMode(String? value);
 
-  external Object /*DataStylingFunction|DataStyleOptions*/ get style;
+  external Object? /*DataStylingFunction?|DataStyleOptions?*/ get style;
 
-  external set style(Object /*DataStylingFunction|DataStyleOptions*/ value);
+  external set style(Object? /*DataStylingFunction?|DataStyleOptions?*/ value);
 }
 
 extension DataDataOptions$Ext on DataDataOptions {
-  List<String> get controls => getProperty(this, 'controls')?.cast<String>();
+  List<String?>? get controls => getProperty(this, 'controls')?.cast<String?>();
 
-  set controls(List<String> value) {
+  set controls(List<String?>? value) {
     setProperty(this, 'controls', value);
   }
 
-  DataFeature Function(DataGeometry p1) get featureFactory =>
+  DataFeature? Function(DataGeometry? p1)? get featureFactory =>
       getProperty(this, 'featureFactory');
 
-  set featureFactory(DataFeature Function(DataGeometry p1) value) {
-    setProperty(this, 'featureFactory', allowInterop(value));
+  set featureFactory(DataFeature? Function(DataGeometry? p1)? value) {
+    setProperty(
+        this, 'featureFactory', value == null ? null : allowInterop(value));
   }
 }
 
@@ -3899,9 +3925,9 @@ extension DataDataOptions$Ext on DataDataOptions {
 class DataGeoJsonOptions {
   external factory DataGeoJsonOptions();
 
-  external String get idPropertyName;
+  external String? get idPropertyName;
 
-  external set idPropertyName(String value);
+  external set idPropertyName(String? value);
 }
 
 @JS()
@@ -3909,84 +3935,84 @@ class DataGeoJsonOptions {
 class DataStyleOptions {
   external factory DataStyleOptions();
 
-  external bool get clickable;
+  external bool? get clickable;
 
-  external set clickable(bool value);
+  external set clickable(bool? value);
 
-  external String get cursor;
+  external String? get cursor;
 
-  external set cursor(String value);
+  external set cursor(String? value);
 
-  external bool get draggable;
+  external bool? get draggable;
 
-  external set draggable(bool value);
+  external set draggable(bool? value);
 
-  external bool get editable;
+  external bool? get editable;
 
-  external set editable(bool value);
+  external set editable(bool? value);
 
-  external String get fillColor;
+  external String? get fillColor;
 
-  external set fillColor(String value);
+  external set fillColor(String? value);
 
-  external num get fillOpacity;
+  external num? get fillOpacity;
 
-  external set fillOpacity(num value);
+  external set fillOpacity(num? value);
 
-  external Object /*String|Icon|GSymbol*/ get icon;
+  external Object? /*String?|Icon?|GSymbol?*/ get icon;
 
-  external set icon(Object /*String|Icon|GSymbol*/ value);
+  external set icon(Object? /*String?|Icon?|GSymbol?*/ value);
 
-  external MarkerShape get shape;
+  external MarkerShape? get shape;
 
-  external set shape(MarkerShape value);
+  external set shape(MarkerShape? value);
 
-  external String get strokeColor;
+  external String? get strokeColor;
 
-  external set strokeColor(String value);
+  external set strokeColor(String? value);
 
-  external num get strokeOpacity;
+  external num? get strokeOpacity;
 
-  external set strokeOpacity(num value);
+  external set strokeOpacity(num? value);
 
-  external num get strokeWeight;
+  external num? get strokeWeight;
 
-  external set strokeWeight(num value);
+  external set strokeWeight(num? value);
 
-  external String get title;
+  external String? get title;
 
-  external set title(String value);
+  external set title(String? value);
 
-  external bool get visible;
+  external bool? get visible;
 
-  external set visible(bool value);
+  external set visible(bool? value);
 
-  external num get zIndex;
+  external num? get zIndex;
 
-  external set zIndex(num value);
+  external set zIndex(num? value);
 }
 
 @JS('google.maps.Data.Feature')
 class DataFeature {
   external DataFeature([
-    DataFeatureOptions options, // ignore: unused_element
+    DataFeatureOptions? options, // ignore: unused_element
   ]);
 
-  external Object getProperty(String name);
+  external Object? getProperty(String? name);
 
-  external void removeProperty(String name);
+  external void removeProperty(String? name);
 
-  external void setProperty(String name, Object newValue);
+  external void setProperty(String? name, Object? newValue);
 }
 
 extension DataFeature$Ext on DataFeature {
-  DataGeometry get geometry => _getGeometry();
-  Object /*num|String*/ get id => _getId();
-  set geometry(Object /*DataGeometry|LatLng*/ geometry) =>
+  DataGeometry? get geometry => _getGeometry();
+  Object? /*num?|String?*/ get id => _getId();
+  set geometry(Object? /*DataGeometry?|LatLng?*/ geometry) =>
       _setGeometry(geometry);
   Stream<DataRemovePropertyEvent> get onRemoveproperty {
-    StreamController<DataRemovePropertyEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<DataRemovePropertyEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'removeproperty',
@@ -4003,8 +4029,8 @@ extension DataFeature$Ext on DataFeature {
   }
 
   Stream<DataSetGeometryEvent> get onSetgeometry {
-    StreamController<DataSetGeometryEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<DataSetGeometryEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'setgeometry',
@@ -4021,8 +4047,8 @@ extension DataFeature$Ext on DataFeature {
   }
 
   Stream<DataSetPropertyEvent> get onSetproperty {
-    StreamController<DataSetPropertyEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<DataSetPropertyEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'setproperty',
@@ -4038,20 +4064,22 @@ extension DataFeature$Ext on DataFeature {
     return sc.stream;
   }
 
-  void forEachProperty(void Function(Object p1, String p2) callback) {
-    callMethod(this, 'forEachProperty', [allowInterop(callback)]);
+  void forEachProperty(void Function(Object? p1, String? p2)? callback) {
+    callMethod(this, 'forEachProperty',
+        [callback == null ? null : allowInterop(callback)]);
   }
 
-  DataGeometry _getGeometry() => callMethod(this, 'getGeometry', []);
+  DataGeometry? _getGeometry() => callMethod(this, 'getGeometry', []);
 
-  Object /*num|String*/ _getId() => callMethod(this, 'getId', []);
+  Object? /*num?|String?*/ _getId() => callMethod(this, 'getId', []);
 
-  void _setGeometry(Object /*DataGeometry|LatLng*/ newGeometry) {
+  void _setGeometry(Object? /*DataGeometry?|LatLng?*/ newGeometry) {
     callMethod(this, 'setGeometry', [newGeometry]);
   }
 
-  void toGeoJson(void Function(Object p1) callback) {
-    callMethod(this, 'toGeoJson', [allowInterop(callback)]);
+  void toGeoJson(void Function(Object? p1)? callback) {
+    callMethod(
+        this, 'toGeoJson', [callback == null ? null : allowInterop(callback)]);
   }
 }
 
@@ -4060,17 +4088,17 @@ extension DataFeature$Ext on DataFeature {
 class DataFeatureOptions {
   external factory DataFeatureOptions();
 
-  external Object /*DataGeometry|LatLng*/ get geometry;
+  external Object? /*DataGeometry?|LatLng?*/ get geometry;
 
-  external set geometry(Object /*DataGeometry|LatLng*/ value);
+  external set geometry(Object? /*DataGeometry?|LatLng?*/ value);
 
-  external Object /*num|String*/ get id;
+  external Object? /*num?|String?*/ get id;
 
-  external set id(Object /*num|String*/ value);
+  external set id(Object? /*num?|String?*/ value);
 
-  external Object get properties;
+  external Object? get properties;
 
-  external set properties(Object value);
+  external set properties(Object? value);
 }
 
 @JS()
@@ -4080,199 +4108,212 @@ class DataGeometry {
 }
 
 extension DataGeometry$Ext on DataGeometry {
-  String get type => _getType();
+  String? get type => _getType();
 
-  void forEachLatLng(void Function(LatLng p1) callback) {
-    callMethod(this, 'forEachLatLng', [allowInterop(callback)]);
+  void forEachLatLng(void Function(LatLng? p1)? callback) {
+    callMethod(this, 'forEachLatLng',
+        [callback == null ? null : allowInterop(callback)]);
   }
 
-  String _getType() => callMethod(this, 'getType', []);
+  String? _getType() => callMethod(this, 'getType', []);
 }
 
 @JS('google.maps.Data.Point')
 class DataPoint implements DataGeometry {
-  external DataPoint(LatLng latLng);
+  external DataPoint(LatLng? latLng);
 
-  external LatLng get();
+  external LatLng? get();
 }
 
 extension DataPoint$Ext on DataPoint {
-  String get type => _getType();
+  String? get type => _getType();
 
-  void forEachLatLng(void Function(LatLng p1) callback) {
-    callMethod(this, 'forEachLatLng', [allowInterop(callback)]);
+  void forEachLatLng(void Function(LatLng? p1)? callback) {
+    callMethod(this, 'forEachLatLng',
+        [callback == null ? null : allowInterop(callback)]);
   }
 
-  String _getType() => callMethod(this, 'getType', []);
+  String? _getType() => callMethod(this, 'getType', []);
 }
 
 @JS('google.maps.Data.MultiPoint')
 class DataMultiPoint implements DataGeometry {
-  external DataMultiPoint(List<LatLng> elements);
+  external DataMultiPoint(List<LatLng?>? elements);
 
-  external LatLng getAt(num n);
+  external LatLng? getAt(num? n);
 }
 
 extension DataMultiPoint$Ext on DataMultiPoint {
-  List<LatLng> get array => _getArray();
-  num get length => _getLength();
-  String get type => _getType();
+  List<LatLng?>? get array => _getArray();
+  num? get length => _getLength();
+  String? get type => _getType();
 
-  void forEachLatLng(void Function(LatLng p1) callback) {
-    callMethod(this, 'forEachLatLng', [allowInterop(callback)]);
+  void forEachLatLng(void Function(LatLng? p1)? callback) {
+    callMethod(this, 'forEachLatLng',
+        [callback == null ? null : allowInterop(callback)]);
   }
 
-  List<LatLng> _getArray() => callMethod(this, 'getArray', [])?.cast<LatLng>();
+  List<LatLng?>? _getArray() =>
+      callMethod(this, 'getArray', [])?.cast<LatLng?>();
 
-  num _getLength() => callMethod(this, 'getLength', []);
+  num? _getLength() => callMethod(this, 'getLength', []);
 
-  String _getType() => callMethod(this, 'getType', []);
+  String? _getType() => callMethod(this, 'getType', []);
 }
 
 @JS('google.maps.Data.LineString')
 class DataLineString implements DataGeometry {
-  external DataLineString(List<LatLng> elements);
+  external DataLineString(List<LatLng?>? elements);
 
-  external LatLng getAt(num n);
+  external LatLng? getAt(num? n);
 }
 
 extension DataLineString$Ext on DataLineString {
-  List<LatLng> get array => _getArray();
-  num get length => _getLength();
-  String get type => _getType();
+  List<LatLng?>? get array => _getArray();
+  num? get length => _getLength();
+  String? get type => _getType();
 
-  void forEachLatLng(void Function(LatLng p1) callback) {
-    callMethod(this, 'forEachLatLng', [allowInterop(callback)]);
+  void forEachLatLng(void Function(LatLng? p1)? callback) {
+    callMethod(this, 'forEachLatLng',
+        [callback == null ? null : allowInterop(callback)]);
   }
 
-  List<LatLng> _getArray() => callMethod(this, 'getArray', [])?.cast<LatLng>();
+  List<LatLng?>? _getArray() =>
+      callMethod(this, 'getArray', [])?.cast<LatLng?>();
 
-  num _getLength() => callMethod(this, 'getLength', []);
+  num? _getLength() => callMethod(this, 'getLength', []);
 
-  String _getType() => callMethod(this, 'getType', []);
+  String? _getType() => callMethod(this, 'getType', []);
 }
 
 @JS('google.maps.Data.MultiLineString')
 class DataMultiLineString implements DataGeometry {
   external DataMultiLineString(
-      List<Object /*DataLineString|List<LatLng>*/ > elements);
+      List<Object? /*DataLineString?|List<LatLng?>?*/ >? elements);
 
-  external DataLineString getAt(num n);
+  external DataLineString? getAt(num? n);
 }
 
 extension DataMultiLineString$Ext on DataMultiLineString {
-  List<DataLineString> get array => _getArray();
-  num get length => _getLength();
-  String get type => _getType();
+  List<DataLineString?>? get array => _getArray();
+  num? get length => _getLength();
+  String? get type => _getType();
 
-  void forEachLatLng(void Function(LatLng p1) callback) {
-    callMethod(this, 'forEachLatLng', [allowInterop(callback)]);
+  void forEachLatLng(void Function(LatLng? p1)? callback) {
+    callMethod(this, 'forEachLatLng',
+        [callback == null ? null : allowInterop(callback)]);
   }
 
-  List<DataLineString> _getArray() =>
-      callMethod(this, 'getArray', [])?.cast<DataLineString>();
+  List<DataLineString?>? _getArray() =>
+      callMethod(this, 'getArray', [])?.cast<DataLineString?>();
 
-  num _getLength() => callMethod(this, 'getLength', []);
+  num? _getLength() => callMethod(this, 'getLength', []);
 
-  String _getType() => callMethod(this, 'getType', []);
+  String? _getType() => callMethod(this, 'getType', []);
 }
 
 @JS('google.maps.Data.LinearRing')
 class DataLinearRing implements DataGeometry {
-  external DataLinearRing(List<LatLng> elements);
+  external DataLinearRing(List<LatLng?>? elements);
 
-  external LatLng getAt(num n);
+  external LatLng? getAt(num? n);
 }
 
 extension DataLinearRing$Ext on DataLinearRing {
-  List<LatLng> get array => _getArray();
-  num get length => _getLength();
-  String get type => _getType();
+  List<LatLng?>? get array => _getArray();
+  num? get length => _getLength();
+  String? get type => _getType();
 
-  void forEachLatLng(void Function(LatLng p1) callback) {
-    callMethod(this, 'forEachLatLng', [allowInterop(callback)]);
+  void forEachLatLng(void Function(LatLng? p1)? callback) {
+    callMethod(this, 'forEachLatLng',
+        [callback == null ? null : allowInterop(callback)]);
   }
 
-  List<LatLng> _getArray() => callMethod(this, 'getArray', [])?.cast<LatLng>();
+  List<LatLng?>? _getArray() =>
+      callMethod(this, 'getArray', [])?.cast<LatLng?>();
 
-  num _getLength() => callMethod(this, 'getLength', []);
+  num? _getLength() => callMethod(this, 'getLength', []);
 
-  String _getType() => callMethod(this, 'getType', []);
+  String? _getType() => callMethod(this, 'getType', []);
 }
 
 @JS('google.maps.Data.Polygon')
 class DataPolygon implements DataGeometry {
-  external DataPolygon(List<Object /*DataLinearRing|List<LatLng>*/ > elements);
+  external DataPolygon(
+      List<Object? /*DataLinearRing?|List<LatLng?>?*/ >? elements);
 
-  external DataLinearRing getAt(num n);
+  external DataLinearRing? getAt(num? n);
 }
 
 extension DataPolygon$Ext on DataPolygon {
-  List<DataLinearRing> get array => _getArray();
-  num get length => _getLength();
-  String get type => _getType();
+  List<DataLinearRing?>? get array => _getArray();
+  num? get length => _getLength();
+  String? get type => _getType();
 
-  void forEachLatLng(void Function(LatLng p1) callback) {
-    callMethod(this, 'forEachLatLng', [allowInterop(callback)]);
+  void forEachLatLng(void Function(LatLng? p1)? callback) {
+    callMethod(this, 'forEachLatLng',
+        [callback == null ? null : allowInterop(callback)]);
   }
 
-  List<DataLinearRing> _getArray() =>
-      callMethod(this, 'getArray', [])?.cast<DataLinearRing>();
+  List<DataLinearRing?>? _getArray() =>
+      callMethod(this, 'getArray', [])?.cast<DataLinearRing?>();
 
-  num _getLength() => callMethod(this, 'getLength', []);
+  num? _getLength() => callMethod(this, 'getLength', []);
 
-  String _getType() => callMethod(this, 'getType', []);
+  String? _getType() => callMethod(this, 'getType', []);
 }
 
 @JS('google.maps.Data.MultiPolygon')
 class DataMultiPolygon implements DataGeometry {
   external DataMultiPolygon(
-      List<Object /*DataPolygon|List<Object/*DataLinearRing|List<LatLng>*/>*/ >
+      List<Object? /*DataPolygon?|List<Object?/*DataLinearRing?|List<LatLng?>?*/>?*/ >?
           elements);
 
-  external DataPolygon getAt(num n);
+  external DataPolygon? getAt(num? n);
 }
 
 extension DataMultiPolygon$Ext on DataMultiPolygon {
-  List<DataPolygon> get array => _getArray();
-  num get length => _getLength();
-  String get type => _getType();
+  List<DataPolygon?>? get array => _getArray();
+  num? get length => _getLength();
+  String? get type => _getType();
 
-  void forEachLatLng(void Function(LatLng p1) callback) {
-    callMethod(this, 'forEachLatLng', [allowInterop(callback)]);
+  void forEachLatLng(void Function(LatLng? p1)? callback) {
+    callMethod(this, 'forEachLatLng',
+        [callback == null ? null : allowInterop(callback)]);
   }
 
-  List<DataPolygon> _getArray() =>
-      callMethod(this, 'getArray', [])?.cast<DataPolygon>();
+  List<DataPolygon?>? _getArray() =>
+      callMethod(this, 'getArray', [])?.cast<DataPolygon?>();
 
-  num _getLength() => callMethod(this, 'getLength', []);
+  num? _getLength() => callMethod(this, 'getLength', []);
 
-  String _getType() => callMethod(this, 'getType', []);
+  String? _getType() => callMethod(this, 'getType', []);
 }
 
 @JS('google.maps.Data.GeometryCollection')
 class DataGeometryCollection implements DataGeometry {
   external DataGeometryCollection(
-      List<Object /*DataGeometry|LatLng*/ > elements);
+      List<Object? /*DataGeometry?|LatLng?*/ >? elements);
 
-  external DataGeometry getAt(num n);
+  external DataGeometry? getAt(num? n);
 }
 
 extension DataGeometryCollection$Ext on DataGeometryCollection {
-  List<DataGeometry> get array => _getArray();
-  num get length => _getLength();
-  String get type => _getType();
+  List<DataGeometry?>? get array => _getArray();
+  num? get length => _getLength();
+  String? get type => _getType();
 
-  void forEachLatLng(void Function(LatLng p1) callback) {
-    callMethod(this, 'forEachLatLng', [allowInterop(callback)]);
+  void forEachLatLng(void Function(LatLng? p1)? callback) {
+    callMethod(this, 'forEachLatLng',
+        [callback == null ? null : allowInterop(callback)]);
   }
 
-  List<DataGeometry> _getArray() =>
-      callMethod(this, 'getArray', [])?.cast<DataGeometry>();
+  List<DataGeometry?>? _getArray() =>
+      callMethod(this, 'getArray', [])?.cast<DataGeometry?>();
 
-  num _getLength() => callMethod(this, 'getLength', []);
+  num? _getLength() => callMethod(this, 'getLength', []);
 
-  String _getType() => callMethod(this, 'getType', []);
+  String? _getType() => callMethod(this, 'getType', []);
 }
 
 @JS()
@@ -4280,9 +4321,9 @@ extension DataGeometryCollection$Ext on DataGeometryCollection {
 class DataMouseEvent extends MapMouseEvent {
   external factory DataMouseEvent();
 
-  external DataFeature get feature;
+  external DataFeature? get feature;
 
-  external set feature(DataFeature value);
+  external set feature(DataFeature? value);
 }
 
 @JS()
@@ -4290,9 +4331,9 @@ class DataMouseEvent extends MapMouseEvent {
 class DataAddFeatureEvent {
   external factory DataAddFeatureEvent();
 
-  external DataFeature get feature;
+  external DataFeature? get feature;
 
-  external set feature(DataFeature value);
+  external set feature(DataFeature? value);
 }
 
 @JS()
@@ -4300,9 +4341,9 @@ class DataAddFeatureEvent {
 class DataRemoveFeatureEvent {
   external factory DataRemoveFeatureEvent();
 
-  external DataFeature get feature;
+  external DataFeature? get feature;
 
-  external set feature(DataFeature value);
+  external set feature(DataFeature? value);
 }
 
 @JS()
@@ -4310,17 +4351,17 @@ class DataRemoveFeatureEvent {
 class DataSetGeometryEvent {
   external factory DataSetGeometryEvent();
 
-  external DataFeature get feature;
+  external DataFeature? get feature;
 
-  external set feature(DataFeature value);
+  external set feature(DataFeature? value);
 
-  external DataGeometry get newGeometry;
+  external DataGeometry? get newGeometry;
 
-  external set newGeometry(DataGeometry value);
+  external set newGeometry(DataGeometry? value);
 
-  external DataGeometry get oldGeometry;
+  external DataGeometry? get oldGeometry;
 
-  external set oldGeometry(DataGeometry value);
+  external set oldGeometry(DataGeometry? value);
 }
 
 @JS()
@@ -4328,21 +4369,21 @@ class DataSetGeometryEvent {
 class DataSetPropertyEvent {
   external factory DataSetPropertyEvent();
 
-  external DataFeature get feature;
+  external DataFeature? get feature;
 
-  external set feature(DataFeature value);
+  external set feature(DataFeature? value);
 
-  external String get name;
+  external String? get name;
 
-  external set name(String value);
+  external set name(String? value);
 
-  external Object get newValue;
+  external Object? get newValue;
 
-  external set newValue(Object value);
+  external set newValue(Object? value);
 
-  external Object get oldValue;
+  external Object? get oldValue;
 
-  external set oldValue(Object value);
+  external set oldValue(Object? value);
 }
 
 @JS()
@@ -4350,17 +4391,17 @@ class DataSetPropertyEvent {
 class DataRemovePropertyEvent {
   external factory DataRemovePropertyEvent();
 
-  external DataFeature get feature;
+  external DataFeature? get feature;
 
-  external set feature(DataFeature value);
+  external set feature(DataFeature? value);
 
-  external String get name;
+  external String? get name;
 
-  external set name(String value);
+  external set name(String? value);
 
-  external Object get oldValue;
+  external Object? get oldValue;
 
-  external set oldValue(Object value);
+  external set oldValue(Object? value);
 }
 
 @JS('google.maps.OverlayView')
@@ -4369,37 +4410,38 @@ class OverlayView extends MVCObject {
 }
 
 extension OverlayView$Ext on OverlayView {
-  void Function() get draw => getProperty(this, 'draw');
+  void Function()? get draw => getProperty(this, 'draw');
 
-  set draw(void Function() value) {
-    setProperty(this, 'draw', allowInterop(value));
+  set draw(void Function()? value) {
+    setProperty(this, 'draw', value == null ? null : allowInterop(value));
   }
 
-  void Function() get onAdd => getProperty(this, 'onAdd');
+  void Function()? get onAdd => getProperty(this, 'onAdd');
 
-  set onAdd(void Function() value) {
-    setProperty(this, 'onAdd', allowInterop(value));
+  set onAdd(void Function()? value) {
+    setProperty(this, 'onAdd', value == null ? null : allowInterop(value));
   }
 
-  void Function() get onRemove => getProperty(this, 'onRemove');
+  void Function()? get onRemove => getProperty(this, 'onRemove');
 
-  set onRemove(void Function() value) {
-    setProperty(this, 'onRemove', allowInterop(value));
+  set onRemove(void Function()? value) {
+    setProperty(this, 'onRemove', value == null ? null : allowInterop(value));
   }
 
-  Object /*GMap|StreetViewPanorama*/ get map => _getMap();
-  MapPanes get panes => _getPanes();
-  MapCanvasProjection get projection => _getProjection();
-  set map(Object /*GMap|StreetViewPanorama*/ map) => _setMap(map);
+  Object? /*GMap?|StreetViewPanorama?*/ get map => _getMap();
+  MapPanes? get panes => _getPanes();
+  MapCanvasProjection? get projection => _getProjection();
+  set map(Object? /*GMap?|StreetViewPanorama?*/ map) => _setMap(map);
 
-  Object /*GMap|StreetViewPanorama*/ _getMap() =>
+  Object? /*GMap?|StreetViewPanorama?*/ _getMap() =>
       callMethod(this, 'getMap', []);
 
-  MapPanes _getPanes() => callMethod(this, 'getPanes', []);
+  MapPanes? _getPanes() => callMethod(this, 'getPanes', []);
 
-  MapCanvasProjection _getProjection() => callMethod(this, 'getProjection', []);
+  MapCanvasProjection? _getProjection() =>
+      callMethod(this, 'getProjection', []);
 
-  void _setMap(Object /*GMap|StreetViewPanorama*/ map) {
+  void _setMap(Object? /*GMap?|StreetViewPanorama?*/ map) {
     callMethod(this, 'setMap', [map]);
   }
 }
@@ -4409,25 +4451,25 @@ extension OverlayView$Ext on OverlayView {
 class MapPanes {
   external factory MapPanes();
 
-  external Element get floatPane;
+  external Element? get floatPane;
 
-  external set floatPane(Element value);
+  external set floatPane(Element? value);
 
-  external Element get mapPane;
+  external Element? get mapPane;
 
-  external set mapPane(Element value);
+  external set mapPane(Element? value);
 
-  external Element get markerLayer;
+  external Element? get markerLayer;
 
-  external set markerLayer(Element value);
+  external set markerLayer(Element? value);
 
-  external Element get overlayLayer;
+  external Element? get overlayLayer;
 
-  external set overlayLayer(Element value);
+  external set overlayLayer(Element? value);
 
-  external Element get overlayMouseTarget;
+  external Element? get overlayMouseTarget;
 
-  external set overlayMouseTarget(Element value);
+  external set overlayMouseTarget(Element? value);
 }
 
 @JS()
@@ -4435,52 +4477,52 @@ class MapPanes {
 class MapCanvasProjection {
   external factory MapCanvasProjection();
 
-  external LatLng fromContainerPixelToLatLng([
-    Point pixel,
-    bool nowrap,
+  external LatLng? fromContainerPixelToLatLng([
+    Point? pixel,
+    bool? nowrap,
   ]);
 
-  external LatLng fromDivPixelToLatLng([
-    Point pixel,
-    bool nowrap,
+  external LatLng? fromDivPixelToLatLng([
+    Point? pixel,
+    bool? nowrap,
   ]);
 
-  external Point fromLatLngToContainerPixel([
-    LatLng latLng,
+  external Point? fromLatLngToContainerPixel([
+    LatLng? latLng,
   ]);
 
-  external Point fromLatLngToDivPixel([
-    LatLng latLng,
+  external Point? fromLatLngToDivPixel([
+    LatLng? latLng,
   ]);
 }
 
 extension MapCanvasProjection$Ext on MapCanvasProjection {
-  num get worldWidth => _getWorldWidth();
+  num? get worldWidth => _getWorldWidth();
 
-  num _getWorldWidth() => callMethod(this, 'getWorldWidth', []);
+  num? _getWorldWidth() => callMethod(this, 'getWorldWidth', []);
 }
 
 @JS('google.maps.KmlLayer')
 class KmlLayer extends MVCObject {
   external KmlLayer([
-    KmlLayerOptions opts, // ignore: unused_element
+    KmlLayerOptions? opts, // ignore: unused_element
   ]);
 }
 
 extension KmlLayer$Ext on KmlLayer {
-  LatLngBounds get defaultViewport => _getDefaultViewport();
-  GMap get map => _getMap();
-  KmlLayerMetadata get metadata => _getMetadata();
-  KmlLayerStatus get status => _getStatus();
-  String get url => _getUrl();
-  num get zIndex => _getZIndex();
-  set map(GMap map) => _setMap(map);
-  set options(KmlLayerOptions options) => _setOptions(options);
-  set url(String url) => _setUrl(url);
-  set zIndex(num zIndex) => _setZIndex(zIndex);
+  LatLngBounds? get defaultViewport => _getDefaultViewport();
+  GMap? get map => _getMap();
+  KmlLayerMetadata? get metadata => _getMetadata();
+  KmlLayerStatus? get status => _getStatus();
+  String? get url => _getUrl();
+  num? get zIndex => _getZIndex();
+  set map(GMap? map) => _setMap(map);
+  set options(KmlLayerOptions? options) => _setOptions(options);
+  set url(String? url) => _setUrl(url);
+  set zIndex(num? zIndex) => _setZIndex(zIndex);
   Stream<KmlMouseEvent> get onClick {
-    StreamController<KmlMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<KmlMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'click',
@@ -4497,8 +4539,8 @@ extension KmlLayer$Ext on KmlLayer {
   }
 
   Stream<void> get onDefaultviewportChanged {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'defaultviewport_changed',
@@ -4515,8 +4557,8 @@ extension KmlLayer$Ext on KmlLayer {
   }
 
   Stream<void> get onStatusChanged {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'status_changed',
@@ -4532,32 +4574,32 @@ extension KmlLayer$Ext on KmlLayer {
     return sc.stream;
   }
 
-  LatLngBounds _getDefaultViewport() =>
+  LatLngBounds? _getDefaultViewport() =>
       callMethod(this, 'getDefaultViewport', []);
 
-  GMap _getMap() => callMethod(this, 'getMap', []);
+  GMap? _getMap() => callMethod(this, 'getMap', []);
 
-  KmlLayerMetadata _getMetadata() => callMethod(this, 'getMetadata', []);
+  KmlLayerMetadata? _getMetadata() => callMethod(this, 'getMetadata', []);
 
-  KmlLayerStatus _getStatus() => callMethod(this, 'getStatus', []);
+  KmlLayerStatus? _getStatus() => callMethod(this, 'getStatus', []);
 
-  String _getUrl() => callMethod(this, 'getUrl', []);
+  String? _getUrl() => callMethod(this, 'getUrl', []);
 
-  num _getZIndex() => callMethod(this, 'getZIndex', []);
+  num? _getZIndex() => callMethod(this, 'getZIndex', []);
 
-  void _setMap(GMap map) {
+  void _setMap(GMap? map) {
     callMethod(this, 'setMap', [map]);
   }
 
-  void _setOptions(KmlLayerOptions options) {
+  void _setOptions(KmlLayerOptions? options) {
     callMethod(this, 'setOptions', [options]);
   }
 
-  void _setUrl(String url) {
+  void _setUrl(String? url) {
     callMethod(this, 'setUrl', [url]);
   }
 
-  void _setZIndex(num zIndex) {
+  void _setZIndex(num? zIndex) {
     callMethod(this, 'setZIndex', [zIndex]);
   }
 }
@@ -4567,33 +4609,33 @@ extension KmlLayer$Ext on KmlLayer {
 class KmlLayerOptions {
   external factory KmlLayerOptions();
 
-  external bool get clickable;
+  external bool? get clickable;
 
-  external set clickable(bool value);
+  external set clickable(bool? value);
 
-  external GMap get map;
+  external GMap? get map;
 
-  external set map(GMap value);
+  external set map(GMap? value);
 
-  external bool get preserveViewport;
+  external bool? get preserveViewport;
 
-  external set preserveViewport(bool value);
+  external set preserveViewport(bool? value);
 
-  external bool get screenOverlays;
+  external bool? get screenOverlays;
 
-  external set screenOverlays(bool value);
+  external set screenOverlays(bool? value);
 
-  external bool get suppressInfoWindows;
+  external bool? get suppressInfoWindows;
 
-  external set suppressInfoWindows(bool value);
+  external set suppressInfoWindows(bool? value);
 
-  external String get url;
+  external String? get url;
 
-  external set url(String value);
+  external set url(String? value);
 
-  external num get zIndex;
+  external num? get zIndex;
 
-  external set zIndex(num value);
+  external set zIndex(num? value);
 }
 
 @JS()
@@ -4601,25 +4643,25 @@ class KmlLayerOptions {
 class KmlLayerMetadata {
   external factory KmlLayerMetadata();
 
-  external KmlAuthor get author;
+  external KmlAuthor? get author;
 
-  external set author(KmlAuthor value);
+  external set author(KmlAuthor? value);
 
-  external String get description;
+  external String? get description;
 
-  external set description(String value);
+  external set description(String? value);
 
-  external bool get hasScreenOverlays;
+  external bool? get hasScreenOverlays;
 
-  external set hasScreenOverlays(bool value);
+  external set hasScreenOverlays(bool? value);
 
-  external String get name;
+  external String? get name;
 
-  external set name(String value);
+  external set name(String? value);
 
-  external String get snippet;
+  external String? get snippet;
 
-  external set snippet(String value);
+  external set snippet(String? value);
 }
 
 @JS('google.maps.KmlLayerStatus')
@@ -4640,17 +4682,17 @@ class KmlLayerStatus {
 class KmlMouseEvent {
   external factory KmlMouseEvent();
 
-  external KmlFeatureData get featureData;
+  external KmlFeatureData? get featureData;
 
-  external set featureData(KmlFeatureData value);
+  external set featureData(KmlFeatureData? value);
 
-  external LatLng get latLng;
+  external LatLng? get latLng;
 
-  external set latLng(LatLng value);
+  external set latLng(LatLng? value);
 
-  external Size get pixelOffset;
+  external Size? get pixelOffset;
 
-  external set pixelOffset(Size value);
+  external set pixelOffset(Size? value);
 }
 
 @JS()
@@ -4658,29 +4700,29 @@ class KmlMouseEvent {
 class KmlFeatureData {
   external factory KmlFeatureData();
 
-  external KmlAuthor get author;
+  external KmlAuthor? get author;
 
-  external set author(KmlAuthor value);
+  external set author(KmlAuthor? value);
 
-  external String get description;
+  external String? get description;
 
-  external set description(String value);
+  external set description(String? value);
 
-  external String get id;
+  external String? get id;
 
-  external set id(String value);
+  external set id(String? value);
 
-  external String get infoWindowHtml;
+  external String? get infoWindowHtml;
 
-  external set infoWindowHtml(String value);
+  external set infoWindowHtml(String? value);
 
-  external String get name;
+  external String? get name;
 
-  external set name(String value);
+  external set name(String? value);
 
-  external String get snippet;
+  external String? get snippet;
 
-  external set snippet(String value);
+  external set snippet(String? value);
 }
 
 @JS()
@@ -4688,17 +4730,17 @@ class KmlFeatureData {
 class KmlAuthor {
   external factory KmlAuthor();
 
-  external String get email;
+  external String? get email;
 
-  external set email(String value);
+  external set email(String? value);
 
-  external String get name;
+  external String? get name;
 
-  external set name(String value);
+  external set name(String? value);
 
-  external String get uri;
+  external String? get uri;
 
-  external set uri(String value);
+  external set uri(String? value);
 }
 
 @JS()
@@ -4706,48 +4748,51 @@ class KmlAuthor {
 class MapType {
   external factory MapType();
 
-  external num get maxZoom;
+  external num? get maxZoom;
 
-  external set maxZoom(num value);
+  external set maxZoom(num? value);
 
-  external num get minZoom;
+  external num? get minZoom;
 
-  external set minZoom(num value);
+  external set minZoom(num? value);
 
-  external num get radius;
+  external num? get radius;
 
-  external set radius(num value);
+  external set radius(num? value);
 
-  external Size get tileSize;
+  external Size? get tileSize;
 
-  external set tileSize(Size value);
+  external set tileSize(Size? value);
 
-  external String get alt;
+  external String? get alt;
 
-  external set alt(String value);
+  external set alt(String? value);
 
-  external String get name;
+  external String? get name;
 
-  external set name(String value);
+  external set name(String? value);
 
-  external Projection get projection;
+  external Projection? get projection;
 
-  external set projection(Projection value);
+  external set projection(Projection? value);
 }
 
 extension MapType$Ext on MapType {
-  Node Function(Point tileCoord, num zoom, Document ownerDocument)
+  Node? Function(Point? tileCoord, num? zoom, Document? ownerDocument)?
       get getTile => getProperty(this, 'getTile');
 
   set getTile(
-      Node Function(Point tileCoord, num zoom, Document ownerDocument) value) {
-    setProperty(this, 'getTile', allowInterop(value));
+      Node? Function(Point? tileCoord, num? zoom, Document? ownerDocument)?
+          value) {
+    setProperty(this, 'getTile', value == null ? null : allowInterop(value));
   }
 
-  void Function(Node tile) get releaseTile => getProperty(this, 'releaseTile');
+  void Function(Node? tile)? get releaseTile =>
+      getProperty(this, 'releaseTile');
 
-  set releaseTile(void Function(Node tile) value) {
-    setProperty(this, 'releaseTile', allowInterop(value));
+  set releaseTile(void Function(Node? tile)? value) {
+    setProperty(
+        this, 'releaseTile', value == null ? null : allowInterop(value));
   }
 }
 
@@ -4758,89 +4803,93 @@ class Projection {
 }
 
 extension Projection$Ext on Projection {
-  Point Function(
-    LatLng latLng, [
-    Point point,
-  ]) get fromLatLngToPoint => getProperty(this, 'fromLatLngToPoint');
+  Point? Function(
+    LatLng? latLng, [
+    Point? point,
+  ])? get fromLatLngToPoint => getProperty(this, 'fromLatLngToPoint');
 
   set fromLatLngToPoint(
-      Point Function(
-    LatLng latLng, [
-    Point point,
-  ])
+      Point? Function(
+    LatLng? latLng, [
+    Point? point,
+  ])?
           value) {
-    setProperty(this, 'fromLatLngToPoint', allowInterop(value));
+    setProperty(
+        this, 'fromLatLngToPoint', value == null ? null : allowInterop(value));
   }
 
-  LatLng Function(
-    Point pixel, [
-    bool noWrap,
-  ]) get fromPointToLatLng => getProperty(this, 'fromPointToLatLng');
+  LatLng? Function(
+    Point? pixel, [
+    bool? noWrap,
+  ])? get fromPointToLatLng => getProperty(this, 'fromPointToLatLng');
 
   set fromPointToLatLng(
-      LatLng Function(
-    Point pixel, [
-    bool noWrap,
-  ])
+      LatLng? Function(
+    Point? pixel, [
+    bool? noWrap,
+  ])?
           value) {
-    setProperty(this, 'fromPointToLatLng', allowInterop(value));
+    setProperty(
+        this, 'fromPointToLatLng', value == null ? null : allowInterop(value));
   }
 }
 
 @JS('google.maps.ImageMapType')
 class ImageMapType extends MVCObject implements MapType {
-  external ImageMapType(ImageMapTypeOptions opts);
+  external ImageMapType(ImageMapTypeOptions? opts);
 
-  external String get alt;
+  external String? get alt;
 
-  external set alt(String value);
+  external set alt(String? value);
 
-  external num get maxZoom;
+  external num? get maxZoom;
 
-  external set maxZoom(num value);
+  external set maxZoom(num? value);
 
-  external num get minZoom;
+  external num? get minZoom;
 
-  external set minZoom(num value);
+  external set minZoom(num? value);
 
-  external String get name;
+  external String? get name;
 
-  external set name(String value);
+  external set name(String? value);
 
-  external Projection get projection;
+  external Projection? get projection;
 
-  external set projection(Projection value);
+  external set projection(Projection? value);
 
-  external num get radius;
+  external num? get radius;
 
-  external set radius(num value);
+  external set radius(num? value);
 
-  external Size get tileSize;
+  external Size? get tileSize;
 
-  external set tileSize(Size value);
+  external set tileSize(Size? value);
 }
 
 extension ImageMapType$Ext on ImageMapType {
-  Node Function(Point tileCoord, num zoom, Document ownerDocument)
+  Node? Function(Point? tileCoord, num? zoom, Document? ownerDocument)?
       get getTile => getProperty(this, 'getTile');
 
   set getTile(
-      Node Function(Point tileCoord, num zoom, Document ownerDocument) value) {
-    setProperty(this, 'getTile', allowInterop(value));
+      Node? Function(Point? tileCoord, num? zoom, Document? ownerDocument)?
+          value) {
+    setProperty(this, 'getTile', value == null ? null : allowInterop(value));
   }
 
-  void Function(Node tileDiv) get releaseTile =>
+  void Function(Node? tileDiv)? get releaseTile =>
       getProperty(this, 'releaseTile');
 
-  set releaseTile(void Function(Node tileDiv) value) {
-    setProperty(this, 'releaseTile', allowInterop(value));
+  set releaseTile(void Function(Node? tileDiv)? value) {
+    setProperty(
+        this, 'releaseTile', value == null ? null : allowInterop(value));
   }
 
-  num get opacity => _getOpacity();
-  set opacity(num opacity) => _setOpacity(opacity);
+  num? get opacity => _getOpacity();
+  set opacity(num? opacity) => _setOpacity(opacity);
   Stream<void> get onTilesloaded {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'tilesloaded',
@@ -4856,9 +4905,9 @@ extension ImageMapType$Ext on ImageMapType {
     return sc.stream;
   }
 
-  num _getOpacity() => callMethod(this, 'getOpacity', []);
+  num? _getOpacity() => callMethod(this, 'getOpacity', []);
 
-  void _setOpacity(num opacity) {
+  void _setOpacity(num? opacity) {
     callMethod(this, 'setOpacity', [opacity]);
   }
 }
@@ -4868,59 +4917,59 @@ extension ImageMapType$Ext on ImageMapType {
 class ImageMapTypeOptions {
   external factory ImageMapTypeOptions();
 
-  external String get alt;
+  external String? get alt;
 
-  external set alt(String value);
+  external set alt(String? value);
 
-  external num get maxZoom;
+  external num? get maxZoom;
 
-  external set maxZoom(num value);
+  external set maxZoom(num? value);
 
-  external num get minZoom;
+  external num? get minZoom;
 
-  external set minZoom(num value);
+  external set minZoom(num? value);
 
-  external String get name;
+  external String? get name;
 
-  external set name(String value);
+  external set name(String? value);
 
-  external num get opacity;
+  external num? get opacity;
 
-  external set opacity(num value);
+  external set opacity(num? value);
 
-  external Size get tileSize;
+  external Size? get tileSize;
 
-  external set tileSize(Size value);
+  external set tileSize(Size? value);
 }
 
 extension ImageMapTypeOptions$Ext on ImageMapTypeOptions {
-  String Function(Point p1, num p2) get getTileUrl =>
+  String? Function(Point? p1, num? p2)? get getTileUrl =>
       getProperty(this, 'getTileUrl');
 
-  set getTileUrl(String Function(Point p1, num p2) value) {
-    setProperty(this, 'getTileUrl', allowInterop(value));
+  set getTileUrl(String? Function(Point? p1, num? p2)? value) {
+    setProperty(this, 'getTileUrl', value == null ? null : allowInterop(value));
   }
 }
 
 @JS('google.maps.GroundOverlay')
 class GroundOverlay extends MVCObject {
   external GroundOverlay(
-    String url,
-    LatLngBounds bounds, [
-    GroundOverlayOptions opts, // ignore: unused_element
+    String? url,
+    LatLngBounds? bounds, [
+    GroundOverlayOptions? opts, // ignore: unused_element
   ]);
 }
 
 extension GroundOverlay$Ext on GroundOverlay {
-  LatLngBounds get bounds => _getBounds();
-  GMap get map => _getMap();
-  num get opacity => _getOpacity();
-  String get url => _getUrl();
-  set map(GMap map) => _setMap(map);
-  set opacity(num opacity) => _setOpacity(opacity);
+  LatLngBounds? get bounds => _getBounds();
+  GMap? get map => _getMap();
+  num? get opacity => _getOpacity();
+  String? get url => _getUrl();
+  set map(GMap? map) => _setMap(map);
+  set opacity(num? opacity) => _setOpacity(opacity);
   Stream<MapMouseEvent> get onClick {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'click',
@@ -4937,8 +4986,8 @@ extension GroundOverlay$Ext on GroundOverlay {
   }
 
   Stream<MapMouseEvent> get onDblclick {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'dblclick',
@@ -4954,19 +5003,19 @@ extension GroundOverlay$Ext on GroundOverlay {
     return sc.stream;
   }
 
-  LatLngBounds _getBounds() => callMethod(this, 'getBounds', []);
+  LatLngBounds? _getBounds() => callMethod(this, 'getBounds', []);
 
-  GMap _getMap() => callMethod(this, 'getMap', []);
+  GMap? _getMap() => callMethod(this, 'getMap', []);
 
-  num _getOpacity() => callMethod(this, 'getOpacity', []);
+  num? _getOpacity() => callMethod(this, 'getOpacity', []);
 
-  String _getUrl() => callMethod(this, 'getUrl', []);
+  String? _getUrl() => callMethod(this, 'getUrl', []);
 
-  void _setMap(GMap map) {
+  void _setMap(GMap? map) {
     callMethod(this, 'setMap', [map]);
   }
 
-  void _setOpacity(num opacity) {
+  void _setOpacity(num? opacity) {
     callMethod(this, 'setOpacity', [opacity]);
   }
 }
@@ -4976,68 +5025,71 @@ extension GroundOverlay$Ext on GroundOverlay {
 class GroundOverlayOptions {
   external factory GroundOverlayOptions();
 
-  external bool get clickable;
+  external bool? get clickable;
 
-  external set clickable(bool value);
+  external set clickable(bool? value);
 
-  external GMap get map;
+  external GMap? get map;
 
-  external set map(GMap value);
+  external set map(GMap? value);
 
-  external num get opacity;
+  external num? get opacity;
 
-  external set opacity(num value);
+  external set opacity(num? value);
 }
 
 @JS('google.maps.StyledMapType')
 class StyledMapType extends MVCObject implements MapType {
   external StyledMapType(
-    List<MapTypeStyle> styles, [
-    StyledMapTypeOptions options, // ignore: unused_element
+    List<MapTypeStyle?>? styles, [
+    StyledMapTypeOptions? options, // ignore: unused_element
   ]);
 
-  external String get alt;
+  external String? get alt;
 
-  external set alt(String value);
+  external set alt(String? value);
 
-  external num get maxZoom;
+  external num? get maxZoom;
 
-  external set maxZoom(num value);
+  external set maxZoom(num? value);
 
-  external num get minZoom;
+  external num? get minZoom;
 
-  external set minZoom(num value);
+  external set minZoom(num? value);
 
-  external String get name;
+  external String? get name;
 
-  external set name(String value);
+  external set name(String? value);
 
-  external Projection get projection;
+  external Projection? get projection;
 
-  external set projection(Projection value);
+  external set projection(Projection? value);
 
-  external num get radius;
+  external num? get radius;
 
-  external set radius(num value);
+  external set radius(num? value);
 
-  external Size get tileSize;
+  external Size? get tileSize;
 
-  external set tileSize(Size value);
+  external set tileSize(Size? value);
 }
 
 extension StyledMapType$Ext on StyledMapType {
-  Node Function(Point tileCoord, num zoom, Document ownerDocument)
+  Node? Function(Point? tileCoord, num? zoom, Document? ownerDocument)?
       get getTile => getProperty(this, 'getTile');
 
   set getTile(
-      Node Function(Point tileCoord, num zoom, Document ownerDocument) value) {
-    setProperty(this, 'getTile', allowInterop(value));
+      Node? Function(Point? tileCoord, num? zoom, Document? ownerDocument)?
+          value) {
+    setProperty(this, 'getTile', value == null ? null : allowInterop(value));
   }
 
-  void Function(Node tile) get releaseTile => getProperty(this, 'releaseTile');
+  void Function(Node? tile)? get releaseTile =>
+      getProperty(this, 'releaseTile');
 
-  set releaseTile(void Function(Node tile) value) {
-    setProperty(this, 'releaseTile', allowInterop(value));
+  set releaseTile(void Function(Node? tile)? value) {
+    setProperty(
+        this, 'releaseTile', value == null ? null : allowInterop(value));
   }
 }
 
@@ -5046,21 +5098,21 @@ extension StyledMapType$Ext on StyledMapType {
 class StyledMapTypeOptions {
   external factory StyledMapTypeOptions();
 
-  external String get alt;
+  external String? get alt;
 
-  external set alt(String value);
+  external set alt(String? value);
 
-  external num get maxZoom;
+  external num? get maxZoom;
 
-  external set maxZoom(num value);
+  external set maxZoom(num? value);
 
-  external num get minZoom;
+  external num? get minZoom;
 
-  external set minZoom(num value);
+  external set minZoom(num? value);
 
-  external String get name;
+  external String? get name;
 
-  external set name(String value);
+  external set name(String? value);
 }
 
 @JS('google.maps.MaxZoomService')
@@ -5069,12 +5121,12 @@ class MaxZoomService {
 }
 
 extension MaxZoomService$Ext on MaxZoomService {
-  Future<MaxZoomResult> getMaxZoomAtLatLng(
-    LatLng latlng, [
-    void Function(MaxZoomResult p1) callback,
+  Future<MaxZoomResult>? getMaxZoomAtLatLng(
+    LatLng? latlng, [
+    void Function(MaxZoomResult? p1)? callback,
   ]) =>
-      promiseToFuture(callMethod(
-          this, 'getMaxZoomAtLatLng', [latlng, allowInterop(callback)]));
+      promiseToFuture(callMethod(this, 'getMaxZoomAtLatLng',
+          [latlng, callback == null ? null : allowInterop(callback)]));
 }
 
 @JS()
@@ -5082,13 +5134,13 @@ extension MaxZoomService$Ext on MaxZoomService {
 class MaxZoomResult {
   external factory MaxZoomResult();
 
-  external num get zoom;
+  external num? get zoom;
 
-  external set zoom(num value);
+  external set zoom(num? value);
 
-  external MaxZoomStatus get status;
+  external MaxZoomStatus? get status;
 
-  external set status(MaxZoomStatus value);
+  external set status(MaxZoomStatus? value);
 }
 
 @JS('google.maps.MaxZoomStatus')
@@ -5100,40 +5152,41 @@ class MaxZoomStatus {
 @JS('google.maps.StreetViewPanorama')
 class StreetViewPanorama extends MVCObject {
   external StreetViewPanorama(
-    Element container, [
-    StreetViewPanoramaOptions opts, // ignore: unused_element
+    Element? container, [
+    StreetViewPanoramaOptions? opts, // ignore: unused_element
   ]);
 }
 
 extension StreetViewPanorama$Ext on StreetViewPanorama {
-  List<MVCArray<Node>> get controls =>
-      getProperty(this, 'controls')?.cast<MVCArray<Node>>();
+  List<MVCArray<Node?>?>? get controls =>
+      getProperty(this, 'controls')?.cast<MVCArray<Node?>?>();
 
-  set controls(List<MVCArray<Node>> value) {
+  set controls(List<MVCArray<Node?>?>? value) {
     setProperty(this, 'controls', value);
   }
 
-  List<StreetViewLink> get links => _getLinks();
-  StreetViewLocation get location => _getLocation();
-  bool get motionTracking => _getMotionTracking();
-  String get pano => _getPano();
-  StreetViewPov get photographerPov => _getPhotographerPov();
-  LatLng get position => _getPosition();
-  StreetViewPov get pov => _getPov();
-  StreetViewStatus get status => _getStatus();
-  bool get visible => _getVisible();
-  num get zoom => _getZoom();
-  set links(List<StreetViewLink> links) => _setLinks(links);
-  set motionTracking(bool motionTracking) => _setMotionTracking(motionTracking);
-  set options(StreetViewPanoramaOptions options) => _setOptions(options);
-  set pano(String pano) => _setPano(pano);
-  set position(LatLng position) => _setPosition(position);
-  set pov(StreetViewPov pov) => _setPov(pov);
-  set visible(bool visible) => _setVisible(visible);
-  set zoom(num zoom) => _setZoom(zoom);
+  List<StreetViewLink?>? get links => _getLinks();
+  StreetViewLocation? get location => _getLocation();
+  bool? get motionTracking => _getMotionTracking();
+  String? get pano => _getPano();
+  StreetViewPov? get photographerPov => _getPhotographerPov();
+  LatLng? get position => _getPosition();
+  StreetViewPov? get pov => _getPov();
+  StreetViewStatus? get status => _getStatus();
+  bool? get visible => _getVisible();
+  num? get zoom => _getZoom();
+  set links(List<StreetViewLink?>? links) => _setLinks(links);
+  set motionTracking(bool? motionTracking) =>
+      _setMotionTracking(motionTracking);
+  set options(StreetViewPanoramaOptions? options) => _setOptions(options);
+  set pano(String? pano) => _setPano(pano);
+  set position(LatLng? position) => _setPosition(position);
+  set pov(StreetViewPov? pov) => _setPov(pov);
+  set visible(bool? visible) => _setVisible(visible);
+  set zoom(num? zoom) => _setZoom(zoom);
   Stream<Object> get onCloseclick {
-    StreamController<Object> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<Object> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'closeclick',
@@ -5150,8 +5203,8 @@ extension StreetViewPanorama$Ext on StreetViewPanorama {
   }
 
   Stream<void> get onPanoChanged {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'pano_changed',
@@ -5168,8 +5221,8 @@ extension StreetViewPanorama$Ext on StreetViewPanorama {
   }
 
   Stream<void> get onPositionChanged {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'position_changed',
@@ -5186,8 +5239,8 @@ extension StreetViewPanorama$Ext on StreetViewPanorama {
   }
 
   Stream<void> get onPovChanged {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'pov_changed',
@@ -5204,8 +5257,8 @@ extension StreetViewPanorama$Ext on StreetViewPanorama {
   }
 
   Stream<void> get onResize {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'resize',
@@ -5222,8 +5275,8 @@ extension StreetViewPanorama$Ext on StreetViewPanorama {
   }
 
   Stream<void> get onStatusChanged {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'status_changed',
@@ -5240,8 +5293,8 @@ extension StreetViewPanorama$Ext on StreetViewPanorama {
   }
 
   Stream<void> get onVisibleChanged {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'visible_changed',
@@ -5258,8 +5311,8 @@ extension StreetViewPanorama$Ext on StreetViewPanorama {
   }
 
   Stream<void> get onZoomChanged {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'zoom_changed',
@@ -5275,65 +5328,65 @@ extension StreetViewPanorama$Ext on StreetViewPanorama {
     return sc.stream;
   }
 
-  List<StreetViewLink> _getLinks() =>
-      callMethod(this, 'getLinks', [])?.cast<StreetViewLink>();
+  List<StreetViewLink?>? _getLinks() =>
+      callMethod(this, 'getLinks', [])?.cast<StreetViewLink?>();
 
-  StreetViewLocation _getLocation() => callMethod(this, 'getLocation', []);
+  StreetViewLocation? _getLocation() => callMethod(this, 'getLocation', []);
 
-  bool _getMotionTracking() => callMethod(this, 'getMotionTracking', []);
+  bool? _getMotionTracking() => callMethod(this, 'getMotionTracking', []);
 
-  String _getPano() => callMethod(this, 'getPano', []);
+  String? _getPano() => callMethod(this, 'getPano', []);
 
-  StreetViewPov _getPhotographerPov() =>
+  StreetViewPov? _getPhotographerPov() =>
       callMethod(this, 'getPhotographerPov', []);
 
-  LatLng _getPosition() => callMethod(this, 'getPosition', []);
+  LatLng? _getPosition() => callMethod(this, 'getPosition', []);
 
-  StreetViewPov _getPov() => callMethod(this, 'getPov', []);
+  StreetViewPov? _getPov() => callMethod(this, 'getPov', []);
 
-  StreetViewStatus _getStatus() => callMethod(this, 'getStatus', []);
+  StreetViewStatus? _getStatus() => callMethod(this, 'getStatus', []);
 
-  bool _getVisible() => callMethod(this, 'getVisible', []);
+  bool? _getVisible() => callMethod(this, 'getVisible', []);
 
-  num _getZoom() => callMethod(this, 'getZoom', []);
+  num? _getZoom() => callMethod(this, 'getZoom', []);
 
   void registerPanoProvider([
-    StreetViewPanoramaData Function(String p1) provider,
-    PanoProviderOptions opt_options,
+    StreetViewPanoramaData? Function(String? p1)? provider,
+    PanoProviderOptions? opt_options,
   ]) {
-    callMethod(
-        this, 'registerPanoProvider', [allowInterop(provider), opt_options]);
+    callMethod(this, 'registerPanoProvider',
+        [provider == null ? null : allowInterop(provider), opt_options]);
   }
 
-  void _setLinks(List<StreetViewLink> links) {
+  void _setLinks(List<StreetViewLink?>? links) {
     callMethod(this, 'setLinks', [links]);
   }
 
-  void _setMotionTracking(bool motionTracking) {
+  void _setMotionTracking(bool? motionTracking) {
     callMethod(this, 'setMotionTracking', [motionTracking]);
   }
 
-  void _setOptions(StreetViewPanoramaOptions options) {
+  void _setOptions(StreetViewPanoramaOptions? options) {
     callMethod(this, 'setOptions', [options]);
   }
 
-  void _setPano(String pano) {
+  void _setPano(String? pano) {
     callMethod(this, 'setPano', [pano]);
   }
 
-  void _setPosition(LatLng latLng) {
+  void _setPosition(LatLng? latLng) {
     callMethod(this, 'setPosition', [latLng]);
   }
 
-  void _setPov(StreetViewPov pov) {
+  void _setPov(StreetViewPov? pov) {
     callMethod(this, 'setPov', [pov]);
   }
 
-  void _setVisible(bool flag) {
+  void _setVisible(bool? flag) {
     callMethod(this, 'setVisible', [flag]);
   }
 
-  void _setZoom(num zoom) {
+  void _setZoom(num? zoom) {
     callMethod(this, 'setZoom', [zoom]);
   }
 }
@@ -5343,105 +5396,106 @@ extension StreetViewPanorama$Ext on StreetViewPanorama {
 class StreetViewPanoramaOptions {
   external factory StreetViewPanoramaOptions();
 
-  external bool get addressControl;
+  external bool? get addressControl;
 
-  external set addressControl(bool value);
+  external set addressControl(bool? value);
 
-  external StreetViewAddressControlOptions get addressControlOptions;
+  external StreetViewAddressControlOptions? get addressControlOptions;
 
-  external set addressControlOptions(StreetViewAddressControlOptions value);
+  external set addressControlOptions(StreetViewAddressControlOptions? value);
 
-  external bool get clickToGo;
+  external bool? get clickToGo;
 
-  external set clickToGo(bool value);
+  external set clickToGo(bool? value);
 
-  external num get controlSize;
+  external num? get controlSize;
 
-  external set controlSize(num value);
+  external set controlSize(num? value);
 
-  external bool get disableDefaultUI;
+  external bool? get disableDefaultUI;
 
-  external set disableDefaultUI(bool value);
+  external set disableDefaultUI(bool? value);
 
-  external bool get disableDoubleClickZoom;
+  external bool? get disableDoubleClickZoom;
 
-  external set disableDoubleClickZoom(bool value);
+  external set disableDoubleClickZoom(bool? value);
 
-  external bool get enableCloseButton;
+  external bool? get enableCloseButton;
 
-  external set enableCloseButton(bool value);
+  external set enableCloseButton(bool? value);
 
-  external bool get fullscreenControl;
+  external bool? get fullscreenControl;
 
-  external set fullscreenControl(bool value);
+  external set fullscreenControl(bool? value);
 
-  external FullscreenControlOptions get fullscreenControlOptions;
+  external FullscreenControlOptions? get fullscreenControlOptions;
 
-  external set fullscreenControlOptions(FullscreenControlOptions value);
+  external set fullscreenControlOptions(FullscreenControlOptions? value);
 
-  external bool get imageDateControl;
+  external bool? get imageDateControl;
 
-  external set imageDateControl(bool value);
+  external set imageDateControl(bool? value);
 
-  external bool get linksControl;
+  external bool? get linksControl;
 
-  external set linksControl(bool value);
+  external set linksControl(bool? value);
 
-  external bool get motionTracking;
+  external bool? get motionTracking;
 
-  external set motionTracking(bool value);
+  external set motionTracking(bool? value);
 
-  external bool get motionTrackingControl;
+  external bool? get motionTrackingControl;
 
-  external set motionTrackingControl(bool value);
+  external set motionTrackingControl(bool? value);
 
-  external MotionTrackingControlOptions get motionTrackingControlOptions;
+  external MotionTrackingControlOptions? get motionTrackingControlOptions;
 
-  external set motionTrackingControlOptions(MotionTrackingControlOptions value);
+  external set motionTrackingControlOptions(
+      MotionTrackingControlOptions? value);
 
-  external bool get panControl;
+  external bool? get panControl;
 
-  external set panControl(bool value);
+  external set panControl(bool? value);
 
-  external PanControlOptions get panControlOptions;
+  external PanControlOptions? get panControlOptions;
 
-  external set panControlOptions(PanControlOptions value);
+  external set panControlOptions(PanControlOptions? value);
 
-  external String get pano;
+  external String? get pano;
 
-  external set pano(String value);
+  external set pano(String? value);
 
-  external LatLng get position;
+  external LatLng? get position;
 
-  external set position(LatLng value);
+  external set position(LatLng? value);
 
-  external StreetViewPov get pov;
+  external StreetViewPov? get pov;
 
-  external set pov(StreetViewPov value);
+  external set pov(StreetViewPov? value);
 
-  external bool get scrollwheel;
+  external bool? get scrollwheel;
 
-  external set scrollwheel(bool value);
+  external set scrollwheel(bool? value);
 
-  external bool get showRoadLabels;
+  external bool? get showRoadLabels;
 
-  external set showRoadLabels(bool value);
+  external set showRoadLabels(bool? value);
 
-  external bool get visible;
+  external bool? get visible;
 
-  external set visible(bool value);
+  external set visible(bool? value);
 
-  external num get zoom;
+  external num? get zoom;
 
-  external set zoom(num value);
+  external set zoom(num? value);
 
-  external bool get zoomControl;
+  external bool? get zoomControl;
 
-  external set zoomControl(bool value);
+  external set zoomControl(bool? value);
 
-  external ZoomControlOptions get zoomControlOptions;
+  external ZoomControlOptions? get zoomControlOptions;
 
-  external set zoomControlOptions(ZoomControlOptions value);
+  external set zoomControlOptions(ZoomControlOptions? value);
 }
 
 @JS()
@@ -5449,9 +5503,9 @@ class StreetViewPanoramaOptions {
 class StreetViewAddressControlOptions {
   external factory StreetViewAddressControlOptions();
 
-  external ControlPosition get position;
+  external ControlPosition? get position;
 
-  external set position(ControlPosition value);
+  external set position(ControlPosition? value);
 }
 
 @JS()
@@ -5459,9 +5513,9 @@ class StreetViewAddressControlOptions {
 class PanoProviderOptions {
   external factory PanoProviderOptions();
 
-  external bool get cors;
+  external bool? get cors;
 
-  external set cors(bool value);
+  external set cors(bool? value);
 }
 
 @JS()
@@ -5469,26 +5523,27 @@ class PanoProviderOptions {
 class StreetViewTileData {
   external factory StreetViewTileData();
 
-  external num get centerHeading;
+  external num? get centerHeading;
 
-  external set centerHeading(num value);
+  external set centerHeading(num? value);
 
-  external Size get tileSize;
+  external Size? get tileSize;
 
-  external set tileSize(Size value);
+  external set tileSize(Size? value);
 
-  external Size get worldSize;
+  external Size? get worldSize;
 
-  external set worldSize(Size value);
+  external set worldSize(Size? value);
 }
 
 extension StreetViewTileData$Ext on StreetViewTileData {
-  String Function(String pano, num tileZoom, num tileX, num tileY)
+  String? Function(String? pano, num? tileZoom, num? tileX, num? tileY)?
       get getTileUrl => getProperty(this, 'getTileUrl');
 
   set getTileUrl(
-      String Function(String pano, num tileZoom, num tileX, num tileY) value) {
-    setProperty(this, 'getTileUrl', allowInterop(value));
+      String? Function(String? pano, num? tileZoom, num? tileX, num? tileY)?
+          value) {
+    setProperty(this, 'getTileUrl', value == null ? null : allowInterop(value));
   }
 }
 
@@ -5497,13 +5552,13 @@ extension StreetViewTileData$Ext on StreetViewTileData {
 class StreetViewPov {
   external factory StreetViewPov();
 
-  external num get heading;
+  external num? get heading;
 
-  external set heading(num value);
+  external set heading(num? value);
 
-  external num get pitch;
+  external num? get pitch;
 
-  external set pitch(num value);
+  external set pitch(num? value);
 }
 
 @JS('google.maps.StreetViewCoverageLayer')
@@ -5512,12 +5567,12 @@ class StreetViewCoverageLayer extends MVCObject {
 }
 
 extension StreetViewCoverageLayer$Ext on StreetViewCoverageLayer {
-  GMap get map => _getMap();
-  set map(GMap map) => _setMap(map);
+  GMap? get map => _getMap();
+  set map(GMap? map) => _setMap(map);
 
-  GMap _getMap() => callMethod(this, 'getMap', []);
+  GMap? _getMap() => callMethod(this, 'getMap', []);
 
-  void _setMap(GMap map) {
+  void _setMap(GMap? map) {
     callMethod(this, 'setMap', [map]);
   }
 }
@@ -5528,12 +5583,12 @@ class StreetViewService {
 }
 
 extension StreetViewService$Ext on StreetViewService {
-  Future<StreetViewResponse> getPanorama(
-    Object /*StreetViewLocationRequest|StreetViewPanoRequest*/ request, [
-    void Function(StreetViewPanoramaData p1, StreetViewStatus p2) callback,
+  Future<StreetViewResponse>? getPanorama(
+    Object? /*StreetViewLocationRequest?|StreetViewPanoRequest?*/ request, [
+    void Function(StreetViewPanoramaData? p1, StreetViewStatus? p2)? callback,
   ]) =>
-      promiseToFuture(
-          callMethod(this, 'getPanorama', [request, allowInterop(callback)]));
+      promiseToFuture(callMethod(this, 'getPanorama',
+          [request, callback == null ? null : allowInterop(callback)]));
 }
 
 @JS('google.maps.StreetViewStatus')
@@ -5548,21 +5603,21 @@ class StreetViewStatus {
 class StreetViewLocationRequest {
   external factory StreetViewLocationRequest();
 
-  external LatLng get location;
+  external LatLng? get location;
 
-  external set location(LatLng value);
+  external set location(LatLng? value);
 
-  external StreetViewPreference get preference;
+  external StreetViewPreference? get preference;
 
-  external set preference(StreetViewPreference value);
+  external set preference(StreetViewPreference? value);
 
-  external num get radius;
+  external num? get radius;
 
-  external set radius(num value);
+  external set radius(num? value);
 
-  external StreetViewSource get source;
+  external StreetViewSource? get source;
 
-  external set source(StreetViewSource value);
+  external set source(StreetViewSource? value);
 }
 
 @JS()
@@ -5570,9 +5625,9 @@ class StreetViewLocationRequest {
 class StreetViewPanoRequest {
   external factory StreetViewPanoRequest();
 
-  external String get pano;
+  external String? get pano;
 
-  external set pano(String value);
+  external set pano(String? value);
 }
 
 @JS()
@@ -5580,9 +5635,9 @@ class StreetViewPanoRequest {
 class StreetViewResponse {
   external factory StreetViewResponse();
 
-  external StreetViewPanoramaData get data;
+  external StreetViewPanoramaData? get data;
 
-  external set data(StreetViewPanoramaData value);
+  external set data(StreetViewPanoramaData? value);
 }
 
 @JS()
@@ -5590,21 +5645,21 @@ class StreetViewResponse {
 class StreetViewLocation {
   external factory StreetViewLocation();
 
-  external String get pano;
+  external String? get pano;
 
-  external set pano(String value);
+  external set pano(String? value);
 
-  external String get description;
+  external String? get description;
 
-  external set description(String value);
+  external set description(String? value);
 
-  external LatLng get latLng;
+  external LatLng? get latLng;
 
-  external set latLng(LatLng value);
+  external set latLng(LatLng? value);
 
-  external String get shortDescription;
+  external String? get shortDescription;
 
-  external set shortDescription(String value);
+  external set shortDescription(String? value);
 }
 
 @JS('google.maps.StreetViewPreference')
@@ -5624,28 +5679,28 @@ class StreetViewSource {
 class StreetViewPanoramaData {
   external factory StreetViewPanoramaData();
 
-  external String get copyright;
+  external StreetViewTileData? get tiles;
 
-  external set copyright(String value);
+  external set tiles(StreetViewTileData? value);
 
-  external String get imageDate;
+  external String? get copyright;
 
-  external set imageDate(String value);
+  external set copyright(String? value);
 
-  external StreetViewLocation get location;
+  external String? get imageDate;
 
-  external set location(StreetViewLocation value);
+  external set imageDate(String? value);
 
-  external StreetViewTileData get tiles;
+  external StreetViewLocation? get location;
 
-  external set tiles(StreetViewTileData value);
+  external set location(StreetViewLocation? value);
 }
 
 extension StreetViewPanoramaData$Ext on StreetViewPanoramaData {
-  List<StreetViewLink> get links =>
-      getProperty(this, 'links')?.cast<StreetViewLink>();
+  List<StreetViewLink?>? get links =>
+      getProperty(this, 'links')?.cast<StreetViewLink?>();
 
-  set links(List<StreetViewLink> value) {
+  set links(List<StreetViewLink?>? value) {
     setProperty(this, 'links', value);
   }
 }
@@ -5655,17 +5710,17 @@ extension StreetViewPanoramaData$Ext on StreetViewPanoramaData {
 class StreetViewLink {
   external factory StreetViewLink();
 
-  external String get description;
+  external String? get description;
 
-  external set description(String value);
+  external set description(String? value);
 
-  external num get heading;
+  external num? get heading;
 
-  external set heading(num value);
+  external set heading(num? value);
 
-  external String get pano;
+  external String? get pano;
 
-  external set pano(String value);
+  external set pano(String? value);
 }
 
 @JS('google.maps.Geocoder')
@@ -5674,12 +5729,12 @@ class Geocoder {
 }
 
 extension Geocoder$Ext on Geocoder {
-  Future<GeocoderResponse> geocode(
-    GeocoderRequest request, [
-    void Function(List<GeocoderResult> p1, GeocoderStatus p2) callback,
+  Future<GeocoderResponse>? geocode(
+    GeocoderRequest? request, [
+    void Function(List<GeocoderResult?>? p1, GeocoderStatus? p2)? callback,
   ]) =>
-      promiseToFuture(
-          callMethod(this, 'geocode', [request, allowInterop(callback)]));
+      promiseToFuture(callMethod(this, 'geocode',
+          [request, callback == null ? null : allowInterop(callback)]));
 }
 
 @JS()
@@ -5687,29 +5742,29 @@ extension Geocoder$Ext on Geocoder {
 class GeocoderRequest {
   external factory GeocoderRequest();
 
-  external String get address;
+  external String? get address;
 
-  external set address(String value);
+  external set address(String? value);
 
-  external LatLngBounds get bounds;
+  external LatLngBounds? get bounds;
 
-  external set bounds(LatLngBounds value);
+  external set bounds(LatLngBounds? value);
 
-  external GeocoderComponentRestrictions get componentRestrictions;
+  external GeocoderComponentRestrictions? get componentRestrictions;
 
-  external set componentRestrictions(GeocoderComponentRestrictions value);
+  external set componentRestrictions(GeocoderComponentRestrictions? value);
 
-  external LatLng get location;
+  external LatLng? get location;
 
-  external set location(LatLng value);
+  external set location(LatLng? value);
 
-  external String get placeId;
+  external String? get placeId;
 
-  external set placeId(String value);
+  external set placeId(String? value);
 
-  external String get region;
+  external String? get region;
 
-  external set region(String value);
+  external set region(String? value);
 }
 
 @JS()
@@ -5717,25 +5772,25 @@ class GeocoderRequest {
 class GeocoderComponentRestrictions {
   external factory GeocoderComponentRestrictions();
 
-  external String get administrativeArea;
+  external String? get administrativeArea;
 
-  external set administrativeArea(String value);
+  external set administrativeArea(String? value);
 
-  external String get country;
+  external String? get country;
 
-  external set country(String value);
+  external set country(String? value);
 
-  external String get locality;
+  external String? get locality;
 
-  external set locality(String value);
+  external set locality(String? value);
 
-  external String get postalCode;
+  external String? get postalCode;
 
-  external set postalCode(String value);
+  external set postalCode(String? value);
 
-  external String get route;
+  external String? get route;
 
-  external set route(String value);
+  external set route(String? value);
 }
 
 @JS('google.maps.GeocoderStatus')
@@ -5756,10 +5811,10 @@ class GeocoderResponse {
 }
 
 extension GeocoderResponse$Ext on GeocoderResponse {
-  List<GeocoderResult> get results =>
-      getProperty(this, 'results')?.cast<GeocoderResult>();
+  List<GeocoderResult?>? get results =>
+      getProperty(this, 'results')?.cast<GeocoderResult?>();
 
-  set results(List<GeocoderResult> value) {
+  set results(List<GeocoderResult?>? value) {
     setProperty(this, 'results', value);
   }
 }
@@ -5769,48 +5824,49 @@ extension GeocoderResponse$Ext on GeocoderResponse {
 class GeocoderResult {
   external factory GeocoderResult();
 
-  external GeocoderGeometry get geometry;
+  external GeocoderGeometry? get geometry;
 
-  external set geometry(GeocoderGeometry value);
+  external set geometry(GeocoderGeometry? value);
 }
 
 extension GeocoderResult$Ext on GeocoderResult {
-  List<GeocoderAddressComponent> get addressComponents =>
-      getProperty(this, 'address_components')?.cast<GeocoderAddressComponent>();
+  List<GeocoderAddressComponent?>? get addressComponents =>
+      getProperty(this, 'address_components')
+          ?.cast<GeocoderAddressComponent?>();
 
-  set addressComponents(List<GeocoderAddressComponent> value) {
+  set addressComponents(List<GeocoderAddressComponent?>? value) {
     setProperty(this, 'address_components', value);
   }
 
-  String get formattedAddress => getProperty(this, 'formatted_address');
+  String? get formattedAddress => getProperty(this, 'formatted_address');
 
-  set formattedAddress(String value) {
+  set formattedAddress(String? value) {
     setProperty(this, 'formatted_address', value);
   }
 
-  bool get partialMatch => getProperty(this, 'partial_match');
+  String? get placeId => getProperty(this, 'place_id');
 
-  set partialMatch(bool value) {
-    setProperty(this, 'partial_match', value);
-  }
-
-  String get placeId => getProperty(this, 'place_id');
-
-  set placeId(String value) {
+  set placeId(String? value) {
     setProperty(this, 'place_id', value);
   }
 
-  List<String> get postcodeLocalities =>
-      getProperty(this, 'postcode_localities')?.cast<String>();
+  List<String?>? get types => getProperty(this, 'types')?.cast<String?>();
 
-  set postcodeLocalities(List<String> value) {
-    setProperty(this, 'postcode_localities', value);
+  set types(List<String?>? value) {
+    setProperty(this, 'types', value);
   }
 
-  List<String> get types => getProperty(this, 'types')?.cast<String>();
+  bool? get partialMatch => getProperty(this, 'partial_match');
 
-  set types(List<String> value) {
-    setProperty(this, 'types', value);
+  set partialMatch(bool? value) {
+    setProperty(this, 'partial_match', value);
+  }
+
+  List<String?>? get postcodeLocalities =>
+      getProperty(this, 'postcode_localities')?.cast<String?>();
+
+  set postcodeLocalities(List<String?>? value) {
+    setProperty(this, 'postcode_localities', value);
   }
 }
 
@@ -5821,21 +5877,21 @@ class GeocoderAddressComponent {
 }
 
 extension GeocoderAddressComponent$Ext on GeocoderAddressComponent {
-  String get longName => getProperty(this, 'long_name');
+  String? get longName => getProperty(this, 'long_name');
 
-  set longName(String value) {
+  set longName(String? value) {
     setProperty(this, 'long_name', value);
   }
 
-  String get shortName => getProperty(this, 'short_name');
+  String? get shortName => getProperty(this, 'short_name');
 
-  set shortName(String value) {
+  set shortName(String? value) {
     setProperty(this, 'short_name', value);
   }
 
-  List<String> get types => getProperty(this, 'types')?.cast<String>();
+  List<String?>? get types => getProperty(this, 'types')?.cast<String?>();
 
-  set types(List<String> value) {
+  set types(List<String?>? value) {
     setProperty(this, 'types', value);
   }
 }
@@ -5845,23 +5901,23 @@ extension GeocoderAddressComponent$Ext on GeocoderAddressComponent {
 class GeocoderGeometry {
   external factory GeocoderGeometry();
 
-  external LatLngBounds get bounds;
+  external LatLng? get location;
 
-  external set bounds(LatLngBounds value);
+  external set location(LatLng? value);
 
-  external LatLng get location;
+  external LatLngBounds? get viewport;
 
-  external set location(LatLng value);
+  external set viewport(LatLngBounds? value);
 
-  external LatLngBounds get viewport;
+  external LatLngBounds? get bounds;
 
-  external set viewport(LatLngBounds value);
+  external set bounds(LatLngBounds? value);
 }
 
 extension GeocoderGeometry$Ext on GeocoderGeometry {
-  GeocoderLocationType get locationType => getProperty(this, 'location_type');
+  GeocoderLocationType? get locationType => getProperty(this, 'location_type');
 
-  set locationType(GeocoderLocationType value) {
+  set locationType(GeocoderLocationType? value) {
     setProperty(this, 'location_type', value);
   }
 }
@@ -5880,12 +5936,12 @@ class DirectionsService {
 }
 
 extension DirectionsService$Ext on DirectionsService {
-  Future<DirectionsResult> route(
-    DirectionsRequest request, [
-    void Function(DirectionsResult p1, DirectionsStatus p2) callback,
+  Future<DirectionsResult>? route(
+    DirectionsRequest? request, [
+    void Function(DirectionsResult? p1, DirectionsStatus? p2)? callback,
   ]) =>
-      promiseToFuture(
-          callMethod(this, 'route', [request, allowInterop(callback)]));
+      promiseToFuture(callMethod(this, 'route',
+          [request, callback == null ? null : allowInterop(callback)]));
 }
 
 @JS()
@@ -5893,60 +5949,60 @@ extension DirectionsService$Ext on DirectionsService {
 class DirectionsRequest {
   external factory DirectionsRequest();
 
-  external Object /*String|LatLng|Place*/ get destination;
+  external Object? /*String?|LatLng?|Place?*/ get destination;
 
-  external set destination(Object /*String|LatLng|Place*/ value);
+  external set destination(Object? /*String?|LatLng?|Place?*/ value);
 
-  external Object /*String|LatLng|Place*/ get origin;
+  external Object? /*String?|LatLng?|Place?*/ get origin;
 
-  external set origin(Object /*String|LatLng|Place*/ value);
+  external set origin(Object? /*String?|LatLng?|Place?*/ value);
 
-  external TravelMode get travelMode;
+  external TravelMode? get travelMode;
 
-  external set travelMode(TravelMode value);
+  external set travelMode(TravelMode? value);
 
-  external bool get avoidFerries;
+  external bool? get avoidFerries;
 
-  external set avoidFerries(bool value);
+  external set avoidFerries(bool? value);
 
-  external bool get avoidHighways;
+  external bool? get avoidHighways;
 
-  external set avoidHighways(bool value);
+  external set avoidHighways(bool? value);
 
-  external bool get avoidTolls;
+  external bool? get avoidTolls;
 
-  external set avoidTolls(bool value);
+  external set avoidTolls(bool? value);
 
-  external DrivingOptions get drivingOptions;
+  external DrivingOptions? get drivingOptions;
 
-  external set drivingOptions(DrivingOptions value);
+  external set drivingOptions(DrivingOptions? value);
 
-  external bool get optimizeWaypoints;
+  external bool? get optimizeWaypoints;
 
-  external set optimizeWaypoints(bool value);
+  external set optimizeWaypoints(bool? value);
 
-  external bool get provideRouteAlternatives;
+  external bool? get provideRouteAlternatives;
 
-  external set provideRouteAlternatives(bool value);
+  external set provideRouteAlternatives(bool? value);
 
-  external String get region;
+  external String? get region;
 
-  external set region(String value);
+  external set region(String? value);
 
-  external TransitOptions get transitOptions;
+  external TransitOptions? get transitOptions;
 
-  external set transitOptions(TransitOptions value);
+  external set transitOptions(TransitOptions? value);
 
-  external UnitSystem get unitSystem;
+  external UnitSystem? get unitSystem;
 
-  external set unitSystem(UnitSystem value);
+  external set unitSystem(UnitSystem? value);
 }
 
 extension DirectionsRequest$Ext on DirectionsRequest {
-  List<DirectionsWaypoint> get waypoints =>
-      getProperty(this, 'waypoints')?.cast<DirectionsWaypoint>();
+  List<DirectionsWaypoint?>? get waypoints =>
+      getProperty(this, 'waypoints')?.cast<DirectionsWaypoint?>();
 
-  set waypoints(List<DirectionsWaypoint> value) {
+  set waypoints(List<DirectionsWaypoint?>? value) {
     setProperty(this, 'waypoints', value);
   }
 }
@@ -5970,42 +6026,42 @@ class DirectionsResult {
 }
 
 extension DirectionsResult$Ext on DirectionsResult {
-  List<DirectionsGeocodedWaypoint> get geocodedWaypoints =>
-      getProperty(this, 'geocoded_waypoints')
-          ?.cast<DirectionsGeocodedWaypoint>();
+  List<DirectionsRoute?>? get routes =>
+      getProperty(this, 'routes')?.cast<DirectionsRoute?>();
 
-  set geocodedWaypoints(List<DirectionsGeocodedWaypoint> value) {
-    setProperty(this, 'geocoded_waypoints', value);
+  set routes(List<DirectionsRoute?>? value) {
+    setProperty(this, 'routes', value);
   }
 
-  List<DirectionsRoute> get routes =>
-      getProperty(this, 'routes')?.cast<DirectionsRoute>();
+  List<DirectionsGeocodedWaypoint?>? get geocodedWaypoints =>
+      getProperty(this, 'geocoded_waypoints')
+          ?.cast<DirectionsGeocodedWaypoint?>();
 
-  set routes(List<DirectionsRoute> value) {
-    setProperty(this, 'routes', value);
+  set geocodedWaypoints(List<DirectionsGeocodedWaypoint?>? value) {
+    setProperty(this, 'geocoded_waypoints', value);
   }
 }
 
 @JS('google.maps.DirectionsRenderer')
 class DirectionsRenderer extends MVCObject {
   external DirectionsRenderer([
-    DirectionsRendererOptions opts, // ignore: unused_element
+    DirectionsRendererOptions? opts, // ignore: unused_element
   ]);
 }
 
 extension DirectionsRenderer$Ext on DirectionsRenderer {
-  DirectionsResult get directions => _getDirections();
-  GMap get map => _getMap();
-  Node get panel => _getPanel();
-  num get routeIndex => _getRouteIndex();
-  set directions(DirectionsResult directions) => _setDirections(directions);
-  set map(GMap map) => _setMap(map);
-  set options(DirectionsRendererOptions options) => _setOptions(options);
-  set panel(Node panel) => _setPanel(panel);
-  set routeIndex(num routeIndex) => _setRouteIndex(routeIndex);
+  DirectionsResult? get directions => _getDirections();
+  GMap? get map => _getMap();
+  Node? get panel => _getPanel();
+  num? get routeIndex => _getRouteIndex();
+  set directions(DirectionsResult? directions) => _setDirections(directions);
+  set map(GMap? map) => _setMap(map);
+  set options(DirectionsRendererOptions? options) => _setOptions(options);
+  set panel(Node? panel) => _setPanel(panel);
+  set routeIndex(num? routeIndex) => _setRouteIndex(routeIndex);
   Stream<void> get onDirectionsChanged {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'directions_changed',
@@ -6021,31 +6077,31 @@ extension DirectionsRenderer$Ext on DirectionsRenderer {
     return sc.stream;
   }
 
-  DirectionsResult _getDirections() => callMethod(this, 'getDirections', []);
+  DirectionsResult? _getDirections() => callMethod(this, 'getDirections', []);
 
-  GMap _getMap() => callMethod(this, 'getMap', []);
+  GMap? _getMap() => callMethod(this, 'getMap', []);
 
-  Node _getPanel() => callMethod(this, 'getPanel', []);
+  Node? _getPanel() => callMethod(this, 'getPanel', []);
 
-  num _getRouteIndex() => callMethod(this, 'getRouteIndex', []);
+  num? _getRouteIndex() => callMethod(this, 'getRouteIndex', []);
 
-  void _setDirections(DirectionsResult directions) {
+  void _setDirections(DirectionsResult? directions) {
     callMethod(this, 'setDirections', [directions]);
   }
 
-  void _setMap(GMap map) {
+  void _setMap(GMap? map) {
     callMethod(this, 'setMap', [map]);
   }
 
-  void _setOptions(DirectionsRendererOptions options) {
+  void _setOptions(DirectionsRendererOptions? options) {
     callMethod(this, 'setOptions', [options]);
   }
 
-  void _setPanel(Node panel) {
+  void _setPanel(Node? panel) {
     callMethod(this, 'setPanel', [panel]);
   }
 
-  void _setRouteIndex(num routeIndex) {
+  void _setRouteIndex(num? routeIndex) {
     callMethod(this, 'setRouteIndex', [routeIndex]);
   }
 }
@@ -6055,61 +6111,61 @@ extension DirectionsRenderer$Ext on DirectionsRenderer {
 class DirectionsRendererOptions {
   external factory DirectionsRendererOptions();
 
-  external DirectionsResult get directions;
+  external DirectionsResult? get directions;
 
-  external set directions(DirectionsResult value);
+  external set directions(DirectionsResult? value);
 
-  external bool get draggable;
+  external bool? get draggable;
 
-  external set draggable(bool value);
+  external set draggable(bool? value);
 
-  external bool get hideRouteList;
+  external bool? get hideRouteList;
 
-  external set hideRouteList(bool value);
+  external set hideRouteList(bool? value);
 
-  external InfoWindow get infoWindow;
+  external InfoWindow? get infoWindow;
 
-  external set infoWindow(InfoWindow value);
+  external set infoWindow(InfoWindow? value);
 
-  external GMap get map;
+  external GMap? get map;
 
-  external set map(GMap value);
+  external set map(GMap? value);
 
-  external MarkerOptions get markerOptions;
+  external MarkerOptions? get markerOptions;
 
-  external set markerOptions(MarkerOptions value);
+  external set markerOptions(MarkerOptions? value);
 
-  external Node get panel;
+  external Node? get panel;
 
-  external set panel(Node value);
+  external set panel(Node? value);
 
-  external PolylineOptions get polylineOptions;
+  external PolylineOptions? get polylineOptions;
 
-  external set polylineOptions(PolylineOptions value);
+  external set polylineOptions(PolylineOptions? value);
 
-  external bool get preserveViewport;
+  external bool? get preserveViewport;
 
-  external set preserveViewport(bool value);
+  external set preserveViewport(bool? value);
 
-  external num get routeIndex;
+  external num? get routeIndex;
 
-  external set routeIndex(num value);
+  external set routeIndex(num? value);
 
-  external bool get suppressBicyclingLayer;
+  external bool? get suppressBicyclingLayer;
 
-  external set suppressBicyclingLayer(bool value);
+  external set suppressBicyclingLayer(bool? value);
 
-  external bool get suppressInfoWindows;
+  external bool? get suppressInfoWindows;
 
-  external set suppressInfoWindows(bool value);
+  external set suppressInfoWindows(bool? value);
 
-  external bool get suppressMarkers;
+  external bool? get suppressMarkers;
 
-  external set suppressMarkers(bool value);
+  external set suppressMarkers(bool? value);
 
-  external bool get suppressPolylines;
+  external bool? get suppressPolylines;
 
-  external set suppressPolylines(bool value);
+  external set suppressPolylines(bool? value);
 }
 
 @JS()
@@ -6117,13 +6173,13 @@ class DirectionsRendererOptions {
 class DirectionsWaypoint {
   external factory DirectionsWaypoint();
 
-  external Object /*String|LatLng|Place*/ get location;
+  external Object? /*String?|LatLng?|Place?*/ get location;
 
-  external set location(Object /*String|LatLng|Place*/ value);
+  external set location(Object? /*String?|LatLng?|Place?*/ value);
 
-  external bool get stopover;
+  external bool? get stopover;
 
-  external set stopover(bool value);
+  external set stopover(bool? value);
 }
 
 @JS()
@@ -6133,21 +6189,21 @@ class DirectionsGeocodedWaypoint {
 }
 
 extension DirectionsGeocodedWaypoint$Ext on DirectionsGeocodedWaypoint {
-  bool get partialMatch => getProperty(this, 'partial_match');
+  bool? get partialMatch => getProperty(this, 'partial_match');
 
-  set partialMatch(bool value) {
+  set partialMatch(bool? value) {
     setProperty(this, 'partial_match', value);
   }
 
-  String get placeId => getProperty(this, 'place_id');
+  String? get placeId => getProperty(this, 'place_id');
 
-  set placeId(String value) {
+  set placeId(String? value) {
     setProperty(this, 'place_id', value);
   }
 
-  List<String> get types => getProperty(this, 'types')?.cast<String>();
+  List<String?>? get types => getProperty(this, 'types')?.cast<String?>();
 
-  set types(List<String> value) {
+  set types(List<String?>? value) {
     setProperty(this, 'types', value);
   }
 }
@@ -6157,50 +6213,50 @@ extension DirectionsGeocodedWaypoint$Ext on DirectionsGeocodedWaypoint {
 class DirectionsRoute {
   external factory DirectionsRoute();
 
-  external LatLngBounds get bounds;
+  external LatLngBounds? get bounds;
 
-  external set bounds(LatLngBounds value);
+  external set bounds(LatLngBounds? value);
 
-  external String get copyrights;
+  external String? get copyrights;
 
-  external set copyrights(String value);
+  external set copyrights(String? value);
 
-  external TransitFare get fare;
+  external TransitFare? get fare;
 
-  external set fare(TransitFare value);
+  external set fare(TransitFare? value);
 }
 
 extension DirectionsRoute$Ext on DirectionsRoute {
-  List<DirectionsLeg> get legs =>
-      getProperty(this, 'legs')?.cast<DirectionsLeg>();
+  List<DirectionsLeg?>? get legs =>
+      getProperty(this, 'legs')?.cast<DirectionsLeg?>();
 
-  set legs(List<DirectionsLeg> value) {
+  set legs(List<DirectionsLeg?>? value) {
     setProperty(this, 'legs', value);
   }
 
-  List<LatLng> get overviewPath =>
-      getProperty(this, 'overview_path')?.cast<LatLng>();
+  List<LatLng?>? get overviewPath =>
+      getProperty(this, 'overview_path')?.cast<LatLng?>();
 
-  set overviewPath(List<LatLng> value) {
+  set overviewPath(List<LatLng?>? value) {
     setProperty(this, 'overview_path', value);
   }
 
-  String get overviewPolyline => getProperty(this, 'overview_polyline');
+  String? get overviewPolyline => getProperty(this, 'overview_polyline');
 
-  set overviewPolyline(String value) {
+  set overviewPolyline(String? value) {
     setProperty(this, 'overview_polyline', value);
   }
 
-  List<String> get warnings => getProperty(this, 'warnings')?.cast<String>();
+  List<String?>? get warnings => getProperty(this, 'warnings')?.cast<String?>();
 
-  set warnings(List<String> value) {
+  set warnings(List<String?>? value) {
     setProperty(this, 'warnings', value);
   }
 
-  List<num> get waypointOrder =>
-      getProperty(this, 'waypoint_order')?.cast<num>();
+  List<num?>? get waypointOrder =>
+      getProperty(this, 'waypoint_order')?.cast<num?>();
 
-  set waypointOrder(List<num> value) {
+  set waypointOrder(List<num?>? value) {
     setProperty(this, 'waypoint_order', value);
   }
 }
@@ -6210,70 +6266,70 @@ extension DirectionsRoute$Ext on DirectionsRoute {
 class DirectionsLeg {
   external factory DirectionsLeg();
 
-  external Distance get distance;
+  external Distance? get distance;
 
-  external set distance(Distance value);
+  external set distance(Distance? value);
 
-  external GDuration get duration;
+  external GDuration? get duration;
 
-  external set duration(GDuration value);
+  external set duration(GDuration? value);
 }
 
 extension DirectionsLeg$Ext on DirectionsLeg {
-  Time get arrivalTime => getProperty(this, 'arrival_time');
+  String? get endAddress => getProperty(this, 'end_address');
 
-  set arrivalTime(Time value) {
-    setProperty(this, 'arrival_time', value);
-  }
-
-  Time get departureTime => getProperty(this, 'departure_time');
-
-  set departureTime(Time value) {
-    setProperty(this, 'departure_time', value);
-  }
-
-  GDuration get durationInTraffic => getProperty(this, 'duration_in_traffic');
-
-  set durationInTraffic(GDuration value) {
-    setProperty(this, 'duration_in_traffic', value);
-  }
-
-  String get endAddress => getProperty(this, 'end_address');
-
-  set endAddress(String value) {
+  set endAddress(String? value) {
     setProperty(this, 'end_address', value);
   }
 
-  LatLng get endLocation => getProperty(this, 'end_location');
+  LatLng? get endLocation => getProperty(this, 'end_location');
 
-  set endLocation(LatLng value) {
+  set endLocation(LatLng? value) {
     setProperty(this, 'end_location', value);
   }
 
-  String get startAddress => getProperty(this, 'start_address');
+  String? get startAddress => getProperty(this, 'start_address');
 
-  set startAddress(String value) {
+  set startAddress(String? value) {
     setProperty(this, 'start_address', value);
   }
 
-  LatLng get startLocation => getProperty(this, 'start_location');
+  LatLng? get startLocation => getProperty(this, 'start_location');
 
-  set startLocation(LatLng value) {
+  set startLocation(LatLng? value) {
     setProperty(this, 'start_location', value);
   }
 
-  List<DirectionsStep> get steps =>
-      getProperty(this, 'steps')?.cast<DirectionsStep>();
+  List<DirectionsStep?>? get steps =>
+      getProperty(this, 'steps')?.cast<DirectionsStep?>();
 
-  set steps(List<DirectionsStep> value) {
+  set steps(List<DirectionsStep?>? value) {
     setProperty(this, 'steps', value);
   }
 
-  List<LatLng> get viaWaypoints =>
-      getProperty(this, 'via_waypoints')?.cast<LatLng>();
+  List<LatLng?>? get viaWaypoints =>
+      getProperty(this, 'via_waypoints')?.cast<LatLng?>();
 
-  set viaWaypoints(List<LatLng> value) {
+  set viaWaypoints(List<LatLng?>? value) {
     setProperty(this, 'via_waypoints', value);
+  }
+
+  Time? get arrivalTime => getProperty(this, 'arrival_time');
+
+  set arrivalTime(Time? value) {
+    setProperty(this, 'arrival_time', value);
+  }
+
+  Time? get departureTime => getProperty(this, 'departure_time');
+
+  set departureTime(Time? value) {
+    setProperty(this, 'departure_time', value);
+  }
+
+  GDuration? get durationInTraffic => getProperty(this, 'duration_in_traffic');
+
+  set durationInTraffic(GDuration? value) {
+    setProperty(this, 'duration_in_traffic', value);
   }
 }
 
@@ -6282,53 +6338,53 @@ extension DirectionsLeg$Ext on DirectionsLeg {
 class DirectionsStep {
   external factory DirectionsStep();
 
-  external Distance get distance;
+  external String? get instructions;
 
-  external set distance(Distance value);
+  external set instructions(String? value);
 
-  external GDuration get duration;
+  external Distance? get distance;
 
-  external set duration(GDuration value);
+  external set distance(Distance? value);
 
-  external String get instructions;
+  external GDuration? get duration;
 
-  external set instructions(String value);
+  external set duration(GDuration? value);
 
-  external TransitDetails get transit;
+  external TransitDetails? get transit;
 
-  external set transit(TransitDetails value);
+  external set transit(TransitDetails? value);
 }
 
 extension DirectionsStep$Ext on DirectionsStep {
-  LatLng get endLocation => getProperty(this, 'end_location');
+  LatLng? get endLocation => getProperty(this, 'end_location');
 
-  set endLocation(LatLng value) {
+  set endLocation(LatLng? value) {
     setProperty(this, 'end_location', value);
   }
 
-  List<LatLng> get path => getProperty(this, 'path')?.cast<LatLng>();
+  List<LatLng?>? get path => getProperty(this, 'path')?.cast<LatLng?>();
 
-  set path(List<LatLng> value) {
+  set path(List<LatLng?>? value) {
     setProperty(this, 'path', value);
   }
 
-  LatLng get startLocation => getProperty(this, 'start_location');
+  LatLng? get startLocation => getProperty(this, 'start_location');
 
-  set startLocation(LatLng value) {
+  set startLocation(LatLng? value) {
     setProperty(this, 'start_location', value);
   }
 
-  List<DirectionsStep> get steps =>
-      getProperty(this, 'steps')?.cast<DirectionsStep>();
+  TravelMode? get travelMode => getProperty(this, 'travel_mode');
 
-  set steps(List<DirectionsStep> value) {
-    setProperty(this, 'steps', value);
+  set travelMode(TravelMode? value) {
+    setProperty(this, 'travel_mode', value);
   }
 
-  TravelMode get travelMode => getProperty(this, 'travel_mode');
+  List<DirectionsStep?>? get steps =>
+      getProperty(this, 'steps')?.cast<DirectionsStep?>();
 
-  set travelMode(TravelMode value) {
-    setProperty(this, 'travel_mode', value);
+  set steps(List<DirectionsStep?>? value) {
+    setProperty(this, 'steps', value);
   }
 }
 
@@ -6337,17 +6393,17 @@ extension DirectionsStep$Ext on DirectionsStep {
 class Place {
   external factory Place();
 
-  external LatLng get location;
+  external LatLng? get location;
 
-  external set location(LatLng value);
+  external set location(LatLng? value);
 
-  external String get placeId;
+  external String? get placeId;
 
-  external set placeId(String value);
+  external set placeId(String? value);
 
-  external String get query;
+  external String? get query;
 
-  external set query(String value);
+  external set query(String? value);
 }
 
 @JS('google.maps.TravelMode')
@@ -6363,13 +6419,13 @@ class TravelMode {
 class DrivingOptions {
   external factory DrivingOptions();
 
-  external DateTime get departureTime;
+  external DateTime? get departureTime;
 
-  external set departureTime(DateTime value);
+  external set departureTime(DateTime? value);
 
-  external TrafficModel get trafficModel;
+  external TrafficModel? get trafficModel;
 
-  external set trafficModel(TrafficModel value);
+  external set trafficModel(TrafficModel? value);
 }
 
 @JS('google.maps.TrafficModel')
@@ -6384,24 +6440,24 @@ class TrafficModel {
 class TransitOptions {
   external factory TransitOptions();
 
-  external DateTime get arrivalTime;
+  external DateTime? get arrivalTime;
 
-  external set arrivalTime(DateTime value);
+  external set arrivalTime(DateTime? value);
 
-  external DateTime get departureTime;
+  external DateTime? get departureTime;
 
-  external set departureTime(DateTime value);
+  external set departureTime(DateTime? value);
 
-  external TransitRoutePreference get routingPreference;
+  external TransitRoutePreference? get routingPreference;
 
-  external set routingPreference(TransitRoutePreference value);
+  external set routingPreference(TransitRoutePreference? value);
 }
 
 extension TransitOptions$Ext on TransitOptions {
-  List<TransitMode> get modes =>
-      getProperty(this, 'modes')?.cast<TransitMode>();
+  List<TransitMode?>? get modes =>
+      getProperty(this, 'modes')?.cast<TransitMode?>();
 
-  set modes(List<TransitMode> value) {
+  set modes(List<TransitMode?>? value) {
     setProperty(this, 'modes', value);
   }
 }
@@ -6426,13 +6482,13 @@ class TransitRoutePreference {
 class TransitFare {
   external factory TransitFare();
 
-  external String get currency;
+  external String? get currency;
 
-  external set currency(String value);
+  external set currency(String? value);
 
-  external num get value;
+  external num? get value;
 
-  external set value(num value);
+  external set value(num? value);
 }
 
 @JS()
@@ -6440,53 +6496,53 @@ class TransitFare {
 class TransitDetails {
   external factory TransitDetails();
 
-  external String get headsign;
+  external String? get headsign;
 
-  external set headsign(String value);
+  external set headsign(String? value);
 
-  external num get headway;
+  external num? get headway;
 
-  external set headway(num value);
+  external set headway(num? value);
 
-  external TransitLine get line;
+  external TransitLine? get line;
 
-  external set line(TransitLine value);
+  external set line(TransitLine? value);
 }
 
 extension TransitDetails$Ext on TransitDetails {
-  TransitStop get arrivalStop => getProperty(this, 'arrival_stop');
+  TransitStop? get arrivalStop => getProperty(this, 'arrival_stop');
 
-  set arrivalStop(TransitStop value) {
+  set arrivalStop(TransitStop? value) {
     setProperty(this, 'arrival_stop', value);
   }
 
-  Time get arrivalTime => getProperty(this, 'arrival_time');
+  Time? get arrivalTime => getProperty(this, 'arrival_time');
 
-  set arrivalTime(Time value) {
+  set arrivalTime(Time? value) {
     setProperty(this, 'arrival_time', value);
   }
 
-  TransitStop get departureStop => getProperty(this, 'departure_stop');
+  TransitStop? get departureStop => getProperty(this, 'departure_stop');
 
-  set departureStop(TransitStop value) {
+  set departureStop(TransitStop? value) {
     setProperty(this, 'departure_stop', value);
   }
 
-  Time get departureTime => getProperty(this, 'departure_time');
+  Time? get departureTime => getProperty(this, 'departure_time');
 
-  set departureTime(Time value) {
+  set departureTime(Time? value) {
     setProperty(this, 'departure_time', value);
   }
 
-  num get numStops => getProperty(this, 'num_stops');
+  num? get numStops => getProperty(this, 'num_stops');
 
-  set numStops(num value) {
+  set numStops(num? value) {
     setProperty(this, 'num_stops', value);
   }
 
-  String get tripShortName => getProperty(this, 'trip_short_name');
+  String? get tripShortName => getProperty(this, 'trip_short_name');
 
-  set tripShortName(String value) {
+  set tripShortName(String? value) {
     setProperty(this, 'trip_short_name', value);
   }
 }
@@ -6496,13 +6552,13 @@ extension TransitDetails$Ext on TransitDetails {
 class TransitStop {
   external factory TransitStop();
 
-  external LatLng get location;
+  external LatLng? get location;
 
-  external set location(LatLng value);
+  external set location(LatLng? value);
 
-  external String get name;
+  external String? get name;
 
-  external set name(String value);
+  external set name(String? value);
 }
 
 @JS()
@@ -6510,44 +6566,44 @@ class TransitStop {
 class TransitLine {
   external factory TransitLine();
 
-  external String get color;
+  external String? get color;
 
-  external set color(String value);
+  external set color(String? value);
 
-  external String get icon;
+  external String? get icon;
 
-  external set icon(String value);
+  external set icon(String? value);
 
-  external String get name;
+  external String? get name;
 
-  external set name(String value);
+  external set name(String? value);
 
-  external String get url;
+  external String? get url;
 
-  external set url(String value);
+  external set url(String? value);
 
-  external TransitVehicle get vehicle;
+  external TransitVehicle? get vehicle;
 
-  external set vehicle(TransitVehicle value);
+  external set vehicle(TransitVehicle? value);
 }
 
 extension TransitLine$Ext on TransitLine {
-  List<TransitAgency> get agencies =>
-      getProperty(this, 'agencies')?.cast<TransitAgency>();
+  List<TransitAgency?>? get agencies =>
+      getProperty(this, 'agencies')?.cast<TransitAgency?>();
 
-  set agencies(List<TransitAgency> value) {
+  set agencies(List<TransitAgency?>? value) {
     setProperty(this, 'agencies', value);
   }
 
-  String get shortName => getProperty(this, 'short_name');
+  String? get shortName => getProperty(this, 'short_name');
 
-  set shortName(String value) {
+  set shortName(String? value) {
     setProperty(this, 'short_name', value);
   }
 
-  String get textColor => getProperty(this, 'text_color');
+  String? get textColor => getProperty(this, 'text_color');
 
-  set textColor(String value) {
+  set textColor(String? value) {
     setProperty(this, 'text_color', value);
   }
 }
@@ -6557,17 +6613,17 @@ extension TransitLine$Ext on TransitLine {
 class TransitAgency {
   external factory TransitAgency();
 
-  external String get name;
+  external String? get name;
 
-  external set name(String value);
+  external set name(String? value);
 
-  external String get phone;
+  external String? get phone;
 
-  external set phone(String value);
+  external set phone(String? value);
 
-  external String get url;
+  external String? get url;
 
-  external set url(String value);
+  external set url(String? value);
 }
 
 @JS()
@@ -6575,23 +6631,23 @@ class TransitAgency {
 class TransitVehicle {
   external factory TransitVehicle();
 
-  external String get icon;
+  external String? get icon;
 
-  external set icon(String value);
+  external set icon(String? value);
 
-  external String get name;
+  external String? get name;
 
-  external set name(String value);
+  external set name(String? value);
 
-  external VehicleType get type;
+  external VehicleType? get type;
 
-  external set type(VehicleType value);
+  external set type(VehicleType? value);
 }
 
 extension TransitVehicle$Ext on TransitVehicle {
-  String get localIcon => getProperty(this, 'local_icon');
+  String? get localIcon => getProperty(this, 'local_icon');
 
-  set localIcon(String value) {
+  set localIcon(String? value) {
     setProperty(this, 'local_icon', value);
   }
 }
@@ -6628,13 +6684,13 @@ class UnitSystem {
 class Distance {
   external factory Distance();
 
-  external String get text;
+  external String? get text;
 
-  external set text(String value);
+  external set text(String? value);
 
-  external num get value;
+  external num? get value;
 
-  external set value(num value);
+  external set value(num? value);
 }
 
 @JS()
@@ -6642,13 +6698,13 @@ class Distance {
 class GDuration {
   external factory GDuration();
 
-  external String get text;
+  external String? get text;
 
-  external set text(String value);
+  external set text(String? value);
 
-  external num get value;
+  external num? get value;
 
-  external set value(num value);
+  external set value(num? value);
 }
 
 @JS()
@@ -6656,19 +6712,19 @@ class GDuration {
 class Time {
   external factory Time();
 
-  external String get text;
+  external String? get text;
 
-  external set text(String value);
+  external set text(String? value);
 
-  external DateTime get value;
+  external DateTime? get value;
 
-  external set value(DateTime value);
+  external set value(DateTime? value);
 }
 
 extension Time$Ext on Time {
-  String get timeZone => getProperty(this, 'time_zone');
+  String? get timeZone => getProperty(this, 'time_zone');
 
-  set timeZone(String value) {
+  set timeZone(String? value) {
     setProperty(this, 'time_zone', value);
   }
 }
@@ -6679,12 +6735,13 @@ class DistanceMatrixService {
 }
 
 extension DistanceMatrixService$Ext on DistanceMatrixService {
-  Future<DistanceMatrixResponse> getDistanceMatrix(
-    DistanceMatrixRequest request, [
-    void Function(DistanceMatrixResponse p1, DistanceMatrixStatus p2) callback,
+  Future<DistanceMatrixResponse>? getDistanceMatrix(
+    DistanceMatrixRequest? request, [
+    void Function(DistanceMatrixResponse? p1, DistanceMatrixStatus? p2)?
+        callback,
   ]) =>
-      promiseToFuture(callMethod(
-          this, 'getDistanceMatrix', [request, allowInterop(callback)]));
+      promiseToFuture(callMethod(this, 'getDistanceMatrix',
+          [request, callback == null ? null : allowInterop(callback)]));
 }
 
 @JS()
@@ -6692,52 +6749,52 @@ extension DistanceMatrixService$Ext on DistanceMatrixService {
 class DistanceMatrixRequest {
   external factory DistanceMatrixRequest();
 
-  external TravelMode get travelMode;
+  external TravelMode? get travelMode;
 
-  external set travelMode(TravelMode value);
+  external set travelMode(TravelMode? value);
 
-  external bool get avoidFerries;
+  external bool? get avoidFerries;
 
-  external set avoidFerries(bool value);
+  external set avoidFerries(bool? value);
 
-  external bool get avoidHighways;
+  external bool? get avoidHighways;
 
-  external set avoidHighways(bool value);
+  external set avoidHighways(bool? value);
 
-  external bool get avoidTolls;
+  external bool? get avoidTolls;
 
-  external set avoidTolls(bool value);
+  external set avoidTolls(bool? value);
 
-  external DrivingOptions get drivingOptions;
+  external DrivingOptions? get drivingOptions;
 
-  external set drivingOptions(DrivingOptions value);
+  external set drivingOptions(DrivingOptions? value);
 
-  external String get region;
+  external String? get region;
 
-  external set region(String value);
+  external set region(String? value);
 
-  external TransitOptions get transitOptions;
+  external TransitOptions? get transitOptions;
 
-  external set transitOptions(TransitOptions value);
+  external set transitOptions(TransitOptions? value);
 
-  external UnitSystem get unitSystem;
+  external UnitSystem? get unitSystem;
 
-  external set unitSystem(UnitSystem value);
+  external set unitSystem(UnitSystem? value);
 }
 
 extension DistanceMatrixRequest$Ext on DistanceMatrixRequest {
-  List<Object /*String|LatLng|Place*/ > get destinations =>
+  List<Object? /*String?|LatLng?|Place?*/ >? get destinations =>
       getProperty(this, 'destinations')
-          ?.cast<Object /*String|LatLng|Place*/ >();
+          ?.cast<Object? /*String?|LatLng?|Place?*/ >();
 
-  set destinations(List<Object /*String|LatLng|Place*/ > value) {
+  set destinations(List<Object? /*String?|LatLng?|Place?*/ >? value) {
     setProperty(this, 'destinations', value);
   }
 
-  List<Object /*String|LatLng|Place*/ > get origins =>
-      getProperty(this, 'origins')?.cast<Object /*String|LatLng|Place*/ >();
+  List<Object? /*String?|LatLng?|Place?*/ >? get origins =>
+      getProperty(this, 'origins')?.cast<Object? /*String?|LatLng?|Place?*/ >();
 
-  set origins(List<Object /*String|LatLng|Place*/ > value) {
+  set origins(List<Object? /*String?|LatLng?|Place?*/ >? value) {
     setProperty(this, 'origins', value);
   }
 }
@@ -6749,24 +6806,24 @@ class DistanceMatrixResponse {
 }
 
 extension DistanceMatrixResponse$Ext on DistanceMatrixResponse {
-  List<String> get destinationAddresses =>
-      getProperty(this, 'destinationAddresses')?.cast<String>();
+  List<String?>? get destinationAddresses =>
+      getProperty(this, 'destinationAddresses')?.cast<String?>();
 
-  set destinationAddresses(List<String> value) {
+  set destinationAddresses(List<String?>? value) {
     setProperty(this, 'destinationAddresses', value);
   }
 
-  List<String> get originAddresses =>
-      getProperty(this, 'originAddresses')?.cast<String>();
+  List<String?>? get originAddresses =>
+      getProperty(this, 'originAddresses')?.cast<String?>();
 
-  set originAddresses(List<String> value) {
+  set originAddresses(List<String?>? value) {
     setProperty(this, 'originAddresses', value);
   }
 
-  List<DistanceMatrixResponseRow> get rows =>
-      getProperty(this, 'rows')?.cast<DistanceMatrixResponseRow>();
+  List<DistanceMatrixResponseRow?>? get rows =>
+      getProperty(this, 'rows')?.cast<DistanceMatrixResponseRow?>();
 
-  set rows(List<DistanceMatrixResponseRow> value) {
+  set rows(List<DistanceMatrixResponseRow?>? value) {
     setProperty(this, 'rows', value);
   }
 }
@@ -6778,10 +6835,10 @@ class DistanceMatrixResponseRow {
 }
 
 extension DistanceMatrixResponseRow$Ext on DistanceMatrixResponseRow {
-  List<DistanceMatrixResponseElement> get elements =>
-      getProperty(this, 'elements')?.cast<DistanceMatrixResponseElement>();
+  List<DistanceMatrixResponseElement?>? get elements =>
+      getProperty(this, 'elements')?.cast<DistanceMatrixResponseElement?>();
 
-  set elements(List<DistanceMatrixResponseElement> value) {
+  set elements(List<DistanceMatrixResponseElement?>? value) {
     setProperty(this, 'elements', value);
   }
 }
@@ -6791,27 +6848,27 @@ extension DistanceMatrixResponseRow$Ext on DistanceMatrixResponseRow {
 class DistanceMatrixResponseElement {
   external factory DistanceMatrixResponseElement();
 
-  external Distance get distance;
+  external Distance? get distance;
 
-  external set distance(Distance value);
+  external set distance(Distance? value);
 
-  external GDuration get duration;
+  external GDuration? get duration;
 
-  external set duration(GDuration value);
+  external set duration(GDuration? value);
 
-  external TransitFare get fare;
+  external TransitFare? get fare;
 
-  external set fare(TransitFare value);
+  external set fare(TransitFare? value);
 
-  external DistanceMatrixElementStatus get status;
+  external DistanceMatrixElementStatus? get status;
 
-  external set status(DistanceMatrixElementStatus value);
+  external set status(DistanceMatrixElementStatus? value);
 }
 
 extension DistanceMatrixResponseElement$Ext on DistanceMatrixResponseElement {
-  GDuration get durationInTraffic => getProperty(this, 'duration_in_traffic');
+  GDuration? get durationInTraffic => getProperty(this, 'duration_in_traffic');
 
-  set durationInTraffic(GDuration value) {
+  set durationInTraffic(GDuration? value) {
     setProperty(this, 'duration_in_traffic', value);
   }
 }
@@ -6840,19 +6897,19 @@ class ElevationService {
 }
 
 extension ElevationService$Ext on ElevationService {
-  Future<PathElevationResponse> getElevationAlongPath(
-    PathElevationRequest request, [
-    void Function(List<ElevationResult> p1, ElevationStatus p2) callback,
+  Future<PathElevationResponse>? getElevationAlongPath(
+    PathElevationRequest? request, [
+    void Function(List<ElevationResult?>? p1, ElevationStatus? p2)? callback,
   ]) =>
-      promiseToFuture(callMethod(
-          this, 'getElevationAlongPath', [request, allowInterop(callback)]));
+      promiseToFuture(callMethod(this, 'getElevationAlongPath',
+          [request, callback == null ? null : allowInterop(callback)]));
 
-  Future<LocationElevationResponse> getElevationForLocations(
-    LocationElevationRequest request, [
-    void Function(List<ElevationResult> p1, ElevationStatus p2) callback,
+  Future<LocationElevationResponse>? getElevationForLocations(
+    LocationElevationRequest? request, [
+    void Function(List<ElevationResult?>? p1, ElevationStatus? p2)? callback,
   ]) =>
-      promiseToFuture(callMethod(
-          this, 'getElevationForLocations', [request, allowInterop(callback)]));
+      promiseToFuture(callMethod(this, 'getElevationForLocations',
+          [request, callback == null ? null : allowInterop(callback)]));
 }
 
 @JS()
@@ -6862,9 +6919,10 @@ class LocationElevationRequest {
 }
 
 extension LocationElevationRequest$Ext on LocationElevationRequest {
-  List<LatLng> get locations => getProperty(this, 'locations')?.cast<LatLng>();
+  List<LatLng?>? get locations =>
+      getProperty(this, 'locations')?.cast<LatLng?>();
 
-  set locations(List<LatLng> value) {
+  set locations(List<LatLng?>? value) {
     setProperty(this, 'locations', value);
   }
 }
@@ -6876,10 +6934,10 @@ class LocationElevationResponse {
 }
 
 extension LocationElevationResponse$Ext on LocationElevationResponse {
-  List<ElevationResult> get results =>
-      getProperty(this, 'results')?.cast<ElevationResult>();
+  List<ElevationResult?>? get results =>
+      getProperty(this, 'results')?.cast<ElevationResult?>();
 
-  set results(List<ElevationResult> value) {
+  set results(List<ElevationResult?>? value) {
     setProperty(this, 'results', value);
   }
 }
@@ -6889,15 +6947,15 @@ extension LocationElevationResponse$Ext on LocationElevationResponse {
 class PathElevationRequest {
   external factory PathElevationRequest();
 
-  external num get samples;
+  external num? get samples;
 
-  external set samples(num value);
+  external set samples(num? value);
 }
 
 extension PathElevationRequest$Ext on PathElevationRequest {
-  List<LatLng> get path => getProperty(this, 'path')?.cast<LatLng>();
+  List<LatLng?>? get path => getProperty(this, 'path')?.cast<LatLng?>();
 
-  set path(List<LatLng> value) {
+  set path(List<LatLng?>? value) {
     setProperty(this, 'path', value);
   }
 }
@@ -6909,10 +6967,10 @@ class PathElevationResponse {
 }
 
 extension PathElevationResponse$Ext on PathElevationResponse {
-  List<ElevationResult> get results =>
-      getProperty(this, 'results')?.cast<ElevationResult>();
+  List<ElevationResult?>? get results =>
+      getProperty(this, 'results')?.cast<ElevationResult?>();
 
-  set results(List<ElevationResult> value) {
+  set results(List<ElevationResult?>? value) {
     setProperty(this, 'results', value);
   }
 }
@@ -6922,17 +6980,17 @@ extension PathElevationResponse$Ext on PathElevationResponse {
 class ElevationResult {
   external factory ElevationResult();
 
-  external num get elevation;
+  external num? get elevation;
 
-  external set elevation(num value);
+  external set elevation(num? value);
 
-  external LatLng get location;
+  external LatLng? get location;
 
-  external set location(LatLng value);
+  external set location(LatLng? value);
 
-  external num get resolution;
+  external num? get resolution;
 
-  external set resolution(num value);
+  external set resolution(num? value);
 }
 
 @JS('google.maps.ElevationStatus')

@@ -17,7 +17,7 @@ part of '../google_maps_core.dart';
 @JsName()
 @anonymous
 abstract class TrafficLayerOptions {
-  factory TrafficLayerOptions() => $js;
-  bool autoRefresh;
-  GMap map;
+  factory TrafficLayerOptions() => $js();
+  bool? autoRefresh;
+  GMap? map;
 }

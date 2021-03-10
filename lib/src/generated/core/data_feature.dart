@@ -17,35 +17,35 @@ part of '../google_maps_core.dart';
 @JsName('google.maps.Data.Feature')
 abstract class DataFeature {
   factory DataFeature([
-    DataFeatureOptions options, // ignore: unused_element
+    DataFeatureOptions? options, // ignore: unused_element
   ]) =>
-      $js;
-  void forEachProperty(void Function(Object p1, String p2) callback);
+      $js();
+  void forEachProperty(void Function(Object? p1, String? p2)? callback);
 
   // synthetic getter for getGeometry
-  DataGeometry get geometry => _getGeometry();
+  DataGeometry? get geometry => _getGeometry();
   @JsName('getGeometry')
-  DataGeometry _getGeometry();
+  DataGeometry? _getGeometry();
 
   // synthetic getter for getId
-  Object /*num|String*/ get id => _getId();
+  Object? /*num?|String?*/ get id => _getId();
   @JsName('getId')
-  Object /*num|String*/ _getId();
+  Object? /*num?|String?*/ _getId();
 
-  Object getProperty(String name);
-  void removeProperty(String name);
+  Object? getProperty(String? name);
+  void removeProperty(String? name);
 
   // synthetic setter for setGeometry
-  set geometry(Object /*DataGeometry|LatLng*/ geometry) =>
+  set geometry(Object? /*DataGeometry?|LatLng?*/ geometry) =>
       _setGeometry(geometry);
   @JsName('setGeometry')
-  void _setGeometry(Object /*DataGeometry|LatLng*/ newGeometry);
+  void _setGeometry(Object? /*DataGeometry?|LatLng?*/ newGeometry);
 
-  void setProperty(String name, Object newValue);
-  void toGeoJson(void Function(Object p1) callback);
+  void setProperty(String? name, Object? newValue);
+  void toGeoJson(void Function(Object? p1)? callback);
   Stream<DataRemovePropertyEvent> get onRemoveproperty {
-    StreamController<DataRemovePropertyEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<DataRemovePropertyEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'removeproperty',
@@ -62,8 +62,8 @@ abstract class DataFeature {
   }
 
   Stream<DataSetGeometryEvent> get onSetgeometry {
-    StreamController<DataSetGeometryEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<DataSetGeometryEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'setgeometry',
@@ -80,8 +80,8 @@ abstract class DataFeature {
   }
 
   Stream<DataSetPropertyEvent> get onSetproperty {
-    StreamController<DataSetPropertyEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<DataSetPropertyEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'setproperty',

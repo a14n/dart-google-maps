@@ -17,68 +17,69 @@ part of '../google_maps_core.dart';
 @JsName('google.maps.Polyline')
 abstract class Polyline extends MVCObject {
   factory Polyline([
-    PolylineOptions opts, // ignore: unused_element
+    PolylineOptions? opts, // ignore: unused_element
   ]) =>
-      $js;
+      $js();
 
   // synthetic getter for getDraggable
-  bool get draggable => _getDraggable();
+  bool? get draggable => _getDraggable();
   @JsName('getDraggable')
-  bool _getDraggable();
+  bool? _getDraggable();
 
   // synthetic getter for getEditable
-  bool get editable => _getEditable();
+  bool? get editable => _getEditable();
   @JsName('getEditable')
-  bool _getEditable();
+  bool? _getEditable();
 
   // synthetic getter for getMap
-  GMap get map => _getMap();
+  GMap? get map => _getMap();
   @JsName('getMap')
-  GMap _getMap();
+  GMap? _getMap();
 
   // synthetic getter for getPath
-  MVCArray<LatLng> get path => _getPath();
+  MVCArray<LatLng?>? get path => _getPath();
   @JsName('getPath')
-  MVCArray<LatLng> _getPath();
+  MVCArray<LatLng?>? _getPath();
 
   // synthetic getter for getVisible
-  bool get visible => _getVisible();
+  bool? get visible => _getVisible();
   @JsName('getVisible')
-  bool _getVisible();
+  bool? _getVisible();
 
   // synthetic setter for setDraggable
-  set draggable(bool draggable) => _setDraggable(draggable);
+  set draggable(bool? draggable) => _setDraggable(draggable);
   @JsName('setDraggable')
-  void _setDraggable(bool draggable);
+  void _setDraggable(bool? draggable);
 
   // synthetic setter for setEditable
-  set editable(bool editable) => _setEditable(editable);
+  set editable(bool? editable) => _setEditable(editable);
   @JsName('setEditable')
-  void _setEditable(bool editable);
+  void _setEditable(bool? editable);
 
   // synthetic setter for setMap
-  set map(GMap map) => _setMap(map);
+  set map(GMap? map) => _setMap(map);
   @JsName('setMap')
-  void _setMap(GMap map);
+  void _setMap(GMap? map);
 
   // synthetic setter for setOptions
-  set options(PolylineOptions options) => _setOptions(options);
+  set options(PolylineOptions? options) => _setOptions(options);
   @JsName('setOptions')
-  void _setOptions(PolylineOptions options);
+  void _setOptions(PolylineOptions? options);
 
   // synthetic setter for setPath
-  set path(Object /*MVCArray<LatLng>|List<LatLng>*/ path) => _setPath(path);
+  set path(Object? /*MVCArray<LatLng?>?|List<LatLng?>?*/ path) =>
+      _setPath(path);
   @JsName('setPath')
-  void _setPath(Object /*MVCArray<LatLng>|List<LatLng>*/ path);
+  void _setPath(Object? /*MVCArray<LatLng?>?|List<LatLng?>?*/ path);
 
   // synthetic setter for setVisible
-  set visible(bool visible) => _setVisible(visible);
+  set visible(bool? visible) => _setVisible(visible);
   @JsName('setVisible')
-  void _setVisible(bool visible);
+  void _setVisible(bool? visible);
 
   Stream<PolyMouseEvent> get onClick {
-    StreamController<PolyMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<PolyMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'click',
@@ -95,8 +96,8 @@ abstract class Polyline extends MVCObject {
   }
 
   Stream<PolyMouseEvent> get onContextmenu {
-    StreamController<PolyMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<PolyMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'contextmenu',
@@ -113,8 +114,8 @@ abstract class Polyline extends MVCObject {
   }
 
   Stream<PolyMouseEvent> get onDblclick {
-    StreamController<PolyMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<PolyMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'dblclick',
@@ -131,8 +132,8 @@ abstract class Polyline extends MVCObject {
   }
 
   Stream<MapMouseEvent> get onDrag {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'drag',
@@ -149,8 +150,8 @@ abstract class Polyline extends MVCObject {
   }
 
   Stream<MapMouseEvent> get onDragend {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'dragend',
@@ -167,8 +168,8 @@ abstract class Polyline extends MVCObject {
   }
 
   Stream<MapMouseEvent> get onDragstart {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'dragstart',
@@ -185,8 +186,8 @@ abstract class Polyline extends MVCObject {
   }
 
   Stream<PolyMouseEvent> get onMousedown {
-    StreamController<PolyMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<PolyMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mousedown',
@@ -203,8 +204,8 @@ abstract class Polyline extends MVCObject {
   }
 
   Stream<PolyMouseEvent> get onMousemove {
-    StreamController<PolyMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<PolyMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mousemove',
@@ -221,8 +222,8 @@ abstract class Polyline extends MVCObject {
   }
 
   Stream<PolyMouseEvent> get onMouseout {
-    StreamController<PolyMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<PolyMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseout',
@@ -239,8 +240,8 @@ abstract class Polyline extends MVCObject {
   }
 
   Stream<PolyMouseEvent> get onMouseover {
-    StreamController<PolyMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<PolyMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseover',
@@ -257,8 +258,8 @@ abstract class Polyline extends MVCObject {
   }
 
   Stream<PolyMouseEvent> get onMouseup {
-    StreamController<PolyMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<PolyMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseup',
@@ -275,8 +276,8 @@ abstract class Polyline extends MVCObject {
   }
 
   Stream<PolyMouseEvent> get onRightclick {
-    StreamController<PolyMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<PolyMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'rightclick',

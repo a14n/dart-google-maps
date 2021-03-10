@@ -17,9 +17,9 @@ part of '../google_maps_core.dart';
 @JsName()
 @anonymous
 abstract class StyledMapTypeOptions {
-  factory StyledMapTypeOptions() => $js;
-  String alt;
-  num maxZoom;
-  num minZoom;
-  String name;
+  factory StyledMapTypeOptions() => $js();
+  String? alt;
+  num? maxZoom;
+  num? minZoom;
+  String? name;
 }

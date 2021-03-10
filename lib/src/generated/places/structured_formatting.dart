@@ -17,14 +17,14 @@ part of '../google_maps_places.dart';
 @JsName()
 @anonymous
 abstract class StructuredFormatting {
-  factory StructuredFormatting() => $js;
+  factory StructuredFormatting() => $js();
   // custom name for main_text
   @JsName('main_text')
-  String mainText;
+  String? mainText;
   // custom name for main_text_matched_substrings
   @JsName('main_text_matched_substrings')
-  List<PredictionSubstring> mainTextMatchedSubstrings;
+  List<PredictionSubstring?>? mainTextMatchedSubstrings;
   // custom name for secondary_text
   @JsName('secondary_text')
-  String secondaryText;
+  String? secondaryText;
 }

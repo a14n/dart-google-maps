@@ -1,7 +1,7 @@
 import 'dart:html';
 import 'package:google_maps/google_maps.dart';
 
-Polyline line;
+late Polyline line;
 
 void main() {
   final mapOptions = MapOptions()

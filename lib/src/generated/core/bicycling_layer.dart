@@ -16,15 +16,15 @@ part of '../google_maps_core.dart';
 
 @JsName('google.maps.BicyclingLayer')
 abstract class BicyclingLayer extends MVCObject {
-  factory BicyclingLayer() => $js;
+  factory BicyclingLayer() => $js();
 
   // synthetic getter for getMap
-  GMap get map => _getMap();
+  GMap? get map => _getMap();
   @JsName('getMap')
-  GMap _getMap();
+  GMap? _getMap();
 
   // synthetic setter for setMap
-  set map(GMap map) => _setMap(map);
+  set map(GMap? map) => _setMap(map);
   @JsName('setMap')
-  void _setMap(GMap map);
+  void _setMap(GMap? map);
 }

@@ -17,11 +17,11 @@ part of '../google_maps_core.dart';
 @JsName()
 @anonymous
 abstract class GeocoderRequest {
-  factory GeocoderRequest() => $js;
-  String address;
-  LatLngBounds bounds;
-  GeocoderComponentRestrictions componentRestrictions;
-  LatLng location;
-  String placeId;
-  String region;
+  factory GeocoderRequest() => $js();
+  String? address;
+  LatLngBounds? bounds;
+  GeocoderComponentRestrictions? componentRestrictions;
+  LatLng? location;
+  String? placeId;
+  String? region;
 }

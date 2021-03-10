@@ -22,7 +22,7 @@ void main() {
   final script = ScriptElement()
     ..type = 'text/javascript'
     ..src = 'https://maps.googleapis.com/maps/api/js?callback=init';
-  document.body.children.add(script);
+  document.body!.children.add(script);
 }
 
 @JS()

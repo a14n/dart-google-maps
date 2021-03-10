@@ -46,6 +46,7 @@ part 'places/photo_options.dart';
 part 'places/place_review.dart';
 part 'places/autocomplete_service.dart';
 part 'places/autocompletion_request.dart';
+part 'places/autocomplete_response.dart';
 part 'places/query_autocompletion_request.dart';
 part 'places/autocomplete_session_token.dart';
 part 'places/component_restrictions.dart';

@@ -17,8 +17,8 @@ part of '../google_maps_core.dart';
 @JsName()
 @anonymous
 abstract class KmlAuthor {
-  factory KmlAuthor() => $js;
-  String email;
-  String name;
-  String uri;
+  factory KmlAuthor() => $js();
+  String? email;
+  String? name;
+  String? uri;
 }

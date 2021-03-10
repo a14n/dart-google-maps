@@ -12,8 +12,8 @@ void main() {
   final input = document.getElementById('pac-input') as InputElement;
 
   final types = document.getElementById('type-selector');
-  map.controls[ControlPosition.TOP_LEFT as int].push(input);
-  map.controls[ControlPosition.TOP_LEFT as int].push(types);
+  map.controls![ControlPosition.TOP_LEFT as int]!.push(input);
+  map.controls![ControlPosition.TOP_LEFT as int]!.push(types);
 
   final autocomplete = Autocomplete(input)..bindTo('bounds', map);
 
@@ -26,18 +26,18 @@ void main() {
     infowindow.close();
     marker.visible = false;
 
-    final place = autocomplete.place;
+    final place = autocomplete.place!;
     if (place.geometry == null) {
       window.alert("Autocomplete's returned place contains no geometry");
       return;
     }
 
     // If the place has a geometry, then present it on a map.
-    if (place.geometry.viewport != null) {
-      map.fitBounds(place.geometry.viewport);
+    if (place.geometry!.viewport != null) {
+      map.fitBounds(place.geometry!.viewport);
     } else {
       map
-        ..center = place.geometry.location
+        ..center = place.geometry!.location
         ..zoom = 17; // Why 17? Because it looks good.
     }
 
@@ -48,24 +48,16 @@ void main() {
         ..origin = Point(0, 0)
         ..anchor = Point(17, 34)
         ..scaledSize = Size(35, 35))
-      ..position = place.geometry.location
+      ..position = place.geometry!.location
       ..visible = true;
 
     var address = '';
-    if (place.addressComponents != null) {
+    final addressComponents = place.addressComponents;
+    if (addressComponents != null) {
       address = [
-        (place.addressComponents[0] != null &&
-                place.addressComponents[0].shortName != null
-            ? place.addressComponents[0].shortName
-            : ''),
-        (place.addressComponents[1] != null &&
-                place.addressComponents[1].shortName != null
-            ? place.addressComponents[1].shortName
-            : ''),
-        (place.addressComponents[2] != null &&
-                place.addressComponents[2].shortName != null
-            ? place.addressComponents[2].shortName
-            : '')
+        addressComponents[0]?.shortName ?? '',
+        addressComponents[1]?.shortName ?? '',
+        addressComponents[2]?.shortName ?? '',
       ].join(' ');
     }
 

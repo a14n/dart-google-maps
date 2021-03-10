@@ -17,17 +17,17 @@ part of '../google_maps_core.dart';
 @JsName()
 @anonymous
 abstract class PolylineOptions {
-  factory PolylineOptions() => $js;
-  bool clickable;
-  bool draggable;
-  bool editable;
-  bool geodesic;
-  List<IconSequence> icons;
-  GMap map;
-  Object /*MVCArray<LatLng>|List<LatLng>*/ path;
-  String strokeColor;
-  num strokeOpacity;
-  num strokeWeight;
-  bool visible;
-  num zIndex;
+  factory PolylineOptions() => $js();
+  bool? clickable;
+  bool? draggable;
+  bool? editable;
+  bool? geodesic;
+  List<IconSequence?>? icons;
+  GMap? map;
+  Object? /*MVCArray<LatLng?>?|List<LatLng?>?*/ path;
+  String? strokeColor;
+  num? strokeOpacity;
+  num? strokeWeight;
+  bool? visible;
+  num? zIndex;
 }

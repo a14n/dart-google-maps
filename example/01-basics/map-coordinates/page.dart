@@ -13,13 +13,13 @@ void main() {
   );
 
   final coordInfoWindow = InfoWindow()
-    ..content = createInfoWindowContent(chicago, map.zoom)
+    ..content = createInfoWindowContent(chicago, map.zoom!)
     ..position = chicago
     ..open(map);
 
   map.onZoomChanged.listen((_) {
     coordInfoWindow
-      ..content = createInfoWindowContent(chicago, map.zoom)
+      ..content = createInfoWindowContent(chicago, map.zoom!)
       ..open(map);
   });
 }
@@ -27,15 +27,15 @@ void main() {
 const TILE_SIZE = 256;
 
 String createInfoWindowContent(LatLng latLng, num zoom) {
-  final numTiles = 1 << zoom;
+  final numTiles = 1 << zoom.toInt();
   final worldCoordinate = project(latLng);
   final pixelCoordinate = Point(
-    worldCoordinate.x * numTiles,
-    worldCoordinate.y * numTiles,
+    worldCoordinate.x! * numTiles,
+    worldCoordinate.y! * numTiles,
   );
   final tileCoordinate = Point(
-    (pixelCoordinate.x / TILE_SIZE).floor(),
-    (pixelCoordinate.y / TILE_SIZE).floor(),
+    (pixelCoordinate.x! / TILE_SIZE).floor(),
+    (pixelCoordinate.y! / TILE_SIZE).floor(),
   );
 
   return [
@@ -50,10 +50,10 @@ String createInfoWindowContent(LatLng latLng, num zoom) {
 // The mapping between latitude, longitude and pixels is defined by the web
 // mercator projection.
 Point project(LatLng latLng) {
-  var siny = math.sin((latLng.lat * math.pi) / 180);
+  var siny = math.sin((latLng.lat! * math.pi) / 180);
   // Truncating to 0.9999 effectively limits latitude to 89.189. This is
   // about a third of a tile past the edge of the world tile.
   siny = math.min(math.max(siny, -0.9999), 0.9999);
-  return Point(TILE_SIZE * (0.5 + latLng.lng / 360),
+  return Point(TILE_SIZE * (0.5 + latLng.lng! / 360),
       TILE_SIZE * (0.5 - math.log((1 + siny) / (1 - siny)) / (4 * math.pi)));
 }

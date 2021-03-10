@@ -17,17 +17,17 @@ part of '../google_maps_core.dart';
 @JsName('google.maps.StyledMapType')
 abstract class StyledMapType extends MVCObject implements MapType {
   factory StyledMapType(
-    List<MapTypeStyle> styles, [
-    StyledMapTypeOptions options, // ignore: unused_element
+    List<MapTypeStyle?>? styles, [
+    StyledMapTypeOptions? options, // ignore: unused_element
   ]) =>
-      $js;
-  String alt;
-  num maxZoom;
-  num minZoom;
-  String name;
-  Projection projection;
-  num radius;
-  Size tileSize;
-  Node Function(Point tileCoord, num zoom, Document ownerDocument) getTile;
-  void Function(Node tile) releaseTile;
+      $js();
+  String? alt;
+  num? maxZoom;
+  num? minZoom;
+  String? name;
+  Projection? projection;
+  num? radius;
+  Size? tileSize;
+  Node? Function(Point? tileCoord, num? zoom, Document? ownerDocument)? getTile;
+  void Function(Node? tile)? releaseTile;
 }

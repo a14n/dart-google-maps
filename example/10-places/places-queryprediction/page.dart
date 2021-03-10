@@ -3,8 +3,8 @@ import 'dart:html';
 import 'package:google_maps/google_maps.dart';
 import 'package:google_maps/google_maps_places.dart';
 
-GMap map;
-InfoWindow infowindow;
+late GMap map;
+late InfoWindow infowindow;
 
 void main() {
   AutocompleteService().getQueryPredictions(
@@ -12,7 +12,7 @@ void main() {
 }
 
 void callback(
-    List<QueryAutocompletePrediction> predictions, PlacesServiceStatus status) {
+    List<QueryAutocompletePrediction?>? predictions, PlacesServiceStatus? status) {
   if (status != PlacesServiceStatus.OK) {
     window.alert('$status');
     return;
@@ -20,7 +20,7 @@ void callback(
 
   final results = document.getElementById('results') as UListElement;
 
-  for (final prediction in predictions) {
-    results.innerHtml += '<li>${prediction.description}</li>';
+  for (final prediction in predictions!) {
+    results.innerHtml = '${results.innerHtml!}<li>${prediction!.description}</li>';
   }
 }

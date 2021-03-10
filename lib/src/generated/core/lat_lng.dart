@@ -17,25 +17,25 @@ part of '../google_maps_core.dart';
 @JsName('google.maps.LatLng')
 abstract class LatLng {
   factory LatLng(
-    num lat,
-    num lng, [
-    bool noWrap, // ignore: unused_element
+    num? lat,
+    num? lng, [
+    bool? noWrap, // ignore: unused_element
   ]) =>
-      $js;
-  bool equals(LatLng other);
+      $js();
+  bool? equals(LatLng? other);
 
   // custom getter for lat
-  num get lat => _lat();
+  num? get lat => _lat();
   @JsName('lat')
-  num _lat();
+  num? _lat();
 
   // custom getter for lng
-  num get lng => _lng();
+  num? get lng => _lng();
   @JsName('lng')
-  num _lng();
+  num? _lng();
 
   String toString();
-  String toUrlValue([
-    num precision,
+  String? toUrlValue([
+    num? precision,
   ]);
 }

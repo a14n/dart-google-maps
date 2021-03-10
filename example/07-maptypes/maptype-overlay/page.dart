@@ -2,7 +2,7 @@ import 'dart:html' hide Point;
 
 import 'package:google_maps/google_maps.dart';
 
-GMap map;
+late GMap map;
 final chicago = LatLng(41.850033, -87.6500523);
 
 void main() {
@@ -15,12 +15,12 @@ void main() {
   // position 0. Note that all overlay map types appear on top of
   // their parent base map.
   final tileSize = Size(256, 256);
-  map.overlayMapTypes.insertAt(
+  map.overlayMapTypes!.insertAt(
       0,
       MapType()
         ..tileSize = tileSize
-        ..getTile = (Point coord, num zoom, Document ownerDocument) {
-          final div = ownerDocument.createElement('div')
+        ..getTile = (coord, zoom, ownerDocument) {
+          final div = ownerDocument!.createElement('div')
             ..innerHtml = coord.toString();
           div.style
             ..width = '${tileSize.width}px'

@@ -17,7 +17,7 @@ void main() {
     ..panel = document.getElementById('right-panel'));
 
   directionsDisplay.onDirectionsChanged.listen((_) {
-    computeTotalDistance(directionsDisplay.directions);
+    computeTotalDistance(directionsDisplay.directions!);
   });
 
   displayRoute(
@@ -46,10 +46,10 @@ void displayRoute(String origin, String destination, DirectionsService service,
 
 void computeTotalDistance(DirectionsResult result) {
   var total = 0.0;
-  final myroute = result.routes[0];
-  for (var i = 0; i < myroute.legs.length; i++) {
-    total += myroute.legs[i].distance.value;
+  final myroute = result.routes![0]!;
+  for (var i = 0; i < myroute.legs!.length; i++) {
+    total += myroute.legs![i]!.distance!.value!;
   }
   total = total / 1000;
-  document.getElementById('total').innerHtml = '$total km';
+  document.getElementById('total')!.innerHtml = '$total km';
 }

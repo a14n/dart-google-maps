@@ -3,7 +3,7 @@ import 'dart:html';
 import 'package:google_maps/google_maps.dart';
 import 'package:js/js_util.dart';
 
-GMap map;
+late GMap map;
 final brooklyn = LatLng(40.6743890, -73.9455);
 
 const MY_MAPTYPE_ID = 'custom_style';
@@ -42,5 +42,5 @@ void main() {
 
   final customMapType = StyledMapType(featureOpts, styledMapTypeOptions);
 
-  map.mapTypes.set(MY_MAPTYPE_ID, customMapType);
+  map.mapTypes!.set(MY_MAPTYPE_ID, customMapType);
 }

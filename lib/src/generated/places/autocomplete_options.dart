@@ -17,11 +17,11 @@ part of '../google_maps_places.dart';
 @JsName()
 @anonymous
 abstract class AutocompleteOptions {
-  factory AutocompleteOptions() => $js;
-  LatLngBounds bounds;
-  ComponentRestrictions componentRestrictions;
-  List<String> fields;
-  bool placeIdOnly;
-  bool strictBounds;
-  List<String> types;
+  factory AutocompleteOptions() => $js();
+  LatLngBounds? bounds;
+  ComponentRestrictions? componentRestrictions;
+  List<String?>? fields;
+  bool? placeIdOnly;
+  bool? strictBounds;
+  List<String?>? types;
 }

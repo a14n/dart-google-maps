@@ -17,83 +17,83 @@ part of '../google_maps_core.dart';
 @JsName('google.maps.Circle')
 abstract class Circle extends MVCObject {
   factory Circle([
-    CircleOptions opts, // ignore: unused_element
+    CircleOptions? opts, // ignore: unused_element
   ]) =>
-      $js;
+      $js();
 
   // synthetic getter for getBounds
-  LatLngBounds get bounds => _getBounds();
+  LatLngBounds? get bounds => _getBounds();
   @JsName('getBounds')
-  LatLngBounds _getBounds();
+  LatLngBounds? _getBounds();
 
   // synthetic getter for getCenter
-  LatLng get center => _getCenter();
+  LatLng? get center => _getCenter();
   @JsName('getCenter')
-  LatLng _getCenter();
+  LatLng? _getCenter();
 
   // synthetic getter for getDraggable
-  bool get draggable => _getDraggable();
+  bool? get draggable => _getDraggable();
   @JsName('getDraggable')
-  bool _getDraggable();
+  bool? _getDraggable();
 
   // synthetic getter for getEditable
-  bool get editable => _getEditable();
+  bool? get editable => _getEditable();
   @JsName('getEditable')
-  bool _getEditable();
+  bool? _getEditable();
 
   // synthetic getter for getMap
-  GMap get map => _getMap();
+  GMap? get map => _getMap();
   @JsName('getMap')
-  GMap _getMap();
+  GMap? _getMap();
 
   // synthetic getter for getRadius
-  num get radius => _getRadius();
+  num? get radius => _getRadius();
   @JsName('getRadius')
-  num _getRadius();
+  num? _getRadius();
 
   // synthetic getter for getVisible
-  bool get visible => _getVisible();
+  bool? get visible => _getVisible();
   @JsName('getVisible')
-  bool _getVisible();
+  bool? _getVisible();
 
   // synthetic setter for setCenter
-  set center(LatLng center) => _setCenter(center);
+  set center(LatLng? center) => _setCenter(center);
   @JsName('setCenter')
-  void _setCenter(LatLng center);
+  void _setCenter(LatLng? center);
 
   // synthetic setter for setDraggable
-  set draggable(bool draggable) => _setDraggable(draggable);
+  set draggable(bool? draggable) => _setDraggable(draggable);
   @JsName('setDraggable')
-  void _setDraggable(bool draggable);
+  void _setDraggable(bool? draggable);
 
   // synthetic setter for setEditable
-  set editable(bool editable) => _setEditable(editable);
+  set editable(bool? editable) => _setEditable(editable);
   @JsName('setEditable')
-  void _setEditable(bool editable);
+  void _setEditable(bool? editable);
 
   // synthetic setter for setMap
-  set map(GMap map) => _setMap(map);
+  set map(GMap? map) => _setMap(map);
   @JsName('setMap')
-  void _setMap(GMap map);
+  void _setMap(GMap? map);
 
   // synthetic setter for setOptions
-  set options(CircleOptions options) => _setOptions(options);
+  set options(CircleOptions? options) => _setOptions(options);
   @JsName('setOptions')
-  void _setOptions(CircleOptions options);
+  void _setOptions(CircleOptions? options);
 
   // synthetic setter for setRadius
-  set radius(num radius) => _setRadius(radius);
+  set radius(num? radius) => _setRadius(radius);
   @JsName('setRadius')
-  void _setRadius(num radius);
+  void _setRadius(num? radius);
 
   // synthetic setter for setVisible
-  set visible(bool visible) => _setVisible(visible);
+  set visible(bool? visible) => _setVisible(visible);
   @JsName('setVisible')
-  void _setVisible(bool visible);
+  void _setVisible(bool? visible);
 
   Stream<void> get onCenterChanged {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'center_changed',
@@ -110,8 +110,8 @@ abstract class Circle extends MVCObject {
   }
 
   Stream<MapMouseEvent> get onClick {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'click',
@@ -128,8 +128,8 @@ abstract class Circle extends MVCObject {
   }
 
   Stream<MapMouseEvent> get onDblclick {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'dblclick',
@@ -146,8 +146,8 @@ abstract class Circle extends MVCObject {
   }
 
   Stream<MapMouseEvent> get onDrag {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'drag',
@@ -164,8 +164,8 @@ abstract class Circle extends MVCObject {
   }
 
   Stream<MapMouseEvent> get onDragend {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'dragend',
@@ -182,8 +182,8 @@ abstract class Circle extends MVCObject {
   }
 
   Stream<MapMouseEvent> get onDragstart {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'dragstart',
@@ -200,8 +200,8 @@ abstract class Circle extends MVCObject {
   }
 
   Stream<MapMouseEvent> get onMousedown {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mousedown',
@@ -218,8 +218,8 @@ abstract class Circle extends MVCObject {
   }
 
   Stream<MapMouseEvent> get onMousemove {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mousemove',
@@ -236,8 +236,8 @@ abstract class Circle extends MVCObject {
   }
 
   Stream<MapMouseEvent> get onMouseout {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseout',
@@ -254,8 +254,8 @@ abstract class Circle extends MVCObject {
   }
 
   Stream<MapMouseEvent> get onMouseover {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseover',
@@ -272,8 +272,8 @@ abstract class Circle extends MVCObject {
   }
 
   Stream<MapMouseEvent> get onMouseup {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'mouseup',
@@ -290,8 +290,8 @@ abstract class Circle extends MVCObject {
   }
 
   Stream<void> get onRadiusChanged {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'radius_changed',
@@ -308,8 +308,8 @@ abstract class Circle extends MVCObject {
   }
 
   Stream<MapMouseEvent> get onRightclick {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'rightclick',

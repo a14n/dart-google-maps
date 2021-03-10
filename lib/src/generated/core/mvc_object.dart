@@ -16,23 +16,23 @@ part of '../google_maps_core.dart';
 
 @JsName('google.maps.MVCObject')
 abstract class MVCObject {
-  factory MVCObject() => $js;
-  MapsEventListener addListener(String eventName, Function handler);
+  factory MVCObject() => $js();
+  MapsEventListener? addListener(String? eventName, Function? handler);
   void bindTo(
-    String key,
-    MVCObject target, [
-    String targetKey,
-    bool noNotify,
+    String? key,
+    MVCObject? target, [
+    String? targetKey,
+    bool? noNotify,
   ]);
-  Object get(String key);
-  void notify(String key);
-  void set(String key, Object value);
+  Object? get(String? key);
+  void notify(String? key);
+  void set(String? key, Object? value);
 
   // synthetic setter for setValues
-  set values(Object values) => _setValues(values);
+  set values(Object? values) => _setValues(values);
   @JsName('setValues')
-  void _setValues(Object values);
+  void _setValues(Object? values);
 
-  void unbind(String key);
+  void unbind(String? key);
   void unbindAll();
 }

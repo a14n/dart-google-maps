@@ -17,10 +17,10 @@ part of '../google_maps_places.dart';
 @JsName()
 @anonymous
 abstract class PlaceOpeningHoursTime {
-  factory PlaceOpeningHoursTime() => $js;
-  num day;
-  num hours;
-  num minutes;
-  String time;
-  num nextDate;
+  factory PlaceOpeningHoursTime() => $js();
+  num? day;
+  num? hours;
+  num? minutes;
+  String? time;
+  num? nextDate;
 }

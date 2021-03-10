@@ -17,8 +17,8 @@ part of '../google_maps_core.dart';
 @JsName()
 @anonymous
 abstract class DistanceMatrixResponse {
-  factory DistanceMatrixResponse() => $js;
-  List<String> destinationAddresses;
-  List<String> originAddresses;
-  List<DistanceMatrixResponseRow> rows;
+  factory DistanceMatrixResponse() => $js();
+  List<String?>? destinationAddresses;
+  List<String?>? originAddresses;
+  List<DistanceMatrixResponseRow?>? rows;
 }

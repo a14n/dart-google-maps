@@ -17,15 +17,15 @@ part of '../google_maps_places.dart';
 @JsName()
 @anonymous
 abstract class PlaceOpeningHours {
-  factory PlaceOpeningHours() => $js;
+  factory PlaceOpeningHours() => $js();
   // custom name for open_now
   @JsName('open_now')
-  bool openNow;
-  List<PlaceOpeningHoursPeriod> periods;
+  bool? openNow;
+  List<PlaceOpeningHoursPeriod?>? periods;
   // custom name for weekday_text
   @JsName('weekday_text')
-  List<String> weekdayText;
-  bool isOpen([
-    DateTime date,
+  List<String?>? weekdayText;
+  bool? isOpen([
+    DateTime? date,
   ]);
 }

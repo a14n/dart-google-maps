@@ -18,46 +18,46 @@ part of '../google_maps_geometry.dart';
 external Object get _Spherical$namespace;
 
 class Spherical {
-  static num computeArea(
-    Object /*List<LatLng>|MVCArray<LatLng>*/ path, [
-    num radius,
+  static num? computeArea(
+    Object? /*List<LatLng?>?|MVCArray<LatLng?>?*/ path, [
+    num? radius,
   ]) =>
       callMethod(_Spherical$namespace, 'computeArea', [path, radius]);
-  static num computeDistanceBetween(
-    LatLng from,
-    LatLng to, [
-    num radius,
+  static num? computeDistanceBetween(
+    LatLng? from,
+    LatLng? to, [
+    num? radius,
   ]) =>
       callMethod(
           _Spherical$namespace, 'computeDistanceBetween', [from, to, radius]);
-  static num computeHeading(LatLng from, LatLng to) =>
+  static num? computeHeading(LatLng? from, LatLng? to) =>
       callMethod(_Spherical$namespace, 'computeHeading', [from, to]);
-  static num computeLength(
-    Object /*List<LatLng>|MVCArray<LatLng>*/ path, [
-    num radius,
+  static num? computeLength(
+    Object? /*List<LatLng?>?|MVCArray<LatLng?>?*/ path, [
+    num? radius,
   ]) =>
       callMethod(_Spherical$namespace, 'computeLength', [path, radius]);
-  static LatLng computeOffset(
-    LatLng from,
-    num distance,
-    num heading, [
-    num radius,
+  static LatLng? computeOffset(
+    LatLng? from,
+    num? distance,
+    num? heading, [
+    num? radius,
   ]) =>
       callMethod(_Spherical$namespace, 'computeOffset',
           [from, distance, heading, radius]);
-  static LatLng computeOffsetOrigin(
-    LatLng to,
-    num distance,
-    num heading, [
-    num radius,
+  static LatLng? computeOffsetOrigin(
+    LatLng? to,
+    num? distance,
+    num? heading, [
+    num? radius,
   ]) =>
       callMethod(_Spherical$namespace, 'computeOffsetOrigin',
           [to, distance, heading, radius]);
-  static num computeSignedArea(
-    Object /*List<LatLng>|MVCArray<LatLng>*/ loop, [
-    num radius,
+  static num? computeSignedArea(
+    Object? /*List<LatLng?>?|MVCArray<LatLng?>?*/ loop, [
+    num? radius,
   ]) =>
       callMethod(_Spherical$namespace, 'computeSignedArea', [loop, radius]);
-  static LatLng interpolate(LatLng from, LatLng to, num fraction) =>
+  static LatLng? interpolate(LatLng? from, LatLng? to, num? fraction) =>
       callMethod(_Spherical$namespace, 'interpolate', [from, to, fraction]);
 }

@@ -17,11 +17,11 @@ part of '../google_maps_core.dart';
 @JsName()
 @anonymous
 abstract class DataDataOptions {
-  factory DataDataOptions() => $js;
-  GMap map;
-  ControlPosition controlPosition;
-  List<String> controls;
-  String drawingMode;
-  DataFeature Function(DataGeometry p1) featureFactory;
-  Object /*DataStylingFunction|DataStyleOptions*/ style;
+  factory DataDataOptions() => $js();
+  GMap? map;
+  ControlPosition? controlPosition;
+  List<String?>? controls;
+  String? drawingMode;
+  DataFeature? Function(DataGeometry? p1)? featureFactory;
+  Object? /*DataStylingFunction?|DataStyleOptions?*/ style;
 }

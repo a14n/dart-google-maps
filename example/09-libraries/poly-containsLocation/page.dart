@@ -21,7 +21,7 @@ void main() {
 
   map.onClick.listen((e) {
     String result;
-    if (Poly.containsLocation(e.latLng, bermudaTriangle)) {
+    if (Poly.containsLocation(e.latLng, bermudaTriangle)!) {
       result = 'red';
     } else {
       result = 'green';

@@ -17,14 +17,14 @@ part of '../google_maps_places.dart';
 @JsName()
 @anonymous
 abstract class AutocompletionRequest {
-  factory AutocompletionRequest() => $js;
-  String input;
-  LatLngBounds bounds;
-  ComponentRestrictions componentRestrictions;
-  LatLng location;
-  num offset;
-  LatLng origin;
-  num radius;
-  AutocompleteSessionToken sessionToken;
-  List<String> types;
+  factory AutocompletionRequest() => $js();
+  String? input;
+  LatLngBounds? bounds;
+  ComponentRestrictions? componentRestrictions;
+  LatLng? location;
+  num? offset;
+  LatLng? origin;
+  num? radius;
+  AutocompleteSessionToken? sessionToken;
+  List<String?>? types;
 }

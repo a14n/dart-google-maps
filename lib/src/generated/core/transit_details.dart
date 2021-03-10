@@ -17,26 +17,26 @@ part of '../google_maps_core.dart';
 @JsName()
 @anonymous
 abstract class TransitDetails {
-  factory TransitDetails() => $js;
+  factory TransitDetails() => $js();
   // custom name for arrival_stop
   @JsName('arrival_stop')
-  TransitStop arrivalStop;
+  TransitStop? arrivalStop;
   // custom name for arrival_time
   @JsName('arrival_time')
-  Time arrivalTime;
+  Time? arrivalTime;
   // custom name for departure_stop
   @JsName('departure_stop')
-  TransitStop departureStop;
+  TransitStop? departureStop;
   // custom name for departure_time
   @JsName('departure_time')
-  Time departureTime;
-  String headsign;
-  num headway;
-  TransitLine line;
+  Time? departureTime;
+  String? headsign;
+  num? headway;
+  TransitLine? line;
   // custom name for num_stops
   @JsName('num_stops')
-  num numStops;
+  num? numStops;
   // custom name for trip_short_name
   @JsName('trip_short_name')
-  String tripShortName;
+  String? tripShortName;
 }

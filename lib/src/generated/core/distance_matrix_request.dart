@@ -17,15 +17,15 @@ part of '../google_maps_core.dart';
 @JsName()
 @anonymous
 abstract class DistanceMatrixRequest {
-  factory DistanceMatrixRequest() => $js;
-  List<Object /*String|LatLng|Place*/ > destinations;
-  List<Object /*String|LatLng|Place*/ > origins;
-  TravelMode travelMode;
-  bool avoidFerries;
-  bool avoidHighways;
-  bool avoidTolls;
-  DrivingOptions drivingOptions;
-  String region;
-  TransitOptions transitOptions;
-  UnitSystem unitSystem;
+  factory DistanceMatrixRequest() => $js();
+  List<Object? /*String?|LatLng?|Place?*/ >? destinations;
+  List<Object? /*String?|LatLng?|Place?*/ >? origins;
+  TravelMode? travelMode;
+  bool? avoidFerries;
+  bool? avoidHighways;
+  bool? avoidTolls;
+  DrivingOptions? drivingOptions;
+  String? region;
+  TransitOptions? transitOptions;
+  UnitSystem? unitSystem;
 }

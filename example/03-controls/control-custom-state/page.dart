@@ -2,7 +2,7 @@ import 'dart:html' hide Events;
 
 import 'package:google_maps/google_maps.dart';
 
-GMap map;
+late GMap map;
 final LatLng chicago = LatLng(41.85, -87.65);
 
 /// The CenterControl adds a control to the map that
@@ -47,7 +47,7 @@ class CenterControl {
     });
   }
 
-  LatLng center;
+  LatLng? center;
 }
 
 void main() {
@@ -64,5 +64,5 @@ void main() {
   CenterControl(centerControlDiv, map, chicago);
   centerControlDiv.attributes['index'] = '1';
   centerControlDiv.style.paddingTop = '10px';
-  map.controls[ControlPosition.TOP_CENTER as int].push(centerControlDiv);
+  map.controls![ControlPosition.TOP_CENTER as int]!.push(centerControlDiv);
 }

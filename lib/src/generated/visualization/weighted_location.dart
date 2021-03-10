@@ -17,7 +17,7 @@ part of '../google_maps_visualization.dart';
 @JsName()
 @anonymous
 abstract class WeightedLocation {
-  factory WeightedLocation() => $js;
-  LatLng location;
-  num weight;
+  factory WeightedLocation() => $js();
+  LatLng? location;
+  num? weight;
 }

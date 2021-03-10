@@ -17,12 +17,12 @@ part of '../google_maps_visualization.dart';
 @JsName()
 @anonymous
 abstract class HeatmapLayerOptions {
-  factory HeatmapLayerOptions() => $js;
-  Object /*MVCArray<Object/*LatLng|WeightedLocation*/>|List<Object/*LatLng|WeightedLocation*/>*/ data;
-  bool dissipating;
-  List<String> gradient;
-  GMap map;
-  num maxIntensity;
-  num opacity;
-  num radius;
+  factory HeatmapLayerOptions() => $js();
+  Object? /*MVCArray<Object?/*LatLng?|WeightedLocation?*/>?|List<Object?/*LatLng?|WeightedLocation?*/>?*/ data;
+  bool? dissipating;
+  List<String?>? gradient;
+  GMap? map;
+  num? maxIntensity;
+  num? opacity;
+  num? radius;
 }

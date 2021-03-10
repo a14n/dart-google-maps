@@ -2,8 +2,8 @@ import 'dart:html';
 
 import 'package:google_maps/google_maps.dart';
 
-GMap map;
-StreetViewPanorama panorama;
+late GMap map;
+late StreetViewPanorama panorama;
 final astorPlace = LatLng(40.729884, -73.990988);
 final busStop = LatLng(40.729559678851025, -73.99074196815491);
 final cafe = LatLng(40.730031233910694, -73.99142861366272);
@@ -41,13 +41,13 @@ void main() {
 
   // We get the map's default panorama and set up some defaults.
   // Note that we don't yet set it visible.
-  panorama = map.streetView
+  panorama = map.streetView!
     ..position = astorPlace
     ..pov = (StreetViewPov()
       ..heading = 265
       ..pitch = 0);
 
-  querySelector('#toggleStreetView').onClick.listen((e) => toggleStreetView());
+  querySelector('#toggleStreetView')!.onClick.listen((e) => toggleStreetView());
 }
 
 void toggleStreetView() {

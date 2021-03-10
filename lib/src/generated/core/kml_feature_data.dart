@@ -17,11 +17,11 @@ part of '../google_maps_core.dart';
 @JsName()
 @anonymous
 abstract class KmlFeatureData {
-  factory KmlFeatureData() => $js;
-  KmlAuthor author;
-  String description;
-  String id;
-  String infoWindowHtml;
-  String name;
-  String snippet;
+  factory KmlFeatureData() => $js();
+  KmlAuthor? author;
+  String? description;
+  String? id;
+  String? infoWindowHtml;
+  String? name;
+  String? snippet;
 }

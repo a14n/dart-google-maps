@@ -17,6 +17,6 @@ part of '../google_maps_core.dart';
 @JsName()
 @anonymous
 abstract class PanControlOptions {
-  factory PanControlOptions() => $js;
-  ControlPosition position;
+  factory PanControlOptions() => $js();
+  ControlPosition? position;
 }

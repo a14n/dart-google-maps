@@ -17,35 +17,37 @@ part of '../google_maps_core.dart';
 @JsName('google.maps.LatLngBounds')
 abstract class LatLngBounds {
   factory LatLngBounds([
-    LatLng sw, // ignore: unused_element
-    LatLng ne, // ignore: unused_element
+    LatLng? sw, // ignore: unused_element
+    LatLng? ne, // ignore: unused_element
   ]) =>
-      $js;
-  bool contains(LatLng latLng);
-  bool equals(LatLngBounds other);
-  LatLngBounds extend(LatLng point);
+      $js();
+  bool? contains(LatLng? latLng);
+  bool? equals([
+    LatLngBounds? other,
+  ]);
+  LatLngBounds? extend(LatLng? point);
 
   // synthetic getter for getCenter
-  LatLng get center => _getCenter();
+  LatLng? get center => _getCenter();
   @JsName('getCenter')
-  LatLng _getCenter();
+  LatLng? _getCenter();
 
   // synthetic getter for getNorthEast
-  LatLng get northEast => _getNorthEast();
+  LatLng? get northEast => _getNorthEast();
   @JsName('getNorthEast')
-  LatLng _getNorthEast();
+  LatLng? _getNorthEast();
 
   // synthetic getter for getSouthWest
-  LatLng get southWest => _getSouthWest();
+  LatLng? get southWest => _getSouthWest();
   @JsName('getSouthWest')
-  LatLng _getSouthWest();
+  LatLng? _getSouthWest();
 
-  bool intersects(LatLngBounds other);
-  bool isEmpty();
-  LatLng toSpan();
+  bool? intersects(LatLngBounds? other);
+  bool? isEmpty();
+  LatLng? toSpan();
   String toString();
-  String toUrlValue([
-    num precision,
+  String? toUrlValue([
+    num? precision,
   ]);
-  LatLngBounds union(LatLngBounds other);
+  LatLngBounds? union(LatLngBounds? other);
 }

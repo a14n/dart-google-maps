@@ -17,12 +17,12 @@ part of '../google_maps_core.dart';
 @JsName()
 @anonymous
 abstract class ImageMapTypeOptions {
-  factory ImageMapTypeOptions() => $js;
-  String alt;
-  String Function(Point p1, num p2) getTileUrl;
-  num maxZoom;
-  num minZoom;
-  String name;
-  num opacity;
-  Size tileSize;
+  factory ImageMapTypeOptions() => $js();
+  String? alt;
+  String? Function(Point? p1, num? p2)? getTileUrl;
+  num? maxZoom;
+  num? minZoom;
+  String? name;
+  num? opacity;
+  Size? tileSize;
 }

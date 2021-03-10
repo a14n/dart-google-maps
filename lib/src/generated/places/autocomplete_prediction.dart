@@ -17,20 +17,20 @@ part of '../google_maps_places.dart';
 @JsName()
 @anonymous
 abstract class AutocompletePrediction {
-  factory AutocompletePrediction() => $js;
-  String description;
+  factory AutocompletePrediction() => $js();
+  String? description;
   // custom name for matched_substrings
   @JsName('matched_substrings')
-  List<PredictionSubstring> matchedSubstrings;
+  List<PredictionSubstring?>? matchedSubstrings;
   // custom name for place_id
   @JsName('place_id')
-  String placeId;
+  String? placeId;
   // custom name for structured_formatting
   @JsName('structured_formatting')
-  StructuredFormatting structuredFormatting;
-  List<PredictionTerm> terms;
-  List<String> types;
+  StructuredFormatting? structuredFormatting;
+  List<PredictionTerm?>? terms;
+  List<String?>? types;
   // custom name for distance_meters
   @JsName('distance_meters')
-  num distanceMeters;
+  num? distanceMeters;
 }

@@ -2,7 +2,7 @@ import 'dart:html';
 
 import 'package:google_maps/google_maps.dart';
 
-DirectionsRenderer directionsDisplay;
+late DirectionsRenderer directionsDisplay;
 final directionsService = DirectionsService();
 
 void main() {
@@ -14,17 +14,17 @@ void main() {
   directionsDisplay.map = map;
   directionsDisplay.panel = document.getElementById('directions-panel');
 
-  final control = document.getElementById('control');
+  final control = document.getElementById('control')!;
   control.style.display = 'block';
-  map.controls[ControlPosition.TOP_CENTER as int].push(control);
+  map.controls![ControlPosition.TOP_CENTER as int]!.push(control);
 
-  document.getElementById('start').onChange.listen((e) => calcRoute());
-  document.getElementById('end').onChange.listen((e) => calcRoute());
+  document.getElementById('start')!.onChange.listen((e) => calcRoute());
+  document.getElementById('end')!.onChange.listen((e) => calcRoute());
 }
 
 void calcRoute() {
-  final start = (document.getElementById('start') as SelectElement).value;
-  final end = (document.getElementById('end') as SelectElement).value;
+  final start = (document.getElementById('start')! as SelectElement).value;
+  final end = (document.getElementById('end')! as SelectElement).value;
   final request = DirectionsRequest()
     ..origin = start
     ..destination = end

@@ -18,24 +18,24 @@ void main() {
       ..mapTypeControl = false,
   );
   initGallPeters();
-  map.mapTypes.set('gallPeters', gallPetersMapType);
+  map.mapTypes!.set('gallPeters', gallPetersMapType);
   map.mapTypeId = 'gallPeters';
   // Show the lat and lng under the mouse cursor.
-  final coordsDiv = document.getElementById('coords');
-  map.controls[ControlPosition.TOP_CENTER as int].push(coordsDiv);
+  final coordsDiv = document.getElementById('coords')!;
+  map.controls![ControlPosition.TOP_CENTER as int]!.push(coordsDiv);
   map.onMousemove.listen((event) {
     coordsDiv.text =
-        'lat: ${event.latLng.lat.round()}, lng: ${event.latLng.lng.round()}';
+        'lat: ${event.latLng!.lat!.round()}, lng: ${event.latLng!.lng!.round()}';
   });
   // Add some markers to the map.
-  map.data.style = allowInterop((feature) => jsify({
+  map.data!.style = allowInterop((feature) => jsify({
         'title': feature.getProperty('name'),
         'optimized': false,
       }));
-  map.data.addGeoJson(jsify(cities));
+  map.data!.addGeoJson(jsify(cities));
 }
 
-ImageMapType gallPetersMapType;
+late ImageMapType gallPetersMapType;
 
 void initGallPeters() {
   const GALL_PETERS_RANGE_X = 800;
@@ -43,11 +43,11 @@ void initGallPeters() {
   // Fetch Gall-Peters tiles stored locally on our server.
   gallPetersMapType = ImageMapType(ImageMapTypeOptions()
     ..getTileUrl = (coord, zoom) {
-      final scale = 1 << zoom;
+      final scale = 1 << zoom!.toInt();
       // Wrap tiles horizontally.
-      final x = ((coord.x % scale) + scale) % scale;
+      final x = ((coord!.x! % scale) + scale) % scale;
       // Don't wrap tiles vertically.
-      final y = coord.y;
+      final y = coord.y!;
 
       if (y < 0 || y >= scale) return '';
       return 'https://developers.google.com/maps/documentation/'
@@ -60,15 +60,15 @@ void initGallPeters() {
     // Describe the Gall-Peters projection used by these tiles.
     ..projection = (Projection()
       ..fromLatLngToPoint = (latLng, [point]) {
-        final latRadians = (latLng.lat * math.pi) / 180;
+        final latRadians = (latLng!.lat! * math.pi) / 180;
         return Point(
-          GALL_PETERS_RANGE_X * (0.5 + latLng.lng / 360),
+          GALL_PETERS_RANGE_X * (0.5 + latLng.lng! / 360),
           GALL_PETERS_RANGE_Y * (0.5 - 0.5 * math.sin(latRadians)),
         );
       }
       ..fromPointToLatLng = (point, [noWrap]) {
-        final x = point.x / GALL_PETERS_RANGE_X;
-        final y = math.max(0, math.min(1, point.y / GALL_PETERS_RANGE_Y));
+        final x = point!.x! / GALL_PETERS_RANGE_X;
+        final y = math.max(0, math.min(1, point.y! / GALL_PETERS_RANGE_Y));
         return LatLng(
             (math.asin(1 - 2 * y) * 180) / math.pi, -180 + 360 * x, noWrap);
       });

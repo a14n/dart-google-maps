@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:collection/collection.dart';
 import 'package:dart_style/dart_style.dart';
 import 'package:html/dom.dart';
 import 'package:html/parser.dart' show parse;
@@ -49,7 +50,7 @@ final ignoredClasses = <String>[
 void patchEntities(List<DocEntity> entities) {
   for (final entity in entities) {
     if (entity.library == null && entity.name == 'LatLng') {
-      entity.constructor
+      entity.constructor!
         ..parameters = [
           DocMethodParameter()
             ..name = 'lat'
@@ -76,11 +77,20 @@ void patchEntities(List<DocEntity> entities) {
             ..type = convertType('number')
             ..optional = true,
         ];
+    } else if (entity.name == 'event') {
+      for (var method in entity.staticMethods) {
+        if (method.returnType == 'MapsEventListener?') {
+          method.returnType = 'MapsEventListener';
+        }
+      }
     }
     for (var method in entity.methods) {
-      if (method.returnType.startsWith('Promise<')) {
+      if (method.returnType!.startsWith('Promise<')) {
         method.returnType =
-            'Future${method.returnType.substring('Promise'.length)}';
+            'Future${method.returnType!.substring('Promise'.length)}';
+      }
+      if (method.name == 'toString') {
+        method.returnType = 'String';
       }
     }
   }
@@ -89,8 +99,8 @@ void patchEntities(List<DocEntity> entities) {
 Future main() async {
   final genFolder =
       '${path.dirname(Platform.script.path)}/../lib/src/generated';
-  final content = (await http.get(
-          'https://developers.google.com/maps/documentation/javascript/reference'))
+  final content = (await http.get(Uri.parse(
+          'https://developers.google.com/maps/documentation/javascript/reference')))
       .body;
   final document = parse(content);
   final urls = document
@@ -100,7 +110,7 @@ Future main() async {
       .skip(1)
       .map((Element e) => e.attributes['href'])
       .map((e) => 'https://developers.google.com$e');
-  final entities = (await Future.wait(urls.map(http.get)))
+  final entities = (await Future.wait(urls.map(Uri.parse).map(http.get)))
       .map((response) => response.body)
       .map(parse)
       .expand((html) => html.querySelectorAll(
@@ -114,7 +124,7 @@ Future main() async {
   final parts = <String, List<String>>{};
   for (var entity in entities) {
     final code = generateCodeForEntity(entity, entities);
-    if (code?.trim()?.isEmpty ?? true) {
+    if (code.trim().isEmpty) {
       continue;
     }
     var library = entity.library ?? 'core';
@@ -196,7 +206,6 @@ String generateCodeForEntity(DocEntity entity, List<DocEntity> entities) {
     case Kind.typedef:
       return generateCodeForTypedef(entity);
   }
-  throw StateError('Unknown kind: ${entity.kind}');
 }
 
 String generateCodeForClass(DocEntity entity, List<DocEntity> entities) {
@@ -221,7 +230,7 @@ String generateCodeForClass(DocEntity entity, List<DocEntity> entities) {
   final lines = <String>[
     // constructor
     if (entity.constructor != null) ...<String>[
-      'factory ${name.replaceAll(RegExp(r'<.*'), '')}${buildSignature(entity.constructor, addIgnoreUnusedElement: true)} => \$js;',
+      'factory ${name.replaceAll(RegExp(r'<.*'), '')}${buildSignature(entity.constructor!, addIgnoreUnusedElement: true)} => \$js();',
     ],
     // properties
     for (var property in [...entity.properties, ...additionalProperties])
@@ -248,7 +257,7 @@ String generateCodeForInterface(DocEntity entity) {
   final name = entity.name;
   final lines = <String>[
     // constructor
-    'factory ${name.replaceAll(RegExp(r'<.*'), '')}() => \$js;',
+    'factory ${name.replaceAll(RegExp(r'<.*'), '')}() => \$js();',
     // properties
     for (var property in entity.properties)
       ...generateCodeForProperty(entity, property),
@@ -297,7 +306,7 @@ ${entity.constants.map((e) => e.name).join(',')},
 }
 
 // handled directly by alias in convertType
-String generateCodeForTypedef(DocEntity entity) => null;
+String generateCodeForTypedef(DocEntity entity) => '';
 
 List<String> generateCodeForProperty(DocEntity entity, DocProperty property) {
   if (property.name.contains('_')) {
@@ -349,7 +358,7 @@ List<String> generateCodeForMethod(DocEntity entity, DocMethod method) {
     Member('ImageMapType', 'releaseTile'),
   ].contains(Member(entity.name, method.name))) {
     return [
-      '${method.returnType} Function${buildSignature(method)} ${method.name};',
+      '${method.returnType} Function${buildSignature(method)}? ${method.name};',
     ];
   }
 
@@ -390,7 +399,9 @@ List<String> generateCodeForMethod(DocEntity entity, DocMethod method) {
     ];
   }
 
-  if (ignoredClasses.contains(method.returnType)) return [];
+  if (ignoredClasses.expand((e) => [e, '$e?']).contains(method.returnType)) {
+    return [];
+  }
 
   return [
     '${method.returnType} ${method.name}${buildSignature(method)};',
@@ -403,13 +414,15 @@ List<String> generateCodeForStaticMethod(
       .contains(Member(entity.name, method.name))) {
     return [
       '',
-      'static void trigger(Object instance, String eventName, List<Object> eventArgs)',
+      'static void trigger(Object instance, String eventName, List<Object?>? eventArgs)',
       "=> callMethod($namespace, 'trigger', [instance, eventName, ...?eventArgs]);",
       '',
     ];
   }
   final params = [...method.parameters, ...method.optionalParameters]
-      .map((e) => e.type == 'Function' ? 'allowInterop(${e.name})' : e.name)
+      .map((e) => e.type == 'Function?'
+          ? '${e.name} == null ? null : allowInterop(${e.name})'
+          : e.name)
       .join(',');
   return [
     'static ${method.returnType} ${method.name}${buildSignature(method)}',
@@ -430,7 +443,7 @@ List<String> generateCodeForEvent(DocEntity entity, DocMethod method) {
     params = 'null';
   } else if (method.parameters.length == 1 &&
       method.optionalParameters.isEmpty) {
-    type = method.parameters.first.type;
+    type = method.parameters.first.type!.nonNullable();
     params = method.parameters.first.name;
   } else {
     type = 'List';
@@ -443,12 +456,12 @@ List<String> generateCodeForEvent(DocEntity entity, DocMethod method) {
   return [
     '''
     Stream<$type> get $streamName {
-      StreamController<$type> sc; // ignore: close_sinks
-      MapsEventListener mapsEventListener;
+      late StreamController<$type> sc; // ignore: close_sinks
+      late MapsEventListener mapsEventListener;
       void start() => mapsEventListener = Event.addListener(
         this,
         '$eventName',
-        ${buildSignature(method)} => sc.add($params),
+        ${buildSignature(method, nonNullable: true)} => sc.add($params),
       );
       void stop() => mapsEventListener.remove();
       sc = StreamController<$type>(
@@ -462,11 +475,18 @@ List<String> generateCodeForEvent(DocEntity entity, DocMethod method) {
   ];
 }
 
-String buildSignature(DocMethod method, {bool addIgnoreUnusedElement = false}) {
-  final params = method.parameters ?? [];
-  final optionalParams = method.optionalParameters ?? [];
+String buildSignature(
+  DocMethod method, {
+  bool addIgnoreUnusedElement = false,
+  bool nonNullable = false,
+}) {
+  final params = method.parameters;
+  final optionalParams = method.optionalParameters;
   final result = StringBuffer('(')
-    ..write(params.map((param) => '${param.type} ${param.name}').join(','));
+    ..write(params
+        .map((param) =>
+            '${nonNullable ? param.type?.nonNullable() : param.type} ${param.name}')
+        .join(','));
   if (optionalParams.isNotEmpty) {
     if (params.isNotEmpty) {
       result.write(',');
@@ -484,31 +504,31 @@ String buildSignature(DocMethod method, {bool addIgnoreUnusedElement = false}) {
   return result.toString();
 }
 
-String convertType(String type) {
+String? convertType(String? type) {
   if (type == null) return null;
   final myType = type.trim();
   if (myType == 'boolean')
-    return 'bool';
+    return 'bool?';
   else if (myType == 'number')
-    return 'num';
+    return 'num?';
   else if (myType == 'string')
-    return 'String';
+    return 'String?';
   else if (myType == 'Date')
-    return 'DateTime';
+    return 'DateTime?';
   else if (myType == 'HTMLInputElement')
-    return 'InputElement';
+    return 'InputElement?';
   else if (myType == 'HTMLDivElement')
-    return 'DivElement';
+    return 'DivElement?';
   else if (myType == 'Event')
-    return 'Object';
+    return 'Object?';
   else if (myType == 'Array')
-    return 'List';
+    return 'List?';
   else if (myType == 'None')
     return 'void';
   else if (myType == '*')
-    return 'Object';
+    return 'Object?';
   else if (myType == '?')
-    return 'Object';
+    return 'Object?';
   else if (customClassName.containsKey(myType))
     return convertType(customClassName[myType]);
   else if (myType.startsWith('(') && myType.endsWith(')'))
@@ -528,7 +548,7 @@ String convertType(String type) {
     }
     final typeUnion = splitComplexTypeBy(myType, '|');
     final dartUnion = typeUnion.map(convertType).join('|');
-    return 'Object/*$dartUnion*/';
+    return 'Object?/*$dartUnion*/';
   } else if (myType.startsWith('{') && myType.endsWith('}')) {
     final tupleContent =
         splitComplexTypeBy(myType.substring(1, myType.length - 1), ',')
@@ -539,11 +559,11 @@ String convertType(String type) {
   } else if (myType.startsWith('Object<') && myType.endsWith('>')) {
     final innerType =
         convertType(myType.substring('Object<'.length, myType.length - 1));
-    return 'Map<String, $innerType>';
+    return 'Map<String, $innerType>?';
   } else if (myType.startsWith('Array<') && myType.endsWith('>')) {
     final innerType =
         convertType(myType.substring('Array<'.length, myType.length - 1));
-    return 'List<$innerType>';
+    return 'List<$innerType>?';
   } else if (myType.startsWith('function(')) {
     final parts = splitComplexTypeBy(myType, ':');
     final returnType =
@@ -555,13 +575,17 @@ String convertType(String type) {
         .map(convertType)
         .map((p) => '$p p${i++}')
         .join(',');
-    return '$returnType Function($params)';
+    return '$returnType Function($params)?';
   } else if (myType.startsWith('MVCArray<') && myType.endsWith('>')) {
     final innerType =
         convertType(myType.substring('MVCArray<'.length, myType.length - 1));
-    return 'MVCArray<$innerType>';
+    return 'MVCArray<$innerType>?';
+  } else if (myType == 'void') {
+    return 'void';
+  } else if (myType == 'dynamic') {
+    return 'dynamic';
   } else {
-    return myType.replaceAll('.', '');
+    return '${myType.replaceAll('.', '')}?';
   }
 }
 
@@ -596,15 +620,15 @@ List<String> splitComplexTypeBy(String type, String char) {
 enum Kind { clazz, interface, namespace, constants, typedef }
 
 class DocEntity {
-  Kind kind;
-  String library;
-  String path;
-  String name;
-  String fullJsName;
-  String extendsName;
-  String implementsName;
-  String comment;
-  DocMethod constructor;
+  late Kind kind;
+  String? library;
+  String? path;
+  late String name;
+  String? fullJsName;
+  String? extendsName;
+  String? implementsName;
+  String? comment;
+  DocMethod? constructor;
   List<DocMethod> staticMethods = [];
   List<DocMethod> methods = [];
   List<DocProperty> properties = [];
@@ -617,9 +641,9 @@ class DocEntity {
         .replaceAll('.', '_')
         .replaceAll(RegExp(r'<[A-Z]>'), '')
         .replaceAllMapped(RegExp(r'([A-Z]+)([A-Z][a-z]+)'),
-            (m) => '${m.group(1).toLowerCase()}_${m.group(2).toLowerCase()}_')
+            (m) => '${m.group(1)!.toLowerCase()}_${m.group(2)!.toLowerCase()}_')
         .replaceAllMapped(
-            RegExp(r'[A-Z][a-z]+'), (m) => '${m.group(0).toLowerCase()}_');
+            RegExp(r'[A-Z][a-z]+'), (m) => '${m.group(0)!.toLowerCase()}_');
     return value.substring(0, value.length - 1);
   }
 
@@ -627,9 +651,9 @@ class DocEntity {
   String toString() => 'DocEntity($library ,$kind, $path, $name, $extendsName)';
 
   void convertTypes() {
-    extendsName = convertType(extendsName);
-    implementsName = convertType(implementsName);
-    name = convertType(name);
+    extendsName = convertType(extendsName)?.nonNullable();
+    implementsName = convertType(implementsName)?.nonNullable();
+    name = convertType(name)!.replaceAll('?', '');
     constructor?.convertTypes();
     for (var e in staticMethods) {
       e.convertTypes();
@@ -649,19 +673,18 @@ class DocEntity {
 DocEntity parseDocEntity(Element element) {
   final entity = DocEntity()
     ..kind = toKind(element
-        .querySelector('h2')
-        .attributes['data-text']
+        .querySelector('h2')!
+        .attributes['data-text']!
         .trim()
         .split(RegExp(r'[ \n]+'))[1])
-    ..path = element.querySelector('span[itemprop="path"]').text
-    ..name = element.querySelector('span[itemprop="name"]').text
+    ..path = element.querySelector('span[itemprop="path"]')!.text
+    ..name = element.querySelector('span[itemprop="name"]')!.text
     ..library = element
         .querySelectorAll('>p')
-        .firstWhere((e) => e.text.startsWith('Requires the &libraries='),
-            orElse: () => null)
+        .firstWhereOrNull((e) => e.text.startsWith('Requires the &libraries='))
         ?.querySelector('code')
         ?.text
-        ?.substring('&libraries='.length);
+        .substring('&libraries='.length);
 
   entity
     // full js name
@@ -670,34 +693,32 @@ DocEntity parseDocEntity(Element element) {
     // extendsName
     ..extendsName = element
         .querySelectorAll('>p')
-        .firstWhere(
-            (e) =>
-                e.text.startsWith(RegExp(r'This (class|interface) extends')) &&
-                e.querySelector('a') != null,
-            orElse: () => null)
+        .firstWhereOrNull((e) =>
+            e.text.startsWith(RegExp(r'This (class|interface) extends')) &&
+            e.querySelector('a') != null)
         ?.querySelector('a')
         ?.text
     // implementsName
     ..implementsName = element
         .querySelectorAll('>p')
-        .firstWhere(
-            (e) =>
-                e.text
-                    .startsWith(RegExp(r'This (class|interface) implements')) &&
-                e.querySelector('a') != null,
-            orElse: () => null)
+        .firstWhereOrNull((e) =>
+            e.text.startsWith(RegExp(r'This (class|interface) implements')) &&
+            e.querySelector('a') != null)
         ?.querySelector('a')
         ?.text;
 
   // constructor
   if (element.querySelector('table.constructors') != null) {
-    entity.constructor = parseTrForDocMethod(
-        element.querySelector('table.constructors').children[1].children.first);
+    entity.constructor = parseTrForDocMethod(element
+        .querySelector('table.constructors')!
+        .children[1]
+        .children
+        .first);
   }
   // properties
   if (element.querySelector('table.properties') != null) {
     entity.properties = element
-        .querySelector('table.properties')
+        .querySelector('table.properties')!
         .children[1]
         .children
         .map(parseTrForDocProperty)
@@ -706,7 +727,7 @@ DocEntity parseDocEntity(Element element) {
   // methods
   if (element.querySelector(r'table.methods[summary$=" - Methods"]') != null) {
     entity.methods = element
-        .querySelector(r'table.methods[summary$=" - Methods"]')
+        .querySelector(r'table.methods[summary$=" - Methods"]')!
         .children[1]
         .children
         .map(parseTrForDocMethod)
@@ -716,7 +737,7 @@ DocEntity parseDocEntity(Element element) {
   if (element.querySelector(r'table.methods[summary$=" - Static Methods"]') !=
       null) {
     entity.staticMethods = element
-        .querySelector(r'table.methods[summary$=" - Static Methods"]')
+        .querySelector(r'table.methods[summary$=" - Static Methods"]')!
         .children[1]
         .children
         .map(parseTrForDocMethod)
@@ -725,7 +746,7 @@ DocEntity parseDocEntity(Element element) {
   // constants
   if (element.querySelector('table.constants') != null) {
     entity.constants = element
-        .querySelector('table.constants')
+        .querySelector('table.constants')!
         .children[1]
         .children
         .map(parseTrForDocConstant)
@@ -734,7 +755,7 @@ DocEntity parseDocEntity(Element element) {
   // constants
   if (element.querySelector('table.details') != null) {
     entity.events = element
-        .querySelector('table.details')
+        .querySelector('table.details')!
         .children[1]
         .children
         .map(parseTrForDocMethod)
@@ -753,12 +774,10 @@ DocMethod parseTrForDocMethod(Element trElement) {
       .children
       .where((e) => e.localName == 'div' && e.classes.contains('desc'));
 
-  final parameters = descriptions.singleWhere(
-      (e) =>
-          e.children.isNotEmpty &&
-          (e.children.first.text == 'Parameters:' ||
-              e.children.first.text == 'Arguments:'),
-      orElse: () => null);
+  final parameters = descriptions.singleWhereOrNull((e) =>
+      e.children.isNotEmpty &&
+      (e.children.first.text == 'Parameters:' ||
+          e.children.first.text == 'Arguments:'));
   if (parameters != null) {
     final paramLis = parameters.querySelectorAll('li');
     result
@@ -777,9 +796,8 @@ DocMethod parseTrForDocMethod(Element trElement) {
           .toList();
   }
 
-  final returnType = descriptions.singleWhere(
-      (e) => e.children.isNotEmpty && e.children.first.text == 'Return Value:',
-      orElse: () => null);
+  final returnType = descriptions.singleWhereOrNull(
+      (e) => e.children.isNotEmpty && e.children.first.text == 'Return Value:');
   if (returnType != null) {
     result.returnType = returnType.text
         .replaceFirst('Return Value:', '')
@@ -793,7 +811,7 @@ DocMethod parseTrForDocMethod(Element trElement) {
 DocProperty parseTrForDocProperty(Element trElement) {
   final tdList = trElement.children;
   return DocProperty()
-    ..name = tdList[0].querySelector('a.secret-link').text
+    ..name = tdList[0].querySelector('a.secret-link')!.text
     ..type = tdList[1]
         .children
         .firstWhere((e) => e.localName == 'div')
@@ -809,10 +827,10 @@ DocConstant parseTrForDocConstant(Element trElement) {
 }
 
 class DocProperty {
-  String name;
-  String type;
-  bool optional;
-  String comment;
+  late String name;
+  String? type;
+  bool? optional;
+  String? comment;
 
   void convertTypes() {
     type = convertType(type);
@@ -820,11 +838,11 @@ class DocProperty {
 }
 
 class DocMethod {
-  String name;
+  late String name;
   List<DocMethodParameter> parameters = [];
   List<DocMethodParameter> optionalParameters = [];
-  String returnType;
-  String comment;
+  String? returnType;
+  String? comment;
 
   void convertTypes() {
     returnType = convertType(returnType);
@@ -838,8 +856,8 @@ class DocMethod {
 }
 
 class DocMethodParameter {
-  String name;
-  String type;
+  late String name;
+  String? type;
 
   void convertTypes() {
     type = convertType(type);
@@ -847,8 +865,8 @@ class DocMethodParameter {
 }
 
 class DocConstant {
-  String name;
-  String comment;
+  late String name;
+  String? comment;
 }
 
 Kind toKind(String value) {
@@ -883,4 +901,5 @@ class Member {
 extension on String {
   String capitalize() => this[0].toUpperCase() + substring(1);
   String unCapitalize() => this[0].toLowerCase() + substring(1);
+  String nonNullable() => endsWith('?') ? substring(0, length - 1) : this;
 }

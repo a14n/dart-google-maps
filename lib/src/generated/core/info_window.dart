@@ -17,54 +17,54 @@ part of '../google_maps_core.dart';
 @JsName('google.maps.InfoWindow')
 abstract class InfoWindow extends MVCObject {
   factory InfoWindow([
-    InfoWindowOptions opts, // ignore: unused_element
+    InfoWindowOptions? opts, // ignore: unused_element
   ]) =>
-      $js;
+      $js();
   void close();
 
   // synthetic getter for getContent
-  Object /*String|Node*/ get content => _getContent();
+  Object? /*String?|Node?*/ get content => _getContent();
   @JsName('getContent')
-  Object /*String|Node*/ _getContent();
+  Object? /*String?|Node?*/ _getContent();
 
   // synthetic getter for getPosition
-  LatLng get position => _getPosition();
+  LatLng? get position => _getPosition();
   @JsName('getPosition')
-  LatLng _getPosition();
+  LatLng? _getPosition();
 
   // synthetic getter for getZIndex
-  num get zIndex => _getZIndex();
+  num? get zIndex => _getZIndex();
   @JsName('getZIndex')
-  num _getZIndex();
+  num? _getZIndex();
 
   void open([
-    Object /*GMap|StreetViewPanorama*/ map,
-    MVCObject anchor,
+    Object? /*GMap?|StreetViewPanorama?*/ map,
+    MVCObject? anchor,
   ]);
 
   // synthetic setter for setContent
-  set content(Object /*String|Node*/ content) => _setContent(content);
+  set content(Object? /*String?|Node?*/ content) => _setContent(content);
   @JsName('setContent')
-  void _setContent(Object /*String|Node*/ content);
+  void _setContent(Object? /*String?|Node?*/ content);
 
   // synthetic setter for setOptions
-  set options(InfoWindowOptions options) => _setOptions(options);
+  set options(InfoWindowOptions? options) => _setOptions(options);
   @JsName('setOptions')
-  void _setOptions(InfoWindowOptions options);
+  void _setOptions(InfoWindowOptions? options);
 
   // synthetic setter for setPosition
-  set position(LatLng position) => _setPosition(position);
+  set position(LatLng? position) => _setPosition(position);
   @JsName('setPosition')
-  void _setPosition(LatLng position);
+  void _setPosition(LatLng? position);
 
   // synthetic setter for setZIndex
-  set zIndex(num zIndex) => _setZIndex(zIndex);
+  set zIndex(num? zIndex) => _setZIndex(zIndex);
   @JsName('setZIndex')
-  void _setZIndex(num zIndex);
+  void _setZIndex(num? zIndex);
 
   Stream<void> get onCloseclick {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'closeclick',
@@ -81,8 +81,8 @@ abstract class InfoWindow extends MVCObject {
   }
 
   Stream<void> get onContentChanged {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'content_changed',
@@ -99,8 +99,8 @@ abstract class InfoWindow extends MVCObject {
   }
 
   Stream<void> get onDomready {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'domready',
@@ -117,8 +117,8 @@ abstract class InfoWindow extends MVCObject {
   }
 
   Stream<void> get onPositionChanged {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'position_changed',
@@ -135,8 +135,8 @@ abstract class InfoWindow extends MVCObject {
   }
 
   Stream<void> get onZindexChanged {
-    StreamController<void> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'zindex_changed',

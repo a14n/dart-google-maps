@@ -17,6 +17,6 @@ part of '../google_maps_core.dart';
 @JsName()
 @anonymous
 abstract class PanoProviderOptions {
-  factory PanoProviderOptions() => $js;
-  bool cors;
+  factory PanoProviderOptions() => $js();
+  bool? cors;
 }

@@ -17,9 +17,9 @@ part of '../google_maps_core.dart';
 @JsName()
 @anonymous
 abstract class DirectionsResult {
-  factory DirectionsResult() => $js;
+  factory DirectionsResult() => $js();
+  List<DirectionsRoute?>? routes;
   // custom name for geocoded_waypoints
   @JsName('geocoded_waypoints')
-  List<DirectionsGeocodedWaypoint> geocodedWaypoints;
-  List<DirectionsRoute> routes;
+  List<DirectionsGeocodedWaypoint?>? geocodedWaypoints;
 }

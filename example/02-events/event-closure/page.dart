@@ -22,15 +22,15 @@ void main() {
   // they are clicked they should open an infowindow with text from a secret
   // message.
   final secretMessages = ['This', 'is', 'the', 'secret', 'message'];
-  final lngSpan = northEast.lng - southWest.lng;
-  final latSpan = northEast.lat - southWest.lat;
+  final lngSpan = northEast.lng! - southWest.lng!;
+  final latSpan = northEast.lat! - southWest.lat!;
 
   final random = math.Random();
   for (var i = 0; i < 5; i++) {
     final marker = Marker(MarkerOptions()
       ..position = LatLng(
-        southWest.lat + latSpan * random.nextDouble(),
-        southWest.lng + lngSpan * random.nextDouble(),
+        southWest.lat! + latSpan * random.nextDouble(),
+        southWest.lng! + lngSpan * random.nextDouble(),
       )
       ..map = map);
     attachSecretMessage(marker, secretMessages[i]);

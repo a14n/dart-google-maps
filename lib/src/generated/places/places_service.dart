@@ -16,29 +16,29 @@ part of '../google_maps_places.dart';
 
 @JsName('google.maps.places.PlacesService')
 abstract class PlacesService {
-  factory PlacesService(Object /*DivElement|GMap*/ attrContainer) => $js;
+  factory PlacesService(Object? /*DivElement?|GMap?*/ attrContainer) => $js();
   void findPlaceFromPhoneNumber(
-    FindPlaceFromPhoneNumberRequest request, [
-    void Function(List<PlaceResult> p1, PlacesServiceStatus p2) callback,
+    FindPlaceFromPhoneNumberRequest? request, [
+    void Function(List<PlaceResult?>? p1, PlacesServiceStatus? p2)? callback,
   ]);
   void findPlaceFromQuery(
-    FindPlaceFromQueryRequest request, [
-    void Function(List<PlaceResult> p1, PlacesServiceStatus p2) callback,
+    FindPlaceFromQueryRequest? request, [
+    void Function(List<PlaceResult?>? p1, PlacesServiceStatus? p2)? callback,
   ]);
   void getDetails(
-    PlaceDetailsRequest request, [
-    void Function(PlaceResult p1, PlacesServiceStatus p2) callback,
+    PlaceDetailsRequest? request, [
+    void Function(PlaceResult? p1, PlacesServiceStatus? p2)? callback,
   ]);
   void nearbySearch(
-    PlaceSearchRequest request, [
-    void Function(List<PlaceResult> p1, PlacesServiceStatus p2,
-            PlaceSearchPagination p3)
+    PlaceSearchRequest? request, [
+    void Function(List<PlaceResult?>? p1, PlacesServiceStatus? p2,
+            PlaceSearchPagination? p3)?
         callback,
   ]);
   void textSearch(
-    TextSearchRequest request, [
-    void Function(List<PlaceResult> p1, PlacesServiceStatus p2,
-            PlaceSearchPagination p3)
+    TextSearchRequest? request, [
+    void Function(List<PlaceResult?>? p1, PlacesServiceStatus? p2,
+            PlaceSearchPagination? p3)?
         callback,
   ]);
 }

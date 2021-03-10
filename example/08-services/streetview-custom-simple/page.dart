@@ -15,13 +15,13 @@ void main() {
 }
 
 // Return a pano image given the panoID.
-String getCustomPanoramaTileUrl(String pano, num zoom, num tileX, num tileY) =>
+String? getCustomPanoramaTileUrl(String? pano, num? zoom, num? tileX, num? tileY) =>
     'https://developers.google.com/maps/documentation/javascript/examples/full/images/'
     'panoReception1024-$zoom-$tileX-$tileY.jpg';
 
 // Construct the appropriate StreetViewPanoramaData given
 // the passed pano IDs.
-StreetViewPanoramaData getCustomPanorama(String pano) {
+StreetViewPanoramaData? getCustomPanorama(String? pano) {
   if (pano == 'reception') {
     return StreetViewPanoramaData()
       ..location = (StreetViewLocation()

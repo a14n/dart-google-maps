@@ -2,10 +2,10 @@ import 'dart:html';
 
 import 'package:google_maps/google_maps.dart';
 
-GMap map;
-DirectionsRenderer directionsDisplay;
-DirectionsService directionsService;
-InfoWindow stepDisplay;
+late GMap map;
+late DirectionsRenderer directionsDisplay;
+late DirectionsService directionsService;
+late InfoWindow stepDisplay;
 final markerArray = <Marker>[];
 
 void main() {
@@ -26,8 +26,8 @@ void main() {
   // Instantiate an info window to hold step text.
   stepDisplay = InfoWindow();
 
-  document.getElementById('start').onChange.listen((e) => calcRoute());
-  document.getElementById('end').onChange.listen((e) => calcRoute());
+  document.getElementById('start')!.onChange.listen((e) => calcRoute());
+  document.getElementById('end')!.onChange.listen((e) => calcRoute());
 }
 
 void calcRoute() {
@@ -52,8 +52,8 @@ void calcRoute() {
   // function to create markers for each step.
   directionsService.route(request, (response, status) {
     if (status == DirectionsStatus.OK) {
-      querySelector('#warnings_panel').innerHtml =
-          '<b>${response.routes[0].warnings}</b>';
+      querySelector('#warnings_panel')!.innerHtml =
+          '<b>${response!.routes![0]!.warnings}</b>';
       directionsDisplay.directions = response;
       showSteps(response);
     }
@@ -65,13 +65,13 @@ void showSteps(DirectionsResult directionResult) {
   // info window. Also attach the marker to an array so we
   // can keep track of it and remove it when calculating new
   // routes.
-  final myRoute = directionResult.routes[0].legs[0];
+  final myRoute = directionResult.routes![0]!.legs![0]!;
 
-  for (final step in myRoute.steps) {
+  for (final step in myRoute.steps!) {
     final marker = Marker(MarkerOptions()
-      ..position = step.startLocation
+      ..position = step!.startLocation
       ..map = map);
-    attachInstructionText(marker, step.instructions);
+    attachInstructionText(marker, step.instructions!);
     markerArray.add(marker);
   }
 }

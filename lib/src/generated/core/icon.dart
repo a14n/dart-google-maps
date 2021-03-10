@@ -17,11 +17,11 @@ part of '../google_maps_core.dart';
 @JsName()
 @anonymous
 abstract class Icon {
-  factory Icon() => $js;
-  String url;
-  Point anchor;
-  Point labelOrigin;
-  Point origin;
-  Size scaledSize;
-  Size size;
+  factory Icon() => $js();
+  String? url;
+  Point? anchor;
+  Point? labelOrigin;
+  Point? origin;
+  Size? scaledSize;
+  Size? size;
 }

@@ -5,7 +5,7 @@ import 'package:google_maps/google_maps.dart';
 const IMAGE_URL =
     'https://google-developers.appspot.com/maps/documentation/javascript/examples/full';
 
-USGSOverlay overlay;
+late USGSOverlay overlay;
 
 void main() {
   final myLatLng = LatLng(62.323907, -150.109291);
@@ -23,28 +23,30 @@ void main() {
   const srcImage = '$IMAGE_URL/images/talkeetna.png';
   overlay = USGSOverlay(bounds, srcImage, map);
 
-  document.getElementById('toggle').onClick.listen((e) => overlay.toggle());
+  document.getElementById('toggle')!.onClick.listen((e) => overlay.toggle());
   document
-      .getElementById('toggleDOM')
+      .getElementById('toggleDOM')!
       .onClick
       .listen((e) => overlay.toggleDOM());
 }
 
-class USGSOverlay extends OverlayView {
-  USGSOverlay(this._bounds, this._image, this._map) : super() {
-    onAdd = _onAdd;
-    draw = _draw;
-    onRemove = _onRemove;
+class USGSOverlay {
+  USGSOverlay(this._bounds, this._image, this._map)  {
+    overlayView..onAdd = _onAdd
+    ..draw = _draw
+    ..onRemove = _onRemove
 
     // Explicitly call setMap on this overlay
-    map = _map;
+    ..map = _map;
   }
+
+  final overlayView = OverlayView();
 
   final LatLngBounds _bounds;
   final String _image;
   final GMap _map;
 
-  DivElement _div;
+  DivElement? _div;
 
   /// onAdd is called when the map's panes are ready and the overlay has been
   /// added to the map.
@@ -65,14 +67,14 @@ class USGSOverlay extends OverlayView {
     _div = div;
 
     // Add the element to the "overlayImage" pane.
-    panes.overlayLayer.children.add(_div);
+    overlayView.panes!.overlayLayer!.children.add(div);
   }
 
   void _draw() {
     // We use the south-west and north-east
     // coordinates of the overlay to peg it to the correct position and size.
     // To do this, we need to retrieve the projection from the overlay.
-    final overlayProjection = projection;
+    final overlayProjection = overlayView.projection!;
 
     // Retrieve the south-west and north-east coordinates of this overlay
     // in LatLngs and convert them to pixel coordinates.
@@ -81,34 +83,34 @@ class USGSOverlay extends OverlayView {
     final ne = overlayProjection.fromLatLngToDivPixel(_bounds.northEast);
 
     // Resize the image's div to fit the indicated dimensions.
-    final div = _div;
+    final div = _div!;
     div.style
-      ..left = '${sw.x}px'
-      ..top = '${ne.y}px'
-      ..width = '${ne.x - sw.x}px'
-      ..height = '${sw.y - ne.y}px';
+      ..left = '${sw!.x}px'
+      ..top = '${ne!.y}px'
+      ..width = '${ne.x! - sw.x!}px'
+      ..height = '${sw.y! - ne.y!}px';
   }
 
   void _onRemove() {
-    _div.remove();
+    _div!.remove();
   }
 
   /// Set the visibility to 'hidden' or 'visible'.
   void hide() {
     if (_div != null) {
-      _div.style.visibility = 'hidden';
+      _div!.style.visibility = 'hidden';
     }
   }
 
   void show() {
     if (_div != null) {
-      _div.style.visibility = 'visible';
+      _div!.style.visibility = 'visible';
     }
   }
 
   void toggle() {
     if (_div != null) {
-      if (_div.style.visibility == 'hidden') {
+      if (_div!.style.visibility == 'hidden') {
         show();
       } else {
         hide();
@@ -117,10 +119,10 @@ class USGSOverlay extends OverlayView {
   }
 
   void toggleDOM() {
-    if (map != null) {
-      map = null;
+    if (overlayView.map != null) {
+      overlayView.map = null;
     } else {
-      map = _map;
+      overlayView.map = _map;
     }
   }
 }

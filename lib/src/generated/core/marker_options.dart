@@ -17,21 +17,21 @@ part of '../google_maps_core.dart';
 @JsName()
 @anonymous
 abstract class MarkerOptions {
-  factory MarkerOptions() => $js;
-  Point anchorPoint;
-  Animation animation;
-  bool clickable;
-  bool crossOnDrag;
-  String cursor;
-  bool draggable;
-  Object /*String|Icon|GSymbol*/ icon;
-  Object /*String|MarkerLabel*/ label;
-  Object /*GMap|StreetViewPanorama*/ map;
-  num opacity;
-  bool optimized;
-  LatLng position;
-  MarkerShape shape;
-  String title;
-  bool visible;
-  num zIndex;
+  factory MarkerOptions() => $js();
+  Point? anchorPoint;
+  Animation? animation;
+  bool? clickable;
+  bool? crossOnDrag;
+  String? cursor;
+  bool? draggable;
+  Object? /*String?|Icon?|GSymbol?*/ icon;
+  Object? /*String?|MarkerLabel?*/ label;
+  Object? /*GMap?|StreetViewPanorama?*/ map;
+  num? opacity;
+  bool? optimized;
+  LatLng? position;
+  MarkerShape? shape;
+  String? title;
+  bool? visible;
+  num? zIndex;
 }

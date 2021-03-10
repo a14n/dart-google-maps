@@ -17,32 +17,32 @@ part of '../google_maps_core.dart';
 @JsName()
 @anonymous
 abstract class DirectionsLeg {
-  factory DirectionsLeg() => $js;
-  // custom name for arrival_time
-  @JsName('arrival_time')
-  Time arrivalTime;
-  // custom name for departure_time
-  @JsName('departure_time')
-  Time departureTime;
-  Distance distance;
-  GDuration duration;
-  // custom name for duration_in_traffic
-  @JsName('duration_in_traffic')
-  GDuration durationInTraffic;
+  factory DirectionsLeg() => $js();
   // custom name for end_address
   @JsName('end_address')
-  String endAddress;
+  String? endAddress;
   // custom name for end_location
   @JsName('end_location')
-  LatLng endLocation;
+  LatLng? endLocation;
   // custom name for start_address
   @JsName('start_address')
-  String startAddress;
+  String? startAddress;
   // custom name for start_location
   @JsName('start_location')
-  LatLng startLocation;
-  List<DirectionsStep> steps;
+  LatLng? startLocation;
+  List<DirectionsStep?>? steps;
   // custom name for via_waypoints
   @JsName('via_waypoints')
-  List<LatLng> viaWaypoints;
+  List<LatLng?>? viaWaypoints;
+  // custom name for arrival_time
+  @JsName('arrival_time')
+  Time? arrivalTime;
+  // custom name for departure_time
+  @JsName('departure_time')
+  Time? departureTime;
+  Distance? distance;
+  GDuration? duration;
+  // custom name for duration_in_traffic
+  @JsName('duration_in_traffic')
+  GDuration? durationInTraffic;
 }

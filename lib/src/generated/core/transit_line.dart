@@ -17,17 +17,17 @@ part of '../google_maps_core.dart';
 @JsName()
 @anonymous
 abstract class TransitLine {
-  factory TransitLine() => $js;
-  List<TransitAgency> agencies;
-  String color;
-  String icon;
-  String name;
+  factory TransitLine() => $js();
+  List<TransitAgency?>? agencies;
+  String? color;
+  String? icon;
+  String? name;
   // custom name for short_name
   @JsName('short_name')
-  String shortName;
+  String? shortName;
   // custom name for text_color
   @JsName('text_color')
-  String textColor;
-  String url;
-  TransitVehicle vehicle;
+  String? textColor;
+  String? url;
+  TransitVehicle? vehicle;
 }

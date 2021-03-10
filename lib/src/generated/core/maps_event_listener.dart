@@ -17,6 +17,6 @@ part of '../google_maps_core.dart';
 @JsName()
 @anonymous
 abstract class MapsEventListener {
-  factory MapsEventListener() => $js;
+  factory MapsEventListener() => $js();
   void remove();
 }

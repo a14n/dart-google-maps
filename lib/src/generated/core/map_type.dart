@@ -17,14 +17,14 @@ part of '../google_maps_core.dart';
 @JsName()
 @anonymous
 abstract class MapType {
-  factory MapType() => $js;
-  num maxZoom;
-  num minZoom;
-  num radius;
-  Size tileSize;
-  String alt;
-  String name;
-  Projection projection;
-  Node Function(Point tileCoord, num zoom, Document ownerDocument) getTile;
-  void Function(Node tile) releaseTile;
+  factory MapType() => $js();
+  num? maxZoom;
+  num? minZoom;
+  num? radius;
+  Size? tileSize;
+  String? alt;
+  String? name;
+  Projection? projection;
+  Node? Function(Point? tileCoord, num? zoom, Document? ownerDocument)? getTile;
+  void Function(Node? tile)? releaseTile;
 }

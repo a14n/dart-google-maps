@@ -17,19 +17,19 @@ part of '../google_maps_core.dart';
 @JsName()
 @anonymous
 abstract class CircleOptions {
-  factory CircleOptions() => $js;
-  LatLng center;
-  bool clickable;
-  bool draggable;
-  bool editable;
-  String fillColor;
-  num fillOpacity;
-  GMap map;
-  num radius;
-  String strokeColor;
-  num strokeOpacity;
-  StrokePosition strokePosition;
-  num strokeWeight;
-  bool visible;
-  num zIndex;
+  factory CircleOptions() => $js();
+  LatLng? center;
+  bool? clickable;
+  bool? draggable;
+  bool? editable;
+  String? fillColor;
+  num? fillOpacity;
+  GMap? map;
+  num? radius;
+  String? strokeColor;
+  num? strokeOpacity;
+  StrokePosition? strokePosition;
+  num? strokeWeight;
+  bool? visible;
+  num? zIndex;
 }

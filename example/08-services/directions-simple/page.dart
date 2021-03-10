@@ -2,9 +2,9 @@ import 'dart:html';
 
 import 'package:google_maps/google_maps.dart';
 
-DirectionsRenderer directionsDisplay;
+late DirectionsRenderer directionsDisplay;
 final directionsService = DirectionsService();
-GMap map;
+late GMap map;
 
 void main() {
   directionsDisplay = DirectionsRenderer();
@@ -15,8 +15,8 @@ void main() {
   map = GMap(document.getElementById('map-canvas'), mapOptions);
   directionsDisplay.map = map;
 
-  document.getElementById('start').onChange.listen((e) => calcRoute());
-  document.getElementById('end').onChange.listen((e) => calcRoute());
+  document.getElementById('start')!.onChange.listen((e) => calcRoute());
+  document.getElementById('end')!.onChange.listen((e) => calcRoute());
 }
 
 void calcRoute() {

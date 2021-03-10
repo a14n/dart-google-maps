@@ -16,29 +16,29 @@ part of '../google_maps_core.dart';
 
 @JsName('google.maps.OverlayView')
 abstract class OverlayView extends MVCObject {
-  factory OverlayView() => $js;
-  void Function() draw;
+  factory OverlayView() => $js();
+  void Function()? draw;
 
   // synthetic getter for getMap
-  Object /*GMap|StreetViewPanorama*/ get map => _getMap();
+  Object? /*GMap?|StreetViewPanorama?*/ get map => _getMap();
   @JsName('getMap')
-  Object /*GMap|StreetViewPanorama*/ _getMap();
+  Object? /*GMap?|StreetViewPanorama?*/ _getMap();
 
   // synthetic getter for getPanes
-  MapPanes get panes => _getPanes();
+  MapPanes? get panes => _getPanes();
   @JsName('getPanes')
-  MapPanes _getPanes();
+  MapPanes? _getPanes();
 
   // synthetic getter for getProjection
-  MapCanvasProjection get projection => _getProjection();
+  MapCanvasProjection? get projection => _getProjection();
   @JsName('getProjection')
-  MapCanvasProjection _getProjection();
+  MapCanvasProjection? _getProjection();
 
-  void Function() onAdd;
-  void Function() onRemove;
+  void Function()? onAdd;
+  void Function()? onRemove;
 
   // synthetic setter for setMap
-  set map(Object /*GMap|StreetViewPanorama*/ map) => _setMap(map);
+  set map(Object? /*GMap?|StreetViewPanorama?*/ map) => _setMap(map);
   @JsName('setMap')
-  void _setMap(Object /*GMap|StreetViewPanorama*/ map);
+  void _setMap(Object? /*GMap?|StreetViewPanorama?*/ map);
 }

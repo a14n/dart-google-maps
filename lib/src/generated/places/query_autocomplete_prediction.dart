@@ -17,13 +17,13 @@ part of '../google_maps_places.dart';
 @JsName()
 @anonymous
 abstract class QueryAutocompletePrediction {
-  factory QueryAutocompletePrediction() => $js;
-  String description;
+  factory QueryAutocompletePrediction() => $js();
+  String? description;
   // custom name for matched_substrings
   @JsName('matched_substrings')
-  List<PredictionSubstring> matchedSubstrings;
-  List<PredictionTerm> terms;
+  List<PredictionSubstring?>? matchedSubstrings;
+  List<PredictionTerm?>? terms;
   // custom name for place_id
   @JsName('place_id')
-  String placeId;
+  String? placeId;
 }

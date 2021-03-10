@@ -17,9 +17,9 @@ part of '../google_maps_core.dart';
 @JsName()
 @anonymous
 abstract class DataSetPropertyEvent {
-  factory DataSetPropertyEvent() => $js;
-  DataFeature feature;
-  String name;
-  Object newValue;
-  Object oldValue;
+  factory DataSetPropertyEvent() => $js();
+  DataFeature? feature;
+  String? name;
+  Object? newValue;
+  Object? oldValue;
 }

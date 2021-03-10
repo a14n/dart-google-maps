@@ -17,9 +17,10 @@ part of '../google_maps_core.dart';
 @JsName()
 @anonymous
 abstract class StreetViewTileData {
-  factory StreetViewTileData() => $js;
-  num centerHeading;
-  Size tileSize;
-  Size worldSize;
-  String Function(String pano, num tileZoom, num tileX, num tileY) getTileUrl;
+  factory StreetViewTileData() => $js();
+  num? centerHeading;
+  Size? tileSize;
+  Size? worldSize;
+  String? Function(String? pano, num? tileZoom, num? tileX, num? tileY)?
+      getTileUrl;
 }

@@ -17,10 +17,10 @@ part of '../google_maps_core.dart';
 @JsName()
 @anonymous
 abstract class KmlLayerMetadata {
-  factory KmlLayerMetadata() => $js;
-  KmlAuthor author;
-  String description;
-  bool hasScreenOverlays;
-  String name;
-  String snippet;
+  factory KmlLayerMetadata() => $js();
+  KmlAuthor? author;
+  String? description;
+  bool? hasScreenOverlays;
+  String? name;
+  String? snippet;
 }

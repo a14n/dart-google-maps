@@ -1,9 +1,9 @@
 import 'dart:html' hide Rectangle;
 import 'package:google_maps/google_maps.dart';
 
-Rectangle rectangle;
-GMap map;
-InfoWindow infoWindow;
+late Rectangle rectangle;
+late GMap map;
+late InfoWindow infoWindow;
 
 void main() {
   final mapOptions = MapOptions()
@@ -28,8 +28,8 @@ void main() {
 }
 
 void showNewRect(event) {
-  final ne = rectangle.bounds.northEast;
-  final sw = rectangle.bounds.southWest;
+  final ne = rectangle.bounds!.northEast!;
+  final sw = rectangle.bounds!.southWest!;
 
   final contentString = '<b>Rectangle moved.</b><br>'
       'New north-east corner: ${ne.lat}, ${ne.lng}<br>'

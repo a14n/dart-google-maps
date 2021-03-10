@@ -17,8 +17,8 @@ part of '../google_maps_core.dart';
 @JsName()
 @anonymous
 abstract class TransitAgency {
-  factory TransitAgency() => $js;
-  String name;
-  String phone;
-  String url;
+  factory TransitAgency() => $js();
+  String? name;
+  String? phone;
+  String? url;
 }

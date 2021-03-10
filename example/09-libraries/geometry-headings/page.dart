@@ -3,10 +3,10 @@ import 'dart:html';
 import 'package:google_maps/google_maps.dart';
 import 'package:google_maps/google_maps_geometry.dart';
 
-Polyline poly;
-Polyline geodesicPoly;
-Marker marker1;
-Marker marker2;
+late Polyline poly;
+late Polyline geodesicPoly;
+late Marker marker1;
+late Marker marker2;
 
 void main() {
   final mapOptions = MapOptions()
@@ -15,7 +15,7 @@ void main() {
 
   final map = GMap(document.getElementById('map-canvas'), mapOptions);
 
-  map.controls[ControlPosition.TOP_CENTER as int]
+  map.controls![ControlPosition.TOP_CENTER as int]!
       .push(document.getElementById('info'));
 
   marker1 = Marker(MarkerOptions()

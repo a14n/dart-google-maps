@@ -17,45 +17,45 @@ part of '../google_maps_core.dart';
 @JsName('google.maps.GroundOverlay')
 abstract class GroundOverlay extends MVCObject {
   factory GroundOverlay(
-    String url,
-    LatLngBounds bounds, [
-    GroundOverlayOptions opts, // ignore: unused_element
+    String? url,
+    LatLngBounds? bounds, [
+    GroundOverlayOptions? opts, // ignore: unused_element
   ]) =>
-      $js;
+      $js();
 
   // synthetic getter for getBounds
-  LatLngBounds get bounds => _getBounds();
+  LatLngBounds? get bounds => _getBounds();
   @JsName('getBounds')
-  LatLngBounds _getBounds();
+  LatLngBounds? _getBounds();
 
   // synthetic getter for getMap
-  GMap get map => _getMap();
+  GMap? get map => _getMap();
   @JsName('getMap')
-  GMap _getMap();
+  GMap? _getMap();
 
   // synthetic getter for getOpacity
-  num get opacity => _getOpacity();
+  num? get opacity => _getOpacity();
   @JsName('getOpacity')
-  num _getOpacity();
+  num? _getOpacity();
 
   // synthetic getter for getUrl
-  String get url => _getUrl();
+  String? get url => _getUrl();
   @JsName('getUrl')
-  String _getUrl();
+  String? _getUrl();
 
   // synthetic setter for setMap
-  set map(GMap map) => _setMap(map);
+  set map(GMap? map) => _setMap(map);
   @JsName('setMap')
-  void _setMap(GMap map);
+  void _setMap(GMap? map);
 
   // synthetic setter for setOpacity
-  set opacity(num opacity) => _setOpacity(opacity);
+  set opacity(num? opacity) => _setOpacity(opacity);
   @JsName('setOpacity')
-  void _setOpacity(num opacity);
+  void _setOpacity(num? opacity);
 
   Stream<MapMouseEvent> get onClick {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'click',
@@ -72,8 +72,8 @@ abstract class GroundOverlay extends MVCObject {
   }
 
   Stream<MapMouseEvent> get onDblclick {
-    StreamController<MapMouseEvent> sc; // ignore: close_sinks
-    MapsEventListener mapsEventListener;
+    late StreamController<MapMouseEvent> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
     void start() => mapsEventListener = Event.addListener(
           this,
           'dblclick',

@@ -12,7 +12,7 @@ final List<LatLng> neighborhoods = [
 
 final markers = <Marker>[];
 
-GMap map;
+late GMap map;
 
 void main() {
   final mapOptions = MapOptions()
@@ -20,7 +20,7 @@ void main() {
     ..center = berlin;
   map = GMap(document.getElementById('map-canvas'), mapOptions);
 
-  document.getElementById('drop').onClick.listen(drop);
+  document.getElementById('drop')!.onClick.listen(drop);
 }
 
 void drop(_) {

@@ -17,12 +17,12 @@ part of '../google_maps_core.dart';
 @JsName()
 @anonymous
 abstract class GeocoderAddressComponent {
-  factory GeocoderAddressComponent() => $js;
+  factory GeocoderAddressComponent() => $js();
   // custom name for long_name
   @JsName('long_name')
-  String longName;
+  String? longName;
   // custom name for short_name
   @JsName('short_name')
-  String shortName;
-  List<String> types;
+  String? shortName;
+  List<String?>? types;
 }

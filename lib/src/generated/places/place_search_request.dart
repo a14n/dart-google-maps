@@ -17,15 +17,15 @@ part of '../google_maps_places.dart';
 @JsName()
 @anonymous
 abstract class PlaceSearchRequest {
-  factory PlaceSearchRequest() => $js;
-  LatLngBounds bounds;
-  String keyword;
-  LatLng location;
-  num maxPriceLevel;
-  num minPriceLevel;
-  String name;
-  bool openNow;
-  num radius;
-  RankBy rankBy;
-  String type;
+  factory PlaceSearchRequest() => $js();
+  LatLngBounds? bounds;
+  String? keyword;
+  LatLng? location;
+  num? maxPriceLevel;
+  num? minPriceLevel;
+  String? name;
+  bool? openNow;
+  num? radius;
+  RankBy? rankBy;
+  String? type;
 }
