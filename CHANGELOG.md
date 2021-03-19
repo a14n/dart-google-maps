@@ -1,3 +1,11 @@
+# v5.1.0 (2021-03-19)
+
+- Make the following getters non-null:
+  - `LatLng.lat`
+  - `LatLng.lng`
+  - `LatLngBounds.northEast`
+  - `LatLngBounds.southWest`
+
 # v5.0.1 (2021-03-10)
 
 - Add a missing file
