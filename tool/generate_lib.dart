@@ -65,6 +65,19 @@ void patchEntities(List<DocEntity> entities) {
             ..name = 'noWrap'
             ..type = convertType('boolean'),
         ];
+      entity.methods
+          .firstWhere((e) => e.name == 'lat')
+          .updateReturnTypeToNonNullable();
+      entity.methods
+          .firstWhere((e) => e.name == 'lng')
+          .updateReturnTypeToNonNullable();
+    } else if (entity.library == null && entity.name == 'LatLngBounds') {
+      entity.methods
+          .firstWhere((e) => e.name == 'getNorthEast')
+          .updateReturnTypeToNonNullable();
+      entity.methods
+          .firstWhere((e) => e.name == 'getSouthWest')
+          .updateReturnTypeToNonNullable();
     } else if (entity.library == 'localContext' &&
         entity.name == 'PlaceTypePreference') {
       entity
@@ -853,6 +866,10 @@ class DocMethod {
     for (var e in optionalParameters) {
       e.convertTypes();
     }
+  }
+
+  void updateReturnTypeToNonNullable() {
+    returnType = returnType?.nonNullable();
   }
 }
 

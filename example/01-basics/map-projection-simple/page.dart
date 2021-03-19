@@ -25,7 +25,7 @@ void main() {
   map.controls![ControlPosition.TOP_CENTER as int]!.push(coordsDiv);
   map.onMousemove.listen((event) {
     coordsDiv.text =
-        'lat: ${event.latLng!.lat!.round()}, lng: ${event.latLng!.lng!.round()}';
+        'lat: ${event.latLng!.lat.round()}, lng: ${event.latLng!.lng.round()}';
   });
   // Add some markers to the map.
   map.data!.style = allowInterop((feature) => jsify({
@@ -60,9 +60,9 @@ void initGallPeters() {
     // Describe the Gall-Peters projection used by these tiles.
     ..projection = (Projection()
       ..fromLatLngToPoint = (latLng, [point]) {
-        final latRadians = (latLng!.lat! * math.pi) / 180;
+        final latRadians = (latLng!.lat * math.pi) / 180;
         return Point(
-          GALL_PETERS_RANGE_X * (0.5 + latLng.lng! / 360),
+          GALL_PETERS_RANGE_X * (0.5 + latLng.lng / 360),
           GALL_PETERS_RANGE_Y * (0.5 - 0.5 * math.sin(latRadians)),
         );
       }

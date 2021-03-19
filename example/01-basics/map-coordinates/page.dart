@@ -50,10 +50,10 @@ String createInfoWindowContent(LatLng latLng, num zoom) {
 // The mapping between latitude, longitude and pixels is defined by the web
 // mercator projection.
 Point project(LatLng latLng) {
-  var siny = math.sin((latLng.lat! * math.pi) / 180);
+  var siny = math.sin((latLng.lat * math.pi) / 180);
   // Truncating to 0.9999 effectively limits latitude to 89.189. This is
   // about a third of a tile past the edge of the world tile.
   siny = math.min(math.max(siny, -0.9999), 0.9999);
-  return Point(TILE_SIZE * (0.5 + latLng.lng! / 360),
+  return Point(TILE_SIZE * (0.5 + latLng.lng / 360),
       TILE_SIZE * (0.5 - math.log((1 + siny) / (1 - siny)) / (4 * math.pi)));
 }

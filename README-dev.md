@@ -10,6 +10,6 @@ There are 2 steps:
 2. Generate real code with [js_wrapping_generator](https://pub.dev/packages/js_wrapping_generator)
 
 ```
-dart tool/generate_lib.dart
+dart --no-sound-null-safety tool/generate_lib.dart
 pub run build_runner build -v lib
 ```

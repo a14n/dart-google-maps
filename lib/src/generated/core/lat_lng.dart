@@ -25,14 +25,14 @@ abstract class LatLng {
   bool? equals(LatLng? other);
 
   // custom getter for lat
-  num? get lat => _lat();
+  num get lat => _lat();
   @JsName('lat')
-  num? _lat();
+  num _lat();
 
   // custom getter for lng
-  num? get lng => _lng();
+  num get lng => _lng();
   @JsName('lng')
-  num? _lng();
+  num _lng();
 
   String toString();
   String? toUrlValue([

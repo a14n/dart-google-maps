@@ -33,14 +33,14 @@ abstract class LatLngBounds {
   LatLng? _getCenter();
 
   // synthetic getter for getNorthEast
-  LatLng? get northEast => _getNorthEast();
+  LatLng get northEast => _getNorthEast();
   @JsName('getNorthEast')
-  LatLng? _getNorthEast();
+  LatLng _getNorthEast();
 
   // synthetic getter for getSouthWest
-  LatLng? get southWest => _getSouthWest();
+  LatLng get southWest => _getSouthWest();
   @JsName('getSouthWest')
-  LatLng? _getSouthWest();
+  LatLng _getSouthWest();
 
   bool? intersects(LatLngBounds? other);
   bool? isEmpty();

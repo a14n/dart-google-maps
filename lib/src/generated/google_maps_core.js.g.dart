@@ -803,12 +803,12 @@ class LatLng {
 }
 
 extension LatLng$Ext on LatLng {
-  num? get lat => _lat();
-  num? get lng => _lng();
+  num get lat => _lat();
+  num get lng => _lng();
 
-  num? _lat() => callMethod(this, 'lat', []);
+  num _lat() => callMethod(this, 'lat', []);
 
-  num? _lng() => callMethod(this, 'lng', []);
+  num _lng() => callMethod(this, 'lng', []);
 }
 
 @JS('google.maps.LatLngBounds')
@@ -843,14 +843,14 @@ class LatLngBounds {
 
 extension LatLngBounds$Ext on LatLngBounds {
   LatLng? get center => _getCenter();
-  LatLng? get northEast => _getNorthEast();
-  LatLng? get southWest => _getSouthWest();
+  LatLng get northEast => _getNorthEast();
+  LatLng get southWest => _getSouthWest();
 
   LatLng? _getCenter() => callMethod(this, 'getCenter', []);
 
-  LatLng? _getNorthEast() => callMethod(this, 'getNorthEast', []);
+  LatLng _getNorthEast() => callMethod(this, 'getNorthEast', []);
 
-  LatLng? _getSouthWest() => callMethod(this, 'getSouthWest', []);
+  LatLng _getSouthWest() => callMethod(this, 'getSouthWest', []);
 }
 
 @JS('google.maps.Point')
