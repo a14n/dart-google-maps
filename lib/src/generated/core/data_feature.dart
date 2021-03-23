@@ -20,7 +20,7 @@ abstract class DataFeature {
     DataFeatureOptions? options, // ignore: unused_element
   ]) =>
       $js();
-  void forEachProperty(void Function(Object? p1, String? p2)? callback);
+  void forEachProperty(void Function(Object?, String?)? callback);
 
   // synthetic getter for getGeometry
   DataGeometry? get geometry => _getGeometry();
@@ -42,7 +42,7 @@ abstract class DataFeature {
   void _setGeometry(Object? /*DataGeometry?|LatLng?*/ newGeometry);
 
   void setProperty(String? name, Object? newValue);
-  void toGeoJson(void Function(Object? p1)? callback);
+  void toGeoJson(void Function(Object?)? callback);
   Stream<DataRemovePropertyEvent> get onRemoveproperty {
     late StreamController<DataRemovePropertyEvent> sc; // ignore: close_sinks
     late MapsEventListener mapsEventListener;

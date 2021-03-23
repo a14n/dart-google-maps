@@ -19,7 +19,7 @@ abstract class DataGeometryCollection implements DataGeometry {
   factory DataGeometryCollection(
           List<Object? /*DataGeometry?|LatLng?*/ >? elements) =>
       $js();
-  void forEachLatLng(void Function(LatLng? p1)? callback);
+  void forEachLatLng(void Function(LatLng?)? callback);
 
   // synthetic getter for getArray
   List<DataGeometry?>? get array => _getArray();

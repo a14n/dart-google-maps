@@ -1014,26 +1014,26 @@ extension MVCObject$Ext on MVCObject {
 @JS('google.maps.MVCArray')
 class MVCArray<T> extends MVCObject {
   external MVCArray([
-    List<T?>? array, // ignore: unused_element
+    List<T>? array, // ignore: unused_element
   ]);
 
   external void clear();
 
-  external T? getAt(num? i);
+  external T getAt(num? i);
 
-  external void insertAt(num? i, T? elem);
+  external void insertAt(num? i, T elem);
 
-  external T? pop();
+  external T pop();
 
-  external num? push(T? elem);
+  external num? push(T elem);
 
-  external T? removeAt(num? i);
+  external T removeAt(num? i);
 
-  external void setAt(num? i, T? elem);
+  external void setAt(num? i, T elem);
 }
 
 extension MVCArray$Ext<T> on MVCArray<T> {
-  List<T?>? get array => _getArray();
+  List<T>? get array => _getArray();
   num? get length => _getLength();
   Stream<num> get onInsertAt {
     late StreamController<num> sc; // ignore: close_sinks
@@ -1089,12 +1089,12 @@ extension MVCArray$Ext<T> on MVCArray<T> {
     return sc.stream;
   }
 
-  void forEach(void Function(T? p1, num? p2)? callback) {
+  void forEach(void Function(T, num?)? callback) {
     callMethod(
         this, 'forEach', [callback == null ? null : allowInterop(callback)]);
   }
 
-  List<T?>? _getArray() => callMethod(this, 'getArray', [])?.cast<T?>();
+  List<T>? _getArray() => callMethod(this, 'getArray', [])?.cast<T>();
 
   num? _getLength() => callMethod(this, 'getLength', []);
 }
@@ -3829,7 +3829,7 @@ extension Data$Ext on Data {
   ]) =>
       callMethod(this, 'addGeoJson', [geoJson, options])?.cast<DataFeature?>();
 
-  void forEach(void Function(DataFeature? p1)? callback) {
+  void forEach(void Function(DataFeature?)? callback) {
     callMethod(
         this, 'forEach', [callback == null ? null : allowInterop(callback)]);
   }
@@ -3850,7 +3850,7 @@ extension Data$Ext on Data {
   void loadGeoJson(
     String? url, [
     DataGeoJsonOptions? options,
-    void Function(List<DataFeature?>? p1)? callback,
+    void Function(List<DataFeature?>?)? callback,
   ]) {
     callMethod(this, 'loadGeoJson',
         [url, options, callback == null ? null : allowInterop(callback)]);
@@ -3876,7 +3876,7 @@ extension Data$Ext on Data {
     callMethod(this, 'setStyle', [style]);
   }
 
-  void toGeoJson(void Function(Object? p1)? callback) {
+  void toGeoJson(void Function(Object?)? callback) {
     callMethod(
         this, 'toGeoJson', [callback == null ? null : allowInterop(callback)]);
   }
@@ -3911,10 +3911,10 @@ extension DataDataOptions$Ext on DataDataOptions {
     setProperty(this, 'controls', value);
   }
 
-  DataFeature? Function(DataGeometry? p1)? get featureFactory =>
+  DataFeature? Function(DataGeometry?)? get featureFactory =>
       getProperty(this, 'featureFactory');
 
-  set featureFactory(DataFeature? Function(DataGeometry? p1)? value) {
+  set featureFactory(DataFeature? Function(DataGeometry?)? value) {
     setProperty(
         this, 'featureFactory', value == null ? null : allowInterop(value));
   }
@@ -4064,7 +4064,7 @@ extension DataFeature$Ext on DataFeature {
     return sc.stream;
   }
 
-  void forEachProperty(void Function(Object? p1, String? p2)? callback) {
+  void forEachProperty(void Function(Object?, String?)? callback) {
     callMethod(this, 'forEachProperty',
         [callback == null ? null : allowInterop(callback)]);
   }
@@ -4077,7 +4077,7 @@ extension DataFeature$Ext on DataFeature {
     callMethod(this, 'setGeometry', [newGeometry]);
   }
 
-  void toGeoJson(void Function(Object? p1)? callback) {
+  void toGeoJson(void Function(Object?)? callback) {
     callMethod(
         this, 'toGeoJson', [callback == null ? null : allowInterop(callback)]);
   }
@@ -4110,7 +4110,7 @@ class DataGeometry {
 extension DataGeometry$Ext on DataGeometry {
   String? get type => _getType();
 
-  void forEachLatLng(void Function(LatLng? p1)? callback) {
+  void forEachLatLng(void Function(LatLng?)? callback) {
     callMethod(this, 'forEachLatLng',
         [callback == null ? null : allowInterop(callback)]);
   }
@@ -4128,7 +4128,7 @@ class DataPoint implements DataGeometry {
 extension DataPoint$Ext on DataPoint {
   String? get type => _getType();
 
-  void forEachLatLng(void Function(LatLng? p1)? callback) {
+  void forEachLatLng(void Function(LatLng?)? callback) {
     callMethod(this, 'forEachLatLng',
         [callback == null ? null : allowInterop(callback)]);
   }
@@ -4148,7 +4148,7 @@ extension DataMultiPoint$Ext on DataMultiPoint {
   num? get length => _getLength();
   String? get type => _getType();
 
-  void forEachLatLng(void Function(LatLng? p1)? callback) {
+  void forEachLatLng(void Function(LatLng?)? callback) {
     callMethod(this, 'forEachLatLng',
         [callback == null ? null : allowInterop(callback)]);
   }
@@ -4173,7 +4173,7 @@ extension DataLineString$Ext on DataLineString {
   num? get length => _getLength();
   String? get type => _getType();
 
-  void forEachLatLng(void Function(LatLng? p1)? callback) {
+  void forEachLatLng(void Function(LatLng?)? callback) {
     callMethod(this, 'forEachLatLng',
         [callback == null ? null : allowInterop(callback)]);
   }
@@ -4199,7 +4199,7 @@ extension DataMultiLineString$Ext on DataMultiLineString {
   num? get length => _getLength();
   String? get type => _getType();
 
-  void forEachLatLng(void Function(LatLng? p1)? callback) {
+  void forEachLatLng(void Function(LatLng?)? callback) {
     callMethod(this, 'forEachLatLng',
         [callback == null ? null : allowInterop(callback)]);
   }
@@ -4224,7 +4224,7 @@ extension DataLinearRing$Ext on DataLinearRing {
   num? get length => _getLength();
   String? get type => _getType();
 
-  void forEachLatLng(void Function(LatLng? p1)? callback) {
+  void forEachLatLng(void Function(LatLng?)? callback) {
     callMethod(this, 'forEachLatLng',
         [callback == null ? null : allowInterop(callback)]);
   }
@@ -4250,7 +4250,7 @@ extension DataPolygon$Ext on DataPolygon {
   num? get length => _getLength();
   String? get type => _getType();
 
-  void forEachLatLng(void Function(LatLng? p1)? callback) {
+  void forEachLatLng(void Function(LatLng?)? callback) {
     callMethod(this, 'forEachLatLng',
         [callback == null ? null : allowInterop(callback)]);
   }
@@ -4277,7 +4277,7 @@ extension DataMultiPolygon$Ext on DataMultiPolygon {
   num? get length => _getLength();
   String? get type => _getType();
 
-  void forEachLatLng(void Function(LatLng? p1)? callback) {
+  void forEachLatLng(void Function(LatLng?)? callback) {
     callMethod(this, 'forEachLatLng',
         [callback == null ? null : allowInterop(callback)]);
   }
@@ -4303,7 +4303,7 @@ extension DataGeometryCollection$Ext on DataGeometryCollection {
   num? get length => _getLength();
   String? get type => _getType();
 
-  void forEachLatLng(void Function(LatLng? p1)? callback) {
+  void forEachLatLng(void Function(LatLng?)? callback) {
     callMethod(this, 'forEachLatLng',
         [callback == null ? null : allowInterop(callback)]);
   }
@@ -4943,10 +4943,10 @@ class ImageMapTypeOptions {
 }
 
 extension ImageMapTypeOptions$Ext on ImageMapTypeOptions {
-  String? Function(Point? p1, num? p2)? get getTileUrl =>
+  String? Function(Point?, num?)? get getTileUrl =>
       getProperty(this, 'getTileUrl');
 
-  set getTileUrl(String? Function(Point? p1, num? p2)? value) {
+  set getTileUrl(String? Function(Point?, num?)? value) {
     setProperty(this, 'getTileUrl', value == null ? null : allowInterop(value));
   }
 }
@@ -5121,9 +5121,9 @@ class MaxZoomService {
 }
 
 extension MaxZoomService$Ext on MaxZoomService {
-  Future<MaxZoomResult>? getMaxZoomAtLatLng(
+  Future<MaxZoomResult?>? getMaxZoomAtLatLng(
     LatLng? latlng, [
-    void Function(MaxZoomResult? p1)? callback,
+    void Function(MaxZoomResult?)? callback,
   ]) =>
       promiseToFuture(callMethod(this, 'getMaxZoomAtLatLng',
           [latlng, callback == null ? null : allowInterop(callback)]));
@@ -5351,7 +5351,7 @@ extension StreetViewPanorama$Ext on StreetViewPanorama {
   num? _getZoom() => callMethod(this, 'getZoom', []);
 
   void registerPanoProvider([
-    StreetViewPanoramaData? Function(String? p1)? provider,
+    StreetViewPanoramaData? Function(String?)? provider,
     PanoProviderOptions? opt_options,
   ]) {
     callMethod(this, 'registerPanoProvider',
@@ -5583,9 +5583,9 @@ class StreetViewService {
 }
 
 extension StreetViewService$Ext on StreetViewService {
-  Future<StreetViewResponse>? getPanorama(
+  Future<StreetViewResponse?>? getPanorama(
     Object? /*StreetViewLocationRequest?|StreetViewPanoRequest?*/ request, [
-    void Function(StreetViewPanoramaData? p1, StreetViewStatus? p2)? callback,
+    void Function(StreetViewPanoramaData?, StreetViewStatus?)? callback,
   ]) =>
       promiseToFuture(callMethod(this, 'getPanorama',
           [request, callback == null ? null : allowInterop(callback)]));
@@ -5729,9 +5729,9 @@ class Geocoder {
 }
 
 extension Geocoder$Ext on Geocoder {
-  Future<GeocoderResponse>? geocode(
+  Future<GeocoderResponse?>? geocode(
     GeocoderRequest? request, [
-    void Function(List<GeocoderResult?>? p1, GeocoderStatus? p2)? callback,
+    void Function(List<GeocoderResult?>?, GeocoderStatus?)? callback,
   ]) =>
       promiseToFuture(callMethod(this, 'geocode',
           [request, callback == null ? null : allowInterop(callback)]));
@@ -5936,9 +5936,9 @@ class DirectionsService {
 }
 
 extension DirectionsService$Ext on DirectionsService {
-  Future<DirectionsResult>? route(
+  Future<DirectionsResult?>? route(
     DirectionsRequest? request, [
-    void Function(DirectionsResult? p1, DirectionsStatus? p2)? callback,
+    void Function(DirectionsResult?, DirectionsStatus?)? callback,
   ]) =>
       promiseToFuture(callMethod(this, 'route',
           [request, callback == null ? null : allowInterop(callback)]));
@@ -6735,10 +6735,9 @@ class DistanceMatrixService {
 }
 
 extension DistanceMatrixService$Ext on DistanceMatrixService {
-  Future<DistanceMatrixResponse>? getDistanceMatrix(
+  Future<DistanceMatrixResponse?>? getDistanceMatrix(
     DistanceMatrixRequest? request, [
-    void Function(DistanceMatrixResponse? p1, DistanceMatrixStatus? p2)?
-        callback,
+    void Function(DistanceMatrixResponse?, DistanceMatrixStatus?)? callback,
   ]) =>
       promiseToFuture(callMethod(this, 'getDistanceMatrix',
           [request, callback == null ? null : allowInterop(callback)]));
@@ -6897,16 +6896,16 @@ class ElevationService {
 }
 
 extension ElevationService$Ext on ElevationService {
-  Future<PathElevationResponse>? getElevationAlongPath(
+  Future<PathElevationResponse?>? getElevationAlongPath(
     PathElevationRequest? request, [
-    void Function(List<ElevationResult?>? p1, ElevationStatus? p2)? callback,
+    void Function(List<ElevationResult?>?, ElevationStatus?)? callback,
   ]) =>
       promiseToFuture(callMethod(this, 'getElevationAlongPath',
           [request, callback == null ? null : allowInterop(callback)]));
 
-  Future<LocationElevationResponse>? getElevationForLocations(
+  Future<LocationElevationResponse?>? getElevationForLocations(
     LocationElevationRequest? request, [
-    void Function(List<ElevationResult?>? p1, ElevationStatus? p2)? callback,
+    void Function(List<ElevationResult?>?, ElevationStatus?)? callback,
   ]) =>
       promiseToFuture(callMethod(this, 'getElevationForLocations',
           [request, callback == null ? null : allowInterop(callback)]));

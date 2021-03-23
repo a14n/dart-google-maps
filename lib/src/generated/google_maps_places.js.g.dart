@@ -184,7 +184,7 @@ class PlacesService {
 extension PlacesService$Ext on PlacesService {
   void findPlaceFromPhoneNumber(
     FindPlaceFromPhoneNumberRequest? request, [
-    void Function(List<PlaceResult?>? p1, PlacesServiceStatus? p2)? callback,
+    void Function(List<PlaceResult?>?, PlacesServiceStatus?)? callback,
   ]) {
     callMethod(this, 'findPlaceFromPhoneNumber',
         [request, callback == null ? null : allowInterop(callback)]);
@@ -192,7 +192,7 @@ extension PlacesService$Ext on PlacesService {
 
   void findPlaceFromQuery(
     FindPlaceFromQueryRequest? request, [
-    void Function(List<PlaceResult?>? p1, PlacesServiceStatus? p2)? callback,
+    void Function(List<PlaceResult?>?, PlacesServiceStatus?)? callback,
   ]) {
     callMethod(this, 'findPlaceFromQuery',
         [request, callback == null ? null : allowInterop(callback)]);
@@ -200,7 +200,7 @@ extension PlacesService$Ext on PlacesService {
 
   void getDetails(
     PlaceDetailsRequest? request, [
-    void Function(PlaceResult? p1, PlacesServiceStatus? p2)? callback,
+    void Function(PlaceResult?, PlacesServiceStatus?)? callback,
   ]) {
     callMethod(this, 'getDetails',
         [request, callback == null ? null : allowInterop(callback)]);
@@ -208,8 +208,8 @@ extension PlacesService$Ext on PlacesService {
 
   void nearbySearch(
     PlaceSearchRequest? request, [
-    void Function(List<PlaceResult?>? p1, PlacesServiceStatus? p2,
-            PlaceSearchPagination? p3)?
+    void Function(
+            List<PlaceResult?>?, PlacesServiceStatus?, PlaceSearchPagination?)?
         callback,
   ]) {
     callMethod(this, 'nearbySearch',
@@ -218,8 +218,8 @@ extension PlacesService$Ext on PlacesService {
 
   void textSearch(
     TextSearchRequest? request, [
-    void Function(List<PlaceResult?>? p1, PlacesServiceStatus? p2,
-            PlaceSearchPagination? p3)?
+    void Function(
+            List<PlaceResult?>?, PlacesServiceStatus?, PlaceSearchPagination?)?
         callback,
   ]) {
     callMethod(this, 'textSearch',
@@ -781,9 +781,9 @@ class AutocompleteService {
 }
 
 extension AutocompleteService$Ext on AutocompleteService {
-  Future<AutocompleteResponse>? getPlacePredictions(
+  Future<AutocompleteResponse?>? getPlacePredictions(
     AutocompletionRequest? request, [
-    void Function(List<AutocompletePrediction?>? p1, PlacesServiceStatus? p2)?
+    void Function(List<AutocompletePrediction?>?, PlacesServiceStatus?)?
         callback,
   ]) =>
       promiseToFuture(callMethod(this, 'getPlacePredictions',
@@ -791,8 +791,7 @@ extension AutocompleteService$Ext on AutocompleteService {
 
   void getQueryPredictions(
     QueryAutocompletionRequest? request, [
-    void Function(
-            List<QueryAutocompletePrediction?>? p1, PlacesServiceStatus? p2)?
+    void Function(List<QueryAutocompletePrediction?>?, PlacesServiceStatus?)?
         callback,
   ]) {
     callMethod(this, 'getQueryPredictions',

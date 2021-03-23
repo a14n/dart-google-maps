@@ -19,7 +19,7 @@ abstract class DataPolygon implements DataGeometry {
   factory DataPolygon(
           List<Object? /*DataLinearRing?|List<LatLng?>?*/ >? elements) =>
       $js();
-  void forEachLatLng(void Function(LatLng? p1)? callback);
+  void forEachLatLng(void Function(LatLng?)? callback);
 
   // synthetic getter for getArray
   List<DataLinearRing?>? get array => _getArray();

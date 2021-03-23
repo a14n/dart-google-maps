@@ -22,6 +22,6 @@ abstract class DataDataOptions {
   ControlPosition? controlPosition;
   List<String?>? controls;
   String? drawingMode;
-  DataFeature? Function(DataGeometry? p1)? featureFactory;
+  DataFeature? Function(DataGeometry?)? featureFactory;
   Object? /*DataStylingFunction?|DataStyleOptions?*/ style;
 }

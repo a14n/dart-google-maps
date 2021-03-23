@@ -28,7 +28,7 @@ abstract class Data extends MVCObject {
     DataGeoJsonOptions? options,
   ]);
   bool? contains(DataFeature? feature);
-  void forEach(void Function(DataFeature? p1)? callback);
+  void forEach(void Function(DataFeature?)? callback);
 
   // synthetic getter for getControlPosition
   ControlPosition? get controlPosition => _getControlPosition();
@@ -60,7 +60,7 @@ abstract class Data extends MVCObject {
   void loadGeoJson(
     String? url, [
     DataGeoJsonOptions? options,
-    void Function(List<DataFeature?>? p1)? callback,
+    void Function(List<DataFeature?>?)? callback,
   ]);
   void overrideStyle(DataFeature? feature, DataStyleOptions? style);
   void remove(DataFeature? feature);
@@ -95,7 +95,7 @@ abstract class Data extends MVCObject {
   @JsName('setStyle')
   void _setStyle(Object? /*DataStylingFunction?|DataStyleOptions?*/ style);
 
-  void toGeoJson(void Function(Object? p1)? callback);
+  void toGeoJson(void Function(Object?)? callback);
   Stream<DataAddFeatureEvent> get onAddfeature {
     late StreamController<DataAddFeatureEvent> sc; // ignore: close_sinks
     late MapsEventListener mapsEventListener;

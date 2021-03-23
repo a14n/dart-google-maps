@@ -19,7 +19,7 @@ abstract class DataMultiLineString implements DataGeometry {
   factory DataMultiLineString(
           List<Object? /*DataLineString?|List<LatLng?>?*/ >? elements) =>
       $js();
-  void forEachLatLng(void Function(LatLng? p1)? callback);
+  void forEachLatLng(void Function(LatLng?)? callback);
 
   // synthetic getter for getArray
   List<DataLineString?>? get array => _getArray();

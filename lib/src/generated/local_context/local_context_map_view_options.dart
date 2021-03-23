@@ -25,7 +25,7 @@ abstract class LocalContextMapViewOptions {
   Object? /*LatLng?|LatLngBounds?|Circle?|String?*/ locationBias;
   LatLngBounds? locationRestriction;
   GMap? map;
-  Object? /*PinOptions? Function((bool? isSelected, bool? isHighlighted) p1)?|PinOptions?*/ pinOptionsSetup;
-  Object? /*PlaceChooserViewSetupOptions? Function((PlaceChooserLayoutMode? defaultLayoutMode, PlaceChooserPosition? defaultPosition) p1)?|PlaceChooserViewSetupOptions?*/ placeChooserViewSetup;
-  Object? /*PlaceDetailsViewSetupOptions? Function((PlaceDetailsLayoutMode? defaultLayoutMode, PlaceDetailsPosition? defaultPosition) p1)?|PlaceDetailsViewSetupOptions?*/ placeDetailsViewSetup;
+  Object? /*PinOptions? Function((bool? isSelected,bool? isHighlighted)?)?|PinOptions?*/ pinOptionsSetup;
+  Object? /*PlaceChooserViewSetupOptions? Function((PlaceChooserLayoutMode? defaultLayoutMode,PlaceChooserPosition? defaultPosition)?)?|PlaceChooserViewSetupOptions?*/ placeChooserViewSetup;
+  Object? /*PlaceDetailsViewSetupOptions? Function((PlaceDetailsLayoutMode? defaultLayoutMode,PlaceDetailsPosition? defaultPosition)?)?|PlaceDetailsViewSetupOptions?*/ placeDetailsViewSetup;
 }

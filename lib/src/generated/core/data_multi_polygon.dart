@@ -20,7 +20,7 @@ abstract class DataMultiPolygon implements DataGeometry {
           List<Object? /*DataPolygon?|List<Object?/*DataLinearRing?|List<LatLng?>?*/>?*/ >?
               elements) =>
       $js();
-  void forEachLatLng(void Function(LatLng? p1)? callback);
+  void forEachLatLng(void Function(LatLng?)? callback);
 
   // synthetic getter for getArray
   List<DataPolygon?>? get array => _getArray();

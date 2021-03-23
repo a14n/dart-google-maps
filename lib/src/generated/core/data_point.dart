@@ -17,7 +17,7 @@ part of '../google_maps_core.dart';
 @JsName('google.maps.Data.Point')
 abstract class DataPoint implements DataGeometry {
   factory DataPoint(LatLng? latLng) => $js();
-  void forEachLatLng(void Function(LatLng? p1)? callback);
+  void forEachLatLng(void Function(LatLng?)? callback);
   LatLng? get();
 
   // synthetic getter for getType

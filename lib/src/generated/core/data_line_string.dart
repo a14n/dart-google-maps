@@ -17,7 +17,7 @@ part of '../google_maps_core.dart';
 @JsName('google.maps.Data.LineString')
 abstract class DataLineString implements DataGeometry {
   factory DataLineString(List<LatLng?>? elements) => $js();
-  void forEachLatLng(void Function(LatLng? p1)? callback);
+  void forEachLatLng(void Function(LatLng?)? callback);
 
   // synthetic getter for getArray
   List<LatLng?>? get array => _getArray();

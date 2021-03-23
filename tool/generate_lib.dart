@@ -35,6 +35,8 @@ final customClassName = <String, String>{
   'MapMouseEvent|IconMouseEvent': 'IconMouseEvent',
   'LocationRestriction': 'LatLngBounds|LatLngBoundsLiteral',
   'Error': 'Object',
+  'Promise': 'Future',
+  'Array': 'List',
 };
 
 final customLibraryNames = <String, String>{
@@ -88,23 +90,19 @@ void patchEntities(List<DocEntity> entities) {
             ..type = convertType('string'),
           DocProperty()
             ..name = 'weight'
-            ..type = convertType('number')
-            ..optional = true,
+            ..type = convertType('number'),
         ];
     } else if (entity.name == 'event') {
       for (var method in entity.staticMethods) {
-        if (method.returnType == 'MapsEventListener?') {
-          method.returnType = 'MapsEventListener';
+        if (method.returnType ==
+            SimpleType('MapsEventListener', nullable: true)) {
+          method.returnType = method.returnType.nonNullable();
         }
       }
     }
     for (var method in entity.methods) {
-      if (method.returnType!.startsWith('Promise<')) {
-        method.returnType =
-            'Future${method.returnType!.substring('Promise'.length)}';
-      }
       if (method.name == 'toString') {
-        method.returnType = 'String';
+        method.returnType = SimpleType('String', nullable: false);
       }
     }
   }
@@ -131,7 +129,6 @@ Future main() async {
           'div[itemtype="http://developers.google.com/ReferenceObject"]'))
       .map(parseDocEntity)
       .where((e) => !ignoredClasses.contains(e.name))
-      .map((e) => e..convertTypes())
       .toList();
   patchEntities(entities);
 
@@ -394,7 +391,7 @@ List<String> generateCodeForMethod(DocEntity entity, DocMethod method) {
   // replace with setter
   if (method.name.startsWith('set') &&
       method.name.length > 3 &&
-      method.returnType == 'void' &&
+      method.returnType == SimpleType._void &&
       [...method.parameters, ...method.optionalParameters].length == 1) {
     if (method.optionalParameters.isNotEmpty) {
       method
@@ -412,8 +409,8 @@ List<String> generateCodeForMethod(DocEntity entity, DocMethod method) {
       '',
     ];
   }
-
-  if (ignoredClasses.expand((e) => [e, '$e?']).contains(method.returnType)) {
+  final returnType = method.returnType;
+  if (returnType is SimpleType && ignoredClasses.contains(returnType.name)) {
     return [];
   }
 
@@ -433,11 +430,13 @@ List<String> generateCodeForStaticMethod(
       '',
     ];
   }
-  final params = [...method.parameters, ...method.optionalParameters]
-      .map((e) => e.type == 'Function?'
-          ? '${e.name} == null ? null : allowInterop(${e.name})'
-          : e.name)
-      .join(',');
+  final params = [...method.parameters, ...method.optionalParameters].map((e) {
+    final type = e.type;
+    return type is FunctionType ||
+            (type is SimpleType && type.name == 'Function')
+        ? '${e.name} == null ? null : allowInterop(${e.name})'
+        : e.name;
+  }).join(',');
   return [
     'static ${method.returnType} ${method.name}${buildSignature(method)}',
     "  => callMethod($namespace, '${method.name}', [$params]);",
@@ -457,7 +456,7 @@ List<String> generateCodeForEvent(DocEntity entity, DocMethod method) {
     params = 'null';
   } else if (method.parameters.length == 1 &&
       method.optionalParameters.isEmpty) {
-    type = method.parameters.first.type!.nonNullable();
+    type = method.parameters.first.type.nonNullable().toString();
     params = method.parameters.first.name;
   } else {
     type = 'List';
@@ -499,7 +498,7 @@ String buildSignature(
   final result = StringBuffer('(')
     ..write(params
         .map((param) =>
-            '${nonNullable ? param.type?.nonNullable() : param.type} ${param.name}')
+            '${nonNullable ? param.type.nonNullable() : param.type} ${param.name}')
         .join(','));
   if (optionalParams.isNotEmpty) {
     if (params.isNotEmpty) {
@@ -518,33 +517,38 @@ String buildSignature(
   return result.toString();
 }
 
-String? convertType(String? type) {
-  if (type == null) return null;
+Type convertType(String type) {
   final myType = type.trim();
   if (myType == 'boolean')
-    return 'bool?';
+    return SimpleType('bool', nullable: true);
   else if (myType == 'number')
-    return 'num?';
+    return SimpleType('num', nullable: true);
   else if (myType == 'string')
-    return 'String?';
+    return SimpleType('String', nullable: true);
   else if (myType == 'Date')
-    return 'DateTime?';
+    return SimpleType('DateTime', nullable: true);
   else if (myType == 'HTMLInputElement')
-    return 'InputElement?';
+    return SimpleType('InputElement', nullable: true);
   else if (myType == 'HTMLDivElement')
-    return 'DivElement?';
+    return SimpleType('DivElement', nullable: true);
   else if (myType == 'Event')
-    return 'Object?';
+    return SimpleType('Object', nullable: true);
   else if (myType == 'Array')
-    return 'List?';
+    return SimpleType('List', nullable: true);
   else if (myType == 'None')
-    return 'void';
+    return SimpleType._void;
+  else if (myType == 'void')
+    return SimpleType._void;
+  else if (myType == 'dynamic')
+    return SimpleType('dynamic', nullable: false);
   else if (myType == '*')
-    return 'Object?';
+    return SimpleType('Object', nullable: true);
   else if (myType == '?')
-    return 'Object?';
+    return SimpleType('Object', nullable: true);
+  else if (myType == 'T')
+    return SimpleType('T', nullable: false);
   else if (customClassName.containsKey(myType))
-    return convertType(customClassName[myType]);
+    return convertType(customClassName[myType]!);
   else if (myType.startsWith('(') && myType.endsWith(')'))
     return convertType(myType.substring(1, myType.length - 1));
   else if (splitComplexTypeBy(myType, '|').length > 1) {
@@ -561,45 +565,36 @@ String? convertType(String? type) {
       }
     }
     final typeUnion = splitComplexTypeBy(myType, '|');
-    final dartUnion = typeUnion.map(convertType).join('|');
-    return 'Object?/*$dartUnion*/';
+    final dartUnion = typeUnion.map(convertType).toList();
+    return UnionType(dartUnion.cast<Type>());
   } else if (myType.startsWith('{') && myType.endsWith('}')) {
-    final tupleContent =
-        splitComplexTypeBy(myType.substring(1, myType.length - 1), ',')
-            .map((p) => splitComplexTypeBy(p.trim(), ':'))
-            .map((e) => [convertType(e[1].trim()), e[0].trim()].join(' '))
-            .join(', ');
-    return '($tupleContent)';
-  } else if (myType.startsWith('Object<') && myType.endsWith('>')) {
-    final innerType =
-        convertType(myType.substring('Object<'.length, myType.length - 1));
-    return 'Map<String, $innerType>?';
-  } else if (myType.startsWith('Array<') && myType.endsWith('>')) {
-    final innerType =
-        convertType(myType.substring('Array<'.length, myType.length - 1));
-    return 'List<$innerType>?';
+    final tupleElements = {
+      for (var e
+          in splitComplexTypeBy(myType.substring(1, myType.length - 1), ',')
+              .map((p) => splitComplexTypeBy(p.trim(), ':')))
+        e[0].trim(): convertType(e[1].trim()),
+    };
+    return TupleType(tupleElements, nullable: true);
+  } else if (myType.startsWith(RegExp(r'\w+<')) && myType.endsWith('>')) {
+    final name =
+        (convertType(myType.substring(0, myType.indexOf('<'))) as SimpleType)
+            .name;
+    final innerType = convertType(
+        myType.substring(myType.indexOf('<') + 1, myType.length - 1));
+    return SimpleType(name, parameters: [innerType], nullable: true);
   } else if (myType.startsWith('function(')) {
     final parts = splitComplexTypeBy(myType, ':');
-    final returnType =
-        parts.length > 1 ? convertType(parts.skip(1).join(':')) : 'void';
-    var i = 1;
-    final params = splitComplexTypeBy(
+    final returnType = parts.length > 1
+        ? convertType(parts.skip(1).join(':'))
+        : SimpleType._void;
+    final parameters = splitComplexTypeBy(
             parts[0].substring('function('.length, parts[0].lastIndexOf(')')),
             ',')
         .map(convertType)
-        .map((p) => '$p p${i++}')
-        .join(',');
-    return '$returnType Function($params)?';
-  } else if (myType.startsWith('MVCArray<') && myType.endsWith('>')) {
-    final innerType =
-        convertType(myType.substring('MVCArray<'.length, myType.length - 1));
-    return 'MVCArray<$innerType>?';
-  } else if (myType == 'void') {
-    return 'void';
-  } else if (myType == 'dynamic') {
-    return 'dynamic';
+        .toList();
+    return FunctionType(returnType, parameters, nullable: true);
   } else {
-    return '${myType.replaceAll('.', '')}?';
+    return SimpleType(myType.replaceAll('.', ''), nullable: true);
   }
 }
 
@@ -663,28 +658,10 @@ class DocEntity {
 
   @override
   String toString() => 'DocEntity($library ,$kind, $path, $name, $extendsName)';
-
-  void convertTypes() {
-    extendsName = convertType(extendsName)?.nonNullable();
-    implementsName = convertType(implementsName)?.nonNullable();
-    name = convertType(name)!.replaceAll('?', '');
-    constructor?.convertTypes();
-    for (var e in staticMethods) {
-      e.convertTypes();
-    }
-    for (var e in methods) {
-      e.convertTypes();
-    }
-    for (var e in properties) {
-      e.convertTypes();
-    }
-    for (var e in events) {
-      e.convertTypes();
-    }
-  }
 }
 
 DocEntity parseDocEntity(Element element) {
+  final name = element.querySelector('span[itemprop="name"]')!.text;
   final entity = DocEntity()
     ..kind = toKind(element
         .querySelector('h2')!
@@ -692,7 +669,7 @@ DocEntity parseDocEntity(Element element) {
         .trim()
         .split(RegExp(r'[ \n]+'))[1])
     ..path = element.querySelector('span[itemprop="path"]')!.text
-    ..name = element.querySelector('span[itemprop="name"]')!.text
+    ..name = name.toClassName()
     ..library = element
         .querySelectorAll('>p')
         .firstWhereOrNull((e) => e.text.startsWith('Requires the &libraries='))
@@ -703,7 +680,7 @@ DocEntity parseDocEntity(Element element) {
   entity
     // full js name
     ..fullJsName =
-        [entity.path, entity.name].join('.').replaceFirst(RegExp(r'<.*'), '')
+        [entity.path, name].join('.').replaceFirst(RegExp(r'<.*'), '')
     // extendsName
     ..extendsName = element
         .querySelectorAll('>p')
@@ -712,6 +689,7 @@ DocEntity parseDocEntity(Element element) {
             e.querySelector('a') != null)
         ?.querySelector('a')
         ?.text
+        .toClassName()
     // implementsName
     ..implementsName = element
         .querySelectorAll('>p')
@@ -719,7 +697,8 @@ DocEntity parseDocEntity(Element element) {
             e.text.startsWith(RegExp(r'This (class|interface) implements')) &&
             e.querySelector('a') != null)
         ?.querySelector('a')
-        ?.text;
+        ?.text
+        .toClassName();
 
   // constructor
   if (element.querySelector('table.constructors') != null) {
@@ -799,25 +778,26 @@ DocMethod parseTrForDocMethod(Element trElement) {
           .where((e) => e.querySelector('.optional-type-annotation') == null)
           .map((e) => DocMethodParameter()
             ..name = e.querySelectorAll('code')[0].text
-            ..type = e.querySelectorAll('code')[1].text)
+            ..type = convertType(e.querySelectorAll('code')[1].text))
           .toList()
       ..optionalParameters = paramLis
           .where((e) => e.querySelector('.optional-type-annotation') != null)
           .map((e) => DocMethodParameter()
             ..name = e.querySelectorAll('code')[0].text
-            ..type =
-                e.querySelectorAll('code')[1].text.replaceAll(' optional', ''))
+            ..type = convertType(
+                e.querySelectorAll('code')[1].text.replaceAll(' optional', '')))
           .toList();
   }
 
   final returnType = descriptions.singleWhereOrNull(
       (e) => e.children.isNotEmpty && e.children.first.text == 'Return Value:');
-  if (returnType != null) {
-    result.returnType = returnType.text
-        .replaceFirst('Return Value:', '')
-        .replaceAll(' optional', '')
-        .trim();
-  }
+
+  result.returnType = returnType != null
+      ? convertType(returnType.text
+          .replaceFirst('Return Value:', '')
+          .replaceAll(' optional', '')
+          .trim())
+      : SimpleType._void;
 
   return result;
 }
@@ -826,13 +806,13 @@ DocProperty parseTrForDocProperty(Element trElement) {
   final tdList = trElement.children;
   return DocProperty()
     ..name = tdList[0].querySelector('a.secret-link')!.text
-    ..type = tdList[1]
+    ..type = convertType(tdList[1]
         .children
         .firstWhere((e) => e.localName == 'div')
         .text
         .replaceFirst('Type:', '')
         .replaceAll(' optional', '')
-        .trim();
+        .trim());
 }
 
 DocConstant parseTrForDocConstant(Element trElement) {
@@ -842,44 +822,25 @@ DocConstant parseTrForDocConstant(Element trElement) {
 
 class DocProperty {
   late String name;
-  String? type;
-  bool? optional;
+  late Type type;
   String? comment;
-
-  void convertTypes() {
-    type = convertType(type);
-  }
 }
 
 class DocMethod {
   late String name;
   List<DocMethodParameter> parameters = [];
   List<DocMethodParameter> optionalParameters = [];
-  String? returnType;
+  late Type returnType;
   String? comment;
 
-  void convertTypes() {
-    returnType = convertType(returnType);
-    for (var e in parameters) {
-      e.convertTypes();
-    }
-    for (var e in optionalParameters) {
-      e.convertTypes();
-    }
-  }
-
   void updateReturnTypeToNonNullable() {
-    returnType = returnType?.nonNullable();
+    returnType = returnType.nonNullable();
   }
 }
 
 class DocMethodParameter {
   late String name;
-  String? type;
-
-  void convertTypes() {
-    type = convertType(type);
-  }
+  late Type type;
 }
 
 class DocConstant {
@@ -916,8 +877,96 @@ class Member {
       other is Member && other.className == className && other.name == name;
 }
 
+// ignore: one_member_abstracts
+abstract class Type {
+  Type nonNullable();
+}
+
+class SimpleType extends Type {
+  SimpleType(
+    this.name, {
+    required this.nullable,
+    this.parameters = const [],
+  });
+  final String name;
+  final bool nullable;
+  final List<Type> parameters;
+
+  static final _void = SimpleType('void', nullable: false);
+
+  @override
+  SimpleType nonNullable() =>
+      SimpleType(name, parameters: parameters, nullable: false);
+
+  @override
+  String toString() => [
+        name,
+        if (parameters.isNotEmpty) ...[
+          '<',
+          ...parameters.map((e) => e.toString()),
+          '>'
+        ],
+        if (nullable) '?',
+      ].join();
+
+  @override
+  int get hashCode => name.hashCode ^ parameters.hashCode ^ nullable.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      other is SimpleType &&
+      other.name == name &&
+      const ListEquality<Type>().equals(other.parameters, parameters) &&
+      other.nullable == nullable;
+}
+
+class UnionType extends Type {
+  UnionType(this.types);
+  final List<Type> types;
+
+  @override
+  UnionType nonNullable() => this;
+
+  @override
+  String toString() => 'Object?/*${types.map((e) => e.toString()).join('|')}*/';
+}
+
+class TupleType extends Type {
+  TupleType(this.elements, {required this.nullable});
+  final Map<String, Type> elements;
+  final bool nullable;
+
+  @override
+  TupleType nonNullable() => TupleType(elements, nullable: false);
+
+  @override
+  String toString() =>
+      '(${elements.entries.map((e) => '${e.value.toString()} ${e.key}').join(',')})${nullable ? '?' : ''}';
+}
+
+class FunctionType extends Type {
+  FunctionType(this.returnType, this.parameters, {required this.nullable});
+  final Type returnType;
+  final List<Type> parameters;
+  final bool nullable;
+
+  @override
+  FunctionType nonNullable() =>
+      FunctionType(returnType, parameters, nullable: false);
+
+  @override
+  String toString() =>
+      '${returnType.toString()} Function(${parameters.map((e) => e.toString()).join(',')})${nullable ? '?' : ''}';
+}
+
 extension on String {
   String capitalize() => this[0].toUpperCase() + substring(1);
   String unCapitalize() => this[0].toLowerCase() + substring(1);
-  String nonNullable() => endsWith('?') ? substring(0, length - 1) : this;
+  String toClassName() {
+    final type = convertType(this);
+    if (type is! SimpleType) {
+      return this;
+    }
+    return type.nonNullable().toString();
+  }
 }

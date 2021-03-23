@@ -74,7 +74,7 @@ abstract class StreetViewPanorama extends MVCObject {
   num? _getZoom();
 
   void registerPanoProvider([
-    StreetViewPanoramaData? Function(String? p1)? provider,
+    StreetViewPanoramaData? Function(String?)? provider,
     PanoProviderOptions? opt_options,
   ]);
 

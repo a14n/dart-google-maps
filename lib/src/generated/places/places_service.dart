@@ -19,26 +19,26 @@ abstract class PlacesService {
   factory PlacesService(Object? /*DivElement?|GMap?*/ attrContainer) => $js();
   void findPlaceFromPhoneNumber(
     FindPlaceFromPhoneNumberRequest? request, [
-    void Function(List<PlaceResult?>? p1, PlacesServiceStatus? p2)? callback,
+    void Function(List<PlaceResult?>?, PlacesServiceStatus?)? callback,
   ]);
   void findPlaceFromQuery(
     FindPlaceFromQueryRequest? request, [
-    void Function(List<PlaceResult?>? p1, PlacesServiceStatus? p2)? callback,
+    void Function(List<PlaceResult?>?, PlacesServiceStatus?)? callback,
   ]);
   void getDetails(
     PlaceDetailsRequest? request, [
-    void Function(PlaceResult? p1, PlacesServiceStatus? p2)? callback,
+    void Function(PlaceResult?, PlacesServiceStatus?)? callback,
   ]);
   void nearbySearch(
     PlaceSearchRequest? request, [
-    void Function(List<PlaceResult?>? p1, PlacesServiceStatus? p2,
-            PlaceSearchPagination? p3)?
+    void Function(
+            List<PlaceResult?>?, PlacesServiceStatus?, PlaceSearchPagination?)?
         callback,
   ]);
   void textSearch(
     TextSearchRequest? request, [
-    void Function(List<PlaceResult?>? p1, PlacesServiceStatus? p2,
-            PlaceSearchPagination? p3)?
+    void Function(
+            List<PlaceResult?>?, PlacesServiceStatus?, PlaceSearchPagination?)?
         callback,
   ]);
 }

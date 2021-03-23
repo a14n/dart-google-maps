@@ -19,7 +19,7 @@ part of '../google_maps_core.dart';
 abstract class ImageMapTypeOptions {
   factory ImageMapTypeOptions() => $js();
   String? alt;
-  String? Function(Point? p1, num? p2)? getTileUrl;
+  String? Function(Point?, num?)? getTileUrl;
   num? maxZoom;
   num? minZoom;
   String? name;
