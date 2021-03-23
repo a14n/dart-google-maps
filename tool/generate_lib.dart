@@ -101,6 +101,13 @@ void patchEntities(List<DocEntity> entities) {
       }
     }
     for (var method in entity.methods) {
+      final returnType = method.returnType;
+      if (returnType is SimpleType && returnType.name == 'Future') {
+        method.returnType = SimpleType(returnType.name,
+            parameters:
+                returnType.parameters.map((e) => e.nonNullable()).toList(),
+            nullable: false);
+      }
       if (method.name == 'toString') {
         method.returnType = SimpleType('String', nullable: false);
       }

@@ -17,7 +17,7 @@ part of '../google_maps_core.dart';
 @JsName('google.maps.Geocoder')
 abstract class Geocoder {
   factory Geocoder() => $js();
-  Future<GeocoderResponse?>? geocode(
+  Future<GeocoderResponse> geocode(
     GeocoderRequest? request, [
     void Function(List<GeocoderResult?>?, GeocoderStatus?)? callback,
   ]);

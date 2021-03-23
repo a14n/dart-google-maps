@@ -781,7 +781,7 @@ class AutocompleteService {
 }
 
 extension AutocompleteService$Ext on AutocompleteService {
-  Future<AutocompleteResponse?>? getPlacePredictions(
+  Future<AutocompleteResponse> getPlacePredictions(
     AutocompletionRequest? request, [
     void Function(List<AutocompletePrediction?>?, PlacesServiceStatus?)?
         callback,

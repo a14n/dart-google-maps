@@ -22,7 +22,7 @@ void main() {
 
 void showMaxZoom(MapMouseEvent e) async {
   try {
-    final response = await maxZoomService.getMaxZoomAtLatLng(e.latLng)!;
+    final response = await maxZoomService.getMaxZoomAtLatLng(e.latLng);
     infoWindow.content =
         'The maximum zoom at this location is: ${response.zoom}';
   } catch (e) {

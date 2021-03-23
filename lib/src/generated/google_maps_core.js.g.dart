@@ -5121,7 +5121,7 @@ class MaxZoomService {
 }
 
 extension MaxZoomService$Ext on MaxZoomService {
-  Future<MaxZoomResult?>? getMaxZoomAtLatLng(
+  Future<MaxZoomResult> getMaxZoomAtLatLng(
     LatLng? latlng, [
     void Function(MaxZoomResult?)? callback,
   ]) =>
@@ -5583,7 +5583,7 @@ class StreetViewService {
 }
 
 extension StreetViewService$Ext on StreetViewService {
-  Future<StreetViewResponse?>? getPanorama(
+  Future<StreetViewResponse> getPanorama(
     Object? /*StreetViewLocationRequest?|StreetViewPanoRequest?*/ request, [
     void Function(StreetViewPanoramaData?, StreetViewStatus?)? callback,
   ]) =>
@@ -5729,7 +5729,7 @@ class Geocoder {
 }
 
 extension Geocoder$Ext on Geocoder {
-  Future<GeocoderResponse?>? geocode(
+  Future<GeocoderResponse> geocode(
     GeocoderRequest? request, [
     void Function(List<GeocoderResult?>?, GeocoderStatus?)? callback,
   ]) =>
@@ -5936,7 +5936,7 @@ class DirectionsService {
 }
 
 extension DirectionsService$Ext on DirectionsService {
-  Future<DirectionsResult?>? route(
+  Future<DirectionsResult> route(
     DirectionsRequest? request, [
     void Function(DirectionsResult?, DirectionsStatus?)? callback,
   ]) =>
@@ -6735,7 +6735,7 @@ class DistanceMatrixService {
 }
 
 extension DistanceMatrixService$Ext on DistanceMatrixService {
-  Future<DistanceMatrixResponse?>? getDistanceMatrix(
+  Future<DistanceMatrixResponse> getDistanceMatrix(
     DistanceMatrixRequest? request, [
     void Function(DistanceMatrixResponse?, DistanceMatrixStatus?)? callback,
   ]) =>
@@ -6896,14 +6896,14 @@ class ElevationService {
 }
 
 extension ElevationService$Ext on ElevationService {
-  Future<PathElevationResponse?>? getElevationAlongPath(
+  Future<PathElevationResponse> getElevationAlongPath(
     PathElevationRequest? request, [
     void Function(List<ElevationResult?>?, ElevationStatus?)? callback,
   ]) =>
       promiseToFuture(callMethod(this, 'getElevationAlongPath',
           [request, callback == null ? null : allowInterop(callback)]));
 
-  Future<LocationElevationResponse?>? getElevationForLocations(
+  Future<LocationElevationResponse> getElevationForLocations(
     LocationElevationRequest? request, [
     void Function(List<ElevationResult?>?, ElevationStatus?)? callback,
   ]) =>
