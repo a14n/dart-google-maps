@@ -3912,7 +3912,7 @@ extension DataDataOptions$Ext on DataDataOptions {
   }
 
   DataFeature? Function(DataGeometry?)? get featureFactory =>
-      getProperty(this, 'featureFactory');
+      callMethod(getProperty(this, 'featureFactory'), 'bind', [this]);
 
   set featureFactory(DataFeature? Function(DataGeometry?)? value) {
     setProperty(
@@ -4410,19 +4410,22 @@ class OverlayView extends MVCObject {
 }
 
 extension OverlayView$Ext on OverlayView {
-  void Function()? get draw => getProperty(this, 'draw');
+  void Function()? get draw =>
+      callMethod(getProperty(this, 'draw'), 'bind', [this]);
 
   set draw(void Function()? value) {
     setProperty(this, 'draw', value == null ? null : allowInterop(value));
   }
 
-  void Function()? get onAdd => getProperty(this, 'onAdd');
+  void Function()? get onAdd =>
+      callMethod(getProperty(this, 'onAdd'), 'bind', [this]);
 
   set onAdd(void Function()? value) {
     setProperty(this, 'onAdd', value == null ? null : allowInterop(value));
   }
 
-  void Function()? get onRemove => getProperty(this, 'onRemove');
+  void Function()? get onRemove =>
+      callMethod(getProperty(this, 'onRemove'), 'bind', [this]);
 
   set onRemove(void Function()? value) {
     setProperty(this, 'onRemove', value == null ? null : allowInterop(value));
@@ -4779,7 +4782,7 @@ class MapType {
 
 extension MapType$Ext on MapType {
   Node? Function(Point? tileCoord, num? zoom, Document? ownerDocument)?
-      get getTile => getProperty(this, 'getTile');
+      get getTile => callMethod(getProperty(this, 'getTile'), 'bind', [this]);
 
   set getTile(
       Node? Function(Point? tileCoord, num? zoom, Document? ownerDocument)?
@@ -4788,7 +4791,7 @@ extension MapType$Ext on MapType {
   }
 
   void Function(Node? tile)? get releaseTile =>
-      getProperty(this, 'releaseTile');
+      callMethod(getProperty(this, 'releaseTile'), 'bind', [this]);
 
   set releaseTile(void Function(Node? tile)? value) {
     setProperty(
@@ -4806,7 +4809,8 @@ extension Projection$Ext on Projection {
   Point? Function(
     LatLng? latLng, [
     Point? point,
-  ])? get fromLatLngToPoint => getProperty(this, 'fromLatLngToPoint');
+  ])? get fromLatLngToPoint =>
+      callMethod(getProperty(this, 'fromLatLngToPoint'), 'bind', [this]);
 
   set fromLatLngToPoint(
       Point? Function(
@@ -4821,7 +4825,8 @@ extension Projection$Ext on Projection {
   LatLng? Function(
     Point? pixel, [
     bool? noWrap,
-  ])? get fromPointToLatLng => getProperty(this, 'fromPointToLatLng');
+  ])? get fromPointToLatLng =>
+      callMethod(getProperty(this, 'fromPointToLatLng'), 'bind', [this]);
 
   set fromPointToLatLng(
       LatLng? Function(
@@ -4869,7 +4874,7 @@ class ImageMapType extends MVCObject implements MapType {
 
 extension ImageMapType$Ext on ImageMapType {
   Node? Function(Point? tileCoord, num? zoom, Document? ownerDocument)?
-      get getTile => getProperty(this, 'getTile');
+      get getTile => callMethod(getProperty(this, 'getTile'), 'bind', [this]);
 
   set getTile(
       Node? Function(Point? tileCoord, num? zoom, Document? ownerDocument)?
@@ -4878,7 +4883,7 @@ extension ImageMapType$Ext on ImageMapType {
   }
 
   void Function(Node? tileDiv)? get releaseTile =>
-      getProperty(this, 'releaseTile');
+      callMethod(getProperty(this, 'releaseTile'), 'bind', [this]);
 
   set releaseTile(void Function(Node? tileDiv)? value) {
     setProperty(
@@ -4944,7 +4949,7 @@ class ImageMapTypeOptions {
 
 extension ImageMapTypeOptions$Ext on ImageMapTypeOptions {
   String? Function(Point?, num?)? get getTileUrl =>
-      getProperty(this, 'getTileUrl');
+      callMethod(getProperty(this, 'getTileUrl'), 'bind', [this]);
 
   set getTileUrl(String? Function(Point?, num?)? value) {
     setProperty(this, 'getTileUrl', value == null ? null : allowInterop(value));
@@ -5076,7 +5081,7 @@ class StyledMapType extends MVCObject implements MapType {
 
 extension StyledMapType$Ext on StyledMapType {
   Node? Function(Point? tileCoord, num? zoom, Document? ownerDocument)?
-      get getTile => getProperty(this, 'getTile');
+      get getTile => callMethod(getProperty(this, 'getTile'), 'bind', [this]);
 
   set getTile(
       Node? Function(Point? tileCoord, num? zoom, Document? ownerDocument)?
@@ -5085,7 +5090,7 @@ extension StyledMapType$Ext on StyledMapType {
   }
 
   void Function(Node? tile)? get releaseTile =>
-      getProperty(this, 'releaseTile');
+      callMethod(getProperty(this, 'releaseTile'), 'bind', [this]);
 
   set releaseTile(void Function(Node? tile)? value) {
     setProperty(
@@ -5538,7 +5543,8 @@ class StreetViewTileData {
 
 extension StreetViewTileData$Ext on StreetViewTileData {
   String? Function(String? pano, num? tileZoom, num? tileX, num? tileY)?
-      get getTileUrl => getProperty(this, 'getTileUrl');
+      get getTileUrl =>
+          callMethod(getProperty(this, 'getTileUrl'), 'bind', [this]);
 
   set getTileUrl(
       String? Function(String? pano, num? tileZoom, num? tileX, num? tileY)?
