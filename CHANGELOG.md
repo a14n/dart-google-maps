@@ -1,3 +1,7 @@
+# 5.2.0 (2021-08-10)
+
+- Fix issue using fields of type Function (see [#103: map.projection.fromLatLngToPoint not correctly bound](https://github.com/a14n/dart-google-maps/issues/103))
+
 # v5.1.0 (2021-03-19)
 
 - Make the following getters non-null:
