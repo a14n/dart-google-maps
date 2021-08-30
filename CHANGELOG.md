@@ -1,3 +1,7 @@
+# 5.3.0 (2021-08-30)
+
+- Fix issue using enum in closure (see [#105: Error with DirectionsService](https://github.com/a14n/dart-google-maps/issues/105))
+
 # 5.2.0 (2021-08-10)
 
 - Fix issue using fields of type Function (see [#103: map.projection.fromLatLngToPoint not correctly bound](https://github.com/a14n/dart-google-maps/issues/103))
