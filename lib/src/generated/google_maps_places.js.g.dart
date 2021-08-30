@@ -186,24 +186,36 @@ extension PlacesService$Ext on PlacesService {
     FindPlaceFromPhoneNumberRequest? request, [
     void Function(List<PlaceResult?>?, PlacesServiceStatus?)? callback,
   ]) {
-    callMethod(this, 'findPlaceFromPhoneNumber',
-        [request, callback == null ? null : allowInterop(callback)]);
+    callMethod(this, 'findPlaceFromPhoneNumber', [
+      request,
+      callback == null
+          ? null
+          : allowInterop((p0, p1) => callback(p0, PlacesServiceStatus$cast(p1)))
+    ]);
   }
 
   void findPlaceFromQuery(
     FindPlaceFromQueryRequest? request, [
     void Function(List<PlaceResult?>?, PlacesServiceStatus?)? callback,
   ]) {
-    callMethod(this, 'findPlaceFromQuery',
-        [request, callback == null ? null : allowInterop(callback)]);
+    callMethod(this, 'findPlaceFromQuery', [
+      request,
+      callback == null
+          ? null
+          : allowInterop((p0, p1) => callback(p0, PlacesServiceStatus$cast(p1)))
+    ]);
   }
 
   void getDetails(
     PlaceDetailsRequest? request, [
     void Function(PlaceResult?, PlacesServiceStatus?)? callback,
   ]) {
-    callMethod(this, 'getDetails',
-        [request, callback == null ? null : allowInterop(callback)]);
+    callMethod(this, 'getDetails', [
+      request,
+      callback == null
+          ? null
+          : allowInterop((p0, p1) => callback(p0, PlacesServiceStatus$cast(p1)))
+    ]);
   }
 
   void nearbySearch(
@@ -212,8 +224,13 @@ extension PlacesService$Ext on PlacesService {
             List<PlaceResult?>?, PlacesServiceStatus?, PlaceSearchPagination?)?
         callback,
   ]) {
-    callMethod(this, 'nearbySearch',
-        [request, callback == null ? null : allowInterop(callback)]);
+    callMethod(this, 'nearbySearch', [
+      request,
+      callback == null
+          ? null
+          : allowInterop(
+              (p0, p1, p2) => callback(p0, PlacesServiceStatus$cast(p1), p2))
+    ]);
   }
 
   void textSearch(
@@ -222,8 +239,13 @@ extension PlacesService$Ext on PlacesService {
             List<PlaceResult?>?, PlacesServiceStatus?, PlaceSearchPagination?)?
         callback,
   ]) {
-    callMethod(this, 'textSearch',
-        [request, callback == null ? null : allowInterop(callback)]);
+    callMethod(this, 'textSearch', [
+      request,
+      callback == null
+          ? null
+          : allowInterop(
+              (p0, p1, p2) => callback(p0, PlacesServiceStatus$cast(p1), p2))
+    ]);
   }
 }
 
@@ -374,6 +396,12 @@ class RankBy {
   external static RankBy get PROMINENCE;
 }
 
+RankBy? RankBy$cast(value) {
+  if (value == RankBy.DISTANCE) return RankBy.DISTANCE;
+  if (value == RankBy.PROMINENCE) return RankBy.PROMINENCE;
+  return null;
+}
+
 @JS('google.maps.places.PlacesServiceStatus')
 class PlacesServiceStatus {
   external static PlacesServiceStatus get INVALID_REQUEST;
@@ -383,6 +411,23 @@ class PlacesServiceStatus {
   external static PlacesServiceStatus get REQUEST_DENIED;
   external static PlacesServiceStatus get UNKNOWN_ERROR;
   external static PlacesServiceStatus get ZERO_RESULTS;
+}
+
+PlacesServiceStatus? PlacesServiceStatus$cast(value) {
+  if (value == PlacesServiceStatus.INVALID_REQUEST)
+    return PlacesServiceStatus.INVALID_REQUEST;
+  if (value == PlacesServiceStatus.NOT_FOUND)
+    return PlacesServiceStatus.NOT_FOUND;
+  if (value == PlacesServiceStatus.OK) return PlacesServiceStatus.OK;
+  if (value == PlacesServiceStatus.OVER_QUERY_LIMIT)
+    return PlacesServiceStatus.OVER_QUERY_LIMIT;
+  if (value == PlacesServiceStatus.REQUEST_DENIED)
+    return PlacesServiceStatus.REQUEST_DENIED;
+  if (value == PlacesServiceStatus.UNKNOWN_ERROR)
+    return PlacesServiceStatus.UNKNOWN_ERROR;
+  if (value == PlacesServiceStatus.ZERO_RESULTS)
+    return PlacesServiceStatus.ZERO_RESULTS;
+  return null;
 }
 
 @JS()
@@ -574,6 +619,15 @@ class BusinessStatus {
   external static BusinessStatus get CLOSED_PERMANENTLY;
   external static BusinessStatus get CLOSED_TEMPORARILY;
   external static BusinessStatus get OPERATIONAL;
+}
+
+BusinessStatus? BusinessStatus$cast(value) {
+  if (value == BusinessStatus.CLOSED_PERMANENTLY)
+    return BusinessStatus.CLOSED_PERMANENTLY;
+  if (value == BusinessStatus.CLOSED_TEMPORARILY)
+    return BusinessStatus.CLOSED_TEMPORARILY;
+  if (value == BusinessStatus.OPERATIONAL) return BusinessStatus.OPERATIONAL;
+  return null;
 }
 
 @JS()
@@ -786,16 +840,25 @@ extension AutocompleteService$Ext on AutocompleteService {
     void Function(List<AutocompletePrediction?>?, PlacesServiceStatus?)?
         callback,
   ]) =>
-      promiseToFuture(callMethod(this, 'getPlacePredictions',
-          [request, callback == null ? null : allowInterop(callback)]));
+      promiseToFuture(callMethod(this, 'getPlacePredictions', [
+        request,
+        callback == null
+            ? null
+            : allowInterop(
+                (p0, p1) => callback(p0, PlacesServiceStatus$cast(p1)))
+      ]));
 
   void getQueryPredictions(
     QueryAutocompletionRequest? request, [
     void Function(List<QueryAutocompletePrediction?>?, PlacesServiceStatus?)?
         callback,
   ]) {
-    callMethod(this, 'getQueryPredictions',
-        [request, callback == null ? null : allowInterop(callback)]);
+    callMethod(this, 'getQueryPredictions', [
+      request,
+      callback == null
+          ? null
+          : allowInterop((p0, p1) => callback(p0, PlacesServiceStatus$cast(p1)))
+    ]);
   }
 }
 

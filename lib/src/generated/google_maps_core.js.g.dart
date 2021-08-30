@@ -695,6 +695,14 @@ class MapTypeId {
   external static MapTypeId get TERRAIN;
 }
 
+MapTypeId? MapTypeId$cast(value) {
+  if (value == MapTypeId.HYBRID) return MapTypeId.HYBRID;
+  if (value == MapTypeId.ROADMAP) return MapTypeId.ROADMAP;
+  if (value == MapTypeId.SATELLITE) return MapTypeId.SATELLITE;
+  if (value == MapTypeId.TERRAIN) return MapTypeId.TERRAIN;
+  return null;
+}
+
 @JS('google.maps.MapTypeRegistry')
 class MapTypeRegistry extends MVCObject {
   external MapTypeRegistry();
@@ -1149,6 +1157,15 @@ class MapTypeControlStyle {
   external static MapTypeControlStyle get HORIZONTAL_BAR;
 }
 
+MapTypeControlStyle? MapTypeControlStyle$cast(value) {
+  if (value == MapTypeControlStyle.DEFAULT) return MapTypeControlStyle.DEFAULT;
+  if (value == MapTypeControlStyle.DROPDOWN_MENU)
+    return MapTypeControlStyle.DROPDOWN_MENU;
+  if (value == MapTypeControlStyle.HORIZONTAL_BAR)
+    return MapTypeControlStyle.HORIZONTAL_BAR;
+  return null;
+}
+
 @JS()
 @anonymous
 class MotionTrackingControlOptions {
@@ -1194,6 +1211,11 @@ class ScaleControlStyle {
   external static ScaleControlStyle get DEFAULT;
 }
 
+ScaleControlStyle? ScaleControlStyle$cast(value) {
+  if (value == ScaleControlStyle.DEFAULT) return ScaleControlStyle.DEFAULT;
+  return null;
+}
+
 @JS()
 @anonymous
 class StreetViewControlOptions {
@@ -1228,6 +1250,26 @@ class ControlPosition {
   external static ControlPosition get TOP_CENTER;
   external static ControlPosition get TOP_LEFT;
   external static ControlPosition get TOP_RIGHT;
+}
+
+ControlPosition? ControlPosition$cast(value) {
+  if (value == ControlPosition.BOTTOM_CENTER)
+    return ControlPosition.BOTTOM_CENTER;
+  if (value == ControlPosition.BOTTOM_LEFT) return ControlPosition.BOTTOM_LEFT;
+  if (value == ControlPosition.BOTTOM_RIGHT)
+    return ControlPosition.BOTTOM_RIGHT;
+  if (value == ControlPosition.LEFT_BOTTOM) return ControlPosition.LEFT_BOTTOM;
+  if (value == ControlPosition.LEFT_CENTER) return ControlPosition.LEFT_CENTER;
+  if (value == ControlPosition.LEFT_TOP) return ControlPosition.LEFT_TOP;
+  if (value == ControlPosition.RIGHT_BOTTOM)
+    return ControlPosition.RIGHT_BOTTOM;
+  if (value == ControlPosition.RIGHT_CENTER)
+    return ControlPosition.RIGHT_CENTER;
+  if (value == ControlPosition.RIGHT_TOP) return ControlPosition.RIGHT_TOP;
+  if (value == ControlPosition.TOP_CENTER) return ControlPosition.TOP_CENTER;
+  if (value == ControlPosition.TOP_LEFT) return ControlPosition.TOP_LEFT;
+  if (value == ControlPosition.TOP_RIGHT) return ControlPosition.TOP_RIGHT;
+  return null;
 }
 
 @JS('google.maps.Marker')
@@ -1949,10 +1991,29 @@ class SymbolPath {
   external static SymbolPath get FORWARD_OPEN_ARROW;
 }
 
+SymbolPath? SymbolPath$cast(value) {
+  if (value == SymbolPath.BACKWARD_CLOSED_ARROW)
+    return SymbolPath.BACKWARD_CLOSED_ARROW;
+  if (value == SymbolPath.BACKWARD_OPEN_ARROW)
+    return SymbolPath.BACKWARD_OPEN_ARROW;
+  if (value == SymbolPath.CIRCLE) return SymbolPath.CIRCLE;
+  if (value == SymbolPath.FORWARD_CLOSED_ARROW)
+    return SymbolPath.FORWARD_CLOSED_ARROW;
+  if (value == SymbolPath.FORWARD_OPEN_ARROW)
+    return SymbolPath.FORWARD_OPEN_ARROW;
+  return null;
+}
+
 @JS('google.maps.Animation')
 class Animation {
   external static Animation get BOUNCE;
   external static Animation get DROP;
+}
+
+Animation? Animation$cast(value) {
+  if (value == Animation.BOUNCE) return Animation.BOUNCE;
+  if (value == Animation.DROP) return Animation.DROP;
+  return null;
 }
 
 @JS('google.maps.InfoWindow')
@@ -3553,6 +3614,13 @@ class StrokePosition {
   external static StrokePosition get OUTSIDE;
 }
 
+StrokePosition? StrokePosition$cast(value) {
+  if (value == StrokePosition.CENTER) return StrokePosition.CENTER;
+  if (value == StrokePosition.INSIDE) return StrokePosition.INSIDE;
+  if (value == StrokePosition.OUTSIDE) return StrokePosition.OUTSIDE;
+  return null;
+}
+
 @JS('google.maps.Data')
 class Data extends MVCObject {
   external Data([
@@ -4680,6 +4748,24 @@ class KmlLayerStatus {
   external static KmlLayerStatus get UNKNOWN;
 }
 
+KmlLayerStatus? KmlLayerStatus$cast(value) {
+  if (value == KmlLayerStatus.DOCUMENT_NOT_FOUND)
+    return KmlLayerStatus.DOCUMENT_NOT_FOUND;
+  if (value == KmlLayerStatus.DOCUMENT_TOO_LARGE)
+    return KmlLayerStatus.DOCUMENT_TOO_LARGE;
+  if (value == KmlLayerStatus.FETCH_ERROR) return KmlLayerStatus.FETCH_ERROR;
+  if (value == KmlLayerStatus.INVALID_DOCUMENT)
+    return KmlLayerStatus.INVALID_DOCUMENT;
+  if (value == KmlLayerStatus.INVALID_REQUEST)
+    return KmlLayerStatus.INVALID_REQUEST;
+  if (value == KmlLayerStatus.LIMITS_EXCEEDED)
+    return KmlLayerStatus.LIMITS_EXCEEDED;
+  if (value == KmlLayerStatus.OK) return KmlLayerStatus.OK;
+  if (value == KmlLayerStatus.TIMED_OUT) return KmlLayerStatus.TIMED_OUT;
+  if (value == KmlLayerStatus.UNKNOWN) return KmlLayerStatus.UNKNOWN;
+  return null;
+}
+
 @JS()
 @anonymous
 class KmlMouseEvent {
@@ -5154,6 +5240,12 @@ class MaxZoomStatus {
   external static MaxZoomStatus get OK;
 }
 
+MaxZoomStatus? MaxZoomStatus$cast(value) {
+  if (value == MaxZoomStatus.ERROR) return MaxZoomStatus.ERROR;
+  if (value == MaxZoomStatus.OK) return MaxZoomStatus.OK;
+  return null;
+}
+
 @JS('google.maps.StreetViewPanorama')
 class StreetViewPanorama extends MVCObject {
   external StreetViewPanorama(
@@ -5593,8 +5685,12 @@ extension StreetViewService$Ext on StreetViewService {
     Object? /*StreetViewLocationRequest?|StreetViewPanoRequest?*/ request, [
     void Function(StreetViewPanoramaData?, StreetViewStatus?)? callback,
   ]) =>
-      promiseToFuture(callMethod(this, 'getPanorama',
-          [request, callback == null ? null : allowInterop(callback)]));
+      promiseToFuture(callMethod(this, 'getPanorama', [
+        request,
+        callback == null
+            ? null
+            : allowInterop((p0, p1) => callback(p0, StreetViewStatus$cast(p1)))
+      ]));
 }
 
 @JS('google.maps.StreetViewStatus')
@@ -5602,6 +5698,15 @@ class StreetViewStatus {
   external static StreetViewStatus get OK;
   external static StreetViewStatus get UNKNOWN_ERROR;
   external static StreetViewStatus get ZERO_RESULTS;
+}
+
+StreetViewStatus? StreetViewStatus$cast(value) {
+  if (value == StreetViewStatus.OK) return StreetViewStatus.OK;
+  if (value == StreetViewStatus.UNKNOWN_ERROR)
+    return StreetViewStatus.UNKNOWN_ERROR;
+  if (value == StreetViewStatus.ZERO_RESULTS)
+    return StreetViewStatus.ZERO_RESULTS;
+  return null;
 }
 
 @JS()
@@ -5674,10 +5779,23 @@ class StreetViewPreference {
   external static StreetViewPreference get NEAREST;
 }
 
+StreetViewPreference? StreetViewPreference$cast(value) {
+  if (value == StreetViewPreference.BEST) return StreetViewPreference.BEST;
+  if (value == StreetViewPreference.NEAREST)
+    return StreetViewPreference.NEAREST;
+  return null;
+}
+
 @JS('google.maps.StreetViewSource')
 class StreetViewSource {
   external static StreetViewSource get DEFAULT;
   external static StreetViewSource get OUTDOOR;
+}
+
+StreetViewSource? StreetViewSource$cast(value) {
+  if (value == StreetViewSource.DEFAULT) return StreetViewSource.DEFAULT;
+  if (value == StreetViewSource.OUTDOOR) return StreetViewSource.OUTDOOR;
+  return null;
 }
 
 @JS()
@@ -5739,8 +5857,12 @@ extension Geocoder$Ext on Geocoder {
     GeocoderRequest? request, [
     void Function(List<GeocoderResult?>?, GeocoderStatus?)? callback,
   ]) =>
-      promiseToFuture(callMethod(this, 'geocode',
-          [request, callback == null ? null : allowInterop(callback)]));
+      promiseToFuture(callMethod(this, 'geocode', [
+        request,
+        callback == null
+            ? null
+            : allowInterop((p0, p1) => callback(p0, GeocoderStatus$cast(p1)))
+      ]));
 }
 
 @JS()
@@ -5808,6 +5930,21 @@ class GeocoderStatus {
   external static GeocoderStatus get REQUEST_DENIED;
   external static GeocoderStatus get UNKNOWN_ERROR;
   external static GeocoderStatus get ZERO_RESULTS;
+}
+
+GeocoderStatus? GeocoderStatus$cast(value) {
+  if (value == GeocoderStatus.ERROR) return GeocoderStatus.ERROR;
+  if (value == GeocoderStatus.INVALID_REQUEST)
+    return GeocoderStatus.INVALID_REQUEST;
+  if (value == GeocoderStatus.OK) return GeocoderStatus.OK;
+  if (value == GeocoderStatus.OVER_QUERY_LIMIT)
+    return GeocoderStatus.OVER_QUERY_LIMIT;
+  if (value == GeocoderStatus.REQUEST_DENIED)
+    return GeocoderStatus.REQUEST_DENIED;
+  if (value == GeocoderStatus.UNKNOWN_ERROR)
+    return GeocoderStatus.UNKNOWN_ERROR;
+  if (value == GeocoderStatus.ZERO_RESULTS) return GeocoderStatus.ZERO_RESULTS;
+  return null;
 }
 
 @JS()
@@ -5936,6 +6073,18 @@ class GeocoderLocationType {
   external static GeocoderLocationType get ROOFTOP;
 }
 
+GeocoderLocationType? GeocoderLocationType$cast(value) {
+  if (value == GeocoderLocationType.APPROXIMATE)
+    return GeocoderLocationType.APPROXIMATE;
+  if (value == GeocoderLocationType.GEOMETRIC_CENTER)
+    return GeocoderLocationType.GEOMETRIC_CENTER;
+  if (value == GeocoderLocationType.RANGE_INTERPOLATED)
+    return GeocoderLocationType.RANGE_INTERPOLATED;
+  if (value == GeocoderLocationType.ROOFTOP)
+    return GeocoderLocationType.ROOFTOP;
+  return null;
+}
+
 @JS('google.maps.DirectionsService')
 class DirectionsService {
   external DirectionsService();
@@ -5946,8 +6095,12 @@ extension DirectionsService$Ext on DirectionsService {
     DirectionsRequest? request, [
     void Function(DirectionsResult?, DirectionsStatus?)? callback,
   ]) =>
-      promiseToFuture(callMethod(this, 'route',
-          [request, callback == null ? null : allowInterop(callback)]));
+      promiseToFuture(callMethod(this, 'route', [
+        request,
+        callback == null
+            ? null
+            : allowInterop((p0, p1) => callback(p0, DirectionsStatus$cast(p1)))
+      ]));
 }
 
 @JS()
@@ -6023,6 +6176,24 @@ class DirectionsStatus {
   external static DirectionsStatus get REQUEST_DENIED;
   external static DirectionsStatus get UNKNOWN_ERROR;
   external static DirectionsStatus get ZERO_RESULTS;
+}
+
+DirectionsStatus? DirectionsStatus$cast(value) {
+  if (value == DirectionsStatus.INVALID_REQUEST)
+    return DirectionsStatus.INVALID_REQUEST;
+  if (value == DirectionsStatus.MAX_WAYPOINTS_EXCEEDED)
+    return DirectionsStatus.MAX_WAYPOINTS_EXCEEDED;
+  if (value == DirectionsStatus.NOT_FOUND) return DirectionsStatus.NOT_FOUND;
+  if (value == DirectionsStatus.OK) return DirectionsStatus.OK;
+  if (value == DirectionsStatus.OVER_QUERY_LIMIT)
+    return DirectionsStatus.OVER_QUERY_LIMIT;
+  if (value == DirectionsStatus.REQUEST_DENIED)
+    return DirectionsStatus.REQUEST_DENIED;
+  if (value == DirectionsStatus.UNKNOWN_ERROR)
+    return DirectionsStatus.UNKNOWN_ERROR;
+  if (value == DirectionsStatus.ZERO_RESULTS)
+    return DirectionsStatus.ZERO_RESULTS;
+  return null;
 }
 
 @JS()
@@ -6420,6 +6591,14 @@ class TravelMode {
   external static TravelMode get WALKING;
 }
 
+TravelMode? TravelMode$cast(value) {
+  if (value == TravelMode.BICYCLING) return TravelMode.BICYCLING;
+  if (value == TravelMode.DRIVING) return TravelMode.DRIVING;
+  if (value == TravelMode.TRANSIT) return TravelMode.TRANSIT;
+  if (value == TravelMode.WALKING) return TravelMode.WALKING;
+  return null;
+}
+
 @JS()
 @anonymous
 class DrivingOptions {
@@ -6439,6 +6618,13 @@ class TrafficModel {
   external static TrafficModel get BEST_GUESS;
   external static TrafficModel get OPTIMISTIC;
   external static TrafficModel get PESSIMISTIC;
+}
+
+TrafficModel? TrafficModel$cast(value) {
+  if (value == TrafficModel.BEST_GUESS) return TrafficModel.BEST_GUESS;
+  if (value == TrafficModel.OPTIMISTIC) return TrafficModel.OPTIMISTIC;
+  if (value == TrafficModel.PESSIMISTIC) return TrafficModel.PESSIMISTIC;
+  return null;
 }
 
 @JS()
@@ -6477,10 +6663,27 @@ class TransitMode {
   external static TransitMode get TRAM;
 }
 
+TransitMode? TransitMode$cast(value) {
+  if (value == TransitMode.BUS) return TransitMode.BUS;
+  if (value == TransitMode.RAIL) return TransitMode.RAIL;
+  if (value == TransitMode.SUBWAY) return TransitMode.SUBWAY;
+  if (value == TransitMode.TRAIN) return TransitMode.TRAIN;
+  if (value == TransitMode.TRAM) return TransitMode.TRAM;
+  return null;
+}
+
 @JS('google.maps.TransitRoutePreference')
 class TransitRoutePreference {
   external static TransitRoutePreference get FEWER_TRANSFERS;
   external static TransitRoutePreference get LESS_WALKING;
+}
+
+TransitRoutePreference? TransitRoutePreference$cast(value) {
+  if (value == TransitRoutePreference.FEWER_TRANSFERS)
+    return TransitRoutePreference.FEWER_TRANSFERS;
+  if (value == TransitRoutePreference.LESS_WALKING)
+    return TransitRoutePreference.LESS_WALKING;
+  return null;
 }
 
 @JS()
@@ -6679,10 +6882,38 @@ class VehicleType {
   external static VehicleType get TROLLEYBUS;
 }
 
+VehicleType? VehicleType$cast(value) {
+  if (value == VehicleType.BUS) return VehicleType.BUS;
+  if (value == VehicleType.CABLE_CAR) return VehicleType.CABLE_CAR;
+  if (value == VehicleType.COMMUTER_TRAIN) return VehicleType.COMMUTER_TRAIN;
+  if (value == VehicleType.FERRY) return VehicleType.FERRY;
+  if (value == VehicleType.FUNICULAR) return VehicleType.FUNICULAR;
+  if (value == VehicleType.GONDOLA_LIFT) return VehicleType.GONDOLA_LIFT;
+  if (value == VehicleType.HEAVY_RAIL) return VehicleType.HEAVY_RAIL;
+  if (value == VehicleType.HIGH_SPEED_TRAIN)
+    return VehicleType.HIGH_SPEED_TRAIN;
+  if (value == VehicleType.INTERCITY_BUS) return VehicleType.INTERCITY_BUS;
+  if (value == VehicleType.METRO_RAIL) return VehicleType.METRO_RAIL;
+  if (value == VehicleType.MONORAIL) return VehicleType.MONORAIL;
+  if (value == VehicleType.OTHER) return VehicleType.OTHER;
+  if (value == VehicleType.RAIL) return VehicleType.RAIL;
+  if (value == VehicleType.SHARE_TAXI) return VehicleType.SHARE_TAXI;
+  if (value == VehicleType.SUBWAY) return VehicleType.SUBWAY;
+  if (value == VehicleType.TRAM) return VehicleType.TRAM;
+  if (value == VehicleType.TROLLEYBUS) return VehicleType.TROLLEYBUS;
+  return null;
+}
+
 @JS('google.maps.UnitSystem')
 class UnitSystem {
   external static UnitSystem get IMPERIAL;
   external static UnitSystem get METRIC;
+}
+
+UnitSystem? UnitSystem$cast(value) {
+  if (value == UnitSystem.IMPERIAL) return UnitSystem.IMPERIAL;
+  if (value == UnitSystem.METRIC) return UnitSystem.METRIC;
+  return null;
 }
 
 @JS()
@@ -6745,8 +6976,13 @@ extension DistanceMatrixService$Ext on DistanceMatrixService {
     DistanceMatrixRequest? request, [
     void Function(DistanceMatrixResponse?, DistanceMatrixStatus?)? callback,
   ]) =>
-      promiseToFuture(callMethod(this, 'getDistanceMatrix',
-          [request, callback == null ? null : allowInterop(callback)]));
+      promiseToFuture(callMethod(this, 'getDistanceMatrix', [
+        request,
+        callback == null
+            ? null
+            : allowInterop(
+                (p0, p1) => callback(p0, DistanceMatrixStatus$cast(p1)))
+      ]));
 }
 
 @JS()
@@ -6889,11 +7125,38 @@ class DistanceMatrixStatus {
   external static DistanceMatrixStatus get UNKNOWN_ERROR;
 }
 
+DistanceMatrixStatus? DistanceMatrixStatus$cast(value) {
+  if (value == DistanceMatrixStatus.INVALID_REQUEST)
+    return DistanceMatrixStatus.INVALID_REQUEST;
+  if (value == DistanceMatrixStatus.MAX_DIMENSIONS_EXCEEDED)
+    return DistanceMatrixStatus.MAX_DIMENSIONS_EXCEEDED;
+  if (value == DistanceMatrixStatus.MAX_ELEMENTS_EXCEEDED)
+    return DistanceMatrixStatus.MAX_ELEMENTS_EXCEEDED;
+  if (value == DistanceMatrixStatus.OK) return DistanceMatrixStatus.OK;
+  if (value == DistanceMatrixStatus.OVER_QUERY_LIMIT)
+    return DistanceMatrixStatus.OVER_QUERY_LIMIT;
+  if (value == DistanceMatrixStatus.REQUEST_DENIED)
+    return DistanceMatrixStatus.REQUEST_DENIED;
+  if (value == DistanceMatrixStatus.UNKNOWN_ERROR)
+    return DistanceMatrixStatus.UNKNOWN_ERROR;
+  return null;
+}
+
 @JS('google.maps.DistanceMatrixElementStatus')
 class DistanceMatrixElementStatus {
   external static DistanceMatrixElementStatus get NOT_FOUND;
   external static DistanceMatrixElementStatus get OK;
   external static DistanceMatrixElementStatus get ZERO_RESULTS;
+}
+
+DistanceMatrixElementStatus? DistanceMatrixElementStatus$cast(value) {
+  if (value == DistanceMatrixElementStatus.NOT_FOUND)
+    return DistanceMatrixElementStatus.NOT_FOUND;
+  if (value == DistanceMatrixElementStatus.OK)
+    return DistanceMatrixElementStatus.OK;
+  if (value == DistanceMatrixElementStatus.ZERO_RESULTS)
+    return DistanceMatrixElementStatus.ZERO_RESULTS;
+  return null;
 }
 
 @JS('google.maps.ElevationService')
@@ -6906,15 +7169,23 @@ extension ElevationService$Ext on ElevationService {
     PathElevationRequest? request, [
     void Function(List<ElevationResult?>?, ElevationStatus?)? callback,
   ]) =>
-      promiseToFuture(callMethod(this, 'getElevationAlongPath',
-          [request, callback == null ? null : allowInterop(callback)]));
+      promiseToFuture(callMethod(this, 'getElevationAlongPath', [
+        request,
+        callback == null
+            ? null
+            : allowInterop((p0, p1) => callback(p0, ElevationStatus$cast(p1)))
+      ]));
 
   Future<LocationElevationResponse> getElevationForLocations(
     LocationElevationRequest? request, [
     void Function(List<ElevationResult?>?, ElevationStatus?)? callback,
   ]) =>
-      promiseToFuture(callMethod(this, 'getElevationForLocations',
-          [request, callback == null ? null : allowInterop(callback)]));
+      promiseToFuture(callMethod(this, 'getElevationForLocations', [
+        request,
+        callback == null
+            ? null
+            : allowInterop((p0, p1) => callback(p0, ElevationStatus$cast(p1)))
+      ]));
 }
 
 @JS()
@@ -7005,4 +7276,17 @@ class ElevationStatus {
   external static ElevationStatus get OVER_QUERY_LIMIT;
   external static ElevationStatus get REQUEST_DENIED;
   external static ElevationStatus get UNKNOWN_ERROR;
+}
+
+ElevationStatus? ElevationStatus$cast(value) {
+  if (value == ElevationStatus.INVALID_REQUEST)
+    return ElevationStatus.INVALID_REQUEST;
+  if (value == ElevationStatus.OK) return ElevationStatus.OK;
+  if (value == ElevationStatus.OVER_QUERY_LIMIT)
+    return ElevationStatus.OVER_QUERY_LIMIT;
+  if (value == ElevationStatus.REQUEST_DENIED)
+    return ElevationStatus.REQUEST_DENIED;
+  if (value == ElevationStatus.UNKNOWN_ERROR)
+    return ElevationStatus.UNKNOWN_ERROR;
+  return null;
 }

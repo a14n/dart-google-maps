@@ -247,3 +247,12 @@ class OverlayType {
   external static OverlayType get POLYLINE;
   external static OverlayType get RECTANGLE;
 }
+
+OverlayType? OverlayType$cast(value) {
+  if (value == OverlayType.CIRCLE) return OverlayType.CIRCLE;
+  if (value == OverlayType.MARKER) return OverlayType.MARKER;
+  if (value == OverlayType.POLYGON) return OverlayType.POLYGON;
+  if (value == OverlayType.POLYLINE) return OverlayType.POLYLINE;
+  if (value == OverlayType.RECTANGLE) return OverlayType.RECTANGLE;
+  return null;
+}

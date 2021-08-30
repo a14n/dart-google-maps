@@ -27,21 +27,23 @@ void main() {
 void displayRoute(String origin, String destination, DirectionsService service,
     DirectionsRenderer display) {
   service.route(
-      DirectionsRequest()
-        ..origin = origin
-        ..destination = destination
-        ..waypoints = [
-          DirectionsWaypoint()..location = 'Cocklebiddy, WA',
-          DirectionsWaypoint()..location = 'Broken Hill, NSW'
-        ]
-        ..travelMode = TravelMode.DRIVING
-        ..avoidTolls = true, (response, status) {
-    if (status == DirectionsStatus.OK) {
-      display.directions = response;
-    } else {
-      window.alert('Could not display directions due to: $status');
-    }
-  });
+    DirectionsRequest()
+      ..origin = origin
+      ..destination = destination
+      ..waypoints = [
+        DirectionsWaypoint()..location = 'Cocklebiddy, WA',
+        DirectionsWaypoint()..location = 'Broken Hill, NSW'
+      ]
+      ..travelMode = TravelMode.DRIVING
+      ..avoidTolls = true,
+    (response, status) {
+      if (status == DirectionsStatus.OK) {
+        display.directions = response;
+      } else {
+        window.alert('Could not display directions due to: $status');
+      }
+    },
+  );
 }
 
 void computeTotalDistance(DirectionsResult result) {

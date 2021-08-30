@@ -278,11 +278,29 @@ class PlaceChooserLayoutMode {
   external static PlaceChooserLayoutMode get SHEET;
 }
 
+PlaceChooserLayoutMode? PlaceChooserLayoutMode$cast(value) {
+  if (value == PlaceChooserLayoutMode.HIDDEN)
+    return PlaceChooserLayoutMode.HIDDEN;
+  if (value == PlaceChooserLayoutMode.SHEET)
+    return PlaceChooserLayoutMode.SHEET;
+  return null;
+}
+
 @JS('google.maps.localContext.PlaceChooserPosition')
 class PlaceChooserPosition {
   external static PlaceChooserPosition get BLOCK_END;
   external static PlaceChooserPosition get INLINE_END;
   external static PlaceChooserPosition get INLINE_START;
+}
+
+PlaceChooserPosition? PlaceChooserPosition$cast(value) {
+  if (value == PlaceChooserPosition.BLOCK_END)
+    return PlaceChooserPosition.BLOCK_END;
+  if (value == PlaceChooserPosition.INLINE_END)
+    return PlaceChooserPosition.INLINE_END;
+  if (value == PlaceChooserPosition.INLINE_START)
+    return PlaceChooserPosition.INLINE_START;
+  return null;
 }
 
 @JS()
@@ -309,8 +327,24 @@ class PlaceDetailsLayoutMode {
   external static PlaceDetailsLayoutMode get SHEET;
 }
 
+PlaceDetailsLayoutMode? PlaceDetailsLayoutMode$cast(value) {
+  if (value == PlaceDetailsLayoutMode.INFO_WINDOW)
+    return PlaceDetailsLayoutMode.INFO_WINDOW;
+  if (value == PlaceDetailsLayoutMode.SHEET)
+    return PlaceDetailsLayoutMode.SHEET;
+  return null;
+}
+
 @JS('google.maps.localContext.PlaceDetailsPosition')
 class PlaceDetailsPosition {
   external static PlaceDetailsPosition get INLINE_END;
   external static PlaceDetailsPosition get INLINE_START;
+}
+
+PlaceDetailsPosition? PlaceDetailsPosition$cast(value) {
+  if (value == PlaceDetailsPosition.INLINE_END)
+    return PlaceDetailsPosition.INLINE_END;
+  if (value == PlaceDetailsPosition.INLINE_START)
+    return PlaceDetailsPosition.INLINE_START;
+  return null;
 }
