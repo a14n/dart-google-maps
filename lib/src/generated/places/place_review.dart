@@ -34,4 +34,5 @@ abstract class PlaceReview {
   // custom name for author_url
   @JsName('author_url')
   String? authorUrl;
+  num? rating;
 }

@@ -25,6 +25,9 @@ abstract class MapType {
   String? alt;
   String? name;
   Projection? projection;
-  Node? Function(Point? tileCoord, num? zoom, Document? ownerDocument)? getTile;
-  void Function(Node? tile)? releaseTile;
+  Element? Function(Point? tileCoord, num? zoom, Document? ownerDocument)?
+      getTile;
+  void Function([
+    Element? tile,
+  ])? releaseTile;
 }

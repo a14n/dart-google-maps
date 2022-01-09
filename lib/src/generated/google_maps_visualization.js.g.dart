@@ -21,8 +21,8 @@
 @JS()
 library google_maps.visualization;
 
-import 'package:js_wrapping/js_wrapping.dart';
 import 'package:google_maps/google_maps.dart';
+import 'package:js_wrapping/js_wrapping.dart';
 
 @JS('google.maps.visualization.HeatmapLayer')
 class HeatmapLayer extends MVCObject {

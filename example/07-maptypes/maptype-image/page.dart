@@ -25,7 +25,8 @@ void main() {
     ..streetViewControl = false
     ..mapTypeControlOptions = (MapTypeControlOptions()..mapTypeIds = ['moon']);
 
-  final map = GMap(document.getElementById('map-canvas'), mapOptions);
+  final map =
+      GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
   map.mapTypes!.set('moon', moonMapType);
   map.mapTypeId = 'moon';
 }

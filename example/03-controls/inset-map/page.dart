@@ -11,7 +11,7 @@ void main() {
     ..center = LatLng(50, 8)
     ..zoom = 7;
   GMap(
-    document.getElementById('map'),
+    document.getElementById('map') as HtmlElement,
     MapOptions()
       ..zoom = 4
       ..center = LatLng(-33, 151)
@@ -19,10 +19,10 @@ void main() {
       ..scaleControl = true,
   );
   // instantiate the primary map
-  final map = GMap(document.getElementById('map'), mapOptions);
+  final map = GMap(document.getElementById('map') as HtmlElement, mapOptions);
   // instantiate the overview map without controls
   final overview = GMap(
-    document.getElementById('overview'),
+    document.getElementById('overview') as HtmlElement,
     MapOptions()
       ..center = mapOptions.center
       ..zoom = mapOptions.zoom

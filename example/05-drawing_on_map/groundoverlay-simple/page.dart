@@ -9,7 +9,8 @@ void main() {
   final mapOptions = MapOptions()
     ..zoom = 13
     ..center = newark;
-  final map = GMap(document.getElementById('map-canvas'), mapOptions);
+  final map =
+      GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
 
   GroundOverlay('https://www.lib.utexas.edu/maps/historical/newark_nj_1922.jpg',
           imageBounds)

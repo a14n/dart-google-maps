@@ -12,7 +12,7 @@ void main() {
   infowindow = InfoWindow();
 
   map = GMap(
-      document.getElementById('map-canvas'),
+      document.getElementById('map-canvas') as HtmlElement,
       MapOptions()
         ..center = sydney
         ..zoom = 15);

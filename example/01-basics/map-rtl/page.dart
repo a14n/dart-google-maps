@@ -4,7 +4,7 @@ import 'package:google_maps/google_maps.dart';
 void main() {
   final cairo = LatLng(30.064742, 31.249509);
   final map = GMap(
-    document.getElementById('map'),
+    document.getElementById('map') as HtmlElement,
     MapOptions()
       ..scaleControl = true
       ..center = cairo

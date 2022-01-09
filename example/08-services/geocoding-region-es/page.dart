@@ -9,7 +9,7 @@ const query = 'Toledo';
 void main() {
   geocoder = Geocoder();
   final mapOptions = MapOptions()..zoom = 8;
-  map = GMap(document.getElementById('map-canvas'), mapOptions);
+  map = GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
   codeAddress();
 }
 

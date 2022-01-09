@@ -10,7 +10,8 @@ void main() {
     ..center = LatLng(20.291, 153.027)
     ..zoom = 6
     ..mapTypeId = MapTypeId.TERRAIN;
-  final map = GMap(document.getElementById('map-canvas'), mapOptions);
+  final map =
+      GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
 
   final lineCoordinates = <LatLng>[
     LatLng(22.291, 153.027),

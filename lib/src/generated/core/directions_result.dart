@@ -19,6 +19,9 @@ part of '../google_maps_core.dart';
 abstract class DirectionsResult {
   factory DirectionsResult() => $js();
   List<DirectionsRoute?>? routes;
+  // custom name for available_travel_modes
+  @JsName('available_travel_modes')
+  List<TravelMode?>? availableTravelModes;
   // custom name for geocoded_waypoints
   @JsName('geocoded_waypoints')
   List<DirectionsGeocodedWaypoint?>? geocodedWaypoints;

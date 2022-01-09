@@ -6,7 +6,8 @@ void main() {
   final mapOptions = MapOptions()
     ..zoom = 14
     ..center = myLatlng;
-  final map = GMap(document.getElementById('map-canvas'), mapOptions);
+  final map =
+      GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
 
   BicyclingLayer().map = map;
 }

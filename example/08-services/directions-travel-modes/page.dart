@@ -13,7 +13,7 @@ void main() {
   final mapOptions = MapOptions()
     ..zoom = 14
     ..center = haight;
-  map = GMap(document.getElementById('map-canvas'), mapOptions);
+  map = GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
   directionsDisplay.map = map;
 
   document.getElementById('mode')!.onChange.listen((e) => calcRoute());

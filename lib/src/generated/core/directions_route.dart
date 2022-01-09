@@ -27,6 +27,7 @@ abstract class DirectionsRoute {
   // custom name for overview_polyline
   @JsName('overview_polyline')
   String? overviewPolyline;
+  String? summary;
   List<String?>? warnings;
   // custom name for waypoint_order
   @JsName('waypoint_order')

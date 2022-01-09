@@ -10,11 +10,13 @@ void main() {
   final mapOptions = MapOptions()
     ..zoom = 7
     ..center = LatLng(41.850033, -87.6500523);
-  final map = GMap(document.getElementById('map-canvas'), mapOptions);
+  final map =
+      GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
   directionsDisplay.map = map;
-  directionsDisplay.panel = document.getElementById('directions-panel');
+  directionsDisplay.panel =
+      document.getElementById('directions-panel') as HtmlElement;
 
-  final control = document.getElementById('control')!;
+  final control = document.getElementById('control') as HtmlElement;
   control.style.display = 'block';
   map.controls![ControlPosition.TOP_CENTER as int]!.push(control);
 

@@ -28,6 +28,9 @@ abstract class StyledMapType extends MVCObject implements MapType {
   Projection? projection;
   num? radius;
   Size? tileSize;
-  Node? Function(Point? tileCoord, num? zoom, Document? ownerDocument)? getTile;
-  void Function(Node? tile)? releaseTile;
+  Element? Function(Point? tileCoord, num? zoom, Document? ownerDocument)?
+      getTile;
+  void Function([
+    Element? tile,
+  ])? releaseTile;
 }

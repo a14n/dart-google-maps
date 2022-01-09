@@ -9,7 +9,7 @@ void main() {
   final mapOptions = MapOptions()
     ..zoom = 10
     ..center = chicago;
-  map = GMap(document.getElementById('map-canvas'), mapOptions);
+  map = GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
 
   // Insert this overlay map type as the first overlay map type at
   // position 0. Note that all overlay map types appear on top of

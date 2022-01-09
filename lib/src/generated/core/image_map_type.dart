@@ -30,8 +30,11 @@ abstract class ImageMapType extends MVCObject implements MapType {
   @JsName('getOpacity')
   num? _getOpacity();
 
-  Node? Function(Point? tileCoord, num? zoom, Document? ownerDocument)? getTile;
-  void Function(Node? tileDiv)? releaseTile;
+  Element? Function(Point? tileCoord, num? zoom, Document? ownerDocument)?
+      getTile;
+  void Function([
+    Element? tileDiv,
+  ])? releaseTile;
 
   // synthetic setter for setOpacity
   set opacity(num? opacity) => _setOpacity(opacity);

@@ -43,7 +43,7 @@ external dynamic get window;
 
 void main() {
   map = GMap(
-      document.getElementById('map-canvas'),
+      document.getElementById('map-canvas') as HtmlElement,
       MapOptions()
         ..center = LatLng(20, -160)
         ..zoom = 3

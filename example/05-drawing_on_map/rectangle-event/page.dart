@@ -9,7 +9,7 @@ void main() {
   final mapOptions = MapOptions()
     ..center = LatLng(44.5452, -78.5389)
     ..zoom = 9;
-  map = GMap(document.getElementById('map-canvas'), mapOptions);
+  map = GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
 
   final bounds = LatLngBounds(LatLng(44.490, -78.649), LatLng(44.599, -78.443));
 

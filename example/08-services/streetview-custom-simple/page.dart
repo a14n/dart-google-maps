@@ -7,7 +7,7 @@ void main() {
   // custom panorama provider function. Set the StreetView to display
   // the custom panorama 'reception' which we check for below.
   StreetViewPanorama(
-    document.getElementById('map-canvas'),
+    document.getElementById('map-canvas') as HtmlElement,
     StreetViewPanoramaOptions()
       ..pano = 'reception'
       ..visible = true,

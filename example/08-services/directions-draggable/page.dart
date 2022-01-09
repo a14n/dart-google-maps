@@ -4,7 +4,7 @@ import 'package:google_maps/google_maps.dart';
 
 void main() {
   final map = GMap(
-      document.getElementById('map'),
+      document.getElementById('map') as HtmlElement,
       MapOptions()
         ..zoom = 4
         ..center = LatLng(-24.345, 134.46) // Australia.
@@ -14,7 +14,7 @@ void main() {
   final directionsDisplay = DirectionsRenderer(DirectionsRendererOptions()
     ..draggable = true
     ..map = map
-    ..panel = document.getElementById('right-panel'));
+    ..panel = document.getElementById('right-panel') as HtmlElement);
 
   directionsDisplay.onDirectionsChanged.listen((_) {
     computeTotalDistance(directionsDisplay.directions!);

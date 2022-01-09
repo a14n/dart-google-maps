@@ -9,7 +9,8 @@ void main() {
   final mapOptions = MapOptions()
     ..center = LatLng(-34.397, 150.644)
     ..zoom = 8;
-  final map = GMap(document.getElementById('map-canvas'), mapOptions);
+  final map =
+      GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
 
   DrawingManager(DrawingManagerOptions()
         ..drawingMode = OverlayType.MARKER

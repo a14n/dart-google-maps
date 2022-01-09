@@ -4,7 +4,7 @@ import 'package:google_maps/google_maps.dart';
 
 void main() {
   final map = GMap(
-    document.getElementById('map'),
+    document.getElementById('map') as HtmlElement,
     MapOptions()
       ..center = LatLng(-34.397, 150.644)
       ..zoom = 8
@@ -24,11 +24,12 @@ void initZoomControl(GMap map) {
     map.zoom = map.zoom! - 1;
   });
   map.controls![ControlPosition.RIGHT_BOTTOM as int]!
-      .push(document.querySelector('.zoom-control'));
+      .push(document.querySelector('.zoom-control') as HtmlElement);
 }
 
 void initMapTypeControl(GMap map) {
-  final mapTypeControlDiv = document.querySelector('.maptype-control')!;
+  final mapTypeControlDiv =
+      document.querySelector('.maptype-control') as HtmlElement;
 
   document.querySelector('.maptype-control-map')!.onClick.listen((event) {
     mapTypeControlDiv.classes.add('maptype-control-is-map');
@@ -46,7 +47,8 @@ void initMapTypeControl(GMap map) {
 
 void initFullscreenControl(GMap map) {
   final elementToSendFullscreen = map.div!.firstChild! as Element;
-  final fullscreenControl = document.querySelector('.fullscreen-control')!;
+  final fullscreenControl =
+      document.querySelector('.fullscreen-control') as HtmlElement;
   map.controls![ControlPosition.RIGHT_TOP as int]!.push(fullscreenControl);
 
   fullscreenControl.onClick.listen((event) {

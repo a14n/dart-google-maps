@@ -5,7 +5,7 @@ import 'package:google_maps/google_maps_places.dart';
 
 void main() {
   final markers = <Marker>[];
-  final map = GMap(document.getElementById('map-canvas'),
+  final map = GMap(document.getElementById('map-canvas') as HtmlElement,
       MapOptions()..mapTypeId = MapTypeId.ROADMAP);
 
   final defaultBounds =

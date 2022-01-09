@@ -10,7 +10,7 @@ void main() {
     ..zoom = 12
     ..center = haightAshbury
     ..mapTypeId = MapTypeId.TERRAIN;
-  map = GMap(document.getElementById('map-canvas'), mapOptions);
+  map = GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
 
   // This event listener will call addMarker() when the map is clicked.
   map.onClick.listen((e) => addMarker(e.latLng!));

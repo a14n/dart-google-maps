@@ -23,8 +23,8 @@ library google_maps.local_context;
 
 import 'dart:async' show StreamController;
 import 'dart:html' show Element;
-import 'package:js_wrapping/js_wrapping.dart';
 import 'package:google_maps/google_maps.dart';
+import 'package:js_wrapping/js_wrapping.dart';
 
 @JS('google.maps.localContext.LocalContextMapView')
 class LocalContextMapView implements LocalContextMapViewOptions {

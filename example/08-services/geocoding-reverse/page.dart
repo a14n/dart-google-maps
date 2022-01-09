@@ -13,7 +13,7 @@ void main() {
     ..zoom = 8
     ..center = latlng
     ..mapTypeId = MapTypeId.ROADMAP;
-  map = GMap(document.getElementById('map-canvas'), mapOptions);
+  map = GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
 
   document.getElementById('codeLatLng')!.onClick.listen(codeLatLng);
 }

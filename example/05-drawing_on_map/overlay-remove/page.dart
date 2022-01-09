@@ -13,7 +13,7 @@ void main() {
     ..zoom = 13
     ..center = newark;
 
-  map = GMap(document.getElementById('map-canvas'), mapOptions);
+  map = GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
 
   historicalOverlay = GroundOverlay(
       'https://www.lib.utexas.edu/maps/historical/newark_nj_1922.jpg',

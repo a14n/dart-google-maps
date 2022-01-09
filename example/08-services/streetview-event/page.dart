@@ -4,7 +4,7 @@ import 'package:google_maps/google_maps.dart';
 
 void main() {
   final panorama = StreetViewPanorama(
-    document.getElementById('pano'),
+    document.getElementById('pano') as HtmlElement,
     StreetViewPanoramaOptions()
       ..position = LatLng(37.869, -122.255)
       ..pov = (StreetViewPov()

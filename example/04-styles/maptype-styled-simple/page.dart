@@ -36,7 +36,7 @@ void main() {
       ..mapTypeIds = [MapTypeId.ROADMAP, MY_MAPTYPE_ID])
     ..mapTypeId = MY_MAPTYPE_ID;
 
-  map = GMap(document.getElementById('map-canvas'), mapOptions);
+  map = GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
 
   final styledMapTypeOptions = StyledMapTypeOptions()..name = 'Custom Style';
 

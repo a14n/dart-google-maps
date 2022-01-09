@@ -38,7 +38,7 @@ void main() {
     ..zoomControl = false
     ..streetViewControl = false;
 
-  map = GMap(document.getElementById('map-canvas'), myOptions);
+  map = GMap(document.getElementById('map-canvas') as HtmlElement, myOptions);
 
   infoWindow = InfoWindow(
       InfoWindowOptions()..content = document.getElementById('info-content'));
@@ -153,7 +153,9 @@ void addResult(PlaceResult result, int i) {
   final name = Text(result.name!);
   iconTd.append(icon);
   nameTd.append(name);
-  tr..append(iconTd)..append(nameTd);
+  tr
+    ..append(iconTd)
+    ..append(nameTd);
   results!.append(tr);
 }
 

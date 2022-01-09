@@ -22,7 +22,7 @@ void main() {
 
 void initPanorama() {
   panorama = StreetViewPanorama(
-    document.getElementById('street-view'),
+    document.getElementById('street-view') as HtmlElement,
     StreetViewPanoramaOptions()..pano = outsideGoogle.location!.pano,
   )
     // Register a provider for the custom panorama.

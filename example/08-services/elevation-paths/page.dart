@@ -3,8 +3,8 @@ library example;
 
 import 'dart:html';
 
-import 'package:js_wrapping/js_wrapping.dart';
 import 'package:google_maps/google_maps.dart';
+import 'package:js_wrapping/js_wrapping.dart';
 
 @JS('google.visualization.ColumnChart')
 class ColumnChart {
@@ -42,7 +42,7 @@ void main() {
     ..zoom = 8
     ..center = lonepine
     ..mapTypeId = MapTypeId.TERRAIN;
-  map = GMap(document.getElementById('map-canvas'), mapOptions);
+  map = GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
 
   // Create an ElevationService.
   elevator = ElevationService();

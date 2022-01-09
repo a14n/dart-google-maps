@@ -9,7 +9,7 @@ void main() {
     ..zoom = 7
     // Center the map on Chicago, USA.
     ..center = LatLng(41.879535, -87.624333);
-  map = GMap(document.getElementById('map-canvas'), mapOptions);
+  map = GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
 
   final polyOptions = PolylineOptions()
     ..strokeColor = '#000000'

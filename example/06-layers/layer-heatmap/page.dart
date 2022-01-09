@@ -12,7 +12,7 @@ void main() {
     ..zoom = 13
     ..center = LatLng(37.774546, -122.433523)
     ..mapTypeId = MapTypeId.SATELLITE;
-  map = GMap(document.getElementById('map-canvas'), mapOptions);
+  map = GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
 
   heatmap = HeatmapLayer(HeatmapLayerOptions()
     ..data = points

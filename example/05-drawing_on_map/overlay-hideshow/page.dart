@@ -13,7 +13,8 @@ void main() {
     ..zoom = 11
     ..center = myLatLng
     ..mapTypeId = MapTypeId.SATELLITE;
-  final map = GMap(document.getElementById('map-canvas'), mapOptions);
+  final map =
+      GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
 
   final swBound = LatLng(62.281819, -150.287132);
   final neBound = LatLng(62.400471, -150.005608);

@@ -12,7 +12,7 @@ void main() {
   final mapOptions = MapOptions()
     ..zoom = 6
     ..center = chicago;
-  map = GMap(document.getElementById('map-canvas'), mapOptions);
+  map = GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
   directionsDisplay.map = map;
 
   querySelector('#calcRoute')!.onClick.listen((e) => calcRoute());

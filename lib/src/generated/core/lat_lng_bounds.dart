@@ -17,7 +17,7 @@ part of '../google_maps_core.dart';
 @JsName('google.maps.LatLngBounds')
 abstract class LatLngBounds {
   factory LatLngBounds([
-    LatLng? sw, // ignore: unused_element
+    Object? /*LatLng?|LatLngBounds?*/ swOrLatLngBounds, // ignore: unused_element
     LatLng? ne, // ignore: unused_element
   ]) =>
       $js();

@@ -10,7 +10,8 @@ void main() {
     ..zoom = 14
     ..center = LatLng(34.3664951, -89.5192484);
 
-  final map = GMap(document.getElementById('map-canvas'), mapOptions);
+  final map =
+      GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
 
   final polyOptions = PolylineOptions()
     ..strokeColor = '#000000'

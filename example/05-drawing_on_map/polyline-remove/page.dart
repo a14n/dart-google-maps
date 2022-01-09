@@ -9,7 +9,7 @@ void main() {
     ..zoom = 3
     ..center = LatLng(0, -180)
     ..mapTypeId = MapTypeId.TERRAIN;
-  map = GMap(document.getElementById('map-canvas'), mapOptions);
+  map = GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
 
   final flightPlanCoordinates = <LatLng>[
     LatLng(37.772323, -122.214897),

@@ -16,7 +16,7 @@ void main() {
 void initMap() {
   // set up the map
   map = GMap(
-      document.getElementById('map-canvas'),
+      document.getElementById('map-canvas') as HtmlElement,
       MapOptions()
         ..zoom = 2
         ..center = LatLng(0, 0));

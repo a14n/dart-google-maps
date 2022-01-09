@@ -12,7 +12,7 @@ void main() {
     ..zoom = 8
     ..center = denali
     ..mapTypeId = MapTypeId.TERRAIN;
-  map = GMap(document.getElementById('map-canvas'), mapOptions);
+  map = GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
 
   // Create an ElevationService
   elevator = ElevationService();

@@ -9,7 +9,7 @@ late USGSOverlay overlay;
 
 void main() {
   final map = GMap(
-    document.getElementById('map'),
+    document.getElementById('map') as HtmlElement,
     MapOptions()
       ..zoom = 11
       ..center = LatLng(62.323907, -150.109291)

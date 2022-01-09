@@ -13,10 +13,11 @@ void main() {
     ..center = LatLng(34, -40.605)
     ..zoom = 4;
 
-  final map = GMap(document.getElementById('map-canvas'), mapOptions);
+  final map =
+      GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
 
   map.controls![ControlPosition.TOP_CENTER as int]!
-      .push(document.getElementById('info'));
+      .push(document.getElementById('info') as HtmlElement);
 
   marker1 = Marker(MarkerOptions()
     ..map = map

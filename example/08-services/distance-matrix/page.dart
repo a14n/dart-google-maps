@@ -21,7 +21,7 @@ void main() {
   final mapOptions = MapOptions()
     ..center = LatLng(55.53, 9.4)
     ..zoom = 10;
-  map = GMap(document.getElementById('map-canvas'), mapOptions);
+  map = GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
   geocoder = Geocoder();
 
   document

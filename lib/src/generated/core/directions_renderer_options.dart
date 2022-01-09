@@ -24,7 +24,7 @@ abstract class DirectionsRendererOptions {
   InfoWindow? infoWindow;
   GMap? map;
   MarkerOptions? markerOptions;
-  Node? panel;
+  HtmlElement? panel;
   PolylineOptions? polylineOptions;
   bool? preserveViewport;
   num? routeIndex;

@@ -10,7 +10,7 @@ void main() {
     ..zoom = 5
     ..center = LatLng(24.886436490787712, -70.2685546875)
     ..mapTypeId = MapTypeId.TERRAIN;
-  map = GMap(document.getElementById('map-canvas'), mapOptions);
+  map = GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
 
   final triangleCoords = <LatLng>[
     LatLng(25.774252, -80.190262),

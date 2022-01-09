@@ -6,13 +6,14 @@ void main() {
   final mapOptions = MapOptions()
     ..center = fenway
     ..zoom = 14;
-  final map = GMap(document.getElementById('map-canvas'), mapOptions);
+  final map =
+      GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
   final panoramaOptions = StreetViewPanoramaOptions()
     ..position = fenway
     ..pov = (StreetViewPov()
       ..heading = 34
       ..pitch = 10);
-  final panorama =
-      StreetViewPanorama(document.getElementById('pano'), panoramaOptions);
+  final panorama = StreetViewPanorama(
+      document.getElementById('pano') as HtmlElement, panoramaOptions);
   map.streetView = panorama;
 }

@@ -73,7 +73,7 @@ void main() {
     ..mapTypeControlOptions = (MapTypeControlOptions()
       ..mapTypeIds = [MapTypeId.ROADMAP, 'usroadatlas']);
 
-  map = GMap(document.getElementById('map-canvas'), mapOptions);
+  map = GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
 
   final styledMapTypeOptions = StyledMapTypeOptions()..name = 'US Road Atlas';
 

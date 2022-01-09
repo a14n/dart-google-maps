@@ -21,6 +21,7 @@ abstract class MarkerOptions {
   Point? anchorPoint;
   Animation? animation;
   bool? clickable;
+  Object? /*String?|CollisionBehavior?*/ collisionBehavior;
   bool? crossOnDrag;
   String? cursor;
   bool? draggable;

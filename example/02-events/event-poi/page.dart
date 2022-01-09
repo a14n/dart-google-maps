@@ -7,7 +7,7 @@ import 'package:js/js_util.dart';
 void main() {
   final origin = LatLng(-33.871, 151.197);
   final map = GMap(
-    document.getElementById('map'),
+    document.getElementById('map') as HtmlElement,
     MapOptions()
       ..zoom = 18
       ..center = origin,

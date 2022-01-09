@@ -7,7 +7,8 @@ void main() {
     ..zoom = 18
     ..center = LatLng(37.78313383212, -122.4039494991302);
 
-  final map = GMap(document.getElementById('map-canvas'), mapOptions);
+  final map =
+      GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
 
   final bounds = <int, List<List<int>>>{};
   bounds[17] = [

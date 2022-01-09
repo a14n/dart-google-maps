@@ -18,7 +18,8 @@ void main() {
     ..zoom = 4
     ..center = LatLng(37.09024, -95.712891)
     ..mapTypeId = MapTypeId.TERRAIN;
-  final map = GMap(document.getElementById('map-canvas'), mapOptions);
+  final map =
+      GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
 
   citymap.forEach((String name, Map city) {
     // Construct the circle for each value in citymap. We scale population by 20.

@@ -10,7 +10,7 @@ void main() {
   final mapOptions = MapOptions()
     ..zoom = 13
     ..center = stockholm;
-  map = GMap(document.getElementById('map-canvas'), mapOptions);
+  map = GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
 
   marker = Marker(MarkerOptions()
     ..map = map

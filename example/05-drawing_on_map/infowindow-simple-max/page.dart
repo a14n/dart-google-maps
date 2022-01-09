@@ -6,7 +6,8 @@ void main() {
   final mapOptions = MapOptions()
     ..zoom = 4
     ..center = myLatlng;
-  final map = GMap(document.getElementById('map-canvas'), mapOptions);
+  final map =
+      GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
 
   const contentString = '<div id="content">'
       '<div id="siteNotice">'

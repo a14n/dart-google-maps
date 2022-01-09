@@ -31,6 +31,9 @@ abstract class DirectionsLeg {
   @JsName('start_location')
   LatLng? startLocation;
   List<DirectionsStep?>? steps;
+  // custom name for traffic_speed_entry
+  @JsName('traffic_speed_entry')
+  List<Object?>? trafficSpeedEntry;
   // custom name for via_waypoints
   @JsName('via_waypoints')
   List<LatLng?>? viaWaypoints;

@@ -33,7 +33,7 @@ void main() {
     ..mapTypeControlOptions = (MapTypeControlOptions()
       ..mapTypeIds = ['coordinate', MapTypeId.ROADMAP]
       ..style = MapTypeControlStyle.DROPDOWN_MENU);
-  map = GMap(document.getElementById('map-canvas'), mapOptions);
+  map = GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
 
   map.onMaptypeidChanged.listen((_) {
     final showStreetViewControl = map.mapTypeId != 'coordinate';

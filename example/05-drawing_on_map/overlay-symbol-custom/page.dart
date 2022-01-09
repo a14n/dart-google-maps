@@ -8,7 +8,8 @@ void main() {
     ..center = myLatLng
     ..mapTypeId = MapTypeId.TERRAIN;
 
-  final map = GMap(document.getElementById('map-canvas'), mapOptions);
+  final map =
+      GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
 
   final symbolOne = GSymbol()
     ..path = 'M -2,0 0,-2 2,0 0,2 z'

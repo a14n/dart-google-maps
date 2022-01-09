@@ -7,11 +7,12 @@ void main() {
   final mapOptions = MapOptions()
     ..center = LatLng(-33.8688, 151.2195)
     ..zoom = 13;
-  final map = GMap(document.getElementById('map-canvas'), mapOptions);
+  final map =
+      GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
 
   final input = document.getElementById('pac-input') as InputElement;
 
-  final types = document.getElementById('type-selector');
+  final types = document.getElementById('type-selector') as HtmlElement;
   map.controls![ControlPosition.TOP_LEFT as int]!.push(input);
   map.controls![ControlPosition.TOP_LEFT as int]!.push(types);
 

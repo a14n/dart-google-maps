@@ -6,5 +6,6 @@ void main() {
     ..center = LatLng(36.964645, -122.01523)
     ..zoom = 18
     ..mapTypeId = MapTypeId.SATELLITE;
-  GMap(document.getElementById('map-canvas'), mapOptions).tilt = 45;
+  GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions).tilt =
+      45;
 }

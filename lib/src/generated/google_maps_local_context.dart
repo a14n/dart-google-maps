@@ -17,8 +17,8 @@ library google_maps.local_context;
 
 import 'dart:async' show StreamController;
 import 'dart:html' show Element;
-import 'package:js_wrapping/js_wrapping.dart';
 import 'package:google_maps/google_maps.dart';
+import 'package:js_wrapping/js_wrapping.dart';
 
 part 'local_context/local_context_map_view.dart';
 part 'local_context/local_context_map_view_options.dart';

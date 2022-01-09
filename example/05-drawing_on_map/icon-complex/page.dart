@@ -8,7 +8,8 @@ void main() {
   final mapOptions = MapOptions()
     ..zoom = 10
     ..center = LatLng(-33.9, 151.2);
-  final map = GMap(document.getElementById('map-canvas'), mapOptions);
+  final map =
+      GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
 
   setMarkers(map, beaches);
 }

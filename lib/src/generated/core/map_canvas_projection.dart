@@ -26,12 +26,15 @@ abstract class MapCanvasProjection {
     Point? pixel,
     bool? nowrap,
   ]);
-  Point? fromLatLngToContainerPixel([
-    LatLng? latLng,
-  ]);
+  Point? fromLatLngToContainerPixel(LatLng? latLng);
   Point? fromLatLngToDivPixel([
     LatLng? latLng,
   ]);
+
+  // synthetic getter for getVisibleRegion
+  VisibleRegion? get visibleRegion => _getVisibleRegion();
+  @JsName('getVisibleRegion')
+  VisibleRegion? _getVisibleRegion();
 
   // synthetic getter for getWorldWidth
   num? get worldWidth => _getWorldWidth();

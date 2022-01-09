@@ -11,7 +11,8 @@ void main() {
     ..mapTypeId = MapTypeId.SATELLITE
     ..heading = 90
     ..tilt = 45;
-  map = GMap(document.getElementById('map-canvas'), mapOptions)..tilt = 45;
+  map = GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions)
+    ..tilt = 45;
 
   document.getElementById('autoRotate')!.onClick.listen(autoRotate);
 }

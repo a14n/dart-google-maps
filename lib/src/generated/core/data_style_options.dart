@@ -18,6 +18,7 @@ part of '../google_maps_core.dart';
 @anonymous
 abstract class DataStyleOptions {
   factory DataStyleOptions() => $js();
+  Animation? animation;
   bool? clickable;
   String? cursor;
   bool? draggable;
@@ -25,6 +26,9 @@ abstract class DataStyleOptions {
   String? fillColor;
   num? fillOpacity;
   Object? /*String?|Icon?|GSymbol?*/ icon;
+  List<IconSequence?>? icons;
+  Object? /*String?|MarkerLabel?*/ label;
+  num? opacity;
   MarkerShape? shape;
   String? strokeColor;
   num? strokeOpacity;

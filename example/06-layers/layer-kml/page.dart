@@ -6,7 +6,8 @@ void main() {
   final mapOptions = MapOptions()
     ..zoom = 11
     ..center = chicago;
-  final map = GMap(document.getElementById('map-canvas'), mapOptions);
+  final map =
+      GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
 
   KmlLayer()
     ..url = 'http://googlearchive.github.io/js-v2-samples/ggeoxml/cta.kml'

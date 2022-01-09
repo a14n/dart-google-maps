@@ -22,8 +22,8 @@
 library google_maps.drawing;
 
 import 'dart:async' show StreamController;
-import 'package:js_wrapping/js_wrapping.dart';
 import 'package:google_maps/google_maps.dart';
+import 'package:js_wrapping/js_wrapping.dart';
 
 @JS('google.maps.drawing.DrawingManager')
 class DrawingManager extends MVCObject {

@@ -9,7 +9,7 @@ import 'package:js/js_util.dart';
 
 void initialize() {
   GMap(
-    document.getElementById('map'),
+    document.getElementById('map') as HtmlElement,
     MapOptions()
       ..center = LatLng(-34.397, 150.644)
       ..zoom = 8,

@@ -32,6 +32,9 @@ abstract class GeocoderResult {
   // custom name for partial_match
   @JsName('partial_match')
   bool? partialMatch;
+  // custom name for plus_code
+  @JsName('plus_code')
+  PlacePlusCode? plusCode;
   // custom name for postcode_localities
   @JsName('postcode_localities')
   List<String?>? postcodeLocalities;

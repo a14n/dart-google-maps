@@ -8,7 +8,8 @@ void main() {
     ..zoom = 6
     ..center = LatLng(20.291, 153.027)
     ..mapTypeId = MapTypeId.TERRAIN;
-  final map = GMap(document.getElementById('map-canvas'), mapOptions);
+  final map =
+      GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
 
   final lineSymbol = GSymbol()..path = SymbolPath.FORWARD_CLOSED_ARROW;
 

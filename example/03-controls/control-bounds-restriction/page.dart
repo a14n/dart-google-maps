@@ -10,7 +10,7 @@ final auckland = LatLng(-37.06, 174.58);
 
 void main() {
   GMap(
-    document.getElementById('map'),
+    document.getElementById('map') as HtmlElement,
     MapOptions()
       ..center = auckland
       ..restriction = (MapRestriction()

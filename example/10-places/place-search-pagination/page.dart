@@ -9,7 +9,7 @@ void main() {
   // Create the map.
   final pyrmont = LatLng(-33.866, 151.196);
   map = GMap(
-      document.getElementById('map'),
+      document.getElementById('map') as HtmlElement,
       MapOptions()
         ..center = pyrmont
         ..zoom = 17);

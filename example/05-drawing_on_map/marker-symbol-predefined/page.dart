@@ -5,7 +5,8 @@ void main() {
   final mapOptions = MapOptions()
     ..zoom = 4
     ..center = LatLng(-25.363882, 131.044922);
-  final map = GMap(document.getElementById('map-canvas'), mapOptions);
+  final map =
+      GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
 
   Marker(MarkerOptions()
     ..position = map.center

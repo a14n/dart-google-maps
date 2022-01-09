@@ -14,7 +14,7 @@ void main() {
     ..streetViewControl = false;
   // instantiate the map on the left with control positioning
   final mapLeft = GMap(
-    document.getElementById('map-left'),
+    document.getElementById('map-left') as HtmlElement,
     MapOptions()
       ..center = mapOptions.center
       ..zoom = mapOptions.zoom
@@ -31,7 +31,7 @@ void main() {
   );
   // instantiate the map on the right with control positioning
   final mapRight = GMap(
-    document.getElementById('map-right'),
+    document.getElementById('map-right') as HtmlElement,
     MapOptions()
       ..center = mapOptions.center
       ..zoom = mapOptions.zoom

@@ -11,6 +11,7 @@ void main() {
       ..pitch = 0)
     ..zoom = 1;
 
-  StreetViewPanorama(document.getElementById('map-canvas'), panoramaOptions)
+  StreetViewPanorama(
+          document.getElementById('map-canvas') as HtmlElement, panoramaOptions)
       .visible = true;
 }

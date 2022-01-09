@@ -15,8 +15,8 @@
 @JS()
 library google_maps.geometry;
 
-import 'package:js_wrapping/js_wrapping.dart';
 import 'package:google_maps/google_maps.dart';
+import 'package:js_wrapping/js_wrapping.dart';
 
 part 'geometry/encoding.dart';
 part 'geometry/spherical.dart';

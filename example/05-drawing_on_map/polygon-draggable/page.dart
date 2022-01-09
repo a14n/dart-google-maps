@@ -6,7 +6,8 @@ void main() {
     ..zoom = 1
     ..center = LatLng(24.886, -70.268)
     ..mapTypeId = MapTypeId.TERRAIN;
-  final map = GMap(document.getElementById('map-canvas'), mapOptions);
+  final map =
+      GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
 
   final blueCoords = <LatLng>[
     LatLng(25.774, -60.190),

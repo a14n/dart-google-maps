@@ -10,7 +10,7 @@ void main() {
   final mapOptions = MapOptions()
     ..zoom = 8
     ..center = latlng;
-  map = GMap(document.getElementById('map-canvas'), mapOptions);
+  map = GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
 
   document.getElementById('codeAddress')!.onClick.listen(codeAddress);
 }

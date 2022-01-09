@@ -5,7 +5,7 @@ import 'package:google_maps/google_maps_places.dart';
 
 void main() {
   final map = GMap(
-      document.getElementById('map-canvas'),
+      document.getElementById('map-canvas') as HtmlElement,
       MapOptions()
         ..center = LatLng(-33.8665433, 151.1956316)
         ..zoom = 15);

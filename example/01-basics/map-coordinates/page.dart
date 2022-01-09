@@ -6,7 +6,7 @@ import 'package:google_maps/google_maps.dart';
 void main() {
   final chicago = LatLng(41.85, -87.65);
   final map = GMap(
-    document.getElementById('map'),
+    document.getElementById('map') as HtmlElement,
     MapOptions()
       ..center = chicago
       ..zoom = 3,

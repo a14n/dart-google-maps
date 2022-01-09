@@ -7,7 +7,8 @@ void main() {
     ..zoom = 11
     ..center = coachella
     ..mapTypeId = MapTypeId.TERRAIN;
-  final map = GMap(document.getElementById('map-canvas'), mapOptions);
+  final map =
+      GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
 
   final rectangle = Rectangle();
 

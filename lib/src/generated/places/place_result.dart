@@ -39,6 +39,12 @@ abstract class PlaceResult {
   @JsName('html_attributions')
   List<String?>? htmlAttributions;
   String? icon;
+  // custom name for icon_background_color
+  @JsName('icon_background_color')
+  String? iconBackgroundColor;
+  // custom name for icon_mask_base_uri
+  @JsName('icon_mask_base_uri')
+  String? iconMaskBaseUri;
   // custom name for international_phone_number
   @JsName('international_phone_number')
   String? internationalPhoneNumber;

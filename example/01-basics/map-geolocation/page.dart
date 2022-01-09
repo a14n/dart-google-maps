@@ -7,13 +7,13 @@ late InfoWindow infoWindow;
 
 void main() {
   map = GMap(
-    document.getElementById('map'),
+    document.getElementById('map') as HtmlElement,
     MapOptions()
       ..center = LatLng(-34.397, 150.644)
       ..zoom = 6,
   );
   infoWindow = InfoWindow();
-  final locationButton = document.createElement('button')
+  final locationButton = (document.createElement('button') as ButtonElement)
     ..text = 'Pan to Current Location'
     ..classes.add('custom-map-control-button');
   map.controls![ControlPosition.TOP_CENTER as int]!.push(locationButton);

@@ -17,11 +17,11 @@ part of '../google_maps_core.dart';
 @JsName('google.maps.Map')
 abstract class GMap extends MVCObject {
   factory GMap(
-    Element? mapDiv, [
+    HtmlElement? mapDiv, [
     MapOptions? opts, // ignore: unused_element
   ]) =>
       $js();
-  List<MVCArray<Node?>?>? controls;
+  List<MVCArray<HtmlElement?>?>? controls;
   Data? data;
   MapTypeRegistry? mapTypes;
   MVCArray<MapType?>? overlayMapTypes;
@@ -46,9 +46,9 @@ abstract class GMap extends MVCObject {
   bool? _getClickableIcons();
 
   // synthetic getter for getDiv
-  Element? get div => _getDiv();
+  HtmlElement? get div => _getDiv();
   @JsName('getDiv')
-  Element? _getDiv();
+  HtmlElement? _getDiv();
 
   // synthetic getter for getHeading
   num? get heading => _getHeading();
@@ -65,6 +65,11 @@ abstract class GMap extends MVCObject {
   @JsName('getProjection')
   Projection? _getProjection();
 
+  // synthetic getter for getRenderingType
+  RenderingType? get renderingType => _getRenderingType();
+  @JsName('getRenderingType')
+  RenderingType? _getRenderingType();
+
   // synthetic getter for getStreetView
   StreetViewPanorama? get streetView => _getStreetView();
   @JsName('getStreetView')
@@ -80,6 +85,7 @@ abstract class GMap extends MVCObject {
   @JsName('getZoom')
   num? _getZoom();
 
+  void moveCamera(CameraOptions? cameraOptions);
   void panBy(num? x, num? y);
   void panTo(LatLng? latLng);
   void panToBounds(
@@ -309,6 +315,24 @@ abstract class GMap extends MVCObject {
     return sc.stream;
   }
 
+  Stream<void> get onIsfractionalzoomenabledChanged {
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
+    void start() => mapsEventListener = Event.addListener(
+          this,
+          'isfractionalzoomenabled_changed',
+          () => sc.add(null),
+        );
+    void stop() => mapsEventListener.remove();
+    sc = StreamController<void>(
+      onListen: start,
+      onCancel: stop,
+      onResume: start,
+      onPause: stop,
+    );
+    return sc.stream;
+  }
+
   Stream<void> get onMaptypeidChanged {
     late StreamController<void> sc; // ignore: close_sinks
     late MapsEventListener mapsEventListener;
@@ -387,6 +411,24 @@ abstract class GMap extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'projection_changed',
+          () => sc.add(null),
+        );
+    void stop() => mapsEventListener.remove();
+    sc = StreamController<void>(
+      onListen: start,
+      onCancel: stop,
+      onResume: start,
+      onPause: stop,
+    );
+    return sc.stream;
+  }
+
+  Stream<void> get onRenderingtypeChanged {
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
+    void start() => mapsEventListener = Event.addListener(
+          this,
+          'renderingtype_changed',
           () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();

@@ -23,8 +23,8 @@ library google_maps.places;
 
 import 'dart:async' show StreamController;
 import 'dart:html' show InputElement;
-import 'package:js_wrapping/js_wrapping.dart';
 import 'package:google_maps/google_maps.dart';
+import 'package:js_wrapping/js_wrapping.dart';
 
 @JS('google.maps.places.Autocomplete')
 class Autocomplete extends MVCObject {
@@ -524,6 +524,18 @@ extension PlaceResult$Ext on PlaceResult {
     setProperty(this, 'html_attributions', value);
   }
 
+  String? get iconBackgroundColor => getProperty(this, 'icon_background_color');
+
+  set iconBackgroundColor(String? value) {
+    setProperty(this, 'icon_background_color', value);
+  }
+
+  String? get iconMaskBaseUri => getProperty(this, 'icon_mask_base_uri');
+
+  set iconMaskBaseUri(String? value) {
+    setProperty(this, 'icon_mask_base_uri', value);
+  }
+
   String? get internationalPhoneNumber =>
       getProperty(this, 'international_phone_number');
 
@@ -793,6 +805,10 @@ class PlaceReview {
   external num? get time;
 
   external set time(num? value);
+
+  external num? get rating;
+
+  external set rating(num? value);
 }
 
 extension PlaceReview$Ext on PlaceReview {

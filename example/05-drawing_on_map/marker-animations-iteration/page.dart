@@ -18,7 +18,7 @@ void main() {
   final mapOptions = MapOptions()
     ..zoom = 12
     ..center = berlin;
-  map = GMap(document.getElementById('map-canvas'), mapOptions);
+  map = GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
 
   document.getElementById('drop')!.onClick.listen(drop);
 }

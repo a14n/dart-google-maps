@@ -15,7 +15,7 @@ void main() {
     ..center = astorPlace
     ..zoom = 18
     ..streetViewControl = false;
-  map = GMap(document.getElementById('map-canvas'), mapOptions);
+  map = GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
 
   // Setup the markers on the map
   Marker(MarkerOptions()

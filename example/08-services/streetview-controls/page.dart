@@ -13,5 +13,6 @@ void main() {
     ..linksControl = false
     ..panControl = false
     ..enableCloseButton = false;
-  StreetViewPanorama(document.getElementById('map-canvas'), panoramaOptions);
+  StreetViewPanorama(
+      document.getElementById('map-canvas') as HtmlElement, panoramaOptions);
 }

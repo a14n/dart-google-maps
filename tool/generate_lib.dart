@@ -167,33 +167,40 @@ $code
     final imports = <String, List<String>>{
       'core': [
         "import 'dart:async' show StreamController;",
-        "import 'dart:html' show Document, Element, Node;",
+        "import 'dart:html' show Document, Element, HtmlElement;",
+        "import 'dart:typed_data' show Float32List, Float64List;",
+        "import 'dart:web_gl' show RenderingContext;",
+        '',
+        "import 'package:google_maps/google_maps_places.dart' show PlacePlusCode;",
         "import 'package:js_wrapping/js_wrapping.dart';",
       ],
       'drawing': [
         "import 'dart:async' show StreamController;",
-        "import 'package:js_wrapping/js_wrapping.dart';",
+        '',
         "import 'package:google_maps/google_maps.dart';",
+        "import 'package:js_wrapping/js_wrapping.dart';",
       ],
       'geometry': [
-        "import 'package:js_wrapping/js_wrapping.dart';",
         "import 'package:google_maps/google_maps.dart';",
+        "import 'package:js_wrapping/js_wrapping.dart';",
       ],
       'local_context': [
         "import 'dart:async' show StreamController;",
         "import 'dart:html' show Element;",
-        "import 'package:js_wrapping/js_wrapping.dart';",
+        '',
         "import 'package:google_maps/google_maps.dart';",
+        "import 'package:js_wrapping/js_wrapping.dart';",
       ],
       'places': [
         "import 'dart:async' show StreamController;",
         "import 'dart:html' show InputElement;",
-        "import 'package:js_wrapping/js_wrapping.dart';",
+        '',
         "import 'package:google_maps/google_maps.dart';",
+        "import 'package:js_wrapping/js_wrapping.dart';",
       ],
       'visualization': [
-        "import 'package:js_wrapping/js_wrapping.dart';",
         "import 'package:google_maps/google_maps.dart';",
+        "import 'package:js_wrapping/js_wrapping.dart';",
       ],
     };
     File('$genFolder/google_maps_$library.dart')
@@ -534,6 +541,8 @@ Type convertType(String type) {
     return SimpleType('String', nullable: true);
   else if (myType == 'Date')
     return SimpleType('DateTime', nullable: true);
+  else if (myType == 'HTMLElement')
+    return SimpleType('HtmlElement', nullable: true);
   else if (myType == 'HTMLInputElement')
     return SimpleType('InputElement', nullable: true);
   else if (myType == 'HTMLDivElement')
@@ -542,6 +551,12 @@ Type convertType(String type) {
     return SimpleType('Object', nullable: true);
   else if (myType == 'Array')
     return SimpleType('List', nullable: true);
+  else if (myType == 'WebGLRenderingContext')
+    return SimpleType('RenderingContext', nullable: true);
+  else if (myType == 'Float32Array')
+    return SimpleType('Float32List', nullable: true);
+  else if (myType == 'Float64Array')
+    return SimpleType('Float64List', nullable: true);
   else if (myType == 'None')
     return SimpleType._void;
   else if (myType == 'void')
@@ -572,6 +587,9 @@ Type convertType(String type) {
       }
     }
     final typeUnion = splitComplexTypeBy(myType, '|');
+    if (typeUnion.contains('null')) {
+      return convertType((typeUnion..remove('null')).join('|'));
+    }
     final dartUnion = typeUnion.map(convertType).toList();
     return UnionType(dartUnion.cast<Type>());
   } else if (myType.startsWith('{') && myType.endsWith('}')) {
@@ -800,7 +818,11 @@ DocMethod parseTrForDocMethod(Element trElement) {
       (e) => e.children.isNotEmpty && e.children.first.text == 'Return Value:');
 
   result.returnType = returnType != null
-      ? convertType(returnType.text
+      ? convertType((returnType.children
+                  .where((element) => element.localName == 'code')
+                  .firstOrNull ??
+              returnType)
+          .text
           .replaceFirst('Return Value:', '')
           .replaceAll(' optional', '')
           .trim())

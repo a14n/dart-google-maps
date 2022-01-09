@@ -17,7 +17,7 @@ void main() {
   final mapOptions = MapOptions()
     ..zoom = 13
     ..center = manhattan;
-  map = GMap(document.getElementById('map-canvas'), mapOptions);
+  map = GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
 
   // Create a renderer for directions and bind it to the map.
   final rendererOptions = DirectionsRendererOptions()..map = map;

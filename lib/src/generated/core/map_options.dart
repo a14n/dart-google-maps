@@ -31,7 +31,9 @@ abstract class MapOptions {
   FullscreenControlOptions? fullscreenControlOptions;
   String? gestureHandling;
   num? heading;
+  bool? isFractionalZoomEnabled;
   bool? keyboardShortcuts;
+  String? mapId;
   bool? mapTypeControl;
   MapTypeControlOptions? mapTypeControlOptions;
   Object? /*MapTypeId?|String?*/ mapTypeId;

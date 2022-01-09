@@ -23,9 +23,9 @@ abstract class InfoWindow extends MVCObject {
   void close();
 
   // synthetic getter for getContent
-  Object? /*String?|Node?*/ get content => _getContent();
+  Object? /*String?|Element?|Text?*/ get content => _getContent();
   @JsName('getContent')
-  Object? /*String?|Node?*/ _getContent();
+  Object? /*String?|Element?|Text?*/ _getContent();
 
   // synthetic getter for getPosition
   LatLng? get position => _getPosition();
@@ -38,14 +38,15 @@ abstract class InfoWindow extends MVCObject {
   num? _getZIndex();
 
   void open([
-    Object? /*GMap?|StreetViewPanorama?*/ map,
+    Object? /*InfoWindowOpenOptions?|GMap?|StreetViewPanorama?*/ options,
     MVCObject? anchor,
   ]);
 
   // synthetic setter for setContent
-  set content(Object? /*String?|Node?*/ content) => _setContent(content);
+  set content(Object? /*String?|Element?|Text?*/ content) =>
+      _setContent(content);
   @JsName('setContent')
-  void _setContent(Object? /*String?|Node?*/ content);
+  void _setContent(Object? /*String?|Element?|Text?*/ content);
 
   // synthetic setter for setOptions
   set options(InfoWindowOptions? options) => _setOptions(options);

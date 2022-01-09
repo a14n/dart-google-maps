@@ -3,7 +3,7 @@ import 'package:google_maps/google_maps.dart';
 
 void main() {
   final map = GMap(
-      document.getElementById('map-canvas'),
+      document.getElementById('map-canvas') as HtmlElement,
       MapOptions()
         ..zoom = 11
         ..center = LatLng(33.678176, -116.242568)

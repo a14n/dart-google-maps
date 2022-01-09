@@ -52,7 +52,7 @@ class CenterControl {
 
 void main() {
   map = GMap(
-      document.getElementById('map'),
+      document.getElementById('map') as HtmlElement,
       MapOptions()
         ..zoom = 12
         ..center = chicago);

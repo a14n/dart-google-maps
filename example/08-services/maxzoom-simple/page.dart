@@ -8,7 +8,7 @@ late InfoWindow infoWindow;
 
 void main() {
   map = GMap(
-    document.getElementById('map-canvas'),
+    document.getElementById('map-canvas') as HtmlElement,
     MapOptions()
       ..zoom = 11
       ..center = LatLng(35.6894875, 139.6917064)

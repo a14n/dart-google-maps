@@ -60,6 +60,8 @@ class Event {
       callMethod(_Event$namespace, 'clearInstanceListeners', [instance]);
   static void clearListeners(Object? instance, String? eventName) =>
       callMethod(_Event$namespace, 'clearListeners', [instance, eventName]);
+  static bool? hasListeners(Object? instance, String? eventName) =>
+      callMethod(_Event$namespace, 'hasListeners', [instance, eventName]);
   static void removeListener(MapsEventListener? listener) =>
       callMethod(_Event$namespace, 'removeListener', [listener]);
 

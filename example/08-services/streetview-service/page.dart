@@ -9,14 +9,14 @@ void main() {
   final berkeley = LatLng(37.869085, -122.254775);
   final sv = StreetViewService();
 
-  panorama = StreetViewPanorama(document.getElementById('pano'));
+  panorama = StreetViewPanorama(document.getElementById('pano') as HtmlElement);
 
   // Set up the map
   final mapOptions = MapOptions()
     ..center = berkeley
     ..zoom = 16
     ..streetViewControl = false;
-  map = GMap(document.getElementById('map-canvas'), mapOptions);
+  map = GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
 
   // Set the initial Street View camera to the center of the map
   sv.getPanorama(

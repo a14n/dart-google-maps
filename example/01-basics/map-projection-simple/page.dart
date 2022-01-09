@@ -11,7 +11,7 @@ import 'package:js/js_util.dart';
 void main() {
 // Create a map. Use the Gall-Peters map type.
   final map = GMap(
-    document.getElementById('map'),
+    document.getElementById('map') as HtmlElement,
     MapOptions()
       ..zoom = 0
       ..center = LatLng(0, 0)
@@ -21,7 +21,7 @@ void main() {
   map.mapTypes!.set('gallPeters', gallPetersMapType);
   map.mapTypeId = 'gallPeters';
   // Show the lat and lng under the mouse cursor.
-  final coordsDiv = document.getElementById('coords')!;
+  final coordsDiv = document.getElementById('coords') as DivElement;
   map.controls![ControlPosition.TOP_CENTER as int]!.push(coordsDiv);
   map.onMousemove.listen((event) {
     coordsDiv.text =
