@@ -26,6 +26,7 @@ targets:
 #         generate_for:
 #           include:
 #           - 'lib/src/generated/google_maps_drawing.dart'
+#           - 'lib/src/generated/google_maps_geometry.dart'
 #           - 'lib/src/generated/google_maps_places.dart'
 #           - 'lib/src/generated/google_maps_visualization.dart'
 #   example:

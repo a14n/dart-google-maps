@@ -190,7 +190,8 @@ extension PlacesService$Ext on PlacesService {
       request,
       callback == null
           ? null
-          : allowInterop((p0, p1) => callback(p0, PlacesServiceStatus$cast(p1)))
+          : allowInterop((p0, p1) =>
+              callback(p0?.cast<PlaceResult?>(), PlacesServiceStatus$cast(p1)))
     ]);
   }
 
@@ -202,7 +203,8 @@ extension PlacesService$Ext on PlacesService {
       request,
       callback == null
           ? null
-          : allowInterop((p0, p1) => callback(p0, PlacesServiceStatus$cast(p1)))
+          : allowInterop((p0, p1) =>
+              callback(p0?.cast<PlaceResult?>(), PlacesServiceStatus$cast(p1)))
     ]);
   }
 
@@ -228,8 +230,8 @@ extension PlacesService$Ext on PlacesService {
       request,
       callback == null
           ? null
-          : allowInterop(
-              (p0, p1, p2) => callback(p0, PlacesServiceStatus$cast(p1), p2))
+          : allowInterop((p0, p1, p2) => callback(
+              p0?.cast<PlaceResult?>(), PlacesServiceStatus$cast(p1), p2))
     ]);
   }
 
@@ -243,8 +245,8 @@ extension PlacesService$Ext on PlacesService {
       request,
       callback == null
           ? null
-          : allowInterop(
-              (p0, p1, p2) => callback(p0, PlacesServiceStatus$cast(p1), p2))
+          : allowInterop((p0, p1, p2) => callback(
+              p0?.cast<PlaceResult?>(), PlacesServiceStatus$cast(p1), p2))
     ]);
   }
 }
@@ -860,8 +862,9 @@ extension AutocompleteService$Ext on AutocompleteService {
         request,
         callback == null
             ? null
-            : allowInterop(
-                (p0, p1) => callback(p0, PlacesServiceStatus$cast(p1)))
+            : allowInterop((p0, p1) => callback(
+                p0?.cast<AutocompletePrediction?>(),
+                PlacesServiceStatus$cast(p1)))
       ]));
 
   void getQueryPredictions(
@@ -873,7 +876,9 @@ extension AutocompleteService$Ext on AutocompleteService {
       request,
       callback == null
           ? null
-          : allowInterop((p0, p1) => callback(p0, PlacesServiceStatus$cast(p1)))
+          : allowInterop((p0, p1) => callback(
+              p0?.cast<QueryAutocompletePrediction?>(),
+              PlacesServiceStatus$cast(p1)))
     ]);
   }
 }

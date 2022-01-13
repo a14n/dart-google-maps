@@ -4156,8 +4156,13 @@ extension Data$Ext on Data {
     DataGeoJsonOptions? options,
     void Function(List<DataFeature?>?)? callback,
   ]) {
-    callMethod(this, 'loadGeoJson',
-        [url, options, callback == null ? null : allowInterop(callback)]);
+    callMethod(this, 'loadGeoJson', [
+      url,
+      options,
+      callback == null
+          ? null
+          : allowInterop((p0) => callback(p0?.cast<DataFeature?>()))
+    ]);
   }
 
   void _setControlPosition(ControlPosition? controlPosition) {
@@ -6138,7 +6143,8 @@ extension Geocoder$Ext on Geocoder {
         request,
         callback == null
             ? null
-            : allowInterop((p0, p1) => callback(p0, GeocoderStatus$cast(p1)))
+            : allowInterop((p0, p1) =>
+                callback(p0?.cast<GeocoderResult?>(), GeocoderStatus$cast(p1)))
       ]));
 }
 
@@ -7525,7 +7531,8 @@ extension ElevationService$Ext on ElevationService {
         request,
         callback == null
             ? null
-            : allowInterop((p0, p1) => callback(p0, ElevationStatus$cast(p1)))
+            : allowInterop((p0, p1) => callback(
+                p0?.cast<ElevationResult?>(), ElevationStatus$cast(p1)))
       ]));
 
   Future<LocationElevationResponse> getElevationForLocations(
@@ -7536,7 +7543,8 @@ extension ElevationService$Ext on ElevationService {
         request,
         callback == null
             ? null
-            : allowInterop((p0, p1) => callback(p0, ElevationStatus$cast(p1)))
+            : allowInterop((p0, p1) => callback(
+                p0?.cast<ElevationResult?>(), ElevationStatus$cast(p1)))
       ]));
 }
 
