@@ -1,3 +1,8 @@
+# 6.0.0 (2022-01-13)
+
+- Update API according to v3.47 js API reference.
+- Fix issues with callback function taking list as parameters(see #106:[List<dynamic> is not List<QueryAutocompletePrediction?>? in getQueryPredictions()](https://github.com/a14n/dart-google-maps/issues/106)).
+
 # 5.3.0 (2021-08-30)
 
 - Fix issue using enum in closure (see [#105: Error with DirectionsService](https://github.com/a14n/dart-google-maps/issues/105))
