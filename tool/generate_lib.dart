@@ -123,7 +123,7 @@ Future main() async {
       .body;
   final document = parse(content);
   final urls = document
-      .querySelectorAll('devsite-expandable-nav')
+      .querySelectorAll('.devsite-expandable-nav')
       .first
       .querySelectorAll('a.devsite-nav-title')
       .skip(1)
