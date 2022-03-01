@@ -17,8 +17,9 @@ part of '../google_maps_core.dart';
 @JsName()
 @JS()
 @anonymous
-abstract class WebglCameraParams extends CameraParams {
-  factory WebglCameraParams() => $js();
+abstract class LatLngAltitudeLiteral extends LatLngLiteral {
+  factory LatLngAltitudeLiteral() => $js();
+  num? altitude;
   num? lat;
   num? lng;
 }

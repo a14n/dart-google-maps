@@ -15,10 +15,8 @@
 part of '../google_maps_core.dart';
 
 @JsName()
-@JS()
 @anonymous
-abstract class WebglCameraParams extends CameraParams {
-  factory WebglCameraParams() => $js();
-  num? lat;
-  num? lng;
+abstract class WebGLStateOptions {
+  factory WebGLStateOptions() => $js();
+  RenderingContext? gl;
 }
