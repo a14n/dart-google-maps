@@ -762,6 +762,10 @@ class PlacePhoto {
   external num? get width;
 
   external set width(num? value);
+
+  external String? getUrl([
+    PhotoOptions? opts,
+  ]);
 }
 
 extension PlacePhoto$Ext on PlacePhoto {
@@ -771,10 +775,6 @@ extension PlacePhoto$Ext on PlacePhoto {
   set htmlAttributions(List<String?>? value) {
     setProperty(this, 'html_attributions', value);
   }
-
-  String? get url => _getUrl();
-
-  String? _getUrl() => callMethod(this, 'getUrl', []);
 }
 
 @JS()

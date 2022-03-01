@@ -23,9 +23,7 @@ abstract class PlacePhoto {
   @JsName('html_attributions')
   List<String?>? htmlAttributions;
   num? width;
-
-  // synthetic getter for getUrl
-  String? get url => _getUrl();
-  @JsName('getUrl')
-  String? _getUrl();
+  String? getUrl([
+    PhotoOptions? opts,
+  ]);
 }

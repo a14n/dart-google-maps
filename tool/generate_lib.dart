@@ -390,7 +390,8 @@ List<String> generateCodeForMethod(DocEntity entity, DocMethod method) {
   // replace with getter
   if (method.name.startsWith('get') &&
       method.name.length > 3 &&
-      method.parameters.isEmpty) {
+      method.parameters.isEmpty &&
+      method.optionalParameters.isEmpty) {
     final name = '${method.name[3].toLowerCase()}${method.name.substring(4)}';
     return [
       '',
