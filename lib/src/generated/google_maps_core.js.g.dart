@@ -912,16 +912,6 @@ RenderingType? RenderingType$cast(value) {
 class WebGLOverlayView extends MVCObject {
   external WebGLOverlayView();
 
-  external void onAdd();
-
-  external void onContextLost();
-
-  external void onContextRestored(WebGLStateOptions? options);
-
-  external void onDraw(WebGLDrawOptions? options);
-
-  external void onRemove();
-
   external void onStateUpdate(WebGLStateOptions? options);
 
   external void requestRedraw();
@@ -930,6 +920,43 @@ class WebGLOverlayView extends MVCObject {
 }
 
 extension WebGLOverlayView$Ext on WebGLOverlayView {
+  void Function()? get onAdd =>
+      callMethod(getProperty(this, 'onAdd'), 'bind', [this]);
+
+  set onAdd(void Function()? value) {
+    setProperty(this, 'onAdd', value == null ? null : allowInterop(value));
+  }
+
+  void Function()? get onContextLost =>
+      callMethod(getProperty(this, 'onContextLost'), 'bind', [this]);
+
+  set onContextLost(void Function()? value) {
+    setProperty(
+        this, 'onContextLost', value == null ? null : allowInterop(value));
+  }
+
+  void Function(WebGLStateOptions? options)? get onContextRestored =>
+      callMethod(getProperty(this, 'onContextRestored'), 'bind', [this]);
+
+  set onContextRestored(void Function(WebGLStateOptions? options)? value) {
+    setProperty(
+        this, 'onContextRestored', value == null ? null : allowInterop(value));
+  }
+
+  void Function(WebGLDrawOptions? options)? get onDraw =>
+      callMethod(getProperty(this, 'onDraw'), 'bind', [this]);
+
+  set onDraw(void Function(WebGLDrawOptions? options)? value) {
+    setProperty(this, 'onDraw', value == null ? null : allowInterop(value));
+  }
+
+  void Function()? get onRemove =>
+      callMethod(getProperty(this, 'onRemove'), 'bind', [this]);
+
+  set onRemove(void Function()? value) {
+    setProperty(this, 'onRemove', value == null ? null : allowInterop(value));
+  }
+
   GMap? get map => _getMap();
   set map(GMap? map) => _setMap(map);
 

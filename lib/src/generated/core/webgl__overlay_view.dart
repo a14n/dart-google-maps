@@ -23,11 +23,11 @@ abstract class WebGLOverlayView extends MVCObject {
   @JsName('getMap')
   GMap? _getMap();
 
-  void onAdd();
-  void onContextLost();
-  void onContextRestored(WebGLStateOptions? options);
-  void onDraw(WebGLDrawOptions? options);
-  void onRemove();
+  void Function()? onAdd;
+  void Function()? onContextLost;
+  void Function(WebGLStateOptions? options)? onContextRestored;
+  void Function(WebGLDrawOptions? options)? onDraw;
+  void Function()? onRemove;
   void onStateUpdate(WebGLStateOptions? options);
   void requestRedraw();
   void requestStateUpdate();
