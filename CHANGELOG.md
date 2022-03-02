@@ -1,3 +1,8 @@
+# 6.1.0 (2022-03-02)
+
+- Update API according to v3.48 js API reference.
+- Small **breaking change** : `PlacePhoto.url` must be replaced by `PlacePhoto.getUrl()` because `getUrl` now accepts an optional `PhotoOptions` parameter.
+
 # 6.0.0 (2022-01-13)
 
 - Update API according to v3.47 js API reference.
