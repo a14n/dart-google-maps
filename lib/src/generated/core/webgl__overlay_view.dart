@@ -14,11 +14,26 @@
 
 part of '../google_maps_core.dart';
 
-@JsName()
-@JS()
-@anonymous
-abstract class WebglCameraParams extends CameraParams {
-  factory WebglCameraParams() => $js();
-  num? lat;
-  num? lng;
+@JsName('google.maps.WebGLOverlayView')
+abstract class WebGLOverlayView extends MVCObject {
+  factory WebGLOverlayView() => $js();
+
+  // synthetic getter for getMap
+  GMap? get map => _getMap();
+  @JsName('getMap')
+  GMap? _getMap();
+
+  void onAdd();
+  void onContextLost();
+  void onContextRestored(WebGLStateOptions? options);
+  void onDraw(WebGLDrawOptions? options);
+  void onRemove();
+  void onStateUpdate(WebGLStateOptions? options);
+  void requestRedraw();
+  void requestStateUpdate();
+
+  // synthetic setter for setMap
+  set map(GMap? map) => _setMap(map);
+  @JsName('setMap')
+  void _setMap(GMap? map);
 }

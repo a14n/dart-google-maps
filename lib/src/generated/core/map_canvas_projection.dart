@@ -20,11 +20,11 @@ abstract class MapCanvasProjection {
   factory MapCanvasProjection() => $js();
   LatLng? fromContainerPixelToLatLng([
     Point? pixel,
-    bool? nowrap,
+    bool? noClampNoWrap,
   ]);
   LatLng? fromDivPixelToLatLng([
     Point? pixel,
-    bool? nowrap,
+    bool? noClampNoWrap,
   ]);
   Point? fromLatLngToContainerPixel(LatLng? latLng);
   Point? fromLatLngToDivPixel([

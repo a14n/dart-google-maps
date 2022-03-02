@@ -19,14 +19,14 @@ part of '../google_maps_core.dart';
 abstract class CoordinateTransformer {
   factory CoordinateTransformer() => $js();
   Float64List? fromLatLngAltitude(
-    LatLng? latLng,
-    num? altitude, [
-    Float32List? rotations,
+    Object? /*LatLng?|LatLngAltitude?|LatLngAltitudeLiteral?*/ latLngOrLatLngAltitude, [
+    Object? /*num?|Float32List?*/ altitudeOrRotations,
+    Float32List? rotationsOrScale,
     Float32List? scale,
   ]);
 
   // synthetic getter for getCameraParams
-  WebglCameraParams? get cameraParams => _getCameraParams();
+  CameraParams? get cameraParams => _getCameraParams();
   @JsName('getCameraParams')
-  WebglCameraParams? _getCameraParams();
+  CameraParams? _getCameraParams();
 }

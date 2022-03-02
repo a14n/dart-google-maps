@@ -24,6 +24,6 @@ abstract class Projection {
   ])? fromLatLngToPoint;
   LatLng? Function(
     Point? pixel, [
-    bool? noWrap,
+    bool? noClampNoWrap,
   ])? fromPointToLatLng;
 }

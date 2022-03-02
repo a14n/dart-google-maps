@@ -908,6 +908,103 @@ RenderingType? RenderingType$cast(value) {
   return null;
 }
 
+@JS('google.maps.WebGLOverlayView')
+class WebGLOverlayView extends MVCObject {
+  external WebGLOverlayView();
+
+  external void onAdd();
+
+  external void onContextLost();
+
+  external void onContextRestored(WebGLStateOptions? options);
+
+  external void onDraw(WebGLDrawOptions? options);
+
+  external void onRemove();
+
+  external void onStateUpdate(WebGLStateOptions? options);
+
+  external void requestRedraw();
+
+  external void requestStateUpdate();
+}
+
+extension WebGLOverlayView$Ext on WebGLOverlayView {
+  GMap? get map => _getMap();
+  set map(GMap? map) => _setMap(map);
+
+  GMap? _getMap() => callMethod(this, 'getMap', []);
+
+  void _setMap(GMap? map) {
+    callMethod(this, 'setMap', [map]);
+  }
+}
+
+@JS()
+@anonymous
+class WebGLDrawOptions {
+  external factory WebGLDrawOptions();
+
+  external RenderingContext? get gl;
+
+  external set gl(RenderingContext? value);
+
+  external CoordinateTransformer? get transformer;
+
+  external set transformer(CoordinateTransformer? value);
+}
+
+@JS()
+@anonymous
+class WebGLStateOptions {
+  external factory WebGLStateOptions();
+
+  external RenderingContext? get gl;
+
+  external set gl(RenderingContext? value);
+}
+
+@JS()
+@anonymous
+class CoordinateTransformer {
+  external factory CoordinateTransformer();
+
+  external Float64List? fromLatLngAltitude(
+    Object? /*LatLng?|LatLngAltitude?|LatLngAltitudeLiteral?*/ latLngOrLatLngAltitude, [
+    Object? /*num?|Float32List?*/ altitudeOrRotations,
+    Float32List? rotationsOrScale,
+    Float32List? scale,
+  ]);
+}
+
+extension CoordinateTransformer$Ext on CoordinateTransformer {
+  CameraParams? get cameraParams => _getCameraParams();
+
+  CameraParams? _getCameraParams() => callMethod(this, 'getCameraParams', []);
+}
+
+@JS()
+@anonymous
+class CameraParams extends CameraOptions {
+  external factory CameraParams();
+
+  external LatLng? get center;
+
+  external set center(LatLng? value);
+
+  external num? get heading;
+
+  external set heading(num? value);
+
+  external num? get tilt;
+
+  external set tilt(num? value);
+
+  external num? get zoom;
+
+  external set zoom(num? value);
+}
+
 @JS('google.maps.WebglOverlayView')
 class WebglOverlayView extends MVCObject {
   external WebglOverlayView();
@@ -943,12 +1040,8 @@ extension WebglOverlayView$Ext on WebglOverlayView {
 
 @JS()
 @anonymous
-class WebglCameraParams {
+class WebglCameraParams extends CameraParams {
   external factory WebglCameraParams();
-
-  external num? get heading;
-
-  external set heading(num? value);
 
   external num? get lat;
 
@@ -957,34 +1050,6 @@ class WebglCameraParams {
   external num? get lng;
 
   external set lng(num? value);
-
-  external num? get tilt;
-
-  external set tilt(num? value);
-
-  external num? get zoom;
-
-  external set zoom(num? value);
-}
-
-@JS()
-@anonymous
-class CoordinateTransformer {
-  external factory CoordinateTransformer();
-
-  external Float64List? fromLatLngAltitude(
-    LatLng? latLng,
-    num? altitude, [
-    Float32List? rotations,
-    Float32List? scale,
-  ]);
-}
-
-extension CoordinateTransformer$Ext on CoordinateTransformer {
-  WebglCameraParams? get cameraParams => _getCameraParams();
-
-  WebglCameraParams? _getCameraParams() =>
-      callMethod(this, 'getCameraParams', []);
 }
 
 @JS('google.maps.LatLng')
@@ -1053,6 +1118,45 @@ extension LatLngBounds$Ext on LatLngBounds {
   LatLng _getNorthEast() => callMethod(this, 'getNorthEast', []);
 
   LatLng _getSouthWest() => callMethod(this, 'getSouthWest', []);
+}
+
+@JS('google.maps.LatLngAltitude')
+class LatLngAltitude implements LatLngAltitudeLiteral {
+  external num? get altitude;
+
+  external set altitude(num? value);
+
+  external num? get lat;
+
+  external set lat(num? value);
+
+  external num? get lng;
+
+  external set lng(num? value);
+
+  external bool? equals([
+    LatLngAltitude? other,
+  ]);
+
+  external LatLngAltitudeLiteral? toJSON();
+}
+
+@JS()
+@anonymous
+class LatLngAltitudeLiteral extends LatLngLiteral {
+  external factory LatLngAltitudeLiteral();
+
+  external num? get altitude;
+
+  external set altitude(num? value);
+
+  external num? get lat;
+
+  external set lat(num? value);
+
+  external num? get lng;
+
+  external set lng(num? value);
 }
 
 @JS('google.maps.Point')
@@ -4812,12 +4916,12 @@ class MapCanvasProjection {
 
   external LatLng? fromContainerPixelToLatLng([
     Point? pixel,
-    bool? nowrap,
+    bool? noClampNoWrap,
   ]);
 
   external LatLng? fromDivPixelToLatLng([
     Point? pixel,
-    bool? nowrap,
+    bool? noClampNoWrap,
   ]);
 
   external Point? fromLatLngToContainerPixel(LatLng? latLng);
@@ -5180,14 +5284,14 @@ extension Projection$Ext on Projection {
 
   LatLng? Function(
     Point? pixel, [
-    bool? noWrap,
+    bool? noClampNoWrap,
   ])? get fromPointToLatLng =>
       callMethod(getProperty(this, 'fromPointToLatLng'), 'bind', [this]);
 
   set fromPointToLatLng(
       LatLng? Function(
     Point? pixel, [
-    bool? noWrap,
+    bool? noClampNoWrap,
   ])?
           value) {
     setProperty(
@@ -7649,4 +7753,11 @@ ElevationStatus? ElevationStatus$cast(value) {
   if (value == ElevationStatus.UNKNOWN_ERROR)
     return ElevationStatus.UNKNOWN_ERROR;
   return null;
+}
+
+@JS('google.maps.Settings')
+class Settings {
+  external Iterable<String?>? get experienceIds;
+
+  external set experienceIds(Iterable<String?>? value);
 }

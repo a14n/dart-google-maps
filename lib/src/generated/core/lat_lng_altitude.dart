@@ -14,11 +14,13 @@
 
 part of '../google_maps_core.dart';
 
-@JsName()
-@JS()
-@anonymous
-abstract class WebglCameraParams extends CameraParams {
-  factory WebglCameraParams() => $js();
+@JsName('google.maps.LatLngAltitude')
+abstract class LatLngAltitude implements LatLngAltitudeLiteral {
+  num? altitude;
   num? lat;
   num? lng;
+  bool? equals([
+    LatLngAltitude? other,
+  ]);
+  LatLngAltitudeLiteral? toJSON();
 }
