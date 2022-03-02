@@ -15,12 +15,11 @@
 part of '../google_maps_core.dart';
 
 @JsName('google.maps.LatLngAltitude')
-abstract class LatLngAltitude implements LatLngAltitudeLiteral {
+abstract class LatLngAltitude {
   num? altitude;
   num? lat;
   num? lng;
   bool? equals([
     LatLngAltitude? other,
   ]);
-  LatLngAltitudeLiteral? toJSON();
 }

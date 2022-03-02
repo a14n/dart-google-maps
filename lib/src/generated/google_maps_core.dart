@@ -47,7 +47,6 @@ part 'core/webgl_camera_params.dart';
 part 'core/lat_lng.dart';
 part 'core/lat_lng_bounds.dart';
 part 'core/lat_lng_altitude.dart';
-part 'core/lat_lng_altitude_literal.dart';
 part 'core/point.dart';
 part 'core/size.dart';
 part 'core/padding.dart';

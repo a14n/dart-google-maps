@@ -970,7 +970,7 @@ class CoordinateTransformer {
   external factory CoordinateTransformer();
 
   external Float64List? fromLatLngAltitude(
-    Object? /*LatLng?|LatLngAltitude?|LatLngAltitudeLiteral?*/ latLngOrLatLngAltitude, [
+    Object? /*LatLng?|LatLngAltitude?*/ latLngOrLatLngAltitude, [
     Object? /*num?|Float32List?*/ altitudeOrRotations,
     Float32List? rotationsOrScale,
     Float32List? scale,
@@ -1121,7 +1121,7 @@ extension LatLngBounds$Ext on LatLngBounds {
 }
 
 @JS('google.maps.LatLngAltitude')
-class LatLngAltitude implements LatLngAltitudeLiteral {
+class LatLngAltitude {
   external num? get altitude;
 
   external set altitude(num? value);
@@ -1137,26 +1137,6 @@ class LatLngAltitude implements LatLngAltitudeLiteral {
   external bool? equals([
     LatLngAltitude? other,
   ]);
-
-  external LatLngAltitudeLiteral? toJSON();
-}
-
-@JS()
-@anonymous
-class LatLngAltitudeLiteral extends LatLngLiteral {
-  external factory LatLngAltitudeLiteral();
-
-  external num? get altitude;
-
-  external set altitude(num? value);
-
-  external num? get lat;
-
-  external set lat(num? value);
-
-  external num? get lng;
-
-  external set lng(num? value);
 }
 
 @JS('google.maps.Point')

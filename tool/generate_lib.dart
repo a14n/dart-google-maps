@@ -47,6 +47,7 @@ final ignoredClasses = <String>[
   'CircleLiteral',
   'LatLngLiteral',
   'LatLngBoundsLiteral',
+  'LatLngAltitudeLiteral',
   'undefined',
 ];
 
@@ -111,6 +112,12 @@ void patchEntities(List<DocEntity> entities) {
       if (method.name == 'toString') {
         method.returnType = SimpleType('String', nullable: false);
       }
+    }
+    if (ignoredClasses.contains(entity.implementsName)) {
+      entity.implementsName = null;
+    }
+    if (ignoredClasses.contains(entity.extendsName)) {
+      entity.extendsName = null;
     }
   }
 }

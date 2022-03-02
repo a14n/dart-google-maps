@@ -19,7 +19,7 @@ part of '../google_maps_core.dart';
 abstract class CoordinateTransformer {
   factory CoordinateTransformer() => $js();
   Float64List? fromLatLngAltitude(
-    Object? /*LatLng?|LatLngAltitude?|LatLngAltitudeLiteral?*/ latLngOrLatLngAltitude, [
+    Object? /*LatLng?|LatLngAltitude?*/ latLngOrLatLngAltitude, [
     Object? /*num?|Float32List?*/ altitudeOrRotations,
     Float32List? rotationsOrScale,
     Float32List? scale,
