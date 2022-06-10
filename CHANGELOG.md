@@ -1,3 +1,7 @@
+# 6.1.1 (2022-06-10)
+
+- Fix [issue with Encoding.decodePath](https://github.com/a14n/dart-google-maps/issues/113).
+
 # 6.1.0 (2022-03-02)
 
 - Update API according to v3.48 js API reference.

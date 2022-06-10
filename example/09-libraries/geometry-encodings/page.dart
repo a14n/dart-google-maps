@@ -34,8 +34,6 @@ void addLatLng(MapMouseEvent e) {
 
   // Update the text field to display the polyline encodings
   final encodeString = Encoding.encodePath(path);
-  if (encodeString != null) {
-    (document.getElementById('encoded-polyline') as TextAreaElement).value =
-        encodeString;
-  }
+  (document.getElementById('encoded-polyline') as TextAreaElement).value =
+      encodeString;
 }
