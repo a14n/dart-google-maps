@@ -457,6 +457,24 @@ List<String> generateCodeForStaticMethod(
       '',
     ];
   }
+  if (const [Member('encoding', 'decodePath')]
+      .contains(Member(entity.name, method.name))) {
+    return [
+      '',
+      'static List<LatLng> decodePath(String encodedPath)',
+      "=> callMethod($namespace, 'decodePath', [encodedPath]).cast<LatLng>();",
+      '',
+    ];
+  }
+  if (const [Member('encoding', 'encodePath')]
+      .contains(Member(entity.name, method.name))) {
+    return [
+      '',
+      'static String encodePath(Object /*List<LatLng>|MVCArray<LatLng>*/ path)',
+      "=> callMethod($namespace, 'encodePath', [path]);",
+      '',
+    ];
+  }
   final params = [...method.parameters, ...method.optionalParameters].map((e) {
     final type = e.type;
     return type is FunctionType ||

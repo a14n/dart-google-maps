@@ -18,9 +18,10 @@ part of '../google_maps_geometry.dart';
 external Object get _Encoding$namespace;
 
 class Encoding {
-  static List<LatLng?>? decodePath(String? encodedPath) =>
-      callMethod(_Encoding$namespace, 'decodePath', [encodedPath]);
-  static String? encodePath(
-          Object? /*List<LatLng?>?|MVCArray<LatLng?>?*/ path) =>
+  static List<LatLng> decodePath(String encodedPath) =>
+      callMethod(_Encoding$namespace, 'decodePath', [encodedPath])
+          .cast<LatLng>();
+
+  static String encodePath(Object /*List<LatLng>|MVCArray<LatLng>*/ path) =>
       callMethod(_Encoding$namespace, 'encodePath', [path]);
 }
