@@ -20,6 +20,7 @@ abstract class PlaceSearchRequest {
   factory PlaceSearchRequest() => $js();
   LatLngBounds? bounds;
   String? keyword;
+  String? language;
   LatLng? location;
   num? maxPriceLevel;
   num? minPriceLevel;

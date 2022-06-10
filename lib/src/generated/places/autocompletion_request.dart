@@ -21,10 +21,12 @@ abstract class AutocompletionRequest {
   String? input;
   LatLngBounds? bounds;
   ComponentRestrictions? componentRestrictions;
+  String? language;
   LatLng? location;
   num? offset;
   LatLng? origin;
   num? radius;
+  String? region;
   AutocompleteSessionToken? sessionToken;
   List<String?>? types;
 }

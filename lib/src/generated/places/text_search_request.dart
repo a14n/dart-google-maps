@@ -19,8 +19,10 @@ part of '../google_maps_places.dart';
 abstract class TextSearchRequest {
   factory TextSearchRequest() => $js();
   LatLngBounds? bounds;
+  String? language;
   LatLng? location;
   String? query;
   num? radius;
+  String? region;
   String? type;
 }

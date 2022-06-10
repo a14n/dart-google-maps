@@ -14,16 +14,5 @@
 
 part of '../google_maps_core.dart';
 
-@JsName()
-@anonymous
-abstract class InfoWindowOptions {
-  factory InfoWindowOptions() => $js();
-  String? ariaLabel;
-  Object? /*String?|Element?|Text?*/ content;
-  bool? disableAutoPan;
-  num? maxWidth;
-  num? minWidth;
-  Size? pixelOffset;
-  LatLng? position;
-  num? zIndex;
-}
+@JsName('google.maps.MapsRequestError')
+abstract class MapsRequestError extends MapsNetworkError {}

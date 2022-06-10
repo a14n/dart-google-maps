@@ -12,18 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-part of '../google_maps_core.dart';
+part of '../google_maps_journey_sharing.dart';
 
-@JsName()
-@anonymous
-abstract class InfoWindowOptions {
-  factory InfoWindowOptions() => $js();
-  String? ariaLabel;
-  Object? /*String?|Element?|Text?*/ content;
-  bool? disableAutoPan;
-  num? maxWidth;
-  num? minWidth;
-  Size? pixelOffset;
-  LatLng? position;
-  num? zIndex;
+// ignore_for_file: unused_element, unused_field
+@JsName('google.maps.journeySharing.FleetEngineServiceType')
+enum FleetEngineServiceType {
+  DELIVERY_VEHICLE_SERVICE,
+  TASK_SERVICE,
+  TRIP_SERVICE,
+  UNKNOWN_SERVICE,
 }

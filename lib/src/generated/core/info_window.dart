@@ -21,6 +21,7 @@ abstract class InfoWindow extends MVCObject {
   ]) =>
       $js();
   void close();
+  void focus();
 
   // synthetic getter for getContent
   Object? /*String?|Element?|Text?*/ get content => _getContent();
@@ -123,6 +124,24 @@ abstract class InfoWindow extends MVCObject {
     void start() => mapsEventListener = Event.addListener(
           this,
           'position_changed',
+          () => sc.add(null),
+        );
+    void stop() => mapsEventListener.remove();
+    sc = StreamController<void>(
+      onListen: start,
+      onCancel: stop,
+      onResume: start,
+      onPause: stop,
+    );
+    return sc.stream;
+  }
+
+  Stream<void> get onVisible {
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
+    void start() => mapsEventListener = Event.addListener(
+          this,
+          'visible',
           () => sc.add(null),
         );
     void stop() => mapsEventListener.remove();

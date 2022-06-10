@@ -44,6 +44,7 @@ abstract class LatLngBounds {
 
   bool? intersects(LatLngBounds? other);
   bool? isEmpty();
+  LatLngBoundsLiteral? toJSON();
   LatLng? toSpan();
   String toString();
   String? toUrlValue([

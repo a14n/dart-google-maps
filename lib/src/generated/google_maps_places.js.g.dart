@@ -260,6 +260,14 @@ class PlaceDetailsRequest {
 
   external set placeId(String? value);
 
+  external String? get language;
+
+  external set language(String? value);
+
+  external String? get region;
+
+  external set region(String? value);
+
   external AutocompleteSessionToken? get sessionToken;
 
   external set sessionToken(AutocompleteSessionToken? value);
@@ -281,6 +289,10 @@ class FindPlaceFromPhoneNumberRequest {
   external String? get phoneNumber;
 
   external set phoneNumber(String? value);
+
+  external String? get language;
+
+  external set language(String? value);
 
   external Object? /*LatLng?|LatLngBounds?|Circle?|String?*/ get locationBias;
 
@@ -305,6 +317,10 @@ class FindPlaceFromQueryRequest {
   external String? get query;
 
   external set query(String? value);
+
+  external String? get language;
+
+  external set language(String? value);
 
   external Object? /*LatLng?|LatLngBounds?|Circle?|String?*/ get locationBias;
 
@@ -332,6 +348,10 @@ class PlaceSearchRequest {
   external String? get keyword;
 
   external set keyword(String? value);
+
+  external String? get language;
+
+  external set language(String? value);
 
   external LatLng? get location;
 
@@ -375,6 +395,10 @@ class TextSearchRequest {
 
   external set bounds(LatLngBounds? value);
 
+  external String? get language;
+
+  external set language(String? value);
+
   external LatLng? get location;
 
   external set location(LatLng? value);
@@ -386,6 +410,10 @@ class TextSearchRequest {
   external num? get radius;
 
   external set radius(num? value);
+
+  external String? get region;
+
+  external set region(String? value);
 
   external String? get type;
 
@@ -900,6 +928,10 @@ class AutocompletionRequest {
 
   external set componentRestrictions(ComponentRestrictions? value);
 
+  external String? get language;
+
+  external set language(String? value);
+
   external LatLng? get location;
 
   external set location(LatLng? value);
@@ -915,6 +947,10 @@ class AutocompletionRequest {
   external num? get radius;
 
   external set radius(num? value);
+
+  external String? get region;
+
+  external set region(String? value);
 
   external AutocompleteSessionToken? get sessionToken;
 

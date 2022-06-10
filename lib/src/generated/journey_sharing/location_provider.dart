@@ -12,18 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-part of '../google_maps_core.dart';
+part of '../google_maps_journey_sharing.dart';
 
-@JsName()
-@anonymous
-abstract class InfoWindowOptions {
-  factory InfoWindowOptions() => $js();
-  String? ariaLabel;
-  Object? /*String?|Element?|Text?*/ content;
-  bool? disableAutoPan;
-  num? maxWidth;
-  num? minWidth;
-  Size? pixelOffset;
-  LatLng? position;
-  num? zIndex;
+@JsName('google.maps.journeySharing.LocationProvider')
+abstract class LocationProvider {
+  MapsEventListener? addListener(String? eventName, Function? handler);
 }

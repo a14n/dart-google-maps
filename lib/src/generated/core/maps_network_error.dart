@@ -14,26 +14,8 @@
 
 part of '../google_maps_core.dart';
 
-@JsName('google.maps.WebglOverlayView')
-abstract class WebglOverlayView extends MVCObject {
-  factory WebglOverlayView() => $js();
-
-  // synthetic getter for getMap
-  GMap? get map => _getMap();
-  @JsName('getMap')
-  GMap? _getMap();
-
-  void onAdd();
-  void onContextLost();
-  void onContextRestored(RenderingContext? gl);
-  void onDraw(RenderingContext? gl, CoordinateTransformer? transformer);
-  void onGlStateUpdate(RenderingContext? gl);
-  void onRemove();
-  void requestGlStateUpdate();
-  void requestRedraw();
-
-  // synthetic setter for setMap
-  set map(GMap? map) => _setMap(map);
-  @JsName('setMap')
-  void _setMap(GMap? map);
+@JsName('google.maps.MapsNetworkError')
+abstract class MapsNetworkError {
+  Object? /*DirectionsStatus?|DistanceMatrixStatus?|ElevationStatus?|GeocoderStatus?|MaxZoomStatus?|PlacesServiceStatus?|StreetViewStatus?*/ code;
+  MapsNetworkErrorEndpoint? endpoint;
 }

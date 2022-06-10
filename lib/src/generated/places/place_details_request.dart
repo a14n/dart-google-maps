@@ -20,5 +20,7 @@ abstract class PlaceDetailsRequest {
   factory PlaceDetailsRequest() => $js();
   String? placeId;
   List<String?>? fields;
+  String? language;
+  String? region;
   AutocompleteSessionToken? sessionToken;
 }

@@ -12,13 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-part of '../google_maps_core.dart';
+part of '../google_maps_journey_sharing.dart';
 
 @JsName()
-@JS()
 @anonymous
-abstract class WebglCameraParams extends CameraParams {
-  factory WebglCameraParams() => $js();
-  num? lat;
-  num? lng;
+abstract class FleetEngineDeliveryVehicleLocationProviderUpdateEvent {
+  factory FleetEngineDeliveryVehicleLocationProviderUpdateEvent() => $js();
+  List<VehicleJourneySegment?>? completedVehicleJourneySegments;
+  DeliveryVehicle? deliveryVehicle;
+  List<Task?>? tasks;
 }

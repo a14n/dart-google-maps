@@ -37,17 +37,26 @@ final customClassName = <String, String>{
   'Error': 'Object',
   'Promise': 'Future',
   'Array': 'List',
+  'AuthTokenFetcher': 'function(AuthTokenFetcherOptions): Promise<AuthToken>',
+  'PolylineSetup':
+      'PolylineSetupOptions|(function(DefaultPolylineSetupOptions): PolylineSetupOptions)',
+  'MarkerSetup':
+      'MarkerSetupOptions|(function(DefaultMarkerSetupOptions): MarkerSetupOptions)',
 };
 
 final customLibraryNames = <String, String>{
   'localContext': 'local_context',
+  'journeySharing': 'journey_sharing',
+};
+
+final literalClasses = <String, String>{
+  'CircleLiteral': 'Circle',
+  'LatLngLiteral': 'LatLng',
+  'LatLngBoundsLiteral': 'LatLngBounds',
+  'LatLngAltitudeLiteral': 'LatLngAltitude',
 };
 
 final ignoredClasses = <String>[
-  'CircleLiteral',
-  'LatLngLiteral',
-  'LatLngBoundsLiteral',
-  'LatLngAltitudeLiteral',
   'undefined',
 ];
 
@@ -188,6 +197,13 @@ $code
         "import 'package:js_wrapping/js_wrapping.dart';",
       ],
       'geometry': [
+        "import 'package:google_maps/google_maps.dart';",
+        "import 'package:js_wrapping/js_wrapping.dart';",
+      ],
+      'journey_sharing': [
+        "import 'dart:async' show StreamController;",
+        "import 'dart:html' show Element;",
+        '',
         "import 'package:google_maps/google_maps.dart';",
         "import 'package:js_wrapping/js_wrapping.dart';",
       ],
@@ -605,21 +621,16 @@ Type convertType(String type) {
   else if (myType.startsWith('(') && myType.endsWith(')'))
     return convertType(myType.substring(1, myType.length - 1));
   else if (splitComplexTypeBy(myType, '|').length > 1) {
-    for (final ignoredClass in ignoredClasses) {
-      if (myType.startsWith('$ignoredClass|')) {
-        return convertType(myType.substring('$ignoredClass|'.length));
-      }
-      if (myType.endsWith('|$ignoredClass')) {
-        return convertType(
-            myType.substring(0, myType.lastIndexOf('|$ignoredClass')));
-      }
-      if (myType.contains('|$ignoredClass|')) {
-        return convertType(myType.replaceAll('|$ignoredClass|', '|'));
+    final typeUnion = splitComplexTypeBy(myType, '|').toSet()
+      ..removeWhere(ignoredClasses.contains)
+      ..remove('null');
+    for (final entry in literalClasses.entries) {
+      if (typeUnion.contains(entry.key) && typeUnion.contains(entry.value)) {
+        typeUnion.remove(entry.key);
       }
     }
-    final typeUnion = splitComplexTypeBy(myType, '|');
-    if (typeUnion.contains('null')) {
-      return convertType((typeUnion..remove('null')).join('|'));
+    if (typeUnion.length <= 1) {
+      return convertType(typeUnion.firstOrNull ?? '');
     }
     final dartUnion = typeUnion.map(convertType).toList();
     return UnionType(dartUnion.cast<Type>());
@@ -632,12 +643,16 @@ Type convertType(String type) {
     };
     return TupleType(tupleElements, nullable: true);
   } else if (myType.startsWith(RegExp(r'\w+<')) && myType.endsWith('>')) {
-    final name =
+    var name =
         (convertType(myType.substring(0, myType.indexOf('<'))) as SimpleType)
             .name;
-    final innerType = convertType(
-        myType.substring(myType.indexOf('<') + 1, myType.length - 1));
-    return SimpleType(name, parameters: [innerType], nullable: true);
+    if (name == 'Object') name = 'Map';
+    final typeParameters = myType
+        .substring(myType.indexOf('<') + 1, myType.length - 1)
+        .split(',')
+        .map(convertType)
+        .toList();
+    return SimpleType(name, parameters: typeParameters, nullable: true);
   } else if (myType.startsWith('function(')) {
     final parts = splitComplexTypeBy(myType, ':');
     final returnType = parts.length > 1
@@ -963,7 +978,7 @@ class SimpleType extends Type {
         name,
         if (parameters.isNotEmpty) ...[
           '<',
-          ...parameters.map((e) => e.toString()),
+          parameters.map((e) => e.toString()).join(','),
           '>'
         ],
         if (nullable) '?',

@@ -20,5 +20,6 @@ abstract class FindPlaceFromQueryRequest {
   factory FindPlaceFromQueryRequest() => $js();
   List<String?>? fields;
   String? query;
+  String? language;
   Object? /*LatLng?|LatLngBounds?|Circle?|String?*/ locationBias;
 }

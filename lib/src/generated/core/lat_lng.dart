@@ -34,6 +34,7 @@ abstract class LatLng {
   @JsName('lng')
   num _lng();
 
+  LatLngLiteral? toJSON();
   String toString();
   String? toUrlValue([
     num? precision,

@@ -15,15 +15,10 @@
 part of '../google_maps_core.dart';
 
 @JsName()
+@JS()
 @anonymous
-abstract class InfoWindowOptions {
-  factory InfoWindowOptions() => $js();
-  String? ariaLabel;
-  Object? /*String?|Element?|Text?*/ content;
-  bool? disableAutoPan;
-  num? maxWidth;
-  num? minWidth;
-  Size? pixelOffset;
-  LatLng? position;
-  num? zIndex;
+abstract class CircleLiteral extends CircleOptions {
+  factory CircleLiteral() => $js();
+  LatLng? center;
+  num? radius;
 }

@@ -20,5 +20,6 @@ abstract class FindPlaceFromPhoneNumberRequest {
   factory FindPlaceFromPhoneNumberRequest() => $js();
   List<String?>? fields;
   String? phoneNumber;
+  String? language;
   Object? /*LatLng?|LatLngBounds?|Circle?|String?*/ locationBias;
 }

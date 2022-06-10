@@ -997,9 +997,8 @@ class CoordinateTransformer {
   external factory CoordinateTransformer();
 
   external Float64List? fromLatLngAltitude(
-    Object? /*LatLng?|LatLngAltitude?*/ latLngOrLatLngAltitude, [
-    Object? /*num?|Float32List?*/ altitudeOrRotations,
-    Float32List? rotationsOrScale,
+    LatLngAltitude? latLngAltitude, [
+    Float32List? rotations,
     Float32List? scale,
   ]);
 }
@@ -1032,53 +1031,6 @@ class CameraParams extends CameraOptions {
   external set zoom(num? value);
 }
 
-@JS('google.maps.WebglOverlayView')
-class WebglOverlayView extends MVCObject {
-  external WebglOverlayView();
-
-  external void onAdd();
-
-  external void onContextLost();
-
-  external void onContextRestored(RenderingContext? gl);
-
-  external void onDraw(
-      RenderingContext? gl, CoordinateTransformer? transformer);
-
-  external void onGlStateUpdate(RenderingContext? gl);
-
-  external void onRemove();
-
-  external void requestGlStateUpdate();
-
-  external void requestRedraw();
-}
-
-extension WebglOverlayView$Ext on WebglOverlayView {
-  GMap? get map => _getMap();
-  set map(GMap? map) => _setMap(map);
-
-  GMap? _getMap() => callMethod(this, 'getMap', []);
-
-  void _setMap(GMap? map) {
-    callMethod(this, 'setMap', [map]);
-  }
-}
-
-@JS()
-@anonymous
-class WebglCameraParams extends CameraParams {
-  external factory WebglCameraParams();
-
-  external num? get lat;
-
-  external set lat(num? value);
-
-  external num? get lng;
-
-  external set lng(num? value);
-}
-
 @JS('google.maps.LatLng')
 class LatLng {
   external LatLng(
@@ -1088,6 +1040,8 @@ class LatLng {
   ]);
 
   external bool? equals(LatLng? other);
+
+  external LatLngLiteral? toJSON();
 
   external String toString();
 
@@ -1103,6 +1057,20 @@ extension LatLng$Ext on LatLng {
   num _lat() => callMethod(this, 'lat', []);
 
   num _lng() => callMethod(this, 'lng', []);
+}
+
+@JS()
+@anonymous
+class LatLngLiteral {
+  external factory LatLngLiteral();
+
+  external num? get lat;
+
+  external set lat(num? value);
+
+  external num? get lng;
+
+  external set lng(num? value);
 }
 
 @JS('google.maps.LatLngBounds')
@@ -1123,6 +1091,8 @@ class LatLngBounds {
   external bool? intersects(LatLngBounds? other);
 
   external bool? isEmpty();
+
+  external LatLngBoundsLiteral? toJSON();
 
   external LatLng? toSpan();
 
@@ -1147,8 +1117,30 @@ extension LatLngBounds$Ext on LatLngBounds {
   LatLng _getSouthWest() => callMethod(this, 'getSouthWest', []);
 }
 
+@JS()
+@anonymous
+class LatLngBoundsLiteral {
+  external factory LatLngBoundsLiteral();
+
+  external num? get east;
+
+  external set east(num? value);
+
+  external num? get north;
+
+  external set north(num? value);
+
+  external num? get south;
+
+  external set south(num? value);
+
+  external num? get west;
+
+  external set west(num? value);
+}
+
 @JS('google.maps.LatLngAltitude')
-class LatLngAltitude {
+class LatLngAltitude implements LatLngAltitudeLiteral {
   external num? get altitude;
 
   external set altitude(num? value);
@@ -1164,6 +1156,26 @@ class LatLngAltitude {
   external bool? equals([
     LatLngAltitude? other,
   ]);
+
+  external LatLngAltitudeLiteral? toJSON();
+}
+
+@JS()
+@anonymous
+class LatLngAltitudeLiteral extends LatLngLiteral {
+  external factory LatLngAltitudeLiteral();
+
+  external num? get altitude;
+
+  external set altitude(num? value);
+
+  external num? get lat;
+
+  external set lat(num? value);
+
+  external num? get lng;
+
+  external set lng(num? value);
 }
 
 @JS('google.maps.Point')
@@ -1225,6 +1237,20 @@ class Padding {
   external num? get top;
 
   external set top(num? value);
+}
+
+@JS()
+@anonymous
+class CircleLiteral extends CircleOptions {
+  external factory CircleLiteral();
+
+  external LatLng? get center;
+
+  external set center(LatLng? value);
+
+  external num? get radius;
+
+  external set radius(num? value);
 }
 
 @JS('google.maps.event')
@@ -2351,6 +2377,8 @@ class InfoWindow extends MVCObject {
 
   external void close();
 
+  external void focus();
+
   external void open([
     Object? /*InfoWindowOpenOptions?|GMap?|StreetViewPanorama?*/ options,
     MVCObject? anchor,
@@ -2438,6 +2466,24 @@ extension InfoWindow$Ext on InfoWindow {
     return sc.stream;
   }
 
+  Stream<void> get onVisible {
+    late StreamController<void> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
+    void start() => mapsEventListener = Event.addListener(
+          this,
+          'visible',
+          () => sc.add(null),
+        );
+    void stop() => mapsEventListener.remove();
+    sc = StreamController<void>(
+      onListen: start,
+      onCancel: stop,
+      onResume: start,
+      onPause: stop,
+    );
+    return sc.stream;
+  }
+
   Stream<void> get onZindexChanged {
     late StreamController<void> sc; // ignore: close_sinks
     late MapsEventListener mapsEventListener;
@@ -2484,6 +2530,10 @@ extension InfoWindow$Ext on InfoWindow {
 @anonymous
 class InfoWindowOptions {
   external factory InfoWindowOptions();
+
+  external String? get ariaLabel;
+
+  external set ariaLabel(String? value);
 
   external Object? /*String?|Element?|Text?*/ get content;
 
@@ -7767,4 +7817,96 @@ class Settings {
   external Iterable<String?>? get experienceIds;
 
   external set experienceIds(Iterable<String?>? value);
+}
+
+@JS('google.maps.MapsNetworkError')
+class MapsNetworkError {
+  external Object? /*DirectionsStatus?|DistanceMatrixStatus?|ElevationStatus?|GeocoderStatus?|MaxZoomStatus?|PlacesServiceStatus?|StreetViewStatus?*/ get code;
+
+  external set code(
+      Object? /*DirectionsStatus?|DistanceMatrixStatus?|ElevationStatus?|GeocoderStatus?|MaxZoomStatus?|PlacesServiceStatus?|StreetViewStatus?*/ value);
+
+  external MapsNetworkErrorEndpoint? get endpoint;
+
+  external set endpoint(MapsNetworkErrorEndpoint? value);
+}
+
+@JS('google.maps.MapsRequestError')
+class MapsRequestError extends MapsNetworkError {}
+
+@JS('google.maps.MapsServerError')
+class MapsServerError extends MapsNetworkError {}
+
+@JS('google.maps.MapsNetworkErrorEndpoint')
+class MapsNetworkErrorEndpoint {
+  external static MapsNetworkErrorEndpoint get DIRECTIONS_ROUTE;
+  external static MapsNetworkErrorEndpoint get DISTANCE_MATRIX;
+  external static MapsNetworkErrorEndpoint get ELEVATION_ALONG_PATH;
+  external static MapsNetworkErrorEndpoint get ELEVATION_LOCATIONS;
+  external static MapsNetworkErrorEndpoint
+      get FLEET_ENGINE_GET_DELIVERY_VEHICLE;
+  external static MapsNetworkErrorEndpoint get FLEET_ENGINE_GET_TRIP;
+  external static MapsNetworkErrorEndpoint get FLEET_ENGINE_GET_VEHICLE;
+  external static MapsNetworkErrorEndpoint
+      get FLEET_ENGINE_LIST_DELIVERY_VEHICLES;
+  external static MapsNetworkErrorEndpoint get FLEET_ENGINE_LIST_TASKS;
+  external static MapsNetworkErrorEndpoint get FLEET_ENGINE_LIST_VEHICLES;
+  external static MapsNetworkErrorEndpoint get FLEET_ENGINE_SEARCH_TASKS;
+  external static MapsNetworkErrorEndpoint get GEOCODER_GEOCODE;
+  external static MapsNetworkErrorEndpoint get MAPS_MAX_ZOOM;
+  external static MapsNetworkErrorEndpoint get PLACES_AUTOCOMPLETE;
+  external static MapsNetworkErrorEndpoint get PLACES_DETAILS;
+  external static MapsNetworkErrorEndpoint
+      get PLACES_FIND_PLACE_FROM_PHONE_NUMBER;
+  external static MapsNetworkErrorEndpoint get PLACES_FIND_PLACE_FROM_QUERY;
+  external static MapsNetworkErrorEndpoint get PLACES_GATEWAY;
+  external static MapsNetworkErrorEndpoint get PLACES_LOCAL_CONTEXT_SEARCH;
+  external static MapsNetworkErrorEndpoint get PLACES_NEARBY_SEARCH;
+  external static MapsNetworkErrorEndpoint get STREETVIEW_GET_PANORAMA;
+}
+
+MapsNetworkErrorEndpoint? MapsNetworkErrorEndpoint$cast(value) {
+  if (value == MapsNetworkErrorEndpoint.DIRECTIONS_ROUTE)
+    return MapsNetworkErrorEndpoint.DIRECTIONS_ROUTE;
+  if (value == MapsNetworkErrorEndpoint.DISTANCE_MATRIX)
+    return MapsNetworkErrorEndpoint.DISTANCE_MATRIX;
+  if (value == MapsNetworkErrorEndpoint.ELEVATION_ALONG_PATH)
+    return MapsNetworkErrorEndpoint.ELEVATION_ALONG_PATH;
+  if (value == MapsNetworkErrorEndpoint.ELEVATION_LOCATIONS)
+    return MapsNetworkErrorEndpoint.ELEVATION_LOCATIONS;
+  if (value == MapsNetworkErrorEndpoint.FLEET_ENGINE_GET_DELIVERY_VEHICLE)
+    return MapsNetworkErrorEndpoint.FLEET_ENGINE_GET_DELIVERY_VEHICLE;
+  if (value == MapsNetworkErrorEndpoint.FLEET_ENGINE_GET_TRIP)
+    return MapsNetworkErrorEndpoint.FLEET_ENGINE_GET_TRIP;
+  if (value == MapsNetworkErrorEndpoint.FLEET_ENGINE_GET_VEHICLE)
+    return MapsNetworkErrorEndpoint.FLEET_ENGINE_GET_VEHICLE;
+  if (value == MapsNetworkErrorEndpoint.FLEET_ENGINE_LIST_DELIVERY_VEHICLES)
+    return MapsNetworkErrorEndpoint.FLEET_ENGINE_LIST_DELIVERY_VEHICLES;
+  if (value == MapsNetworkErrorEndpoint.FLEET_ENGINE_LIST_TASKS)
+    return MapsNetworkErrorEndpoint.FLEET_ENGINE_LIST_TASKS;
+  if (value == MapsNetworkErrorEndpoint.FLEET_ENGINE_LIST_VEHICLES)
+    return MapsNetworkErrorEndpoint.FLEET_ENGINE_LIST_VEHICLES;
+  if (value == MapsNetworkErrorEndpoint.FLEET_ENGINE_SEARCH_TASKS)
+    return MapsNetworkErrorEndpoint.FLEET_ENGINE_SEARCH_TASKS;
+  if (value == MapsNetworkErrorEndpoint.GEOCODER_GEOCODE)
+    return MapsNetworkErrorEndpoint.GEOCODER_GEOCODE;
+  if (value == MapsNetworkErrorEndpoint.MAPS_MAX_ZOOM)
+    return MapsNetworkErrorEndpoint.MAPS_MAX_ZOOM;
+  if (value == MapsNetworkErrorEndpoint.PLACES_AUTOCOMPLETE)
+    return MapsNetworkErrorEndpoint.PLACES_AUTOCOMPLETE;
+  if (value == MapsNetworkErrorEndpoint.PLACES_DETAILS)
+    return MapsNetworkErrorEndpoint.PLACES_DETAILS;
+  if (value == MapsNetworkErrorEndpoint.PLACES_FIND_PLACE_FROM_PHONE_NUMBER)
+    return MapsNetworkErrorEndpoint.PLACES_FIND_PLACE_FROM_PHONE_NUMBER;
+  if (value == MapsNetworkErrorEndpoint.PLACES_FIND_PLACE_FROM_QUERY)
+    return MapsNetworkErrorEndpoint.PLACES_FIND_PLACE_FROM_QUERY;
+  if (value == MapsNetworkErrorEndpoint.PLACES_GATEWAY)
+    return MapsNetworkErrorEndpoint.PLACES_GATEWAY;
+  if (value == MapsNetworkErrorEndpoint.PLACES_LOCAL_CONTEXT_SEARCH)
+    return MapsNetworkErrorEndpoint.PLACES_LOCAL_CONTEXT_SEARCH;
+  if (value == MapsNetworkErrorEndpoint.PLACES_NEARBY_SEARCH)
+    return MapsNetworkErrorEndpoint.PLACES_NEARBY_SEARCH;
+  if (value == MapsNetworkErrorEndpoint.STREETVIEW_GET_PANORAMA)
+    return MapsNetworkErrorEndpoint.STREETVIEW_GET_PANORAMA;
+  return null;
 }

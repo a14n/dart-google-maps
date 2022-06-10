@@ -12,18 +12,23 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-part of '../google_maps_core.dart';
+part of '../google_maps_journey_sharing.dart';
 
 @JsName()
 @anonymous
-abstract class InfoWindowOptions {
-  factory InfoWindowOptions() => $js();
-  String? ariaLabel;
-  Object? /*String?|Element?|Text?*/ content;
-  bool? disableAutoPan;
-  num? maxWidth;
-  num? minWidth;
-  Size? pixelOffset;
-  LatLng? position;
-  num? zIndex;
+abstract class Trip {
+  factory Trip() => $js();
+  LatLngLiteral? actualDropOffLocation;
+  LatLngLiteral? actualPickupLocation;
+  DateTime? dropOffTime;
+  VehicleLocationUpdate? latestVehicleLocationUpdate;
+  String? name;
+  num? passengerCount;
+  DateTime? pickupTime;
+  LatLngLiteral? plannedDropOffLocation;
+  LatLngLiteral? plannedPickupLocation;
+  List<VehicleWaypoint?>? remainingWaypoints;
+  String? status;
+  String? type;
+  String? vehicleId;
 }
