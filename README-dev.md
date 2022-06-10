@@ -11,5 +11,5 @@ There are 2 steps:
 
 ```
 dart --no-sound-null-safety tool/generate_lib.dart
-pub run build_runner build -v lib
+dart pub run build_runner build --delete-conflicting-outputs -v lib
 ```
