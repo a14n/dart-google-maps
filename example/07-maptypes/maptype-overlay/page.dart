@@ -21,7 +21,7 @@ void main() {
         ..tileSize = tileSize
         ..getTile = (coord, zoom, ownerDocument) {
           final div = ownerDocument!.createElement('div')
-            ..innerHtml = coord.toString();
+            ..text = coord.toString();
           div.style
             ..width = '${tileSize.width}px'
             ..height = '${tileSize.height}px'

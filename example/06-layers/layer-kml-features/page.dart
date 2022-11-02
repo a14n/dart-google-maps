@@ -22,5 +22,5 @@ void main() {
 }
 
 void showInContentWindow(String text) {
-  document.getElementById('content-window')!.innerHtml = text;
+  document.getElementById('content-window')!.text = text;
 }

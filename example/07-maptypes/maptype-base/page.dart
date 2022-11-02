@@ -9,8 +9,7 @@ final coordinateMapType = MapType()
   ..tileSize = tileSize
   ..maxZoom = 19
   ..getTile = (coord, zoom, ownerDocument) {
-    final div = ownerDocument!.createElement('div')
-      ..innerHtml = coord.toString();
+    final div = ownerDocument!.createElement('div')..text = coord.toString();
     div.style
       ..width = '${tileSize.width}px'
       ..height = '${tileSize.height}px'
