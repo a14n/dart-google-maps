@@ -53,5 +53,5 @@ void computeTotalDistance(DirectionsResult result) {
     total += myroute.legs![i]!.distance!.value!;
   }
   total = total / 1000;
-  document.getElementById('total')!.innerHtml = '$total km';
+  document.getElementById('total')!.text = '$total km';
 }

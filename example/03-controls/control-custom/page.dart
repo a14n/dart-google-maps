@@ -31,7 +31,7 @@ class CenterControl {
       ..lineHeight = '38px'
       ..paddingLeft = '5px'
       ..paddingRight = '5px';
-    controlText.innerHtml = 'Center Map';
+    controlText.text = 'Center Map';
     controlUI.children.add(controlText);
 
     // Setup the click event listeners: simply set the map to

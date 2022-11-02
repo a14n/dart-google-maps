@@ -39,7 +39,7 @@ void main() {
   panorama.onPovChanged.listen((_) {
     final headingCell = document.getElementById('heading_cell')!;
     final pitchCell = document.getElementById('pitch_cell')!;
-    headingCell.innerHtml = '${panorama.pov!.heading}';
-    pitchCell.innerHtml = '${panorama.pov!.pitch}';
+    headingCell.text = '${panorama.pov!.heading}';
+    pitchCell.text = '${panorama.pov!.pitch}';
   });
 }
