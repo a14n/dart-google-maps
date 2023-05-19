@@ -12,7 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-library google_maps;
+import 'package:js/js.dart';
+import 'package:js/js_util.dart';
 
-export 'src/generated/google_maps_core.js.g.dart';
-export 'src/google_maps.dart';
+@JS('google.maps')
+external Object get _$namespace;
+
+Future<void> importLibrary(String libraryName) =>
+    promiseToFuture(callMethod(_$namespace, 'importLibrary', [
+      libraryName,
+    ]));
+
+String get version => getProperty(_$namespace, 'version');
