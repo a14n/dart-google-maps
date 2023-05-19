@@ -1,3 +1,7 @@
+# 6.3.0 (2023-05-19)
+
+- Add `importLibrary` to allow [Dynamic Library Import](https://developers.google.com/maps/documentation/javascript/load-maps-js-api?hl=en#dynamic-library-import).
+
 # 6.2.0 (2022-06-10)
 
 - Update API according to v3.49 js API reference.
