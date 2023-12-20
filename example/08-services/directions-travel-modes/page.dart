@@ -1,6 +1,5 @@
-import 'dart:html';
-
 import 'package:google_maps/google_maps.dart';
+import 'package:web/helpers.dart';
 
 late DirectionsRenderer directionsDisplay;
 final directionsService = DirectionsService();
@@ -13,14 +12,15 @@ void main() {
   final mapOptions = MapOptions()
     ..zoom = 14
     ..center = haight;
-  map = GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
+  map = GMap(document.getElementById('map-canvas') as HTMLElement, mapOptions);
   directionsDisplay.map = map;
 
   document.getElementById('mode')!.onChange.listen((e) => calcRoute());
 }
 
 void calcRoute() {
-  final selectedMode = (document.getElementById('mode') as SelectElement).value;
+  final selectedMode =
+      (document.getElementById('mode') as HTMLSelectElement).value;
   final request = DirectionsRequest()
     ..origin = haight
     ..destination = oceanBeach

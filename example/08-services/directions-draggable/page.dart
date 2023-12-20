@@ -1,10 +1,9 @@
-import 'dart:html';
-
 import 'package:google_maps/google_maps.dart';
+import 'package:web/web.dart';
 
 void main() {
   final map = GMap(
-      document.getElementById('map') as HtmlElement,
+      document.getElementById('map') as HTMLElement,
       MapOptions()
         ..zoom = 4
         ..center = LatLng(-24.345, 134.46) // Australia.
@@ -14,7 +13,7 @@ void main() {
   final directionsDisplay = DirectionsRenderer(DirectionsRendererOptions()
     ..draggable = true
     ..map = map
-    ..panel = document.getElementById('right-panel') as HtmlElement);
+    ..panel = document.getElementById('right-panel') as HTMLElement);
 
   directionsDisplay.onDirectionsChanged.listen((_) {
     computeTotalDistance(directionsDisplay.directions!);
@@ -53,5 +52,5 @@ void computeTotalDistance(DirectionsResult result) {
     total += myroute.legs![i]!.distance!.value!;
   }
   total = total / 1000;
-  document.getElementById('total')!.text = '$total km';
+  document.getElementById('total')!.textContent = '$total km';
 }

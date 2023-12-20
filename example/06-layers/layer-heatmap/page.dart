@@ -1,7 +1,6 @@
-import 'dart:html';
-
 import 'package:google_maps/google_maps.dart';
 import 'package:google_maps/google_maps_visualization.dart';
+import 'package:web/helpers.dart';
 
 // Adding 500 Data Points
 late GMap map;
@@ -12,7 +11,7 @@ void main() {
     ..zoom = 13
     ..center = LatLng(37.774546, -122.433523)
     ..mapTypeId = MapTypeId.SATELLITE;
-  map = GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
+  map = GMap(document.getElementById('map-canvas') as HTMLElement, mapOptions);
 
   heatmap = HeatmapLayer(HeatmapLayerOptions()
     ..data = points

@@ -1,5 +1,5 @@
-import 'dart:html';
 import 'package:google_maps/google_maps.dart';
+import 'package:web/web.dart';
 
 void main() {
   final myLatlng = LatLng(-25.363882, 131.044922);
@@ -7,7 +7,7 @@ void main() {
     ..zoom = 4
     ..center = myLatlng;
   final map =
-      GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
+      GMap(document.getElementById('map-canvas') as HTMLElement, mapOptions);
 
   Marker(MarkerOptions()
     ..position = myLatlng

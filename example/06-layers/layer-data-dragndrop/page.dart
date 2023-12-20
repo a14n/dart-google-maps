@@ -1,10 +1,9 @@
 import 'dart:convert';
-import 'dart:html';
-import 'dart:html' as html show MouseEvent;
+import 'dart:js_interop';
 
 import 'package:google_maps/google_maps.dart';
 import 'package:js/js_util.dart';
-import 'package:js_wrapping/js_wrapping.dart';
+import 'package:web/helpers.dart';
 
 late GMap map;
 
@@ -16,7 +15,7 @@ void main() {
 void initMap() {
   // set up the map
   map = GMap(
-      document.getElementById('map-canvas') as HtmlElement,
+      document.getElementById('map-canvas') as HTMLElement,
       MapOptions()
         ..zoom = 2
         ..center = LatLng(0, 0));
@@ -71,41 +70,44 @@ void initEvents() {
   dropContainer.onDragLeave.listen(hidePanel);
 }
 
-void showPanel(html.MouseEvent e) {
+void showPanel(MouseEvent e) {
   e
     ..stopPropagation()
     ..preventDefault();
-  document.getElementById('drop-container')!.style.display = 'block';
+  (document.getElementById('drop-container') as HTMLElement).style.display =
+      'block';
 }
 
-void hidePanel(html.MouseEvent e) {
-  document.getElementById('drop-container')!.style.display = 'none';
+void hidePanel(MouseEvent e) {
+  (document.getElementById('drop-container') as HTMLElement).style.display =
+      'none';
 }
 
-void handleDrop(html.MouseEvent e) {
+void handleDrop(MouseEvent e) {
   e
     ..stopPropagation()
     ..preventDefault();
   hidePanel(e);
 
-  final files = e.dataTransfer.files!;
-  if (files.isNotEmpty) {
+  final dataTransfer = getProperty(e, 'dataTransfer') as DataTransfer;
+  final files = dataTransfer.files;
+  if (files.length > 0) {
     // process file(s) being dropped
     // grab the file data from each file
-    for (final file in files) {
+    for (var i = 0; i < files.length; i++) {
       final reader = FileReader();
-      reader.onLoad.listen((e) {
+      EventStreamProviders.loadEvent.forTarget(reader).listen((e) {
         loadGeoJsonString((e.target as FileReader).result as String);
       });
-      reader.onError.listen((e) {
-        window.console.error('reading failed');
+      EventStreamProviders.errorFileReaderEvent.forTarget(reader).listen((e) {
+        console.error('reading failed'.toJS);
       });
-      reader.readAsText(file);
+      reader.readAsText(files.item(i)!);
     }
   } else {
     // process non-file (e.g. text or html) content being dropped
     // grab the plain text version of the data
-    final plainText = e.dataTransfer.getData('text/plain');
+    final plainText = dataTransfer.getData('text/plain');
     // ignore: unnecessary_null_comparison
     if (plainText != null) {
       loadGeoJsonString(plainText);

@@ -22,15 +22,16 @@
 library google_maps.local_context;
 
 import 'dart:async' show StreamController;
-import 'dart:html' show Element;
 import 'package:google_maps/google_maps.dart';
 import 'package:js_wrapping/js_wrapping.dart';
+import 'package:web/web.dart' show Element;
 
 @JS('google.maps.localContext.LocalContextMapView')
 class LocalContextMapView implements LocalContextMapViewOptions {
   external LocalContextMapView(LocalContextMapViewOptions? options);
 
-  external Object? /*MapDirectionsOptions?|MapDirectionsOptionsLiteral?*/ get directionsOptions;
+  external Object? /*MapDirectionsOptions?|MapDirectionsOptionsLiteral?*/
+      get directionsOptions;
 
   external set directionsOptions(
       Object? /*MapDirectionsOptions?|MapDirectionsOptionsLiteral?*/ value);
@@ -60,20 +61,26 @@ class LocalContextMapView implements LocalContextMapViewOptions {
 
   external set map(GMap? value);
 
-  external Object? /*PinOptions? Function((bool? isSelected,bool? isHighlighted)?)?|PinOptions?*/ get pinOptionsSetup;
+  external Object? /*PinOptions? Function((bool? isSelected,bool? isHighlighted)?)?|PinOptions?*/
+      get pinOptionsSetup;
 
   external set pinOptionsSetup(
-      Object? /*PinOptions? Function((bool? isSelected,bool? isHighlighted)?)?|PinOptions?*/ value);
+      Object? /*PinOptions? Function((bool? isSelected,bool? isHighlighted)?)?|PinOptions?*/
+          value);
 
-  external Object? /*PlaceChooserViewSetupOptions? Function((PlaceChooserLayoutMode? defaultLayoutMode,PlaceChooserPosition? defaultPosition)?)?|PlaceChooserViewSetupOptions?*/ get placeChooserViewSetup;
+  external Object? /*PlaceChooserViewSetupOptions? Function((PlaceChooserLayoutMode? defaultLayoutMode,PlaceChooserPosition? defaultPosition)?)?|PlaceChooserViewSetupOptions?*/
+      get placeChooserViewSetup;
 
   external set placeChooserViewSetup(
-      Object? /*PlaceChooserViewSetupOptions? Function((PlaceChooserLayoutMode? defaultLayoutMode,PlaceChooserPosition? defaultPosition)?)?|PlaceChooserViewSetupOptions?*/ value);
+      Object? /*PlaceChooserViewSetupOptions? Function((PlaceChooserLayoutMode? defaultLayoutMode,PlaceChooserPosition? defaultPosition)?)?|PlaceChooserViewSetupOptions?*/
+          value);
 
-  external Object? /*PlaceDetailsViewSetupOptions? Function((PlaceDetailsLayoutMode? defaultLayoutMode,PlaceDetailsPosition? defaultPosition)?)?|PlaceDetailsViewSetupOptions?*/ get placeDetailsViewSetup;
+  external Object? /*PlaceDetailsViewSetupOptions? Function((PlaceDetailsLayoutMode? defaultLayoutMode,PlaceDetailsPosition? defaultPosition)?)?|PlaceDetailsViewSetupOptions?*/
+      get placeDetailsViewSetup;
 
   external set placeDetailsViewSetup(
-      Object? /*PlaceDetailsViewSetupOptions? Function((PlaceDetailsLayoutMode? defaultLayoutMode,PlaceDetailsPosition? defaultPosition)?)?|PlaceDetailsViewSetupOptions?*/ value);
+      Object? /*PlaceDetailsViewSetupOptions? Function((PlaceDetailsLayoutMode? defaultLayoutMode,PlaceDetailsPosition? defaultPosition)?)?|PlaceDetailsViewSetupOptions?*/
+          value);
 
   external void hidePlaceDetailsView();
 
@@ -156,7 +163,8 @@ class LocalContextMapViewOptions {
 
   external set maxPlaceCount(num? value);
 
-  external Object? /*MapDirectionsOptions?|MapDirectionsOptionsLiteral?*/ get directionsOptions;
+  external Object? /*MapDirectionsOptions?|MapDirectionsOptionsLiteral?*/
+      get directionsOptions;
 
   external set directionsOptions(
       Object? /*MapDirectionsOptions?|MapDirectionsOptionsLiteral?*/ value);
@@ -178,20 +186,26 @@ class LocalContextMapViewOptions {
 
   external set map(GMap? value);
 
-  external Object? /*PinOptions? Function((bool? isSelected,bool? isHighlighted)?)?|PinOptions?*/ get pinOptionsSetup;
+  external Object? /*PinOptions? Function((bool? isSelected,bool? isHighlighted)?)?|PinOptions?*/
+      get pinOptionsSetup;
 
   external set pinOptionsSetup(
-      Object? /*PinOptions? Function((bool? isSelected,bool? isHighlighted)?)?|PinOptions?*/ value);
+      Object? /*PinOptions? Function((bool? isSelected,bool? isHighlighted)?)?|PinOptions?*/
+          value);
 
-  external Object? /*PlaceChooserViewSetupOptions? Function((PlaceChooserLayoutMode? defaultLayoutMode,PlaceChooserPosition? defaultPosition)?)?|PlaceChooserViewSetupOptions?*/ get placeChooserViewSetup;
+  external Object? /*PlaceChooserViewSetupOptions? Function((PlaceChooserLayoutMode? defaultLayoutMode,PlaceChooserPosition? defaultPosition)?)?|PlaceChooserViewSetupOptions?*/
+      get placeChooserViewSetup;
 
   external set placeChooserViewSetup(
-      Object? /*PlaceChooserViewSetupOptions? Function((PlaceChooserLayoutMode? defaultLayoutMode,PlaceChooserPosition? defaultPosition)?)?|PlaceChooserViewSetupOptions?*/ value);
+      Object? /*PlaceChooserViewSetupOptions? Function((PlaceChooserLayoutMode? defaultLayoutMode,PlaceChooserPosition? defaultPosition)?)?|PlaceChooserViewSetupOptions?*/
+          value);
 
-  external Object? /*PlaceDetailsViewSetupOptions? Function((PlaceDetailsLayoutMode? defaultLayoutMode,PlaceDetailsPosition? defaultPosition)?)?|PlaceDetailsViewSetupOptions?*/ get placeDetailsViewSetup;
+  external Object? /*PlaceDetailsViewSetupOptions? Function((PlaceDetailsLayoutMode? defaultLayoutMode,PlaceDetailsPosition? defaultPosition)?)?|PlaceDetailsViewSetupOptions?*/
+      get placeDetailsViewSetup;
 
   external set placeDetailsViewSetup(
-      Object? /*PlaceDetailsViewSetupOptions? Function((PlaceDetailsLayoutMode? defaultLayoutMode,PlaceDetailsPosition? defaultPosition)?)?|PlaceDetailsViewSetupOptions?*/ value);
+      Object? /*PlaceDetailsViewSetupOptions? Function((PlaceDetailsLayoutMode? defaultLayoutMode,PlaceDetailsPosition? defaultPosition)?)?|PlaceDetailsViewSetupOptions?*/
+          value);
 }
 
 extension LocalContextMapViewOptions$Ext on LocalContextMapViewOptions {

@@ -1,7 +1,7 @@
-import 'dart:html' hide Point;
 import 'dart:math' as math;
 
 import 'package:google_maps/google_maps.dart';
+import 'package:web/web.dart';
 
 void main() {
   final moonTypeOptions = ImageMapTypeOptions()
@@ -26,7 +26,7 @@ void main() {
     ..mapTypeControlOptions = (MapTypeControlOptions()..mapTypeIds = ['moon']);
 
   final map =
-      GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
+      GMap(document.getElementById('map-canvas') as HTMLElement, mapOptions);
   map.mapTypes!.set('moon', moonMapType);
   map.mapTypeId = 'moon';
 }

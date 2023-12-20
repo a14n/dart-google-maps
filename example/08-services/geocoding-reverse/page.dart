@@ -1,6 +1,5 @@
-import 'dart:html';
-
 import 'package:google_maps/google_maps.dart';
+import 'package:web/helpers.dart';
 
 final geocoder = Geocoder();
 late GMap map;
@@ -13,13 +12,13 @@ void main() {
     ..zoom = 8
     ..center = latlng
     ..mapTypeId = MapTypeId.ROADMAP;
-  map = GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
+  map = GMap(document.getElementById('map-canvas') as HTMLElement, mapOptions);
 
   document.getElementById('codeLatLng')!.onClick.listen(codeLatLng);
 }
 
 void codeLatLng(_) {
-  final input = (document.getElementById('latlng') as InputElement).value!;
+  final input = (document.getElementById('latlng') as HTMLInputElement).value;
   final latlngStr = input.split(',');
   final lat = num.parse(latlngStr[0]);
   final lng = num.parse(latlngStr[1]);

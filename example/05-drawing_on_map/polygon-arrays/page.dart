@@ -1,5 +1,5 @@
-import 'dart:html' hide MouseEvent;
 import 'package:google_maps/google_maps.dart';
+import 'package:web/web.dart';
 
 late GMap map;
 late InfoWindow infoWindow;
@@ -10,7 +10,7 @@ void main() {
     ..zoom = 5
     ..center = LatLng(24.886436490787712, -70.2685546875)
     ..mapTypeId = MapTypeId.TERRAIN;
-  map = GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
+  map = GMap(document.getElementById('map-canvas') as HTMLElement, mapOptions);
 
   final triangleCoords = <LatLng>[
     LatLng(25.774252, -80.190262),

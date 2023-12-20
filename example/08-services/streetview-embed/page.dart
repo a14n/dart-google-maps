@@ -1,5 +1,5 @@
-import 'dart:html';
 import 'package:google_maps/google_maps.dart';
+import 'package:web/web.dart';
 
 void main() {
   final bryantPark = LatLng(37.869260, -122.254811);
@@ -12,6 +12,7 @@ void main() {
     ..zoom = 1;
 
   StreetViewPanorama(
-          document.getElementById('map-canvas') as HtmlElement, panoramaOptions)
-      .visible = true;
+    document.getElementById('map-canvas')! as HTMLElement,
+    panoramaOptions,
+  ).visible = true;
 }

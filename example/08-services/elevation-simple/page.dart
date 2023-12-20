@@ -1,6 +1,5 @@
-import 'dart:html' hide MouseEvent;
-
 import 'package:google_maps/google_maps.dart';
+import 'package:web/web.dart';
 
 late ElevationService elevator;
 late GMap map;
@@ -12,7 +11,7 @@ void main() {
     ..zoom = 8
     ..center = denali
     ..mapTypeId = MapTypeId.TERRAIN;
-  map = GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
+  map = GMap(document.getElementById('map-canvas') as HTMLElement, mapOptions);
 
   // Create an ElevationService
   elevator = ElevationService();

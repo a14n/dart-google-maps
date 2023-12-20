@@ -1,5 +1,5 @@
-import 'dart:html';
 import 'package:google_maps/google_maps.dart';
+import 'package:web/web.dart';
 
 void main() {
   final mapOptions = MapOptions()
@@ -7,7 +7,7 @@ void main() {
     ..center = LatLng(0, -180)
     ..mapTypeId = MapTypeId.TERRAIN;
   final map =
-      GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
+      GMap(document.getElementById('map-canvas') as HTMLElement, mapOptions);
 
   final flightPlanCoordinates = <LatLng>[
     LatLng(37.772323, -122.214897),

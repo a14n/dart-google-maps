@@ -1,7 +1,7 @@
 import 'dart:async';
-import 'dart:html';
 
 import 'package:google_maps/google_maps.dart';
+import 'package:web/web.dart';
 
 late Polyline line;
 
@@ -11,7 +11,7 @@ void main() {
     ..zoom = 6
     ..mapTypeId = MapTypeId.TERRAIN;
   final map =
-      GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
+      GMap(document.getElementById('map-canvas') as HTMLElement, mapOptions);
 
   final lineCoordinates = <LatLng>[
     LatLng(22.291, 153.027),
@@ -39,8 +39,8 @@ void animateCircle() {
   Timer.periodic(const Duration(milliseconds: 20), (_) {
     count = (count + 1) % 200;
 
-    final icons = line.get('icons') as List<IconSequence>;
-    icons[0].offset = '${count / 2}%';
+    final icons = line.get('icons') as List<IconSequence?>;
+    icons[0]!.offset = '${count / 2}%';
     line.set('icons', icons);
   });
 }

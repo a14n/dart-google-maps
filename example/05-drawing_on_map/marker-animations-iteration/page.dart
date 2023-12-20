@@ -1,6 +1,6 @@
 import 'dart:async';
-import 'dart:html' hide Animation;
 import 'package:google_maps/google_maps.dart';
+import 'package:web/helpers.dart' hide Animation;
 
 final berlin = LatLng(52.520816, 13.410186);
 final List<LatLng> neighborhoods = [
@@ -18,7 +18,7 @@ void main() {
   final mapOptions = MapOptions()
     ..zoom = 12
     ..center = berlin;
-  map = GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
+  map = GMap(document.getElementById('map-canvas') as HTMLElement, mapOptions);
 
   document.getElementById('drop')!.onClick.listen(drop);
 }

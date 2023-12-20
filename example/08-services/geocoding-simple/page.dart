@@ -1,6 +1,5 @@
-import 'dart:html';
-
 import 'package:google_maps/google_maps.dart';
+import 'package:web/helpers.dart';
 
 final geocoder = Geocoder();
 late GMap map;
@@ -10,13 +9,14 @@ void main() {
   final mapOptions = MapOptions()
     ..zoom = 8
     ..center = latlng;
-  map = GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
+  map = GMap(document.getElementById('map-canvas') as HTMLElement, mapOptions);
 
   document.getElementById('codeAddress')!.onClick.listen(codeAddress);
 }
 
 void codeAddress(_) {
-  final address = (document.getElementById('address') as InputElement).value;
+  final address =
+      (document.getElementById('address') as HTMLInputElement).value;
   final request = GeocoderRequest()..address = address;
   geocoder.geocode(request, (results, status) {
     if (status == GeocoderStatus.OK) {

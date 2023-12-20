@@ -1,5 +1,5 @@
-import 'dart:html';
 import 'package:google_maps/google_maps.dart';
+import 'package:web/helpers.dart';
 
 late Polyline flightPath;
 late GMap map;
@@ -9,7 +9,7 @@ void main() {
     ..zoom = 3
     ..center = LatLng(0, -180)
     ..mapTypeId = MapTypeId.TERRAIN;
-  map = GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
+  map = GMap(document.getElementById('map-canvas') as HTMLElement, mapOptions);
 
   final flightPlanCoordinates = <LatLng>[
     LatLng(37.772323, -122.214897),

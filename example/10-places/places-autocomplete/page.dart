@@ -1,18 +1,17 @@
-import 'dart:html' hide Point, Events;
-
 import 'package:google_maps/google_maps.dart';
 import 'package:google_maps/google_maps_places.dart';
+import 'package:web/helpers.dart' hide Event;
 
 void main() {
   final mapOptions = MapOptions()
     ..center = LatLng(-33.8688, 151.2195)
     ..zoom = 13;
   final map =
-      GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
+      GMap(document.getElementById('map-canvas') as HTMLElement, mapOptions);
 
-  final input = document.getElementById('pac-input') as InputElement;
+  final input = document.getElementById('pac-input') as HTMLInputElement;
 
-  final types = document.getElementById('type-selector') as HtmlElement;
+  final types = document.getElementById('type-selector') as HTMLElement;
   map.controls![ControlPosition.TOP_LEFT as int]!.push(input);
   map.controls![ControlPosition.TOP_LEFT as int]!.push(types);
 

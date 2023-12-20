@@ -22,16 +22,16 @@
 library google_maps.core;
 
 import 'dart:async' show StreamController;
-import 'dart:html' show Document, Element, HtmlElement;
 import 'dart:typed_data' show Float32List, Float64List;
 import 'dart:web_gl' show RenderingContext;
 import 'package:google_maps/google_maps_places.dart' show PlacePlusCode;
 import 'package:js_wrapping/js_wrapping.dart';
+import 'package:web/web.dart' show Document, Element, HTMLElement;
 
 @JS('google.maps.Map')
 class GMap extends MVCObject {
   external GMap(
-    HtmlElement? mapDiv, [
+    HTMLElement? mapDiv, [
     MapOptions? opts, // ignore: unused_element
   ]);
 
@@ -65,17 +65,17 @@ class GMap extends MVCObject {
 }
 
 extension GMap$Ext on GMap {
-  List<MVCArray<HtmlElement?>?>? get controls =>
-      getProperty(this, 'controls')?.cast<MVCArray<HtmlElement?>?>();
+  List<MVCArray<HTMLElement?>?>? get controls =>
+      getProperty(this, 'controls')?.cast<MVCArray<HTMLElement?>?>();
 
-  set controls(List<MVCArray<HtmlElement?>?>? value) {
+  set controls(List<MVCArray<HTMLElement?>?>? value) {
     setProperty(this, 'controls', value);
   }
 
   LatLngBounds? get bounds => _getBounds();
   LatLng? get center => _getCenter();
   bool? get clickableIcons => _getClickableIcons();
-  HtmlElement? get div => _getDiv();
+  HTMLElement? get div => _getDiv();
   num? get heading => _getHeading();
   Object? /*MapTypeId?|String?*/ get mapTypeId => _getMapTypeId();
   Projection? get projection => _getProjection();
@@ -477,7 +477,7 @@ extension GMap$Ext on GMap {
 
   bool? _getClickableIcons() => callMethod(this, 'getClickableIcons', []);
 
-  HtmlElement? _getDiv() => callMethod(this, 'getDiv', []);
+  HTMLElement? _getDiv() => callMethod(this, 'getDiv', []);
 
   num? _getHeading() => callMethod(this, 'getHeading', []);
 
@@ -718,10 +718,12 @@ extension MapTypeStyle$Ext on MapTypeStyle {
 class MapMouseEvent {
   external factory MapMouseEvent();
 
-  external Object? /*MouseEvent?|TouchEvent?|PointerEvent?|KeyboardEvent?|Object?*/ get domEvent;
+  external Object? /*MouseEvent?|TouchEvent?|PointerEvent?|KeyboardEvent?|Object?*/
+      get domEvent;
 
   external set domEvent(
-      Object? /*MouseEvent?|TouchEvent?|PointerEvent?|KeyboardEvent?|Object?*/ value);
+      Object? /*MouseEvent?|TouchEvent?|PointerEvent?|KeyboardEvent?|Object?*/
+          value);
 
   external LatLng? get latLng;
 
@@ -1076,7 +1078,8 @@ class LatLngLiteral {
 @JS('google.maps.LatLngBounds')
 class LatLngBounds {
   external LatLngBounds([
-    Object? /*LatLng?|LatLngBounds?*/ swOrLatLngBounds, // ignore: unused_element
+    Object? /*LatLng?|LatLngBounds?*/
+        swOrLatLngBounds, // ignore: unused_element
     LatLng? ne, // ignore: unused_element
   ]);
 
@@ -2955,7 +2958,8 @@ extension Polygon$Ext on Polygon {
   set path(Object? /*MVCArray<LatLng?>?|List<LatLng?>?*/ path) =>
       _setPath(path);
   set paths(
-          Object? /*MVCArray<MVCArray<LatLng?>?>?|MVCArray<LatLng?>?|List<List<LatLng?>?>?|List<LatLng?>?*/ paths) =>
+          Object? /*MVCArray<MVCArray<LatLng?>?>?|MVCArray<LatLng?>?|List<List<LatLng?>?>?|List<LatLng?>?*/
+              paths) =>
       _setPaths(paths);
   set visible(bool? visible) => _setVisible(visible);
   Stream<PolyMouseEvent> get onClick {
@@ -3207,7 +3211,8 @@ extension Polygon$Ext on Polygon {
   }
 
   void _setPaths(
-      Object? /*MVCArray<MVCArray<LatLng?>?>?|MVCArray<LatLng?>?|List<List<LatLng?>?>?|List<LatLng?>?*/ paths) {
+      Object? /*MVCArray<MVCArray<LatLng?>?>?|MVCArray<LatLng?>?|List<List<LatLng?>?>?|List<LatLng?>?*/
+          paths) {
     callMethod(this, 'setPaths', [paths]);
   }
 
@@ -3249,10 +3254,12 @@ class PolygonOptions {
 
   external set map(GMap? value);
 
-  external Object? /*MVCArray<MVCArray<LatLng?>?>?|MVCArray<LatLng?>?|List<List<LatLng?>?>?|List<LatLng?>?*/ get paths;
+  external Object? /*MVCArray<MVCArray<LatLng?>?>?|MVCArray<LatLng?>?|List<List<LatLng?>?>?|List<LatLng?>?*/
+      get paths;
 
   external set paths(
-      Object? /*MVCArray<MVCArray<LatLng?>?>?|MVCArray<LatLng?>?|List<List<LatLng?>?>?|List<LatLng?>?*/ value);
+      Object? /*MVCArray<MVCArray<LatLng?>?>?|MVCArray<LatLng?>?|List<List<LatLng?>?>?|List<LatLng?>?*/
+          value);
 
   external String? get strokeColor;
 
@@ -3646,7 +3653,8 @@ class RectangleOptions {
 @JS('google.maps.Circle')
 class Circle extends MVCObject {
   external Circle([
-    Object? /*Circle?|CircleOptions?*/ circleOrCircleOptions, // ignore: unused_element
+    Object? /*Circle?|CircleOptions?*/
+        circleOrCircleOptions, // ignore: unused_element
   ]);
 }
 
@@ -5308,9 +5316,8 @@ extension MapType$Ext on MapType {
 
   set releaseTile(
       void Function([
-    Element? tile,
-  ])?
-          value) {
+        Element? tile,
+      ])? value) {
     setProperty(
         this, 'releaseTile', value == null ? null : allowInterop(value));
   }
@@ -5331,10 +5338,9 @@ extension Projection$Ext on Projection {
 
   set fromLatLngToPoint(
       Point? Function(
-    LatLng? latLng, [
-    Point? point,
-  ])?
-          value) {
+        LatLng? latLng, [
+        Point? point,
+      ])? value) {
     setProperty(
         this, 'fromLatLngToPoint', value == null ? null : allowInterop(value));
   }
@@ -5347,10 +5353,9 @@ extension Projection$Ext on Projection {
 
   set fromPointToLatLng(
       LatLng? Function(
-    Point? pixel, [
-    bool? noClampNoWrap,
-  ])?
-          value) {
+        Point? pixel, [
+        bool? noClampNoWrap,
+      ])? value) {
     setProperty(
         this, 'fromPointToLatLng', value == null ? null : allowInterop(value));
   }
@@ -5406,9 +5411,8 @@ extension ImageMapType$Ext on ImageMapType {
 
   set releaseTile(
       void Function([
-    Element? tileDiv,
-  ])?
-          value) {
+        Element? tileDiv,
+      ])? value) {
     setProperty(
         this, 'releaseTile', value == null ? null : allowInterop(value));
   }
@@ -5619,9 +5623,8 @@ extension StyledMapType$Ext on StyledMapType {
 
   set releaseTile(
       void Function([
-    Element? tile,
-  ])?
-          value) {
+        Element? tile,
+      ])? value) {
     setProperty(
         this, 'releaseTile', value == null ? null : allowInterop(value));
   }
@@ -5692,16 +5695,16 @@ MaxZoomStatus? MaxZoomStatus$cast(value) {
 @JS('google.maps.StreetViewPanorama')
 class StreetViewPanorama extends MVCObject {
   external StreetViewPanorama(
-    HtmlElement? container, [
+    HTMLElement? container, [
     StreetViewPanoramaOptions? opts, // ignore: unused_element
   ]);
 }
 
 extension StreetViewPanorama$Ext on StreetViewPanorama {
-  List<MVCArray<HtmlElement?>?>? get controls =>
-      getProperty(this, 'controls')?.cast<MVCArray<HtmlElement?>?>();
+  List<MVCArray<HTMLElement?>?>? get controls =>
+      getProperty(this, 'controls')?.cast<MVCArray<HTMLElement?>?>();
 
-  set controls(List<MVCArray<HtmlElement?>?>? value) {
+  set controls(List<MVCArray<HTMLElement?>?>? value) {
     setProperty(this, 'controls', value);
   }
 
@@ -6686,12 +6689,12 @@ class DirectionsRenderer extends MVCObject {
 extension DirectionsRenderer$Ext on DirectionsRenderer {
   DirectionsResult? get directions => _getDirections();
   GMap? get map => _getMap();
-  HtmlElement? get panel => _getPanel();
+  HTMLElement? get panel => _getPanel();
   num? get routeIndex => _getRouteIndex();
   set directions(DirectionsResult? directions) => _setDirections(directions);
   set map(GMap? map) => _setMap(map);
   set options(DirectionsRendererOptions? options) => _setOptions(options);
-  set panel(HtmlElement? panel) => _setPanel(panel);
+  set panel(HTMLElement? panel) => _setPanel(panel);
   set routeIndex(num? routeIndex) => _setRouteIndex(routeIndex);
   Stream<void> get onDirectionsChanged {
     late StreamController<void> sc; // ignore: close_sinks
@@ -6715,7 +6718,7 @@ extension DirectionsRenderer$Ext on DirectionsRenderer {
 
   GMap? _getMap() => callMethod(this, 'getMap', []);
 
-  HtmlElement? _getPanel() => callMethod(this, 'getPanel', []);
+  HTMLElement? _getPanel() => callMethod(this, 'getPanel', []);
 
   num? _getRouteIndex() => callMethod(this, 'getRouteIndex', []);
 
@@ -6731,7 +6734,7 @@ extension DirectionsRenderer$Ext on DirectionsRenderer {
     callMethod(this, 'setOptions', [options]);
   }
 
-  void _setPanel(HtmlElement? panel) {
+  void _setPanel(HTMLElement? panel) {
     callMethod(this, 'setPanel', [panel]);
   }
 
@@ -6769,9 +6772,9 @@ class DirectionsRendererOptions {
 
   external set markerOptions(MarkerOptions? value);
 
-  external HtmlElement? get panel;
+  external HTMLElement? get panel;
 
-  external set panel(HtmlElement? value);
+  external set panel(HTMLElement? value);
 
   external PolylineOptions? get polylineOptions;
 
@@ -7821,10 +7824,12 @@ class Settings {
 
 @JS('google.maps.MapsNetworkError')
 class MapsNetworkError {
-  external Object? /*DirectionsStatus?|DistanceMatrixStatus?|ElevationStatus?|GeocoderStatus?|MaxZoomStatus?|PlacesServiceStatus?|StreetViewStatus?*/ get code;
+  external Object? /*DirectionsStatus?|DistanceMatrixStatus?|ElevationStatus?|GeocoderStatus?|MaxZoomStatus?|PlacesServiceStatus?|StreetViewStatus?*/
+      get code;
 
   external set code(
-      Object? /*DirectionsStatus?|DistanceMatrixStatus?|ElevationStatus?|GeocoderStatus?|MaxZoomStatus?|PlacesServiceStatus?|StreetViewStatus?*/ value);
+      Object? /*DirectionsStatus?|DistanceMatrixStatus?|ElevationStatus?|GeocoderStatus?|MaxZoomStatus?|PlacesServiceStatus?|StreetViewStatus?*/
+          value);
 
   external MapsNetworkErrorEndpoint? get endpoint;
 

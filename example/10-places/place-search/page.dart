@@ -1,7 +1,6 @@
-import 'dart:html';
-
 import 'package:google_maps/google_maps.dart';
 import 'package:google_maps/google_maps_places.dart';
+import 'package:web/web.dart';
 
 late GMap map;
 late InfoWindow infowindow;
@@ -12,7 +11,7 @@ void main() {
   infowindow = InfoWindow();
 
   map = GMap(
-      document.getElementById('map-canvas') as HtmlElement,
+      document.getElementById('map-canvas') as HTMLElement,
       MapOptions()
         ..center = sydney
         ..zoom = 15);

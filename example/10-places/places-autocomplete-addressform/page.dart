@@ -1,9 +1,10 @@
 import 'dart:async';
-import 'dart:html';
+import 'dart:js_interop';
+import 'dart:js_util';
 
 import 'package:google_maps/google_maps.dart';
 import 'package:google_maps/google_maps_places.dart';
-import 'package:js_wrapping/js_wrapping.dart';
+import 'package:web/helpers.dart';
 
 late Autocomplete autocomplete;
 final componentForm = <String, String>{
@@ -19,7 +20,7 @@ void main() {
   // Create the autocomplete object, restricting the search
   // to geographical location types.
   autocomplete = Autocomplete(
-      document.getElementById('autocomplete') as InputElement,
+      document.getElementById('autocomplete') as HTMLInputElement,
       AutocompleteOptions()..types = ['geocode']);
   // When the user selects an address from the dropdown,
   // populate the address fields in the form.
@@ -33,7 +34,7 @@ void fillInAddress(_) {
   final place = autocomplete.place;
 
   for (var component in componentForm.keys) {
-    (document.getElementById(component) as InputElement)
+    (document.getElementById(component) as HTMLInputElement)
       ..value = ''
       ..disabled = false;
   }
@@ -45,7 +46,7 @@ void fillInAddress(_) {
     final prop = componentForm[addressType];
     if (prop != null) {
       final val = getProperty(addressComponent, prop) as String;
-      (document.getElementById(addressType!)! as InputElement).value = val;
+      (document.getElementById(addressType!)! as HTMLInputElement).value = val;
     }
   }
 }
@@ -55,12 +56,14 @@ void fillInAddress(_) {
 Future geolocate(_) async {
   // ignore: unnecessary_null_comparison
   if (window.navigator.geolocation != null) {
-    final position = await window.navigator.geolocation.getCurrentPosition();
-    final geolocation =
-        LatLng(position.coords!.latitude, position.coords!.longitude);
-    final circle = Circle(CircleOptions()
-      ..center = geolocation
-      ..radius = position.coords!.accuracy);
-    autocomplete.bounds = circle.bounds;
+    window.navigator.geolocation
+        .getCurrentPosition(allowInterop((GeolocationPosition position) {
+      final geolocation =
+          LatLng(position.coords.latitude, position.coords.longitude);
+      final circle = Circle(CircleOptions()
+        ..center = geolocation
+        ..radius = position.coords.accuracy);
+      autocomplete.bounds = circle.bounds;
+    }).toJS);
   }
 }

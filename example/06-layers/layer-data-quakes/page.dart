@@ -1,11 +1,12 @@
 @JS()
 library test;
 
-import 'dart:html';
+import 'dart:js_util';
 import 'dart:math';
 
 import 'package:google_maps/google_maps.dart';
-import 'package:js_wrapping/js_wrapping.dart';
+import 'package:js/js.dart';
+import 'package:web/web.dart';
 
 late GMap map;
 final mapStyle = <MapTypeStyle>[
@@ -43,13 +44,13 @@ external dynamic get window;
 
 void main() {
   map = GMap(
-      document.getElementById('map-canvas') as HtmlElement,
+      document.getElementById('map-canvas') as HTMLElement,
       MapOptions()
         ..center = LatLng(20, -160)
         ..zoom = 3
         ..styles = mapStyle);
 
-  map.data!.style = styleFeature;
+  map.data!.style = allowInterop(styleFeature);
 
   setProperty(window, 'eqfeed_callback', allowInterop(eqfeed_callback));
 
@@ -59,7 +60,8 @@ void main() {
   final script = document.createElement('script')
     ..setAttribute(
         'src', 'https://storage.googleapis.com/maps-devrel/quakes.geo.json');
-  document.getElementsByTagName('head')[0].append(script);
+  (document.getElementsByTagName('head').item(0) as HTMLElement)
+      .appendChild(script);
 }
 
 // Defines the callback function referenced in the jsonp file.

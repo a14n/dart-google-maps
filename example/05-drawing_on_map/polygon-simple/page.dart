@@ -1,5 +1,5 @@
-import 'dart:html';
 import 'package:google_maps/google_maps.dart';
+import 'package:web/web.dart';
 
 void main() {
   final mapOptions = MapOptions()
@@ -7,7 +7,7 @@ void main() {
     ..center = LatLng(24.886436490787712, -70.2685546875)
     ..mapTypeId = MapTypeId.TERRAIN;
   final map =
-      GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
+      GMap(document.getElementById('map-canvas') as HTMLElement, mapOptions);
 
   final triangleCoords = <LatLng>[
     LatLng(25.774252, -80.190262),

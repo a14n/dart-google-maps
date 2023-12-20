@@ -1,6 +1,5 @@
-import 'dart:html';
-
 import 'package:google_maps/google_maps.dart';
+import 'package:web/helpers.dart';
 
 late GMap map;
 late StreetViewPanorama panorama;
@@ -15,7 +14,7 @@ void main() {
     ..center = astorPlace
     ..zoom = 18
     ..streetViewControl = false;
-  map = GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
+  map = GMap(document.getElementById('map-canvas') as HTMLElement, mapOptions);
 
   // Setup the markers on the map
   Marker(MarkerOptions()

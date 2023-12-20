@@ -1,6 +1,5 @@
-import 'dart:html';
-
 import 'package:google_maps/google_maps.dart';
+import 'package:web/helpers.dart';
 
 late GMap map;
 late DirectionsRenderer directionsDisplay;
@@ -17,7 +16,7 @@ void main() {
   final mapOptions = MapOptions()
     ..zoom = 13
     ..center = manhattan;
-  map = GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
+  map = GMap(document.getElementById('map-canvas') as HTMLElement, mapOptions);
 
   // Create a renderer for directions and bind it to the map.
   final rendererOptions = DirectionsRendererOptions()..map = map;
@@ -41,8 +40,8 @@ void calcRoute() {
 
   // Retrieve the start and end locations and create
   // a DirectionsRequest using WALKING directions.
-  final start = (document.getElementById('start') as SelectElement).value;
-  final end = (document.getElementById('end') as SelectElement).value;
+  final start = (document.getElementById('start') as HTMLSelectElement).value;
+  final end = (document.getElementById('end') as HTMLSelectElement).value;
   final request = DirectionsRequest()
     ..origin = start
     ..destination = end
@@ -52,7 +51,7 @@ void calcRoute() {
   // function to create markers for each step.
   directionsService.route(request, (response, status) {
     if (status == DirectionsStatus.OK) {
-      querySelector('#warnings_panel')!.innerHtml =
+      querySelector('#warnings_panel')!.innerHTML =
           '<b>${response!.routes![0]!.warnings}</b>';
       directionsDisplay.directions = response;
       showSteps(response);

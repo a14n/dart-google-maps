@@ -1,9 +1,8 @@
-import 'dart:html' hide Events;
-
 import 'package:google_maps/google_maps.dart';
+import 'package:web/web.dart' hide Event;
 
 void main() {
-  final mapDiv = document.getElementById('map') as HtmlElement;
+  final mapDiv = document.getElementById('map') as HTMLElement;
   GMap(
     mapDiv,
     MapOptions()

@@ -1,5 +1,5 @@
-import 'dart:html' hide Rectangle;
 import 'package:google_maps/google_maps.dart';
+import 'package:web/web.dart';
 
 void main() {
   final coachella = LatLng(33.6803003, -116.173894);
@@ -8,7 +8,7 @@ void main() {
     ..center = coachella
     ..mapTypeId = MapTypeId.TERRAIN;
   final map =
-      GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
+      GMap(document.getElementById('map-canvas') as HTMLElement, mapOptions);
 
   final rectangle = Rectangle();
 

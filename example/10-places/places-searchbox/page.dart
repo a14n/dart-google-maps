@@ -1,11 +1,10 @@
-import 'dart:html' hide Point;
-
 import 'package:google_maps/google_maps.dart';
 import 'package:google_maps/google_maps_places.dart';
+import 'package:web/web.dart';
 
 void main() {
   final markers = <Marker>[];
-  final map = GMap(document.getElementById('map-canvas') as HtmlElement,
+  final map = GMap(document.getElementById('map-canvas') as HTMLElement,
       MapOptions()..mapTypeId = MapTypeId.ROADMAP);
 
   final defaultBounds =
@@ -13,7 +12,7 @@ void main() {
   map.fitBounds(defaultBounds);
 
   // Create the search box and link it to the UI element.
-  final input = document.getElementById('pac-input') as InputElement;
+  final input = document.getElementById('pac-input') as HTMLInputElement;
   map.controls![ControlPosition.TOP_LEFT as int]!.push(input);
 
   final searchBox = SearchBox(input);

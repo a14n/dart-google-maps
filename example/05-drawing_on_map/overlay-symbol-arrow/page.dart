@@ -1,5 +1,5 @@
-import 'dart:html';
 import 'package:google_maps/google_maps.dart';
+import 'package:web/web.dart';
 
 late Polyline line;
 
@@ -9,7 +9,7 @@ void main() {
     ..center = LatLng(20.291, 153.027)
     ..mapTypeId = MapTypeId.TERRAIN;
   final map =
-      GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
+      GMap(document.getElementById('map-canvas') as HTMLElement, mapOptions);
 
   final lineSymbol = GSymbol()..path = SymbolPath.FORWARD_CLOSED_ARROW;
 

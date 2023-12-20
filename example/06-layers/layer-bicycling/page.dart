@@ -1,5 +1,5 @@
-import 'dart:html';
 import 'package:google_maps/google_maps.dart';
+import 'package:web/web.dart';
 
 void main() {
   final myLatlng = LatLng(42.3726399, -71.1096528);
@@ -7,7 +7,7 @@ void main() {
     ..zoom = 14
     ..center = myLatlng;
   final map =
-      GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
+      GMap(document.getElementById('map-canvas') as HTMLElement, mapOptions);
 
   BicyclingLayer().map = map;
 }

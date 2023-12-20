@@ -1,5 +1,5 @@
-import 'dart:html';
 import 'package:google_maps/google_maps.dart';
+import 'package:web/web.dart';
 
 void main() {
   final fenway = LatLng(42.345573, -71.098326);
@@ -14,5 +14,5 @@ void main() {
     ..panControl = false
     ..enableCloseButton = false;
   StreetViewPanorama(
-      document.getElementById('map-canvas') as HtmlElement, panoramaOptions);
+      document.getElementById('map-canvas') as HTMLElement, panoramaOptions);
 }

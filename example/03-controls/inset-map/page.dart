@@ -1,6 +1,5 @@
-import 'dart:html';
-
 import 'package:google_maps/google_maps.dart';
+import 'package:web/web.dart';
 
 const overviewDifference = 5;
 const overviewMinZoom = 3;
@@ -11,7 +10,7 @@ void main() {
     ..center = LatLng(50, 8)
     ..zoom = 7;
   GMap(
-    document.getElementById('map') as HtmlElement,
+    document.getElementById('map') as HTMLElement,
     MapOptions()
       ..zoom = 4
       ..center = LatLng(-33, 151)
@@ -19,10 +18,10 @@ void main() {
       ..scaleControl = true,
   );
   // instantiate the primary map
-  final map = GMap(document.getElementById('map') as HtmlElement, mapOptions);
+  final map = GMap(document.getElementById('map') as HTMLElement, mapOptions);
   // instantiate the overview map without controls
   final overview = GMap(
-    document.getElementById('overview') as HtmlElement,
+    document.getElementById('overview') as HTMLElement,
     MapOptions()
       ..center = mapOptions.center
       ..zoom = mapOptions.zoom

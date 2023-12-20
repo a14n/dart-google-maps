@@ -1,12 +1,12 @@
-import 'dart:html' hide Point;
 import 'dart:math' as math;
 
 import 'package:google_maps/google_maps.dart';
+import 'package:web/web.dart';
 
 void main() {
   final chicago = LatLng(41.85, -87.65);
   final map = GMap(
-    document.getElementById('map') as HtmlElement,
+    document.getElementById('map') as HTMLElement,
     MapOptions()
       ..center = chicago
       ..zoom = 3,

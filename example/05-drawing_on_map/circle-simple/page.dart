@@ -1,6 +1,6 @@
-import 'dart:html';
 import 'dart:math' show sqrt;
 import 'package:google_maps/google_maps.dart';
+import 'package:web/web.dart';
 
 // First, create an object containing LatLng and population for each city.
 final citymap = {
@@ -19,7 +19,7 @@ void main() {
     ..center = LatLng(37.09024, -95.712891)
     ..mapTypeId = MapTypeId.TERRAIN;
   final map =
-      GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
+      GMap(document.getElementById('map-canvas') as HTMLElement, mapOptions);
 
   citymap.forEach((String name, Map city) {
     // Construct the circle for each value in citymap. We scale population by 20.

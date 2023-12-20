@@ -1,10 +1,9 @@
-import 'dart:html';
-
 import 'package:google_maps/google_maps.dart';
+import 'package:web/web.dart';
 
 void main() {
   final panorama = StreetViewPanorama(
-    document.getElementById('pano') as HtmlElement,
+    document.getElementById('pano') as HTMLElement,
     StreetViewPanoramaOptions()
       ..position = LatLng(37.869, -122.255)
       ..pov = (StreetViewPov()
@@ -14,32 +13,32 @@ void main() {
   );
 
   panorama.onPanoChanged.listen((_) {
-    document.getElementById('pano_cell')!.innerHtml = panorama.pano;
+    document.getElementById('pano_cell')!.innerHTML = panorama.pano!;
   });
 
-  Event.addListener(panorama, 'links_changed', () {
-    final linksTable = document.getElementById('links_table')!;
-    linksTable.children.clear();
+  panorama.addListener('links_changed', () {
+    final linksTable =
+        document.getElementById('links_table') as HTMLTableElement;
+    while (linksTable.hasChildNodes()) {
+      linksTable.removeChild(linksTable.firstChild!);
+    }
     final links = panorama.links!;
     for (var i = 0; i < links.length; i++) {
-      final row = TableRowElement();
-      linksTable.children.add(row);
-      final labelCell = TableCellElement()..innerHtml = '<b>Link: $i</b>';
-      final valueCell = TableCellElement()..innerHtml = links[i]!.description;
-      linksTable.children.add(labelCell);
-      linksTable.children.add(valueCell);
+      linksTable.insertRow()
+        ..insertCell().innerHTML = '<b>Link: $i</b>'
+        ..insertCell().innerHTML = links[i]!.description ?? '';
     }
   });
 
   panorama.onPositionChanged.listen((_) {
-    document.getElementById('position_cell')!.innerHtml =
+    document.getElementById('position_cell')!.innerHTML =
         '${panorama.position}';
   });
 
   panorama.onPovChanged.listen((_) {
     final headingCell = document.getElementById('heading_cell')!;
     final pitchCell = document.getElementById('pitch_cell')!;
-    headingCell.text = '${panorama.pov!.heading}';
-    pitchCell.text = '${panorama.pov!.pitch}';
+    headingCell.textContent = '${panorama.pov!.heading}';
+    pitchCell.textContent = '${panorama.pov!.pitch}';
   });
 }

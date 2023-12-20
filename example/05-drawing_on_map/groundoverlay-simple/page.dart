@@ -1,5 +1,5 @@
-import 'dart:html';
 import 'package:google_maps/google_maps.dart';
+import 'package:web/web.dart';
 
 void main() {
   final newark = LatLng(40.740, -74.18);
@@ -10,7 +10,7 @@ void main() {
     ..zoom = 13
     ..center = newark;
   final map =
-      GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
+      GMap(document.getElementById('map-canvas') as HTMLElement, mapOptions);
 
   GroundOverlay('https://www.lib.utexas.edu/maps/historical/newark_nj_1922.jpg',
           imageBounds)

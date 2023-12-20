@@ -85,11 +85,11 @@ void patchEntities(List<DocEntity> entities) {
           .updateReturnTypeToNonNullable();
     } else if (entity.library == null && entity.name == 'LatLngBounds') {
       entity.methods
-          .firstWhere((e) => e.name == 'getNorthEast')
-          .updateReturnTypeToNonNullable();
+          .firstWhereOrNull((e) => e.name == 'getNorthEast')
+          ?.updateReturnTypeToNonNullable();
       entity.methods
-          .firstWhere((e) => e.name == 'getSouthWest')
-          .updateReturnTypeToNonNullable();
+          .firstWhereOrNull((e) => e.name == 'getSouthWest')
+          ?.updateReturnTypeToNonNullable();
     } else if (entity.library == 'localContext' &&
         entity.name == 'PlaceTypePreference') {
       entity
@@ -151,6 +151,7 @@ Future main() async {
       .expand((html) => html.querySelectorAll(
           'div[itemtype="http://developers.google.com/ReferenceObject"]'))
       .map(parseDocEntity)
+      .whereNotNull()
       .where((e) => !ignoredClasses.contains(e.name))
       .toList();
   patchEntities(entities);
@@ -167,11 +168,11 @@ Future main() async {
     final bundleFile = 'google_maps_$library.dart';
     File('$genFolder/$fileName')
       ..createSync(recursive: true)
-      ..writeAsStringSync(DartFormatter().format('''
+      ..writeAsStringSync('''
 $licence
 part of '../$bundleFile';
 $code
-'''));
+''');
     parts.putIfAbsent(library, () => <String>[]).add(fileName);
   }
 
@@ -253,6 +254,8 @@ String generateCodeForEntity(DocEntity entity, List<DocEntity> entities) {
       return generateCodeForConstants(entity);
     case Kind.typedef:
       return generateCodeForTypedef(entity);
+    case Kind.abstract:
+      return generateCodeForAbstract(entity);
   }
 }
 
@@ -355,6 +358,9 @@ ${entity.constants.map((e) => e.name).join(',')},
 
 // handled directly by alias in convertType
 String generateCodeForTypedef(DocEntity entity) => '';
+
+// WIP
+String generateCodeForAbstract(DocEntity entity) => '';
 
 List<String> generateCodeForProperty(DocEntity entity, DocProperty property) {
   if (property.name.contains('_')) {
@@ -697,7 +703,7 @@ List<String> splitComplexTypeBy(String type, String char) {
   return typeParts;
 }
 
-enum Kind { clazz, interface, namespace, constants, typedef }
+enum Kind { clazz, interface, namespace, constants, typedef, abstract }
 
 class DocEntity {
   late Kind kind;
@@ -731,8 +737,16 @@ class DocEntity {
   String toString() => 'DocEntity($library ,$kind, $path, $name, $extendsName)';
 }
 
-DocEntity parseDocEntity(Element element) {
-  final name = element.querySelector('span[itemprop="name"]')!.text;
+DocEntity? parseDocEntity(Element element) {
+  final nameElement = element.querySelector('span[itemprop="name"]');
+  late final String name;
+  if (nameElement != null) {
+    name = nameElement.text;
+  } else {
+    // Top-level namespace
+    // https://developers.google.com/maps/documentation/javascript/reference/top-level
+    return null;
+  }
   final entity = DocEntity()
     ..kind = toKind(element
         .querySelector('h2')!
@@ -933,6 +947,8 @@ Kind toKind(String value) {
       return Kind.interface;
     case 'namespace':
       return Kind.namespace;
+    case 'abstract':
+      return Kind.abstract;
     case 'typedef':
       return Kind.typedef;
   }

@@ -1,13 +1,12 @@
-import 'dart:html';
-
 import 'package:google_maps/google_maps.dart';
+import 'package:web/web.dart';
 
 void main() {
   // Set up Street View and initially set it visible. Register the
   // custom panorama provider function. Set the StreetView to display
   // the custom panorama 'reception' which we check for below.
   StreetViewPanorama(
-    document.getElementById('map-canvas') as HtmlElement,
+    document.getElementById('map-canvas') as HTMLElement,
     StreetViewPanoramaOptions()
       ..pano = 'reception'
       ..visible = true,

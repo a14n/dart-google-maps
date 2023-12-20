@@ -1,7 +1,6 @@
-import 'dart:html';
-
 import 'package:google_maps/google_maps.dart';
 import 'package:google_maps/google_maps_geometry.dart';
+import 'package:web/web.dart';
 
 late Polyline poly;
 late Polyline geodesicPoly;
@@ -14,10 +13,10 @@ void main() {
     ..zoom = 4;
 
   final map =
-      GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
+      GMap(document.getElementById('map-canvas') as HTMLElement, mapOptions);
 
   map.controls![ControlPosition.TOP_CENTER as int]!
-      .push(document.getElementById('info') as HtmlElement);
+      .push(document.getElementById('panel') as HTMLElement);
 
   marker1 = Marker(MarkerOptions()
     ..map = map
@@ -58,10 +57,10 @@ void update() {
   poly.path = path;
   geodesicPoly.path = path;
   final heading = Spherical.computeHeading(path[0], path[1]);
-  (document.getElementById('heading') as InputElement).value =
+  (document.getElementById('heading') as HTMLInputElement).value =
       heading.toString();
-  (document.getElementById('origin') as InputElement).value =
+  (document.getElementById('origin') as HTMLInputElement).value =
       path[0].toString();
-  (document.getElementById('destination') as InputElement).value =
+  (document.getElementById('destination') as HTMLInputElement).value =
       path[1].toString();
 }

@@ -1,5 +1,5 @@
-import 'dart:html';
 import 'package:google_maps/google_maps.dart';
+import 'package:web/helpers.dart';
 
 late GroundOverlay historicalOverlay;
 late GMap map;
@@ -13,7 +13,7 @@ void main() {
     ..zoom = 13
     ..center = newark;
 
-  map = GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
+  map = GMap(document.getElementById('map-canvas') as HTMLElement, mapOptions);
 
   historicalOverlay = GroundOverlay(
       'https://www.lib.utexas.edu/maps/historical/newark_nj_1922.jpg',

@@ -1,10 +1,11 @@
-import 'dart:html';
+import 'dart:js_util';
 
 import 'package:google_maps/google_maps.dart';
+import 'package:web/web.dart';
 
 void main() {
   final map = GMap(
-      document.getElementById('map-canvas') as HtmlElement,
+      document.getElementById('map-canvas') as HTMLElement,
       MapOptions()
         ..zoom = 4
         ..center = LatLng(-28, 137.883));
@@ -13,13 +14,13 @@ void main() {
       .loadGeoJson('https://storage.googleapis.com/maps-devrel/google.json');
 
   // Add some style.
-  map.data!.style = (DataFeature feature) => DataStyleOptions()
+  map.data!.style = allowInterop((DataFeature feature) => DataStyleOptions()
     ..fillColor = feature.getProperty('color') as String
-    ..strokeWeight = 1;
+    ..strokeWeight = 1);
 
   // Set mouseover event for each feature.
   map.data!.onMouseover.listen((event) {
-    document.getElementById('info-box')!.text =
+    document.getElementById('info-box')!.textContent =
         event.feature!.getProperty('letter') as String;
   });
 }

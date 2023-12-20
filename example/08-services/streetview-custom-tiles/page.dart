@@ -1,6 +1,5 @@
-import 'dart:html';
-
 import 'package:google_maps/google_maps.dart';
+import 'package:web/web.dart' hide Event;
 
 late StreetViewPanorama panorama;
 // StreetViewPanoramaData of a panorama just outside the Google Sydney office.
@@ -22,7 +21,7 @@ void main() {
 
 void initPanorama() {
   panorama = StreetViewPanorama(
-    document.getElementById('street-view') as HtmlElement,
+    document.getElementById('street-view') as HTMLElement,
     StreetViewPanoramaOptions()..pano = outsideGoogle.location!.pano,
   )
     // Register a provider for the custom panorama.

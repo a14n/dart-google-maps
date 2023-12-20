@@ -1,15 +1,11 @@
-import 'dart:html';
-
 import 'package:google_maps/google_maps.dart';
-
-const IMAGE_URL =
-    'https://google-developers.appspot.com/maps/documentation/javascript/examples/full';
+import 'package:web/web.dart';
 
 late USGSOverlay overlay;
 
 void main() {
   final map = GMap(
-    document.getElementById('map') as HtmlElement,
+    document.getElementById('map') as HTMLElement,
     MapOptions()
       ..zoom = 11
       ..center = LatLng(62.323907, -150.109291)
@@ -45,29 +41,30 @@ class USGSOverlay {
 
   final LatLngBounds _bounds;
   final String _image;
-  DivElement? _div;
+  HTMLDivElement? _div;
 
   /// onAdd is called when the map's panes are ready and the overlay has been
   /// added to the map.
   void _onAdd() {
-    final div = DivElement();
+    final div = document.createElement('div') as HTMLDivElement;
     div.style
       ..border = 'none'
       ..borderWidth = '0px'
       ..position = 'absolute';
 
     // Create the img element and attach it to the div.
-    final img = ImageElement()..src = _image;
+    final img = (document.createElement('image') as HTMLImageElement)
+      ..src = _image;
     img.style
       ..width = '100%'
       ..height = '100%'
       ..position = 'absolute';
-    div.children.add(img);
+    div.appendChild(img);
 
     _div = div;
 
     // Add the element to the "overlayLayer" pane.
-    overlayView.panes!.overlayLayer!.children.add(div);
+    overlayView.panes!.overlayLayer!.appendChild(div);
   }
 
   void _draw() {

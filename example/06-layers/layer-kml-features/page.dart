@@ -1,5 +1,5 @@
-import 'dart:html';
 import 'package:google_maps/google_maps.dart';
+import 'package:web/web.dart';
 
 void main() {
   final myLatlng = LatLng(37.06, -95.68);
@@ -7,7 +7,7 @@ void main() {
     ..zoom = 12
     ..center = myLatlng;
   final map =
-      GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
+      GMap(document.getElementById('map-canvas') as HTMLElement, mapOptions);
 
   final kmlLayer = KmlLayer(KmlLayerOptions()
     ..url =
@@ -22,5 +22,5 @@ void main() {
 }
 
 void showInContentWindow(String text) {
-  document.getElementById('content-window')!.text = text;
+  document.getElementById('content-window')!.textContent = text;
 }

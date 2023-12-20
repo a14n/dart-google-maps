@@ -1,10 +1,9 @@
 @JS()
 library example;
 
-import 'dart:html';
-
 import 'package:google_maps/google_maps.dart';
 import 'package:js/js.dart';
+import 'package:web/helpers.dart';
 
 void main() {
   final mapOptions = MapOptions()
@@ -14,7 +13,7 @@ void main() {
     ..streetViewControl = false;
   // instantiate the map on the left with control positioning
   final mapLeft = GMap(
-    document.getElementById('map-left') as HtmlElement,
+    document.getElementById('map-left') as HTMLElement,
     MapOptions()
       ..center = mapOptions.center
       ..zoom = mapOptions.zoom
@@ -31,7 +30,7 @@ void main() {
   );
   // instantiate the map on the right with control positioning
   final mapRight = GMap(
-    document.getElementById('map-right') as HtmlElement,
+    document.getElementById('map-right') as HTMLElement,
     MapOptions()
       ..center = mapOptions.center
       ..zoom = mapOptions.zoom
@@ -78,15 +77,20 @@ void main() {
   syncMaps([mapLeft, mapRight]);
 
   void handleContainerResize([_]) {
-    final width = document.getElementById('container')!.offsetWidth;
-    document.getElementById('map-left')!.style.width = '${width}px';
-    document.getElementById('map-right')!.style.width = '${width}px';
+    final width =
+        (document.getElementById('container') as HTMLElement).offsetWidth;
+    (document.getElementById('map-left') as HTMLElement).style.width =
+        '${width}px';
+    (document.getElementById('map-right') as HTMLElement).style.width =
+        '${width}px';
   }
 
   // trigger to set map container size since using absolute
   handleContainerResize();
   // add event listener
-  window.onResize.listen(handleContainerResize);
+  const EventStreamProvider('resize')
+      .forTarget(window)
+      .listen(handleContainerResize);
   //@ts-ignore
   Split(['#left', '#right'], SplitOptions(sizes: [50, 50]));
 }

@@ -1,13 +1,12 @@
-import 'dart:html';
-
 import 'package:google_maps/google_maps.dart';
 import 'package:google_maps/google_maps_places.dart';
 import 'package:js/js_util.dart';
+import 'package:web/web.dart';
 
 void main() {
   final origin = LatLng(-33.871, 151.197);
   final map = GMap(
-    document.getElementById('map') as HtmlElement,
+    document.getElementById('map') as HTMLElement,
     MapOptions()
       ..zoom = 18
       ..center = origin,
@@ -22,7 +21,7 @@ class ClickEventHandler {
     directionsRenderer = DirectionsRenderer()..map = map;
     placesService = PlacesService(map);
     infowindowContent =
-        document.getElementById('infowindow-content') as DivElement;
+        document.getElementById('infowindow-content') as HTMLDivElement;
     infowindow.content = infowindowContent;
     // Listen for clicks on the map.
     map.onClick.listen(handleClick);
@@ -34,7 +33,7 @@ class ClickEventHandler {
   late DirectionsRenderer directionsRenderer;
   late PlacesService placesService;
   late InfoWindow infowindow = InfoWindow();
-  late DivElement infowindowContent;
+  late HTMLDivElement infowindowContent;
 
   void handleClick(MapMouseEvent event) {
     print('You clicked on: ${event.latLng}');
@@ -74,11 +73,13 @@ class ClickEventHandler {
         infowindow
           ..close()
           ..position = place!.geometry!.location;
-        (infowindowContent.querySelector('#place-icon') as ImageElement).src =
-            place.icon;
-        infowindowContent.querySelector('#place-name')!.text = place.name;
-        infowindowContent.querySelector('#place-id')!.text = place.placeId;
-        infowindowContent.querySelector('#place-address')!.text =
+        (infowindowContent.querySelector('#place-icon') as HTMLImageElement)
+            .src = place.icon!;
+        infowindowContent.querySelector('#place-name')!.textContent =
+            place.name;
+        infowindowContent.querySelector('#place-id')!.textContent =
+            place.placeId;
+        infowindowContent.querySelector('#place-address')!.textContent =
             place.formattedAddress;
         infowindow.open(map);
       }

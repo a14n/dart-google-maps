@@ -1,5 +1,5 @@
-import 'dart:html' hide MouseEvent;
 import 'package:google_maps/google_maps.dart';
+import 'package:web/web.dart';
 
 late Polyline poly;
 late GMap map;
@@ -9,7 +9,7 @@ void main() {
     ..zoom = 7
     // Center the map on Chicago, USA.
     ..center = LatLng(41.879535, -87.624333);
-  map = GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
+  map = GMap(document.getElementById('map-canvas') as HTMLElement, mapOptions);
 
   final polyOptions = PolylineOptions()
     ..strokeColor = '#000000'

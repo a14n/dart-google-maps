@@ -32,9 +32,9 @@ abstract class DirectionsRenderer extends MVCObject {
   GMap? _getMap();
 
   // synthetic getter for getPanel
-  HtmlElement? get panel => _getPanel();
+  HTMLElement? get panel => _getPanel();
   @JsName('getPanel')
-  HtmlElement? _getPanel();
+  HTMLElement? _getPanel();
 
   // synthetic getter for getRouteIndex
   num? get routeIndex => _getRouteIndex();
@@ -57,9 +57,9 @@ abstract class DirectionsRenderer extends MVCObject {
   void _setOptions(DirectionsRendererOptions? options);
 
   // synthetic setter for setPanel
-  set panel(HtmlElement? panel) => _setPanel(panel);
+  set panel(HTMLElement? panel) => _setPanel(panel);
   @JsName('setPanel')
-  void _setPanel(HtmlElement? panel);
+  void _setPanel(HTMLElement? panel);
 
   // synthetic setter for setRouteIndex
   set routeIndex(num? routeIndex) => _setRouteIndex(routeIndex);

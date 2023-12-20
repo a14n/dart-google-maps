@@ -1,9 +1,8 @@
-import 'dart:html' hide Point;
 import 'dart:math' as math;
 
 import 'package:google_maps/google_maps.dart';
-import 'package:js/js.dart';
 import 'package:js/js_util.dart';
+import 'package:web/web.dart';
 
 // This example defines an image map type using the Gall-Peters
 // projection.
@@ -11,7 +10,7 @@ import 'package:js/js_util.dart';
 void main() {
 // Create a map. Use the Gall-Peters map type.
   final map = GMap(
-    document.getElementById('map') as HtmlElement,
+    document.getElementById('map') as HTMLElement,
     MapOptions()
       ..zoom = 0
       ..center = LatLng(0, 0)
@@ -21,14 +20,14 @@ void main() {
   map.mapTypes!.set('gallPeters', gallPetersMapType);
   map.mapTypeId = 'gallPeters';
   // Show the lat and lng under the mouse cursor.
-  final coordsDiv = document.getElementById('coords') as DivElement;
+  final coordsDiv = document.getElementById('coords') as HTMLDivElement;
   map.controls![ControlPosition.TOP_CENTER as int]!.push(coordsDiv);
   map.onMousemove.listen((event) {
-    coordsDiv.text =
+    coordsDiv.textContent =
         'lat: ${event.latLng!.lat.round()}, lng: ${event.latLng!.lng.round()}';
   });
   // Add some markers to the map.
-  map.data!.style = allowInterop((feature) => jsify({
+  map.data!.style = allowInterop((DataFeature feature) => jsify({
         'title': feature.getProperty('name'),
         'optimized': false,
       }));

@@ -1,6 +1,5 @@
-import 'dart:html';
-
 import 'package:google_maps/google_maps.dart';
+import 'package:web/web.dart';
 
 late Geocoder geocoder;
 late GMap map;
@@ -9,7 +8,7 @@ const query = 'Toledo';
 void main() {
   geocoder = Geocoder();
   final mapOptions = MapOptions()..zoom = 8;
-  map = GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
+  map = GMap(document.getElementById('map-canvas') as HTMLElement, mapOptions);
   codeAddress();
 }
 

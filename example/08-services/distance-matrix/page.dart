@@ -1,6 +1,5 @@
-import 'dart:html';
-
 import 'package:google_maps/google_maps.dart';
+import 'package:web/helpers.dart';
 
 late GMap map;
 late Geocoder geocoder;
@@ -21,7 +20,7 @@ void main() {
   final mapOptions = MapOptions()
     ..center = LatLng(55.53, 9.4)
     ..zoom = 10;
-  map = GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
+  map = GMap(document.getElementById('map-canvas') as HTMLElement, mapOptions);
   geocoder = Geocoder();
 
   document
@@ -60,7 +59,7 @@ void callback(DistanceMatrixResponse? response, DistanceMatrixStatus? status) {
             '${origins[i]} to ${destinations[j]}: ${results[j]!.distance!.text} in ${results[j]!.duration!.text}<br>');
       }
     }
-    document.getElementById('outputDiv')!.innerHtml = html.toString();
+    document.getElementById('outputDiv')!.innerHTML = html.toString();
   }
 }
 

@@ -1,15 +1,12 @@
-import 'dart:html' hide Point;
 import 'package:google_maps/google_maps.dart';
-
-const IMAGE_URL =
-    'https://google-developers.appspot.com/maps/documentation/javascript/examples/full';
+import 'package:web/web.dart';
 
 void main() {
   final mapOptions = MapOptions()
     ..zoom = 10
     ..center = LatLng(-33.9, 151.2);
   final map =
-      GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
+      GMap(document.getElementById('map-canvas') as HTMLElement, mapOptions);
 
   setMarkers(map, beaches);
 }
@@ -36,7 +33,8 @@ void setMarkers(GMap map, List locations) {
   // increase in the X direction to the right and in
   // the Y direction down.
   final image = Icon()
-    ..url = '$IMAGE_URL/images/beachflag.png'
+    ..url =
+        'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
     // This marker is 20 pixels wide by 32 pixels tall.
     ..size = Size(20, 32)
     // The origin for this image is 0,0.

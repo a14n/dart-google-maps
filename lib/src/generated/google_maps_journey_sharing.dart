@@ -16,9 +16,9 @@
 library google_maps.journey_sharing;
 
 import 'dart:async' show StreamController;
-import 'dart:html' show Element;
 import 'package:google_maps/google_maps.dart';
 import 'package:js_wrapping/js_wrapping.dart';
+import 'package:web/web.dart' show Element;
 
 part 'journey_sharing/journey_sharing_map_view.dart';
 part 'journey_sharing/journey_sharing_map_view_options.dart';

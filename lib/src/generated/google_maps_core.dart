@@ -16,11 +16,11 @@
 library google_maps.core;
 
 import 'dart:async' show StreamController;
-import 'dart:html' show Document, Element, HtmlElement;
 import 'dart:typed_data' show Float32List, Float64List;
 import 'dart:web_gl' show RenderingContext;
 import 'package:google_maps/google_maps_places.dart' show PlacePlusCode;
 import 'package:js_wrapping/js_wrapping.dart';
+import 'package:web/web.dart' show Document, Element, HTMLElement;
 
 part 'core/g_map.dart';
 part 'core/map_options.dart';

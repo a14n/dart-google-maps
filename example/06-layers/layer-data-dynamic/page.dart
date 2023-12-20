@@ -1,9 +1,11 @@
-import 'dart:html';
+import 'dart:js_util';
+
 import 'package:google_maps/google_maps.dart';
+import 'package:web/web.dart';
 
 void main() {
   final map = GMap(
-      document.getElementById('map-canvas') as HtmlElement,
+      document.getElementById('map-canvas') as HTMLElement,
       MapOptions()
         ..zoom = 4
         ..center = LatLng(-28, 137.883));
@@ -13,7 +15,7 @@ void main() {
 
   // Color each letter gray. Change the color when the isColorful property
   // is set to true.
-  map.data!.style = (DataFeature feature) {
+  map.data!.style = allowInterop((DataFeature feature) {
     var color = 'gray';
     if (feature.getProperty('isColorful') == true) {
       color = feature.getProperty('color') as String;
@@ -22,7 +24,7 @@ void main() {
       ..fillColor = color
       ..strokeColor = color
       ..strokeWeight = 2;
-  };
+  });
 
   // When the user clicks, set 'isColorful', changing the color of the letters.
   map.data!.onClick.listen((event) {

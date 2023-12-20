@@ -1,11 +1,10 @@
-import 'dart:html';
-
 import 'package:google_maps/google_maps.dart';
 import 'package:google_maps/google_maps_places.dart';
+import 'package:web/web.dart';
 
 void main() {
   final map = GMap(
-      document.getElementById('map-canvas') as HtmlElement,
+      document.getElementById('map-canvas') as HTMLElement,
       MapOptions()
         ..center = LatLng(-33.8665433, 151.1956316)
         ..zoom = 15);

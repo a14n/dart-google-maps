@@ -1,9 +1,5 @@
-import 'dart:html';
-
 import 'package:google_maps/google_maps.dart';
-
-const IMAGE_URL =
-    'https://google-developers.appspot.com/maps/documentation/javascript/examples/full';
+import 'package:web/helpers.dart';
 
 late USGSOverlay overlay;
 
@@ -14,14 +10,15 @@ void main() {
     ..center = myLatLng
     ..mapTypeId = MapTypeId.SATELLITE;
   final map =
-      GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
+      GMap(document.getElementById('map-canvas') as HTMLElement, mapOptions);
 
   final swBound = LatLng(62.281819, -150.287132);
   final neBound = LatLng(62.400471, -150.005608);
   final bounds = LatLngBounds(swBound, neBound);
 
   // The photograph is courtesy of the U.S. Geological Survey.
-  const srcImage = '$IMAGE_URL/images/talkeetna.png';
+  const srcImage =
+      'https://developers.google.com/maps/documentation/javascript/examples/full/images/talkeetna.png';
   overlay = USGSOverlay(bounds, srcImage, map);
 
   document.getElementById('toggle')!.onClick.listen((e) => overlay.toggle());
@@ -48,28 +45,29 @@ class USGSOverlay {
   final String _image;
   final GMap _map;
 
-  DivElement? _div;
+  HTMLDivElement? _div;
 
   /// onAdd is called when the map's panes are ready and the overlay has been
   /// added to the map.
   void _onAdd() {
-    final div = DivElement();
+    final div = document.createElement('div') as HTMLDivElement;
     div.style
       ..border = 'none'
       ..borderWidth = '0px'
       ..position = 'absolute';
 
     // Create the img element and attach it to the div.
-    final img = ImageElement()..src = _image;
+    final img = (document.createElement('image') as HTMLImageElement)
+      ..src = _image;
     img.style
       ..width = '100%'
       ..height = '100%';
-    div.children.add(img);
+    div.appendChild(img);
 
     _div = div;
 
     // Add the element to the "overlayImage" pane.
-    overlayView.panes!.overlayLayer!.children.add(div);
+    overlayView.panes!.overlayLayer!.appendChild(div);
   }
 
   void _draw() {

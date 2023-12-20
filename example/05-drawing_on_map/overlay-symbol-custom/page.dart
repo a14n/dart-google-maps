@@ -1,5 +1,5 @@
-import 'dart:html';
 import 'package:google_maps/google_maps.dart';
+import 'package:web/web.dart';
 
 void main() {
   final myLatLng = LatLng(20.291, 153.027);
@@ -9,7 +9,7 @@ void main() {
     ..mapTypeId = MapTypeId.TERRAIN;
 
   final map =
-      GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
+      GMap(document.getElementById('map-canvas') as HTMLElement, mapOptions);
 
   final symbolOne = GSymbol()
     ..path = 'M -2,0 0,-2 2,0 0,2 z'

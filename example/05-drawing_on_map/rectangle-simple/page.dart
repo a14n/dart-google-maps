@@ -1,9 +1,9 @@
-import 'dart:html' hide Rectangle;
 import 'package:google_maps/google_maps.dart';
+import 'package:web/web.dart';
 
 void main() {
   final map = GMap(
-      document.getElementById('map-canvas') as HtmlElement,
+      document.getElementById('map-canvas') as HTMLElement,
       MapOptions()
         ..zoom = 11
         ..center = LatLng(33.678176, -116.242568)

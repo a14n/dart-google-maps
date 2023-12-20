@@ -1,6 +1,5 @@
-import 'dart:html' hide Events;
-
 import 'package:google_maps/google_maps.dart';
+import 'package:web/helpers.dart';
 
 late GMap map;
 final LatLng chicago = LatLng(41.85, -87.65);
@@ -8,32 +7,32 @@ final LatLng chicago = LatLng(41.85, -87.65);
 /// The CenterControl adds a control to the map that
 /// returns the user to the control's defined home.
 class CenterControl {
-  CenterControl(Element controlDiv, GMap map, this.center) {
+  CenterControl(HTMLDivElement controlDiv, GMap map, this.center) {
     controlDiv.style.clear = 'both';
 
     // Set CSS for the control border
-    final goCenterUI = DivElement()
+    final goCenterUI = document.createElement('div') as HTMLDivElement
       ..id = 'goCenterUI'
       ..title = 'Click to recenter the map';
-    controlDiv.children.add(goCenterUI);
+    controlDiv.appendChild(goCenterUI);
 
     // Set CSS for the control interior
-    final goCenterText = DivElement()
+    final goCenterText = document.createElement('div') as HTMLDivElement
       ..id = 'goCenterText'
       ..text = 'Center Map';
-    goCenterUI.children.add(goCenterText);
+    goCenterUI.appendChild(goCenterText);
 
     // Set CSS for the setCenter control border
-    final setCenterUI = DivElement()
+    final setCenterUI = document.createElement('div') as HTMLDivElement
       ..id = 'setCenterUI'
       ..title = 'Click to change the center of the map';
-    controlDiv.children.add(setCenterUI);
+    controlDiv.appendChild(setCenterUI);
 
     // Set CSS for the control interior
-    final setCenterText = DivElement()
+    final setCenterText = document.createElement('div') as HTMLDivElement
       ..id = 'setCenterText'
       ..text = 'Set Center';
-    setCenterUI.children.add(setCenterText);
+    setCenterUI.appendChild(setCenterText);
 
     // Setup the click event listener for Home:
     // simply set the map to the control's current home property.
@@ -52,7 +51,7 @@ class CenterControl {
 
 void main() {
   map = GMap(
-      document.getElementById('map') as HtmlElement,
+      document.getElementById('map') as HTMLElement,
       MapOptions()
         ..zoom = 12
         ..center = chicago);
@@ -60,9 +59,9 @@ void main() {
   // Create the DIV to hold the control and
   // call the HomeControl() constructor passing
   // in this DIV.
-  final centerControlDiv = DivElement();
+  final centerControlDiv = document.createElement('div') as HTMLDivElement;
   CenterControl(centerControlDiv, map, chicago);
-  centerControlDiv.attributes['index'] = '1';
+  centerControlDiv.setAttribute('index', '1');
   centerControlDiv.style.paddingTop = '10px';
   map.controls![ControlPosition.TOP_CENTER as int]!.push(centerControlDiv);
 }

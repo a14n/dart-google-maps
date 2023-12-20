@@ -22,27 +22,31 @@
 library google_maps.journey_sharing;
 
 import 'dart:async' show StreamController;
-import 'dart:html' show Element;
 import 'package:google_maps/google_maps.dart';
 import 'package:js_wrapping/js_wrapping.dart';
+import 'package:web/web.dart' show Element;
 
 @JS('google.maps.journeySharing.JourneySharingMapView')
 class JourneySharingMapView {
   external JourneySharingMapView(JourneySharingMapViewOptions? options);
 
-  external Object? /*PolylineSetupOptions?|PolylineSetupOptions? Function(DefaultPolylineSetupOptions?)?*/ get anticipatedRoutePolylineSetup;
+  external Object? /*PolylineSetupOptions?|PolylineSetupOptions? Function(DefaultPolylineSetupOptions?)?*/
+      get anticipatedRoutePolylineSetup;
 
   external set anticipatedRoutePolylineSetup(
-      Object? /*PolylineSetupOptions?|PolylineSetupOptions? Function(DefaultPolylineSetupOptions?)?*/ value);
+      Object? /*PolylineSetupOptions?|PolylineSetupOptions? Function(DefaultPolylineSetupOptions?)?*/
+          value);
 
   external AutomaticViewportMode? get automaticViewportMode;
 
   external set automaticViewportMode(AutomaticViewportMode? value);
 
-  external Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/ get destinationMarkerSetup;
+  external Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/
+      get destinationMarkerSetup;
 
   external set destinationMarkerSetup(
-      Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/ value);
+      Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/
+          value);
 
   external Element? get element;
 
@@ -64,45 +68,61 @@ class JourneySharingMapView {
 
   external set mapOptions(MapOptions? value);
 
-  external Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/ get originMarkerSetup;
+  external Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/
+      get originMarkerSetup;
 
   external set originMarkerSetup(
-      Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/ value);
+      Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/
+          value);
 
-  external Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/ get pingMarkerSetup;
+  external Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/
+      get pingMarkerSetup;
 
   external set pingMarkerSetup(
-      Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/ value);
+      Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/
+          value);
 
-  external Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/ get successfulTaskMarkerSetup;
+  external Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/
+      get successfulTaskMarkerSetup;
 
   external set successfulTaskMarkerSetup(
-      Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/ value);
+      Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/
+          value);
 
-  external Object? /*PolylineSetupOptions?|PolylineSetupOptions? Function(DefaultPolylineSetupOptions?)?*/ get takenRoutePolylineSetup;
+  external Object? /*PolylineSetupOptions?|PolylineSetupOptions? Function(DefaultPolylineSetupOptions?)?*/
+      get takenRoutePolylineSetup;
 
   external set takenRoutePolylineSetup(
-      Object? /*PolylineSetupOptions?|PolylineSetupOptions? Function(DefaultPolylineSetupOptions?)?*/ value);
+      Object? /*PolylineSetupOptions?|PolylineSetupOptions? Function(DefaultPolylineSetupOptions?)?*/
+          value);
 
-  external Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/ get taskOutcomeMarkerSetup;
+  external Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/
+      get taskOutcomeMarkerSetup;
 
   external set taskOutcomeMarkerSetup(
-      Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/ value);
+      Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/
+          value);
 
-  external Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/ get unsuccessfulTaskMarkerSetup;
+  external Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/
+      get unsuccessfulTaskMarkerSetup;
 
   external set unsuccessfulTaskMarkerSetup(
-      Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/ value);
+      Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/
+          value);
 
-  external Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/ get vehicleMarkerSetup;
+  external Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/
+      get vehicleMarkerSetup;
 
   external set vehicleMarkerSetup(
-      Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/ value);
+      Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/
+          value);
 
-  external Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/ get waypointMarkerSetup;
+  external Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/
+      get waypointMarkerSetup;
 
   external set waypointMarkerSetup(
-      Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/ value);
+      Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/
+          value);
 }
 
 extension JourneySharingMapView$Ext on JourneySharingMapView {
@@ -183,63 +203,83 @@ class JourneySharingMapViewOptions {
 
   external set locationProvider(LocationProvider? value);
 
-  external Object? /*PolylineSetupOptions?|PolylineSetupOptions? Function(DefaultPolylineSetupOptions?)?*/ get anticipatedRoutePolylineSetup;
+  external Object? /*PolylineSetupOptions?|PolylineSetupOptions? Function(DefaultPolylineSetupOptions?)?*/
+      get anticipatedRoutePolylineSetup;
 
   external set anticipatedRoutePolylineSetup(
-      Object? /*PolylineSetupOptions?|PolylineSetupOptions? Function(DefaultPolylineSetupOptions?)?*/ value);
+      Object? /*PolylineSetupOptions?|PolylineSetupOptions? Function(DefaultPolylineSetupOptions?)?*/
+          value);
 
   external AutomaticViewportMode? get automaticViewportMode;
 
   external set automaticViewportMode(AutomaticViewportMode? value);
 
-  external Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/ get destinationMarkerSetup;
+  external Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/
+      get destinationMarkerSetup;
 
   external set destinationMarkerSetup(
-      Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/ value);
+      Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/
+          value);
 
   external MapOptions? get mapOptions;
 
   external set mapOptions(MapOptions? value);
 
-  external Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/ get originMarkerSetup;
+  external Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/
+      get originMarkerSetup;
 
   external set originMarkerSetup(
-      Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/ value);
+      Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/
+          value);
 
-  external Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/ get pingMarkerSetup;
+  external Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/
+      get pingMarkerSetup;
 
   external set pingMarkerSetup(
-      Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/ value);
+      Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/
+          value);
 
-  external Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/ get successfulTaskMarkerSetup;
+  external Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/
+      get successfulTaskMarkerSetup;
 
   external set successfulTaskMarkerSetup(
-      Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/ value);
+      Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/
+          value);
 
-  external Object? /*PolylineSetupOptions?|PolylineSetupOptions? Function(DefaultPolylineSetupOptions?)?*/ get takenRoutePolylineSetup;
+  external Object? /*PolylineSetupOptions?|PolylineSetupOptions? Function(DefaultPolylineSetupOptions?)?*/
+      get takenRoutePolylineSetup;
 
   external set takenRoutePolylineSetup(
-      Object? /*PolylineSetupOptions?|PolylineSetupOptions? Function(DefaultPolylineSetupOptions?)?*/ value);
+      Object? /*PolylineSetupOptions?|PolylineSetupOptions? Function(DefaultPolylineSetupOptions?)?*/
+          value);
 
-  external Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/ get taskOutcomeMarkerSetup;
+  external Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/
+      get taskOutcomeMarkerSetup;
 
   external set taskOutcomeMarkerSetup(
-      Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/ value);
+      Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/
+          value);
 
-  external Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/ get unsuccessfulTaskMarkerSetup;
+  external Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/
+      get unsuccessfulTaskMarkerSetup;
 
   external set unsuccessfulTaskMarkerSetup(
-      Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/ value);
+      Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/
+          value);
 
-  external Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/ get vehicleMarkerSetup;
+  external Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/
+      get vehicleMarkerSetup;
 
   external set vehicleMarkerSetup(
-      Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/ value);
+      Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/
+          value);
 
-  external Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/ get waypointMarkerSetup;
+  external Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/
+      get waypointMarkerSetup;
 
   external set waypointMarkerSetup(
-      Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/ value);
+      Object? /*MarkerSetupOptions?|MarkerSetupOptions? Function(DefaultMarkerSetupOptions?)?*/
+          value);
 }
 
 @JS('google.maps.journeySharing.AutomaticViewportMode')

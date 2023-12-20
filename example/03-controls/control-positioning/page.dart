@@ -1,10 +1,9 @@
-import 'dart:html';
-
 import 'package:google_maps/google_maps.dart';
+import 'package:web/web.dart';
 
 void main() {
   GMap(
-    document.getElementById('map') as HtmlElement,
+    document.getElementById('map') as HTMLElement,
     MapOptions()
       ..zoom = 12
       ..center = LatLng(-28.643387, 153.612224)

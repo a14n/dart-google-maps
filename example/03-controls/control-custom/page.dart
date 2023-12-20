@@ -1,5 +1,5 @@
-import 'dart:html' hide Events;
 import 'package:google_maps/google_maps.dart';
+import 'package:web/web.dart' hide Event;
 
 late GMap map;
 final LatLng chicago = LatLng(41.85, -87.65);
@@ -10,7 +10,7 @@ final LatLng chicago = LatLng(41.85, -87.65);
 class CenterControl {
   CenterControl(Element controlDiv, GMap map) {
     // Set CSS for the control border
-    final controlUI = DivElement();
+    final controlUI = document.createElement('div') as HTMLDivElement;
     controlUI.style
       ..backgroundColor = '#fff'
       ..border = '2px solid #fff'
@@ -20,10 +20,10 @@ class CenterControl {
       ..marginBottom = '22px'
       ..textAlign = 'center';
     controlUI.title = 'Click to recenter the map';
-    controlDiv.children.add(controlUI);
+    controlDiv.appendChild(controlUI);
 
     // Set CSS for the control interior
-    final controlText = DivElement();
+    final controlText = document.createElement('div') as HTMLDivElement;
     controlText.style
       ..color = 'rgb(25,25,25)'
       ..fontFamily = 'Roboto,Arial,sans-serif'
@@ -31,8 +31,8 @@ class CenterControl {
       ..lineHeight = '38px'
       ..paddingLeft = '5px'
       ..paddingRight = '5px';
-    controlText.text = 'Center Map';
-    controlUI.children.add(controlText);
+    controlText.textContent = 'Center Map';
+    controlUI.appendChild(controlText);
 
     // Setup the click event listeners: simply set the map to
     // Chicago
@@ -44,7 +44,7 @@ class CenterControl {
 
 void main() {
   map = GMap(
-    document.getElementById('map') as HtmlElement,
+    document.getElementById('map') as HTMLElement,
     MapOptions()
       ..zoom = 12
       ..center = chicago,
@@ -53,7 +53,7 @@ void main() {
   // Create the DIV to hold the control and
   // call the HomeControl() constructor passing
   // in this DIV.
-  final centerControlDiv = DivElement();
+  final centerControlDiv = document.createElement('div') as HTMLDivElement;
   CenterControl(centerControlDiv, map);
   map.controls![ControlPosition.TOP_CENTER as int]!.push(centerControlDiv);
 }

@@ -1,16 +1,13 @@
-import 'dart:html';
 import 'package:google_maps/google_maps.dart';
 import 'package:google_maps/google_maps_drawing.dart';
-
-const IMAGE_URL =
-    'https://google-developers.appspot.com/maps/documentation/javascript/examples/full';
+import 'package:web/web.dart';
 
 void main() {
   final mapOptions = MapOptions()
     ..center = LatLng(-34.397, 150.644)
     ..zoom = 8;
   final map =
-      GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
+      GMap(document.getElementById('map-canvas') as HTMLElement, mapOptions);
 
   DrawingManager(DrawingManagerOptions()
         ..drawingMode = OverlayType.MARKER
@@ -24,8 +21,9 @@ void main() {
             OverlayType.POLYLINE,
             OverlayType.RECTANGLE
           ])
-        ..markerOptions =
-            (MarkerOptions()..icon = '$IMAGE_URL/images/beachflag.png')
+        ..markerOptions = (MarkerOptions()
+          ..icon =
+              'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png')
         ..circleOptions = (CircleOptions()
           ..fillColor = '#ffff00'
           ..fillOpacity = 1

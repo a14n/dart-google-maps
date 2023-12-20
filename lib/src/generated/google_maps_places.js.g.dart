@@ -22,14 +22,14 @@
 library google_maps.places;
 
 import 'dart:async' show StreamController;
-import 'dart:html' show InputElement;
 import 'package:google_maps/google_maps.dart';
 import 'package:js_wrapping/js_wrapping.dart';
+import 'package:web/web.dart' show HTMLInputElement;
 
 @JS('google.maps.places.Autocomplete')
 class Autocomplete extends MVCObject {
   external Autocomplete(
-    InputElement? inputField, [
+    HTMLInputElement? inputField, [
     AutocompleteOptions? opts, // ignore: unused_element
   ]);
 }
@@ -129,7 +129,7 @@ extension AutocompleteOptions$Ext on AutocompleteOptions {
 @JS('google.maps.places.SearchBox')
 class SearchBox extends MVCObject {
   external SearchBox(
-    InputElement? inputField, [
+    HTMLInputElement? inputField, [
     SearchBoxOptions? opts, // ignore: unused_element
   ]);
 }

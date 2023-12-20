@@ -17,11 +17,11 @@ part of '../google_maps_core.dart';
 @JsName('google.maps.Map')
 abstract class GMap extends MVCObject {
   factory GMap(
-    HtmlElement? mapDiv, [
+    HTMLElement? mapDiv, [
     MapOptions? opts, // ignore: unused_element
   ]) =>
       $js();
-  List<MVCArray<HtmlElement?>?>? controls;
+  List<MVCArray<HTMLElement?>?>? controls;
   Data? data;
   MapTypeRegistry? mapTypes;
   MVCArray<MapType?>? overlayMapTypes;
@@ -46,9 +46,9 @@ abstract class GMap extends MVCObject {
   bool? _getClickableIcons();
 
   // synthetic getter for getDiv
-  HtmlElement? get div => _getDiv();
+  HTMLElement? get div => _getDiv();
   @JsName('getDiv')
-  HtmlElement? _getDiv();
+  HTMLElement? _getDiv();
 
   // synthetic getter for getHeading
   num? get heading => _getHeading();

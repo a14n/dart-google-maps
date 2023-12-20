@@ -1,6 +1,5 @@
-import 'dart:html' hide MouseEvent;
-
 import 'package:google_maps/google_maps.dart';
+import 'package:web/web.dart';
 
 late GMap map;
 late MaxZoomService maxZoomService;
@@ -8,7 +7,7 @@ late InfoWindow infoWindow;
 
 void main() {
   map = GMap(
-    document.getElementById('map-canvas') as HtmlElement,
+    document.getElementById('map-canvas') as HTMLElement,
     MapOptions()
       ..zoom = 11
       ..center = LatLng(35.6894875, 139.6917064)

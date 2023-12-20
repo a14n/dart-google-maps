@@ -1,21 +1,22 @@
 @JS()
 library example;
 
-import 'dart:html';
+import 'dart:js_util';
 
 import 'package:google_maps/google_maps.dart';
-import 'package:js_wrapping/js_wrapping.dart';
+import 'package:js/js.dart';
+import 'package:web/helpers.dart';
 
 @JS('google.visualization.ColumnChart')
 class ColumnChart {
-  external ColumnChart(Node div);
+  external factory ColumnChart(Node div);
 
   external void draw(DataTable data, [Object options]);
 }
 
 @JS('google.visualization.DataTable')
 class DataTable {
-  external DataTable();
+  external factory DataTable();
 
   external void addColumn(String type, [String label, String id]);
   external void addRow([List cells]);
@@ -42,7 +43,7 @@ void main() {
     ..zoom = 8
     ..center = lonepine
     ..mapTypeId = MapTypeId.TERRAIN;
-  map = GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
+  map = GMap(document.getElementById('map-canvas') as HTMLElement, mapOptions);
 
   // Create an ElevationService.
   elevator = ElevationService();
@@ -106,7 +107,7 @@ void plotElevation(List<ElevationResult?>? results, ElevationStatus? status) {
     }
 
     // Draw the chart using the data within its DIV.
-    querySelector('#elevation_chart')!.style.display = 'block';
+    (querySelector('#elevation_chart')! as HTMLElement).style.display = 'block';
     chart.draw(data,
         jsify({'height': 150, 'legend': 'none', 'titleY': 'Elevation (m)'}));
   }

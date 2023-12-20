@@ -1,10 +1,9 @@
-import 'dart:html';
-
-import 'package:google_maps/google_maps.dart';
+import 'package:google_maps/google_maps.dart' hide Event;
+import 'package:web/helpers.dart';
 
 void main() {
   final map = GMap(
-    document.getElementById('map') as HtmlElement,
+    document.getElementById('map') as HTMLElement,
     MapOptions()
       ..center = LatLng(-34.397, 150.644)
       ..zoom = 8
@@ -24,7 +23,7 @@ void initZoomControl(GMap map) {
     map.zoom = map.zoom! - 1;
   });
   map.controls![ControlPosition.RIGHT_BOTTOM as int]!
-      .push(document.querySelector('.zoom-control') as HtmlElement);
+      .push(document.querySelector('.zoom-control') as HTMLElement);
 }
 
 void initMapTypeControl(GMap map) {
@@ -32,14 +31,14 @@ void initMapTypeControl(GMap map) {
       document.querySelector('.maptype-control') as HtmlElement;
 
   document.querySelector('.maptype-control-map')!.onClick.listen((event) {
-    mapTypeControlDiv.classes.add('maptype-control-is-map');
-    mapTypeControlDiv.classes.remove('maptype-control-is-satellite');
+    mapTypeControlDiv.classList.add('maptype-control-is-map');
+    mapTypeControlDiv.classList.remove('maptype-control-is-satellite');
     map.mapTypeId = 'roadmap';
   });
 
   document.querySelector('.maptype-control-satellite')!.onClick.listen((event) {
-    mapTypeControlDiv.classes.remove('maptype-control-is-map');
-    mapTypeControlDiv.classes.add('maptype-control-is-satellite');
+    mapTypeControlDiv.classList.remove('maptype-control-is-map');
+    mapTypeControlDiv.classList.add('maptype-control-is-satellite');
     map.mapTypeId = 'hybrid';
   });
   map.controls![ControlPosition.LEFT_TOP as int]!.push(mapTypeControlDiv);
@@ -48,7 +47,7 @@ void initMapTypeControl(GMap map) {
 void initFullscreenControl(GMap map) {
   final elementToSendFullscreen = map.div!.firstChild! as Element;
   final fullscreenControl =
-      document.querySelector('.fullscreen-control') as HtmlElement;
+      document.querySelector('.fullscreen-control') as HTMLElement;
   map.controls![ControlPosition.RIGHT_TOP as int]!.push(fullscreenControl);
 
   fullscreenControl.onClick.listen((event) {
@@ -58,12 +57,11 @@ void initFullscreenControl(GMap map) {
       requestFullscreen(elementToSendFullscreen);
     }
   });
-
-  document.onFullscreenChange.listen((event) {
+  const EventStreamProvider('fullscreenchange').forTarget(document).listen((_) {
     if (isFullscreen(elementToSendFullscreen)) {
-      fullscreenControl.classes.add('is-fullscreen');
+      fullscreenControl.classList.add('is-fullscreen');
     } else {
-      fullscreenControl.classes.remove('is-fullscreen');
+      fullscreenControl.classList.remove('is-fullscreen');
     }
   });
 }

@@ -17,11 +17,11 @@ part of '../google_maps_core.dart';
 @JsName('google.maps.StreetViewPanorama')
 abstract class StreetViewPanorama extends MVCObject {
   factory StreetViewPanorama(
-    HtmlElement? container, [
+    HTMLElement? container, [
     StreetViewPanoramaOptions? opts, // ignore: unused_element
   ]) =>
       $js();
-  List<MVCArray<HtmlElement?>?>? controls;
+  List<MVCArray<HTMLElement?>?>? controls;
 
   // synthetic getter for getLinks
   List<StreetViewLink?>? get links => _getLinks();

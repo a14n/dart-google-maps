@@ -7,7 +7,6 @@ linter:
     - always_declare_return_types
     # - always_put_control_body_on_new_line # conflict with dartfmt
     - always_put_required_named_parameters_first
-    - always_require_non_null_named_parameters
     # - always_specify_types # we don't want that
     # - annotate_overrides # JS templates need that
     # - avoid_annotating_with_dynamic # conflict with always_declare_return_types
@@ -27,8 +26,6 @@ linter:
     - avoid_private_typedef_functions
     - avoid_relative_lib_imports
     # - avoid_renaming_method_parameters # we keep the names from docs
-    - avoid_return_types_on_setters
-    - avoid_returning_null
     - avoid_returning_this
     # - avoid_setters_without_getters # JS templates need that
     - avoid_single_cascade_in_expression_statements
@@ -52,11 +49,9 @@ linter:
     - hash_and_equals
     # - implementation_imports # we use some analyzer internal class
     - invariant_booleans
-    - iterable_contains_unrelated_type
     - join_return_with_assignment
     - library_names
     - library_prefixes
-    - list_remove_unrelated_type
     - literal_only_boolean_expressions
     - no_adjacent_strings_in_list
     - no_duplicate_case_values

@@ -1,6 +1,5 @@
-import 'dart:html';
-
 import 'package:google_maps/google_maps.dart';
+import 'package:web/web.dart';
 
 final newZealandBounds = LatLngBounds(
   LatLng(-47.35, 166.28),
@@ -10,7 +9,7 @@ final auckland = LatLng(-37.06, 174.58);
 
 void main() {
   GMap(
-    document.getElementById('map') as HtmlElement,
+    document.getElementById('map') as HTMLElement,
     MapOptions()
       ..center = auckland
       ..restriction = (MapRestriction()

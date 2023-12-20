@@ -1,5 +1,5 @@
-import 'dart:html';
 import 'package:google_maps/google_maps.dart';
+import 'package:web/web.dart';
 
 void main() {
   final chicago = LatLng(41.875696, -87.624207);
@@ -7,7 +7,7 @@ void main() {
     ..zoom = 11
     ..center = chicago;
   final map =
-      GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
+      GMap(document.getElementById('map-canvas') as HTMLElement, mapOptions);
 
   KmlLayer()
     ..url = 'http://googlearchive.github.io/js-v2-samples/ggeoxml/cta.kml'

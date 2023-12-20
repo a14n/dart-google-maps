@@ -1,6 +1,5 @@
-import 'dart:html';
-
 import 'package:google_maps/google_maps.dart';
+import 'package:web/helpers.dart';
 
 late DirectionsRenderer directionsDisplay;
 final directionsService = DirectionsService();
@@ -12,18 +11,20 @@ void main() {
   final mapOptions = MapOptions()
     ..zoom = 6
     ..center = chicago;
-  map = GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
+  map = GMap(document.getElementById('map-canvas') as HTMLElement, mapOptions);
   directionsDisplay.map = map;
 
   querySelector('#calcRoute')!.onClick.listen((e) => calcRoute());
 }
 
 void calcRoute() {
-  final start = (document.getElementById('start') as SelectElement).value;
-  final end = (document.getElementById('end') as SelectElement).value;
+  final start = (document.getElementById('start') as HTMLSelectElement).value;
+  final end = (document.getElementById('end') as HTMLSelectElement).value;
   final waypts = <DirectionsWaypoint>[];
-  final checkboxArray = document.getElementById('waypoints') as SelectElement;
-  for (final option in checkboxArray.options) {
+  final checkboxArray =
+      document.getElementById('waypoints') as HTMLSelectElement;
+  for (var i = 0; i < checkboxArray.options.length; i++) {
+    final option = checkboxArray.options.item(i) as HTMLOptionElement;
     if (option.selected) {
       waypts.add(DirectionsWaypoint()
         ..location = option.value
@@ -53,7 +54,7 @@ void calcRoute() {
           ..write('${leg.endAddress}<br>')
           ..write('${leg.distance!.text}<br><br>');
       }
-      summaryPanel!.innerHtml = html.toString();
+      summaryPanel!.innerHTML = html.toString();
     }
   });
 }

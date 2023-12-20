@@ -1,6 +1,5 @@
-import 'dart:html';
-
 import 'package:google_maps/google_maps.dart';
+import 'package:web/web.dart';
 
 late GMap map;
 late StreetViewPanorama panorama;
@@ -9,14 +8,14 @@ void main() {
   final berkeley = LatLng(37.869085, -122.254775);
   final sv = StreetViewService();
 
-  panorama = StreetViewPanorama(document.getElementById('pano') as HtmlElement);
+  panorama = StreetViewPanorama(document.getElementById('pano') as HTMLElement);
 
   // Set up the map
   final mapOptions = MapOptions()
     ..center = berkeley
     ..zoom = 16
     ..streetViewControl = false;
-  map = GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
+  map = GMap(document.getElementById('map-canvas') as HTMLElement, mapOptions);
 
   // Set the initial Street View camera to the center of the map
   sv.getPanorama(

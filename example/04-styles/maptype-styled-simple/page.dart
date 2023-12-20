@@ -1,7 +1,6 @@
-import 'dart:html';
-
 import 'package:google_maps/google_maps.dart';
 import 'package:js/js_util.dart';
+import 'package:web/web.dart';
 
 late GMap map;
 final brooklyn = LatLng(40.6743890, -73.9455);
@@ -36,7 +35,7 @@ void main() {
       ..mapTypeIds = [MapTypeId.ROADMAP, MY_MAPTYPE_ID])
     ..mapTypeId = MY_MAPTYPE_ID;
 
-  map = GMap(document.getElementById('map-canvas') as HtmlElement, mapOptions);
+  map = GMap(document.getElementById('map-canvas') as HTMLElement, mapOptions);
 
   final styledMapTypeOptions = StyledMapTypeOptions()..name = 'Custom Style';
 

@@ -1,8 +1,8 @@
 import 'dart:async';
-import 'dart:html' hide Animation, MouseEvent;
 
 import 'package:google_maps/google_maps.dart';
 import 'package:google_maps/google_maps_places.dart';
+import 'package:web/helpers.dart' hide Animation, Event;
 
 late GMap map;
 late PlacesService places;
@@ -38,7 +38,7 @@ void main() {
     ..zoomControl = false
     ..streetViewControl = false;
 
-  map = GMap(document.getElementById('map-canvas') as HtmlElement, myOptions);
+  map = GMap(document.getElementById('map-canvas') as HTMLElement, myOptions);
 
   infoWindow = InfoWindow(
       InfoWindowOptions()..content = document.getElementById('info-content'));
@@ -46,7 +46,7 @@ void main() {
   // Create the autocomplete object and associate it with the UI input control.
   // Restrict the search to the default country, and to place type "cities".
   autocomplete = Autocomplete(
-      document.getElementById('autocomplete') as InputElement,
+      document.getElementById('autocomplete') as HTMLInputElement,
       AutocompleteOptions()
         ..types = ['(cities)']
         ..componentRestrictions = countryRestrict);
@@ -69,7 +69,7 @@ void onPlaceChanged(_) {
       ..zoom = 15;
     search();
   } else {
-    (document.getElementById('autocomplete') as InputElement).placeholder =
+    (document.getElementById('autocomplete') as HTMLInputElement).placeholder =
         'Enter a city';
   }
 }
@@ -114,7 +114,8 @@ void clearMarkers() {
 // Set the country restriction based on user input.
 // Also center and zoom the map on the given country.
 void setAutocompleteCountry(_) {
-  final country = (document.getElementById('country') as SelectElement).value;
+  final country =
+      (document.getElementById('country') as HTMLSelectElement).value;
   if (country == 'all') {
     autocomplete.componentRestrictions = ComponentRestrictions();
     map.center = LatLng(15, 0);
@@ -138,7 +139,7 @@ void addResult(PlaceResult result, int i) {
   final markerLetter = String.fromCharCode('A'.codeUnitAt(0) + i);
   final markerIcon = '$MARKER_PATH$markerLetter.png';
 
-  final tr = document.createElement('tr');
+  final tr = document.createElement('tr') as HTMLTableRowElement;
   tr.style.backgroundColor = i % 2 == 0 ? '#F0F0F0' : '#FFFFFF';
   tr.onClick.listen((_) {
     Event.trigger(markers[i], 'click', null);
@@ -146,21 +147,24 @@ void addResult(PlaceResult result, int i) {
 
   final iconTd = document.createElement('td');
   final nameTd = document.createElement('td');
-  final icon = ImageElement()
+  final icon = HTMLImageElement()
     ..src = markerIcon
     ..setAttribute('class', 'placeIcon')
     ..setAttribute('className', 'placeIcon');
   final name = Text(result.name!);
-  iconTd.append(icon);
-  nameTd.append(name);
+  iconTd.appendChild(icon);
+  nameTd.appendChild(name);
   tr
-    ..append(iconTd)
-    ..append(nameTd);
-  results!.append(tr);
+    ..appendChild(iconTd)
+    ..appendChild(nameTd);
+  results!.appendChild(tr);
 }
 
 void clearResults() {
-  document.getElementById('results')!.nodes.clear();
+  final element = document.getElementById('results') as HTMLElement;
+  while (element.childNodes.length != 0) {
+    element.removeChild(element.childNodes.item(0)!);
+  }
 }
 
 // Get the place details for a hotel. Show the information in an info window,
@@ -177,26 +181,22 @@ void Function(MapMouseEvent) showInfoWindow(
           buildIWContent(place!);
         });
 
-class _NullTreeSanitizer implements NodeTreeSanitizer {
-  @override
-  void sanitizeTree(Node node) {}
-}
-
 // Load the place information into the HTML elements used by the info window.
 void buildIWContent(PlaceResult place) {
-  document.getElementById('iw-icon')!.setInnerHtml(
-      '<img class="hotelIcon" src="${place.icon}"></img>',
-      treeSanitizer: _NullTreeSanitizer());
-  document.getElementById('iw-url')!.setInnerHtml(
-      '<b><a href="${place.url}">${place.name}</a></b>',
-      treeSanitizer: _NullTreeSanitizer());
-  document.getElementById('iw-address')!.text = place.vicinity;
+  document.getElementById('iw-icon')!.innerHTML =
+      '<img class="hotelIcon" src="${place.icon}"></img>';
+  document.getElementById('iw-url')!.innerHTML =
+      '<b><a href="${place.url}">${place.name}</a></b>';
+  document.getElementById('iw-address')!.textContent = place.vicinity;
 
   if (place.formattedPhoneNumber != null) {
-    document.getElementById('iw-phone-row')!.style.display = '';
-    document.getElementById('iw-phone')!.text = place.formattedPhoneNumber;
+    (document.getElementById('iw-phone-row')! as HTMLElement).style.display =
+        '';
+    document.getElementById('iw-phone')!.textContent =
+        place.formattedPhoneNumber;
   } else {
-    document.getElementById('iw-phone-row')!.style.display = 'none';
+    (document.getElementById('iw-phone-row')! as HTMLElement).style.display =
+        'none';
   }
 
   // Assign a five-star rating to the hotel, using a black star ('&#10029;')
@@ -210,11 +210,13 @@ void buildIWContent(PlaceResult place) {
       } else {
         ratingHtml += '&#10029;';
       }
-      document.getElementById('iw-rating-row')!.style.display = '';
-      document.getElementById('iw-rating')!.innerHtml = ratingHtml;
+      (document.getElementById('iw-rating-row')! as HTMLElement).style.display =
+          '';
+      document.getElementById('iw-rating')!.innerHTML = ratingHtml;
     }
   } else {
-    document.getElementById('iw-rating-row')!.style.display = 'none';
+    (document.getElementById('iw-rating-row')! as HTMLElement).style.display =
+        'none';
   }
 
   // The regexp isolates the first part of the URL (domain plus subdomain)
@@ -222,9 +224,11 @@ void buildIWContent(PlaceResult place) {
   if (place.website != null) {
     var website = hostnameRegexp.stringMatch(place.website!);
     website ??= 'http://${place.website}/';
-    document.getElementById('iw-website-row')!.style.display = '';
-    document.getElementById('iw-website')!.text = website;
+    (document.getElementById('iw-website-row')! as HTMLElement).style.display =
+        '';
+    document.getElementById('iw-website')!.textContent = website;
   } else {
-    document.getElementById('iw-website-row')!.style.display = 'none';
+    (document.getElementById('iw-website-row')! as HTMLElement).style.display =
+        'none';
   }
 }
