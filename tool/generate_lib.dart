@@ -184,12 +184,12 @@ $code
     final imports = <String, List<String>>{
       'core': [
         "import 'dart:async' show StreamController;",
-        "import 'dart:html' show Document, Element, HtmlElement;",
         "import 'dart:typed_data' show Float32List, Float64List;",
         "import 'dart:web_gl' show RenderingContext;",
         '',
         "import 'package:google_maps/google_maps_places.dart' show PlacePlusCode;",
         "import 'package:js_wrapping/js_wrapping.dart';",
+        "import 'package:web/web.dart' show Document, Element, HTMLElement;",
       ],
       'drawing': [
         "import 'dart:async' show StreamController;",
@@ -203,24 +203,24 @@ $code
       ],
       'journey_sharing': [
         "import 'dart:async' show StreamController;",
-        "import 'dart:html' show Element;",
         '',
         "import 'package:google_maps/google_maps.dart';",
         "import 'package:js_wrapping/js_wrapping.dart';",
+        "import 'package:web/web.dart' show Element;",
       ],
       'local_context': [
         "import 'dart:async' show StreamController;",
-        "import 'dart:html' show Element;",
         '',
         "import 'package:google_maps/google_maps.dart';",
         "import 'package:js_wrapping/js_wrapping.dart';",
+        "import 'package:web/web.dart' show Element;",
       ],
       'places': [
         "import 'dart:async' show StreamController;",
-        "import 'dart:html' show InputElement;",
         '',
         "import 'package:google_maps/google_maps.dart';",
         "import 'package:js_wrapping/js_wrapping.dart';",
+        "import 'package:web/web.dart' show Element;",
       ],
       'visualization': [
         "import 'package:google_maps/google_maps.dart';",
@@ -594,12 +594,6 @@ Type convertType(String type) {
     return SimpleType('String', nullable: true);
   else if (myType == 'Date')
     return SimpleType('DateTime', nullable: true);
-  else if (myType == 'HTMLElement')
-    return SimpleType('HtmlElement', nullable: true);
-  else if (myType == 'HTMLInputElement')
-    return SimpleType('InputElement', nullable: true);
-  else if (myType == 'HTMLDivElement')
-    return SimpleType('DivElement', nullable: true);
   else if (myType == 'Event')
     return SimpleType('Object', nullable: true);
   else if (myType == 'Array')
