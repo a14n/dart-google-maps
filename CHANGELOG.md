@@ -1,3 +1,7 @@
+# 7.0.0-beta.1 (2024-01-10)
+
+- [Migrate to `package:web`](https://github.com/a14n/dart-google-maps/issues/122)
+
 # 6.3.0 (2023-05-19)
 
 - Add `importLibrary` to allow [Dynamic Library Import](https://developers.google.com/maps/documentation/javascript/load-maps-js-api?hl=en#dynamic-library-import).
