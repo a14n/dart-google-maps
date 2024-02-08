@@ -31,15 +31,14 @@ Please see the Google Maps JavaScript API v3 [Getting Started guide](https://dev
 A very [simple example](https://github.com/a14n/dart-google-maps/tree/master/example/01-basics/map-simple) :
 
 ```dart
-import 'dart:html';
-
 import 'package:google_maps/google_maps.dart';
+import 'package:web/web.dart';
 
 void main() {
   final mapOptions = MapOptions()
     ..zoom = 8
     ..center = LatLng(-34.397, 150.644);
-  GMap(document.getElementById("map-canvas"), mapOptions);
+  GMap(document.getElementById('map-canvas') as HTMLElement, mapOptions);
 }
 ```
 

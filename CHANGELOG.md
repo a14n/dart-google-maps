@@ -1,3 +1,7 @@
+# 7.0.0 (2024-02-08)
+
+- promote 7.0.0-beta.1
+
 # 7.0.0-beta.1 (2024-01-10)
 
 - [Migrate to `package:web`](https://github.com/a14n/dart-google-maps/issues/122)
