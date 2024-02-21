@@ -1,3 +1,5 @@
+import 'dart:js_interop';
+
 import 'package:google_maps/google_maps.dart' hide Event;
 import 'package:web/web.dart';
 
@@ -66,12 +68,31 @@ void initFullscreenControl(GMap map) {
   });
 }
 
-bool isFullscreen(Element element) => document.fullscreenElement == element;
+bool isFullscreen(Element element) =>
+    _FullscreenDocument(document).fullscreenElement == element;
 
 void requestFullscreen(Element element) {
-  element.requestFullscreen();
+  _FullscreenElement(element).requestFullscreen.callAsFunction();
 }
 
 void exitFullscreen() {
-  document.exitFullscreen();
+  _FullscreenDocument(document).exitFullscreen.callAsFunction();
+}
+
+/// This extension type merely exists because `package:web` no longer provides the Fullscreen API,
+/// as Safari only supports it under a prefix.
+///
+/// This extension type can be removed when that restriction is lifted.
+extension type _FullscreenDocument(Document _) {
+  external JSFunction get exitFullscreen;
+
+  external Element? get fullscreenElement;
+}
+
+/// This extension type merely exists because `package:web` no longer provides the Fullscreen API,
+/// as Safari only supports it under a prefix.
+///
+/// This extension type can be removed when that restriction is lifted.
+extension type _FullscreenElement(Element _) {
+  external JSFunction get requestFullscreen;
 }
