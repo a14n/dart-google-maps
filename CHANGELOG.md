@@ -1,3 +1,8 @@
+# 7.1.0 (2024-02-21)
+
+- migrate to package:web ^0.5.0
+- requires dart >= 3.3.0
+
 # 7.0.0 (2024-02-08)
 
 - promote 7.0.0-beta.1
