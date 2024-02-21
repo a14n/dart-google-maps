@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:google_maps/google_maps.dart';
 import 'package:google_maps/google_maps_places.dart';
-import 'package:web/helpers.dart' hide Animation, Event;
+import 'package:web/web.dart' hide Animation, Event;
 
 late GMap map;
 late PlacesService places;

@@ -1,5 +1,5 @@
 import 'package:google_maps/google_maps.dart';
-import 'package:web/helpers.dart';
+import 'package:web/web.dart';
 
 late GMap map;
 late DirectionsRenderer directionsDisplay;
@@ -51,7 +51,7 @@ void calcRoute() {
   // function to create markers for each step.
   directionsService.route(request, (response, status) {
     if (status == DirectionsStatus.OK) {
-      querySelector('#warnings_panel')!.innerHTML =
+      document.querySelector('#warnings_panel')!.innerHTML =
           '<b>${response!.routes![0]!.warnings}</b>';
       directionsDisplay.directions = response;
       showSteps(response);

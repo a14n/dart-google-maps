@@ -1,5 +1,5 @@
 import 'package:google_maps/google_maps.dart';
-import 'package:web/helpers.dart';
+import 'package:web/web.dart';
 
 late GMap map;
 late StreetViewPanorama panorama;
@@ -46,7 +46,10 @@ void main() {
       ..heading = 265
       ..pitch = 0);
 
-  querySelector('#toggleStreetView')!.onClick.listen((e) => toggleStreetView());
+  document
+      .querySelector('#toggleStreetView')!
+      .onClick
+      .listen((e) => toggleStreetView());
 }
 
 void toggleStreetView() {

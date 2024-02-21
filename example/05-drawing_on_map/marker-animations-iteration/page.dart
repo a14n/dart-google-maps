@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:google_maps/google_maps.dart';
-import 'package:web/helpers.dart' hide Animation;
+import 'package:web/web.dart' hide Animation;
 
 final berlin = LatLng(52.520816, 13.410186);
 final List<LatLng> neighborhoods = [

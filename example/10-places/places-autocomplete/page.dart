@@ -1,6 +1,6 @@
 import 'package:google_maps/google_maps.dart';
 import 'package:google_maps/google_maps_places.dart';
-import 'package:web/helpers.dart' hide Event;
+import 'package:web/web.dart' hide Event;
 
 void main() {
   final mapOptions = MapOptions()
@@ -69,7 +69,7 @@ void main() {
   // Sets a listener on a radio button to change the filter type on Places
   // Autocomplete.
   void setupClickListener(String id, List<String> types) {
-    final radioButton = querySelector('#$id');
+    final radioButton = document.querySelector('#$id');
     Event.addDomListener(radioButton, 'click', (_) {
       autocomplete.types = types;
     });

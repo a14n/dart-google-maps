@@ -1,5 +1,5 @@
 import 'package:google_maps/google_maps.dart' hide Event;
-import 'package:web/helpers.dart';
+import 'package:web/web.dart';
 
 void main() {
   final map = GMap(
@@ -28,7 +28,7 @@ void initZoomControl(GMap map) {
 
 void initMapTypeControl(GMap map) {
   final mapTypeControlDiv =
-      document.querySelector('.maptype-control') as HtmlElement;
+      document.querySelector('.maptype-control') as HTMLElement;
 
   document.querySelector('.maptype-control-map')!.onClick.listen((event) {
     mapTypeControlDiv.classList.add('maptype-control-is-map');

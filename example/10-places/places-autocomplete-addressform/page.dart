@@ -4,7 +4,7 @@ import 'dart:js_util';
 
 import 'package:google_maps/google_maps.dart';
 import 'package:google_maps/google_maps_places.dart';
-import 'package:web/helpers.dart';
+import 'package:web/web.dart';
 
 late Autocomplete autocomplete;
 final componentForm = <String, String>{

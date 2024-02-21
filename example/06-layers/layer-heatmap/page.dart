@@ -1,6 +1,6 @@
 import 'package:google_maps/google_maps.dart';
 import 'package:google_maps/google_maps_visualization.dart';
-import 'package:web/helpers.dart';
+import 'package:web/web.dart';
 
 // Adding 500 Data Points
 late GMap map;
@@ -17,16 +17,16 @@ void main() {
     ..data = points
     ..map = map);
 
-  querySelector('#toggleHeatmap')!.onClick.listen((e) {
+  document.querySelector('#toggleHeatmap')!.onClick.listen((e) {
     toggleHeatmap();
   });
-  querySelector('#changeGradient')!.onClick.listen((e) {
+  document.querySelector('#changeGradient')!.onClick.listen((e) {
     changeGradient();
   });
-  querySelector('#changeRadius')!.onClick.listen((e) {
+  document.querySelector('#changeRadius')!.onClick.listen((e) {
     changeRadius();
   });
-  querySelector('#changeOpacity')!.onClick.listen((e) {
+  document.querySelector('#changeOpacity')!.onClick.listen((e) {
     changeOpacity();
   });
 }
