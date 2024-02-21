@@ -3,7 +3,7 @@ import 'dart:js_interop';
 
 import 'package:google_maps/google_maps.dart';
 import 'package:js/js_util.dart';
-import 'package:web/helpers.dart';
+import 'package:web/web.dart';
 
 late GMap map;
 

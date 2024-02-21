@@ -1,5 +1,5 @@
 import 'package:google_maps/google_maps.dart';
-import 'package:web/helpers.dart';
+import 'package:web/web.dart';
 
 late DirectionsRenderer directionsDisplay;
 final directionsService = DirectionsService();
@@ -14,7 +14,7 @@ void main() {
   map = GMap(document.getElementById('map-canvas') as HTMLElement, mapOptions);
   directionsDisplay.map = map;
 
-  querySelector('#calcRoute')!.onClick.listen((e) => calcRoute());
+  document.querySelector('#calcRoute')!.onClick.listen((e) => calcRoute());
 }
 
 void calcRoute() {

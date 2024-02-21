@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:google_maps/google_maps.dart';
-import 'package:web/helpers.dart';
+import 'package:web/web.dart';
 
 late GMap map;
 

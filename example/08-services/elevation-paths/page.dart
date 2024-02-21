@@ -5,7 +5,7 @@ import 'dart:js_util';
 
 import 'package:google_maps/google_maps.dart';
 import 'package:js/js.dart';
-import 'package:web/helpers.dart';
+import 'package:web/web.dart';
 
 @JS('google.visualization.ColumnChart')
 class ColumnChart {
@@ -107,7 +107,8 @@ void plotElevation(List<ElevationResult?>? results, ElevationStatus? status) {
     }
 
     // Draw the chart using the data within its DIV.
-    (querySelector('#elevation_chart')! as HTMLElement).style.display = 'block';
+    (document.querySelector('#elevation_chart')! as HTMLElement).style.display =
+        'block';
     chart.draw(data,
         jsify({'height': 150, 'legend': 'none', 'titleY': 'Elevation (m)'}));
   }
