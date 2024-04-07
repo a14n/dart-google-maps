@@ -12,18 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-part of '../google_maps_geometry.dart';
+part of '../geometry.dart';
 
 @JS('google.maps.geometry.poly')
-external Object get _Poly$namespace;
-
-class Poly {
-  static bool? containsLocation(LatLng? point, Polygon? polygon) =>
-      callMethod(_Poly$namespace, 'containsLocation', [point, polygon]);
-  static bool? isLocationOnEdge(
-    LatLng? point,
-    Object? /*Polygon?|Polyline?*/ poly, [
+external _poly get poly;
+extension type _poly._(JSObject _) implements JSObject {
+  external bool containsLocation(
+    LatLngOrLatLngLiteral point,
+    Polygon polygon,
+  );
+  external bool isLocationOnEdge(
+    LatLngOrLatLngLiteral point,
+    JSAny /*Polygon|Polyline*/ poly, [
     num? tolerance,
-  ]) =>
-      callMethod(_Poly$namespace, 'isLocationOnEdge', [point, poly, tolerance]);
+  ]);
 }

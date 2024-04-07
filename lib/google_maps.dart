@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-library google_maps;
-
-export 'src/generated/google_maps_core.js.g.dart';
-export 'src/google_maps.dart';
+export 'google_maps_core.dart';
+export 'google_maps_maps.dart';
+export 'google_maps_marker.dart';

@@ -12,12 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-part of '../google_maps_visualization.dart';
+part of '../visualization.dart';
 
-@JsName()
-@anonymous
-abstract class WeightedLocation {
-  factory WeightedLocation() => $js();
-  LatLng? location;
-  num? weight;
+extension type WeightedLocation._(JSObject _) implements JSObject {
+  external WeightedLocation({
+    LatLng location,
+    num weight,
+  });
+  external LatLng location;
+  external num weight;
 }

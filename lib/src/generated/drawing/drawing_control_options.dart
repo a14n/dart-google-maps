@@ -12,12 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-part of '../google_maps_drawing.dart';
+part of '../drawing.dart';
 
-@JsName()
-@anonymous
-abstract class DrawingControlOptions {
-  factory DrawingControlOptions() => $js();
-  List<OverlayType?>? drawingModes;
-  ControlPosition? position;
+extension type DrawingControlOptions._(JSObject _) implements JSObject {
+  external DrawingControlOptions({
+    JSArray<OverlayType>? drawingModes,
+    ControlPosition? position,
+  });
+  external JSArray<OverlayType>? drawingModes;
+  external ControlPosition? position;
 }

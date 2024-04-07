@@ -12,6 +12,4 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-library google_maps_visualization;
-
-export 'src/generated/google_maps_visualization.js.g.dart';
+export 'src/generated/visualization.dart';

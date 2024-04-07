@@ -12,16 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-part of '../google_maps_geometry.dart';
+part of '../geometry.dart';
 
 @JS('google.maps.geometry.encoding')
-external Object get _Encoding$namespace;
-
-class Encoding {
-  static List<LatLng> decodePath(String encodedPath) =>
-      callMethod(_Encoding$namespace, 'decodePath', [encodedPath])
-          .cast<LatLng>();
-
-  static String encodePath(Object /*List<LatLng>|MVCArray<LatLng>*/ path) =>
-      callMethod(_Encoding$namespace, 'encodePath', [path]);
+external _encoding get encoding;
+extension type _encoding._(JSObject _) implements JSObject {
+  external JSArray<LatLng> decodePath(
+    String encodedPath,
+  );
+  external String encodePath(
+    JSAny /*Array<LatLng|LatLngLiteral>|MVCArray<LatLng|LatLngLiteral>*/ path,
+  );
 }

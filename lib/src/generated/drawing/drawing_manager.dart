@@ -12,47 +12,36 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-part of '../google_maps_drawing.dart';
+part of '../drawing.dart';
 
-@JsName('google.maps.drawing.DrawingManager')
-abstract class DrawingManager extends MVCObject {
-  factory DrawingManager([
-    DrawingManagerOptions? options, // ignore: unused_element
-  ]) =>
-      $js();
-
-  // synthetic getter for getDrawingMode
+@JS('google.maps.drawing.DrawingManager')
+extension type DrawingManager._(MVCObject _) implements MVCObject {
+  external DrawingManager([
+    DrawingManagerOptions? options,
+  ]);
+  @JS('getDrawingMode')
+  external OverlayType? _getDrawingMode();
   OverlayType? get drawingMode => _getDrawingMode();
-  @JsName('getDrawingMode')
-  OverlayType? _getDrawingMode();
-
-  // synthetic getter for getMap
-  GMap? get map => _getMap();
-  @JsName('getMap')
-  GMap? _getMap();
-
-  // synthetic setter for setDrawingMode
-  set drawingMode(OverlayType? drawingMode) => _setDrawingMode(drawingMode);
-  @JsName('setDrawingMode')
-  void _setDrawingMode(OverlayType? drawingMode);
-
-  // synthetic setter for setMap
-  set map(GMap? map) => _setMap(map);
-  @JsName('setMap')
-  void _setMap(GMap? map);
-
-  // synthetic setter for setOptions
-  set options(DrawingManagerOptions? options) => _setOptions(options);
-  @JsName('setOptions')
-  void _setOptions(DrawingManagerOptions? options);
-
+  @JS('getMap')
+  external Map? _getMap();
+  Map? get map => _getMap();
+  @JS('setDrawingMode')
+  external void _setDrawingMode(OverlayType? drawingMode);
+  void set drawingMode(OverlayType? drawingMode) =>
+      _setDrawingMode(drawingMode);
+  @JS('setMap')
+  external void _setMap(Map? map);
+  void set map(Map? map) => _setMap(map);
+  @JS('setOptions')
+  external void _setOptions(DrawingManagerOptions options);
+  void set options(DrawingManagerOptions options) => _setOptions(options);
   Stream<Circle> get onCirclecomplete {
     late StreamController<Circle> sc; // ignore: close_sinks
     late MapsEventListener mapsEventListener;
-    void start() => mapsEventListener = Event.addListener(
+    void start() => mapsEventListener = event.addListener(
           this,
           'circlecomplete',
-          (Circle circle) => sc.add(circle),
+          ((Circle e) => sc.add(e)).toJS,
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<Circle>(
@@ -67,10 +56,10 @@ abstract class DrawingManager extends MVCObject {
   Stream<Marker> get onMarkercomplete {
     late StreamController<Marker> sc; // ignore: close_sinks
     late MapsEventListener mapsEventListener;
-    void start() => mapsEventListener = Event.addListener(
+    void start() => mapsEventListener = event.addListener(
           this,
           'markercomplete',
-          (Marker marker) => sc.add(marker),
+          ((Marker e) => sc.add(e)).toJS,
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<Marker>(
@@ -85,10 +74,10 @@ abstract class DrawingManager extends MVCObject {
   Stream<OverlayCompleteEvent> get onOverlaycomplete {
     late StreamController<OverlayCompleteEvent> sc; // ignore: close_sinks
     late MapsEventListener mapsEventListener;
-    void start() => mapsEventListener = Event.addListener(
+    void start() => mapsEventListener = event.addListener(
           this,
           'overlaycomplete',
-          (OverlayCompleteEvent event) => sc.add(event),
+          ((OverlayCompleteEvent e) => sc.add(e)).toJS,
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<OverlayCompleteEvent>(
@@ -103,10 +92,10 @@ abstract class DrawingManager extends MVCObject {
   Stream<Polygon> get onPolygoncomplete {
     late StreamController<Polygon> sc; // ignore: close_sinks
     late MapsEventListener mapsEventListener;
-    void start() => mapsEventListener = Event.addListener(
+    void start() => mapsEventListener = event.addListener(
           this,
           'polygoncomplete',
-          (Polygon polygon) => sc.add(polygon),
+          ((Polygon e) => sc.add(e)).toJS,
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<Polygon>(
@@ -121,10 +110,10 @@ abstract class DrawingManager extends MVCObject {
   Stream<Polyline> get onPolylinecomplete {
     late StreamController<Polyline> sc; // ignore: close_sinks
     late MapsEventListener mapsEventListener;
-    void start() => mapsEventListener = Event.addListener(
+    void start() => mapsEventListener = event.addListener(
           this,
           'polylinecomplete',
-          (Polyline polyline) => sc.add(polyline),
+          ((Polyline e) => sc.add(e)).toJS,
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<Polyline>(
@@ -139,10 +128,10 @@ abstract class DrawingManager extends MVCObject {
   Stream<Rectangle> get onRectanglecomplete {
     late StreamController<Rectangle> sc; // ignore: close_sinks
     late MapsEventListener mapsEventListener;
-    void start() => mapsEventListener = Event.addListener(
+    void start() => mapsEventListener = event.addListener(
           this,
           'rectanglecomplete',
-          (Rectangle rectangle) => sc.add(rectangle),
+          ((Rectangle e) => sc.add(e)).toJS,
         );
     void stop() => mapsEventListener.remove();
     sc = StreamController<Rectangle>(

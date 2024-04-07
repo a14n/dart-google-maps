@@ -12,12 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-part of '../google_maps_drawing.dart';
+part of '../drawing.dart';
 
-@JsName()
-@anonymous
-abstract class OverlayCompleteEvent {
-  factory OverlayCompleteEvent() => $js();
-  Object? /*Marker?|Polygon?|Polyline?|Rectangle?|Circle?*/ overlay;
-  OverlayType? type;
+extension type OverlayCompleteEvent._(JSObject _) implements JSObject {
+  external OverlayCompleteEvent({
+    JSAny /*Marker|Polygon|Polyline|Rectangle|Circle*/ overlay,
+    OverlayType type,
+  });
+  external JSAny /*Marker|Polygon|Polyline|Rectangle|Circle*/ overlay;
+  external OverlayType type;
 }

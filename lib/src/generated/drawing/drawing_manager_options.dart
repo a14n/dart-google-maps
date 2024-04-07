@@ -12,19 +12,27 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-part of '../google_maps_drawing.dart';
+part of '../drawing.dart';
 
-@JsName()
-@anonymous
-abstract class DrawingManagerOptions {
-  factory DrawingManagerOptions() => $js();
-  CircleOptions? circleOptions;
-  bool? drawingControl;
-  DrawingControlOptions? drawingControlOptions;
-  OverlayType? drawingMode;
-  GMap? map;
-  MarkerOptions? markerOptions;
-  PolygonOptions? polygonOptions;
-  PolylineOptions? polylineOptions;
-  RectangleOptions? rectangleOptions;
+extension type DrawingManagerOptions._(JSObject _) implements JSObject {
+  external DrawingManagerOptions({
+    CircleOptions? circleOptions,
+    bool? drawingControl,
+    DrawingControlOptions? drawingControlOptions,
+    OverlayType? drawingMode,
+    Map? map,
+    MarkerOptions? markerOptions,
+    PolygonOptions? polygonOptions,
+    PolylineOptions? polylineOptions,
+    RectangleOptions? rectangleOptions,
+  });
+  external CircleOptions? circleOptions;
+  external bool? drawingControl;
+  external DrawingControlOptions? drawingControlOptions;
+  external OverlayType? drawingMode;
+  external Map? map;
+  external MarkerOptions? markerOptions;
+  external PolygonOptions? polygonOptions;
+  external PolylineOptions? polylineOptions;
+  external RectangleOptions? rectangleOptions;
 }

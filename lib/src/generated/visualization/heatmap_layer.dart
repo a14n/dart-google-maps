@@ -12,40 +12,31 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-part of '../google_maps_visualization.dart';
+part of '../visualization.dart';
 
-@JsName('google.maps.visualization.HeatmapLayer')
-abstract class HeatmapLayer extends MVCObject {
-  factory HeatmapLayer([
-    HeatmapLayerOptions? opts, // ignore: unused_element
-  ]) =>
-      $js();
-
-  // synthetic getter for getData
-  MVCArray<Object? /*LatLng?|WeightedLocation?*/ >? get data => _getData();
-  @JsName('getData')
-  MVCArray<Object? /*LatLng?|WeightedLocation?*/ >? _getData();
-
-  // synthetic getter for getMap
-  GMap? get map => _getMap();
-  @JsName('getMap')
-  GMap? _getMap();
-
-  // synthetic setter for setData
-  set data(
-          Object? /*MVCArray<Object?/*LatLng?|WeightedLocation?*/>?|List<Object?/*LatLng?|WeightedLocation?*/>?*/ data) =>
+@JS('google.maps.visualization.HeatmapLayer')
+extension type HeatmapLayer._(MVCObject _) implements MVCObject {
+  external HeatmapLayer([
+    HeatmapLayerOptions? opts,
+  ]);
+  @JS('getData')
+  external MVCArray<JSAny /*LatLng|WeightedLocation*/ > _getData();
+  MVCArray<JSAny /*LatLng|WeightedLocation*/ > get data => _getData();
+  @JS('getMap')
+  external Map? _getMap();
+  Map? get map => _getMap();
+  @JS('setData')
+  external void _setData(
+      JSAny /*MVCArray<LatLng|WeightedLocation>|Array<LatLng|WeightedLocation>*/
+          data);
+  void set data(
+          JSAny /*MVCArray<LatLng|WeightedLocation>|Array<LatLng|WeightedLocation>*/
+              data) =>
       _setData(data);
-  @JsName('setData')
-  void _setData(
-      Object? /*MVCArray<Object?/*LatLng?|WeightedLocation?*/>?|List<Object?/*LatLng?|WeightedLocation?*/>?*/ data);
-
-  // synthetic setter for setMap
-  set map(GMap? map) => _setMap(map);
-  @JsName('setMap')
-  void _setMap(GMap? map);
-
-  // synthetic setter for setOptions
-  set options(HeatmapLayerOptions? options) => _setOptions(options);
-  @JsName('setOptions')
-  void _setOptions(HeatmapLayerOptions? options);
+  @JS('setMap')
+  external void _setMap(Map? map);
+  void set map(Map? map) => _setMap(map);
+  @JS('setOptions')
+  external void _setOptions(HeatmapLayerOptions? options);
+  void set options(HeatmapLayerOptions? options) => _setOptions(options);
 }

@@ -12,17 +12,25 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-part of '../google_maps_visualization.dart';
+part of '../visualization.dart';
 
-@JsName()
-@anonymous
-abstract class HeatmapLayerOptions {
-  factory HeatmapLayerOptions() => $js();
-  Object? /*MVCArray<Object?/*LatLng?|WeightedLocation?*/>?|List<Object?/*LatLng?|WeightedLocation?*/>?*/ data;
-  bool? dissipating;
-  List<String?>? gradient;
-  GMap? map;
-  num? maxIntensity;
-  num? opacity;
-  num? radius;
+extension type HeatmapLayerOptions._(JSObject _) implements JSObject {
+  external HeatmapLayerOptions({
+    JSAny? /*(MVCArray<LatLng|WeightedLocation>|Array<LatLng|WeightedLocation>)?*/
+        data,
+    bool? dissipating,
+    JSArray<JSString>? gradient,
+    Map? map,
+    num? maxIntensity,
+    num? opacity,
+    num? radius,
+  });
+  external JSAny? /*(MVCArray<LatLng|WeightedLocation>|Array<LatLng|WeightedLocation>)?*/
+      data;
+  external bool? dissipating;
+  external JSArray<JSString>? gradient;
+  external Map? map;
+  external num? maxIntensity;
+  external num? opacity;
+  external num? radius;
 }

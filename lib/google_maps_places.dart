@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-library google_maps_places;
-
-export 'src/generated/google_maps_places.js.g.dart';
+export 'src/generated/autocomplete_data.dart';
+export 'src/generated/place.dart';
+export 'src/generated/places_autocomplete_service.dart';
+export 'src/generated/places_service.dart';
+export 'src/generated/places_widget.dart';

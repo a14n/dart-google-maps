@@ -12,14 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-part of '../google_maps_drawing.dart';
+part of '../drawing.dart';
 
-// ignore_for_file: unused_element, unused_field
-@JsName('google.maps.drawing.OverlayType')
-enum OverlayType {
-  CIRCLE,
-  MARKER,
-  POLYGON,
-  POLYLINE,
-  RECTANGLE,
+@JS('google.maps.drawing.OverlayType')
+extension type OverlayType._(JSAny _) implements JSAny {
+  external static OverlayType get CIRCLE;
+  external static OverlayType get MARKER;
+  external static OverlayType get POLYGON;
+  external static OverlayType get POLYLINE;
+  external static OverlayType get RECTANGLE;
 }
