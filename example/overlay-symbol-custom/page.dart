@@ -45,6 +45,6 @@ void main() {
       IconSequence()
         ..icon = symbolThree
         ..offset = '100%',
-    ].toJS
+    ]
     ..map = map);
 }

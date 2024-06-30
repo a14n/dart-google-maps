@@ -29,7 +29,12 @@ extension type DeliveryVehicle._(JSObject _) implements JSObject {
   external String name;
   external String navigationStatus;
   external num remainingDistanceMeters;
-  external JSArray<VehicleJourneySegment> remainingVehicleJourneySegments;
+  @JS('remainingVehicleJourneySegments')
+  external JSArray<VehicleJourneySegment> _remainingVehicleJourneySegments;
+  List<VehicleJourneySegment> get remainingVehicleJourneySegments =>
+      _remainingVehicleJourneySegments.toDart;
+  set remainingVehicleJourneySegments(List<VehicleJourneySegment> value) =>
+      _remainingVehicleJourneySegments = value.toJS;
   external LatLngLiteral? currentRouteSegmentEndPoint;
   external VehicleLocationUpdate? latestVehicleLocationUpdate;
   external num? remainingDurationMillis;

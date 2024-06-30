@@ -26,6 +26,6 @@ void main() {
         ..icon = lineSymbol
         ..offset = '0'
         ..repeat = '20px'
-    ].toJS
+    ]
     ..map = map);
 }

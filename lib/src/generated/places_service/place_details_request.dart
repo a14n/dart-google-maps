@@ -23,7 +23,11 @@ extension type PlaceDetailsRequest._(JSObject _) implements JSObject {
     AutocompleteSessionToken? sessionToken,
   });
   external String placeId;
-  external JSArray<JSString>? fields;
+  @JS('fields')
+  external JSArray<JSString>? _fields;
+  List<String>? get fields => _fields.dartify() as List<String>?;
+  set fields(List<String>? value) =>
+      _fields = value.jsify() as JSArray<JSString>?;
   external String? language;
   external String? region;
   external AutocompleteSessionToken? sessionToken;

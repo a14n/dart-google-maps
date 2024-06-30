@@ -20,7 +20,10 @@ extension type MapTypeStyle._(JSObject _) implements JSObject {
     String? elementType,
     String? featureType,
   });
-  external JSArray<JSObject /*Object<null>*/ > stylers;
+  @JS('stylers')
+  external JSArray<JSObject /*Object<null>*/ > _stylers;
+  List<JSObject /*Object<null>*/ > get stylers => _stylers.toDart;
+  set stylers(List<JSObject /*Object<null>*/ > value) => _stylers = value.toJS;
   external String? elementType;
   external String? featureType;
 }

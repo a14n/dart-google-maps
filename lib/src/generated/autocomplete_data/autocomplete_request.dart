@@ -28,8 +28,18 @@ extension type AutocompleteRequest._(JSObject _) implements JSObject {
     AutocompleteSessionToken? sessionToken,
   });
   external String input;
-  external JSArray<JSString>? includedPrimaryTypes;
-  external JSArray<JSString>? includedRegionCodes;
+  @JS('includedPrimaryTypes')
+  external JSArray<JSString>? _includedPrimaryTypes;
+  List<String>? get includedPrimaryTypes =>
+      _includedPrimaryTypes.dartify() as List<String>?;
+  set includedPrimaryTypes(List<String>? value) =>
+      _includedPrimaryTypes = value.jsify() as JSArray<JSString>?;
+  @JS('includedRegionCodes')
+  external JSArray<JSString>? _includedRegionCodes;
+  List<String>? get includedRegionCodes =>
+      _includedRegionCodes.dartify() as List<String>?;
+  set includedRegionCodes(List<String>? value) =>
+      _includedRegionCodes = value.jsify() as JSArray<JSString>?;
   external num? inputOffset;
   external String? language;
   external LocationBias? locationBias;

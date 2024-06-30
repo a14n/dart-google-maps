@@ -40,7 +40,11 @@ extension type TaskTrackingInfo._(JSObject _) implements JSObject {
   external LatLng? plannedLocation;
   external num? remainingDrivingDistanceMeters;
   external num? remainingStopCount;
-  external JSArray<LatLng>? routePolylinePoints;
+  @JS('routePolylinePoints')
+  external JSArray<LatLng>? _routePolylinePoints;
+  List<LatLng>? get routePolylinePoints => _routePolylinePoints?.toDart;
+  set routePolylinePoints(List<LatLng>? value) =>
+      _routePolylinePoints = value?.toJS;
   external String? state;
   external TimeWindow? targetTimeWindow;
   external String? taskOutcome;

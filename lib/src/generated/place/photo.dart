@@ -16,7 +16,11 @@ part of '../place.dart';
 
 @JS('google.maps.places.Photo')
 extension type Photo._(JSObject _) implements JSObject {
-  external JSArray<AuthorAttribution> authorAttributions;
+  @JS('authorAttributions')
+  external JSArray<AuthorAttribution> _authorAttributions;
+  List<AuthorAttribution> get authorAttributions => _authorAttributions.toDart;
+  set authorAttributions(List<AuthorAttribution> value) =>
+      _authorAttributions = value.toJS;
   external num heightPx;
   external num widthPx;
   @JS('getURI')

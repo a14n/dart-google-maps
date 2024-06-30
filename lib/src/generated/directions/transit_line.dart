@@ -25,7 +25,10 @@ extension type TransitLine._(JSObject _) implements JSObject {
     String url,
     TransitVehicle vehicle,
   });
-  external JSArray<TransitAgency> agencies;
+  @JS('agencies')
+  external JSArray<TransitAgency> _agencies;
+  List<TransitAgency> get agencies => _agencies.toDart;
+  set agencies(List<TransitAgency> value) => _agencies = value.toJS;
   external String color;
   external String icon;
   external String name;

@@ -23,6 +23,9 @@ extension type VehicleJourneySegment._(JSObject _) implements JSObject {
   });
   external num? drivingDistanceMeters;
   external num? drivingDurationMillis;
-  external JSArray<LatLngLiteral>? path;
+  @JS('path')
+  external JSArray<LatLngLiteral>? _path;
+  List<LatLngLiteral>? get path => _path?.toDart;
+  set path(List<LatLngLiteral>? value) => _path = value?.toJS;
   external DeliveryVehicleStop? stop;
 }

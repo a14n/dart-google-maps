@@ -18,5 +18,9 @@ extension type DistanceMatrixResponseRow._(JSObject _) implements JSObject {
   external DistanceMatrixResponseRow({
     JSArray<DistanceMatrixResponseElement> elements,
   });
-  external JSArray<DistanceMatrixResponseElement> elements;
+  @JS('elements')
+  external JSArray<DistanceMatrixResponseElement> _elements;
+  List<DistanceMatrixResponseElement> get elements => _elements.toDart;
+  set elements(List<DistanceMatrixResponseElement> value) =>
+      _elements = value.toJS;
 }

@@ -31,8 +31,7 @@ void getElevation(MapMouseEventOrIconMouseEvent e) {
   locations.add(clickedLocation);
 
   // Create a LocationElevationRequest object using the array's one value
-  final positionalRequest = LocationElevationRequest()
-    ..locations = locations.toJS;
+  final positionalRequest = LocationElevationRequest()..locations = locations;
 
   // Initiate the location request
   elevator.getElevationForLocations(

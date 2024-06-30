@@ -21,6 +21,9 @@ extension type PlacePrediction._(JSObject _) implements JSObject {
   external String placeId;
   external FormattableText? secondaryText;
   external FormattableText text;
-  external JSArray<JSString> types;
+  @JS('types')
+  external JSArray<JSString> _types;
+  List<String> get types => _types.dartify() as List<String>;
+  set types(List<String> value) => _types = value.jsify() as JSArray<JSString>;
   external Place toPlace();
 }

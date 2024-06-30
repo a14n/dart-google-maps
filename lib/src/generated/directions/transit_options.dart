@@ -23,6 +23,9 @@ extension type TransitOptions._(JSObject _) implements JSObject {
   });
   external Date? arrivalTime;
   external Date? departureTime;
-  external JSArray<TransitMode>? modes;
+  @JS('modes')
+  external JSArray<TransitMode>? _modes;
+  List<TransitMode>? get modes => _modes?.toDart;
+  set modes(List<TransitMode>? value) => _modes = value?.toJS;
   external TransitRoutePreference? routingPreference;
 }

@@ -28,5 +28,8 @@ extension type GeocoderAddressComponent._(JSObject _) implements JSObject {
   external String _shortName;
   String get shortName => _shortName;
   set shortName(String value) => _shortName = value;
-  external JSArray<JSString> types;
+  @JS('types')
+  external JSArray<JSString> _types;
+  List<String> get types => _types.dartify() as List<String>;
+  set types(List<String> value) => _types = value.jsify() as JSArray<JSString>;
 }

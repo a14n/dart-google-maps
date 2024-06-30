@@ -32,7 +32,12 @@ extension type LocalContextMapViewOptions._(JSObject _) implements JSObject {
         placeDetailsViewSetup,
   });
   external num maxPlaceCount;
-  external JSArray<PlaceTypePreference> placeTypePreferences;
+  @JS('placeTypePreferences')
+  external JSArray<PlaceTypePreference> _placeTypePreferences;
+  List<PlaceTypePreference> get placeTypePreferences =>
+      _placeTypePreferences.toDart;
+  set placeTypePreferences(List<PlaceTypePreference> value) =>
+      _placeTypePreferences = value.toJS;
   external JSAny? /*(MapDirectionsOptions|MapDirectionsOptionsLiteral)?*/
       directionsOptions;
   external JSAny? /*(HTMLElement|SVGElement)?*/ element;

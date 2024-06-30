@@ -19,6 +19,12 @@ extension type AddressDescriptor._(JSObject _) implements JSObject {
     JSArray<Area> areas,
     JSArray<Landmark> landmarks,
   });
-  external JSArray<Area> areas;
-  external JSArray<Landmark> landmarks;
+  @JS('areas')
+  external JSArray<Area> _areas;
+  List<Area> get areas => _areas.toDart;
+  set areas(List<Area> value) => _areas = value.toJS;
+  @JS('landmarks')
+  external JSArray<Landmark> _landmarks;
+  List<Landmark> get landmarks => _landmarks.toDart;
+  set landmarks(List<Landmark> value) => _landmarks = value.toJS;
 }

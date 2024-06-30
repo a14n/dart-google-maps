@@ -21,7 +21,15 @@ extension type FleetEngineDeliveryVehicleLocationProviderUpdateEvent._(
     DeliveryVehicle? deliveryVehicle,
     JSArray<Task>? tasks,
   });
-  external JSArray<VehicleJourneySegment>? completedVehicleJourneySegments;
+  @JS('completedVehicleJourneySegments')
+  external JSArray<VehicleJourneySegment>? _completedVehicleJourneySegments;
+  List<VehicleJourneySegment>? get completedVehicleJourneySegments =>
+      _completedVehicleJourneySegments?.toDart;
+  set completedVehicleJourneySegments(List<VehicleJourneySegment>? value) =>
+      _completedVehicleJourneySegments = value?.toJS;
   external DeliveryVehicle? deliveryVehicle;
-  external JSArray<Task>? tasks;
+  @JS('tasks')
+  external JSArray<Task>? _tasks;
+  List<Task>? get tasks => _tasks?.toDart;
+  set tasks(List<Task>? value) => _tasks = value?.toJS;
 }

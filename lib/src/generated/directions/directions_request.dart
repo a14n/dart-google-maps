@@ -44,5 +44,8 @@ extension type DirectionsRequest._(JSObject _) implements JSObject {
   external String? region;
   external TransitOptions? transitOptions;
   external UnitSystem? unitSystem;
-  external JSArray<DirectionsWaypoint>? waypoints;
+  @JS('waypoints')
+  external JSArray<DirectionsWaypoint>? _waypoints;
+  List<DirectionsWaypoint>? get waypoints => _waypoints?.toDart;
+  set waypoints(List<DirectionsWaypoint>? value) => _waypoints = value?.toJS;
 }

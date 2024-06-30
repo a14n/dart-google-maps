@@ -37,7 +37,7 @@ void calcRoute() {
   final request = DirectionsRequest()
     ..origin = start.toJS
     ..destination = end.toJS
-    ..waypoints = waypts.toJS
+    ..waypoints = waypts
     ..optimizeWaypoints = true
     ..travelMode = TravelMode.DRIVING;
   directionsService.route(
@@ -45,12 +45,12 @@ void calcRoute() {
     (DirectionsResult? response, DirectionsStatus status) {
       if (status == DirectionsStatus.OK) {
         directionsDisplay.directions = response!;
-        final route = response.routes.toDart[0];
+        final route = response.routes[0];
         final summaryPanel = document.getElementById('directions_panel');
         final html = StringBuffer();
         // For each route, display summary information.
-        for (var i = 0; i < route.legs.toDart.length; i++) {
-          final leg = route.legs.toDart[i];
+        for (var i = 0; i < route.legs.length; i++) {
+          final leg = route.legs[i];
           final routeSegment = i + 1;
           html
             ..write('<b>Route Segment: $routeSegment</b><br>')

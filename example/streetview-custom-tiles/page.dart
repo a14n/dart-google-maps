@@ -61,7 +61,7 @@ StreetViewPanoramaData getReceptionPanoramaData() => StreetViewPanoramaData()
       ..heading = 195
       ..description = 'Exit'
       ..pano = outsideGoogle.location!.pano
-  ].toJS
+  ]
   ..copyright = 'Imagery (c) 2010 Google'
   ..tiles = (StreetViewTileData()
     ..tileSize = Size(1024, 512)

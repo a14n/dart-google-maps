@@ -1,4 +1,3 @@
-import 'dart:js_interop';
 import 'package:google_maps/google_maps.dart';
 import 'package:web/web.dart';
 
@@ -48,7 +47,7 @@ void setMarkers(Map map, List locations) {
   // coordinate closes the poly by connecting to the first
   // coordinate.
   final shape = MarkerShape()
-    ..coords = [1, 1, 1, 20, 18, 20, 18, 1].jsify() as JSArray<JSNumber>
+    ..coords = [1, 1, 1, 20, 18, 20, 18, 1]
     ..type = 'poly';
   for (final beach in locations) {
     final myLatLng = LatLng(beach[1] as num, beach[2] as num);

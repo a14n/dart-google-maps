@@ -1,5 +1,3 @@
-import 'dart:js_interop';
-
 import 'package:google_maps/google_maps.dart';
 import 'package:web/web.dart';
 
@@ -12,6 +10,6 @@ void main() {
       ..mapTypeControl = true
       ..mapTypeControlOptions = (MapTypeControlOptions()
         ..style = MapTypeControlStyle.DROPDOWN_MENU
-        ..mapTypeIds = [MapTypeId.ROADMAP, MapTypeId.TERRAIN].toJS),
+        ..mapTypeIds = [MapTypeId.ROADMAP, MapTypeId.TERRAIN]),
   );
 }

@@ -33,9 +33,12 @@ extension type Map._(MVCObject _) implements MVCObject {
   bool isZoomDefined() => callMethod('getZoom'.toJS) != null;
 
   MVCArray<HTMLElement> getControlsAt(ControlPosition position) =>
-      controls.toDart[(position as JSNumber).toDartInt];
+      controls[(position as JSNumber).toDartInt];
   external static JSAny? get DEMO_MAP_ID;
-  external JSArray<MVCArray<HTMLElement>> controls;
+  @JS('controls')
+  external JSArray<MVCArray<HTMLElement>> _controls;
+  List<MVCArray<HTMLElement>> get controls => _controls.toDart;
+  set controls(List<MVCArray<HTMLElement>> value) => _controls = value.toJS;
   external Data data;
   external MapTypeRegistry mapTypes;
   external MVCArray<MapType?> overlayMapTypes;

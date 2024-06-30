@@ -32,7 +32,11 @@ extension type Trip._(JSObject _) implements JSObject {
   });
   external String name;
   external num passengerCount;
-  external JSArray<VehicleWaypoint> remainingWaypoints;
+  @JS('remainingWaypoints')
+  external JSArray<VehicleWaypoint> _remainingWaypoints;
+  List<VehicleWaypoint> get remainingWaypoints => _remainingWaypoints.toDart;
+  set remainingWaypoints(List<VehicleWaypoint> value) =>
+      _remainingWaypoints = value.toJS;
   external String status;
   external String type;
   external String vehicleId;

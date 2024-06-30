@@ -11,30 +11,30 @@ final mapStyle = <MapTypeStyle>[
     ..featureType = 'all'
     ..elementType = 'all'
     ..stylers = [
-      {'visibility': 'off'},
-    ].jsify() as JSArray<JSObject>,
+      {'visibility': 'off'}.jsify() as JSObject,
+    ],
   MapTypeStyle()
     ..featureType = 'landscape'
     ..elementType = 'geometry'
     ..stylers = [
-      {'visibility': 'on'},
-      {'color': '#fcfcfc'},
-    ].jsify() as JSArray<JSObject>,
+      {'visibility': 'on'}.jsify() as JSObject,
+      {'color': '#fcfcfc'}.jsify() as JSObject,
+    ],
   MapTypeStyle()
     ..featureType = 'water'
     ..elementType = 'labels'
     ..stylers = [
-      {'visibility': 'off'},
-    ].jsify() as JSArray<JSObject>,
+      {'visibility': 'off'}.jsify() as JSObject,
+    ],
   MapTypeStyle()
     ..featureType = 'water'
     ..elementType = 'geometry'
     ..stylers = [
-      {'visibility': 'on'},
-      {'hue': '#5f94ff'},
-      {'lightness': '60'},
-    ].jsify() as JSArray<JSObject>,
-].toJS;
+      {'visibility': 'on'}.jsify() as JSObject,
+      {'hue': '#5f94ff'}.jsify() as JSObject,
+      {'lightness': '60'}.jsify() as JSObject,
+    ],
+];
 
 @JS('window')
 external JSObject get window;

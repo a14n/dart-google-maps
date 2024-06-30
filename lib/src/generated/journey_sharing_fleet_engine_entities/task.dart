@@ -34,7 +34,12 @@ extension type Task._(JSObject _) implements JSObject {
   });
   external JSObject /*Object<[string]>*/ attributes;
   external String name;
-  external JSArray<VehicleJourneySegment> remainingVehicleJourneySegments;
+  @JS('remainingVehicleJourneySegments')
+  external JSArray<VehicleJourneySegment> _remainingVehicleJourneySegments;
+  List<VehicleJourneySegment> get remainingVehicleJourneySegments =>
+      _remainingVehicleJourneySegments.toDart;
+  set remainingVehicleJourneySegments(List<VehicleJourneySegment> value) =>
+      _remainingVehicleJourneySegments = value.toJS;
   external String status;
   external String type;
   external Date? estimatedCompletionTime;

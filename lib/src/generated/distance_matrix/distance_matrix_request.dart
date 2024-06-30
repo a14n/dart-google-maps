@@ -28,8 +28,18 @@ extension type DistanceMatrixRequest._(JSObject _) implements JSObject {
     TransitOptions? transitOptions,
     UnitSystem? unitSystem,
   });
-  external JSArray<JSAny /*string|LatLng|LatLngLiteral|Place*/ > destinations;
-  external JSArray<JSAny /*string|LatLng|LatLngLiteral|Place*/ > origins;
+  @JS('destinations')
+  external JSArray<JSAny /*string|LatLng|LatLngLiteral|Place*/ > _destinations;
+  List<JSAny /*string|LatLng|LatLngLiteral|Place*/ > get destinations =>
+      _destinations.toDart;
+  set destinations(List<JSAny /*string|LatLng|LatLngLiteral|Place*/ > value) =>
+      _destinations = value.toJS;
+  @JS('origins')
+  external JSArray<JSAny /*string|LatLng|LatLngLiteral|Place*/ > _origins;
+  List<JSAny /*string|LatLng|LatLngLiteral|Place*/ > get origins =>
+      _origins.toDart;
+  set origins(List<JSAny /*string|LatLng|LatLngLiteral|Place*/ > value) =>
+      _origins = value.toJS;
   external TravelMode travelMode;
   external bool? avoidFerries;
   external bool? avoidHighways;

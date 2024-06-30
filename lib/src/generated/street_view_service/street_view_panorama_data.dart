@@ -25,6 +25,9 @@ extension type StreetViewPanoramaData._(JSObject _) implements JSObject {
   external StreetViewTileData tiles;
   external String? copyright;
   external String? imageDate;
-  external JSArray<StreetViewLink>? links;
+  @JS('links')
+  external JSArray<StreetViewLink>? _links;
+  List<StreetViewLink>? get links => _links?.toDart;
+  set links(List<StreetViewLink>? value) => _links = value?.toJS;
   external StreetViewLocation? location;
 }

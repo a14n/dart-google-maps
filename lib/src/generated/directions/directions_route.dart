@@ -28,7 +28,10 @@ extension type DirectionsRoute._(JSObject _) implements JSObject {
   });
   external LatLngBounds bounds;
   external String copyrights;
-  external JSArray<DirectionsLeg> legs;
+  @JS('legs')
+  external JSArray<DirectionsLeg> _legs;
+  List<DirectionsLeg> get legs => _legs.toDart;
+  set legs(List<DirectionsLeg> value) => _legs = value.toJS;
   @JS('overview_path')
   external JSArray<LatLng> _overviewPath;
   JSArray<LatLng> get overviewPath => _overviewPath;
@@ -38,7 +41,11 @@ extension type DirectionsRoute._(JSObject _) implements JSObject {
   String get overviewPolyline => _overviewPolyline;
   set overviewPolyline(String value) => _overviewPolyline = value;
   external String summary;
-  external JSArray<JSString> warnings;
+  @JS('warnings')
+  external JSArray<JSString> _warnings;
+  List<String> get warnings => _warnings.dartify() as List<String>;
+  set warnings(List<String> value) =>
+      _warnings = value.jsify() as JSArray<JSString>;
   @JS('waypoint_order')
   external JSArray<JSNumber> _waypointOrder;
   JSArray<JSNumber> get waypointOrder => _waypointOrder;

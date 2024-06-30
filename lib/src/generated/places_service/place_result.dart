@@ -55,7 +55,10 @@ extension type PlaceResult._(JSObject _) implements JSObject {
   external String? _adrAddress;
   String? get adrAddress => _adrAddress;
   set adrAddress(String? value) => _adrAddress = value;
-  external JSArray<PlaceAspectRating>? aspects;
+  @JS('aspects')
+  external JSArray<PlaceAspectRating>? _aspects;
+  List<PlaceAspectRating>? get aspects => _aspects?.toDart;
+  set aspects(List<PlaceAspectRating>? value) => _aspects = value?.toJS;
   @JS('business_status')
   external BusinessStatus? _businessStatus;
   BusinessStatus? get businessStatus => _businessStatus;
@@ -96,7 +99,10 @@ extension type PlaceResult._(JSObject _) implements JSObject {
   external bool? _permanentlyClosed;
   bool? get permanentlyClosed => _permanentlyClosed;
   set permanentlyClosed(bool? value) => _permanentlyClosed = value;
-  external JSArray<PlacePhoto>? photos;
+  @JS('photos')
+  external JSArray<PlacePhoto>? _photos;
+  List<PlacePhoto>? get photos => _photos?.toDart;
+  set photos(List<PlacePhoto>? value) => _photos = value?.toJS;
   @JS('place_id')
   external String? _placeId;
   String? get placeId => _placeId;
@@ -110,8 +116,15 @@ extension type PlaceResult._(JSObject _) implements JSObject {
   num? get priceLevel => _priceLevel;
   set priceLevel(num? value) => _priceLevel = value;
   external num? rating;
-  external JSArray<PlaceReview>? reviews;
-  external JSArray<JSString>? types;
+  @JS('reviews')
+  external JSArray<PlaceReview>? _reviews;
+  List<PlaceReview>? get reviews => _reviews?.toDart;
+  set reviews(List<PlaceReview>? value) => _reviews = value?.toJS;
+  @JS('types')
+  external JSArray<JSString>? _types;
+  List<String>? get types => _types.dartify() as List<String>?;
+  set types(List<String>? value) =>
+      _types = value.jsify() as JSArray<JSString>?;
   external String? url;
   @JS('user_ratings_total')
   external num? _userRatingsTotal;

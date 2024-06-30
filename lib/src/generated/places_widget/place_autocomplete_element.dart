@@ -26,7 +26,11 @@ extension type PlaceAutocompleteElement._(HTMLElement _)
   external String? name;
   external String? requestedLanguage;
   external String? requestedRegion;
-  external JSArray<JSString>? types;
+  @JS('types')
+  external JSArray<JSString>? _types;
+  List<String>? get types => _types.dartify() as List<String>?;
+  set types(List<String>? value) =>
+      _types = value.jsify() as JSArray<JSString>?;
   external void addEventListener(
     String type,
     JSAny /*EventListener|EventListenerObject*/ listener, [

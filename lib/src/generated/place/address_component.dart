@@ -18,5 +18,8 @@ part of '../place.dart';
 extension type AddressComponent._(JSObject _) implements JSObject {
   external String? longText;
   external String? shortText;
-  external JSArray<JSString> types;
+  @JS('types')
+  external JSArray<JSString> _types;
+  List<String> get types => _types.dartify() as List<String>;
+  set types(List<String> value) => _types = value.jsify() as JSArray<JSString>;
 }

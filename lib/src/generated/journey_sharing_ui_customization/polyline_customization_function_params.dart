@@ -23,5 +23,8 @@ extension type PolylineCustomizationFunctionParams._(JSObject _)
   });
   external PolylineOptions defaultOptions;
   external bool isNew;
-  external JSArray<Polyline> polylines;
+  @JS('polylines')
+  external JSArray<Polyline> _polylines;
+  List<Polyline> get polylines => _polylines.toDart;
+  set polylines(List<Polyline> value) => _polylines = value.toJS;
 }

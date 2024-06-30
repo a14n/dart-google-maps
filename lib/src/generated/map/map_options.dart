@@ -93,7 +93,10 @@ extension type MapOptions._(JSObject _) implements JSObject {
   external StreetViewPanorama? streetView;
   external bool? streetViewControl;
   external StreetViewControlOptions? streetViewControlOptions;
-  external JSArray<MapTypeStyle>? styles;
+  @JS('styles')
+  external JSArray<MapTypeStyle>? _styles;
+  List<MapTypeStyle>? get styles => _styles?.toDart;
+  set styles(List<MapTypeStyle>? value) => _styles = value?.toJS;
   external num? tilt;
   external bool? tiltInteractionEnabled;
   external num? zoom;

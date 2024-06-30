@@ -22,7 +22,11 @@ extension type JourneySharingMapView._(JSObject _) implements JSObject {
   external AutomaticViewportMode automaticViewportMode;
   external Element element;
   external bool enableTraffic;
-  external JSArray<LocationProvider>? locationProviders;
+  @JS('locationProviders')
+  external JSArray<LocationProvider>? _locationProviders;
+  List<LocationProvider>? get locationProviders => _locationProviders?.toDart;
+  set locationProviders(List<LocationProvider>? value) =>
+      _locationProviders = value?.toJS;
   external Map map;
   external MapOptions mapOptions;
   external LocationProvider? locationProvider;
@@ -36,15 +40,49 @@ extension type JourneySharingMapView._(JSObject _) implements JSObject {
   external PolylineSetup takenRoutePolylineSetup;
   external MarkerSetup pingMarkerSetup;
   external MarkerSetup successfulTaskMarkerSetup;
-  external JSArray<Marker> destinationMarkers;
-  external JSArray<Marker> originMarkers;
-  external JSArray<Marker> successfulTaskMarkers;
-  external JSArray<Marker> taskOutcomeMarkers;
-  external JSArray<Marker> unsuccessfulTaskMarkers;
-  external JSArray<Marker> vehicleMarkers;
-  external JSArray<Marker> waypointMarkers;
-  external JSArray<Polyline> anticipatedRoutePolylines;
-  external JSArray<Polyline> takenRoutePolylines;
+  @JS('destinationMarkers')
+  external JSArray<Marker> _destinationMarkers;
+  List<Marker> get destinationMarkers => _destinationMarkers.toDart;
+  set destinationMarkers(List<Marker> value) =>
+      _destinationMarkers = value.toJS;
+  @JS('originMarkers')
+  external JSArray<Marker> _originMarkers;
+  List<Marker> get originMarkers => _originMarkers.toDart;
+  set originMarkers(List<Marker> value) => _originMarkers = value.toJS;
+  @JS('successfulTaskMarkers')
+  external JSArray<Marker> _successfulTaskMarkers;
+  List<Marker> get successfulTaskMarkers => _successfulTaskMarkers.toDart;
+  set successfulTaskMarkers(List<Marker> value) =>
+      _successfulTaskMarkers = value.toJS;
+  @JS('taskOutcomeMarkers')
+  external JSArray<Marker> _taskOutcomeMarkers;
+  List<Marker> get taskOutcomeMarkers => _taskOutcomeMarkers.toDart;
+  set taskOutcomeMarkers(List<Marker> value) =>
+      _taskOutcomeMarkers = value.toJS;
+  @JS('unsuccessfulTaskMarkers')
+  external JSArray<Marker> _unsuccessfulTaskMarkers;
+  List<Marker> get unsuccessfulTaskMarkers => _unsuccessfulTaskMarkers.toDart;
+  set unsuccessfulTaskMarkers(List<Marker> value) =>
+      _unsuccessfulTaskMarkers = value.toJS;
+  @JS('vehicleMarkers')
+  external JSArray<Marker> _vehicleMarkers;
+  List<Marker> get vehicleMarkers => _vehicleMarkers.toDart;
+  set vehicleMarkers(List<Marker> value) => _vehicleMarkers = value.toJS;
+  @JS('waypointMarkers')
+  external JSArray<Marker> _waypointMarkers;
+  List<Marker> get waypointMarkers => _waypointMarkers.toDart;
+  set waypointMarkers(List<Marker> value) => _waypointMarkers = value.toJS;
+  @JS('anticipatedRoutePolylines')
+  external JSArray<Polyline> _anticipatedRoutePolylines;
+  List<Polyline> get anticipatedRoutePolylines =>
+      _anticipatedRoutePolylines.toDart;
+  set anticipatedRoutePolylines(List<Polyline> value) =>
+      _anticipatedRoutePolylines = value.toJS;
+  @JS('takenRoutePolylines')
+  external JSArray<Polyline> _takenRoutePolylines;
+  List<Polyline> get takenRoutePolylines => _takenRoutePolylines.toDart;
+  set takenRoutePolylines(List<Polyline> value) =>
+      _takenRoutePolylines = value.toJS;
   external void addLocationProvider(
     LocationProvider locationProvider,
   );

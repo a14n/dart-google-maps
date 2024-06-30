@@ -29,7 +29,7 @@ StreetViewPanoramaData? getCustomPanorama(String? pano) {
       ..location = (StreetViewLocation()
         ..pano = 'reception'
         ..description = 'Google Sydney - Reception')
-      ..links = <StreetViewLink>[].toJS
+      ..links = []
       // The text for the copyright control.
       ..copyright = 'Imagery (c) 2010 Google'
       // The definition of the tiles for this panorama.

@@ -25,6 +25,14 @@ extension type VehicleWaypoint._(JSObject _) implements JSObject {
   external num? distanceMeters;
   external num? durationMillis;
   external LatLngLiteral? location;
-  external JSArray<LatLngLiteral>? path;
-  external JSArray<SpeedReadingInterval>? speedReadingIntervals;
+  @JS('path')
+  external JSArray<LatLngLiteral>? _path;
+  List<LatLngLiteral>? get path => _path?.toDart;
+  set path(List<LatLngLiteral>? value) => _path = value?.toJS;
+  @JS('speedReadingIntervals')
+  external JSArray<SpeedReadingInterval>? _speedReadingIntervals;
+  List<SpeedReadingInterval>? get speedReadingIntervals =>
+      _speedReadingIntervals?.toDart;
+  set speedReadingIntervals(List<SpeedReadingInterval>? value) =>
+      _speedReadingIntervals = value?.toJS;
 }

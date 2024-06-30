@@ -25,7 +25,11 @@ extension type DataDataOptions._(JSObject _) implements JSObject {
   });
   external Map map;
   external ControlPosition? controlPosition;
-  external JSArray<JSString>? controls;
+  @JS('controls')
+  external JSArray<JSString>? _controls;
+  List<String>? get controls => _controls.dartify() as List<String>?;
+  set controls(List<String>? value) =>
+      _controls = value.jsify() as JSArray<JSString>?;
   external String? drawingMode;
   external JSFunction /*DataFeature Function(DataGeometry)*/ ? featureFactory;
   external JSAny? /*(Data.StylingFunction|Data.StyleOptions)?*/ style;

@@ -18,5 +18,8 @@ extension type LocationElevationResponse._(JSObject _) implements JSObject {
   external LocationElevationResponse({
     JSArray<ElevationResult> results,
   });
-  external JSArray<ElevationResult> results;
+  @JS('results')
+  external JSArray<ElevationResult> _results;
+  List<ElevationResult> get results => _results.toDart;
+  set results(List<ElevationResult> value) => _results = value.toJS;
 }

@@ -24,8 +24,8 @@ void main() {
     ..center = myLatlng
     ..zoom = 1
     ..streetViewControl = false
-    ..mapTypeControlOptions = (MapTypeControlOptions()
-      ..mapTypeIds = ['moon'].jsify() as JSArray<JSAny>);
+    ..mapTypeControlOptions =
+        (MapTypeControlOptions()..mapTypeIds = ['moon'.toJS]);
 
   final map =
       Map(document.getElementById('map-canvas') as HTMLElement, mapOptions);

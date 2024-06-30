@@ -39,8 +39,14 @@ extension type AutocompletePrediction._(JSObject _) implements JSObject {
   StructuredFormatting get structuredFormatting => _structuredFormatting;
   set structuredFormatting(StructuredFormatting value) =>
       _structuredFormatting = value;
-  external JSArray<PredictionTerm> terms;
-  external JSArray<JSString> types;
+  @JS('terms')
+  external JSArray<PredictionTerm> _terms;
+  List<PredictionTerm> get terms => _terms.toDart;
+  set terms(List<PredictionTerm> value) => _terms = value.toJS;
+  @JS('types')
+  external JSArray<JSString> _types;
+  List<String> get types => _types.dartify() as List<String>;
+  set types(List<String> value) => _types = value.jsify() as JSArray<JSString>;
   @JS('distance_meters')
   external num? _distanceMeters;
   num? get distanceMeters => _distanceMeters;

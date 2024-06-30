@@ -419,7 +419,7 @@ extension MapMouseEventOrIconMouseEvent$Ext on MapMouseEventOrIconMouseEvent {
       // simplify controls usage
       customCode.add('''
   MVCArray<HTMLElement> getControlsAt(ControlPosition position) =>
-      controls.toDart[(position as JSNumber).toDartInt];''');
+      controls[(position as JSNumber).toDartInt];''');
       customDependencies.add('ControlPosition');
 
     case 'MapMouseEvent':
@@ -691,7 +691,7 @@ extension LatLngBoundsOrLatLngBoundsLiteral$Ext on LatLngBoundsOrLatLngBoundsLit
           '  ${property.type} get ${property.name.snake2camel} => _${property.name.snake2camel};',
           '  set ${property.name.snake2camel}(${property.type} value) => _${property.name.snake2camel} = value;',
         ] else ...[
-          '  external ${property.type} ${property.name};',
+          property.generateDartCode(),
         ]
       ],
       for (final (:isStatic, :method) in methods) ...[
@@ -950,6 +950,43 @@ class Property {
   final String jsType;
   final String doc;
   String get type => translateType(jsType);
+
+  String generateDartCode() => switch (typeParser.parse(jsType)) {
+        Success(
+          value: TType(
+            name: 'Array',
+            :final genericParameters,
+            :final optional,
+          )
+        ) =>
+          switch (genericParameters) {
+            [TType(name: final paramJSType)]
+                when paramJSType == 'string' || paramJSType == 'number' =>
+              () {
+                final parameterType = switch (paramJSType) {
+                  'string' => 'String',
+                  'number' => 'num',
+                  _ => throw Error(),
+                };
+                final dartType = 'List<$parameterType>${optional ? '?' : ''}';
+                return """
+  @JS('$name')
+  external $type _$name;
+  $dartType get $name => _$name.dartify() as $dartType;
+  set $name($dartType value) => _$name = value.jsify() as $type;""";
+              }(),
+            _ => () {
+                final dartType =
+                    'List<${toDartType(genericParameters.first, true)}>${optional ? '?' : ''}';
+                return """
+  @JS('$name')
+  external $type _$name;
+  $dartType get $name => _$name${optional ? '?' : ''}.toDart;
+  set $name($dartType value) => _$name = value${optional ? '?' : ''}.toJS;""";
+              }(),
+          },
+        _ => 'external $type $name;',
+      };
 }
 
 List<Property> extractProperties(

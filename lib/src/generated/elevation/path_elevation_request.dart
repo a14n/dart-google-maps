@@ -20,5 +20,8 @@ extension type PathElevationRequest._(JSObject _) implements JSObject {
     JSArray<LatLngOrLatLngLiteral>? path,
   });
   external num samples;
-  external JSArray<LatLngOrLatLngLiteral>? path;
+  @JS('path')
+  external JSArray<LatLngOrLatLngLiteral>? _path;
+  List<LatLngOrLatLngLiteral>? get path => _path?.toDart;
+  set path(List<LatLngOrLatLngLiteral>? value) => _path = value?.toJS;
 }

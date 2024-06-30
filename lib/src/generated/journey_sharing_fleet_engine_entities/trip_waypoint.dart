@@ -27,8 +27,16 @@ extension type TripWaypoint._(JSObject _) implements JSObject {
   external num? distanceMeters;
   external num? durationMillis;
   external LatLng? location;
-  external JSArray<LatLng>? path;
-  external JSArray<SpeedReadingInterval>? speedReadingIntervals;
+  @JS('path')
+  external JSArray<LatLng>? _path;
+  List<LatLng>? get path => _path?.toDart;
+  set path(List<LatLng>? value) => _path = value?.toJS;
+  @JS('speedReadingIntervals')
+  external JSArray<SpeedReadingInterval>? _speedReadingIntervals;
+  List<SpeedReadingInterval>? get speedReadingIntervals =>
+      _speedReadingIntervals?.toDart;
+  set speedReadingIntervals(List<SpeedReadingInterval>? value) =>
+      _speedReadingIntervals = value?.toJS;
   external String? tripId;
   external WaypointType? waypointType;
 }

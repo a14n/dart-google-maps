@@ -19,6 +19,9 @@ extension type DrawingControlOptions._(JSObject _) implements JSObject {
     JSArray<OverlayType>? drawingModes,
     ControlPosition? position,
   });
-  external JSArray<OverlayType>? drawingModes;
+  @JS('drawingModes')
+  external JSArray<OverlayType>? _drawingModes;
+  List<OverlayType>? get drawingModes => _drawingModes?.toDart;
+  set drawingModes(List<OverlayType>? value) => _drawingModes = value?.toJS;
   external ControlPosition? position;
 }

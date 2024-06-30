@@ -12,66 +12,66 @@ void main() {
       ..featureType = 'road.highway'
       ..elementType = 'geometry'
       ..stylers = [
-        {'hue': '#ff0022'},
-        {'saturation': 60},
-        {'lightness': -20},
-      ].jsify() as JSArray<JSObject>,
+        {'hue': '#ff0022'}.jsify() as JSObject,
+        {'saturation': 60}.jsify() as JSObject,
+        {'lightness': -20}.jsify() as JSObject,
+      ],
     MapTypeStyle()
       ..featureType = 'road.arterial'
       ..elementType = 'all'
       ..stylers = [
-        {'hue': '#2200ff'},
-        {'lightness': -40},
-        {'visibility': 'simplified'},
-        {'saturation': 30},
-      ].jsify() as JSArray<JSObject>,
+        {'hue': '#2200ff'}.jsify() as JSObject,
+        {'lightness': -40}.jsify() as JSObject,
+        {'visibility': 'simplified'}.jsify() as JSObject,
+        {'saturation': 30}.jsify() as JSObject,
+      ],
     MapTypeStyle()
       ..featureType = 'road.local'
       ..elementType = 'all'
       ..stylers = [
-        {'hue': '#f6ff00'},
-        {'saturation': 50},
-        {'gamma': 0.7},
-        {'visibility': 'simplified'},
-      ].jsify() as JSArray<JSObject>,
+        {'hue': '#f6ff00'}.jsify() as JSObject,
+        {'saturation': 50}.jsify() as JSObject,
+        {'gamma': 0.7}.jsify() as JSObject,
+        {'visibility': 'simplified'}.jsify() as JSObject,
+      ],
     MapTypeStyle()
       ..featureType = 'water'
       ..elementType = 'geometry'
       ..stylers = [
-        {'saturation': 40},
-        {'lightness': 40},
-      ].jsify() as JSArray<JSObject>,
+        {'saturation': 40}.jsify() as JSObject,
+        {'lightness': 40}.jsify() as JSObject,
+      ],
     MapTypeStyle()
       ..featureType = 'road.highway'
       ..elementType = 'labels'
       ..stylers = [
-        {'saturation': 98},
-        {'visibility': 'on'},
-      ].jsify() as JSArray<JSObject>,
+        {'saturation': 98}.jsify() as JSObject,
+        {'visibility': 'on'}.jsify() as JSObject,
+      ],
     MapTypeStyle()
       ..featureType = 'administrative.locality'
       ..elementType = 'labels'
       ..stylers = [
-        {'hue': '#0022ff'},
-        {'saturation': 50},
-        {'lightness': -10},
-        {'gamma': 0.9},
-      ].jsify() as JSArray<JSObject>,
+        {'hue': '#0022ff'}.jsify() as JSObject,
+        {'saturation': 50}.jsify() as JSObject,
+        {'lightness': -10}.jsify() as JSObject,
+        {'gamma': 0.9}.jsify() as JSObject,
+      ],
     MapTypeStyle()
       ..featureType = 'transit.line'
       ..elementType = 'geometry'
       ..stylers = [
-        {'hue': '#ff0000'},
-        {'visibility': 'on'},
-        {'lightness': -70},
-      ].jsify() as JSArray<JSObject>,
+        {'hue': '#ff0000'}.jsify() as JSObject,
+        {'visibility': 'on'}.jsify() as JSObject,
+        {'lightness': -70}.jsify() as JSObject,
+      ],
   ];
 
   final mapOptions = MapOptions()
     ..zoom = 12
     ..center = chicago
     ..mapTypeControlOptions = (MapTypeControlOptions()
-      ..mapTypeIds = [MapTypeId.ROADMAP, 'usroadatlas'.toJS].toJS);
+      ..mapTypeIds = [MapTypeId.ROADMAP, 'usroadatlas'.toJS]);
 
   map = Map(document.getElementById('map-canvas') as HTMLElement, mapOptions);
 

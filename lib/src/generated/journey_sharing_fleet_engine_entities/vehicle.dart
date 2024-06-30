@@ -40,11 +40,22 @@ extension type Vehicle._(JSObject _) implements JSObject {
   external VehicleType vehicleType;
   external TripWaypoint? currentRouteSegmentEndPoint;
   external Date? currentRouteSegmentVersion;
-  external JSArray<JSString>? currentTrips;
+  @JS('currentTrips')
+  external JSArray<JSString>? _currentTrips;
+  List<String>? get currentTrips => _currentTrips.dartify() as List<String>?;
+  set currentTrips(List<String>? value) =>
+      _currentTrips = value.jsify() as JSArray<JSString>?;
   external Date? etaToFirstWaypoint;
   external VehicleLocationUpdate? latestLocation;
   external num? maximumCapacity;
-  external JSArray<TripType>? supportedTripTypes;
-  external JSArray<TripWaypoint>? waypoints;
+  @JS('supportedTripTypes')
+  external JSArray<TripType>? _supportedTripTypes;
+  List<TripType>? get supportedTripTypes => _supportedTripTypes?.toDart;
+  set supportedTripTypes(List<TripType>? value) =>
+      _supportedTripTypes = value?.toJS;
+  @JS('waypoints')
+  external JSArray<TripWaypoint>? _waypoints;
+  List<TripWaypoint>? get waypoints => _waypoints?.toDart;
+  set waypoints(List<TripWaypoint>? value) => _waypoints = value?.toJS;
   external Date? waypointsVersion;
 }

@@ -25,8 +25,16 @@ extension type AutocompleteOptions._(JSObject _) implements JSObject {
   });
   external LatLngBoundsOrLatLngBoundsLiteral? bounds;
   external ComponentRestrictions? componentRestrictions;
-  external JSArray<JSString>? fields;
+  @JS('fields')
+  external JSArray<JSString>? _fields;
+  List<String>? get fields => _fields.dartify() as List<String>?;
+  set fields(List<String>? value) =>
+      _fields = value.jsify() as JSArray<JSString>?;
   external bool? placeIdOnly;
   external bool? strictBounds;
-  external JSArray<JSString>? types;
+  @JS('types')
+  external JSArray<JSString>? _types;
+  List<String>? get types => _types.dartify() as List<String>?;
+  set types(List<String>? value) =>
+      _types = value.jsify() as JSArray<JSString>?;
 }

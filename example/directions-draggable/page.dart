@@ -34,7 +34,7 @@ void displayRoute(String origin, String destination, DirectionsService service,
       ..waypoints = [
         DirectionsWaypoint()..location = 'Cocklebiddy, WA'.toJS,
         DirectionsWaypoint()..location = 'Broken Hill, NSW'.toJS,
-      ].toJS
+      ]
       ..travelMode = TravelMode.DRIVING
       ..avoidTolls = true,
     (DirectionsResult? response, DirectionsStatus status) {
@@ -49,9 +49,9 @@ void displayRoute(String origin, String destination, DirectionsService service,
 
 void computeTotalDistance(DirectionsResult result) {
   var total = 0.0;
-  final myroute = result.routes.toDart[0];
-  for (var i = 0; i < myroute.legs.toDart.length; i++) {
-    total += myroute.legs.toDart[i].distance!.value;
+  final myroute = result.routes[0];
+  for (var i = 0; i < myroute.legs.length; i++) {
+    total += myroute.legs[i].distance!.value;
   }
   total = total / 1000;
   document.getElementById('total')!.textContent = '$total km';

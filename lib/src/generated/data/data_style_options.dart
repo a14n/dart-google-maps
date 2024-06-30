@@ -43,7 +43,10 @@ extension type DataStyleOptions._(JSObject _) implements JSObject {
   external String? fillColor;
   external num? fillOpacity;
   external JSAny? /*(string|Icon|Symbol)?*/ icon;
-  external JSArray<IconSequence>? icons;
+  @JS('icons')
+  external JSArray<IconSequence>? _icons;
+  List<IconSequence>? get icons => _icons?.toDart;
+  set icons(List<IconSequence>? value) => _icons = value?.toJS;
   external JSAny? /*(string|MarkerLabel)?*/ label;
   external num? opacity;
   external MarkerShape? shape;

@@ -16,6 +16,14 @@ part of '../place.dart';
 
 @JS('google.maps.places.OpeningHours')
 extension type OpeningHours._(JSObject _) implements JSObject {
-  external JSArray<OpeningHoursPeriod> periods;
-  external JSArray<JSString> weekdayDescriptions;
+  @JS('periods')
+  external JSArray<OpeningHoursPeriod> _periods;
+  List<OpeningHoursPeriod> get periods => _periods.toDart;
+  set periods(List<OpeningHoursPeriod> value) => _periods = value.toJS;
+  @JS('weekdayDescriptions')
+  external JSArray<JSString> _weekdayDescriptions;
+  List<String> get weekdayDescriptions =>
+      _weekdayDescriptions.dartify() as List<String>;
+  set weekdayDescriptions(List<String> value) =>
+      _weekdayDescriptions = value.jsify() as JSArray<JSString>;
 }

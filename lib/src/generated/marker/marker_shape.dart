@@ -19,6 +19,9 @@ extension type MarkerShape._(JSObject _) implements JSObject {
     JSArray<JSNumber> coords,
     String type,
   });
-  external JSArray<JSNumber> coords;
+  @JS('coords')
+  external JSArray<JSNumber> _coords;
+  List<num> get coords => _coords.dartify() as List<num>;
+  set coords(List<num> value) => _coords = value.jsify() as JSArray<JSNumber>;
   external String type;
 }

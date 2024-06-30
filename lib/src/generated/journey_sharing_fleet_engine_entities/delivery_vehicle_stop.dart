@@ -20,7 +20,10 @@ extension type DeliveryVehicleStop._(JSObject _) implements JSObject {
     LatLngLiteral? plannedLocation,
     DeliveryVehicleStopState? state,
   });
-  external JSArray<TaskInfo> tasks;
+  @JS('tasks')
+  external JSArray<TaskInfo> _tasks;
+  List<TaskInfo> get tasks => _tasks.toDart;
+  set tasks(List<TaskInfo> value) => _tasks = value.toJS;
   external LatLngLiteral? plannedLocation;
   external DeliveryVehicleStopState? state;
 }

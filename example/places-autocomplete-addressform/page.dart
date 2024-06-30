@@ -21,7 +21,7 @@ void main() {
   // to geographical location types.
   autocomplete = Autocomplete(
       document.getElementById('autocomplete') as HTMLInputElement,
-      AutocompleteOptions()..types = ['geocode'].jsify() as JSArray<JSString>);
+      AutocompleteOptions()..types = ['geocode']);
   // When the user selects an address from the dropdown,
   // populate the address fields in the form.
   autocomplete.onPlaceChanged.listen(fillInAddress);
@@ -42,12 +42,11 @@ void fillInAddress(_) {
   // Get each component of the address from the place details
   // and fill the corresponding field on the form.
   for (final addressComponent in place.addressComponents!.toDart) {
-    final addressType = addressComponent.types.toDart[0];
+    final addressType = addressComponent.types[0];
     final prop = componentForm[addressType];
     if (prop != null) {
       final val = getProperty(addressComponent, prop) as String;
-      (document.getElementById(addressType.toDart)! as HTMLInputElement).value =
-          val;
+      (document.getElementById(addressType)! as HTMLInputElement).value = val;
     }
   }
 }

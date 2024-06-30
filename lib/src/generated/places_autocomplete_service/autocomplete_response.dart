@@ -18,5 +18,9 @@ extension type AutocompleteResponse._(JSObject _) implements JSObject {
   external AutocompleteResponse({
     JSArray<AutocompletePrediction> predictions,
   });
-  external JSArray<AutocompletePrediction> predictions;
+  @JS('predictions')
+  external JSArray<AutocompletePrediction> _predictions;
+  List<AutocompletePrediction> get predictions => _predictions.toDart;
+  set predictions(List<AutocompletePrediction> value) =>
+      _predictions = value.toJS;
 }

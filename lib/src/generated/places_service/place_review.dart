@@ -41,7 +41,10 @@ extension type PlaceReview._(JSObject _) implements JSObject {
   set relativeTimeDescription(String value) => _relativeTimeDescription = value;
   external String text;
   external num time;
-  external JSArray<PlaceAspectRating>? aspects;
+  @JS('aspects')
+  external JSArray<PlaceAspectRating>? _aspects;
+  List<PlaceAspectRating>? get aspects => _aspects?.toDart;
+  set aspects(List<PlaceAspectRating>? value) => _aspects = value?.toJS;
   @JS('author_url')
   external String? _authorUrl;
   String? get authorUrl => _authorUrl;

@@ -65,7 +65,7 @@ void drawPath() {
   // Create a PathElevationRequest object using this array.
   // Ask for 256 samples along that path.
   final pathRequest = PathElevationRequest()
-    ..path = path.toJS
+    ..path = path
     ..samples = 256;
 
   // Initiate the path request.

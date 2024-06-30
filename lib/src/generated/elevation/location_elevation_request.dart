@@ -18,5 +18,8 @@ extension type LocationElevationRequest._(JSObject _) implements JSObject {
   external LocationElevationRequest({
     JSArray<LatLngOrLatLngLiteral>? locations,
   });
-  external JSArray<LatLngOrLatLngLiteral>? locations;
+  @JS('locations')
+  external JSArray<LatLngOrLatLngLiteral>? _locations;
+  List<LatLngOrLatLngLiteral>? get locations => _locations?.toDart;
+  set locations(List<LatLngOrLatLngLiteral>? value) => _locations = value?.toJS;
 }

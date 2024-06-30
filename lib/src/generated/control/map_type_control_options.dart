@@ -20,7 +20,11 @@ extension type MapTypeControlOptions._(JSObject _) implements JSObject {
     ControlPosition? position,
     MapTypeControlStyle? style,
   });
-  external JSArray<JSAny /*MapTypeId|string*/ >? mapTypeIds;
+  @JS('mapTypeIds')
+  external JSArray<JSAny /*MapTypeId|string*/ >? _mapTypeIds;
+  List<JSAny /*MapTypeId|string*/ >? get mapTypeIds => _mapTypeIds?.toDart;
+  set mapTypeIds(List<JSAny /*MapTypeId|string*/ >? value) =>
+      _mapTypeIds = value?.toJS;
   external ControlPosition? position;
   external MapTypeControlStyle? style;
 }

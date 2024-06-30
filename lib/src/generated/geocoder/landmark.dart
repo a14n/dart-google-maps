@@ -46,7 +46,10 @@ extension type Landmark._(JSObject _) implements JSObject {
   num get straightLineDistanceMeters => _straightLineDistanceMeters;
   set straightLineDistanceMeters(num value) =>
       _straightLineDistanceMeters = value;
-  external JSArray<JSString> types;
+  @JS('types')
+  external JSArray<JSString> _types;
+  List<String> get types => _types.dartify() as List<String>;
+  set types(List<String> value) => _types = value.jsify() as JSArray<JSString>;
   @JS('travel_distance_meters')
   external num? _travelDistanceMeters;
   num? get travelDistanceMeters => _travelDistanceMeters;

@@ -22,7 +22,10 @@ extension type DirectionsResult._(JSObject _) implements JSObject {
     JSArray<DirectionsGeocodedWaypoint>? geocoded_waypoints,
   });
   external DirectionsRequest request;
-  external JSArray<DirectionsRoute> routes;
+  @JS('routes')
+  external JSArray<DirectionsRoute> _routes;
+  List<DirectionsRoute> get routes => _routes.toDart;
+  set routes(List<DirectionsRoute> value) => _routes = value.toJS;
   @JS('available_travel_modes')
   external JSArray<TravelMode>? _availableTravelModes;
   JSArray<TravelMode>? get availableTravelModes => _availableTravelModes;

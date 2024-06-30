@@ -28,7 +28,11 @@ extension type HeatmapLayerOptions._(JSObject _) implements JSObject {
   external JSAny? /*(MVCArray<LatLng|WeightedLocation>|Array<LatLng|WeightedLocation>)?*/
       data;
   external bool? dissipating;
-  external JSArray<JSString>? gradient;
+  @JS('gradient')
+  external JSArray<JSString>? _gradient;
+  List<String>? get gradient => _gradient.dartify() as List<String>?;
+  set gradient(List<String>? value) =>
+      _gradient = value.jsify() as JSArray<JSString>?;
   external Map? map;
   external num? maxIntensity;
   external num? opacity;

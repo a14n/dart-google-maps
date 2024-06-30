@@ -19,5 +19,8 @@ extension type FleetEngineFleetLocationProviderUpdateEvent._(JSObject _)
   external FleetEngineFleetLocationProviderUpdateEvent({
     JSArray<Vehicle>? vehicles,
   });
-  external JSArray<Vehicle>? vehicles;
+  @JS('vehicles')
+  external JSArray<Vehicle>? _vehicles;
+  List<Vehicle>? get vehicles => _vehicles?.toDart;
+  set vehicles(List<Vehicle>? value) => _vehicles = value?.toJS;
 }

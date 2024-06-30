@@ -51,7 +51,10 @@ extension type DirectionsStep._(JSObject _) implements JSObject {
   JSArray<LatLng> get latLngs => _latLngs;
   set latLngs(JSArray<LatLng> value) => _latLngs = value;
   external String maneuver;
-  external JSArray<LatLng> path;
+  @JS('path')
+  external JSArray<LatLng> _path;
+  List<LatLng> get path => _path.toDart;
+  set path(List<LatLng> value) => _path = value.toJS;
   @JS('start_location')
   external LatLng _startLocation;
   LatLng get startLocation => _startLocation;
@@ -67,7 +70,10 @@ extension type DirectionsStep._(JSObject _) implements JSObject {
   external Distance? distance;
   external Duration? duration;
   external DirectionsPolyline? polyline;
-  external JSArray<DirectionsStep>? steps;
+  @JS('steps')
+  external JSArray<DirectionsStep>? _steps;
+  List<DirectionsStep>? get steps => _steps?.toDart;
+  set steps(List<DirectionsStep>? value) => _steps = value?.toJS;
   external TransitDetails? transit;
   @JS('transit_details')
   external TransitDetails? _transitDetails;

@@ -20,7 +20,20 @@ extension type DistanceMatrixResponse._(JSObject _) implements JSObject {
     JSArray<JSString> originAddresses,
     JSArray<DistanceMatrixResponseRow> rows,
   });
-  external JSArray<JSString> destinationAddresses;
-  external JSArray<JSString> originAddresses;
-  external JSArray<DistanceMatrixResponseRow> rows;
+  @JS('destinationAddresses')
+  external JSArray<JSString> _destinationAddresses;
+  List<String> get destinationAddresses =>
+      _destinationAddresses.dartify() as List<String>;
+  set destinationAddresses(List<String> value) =>
+      _destinationAddresses = value.jsify() as JSArray<JSString>;
+  @JS('originAddresses')
+  external JSArray<JSString> _originAddresses;
+  List<String> get originAddresses =>
+      _originAddresses.dartify() as List<String>;
+  set originAddresses(List<String> value) =>
+      _originAddresses = value.jsify() as JSArray<JSString>;
+  @JS('rows')
+  external JSArray<DistanceMatrixResponseRow> _rows;
+  List<DistanceMatrixResponseRow> get rows => _rows.toDart;
+  set rows(List<DistanceMatrixResponseRow> value) => _rows = value.toJS;
 }

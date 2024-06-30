@@ -45,7 +45,10 @@ extension type DirectionsLeg._(JSObject _) implements JSObject {
   external LatLng _startLocation;
   LatLng get startLocation => _startLocation;
   set startLocation(LatLng value) => _startLocation = value;
-  external JSArray<DirectionsStep> steps;
+  @JS('steps')
+  external JSArray<DirectionsStep> _steps;
+  List<DirectionsStep> get steps => _steps.toDart;
+  set steps(List<DirectionsStep> value) => _steps = value.toJS;
   @JS('traffic_speed_entry')
   external JSArray<JSAny?> _trafficSpeedEntry;
   JSArray<JSAny?> get trafficSpeedEntry => _trafficSpeedEntry;

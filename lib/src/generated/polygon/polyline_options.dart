@@ -33,7 +33,10 @@ extension type PolylineOptions._(JSObject _) implements JSObject {
   external bool? draggable;
   external bool? editable;
   external bool? geodesic;
-  external JSArray<IconSequence>? icons;
+  @JS('icons')
+  external JSArray<IconSequence>? _icons;
+  List<IconSequence>? get icons => _icons?.toDart;
+  set icons(List<IconSequence>? value) => _icons = value?.toJS;
   external Map? map;
   external JSAny? /*(MVCArray<LatLng>|Array<LatLng|LatLngLiteral>)?*/ path;
   external String? strokeColor;

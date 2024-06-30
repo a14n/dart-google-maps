@@ -16,6 +16,9 @@ part of '../autocomplete_data.dart';
 
 @JS('google.maps.places.FormattableText')
 extension type FormattableText._(JSObject _) implements JSObject {
-  external JSArray<StringRange> matches;
+  @JS('matches')
+  external JSArray<StringRange> _matches;
+  List<StringRange> get matches => _matches.toDart;
+  set matches(List<StringRange> value) => _matches = value.toJS;
   external String text;
 }

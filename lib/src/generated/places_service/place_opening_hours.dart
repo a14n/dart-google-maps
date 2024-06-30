@@ -24,7 +24,10 @@ extension type PlaceOpeningHours._(JSObject _) implements JSObject {
   external bool? _openNow;
   bool? get openNow => _openNow;
   set openNow(bool? value) => _openNow = value;
-  external JSArray<PlaceOpeningHoursPeriod>? periods;
+  @JS('periods')
+  external JSArray<PlaceOpeningHoursPeriod>? _periods;
+  List<PlaceOpeningHoursPeriod>? get periods => _periods?.toDart;
+  set periods(List<PlaceOpeningHoursPeriod>? value) => _periods = value?.toJS;
   @JS('weekday_text')
   external JSArray<JSString>? _weekdayText;
   JSArray<JSString>? get weekdayText => _weekdayText;

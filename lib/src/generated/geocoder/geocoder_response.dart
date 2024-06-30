@@ -20,7 +20,10 @@ extension type GeocoderResponse._(JSObject _) implements JSObject {
     AddressDescriptor? address_descriptor,
     PlacePlusCode? plus_code,
   });
-  external JSArray<GeocoderResult> results;
+  @JS('results')
+  external JSArray<GeocoderResult> _results;
+  List<GeocoderResult> get results => _results.toDart;
+  set results(List<GeocoderResult> value) => _results = value.toJS;
   @JS('address_descriptor')
   external AddressDescriptor? _addressDescriptor;
   AddressDescriptor? get addressDescriptor => _addressDescriptor;

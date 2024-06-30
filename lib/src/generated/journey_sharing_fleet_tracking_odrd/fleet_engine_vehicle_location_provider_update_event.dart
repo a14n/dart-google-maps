@@ -20,6 +20,9 @@ extension type FleetEngineVehicleLocationProviderUpdateEvent._(JSObject _)
     JSArray<Trip>? trips,
     Vehicle? vehicle,
   });
-  external JSArray<Trip>? trips;
+  @JS('trips')
+  external JSArray<Trip>? _trips;
+  List<Trip>? get trips => _trips?.toDart;
+  set trips(List<Trip>? value) => _trips = value?.toJS;
   external Vehicle? vehicle;
 }

@@ -21,7 +21,11 @@ extension type FindPlaceFromQueryRequest._(JSObject _) implements JSObject {
     String? language,
     LocationBias? locationBias,
   });
-  external JSArray<JSString> fields;
+  @JS('fields')
+  external JSArray<JSString> _fields;
+  List<String> get fields => _fields.dartify() as List<String>;
+  set fields(List<String> value) =>
+      _fields = value.jsify() as JSArray<JSString>;
   external String query;
   external String? language;
   external LocationBias? locationBias;

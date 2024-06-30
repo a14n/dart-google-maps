@@ -28,5 +28,9 @@ extension type DirectionsGeocodedWaypoint._(JSObject _) implements JSObject {
   external String? _placeId;
   String? get placeId => _placeId;
   set placeId(String? value) => _placeId = value;
-  external JSArray<JSString>? types;
+  @JS('types')
+  external JSArray<JSString>? _types;
+  List<String>? get types => _types.dartify() as List<String>?;
+  set types(List<String>? value) =>
+      _types = value.jsify() as JSArray<JSString>?;
 }

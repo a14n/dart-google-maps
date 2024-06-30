@@ -49,7 +49,7 @@ void main() {
   autocomplete = Autocomplete(
       document.getElementById('autocomplete') as HTMLInputElement,
       AutocompleteOptions()
-        ..types = ['(cities)'].jsify() as JSArray<JSString>
+        ..types = ['(cities)']
         ..componentRestrictions = countryRestrict);
   places = PlacesService(map);
 

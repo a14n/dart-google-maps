@@ -36,8 +36,8 @@ void main() {
 void calculateDistances() {
   DistanceMatrixService().getDistanceMatrix(
       DistanceMatrixRequest()
-        ..origins = [origin1, origin2.toJS].toJS
-        ..destinations = [destinationA.toJS, destinationB].toJS
+        ..origins = [origin1, origin2.toJS]
+        ..destinations = [destinationA.toJS, destinationB]
         ..travelMode = TravelMode.DRIVING
         ..unitSystem = UnitSystem.METRIC
         ..avoidHighways = false
@@ -54,13 +54,13 @@ void callback(DistanceMatrixResponse? response, DistanceMatrixStatus? status) {
     deleteOverlays();
 
     final html = StringBuffer();
-    for (var i = 0; i < origins.toDart.length; i++) {
-      final results = response.rows.toDart[i].elements;
-      addMarker(origins.toDart[i].toDart, isDestination: false);
-      for (var j = 0; j < results.toDart.length; j++) {
-        addMarker(destinations.toDart[j].toDart, isDestination: true);
+    for (var i = 0; i < origins.length; i++) {
+      final results = response.rows[i].elements;
+      addMarker(origins[i], isDestination: false);
+      for (var j = 0; j < results.length; j++) {
+        addMarker(destinations[j], isDestination: true);
         html.write(
-            '${origins.toDart[i]} to ${destinations.toDart[j]}: ${results.toDart[j].distance.text} in ${results.toDart[j].duration.text}<br>');
+            '${origins[i]} to ${destinations[j]}: ${results[j].distance.text} in ${results[j].duration.text}<br>');
       }
     }
     document.getElementById('outputDiv')!.innerHTML = html.toString();

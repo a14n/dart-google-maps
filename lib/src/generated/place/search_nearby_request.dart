@@ -27,12 +27,34 @@ extension type SearchNearbyRequest._(JSObject _) implements JSObject {
     SearchNearbyRankPreference? rankPreference,
     String? region,
   });
-  external JSArray<JSString> fields;
+  @JS('fields')
+  external JSArray<JSString> _fields;
+  List<String> get fields => _fields.dartify() as List<String>;
+  set fields(List<String> value) =>
+      _fields = value.jsify() as JSArray<JSString>;
   external JSAny /*Circle|CircleLiteral*/ locationRestriction;
-  external JSArray<JSString>? excludedPrimaryTypes;
-  external JSArray<JSString>? excludedTypes;
-  external JSArray<JSString>? includedPrimaryTypes;
-  external JSArray<JSString>? includedTypes;
+  @JS('excludedPrimaryTypes')
+  external JSArray<JSString>? _excludedPrimaryTypes;
+  List<String>? get excludedPrimaryTypes =>
+      _excludedPrimaryTypes.dartify() as List<String>?;
+  set excludedPrimaryTypes(List<String>? value) =>
+      _excludedPrimaryTypes = value.jsify() as JSArray<JSString>?;
+  @JS('excludedTypes')
+  external JSArray<JSString>? _excludedTypes;
+  List<String>? get excludedTypes => _excludedTypes.dartify() as List<String>?;
+  set excludedTypes(List<String>? value) =>
+      _excludedTypes = value.jsify() as JSArray<JSString>?;
+  @JS('includedPrimaryTypes')
+  external JSArray<JSString>? _includedPrimaryTypes;
+  List<String>? get includedPrimaryTypes =>
+      _includedPrimaryTypes.dartify() as List<String>?;
+  set includedPrimaryTypes(List<String>? value) =>
+      _includedPrimaryTypes = value.jsify() as JSArray<JSString>?;
+  @JS('includedTypes')
+  external JSArray<JSString>? _includedTypes;
+  List<String>? get includedTypes => _includedTypes.dartify() as List<String>?;
+  set includedTypes(List<String>? value) =>
+      _includedTypes = value.jsify() as JSArray<JSString>?;
   external String? language;
   external num? maxResultCount;
   external SearchNearbyRankPreference? rankPreference;

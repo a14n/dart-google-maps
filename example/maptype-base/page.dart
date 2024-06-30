@@ -32,8 +32,7 @@ void main() {
     ..streetViewControl = false
     ..mapTypeId = 'coordinate'.toJS
     ..mapTypeControlOptions = (MapTypeControlOptions()
-      ..mapTypeIds =
-          ['coordinate', MapTypeId.ROADMAP].jsify() as JSArray<JSObject>
+      ..mapTypeIds = ['coordinate'.toJS, MapTypeId.ROADMAP]
       ..style = MapTypeControlStyle.DROPDOWN_MENU);
   map = Map(document.getElementById('map-canvas') as HTMLElement, mapOptions);
 

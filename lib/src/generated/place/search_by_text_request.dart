@@ -33,7 +33,11 @@ extension type SearchByTextRequest._(JSObject _) implements JSObject {
     String? textQuery,
     bool? useStrictTypeFiltering,
   });
-  external JSArray<JSString> fields;
+  @JS('fields')
+  external JSArray<JSString> _fields;
+  List<String> get fields => _fields.dartify() as List<String>;
+  set fields(List<String> value) =>
+      _fields = value.jsify() as JSArray<JSString>;
   external String? includedType;
   external bool? isOpenNow;
   external String? language;
@@ -42,7 +46,10 @@ extension type SearchByTextRequest._(JSObject _) implements JSObject {
   external LatLngBoundsOrLatLngBoundsLiteral? locationRestriction;
   external num? maxResultCount;
   external num? minRating;
-  external JSArray<PriceLevel>? priceLevels;
+  @JS('priceLevels')
+  external JSArray<PriceLevel>? _priceLevels;
+  List<PriceLevel>? get priceLevels => _priceLevels?.toDart;
+  set priceLevels(List<PriceLevel>? value) => _priceLevels = value?.toJS;
   external String? query;
   external SearchByTextRankPreference? rankBy;
   external SearchByTextRankPreference? rankPreference;

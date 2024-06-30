@@ -37,7 +37,11 @@ extension type JourneySharingMapViewOptions._(JSObject _) implements JSObject {
   external AutomaticViewportMode? automaticViewportMode;
   external MarkerSetup? destinationMarkerSetup;
   external LocationProvider? locationProvider;
-  external JSArray<LocationProvider>? locationProviders;
+  @JS('locationProviders')
+  external JSArray<LocationProvider>? _locationProviders;
+  List<LocationProvider>? get locationProviders => _locationProviders?.toDart;
+  set locationProviders(List<LocationProvider>? value) =>
+      _locationProviders = value?.toJS;
   external MapOptions? mapOptions;
   external MarkerSetup? originMarkerSetup;
   external MarkerSetup? pingMarkerSetup;

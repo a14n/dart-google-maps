@@ -22,7 +22,11 @@ extension type FindPlaceFromPhoneNumberRequest._(JSObject _)
     String? language,
     LocationBias? locationBias,
   });
-  external JSArray<JSString> fields;
+  @JS('fields')
+  external JSArray<JSString> _fields;
+  List<String> get fields => _fields.dartify() as List<String>;
+  set fields(List<String> value) =>
+      _fields = value.jsify() as JSArray<JSString>;
   external String phoneNumber;
   external String? language;
   external LocationBias? locationBias;

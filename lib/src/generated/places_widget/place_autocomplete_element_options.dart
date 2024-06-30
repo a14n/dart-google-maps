@@ -29,5 +29,9 @@ extension type PlaceAutocompleteElementOptions._(JSObject _)
   external LocationRestriction? locationRestriction;
   external String? requestedLanguage;
   external String? requestedRegion;
-  external JSArray<JSString>? types;
+  @JS('types')
+  external JSArray<JSString>? _types;
+  List<String>? get types => _types.dartify() as List<String>?;
+  set types(List<String>? value) =>
+      _types = value.jsify() as JSArray<JSString>?;
 }

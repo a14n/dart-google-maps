@@ -22,7 +22,7 @@ void main() {
             OverlayType.POLYGON,
             OverlayType.POLYLINE,
             OverlayType.RECTANGLE
-          ].toJS)
+          ])
         ..markerOptions = (MarkerOptions()
           ..icon =
               'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'

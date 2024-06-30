@@ -56,7 +56,7 @@ void calcRoute() {
     (DirectionsResult? response, DirectionsStatus status) {
       if (status == DirectionsStatus.OK) {
         document.querySelector('#warnings_panel')!.innerHTML =
-            '<b>${response!.routes.toDart[0].warnings}</b>';
+            '<b>${response!.routes[0].warnings}</b>';
         directionsDisplay.directions = response;
         showSteps(response);
       }
@@ -69,9 +69,9 @@ void showSteps(DirectionsResult directionResult) {
   // info window. Also attach the marker to an array so we
   // can keep track of it and remove it when calculating new
   // routes.
-  final myRoute = directionResult.routes.toDart[0].legs.toDart[0];
+  final myRoute = directionResult.routes[0].legs[0];
 
-  for (final step in myRoute.steps.toDart) {
+  for (final step in myRoute.steps) {
     final marker = Marker(MarkerOptions()
       ..position = step.startLocation
       ..map = map);

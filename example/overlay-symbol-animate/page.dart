@@ -29,7 +29,7 @@ void main() {
       IconSequence()
         ..icon = lineSymbol
         ..offset = '100%'
-    ].toJS
+    ]
     ..map = map);
 
   animateCircle();

@@ -20,7 +20,10 @@ extension type StreetViewPanorama._(MVCObject _) implements MVCObject {
     HTMLElement container, [
     StreetViewPanoramaOptions? opts,
   ]);
-  external JSArray<MVCArray<HTMLElement>> controls;
+  @JS('controls')
+  external JSArray<MVCArray<HTMLElement>> _controls;
+  List<MVCArray<HTMLElement>> get controls => _controls.toDart;
+  set controls(List<MVCArray<HTMLElement>> value) => _controls = value.toJS;
   external void focus();
   @JS('getLinks')
   external JSArray<StreetViewLink> _getLinks();

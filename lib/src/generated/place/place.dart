@@ -20,10 +20,17 @@ extension type Place._(JSObject _) implements JSObject {
     PlaceOptions options,
   );
   external AccessibilityOptions? accessibilityOptions;
-  external JSArray<AddressComponent>? addressComponents;
+  @JS('addressComponents')
+  external JSArray<AddressComponent>? _addressComponents;
+  List<AddressComponent>? get addressComponents => _addressComponents?.toDart;
+  set addressComponents(List<AddressComponent>? value) =>
+      _addressComponents = value?.toJS;
   external String? adrFormatAddress;
   external bool? allowsDogs;
-  external JSArray<Attribution>? attributions;
+  @JS('attributions')
+  external JSArray<Attribution>? _attributions;
+  List<Attribution>? get attributions => _attributions?.toDart;
+  set attributions(List<Attribution>? value) => _attributions = value?.toJS;
   external BusinessStatus? businessStatus;
   external String? displayName;
   external String? editorialSummary;
@@ -50,14 +57,20 @@ extension type Place._(JSObject _) implements JSObject {
   external String? nationalPhoneNumber;
   external ParkingOptions? parkingOptions;
   external PaymentOptions? paymentOptions;
-  external JSArray<Photo>? photos;
+  @JS('photos')
+  external JSArray<Photo>? _photos;
+  List<Photo>? get photos => _photos?.toDart;
+  set photos(List<Photo>? value) => _photos = value?.toJS;
   external PlusCode? plusCode;
   external PriceLevel? priceLevel;
   external num? rating;
   external OpeningHours? regularOpeningHours;
   external String? requestedLanguage;
   external String? requestedRegion;
-  external JSArray<Review>? reviews;
+  @JS('reviews')
+  external JSArray<Review>? _reviews;
+  List<Review>? get reviews => _reviews?.toDart;
+  set reviews(List<Review>? value) => _reviews = value?.toJS;
   external bool? servesBeer;
   external bool? servesBreakfast;
   external bool? servesBrunch;
@@ -69,7 +82,11 @@ extension type Place._(JSObject _) implements JSObject {
   external bool? servesVegetarianFood;
   external bool? servesWine;
   external String? svgIconMaskURI;
-  external JSArray<JSString>? types;
+  @JS('types')
+  external JSArray<JSString>? _types;
+  List<String>? get types => _types.dartify() as List<String>?;
+  set types(List<String>? value) =>
+      _types = value.jsify() as JSArray<JSString>?;
   external num? userRatingCount;
   external num? utcOffsetMinutes;
   external LatLngBounds? viewport;

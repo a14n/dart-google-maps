@@ -20,7 +20,7 @@ void main() {
 
   final request = FindPlaceFromQueryRequest()
     ..query = 'Museum of Contemporary Art Australia'
-    ..fields = ['name', 'geometry'].jsify() as JSArray<JSString>;
+    ..fields = ['name', 'geometry'];
 
   PlacesService(map).findPlaceFromQuery(
     request,

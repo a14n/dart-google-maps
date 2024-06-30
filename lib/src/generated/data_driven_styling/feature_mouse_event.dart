@@ -18,5 +18,8 @@ extension type FeatureMouseEvent._(MapMouseEvent _) implements MapMouseEvent {
   external FeatureMouseEvent({
     JSArray<Feature> features,
   });
-  external JSArray<Feature> features;
+  @JS('features')
+  external JSArray<Feature> _features;
+  List<Feature> get features => _features.toDart;
+  set features(List<Feature> value) => _features = value.toJS;
 }
