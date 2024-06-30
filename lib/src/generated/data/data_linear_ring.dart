@@ -19,9 +19,6 @@ extension type DataLinearRing._(DataGeometry _) implements DataGeometry {
   external DataLinearRing(
     JSArray<LatLngOrLatLngLiteral> elements,
   );
-  external void forEachLatLng(
-    JSFunction /*void Function(LatLng)*/ callback,
-  );
   @JS('getArray')
   external JSArray<LatLng> _getArray();
   JSArray<LatLng> get array => _getArray();
@@ -31,7 +28,4 @@ extension type DataLinearRing._(DataGeometry _) implements DataGeometry {
   @JS('getLength')
   external num _getLength();
   num get length => _getLength();
-  @JS('getType')
-  external String _getType();
-  String get type => _getType();
 }

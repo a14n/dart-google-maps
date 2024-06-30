@@ -607,6 +607,17 @@ extension LatLngBoundsOrLatLngBoundsLiteral$Ext on LatLngBoundsOrLatLngBoundsLit
             'onRemove',
             'onStateUpdate',
           }.contains(e.method.name));
+
+    case 'DataPoint':
+    case 'DataMultiPoint':
+    case 'DataLineString':
+    case 'DataMultiLineString':
+    case 'DataLinearRing':
+    case 'DataPolygon':
+    case 'DataMultiPolygon':
+    case 'DataGeometryCollection':
+      methods.removeWhere(
+          (e) => {'forEachLatLng', 'getType'}.contains(e.method.name));
   }
 
   if (methods.any((e) => e.method.name == 'getMap')) {

@@ -20,9 +20,6 @@ extension type DataGeometryCollection._(DataGeometry _)
   external DataGeometryCollection(
     JSArray<JSAny /*Data.Geometry|LatLng|LatLngLiteral*/ > elements,
   );
-  external void forEachLatLng(
-    JSFunction /*void Function(LatLng)*/ callback,
-  );
   @JS('getArray')
   external JSArray<DataGeometry> _getArray();
   JSArray<DataGeometry> get array => _getArray();
@@ -32,7 +29,4 @@ extension type DataGeometryCollection._(DataGeometry _)
   @JS('getLength')
   external num _getLength();
   num get length => _getLength();
-  @JS('getType')
-  external String _getType();
-  String get type => _getType();
 }

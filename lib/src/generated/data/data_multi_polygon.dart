@@ -20,9 +20,6 @@ extension type DataMultiPolygon._(DataGeometry _) implements DataGeometry {
     JSArray<JSAny /*Data.Polygon|Array<Data.LinearRing|Array<LatLng|LatLngLiteral>>*/ >
         elements,
   );
-  external void forEachLatLng(
-    JSFunction /*void Function(LatLng)*/ callback,
-  );
   @JS('getArray')
   external JSArray<DataPolygon> _getArray();
   JSArray<DataPolygon> get array => _getArray();
@@ -32,7 +29,4 @@ extension type DataMultiPolygon._(DataGeometry _) implements DataGeometry {
   @JS('getLength')
   external num _getLength();
   num get length => _getLength();
-  @JS('getType')
-  external String _getType();
-  String get type => _getType();
 }

@@ -19,11 +19,5 @@ extension type DataPoint._(DataGeometry _) implements DataGeometry {
   external DataPoint(
     LatLngOrLatLngLiteral latLng,
   );
-  external void forEachLatLng(
-    JSFunction /*void Function(LatLng)*/ callback,
-  );
   external LatLng get();
-  @JS('getType')
-  external String _getType();
-  String get type => _getType();
 }

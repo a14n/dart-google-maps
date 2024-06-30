@@ -19,9 +19,6 @@ extension type DataMultiLineString._(DataGeometry _) implements DataGeometry {
   external DataMultiLineString(
     JSArray<JSAny /*Data.LineString|Array<LatLng|LatLngLiteral>*/ > elements,
   );
-  external void forEachLatLng(
-    JSFunction /*void Function(LatLng)*/ callback,
-  );
   @JS('getArray')
   external JSArray<DataLineString> _getArray();
   JSArray<DataLineString> get array => _getArray();
@@ -31,7 +28,4 @@ extension type DataMultiLineString._(DataGeometry _) implements DataGeometry {
   @JS('getLength')
   external num _getLength();
   num get length => _getLength();
-  @JS('getType')
-  external String _getType();
-  String get type => _getType();
 }
