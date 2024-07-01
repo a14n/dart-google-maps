@@ -17,9 +17,12 @@ part of '../geocoder.dart';
 @JS('google.maps.Geocoder')
 extension type Geocoder._(JSObject _) implements JSObject {
   external Geocoder();
-  external JSPromise<GeocoderResponse> geocode(
-    GeocoderRequest request, [
-    JSFunction /*void Function(JSArray<GeocoderResult>?,GeocoderStatus)*/ ?
-        callback,
-  ]);
+  @JS('geocode')
+  external JSPromise<GeocoderResponse> _geocode(
+    GeocoderRequest request,
+  );
+  Future<GeocoderResponse> geocode(
+    GeocoderRequest request,
+  ) =>
+      _geocode(request).toDart;
 }

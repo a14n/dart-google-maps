@@ -8,18 +8,14 @@ late StreetViewPanorama panorama;
 // StreetViewPanoramaData of a panorama just outside the Google Sydney office.
 late StreetViewPanoramaData outsideGoogle;
 
-void main() {
+void main() async {
   // Use the Street View service to find a pano ID on Pirrama Rd, outside the
   // Google office.
-  StreetViewService().getPanorama(
-    StreetViewLocationRequest()..location = LatLng(-33.867386, 151.195767),
-    (StreetViewPanoramaData? result, StreetViewStatus status) {
-      if (status == StreetViewStatus.OK) {
-        outsideGoogle = result!;
-        initPanorama();
-      }
-    }.toJS,
-  );
+
+  final response = await StreetViewService().getPanorama(
+      StreetViewLocationRequest()..location = LatLng(-33.867386, 151.195767));
+  outsideGoogle = response.data;
+  initPanorama();
 }
 
 void initPanorama() {

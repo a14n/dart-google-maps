@@ -26,8 +26,8 @@ void main() {
 }
 
 void displayRoute(String origin, String destination, DirectionsService service,
-    DirectionsRenderer display) {
-  service.route(
+    DirectionsRenderer display) async {
+  final response = await service.route(
     DirectionsRequest()
       ..origin = origin.toJS
       ..destination = destination.toJS
@@ -37,14 +37,8 @@ void displayRoute(String origin, String destination, DirectionsService service,
       ]
       ..travelMode = TravelMode.DRIVING
       ..avoidTolls = true,
-    (DirectionsResult? response, DirectionsStatus status) {
-      if (status == DirectionsStatus.OK) {
-        display.directions = response!;
-      } else {
-        window.alert('Could not display directions due to: $status');
-      }
-    }.toJS,
   );
+  display.directions = response;
 }
 
 void computeTotalDistance(DirectionsResult result) {

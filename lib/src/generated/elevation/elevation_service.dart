@@ -17,14 +17,20 @@ part of '../elevation.dart';
 @JS('google.maps.ElevationService')
 extension type ElevationService._(JSObject _) implements JSObject {
   external ElevationService();
-  external JSPromise<PathElevationResponse> getElevationAlongPath(
-    PathElevationRequest request, [
-    JSFunction /*void Function(JSArray<ElevationResult>?,ElevationStatus)*/ ?
-        callback,
-  ]);
-  external JSPromise<LocationElevationResponse> getElevationForLocations(
-    LocationElevationRequest request, [
-    JSFunction /*void Function(JSArray<ElevationResult>?,ElevationStatus)*/ ?
-        callback,
-  ]);
+  @JS('getElevationAlongPath')
+  external JSPromise<PathElevationResponse> _getElevationAlongPath(
+    PathElevationRequest request,
+  );
+  Future<PathElevationResponse> getElevationAlongPath(
+    PathElevationRequest request,
+  ) =>
+      _getElevationAlongPath(request).toDart;
+  @JS('getElevationForLocations')
+  external JSPromise<LocationElevationResponse> _getElevationForLocations(
+    LocationElevationRequest request,
+  );
+  Future<LocationElevationResponse> getElevationForLocations(
+    LocationElevationRequest request,
+  ) =>
+      _getElevationForLocations(request).toDart;
 }

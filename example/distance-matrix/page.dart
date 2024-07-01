@@ -33,64 +33,51 @@ void main() {
       .listen((e) => calculateDistances());
 }
 
-void calculateDistances() {
-  DistanceMatrixService().getDistanceMatrix(
-      DistanceMatrixRequest()
+void calculateDistances() async {
+  final response =
+      await DistanceMatrixService().getDistanceMatrix(DistanceMatrixRequest()
         ..origins = [origin1, origin2.toJS]
         ..destinations = [destinationA.toJS, destinationB]
         ..travelMode = TravelMode.DRIVING
         ..unitSystem = UnitSystem.METRIC
         ..avoidHighways = false
-        ..avoidTolls = false,
-      callback.toJS);
-}
+        ..avoidTolls = false);
+  final origins = response.originAddresses;
+  final destinations = response.destinationAddresses;
+  deleteOverlays();
 
-void callback(DistanceMatrixResponse? response, DistanceMatrixStatus? status) {
-  if (status != DistanceMatrixStatus.OK) {
-    window.alert('Error was: $status');
-  } else {
-    final origins = response!.originAddresses;
-    final destinations = response.destinationAddresses;
-    deleteOverlays();
-
-    final html = StringBuffer();
-    for (var i = 0; i < origins.length; i++) {
-      final results = response.rows[i].elements;
-      addMarker(origins[i], isDestination: false);
-      for (var j = 0; j < results.length; j++) {
-        addMarker(destinations[j], isDestination: true);
-        html.write(
-            '${origins[i]} to ${destinations[j]}: ${results[j].distance.text} in ${results[j].duration.text}<br>');
-      }
+  final html = StringBuffer();
+  for (var i = 0; i < origins.length; i++) {
+    final results = response.rows[i].elements;
+    addMarker(origins[i], isDestination: false);
+    for (var j = 0; j < results.length; j++) {
+      addMarker(destinations[j], isDestination: true);
+      html.write(
+          '${origins[i]} to ${destinations[j]}: ${results[j].distance.text} in ${results[j].duration.text}<br>');
     }
-    document.getElementById('outputDiv')!.innerHTML = html.toString();
   }
+  document.getElementById('outputDiv')!.innerHTML = html.toString();
 }
 
-void addMarker(String location, {required bool isDestination}) {
+void addMarker(String location, {required bool isDestination}) async {
   String icon;
   if (isDestination) {
     icon = destinationIcon;
   } else {
     icon = originIcon;
   }
-  geocoder.geocode(
-    GeocoderRequest()..address = location,
-    (JSArray<GeocoderResult>? results, GeocoderStatus status) {
-      if (status == GeocoderStatus.OK) {
-        bounds.extend(results!.toDart[0].geometry.location);
-        map.fitBounds(bounds);
-        final marker = Marker(MarkerOptions()
-          ..map = map
-          ..position = results.toDart[0].geometry.location
-          ..icon = icon.toJS);
-        markersArray.add(marker);
-      } else {
-        window.alert(
-            'Geocode was not successful for the following reason: $status');
-      }
-    }.toJS,
-  );
+  final response =
+      await geocoder.geocode(GeocoderRequest()..address = location);
+  if (response.results.isNotEmpty) {
+    final geometry = response.results.first.geometry;
+    bounds.extend(geometry.location);
+    map.fitBounds(bounds);
+    final marker = Marker(MarkerOptions()
+      ..map = map
+      ..position = geometry.location
+      ..icon = icon.toJS);
+    markersArray.add(marker);
+  }
 }
 
 void deleteOverlays() {

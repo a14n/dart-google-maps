@@ -19,7 +19,7 @@ void main() {
   document.querySelector('#calcRoute')!.onClick.listen((e) => calcRoute());
 }
 
-void calcRoute() {
+void calcRoute() async {
   final start = (document.getElementById('start') as HTMLSelectElement).value;
   final end = (document.getElementById('end') as HTMLSelectElement).value;
   final waypts = <DirectionsWaypoint>[];
@@ -40,26 +40,20 @@ void calcRoute() {
     ..waypoints = waypts
     ..optimizeWaypoints = true
     ..travelMode = TravelMode.DRIVING;
-  directionsService.route(
-    request,
-    (DirectionsResult? response, DirectionsStatus status) {
-      if (status == DirectionsStatus.OK) {
-        directionsDisplay.directions = response!;
-        final route = response.routes[0];
-        final summaryPanel = document.getElementById('directions_panel');
-        final html = StringBuffer();
-        // For each route, display summary information.
-        for (var i = 0; i < route.legs.length; i++) {
-          final leg = route.legs[i];
-          final routeSegment = i + 1;
-          html
-            ..write('<b>Route Segment: $routeSegment</b><br>')
-            ..write('${leg.startAddress} to ')
-            ..write('${leg.endAddress}<br>')
-            ..write('${leg.distance!.text}<br><br>');
-        }
-        summaryPanel!.innerHTML = html.toString();
-      }
-    }.toJS,
-  );
+  final response = await directionsService.route(request);
+  directionsDisplay.directions = response;
+  final route = response.routes[0];
+  final summaryPanel = document.getElementById('directions_panel');
+  final html = StringBuffer();
+  // For each route, display summary information.
+  for (var i = 0; i < route.legs.length; i++) {
+    final leg = route.legs[i];
+    final routeSegment = i + 1;
+    html
+      ..write('<b>Route Segment: $routeSegment</b><br>')
+      ..write('${leg.startAddress} to ')
+      ..write('${leg.endAddress}<br>')
+      ..write('${leg.distance!.text}<br><br>');
+  }
+  summaryPanel!.innerHTML = html.toString();
 }

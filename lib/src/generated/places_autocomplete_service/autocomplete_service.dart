@@ -17,11 +17,14 @@ part of '../places_autocomplete_service.dart';
 @JS('google.maps.places.AutocompleteService')
 extension type AutocompleteService._(JSObject _) implements JSObject {
   external AutocompleteService();
-  external JSPromise<AutocompleteResponse> getPlacePredictions(
-    AutocompletionRequest request, [
-    JSFunction /*void Function(JSArray<AutocompletePrediction>?,PlacesServiceStatus)*/ ?
-        callback,
-  ]);
+  @JS('getPlacePredictions')
+  external JSPromise<AutocompleteResponse> _getPlacePredictions(
+    AutocompletionRequest request,
+  );
+  Future<AutocompleteResponse> getPlacePredictions(
+    AutocompletionRequest request,
+  ) =>
+      _getPlacePredictions(request).toDart;
   external void getQueryPredictions(
     QueryAutocompletionRequest request,
     JSFunction /*void Function(JSArray<QueryAutocompletePrediction>?,PlacesServiceStatus)*/

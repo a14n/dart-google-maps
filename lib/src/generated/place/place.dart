@@ -98,9 +98,14 @@ extension type Place._(JSObject _) implements JSObject {
   @JS('getNextOpeningTime')
   external JSPromise<Date?> _getNextOpeningTime();
   JSPromise<Date?> get nextOpeningTime => _getNextOpeningTime();
-  external JSPromise<JSBoolean?> isOpen([
+  @JS('isOpen')
+  external JSPromise<JSBoolean?> _isOpen([
     Date? date,
   ]);
+  Future<JSBoolean?> isOpen([
+    Date? date,
+  ]) =>
+      _isOpen(date).toDart;
   external JSObject /*Object<null>*/ toJSON();
   external static JSAny? /*UNPARSED:Promise<{places:Array<Place>}>*/
       searchByText(

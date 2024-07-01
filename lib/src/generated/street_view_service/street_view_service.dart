@@ -17,9 +17,12 @@ part of '../street_view_service.dart';
 @JS('google.maps.StreetViewService')
 extension type StreetViewService._(JSObject _) implements JSObject {
   external StreetViewService();
-  external JSPromise<StreetViewResponse> getPanorama(
-    JSAny /*StreetViewLocationRequest|StreetViewPanoRequest*/ request, [
-    JSFunction /*void Function(StreetViewPanoramaData?,StreetViewStatus)*/ ?
-        callback,
-  ]);
+  @JS('getPanorama')
+  external JSPromise<StreetViewResponse> _getPanorama(
+    JSAny /*StreetViewLocationRequest|StreetViewPanoRequest*/ request,
+  );
+  Future<StreetViewResponse> getPanorama(
+    JSAny /*StreetViewLocationRequest|StreetViewPanoRequest*/ request,
+  ) =>
+      _getPanorama(request).toDart;
 }

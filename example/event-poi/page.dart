@@ -58,14 +58,12 @@ class ClickEventHandler {
 
   void calculateAndDisplayRoute(String placeId) async {
     try {
-      final response = await directionsService
-          .route(
-            DirectionsRequest()
-              ..origin = origin
-              ..destination = (direction.Place()..placeId = placeId)
-              ..travelMode = TravelMode.WALKING,
-          )
-          .toDart;
+      final response = await directionsService.route(
+        DirectionsRequest()
+          ..origin = origin
+          ..destination = (direction.Place()..placeId = placeId)
+          ..travelMode = TravelMode.WALKING,
+      );
       directionsRenderer.directions = response;
     } catch (e) {
       window.alert('Directions request failed due to $e');

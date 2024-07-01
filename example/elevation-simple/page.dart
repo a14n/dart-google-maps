@@ -23,7 +23,7 @@ void main() {
   map.onClick.listen(getElevation);
 }
 
-void getElevation(MapMouseEventOrIconMouseEvent e) {
+void getElevation(MapMouseEventOrIconMouseEvent e) async {
   final locations = <LatLng>[];
 
   // Retrieve the clicked location and push it on the array
@@ -34,24 +34,17 @@ void getElevation(MapMouseEventOrIconMouseEvent e) {
   final positionalRequest = LocationElevationRequest()..locations = locations;
 
   // Initiate the location request
-  elevator.getElevationForLocations(
-    positionalRequest,
-    (JSArray<ElevationResult>? results, ElevationStatus status) {
-      if (status == ElevationStatus.OK) {
-        // Retrieve the first result
-        if (results!.toDart.isNotEmpty) {
-          // Open an info window indicating the elevation at the clicked position
-          infowindow.content =
-              'The elevation at this point <br>is ${results.toDart[0].elevation} meters.'
-                  .toJS;
-          infowindow.position = clickedLocation;
-          infowindow.open(map);
-        } else {
-          window.alert('No results found');
-        }
-      } else {
-        window.alert('Elevation service failed due to: $status');
-      }
-    }.toJS,
-  );
+  final response = await elevator.getElevationForLocations(positionalRequest);
+
+  // Retrieve the first result
+  if (response.results.isNotEmpty) {
+    // Open an info window indicating the elevation at the clicked position
+    infowindow.content =
+        'The elevation at this point <br>is ${response.results[0].elevation} meters.'
+            .toJS;
+    infowindow.position = clickedLocation;
+    infowindow.open(map);
+  } else {
+    window.alert('No results found');
+  }
 }

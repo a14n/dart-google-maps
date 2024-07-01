@@ -17,8 +17,12 @@ part of '../directions.dart';
 @JS('google.maps.DirectionsService')
 extension type DirectionsService._(JSObject _) implements JSObject {
   external DirectionsService();
-  external JSPromise<DirectionsResult> route(
-    DirectionsRequest request, [
-    JSFunction /*void Function(DirectionsResult?,DirectionsStatus)*/ ? callback,
-  ]);
+  @JS('route')
+  external JSPromise<DirectionsResult> _route(
+    DirectionsRequest request,
+  );
+  Future<DirectionsResult> route(
+    DirectionsRequest request,
+  ) =>
+      _route(request).toDart;
 }

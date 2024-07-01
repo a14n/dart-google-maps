@@ -17,8 +17,12 @@ part of '../max_zoom.dart';
 @JS('google.maps.MaxZoomService')
 extension type MaxZoomService._(JSObject _) implements JSObject {
   external MaxZoomService();
-  external JSPromise<MaxZoomResult> getMaxZoomAtLatLng(
-    LatLngOrLatLngLiteral latlng, [
-    JSFunction /*void Function(MaxZoomResult)*/ ? callback,
-  ]);
+  @JS('getMaxZoomAtLatLng')
+  external JSPromise<MaxZoomResult> _getMaxZoomAtLatLng(
+    LatLngOrLatLngLiteral latlng,
+  );
+  Future<MaxZoomResult> getMaxZoomAtLatLng(
+    LatLngOrLatLngLiteral latlng,
+  ) =>
+      _getMaxZoomAtLatLng(latlng).toDart;
 }

@@ -19,5 +19,7 @@ extension type PlaceFeature._(Feature _) implements Feature {
     String placeId,
   });
   external String placeId;
-  external JSPromise<Place> fetchPlace();
+  @JS('fetchPlace')
+  external JSPromise<Place> _fetchPlace();
+  Future<Place> fetchPlace() => _fetchPlace().toDart;
 }

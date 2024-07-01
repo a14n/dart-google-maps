@@ -49,7 +49,7 @@ void main() {
   drawPath();
 }
 
-void drawPath() {
+void drawPath() async {
   // Create a new chart in the elevation_chart DIV.
   chart = ColumnChart(document.getElementById('elevation_chart')!);
 
@@ -69,46 +69,42 @@ void drawPath() {
     ..samples = 256;
 
   // Initiate the path request.
-  elevator.getElevationAlongPath(pathRequest, plotElevation.toJS);
-}
+  final response = await elevator.getElevationAlongPath(pathRequest);
 
-// Takes an array of ElevationResult objects, draws the path on the map
-// and plots the elevation profile on a Visualization API ColumnChart.
-void plotElevation(JSArray<ElevationResult>? results, ElevationStatus? status) {
-  if (status == ElevationStatus.OK) {
-    // Extract the elevation samples from the returned results
-    // and store them in an array of LatLngs.
-    final elevationPath = <LatLng?>[];
-    for (final elevation in results!.toDart) {
-      elevationPath.add(elevation.location);
-    }
-
-    // Display a polyline of the elevation path.
-    final pathOptions = PolylineOptions()
-      ..path = elevationPath.toJS
-      ..strokeColor = '#0000CC'
-      ..strokeOpacity = 0.4
-      ..map = map;
-
-    polyline = Polyline(pathOptions);
-
-    // Extract the data from which to populate the chart.
-    // Because the samples are equidistant, the 'Sample'
-    // column here does double duty as distance along the
-    // X axis.
-    final data = DataTable()
-      ..addColumn('string', 'Sample')
-      ..addColumn('number', 'Elevation');
-    for (final elevation in results.toDart) {
-      data.addRow(['', elevation.elevation].jsify() as JSArray);
-    }
-
-    // Draw the chart using the data within its DIV.
-    (document.querySelector('#elevation_chart')! as HTMLElement).style.display =
-        'block';
-    chart.draw(
-        data,
-        {'height': 150, 'legend': 'none', 'titleY': 'Elevation (m)'}.jsify()
-            as JSArray);
+  // Takes an array of ElevationResult objects, draws the path on the map
+  // and plots the elevation profile on a Visualization API ColumnChart.
+  // Extract the elevation samples from the returned results
+  // and store them in an array of LatLngs.
+  final elevationPath = <LatLng?>[];
+  for (final elevation in response.results) {
+    elevationPath.add(elevation.location);
   }
+
+  // Display a polyline of the elevation path.
+  final pathOptions = PolylineOptions()
+    ..path = elevationPath.toJS
+    ..strokeColor = '#0000CC'
+    ..strokeOpacity = 0.4
+    ..map = map;
+
+  polyline = Polyline(pathOptions);
+
+  // Extract the data from which to populate the chart.
+  // Because the samples are equidistant, the 'Sample'
+  // column here does double duty as distance along the
+  // X axis.
+  final data = DataTable()
+    ..addColumn('string', 'Sample')
+    ..addColumn('number', 'Elevation');
+  for (final elevation in response.results) {
+    data.addRow(['', elevation.elevation].jsify() as JSArray);
+  }
+
+  // Draw the chart using the data within its DIV.
+  (document.querySelector('#elevation_chart')! as HTMLElement).style.display =
+      'block';
+  chart.draw(
+      data,
+      {'height': 150, 'legend': 'none', 'titleY': 'Elevation (m)'}.jsify()
+          as JSArray);
 }

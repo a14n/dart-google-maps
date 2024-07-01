@@ -131,7 +131,7 @@ void main() {
     'google.maps.maps3d.Map3DElement',
     'MVCArray<LatLng|WeightedLocation>|Array<LatLng|WeightedLocation>',
   ].map(typeParser.parse).map((e) => e.value).forEach(print);
-  var e = typeParser.parse(
+  final e = typeParser.parse(
       'MVCArray<LatLng|WeightedLocation>|Array<LatLng|WeightedLocation>');
   print(e);
 }

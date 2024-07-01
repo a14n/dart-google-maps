@@ -31,7 +31,7 @@ void main() {
   document.getElementById('end')!.onChange.listen((e) => calcRoute());
 }
 
-void calcRoute() {
+void calcRoute() async {
   // First, remove any existing markers from the map.
   for (final marker in markerArray) {
     marker.map = null;
@@ -51,17 +51,11 @@ void calcRoute() {
 
   // Route the directions and pass the response to a
   // function to create markers for each step.
-  directionsService.route(
-    request,
-    (DirectionsResult? response, DirectionsStatus status) {
-      if (status == DirectionsStatus.OK) {
-        document.querySelector('#warnings_panel')!.innerHTML =
-            '<b>${response!.routes[0].warnings}</b>';
-        directionsDisplay.directions = response;
-        showSteps(response);
-      }
-    }.toJS,
-  );
+  final response = await directionsService.route(request);
+  document.querySelector('#warnings_panel')!.innerHTML =
+      '<b>${response.routes[0].warnings}</b>';
+  directionsDisplay.directions = response;
+  showSteps(response);
 }
 
 void showSteps(DirectionsResult directionResult) {

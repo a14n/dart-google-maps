@@ -20,19 +20,12 @@ void main() {
   document.getElementById('end')!.onChange.listen((e) => calcRoute());
 }
 
-void calcRoute() {
+void calcRoute() async {
   final start = (document.getElementById('start') as HTMLSelectElement).value;
   final end = (document.getElementById('end') as HTMLSelectElement).value;
   final request = DirectionsRequest()
     ..origin = start.toJS
     ..destination = end.toJS
     ..travelMode = TravelMode.DRIVING;
-  directionsService.route(
-    request,
-    (DirectionsResult? response, DirectionsStatus status) {
-      if (status == DirectionsStatus.OK) {
-        directionsDisplay.directions = response!;
-      }
-    }.toJS,
-  );
+  directionsDisplay.directions = await directionsService.route(request);
 }

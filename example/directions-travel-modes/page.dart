@@ -1,5 +1,3 @@
-import 'dart:js_interop';
-
 import 'package:google_maps/google_maps.dart';
 import 'package:web/web.dart';
 
@@ -20,7 +18,7 @@ void main() {
   document.getElementById('mode')!.onChange.listen((e) => calcRoute());
 }
 
-void calcRoute() {
+void calcRoute() async {
   final selectedMode =
       (document.getElementById('mode') as HTMLSelectElement).value;
   final request = DirectionsRequest()
@@ -32,12 +30,5 @@ void calcRoute() {
       'TRANSIT': TravelMode.TRANSIT,
       'WALKING': TravelMode.WALKING,
     }[selectedMode]!;
-  directionsService.route(
-    request,
-    (DirectionsResult? response, DirectionsStatus status) {
-      if (status == DirectionsStatus.OK) {
-        directionsDisplay.directions = response!;
-      }
-    }.toJS,
-  );
+  directionsDisplay.directions = await directionsService.route(request);
 }

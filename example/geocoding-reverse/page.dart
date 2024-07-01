@@ -20,29 +20,21 @@ void main() {
   document.getElementById('codeLatLng')!.onClick.listen(codeLatLng);
 }
 
-void codeLatLng(_) {
+void codeLatLng(_) async {
   final input = (document.getElementById('latlng') as HTMLInputElement).value;
   final latlngStr = input.split(',');
   final lat = num.parse(latlngStr[0]);
   final lng = num.parse(latlngStr[1]);
   final latlng = LatLng(lat, lng);
-  geocoder.geocode(
-    GeocoderRequest()..location = latlng,
-    (JSArray<GeocoderResult>? results, GeocoderStatus status) {
-      if (status == GeocoderStatus.OK) {
-        if (results!.toDart.isNotEmpty) {
-          map.zoom = 11;
-          final marker = Marker(MarkerOptions()
-            ..position = latlng
-            ..map = map);
-          infowindow.content = results.toDart[0].formattedAddress.toJS;
-          infowindow.open(map, marker);
-        } else {
-          window.alert('No results found');
-        }
-      } else {
-        window.alert('Geocoder failed due to: $status');
-      }
-    }.toJS,
-  );
+  final response = await geocoder.geocode(GeocoderRequest()..location = latlng);
+  if (response.results.isNotEmpty) {
+    map.zoom = 11;
+    final marker = Marker(MarkerOptions()
+      ..position = latlng
+      ..map = map);
+    infowindow.content = response.results.first.formattedAddress.toJS;
+    infowindow.open(map, marker);
+  } else {
+    window.alert('No results found');
+  }
 }

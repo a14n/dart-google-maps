@@ -17,9 +17,12 @@ part of '../distance_matrix.dart';
 @JS('google.maps.DistanceMatrixService')
 extension type DistanceMatrixService._(JSObject _) implements JSObject {
   external DistanceMatrixService();
-  external JSPromise<DistanceMatrixResponse> getDistanceMatrix(
-    DistanceMatrixRequest request, [
-    JSFunction /*void Function(DistanceMatrixResponse?,DistanceMatrixStatus)*/ ?
-        callback,
-  ]);
+  @JS('getDistanceMatrix')
+  external JSPromise<DistanceMatrixResponse> _getDistanceMatrix(
+    DistanceMatrixRequest request,
+  );
+  Future<DistanceMatrixResponse> getDistanceMatrix(
+    DistanceMatrixRequest request,
+  ) =>
+      _getDistanceMatrix(request).toDart;
 }

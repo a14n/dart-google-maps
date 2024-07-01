@@ -1,5 +1,3 @@
-import 'dart:js_interop';
-
 import 'package:google_maps/google_maps.dart';
 import 'package:google_maps/google_maps_geocoding.dart';
 import 'package:web/web.dart';
@@ -15,19 +13,13 @@ void main() {
   codeAddress();
 }
 
-void codeAddress() {
-  geocoder.geocode(
-    GeocoderRequest()..address = query,
-    (JSArray<GeocoderResult>? results, GeocoderStatus status) {
-      if (status == GeocoderStatus.OK) {
-        map.center = results!.toDart[0].geometry.location;
-        Marker(MarkerOptions()
-          ..map = map
-          ..position = results.toDart[0].geometry.location);
-      } else {
-        window.alert(
-            'Geocode was not successful for the following reason: $status');
-      }
-    }.toJS,
-  );
+void codeAddress() async {
+  final response = await geocoder.geocode(GeocoderRequest()..address = query);
+  if (response.results.isNotEmpty) {
+    final geometry = response.results.first.geometry;
+    map.center = geometry.location;
+    Marker(MarkerOptions()
+      ..map = map
+      ..position = geometry.location);
+  }
 }

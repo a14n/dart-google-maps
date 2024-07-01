@@ -619,6 +619,12 @@ extension LatLngBoundsOrLatLngBoundsLiteral$Ext on LatLngBoundsOrLatLngBoundsLit
       methods.removeWhere(
           (e) => {'forEachLatLng', 'getType'}.contains(e.method.name));
   }
+  for (final method in methods) {
+    if (method.method.returnType.startsWith('JSPromise<') &&
+        method.method.optionalParameters.lastOrNull?.name == 'callback') {
+      method.method.optionalParameters.removeLast();
+    }
+  }
 
   if (methods.any((e) => e.method.name == 'getMap')) {
     final getMapMethod =
@@ -715,6 +721,29 @@ extension LatLngBoundsOrLatLngBoundsLiteral$Ext on LatLngBoundsOrLatLngBoundsLit
           "  @JS('${method.name}')",
           '  external ${isStatic ? 'static' : ''} ${method.returnType} _${method.name}(${param.type} ${param.name});',
           '  ${isStatic ? 'static' : ''} ${method.returnType} set $setterName(${param.type} ${param.name}) => _${method.name}(${param.name});',
+        ] else if (method.returnType.startsWith('JSPromise<')) ...[
+          "  @JS('${method.name}')",
+          '  external ${isStatic ? 'static' : ''} ${method.returnType} _${method.name}(',
+          for (final p in method.parameters) '    ${p.type} ${p.name},',
+          if (method.optionalParameters.isNotEmpty) ...[
+            '[',
+            for (final p in method.optionalParameters)
+              '    ${p.type} ${p.name},',
+            ']',
+          ],
+          '  );',
+          '  ${isStatic ? 'static' : ''} ${method.returnType.replaceFirst('JSPromise', 'Future')} ${method.name}(',
+          for (final p in method.parameters) '    ${p.type} ${p.name},',
+          if (method.optionalParameters.isNotEmpty) ...[
+            '[',
+            for (final p in method.optionalParameters)
+              '    ${p.type} ${p.name},',
+            ']',
+          ],
+          '  ) => _${method.name}(${[
+            ...method.parameters,
+            ...method.optionalParameters,
+          ].map((e) => e.name).join(', ')}).toDart;',
         ] else ...[
           if (method.name == 'toString') "  @JS('toString')",
           '  external ${isStatic ? 'static' : ''} ${method.returnType} ${method.name + (method.name == 'toString' ? r'$js' : '')}(',
