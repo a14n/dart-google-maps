@@ -24,9 +24,9 @@ extension type QueryAutocompletePrediction._(JSObject _) implements JSObject {
   external String description;
   @JS('matched_substrings')
   external JSArray<PredictionSubstring> _matchedSubstrings;
-  JSArray<PredictionSubstring> get matchedSubstrings => _matchedSubstrings;
-  set matchedSubstrings(JSArray<PredictionSubstring> value) =>
-      _matchedSubstrings = value;
+  List<PredictionSubstring> get matchedSubstrings => _matchedSubstrings.toDart;
+  set matchedSubstrings(List<PredictionSubstring> value) =>
+      _matchedSubstrings = value.toJS;
   @JS('terms')
   external JSArray<PredictionTerm> _terms;
   List<PredictionTerm> get terms => _terms.toDart;

@@ -701,16 +701,7 @@ extension LatLngBoundsOrLatLngBoundsLiteral$Ext on LatLngBoundsOrLatLngBoundsLit
       ...customCode,
       for (final constant in constants)
         '  external static ${isConstant ? name : getTypeForClassConstant(name, constant.name)} get ${constant.name};',
-      for (final property in properties) ...[
-        if (property.name.contains('_')) ...[
-          "  @JS('${property.name}')",
-          '  external ${property.type} _${property.name.snake2camel};',
-          '  ${property.type} get ${property.name.snake2camel} => _${property.name.snake2camel};',
-          '  set ${property.name.snake2camel}(${property.type} value) => _${property.name.snake2camel} = value;',
-        ] else ...[
-          property.generateDartCode(),
-        ]
-      ],
+      for (final property in properties) property.generateDartCode(),
       for (final (:isStatic, :method) in methods) ...[
         if (canBeGetter(isStatic, method) case final String getterName) ...[
           "  @JS('${method.name}')",
@@ -991,42 +982,53 @@ class Property {
   final String doc;
   String get type => translateType(jsType);
 
-  String generateDartCode() => switch (typeParser.parse(jsType)) {
-        Success(
-          value: TType(
-            name: 'Array',
-            :final genericParameters,
-            :final optional,
-          )
-        ) =>
-          switch (genericParameters) {
-            [TType(name: final paramJSType)]
-                when paramJSType == 'string' || paramJSType == 'number' =>
-              () {
-                final parameterType = switch (paramJSType) {
-                  'string' => 'String',
-                  'number' => 'num',
-                  _ => throw Error(),
-                };
-                final dartType = 'List<$parameterType>${optional ? '?' : ''}';
-                return """
+  String generateDartCode() {
+    var accessorName = name;
+    if (name.contains('_')) {
+      accessorName = name.snake2camel;
+    }
+    return switch (typeParser.parse(jsType)) {
+      Success(
+        value: TType(
+          name: 'Array',
+          :final genericParameters,
+          :final optional,
+        )
+      ) =>
+        switch (genericParameters) {
+          [TType(name: final paramJSType)]
+              when paramJSType == 'string' || paramJSType == 'number' =>
+            () {
+              final parameterType = switch (paramJSType) {
+                'string' => 'String',
+                'number' => 'num',
+                _ => throw Error(),
+              };
+              final dartType = 'List<$parameterType>${optional ? '?' : ''}';
+              return """
   @JS('$name')
-  external $type _$name;
-  $dartType get $name => _$name.dartify() as $dartType;
-  set $name($dartType value) => _$name = value.jsify() as $type;""";
-              }(),
-            _ => () {
-                final dartType =
-                    'List<${toDartType(genericParameters.first, true)}>${optional ? '?' : ''}';
-                return """
+  external $type _$accessorName;
+  $dartType get $accessorName => _$accessorName.dartify() as $dartType;
+  set $accessorName($dartType value) => _$accessorName = value.jsify() as $type;""";
+            }(),
+          _ => () {
+              final dartType =
+                  'List<${toDartType(genericParameters.first, true)}>${optional ? '?' : ''}';
+              return """
   @JS('$name')
-  external $type _$name;
-  $dartType get $name => _$name${optional ? '?' : ''}.toDart;
-  set $name($dartType value) => _$name = value${optional ? '?' : ''}.toJS;""";
-              }(),
-          },
-        _ => 'external $type $name;',
-      };
+  external $type _$accessorName;
+  $dartType get $accessorName => _$accessorName${optional ? '?' : ''}.toDart;
+  set $accessorName($dartType value) => _$accessorName = value${optional ? '?' : ''}.toJS;""";
+            }(),
+        },
+      _ when accessorName != name => """
+  @JS('$name')
+  external $type _$accessorName;
+  $type get $accessorName => _$accessorName;
+  set $accessorName($type value) => _$accessorName = value;""",
+      _ => 'external $type $name;',
+    };
+  }
 }
 
 List<Property> extractProperties(

@@ -28,9 +28,10 @@ extension type GeocoderResult._(JSObject _) implements JSObject {
   });
   @JS('address_components')
   external JSArray<GeocoderAddressComponent> _addressComponents;
-  JSArray<GeocoderAddressComponent> get addressComponents => _addressComponents;
-  set addressComponents(JSArray<GeocoderAddressComponent> value) =>
-      _addressComponents = value;
+  List<GeocoderAddressComponent> get addressComponents =>
+      _addressComponents.toDart;
+  set addressComponents(List<GeocoderAddressComponent> value) =>
+      _addressComponents = value.toJS;
   @JS('formatted_address')
   external String _formattedAddress;
   String get formattedAddress => _formattedAddress;
@@ -58,7 +59,8 @@ extension type GeocoderResult._(JSObject _) implements JSObject {
   set plusCode(PlacePlusCode? value) => _plusCode = value;
   @JS('postcode_localities')
   external JSArray<JSString>? _postcodeLocalities;
-  JSArray<JSString>? get postcodeLocalities => _postcodeLocalities;
-  set postcodeLocalities(JSArray<JSString>? value) =>
-      _postcodeLocalities = value;
+  List<String>? get postcodeLocalities =>
+      _postcodeLocalities.dartify() as List<String>?;
+  set postcodeLocalities(List<String>? value) =>
+      _postcodeLocalities = value.jsify() as JSArray<JSString>?;
 }

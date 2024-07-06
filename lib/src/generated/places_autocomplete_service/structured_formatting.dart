@@ -26,10 +26,10 @@ extension type StructuredFormatting._(JSObject _) implements JSObject {
   set mainText(String value) => _mainText = value;
   @JS('main_text_matched_substrings')
   external JSArray<PredictionSubstring> _mainTextMatchedSubstrings;
-  JSArray<PredictionSubstring> get mainTextMatchedSubstrings =>
-      _mainTextMatchedSubstrings;
-  set mainTextMatchedSubstrings(JSArray<PredictionSubstring> value) =>
-      _mainTextMatchedSubstrings = value;
+  List<PredictionSubstring> get mainTextMatchedSubstrings =>
+      _mainTextMatchedSubstrings.toDart;
+  set mainTextMatchedSubstrings(List<PredictionSubstring> value) =>
+      _mainTextMatchedSubstrings = value.toJS;
   @JS('secondary_text')
   external String _secondaryText;
   String get secondaryText => _secondaryText;

@@ -35,7 +35,9 @@ extension type Place._(JSObject _) implements JSObject {
   external String? displayName;
   external String? editorialSummary;
   external String? editorialSummaryLanguageCode;
+  external EVChargeOptions? evChargeOptions;
   external String? formattedAddress;
+  external FuelOptions? fuelOptions;
   external String? googleMapsURI;
   external bool? hasCurbsidePickup;
   external bool? hasDelivery;

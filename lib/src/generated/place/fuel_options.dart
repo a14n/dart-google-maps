@@ -12,23 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-part of '../places_service.dart';
+part of '../place.dart';
 
-extension type PlacePhoto._(JSObject _) implements JSObject {
-  external PlacePhoto({
-    num height,
-    JSArray<JSString> html_attributions,
-    num width,
-  });
-  external num height;
-  @JS('html_attributions')
-  external JSArray<JSString> _htmlAttributions;
-  List<String> get htmlAttributions =>
-      _htmlAttributions.dartify() as List<String>;
-  set htmlAttributions(List<String> value) =>
-      _htmlAttributions = value.jsify() as JSArray<JSString>;
-  external num width;
-  @JS('getUrl')
-  external String _getUrl();
-  String get url => _getUrl();
+@JS('google.maps.places.FuelOptions')
+extension type FuelOptions._(JSObject _) implements JSObject {
+  @JS('fuelPrices')
+  external JSArray<FuelPrice> _fuelPrices;
+  List<FuelPrice> get fuelPrices => _fuelPrices.toDart;
+  set fuelPrices(List<FuelPrice> value) => _fuelPrices = value.toJS;
 }

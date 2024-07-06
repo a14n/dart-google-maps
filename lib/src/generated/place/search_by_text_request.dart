@@ -17,6 +17,7 @@ part of '../place.dart';
 extension type SearchByTextRequest._(JSObject _) implements JSObject {
   external SearchByTextRequest({
     JSArray<JSString> fields,
+    EVSearchOptions? evSearchOptions,
     String? includedType,
     bool? isOpenNow,
     String? language,
@@ -38,6 +39,7 @@ extension type SearchByTextRequest._(JSObject _) implements JSObject {
   List<String> get fields => _fields.dartify() as List<String>;
   set fields(List<String> value) =>
       _fields = value.jsify() as JSArray<JSString>;
+  external EVSearchOptions? evSearchOptions;
   external String? includedType;
   external bool? isOpenNow;
   external String? language;

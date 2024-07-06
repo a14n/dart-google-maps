@@ -41,7 +41,7 @@ void fillInAddress(_) {
 
   // Get each component of the address from the place details
   // and fill the corresponding field on the form.
-  for (final addressComponent in place.addressComponents!.toDart) {
+  for (final addressComponent in place.addressComponents!) {
     final addressType = addressComponent.types[0];
     final prop = componentForm[addressType];
     if (prop != null) {

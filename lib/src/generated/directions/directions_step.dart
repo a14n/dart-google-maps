@@ -48,8 +48,8 @@ extension type DirectionsStep._(JSObject _) implements JSObject {
   external String instructions;
   @JS('lat_lngs')
   external JSArray<LatLng> _latLngs;
-  JSArray<LatLng> get latLngs => _latLngs;
-  set latLngs(JSArray<LatLng> value) => _latLngs = value;
+  List<LatLng> get latLngs => _latLngs.toDart;
+  set latLngs(List<LatLng> value) => _latLngs = value.toJS;
   external String maneuver;
   @JS('path')
   external JSArray<LatLng> _path;

@@ -57,9 +57,9 @@ void main() {
     final addressComponents = place.addressComponents;
     if (addressComponents != null) {
       address = [
-        addressComponents.toDart.elementAtOrNull(0)?.shortName ?? '',
-        addressComponents.toDart.elementAtOrNull(1)?.shortName ?? '',
-        addressComponents.toDart.elementAtOrNull(2)?.shortName ?? '',
+        addressComponents.elementAtOrNull(0)?.shortName ?? '',
+        addressComponents.elementAtOrNull(1)?.shortName ?? '',
+        addressComponents.elementAtOrNull(2)?.shortName ?? '',
       ].join(' ');
     }
 

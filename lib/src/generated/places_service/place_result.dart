@@ -47,10 +47,10 @@ extension type PlaceResult._(JSObject _) implements JSObject {
   });
   @JS('address_components')
   external JSArray<GeocoderAddressComponent>? _addressComponents;
-  JSArray<GeocoderAddressComponent>? get addressComponents =>
-      _addressComponents;
-  set addressComponents(JSArray<GeocoderAddressComponent>? value) =>
-      _addressComponents = value;
+  List<GeocoderAddressComponent>? get addressComponents =>
+      _addressComponents?.toDart;
+  set addressComponents(List<GeocoderAddressComponent>? value) =>
+      _addressComponents = value?.toJS;
   @JS('adr_address')
   external String? _adrAddress;
   String? get adrAddress => _adrAddress;
@@ -74,8 +74,10 @@ extension type PlaceResult._(JSObject _) implements JSObject {
   external PlaceGeometry? geometry;
   @JS('html_attributions')
   external JSArray<JSString>? _htmlAttributions;
-  JSArray<JSString>? get htmlAttributions => _htmlAttributions;
-  set htmlAttributions(JSArray<JSString>? value) => _htmlAttributions = value;
+  List<String>? get htmlAttributions =>
+      _htmlAttributions.dartify() as List<String>?;
+  set htmlAttributions(List<String>? value) =>
+      _htmlAttributions = value.jsify() as JSArray<JSString>?;
   external String? icon;
   @JS('icon_background_color')
   external String? _iconBackgroundColor;

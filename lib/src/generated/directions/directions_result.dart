@@ -28,13 +28,13 @@ extension type DirectionsResult._(JSObject _) implements JSObject {
   set routes(List<DirectionsRoute> value) => _routes = value.toJS;
   @JS('available_travel_modes')
   external JSArray<TravelMode>? _availableTravelModes;
-  JSArray<TravelMode>? get availableTravelModes => _availableTravelModes;
-  set availableTravelModes(JSArray<TravelMode>? value) =>
-      _availableTravelModes = value;
+  List<TravelMode>? get availableTravelModes => _availableTravelModes?.toDart;
+  set availableTravelModes(List<TravelMode>? value) =>
+      _availableTravelModes = value?.toJS;
   @JS('geocoded_waypoints')
   external JSArray<DirectionsGeocodedWaypoint>? _geocodedWaypoints;
-  JSArray<DirectionsGeocodedWaypoint>? get geocodedWaypoints =>
-      _geocodedWaypoints;
-  set geocodedWaypoints(JSArray<DirectionsGeocodedWaypoint>? value) =>
-      _geocodedWaypoints = value;
+  List<DirectionsGeocodedWaypoint>? get geocodedWaypoints =>
+      _geocodedWaypoints?.toDart;
+  set geocodedWaypoints(List<DirectionsGeocodedWaypoint>? value) =>
+      _geocodedWaypoints = value?.toJS;
 }
