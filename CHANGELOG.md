@@ -1,3 +1,13 @@
+# 8.0.0-dev.1
+
+- migrate to wasm-safe JS-interop.
+
+## migration guide:
+
+- `GMap` should be rename to `Map`
+- `toJS` and `toDart` are sometimes required on elements accepting/returning several types
+- some services now return Future instead of having a callback function
+
 # 7.1.0 (2024-02-21)
 
 - migrate to package:web ^0.5.0
