@@ -2,12 +2,13 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:collection/collection.dart';
-// ignore: import_of_legacy_library_into_null_safe
-import 'package:dart_style/dart_style.dart';
 import 'package:html/dom.dart';
 import 'package:html/parser.dart' show parse;
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart' as path;
+import 'package:petitparser/core.dart';
+
+import 'types.dart';
 
 const licence = '''
 // Copyright (c) 2015, Alexandre Ardhuin
@@ -25,1033 +26,1174 @@ const licence = '''
 // limitations under the License.
 ''';
 
-final customClassName = <String, String>{
-  'Map': 'GMap',
-  'Symbol': 'GSymbol',
-  'Duration': 'GDuration',
-  'DataStylingFunction': 'function(Data.Feature): Data.StyleOptions',
-  'LocationBias':
-      'LatLng|LatLngLiteral|LatLngBounds|LatLngBoundsLiteral|Circle|CircleLiteral|string',
-  'MapMouseEvent|IconMouseEvent': 'IconMouseEvent',
-  'LocationRestriction': 'LatLngBounds|LatLngBoundsLiteral',
-  'Error': 'Object',
-  'Promise': 'Future',
-  'Array': 'List',
-  'AuthTokenFetcher': 'function(AuthTokenFetcherOptions): Promise<AuthToken>',
-  'PolylineSetup':
-      'PolylineSetupOptions|(function(DefaultPolylineSetupOptions): PolylineSetupOptions)',
-  'MarkerSetup':
-      'MarkerSetupOptions|(function(DefaultMarkerSetupOptions): MarkerSetupOptions)',
-};
+Future<void> main() async {
+  const docBaseUrl = 'https://developers.google.com';
+  final projectHome = '${path.dirname(Platform.script.path)}/..';
 
-final customLibraryNames = <String, String>{
-  'localContext': 'local_context',
-  'journeySharing': 'journey_sharing',
-};
+  await generatePrivateLibs(projectHome, docBaseUrl);
+  await generatePublicLibs(projectHome, docBaseUrl);
 
-final literalClasses = <String, String>{
-  'CircleLiteral': 'Circle',
-  'LatLngLiteral': 'LatLng',
-  'LatLngBoundsLiteral': 'LatLngBounds',
-  'LatLngAltitudeLiteral': 'LatLngAltitude',
-};
+  await Process.run(
+    'dart',
+    ['fix', '--apply', 'lib/src/generated'],
+    workingDirectory: projectHome,
+  );
+  await Process.run(
+    'dart',
+    ['format', 'lib/src/generated'],
+    workingDirectory: projectHome,
+  );
+}
 
-final ignoredClasses = <String>[
-  'undefined',
+Future<void> generatePrivateLibs(
+  String projectHome,
+  String docBaseUrl,
+) async {
+  // collect libraries
+  final response = await http.get(
+      Uri.parse('$docBaseUrl/maps/documentation/javascript/reference?hl=en'));
+  final document = parse(response.body);
+  final libPages = document.querySelectorAll('h3[data-text]').map((e) {
+    final a = e.getElementsByTagName('a').first;
+    return (
+      id: e.id,
+      title: a.text,
+      url: a.attributes['href']!,
+    );
+  }).toList()
+    ..removeWhere((l) => l.id == 'library-interfaces');
+
+  // generate part files
+  final genFolder = '$projectHome/lib/src/generated';
+  if (Directory(genFolder).existsSync())
+    Directory(genFolder).deleteSync(recursive: true);
+  final libs = [
+    for (final (:id, :title, :url) in libPages)
+      await generatedElementsFromPage('$docBaseUrl$url', id, genFolder),
+  ];
+
+  // generate private libraries
+  for (final lib in libs) {
+    final libFile = File('$genFolder/${lib.name}.dart');
+    await libFile.writeAsString([
+      licence,
+      "import 'dart:js_interop';",
+      ...buildImports([...libs, ...externalLibs], lib),
+      for (final element in lib.elements.sortedBy((e) => e.fileName))
+        "part '${lib.name}/${element.fileName}';",
+    ].join('\n'));
+  }
+}
+
+List<String> buildImports(List<Lib> libs, Lib lib) {
+  final depsBylib = lib.dependencies.groupSetsBy((dep) => libs
+      .where((l) => l.elements.expand((e) => e.names).contains(dep))
+      .firstOrNull);
+  return [
+    for (final (libName, elements) in depsBylib.entries
+        .whereNotNull()
+        .where((e) => e.key != lib)
+        .where((e) => e.key != null)
+        .map((e) {
+      final libName = e.key!.name;
+      return (
+        libName.startsWith('dart:') ? libName : '$libName.dart',
+        e.value.toList()..sort(),
+      );
+    }))
+      "import '$libName' show ${elements.join(', ')};",
+  ].sorted();
+}
+
+/// Generates public libraries (collection of private libraries)
+Future<void> generatePublicLibs(
+  String projectHome,
+  String docBaseUrl,
+) async {
+  final publicLibsFolder = '$projectHome/lib';
+  await Directory(publicLibsFolder)
+      .list()
+      .where((f) => path.basename(f.path).startsWith('google_maps_'))
+      .forEach((f) {
+    f.deleteSync();
+  });
+  final response = await http.get(Uri.parse(
+      '$docBaseUrl/maps/documentation/javascript/reference/library-interfaces?hl=en'));
+  final document = parse(response.body);
+  final publicLibs = document
+      .querySelectorAll('h2')
+      .map((e) => (
+            id: e.attributes['id']!.replaceAll('Library', '').toLowerCase(),
+            privateLibs: e.parent!
+                .querySelectorAll('code>a[href^="/"]')
+                .map((e) {
+                  final href = e.attributes['href']!;
+                  return href
+                      .substring(href.lastIndexOf('/') + 1, href.indexOf('#'))
+                      .replaceAll('-', '_');
+                })
+                .toSet()
+                .toList()
+              ..sort(),
+          ))
+      .toList();
+  for (final (:id, :privateLibs) in publicLibs) {
+    final libFile = File('$publicLibsFolder/google_maps_$id.dart');
+    await libFile.writeAsString([
+      licence,
+      for (final privateLib in privateLibs)
+        "export 'src/generated/$privateLib.dart';",
+    ].join('\n'));
+  }
+}
+
+final externalLibs = <Lib>[
+  (
+    name: 'dart:async',
+    dependencies: {},
+    elements: [
+      (fileName: '', names: {'Stream', 'StreamController'}),
+    ],
+  ),
+  (
+    name: 'dart:js_interop_unsafe',
+    dependencies: {},
+    elements: [
+      (fileName: '', names: {'JSObjectUnsafeUtilExtension'}),
+    ],
+  ),
+  (
+    name: 'package:web/web',
+    dependencies: {},
+    elements: [
+      (
+        fileName: '',
+        names: {
+          'Document',
+          'Element',
+          'Event',
+          'HTMLElement',
+          'HTMLInputElement',
+          'Node',
+          'WebGLRenderingContext',
+        }
+      ),
+    ],
+  ),
+  (
+    name: '/src/js/date',
+    dependencies: {},
+    elements: [
+      (fileName: '', names: {'Date'}),
+    ],
+  ),
+  (
+    name: '/src/js/error',
+    dependencies: {},
+    elements: [
+      (fileName: '', names: {'JSError'}),
+    ],
+  ),
+  (
+    name: '/src/js/iterable',
+    dependencies: {},
+    elements: [
+      (fileName: '', names: {'JSIterable'}),
+    ],
+  ),
 ];
 
-void patchEntities(List<DocEntity> entities) {
-  for (final entity in entities) {
-    if (entity.library == null && entity.name == 'LatLng') {
-      entity.constructor!
-        ..parameters = [
-          DocMethodParameter()
-            ..name = 'lat'
-            ..type = convertType('number'),
-          DocMethodParameter()
-            ..name = 'lng'
-            ..type = convertType('number'),
-        ]
-        ..optionalParameters = [
-          DocMethodParameter()
-            ..name = 'noWrap'
-            ..type = convertType('boolean'),
-        ];
-      entity.methods
-          .firstWhere((e) => e.name == 'lat')
-          .updateReturnTypeToNonNullable();
-      entity.methods
-          .firstWhere((e) => e.name == 'lng')
-          .updateReturnTypeToNonNullable();
-    } else if (entity.library == null && entity.name == 'LatLngBounds') {
-      entity.methods
-          .firstWhereOrNull((e) => e.name == 'getNorthEast')
-          ?.updateReturnTypeToNonNullable();
-      entity.methods
-          .firstWhereOrNull((e) => e.name == 'getSouthWest')
-          ?.updateReturnTypeToNonNullable();
-    } else if (entity.library == 'localContext' &&
-        entity.name == 'PlaceTypePreference') {
-      entity
-        ..kind = Kind.interface
-        ..properties = [
-          DocProperty()
-            ..name = 'type'
-            ..type = convertType('string'),
-          DocProperty()
-            ..name = 'weight'
-            ..type = convertType('number'),
-        ];
-    } else if (entity.name == 'event') {
-      for (var method in entity.staticMethods) {
-        if (method.returnType ==
-            SimpleType('MapsEventListener', nullable: true)) {
-          method.returnType = method.returnType.nonNullable();
-        }
-      }
-    }
-    for (var method in entity.methods) {
-      final returnType = method.returnType;
-      if (returnType is SimpleType && returnType.name == 'Future') {
-        method.returnType = SimpleType(returnType.name,
-            parameters:
-                returnType.parameters.map((e) => e.nonNullable()).toList(),
-            nullable: false);
-      }
-      if (method.name == 'toString') {
-        method.returnType = SimpleType('String', nullable: false);
-      }
-    }
-    if (ignoredClasses.contains(entity.implementsName)) {
-      entity.implementsName = null;
-    }
-    if (ignoredClasses.contains(entity.extendsName)) {
-      entity.extendsName = null;
-    }
-  }
-}
+typedef Lib = ({
+  String name,
+  List<({Set<String> names, String fileName})> elements,
+  Set<String> dependencies,
+});
 
-Future main() async {
-  final genFolder =
-      '${path.dirname(Platform.script.path)}/../lib/src/generated';
-  final content = (await http.get(Uri.parse(
-          'https://developers.google.com/maps/documentation/javascript/reference')))
-      .body;
-  final document = parse(content);
-  final urls = document
-      .querySelectorAll('.devsite-expandable-nav')
-      .first
-      .querySelectorAll('a.devsite-nav-title')
-      .skip(1)
-      .map((Element e) => e.attributes['href'])
-      .map((e) => 'https://developers.google.com$e');
-  final entities = (await Future.wait(urls.map(Uri.parse).map(http.get)))
-      .map((response) => response.body)
-      .map(parse)
-      .expand((html) => html.querySelectorAll(
-          'div[itemtype="http://developers.google.com/ReferenceObject"]'))
-      .map(parseDocEntity)
-      .whereNotNull()
-      .where((e) => !ignoredClasses.contains(e.name))
-      .toList();
-  patchEntities(entities);
-
-  final parts = <String, List<String>>{};
-  for (var entity in entities) {
-    final code = generateCodeForEntity(entity, entities);
-    if (code.trim().isEmpty) {
-      continue;
-    }
-    var library = entity.library ?? 'core';
-    library = customLibraryNames[library] ?? library;
-    final fileName = '$library/${entity.fileName}.dart';
-    final bundleFile = 'google_maps_$library.dart';
-    File('$genFolder/$fileName')
-      ..createSync(recursive: true)
-      ..writeAsStringSync('''
-$licence
-part of '../$bundleFile';
-$code
-''');
-    parts.putIfAbsent(library, () => <String>[]).add(fileName);
-  }
-
-  for (var entry in parts.entries) {
-    final library = entry.key;
-    final partList = [
-      for (final fileName in entry.value) "part '$fileName';",
-    ].join('\n');
-    final imports = <String, List<String>>{
-      'core': [
-        "import 'dart:async' show StreamController;",
-        "import 'dart:typed_data' show Float32List, Float64List;",
-        "import 'dart:web_gl' show RenderingContext;",
-        '',
-        "import 'package:google_maps/google_maps_places.dart' show PlacePlusCode;",
-        "import 'package:js_wrapping/js_wrapping.dart';",
-        "import 'package:web/web.dart' show Document, Element, HTMLElement;",
-      ],
-      'drawing': [
-        "import 'dart:async' show StreamController;",
-        '',
-        "import 'package:google_maps/google_maps.dart';",
-        "import 'package:js_wrapping/js_wrapping.dart';",
-      ],
-      'geometry': [
-        "import 'package:google_maps/google_maps.dart';",
-        "import 'package:js_wrapping/js_wrapping.dart';",
-      ],
-      'journey_sharing': [
-        "import 'dart:async' show StreamController;",
-        '',
-        "import 'package:google_maps/google_maps.dart';",
-        "import 'package:js_wrapping/js_wrapping.dart';",
-        "import 'package:web/web.dart' show Element;",
-      ],
-      'local_context': [
-        "import 'dart:async' show StreamController;",
-        '',
-        "import 'package:google_maps/google_maps.dart';",
-        "import 'package:js_wrapping/js_wrapping.dart';",
-        "import 'package:web/web.dart' show Element;",
-      ],
-      'places': [
-        "import 'dart:async' show StreamController;",
-        '',
-        "import 'package:google_maps/google_maps.dart';",
-        "import 'package:js_wrapping/js_wrapping.dart';",
-        "import 'package:web/web.dart' show Element;",
-      ],
-      'visualization': [
-        "import 'package:google_maps/google_maps.dart';",
-        "import 'package:js_wrapping/js_wrapping.dart';",
-      ],
+Future<Lib> generatedElementsFromPage(
+  String url,
+  String id,
+  String genFolder,
+) async {
+  final libName = id.replaceAll('-', '_');
+  final libDir = '$genFolder/$libName';
+  await Directory(libDir).create(recursive: true);
+  final response = await http.get(Uri.parse('$url?hl=en'));
+  final document = parse(response.body);
+  final elements = <({Set<String> names, String fileName})>[];
+  final dependencies = <String>{};
+  for (final element in document.querySelectorAll('h2[data-text]')) {
+    final [fullName, ...type] =
+        element.nextElementSibling!.text.trim().split(RegExp('[ \n]+'));
+    final generate = switch (type) {
+      ['class'] => generateClass,
+      ['abstract', 'class'] => generateClass,
+      ['interface'] => generateInterface,
+      ['constants'] => generateConstants,
+      ['typedef'] => generateTypedef,
+      ['namespace'] => generateNamespace,
+      final e => throw FormatException('$e'),
     };
-    File('$genFolder/google_maps_$library.dart')
-      ..createSync(recursive: true)
-      ..writeAsStringSync(DartFormatter().format('''
-$licence
-
-@JS()
-library google_maps.$library;
-
-${imports[library]?.join()}
-
-$partList
-'''));
+    final elementName = translateType(fullName).split('<').first;
+    final fileName = '${elementName.camel2snake}.dart';
+    final file = File('$libDir/$fileName')..createSync();
+    final generateResult = generate(fullName, element.parent!);
+    dependencies.addAll(generateResult.dependencies);
+    await file.writeAsString([
+      licence,
+      "part of '../$libName.dart';",
+      generateResult.content,
+    ].join('\n'));
+    elements.add((
+      names: {elementName, ...generateResult.extraElements},
+      fileName: fileName,
+    ));
   }
+  return (name: libName, elements: elements, dependencies: dependencies);
 }
 
-String generateCodeForEntity(DocEntity entity, List<DocEntity> entities) {
-  switch (entity.kind) {
-    case Kind.clazz:
-      return generateCodeForClass(entity, entities);
-    case Kind.interface:
-      return generateCodeForInterface(entity);
-    case Kind.namespace:
-      return generateCodeForNamespace(entity);
-    case Kind.constants:
-      return generateCodeForConstants(entity);
-    case Kind.typedef:
-      return generateCodeForTypedef(entity);
-    case Kind.abstract:
-      return generateCodeForAbstract(entity);
-  }
+typedef GenerateResult = ({
+  String content,
+  Set<String> dependencies,
+  Set<String> extraElements,
+});
+
+GenerateResult generateClass(
+  String fullName,
+  Element element,
+) {
+  final fullNameWithoutGenerics = fullName.split('<').first;
+  final nameWithGenerics = translateType(fullName);
+  return generateExtensionType(
+    element,
+    nameWithGenerics: switch (nameWithGenerics.split('<').first) {
+      'MVCArray' => 'MVCArray<T extends JSAny?>',
+      _ => nameWithGenerics,
+    },
+    jsType: fullNameWithoutGenerics,
+  );
 }
 
-String generateCodeForClass(DocEntity entity, List<DocEntity> entities) {
-  final additionalProperties = [];
-  final additionalMethods = [];
-  if (entity.kind == Kind.clazz && entity.implementsName != null) {
-    final impl = entities.firstWhere(
-        (e) => e.library == entity.library && e.name == entity.implementsName);
-    for (final p in impl.properties) {
-      if (!entity.properties.any((e) => e.name == p.name)) {
-        additionalProperties.add(p);
-      }
-    }
-    for (final m in impl.methods) {
-      if (!entity.methods.any((e) => e.name == m.name)) {
-        additionalMethods.add(m);
-      }
-    }
-  }
-
-  final name = entity.name;
-  final lines = <String>[
-    // constructor
-    if (entity.constructor != null) ...<String>[
-      'factory ${name.replaceAll(RegExp(r'<.*'), '')}${buildSignature(entity.constructor!, addIgnoreUnusedElement: true)} => \$js();',
-    ],
-    // properties
-    for (var property in [...entity.properties, ...additionalProperties])
-      ...generateCodeForProperty(entity, property),
-    // methods
-    for (var method in [...entity.methods, ...additionalMethods])
-      ...generateCodeForMethod(entity, method),
-    // events
-    for (var method in entity.events) ...generateCodeForEvent(entity, method),
-  ];
-
-  return '''
-@JsName('${entity.fullJsName}')
-abstract class $name
-${entity.extendsName != null ? 'extends ${entity.extendsName}' : ''}
-${entity.implementsName != null ? 'implements ${entity.implementsName}' : ''}
-{
-${lines.join('\n')}
-}
-''';
+GenerateResult generateInterface(
+  String fullName,
+  Element element,
+) {
+  final nameWithGenerics = translateType(fullName);
+  return generateExtensionType(
+    element,
+    nameWithGenerics: nameWithGenerics,
+    jsType: null,
+    isInterface: true,
+  );
 }
 
-String generateCodeForInterface(DocEntity entity) {
-  final name = entity.name;
-  final lines = <String>[
-    // constructor
-    'factory ${name.replaceAll(RegExp(r'<.*'), '')}() => \$js();',
-    // properties
-    for (var property in entity.properties)
-      ...generateCodeForProperty(entity, property),
-    // methods
-    for (var method in entity.methods) ...generateCodeForMethod(entity, method),
-  ];
-  return '''
-@JsName()
-${entity.extendsName != null ? '@JS()' : ''}
-@anonymous
-abstract class $name
-${entity.extendsName != null ? 'extends ${entity.extendsName}' : ''}
-${entity.implementsName != null ? 'implements ${entity.implementsName}' : ''}
-{
-${lines.join('\n')}
-}
-''';
+GenerateResult generateConstants(
+  String fullName,
+  Element element,
+) {
+  final fullNameWithoutGenerics = fullName.split('<').first;
+  final nameWithGenerics = translateType(fullName);
+  return generateExtensionType(
+    element,
+    nameWithGenerics: nameWithGenerics,
+    jsType: fullNameWithoutGenerics,
+    isConstant: true,
+  );
 }
 
-String generateCodeForNamespace(DocEntity entity) {
-  final name = entity.name.capitalize();
-  final namespace = '_$name\$namespace';
-  final lines = <String>[
-    // static methods
-    for (var method in entity.staticMethods)
-      ...generateCodeForStaticMethod(entity, method, namespace),
-  ];
-  return '''
-@JS('${entity.fullJsName}')
-external Object get $namespace;
-class $name {
-${lines.join('\n')}
-}
-''';
+GenerateResult generateTypedef(
+  String fullName,
+  Element element,
+) {
+  final className = fullName.split('.').last;
+  element.children.last.text;
+  return (
+    content:
+        'typedef $className = ${translateType(element.children.last.text)};',
+    dependencies: {},
+    extraElements: {},
+  );
 }
 
-String generateCodeForConstants(DocEntity entity) {
-  final name = entity.name;
-  return '''
-// ignore_for_file: unused_element, unused_field
-@JsName('${entity.fullJsName}')
-enum $name {
-${entity.constants.map((e) => e.name).join(',')},
-}
-''';
-}
-
-// handled directly by alias in convertType
-String generateCodeForTypedef(DocEntity entity) => '';
-
-// WIP
-String generateCodeForAbstract(DocEntity entity) => '';
-
-List<String> generateCodeForProperty(DocEntity entity, DocProperty property) {
-  if (property.name.contains('_')) {
-    final parts = property.name.split('_');
-    final rename = [
-      parts.first.unCapitalize(),
-      ...parts.skip(1).map((e) => e.capitalize()),
-    ].join();
-    return [
-      ' // custom name for ${property.name}',
-      "@JsName('${property.name}')",
-      '${property.type} $rename;',
-    ];
-  }
-  return [
-    '${property.type} ${property.name};',
-  ];
+GenerateResult generateNamespace(
+  String fullName,
+  Element element,
+) {
+  final fullNameWithoutGenerics = fullName.split('<').first;
+  final nameWithGenerics = translateType(fullName);
+  final result = generateExtensionType(
+    element,
+    nameWithGenerics: '_$nameWithGenerics',
+    jsType: null,
+    isNamespace: true,
+  );
+  return (
+    content: [
+      "@JS('$fullNameWithoutGenerics')",
+      'external _$nameWithGenerics get ${fullNameWithoutGenerics.split('.').last};',
+      result.content,
+    ].join('\n'),
+    dependencies: result.dependencies,
+    extraElements: result.extraElements,
+  );
 }
 
-List<String> generateCodeForMethod(DocEntity entity, DocMethod method) {
-  // custom
-  if (const [
-    Member('LatLng', 'lat'),
-    Member('LatLng', 'lng'),
-  ].contains(Member(entity.name, method.name))) {
-    return [
-      '',
-      ' // custom getter for ${method.name}',
-      '${method.returnType} get ${method.name} => _${method.name}();',
-      "@JsName('${method.name}')",
-      '${method.returnType} _${method.name}();',
-      '',
-    ];
-  }
-
-  // method to implement
-  if (const [
-    Member('MapType', 'getTile'),
-    Member('MapType', 'releaseTile'),
-    Member('OverlayView', 'draw'),
-    Member('OverlayView', 'onAdd'),
-    Member('OverlayView', 'onRemove'),
-    Member('WebGLOverlayView', 'onAdd'),
-    Member('WebGLOverlayView', 'onContextLost'),
-    Member('WebGLOverlayView', 'onContextRestored'),
-    Member('WebGLOverlayView', 'onDraw'),
-    Member('WebGLOverlayView', 'onRemove'),
-    Member('Projection', 'fromLatLngToPoint'),
-    Member('Projection', 'fromPointToLatLng'),
-    Member('StreetViewTileData', 'getTileUrl'),
-    Member('StyledMapType', 'getTile'),
-    Member('StyledMapType', 'releaseTile'),
-    Member('ImageMapType', 'getTile'),
-    Member('ImageMapType', 'releaseTile'),
-  ].contains(Member(entity.name, method.name))) {
-    return [
-      '${method.returnType} Function${buildSignature(method)}? ${method.name};',
-    ];
-  }
-
-  // replace with getter
-  if (method.name.startsWith('get') &&
-      method.name.length > 3 &&
-      method.parameters.isEmpty &&
-      method.optionalParameters.isEmpty) {
-    final name = '${method.name[3].toLowerCase()}${method.name.substring(4)}';
-    return [
-      '',
-      ' // synthetic getter for ${method.name}',
-      '${method.returnType} get $name => _${method.name}();',
-      "@JsName('${method.name}')",
-      '${method.returnType} _${method.name}();',
-      '',
-    ];
-  }
-
-  // replace with setter
-  if (method.name.startsWith('set') &&
-      method.name.length > 3 &&
-      method.returnType == SimpleType._void &&
-      [...method.parameters, ...method.optionalParameters].length == 1) {
-    if (method.optionalParameters.isNotEmpty) {
-      method
-        ..parameters = method.optionalParameters
-        ..optionalParameters = [];
-    }
-    final type = method.parameters.first.type;
-    final name = '${method.name[3].toLowerCase()}${method.name.substring(4)}';
-    return [
-      '',
-      ' // synthetic setter for ${method.name}',
-      'set $name($type $name) => _${method.name}($name);',
-      "@JsName('${method.name}')",
-      'void _${method.name}${buildSignature(method)};',
-      '',
-    ];
-  }
-  final returnType = method.returnType;
-  if (returnType is SimpleType && ignoredClasses.contains(returnType.name)) {
-    return [];
-  }
-
-  return [
-    '${method.returnType} ${method.name}${buildSignature(method)};',
-  ];
-}
-
-List<String> generateCodeForStaticMethod(
-    DocEntity entity, DocMethod method, String namespace) {
-  if (const [Member('event', 'trigger')]
-      .contains(Member(entity.name, method.name))) {
-    return [
-      '',
-      'static void trigger(Object instance, String eventName, List<Object?>? eventArgs)',
-      "=> callMethod($namespace, 'trigger', [instance, eventName, ...?eventArgs]);",
-      '',
-    ];
-  }
-  if (const [Member('encoding', 'decodePath')]
-      .contains(Member(entity.name, method.name))) {
-    return [
-      '',
-      'static List<LatLng> decodePath(String encodedPath)',
-      "=> callMethod($namespace, 'decodePath', [encodedPath]).cast<LatLng>();",
-      '',
-    ];
-  }
-  if (const [Member('encoding', 'encodePath')]
-      .contains(Member(entity.name, method.name))) {
-    return [
-      '',
-      'static String encodePath(Object /*List<LatLng>|MVCArray<LatLng>*/ path)',
-      "=> callMethod($namespace, 'encodePath', [path]);",
-      '',
-    ];
-  }
-  final params = [...method.parameters, ...method.optionalParameters].map((e) {
-    final type = e.type;
-    return type is FunctionType ||
-            (type is SimpleType && type.name == 'Function')
-        ? '${e.name} == null ? null : allowInterop(${e.name})'
-        : e.name;
-  }).join(',');
-  return [
-    'static ${method.returnType} ${method.name}${buildSignature(method)}',
-    "  => callMethod($namespace, '${method.name}', [$params]);",
-  ];
-}
-
-List<String> generateCodeForEvent(DocEntity entity, DocMethod method) {
-  final eventName = method.name;
-  final streamName = [
-    'on',
-    ...eventName.split('_').map((e) => e.capitalize()),
-  ].join();
-  String params;
-  String type;
-  if (method.parameters.isEmpty && method.optionalParameters.isEmpty) {
-    type = 'void';
-    params = 'null';
-  } else if (method.parameters.length == 1 &&
-      method.optionalParameters.isEmpty) {
-    type = method.parameters.first.type.nonNullable().toString();
-    params = method.parameters.first.name;
-  } else {
-    type = 'List';
-    final names = [...method.parameters, ...method.optionalParameters]
-        .map((e) => e.name)
-        .join(',');
-    params = '[$names]';
-  }
-
-  return [
-    '''
-    Stream<$type> get $streamName {
-      late StreamController<$type> sc; // ignore: close_sinks
-      late MapsEventListener mapsEventListener;
-      void start() => mapsEventListener = Event.addListener(
-        this,
-        '$eventName',
-        ${buildSignature(method, nonNullable: true)} => sc.add($params),
-      );
-      void stop() => mapsEventListener.remove();
-      sc = StreamController<$type>(
-        onListen: start,
-        onCancel: stop,
-        onResume: start,
-        onPause: stop,
-      );
-      return sc.stream;
-    }''',
-  ];
-}
-
-String buildSignature(
-  DocMethod method, {
-  bool addIgnoreUnusedElement = false,
-  bool nonNullable = false,
+GenerateResult generateExtensionType(
+  Element element, {
+  required String nameWithGenerics,
+  required String? jsType,
+  bool isConstant = false,
+  bool isNamespace = false,
+  bool isInterface = false,
 }) {
-  final params = method.parameters;
-  final optionalParams = method.optionalParameters;
-  final result = StringBuffer('(')
-    ..write(params
-        .map((param) =>
-            '${nonNullable ? param.type.nonNullable() : param.type} ${param.name}')
-        .join(','));
-  if (optionalParams.isNotEmpty) {
-    if (params.isNotEmpty) {
-      result.write(',');
-    }
-    result
-      ..write('[')
-      ..write(optionalParams
-          .map((param) => '${param.type} ${param.name},')
-          .map((e) =>
-              addIgnoreUnusedElement ? '$e // ignore: unused_element\n' : e)
-          .join())
-      ..write(']');
+  assert([isNamespace, isConstant].where((v) => v).length <= 1);
+  final name = nameWithGenerics.split('<').first;
+  var parentImplements = extractImplements(element);
+  final parentExtends = isConstant
+      ? 'JSAny'
+      : extractExtends(element) ?? parentImplements ?? 'JSObject';
+  if (parentExtends == parentImplements) {
+    parentImplements = null;
   }
-  result.write(')');
-  return result.toString();
-}
+  final constructor = extractConstructor(element);
+  final constants = extractConstants(element);
+  final properties = extractProperties(element);
+  final events =
+      extractEvents(element).where((e) => !e.name.contains('-')).toList();
+  final methods = [
+    for (final method in extractMethods(element, false))
+      (isStatic: false, method: method),
+    for (final method in extractMethods(element, true))
+      (isStatic: !isNamespace, method: method),
+  ];
 
-Type convertType(String type) {
-  final myType = type.trim();
-  if (myType == 'boolean')
-    return SimpleType('bool', nullable: true);
-  else if (myType == 'number')
-    return SimpleType('num', nullable: true);
-  else if (myType == 'string')
-    return SimpleType('String', nullable: true);
-  else if (myType == 'Date')
-    return SimpleType('DateTime', nullable: true);
-  else if (myType == 'Event')
-    return SimpleType('Object', nullable: true);
-  else if (myType == 'Array')
-    return SimpleType('List', nullable: true);
-  else if (myType == 'WebGLRenderingContext')
-    return SimpleType('RenderingContext', nullable: true);
-  else if (myType == 'Float32Array')
-    return SimpleType('Float32List', nullable: true);
-  else if (myType == 'Float64Array')
-    return SimpleType('Float64List', nullable: true);
-  else if (myType == 'None')
-    return SimpleType._void;
-  else if (myType == 'void')
-    return SimpleType._void;
-  else if (myType == 'dynamic')
-    return SimpleType('dynamic', nullable: false);
-  else if (myType == '*')
-    return SimpleType('Object', nullable: true);
-  else if (myType == '?')
-    return SimpleType('Object', nullable: true);
-  else if (myType == 'T')
-    return SimpleType('T', nullable: false);
-  else if (customClassName.containsKey(myType))
-    return convertType(customClassName[myType]!);
-  else if (myType.startsWith('(') && myType.endsWith(')'))
-    return convertType(myType.substring(1, myType.length - 1));
-  else if (splitComplexTypeBy(myType, '|').length > 1) {
-    final typeUnion = splitComplexTypeBy(myType, '|').toSet()
-      ..removeWhere(ignoredClasses.contains)
-      ..remove('null');
-    for (final entry in literalClasses.entries) {
-      if (typeUnion.contains(entry.key) && typeUnion.contains(entry.value)) {
-        typeUnion.remove(entry.key);
+  // customizations
+  final customDependencies = <String>{};
+  final customConstructors = <String>[];
+  final customCode = <String>[];
+  final customTopLevelCode = <String>[];
+  final customImplements = <String>[];
+  final extraElements = <String>{};
+  switch (name) {
+    case 'Map':
+      extraElements.add('MapMouseEventOrIconMouseEvent');
+      customTopLevelCode.add(r'''
+extension type MapMouseEventOrIconMouseEvent._(JSObject _)
+    implements JSObject {}
+
+extension MapMouseEventOrIconMouseEvent$Ext on MapMouseEventOrIconMouseEvent {
+  external LatLng? latLng;
+}''');
+
+      // change some nullity to allow having getter/setter and avoid issue
+      final gettersToUnnull = [
+        'getCenter',
+        'getClickableIcons',
+        'getHeading',
+        'getHeadingInteractionEnabled',
+        'getMapTypeId',
+        'getTilt',
+        'getTiltInteractionEnabled',
+        'getZoom',
+      ];
+      for (final method in methods) {
+        final methodName = method.method.name;
+        if (!gettersToUnnull.contains(methodName)) continue;
+        method.method.jsReturnType = method.method.jsReturnType
+            .split('|')
+            .map((e) => e.trim())
+            .where((e) => !{'null', 'undefined'}.contains(e))
+            .join('|');
       }
+      customCode.add('''
+  bool isCenterDefined() => callMethod('getCenter'.toJS) != null;
+  bool isClickableIconsDefined() => callMethod('getClickableIcons'.toJS) != null;
+  bool isHeadingDefined() => callMethod('getHeading'.toJS) != null;
+  bool isHeadingInteractionEnabledDefined() => callMethod('getHeadingInteractionEnabled'.toJS) != null;
+  bool isMapTypeIdDefined() => callMethod('getMapTypeId'.toJS) != null;
+  bool isTiltDefined() => callMethod('getTilt'.toJS) != null;
+  bool isTiltInteractionEnabledDefined() => callMethod('getTiltInteractionEnabled'.toJS) != null;
+  bool isZoomDefined() => callMethod('getZoom'.toJS) != null;
+''');
+      customDependencies.add('JSObjectUnsafeUtilExtension');
+
+      // simplify controls usage
+      customCode.add('''
+  MVCArray<HTMLElement> getControlsAt(ControlPosition position) =>
+      controls[(position as JSNumber).toDartInt];''');
+      customDependencies.add('ControlPosition');
+
+    case 'MapMouseEvent':
+      customImplements.add('MapMouseEventOrIconMouseEvent');
+
+    case 'IconMouseEvent':
+      customImplements.add('MapMouseEventOrIconMouseEvent');
+
+    case 'LatLng':
+      customConstructors.addAll([
+        '  external LatLng(num lat, num lng, [bool? noClampNoWrap]);',
+        '  external LatLng.copy(LatLngOrLatLngLiteral latLng, [bool? noClampNoWrap]);',
+      ]);
+      customImplements.add('LatLngOrLatLngLiteral');
+      extraElements.add('LatLngOrLatLngLiteral');
+      customTopLevelCode.add(r'''
+extension type LatLngOrLatLngLiteral._(JSObject _) implements JSObject {}
+
+extension LatLngOrLatLngLiteral$Ext on LatLngOrLatLngLiteral {
+  num get lat {
+    if (isA<LatLng>()) {
+      return (this as LatLng).lat;
+    } else {
+      return (this as LatLngLiteral).lat;
     }
-    if (typeUnion.length <= 1) {
-      return convertType(typeUnion.firstOrNull ?? '');
+  }
+
+  num get lng {
+    if (isA<LatLng>()) {
+      return (this as LatLng).lng;
+    } else {
+      return (this as LatLngLiteral).lng;
     }
-    final dartUnion = typeUnion.map(convertType).toList();
-    return UnionType(dartUnion.cast<Type>());
-  } else if (myType.startsWith('{') && myType.endsWith('}')) {
-    final tupleElements = {
-      for (var e
-          in splitComplexTypeBy(myType.substring(1, myType.length - 1), ',')
-              .map((p) => splitComplexTypeBy(p.trim(), ':')))
-        e[0].trim(): convertType(e[1].trim()),
+  }
+}''');
+
+    case 'LatLngLiteral':
+      customImplements.add('LatLngOrLatLngLiteral');
+
+    case 'LatLngBounds':
+      customConstructors.addAll([
+        '  external LatLngBounds(LatLngOrLatLngLiteral sw, LatLngOrLatLngLiteral ne);',
+        '  external LatLngBounds.empty();',
+        '  external LatLngBounds.copy(LatLngBoundsOrLatLngBoundsLiteral latLngBounds);',
+      ]);
+      customImplements.add('LatLngBoundsOrLatLngBoundsLiteral');
+      extraElements.add('LatLngBoundsOrLatLngBoundsLiteral');
+      customTopLevelCode.add(r'''
+extension type LatLngBoundsOrLatLngBoundsLiteral._(JSObject _) implements JSObject {}
+
+extension LatLngBoundsOrLatLngBoundsLiteral$Ext on LatLngBoundsOrLatLngBoundsLiteral {
+  num get east {
+    if (isA<LatLngBounds>()) {
+      return (this as LatLngBounds).northEast.lng;
+    } else {
+      return (this as LatLngBoundsLiteral).east;
+    }
+  }
+  num get north {
+    if (isA<LatLngBounds>()) {
+      return (this as LatLngBounds).northEast.lat;
+    } else {
+      return (this as LatLngBoundsLiteral).north;
+    }
+  }
+  num get south {
+    if (isA<LatLngBounds>()) {
+      return (this as LatLngBounds).southWest.lat;
+    } else {
+      return (this as LatLngBoundsLiteral).south;
+    }
+  }
+  num get west {
+    if (isA<LatLngBounds>()) {
+      return (this as LatLngBounds).southWest.lng;
+    } else {
+      return (this as LatLngBoundsLiteral).west;
+    }
+  }
+}''');
+
+    case 'LatLngBoundsLiteral':
+      customImplements.add('LatLngBoundsOrLatLngBoundsLiteral');
+
+    case 'Circle':
+      customConstructors.addAll([
+        '  external Circle(CircleOptions opts);',
+        '  external Circle.copy(Circle circle);',
+        '  external Circle.copyLiteral(CircleLiteral circle);',
+      ]);
+
+    case 'Projection':
+      customDependencies.addAll([
+        'JSObjectUnsafeUtilExtension',
+        'LatLngOrLatLngLiteral',
+        'Point',
+        'LatLng',
+      ]);
+      customConstructors
+          .add('factory Projection() => JSObject() as Projection;');
+      customCode.add('''
+  void set fromLatLngToPoint(Point? Function(
+    LatLngOrLatLngLiteral latLng, [
+    Point? point,
+  ]) fromLatLngToPoint) => setProperty('fromLatLngToPoint'.toJS, fromLatLngToPoint.toJS);
+  void set fromPointToLatLng(LatLng? Function(
+    Point pixel, [
+    bool? noClampNoWrap,
+  ]) fromPointToLatLng) => setProperty('fromPointToLatLng'.toJS, fromPointToLatLng.toJS);
+      ''');
+      methods.removeWhere((e) =>
+          {'fromLatLngToPoint', 'fromPointToLatLng'}.contains(e.method.name));
+
+    case 'OverlayView':
+      customDependencies.add('JSObjectUnsafeUtilExtension');
+      customCode.add('''
+  void set onAdd(void Function() onAdd) => setProperty('onAdd'.toJS, onAdd.toJS);
+  void set onRemove(void Function() onRemove) => setProperty('onRemove'.toJS, onRemove.toJS);
+  void set draw(void Function() draw) => setProperty('draw'.toJS, draw.toJS);
+      ''');
+      methods.removeWhere(
+          (e) => {'onAdd', 'onRemove', 'draw'}.contains(e.method.name));
+
+    case 'MapType':
+      customDependencies.addAll([
+        'JSObjectUnsafeUtilExtension',
+        'Point',
+        'Element',
+        'Document',
+      ]);
+      customCode.add('''
+  void set getTile(Element? Function(
+    Point tileCoord,
+    num zoom,
+    Document ownerDocument,
+  ) getTile) => setProperty('getTile'.toJS, getTile.toJS);
+  void set releaseTile(void Function(
+    Element? tile,
+  ) releaseTile) => setProperty('releaseTile'.toJS, releaseTile.toJS);
+      ''');
+      methods.removeWhere(
+          (e) => {'getTile', 'releaseTile'}.contains(e.method.name));
+    case 'ImageMapType':
+      methods.removeWhere(
+          (e) => {'getTile', 'releaseTile'}.contains(e.method.name));
+    case 'StyledMapType':
+      methods.removeWhere(
+          (e) => {'getTile', 'releaseTile'}.contains(e.method.name));
+    case 'StreetViewTileData':
+      customDependencies.addAll([
+        'JSObjectUnsafeUtilExtension',
+        'Point',
+        'Element',
+        'Document',
+      ]);
+      customCode.add('''
+  void set getTileUrl(String Function(
+    String pano,
+    num tileZoom,
+    num tileX,
+    num tileY,
+  ) getTileUrl) => setProperty('getTileUrl'.toJS, getTileUrl.toJS);
+      ''');
+      methods.removeWhere((e) => e.method.name == 'getTileUrl');
+    case 'WebGLOverlayView':
+      customDependencies.addAll([
+        'JSObjectUnsafeUtilExtension',
+        'Point',
+        'Element',
+        'Document',
+      ]);
+      customCode.add('''
+  void set onAdd(void Function() onAdd) => setProperty('onAdd'.toJS, onAdd.toJS);
+  void set onContextLost(void Function() onContextLost) => setProperty('onContextLost'.toJS, onContextLost.toJS);
+  void set onContextRestored(void Function(WebGLStateOptions options) onContextRestored) => setProperty('onContextRestored'.toJS, onContextRestored.toJS);
+  void set onDraw(void Function(WebGLDrawOptions options) onDraw) => setProperty('onDraw'.toJS, onDraw.toJS);
+  void set onRemove(void Function() onRemove) => setProperty('onRemove'.toJS, onRemove.toJS);
+  void set onStateUpdate(void Function(WebGLStateOptions options) onStateUpdate) => setProperty('onStateUpdate'.toJS, onStateUpdate.toJS);
+      ''');
+      methods.removeWhere((e) => {
+            'onAdd',
+            'onContextLost',
+            'onContextRestored',
+            'onDraw',
+            'onRemove',
+            'onStateUpdate',
+          }.contains(e.method.name));
+
+    case 'DataPoint':
+    case 'DataMultiPoint':
+    case 'DataLineString':
+    case 'DataMultiLineString':
+    case 'DataLinearRing':
+    case 'DataPolygon':
+    case 'DataMultiPolygon':
+    case 'DataGeometryCollection':
+      methods.removeWhere(
+          (e) => {'forEachLatLng', 'getType'}.contains(e.method.name));
+  }
+  for (final method in methods) {
+    if (method.method.returnType.startsWith('JSPromise<') &&
+        method.method.optionalParameters.lastOrNull?.name == 'callback') {
+      method.method.optionalParameters.removeLast();
+    }
+  }
+
+  if (methods.any((e) => e.method.name == 'getMap')) {
+    final getMapMethod =
+        methods.firstWhere((e) => e.method.name == 'getMap').method;
+    getMapMethod.jsReturnType =
+        getMapMethod.jsReturnType.split('|').followedBy(['null']).join('|');
+  }
+  if (methods.any((e) =>
+      e.method.name == 'setMap' &&
+      e.method.parameters.isNotEmpty &&
+      !e.method.parameters.first.jsType.endsWith(' optional'))) {
+    final setMapMethod =
+        methods.firstWhere((e) => e.method.name == 'setMap').method;
+    setMapMethod.parameters.first.jsType = setMapMethod.parameters.first.jsType
+        .split('|')
+        .followedBy(['null']).join('|');
+  }
+
+  String? canBeGetter(bool isStatic, Method method) {
+    if (name == 'LatLng' && {'lat', 'lng'}.contains(method.name)) {
+      return method.name;
+    }
+    if (!(method.name.startsWith(RegExp('get[A-Z]')) &&
+        method.parameters.isEmpty)) {
+      return null;
+    }
+    final accessorName =
+        method.name[3].toLowerCase() + method.name.substring(4);
+    return accessorName;
+  }
+
+  (String, Parameter)? canBeSetter(bool isStatic, Method method) {
+    if (name == 'LatLng' && {'lat', 'lng'}.contains(method.name)) {
+      return (method.name, method.parameters.first);
+    }
+    if (!(method.name.startsWith(RegExp('set[A-Z]')) &&
+        (method.parameters.length + method.optionalParameters.length) == 1)) {
+      return null;
+    }
+    final accessorName =
+        method.name[3].toLowerCase() + method.name.substring(4);
+    return (
+      accessorName,
+      [...method.parameters, ...method.optionalParameters].first,
+    );
+  }
+
+  return (
+    content: [
+      if (jsType != null) "@JS('$jsType')",
+      'extension type $nameWithGenerics._($parentExtends _) implements ${[
+        parentExtends,
+        if (parentImplements != null) parentImplements,
+        ...customImplements,
+      ].join(', ')} {',
+      ...customConstructors,
+      if (constructor != null) ...[
+        '  external ${constructor.name + (customConstructors.isNotEmpty ? r'.js' : '')}(',
+        for (final p in constructor.parameters) '${p.type} ${p.name},',
+        if (constructor.optionalParameters.isNotEmpty) ...[
+          '[',
+          for (final p in constructor.optionalParameters)
+            '${p.type} ${p.name},',
+          ']',
+        ],
+        ');',
+      ],
+      if (jsType == null && properties.isNotEmpty) ...[
+        '  external $name({',
+        for (final property in properties)
+          '    ${property.type} ${property.name},',
+        '});',
+      ],
+      ...customCode,
+      for (final constant in constants)
+        '  external static ${isConstant ? name : getTypeForClassConstant(name, constant.name)} get ${constant.name};',
+      for (final property in properties) property.generateDartCode(),
+      for (final (:isStatic, :method) in methods) ...[
+        if (canBeGetter(isStatic, method) case final String getterName) ...[
+          "  @JS('${method.name}')",
+          '  external ${isStatic ? 'static' : ''} ${method.returnType} _${method.name}();',
+          '  ${isStatic ? 'static' : ''} ${method.returnType} get $getterName => _${method.name}();',
+        ] else if (canBeSetter(isStatic, method)
+            case (final setterName, final param)) ...[
+          "  @JS('${method.name}')",
+          '  external ${isStatic ? 'static' : ''} ${method.returnType} _${method.name}(${param.type} ${param.name});',
+          '  ${isStatic ? 'static' : ''} ${method.returnType} set $setterName(${param.type} ${param.name}) => _${method.name}(${param.name});',
+        ] else if (method.returnType.startsWith('JSPromise<')) ...[
+          "  @JS('${method.name}')",
+          '  external ${isStatic ? 'static' : ''} ${method.returnType} _${method.name}(',
+          for (final p in method.parameters) '    ${p.type} ${p.name},',
+          if (method.optionalParameters.isNotEmpty) ...[
+            '[',
+            for (final p in method.optionalParameters)
+              '    ${p.type} ${p.name},',
+            ']',
+          ],
+          '  );',
+          '  ${isStatic ? 'static' : ''} ${method.returnType.replaceFirst('JSPromise', 'Future')} ${method.name}(',
+          for (final p in method.parameters) '    ${p.type} ${p.name},',
+          if (method.optionalParameters.isNotEmpty) ...[
+            '[',
+            for (final p in method.optionalParameters)
+              '    ${p.type} ${p.name},',
+            ']',
+          ],
+          '  ) => _${method.name}(${[
+            ...method.parameters,
+            ...method.optionalParameters,
+          ].map((e) => e.name).join(', ')}).toDart;',
+        ] else ...[
+          if (method.name == 'toString') "  @JS('toString')",
+          '  external ${isStatic ? 'static' : ''} ${method.returnType} ${method.name + (method.name == 'toString' ? r'$js' : '')}(',
+          for (final p in method.parameters) '    ${p.type} ${p.name},',
+          if (method.optionalParameters.isNotEmpty) ...[
+            '[',
+            for (final p in method.optionalParameters)
+              '    ${p.type} ${p.name},',
+            ']',
+          ],
+          '  );',
+        ]
+      ],
+      for (final event in events) generateCodeForEvent(event),
+      '}',
+      ...customTopLevelCode,
+    ].join('\n'),
+    dependencies: {
+      parentExtends,
+      if (parentImplements != null) parentImplements,
+      if (constructor != null) ...[
+        for (final parameter in constructor.parameters) parameter.type,
+        for (final parameter in constructor.optionalParameters) parameter.type,
+      ],
+      if (!isConstant)
+        for (final constant in constants)
+          getTypeForClassConstant(name, constant.name),
+      for (final property in properties) property.type,
+      for (final (isStatic: _, :method) in methods) ...[
+        method.returnType,
+        for (final parameter in method.parameters) parameter.type,
+        for (final parameter in method.optionalParameters) parameter.type,
+      ],
+      if (events.isNotEmpty) ...[
+        'event',
+        'MapsEventListener',
+        'Stream',
+        'StreamController',
+        for (final event in events)
+          for (final parameter in event.parameters) parameter.type,
+      ],
+      ...customDependencies,
+    }.expand((e) => e.split(RegExp(r'\W+'))).toSet(),
+    extraElements: extraElements,
+  );
+}
+
+String? extractExtends(Element element) {
+  final parent = element
+      .querySelectorAll('>p')
+      .firstWhereOrNull((e) => e.text.startsWith(
+          RegExp(r'This (abstract )?(class|interface) extends\W+\w+\.')))
+      ?.querySelector('code')
+      ?.text;
+  return parent == null ? null : translateType(parent);
+}
+
+String? extractImplements(Element element) {
+  final parent = element
+      .querySelectorAll('>p')
+      .firstWhereOrNull((e) => e.text.startsWith(
+          RegExp(r'This (abstract )?(class|interface) implements\W+\w+\.')))
+      ?.querySelector('code')
+      ?.text;
+  return parent == null ? null : translateType(parent);
+}
+
+String generateCodeForEvent(
+    ({
+      String doc,
+      String name,
+      List<({String name, String type})> parameters
+    }) event) {
+  final (streamType, listenerSignature, addParams) = switch (event.parameters) {
+    [] => ('void', '', 'null'),
+    [final parameter] => (parameter.type, '${parameter.type} e', 'e'),
+    final parameters => (
+        '({${parameters.map((e) => '${e.type} ${e.name}').join(', ')}})',
+        '${parameters.map((e) => '${e.type} ${e.name}').join(', ')}',
+        '(${parameters.map((e) => '${e.name}: ${e.name}').join(', ')})',
+      ),
+  };
+  return '''
+  Stream<$streamType> get on${event.name.split('_').map((e) => e.capitalized).join()} {
+    late StreamController<$streamType> sc; // ignore: close_sinks
+    late MapsEventListener mapsEventListener;
+    void start() => mapsEventListener = event.addListener(
+      this,
+      '${event.name}',
+      (($listenerSignature) => sc.add($addParams)).toJS,
+    );
+    void stop() => mapsEventListener.remove();
+    sc = StreamController<$streamType>(
+      onListen: start,
+      onCancel: stop,
+      onResume: start,
+      onPause: stop,
+    );
+    return sc.stream;
+  }''';
+}
+
+String getTypeForClassConstant(String className, String constantName) =>
+    switch ((className, constantName)) {
+      ('LatLngBounds', 'MAX_BOUNDS') => 'LatLngBounds',
+      ('Map', 'DEMO_MAP_ID') => 'JSAny?',
+      ('Marker', 'MAX_ZINDEX') => 'int',
+      ('_maps', 'version') => 'String',
+      _ => throw StateError('unspecified type for $className.$constantName')
     };
-    return TupleType(tupleElements, nullable: true);
-  } else if (myType.startsWith(RegExp(r'\w+<')) && myType.endsWith('>')) {
-    var name =
-        (convertType(myType.substring(0, myType.indexOf('<'))) as SimpleType)
-            .name;
-    if (name == 'Object') name = 'Map';
-    final typeParameters = myType
-        .substring(myType.indexOf('<') + 1, myType.length - 1)
-        .split(',')
-        .map(convertType)
-        .toList();
-    return SimpleType(name, parameters: typeParameters, nullable: true);
-  } else if (myType.startsWith('function(')) {
-    final parts = splitComplexTypeBy(myType, ':');
-    final returnType = parts.length > 1
-        ? convertType(parts.skip(1).join(':'))
-        : SimpleType._void;
-    final parameters = splitComplexTypeBy(
-            parts[0].substring('function('.length, parts[0].lastIndexOf(')')),
-            ',')
-        .map(convertType)
-        .toList();
-    return FunctionType(returnType, parameters, nullable: true);
-  } else {
-    return SimpleType(myType.replaceAll('.', ''), nullable: true);
-  }
-}
 
-List<String> splitComplexTypeBy(String type, String char) {
-  final typeParts = <String>[];
-  var bracketDeepth = 0;
-  var parenthesisDeepth = 0;
-  var genericDeepth = 0;
-  final buffer = StringBuffer();
-  for (var i = 0; i < type.length; i++) {
-    final c = type[i];
-    if (c == char &&
-        bracketDeepth == 0 &&
-        parenthesisDeepth == 0 &&
-        genericDeepth == 0) {
-      typeParts.add(buffer.toString());
-      buffer.clear();
-      continue;
-    }
-    if (c == '{') bracketDeepth++;
-    if (c == '}') bracketDeepth--;
-    if (c == '(') parenthesisDeepth++;
-    if (c == ')') parenthesisDeepth--;
-    if (c == '<') genericDeepth++;
-    if (c == '>') genericDeepth--;
-    buffer.write(c);
-  }
-  if (buffer.isNotEmpty) typeParts.add(buffer.toString());
-  return typeParts;
-}
-
-enum Kind { clazz, interface, namespace, constants, typedef, abstract }
-
-class DocEntity {
-  late Kind kind;
-  String? library;
-  String? path;
-  late String name;
-  String? fullJsName;
-  String? extendsName;
-  String? implementsName;
-  String? comment;
-  DocMethod? constructor;
-  List<DocMethod> staticMethods = [];
-  List<DocMethod> methods = [];
-  List<DocProperty> properties = [];
-  List<DocMethod> events = [];
-  List<DocConstant> constants = [];
-
-  String get fileName {
-    final value = name
-        .capitalize()
-        .replaceAll('.', '_')
-        .replaceAll(RegExp(r'<[A-Z]>'), '')
-        .replaceAllMapped(RegExp(r'([A-Z]+)([A-Z][a-z]+)'),
-            (m) => '${m.group(1)!.toLowerCase()}_${m.group(2)!.toLowerCase()}_')
-        .replaceAllMapped(
-            RegExp(r'[A-Z][a-z]+'), (m) => '${m.group(0)!.toLowerCase()}_');
-    return value.substring(0, value.length - 1);
-  }
-
-  @override
-  String toString() => 'DocEntity($library ,$kind, $path, $name, $extendsName)';
-}
-
-DocEntity? parseDocEntity(Element element) {
-  final nameElement = element.querySelector('span[itemprop="name"]');
-  late final String name;
-  if (nameElement != null) {
-    name = nameElement.text;
-  } else {
-    // Top-level namespace
-    // https://developers.google.com/maps/documentation/javascript/reference/top-level
-    return null;
-  }
-  final entity = DocEntity()
-    ..kind = toKind(element
-        .querySelector('h2')!
-        .attributes['data-text']!
-        .trim()
-        .split(RegExp(r'[ \n]+'))[1])
-    ..path = element.querySelector('span[itemprop="path"]')!.text
-    ..name = name.toClassName()
-    ..library = element
-        .querySelectorAll('>p')
-        .firstWhereOrNull((e) => e.text.startsWith('Requires the &libraries='))
-        ?.querySelector('code')
-        ?.text
-        .substring('&libraries='.length);
-
-  entity
-    // full js name
-    ..fullJsName =
-        [entity.path, name].join('.').replaceFirst(RegExp(r'<.*'), '')
-    // extendsName
-    ..extendsName = element
-        .querySelectorAll('>p')
-        .firstWhereOrNull((e) =>
-            e.text.startsWith(RegExp(r'This (class|interface) extends')) &&
-            e.querySelector('a') != null)
-        ?.querySelector('a')
-        ?.text
-        .toClassName()
-    // implementsName
-    ..implementsName = element
-        .querySelectorAll('>p')
-        .firstWhereOrNull((e) =>
-            e.text.startsWith(RegExp(r'This (class|interface) implements')) &&
-            e.querySelector('a') != null)
-        ?.querySelector('a')
-        ?.text
-        .toClassName();
-
-  // constructor
-  if (element.querySelector('table.constructors') != null) {
-    entity.constructor = parseTrForDocMethod(element
-        .querySelector('table.constructors')!
-        .children[1]
-        .children
-        .first);
-  }
-  // properties
-  if (element.querySelector('table.properties') != null) {
-    entity.properties = element
-        .querySelector('table.properties')!
-        .children[1]
-        .children
-        .map(parseTrForDocProperty)
-        .toList();
-  }
-  // methods
-  if (element.querySelector(r'table.methods[summary$=" - Methods"]') != null) {
-    entity.methods = element
-        .querySelector(r'table.methods[summary$=" - Methods"]')!
-        .children[1]
-        .children
-        .map(parseTrForDocMethod)
-        .toList();
-  }
-  // static methods
-  if (element.querySelector(r'table.methods[summary$=" - Static Methods"]') !=
-      null) {
-    entity.staticMethods = element
-        .querySelector(r'table.methods[summary$=" - Static Methods"]')!
-        .children[1]
-        .children
-        .map(parseTrForDocMethod)
-        .toList();
-  }
-  // constants
-  if (element.querySelector('table.constants') != null) {
-    entity.constants = element
-        .querySelector('table.constants')!
-        .children[1]
-        .children
-        .map(parseTrForDocConstant)
-        .toList();
-  }
-  // constants
-  if (element.querySelector('table.details') != null) {
-    entity.events = element
-        .querySelector('table.details')!
-        .children[1]
-        .children
-        .map(parseTrForDocMethod)
-        .toList();
-  }
-  return entity;
-}
-
-DocMethod parseTrForDocMethod(Element trElement) {
-  final result = DocMethod();
-
-  final tdList = trElement.children;
-  result.name = tdList[0].text;
-
-  final descriptions = tdList[1]
-      .children
-      .where((e) => e.localName == 'div' && e.classes.contains('desc'));
-
-  final parameters = descriptions.singleWhereOrNull((e) =>
-      e.children.isNotEmpty &&
-      (e.children.first.text == 'Parameters:' ||
-          e.children.first.text == 'Arguments:'));
-  if (parameters != null) {
-    final paramLis = parameters.querySelectorAll('li');
-    result
-      ..parameters = paramLis
-          .where((e) => e.querySelector('.optional-type-annotation') == null)
-          .map((e) => DocMethodParameter()
-            ..name = e.querySelectorAll('code')[0].text
-            ..type = convertType(e.querySelectorAll('code')[1].text))
-          .toList()
-      ..optionalParameters = paramLis
-          .where((e) => e.querySelector('.optional-type-annotation') != null)
-          .map((e) => DocMethodParameter()
-            ..name = e.querySelectorAll('code')[0].text
-            ..type = convertType(
-                e.querySelectorAll('code')[1].text.replaceAll(' optional', '')))
-          .toList();
-  }
-
-  final returnType = descriptions.singleWhereOrNull(
-      (e) => e.children.isNotEmpty && e.children.first.text == 'Return Value:');
-
-  result.returnType = returnType != null
-      ? convertType((returnType.children
-                  .where((element) => element.localName == 'code')
-                  .firstOrNull ??
-              returnType)
-          .text
-          .replaceFirst('Return Value:', '')
-          .replaceAll(' optional', '')
-          .trim())
-      : SimpleType._void;
-
-  return result;
-}
-
-DocProperty parseTrForDocProperty(Element trElement) {
-  final tdList = trElement.children;
-  return DocProperty()
-    ..name = tdList[0].querySelector('a.secret-link')!.text
-    ..type = convertType(tdList[1]
-        .children
-        .firstWhere((e) => e.localName == 'div')
-        .text
-        .replaceFirst('Type:', '')
-        .replaceAll(' optional', '')
-        .trim());
-}
-
-DocConstant parseTrForDocConstant(Element trElement) {
-  final tdList = trElement.children;
-  return DocConstant()..name = tdList[0].text;
-}
-
-class DocProperty {
-  late String name;
-  late Type type;
-  String? comment;
-}
-
-class DocMethod {
-  late String name;
-  List<DocMethodParameter> parameters = [];
-  List<DocMethodParameter> optionalParameters = [];
-  late Type returnType;
-  String? comment;
-
-  void updateReturnTypeToNonNullable() {
-    returnType = returnType.nonNullable();
-  }
-}
-
-class DocMethodParameter {
-  late String name;
-  late Type type;
-}
-
-class DocConstant {
-  late String name;
-  String? comment;
-}
-
-Kind toKind(String value) {
-  switch (value) {
-    case 'class':
-      return Kind.clazz;
-    case 'constants':
-      return Kind.constants;
-    case 'interface':
-      return Kind.interface;
-    case 'namespace':
-      return Kind.namespace;
-    case 'abstract':
-      return Kind.abstract;
-    case 'typedef':
-      return Kind.typedef;
-  }
-  throw StateError('Unknown kind: $value');
-}
-
-class Member {
-  const Member(this.className, this.name);
-
-  final String className;
-  final String name;
-
-  @override
-  int get hashCode => 0;
-  @override
-  bool operator ==(other) =>
-      other is Member && other.className == className && other.name == name;
-}
-
-// ignore: one_member_abstracts
-abstract class Type {
-  Type nonNullable();
-}
-
-class SimpleType extends Type {
-  SimpleType(
-    this.name, {
-    required this.nullable,
-    this.parameters = const [],
+class Parameter {
+  Parameter({
+    required this.name,
+    required this.jsType,
+    required this.doc,
   });
   final String name;
-  final bool nullable;
-  final List<Type> parameters;
+  String jsType;
+  final String doc;
+  String get type => translateType(jsType);
+}
 
-  static final _void = SimpleType('void', nullable: false);
+class Constructor {
+  Constructor({
+    required this.name,
+    required this.doc,
+    required this.parameters,
+    required this.optionalParameters,
+  });
+  final String name;
+  final String doc;
+  final List<Parameter> parameters;
+  final List<Parameter> optionalParameters;
+}
 
-  @override
-  SimpleType nonNullable() =>
-      SimpleType(name, parameters: parameters, nullable: false);
+Constructor? extractConstructor(
+  Element element,
+) {
+  final constructors =
+      element.querySelectorAll('table.constructors>tbody>tr').map((e) {
+    final name = translateType(e.children[0].text);
+    final other = e.children[1];
+    final parameters = extractParameters(other.children
+        .where((e) => e.classes.contains('parameters'))
+        .firstOrNull);
+    final doc = other.text;
+    final optionalIndex =
+        doc.contains('[') ? doc.indexOf('[') : double.infinity;
+    return Constructor(
+      name: name,
+      doc: doc,
+      parameters: parameters
+          .takeWhile((p) => doc.indexOf(p.name) < optionalIndex)
+          .toList(),
+      optionalParameters: parameters
+          .skipWhile((p) => doc.indexOf(p.name) < optionalIndex)
+          .toList(),
+    );
+  }).toList();
+  assert(constructors.length < 2);
+  return constructors.firstOrNull;
+}
 
-  @override
-  String toString() => [
-        name,
-        if (parameters.isNotEmpty) ...[
-          '<',
-          parameters.map((e) => e.toString()).join(','),
-          '>'
+class Method {
+  Method({
+    required this.name,
+    required this.doc,
+    required this.parameters,
+    required this.optionalParameters,
+    required this.jsReturnType,
+  });
+  final String name;
+  final String doc;
+  final List<Parameter> parameters;
+  final List<Parameter> optionalParameters;
+  String jsReturnType;
+  String get returnType => translateType(jsReturnType);
+}
+
+List<Method> extractMethods(
+  Element element,
+  bool isStatic,
+) =>
+    element
+        .querySelectorAll(
+            'table.methods[summary\$=" -${isStatic ? ' Static' : ''} Methods"]'
+            '>tbody>tr')
+        .map((e) {
+      final name = translateType(e.children[0].text);
+      final other = e.children[1];
+      final parameters = extractParameters(other.children
+          .where((e) => e.classes.contains('parameters'))
+          .firstOrNull);
+      final returnType = other.children
+          .where((e) => e.classes.contains('parameters'))
+          .map((e) => e.nextElementSibling!)
+          .map((e) {
+        final code = e.children.where((e) => e.localName == 'code').firstOrNull;
+        return code?.text ??
+            (e.text.replaceAll(RegExp(r'[  ]+'), ' ') == 'Return Value: None'
+                ? 'void'
+                : e.text);
+      }).first;
+      final doc = other.text;
+      final optionalIndex =
+          doc.contains('[') ? doc.indexOf('[') : double.infinity;
+      return Method(
+        name: name,
+        doc: doc,
+        parameters: parameters
+            .takeWhile((p) => doc.indexOf(p.name) < optionalIndex)
+            .toList(),
+        optionalParameters: parameters
+            .skipWhile((p) => doc.indexOf(p.name) < optionalIndex)
+            .toList(),
+        jsReturnType: returnType,
+      );
+    }).toList();
+
+List<Parameter> extractParameters(
+  Element? element,
+) {
+  if (element == null) return [];
+  return element
+      .querySelectorAll('ul>li')
+      .map((e) => Parameter(
+            name:
+                e.children.where((e) => e.localName == 'code').toList()[0].text,
+            jsType:
+                e.children.where((e) => e.localName == 'code').toList()[1].text,
+            doc: e.children.last.text,
+          ))
+      .toList();
+}
+
+class Property {
+  Property({
+    required this.name,
+    required this.jsType,
+    required this.doc,
+  });
+  final String name;
+  final String jsType;
+  final String doc;
+  String get type => translateType(jsType);
+
+  String generateDartCode() {
+    var accessorName = name;
+    if (name.contains('_')) {
+      accessorName = name.snake2camel;
+    }
+    return switch (typeParser.parse(jsType)) {
+      Success(
+        value: TType(
+          name: 'Array',
+          :final genericParameters,
+          :final optional,
+        )
+      ) =>
+        switch (genericParameters) {
+          [TType(name: final paramJSType)]
+              when paramJSType == 'string' || paramJSType == 'number' =>
+            () {
+              final parameterType = switch (paramJSType) {
+                'string' => 'String',
+                'number' => 'num',
+                _ => throw Error(),
+              };
+              final dartType = 'List<$parameterType>${optional ? '?' : ''}';
+              return """
+  @JS('$name')
+  external $type _$accessorName;
+  $dartType get $accessorName => _$accessorName.dartify() as $dartType;
+  set $accessorName($dartType value) => _$accessorName = value.jsify() as $type;""";
+            }(),
+          _ => () {
+              final dartType =
+                  'List<${toDartType(genericParameters.first, true)}>${optional ? '?' : ''}';
+              return """
+  @JS('$name')
+  external $type _$accessorName;
+  $dartType get $accessorName => _$accessorName${optional ? '?' : ''}.toDart;
+  set $accessorName($dartType value) => _$accessorName = value${optional ? '?' : ''}.toJS;""";
+            }(),
+        },
+      _ when accessorName != name => """
+  @JS('$name')
+  external $type _$accessorName;
+  $type get $accessorName => _$accessorName;
+  set $accessorName($type value) => _$accessorName = value;""",
+      _ => 'external $type $name;',
+    };
+  }
+}
+
+List<Property> extractProperties(
+  Element element,
+) =>
+    element.querySelectorAll('table.properties td[itemprop=property]').map((e) {
+      final name = e.text.split(' ').first;
+      final jsType = e.nextElementSibling!.children
+          .where((e) => e.localName == 'div')
+          .toList()[0]
+          .children[1]
+          .text;
+      final doc = e.nextElementSibling!.children
+          .where((e) => e.localName == 'div')
+          .toList()[1]
+          .text;
+      return Property(
+        name: name,
+        jsType: jsType,
+        doc: doc,
+      );
+    }).toList();
+
+List<({String name, List<({String name, String type})> parameters, String doc})>
+    extractEvents(
+  Element element,
+) =>
+        element
+            .querySelectorAll(
+                r'table.details[summary$=" - Events"] td[itemprop=property]')
+            .map((e) => (
+                  name: e.text.split(' ').first,
+                  parameters: e.nextElementSibling!.children
+                      .where((e) => e.localName == 'div')
+                      .toList()[1]
+                      .querySelectorAll('ul>li')
+                      .map((e) {
+                    final [name, type, ...] = e.querySelectorAll('code');
+                    return (name: name.text, type: translateType(type.text));
+                  }).toList(),
+                  doc: e.nextElementSibling!.children
+                      .where((e) => e.localName == 'div')
+                      .toList()[2]
+                      .text,
+                ))
+            .toList();
+
+class ConstantValue {
+  ConstantValue({required this.name, required this.doc});
+  String name;
+  String doc;
+}
+
+List<ConstantValue> extractConstants(Element element) => element
+    .querySelectorAll('table.constants td[itemprop=property]')
+    .map((e) => ConstantValue(
+          name: e.text.split(' ').first,
+          doc: e.nextElementSibling!.text,
+        ))
+    .toList();
+
+String translateType(String type) => switch (typeParser.parse(type)) {
+      Success(:final value) => toDartType(value, false),
+      _ => 'JSAny?/*UNPARSED:$type*/',
+    };
+
+String toDartType(AType value, bool isJS) => switch (value) {
+      TUnion(
+        types: [TType(name: 'LatLng'), TType(name: 'LatLngLiteral')],
+        :final optional,
+      ) =>
+        'LatLngOrLatLngLiteral${optional ? '?' : ''}',
+      TUnion(
+        types: [
+          TType(name: 'LatLngBounds'),
+          TType(name: 'LatLngBoundsLiteral'),
         ],
-        if (nullable) '?',
-      ].join();
-
-  @override
-  int get hashCode => name.hashCode ^ parameters.hashCode ^ nullable.hashCode;
-
-  @override
-  bool operator ==(Object other) =>
-      other is SimpleType &&
-      other.name == name &&
-      const ListEquality<Type>().equals(other.parameters, parameters) &&
-      other.nullable == nullable;
-}
-
-class UnionType extends Type {
-  UnionType(this.types);
-  final List<Type> types;
-
-  @override
-  UnionType nonNullable() => this;
-
-  @override
-  String toString() => 'Object?/*${types.map((e) => e.toString()).join('|')}*/';
-}
-
-class TupleType extends Type {
-  TupleType(this.elements, {required this.nullable});
-  final Map<String, Type> elements;
-  final bool nullable;
-
-  @override
-  TupleType nonNullable() => TupleType(elements, nullable: false);
-
-  @override
-  String toString() =>
-      '(${elements.entries.map((e) => '${e.value.toString()} ${e.key}').join(',')})${nullable ? '?' : ''}';
-}
-
-class FunctionType extends Type {
-  FunctionType(this.returnType, this.parameters, {required this.nullable});
-  final Type returnType;
-  final List<Type> parameters;
-  final bool nullable;
-
-  @override
-  FunctionType nonNullable() =>
-      FunctionType(returnType, parameters, nullable: false);
-
-  @override
-  String toString() =>
-      '${returnType.toString()} Function(${parameters.map((e) => e.toString()).join(',')})${nullable ? '?' : ''}';
-}
+        :final optional,
+      ) =>
+        'LatLngBoundsOrLatLngBoundsLiteral${optional ? '?' : ''}',
+      TUnion(
+        types: [
+          TType(name: 'MapMouseEvent'),
+          TType(name: 'IconMouseEvent'),
+        ],
+        :final optional,
+      ) =>
+        'MapMouseEventOrIconMouseEvent${optional ? '?' : ''}',
+      TUnion() => () {
+          var optional = value.optional;
+          final newTypes = value.types
+              .where(
+                  (t) => t is! TType || !{'null', 'undefined'}.contains(t.name))
+              .toList();
+          if (newTypes.isNotEmpty && newTypes.length != value.types.length) {
+            if (newTypes.length == 1) {
+              return toDartType(newTypes.first..optional = true, isJS);
+            }
+            optional = true;
+          }
+          return 'JSAny${optional ? '?' : ''}/*$value*/';
+        }(),
+      TFunction() => [
+          'JSFunction /*',
+          toDartType(value.returnType, isJS),
+          ' Function(',
+          value.parameters.map((e) => toDartType(e, isJS)).join(','),
+          ')',
+          '*/',
+          if (value.optional) '?',
+        ].join(),
+      TType() => [
+          switch (value.name) {
+            'boolean' => isJS ? 'JSBoolean' : 'bool',
+            'string' => isJS ? 'JSString' : 'String',
+            'number' => isJS ? 'JSNumber' : 'num',
+            'Float32Array' => 'JSFloat32Array',
+            'Float64Array' => 'JSFloat64Array',
+            'Array' => 'JSArray',
+            'Promise' => 'JSPromise',
+            'Function' => 'JSFunction',
+            'Iterable' => 'JSIterable',
+            'Error' => 'JSError',
+            'Object' => 'JSObject',
+            final v => () {
+                final parts = v.split('.');
+                if (parts.last.startsWith(RegExp(r'[a-z]'))) {
+                  return parts.last;
+                }
+                return parts
+                    .skipWhile((v) => v.startsWith(RegExp(r'[a-z]')))
+                    .join('');
+              }(),
+          },
+          if (value.genericParameters.isNotEmpty) ...[
+            '<',
+            value.genericParameters.map((e) => toDartType(e, true)).join(','),
+            '>',
+          ],
+          if (value.comment != null) '/*${value.comment}*/',
+          if (value.optional) '?',
+        ].join(),
+    };
 
 extension on String {
-  String capitalize() => this[0].toUpperCase() + substring(1);
-  String unCapitalize() => this[0].toLowerCase() + substring(1);
-  String toClassName() {
-    final type = convertType(this);
-    if (type is! SimpleType) {
-      return this;
-    }
-    return type.nonNullable().toString();
+  String get snake2camel {
+    final parts = split('_');
+    return [parts.first, ...parts.skip(1).map((e) => e.capitalized)].join();
   }
+
+  String get camel2snake {
+    final parts = [];
+    var start = 0;
+    for (var i = 1; i < length; i++) {
+      if (this[i - 1] == this[i - 1].toLowerCase() &&
+          this[i] == this[i].toUpperCase()) {
+        parts.add(substring(start, i));
+        start = i;
+      }
+    }
+    if (start < length - 1) {
+      parts.add(substring(start));
+    }
+    return parts.map((e) => e.toLowerCase()).join('_');
+  }
+
+  String get capitalized => this[0].toUpperCase() + substring(1);
 }
