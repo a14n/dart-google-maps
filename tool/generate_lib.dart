@@ -559,11 +559,18 @@ extension LatLngBoundsOrLatLngBoundsLiteral$Ext on LatLngBoundsOrLatLngBoundsLit
         'Document',
       ]);
       customCode.add('''
+  Element? Function(
+    Point? tileCoord,
+    num? zoom,
+    Document? ownerDocument,
+  ) get getTile => (getProperty('getTile'.toJS) as JSObject).callMethod('bind'.toJS, [this].toJS);
   void set getTile(Element? Function(
     Point tileCoord,
     num zoom,
     Document ownerDocument,
   ) getTile) => setProperty('getTile'.toJS, getTile.toJS);
+  void Function([Element? tile]) get releaseTile =>
+      (getProperty('releaseTile'.toJS) as JSObject).callMethod('bind'.toJS, [this].toJS);
   void set releaseTile(void Function(
     Element? tile,
   ) releaseTile) => setProperty('releaseTile'.toJS, releaseTile.toJS);
