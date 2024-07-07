@@ -521,10 +521,18 @@ extension LatLngBoundsOrLatLngBoundsLiteral$Ext on LatLngBoundsOrLatLngBoundsLit
       customConstructors
           .add('factory Projection() => JSObject() as Projection;');
       customCode.add('''
+  Point? Function(
+    LatLngOrLatLngLiteral latLng, [
+    Point? point,
+  ]) get fromLatLngToPoint => (getProperty('fromLatLngToPoint'.toJS) as JSObject).callMethod('bind'.toJS, [this].toJS);
   void set fromLatLngToPoint(Point? Function(
     LatLngOrLatLngLiteral latLng, [
     Point? point,
   ]) fromLatLngToPoint) => setProperty('fromLatLngToPoint'.toJS, fromLatLngToPoint.toJS);
+  LatLng? Function(
+    Point? pixel, [
+    bool? noClampNoWrap,
+  ]) get fromPointToLatLng => (getProperty('fromPointToLatLng'.toJS) as JSObject).callMethod('bind'.toJS, [this].toJS);
   void set fromPointToLatLng(LatLng? Function(
     Point pixel, [
     bool? noClampNoWrap,
