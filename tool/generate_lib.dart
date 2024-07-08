@@ -644,6 +644,13 @@ extension LatLngBoundsOrLatLngBoundsLiteral$Ext on LatLngBoundsOrLatLngBoundsLit
     case 'DataGeometryCollection':
       methods.removeWhere(
           (e) => {'forEachLatLng', 'getType'}.contains(e.method.name));
+    case 'event':
+      final triggerMethod =
+          methods.firstWhere((e) => e.method.name == 'trigger');
+      final eventArgsParameter = triggerMethod.method.parameters
+          .firstWhere((e) => e.name == 'eventArgs');
+      triggerMethod.method.parameters.remove(eventArgsParameter);
+      triggerMethod.method.optionalParameters.add(eventArgsParameter);
   }
   for (final method in methods) {
     if (method.method.returnType.startsWith('JSPromise<') &&
