@@ -14,6 +14,7 @@
 
 import 'dart:async' show Stream, StreamController;
 import 'dart:js_interop';
+import 'dart:js_interop_unsafe' show JSObjectUnsafeUtilExtension;
 
 import 'coordinates.dart'
     show

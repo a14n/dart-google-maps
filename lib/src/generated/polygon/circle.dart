@@ -22,6 +22,8 @@ extension type Circle._(MVCObject _) implements MVCObject {
   external Circle.js([
     JSAny? /*(Circle|CircleLiteral|CircleOptions)?*/ circleOrCircleOptions,
   ]);
+  bool isDraggableDefined() => callMethod('getDraggable'.toJS) != null;
+
   @JS('getBounds')
   external LatLngBounds? _getBounds();
   LatLngBounds? get bounds => _getBounds();

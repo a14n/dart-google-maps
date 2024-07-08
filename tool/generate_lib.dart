@@ -510,6 +510,10 @@ extension LatLngBoundsOrLatLngBoundsLiteral$Ext on LatLngBoundsOrLatLngBoundsLit
         '  external Circle.copy(Circle circle);',
         '  external Circle.copyLiteral(CircleLiteral circle);',
       ]);
+      customCode.add('''
+  bool isDraggableDefined() => callMethod('getDraggable'.toJS) != null;
+      ''');
+      customDependencies.add('JSObjectUnsafeUtilExtension');
 
     case 'Projection':
       customDependencies.addAll([
@@ -652,6 +656,8 @@ extension LatLngBoundsOrLatLngBoundsLiteral$Ext on LatLngBoundsOrLatLngBoundsLit
       triggerMethod.method.parameters.remove(eventArgsParameter);
       triggerMethod.method.optionalParameters.add(eventArgsParameter);
     case 'Marker':
+    case 'Polyline':
+    case 'Polygon':
       customCode.add('''
   bool isDraggableDefined() => callMethod('getDraggable'.toJS) != null;
       ''');
