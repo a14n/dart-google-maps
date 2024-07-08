@@ -651,6 +651,11 @@ extension LatLngBoundsOrLatLngBoundsLiteral$Ext on LatLngBoundsOrLatLngBoundsLit
           .firstWhere((e) => e.name == 'eventArgs');
       triggerMethod.method.parameters.remove(eventArgsParameter);
       triggerMethod.method.optionalParameters.add(eventArgsParameter);
+    case 'Marker':
+      customCode.add('''
+  bool isDraggableDefined() => callMethod('getDraggable'.toJS) != null;
+      ''');
+      customDependencies.add('JSObjectUnsafeUtilExtension');
   }
   for (final method in methods) {
     if (method.method.returnType.startsWith('JSPromise<') &&
