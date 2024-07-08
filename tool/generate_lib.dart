@@ -524,7 +524,10 @@ extension LatLngBoundsOrLatLngBoundsLiteral$Ext on LatLngBoundsOrLatLngBoundsLit
   Point? Function(
     LatLngOrLatLngLiteral latLng, [
     Point? point,
-  ]) get fromLatLngToPoint => (getProperty('fromLatLngToPoint'.toJS) as JSObject).callMethod('bind'.toJS, [this].toJS);
+  ]) get fromLatLngToPoint {
+    final function = (getProperty('fromLatLngToPoint'.toJS) as JSObject).callMethod('bind'.toJS, [this].toJS) as JSFunction;
+    return (latLng, [point]) => function.callAsFunction(null, latLng, point) as Point?;
+  }
   void set fromLatLngToPoint(Point? Function(
     LatLngOrLatLngLiteral latLng, [
     Point? point,
@@ -532,7 +535,10 @@ extension LatLngBoundsOrLatLngBoundsLiteral$Ext on LatLngBoundsOrLatLngBoundsLit
   LatLng? Function(
     Point? pixel, [
     bool? noClampNoWrap,
-  ]) get fromPointToLatLng => (getProperty('fromPointToLatLng'.toJS) as JSObject).callMethod('bind'.toJS, [this].toJS);
+  ]) get fromPointToLatLng {
+    final function = (getProperty('fromPointToLatLng'.toJS) as JSObject).callMethod('bind'.toJS, [this].toJS) as JSFunction;
+    return (pixel, [noClampNoWrap]) => function.callAsFunction(null, pixel, noClampNoWrap?.toJS) as LatLng?;
+  }
   void set fromPointToLatLng(LatLng? Function(
     Point pixel, [
     bool? noClampNoWrap,
@@ -563,14 +569,19 @@ extension LatLngBoundsOrLatLngBoundsLiteral$Ext on LatLngBoundsOrLatLngBoundsLit
     Point? tileCoord,
     num? zoom,
     Document? ownerDocument,
-  ) get getTile => (getProperty('getTile'.toJS) as JSObject).callMethod('bind'.toJS, [this].toJS);
+  ) get getTile {
+    final function = (getProperty('getTile'.toJS) as JSObject).callMethod('bind'.toJS, [this].toJS) as JSFunction;
+    return (tileCoord, zoom, ownerDocument) => function.callAsFunction(null, tileCoord, zoom?.toJS, ownerDocument) as Element?;
+  }
   void set getTile(Element? Function(
     Point tileCoord,
     num zoom,
     Document ownerDocument,
   ) getTile) => setProperty('getTile'.toJS, getTile.toJS);
-  void Function([Element? tile]) get releaseTile =>
-      (getProperty('releaseTile'.toJS) as JSObject).callMethod('bind'.toJS, [this].toJS);
+  void Function([Element? tile]) get releaseTile {
+    final function = (getProperty('releaseTile'.toJS) as JSObject).callMethod('bind'.toJS, [this].toJS) as JSFunction;
+    return ([tile]) => function.callAsFunction(null, tile);
+  }
   void set releaseTile(void Function(
     Element? tile,
   ) releaseTile) => setProperty('releaseTile'.toJS, releaseTile.toJS);

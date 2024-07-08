@@ -19,9 +19,13 @@ extension type Projection._(JSObject _) implements JSObject {
   Point? Function(
     LatLngOrLatLngLiteral latLng, [
     Point? point,
-  ]) get fromLatLngToPoint =>
-      (getProperty('fromLatLngToPoint'.toJS) as JSObject)
-          .callMethod('bind'.toJS, [this].toJS);
+  ]) get fromLatLngToPoint {
+    final function = (getProperty('fromLatLngToPoint'.toJS) as JSObject)
+        .callMethod('bind'.toJS, [this].toJS) as JSFunction;
+    return (latLng, [point]) =>
+        function.callAsFunction(null, latLng, point) as Point?;
+  }
+
   void set fromLatLngToPoint(
           Point? Function(
             LatLngOrLatLngLiteral latLng, [
@@ -31,9 +35,13 @@ extension type Projection._(JSObject _) implements JSObject {
   LatLng? Function(
     Point? pixel, [
     bool? noClampNoWrap,
-  ]) get fromPointToLatLng =>
-      (getProperty('fromPointToLatLng'.toJS) as JSObject)
-          .callMethod('bind'.toJS, [this].toJS);
+  ]) get fromPointToLatLng {
+    final function = (getProperty('fromPointToLatLng'.toJS) as JSObject)
+        .callMethod('bind'.toJS, [this].toJS) as JSFunction;
+    return (pixel, [noClampNoWrap]) =>
+        function.callAsFunction(null, pixel, noClampNoWrap?.toJS) as LatLng?;
+  }
+
   void set fromPointToLatLng(
           LatLng? Function(
             Point pixel, [

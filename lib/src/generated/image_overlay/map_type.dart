@@ -28,8 +28,13 @@ extension type MapType._(JSObject _) implements JSObject {
     Point? tileCoord,
     num? zoom,
     Document? ownerDocument,
-  ) get getTile => (getProperty('getTile'.toJS) as JSObject)
-      .callMethod('bind'.toJS, [this].toJS);
+  ) get getTile {
+    final function = (getProperty('getTile'.toJS) as JSObject)
+        .callMethod('bind'.toJS, [this].toJS) as JSFunction;
+    return (tileCoord, zoom, ownerDocument) => function.callAsFunction(
+        null, tileCoord, zoom?.toJS, ownerDocument) as Element?;
+  }
+
   void set getTile(
           Element? Function(
             Point tileCoord,
@@ -37,9 +42,12 @@ extension type MapType._(JSObject _) implements JSObject {
             Document ownerDocument,
           ) getTile) =>
       setProperty('getTile'.toJS, getTile.toJS);
-  void Function([Element? tile]) get releaseTile =>
-      (getProperty('releaseTile'.toJS) as JSObject)
-          .callMethod('bind'.toJS, [this].toJS);
+  void Function([Element? tile]) get releaseTile {
+    final function = (getProperty('releaseTile'.toJS) as JSObject)
+        .callMethod('bind'.toJS, [this].toJS) as JSFunction;
+    return ([tile]) => function.callAsFunction(null, tile);
+  }
+
   void set releaseTile(
           void Function(
             Element? tile,
