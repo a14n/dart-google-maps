@@ -19,6 +19,8 @@ extension type Marker._(MVCObject _) implements MVCObject {
   external Marker([
     MarkerOptions? opts,
   ]);
+  bool isDraggableDefined() => callMethod('getDraggable'.toJS) != null;
+
   external static int get MAX_ZINDEX;
   @JS('getAnimation')
   external Animation? _getAnimation();

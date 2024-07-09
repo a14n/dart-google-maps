@@ -19,6 +19,8 @@ extension type Polygon._(MVCObject _) implements MVCObject {
   external Polygon([
     PolygonOptions? opts,
   ]);
+  bool isDraggableDefined() => callMethod('getDraggable'.toJS) != null;
+
   @JS('getDraggable')
   external bool _getDraggable();
   bool get draggable => _getDraggable();

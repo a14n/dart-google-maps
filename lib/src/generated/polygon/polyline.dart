@@ -19,6 +19,8 @@ extension type Polyline._(MVCObject _) implements MVCObject {
   external Polyline([
     PolylineOptions? opts,
   ]);
+  bool isDraggableDefined() => callMethod('getDraggable'.toJS) != null;
+
   @JS('getDraggable')
   external bool _getDraggable();
   bool get draggable => _getDraggable();

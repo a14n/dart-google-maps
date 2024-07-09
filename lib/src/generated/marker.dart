@@ -14,6 +14,7 @@
 
 import 'dart:async' show Stream, StreamController;
 import 'dart:js_interop';
+import 'dart:js_interop_unsafe' show JSObjectUnsafeUtilExtension;
 
 import 'coordinates.dart' show LatLng, LatLngOrLatLngLiteral, Point, Size;
 import 'event.dart' show MVCObject, MapsEventListener, event;

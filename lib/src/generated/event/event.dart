@@ -42,9 +42,9 @@ extension type event._(JSObject _) implements JSObject {
   );
   external static void trigger(
     JSObject /*Object<null>*/ instance,
-    String eventName,
+    String eventName, [
     JSAny? /*UNPARSED:...?*/ eventArgs,
-  );
+  ]);
   external static MapsEventListener addDomListener(
     JSObject /*Object<null>*/ instance,
     String eventName,

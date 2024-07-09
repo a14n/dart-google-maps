@@ -16,12 +16,32 @@ part of '../image_overlay.dart';
 
 extension type Projection._(JSObject _) implements JSObject {
   factory Projection() => JSObject() as Projection;
+  Point? Function(
+    LatLngOrLatLngLiteral latLng, [
+    Point? point,
+  ]) get fromLatLngToPoint {
+    final function = (getProperty('fromLatLngToPoint'.toJS) as JSObject)
+        .callMethod('bind'.toJS, [this].toJS) as JSFunction;
+    return (latLng, [point]) =>
+        function.callAsFunction(null, latLng, point) as Point?;
+  }
+
   void set fromLatLngToPoint(
           Point? Function(
             LatLngOrLatLngLiteral latLng, [
             Point? point,
           ]) fromLatLngToPoint) =>
       setProperty('fromLatLngToPoint'.toJS, fromLatLngToPoint.toJS);
+  LatLng? Function(
+    Point? pixel, [
+    bool? noClampNoWrap,
+  ]) get fromPointToLatLng {
+    final function = (getProperty('fromPointToLatLng'.toJS) as JSObject)
+        .callMethod('bind'.toJS, [this].toJS) as JSFunction;
+    return (pixel, [noClampNoWrap]) =>
+        function.callAsFunction(null, pixel, noClampNoWrap?.toJS) as LatLng?;
+  }
+
   void set fromPointToLatLng(
           LatLng? Function(
             Point pixel, [

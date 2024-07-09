@@ -510,6 +510,10 @@ extension LatLngBoundsOrLatLngBoundsLiteral$Ext on LatLngBoundsOrLatLngBoundsLit
         '  external Circle.copy(Circle circle);',
         '  external Circle.copyLiteral(CircleLiteral circle);',
       ]);
+      customCode.add('''
+  bool isDraggableDefined() => callMethod('getDraggable'.toJS) != null;
+      ''');
+      customDependencies.add('JSObjectUnsafeUtilExtension');
 
     case 'Projection':
       customDependencies.addAll([
@@ -521,10 +525,24 @@ extension LatLngBoundsOrLatLngBoundsLiteral$Ext on LatLngBoundsOrLatLngBoundsLit
       customConstructors
           .add('factory Projection() => JSObject() as Projection;');
       customCode.add('''
+  Point? Function(
+    LatLngOrLatLngLiteral latLng, [
+    Point? point,
+  ]) get fromLatLngToPoint {
+    final function = (getProperty('fromLatLngToPoint'.toJS) as JSObject).callMethod('bind'.toJS, [this].toJS) as JSFunction;
+    return (latLng, [point]) => function.callAsFunction(null, latLng, point) as Point?;
+  }
   void set fromLatLngToPoint(Point? Function(
     LatLngOrLatLngLiteral latLng, [
     Point? point,
   ]) fromLatLngToPoint) => setProperty('fromLatLngToPoint'.toJS, fromLatLngToPoint.toJS);
+  LatLng? Function(
+    Point? pixel, [
+    bool? noClampNoWrap,
+  ]) get fromPointToLatLng {
+    final function = (getProperty('fromPointToLatLng'.toJS) as JSObject).callMethod('bind'.toJS, [this].toJS) as JSFunction;
+    return (pixel, [noClampNoWrap]) => function.callAsFunction(null, pixel, noClampNoWrap?.toJS) as LatLng?;
+  }
   void set fromPointToLatLng(LatLng? Function(
     Point pixel, [
     bool? noClampNoWrap,
@@ -551,11 +569,23 @@ extension LatLngBoundsOrLatLngBoundsLiteral$Ext on LatLngBoundsOrLatLngBoundsLit
         'Document',
       ]);
       customCode.add('''
+  Element? Function(
+    Point? tileCoord,
+    num? zoom,
+    Document? ownerDocument,
+  ) get getTile {
+    final function = (getProperty('getTile'.toJS) as JSObject).callMethod('bind'.toJS, [this].toJS) as JSFunction;
+    return (tileCoord, zoom, ownerDocument) => function.callAsFunction(null, tileCoord, zoom?.toJS, ownerDocument) as Element?;
+  }
   void set getTile(Element? Function(
     Point tileCoord,
     num zoom,
     Document ownerDocument,
   ) getTile) => setProperty('getTile'.toJS, getTile.toJS);
+  void Function([Element? tile]) get releaseTile {
+    final function = (getProperty('releaseTile'.toJS) as JSObject).callMethod('bind'.toJS, [this].toJS) as JSFunction;
+    return ([tile]) => function.callAsFunction(null, tile);
+  }
   void set releaseTile(void Function(
     Element? tile,
   ) releaseTile) => setProperty('releaseTile'.toJS, releaseTile.toJS);
@@ -618,6 +648,20 @@ extension LatLngBoundsOrLatLngBoundsLiteral$Ext on LatLngBoundsOrLatLngBoundsLit
     case 'DataGeometryCollection':
       methods.removeWhere(
           (e) => {'forEachLatLng', 'getType'}.contains(e.method.name));
+    case 'event':
+      final triggerMethod =
+          methods.firstWhere((e) => e.method.name == 'trigger');
+      final eventArgsParameter = triggerMethod.method.parameters
+          .firstWhere((e) => e.name == 'eventArgs');
+      triggerMethod.method.parameters.remove(eventArgsParameter);
+      triggerMethod.method.optionalParameters.add(eventArgsParameter);
+    case 'Marker':
+    case 'Polyline':
+    case 'Polygon':
+      customCode.add('''
+  bool isDraggableDefined() => callMethod('getDraggable'.toJS) != null;
+      ''');
+      customDependencies.add('JSObjectUnsafeUtilExtension');
   }
   for (final method in methods) {
     if (method.method.returnType.startsWith('JSPromise<') &&
