@@ -16,32 +16,25 @@ part of '../image_overlay.dart';
 
 extension type Projection._(JSObject _) implements JSObject {
   factory Projection() => JSObject() as Projection;
-  Point? Function(
-    LatLngOrLatLngLiteral latLng, [
-    Point? point,
-  ]) get fromLatLngToPoint {
-    final function = (getProperty('fromLatLngToPoint'.toJS) as JSObject)
-        .callMethod('bind'.toJS, [this].toJS) as JSFunction;
-    return (latLng, [point]) =>
-        function.callAsFunction(null, latLng, point) as Point?;
-  }
-
+  @JS('fromLatLngToPoint')
+  external Point? _fromLatLngToPoint(LatLngOrLatLngLiteral latLng,
+      [Point? point]);
+  Point? Function(LatLngOrLatLngLiteral latLng, [Point? point])
+      get fromLatLngToPoint =>
+          // ignore: unnecessary_lambdas
+          (latLng, [point]) => _fromLatLngToPoint(latLng, point);
   void set fromLatLngToPoint(
           Point? Function(
             LatLngOrLatLngLiteral latLng, [
             Point? point,
           ]) fromLatLngToPoint) =>
       setProperty('fromLatLngToPoint'.toJS, fromLatLngToPoint.toJS);
-  LatLng? Function(
-    Point? pixel, [
-    bool? noClampNoWrap,
-  ]) get fromPointToLatLng {
-    final function = (getProperty('fromPointToLatLng'.toJS) as JSObject)
-        .callMethod('bind'.toJS, [this].toJS) as JSFunction;
-    return (pixel, [noClampNoWrap]) =>
-        function.callAsFunction(null, pixel, noClampNoWrap?.toJS) as LatLng?;
-  }
 
+  @JS('fromPointToLatLng')
+  external LatLng? _fromPointToLatLng(Point pixel, [bool? noClampNoWrap]);
+  LatLng? Function(Point pixel, [bool? noClampNoWrap]) get fromPointToLatLng =>
+      // ignore: unnecessary_lambdas
+      (pixel, [noClampNoWrap]) => _fromPointToLatLng(pixel, noClampNoWrap);
   void set fromPointToLatLng(
           LatLng? Function(
             Point pixel, [

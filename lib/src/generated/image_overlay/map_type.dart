@@ -24,17 +24,13 @@ extension type MapType._(JSObject _) implements JSObject {
     String? name,
     Projection? projection,
   });
-  Element? Function(
-    Point? tileCoord,
-    num? zoom,
-    Document? ownerDocument,
-  ) get getTile {
-    final function = (getProperty('getTile'.toJS) as JSObject)
-        .callMethod('bind'.toJS, [this].toJS) as JSFunction;
-    return (tileCoord, zoom, ownerDocument) => function.callAsFunction(
-        null, tileCoord, zoom?.toJS, ownerDocument) as Element?;
-  }
-
+  @JS('getTile')
+  external Element? _getTile(Point tileCoord, num zoom, Document ownerDocument);
+  Element? Function(Point tileCoord, num zoom, Document ownerDocument)
+      get getTile =>
+          // ignore: unnecessary_lambdas
+          (tileCoord, zoom, ownerDocument) =>
+              _getTile(tileCoord, zoom, ownerDocument);
   void set getTile(
           Element? Function(
             Point tileCoord,
@@ -42,12 +38,12 @@ extension type MapType._(JSObject _) implements JSObject {
             Document ownerDocument,
           ) getTile) =>
       setProperty('getTile'.toJS, getTile.toJS);
-  void Function([Element? tile]) get releaseTile {
-    final function = (getProperty('releaseTile'.toJS) as JSObject)
-        .callMethod('bind'.toJS, [this].toJS) as JSFunction;
-    return ([tile]) => function.callAsFunction(null, tile);
-  }
 
+  @JS('releaseTile')
+  external void _releaseTile(Element? tile);
+  void Function(Element? tile) get releaseTile =>
+      // ignore: unnecessary_lambdas
+      (tile) => _releaseTile(tile);
   void set releaseTile(
           void Function(
             Element? tile,

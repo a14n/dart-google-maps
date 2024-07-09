@@ -525,24 +525,21 @@ extension LatLngBoundsOrLatLngBoundsLiteral$Ext on LatLngBoundsOrLatLngBoundsLit
       customConstructors
           .add('factory Projection() => JSObject() as Projection;');
       customCode.add('''
-  Point? Function(
-    LatLngOrLatLngLiteral latLng, [
-    Point? point,
-  ]) get fromLatLngToPoint {
-    final function = (getProperty('fromLatLngToPoint'.toJS) as JSObject).callMethod('bind'.toJS, [this].toJS) as JSFunction;
-    return (latLng, [point]) => function.callAsFunction(null, latLng, point) as Point?;
-  }
+  @JS('fromLatLngToPoint')
+  external Point? _fromLatLngToPoint(LatLngOrLatLngLiteral latLng, [Point? point]);
+  Point? Function(LatLngOrLatLngLiteral latLng, [Point? point]) get fromLatLngToPoint =>
+      // ignore: unnecessary_lambdas
+      (latLng, [point]) => _fromLatLngToPoint(latLng, point);
   void set fromLatLngToPoint(Point? Function(
     LatLngOrLatLngLiteral latLng, [
     Point? point,
   ]) fromLatLngToPoint) => setProperty('fromLatLngToPoint'.toJS, fromLatLngToPoint.toJS);
-  LatLng? Function(
-    Point? pixel, [
-    bool? noClampNoWrap,
-  ]) get fromPointToLatLng {
-    final function = (getProperty('fromPointToLatLng'.toJS) as JSObject).callMethod('bind'.toJS, [this].toJS) as JSFunction;
-    return (pixel, [noClampNoWrap]) => function.callAsFunction(null, pixel, noClampNoWrap?.toJS) as LatLng?;
-  }
+
+  @JS('fromPointToLatLng')
+  external LatLng? _fromPointToLatLng(Point pixel, [bool? noClampNoWrap]);
+  LatLng? Function(Point pixel, [bool? noClampNoWrap]) get fromPointToLatLng =>
+      // ignore: unnecessary_lambdas
+      (pixel, [noClampNoWrap]) => _fromPointToLatLng(pixel, noClampNoWrap);
   void set fromPointToLatLng(LatLng? Function(
     Point pixel, [
     bool? noClampNoWrap,
@@ -569,23 +566,22 @@ extension LatLngBoundsOrLatLngBoundsLiteral$Ext on LatLngBoundsOrLatLngBoundsLit
         'Document',
       ]);
       customCode.add('''
-  Element? Function(
-    Point? tileCoord,
-    num? zoom,
-    Document? ownerDocument,
-  ) get getTile {
-    final function = (getProperty('getTile'.toJS) as JSObject).callMethod('bind'.toJS, [this].toJS) as JSFunction;
-    return (tileCoord, zoom, ownerDocument) => function.callAsFunction(null, tileCoord, zoom?.toJS, ownerDocument) as Element?;
-  }
+  @JS('getTile')
+  external Element? _getTile(Point tileCoord, num zoom, Document ownerDocument);
+  Element? Function(Point tileCoord, num zoom, Document ownerDocument) get getTile =>
+      // ignore: unnecessary_lambdas
+      (tileCoord, zoom, ownerDocument) => _getTile(tileCoord, zoom, ownerDocument);
   void set getTile(Element? Function(
     Point tileCoord,
     num zoom,
     Document ownerDocument,
   ) getTile) => setProperty('getTile'.toJS, getTile.toJS);
-  void Function([Element? tile]) get releaseTile {
-    final function = (getProperty('releaseTile'.toJS) as JSObject).callMethod('bind'.toJS, [this].toJS) as JSFunction;
-    return ([tile]) => function.callAsFunction(null, tile);
-  }
+
+  @JS('releaseTile')
+  external void _releaseTile(Element? tile);
+  void Function(Element? tile) get releaseTile =>
+      // ignore: unnecessary_lambdas
+      (tile) => _releaseTile(tile);
   void set releaseTile(void Function(
     Element? tile,
   ) releaseTile) => setProperty('releaseTile'.toJS, releaseTile.toJS);
