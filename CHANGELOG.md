@@ -1,3 +1,7 @@
+# 8.0.0-dev.2
+
+- some minor changes
+
 # 8.0.0-dev.1
 
 - migrate to wasm-safe JS-interop.
