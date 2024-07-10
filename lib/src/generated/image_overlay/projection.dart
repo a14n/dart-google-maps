@@ -20,9 +20,12 @@ extension type Projection._(JSObject _) implements JSObject {
   external Point? _fromLatLngToPoint(LatLngOrLatLngLiteral latLng,
       [Point? point]);
   Point? Function(LatLngOrLatLngLiteral latLng, [Point? point])
-      get fromLatLngToPoint =>
-          // ignore: unnecessary_lambdas
-          (latLng, [point]) => _fromLatLngToPoint(latLng, point);
+      get fromLatLngToPoint => (latLng, [point]) {
+            if (point != null)
+              return _fromLatLngToPoint(latLng, point);
+            else
+              return _fromLatLngToPoint(latLng);
+          };
   void set fromLatLngToPoint(
           Point? Function(
             LatLngOrLatLngLiteral latLng, [
