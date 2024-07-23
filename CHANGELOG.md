@@ -1,6 +1,6 @@
 # 8.0.0-dev.3
 
-- update package:web ^1.0.0
+- allow package:web ^1.0.0
 
 # 8.0.0-dev.2
 
