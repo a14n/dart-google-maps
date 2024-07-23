@@ -193,9 +193,9 @@ void Function(MapMouseEvent) showInfoWindow(
 // Load the place information into the HTML elements used by the info window.
 void buildIWContent(PlaceResult place) {
   document.getElementById('iw-icon')!.innerHTML =
-      '<img class="hotelIcon" src="${place.icon}"></img>';
+      '<img class="hotelIcon" src="${place.icon}"></img>'.toJS;
   document.getElementById('iw-url')!.innerHTML =
-      '<b><a href="${place.url}">${place.name}</a></b>';
+      '<b><a href="${place.url}">${place.name}</a></b>'.toJS;
   document.getElementById('iw-address')!.textContent = place.vicinity;
 
   if (place.formattedPhoneNumber != null) {
@@ -221,7 +221,7 @@ void buildIWContent(PlaceResult place) {
       }
       (document.getElementById('iw-rating-row')! as HTMLElement).style.display =
           '';
-      document.getElementById('iw-rating')!.innerHTML = ratingHtml;
+      document.getElementById('iw-rating')!.innerHTML = ratingHtml.toJS;
     }
   } else {
     (document.getElementById('iw-rating-row')! as HTMLElement).style.display =

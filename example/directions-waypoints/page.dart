@@ -55,5 +55,5 @@ void calcRoute() async {
       ..write('${leg.endAddress}<br>')
       ..write('${leg.distance!.text}<br><br>');
   }
-  summaryPanel!.innerHTML = html.toString();
+  summaryPanel!.innerHTML = html.toString().toJS;
 }
