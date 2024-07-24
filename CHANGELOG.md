@@ -1,3 +1,7 @@
+# 8.0.0-dev.4
+
+- allow package:web: ">=0.5.1 <2.0.0"
+
 # 8.0.0-dev.3
 
 - allow package:web ^1.0.0
