@@ -56,7 +56,7 @@ void calculateDistances() async {
           '${origins[i]} to ${destinations[j]}: ${results[j].distance.text} in ${results[j].duration.text}<br>');
     }
   }
-  document.getElementById('outputDiv')!.innerHTML = html.toString();
+  document.getElementById('outputDiv')!.innerHTML = html.toString().toJS;
 }
 
 void addMarker(String location, {required bool isDestination}) async {

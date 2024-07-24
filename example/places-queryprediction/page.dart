@@ -27,6 +27,6 @@ void callback(
 
   for (final prediction in predictions!.toDart) {
     results.innerHTML =
-        '${results.innerHTML}<li>${prediction!.description}</li>';
+        '${results.innerHTML}<li>${prediction!.description}</li>'.toJS;
   }
 }

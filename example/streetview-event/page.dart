@@ -16,7 +16,7 @@ void main() {
   );
 
   panorama.onPanoChanged.listen((_) {
-    document.getElementById('pano_cell')!.innerHTML = panorama.pano;
+    document.getElementById('pano_cell')!.innerHTML = panorama.pano.toJS;
   });
 
   panorama.addListener(
@@ -30,15 +30,15 @@ void main() {
       final links = panorama.links;
       for (var i = 0; i < links.toDart.length; i++) {
         linksTable.insertRow()
-          ..insertCell().innerHTML = '<b>Link: $i</b>'
-          ..insertCell().innerHTML = links.toDart[i].description ?? '';
+          ..insertCell().innerHTML = '<b>Link: $i</b>'.toJS
+          ..insertCell().innerHTML = (links.toDart[i].description ?? '').toJS;
       }
     }.toJS,
   );
 
   panorama.onPositionChanged.listen((_) {
     document.getElementById('position_cell')!.innerHTML =
-        '${panorama.position}';
+        '${panorama.position}'.toJS;
   });
 
   panorama.onPovChanged.listen((_) {

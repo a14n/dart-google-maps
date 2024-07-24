@@ -53,7 +53,7 @@ void calcRoute() async {
   // function to create markers for each step.
   final response = await directionsService.route(request);
   document.querySelector('#warnings_panel')!.innerHTML =
-      '<b>${response.routes[0].warnings}</b>';
+      '<b>${response.routes[0].warnings}</b>'.toJS;
   directionsDisplay.directions = response;
   showSteps(response);
 }

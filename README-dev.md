@@ -10,6 +10,6 @@ There are 2 steps:
 2. Generate real code with [js_wrapping_generator](https://pub.dev/packages/js_wrapping_generator)
 
 ```
-dart --no-sound-null-safety tool/generate_lib.dart
+dart tool/generate_lib.dart
 dart run build_runner build --delete-conflicting-outputs -v lib
 ```
