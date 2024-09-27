@@ -17,11 +17,10 @@ part of '../overlay_view.dart';
 @JS('google.maps.OverlayView')
 extension type OverlayView._(MVCObject _) implements MVCObject {
   external OverlayView();
-  void set onAdd(void Function() onAdd) =>
-      setProperty('onAdd'.toJS, onAdd.toJS);
-  void set onRemove(void Function() onRemove) =>
+  set onAdd(void Function() onAdd) => setProperty('onAdd'.toJS, onAdd.toJS);
+  set onRemove(void Function() onRemove) =>
       setProperty('onRemove'.toJS, onRemove.toJS);
-  void set draw(void Function() draw) => setProperty('draw'.toJS, draw.toJS);
+  set draw(void Function() draw) => setProperty('draw'.toJS, draw.toJS);
 
   @JS('getMap')
   external JSAny? /*Map|StreetViewPanorama|null*/ _getMap();
@@ -34,7 +33,7 @@ extension type OverlayView._(MVCObject _) implements MVCObject {
   MapCanvasProjection get projection => _getProjection();
   @JS('setMap')
   external void _setMap(JSAny? /*(Map|StreetViewPanorama)?*/ map);
-  void set map(JSAny? /*(Map|StreetViewPanorama)?*/ map) => _setMap(map);
+  set map(JSAny? /*(Map|StreetViewPanorama)?*/ map) => _setMap(map);
   external static void preventMapHitsAndGesturesFrom(
     Element element,
   );

@@ -33,20 +33,19 @@ extension type DirectionsRenderer._(MVCObject _) implements MVCObject {
   num get routeIndex => _getRouteIndex();
   @JS('setDirections')
   external void _setDirections(DirectionsResult directions);
-  void set directions(DirectionsResult directions) =>
-      _setDirections(directions);
+  set directions(DirectionsResult directions) => _setDirections(directions);
   @JS('setMap')
   external void _setMap(Map? map);
-  void set map(Map? map) => _setMap(map);
+  set map(Map? map) => _setMap(map);
   @JS('setOptions')
   external void _setOptions(DirectionsRendererOptions options);
-  void set options(DirectionsRendererOptions options) => _setOptions(options);
+  set options(DirectionsRendererOptions options) => _setOptions(options);
   @JS('setPanel')
   external void _setPanel(HTMLElement? panel);
-  void set panel(HTMLElement? panel) => _setPanel(panel);
+  set panel(HTMLElement? panel) => _setPanel(panel);
   @JS('setRouteIndex')
   external void _setRouteIndex(num routeIndex);
-  void set routeIndex(num routeIndex) => _setRouteIndex(routeIndex);
+  set routeIndex(num routeIndex) => _setRouteIndex(routeIndex);
   Stream<void> get onDirectionsChanged {
     late StreamController<void> sc; // ignore: close_sinks
     late MapsEventListener mapsEventListener;

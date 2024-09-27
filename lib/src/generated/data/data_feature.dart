@@ -37,7 +37,7 @@ extension type DataFeature._(JSObject _) implements JSObject {
   @JS('setGeometry')
   external void _setGeometry(
       JSAny /*Data.Geometry|LatLng|LatLngLiteral*/ newGeometry);
-  void set geometry(JSAny /*Data.Geometry|LatLng|LatLngLiteral*/ newGeometry) =>
+  set geometry(JSAny /*Data.Geometry|LatLng|LatLngLiteral*/ newGeometry) =>
       _setGeometry(newGeometry);
   external void setProperty(
     String name,

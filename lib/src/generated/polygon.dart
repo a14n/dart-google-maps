@@ -12,10 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import 'dart:async' show Stream, StreamController;
 import 'dart:js_interop';
-import 'dart:js_interop_unsafe' show JSObjectUnsafeUtilExtension;
-
 import 'coordinates.dart'
     show
         CircleLiteral,
@@ -24,10 +21,11 @@ import 'coordinates.dart'
         LatLngBoundsOrLatLngBoundsLiteral,
         LatLngLiteral,
         LatLngOrLatLngLiteral;
+import 'dart:async' show Stream, StreamController;
+import 'dart:js_interop_unsafe' show JSObjectUnsafeUtilExtension;
 import 'event.dart' show MVCArray, MVCObject, MapsEventListener, event;
 import 'map.dart' show Map, MapMouseEvent;
 import 'marker.dart' show Symbol;
-
 part 'polygon/circle.dart';
 part 'polygon/circle_options.dart';
 part 'polygon/icon_sequence.dart';

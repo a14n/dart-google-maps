@@ -27,14 +27,13 @@ extension type DrawingManager._(MVCObject _) implements MVCObject {
   Map? get map => _getMap();
   @JS('setDrawingMode')
   external void _setDrawingMode(OverlayType? drawingMode);
-  void set drawingMode(OverlayType? drawingMode) =>
-      _setDrawingMode(drawingMode);
+  set drawingMode(OverlayType? drawingMode) => _setDrawingMode(drawingMode);
   @JS('setMap')
   external void _setMap(Map? map);
-  void set map(Map? map) => _setMap(map);
+  set map(Map? map) => _setMap(map);
   @JS('setOptions')
   external void _setOptions(DrawingManagerOptions options);
-  void set options(DrawingManagerOptions options) => _setOptions(options);
+  set options(DrawingManagerOptions options) => _setOptions(options);
   Stream<Circle> get onCirclecomplete {
     late StreamController<Circle> sc; // ignore: close_sinks
     late MapsEventListener mapsEventListener;

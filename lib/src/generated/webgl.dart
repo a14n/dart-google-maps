@@ -13,15 +13,12 @@
 // limitations under the License.
 
 import 'dart:js_interop';
-import 'dart:js_interop_unsafe' show JSObjectUnsafeUtilExtension;
-
-import 'package:web/web.dart' show Document, Element, WebGLRenderingContext;
-
 import 'coordinates.dart'
     show LatLng, LatLngAltitude, LatLngAltitudeLiteral, Point;
+import 'dart:js_interop_unsafe' show JSObjectUnsafeUtilExtension;
 import 'event.dart' show MVCObject;
 import 'map.dart' show CameraOptions, Map;
-
+import 'package:web/web.dart' show Document, Element, WebGLRenderingContext;
 part 'webgl/camera_params.dart';
 part 'webgl/coordinate_transformer.dart';
 part 'webgl/web_gldraw_options.dart';

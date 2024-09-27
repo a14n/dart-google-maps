@@ -38,24 +38,24 @@ extension type Polyline._(MVCObject _) implements MVCObject {
   bool get visible => _getVisible();
   @JS('setDraggable')
   external void _setDraggable(bool draggable);
-  void set draggable(bool draggable) => _setDraggable(draggable);
+  set draggable(bool draggable) => _setDraggable(draggable);
   @JS('setEditable')
   external void _setEditable(bool editable);
-  void set editable(bool editable) => _setEditable(editable);
+  set editable(bool editable) => _setEditable(editable);
   @JS('setMap')
   external void _setMap(Map? map);
-  void set map(Map? map) => _setMap(map);
+  set map(Map? map) => _setMap(map);
   @JS('setOptions')
   external void _setOptions(PolylineOptions? options);
-  void set options(PolylineOptions? options) => _setOptions(options);
+  set options(PolylineOptions? options) => _setOptions(options);
   @JS('setPath')
   external void _setPath(
       JSAny /*MVCArray<LatLng>|Array<LatLng|LatLngLiteral>*/ path);
-  void set path(JSAny /*MVCArray<LatLng>|Array<LatLng|LatLngLiteral>*/ path) =>
+  set path(JSAny /*MVCArray<LatLng>|Array<LatLng|LatLngLiteral>*/ path) =>
       _setPath(path);
   @JS('setVisible')
   external void _setVisible(bool visible);
-  void set visible(bool visible) => _setVisible(visible);
+  set visible(bool visible) => _setVisible(visible);
   Stream<PolyMouseEvent> get onClick {
     late StreamController<PolyMouseEvent> sc; // ignore: close_sinks
     late MapsEventListener mapsEventListener;

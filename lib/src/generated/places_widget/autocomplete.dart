@@ -31,21 +31,20 @@ extension type Autocomplete._(MVCObject _) implements MVCObject {
   PlaceResult get place => _getPlace();
   @JS('setBounds')
   external void _setBounds(LatLngBoundsOrLatLngBoundsLiteral? bounds);
-  void set bounds(LatLngBoundsOrLatLngBoundsLiteral? bounds) =>
-      _setBounds(bounds);
+  set bounds(LatLngBoundsOrLatLngBoundsLiteral? bounds) => _setBounds(bounds);
   @JS('setComponentRestrictions')
   external void _setComponentRestrictions(ComponentRestrictions? restrictions);
-  void set componentRestrictions(ComponentRestrictions? restrictions) =>
+  set componentRestrictions(ComponentRestrictions? restrictions) =>
       _setComponentRestrictions(restrictions);
   @JS('setFields')
   external void _setFields(JSArray<JSString>? fields);
-  void set fields(JSArray<JSString>? fields) => _setFields(fields);
+  set fields(JSArray<JSString>? fields) => _setFields(fields);
   @JS('setOptions')
   external void _setOptions(AutocompleteOptions? options);
-  void set options(AutocompleteOptions? options) => _setOptions(options);
+  set options(AutocompleteOptions? options) => _setOptions(options);
   @JS('setTypes')
   external void _setTypes(JSArray<JSString>? types);
-  void set types(JSArray<JSString>? types) => _setTypes(types);
+  set types(JSArray<JSString>? types) => _setTypes(types);
   Stream<void> get onPlaceChanged {
     late StreamController<void> sc; // ignore: close_sinks
     late MapsEventListener mapsEventListener;

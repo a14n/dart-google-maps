@@ -12,14 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import 'dart:async' show Stream, StreamController;
 import 'dart:js_interop';
-import 'dart:js_interop_unsafe' show JSObjectUnsafeUtilExtension;
-
 import 'coordinates.dart' show LatLng, LatLngOrLatLngLiteral, Point, Size;
+import 'dart:async' show Stream, StreamController;
+import 'dart:js_interop_unsafe' show JSObjectUnsafeUtilExtension;
 import 'event.dart' show MVCObject, MapsEventListener, event;
 import 'map.dart' show Map, MapMouseEvent;
-
 part 'marker/animation.dart';
 part 'marker/collision_behavior.dart';
 part 'marker/icon.dart';

@@ -31,7 +31,7 @@ extension type ImageMapType._(MVCObject _) implements MVCObject, MapType {
   num get opacity => _getOpacity();
   @JS('setOpacity')
   external void _setOpacity(num opacity);
-  void set opacity(num opacity) => _setOpacity(opacity);
+  set opacity(num opacity) => _setOpacity(opacity);
   Stream<void> get onTilesloaded {
     late StreamController<void> sc; // ignore: close_sinks
     late MapsEventListener mapsEventListener;

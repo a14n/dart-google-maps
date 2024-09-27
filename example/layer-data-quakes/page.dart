@@ -49,7 +49,7 @@ void main() {
 
   map.data.style = styleFeature.toJS;
 
-  window.setProperty('eqfeed_callback'.toJS, eqfeed_callback.toJS);
+  window.setProperty('eqfeed_callback'.toJS, eqfeedCallback.toJS);
 
   // Get the earthquake data (JSONP format)
   // This feed is a copy from the USGS feed, you can find the originals here:
@@ -62,7 +62,7 @@ void main() {
 }
 
 // Defines the callback function referenced in the jsonp file.
-void eqfeed_callback(JSObject data) {
+void eqfeedCallback(JSObject data) {
   map.data.addGeoJson(data);
 }
 
@@ -73,8 +73,10 @@ DataStyleOptions styleFeature(DataFeature feature) {
   const maxMag = 6.0;
 
   // fraction represents where the value sits between the min and max
-  final fraction = (min(feature.getProperty('mag') as num, maxMag) - minMag) /
-      (maxMag - minMag);
+  final fraction =
+      (min((feature.getProperty('mag') as JSNumber).toDartDouble, maxMag) -
+              minMag) /
+          (maxMag - minMag);
 
   final color = interpolateHsl(low, high, fraction);
 
@@ -84,10 +86,10 @@ DataStyleOptions styleFeature(DataFeature feature) {
       ..strokeWeight = 0.5
       ..strokeColor = '#fff'
       ..fillColor = color
-      ..fillOpacity = 2 / (feature.getProperty('mag') as num)
+      ..fillOpacity = 2 / (feature.getProperty('mag') as JSNumber).toDartDouble
       // while an exponent would technically be correct, quadratic looks nicer
-      ..scale = pow(feature.getProperty('mag') as num, 2))
-    ..zIndex = (feature.getProperty('mag') as num).floor();
+      ..scale = pow((feature.getProperty('mag') as JSNumber).toDartDouble, 2))
+    ..zIndex = (feature.getProperty('mag') as JSNumber).toDartDouble.floor();
 }
 
 String interpolateHsl(List<num> lowHsl, List<num> highHsl, num fraction) {

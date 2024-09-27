@@ -12,12 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import 'dart:async' show Stream, StreamController;
 import 'dart:js_interop';
-import 'dart:js_interop_unsafe' show JSObjectUnsafeUtilExtension;
-
-import 'package:web/web.dart' show Event, HTMLElement;
-
 import 'control.dart'
     show
         CameraControlOptions,
@@ -37,12 +32,14 @@ import 'coordinates.dart'
         LatLngLiteral,
         LatLngOrLatLngLiteral,
         Padding;
+import 'dart:async' show Stream, StreamController;
+import 'dart:js_interop_unsafe' show JSObjectUnsafeUtilExtension;
 import 'data.dart' show Data;
 import 'data_driven_styling.dart' show FeatureLayer, FeatureType;
 import 'event.dart' show MVCArray, MVCObject, MapsEventListener, event;
 import 'image_overlay.dart' show MapType, Projection;
+import 'package:web/web.dart' show Event, HTMLElement;
 import 'street_view.dart' show StreetViewPanorama;
-
 part 'map/bicycling_layer.dart';
 part 'map/camera_options.dart';
 part 'map/color_scheme.dart';

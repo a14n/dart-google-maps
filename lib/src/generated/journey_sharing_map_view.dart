@@ -12,18 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import 'dart:async' show Stream, StreamController;
 import 'dart:js_interop';
-
-import 'package:web/web.dart' show Element;
-
 import '/src/js/error.dart' show JSError;
+import 'dart:async' show Stream, StreamController;
 import 'event.dart' show MapsEventListener, event;
 import 'journey_sharing_ui_customization.dart' show MarkerSetup, PolylineSetup;
 import 'map.dart' show Map, MapOptions;
 import 'marker.dart' show Marker;
+import 'package:web/web.dart' show Element;
 import 'polygon.dart' show Polyline;
-
 part 'journey_sharing_map_view/automatic_viewport_mode.dart';
 part 'journey_sharing_map_view/journey_sharing_map_view.dart';
 part 'journey_sharing_map_view/journey_sharing_map_view_options.dart';

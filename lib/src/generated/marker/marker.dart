@@ -63,46 +63,46 @@ extension type Marker._(MVCObject _) implements MVCObject {
   num? get zIndex => _getZIndex();
   @JS('setAnimation')
   external void _setAnimation(Animation? animation);
-  void set animation(Animation? animation) => _setAnimation(animation);
+  set animation(Animation? animation) => _setAnimation(animation);
   @JS('setClickable')
   external void _setClickable(bool flag);
-  void set clickable(bool flag) => _setClickable(flag);
+  set clickable(bool flag) => _setClickable(flag);
   @JS('setCursor')
   external void _setCursor(String? cursor);
-  void set cursor(String? cursor) => _setCursor(cursor);
+  set cursor(String? cursor) => _setCursor(cursor);
   @JS('setDraggable')
   external void _setDraggable(bool? flag);
-  void set draggable(bool? flag) => _setDraggable(flag);
+  set draggable(bool? flag) => _setDraggable(flag);
   @JS('setIcon')
   external void _setIcon(JSAny? /*(string|Icon|Symbol)?*/ icon);
-  void set icon(JSAny? /*(string|Icon|Symbol)?*/ icon) => _setIcon(icon);
+  set icon(JSAny? /*(string|Icon|Symbol)?*/ icon) => _setIcon(icon);
   @JS('setLabel')
   external void _setLabel(JSAny? /*(string|MarkerLabel)?*/ label);
-  void set label(JSAny? /*(string|MarkerLabel)?*/ label) => _setLabel(label);
+  set label(JSAny? /*(string|MarkerLabel)?*/ label) => _setLabel(label);
   @JS('setMap')
   external void _setMap(JSAny? /*Map|StreetViewPanorama|null*/ map);
-  void set map(JSAny? /*Map|StreetViewPanorama|null*/ map) => _setMap(map);
+  set map(JSAny? /*Map|StreetViewPanorama|null*/ map) => _setMap(map);
   @JS('setOpacity')
   external void _setOpacity(num? opacity);
-  void set opacity(num? opacity) => _setOpacity(opacity);
+  set opacity(num? opacity) => _setOpacity(opacity);
   @JS('setOptions')
   external void _setOptions(MarkerOptions options);
-  void set options(MarkerOptions options) => _setOptions(options);
+  set options(MarkerOptions options) => _setOptions(options);
   @JS('setPosition')
   external void _setPosition(LatLngOrLatLngLiteral? latlng);
-  void set position(LatLngOrLatLngLiteral? latlng) => _setPosition(latlng);
+  set position(LatLngOrLatLngLiteral? latlng) => _setPosition(latlng);
   @JS('setShape')
   external void _setShape(MarkerShape? shape);
-  void set shape(MarkerShape? shape) => _setShape(shape);
+  set shape(MarkerShape? shape) => _setShape(shape);
   @JS('setTitle')
   external void _setTitle(String? title);
-  void set title(String? title) => _setTitle(title);
+  set title(String? title) => _setTitle(title);
   @JS('setVisible')
   external void _setVisible(bool visible);
-  void set visible(bool visible) => _setVisible(visible);
+  set visible(bool visible) => _setVisible(visible);
   @JS('setZIndex')
   external void _setZIndex(num? zIndex);
-  void set zIndex(num? zIndex) => _setZIndex(zIndex);
+  set zIndex(num? zIndex) => _setZIndex(zIndex);
   Stream<void> get onAnimationChanged {
     late StreamController<void> sc; // ignore: close_sinks
     late MapsEventListener mapsEventListener;

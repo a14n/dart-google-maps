@@ -13,9 +13,6 @@
 // limitations under the License.
 
 import 'dart:js_interop';
-
-import 'package:web/web.dart' show Event, HTMLElement;
-
 import '/src/js/iterable.dart' show JSIterable;
 import 'coordinates.dart'
     show
@@ -28,8 +25,8 @@ import 'coordinates.dart'
         Vector3D,
         Vector3DLiteral;
 import 'marker.dart' show CollisionBehavior;
+import 'package:web/web.dart' show Event, HTMLElement;
 import 'place.dart' show Place;
-
 part '3d_map/altitude_mode.dart';
 part '3d_map/camera_options.dart';
 part '3d_map/fly_around_animation_options.dart';

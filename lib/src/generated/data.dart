@@ -12,16 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import 'dart:async' show Stream, StreamController;
 import 'dart:js_interop';
-
 import 'control.dart' show ControlPosition;
 import 'coordinates.dart' show LatLng, LatLngLiteral, LatLngOrLatLngLiteral;
+import 'dart:async' show Stream, StreamController;
 import 'event.dart' show MVCObject, MapsEventListener, event;
 import 'map.dart' show Map, MapMouseEvent;
 import 'marker.dart' show Animation, Icon, MarkerLabel, MarkerShape, Symbol;
 import 'polygon.dart' show IconSequence, Polygon;
-
 part 'data/data.dart';
 part 'data/data_add_feature_event.dart';
 part 'data/data_data_options.dart';

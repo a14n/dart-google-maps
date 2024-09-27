@@ -12,12 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import 'dart:async' show Stream, StreamController;
 import 'dart:js_interop';
-import 'dart:js_interop_unsafe' show JSObjectUnsafeUtilExtension;
-
-import 'package:web/web.dart' show Document, Element, Event, HTMLElement;
-
 import 'control.dart'
     show
         ControlPosition,
@@ -26,15 +21,17 @@ import 'control.dart'
         PanControlOptions,
         ZoomControlOptions;
 import 'coordinates.dart' show LatLng, LatLngOrLatLngLiteral, Point, Size;
+import 'dart:async' show Stream, StreamController;
+import 'dart:js_interop_unsafe' show JSObjectUnsafeUtilExtension;
 import 'event.dart' show MVCArray, MVCObject, MapsEventListener, event;
 import 'map.dart' show Map;
+import 'package:web/web.dart' show Document, Element, Event, HTMLElement;
 import 'street_view_service.dart'
     show
         StreetViewLink,
         StreetViewLocation,
         StreetViewPanoramaData,
         StreetViewStatus;
-
 part 'street_view/pano_provider_options.dart';
 part 'street_view/street_view_address_control_options.dart';
 part 'street_view/street_view_coverage_layer.dart';

@@ -12,18 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import 'dart:async' show Stream, StreamController;
 import 'dart:js_interop';
-
-import 'package:web/web.dart' show Event, HTMLElement, HTMLInputElement;
-
 import 'coordinates.dart' show LatLngBounds, LatLngBoundsOrLatLngBoundsLiteral;
+import 'dart:async' show Stream, StreamController;
 import 'event.dart' show MVCObject, MapsEventListener, event;
+import 'package:web/web.dart' show Event, HTMLElement, HTMLInputElement;
 import 'place.dart' show Place;
 import 'places_autocomplete_service.dart' show ComponentRestrictions;
 import 'places_service.dart'
     show LocationBias, LocationRestriction, PlaceResult;
-
 part 'places_widget/autocomplete.dart';
 part 'places_widget/autocomplete_options.dart';
 part 'places_widget/place_autocomplete_element.dart';

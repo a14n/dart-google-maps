@@ -20,7 +20,7 @@ extension type StreetViewTileData._(JSObject _) implements JSObject {
     Size tileSize,
     Size worldSize,
   });
-  void set getTileUrl(
+  set getTileUrl(
           String Function(
             String pano,
             num tileZoom,

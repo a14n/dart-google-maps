@@ -39,16 +39,16 @@ extension type KmlLayer._(MVCObject _) implements MVCObject {
   num get zIndex => _getZIndex();
   @JS('setMap')
   external void _setMap(Map? map);
-  void set map(Map? map) => _setMap(map);
+  set map(Map? map) => _setMap(map);
   @JS('setOptions')
   external void _setOptions(KmlLayerOptions options);
-  void set options(KmlLayerOptions options) => _setOptions(options);
+  set options(KmlLayerOptions options) => _setOptions(options);
   @JS('setUrl')
   external void _setUrl(String url);
-  void set url(String url) => _setUrl(url);
+  set url(String url) => _setUrl(url);
   @JS('setZIndex')
   external void _setZIndex(num zIndex);
-  void set zIndex(num zIndex) => _setZIndex(zIndex);
+  set zIndex(num zIndex) => _setZIndex(zIndex);
   Stream<KmlMouseEvent> get onClick {
     late StreamController<KmlMouseEvent> sc; // ignore: close_sinks
     late MapsEventListener mapsEventListener;

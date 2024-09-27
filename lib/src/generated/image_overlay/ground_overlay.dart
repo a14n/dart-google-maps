@@ -35,10 +35,10 @@ extension type GroundOverlay._(MVCObject _) implements MVCObject {
   String get url => _getUrl();
   @JS('setMap')
   external void _setMap(Map? map);
-  void set map(Map? map) => _setMap(map);
+  set map(Map? map) => _setMap(map);
   @JS('setOpacity')
   external void _setOpacity(num opacity);
-  void set opacity(num opacity) => _setOpacity(opacity);
+  set opacity(num opacity) => _setOpacity(opacity);
   Stream<MapMouseEvent> get onClick {
     late StreamController<MapMouseEvent> sc; // ignore: close_sinks
     late MapsEventListener mapsEventListener;

@@ -18,7 +18,7 @@ void main() {
   map.data.style = (DataFeature feature) {
     var color = 'gray';
     if ((feature.getProperty('isColorful') as JSBoolean?)?.toDart == true) {
-      color = feature.getProperty('color') as String;
+      color = (feature.getProperty('color') as JSString).toDart;
     }
     return DataStyleOptions()
       ..fillColor = color

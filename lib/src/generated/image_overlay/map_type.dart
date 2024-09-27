@@ -31,7 +31,7 @@ extension type MapType._(JSObject _) implements JSObject {
           // ignore: unnecessary_lambdas
           (tileCoord, zoom, ownerDocument) =>
               _getTile(tileCoord, zoom, ownerDocument);
-  void set getTile(
+  set getTile(
           Element? Function(
             Point tileCoord,
             num zoom,
@@ -44,7 +44,7 @@ extension type MapType._(JSObject _) implements JSObject {
   void Function(Element? tile) get releaseTile =>
       // ignore: unnecessary_lambdas
       (tile) => _releaseTile(tile);
-  void set releaseTile(
+  set releaseTile(
           void Function(
             Element? tile,
           ) releaseTile) =>

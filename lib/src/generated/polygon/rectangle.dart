@@ -36,23 +36,22 @@ extension type Rectangle._(MVCObject _) implements MVCObject {
   bool get visible => _getVisible();
   @JS('setBounds')
   external void _setBounds(LatLngBoundsOrLatLngBoundsLiteral? bounds);
-  void set bounds(LatLngBoundsOrLatLngBoundsLiteral? bounds) =>
-      _setBounds(bounds);
+  set bounds(LatLngBoundsOrLatLngBoundsLiteral? bounds) => _setBounds(bounds);
   @JS('setDraggable')
   external void _setDraggable(bool draggable);
-  void set draggable(bool draggable) => _setDraggable(draggable);
+  set draggable(bool draggable) => _setDraggable(draggable);
   @JS('setEditable')
   external void _setEditable(bool editable);
-  void set editable(bool editable) => _setEditable(editable);
+  set editable(bool editable) => _setEditable(editable);
   @JS('setMap')
   external void _setMap(Map? map);
-  void set map(Map? map) => _setMap(map);
+  set map(Map? map) => _setMap(map);
   @JS('setOptions')
   external void _setOptions(RectangleOptions? options);
-  void set options(RectangleOptions? options) => _setOptions(options);
+  set options(RectangleOptions? options) => _setOptions(options);
   @JS('setVisible')
   external void _setVisible(bool visible);
-  void set visible(bool visible) => _setVisible(visible);
+  set visible(bool visible) => _setVisible(visible);
   Stream<void> get onBoundsChanged {
     late StreamController<void> sc; // ignore: close_sinks
     late MapsEventListener mapsEventListener;

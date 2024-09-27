@@ -12,12 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import 'dart:async' show Stream, StreamController;
 import 'dart:js_interop';
-import 'dart:js_interop_unsafe' show JSObjectUnsafeUtilExtension;
-
-import 'package:web/web.dart' show Document, Element;
-
 import 'coordinates.dart'
     show
         LatLng,
@@ -26,9 +21,11 @@ import 'coordinates.dart'
         LatLngOrLatLngLiteral,
         Point,
         Size;
+import 'dart:async' show Stream, StreamController;
+import 'dart:js_interop_unsafe' show JSObjectUnsafeUtilExtension;
 import 'event.dart' show MVCObject, MapsEventListener, event;
 import 'map.dart' show Map, MapMouseEvent, MapTypeStyle;
-
+import 'package:web/web.dart' show Document, Element;
 part 'image_overlay/ground_overlay.dart';
 part 'image_overlay/ground_overlay_options.dart';
 part 'image_overlay/image_map_type.dart';

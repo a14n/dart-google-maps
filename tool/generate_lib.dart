@@ -79,10 +79,11 @@ Future<void> generatePrivateLibs(
 
   // generate part files
   final genFolder = '$projectHome/lib/src/generated';
-  if (Directory(genFolder).existsSync())
+  if (Directory(genFolder).existsSync()) {
     Directory(genFolder).deleteSync(recursive: true);
+  }
   final libs = [
-    for (final (:id, :title, :url) in libPages)
+    for (final (:id, title: _, :url) in libPages)
       await generatedElementsFromPage('$docBaseUrl$url', id, genFolder),
   ];
 
@@ -542,12 +543,13 @@ extension LatLngBoundsOrLatLngBoundsLiteral$Ext on LatLngBoundsOrLatLngBoundsLit
   external Point? _fromLatLngToPoint(LatLngOrLatLngLiteral latLng, [Point? point]);
   Point? Function(LatLngOrLatLngLiteral latLng, [Point? point]) get fromLatLngToPoint =>
       (latLng, [point]) {
-        if (point != null)
+        if (point != null) {
           return _fromLatLngToPoint(latLng, point);
-        else
+        } else {
           return _fromLatLngToPoint(latLng);
+        }
       };
-  void set fromLatLngToPoint(Point? Function(
+  set fromLatLngToPoint(Point? Function(
     LatLngOrLatLngLiteral latLng, [
     Point? point,
   ]) fromLatLngToPoint) => setProperty('fromLatLngToPoint'.toJS, fromLatLngToPoint.toJS);
@@ -557,7 +559,7 @@ extension LatLngBoundsOrLatLngBoundsLiteral$Ext on LatLngBoundsOrLatLngBoundsLit
   LatLng? Function(Point pixel, [bool? noClampNoWrap]) get fromPointToLatLng =>
       // ignore: unnecessary_lambdas
       (pixel, [noClampNoWrap]) => _fromPointToLatLng(pixel, noClampNoWrap);
-  void set fromPointToLatLng(LatLng? Function(
+  set fromPointToLatLng(LatLng? Function(
     Point pixel, [
     bool? noClampNoWrap,
   ]) fromPointToLatLng) => setProperty('fromPointToLatLng'.toJS, fromPointToLatLng.toJS);
@@ -568,9 +570,9 @@ extension LatLngBoundsOrLatLngBoundsLiteral$Ext on LatLngBoundsOrLatLngBoundsLit
     case 'OverlayView':
       customDependencies.add('JSObjectUnsafeUtilExtension');
       customCode.add('''
-  void set onAdd(void Function() onAdd) => setProperty('onAdd'.toJS, onAdd.toJS);
-  void set onRemove(void Function() onRemove) => setProperty('onRemove'.toJS, onRemove.toJS);
-  void set draw(void Function() draw) => setProperty('draw'.toJS, draw.toJS);
+  set onAdd(void Function() onAdd) => setProperty('onAdd'.toJS, onAdd.toJS);
+  set onRemove(void Function() onRemove) => setProperty('onRemove'.toJS, onRemove.toJS);
+  set draw(void Function() draw) => setProperty('draw'.toJS, draw.toJS);
       ''');
       methods.removeWhere(
           (e) => {'onAdd', 'onRemove', 'draw'}.contains(e.method.name));
@@ -588,7 +590,7 @@ extension LatLngBoundsOrLatLngBoundsLiteral$Ext on LatLngBoundsOrLatLngBoundsLit
   Element? Function(Point tileCoord, num zoom, Document ownerDocument) get getTile =>
       // ignore: unnecessary_lambdas
       (tileCoord, zoom, ownerDocument) => _getTile(tileCoord, zoom, ownerDocument);
-  void set getTile(Element? Function(
+  set getTile(Element? Function(
     Point tileCoord,
     num zoom,
     Document ownerDocument,
@@ -599,7 +601,7 @@ extension LatLngBoundsOrLatLngBoundsLiteral$Ext on LatLngBoundsOrLatLngBoundsLit
   void Function(Element? tile) get releaseTile =>
       // ignore: unnecessary_lambdas
       (tile) => _releaseTile(tile);
-  void set releaseTile(void Function(
+  set releaseTile(void Function(
     Element? tile,
   ) releaseTile) => setProperty('releaseTile'.toJS, releaseTile.toJS);
       ''');
@@ -619,7 +621,7 @@ extension LatLngBoundsOrLatLngBoundsLiteral$Ext on LatLngBoundsOrLatLngBoundsLit
         'Document',
       ]);
       customCode.add('''
-  void set getTileUrl(String Function(
+  set getTileUrl(String Function(
     String pano,
     num tileZoom,
     num tileX,
@@ -635,12 +637,12 @@ extension LatLngBoundsOrLatLngBoundsLiteral$Ext on LatLngBoundsOrLatLngBoundsLit
         'Document',
       ]);
       customCode.add('''
-  void set onAdd(void Function() onAdd) => setProperty('onAdd'.toJS, onAdd.toJS);
-  void set onContextLost(void Function() onContextLost) => setProperty('onContextLost'.toJS, onContextLost.toJS);
-  void set onContextRestored(void Function(WebGLStateOptions options) onContextRestored) => setProperty('onContextRestored'.toJS, onContextRestored.toJS);
-  void set onDraw(void Function(WebGLDrawOptions options) onDraw) => setProperty('onDraw'.toJS, onDraw.toJS);
-  void set onRemove(void Function() onRemove) => setProperty('onRemove'.toJS, onRemove.toJS);
-  void set onStateUpdate(void Function(WebGLStateOptions options) onStateUpdate) => setProperty('onStateUpdate'.toJS, onStateUpdate.toJS);
+  set onAdd(void Function() onAdd) => setProperty('onAdd'.toJS, onAdd.toJS);
+  set onContextLost(void Function() onContextLost) => setProperty('onContextLost'.toJS, onContextLost.toJS);
+  set onContextRestored(void Function(WebGLStateOptions options) onContextRestored) => setProperty('onContextRestored'.toJS, onContextRestored.toJS);
+  set onDraw(void Function(WebGLDrawOptions options) onDraw) => setProperty('onDraw'.toJS, onDraw.toJS);
+  set onRemove(void Function() onRemove) => setProperty('onRemove'.toJS, onRemove.toJS);
+  set onStateUpdate(void Function(WebGLStateOptions options) onStateUpdate) => setProperty('onStateUpdate'.toJS, onStateUpdate.toJS);
       ''');
       methods.removeWhere((e) => {
             'onAdd',
@@ -768,7 +770,7 @@ extension LatLngBoundsOrLatLngBoundsLiteral$Ext on LatLngBoundsOrLatLngBoundsLit
             case (final setterName, final param)) ...[
           "  @JS('${method.name}')",
           '  external ${isStatic ? 'static' : ''} ${method.returnType} _${method.name}(${param.type} ${param.name});',
-          '  ${isStatic ? 'static' : ''} ${method.returnType} set $setterName(${param.type} ${param.name}) => _${method.name}(${param.name});',
+          '  ${isStatic ? 'static' : ''} set $setterName(${param.type} ${param.name}) => _${method.name}(${param.name});',
         ] else if (method.returnType.startsWith('JSPromise<')) ...[
           "  @JS('${method.name}')",
           '  external ${isStatic ? 'static' : ''} ${method.returnType} _${method.name}(',
@@ -870,7 +872,7 @@ String generateCodeForEvent(
     [final parameter] => (parameter.type, '${parameter.type} e', 'e'),
     final parameters => (
         '({${parameters.map((e) => '${e.type} ${e.name}').join(', ')}})',
-        '${parameters.map((e) => '${e.type} ${e.name}').join(', ')}',
+        parameters.map((e) => '${e.type} ${e.name}').join(', '),
         '(${parameters.map((e) => '${e.name}: ${e.name}').join(', ')})',
       ),
   };

@@ -39,7 +39,7 @@ extension type MVCObject._(JSObject _) implements JSObject {
   );
   @JS('setValues')
   external void _setValues(JSObject /*Object<null>*/ ? values);
-  void set values(JSObject /*Object<null>*/ ? values) => _setValues(values);
+  set values(JSObject /*Object<null>*/ ? values) => _setValues(values);
   external void unbind(
     String key,
   );

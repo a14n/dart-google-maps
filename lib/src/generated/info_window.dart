@@ -12,12 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import 'dart:async' show Stream, StreamController;
 import 'dart:js_interop';
-
 import 'coordinates.dart' show LatLng, LatLngOrLatLngLiteral, Size;
+import 'dart:async' show Stream, StreamController;
 import 'event.dart' show MVCObject, MapsEventListener, event;
-
 part 'info_window/info_window.dart';
 part 'info_window/info_window_open_options.dart';
 part 'info_window/info_window_options.dart';

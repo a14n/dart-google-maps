@@ -28,8 +28,7 @@ extension type SearchBox._(MVCObject _) implements MVCObject {
   JSArray<PlaceResult>? get places => _getPlaces();
   @JS('setBounds')
   external void _setBounds(LatLngBoundsOrLatLngBoundsLiteral? bounds);
-  void set bounds(LatLngBoundsOrLatLngBoundsLiteral? bounds) =>
-      _setBounds(bounds);
+  set bounds(LatLngBoundsOrLatLngBoundsLiteral? bounds) => _setBounds(bounds);
   Stream<void> get onPlacesChanged {
     late StreamController<void> sc; // ignore: close_sinks
     late MapsEventListener mapsEventListener;

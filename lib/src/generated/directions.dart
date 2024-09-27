@@ -12,20 +12,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import 'dart:async' show Stream, StreamController;
 import 'dart:js_interop';
-
-import 'package:web/web.dart' show HTMLElement;
-
 import '/src/js/date.dart' show Date;
 import 'coordinates.dart'
     show LatLng, LatLngBounds, LatLngLiteral, LatLngOrLatLngLiteral;
+import 'dart:async' show Stream, StreamController;
 import 'event.dart' show MVCObject, MapsEventListener, event;
 import 'info_window.dart' show InfoWindow;
 import 'map.dart' show Map;
 import 'marker.dart' show MarkerOptions;
+import 'package:web/web.dart' show HTMLElement;
 import 'polygon.dart' show PolylineOptions;
-
 part 'directions/directions_geocoded_waypoint.dart';
 part 'directions/directions_leg.dart';
 part 'directions/directions_polyline.dart';

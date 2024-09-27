@@ -12,10 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import 'dart:async' show Stream, StreamController;
 import 'dart:js_interop';
-
 import 'control.dart' show ControlPosition;
+import 'dart:async' show Stream, StreamController;
 import 'event.dart' show MVCObject, MapsEventListener, event;
 import 'map.dart' show Map;
 import 'marker.dart' show Marker, MarkerOptions;
@@ -29,7 +28,6 @@ import 'polygon.dart'
         PolylineOptions,
         Rectangle,
         RectangleOptions;
-
 part 'drawing/drawing_control_options.dart';
 part 'drawing/drawing_manager.dart';
 part 'drawing/drawing_manager_options.dart';

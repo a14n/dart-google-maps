@@ -17,19 +17,17 @@ part of '../webgl.dart';
 @JS('google.maps.WebGLOverlayView')
 extension type WebGLOverlayView._(MVCObject _) implements MVCObject {
   external WebGLOverlayView();
-  void set onAdd(void Function() onAdd) =>
-      setProperty('onAdd'.toJS, onAdd.toJS);
-  void set onContextLost(void Function() onContextLost) =>
+  set onAdd(void Function() onAdd) => setProperty('onAdd'.toJS, onAdd.toJS);
+  set onContextLost(void Function() onContextLost) =>
       setProperty('onContextLost'.toJS, onContextLost.toJS);
-  void set onContextRestored(
+  set onContextRestored(
           void Function(WebGLStateOptions options) onContextRestored) =>
       setProperty('onContextRestored'.toJS, onContextRestored.toJS);
-  void set onDraw(void Function(WebGLDrawOptions options) onDraw) =>
+  set onDraw(void Function(WebGLDrawOptions options) onDraw) =>
       setProperty('onDraw'.toJS, onDraw.toJS);
-  void set onRemove(void Function() onRemove) =>
+  set onRemove(void Function() onRemove) =>
       setProperty('onRemove'.toJS, onRemove.toJS);
-  void set onStateUpdate(
-          void Function(WebGLStateOptions options) onStateUpdate) =>
+  set onStateUpdate(void Function(WebGLStateOptions options) onStateUpdate) =>
       setProperty('onStateUpdate'.toJS, onStateUpdate.toJS);
 
   @JS('getMap')
@@ -39,5 +37,5 @@ extension type WebGLOverlayView._(MVCObject _) implements MVCObject {
   external void requestStateUpdate();
   @JS('setMap')
   external void _setMap(Map? map);
-  void set map(Map? map) => _setMap(map);
+  set map(Map? map) => _setMap(map);
 }

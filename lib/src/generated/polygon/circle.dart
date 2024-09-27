@@ -47,25 +47,25 @@ extension type Circle._(MVCObject _) implements MVCObject {
   bool get visible => _getVisible();
   @JS('setCenter')
   external void _setCenter(LatLngOrLatLngLiteral? center);
-  void set center(LatLngOrLatLngLiteral? center) => _setCenter(center);
+  set center(LatLngOrLatLngLiteral? center) => _setCenter(center);
   @JS('setDraggable')
   external void _setDraggable(bool draggable);
-  void set draggable(bool draggable) => _setDraggable(draggable);
+  set draggable(bool draggable) => _setDraggable(draggable);
   @JS('setEditable')
   external void _setEditable(bool editable);
-  void set editable(bool editable) => _setEditable(editable);
+  set editable(bool editable) => _setEditable(editable);
   @JS('setMap')
   external void _setMap(Map? map);
-  void set map(Map? map) => _setMap(map);
+  set map(Map? map) => _setMap(map);
   @JS('setOptions')
   external void _setOptions(CircleOptions? options);
-  void set options(CircleOptions? options) => _setOptions(options);
+  set options(CircleOptions? options) => _setOptions(options);
   @JS('setRadius')
   external void _setRadius(num radius);
-  void set radius(num radius) => _setRadius(radius);
+  set radius(num radius) => _setRadius(radius);
   @JS('setVisible')
   external void _setVisible(bool visible);
-  void set visible(bool visible) => _setVisible(visible);
+  set visible(bool visible) => _setVisible(visible);
   Stream<void> get onCenterChanged {
     late StreamController<void> sc; // ignore: close_sinks
     late MapsEventListener mapsEventListener;

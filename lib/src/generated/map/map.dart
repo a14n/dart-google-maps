@@ -110,41 +110,41 @@ extension type Map._(MVCObject _) implements MVCObject {
   ]);
   @JS('setCenter')
   external void _setCenter(LatLngOrLatLngLiteral latlng);
-  void set center(LatLngOrLatLngLiteral latlng) => _setCenter(latlng);
+  set center(LatLngOrLatLngLiteral latlng) => _setCenter(latlng);
   @JS('setClickableIcons')
   external void _setClickableIcons(bool value);
-  void set clickableIcons(bool value) => _setClickableIcons(value);
+  set clickableIcons(bool value) => _setClickableIcons(value);
   @JS('setHeading')
   external void _setHeading(num heading);
-  void set heading(num heading) => _setHeading(heading);
+  set heading(num heading) => _setHeading(heading);
   @JS('setHeadingInteractionEnabled')
   external void _setHeadingInteractionEnabled(bool headingInteractionEnabled);
-  void set headingInteractionEnabled(bool headingInteractionEnabled) =>
+  set headingInteractionEnabled(bool headingInteractionEnabled) =>
       _setHeadingInteractionEnabled(headingInteractionEnabled);
   @JS('setMapTypeId')
   external void _setMapTypeId(JSAny /*MapTypeId|string*/ mapTypeId);
-  void set mapTypeId(JSAny /*MapTypeId|string*/ mapTypeId) =>
+  set mapTypeId(JSAny /*MapTypeId|string*/ mapTypeId) =>
       _setMapTypeId(mapTypeId);
   @JS('setOptions')
   external void _setOptions(MapOptions? options);
-  void set options(MapOptions? options) => _setOptions(options);
+  set options(MapOptions? options) => _setOptions(options);
   @JS('setRenderingType')
   external void _setRenderingType(RenderingType renderingType);
-  void set renderingType(RenderingType renderingType) =>
+  set renderingType(RenderingType renderingType) =>
       _setRenderingType(renderingType);
   @JS('setStreetView')
   external void _setStreetView(StreetViewPanorama? panorama);
-  void set streetView(StreetViewPanorama? panorama) => _setStreetView(panorama);
+  set streetView(StreetViewPanorama? panorama) => _setStreetView(panorama);
   @JS('setTilt')
   external void _setTilt(num tilt);
-  void set tilt(num tilt) => _setTilt(tilt);
+  set tilt(num tilt) => _setTilt(tilt);
   @JS('setTiltInteractionEnabled')
   external void _setTiltInteractionEnabled(bool tiltInteractionEnabled);
-  void set tiltInteractionEnabled(bool tiltInteractionEnabled) =>
+  set tiltInteractionEnabled(bool tiltInteractionEnabled) =>
       _setTiltInteractionEnabled(tiltInteractionEnabled);
   @JS('setZoom')
   external void _setZoom(num zoom);
-  void set zoom(num zoom) => _setZoom(zoom);
+  set zoom(num zoom) => _setZoom(zoom);
   Stream<void> get onBoundsChanged {
     late StreamController<void> sc; // ignore: close_sinks
     late MapsEventListener mapsEventListener;

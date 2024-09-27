@@ -22,5 +22,5 @@ extension type StreetViewCoverageLayer._(MVCObject _) implements MVCObject {
   Map? get map => _getMap();
   @JS('setMap')
   external void _setMap(Map? map);
-  void set map(Map? map) => _setMap(map);
+  set map(Map? map) => _setMap(map);
 }

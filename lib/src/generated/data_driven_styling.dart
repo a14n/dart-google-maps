@@ -12,13 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import 'dart:async' show Stream, StreamController;
 import 'dart:js_interop';
-
+import 'dart:async' show Stream, StreamController;
 import 'event.dart' show MapsEventListener, event;
 import 'map.dart' show MapMouseEvent;
 import 'place.dart' show Place;
-
 part 'data_driven_styling/dataset_feature.dart';
 part 'data_driven_styling/feature.dart';
 part 'data_driven_styling/feature_layer.dart';

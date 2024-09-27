@@ -29,14 +29,14 @@ extension type HeatmapLayer._(MVCObject _) implements MVCObject {
   external void _setData(
       JSAny /*MVCArray<LatLng|WeightedLocation>|Array<LatLng|WeightedLocation>*/
           data);
-  void set data(
+  set data(
           JSAny /*MVCArray<LatLng|WeightedLocation>|Array<LatLng|WeightedLocation>*/
               data) =>
       _setData(data);
   @JS('setMap')
   external void _setMap(Map? map);
-  void set map(Map? map) => _setMap(map);
+  set map(Map? map) => _setMap(map);
   @JS('setOptions')
   external void _setOptions(HeatmapLayerOptions? options);
-  void set options(HeatmapLayerOptions? options) => _setOptions(options);
+  set options(HeatmapLayerOptions? options) => _setOptions(options);
 }

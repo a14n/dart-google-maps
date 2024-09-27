@@ -12,17 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import 'dart:async' show Stream, StreamController;
 import 'dart:js_interop';
-
 import '/src/js/date.dart' show Date;
 import 'coordinates.dart' show LatLngBoundsOrLatLngBoundsLiteral;
+import 'dart:async' show Stream, StreamController;
 import 'event.dart' show ErrorEvent, MapsEventListener, event;
 import 'journey_sharing_authentication.dart' show AuthTokenFetcher;
 import 'journey_sharing_fleet_engine_entities.dart'
     show DeliveryVehicle, Task, VehicleJourneySegment;
 import 'journey_sharing_map_view.dart' show PollingLocationProvider;
-
 part 'journey_sharing_fleet_tracking/fleet_engine_delivery_fleet_location_provider.dart';
 part 'journey_sharing_fleet_tracking/fleet_engine_delivery_fleet_location_provider_options.dart';
 part 'journey_sharing_fleet_tracking/fleet_engine_delivery_fleet_location_provider_update_event.dart';

@@ -44,26 +44,26 @@ extension type InfoWindow._(MVCObject _) implements MVCObject {
   ]);
   @JS('setContent')
   external void _setContent(JSAny? /*(string|Element|Text)?*/ content);
-  void set content(JSAny? /*(string|Element|Text)?*/ content) =>
+  set content(JSAny? /*(string|Element|Text)?*/ content) =>
       _setContent(content);
   @JS('setHeaderContent')
   external void _setHeaderContent(
       JSAny? /*(string|Element|Text)?*/ headerContent);
-  void set headerContent(JSAny? /*(string|Element|Text)?*/ headerContent) =>
+  set headerContent(JSAny? /*(string|Element|Text)?*/ headerContent) =>
       _setHeaderContent(headerContent);
   @JS('setHeaderDisabled')
   external void _setHeaderDisabled(bool? headerDisabled);
-  void set headerDisabled(bool? headerDisabled) =>
+  set headerDisabled(bool? headerDisabled) =>
       _setHeaderDisabled(headerDisabled);
   @JS('setOptions')
   external void _setOptions(InfoWindowOptions? options);
-  void set options(InfoWindowOptions? options) => _setOptions(options);
+  set options(InfoWindowOptions? options) => _setOptions(options);
   @JS('setPosition')
   external void _setPosition(LatLngOrLatLngLiteral? position);
-  void set position(LatLngOrLatLngLiteral? position) => _setPosition(position);
+  set position(LatLngOrLatLngLiteral? position) => _setPosition(position);
   @JS('setZIndex')
   external void _setZIndex(num zIndex);
-  void set zIndex(num zIndex) => _setZIndex(zIndex);
+  set zIndex(num zIndex) => _setZIndex(zIndex);
   Stream<void> get onClose {
     late StreamController<void> sc; // ignore: close_sinks
     late MapsEventListener mapsEventListener;

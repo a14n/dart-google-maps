@@ -21,12 +21,13 @@ extension type Projection._(JSObject _) implements JSObject {
       [Point? point]);
   Point? Function(LatLngOrLatLngLiteral latLng, [Point? point])
       get fromLatLngToPoint => (latLng, [point]) {
-            if (point != null)
+            if (point != null) {
               return _fromLatLngToPoint(latLng, point);
-            else
+            } else {
               return _fromLatLngToPoint(latLng);
+            }
           };
-  void set fromLatLngToPoint(
+  set fromLatLngToPoint(
           Point? Function(
             LatLngOrLatLngLiteral latLng, [
             Point? point,
@@ -38,7 +39,7 @@ extension type Projection._(JSObject _) implements JSObject {
   LatLng? Function(Point pixel, [bool? noClampNoWrap]) get fromPointToLatLng =>
       // ignore: unnecessary_lambdas
       (pixel, [noClampNoWrap]) => _fromPointToLatLng(pixel, noClampNoWrap);
-  void set fromPointToLatLng(
+  set fromPointToLatLng(
           LatLng? Function(
             Point pixel, [
             bool? noClampNoWrap,

@@ -12,11 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import 'dart:async' show Stream, StreamController;
 import 'dart:js_interop';
-
 import '/src/js/error.dart' show JSError;
-
+import 'dart:async' show Stream, StreamController;
 part 'event/error_event.dart';
 part 'event/event.dart';
 part 'event/maps_event_listener.dart';

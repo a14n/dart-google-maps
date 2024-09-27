@@ -67,21 +67,21 @@ extension type Data._(MVCObject _) implements MVCObject {
   ]);
   @JS('setControlPosition')
   external void _setControlPosition(ControlPosition controlPosition);
-  void set controlPosition(ControlPosition controlPosition) =>
+  set controlPosition(ControlPosition controlPosition) =>
       _setControlPosition(controlPosition);
   @JS('setControls')
   external void _setControls(JSArray<JSString> controls);
-  void set controls(JSArray<JSString> controls) => _setControls(controls);
+  set controls(JSArray<JSString> controls) => _setControls(controls);
   @JS('setDrawingMode')
   external void _setDrawingMode(String? drawingMode);
-  void set drawingMode(String? drawingMode) => _setDrawingMode(drawingMode);
+  set drawingMode(String? drawingMode) => _setDrawingMode(drawingMode);
   @JS('setMap')
   external void _setMap(Map? map);
-  void set map(Map? map) => _setMap(map);
+  set map(Map? map) => _setMap(map);
   @JS('setStyle')
   external void _setStyle(
       JSAny /*Data.StylingFunction|Data.StyleOptions*/ style);
-  void set style(JSAny /*Data.StylingFunction|Data.StyleOptions*/ style) =>
+  set style(JSAny /*Data.StylingFunction|Data.StyleOptions*/ style) =>
       _setStyle(style);
   external void toGeoJson(
     JSFunction /*void Function(JSObject/*Object<null>*/)*/ callback,

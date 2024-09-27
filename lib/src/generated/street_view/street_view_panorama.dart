@@ -61,29 +61,28 @@ extension type StreetViewPanorama._(MVCObject _) implements MVCObject {
   ]);
   @JS('setLinks')
   external void _setLinks(JSArray<StreetViewLink> links);
-  void set links(JSArray<StreetViewLink> links) => _setLinks(links);
+  set links(JSArray<StreetViewLink> links) => _setLinks(links);
   @JS('setMotionTracking')
   external void _setMotionTracking(bool motionTracking);
-  void set motionTracking(bool motionTracking) =>
-      _setMotionTracking(motionTracking);
+  set motionTracking(bool motionTracking) => _setMotionTracking(motionTracking);
   @JS('setOptions')
   external void _setOptions(StreetViewPanoramaOptions? options);
-  void set options(StreetViewPanoramaOptions? options) => _setOptions(options);
+  set options(StreetViewPanoramaOptions? options) => _setOptions(options);
   @JS('setPano')
   external void _setPano(String pano);
-  void set pano(String pano) => _setPano(pano);
+  set pano(String pano) => _setPano(pano);
   @JS('setPosition')
   external void _setPosition(LatLngOrLatLngLiteral? latLng);
-  void set position(LatLngOrLatLngLiteral? latLng) => _setPosition(latLng);
+  set position(LatLngOrLatLngLiteral? latLng) => _setPosition(latLng);
   @JS('setPov')
   external void _setPov(StreetViewPov pov);
-  void set pov(StreetViewPov pov) => _setPov(pov);
+  set pov(StreetViewPov pov) => _setPov(pov);
   @JS('setVisible')
   external void _setVisible(bool flag);
-  void set visible(bool flag) => _setVisible(flag);
+  set visible(bool flag) => _setVisible(flag);
   @JS('setZoom')
   external void _setZoom(num zoom);
-  void set zoom(num zoom) => _setZoom(zoom);
+  set zoom(num zoom) => _setZoom(zoom);
   Stream<Event> get onCloseclick {
     late StreamController<Event> sc; // ignore: close_sinks
     late MapsEventListener mapsEventListener;

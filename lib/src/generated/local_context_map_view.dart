@@ -12,14 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import 'dart:async' show Stream, StreamController;
 import 'dart:js_interop';
-
 import 'coordinates.dart' show LatLngOrLatLngLiteral;
+import 'dart:async' show Stream, StreamController;
 import 'event.dart' show ErrorEvent, MapsEventListener, event;
 import 'map.dart' show Map;
 import 'places_service.dart' show LocationBias, LocationRestriction;
-
 part 'local_context_map_view/local_context_map_view.dart';
 part 'local_context_map_view/local_context_map_view_options.dart';
 part 'local_context_map_view/map_directions_options.dart';

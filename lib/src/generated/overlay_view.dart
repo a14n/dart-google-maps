@@ -13,14 +13,11 @@
 // limitations under the License.
 
 import 'dart:js_interop';
-import 'dart:js_interop_unsafe' show JSObjectUnsafeUtilExtension;
-
-import 'package:web/web.dart' show Element;
-
 import 'coordinates.dart' show LatLng, LatLngOrLatLngLiteral, Point;
+import 'dart:js_interop_unsafe' show JSObjectUnsafeUtilExtension;
 import 'event.dart' show MVCObject;
 import 'map.dart' show Map, VisibleRegion;
-
+import 'package:web/web.dart' show Element;
 part 'overlay_view/map_canvas_projection.dart';
 part 'overlay_view/map_panes.dart';
 part 'overlay_view/overlay_view.dart';

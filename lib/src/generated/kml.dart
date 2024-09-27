@@ -12,13 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import 'dart:async' show Stream, StreamController;
 import 'dart:js_interop';
-
 import 'coordinates.dart' show LatLng, LatLngBounds, Size;
+import 'dart:async' show Stream, StreamController;
 import 'event.dart' show MVCObject, MapsEventListener, event;
 import 'map.dart' show Map;
-
 part 'kml/kml_author.dart';
 part 'kml/kml_feature_data.dart';
 part 'kml/kml_layer.dart';
