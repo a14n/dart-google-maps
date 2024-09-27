@@ -28,7 +28,7 @@ To use this library in your code:
 
 Please see the Google Maps JavaScript API v3 [Getting Started guide](https://developers.google.com/maps/documentation/javascript/tutorial#api_key) for information about obtaining an API Key.
 
-A very [simple example](https://github.com/a14n/dart-google-maps/tree/master/example/01-basics/map-simple) :
+A very [simple example](https://github.com/a14n/dart-google-maps/tree/master/example/map-simple) :
 
 ```dart
 import 'package:google_maps/google_maps.dart';
