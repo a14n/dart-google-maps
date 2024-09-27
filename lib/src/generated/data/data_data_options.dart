@@ -27,7 +27,8 @@ extension type DataDataOptions._(JSObject _) implements JSObject {
   external ControlPosition? controlPosition;
   @JS('controls')
   external JSArray<JSString>? _controls;
-  List<String>? get controls => _controls.dartify() as List<String>?;
+  List<String>? get controls =>
+      _controls?.toDart.map((type) => type.toDart).toList();
   set controls(List<String>? value) =>
       _controls = value.jsify() as JSArray<JSString>?;
   external String? drawingMode;

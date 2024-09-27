@@ -43,12 +43,14 @@ extension type DirectionsRoute._(JSObject _) implements JSObject {
   external String summary;
   @JS('warnings')
   external JSArray<JSString> _warnings;
-  List<String> get warnings => _warnings.dartify() as List<String>;
+  List<String> get warnings =>
+      _warnings.toDart.map((type) => type.toDart).toList();
   set warnings(List<String> value) =>
       _warnings = value.jsify() as JSArray<JSString>;
   @JS('waypoint_order')
   external JSArray<JSNumber> _waypointOrder;
-  List<num> get waypointOrder => _waypointOrder.dartify() as List<num>;
+  List<num> get waypointOrder =>
+      _waypointOrder.toDart.map((type) => type.toDartInt).toList();
   set waypointOrder(List<num> value) =>
       _waypointOrder = value.jsify() as JSArray<JSNumber>;
   external TransitFare? fare;

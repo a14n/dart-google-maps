@@ -28,10 +28,8 @@ extension type Polyline3DElement._(HTMLElement _)
   external bool? extruded;
   external bool? geodesic;
   external String? outerColor;
-  external num? outerOpacity;
   external num? outerWidth;
   external String? strokeColor;
-  external num? strokeOpacity;
   external num? strokeWidth;
   external num? zIndex;
   external void addEventListener(

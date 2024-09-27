@@ -17,8 +17,11 @@ part of '../map.dart';
 extension type MapOptions._(JSObject _) implements JSObject {
   external MapOptions({
     String? backgroundColor,
+    bool? cameraControl,
+    CameraControlOptions? cameraControlOptions,
     LatLngOrLatLngLiteral? center,
     bool? clickableIcons,
+    JSAny? /*(ColorScheme|string)?*/ colorScheme,
     num? controlSize,
     bool? disableDefaultUI,
     bool? disableDoubleClickZoom,
@@ -59,8 +62,11 @@ extension type MapOptions._(JSObject _) implements JSObject {
     ZoomControlOptions? zoomControlOptions,
   });
   external String? backgroundColor;
+  external bool? cameraControl;
+  external CameraControlOptions? cameraControlOptions;
   external LatLngOrLatLngLiteral? center;
   external bool? clickableIcons;
+  external JSAny? /*(ColorScheme|string)?*/ colorScheme;
   external num? controlSize;
   external bool? disableDefaultUI;
   external bool? disableDoubleClickZoom;

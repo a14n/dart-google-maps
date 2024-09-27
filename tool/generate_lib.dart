@@ -90,8 +90,7 @@ List<String> buildImports(List<Lib> libs, Lib lib) {
       .where((l) => l.elements.expand((e) => e.names).contains(dep))
       .firstOrNull);
   return [
-    for (final (libName, elements) in depsBylib.entries
-        .whereNotNull()
+    for (final (libName, elements) in depsBylib.entries.nonNulls
         .where((e) => e.key != lib)
         .where((e) => e.key != null)
         .map((e) {
@@ -1049,10 +1048,15 @@ class Property {
                 _ => throw Error(),
               };
               final dartType = 'List<$parameterType>${optional ? '?' : ''}';
+              final convertion = switch (paramJSType) {
+                'string' => 'toDart',
+                'number' => 'toDartInt',
+                _ => throw Error(),
+              };
               return """
   @JS('$name')
   external $type _$accessorName;
-  $dartType get $accessorName => _$accessorName.dartify() as $dartType;
+  $dartType get $accessorName => _$accessorName${optional ? '?' : ''}.toDart.map((type) => type.$convertion).toList();
   set $accessorName($dartType value) => _$accessorName = value.jsify() as $type;""";
             }(),
           _ => () {
@@ -1197,6 +1201,7 @@ String toDartType(AType value, bool isJS) => switch (value) {
             'Iterable' => 'JSIterable',
             'Error' => 'JSError',
             'Object' => 'JSObject',
+            'undefined' => 'void',
             final v => () {
                 final parts = v.split('.');
                 if (parts.last.startsWith(RegExp(r'[a-z]'))) {

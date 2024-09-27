@@ -20,6 +20,7 @@ import 'package:web/web.dart' show Event, HTMLElement;
 
 import 'control.dart'
     show
+        CameraControlOptions,
         ControlPosition,
         FullscreenControlOptions,
         MapTypeControlOptions,
@@ -44,6 +45,7 @@ import 'street_view.dart' show StreetViewPanorama;
 
 part 'map/bicycling_layer.dart';
 part 'map/camera_options.dart';
+part 'map/color_scheme.dart';
 part 'map/icon_mouse_event.dart';
 part 'map/map.dart';
 part 'map/map_capabilities.dart';

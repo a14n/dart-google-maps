@@ -23,10 +23,8 @@ extension type Polyline3DElementOptions._(JSObject _) implements JSObject {
     bool? extruded,
     bool? geodesic,
     String? outerColor,
-    num? outerOpacity,
     num? outerWidth,
     String? strokeColor,
-    num? strokeOpacity,
     num? strokeWidth,
     num? zIndex,
   });
@@ -38,10 +36,8 @@ extension type Polyline3DElementOptions._(JSObject _) implements JSObject {
   external bool? extruded;
   external bool? geodesic;
   external String? outerColor;
-  external num? outerOpacity;
   external num? outerWidth;
   external String? strokeColor;
-  external num? strokeOpacity;
   external num? strokeWidth;
   external num? zIndex;
 }

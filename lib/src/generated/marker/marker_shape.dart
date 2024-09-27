@@ -16,12 +16,13 @@ part of '../marker.dart';
 
 extension type MarkerShape._(JSObject _) implements JSObject {
   external MarkerShape({
-    JSArray<JSNumber> coords,
     String type,
+    JSArray<JSNumber>? coords,
   });
-  @JS('coords')
-  external JSArray<JSNumber> _coords;
-  List<num> get coords => _coords.dartify() as List<num>;
-  set coords(List<num> value) => _coords = value.jsify() as JSArray<JSNumber>;
   external String type;
+  @JS('coords')
+  external JSArray<JSNumber>? _coords;
+  List<num>? get coords =>
+      _coords?.toDart.map((type) => type.toDartInt).toList();
+  set coords(List<num>? value) => _coords = value.jsify() as JSArray<JSNumber>?;
 }

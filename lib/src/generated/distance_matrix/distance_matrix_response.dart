@@ -23,13 +23,13 @@ extension type DistanceMatrixResponse._(JSObject _) implements JSObject {
   @JS('destinationAddresses')
   external JSArray<JSString> _destinationAddresses;
   List<String> get destinationAddresses =>
-      _destinationAddresses.dartify() as List<String>;
+      _destinationAddresses.toDart.map((type) => type.toDart).toList();
   set destinationAddresses(List<String> value) =>
       _destinationAddresses = value.jsify() as JSArray<JSString>;
   @JS('originAddresses')
   external JSArray<JSString> _originAddresses;
   List<String> get originAddresses =>
-      _originAddresses.dartify() as List<String>;
+      _originAddresses.toDart.map((type) => type.toDart).toList();
   set originAddresses(List<String> value) =>
       _originAddresses = value.jsify() as JSArray<JSString>;
   @JS('rows')

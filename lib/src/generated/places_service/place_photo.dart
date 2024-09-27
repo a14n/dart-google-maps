@@ -24,7 +24,7 @@ extension type PlacePhoto._(JSObject _) implements JSObject {
   @JS('html_attributions')
   external JSArray<JSString> _htmlAttributions;
   List<String> get htmlAttributions =>
-      _htmlAttributions.dartify() as List<String>;
+      _htmlAttributions.toDart.map((type) => type.toDart).toList();
   set htmlAttributions(List<String> value) =>
       _htmlAttributions = value.jsify() as JSArray<JSString>;
   external num width;

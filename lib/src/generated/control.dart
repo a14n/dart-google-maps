@@ -15,6 +15,7 @@
 import 'dart:js_interop';
 import '/src/js/iterable.dart' show JSIterable;
 import 'street_view_service.dart' show StreetViewSource;
+part 'control/camera_control_options.dart';
 part 'control/control_position.dart';
 part 'control/fullscreen_control_options.dart';
 part 'control/map_type_control_options.dart';

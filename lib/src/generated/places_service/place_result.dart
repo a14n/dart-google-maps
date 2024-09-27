@@ -75,7 +75,7 @@ extension type PlaceResult._(JSObject _) implements JSObject {
   @JS('html_attributions')
   external JSArray<JSString>? _htmlAttributions;
   List<String>? get htmlAttributions =>
-      _htmlAttributions.dartify() as List<String>?;
+      _htmlAttributions?.toDart.map((type) => type.toDart).toList();
   set htmlAttributions(List<String>? value) =>
       _htmlAttributions = value.jsify() as JSArray<JSString>?;
   external String? icon;
@@ -124,7 +124,7 @@ extension type PlaceResult._(JSObject _) implements JSObject {
   set reviews(List<PlaceReview>? value) => _reviews = value?.toJS;
   @JS('types')
   external JSArray<JSString>? _types;
-  List<String>? get types => _types.dartify() as List<String>?;
+  List<String>? get types => _types?.toDart.map((type) => type.toDart).toList();
   set types(List<String>? value) =>
       _types = value.jsify() as JSArray<JSString>?;
   external String? url;

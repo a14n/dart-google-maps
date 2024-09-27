@@ -33,6 +33,7 @@ extension type Place._(JSObject _) implements JSObject {
   set attributions(List<Attribution>? value) => _attributions = value?.toJS;
   external BusinessStatus? businessStatus;
   external String? displayName;
+  external String? displayNameLanguageCode;
   external String? editorialSummary;
   external String? editorialSummaryLanguageCode;
   external EVChargeOptions? evChargeOptions;
@@ -65,6 +66,9 @@ extension type Place._(JSObject _) implements JSObject {
   set photos(List<Photo>? value) => _photos = value?.toJS;
   external PlusCode? plusCode;
   external PriceLevel? priceLevel;
+  external String? primaryType;
+  external String? primaryTypeDisplayName;
+  external String? primaryTypeDisplayNameLanguageCode;
   external num? rating;
   external OpeningHours? regularOpeningHours;
   external String? requestedLanguage;
@@ -86,7 +90,7 @@ extension type Place._(JSObject _) implements JSObject {
   external String? svgIconMaskURI;
   @JS('types')
   external JSArray<JSString>? _types;
-  List<String>? get types => _types.dartify() as List<String>?;
+  List<String>? get types => _types?.toDart.map((type) => type.toDart).toList();
   set types(List<String>? value) =>
       _types = value.jsify() as JSArray<JSString>?;
   external num? userRatingCount;

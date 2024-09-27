@@ -19,6 +19,7 @@ extension type Map3DElementOptions._(JSObject _) implements JSObject {
     LatLngBoundsOrLatLngBoundsLiteral? bounds,
     JSAny? /*(LatLngAltitude|LatLngAltitudeLiteral)?*/ center,
     bool? defaultLabelsDisabled,
+    bool? defaultUIDisabled,
     num? heading,
     num? maxAltitude,
     num? maxHeading,
@@ -33,6 +34,7 @@ extension type Map3DElementOptions._(JSObject _) implements JSObject {
   external LatLngBoundsOrLatLngBoundsLiteral? bounds;
   external JSAny? /*(LatLngAltitude|LatLngAltitudeLiteral)?*/ center;
   external bool? defaultLabelsDisabled;
+  external bool? defaultUIDisabled;
   external num? heading;
   external num? maxAltitude;
   external num? maxHeading;

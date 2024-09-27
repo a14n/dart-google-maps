@@ -29,30 +29,32 @@ extension type SearchNearbyRequest._(JSObject _) implements JSObject {
   });
   @JS('fields')
   external JSArray<JSString> _fields;
-  List<String> get fields => _fields.dartify() as List<String>;
+  List<String> get fields => _fields.toDart.map((type) => type.toDart).toList();
   set fields(List<String> value) =>
       _fields = value.jsify() as JSArray<JSString>;
   external JSAny /*Circle|CircleLiteral*/ locationRestriction;
   @JS('excludedPrimaryTypes')
   external JSArray<JSString>? _excludedPrimaryTypes;
   List<String>? get excludedPrimaryTypes =>
-      _excludedPrimaryTypes.dartify() as List<String>?;
+      _excludedPrimaryTypes?.toDart.map((type) => type.toDart).toList();
   set excludedPrimaryTypes(List<String>? value) =>
       _excludedPrimaryTypes = value.jsify() as JSArray<JSString>?;
   @JS('excludedTypes')
   external JSArray<JSString>? _excludedTypes;
-  List<String>? get excludedTypes => _excludedTypes.dartify() as List<String>?;
+  List<String>? get excludedTypes =>
+      _excludedTypes?.toDart.map((type) => type.toDart).toList();
   set excludedTypes(List<String>? value) =>
       _excludedTypes = value.jsify() as JSArray<JSString>?;
   @JS('includedPrimaryTypes')
   external JSArray<JSString>? _includedPrimaryTypes;
   List<String>? get includedPrimaryTypes =>
-      _includedPrimaryTypes.dartify() as List<String>?;
+      _includedPrimaryTypes?.toDart.map((type) => type.toDart).toList();
   set includedPrimaryTypes(List<String>? value) =>
       _includedPrimaryTypes = value.jsify() as JSArray<JSString>?;
   @JS('includedTypes')
   external JSArray<JSString>? _includedTypes;
-  List<String>? get includedTypes => _includedTypes.dartify() as List<String>?;
+  List<String>? get includedTypes =>
+      _includedTypes?.toDart.map((type) => type.toDart).toList();
   set includedTypes(List<String>? value) =>
       _includedTypes = value.jsify() as JSArray<JSString>?;
   external String? language;

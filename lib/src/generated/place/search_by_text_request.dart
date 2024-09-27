@@ -36,7 +36,7 @@ extension type SearchByTextRequest._(JSObject _) implements JSObject {
   });
   @JS('fields')
   external JSArray<JSString> _fields;
-  List<String> get fields => _fields.dartify() as List<String>;
+  List<String> get fields => _fields.toDart.map((type) => type.toDart).toList();
   set fields(List<String> value) =>
       _fields = value.jsify() as JSArray<JSString>;
   external EVSearchOptions? evSearchOptions;

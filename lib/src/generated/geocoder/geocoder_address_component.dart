@@ -30,6 +30,6 @@ extension type GeocoderAddressComponent._(JSObject _) implements JSObject {
   set shortName(String value) => _shortName = value;
   @JS('types')
   external JSArray<JSString> _types;
-  List<String> get types => _types.dartify() as List<String>;
+  List<String> get types => _types.toDart.map((type) => type.toDart).toList();
   set types(List<String> value) => _types = value.jsify() as JSArray<JSString>;
 }

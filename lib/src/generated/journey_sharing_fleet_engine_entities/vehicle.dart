@@ -42,7 +42,8 @@ extension type Vehicle._(JSObject _) implements JSObject {
   external Date? currentRouteSegmentVersion;
   @JS('currentTrips')
   external JSArray<JSString>? _currentTrips;
-  List<String>? get currentTrips => _currentTrips.dartify() as List<String>?;
+  List<String>? get currentTrips =>
+      _currentTrips?.toDart.map((type) => type.toDart).toList();
   set currentTrips(List<String>? value) =>
       _currentTrips = value.jsify() as JSArray<JSString>?;
   external Date? etaToFirstWaypoint;

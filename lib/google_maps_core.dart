@@ -17,5 +17,6 @@ export 'src/generated/coordinates.dart';
 export 'src/generated/directions.dart';
 export 'src/generated/errors.dart';
 export 'src/generated/event.dart';
+export 'src/generated/map.dart';
 export 'src/generated/marker.dart';
 export 'src/generated/settings.dart';

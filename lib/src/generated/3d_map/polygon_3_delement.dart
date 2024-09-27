@@ -24,7 +24,6 @@ extension type Polygon3DElement._(HTMLElement _)
   external bool? drawsOccludedSegments;
   external bool? extruded;
   external String? fillColor;
-  external num? fillOpacity;
   external bool? geodesic;
   external JSIterable<
           JSIterable<
@@ -34,7 +33,6 @@ extension type Polygon3DElement._(HTMLElement _)
           JSAny /*LatLngAltitude|LatLngAltitudeLiteral|LatLngLiteral*/ >?
       outerCoordinates;
   external String? strokeColor;
-  external num? strokeOpacity;
   external num? strokeWidth;
   external num? zIndex;
   external void addEventListener(

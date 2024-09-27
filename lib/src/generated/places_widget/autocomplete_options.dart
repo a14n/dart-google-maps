@@ -27,14 +27,15 @@ extension type AutocompleteOptions._(JSObject _) implements JSObject {
   external ComponentRestrictions? componentRestrictions;
   @JS('fields')
   external JSArray<JSString>? _fields;
-  List<String>? get fields => _fields.dartify() as List<String>?;
+  List<String>? get fields =>
+      _fields?.toDart.map((type) => type.toDart).toList();
   set fields(List<String>? value) =>
       _fields = value.jsify() as JSArray<JSString>?;
   external bool? placeIdOnly;
   external bool? strictBounds;
   @JS('types')
   external JSArray<JSString>? _types;
-  List<String>? get types => _types.dartify() as List<String>?;
+  List<String>? get types => _types?.toDart.map((type) => type.toDart).toList();
   set types(List<String>? value) =>
       _types = value.jsify() as JSArray<JSString>?;
 }

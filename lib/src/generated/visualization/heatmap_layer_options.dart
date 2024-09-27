@@ -30,7 +30,8 @@ extension type HeatmapLayerOptions._(JSObject _) implements JSObject {
   external bool? dissipating;
   @JS('gradient')
   external JSArray<JSString>? _gradient;
-  List<String>? get gradient => _gradient.dartify() as List<String>?;
+  List<String>? get gradient =>
+      _gradient?.toDart.map((type) => type.toDart).toList();
   set gradient(List<String>? value) =>
       _gradient = value.jsify() as JSArray<JSString>?;
   external Map? map;

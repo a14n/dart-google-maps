@@ -23,6 +23,7 @@ extension type Map3DElement._(HTMLElement _)
   external LatLngBoundsOrLatLngBoundsLiteral? bounds;
   external JSAny? /*(LatLngAltitude|LatLngAltitudeLiteral)?*/ center;
   external bool? defaultLabelsDisabled;
+  external bool? defaultUIDisabled;
   external num? heading;
   external num? maxAltitude;
   external num? maxHeading;
@@ -38,9 +39,16 @@ extension type Map3DElement._(HTMLElement _)
     JSAny /*EventListener|EventListenerObject*/ listener, [
     JSAny? /*(boolean|AddEventListenerOptions)?*/ options,
   ]);
+  external void flyCameraAround(
+    FlyAroundAnimationOptions options,
+  );
+  external void flyCameraTo(
+    FlyToAnimationOptions options,
+  );
   external void removeEventListener(
     String type,
     JSAny /*EventListener|EventListenerObject*/ listener, [
     JSAny? /*(boolean|EventListenerOptions)?*/ options,
   ]);
+  external void stopCameraAnimation();
 }

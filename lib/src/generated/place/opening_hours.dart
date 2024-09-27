@@ -23,7 +23,7 @@ extension type OpeningHours._(JSObject _) implements JSObject {
   @JS('weekdayDescriptions')
   external JSArray<JSString> _weekdayDescriptions;
   List<String> get weekdayDescriptions =>
-      _weekdayDescriptions.dartify() as List<String>;
+      _weekdayDescriptions.toDart.map((type) => type.toDart).toList();
   set weekdayDescriptions(List<String> value) =>
       _weekdayDescriptions = value.jsify() as JSArray<JSString>;
 }

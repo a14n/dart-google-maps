@@ -20,7 +20,6 @@ extension type Polygon3DElementOptions._(JSObject _) implements JSObject {
     bool? drawsOccludedSegments,
     bool? extruded,
     String? fillColor,
-    num? fillOpacity,
     bool? geodesic,
     JSIterable<
             JSAny /*Iterable<LatLngAltitude|LatLngAltitudeLiteral>|Iterable<LatLngLiteral>*/ >?
@@ -28,7 +27,6 @@ extension type Polygon3DElementOptions._(JSObject _) implements JSObject {
     JSIterable<JSAny /*LatLngAltitude|LatLngAltitudeLiteral|LatLngLiteral*/ >?
         outerCoordinates,
     String? strokeColor,
-    num? strokeOpacity,
     num? strokeWidth,
     num? zIndex,
   });
@@ -36,7 +34,6 @@ extension type Polygon3DElementOptions._(JSObject _) implements JSObject {
   external bool? drawsOccludedSegments;
   external bool? extruded;
   external String? fillColor;
-  external num? fillOpacity;
   external bool? geodesic;
   external JSIterable<
           JSAny /*Iterable<LatLngAltitude|LatLngAltitudeLiteral>|Iterable<LatLngLiteral>*/ >?
@@ -45,7 +42,6 @@ extension type Polygon3DElementOptions._(JSObject _) implements JSObject {
           JSAny /*LatLngAltitude|LatLngAltitudeLiteral|LatLngLiteral*/ >?
       outerCoordinates;
   external String? strokeColor;
-  external num? strokeOpacity;
   external num? strokeWidth;
   external num? zIndex;
 }
