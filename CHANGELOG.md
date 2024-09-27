@@ -1,3 +1,10 @@
+
+# 8.1.0 (2024-09-27)
+
+- fix issue with return types of type `List<String>` or `List<num>`. This fixes [Exception on GeocoderAddressComponent|get#types #138](https://github.com/a14n/dart-google-maps/issues/138).
+- re-generate against v3.58 docs
+- improve pub score
+
 # 8.0.0 (2024-07-30)
 
 - promote last dev release as 8.0.0
