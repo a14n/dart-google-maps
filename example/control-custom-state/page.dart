@@ -19,7 +19,7 @@ class CenterControl {
     // Set CSS for the control interior
     final goCenterText = document.createElement('div') as HTMLDivElement
       ..id = 'goCenterText'
-      ..text = 'Center Map';
+      ..textContent = 'Center Map';
     goCenterUI.appendChild(goCenterText);
 
     // Set CSS for the setCenter control border
@@ -31,7 +31,7 @@ class CenterControl {
     // Set CSS for the control interior
     final setCenterText = document.createElement('div') as HTMLDivElement
       ..id = 'setCenterText'
-      ..text = 'Set Center';
+      ..textContent = 'Set Center';
     setCenterUI.appendChild(setCenterText);
 
     // Setup the click event listener for Home:
