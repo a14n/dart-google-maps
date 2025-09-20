@@ -23,7 +23,7 @@ extension type Point._(JSObject _) implements JSObject {
   external num x;
   external num y;
   external bool equals(
-    Point other,
+    Point? other,
   );
   @JS('toString')
   external String toString$js();

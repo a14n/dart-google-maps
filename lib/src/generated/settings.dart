@@ -13,5 +13,5 @@
 // limitations under the License.
 
 import 'dart:js_interop';
-import '/src/js/iterable.dart' show JSIterable;
+part 'settings/maps_app_check_token_result.dart';
 part 'settings/settings.dart';

@@ -18,12 +18,10 @@ extension type FeatureLayer._(JSObject _) implements JSObject {
   external FeatureLayer({
     FeatureType featureType,
     bool isAvailable,
-    String? datasetId,
     JSAny? /*(FeatureStyleOptions|FeatureStyleFunction)?*/ style,
   });
   external FeatureType featureType;
   external bool isAvailable;
-  external String? datasetId;
   external JSAny? /*(FeatureStyleOptions|FeatureStyleFunction)?*/ style;
   external MapsEventListener addListener(
     String eventName,

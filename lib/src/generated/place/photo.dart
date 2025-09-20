@@ -21,6 +21,8 @@ extension type Photo._(JSObject _) implements JSObject {
   List<AuthorAttribution> get authorAttributions => _authorAttributions.toDart;
   set authorAttributions(List<AuthorAttribution> value) =>
       _authorAttributions = value.toJS;
+  external String? flagContentURI;
+  external String? googleMapsURI;
   external num heightPx;
   external num widthPx;
   @JS('getURI')

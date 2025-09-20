@@ -15,12 +15,11 @@
 part of '../geometry.dart';
 
 @JS('google.maps.geometry.encoding')
-external _encoding get encoding;
-extension type _encoding._(JSObject _) implements JSObject {
-  external JSArray<LatLng> decodePath(
+extension type encoding._(JSObject _) implements JSObject {
+  external static JSArray<LatLng> decodePath(
     String encodedPath,
   );
-  external String encodePath(
+  external static String encodePath(
     JSAny /*Array<LatLng|LatLngLiteral>|MVCArray<LatLng|LatLngLiteral>*/ path,
   );
 }

@@ -13,36 +13,4 @@
 // limitations under the License.
 
 import 'dart:js_interop';
-import '/src/js/iterable.dart' show JSIterable;
-import 'coordinates.dart'
-    show
-        LatLngAltitude,
-        LatLngAltitudeLiteral,
-        LatLngBoundsOrLatLngBoundsLiteral,
-        LatLngLiteral,
-        Orientation3D,
-        Orientation3DLiteral,
-        Vector3D,
-        Vector3DLiteral;
-import 'marker.dart' show CollisionBehavior;
-import 'package:web/web.dart' show Event, HTMLElement;
-import 'place.dart' show Place;
-part '3d_map/altitude_mode.dart';
 part '3d_map/camera_options.dart';
-part '3d_map/fly_around_animation_options.dart';
-part '3d_map/fly_to_animation_options.dart';
-part '3d_map/location_click_event.dart';
-part '3d_map/map_3_delement.dart';
-part '3d_map/map_3_delement_options.dart';
-part '3d_map/marker_3_delement.dart';
-part '3d_map/marker_3_delement_options.dart';
-part '3d_map/marker_3_dinteractive_element.dart';
-part '3d_map/marker_3_dinteractive_element_options.dart';
-part '3d_map/model_3_delement.dart';
-part '3d_map/model_3_delement_options.dart';
-part '3d_map/place_click_event.dart';
-part '3d_map/polygon_3_delement.dart';
-part '3d_map/polygon_3_delement_options.dart';
-part '3d_map/polyline_3_delement.dart';
-part '3d_map/polyline_3_delement_options.dart';
-part '3d_map/steady_change_event.dart';

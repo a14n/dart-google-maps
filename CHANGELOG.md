@@ -1,3 +1,7 @@
+# 8.2.0 (2025-09-20)
+
+- re-generate against v3.62 docs
+
 # 8.1.1 (2024-09-27)
 
 - improve analysis score

@@ -23,6 +23,7 @@ extension type MapElement._(HTMLElement _)
   external LatLngOrLatLngLiteral? center;
   external bool? headingInteractionDisabled;
   external Map innerMap;
+  external JSIterable<JSString>? internalUsageAttributionIds;
   external String? mapId;
   external RenderingType? renderingType;
   external bool? tiltInteractionDisabled;

@@ -13,6 +13,8 @@
 // limitations under the License.
 
 import 'dart:js_interop';
+import '/src/js/iterable.dart' show JSIterable;
+import '3d_map.dart' show CameraOptions;
 import 'control.dart'
     show
         CameraControlOptions,
@@ -29,7 +31,6 @@ import 'coordinates.dart'
         LatLng,
         LatLngBounds,
         LatLngBoundsOrLatLngBoundsLiteral,
-        LatLngLiteral,
         LatLngOrLatLngLiteral,
         Padding;
 import 'dart:async' show Stream, StreamController;
@@ -41,7 +42,6 @@ import 'image_overlay.dart' show MapType, Projection;
 import 'package:web/web.dart' show Event, HTMLElement;
 import 'street_view.dart' show StreetViewPanorama;
 part 'map/bicycling_layer.dart';
-part 'map/camera_options.dart';
 part 'map/color_scheme.dart';
 part 'map/icon_mouse_event.dart';
 part 'map/map.dart';

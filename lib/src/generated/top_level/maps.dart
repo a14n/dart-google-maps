@@ -17,7 +17,7 @@ part of '../top_level.dart';
 @JS('google.maps')
 external _maps get maps;
 extension type _maps._(JSObject _) implements JSObject {
-  external static String get version;
+  external String get version;
   @JS('importLibrary')
   external JSPromise<
           JSAny /*CoreLibrary|MapsLibrary|Maps3DLibrary|PlacesLibrary|GeocodingLibrary|RoutesLibrary|MarkerLibrary|GeometryLibrary|ElevationLibrary|StreetViewLibrary|JourneySharingLibrary|DrawingLibrary|VisualizationLibrary*/ >

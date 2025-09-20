@@ -55,9 +55,6 @@ extension type Map._(MVCObject _) implements MVCObject {
   @JS('getClickableIcons')
   external bool _getClickableIcons();
   bool get clickableIcons => _getClickableIcons();
-  external FeatureLayer getDatasetFeatureLayer(
-    String datasetId,
-  );
   @JS('getDiv')
   external HTMLElement _getDiv();
   HTMLElement get div => _getDiv();
@@ -70,6 +67,10 @@ extension type Map._(MVCObject _) implements MVCObject {
   @JS('getHeadingInteractionEnabled')
   external bool _getHeadingInteractionEnabled();
   bool get headingInteractionEnabled => _getHeadingInteractionEnabled();
+  @JS('getInternalUsageAttributionIds')
+  external JSIterable<JSString>? _getInternalUsageAttributionIds();
+  JSIterable<JSString>? get internalUsageAttributionIds =>
+      _getInternalUsageAttributionIds();
   @JS('getMapCapabilities')
   external MapCapabilities _getMapCapabilities();
   MapCapabilities get mapCapabilities => _getMapCapabilities();

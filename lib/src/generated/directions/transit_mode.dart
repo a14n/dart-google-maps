@@ -17,6 +17,7 @@ part of '../directions.dart';
 @JS('google.maps.TransitMode')
 extension type TransitMode._(JSAny _) implements JSAny {
   external static TransitMode get BUS;
+  external static TransitMode get LIGHT_RAIL;
   external static TransitMode get RAIL;
   external static TransitMode get SUBWAY;
   external static TransitMode get TRAIN;

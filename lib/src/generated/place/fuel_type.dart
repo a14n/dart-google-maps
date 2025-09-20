@@ -18,6 +18,8 @@ part of '../place.dart';
 extension type FuelType._(JSAny _) implements JSAny {
   external static FuelType get BIO_DIESEL;
   external static FuelType get DIESEL;
+  external static FuelType get DIESEL_PLUS;
+  external static FuelType get E100;
   external static FuelType get E80;
   external static FuelType get E85;
   external static FuelType get LPG;

@@ -18,7 +18,6 @@ extension type AdvancedMarkerElementOptions._(JSObject _) implements JSObject {
   external AdvancedMarkerElementOptions({
     CollisionBehavior? collisionBehavior,
     Node? content,
-    bool? gmpClickable,
     bool? gmpDraggable,
     Map? map,
     JSAny? /*(LatLng|LatLngLiteral|LatLngAltitude|LatLngAltitudeLiteral)?*/
@@ -28,7 +27,6 @@ extension type AdvancedMarkerElementOptions._(JSObject _) implements JSObject {
   });
   external CollisionBehavior? collisionBehavior;
   external Node? content;
-  external bool? gmpClickable;
   external bool? gmpDraggable;
   external Map? map;
   external JSAny? /*(LatLng|LatLngLiteral|LatLngAltitude|LatLngAltitudeLiteral)?*/

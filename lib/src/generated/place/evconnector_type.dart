@@ -20,6 +20,7 @@ extension type EVConnectorType._(JSAny _) implements JSAny {
   external static EVConnectorType get CCS_COMBO_2;
   external static EVConnectorType get CHADEMO;
   external static EVConnectorType get J1772;
+  external static EVConnectorType get NACS;
   external static EVConnectorType get OTHER;
   external static EVConnectorType get TESLA;
   external static EVConnectorType get TYPE_2;

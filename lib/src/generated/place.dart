@@ -14,6 +14,7 @@
 
 import 'dart:js_interop';
 import '/src/js/date.dart' show Date;
+import '/src/js/iterable.dart' show JSIterable;
 import 'coordinates.dart'
     show
         CircleLiteral,
@@ -35,6 +36,7 @@ part 'place/fetch_fields_request.dart';
 part 'place/fuel_options.dart';
 part 'place/fuel_price.dart';
 part 'place/fuel_type.dart';
+part 'place/google_maps_links.dart';
 part 'place/money.dart';
 part 'place/opening_hours.dart';
 part 'place/opening_hours_period.dart';
@@ -45,7 +47,10 @@ part 'place/photo.dart';
 part 'place/place.dart';
 part 'place/place_options.dart';
 part 'place/plus_code.dart';
+part 'place/postal_address.dart';
+part 'place/postal_address_literal.dart';
 part 'place/price_level.dart';
+part 'place/price_range.dart';
 part 'place/review.dart';
 part 'place/search_by_text_rank_preference.dart';
 part 'place/search_by_text_request.dart';

@@ -20,10 +20,6 @@ import 'coordinates.dart'
         LatLngBoundsOrLatLngBoundsLiteral,
         LatLngOrLatLngLiteral;
 import 'places_service.dart' show PlacePlusCode;
-part 'geocoder/address_descriptor.dart';
-part 'geocoder/area.dart';
-part 'geocoder/containment.dart';
-part 'geocoder/extra_geocode_computation.dart';
 part 'geocoder/geocoder.dart';
 part 'geocoder/geocoder_address_component.dart';
 part 'geocoder/geocoder_component_restrictions.dart';
@@ -33,5 +29,3 @@ part 'geocoder/geocoder_request.dart';
 part 'geocoder/geocoder_response.dart';
 part 'geocoder/geocoder_result.dart';
 part 'geocoder/geocoder_status.dart';
-part 'geocoder/landmark.dart';
-part 'geocoder/spatial_relationship.dart';

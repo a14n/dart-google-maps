@@ -16,15 +16,15 @@ part of '../kml.dart';
 
 extension type KmlLayerMetadata._(JSObject _) implements JSObject {
   external KmlLayerMetadata({
-    KmlAuthor author,
     String description,
     bool hasScreenOverlays,
     String name,
     String snippet,
+    KmlAuthor? author,
   });
-  external KmlAuthor author;
   external String description;
   external bool hasScreenOverlays;
   external String name;
   external String snippet;
+  external KmlAuthor? author;
 }

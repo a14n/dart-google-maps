@@ -16,11 +16,13 @@ part of '../3d_map.dart';
 
 extension type CameraOptions._(JSObject _) implements JSObject {
   external CameraOptions({
+    JSAny? /*(LatLngAltitude|LatLngAltitudeLiteral)?*/ center,
     num? heading,
     num? range,
     num? roll,
     num? tilt,
   });
+  external JSAny? /*(LatLngAltitude|LatLngAltitudeLiteral)?*/ center;
   external num? heading;
   external num? range;
   external num? roll;

@@ -19,10 +19,10 @@ extension type MapType._(JSObject _) implements JSObject {
     num maxZoom,
     num minZoom,
     num radius,
-    Size tileSize,
     String? alt,
     String? name,
     Projection? projection,
+    Size? tileSize,
   });
   @JS('getTile')
   external Element? _getTile(Point tileCoord, num zoom, Document ownerDocument);
@@ -53,8 +53,8 @@ extension type MapType._(JSObject _) implements JSObject {
   external num maxZoom;
   external num minZoom;
   external num radius;
-  external Size tileSize;
   external String? alt;
   external String? name;
   external Projection? projection;
+  external Size? tileSize;
 }

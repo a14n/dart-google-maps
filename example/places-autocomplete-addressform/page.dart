@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'dart:js_interop';
-import 'dart:js_util';
+import 'dart:js_interop_unsafe';
 
 import 'package:google_maps/google_maps.dart';
 import 'package:google_maps/google_maps_places.dart';
@@ -45,7 +45,7 @@ void fillInAddress(_) {
     final addressType = addressComponent.types[0];
     final prop = componentForm[addressType];
     if (prop != null) {
-      final val = getProperty(addressComponent, prop) as String;
+      final val = addressComponent.getProperty(prop.toJS).toString();
       (document.getElementById(addressType)! as HTMLInputElement).value = val;
     }
   }
@@ -57,7 +57,7 @@ Future geolocate(_) async {
   // ignore: unnecessary_null_comparison
   if (window.navigator.geolocation != null) {
     window.navigator.geolocation
-        .getCurrentPosition(allowInterop((GeolocationPosition position) {
+        .getCurrentPosition(((GeolocationPosition position) {
       final geolocation =
           LatLng(position.coords.latitude, position.coords.longitude);
       final circle = Circle(CircleOptions()

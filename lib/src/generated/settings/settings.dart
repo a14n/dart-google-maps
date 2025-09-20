@@ -16,7 +16,8 @@ part of '../settings.dart';
 
 @JS('google.maps.Settings')
 extension type Settings._(JSObject _) implements JSObject {
-  external JSIterable<JSString> experienceIds;
+  external JSFunction /*JSPromise<MapsAppCheckTokenResult> Function()*/
+      fetchAppCheckToken;
   @JS('getInstance')
   external static Settings _getInstance();
   static Settings get instance => _getInstance();

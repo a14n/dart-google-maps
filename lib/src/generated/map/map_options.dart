@@ -33,6 +33,7 @@ extension type MapOptions._(JSObject _) implements JSObject {
     String? gestureHandling,
     num? heading,
     bool? headingInteractionEnabled,
+    JSIterable<JSString>? internalUsageAttributionIds,
     bool? isFractionalZoomEnabled,
     bool? keyboardShortcuts,
     String? mapId,
@@ -78,6 +79,7 @@ extension type MapOptions._(JSObject _) implements JSObject {
   external String? gestureHandling;
   external num? heading;
   external bool? headingInteractionEnabled;
+  external JSIterable<JSString>? internalUsageAttributionIds;
   external bool? isFractionalZoomEnabled;
   external bool? keyboardShortcuts;
   external String? mapId;

@@ -19,7 +19,6 @@ extension type GeocoderRequest._(JSObject _) implements JSObject {
     String? address,
     LatLngBoundsOrLatLngBoundsLiteral? bounds,
     GeocoderComponentRestrictions? componentRestrictions,
-    JSArray<ExtraGeocodeComputation>? extraComputations,
     bool? fulfillOnZeroResults,
     String? language,
     LatLngOrLatLngLiteral? location,
@@ -29,12 +28,6 @@ extension type GeocoderRequest._(JSObject _) implements JSObject {
   external String? address;
   external LatLngBoundsOrLatLngBoundsLiteral? bounds;
   external GeocoderComponentRestrictions? componentRestrictions;
-  @JS('extraComputations')
-  external JSArray<ExtraGeocodeComputation>? _extraComputations;
-  List<ExtraGeocodeComputation>? get extraComputations =>
-      _extraComputations?.toDart;
-  set extraComputations(List<ExtraGeocodeComputation>? value) =>
-      _extraComputations = value?.toJS;
   external bool? fulfillOnZeroResults;
   external String? language;
   external LatLngOrLatLngLiteral? location;

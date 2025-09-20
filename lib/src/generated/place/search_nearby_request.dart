@@ -16,10 +16,10 @@ part of '../place.dart';
 
 extension type SearchNearbyRequest._(JSObject _) implements JSObject {
   external SearchNearbyRequest({
-    JSArray<JSString> fields,
     JSAny /*Circle|CircleLiteral*/ locationRestriction,
     JSArray<JSString>? excludedPrimaryTypes,
     JSArray<JSString>? excludedTypes,
+    JSArray<JSString>? fields,
     JSArray<JSString>? includedPrimaryTypes,
     JSArray<JSString>? includedTypes,
     String? language,
@@ -27,11 +27,6 @@ extension type SearchNearbyRequest._(JSObject _) implements JSObject {
     SearchNearbyRankPreference? rankPreference,
     String? region,
   });
-  @JS('fields')
-  external JSArray<JSString> _fields;
-  List<String> get fields => _fields.toDart.map((type) => type.toDart).toList();
-  set fields(List<String> value) =>
-      _fields = value.jsify() as JSArray<JSString>;
   external JSAny /*Circle|CircleLiteral*/ locationRestriction;
   @JS('excludedPrimaryTypes')
   external JSArray<JSString>? _excludedPrimaryTypes;
@@ -45,6 +40,12 @@ extension type SearchNearbyRequest._(JSObject _) implements JSObject {
       _excludedTypes?.toDart.map((type) => type.toDart).toList();
   set excludedTypes(List<String>? value) =>
       _excludedTypes = value.jsify() as JSArray<JSString>?;
+  @JS('fields')
+  external JSArray<JSString>? _fields;
+  List<String>? get fields =>
+      _fields?.toDart.map((type) => type.toDart).toList();
+  set fields(List<String>? value) =>
+      _fields = value.jsify() as JSArray<JSString>?;
   @JS('includedPrimaryTypes')
   external JSArray<JSString>? _includedPrimaryTypes;
   List<String>? get includedPrimaryTypes =>

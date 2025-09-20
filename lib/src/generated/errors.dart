@@ -18,3 +18,4 @@ part 'errors/maps_network_error.dart';
 part 'errors/maps_network_error_endpoint.dart';
 part 'errors/maps_request_error.dart';
 part 'errors/maps_server_error.dart';
+part 'errors/rpcstatus.dart';

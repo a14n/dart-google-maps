@@ -17,17 +17,12 @@ part of '../geocoder.dart';
 extension type GeocoderResponse._(JSObject _) implements JSObject {
   external GeocoderResponse({
     JSArray<GeocoderResult> results,
-    AddressDescriptor? address_descriptor,
     PlacePlusCode? plus_code,
   });
   @JS('results')
   external JSArray<GeocoderResult> _results;
   List<GeocoderResult> get results => _results.toDart;
   set results(List<GeocoderResult> value) => _results = value.toJS;
-  @JS('address_descriptor')
-  external AddressDescriptor? _addressDescriptor;
-  AddressDescriptor? get addressDescriptor => _addressDescriptor;
-  set addressDescriptor(AddressDescriptor? value) => _addressDescriptor = value;
   @JS('plus_code')
   external PlacePlusCode? _plusCode;
   PlacePlusCode? get plusCode => _plusCode;

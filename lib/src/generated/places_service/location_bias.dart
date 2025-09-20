@@ -15,4 +15,4 @@
 part of '../places_service.dart';
 
 typedef LocationBias
-    = JSAny /*LatLng|LatLngLiteral|LatLngBounds|LatLngBoundsLiteral|Circle|CircleLiteral|string*/;
+    = JSAny /*LatLng|LatLngLiteral|LatLngAltitude|LatLngAltitudeLiteral|LatLngBounds|LatLngBoundsLiteral|Circle|CircleLiteral|string*/;

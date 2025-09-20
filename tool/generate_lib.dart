@@ -89,6 +89,7 @@ Future<void> generatePrivateLibs(
 
   // generate private libraries
   for (final lib in libs) {
+    if (lib.elements.isEmpty) continue;
     final libFile = File('$genFolder/${lib.name}.dart');
     await libFile.writeAsString([
       licence,
@@ -136,10 +137,16 @@ Future<void> generatePublicLibs(
   final document = parse(response.body);
   final publicLibs = document
       .querySelectorAll('h2')
+      .where((e) => e.parent!.children
+          .none((e) => ['alpha', 'beta'].contains(e.className)))
       .map((e) => (
             id: e.attributes['id']!.replaceAll('Library', '').toLowerCase(),
             privateLibs: e.parent!
                 .querySelectorAll('code>a[href^="/"]')
+                .where((e) =>
+                    e.parent?.parent?.parent?.children
+                        .none((e) => ['alpha', 'beta'].contains(e.className)) ??
+                    true)
                 .map((e) {
                   final href = e.attributes['href']!;
                   return href
@@ -152,6 +159,8 @@ Future<void> generatePublicLibs(
           ))
       .toList();
   for (final (:id, :privateLibs) in publicLibs) {
+    if (privateLibs.isEmpty) continue;
+    if (id == 'airquality') continue; // alpha
     final libFile = File('$publicLibsFolder/google_maps_$id.dart');
     await libFile.writeAsString([
       licence,
@@ -215,6 +224,13 @@ final externalLibs = <Lib>[
       (fileName: '', names: {'JSIterable'}),
     ],
   ),
+  (
+    name: '/src/js/url',
+    dependencies: {},
+    elements: [
+      (fileName: '', names: {'URL'}),
+    ],
+  ),
 ];
 
 typedef Lib = ({
@@ -236,8 +252,17 @@ Future<Lib> generatedElementsFromPage(
   final elements = <({Set<String> names, String fileName})>[];
   final dependencies = <String>{};
   for (final element in document.querySelectorAll('h2[data-text]')) {
+    if (libName == 'air_quality') continue; // alpha
     final [fullName, ...type] =
         element.nextElementSibling!.text.trim().split(RegExp('[ \n]+'));
+    if (element.parent!.children
+        .any((e) => ['alpha', 'beta'].contains(e.className))) {
+      if (fullName == 'google.maps.maps3d.CameraOptions') {
+        // marked beta but used
+      } else {
+        continue;
+      }
+    }
     final generate = switch (type) {
       ['class'] => generateClass,
       ['abstract', 'class'] => generateClass,
@@ -759,7 +784,7 @@ extension LatLngBoundsOrLatLngBoundsLiteral$Ext on LatLngBoundsOrLatLngBoundsLit
       ],
       ...customCode,
       for (final constant in constants)
-        '  external static ${isConstant ? name : getTypeForClassConstant(name, constant.name)} get ${constant.name};',
+        '  external ${isNamespace ? '' : 'static'} ${isConstant ? name : getTypeForClassConstant(name, constant.name)} get ${constant.name};',
       for (final property in properties) property.generateDartCode(),
       for (final (:isStatic, :method) in methods) ...[
         if (canBeGetter(isStatic, method) case final String getterName) ...[
@@ -982,6 +1007,8 @@ List<Method> extractMethods(
         .querySelectorAll(
             'table.methods[summary\$=" -${isStatic ? ' Static' : ''} Methods"]'
             '>tbody>tr')
+        .where((e) => e.children[1].children
+            .none((e) => ['alpha', 'beta'].contains(e.className)))
         .map((e) {
       final name = translateType(e.children[0].text);
       final other = e.children[1];
@@ -1038,7 +1065,7 @@ class Property {
   });
   final String name;
   final String jsType;
-  final String doc;
+  final String? doc;
   String get type => translateType(jsType);
 
   String generateDartCode() {
@@ -1098,17 +1125,20 @@ class Property {
 List<Property> extractProperties(
   Element element,
 ) =>
-    element.querySelectorAll('table.properties td[itemprop=property]').map((e) {
+    element
+        .querySelectorAll('table.properties td[itemprop=property]')
+        .where((e) =>
+            e.nextElementSibling?.children
+                .none((e) => ['alpha', 'beta'].contains(e.className)) ??
+            true)
+        .map((e) {
       final name = e.text.split(' ').first;
-      final jsType = e.nextElementSibling!.children
+
+      final divs = e.nextElementSibling!.children
           .where((e) => e.localName == 'div')
-          .toList()[0]
-          .children[1]
-          .text;
-      final doc = e.nextElementSibling!.children
-          .where((e) => e.localName == 'div')
-          .toList()[1]
-          .text;
+          .toList();
+      final jsType = divs[0].children[1].text;
+      final doc = divs.length > 1 ? divs[1].text : null;
       return Property(
         name: name,
         jsType: jsType,

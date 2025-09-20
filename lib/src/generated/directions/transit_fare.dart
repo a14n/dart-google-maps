@@ -17,8 +17,10 @@ part of '../directions.dart';
 extension type TransitFare._(JSObject _) implements JSObject {
   external TransitFare({
     String currency,
+    String text,
     num value,
   });
   external String currency;
+  external String text;
   external num value;
 }

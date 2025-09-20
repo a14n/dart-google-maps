@@ -19,7 +19,6 @@ extension type MarkerOptions._(JSObject _) implements JSObject {
     Point? anchorPoint,
     Animation? animation,
     bool? clickable,
-    JSAny? /*(string|CollisionBehavior)?*/ collisionBehavior,
     bool? crossOnDrag,
     String? cursor,
     bool? draggable,
@@ -37,7 +36,6 @@ extension type MarkerOptions._(JSObject _) implements JSObject {
   external Point? anchorPoint;
   external Animation? animation;
   external bool? clickable;
-  external JSAny? /*(string|CollisionBehavior)?*/ collisionBehavior;
   external bool? crossOnDrag;
   external String? cursor;
   external bool? draggable;

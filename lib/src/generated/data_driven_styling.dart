@@ -17,7 +17,6 @@ import 'dart:async' show Stream, StreamController;
 import 'event.dart' show MapsEventListener, event;
 import 'map.dart' show MapMouseEvent;
 import 'place.dart' show Place;
-part 'data_driven_styling/dataset_feature.dart';
 part 'data_driven_styling/feature.dart';
 part 'data_driven_styling/feature_layer.dart';
 part 'data_driven_styling/feature_mouse_event.dart';

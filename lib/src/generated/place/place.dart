@@ -15,7 +15,7 @@
 part of '../place.dart';
 
 @JS('google.maps.places.Place')
-extension type Place._(JSObject _) implements JSObject {
+extension type Place._(PlaceOptions _) implements PlaceOptions {
   external Place(
     PlaceOptions options,
   );
@@ -39,6 +39,7 @@ extension type Place._(JSObject _) implements JSObject {
   external EVChargeOptions? evChargeOptions;
   external String? formattedAddress;
   external FuelOptions? fuelOptions;
+  external GoogleMapsLinks? googleMapsLinks;
   external String? googleMapsURI;
   external bool? hasCurbsidePickup;
   external bool? hasDelivery;
@@ -48,7 +49,6 @@ extension type Place._(JSObject _) implements JSObject {
   external bool? hasOutdoorSeating;
   external bool? hasRestroom;
   external bool? hasTakeout;
-  external bool? hasWiFi;
   external String? iconBackgroundColor;
   external String id;
   external String? internationalPhoneNumber;
@@ -65,7 +65,9 @@ extension type Place._(JSObject _) implements JSObject {
   List<Photo>? get photos => _photos?.toDart;
   set photos(List<Photo>? value) => _photos = value?.toJS;
   external PlusCode? plusCode;
+  external PostalAddress? postalAddress;
   external PriceLevel? priceLevel;
+  external PriceRange? priceRange;
   external String? primaryType;
   external String? primaryTypeDisplayName;
   external String? primaryTypeDisplayNameLanguageCode;
@@ -98,20 +100,10 @@ extension type Place._(JSObject _) implements JSObject {
   external LatLngBounds? viewport;
   external String? websiteURI;
   external OpeningHours? openingHours;
+  external bool? hasWiFi;
   external JSAny? /*UNPARSED:Promise<{place:Place}>*/ fetchFields(
     FetchFieldsRequest options,
   );
-  @JS('getNextOpeningTime')
-  external JSPromise<Date?> _getNextOpeningTime();
-  JSPromise<Date?> get nextOpeningTime => _getNextOpeningTime();
-  @JS('isOpen')
-  external JSPromise<JSBoolean?> _isOpen([
-    Date? date,
-  ]);
-  Future<JSBoolean?> isOpen([
-    Date? date,
-  ]) =>
-      _isOpen(date).toDart;
   external JSObject /*Object<null>*/ toJSON();
   external static JSAny? /*UNPARSED:Promise<{places:Array<Place>}>*/
       searchByText(

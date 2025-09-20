@@ -21,8 +21,6 @@ extension type AdvancedMarkerElement._(HTMLElement _)
     AdvancedMarkerElementOptions? options,
   ]);
   external CollisionBehavior? collisionBehavior;
-  external Node? content;
-  external HTMLElement element;
   external bool? gmpClickable;
   external bool? gmpDraggable;
   external Map? map;
@@ -30,6 +28,8 @@ extension type AdvancedMarkerElement._(HTMLElement _)
       position;
   external String title;
   external num? zIndex;
+  external HTMLElement element;
+  external Node? content;
   external void addEventListener(
     String type,
     JSAny /*EventListener|EventListenerObject*/ listener, [

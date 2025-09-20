@@ -18,6 +18,7 @@ extension type MapElementOptions._(JSObject _) implements JSObject {
   external MapElementOptions({
     LatLngOrLatLngLiteral? center,
     bool? headingInteractionDisabled,
+    JSIterable<JSString>? internalUsageAttributionIds,
     String? mapId,
     RenderingType? renderingType,
     bool? tiltInteractionDisabled,
@@ -25,6 +26,7 @@ extension type MapElementOptions._(JSObject _) implements JSObject {
   });
   external LatLngOrLatLngLiteral? center;
   external bool? headingInteractionDisabled;
+  external JSIterable<JSString>? internalUsageAttributionIds;
   external String? mapId;
   external RenderingType? renderingType;
   external bool? tiltInteractionDisabled;

@@ -15,43 +15,42 @@
 part of '../geometry.dart';
 
 @JS('google.maps.geometry.spherical')
-external _spherical get spherical;
-extension type _spherical._(JSObject _) implements JSObject {
-  external num computeArea(
+extension type spherical._(JSObject _) implements JSObject {
+  external static num computeArea(
     JSAny /*Array<LatLng|LatLngLiteral>|MVCArray<LatLng|LatLngLiteral>|Circle|CircleLiteral|LatLngBounds|LatLngBoundsLiteral*/
         path, [
     num? radiusOfSphere,
   ]);
-  external num computeDistanceBetween(
+  external static num computeDistanceBetween(
     LatLngOrLatLngLiteral from,
     LatLngOrLatLngLiteral to, [
     num? radius,
   ]);
-  external num computeHeading(
+  external static num computeHeading(
     LatLngOrLatLngLiteral from,
     LatLngOrLatLngLiteral to,
   );
-  external num computeLength(
+  external static num computeLength(
     JSAny /*Array<LatLng|LatLngLiteral>|MVCArray<LatLng|LatLngLiteral>*/ path, [
     num? radius,
   ]);
-  external LatLng computeOffset(
+  external static LatLng computeOffset(
     LatLngOrLatLngLiteral from,
     num distance,
     num heading, [
     num? radius,
   ]);
-  external LatLng? computeOffsetOrigin(
+  external static LatLng? computeOffsetOrigin(
     LatLngOrLatLngLiteral to,
     num distance,
     num heading, [
     num? radius,
   ]);
-  external num computeSignedArea(
+  external static num computeSignedArea(
     JSAny /*Array<LatLng|LatLngLiteral>|MVCArray<LatLng|LatLngLiteral>*/ loop, [
     num? radius,
   ]);
-  external LatLng interpolate(
+  external static LatLng interpolate(
     LatLngOrLatLngLiteral from,
     LatLngOrLatLngLiteral to,
     num fraction,

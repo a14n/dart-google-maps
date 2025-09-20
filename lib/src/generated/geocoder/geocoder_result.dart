@@ -21,7 +21,6 @@ extension type GeocoderResult._(JSObject _) implements JSObject {
     GeocoderGeometry geometry,
     String place_id,
     JSArray<JSString> types,
-    AddressDescriptor? address_descriptor,
     bool? partial_match,
     PlacePlusCode? plus_code,
     JSArray<JSString>? postcode_localities,
@@ -45,10 +44,6 @@ extension type GeocoderResult._(JSObject _) implements JSObject {
   external JSArray<JSString> _types;
   List<String> get types => _types.toDart.map((type) => type.toDart).toList();
   set types(List<String> value) => _types = value.jsify() as JSArray<JSString>;
-  @JS('address_descriptor')
-  external AddressDescriptor? _addressDescriptor;
-  AddressDescriptor? get addressDescriptor => _addressDescriptor;
-  set addressDescriptor(AddressDescriptor? value) => _addressDescriptor = value;
   @JS('partial_match')
   external bool? _partialMatch;
   bool? get partialMatch => _partialMatch;

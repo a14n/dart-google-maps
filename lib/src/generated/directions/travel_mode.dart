@@ -19,5 +19,6 @@ extension type TravelMode._(JSAny _) implements JSAny {
   external static TravelMode get BICYCLING;
   external static TravelMode get DRIVING;
   external static TravelMode get TRANSIT;
+  external static TravelMode get TWO_WHEELER;
   external static TravelMode get WALKING;
 }

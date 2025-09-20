@@ -17,21 +17,35 @@ part of '../places_widget.dart';
 extension type PlaceAutocompleteElementOptions._(JSObject _)
     implements JSObject {
   external PlaceAutocompleteElementOptions({
-    ComponentRestrictions? componentRestrictions,
+    JSArray<JSString>? includedPrimaryTypes,
+    JSArray<JSString>? includedRegionCodes,
     LocationBias? locationBias,
     LocationRestriction? locationRestriction,
+    String? name,
+    JSAny? /*(LatLng|LatLngLiteral|LatLngAltitude|LatLngAltitudeLiteral)?*/
+        origin,
     String? requestedLanguage,
     String? requestedRegion,
-    JSArray<JSString>? types,
+    UnitSystem? unitSystem,
   });
-  external ComponentRestrictions? componentRestrictions;
+  @JS('includedPrimaryTypes')
+  external JSArray<JSString>? _includedPrimaryTypes;
+  List<String>? get includedPrimaryTypes =>
+      _includedPrimaryTypes?.toDart.map((type) => type.toDart).toList();
+  set includedPrimaryTypes(List<String>? value) =>
+      _includedPrimaryTypes = value.jsify() as JSArray<JSString>?;
+  @JS('includedRegionCodes')
+  external JSArray<JSString>? _includedRegionCodes;
+  List<String>? get includedRegionCodes =>
+      _includedRegionCodes?.toDart.map((type) => type.toDart).toList();
+  set includedRegionCodes(List<String>? value) =>
+      _includedRegionCodes = value.jsify() as JSArray<JSString>?;
   external LocationBias? locationBias;
   external LocationRestriction? locationRestriction;
+  external String? name;
+  external JSAny? /*(LatLng|LatLngLiteral|LatLngAltitude|LatLngAltitudeLiteral)?*/
+      origin;
   external String? requestedLanguage;
   external String? requestedRegion;
-  @JS('types')
-  external JSArray<JSString>? _types;
-  List<String>? get types => _types?.toDart.map((type) => type.toDart).toList();
-  set types(List<String>? value) =>
-      _types = value.jsify() as JSArray<JSString>?;
+  external UnitSystem? unitSystem;
 }

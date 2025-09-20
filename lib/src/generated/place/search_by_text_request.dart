@@ -16,8 +16,8 @@ part of '../place.dart';
 
 extension type SearchByTextRequest._(JSObject _) implements JSObject {
   external SearchByTextRequest({
-    JSArray<JSString> fields,
     EVSearchOptions? evSearchOptions,
+    JSArray<JSString>? fields,
     String? includedType,
     bool? isOpenNow,
     String? language,
@@ -28,18 +28,18 @@ extension type SearchByTextRequest._(JSObject _) implements JSObject {
     num? minRating,
     JSArray<PriceLevel>? priceLevels,
     String? query,
-    SearchByTextRankPreference? rankBy,
     SearchByTextRankPreference? rankPreference,
     String? region,
     String? textQuery,
     bool? useStrictTypeFiltering,
   });
-  @JS('fields')
-  external JSArray<JSString> _fields;
-  List<String> get fields => _fields.toDart.map((type) => type.toDart).toList();
-  set fields(List<String> value) =>
-      _fields = value.jsify() as JSArray<JSString>;
   external EVSearchOptions? evSearchOptions;
+  @JS('fields')
+  external JSArray<JSString>? _fields;
+  List<String>? get fields =>
+      _fields?.toDart.map((type) => type.toDart).toList();
+  set fields(List<String>? value) =>
+      _fields = value.jsify() as JSArray<JSString>?;
   external String? includedType;
   external bool? isOpenNow;
   external String? language;
@@ -53,7 +53,6 @@ extension type SearchByTextRequest._(JSObject _) implements JSObject {
   List<PriceLevel>? get priceLevels => _priceLevels?.toDart;
   set priceLevels(List<PriceLevel>? value) => _priceLevels = value?.toJS;
   external String? query;
-  external SearchByTextRankPreference? rankBy;
   external SearchByTextRankPreference? rankPreference;
   external String? region;
   external String? textQuery;

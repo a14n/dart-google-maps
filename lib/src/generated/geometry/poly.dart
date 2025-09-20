@@ -15,13 +15,12 @@
 part of '../geometry.dart';
 
 @JS('google.maps.geometry.poly')
-external _poly get poly;
-extension type _poly._(JSObject _) implements JSObject {
-  external bool containsLocation(
+extension type poly._(JSObject _) implements JSObject {
+  external static bool containsLocation(
     LatLngOrLatLngLiteral point,
     Polygon polygon,
   );
-  external bool isLocationOnEdge(
+  external static bool isLocationOnEdge(
     LatLngOrLatLngLiteral point,
     JSAny /*Polygon|Polyline*/ poly, [
     num? tolerance,

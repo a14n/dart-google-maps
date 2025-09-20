@@ -17,6 +17,10 @@ part of '../place.dart';
 @JS('google.maps.places.Review')
 extension type Review._(JSObject _) implements JSObject {
   external AuthorAttribution? authorAttribution;
+  external String? flagContentURI;
+  external String? googleMapsURI;
+  external String? originalText;
+  external String? originalTextLanguageCode;
   external Date? publishTime;
   external num? rating;
   external String? relativePublishTimeDescription;

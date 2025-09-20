@@ -26,11 +26,6 @@ extension type PinElement._(HTMLElement _)
   external JSAny? /*(string|Element|URL)?*/ glyph;
   external String? glyphColor;
   external num? scale;
-  external void addEventListener(
-    String type,
-    JSAny /*EventListener|EventListenerObject*/ listener, [
-    JSAny? /*(boolean|AddEventListenerOptions)?*/ options,
-  ]);
   external void removeEventListener(
     String type,
     JSAny /*EventListener|EventListenerObject*/ listener, [

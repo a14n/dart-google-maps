@@ -16,7 +16,7 @@ part of '../errors.dart';
 
 @JS('google.maps.MapsNetworkError')
 extension type MapsNetworkError._(JSError _) implements JSError {
-  external JSAny /*DirectionsStatus|DistanceMatrixStatus|ElevationStatus|GeocoderStatus|MaxZoomStatus|PlacesServiceStatus|StreetViewStatus*/
+  external JSAny /*DirectionsStatus|DistanceMatrixStatus|ElevationStatus|GeocoderStatus|MaxZoomStatus|PlacesServiceStatus|RPCStatus|StreetViewStatus*/
       code;
   external MapsNetworkErrorEndpoint endpoint;
 }

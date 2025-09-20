@@ -26,6 +26,6 @@ extension type TrafficLayer._(MVCObject _) implements MVCObject {
   external void _setMap(Map? map);
   set map(Map? map) => _setMap(map);
   @JS('setOptions')
-  external void _setOptions(TrafficLayerOptions options);
-  set options(TrafficLayerOptions options) => _setOptions(options);
+  external void _setOptions(TrafficLayerOptions? options);
+  set options(TrafficLayerOptions? options) => _setOptions(options);
 }
