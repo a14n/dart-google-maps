@@ -16,6 +16,8 @@ part of '../advanced_markers.dart';
 
 extension type AdvancedMarkerElementOptions._(JSObject _) implements JSObject {
   external AdvancedMarkerElementOptions({
+    String? anchorLeft,
+    String? anchorTop,
     CollisionBehavior? collisionBehavior,
     Node? content,
     bool? gmpDraggable,
@@ -25,6 +27,8 @@ extension type AdvancedMarkerElementOptions._(JSObject _) implements JSObject {
     String? title,
     num? zIndex,
   });
+  external String? anchorLeft;
+  external String? anchorTop;
   external CollisionBehavior? collisionBehavior;
   external Node? content;
   external bool? gmpDraggable;
