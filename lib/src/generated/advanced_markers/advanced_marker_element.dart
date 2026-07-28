@@ -20,6 +20,8 @@ extension type AdvancedMarkerElement._(HTMLElement _)
   external AdvancedMarkerElement([
     AdvancedMarkerElementOptions? options,
   ]);
+  external String? anchorLeft;
+  external String? anchorTop;
   external CollisionBehavior? collisionBehavior;
   external bool? gmpClickable;
   external bool? gmpDraggable;
