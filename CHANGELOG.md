@@ -1,3 +1,7 @@
+# 8.3.0 (2026-07-28)
+
+- [Add AdvancedMarker anchor bindings](https://github.com/a14n/dart-google-maps/pull/148)
+
 # 8.2.0 (2025-09-20)
 
 - re-generate against v3.62 docs
